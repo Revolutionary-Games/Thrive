@@ -22,21 +22,6 @@ public class PatchMapNameGenerator : IRegistryType
     // ReSharper disable once StringLiteralTypo
     private string vowels = "aeiouy";
 
-    private string? continentName;
-    private string? patchName;
-
-    public string ContinentName
-    {
-        get => continentName ?? throw new InvalidOperationException("Value not generated yet");
-        private set => continentName = value;
-    }
-
-    public string PatchName
-    {
-        get => patchName ?? throw new InvalidOperationException("Value not generated yet");
-        private set => patchName = value;
-    }
-
     public string InternalName { get; set; } = null!;
 
     /// <summary>
@@ -66,9 +51,6 @@ public class PatchMapNameGenerator : IRegistryType
         // Convert first letter to uppercase
         name[0] = char.ToUpper(name[0], CultureInfo.InvariantCulture);
 
-        // Continent name is the name without the genitive
-        ContinentName = name.ToString();
-
         // Choose an appropriate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
         {
@@ -81,9 +63,7 @@ public class PatchMapNameGenerator : IRegistryType
 
         name.Append(suffixes[suffixIndex]);
 
-        PatchName = name.ToString();
-
-        return PatchName;
+        return name.ToString();
     }
 
     public void Check(string name)

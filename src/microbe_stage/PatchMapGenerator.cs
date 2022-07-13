@@ -42,7 +42,6 @@ public static class PatchMapGenerator
         for (int i = 0; i < vertexCount; ++i)
         {
             var regionName = nameGenerator.Next(random);
-            var continentName = nameGenerator.ContinentName;
             var coordinates = new Vector2(0, 0);
 
             // We must create regions containing potential starting locations, so do those first
@@ -60,7 +59,7 @@ public static class PatchMapGenerator
                 regionType = (PatchRegion.RegionType)random.Next(0, 3);
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionType.ToString()),
+            var region = new PatchRegion(i, GetLocalizedName(regionName, regionType.ToString()),
                 regionType, coordinates);
             int numberOfPatches;
 
@@ -620,7 +619,7 @@ public static class PatchMapGenerator
     {
         var newPatch = biome switch
         {
-            BiomeType.Abyssopelagic => new Patch(GetPatchLocalizedName(regionName, "ABYSSOPELAGIC"),
+            BiomeType.Abyssopelagic => new Patch(GetLocalizedName(regionName, "ABYSSOPELAGIC"),
                 id, GetBiomeTemplate("abyssopelagic"), BiomeType.Abyssopelagic, region)
             {
                 Depth =
@@ -631,7 +630,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(300, 400),
             },
 
-            BiomeType.Bathypelagic => new Patch(GetPatchLocalizedName(regionName, "BATHYPELAGIC"),
+            BiomeType.Bathypelagic => new Patch(GetLocalizedName(regionName, "BATHYPELAGIC"),
                 id, GetBiomeTemplate("bathypelagic"), BiomeType.Bathypelagic, region)
             {
                 Depth =
@@ -642,7 +641,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 300),
             },
 
-            BiomeType.Cave => new Patch(GetPatchLocalizedName(regionName, "UNDERWATERCAVE"),
+            BiomeType.Cave => new Patch(GetLocalizedName(regionName, "UNDERWATERCAVE"),
                 id, GetBiomeTemplate("underwater_cave"), BiomeType.Cave, region)
             {
                 Depth =
@@ -653,7 +652,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(300, 200),
             },
 
-            BiomeType.Coastal => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
+            BiomeType.Coastal => new Patch(GetLocalizedName(regionName, "COASTAL"),
                 id, GetBiomeTemplate("coastal"), BiomeType.Coastal, region)
             {
                 Depth =
@@ -664,7 +663,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(100, 100),
             },
 
-            BiomeType.Epipelagic => new Patch(GetPatchLocalizedName(regionName, "EPIPELAGIC"),
+            BiomeType.Epipelagic => new Patch(GetLocalizedName(regionName, "EPIPELAGIC"),
                 id, GetBiomeTemplate("default"), BiomeType.Epipelagic, region)
             {
                 Depth =
@@ -675,7 +674,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 100),
             },
 
-            BiomeType.Estuary => new Patch(GetPatchLocalizedName(regionName, "ESTUARY"),
+            BiomeType.Estuary => new Patch(GetLocalizedName(regionName, "ESTUARY"),
                 id, GetBiomeTemplate("estuary"), BiomeType.Estuary, region)
             {
                 Depth =
@@ -686,7 +685,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(70, 160),
             },
 
-            BiomeType.IceShelf => new Patch(GetPatchLocalizedName(regionName, "ICESHELF"),
+            BiomeType.IceShelf => new Patch(GetLocalizedName(regionName, "ICESHELF"),
                 id, GetBiomeTemplate("ice_shelf"), BiomeType.IceShelf, region)
             {
                 Depth =
@@ -697,7 +696,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 30),
             },
 
-            BiomeType.Mesopelagic => new Patch(GetPatchLocalizedName(regionName, "MESOPELAGIC"),
+            BiomeType.Mesopelagic => new Patch(GetLocalizedName(regionName, "MESOPELAGIC"),
                 id, GetBiomeTemplate("mesopelagic"), BiomeType.Mesopelagic, region)
             {
                 Depth =
@@ -708,7 +707,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 200),
             },
 
-            BiomeType.Seafloor => new Patch(GetPatchLocalizedName(regionName, "SEA_FLOOR"),
+            BiomeType.Seafloor => new Patch(GetLocalizedName(regionName, "SEA_FLOOR"),
                 id, GetBiomeTemplate("seafloor"), BiomeType.Seafloor, region)
             {
                 Depth =
@@ -719,7 +718,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 400),
             },
 
-            BiomeType.Tidepool => new Patch(GetPatchLocalizedName(regionName, "TIDEPOOL"),
+            BiomeType.Tidepool => new Patch(GetLocalizedName(regionName, "TIDEPOOL"),
                 id, GetBiomeTemplate("tidepool"), BiomeType.Tidepool, region)
             {
                 Depth =
@@ -731,7 +730,7 @@ public static class PatchMapGenerator
             },
 
             // ReSharper disable once StringLiteralTypo
-            BiomeType.Vents => new Patch(GetPatchLocalizedName(regionName, "VOLCANIC_VENT"),
+            BiomeType.Vents => new Patch(GetLocalizedName(regionName, "VOLCANIC_VENT"),
                 id, GetBiomeTemplate("aavolcanic_vent"), BiomeType.Vents, region)
             {
                 Depth =
@@ -755,7 +754,7 @@ public static class PatchMapGenerator
         var regionName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
 
         // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
-        var region = new PatchRegion(0, GetPatchLocalizedName(regionName, string.Empty),
+        var region = new PatchRegion(0, GetLocalizedName(regionName, string.Empty),
                 PatchRegion.RegionType.Predefined, new Vector2(0, 0))
             { Size = new Vector2(400, 500) };
 
@@ -819,7 +818,7 @@ public static class PatchMapGenerator
         map.CurrentPatch.AddSpecies(defaultSpecies);
     }
 
-    private static LocalizedString GetPatchLocalizedName(string name, string biomeKey)
+    private static LocalizedString GetLocalizedName(string name, string biomeKey)
     {
         return new LocalizedString("PATCH_NAME", name, new LocalizedString(biomeKey));
     }
