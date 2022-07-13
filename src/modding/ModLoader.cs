@@ -536,7 +536,7 @@ public class ModLoader : Node
 
         if (info.Info.UseAutoHarmony == true)
         {
-            UnloadAutoHarmonyMod(name);
+            UnloadAutoHarmonyMod(info);
         }
 
         CheckAndMarkIfModRequiresRestart(info);
@@ -601,7 +601,7 @@ public class ModLoader : Node
 
         if (info.Info.UseAutoHarmony == true)
         {
-            LoadAutoHarmonyMod(name, assembly);
+            LoadAutoHarmonyMod(info, assembly);
 
             // Allow normal loading if the mod class is also specified
             if (string.IsNullOrEmpty(className))
@@ -613,14 +613,15 @@ public class ModLoader : Node
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
-                name, className));
+                name, className)));
             return false;
         }
+
         try
         {
-            var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
+            type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
             if (type == null)
             {
                 GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
@@ -659,15 +660,15 @@ public class ModLoader : Node
         return true;
     }
 
-    private void LoadAutoHarmonyMod(string name, Assembly assembly)
+    private void LoadAutoHarmonyMod(FullModDetails info, Assembly assembly)
     {
-        if (!loadedAutoHarmonyMods.TryGetValue(name, out var harmony))
+        if (!loadedAutoHarmonyMods.TryGetValue(info.InternalName, out var harmony))
         {
-            harmony = new Harmony($"thrive.auto.mod.{name}");
-            loadedAutoHarmonyMods[name] = harmony;
+            harmony = new Harmony($"thrive.auto.mod.{info.InternalName}");
+            loadedAutoHarmonyMods[info.InternalName] = harmony;
         }
 
-        GD.Print("Performing auto Harmony load for: ", name);
+        GD.Print("Performing auto Harmony load for: ", info.InternalName);
 
         try
         {
@@ -675,22 +676,22 @@ public class ModLoader : Node
         }
         catch (Exception e)
         {
-            GD.PrintErr("Mod's (", name, ") harmony loading failed with an exception: ", e);
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+            GD.PrintErr("Mod's (", info.InternalName, ") harmony loading failed with an exception: ", e);
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION"),
-                name, e));
+                info.InternalName, e)));
         }
     }
 
-    private void UnloadAutoHarmonyMod(string name)
+    private void UnloadAutoHarmonyMod(FullModDetails info)
     {
-        if (!loadedAutoHarmonyMods.TryGetValue(name, out var harmony))
+        if (!loadedAutoHarmonyMods.TryGetValue(info.InternalName, out var harmony))
         {
-            GD.Print("Can't unload Harmony using mod that is not loaded: ", name);
+            GD.Print("Can't unload Harmony using mod that is not loaded: ", info.InternalName);
             return;
         }
 
-        GD.Print("Performing auto Harmony unload for: ", name);
+        GD.Print("Performing auto Harmony unload for: ", info.InternalName);
 
         try
         {
@@ -698,10 +699,10 @@ public class ModLoader : Node
         }
         catch (Exception e)
         {
-            GD.PrintErr("Mod's (", name, ") harmony unload failed with an exception: ", e);
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+            GD.PrintErr("Mod's (", info.InternalName, ") harmony unload failed with an exception: ", e);
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"),
-                name, e));
+                info.InternalName, e)));
         }
     }
 

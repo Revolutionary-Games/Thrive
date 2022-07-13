@@ -350,10 +350,10 @@ margin_bottom = 35.0
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 36.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_left = 4.0
+margin_top = 43.0
+margin_right = -4.0
+margin_bottom = -4.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -362,12 +362,12 @@ custom_constants/margin_bottom = 5
 [node name="HSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1434.0
-margin_bottom = 264.0
+margin_right = 1428.0
+margin_bottom = 254.0
 
 [node name="ErrorModItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab/HSplitContainer"]
-margin_right = 708.0
-margin_bottom = 259.0
+margin_right = 705.0
+margin_bottom = 249.0
 size_flags_horizontal = 3
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
 custom_colors/font_color_selected = Color( 0.65098, 0.784314, 0.811765, 1 )
@@ -379,9 +379,9 @@ __meta__ = {
 }
 
 [node name="ErrorInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab/HSplitContainer"]
-margin_left = 720.0
-margin_right = 1429.0
-margin_bottom = 259.0
+margin_left = 717.0
+margin_right = 1423.0
+margin_bottom = 249.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrorTab/HSplitContainer/ErrorInfoPanel"]
