@@ -837,7 +837,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected void UpdatePopulation()
     {
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
-        populationLabel.Text = stage!.GameWorld.Map.CurrentPatch!.GetSpeciesPopulation(playerSpecies).FormatNumber();
+        populationLabel.Text = stage.GameWorld.Map.CurrentPatch!.GetSpeciesPopulation(playerSpecies).FormatNumber();
     }
 
     /// <summary>
