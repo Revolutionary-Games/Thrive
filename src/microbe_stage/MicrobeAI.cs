@@ -154,11 +154,6 @@ public class MicrobeAI
 
     private void ChooseActions(Random random, MicrobeAICommonData data, Microbe? signaler)
     {
-        if (microbe.IsBeingEngulfed)
-        {
-            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-        }
-
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
         Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
@@ -245,17 +240,17 @@ public class MicrobeAI
         // If there are no threats, look for a chunk to eat
         if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
-            Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
-            if (targetChunk.HasValue)
+            var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
+            if (targetChunk != null && targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
             {
-                PursueAndConsumeChunks(targetChunk.Value, random);
+                PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
             }
         }
 
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-        if (possiblePrey != null)
+        if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
@@ -293,14 +288,15 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if (chunk.ContainedCompounds == null)
+            if (chunk.Compounds.Compounds.Count <= 0)
                 continue;
 
-            if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
+            if (microbe.EngulfSize > chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
-                <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+                <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
+                && chunk.PhagocytosisStep == PhagocytosisPhase.None)
             {
-                if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
+                if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
                     if (chosenChunk == null ||
                         (chosenChunk.Translation - microbe.Translation).LengthSquared() >
@@ -370,7 +366,7 @@ public class MicrobeAI
         if (focused != null)
         {
             var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
-            if (!focused.Dead && distanceToFocusedPrey <
+            if (!focused.Dead && focused.PhagocytosisStep == PhagocytosisPhase.None && distanceToFocusedPrey <
                 (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
                 if (distanceToFocusedPrey < pursuitThreshold)
@@ -392,7 +388,7 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (!otherMicrobe.Dead)
+            if (!otherMicrobe.Dead && otherMicrobe.PhagocytosisStep == PhagocytosisPhase.None)
             {
                 if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
@@ -435,7 +431,7 @@ public class MicrobeAI
 
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
-                && !otherMicrobe.Dead
+                && !otherMicrobe.Dead && otherMicrobe.PhagocytosisStep == PhagocytosisPhase.None
                 && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
                 if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >

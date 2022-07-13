@@ -20,6 +20,11 @@ public class RegistryTypeStringConverter : TypeConverter
                 new SupportedRegistryType(typeof(Compound), "compound",
                     name => SimulationParameters.Instance.GetCompound(name))
             },
+            {
+                "enzyme",
+                new SupportedRegistryType(typeof(Enzyme), "enzyme",
+                    name => SimulationParameters.Instance.GetEnzyme(name))
+            },
         };
 
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -123,9 +128,17 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 }
 
 /// <summary>
-///   Specific converter for Compound
+///   Specific converter for <see cref="Compound"/>
 /// </summary>
 public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<Compound>
 {
-    protected override string TypeName { get; } = "compound";
+    protected override string TypeName => "compound";
+}
+
+/// <summary>
+///   Specific converter for <see cref="Enzyme"/>
+/// </summary>
+public class EnzymeStringConverter : RegistryTypeStringSingleTypeConverter<Enzyme>
+{
+    protected override string TypeName => "enzyme";
 }

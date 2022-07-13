@@ -117,17 +117,28 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleChunkSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            // Don't spawn Easter eggs if the player has chosen not to
+            if (entry.Value.EasterEgg && !CurrentGame.GameWorld.WorldSettings.EasterEggs)
+                continue;
+
+            // Difficulty only scales the spawn rate for chunks containing compounds
+            var density = entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            if (entry.Value.Compounds?.Count > 0 || entry.Value.VentAmount > 0)
+                density *= CurrentGame.GameWorld.WorldSettings.CompoundDensity;
+
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
-                        Constants.MICROBE_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -135,19 +146,26 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleCloudSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName,
-                entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            // Density value in difficulty settings scales overall compound amount quadratically
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            var amount = entry.Value.Amount * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
+
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
-                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
+                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
-                        Constants.CLOUD_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -163,14 +181,21 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in patch.SpeciesInPatch.OrderByDescending(entry => entry.Value))
         {
             var species = entry.Key;
+            var population = entry.Value;
 
-            if (species.Population <= 0)
+            if (population <= 0)
             {
                 GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
             }
 
-            var density = Mathf.Max(Mathf.Log(species.Population / 50.0f) * 0.01f, 0.0f);
+            if (species.Obsolete)
+            {
+                GD.PrintErr("Obsolete species is in a patch");
+                continue;
+            }
+
+            var density = Mathf.Max(Mathf.Log(population / 25.0f) * 0.01f, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 

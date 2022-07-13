@@ -1,17 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/vents.png" type="Texture" id=1]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapNode.cs" type="Script" id=2]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.054902, 0.0313726, 0.85098, 1 )
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.592157, 0.788235, 0.823529, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.027451, 0.827451, 0.956863, 1 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.12549, 0.137255, 0.988235, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0117647, 1, 0.164706, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -22,39 +29,39 @@ margin_right = 64.0
 margin_bottom = 64.0
 mouse_default_cursor_shape = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 IconPath = NodePath("MarginContainer/MarginContainer/TextureRect")
 HighlightPanelPath = NodePath("HoveredHighlight")
-MarkPanelPath = NodePath("MarginContainer/PlayerHereHighlight")
+MarkPanelPath = NodePath("PlayerHereHighlight")
+AdjacentPanelPath = NodePath("AdjacentToHighlight")
+
+[node name="AdjacentToHighlight" type="Panel" parent="."]
+visible = false
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 3 )
 
 [node name="HoveredHighlight" type="Panel" parent="."]
-visible = false
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 
+[node name="PlayerHereHighlight" type="Panel" parent="."]
+visible = false
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 4 )
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
-
-[node name="PlayerHereHighlight" type="Panel" parent="MarginContainer"]
-visible = false
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 60.0
-margin_bottom = 60.0
-mouse_filter = 1
-custom_styles/panel = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 margin_left = 4.0
@@ -77,5 +84,6 @@ margin_bottom = 55.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
+
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

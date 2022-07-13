@@ -76,7 +76,7 @@ public interface ICustomToolTip
     /// </summary>
     ToolTipTransitioning TransitionType { get; set; }
 
-    bool HideOnMousePress { get; set; }
+    bool HideOnMouseAction { get; set; }
 
     /// <summary>
     ///   Control node of this tooltip

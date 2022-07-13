@@ -18,6 +18,9 @@ using Newtonsoft.Json;
 public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
+    public WorldGenerationSettings WorldSettings = new();
+
+    [JsonProperty]
     private uint speciesIdCounter;
 
     [JsonProperty]
@@ -46,6 +49,7 @@ public class GameWorld : ISaveLoadable
     /// <param name="settings">Settings to generate the world with</param>
     public GameWorld(WorldGenerationSettings settings) : this()
     {
+        WorldSettings = settings;
         PlayerSpecies = CreatePlayerSpecies();
 
         if (!PlayerSpecies.PlayerSpecies)
@@ -63,6 +67,7 @@ public class GameWorld : ISaveLoadable
     /// <summary>
     ///   Blank world creation, only for loading saves
     /// </summary>
+    [JsonConstructor]
     public GameWorld()
     {
         // TODO: when loading a save this shouldn't be recreated as otherwise that happens all the time
@@ -184,8 +189,8 @@ public class GameWorld : ISaveLoadable
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
-                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty)),
-                    population);
+                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK), population);
             }
         }
     }
@@ -209,7 +214,8 @@ public class GameWorld : ISaveLoadable
         {
             case MicrobeSpecies s:
                 // Mutator will mutate the name
-                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet));
+                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet),
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
@@ -275,16 +281,17 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Adds an external population effect to a species
+    ///   Adds an external population effect to a species in a specific patch
     /// </summary>
     /// <param name="species">Target species</param>
     /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
+    /// <param name="patch">The patch this effect affects.</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    public void AlterSpeciesPopulation(Species species, int constant, string description,
+    public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
         bool immediate = false, float coefficient = 1)
     {
         if (constant == 0 || coefficient == 0)
@@ -293,20 +300,42 @@ public class GameWorld : ISaveLoadable
         if (species == null)
             throw new ArgumentException("species is null");
 
+        if (string.IsNullOrEmpty(description))
+            throw new ArgumentException("May not be empty or null", nameof(description));
+
         // Immediate is only allowed to use for the player dying
         if (immediate)
         {
             if (!species.PlayerSpecies)
                 throw new ArgumentException("immediate effect is only for player dying");
 
-            GD.Print("Applying immediate population effect " +
-                "(should only be used for the player dying)");
-            species.ApplyImmediatePopulationChange(constant, coefficient);
+            GD.Print("Applying immediate population effect (should only be used for the player dying)");
+
+            species.ApplyImmediatePopulationChange(constant, coefficient, patch);
         }
 
         CreateRunIfMissing();
 
-        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
+    }
+
+    /// <summary>
+    ///   Adds an external population effect to a species in the current patch
+    /// </summary>
+    /// <param name="species">Target species</param>
+    /// <param name="constant">Change amount (constant part)</param>
+    /// <param name="description">What caused the change</param>
+    /// <param name="immediate">
+    ///   If true applied immediately. Should only be used for the player dying
+    /// </param>
+    /// <param name="coefficient">Change amount (coefficient part)</param>
+    public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
+        bool immediate = false, float coefficient = 1)
+    {
+        if (Map.CurrentPatch == null)
+            throw new InvalidOperationException("No current patch set in map");
+
+        AlterSpeciesPopulation(species, constant, description, Map.CurrentPatch, immediate, coefficient);
     }
 
     public void RemoveSpecies(Species species)
@@ -341,8 +370,130 @@ public class GameWorld : ISaveLoadable
         multicellularVersion.Cells.Add(new CellTemplate(stemCellType));
         multicellularVersion.CellTypes.Add(stemCellType);
 
+        multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);
         return multicellularVersion;
+    }
+
+    /// <summary>
+    ///   Moves a species to the late multicellular stage
+    /// </summary>
+    /// <param name="species">
+    ///   The species to convert to a late multicellular one. No checks are done to make sure the species is
+    ///   actually a valid multicellular one.
+    /// </param>
+    public LateMulticellularSpecies ChangeSpeciesToLateMulticellular(Species species)
+    {
+        var earlySpecies = species as EarlyMulticellularSpecies;
+
+        if (earlySpecies == null)
+            throw new ArgumentException("Only early multicellular species can become late multicellular species");
+
+        var lateVersion = new LateMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        species.CopyDataToConvertedSpecies(lateVersion);
+
+        // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
+        // in case they want to place them later
+        lateVersion.CellTypes.AddRange(earlySpecies.CellTypes);
+
+        // Create initial metaball layout from the cell layout
+        // TODO: improve this algorithm
+
+        // Create metaballs for everything first
+        var metaballs = new List<MulticellularMetaball>();
+
+        foreach (var cellTemplate in earlySpecies.Cells)
+        {
+            var metaball = new MulticellularMetaball(cellTemplate.CellType)
+            {
+                Position = Hex.AxialToCartesian(cellTemplate.Position),
+                Size = 1,
+            };
+
+            metaballs.Add(metaball);
+        }
+
+        // Then create the parent structure
+        // Root is the closest metaball to the origin
+        var rootMetaball = metaballs.OrderBy(m => m.Position.LengthSquared()).First();
+
+        foreach (var metaball in metaballs)
+        {
+            if (ReferenceEquals(metaball, rootMetaball))
+                continue;
+
+            if (metaball.Parent != null)
+                throw new Exception("Logic error in metaball initial parent calculation");
+
+            // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
+            // Also avoid accidentally making short parent loops
+            var potentialParents = metaballs
+                .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.Parent, metaball))
+                .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared());
+
+            bool foundSuitableParent = false;
+
+            foreach (var parentCandidate in potentialParents)
+            {
+                // Prevent causing parent loops
+                if (parentCandidate.HasAncestor(metaball))
+                    continue;
+
+                metaball.Parent = parentCandidate;
+                foundSuitableParent = true;
+                break;
+            }
+
+            if (!foundSuitableParent)
+                throw new Exception("Could not find a suitable parent for metaball");
+        }
+
+        // Fix root to be at 0,0
+        rootMetaball.Position = Vector3.Zero;
+
+        // And finally move the metaballs to touch each other
+        // Do this from the root down to not need to process metaballs multiple times
+        // TODO: should this logic be in OnEdited for general use?
+
+        var metaballsToPosition = new List<MulticellularMetaball> { Capacity = metaballs.Count };
+
+        // First build a good order to update the metaballs in
+        foreach (var metaball in metaballs.OrderBy(m => m.Position.LengthSquared()))
+        {
+            RecursivelyAddBallsToList(metaballsToPosition, metaball);
+        }
+
+        // Next, calculate the direction vectors to parents
+        var metaballParentVectors = new List<Vector3> { Capacity = metaballsToPosition.Count };
+
+        foreach (var metaball in metaballsToPosition)
+        {
+            // Add dummy value for the root to not need to worry about that in the next loop
+            metaballParentVectors.Add(metaball.DirectionToParent() ?? Vector3.Zero);
+        }
+
+        // And finally apply the positioning
+        for (int i = 0; i < metaballsToPosition.Count; ++i)
+        {
+            var metaball = metaballsToPosition[i];
+
+            // Don't position the root metaball here
+            if (metaball.Parent == null)
+                continue;
+
+            metaball.AdjustPositionToTouchParent(metaballParentVectors[i]);
+        }
+
+        // Finish off by adding the metaballs to the layout in an order where all parents are added before the other
+        // ones
+        foreach (var metaball in metaballsToPosition)
+            lateVersion.BodyLayout.Add(metaball);
+
+        lateVersion.BodyLayout.VerifyMetaballsAreTouching();
+
+        lateVersion.OnEdited();
+        SwitchSpecies(species, lateVersion);
+        return lateVersion;
     }
 
     /// <summary>
@@ -411,5 +562,20 @@ public class GameWorld : ISaveLoadable
 
         if (PlayerSpecies == old)
             PlayerSpecies = newSpecies;
+    }
+
+    private void RecursivelyAddBallsToList(ICollection<MulticellularMetaball> list, MulticellularMetaball metaball)
+    {
+        if (list.Contains(metaball))
+            return;
+
+        if (metaball.Parent != null)
+        {
+            // Need to recursively add parents first to the list, this is absolutely required for the step where
+            // these are added to the layout ultimately
+            RecursivelyAddBallsToList(list, (MulticellularMetaball)metaball.Parent);
+        }
+
+        list.Add(metaball);
     }
 }

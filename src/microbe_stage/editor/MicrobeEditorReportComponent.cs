@@ -142,7 +142,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
-        reportTabPatchSelector.Select(Editor.CurrentPatch.ID);
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(Editor.CurrentPatch.ID));
     }
 
     public void UpdateReportTabPatchSelectorSelection(int patchID)
@@ -217,7 +217,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         {
             var snapshot = patch.History.ElementAt(i);
 
-            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
+            var temperature = SimulationParameters.Instance.GetCompound("temperature");
+            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod,
+                snapshot.Biome.Compounds[temperature].Ambient)
             {
                 MarkerColour = temperatureData.Colour,
             });
@@ -362,7 +364,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     public void UpdateGlucoseReduction(float value)
     {
         var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-            value * 100);
+            Math.Round(value * 100));
 
         // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
@@ -411,7 +413,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
         UpdateTimeline(Editor.SelectedPatch);
         UpdateReportTabPatchSelector();
     }

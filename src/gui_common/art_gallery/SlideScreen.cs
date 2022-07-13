@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
-public class Slidescreen : CustomDialog
+public class SlideScreen : CustomDialog
 {
     public const float SLIDESHOW_INTERVAL = 6.0f;
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
@@ -244,8 +244,8 @@ public class Slidescreen : CustomDialog
 
         currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
 
-        // Can be slideshown check is only done here because slideshow only moves forward
-        if (!Items[CurrentSlideIndex].CanBeSlideshown && SlideshowMode)
+        // Can be shown in a slideshow check is only done here because slideshow only moves forward
+        if (!Items[CurrentSlideIndex].CanBeShownInASlideshow && SlideshowMode)
         {
             // Limit recursion to the number of items total
             if (searchCounter < Items.Count)
@@ -314,9 +314,9 @@ public class Slidescreen : CustomDialog
 
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
         slideShowModeButton.SetPressedNoSignal(slideshowMode);
-        slideShowModeButton.Visible = item.CanBeSlideshown;
+        slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
-        slideTitleLabel.Text = item.Asset.Title;
+        slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
         fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 

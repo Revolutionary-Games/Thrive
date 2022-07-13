@@ -49,6 +49,8 @@ public class PauseMenu : CustomDialog
     /// </summary>
     private ExitType exitType;
 
+    private bool exiting;
+
     [Signal]
     public delegate void OnResumed();
 
@@ -260,6 +262,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Open");
         Paused = true;
+        exiting = false;
     }
 
     public void Close()
@@ -357,6 +360,11 @@ public class PauseMenu : CustomDialog
 
     private void ConfirmExit()
     {
+        if (exiting)
+            return;
+
+        exiting = true;
+
         switch (exitType)
         {
             case ExitType.ReturnToMenu:

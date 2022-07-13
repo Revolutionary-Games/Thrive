@@ -51,4 +51,34 @@ public class SingleEditorAction<T> : EditorAction
     {
         return SingleData.CalculateCost();
     }
+
+    public override void ApplyMergedData(IEnumerable<EditorCombinableActionData> newData)
+    {
+        bool applied = false;
+
+        foreach (var data in newData)
+        {
+            if (applied)
+                throw new InvalidOperationException("Single editor action can only take a single merged action");
+
+            SingleData = (T)data;
+            applied = true;
+        }
+
+        if (!applied)
+            throw new InvalidOperationException("Merged data didn't contain anything");
+    }
+
+    public override int ApplyPartialMergedData(List<EditorCombinableActionData> newData, int startIndex)
+    {
+        // To support removing actions from combined action we need to skip applying here if the item is wrong data
+        // which indicates that we want to be deleted
+        if (newData[startIndex] is T compatibleData)
+        {
+            SingleData = compatibleData;
+            return 1;
+        }
+
+        return 0;
+    }
 }

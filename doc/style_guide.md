@@ -66,6 +66,14 @@ Code style rules
 
 - C# file lines should have a maximum width of 120 columns.
 
+- Comments should use the C++ style `//` or XML doc (when documenting
+  language constructs like classes and properties) `///`. C-style
+  comments `/*` should only be used when commenting out multiple lines
+  of code that is important to keep for future reference or similar
+  code that is only a part of a line. This comment style can also be
+  kept in copyright notice sections. Elsewhere C-style comments should
+  not be used.
+
 - C# code should by default not be in a namespace. When code is in a
   namespace all using statements should be within the namespace.
 
@@ -119,7 +127,10 @@ Code style rules
 
 - Don't place inline comments at the end of lines, place them on their
   own lines. Don't use comments after a piece of code on a single
-  line.
+  line. The exception to this rule is when using pragma warning suppressions
+  then add the reason for the suppression at the end of the line. For
+  JetBrains checks, place a separate comment before the suppression
+  explaining the reason for the suppression.
 
 - Start comments with a capital letter, unless it is a commented out
   code block or a keyword.
@@ -139,6 +150,11 @@ Code style rules
   example: "Make sure the player is alive" should be placed before the
   `if` but a comment like "Player is alive" should be inside the
   braces of the `if` statement.
+
+- Prefer to not specify the value for variables or constants explicitly in the
+  comments as they can easily get outdated when somebody changes the actual
+  values. If it has to be specified, care **must** be taken to always update
+  that comment whenever the value is changed.
 
 - The `returns` section of an XML can be omitted if it adds nothing
   valuable. For example a method like `public List<Organelle>
@@ -283,6 +299,10 @@ Code style rules
 
 - Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
   and then reading the value separate because `TryGetValue` is faster.
+
+- When trying to save dynamic type objects, the base type that is used in
+  the containing object (even if it is an interface) needs to specify the
+  thrive serializer using `[UseThriveSerializer]` attribute.
 
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it
@@ -454,10 +474,26 @@ Godot usage
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
 
-- When adding window dialogs to the game, consider using the
-  `CustomDialog` type rather than the built-in `WindowDialog` to ensure
-  consistency across the GUI. This is because the custom implementation
-  offer a much more customized styling and additional functionality.
+- We have rewritten several controls to workaround Godot bugs or limitations,
+  and add custom features. All these rewritten/customized controls are placed
+  in "res://src/gui_common/". Currently there are `CustomCheckBox`,
+  `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
+  `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
+  `TweakedColourPicker`. Consider using these custom types rather than the
+  built-in types to ensure consistency across the GUI.
+
+- When you are instantiating a custom Control in Godot, use
+  `Instance Child Scene` if it has a corresponding scene (.tscn) file; If it
+  doesn't, add a corresponding built-in Control and use `Attach Script`.
+  An alternative is to locate the scene or script file in `FileSystem` panel
+  (by default on the bottom-left corner) and drag it to the proper position.
+
+- When you are instantiating a custom Control in code, use the following if it
+  has a corresponding scene (.tscn) file; use `new T` if it doesn't.
+  ```C#
+  var scene = GD.Load<PackedScene>("res://src/gui_common/T.tscn");
+  var instance = scene.Instance<T>();
+  ```
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also

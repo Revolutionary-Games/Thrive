@@ -7,15 +7,33 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-public class PatchMap
+[UseThriveSerializer]
+public class PatchMap : ISaveLoadable
 {
     private Patch? currentPatch;
 
     /// <summary>
-    ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
+    ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
     [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new();
+
+    /// <summary>
+    ///   The regions in this map
+    /// </summary>
+    [JsonProperty]
+    public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
+
+    [JsonIgnore]
+    public IEnumerable<KeyValuePair<int, PatchRegion>> NormallyDrawnRegions =>
+        Regions.Where(r => !r.Value.UsesSpecialLinking);
+
+    /// <summary>
+    ///   These regions use special logic on how they are linked and positioned to other regions (and drawn)
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<KeyValuePair<int, PatchRegion>> SpeciallyDrawnRegions =>
+        Regions.Where(r => r.Value.UsesSpecialLinking);
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -40,6 +58,12 @@ public class PatchMap
         }
     }
 
+    [JsonProperty]
+    private List<(int Id1, int Id2)> PatchAdjacencies { get; set; } = new();
+
+    [JsonProperty]
+    private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
+
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add
     /// </summary>
@@ -52,6 +76,31 @@ public class PatchMap
         }
 
         Patches[patch.ID] = patch;
+    }
+
+    /// <summary>
+    ///   Adds a new region to the map. Throws if can't add
+    /// </summary>
+    public void AddRegion(PatchRegion region)
+    {
+        if (region.ID < 0)
+            throw new ArgumentException("id must not be negative");
+
+        if (Regions.ContainsKey(region.ID))
+        {
+            throw new ArgumentException(
+                $"Region {region.Name} cannot be added to this map, the ID is already in use: {region.ID}");
+        }
+
+        Regions[region.ID] = region;
+    }
+
+    public bool IsSpeciallyDrawnRegion(int id)
+    {
+        if (!Regions.TryGetValue(id, out var region))
+            return false;
+
+        return region.UsesSpecialLinking;
     }
 
     /// <summary>
@@ -137,6 +186,31 @@ public class PatchMap
                 result = false;
             }
         }
+
+        // Region links are correct
+        foreach (var entry in RegionAdjacencies)
+        {
+            // TODO: checking for special regions
+            if (entry.Id1 < 0 || entry.Id2 < 0)
+                continue;
+
+            if (!Regions.ContainsKey(entry.Id1) || !Regions.ContainsKey(entry.Id2))
+            {
+                GD.PrintErr($"Invalid region link: from {entry.Id1} to {entry.Id2}");
+                result = false;
+            }
+        }
+
+        // Verify unique IDs
+        foreach (var region in Regions)
+        {
+            if (region.Key != region.Value.ID)
+                GD.Print($"Region key {region.Key} doesn't match ID in object {region.Value.ID}");
+        }
+
+        // TODO: check each region has a link
+        // Note: it seems that region links are two-way by default and don't have the ability to only have one way
+        // linkage
 
         return result;
     }
@@ -318,6 +392,71 @@ public class PatchMap
         foreach (var patch in Patches.Values)
         {
             patch.ReplaceSpecies(old, newSpecies);
+        }
+    }
+
+    /// <summary>
+    ///   Check if patch link <code>id1->id2</code> or <code>id2->id1</code> exists
+    /// </summary>
+    /// <returns>True if at least an one-direction link exists</returns>
+    public bool ContainsPatchAdjacency(int id1, int id2)
+    {
+        return PatchAdjacencies.Contains((id1, id2)) || PatchAdjacencies.Contains((id2, id1));
+    }
+
+    /// <summary>
+    ///   Check if region link <code>id1->id2</code> or <code>id2->id1</code> exists
+    /// </summary>
+    /// <returns>True if at least an one-direction link exists</returns>
+    public bool ContainsRegionAdjacency(int id1, int id2)
+    {
+        return RegionAdjacencies.Contains((id1, id2)) || RegionAdjacencies.Contains((id2, id1));
+    }
+
+    public void CreateAdjacenciesFromPatchData()
+    {
+        foreach (var entry in Patches)
+        {
+            foreach (var adjacent in entry.Value.Adjacent)
+            {
+                if (!ContainsPatchAdjacency(entry.Value.ID, adjacent.ID))
+                    PatchAdjacencies.Add((entry.Value.ID, adjacent.ID));
+            }
+        }
+
+        foreach (var entry in Regions)
+        {
+            foreach (var adjacent in entry.Value.Adjacent)
+            {
+                if (!ContainsRegionAdjacency(entry.Value.ID, adjacent.ID))
+                    RegionAdjacencies.Add((entry.Value.ID, adjacent.ID));
+            }
+        }
+    }
+
+    public void FinishLoading(ISaveContext? context)
+    {
+        RecreateAdjacencies();
+    }
+
+    private void RecreateAdjacencies()
+    {
+        foreach (var (id1, id2) in PatchAdjacencies)
+        {
+            var patch1 = Patches[id1];
+            var patch2 = Patches[id2];
+
+            patch1.AddNeighbour(patch2);
+            patch2.AddNeighbour(patch1);
+        }
+
+        foreach (var (id1, id2) in RegionAdjacencies)
+        {
+            var region1 = Regions[id1];
+            var region2 = Regions[id2];
+
+            region1.AddNeighbour(region2);
+            region2.AddNeighbour(region1);
         }
     }
 }

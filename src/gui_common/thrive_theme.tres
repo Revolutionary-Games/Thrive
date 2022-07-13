@@ -20,7 +20,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=21]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=21]
 [ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-BoldItalic-Small.tres" type="DynamicFont" id=23]
 
@@ -697,6 +697,7 @@ ProgressBar/styles/fg = null
 RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
 RichTextLabel/colors/font_color_selected = Color( 0, 0, 0, 1 )
 RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+RichTextLabel/colors/selection_color = Color( 0, 0, 0, 1 )
 RichTextLabel/constants/line_separation = 1
 RichTextLabel/constants/shadow_as_outline = 0
 RichTextLabel/constants/shadow_offset_x = 1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
@@ -31,6 +32,9 @@ ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
+EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
+EngulfedExplanationPath = NodePath("EngulfedTutorial")
+EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
 [node name="MicrobeWelcome" type="Popup" parent="."]
@@ -73,6 +77,7 @@ size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="MicrobeWelcome/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
 margin_right = 420.0
+custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
@@ -199,13 +204,15 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -260.0
+margin_left = -279.0
 margin_top = -179.0
-margin_right = 0.0
+margin_right = -19.0
 margin_bottom = 61.0
+rect_min_size = Vector2( 260, 250 )
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
 [node name="EditorButtonHighlight" parent="." instance=ExtResource( 11 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 490.0
@@ -220,6 +227,7 @@ margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
+rect_min_size = Vector2( 260, 260 )
 Description = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 10 )]
@@ -238,9 +246,8 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -279.0
+margin_left = -260.0
 margin_top = -189.0
-margin_right = -19.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 260, 240 )
 theme = ExtResource( 2 )
@@ -266,10 +273,12 @@ size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="CheckHelpMenu/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
 margin_right = 260.0
+margin_bottom = 24.0
+custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
-margin_top = 26.0
+margin_top = 28.0
 margin_right = 260.0
 margin_bottom = 204.0
 size_flags_vertical = 3
@@ -282,6 +291,40 @@ margin_bottom = 240.0
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "TUTORIAL_VIEW_NOW"
+
+[node name="EngulfmentFullCapacity" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+
+[node name="EngulfmentTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+
+[node name="EngulfedTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 260, 275 )
+Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
@@ -301,3 +344,9 @@ text = "TUTORIAL_VIEW_NOW"
 [connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
+[connection signal="hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
+[connection signal="popup_hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
+[connection signal="hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
+[connection signal="popup_hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
+[connection signal="hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
+[connection signal="popup_hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
