@@ -392,14 +392,14 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = entry.Key.MPCost;
+            entry.Value.MPCost = (int)(entry.Key.MPCost * CostMultiplier);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = entry.Key.EditorCost;
+            entry.Value.MPCost = (int)(entry.Key.EditorCost * CostMultiplier);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }
