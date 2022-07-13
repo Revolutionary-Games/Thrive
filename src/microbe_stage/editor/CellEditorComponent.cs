@@ -440,7 +440,6 @@ public partial class CellEditorComponent :
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
 
         SetupMicrobePartSelections();
-        UpdateMicrobePartSelections();
 
         ApplySelectionMenuTab();
         RegisterTooltips();
@@ -508,6 +507,8 @@ public partial class CellEditorComponent :
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
         }
+
+        UpdateMicrobePartSelections();
 
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
@@ -1808,6 +1809,10 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Creates part and membrane selection buttons
     /// </summary>
+    /// <remarks>
+    ///   This doesn't multiply the shown MP Cost by the cost factor as this is called much earlier before editor is
+    ///   initialized proper, for that use <see cref="UpdateMicrobePartSelections"/> or <see cref="UpdateMPCost"/>.
+    /// </remarks>
     private void SetupMicrobePartSelections()
     {
         var simulationParameters = SimulationParameters.Instance;
