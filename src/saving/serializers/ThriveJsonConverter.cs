@@ -267,6 +267,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
     private static readonly List<string> DefaultOnlyChildCopyIgnore = new();
 
+    private static readonly Type ObjectBaseType = typeof(object);
+    private static readonly Type AlwaysDynamicAttribute = typeof(JSONAlwaysDynamicTypeAttribute);
+    private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
+    private static readonly Type BaseDynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
+
     protected BaseThriveConverter(ISaveContext? context)
     {
         Context = context;
@@ -633,17 +638,33 @@ public abstract class BaseThriveConverter : JsonConverter
             // Dynamic typing
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
-                // Write the type of the instance always as we can't detect if the value matches the type of the field
-                // We can at least check that the actual type is a subclass of something allowing dynamic typing
-                bool baseIsDynamic = type.BaseType?.CustomAttributes.Any(attr =>
-                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)) == true;
+                // We don't know the type of field we are included in so we can't detect if the instance type
+                // doesn't match the field (at least I don't think we can,
+                // would be great though if we could - hhyyrylainen).
+                // Seems like a limitation in the JSON library:
+                // https://github.com/JamesNK/Newtonsoft.Json/issues/2126
+                // So we check if the attributes want us to write the type and go with that
+                bool writeType = false;
 
-                // If the current uses scene creation, dynamic type needs to be also in that case output
-                bool currentIsAlwaysDynamic = type.CustomAttributes.Any(attr =>
-                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
-                    attr.AttributeType == typeof(SceneLoadedClassAttribute));
+                var baseType = type.BaseType;
 
-                if (baseIsDynamic || currentIsAlwaysDynamic)
+                while (baseType != null && baseType != ObjectBaseType)
+                {
+                    if (baseType.CustomAttributes.Any(attr =>
+                            attr.AttributeType == BaseDynamicTypeAllowedAttribute) ||
+                        HasAlwaysJSONTypeWriteAttribute(baseType))
+                    {
+                        writeType = true;
+                        break;
+                    }
+
+                    baseType = baseType.BaseType;
+                }
+
+                if (!writeType)
+                    writeType = HasAlwaysJSONTypeWriteAttribute(type);
+
+                if (writeType)
                 {
                     writer.WritePropertyName(TYPE_PROPERTY);
 
@@ -758,6 +779,14 @@ public abstract class BaseThriveConverter : JsonConverter
             return true;
 
         return false;
+    }
+
+    private static bool HasAlwaysJSONTypeWriteAttribute(Type type)
+    {
+        // If the current uses scene creation, dynamic type needs to be also in that case output
+        return type.CustomAttributes.Any(attr =>
+            attr.AttributeType == AlwaysDynamicAttribute ||
+            attr.AttributeType == SceneLoadedAttribute);
     }
 
     private static bool UsesOnlyChildAssign(IEnumerable<Attribute> customAttributes,
