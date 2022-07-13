@@ -383,12 +383,12 @@ public partial class MetaballBodyEditorComponent :
 
         if (MovingPlacedMetaball == null)
         {
-            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, false);
         }
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                new List<MulticellularMetaball> { MovingPlacedMetaball }, false);
+                new List<MulticellularMetaball> { MovingPlacedMetaball }, true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
