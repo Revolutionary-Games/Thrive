@@ -199,11 +199,6 @@ public partial class CellEditorComponent :
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
 
-    /// <summary>
-    ///   Controls MP discounts (for multicellular)
-    /// </summary>
-    private float editorCostFactor = 1.0f;
-
     private EnergyBalanceInfo? energyBalanceInfo;
 
     private string? bestPatchName;
@@ -499,10 +494,6 @@ public partial class CellEditorComponent :
 
         if (IsMulticellularEditor)
         {
-            editorCostFactor = Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
-            organelleMenu.EditorCostFactor = editorCostFactor;
-            UpdateMicrobePartSelections();
-
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
             componentBottomLeftButtons.UseSpeciesNameValidation = false;
 
@@ -520,7 +511,7 @@ public partial class CellEditorComponent :
 
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
-        UpdateMPCostFactors();
+        UpdateMPCost();
 
         UpdateOrganelleUnlockTooltips();
 
@@ -860,8 +851,7 @@ public partial class CellEditorComponent :
         if (intRigidity == rigidity)
             return;
 
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP *
-            editorCostFactor * CostMultiplier, 100);
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
 
         if (cost > Editor.MutationPoints)
@@ -975,7 +965,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
-        var cost = (int)Math.Min(organelleDefinition.MPCost * editorCostFactor * CostMultiplier, 100);
+        var cost = (int)Math.Min(organelleDefinition.MPCost * CostMultiplier, 100);
 
         if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();
@@ -1843,7 +1833,7 @@ public partial class CellEditorComponent :
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
-            control.MPCost = (int)(organelle.MPCost * editorCostFactor);
+            control.MPCost = organelle.MPCost;
             control.Name = organelle.InternalName;
 
             // Special case with registering the tooltip here for item with no associated organelle
@@ -1868,7 +1858,7 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = (int)(membraneType.EditorCost * editorCostFactor);
+            control.MPCost = membraneType.EditorCost;
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");

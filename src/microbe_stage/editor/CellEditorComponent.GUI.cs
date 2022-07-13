@@ -218,56 +218,43 @@ public partial class CellEditorComponent
     }
 
     /// <summary>
-    ///   Updates the MP costs for organelle, membrane, and rigidity button lists and tooltips
+    ///   Updates the MP costs for organelle, membrane, and rigidity button lists and tooltips. Taking into account
+    ///   MP cost factor.
     /// </summary>
-    private void UpdateMPCostFactors()
+    private void UpdateMPCost()
     {
         // Set the cost factor for each organelle button
         foreach (var entry in placeablePartSelectionElements)
         {
-            entry.Value.MPCost = (int)Math.Min(entry.Value.MPCost * CostMultiplier, 100);
+            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, 100);
+
+            entry.Value.MPCost = cost;
+
+            // Set the cost factor for each organelle tooltip
+            var tooltip = GetSelectionTooltip(entry.Key.InternalName, "organelleSelection");
+            if (tooltip != null)
+                tooltip.MutationPointCost = cost;
         }
 
         // Set the cost factor for each membrane button
         foreach (var entry in membraneSelectionElements)
         {
-            entry.Value.MPCost = (int)Math.Min(entry.Value.MPCost * CostMultiplier, 100);
-        }
+            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, 100);
 
-        // Set the cost factor for each organelle tooltip
-        var organelleNames = SimulationParameters.Instance.GetAllOrganelles().Select(o => o.InternalName);
-        foreach (string name in organelleNames)
-        {
-            if (name == protoplasm.InternalName)
-                continue;
+            entry.Value.MPCost = cost;
 
-            var tooltip = GetSelectionTooltip(name, "organelleSelection");
+            // Set the cost factor for each membrane tooltip
+            var tooltip = GetSelectionTooltip(entry.Key.InternalName, "membraneSelection");
             if (tooltip != null)
-            {
-                tooltip.EditorCostFactor = editorCostFactor;
-                tooltip.MutationPointCost = (int)Math.Min(tooltip.MutationPointCost * CostMultiplier, 100);
-            }
-        }
-
-        // Set the cost factor for each membrane tooltip
-        var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
-        foreach (var name in membraneNames)
-        {
-            var tooltip = GetSelectionTooltip(name, "membraneSelection");
-            if (tooltip != null)
-            {
-                tooltip.EditorCostFactor = editorCostFactor;
-                tooltip.MutationPointCost = (int)Math.Min(tooltip.MutationPointCost * CostMultiplier, 100);
-            }
+                tooltip.MutationPointCost = cost;
         }
 
         // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         if (rigidityTooltip != null)
         {
-            rigidityTooltip.EditorCostFactor = editorCostFactor;
-            rigidityTooltip.MutationPointCost =
-                (int)Math.Min(rigidityTooltip.MutationPointCost * CostMultiplier, 100);
+            rigidityTooltip.MutationPointCost = (int)Math.Min(
+                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         }
     }
 
@@ -405,14 +392,14 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.MPCost * editorCostFactor);
+            entry.Value.MPCost = entry.Key.MPCost;
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.EditorCost * editorCostFactor);
+            entry.Value.MPCost = entry.Key.EditorCost;
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }

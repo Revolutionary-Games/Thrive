@@ -795,7 +795,7 @@ public partial class MetaballBodyEditorComponent :
                 control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
             }
 
-            control.MPCost = cellType.MPCost;
+            control.MPCost = Constants.METABALL_ADD_COST;
 
             // TODO: tooltips for these
         }
