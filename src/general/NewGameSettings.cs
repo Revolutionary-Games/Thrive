@@ -406,9 +406,6 @@ public class NewGameSettings : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Disable the button to prevent it being executed again.
-        confirmButton.Disabled = true;
-
         settings.Difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.Pressed;
@@ -454,6 +451,9 @@ public class NewGameSettings : ControlWithInput
             microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
             SceneManager.Instance.SwitchToScene(microbeStage);
         });
+
+        // Disable the button to prevent it being executed again.
+        confirmButton.Disabled = true;
     }
 
     private void OnDifficultyPresetSelected(int index)
