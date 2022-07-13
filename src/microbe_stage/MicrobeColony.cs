@@ -26,6 +26,12 @@ public class MicrobeColony
     }
 
     /// <summary>
+    ///   The colony lead cell. Needs to be before <see cref="ColonyMembers"/> for JSON deserialization to work
+    /// </summary>
+    [JsonProperty]
+    public Microbe Master { get; private set; }
+
+    /// <summary>
     ///   Returns all members of this colony including the colony leader.
     /// </summary>
     [JsonProperty]
@@ -48,9 +54,6 @@ public class MicrobeColony
                 cell.State = value;
         }
     }
-
-    [JsonProperty]
-    public Microbe Master { get; private set; }
 
     /// <summary>
     ///   The total hex count from all members of this colony.
