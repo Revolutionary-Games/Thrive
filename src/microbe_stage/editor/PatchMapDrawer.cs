@@ -180,7 +180,7 @@ public class PatchMapDrawer : Control
     ///   </para>
     /// </remarks>
     /// <returns>True if intersect</returns>
-    private static bool SegmentSegmentIntersect(Vector2 segment1Start, Vector2 segment1End,
+    private static bool SegmentSegmentIntersects(Vector2 segment1Start, Vector2 segment1End,
         Vector2 segment2Start, Vector2 segment2End)
     {
         if (Mathf.Abs(segment1Start.x - segment1End.x) < Mathf.Epsilon)
@@ -244,17 +244,17 @@ public class PatchMapDrawer : Control
         }
     }
 
-    private static bool SegmentRectangleIntersect(Vector2 start, Vector2 end, Rect2 rect)
+    private static bool SegmentRectangleIntersects(Vector2 start, Vector2 end, Rect2 rect)
     {
         var p0 = rect.Position;
         var p1 = rect.Position + new Vector2(0, rect.Size.y);
         var p2 = rect.Position + new Vector2(rect.Size.x, 0);
         var p3 = rect.End;
 
-        return SegmentSegmentIntersect(p0, p1, start, end) ||
-            SegmentSegmentIntersect(p0, p2, start, end) ||
-            SegmentSegmentIntersect(p1, p3, start, end) ||
-            SegmentSegmentIntersect(p2, p3, start, end);
+        return SegmentSegmentIntersects(p0, p1, start, end) ||
+            SegmentSegmentIntersects(p0, p2, start, end) ||
+            SegmentSegmentIntersects(p1, p3, start, end) ||
+            SegmentSegmentIntersects(p2, p3, start, end);
     }
 
     private static Vector2 RegionCenter(PatchRegion region)
@@ -555,7 +555,7 @@ public class PatchMapDrawer : Control
             foreach (var region in map.Regions.Values)
             {
                 var regionRect = new Rect2(region.ScreenCoordinates, region.Size);
-                if (SegmentRectangleIntersect(startPoint, endPoint, regionRect))
+                if (SegmentRectangleIntersects(startPoint, endPoint, regionRect))
                 {
                     count += 10;
                 }
@@ -572,7 +572,7 @@ public class PatchMapDrawer : Control
 
                 for (int j = 1; j < target.Length; ++j)
                 {
-                    if (SegmentSegmentIntersect(startPoint, endPoint, target[j - 1], target[j]))
+                    if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
                         ++count;
                 }
             }
