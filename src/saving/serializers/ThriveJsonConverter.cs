@@ -740,8 +740,7 @@ public abstract class BaseThriveConverter : JsonConverter
     ///   others use default serializers
     /// </summary>
     protected virtual void WriteMember(string name, object memberValue, Type memberType, Type objectType,
-        JsonWriter writer,
-        JsonSerializer serializer)
+        JsonWriter writer, JsonSerializer serializer)
     {
         if (SkipMember(name))
             return;
@@ -751,7 +750,7 @@ public abstract class BaseThriveConverter : JsonConverter
         // Special handle types (none currently)
 
         // Use default serializer on everything else
-        serializer.Serialize(writer, memberValue);
+        serializer.Serialize(writer, memberValue, memberType);
     }
 
     protected virtual void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
