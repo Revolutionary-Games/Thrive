@@ -27,7 +27,7 @@ public class PatchMapNameGenerator : IRegistryType
     /// <summary>
     ///   Generates and returns a new region name
     /// </summary>
-    public string Next(Random random)
+    public (string ContinentName, string RegionName) Next(Random random)
     {
         int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
         if (nameLength == 4)
@@ -51,6 +51,8 @@ public class PatchMapNameGenerator : IRegistryType
         // Convert first letter to uppercase
         name[0] = char.ToUpper(name[0], CultureInfo.InvariantCulture);
 
+        var continentName = name;
+
         // Choose an appropriate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
         {
@@ -63,7 +65,7 @@ public class PatchMapNameGenerator : IRegistryType
 
         name.Append(suffixes[suffixIndex]);
 
-        return name.ToString();
+        return (continentName.ToString(), name.ToString());
     }
 
     public void Check(string name)

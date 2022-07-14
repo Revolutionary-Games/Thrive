@@ -41,7 +41,7 @@ public static class PatchMapGenerator
         // Create the graph's random regions
         for (int i = 0; i < vertexCount; ++i)
         {
-            var regionName = nameGenerator.Next(random);
+            var (continentName, regionName) = nameGenerator.Next(random);
             var coordinates = new Vector2(0, 0);
 
             // We must create regions containing potential starting locations, so do those first
@@ -59,7 +59,7 @@ public static class PatchMapGenerator
                 regionType = (PatchRegion.RegionType)random.Next(0, 3);
             }
 
-            var region = new PatchRegion(i, GetLocalizedName(regionName, regionType.ToString()),
+            var region = new PatchRegion(i, GetLocalizedName(continentName, regionType.ToString()),
                 regionType, coordinates);
             int numberOfPatches;
 
@@ -818,8 +818,8 @@ public static class PatchMapGenerator
         map.CurrentPatch.AddSpecies(defaultSpecies);
     }
 
-    private static LocalizedString GetLocalizedName(string name, string biomeKey)
+    private static LocalizedString GetLocalizedName(string name, string typeIdentifier)
     {
-        return new LocalizedString("PATCH_NAME", name, new LocalizedString(biomeKey));
+        return new LocalizedString("PATCH_NAME", name, new LocalizedString(typeIdentifier));
     }
 }
