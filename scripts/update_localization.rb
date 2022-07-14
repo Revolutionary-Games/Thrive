@@ -3,7 +3,7 @@
 
 # List of locales, edit this to add new ones:
 LOCALES = %w[ar af bg ca cs da de el en eo es_AR es et fi fr frm he hu id ka ko
-             la lb_LU it nl nl_BE pl pt_BR pt_PT ro ru si_LK sr_Cyrl sr_Latn sv
+             la lb_LU it nl nl_BE pl pt_BR pt_PT ro ru si_LK sk sr_Cyrl sr_Latn sv
              th_TH tr uk lt lv zh_CN zh_TW].freeze
 
 # Weblate disagrees with gettext tools regarding where to wrap, so we have to disable it
@@ -48,8 +48,8 @@ Dir.chdir(LOCALE_FOLDER) do
                   'ProcessesDescription', '-k', 'window_title', '-k', 'dialog_text', '-k',
                   'WindowTitle', '-k', 'DialogText', '-k', 'ConfirmText', '-k', 'CancelText',
                   '-k', 'ErrorMessage', '-k', 'placeholder_text', '-k', 'hint_tooltip', '-k',
-                  'TranslationServer.Translate', '-k', 'ChartName', '-k',
-                  'LocalizedString', '-o',
+                  'TranslationServer.Translate', '-k', 'ChartName', '-k', 'PauseButtonTooltip',
+                  '-k', 'PlayButtonTooltip', '-k', 'LocalizedString', '-o',
                   File.join(LOCALE_FOLDER, "messages#{@options[:pot_suffix]}"),
                   '../simulation_parameters', '../assets', '../src'
 

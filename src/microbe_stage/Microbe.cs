@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -12,7 +13,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
+public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked, IEngulfable
 {
     /// <summary>
     ///   The point towards which the microbe will move to point to
@@ -44,10 +45,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool absorptionSkippedEarly;
 
     private bool processesDirty = true;
-    private List<TweakedProcess>? processes;
+    private List<TweakedProcess> processes = new();
 
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
+
+    private float? cachedRotationSpeed;
+
+    private float? cachedColonyRotationMultiplier;
 
     private float collisionForce;
 
@@ -58,6 +63,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private Vector3 linearAcceleration;
 
     private float movementSoundCooldownTimer;
+
+    [JsonProperty]
+    private int renderPriority = 18;
 
     private Random random = new();
 
@@ -148,6 +156,15 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     [JsonIgnore]
+    public float RotationSpeed => cachedRotationSpeed ??=
+        MicrobeInternalCalculations.CalculateRotationSpeed(organelles ??
+            throw new InvalidOperationException("Organelles not initialized yet"));
+
+    [JsonIgnore]
+    public float MassFromOrganelles => organelles?.Sum(o => o.Definition.Mass) ??
+        throw new InvalidOperationException("organelles not initialized");
+
+    [JsonIgnore]
     public bool HasSignalingAgent
     {
         get
@@ -188,13 +205,29 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
-    ///   (stops the normal functioning of the cell).
+    ///   (Completely stops the normal functioning of the cell).
     /// </summary>
     [JsonIgnore]
     public bool IsForPreviewOnly { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
+
+    [JsonIgnore]
+    public GeometryInstance EntityGraphics => Membrane;
+
+    [JsonIgnore]
+    public int RenderPriority
+    {
+        get => renderPriority;
+        set
+        {
+            renderPriority = value;
+
+            if (onReadyCalled)
+                ApplyRenderPriority();
+        }
+    }
 
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
@@ -203,7 +236,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             if (processesDirty)
                 RefreshProcesses();
-            return processes!;
+            return processes;
+        }
+    }
+
+    [JsonIgnore]
+    public Dictionary<Enzyme, int> Enzymes
+    {
+        get
+        {
+            if (enzymesDirty)
+                RefreshEnzymes();
+            return enzymes;
         }
     }
 
@@ -289,12 +333,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         atp = SimulationParameters.Instance.GetCompound("atp");
+        lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<HybridAudioPlayer>("BindingAudio");
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
+        endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
 
         engulfAudio.Positional = movementAudio.Positional = bindingAudio.Positional = !IsPlayerMicrobe;
 
@@ -318,13 +364,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             GD.Print("Player Microbe spawned");
         }
 
+        // pseudopodTarget = GetNode<MeshInstance>("PseudopodTarget");
+        // var pseudopodRange = GetNode<Area>("PseudopodRange");
+        // pseudopodRangeSphereShape = (SphereShape)pseudopodRange.GetNode<CollisionShape>("SphereShape").Shape;
+
+        // pseudopodRange.Connect("body_entered", this, nameof(OnBodyEnteredPseudopodRange));
+        // pseudopodRange.Connect("body_exited", this, nameof(OnBodyExitedPseudopodRange));
+
         // Setup physics callback stuff
-        var engulfDetector = GetNode<Area>("EngulfDetector");
-        engulfShape = (SphereShape)engulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
-
-        engulfDetector.Connect("body_entered", this, nameof(OnBodyEnteredEngulfArea));
-        engulfDetector.Connect("body_exited", this, nameof(OnBodyExitedEngulfArea));
-
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));
         Connect("body_shape_exited", this, nameof(OnContactEnd));
@@ -369,7 +416,22 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Do species setup that we need on load
             SetScaleFromSpecies();
             SetMembraneFromSpecies();
+
+            // Re-attach engulfed objects
+            foreach (var engulfed in engulfedObjects)
+            {
+                var engulfable = engulfed.Object.Value;
+                if (engulfable == null)
+                    continue;
+
+                AddChild(engulfable.EntityNode);
+
+                if (engulfed.Phagosome.Value != null)
+                    engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
+            }
         }
+
+        ApplyRenderPriority();
 
         onReadyCalled = true;
     }
@@ -402,6 +464,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             throw new ArgumentException("Microbe can only be a microbe or early multicellular species");
         }
+
+        cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
 
         FinishSpeciesSetup();
     }
@@ -599,7 +663,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsForPreviewOnly)
             return;
 
-        CheckEngulfShapeSize();
+        CheckEngulfShape();
 
         // Fire queued agents
         if (queuedToxinToEmit != null)
@@ -624,6 +688,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // This needs to be done before Update is called on organelles as movement organelles will use MovementFactor.
         HandleEngulfing(delta);
 
+        HandleDigestion(delta);
+
         // Handles binding related stuff
         HandleBinding(delta);
         HandleUnbinding();
@@ -640,9 +706,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             QueuedSignalingCommand = null;
         }
 
-        // Rotation is applied in the physics force callback as that's
-        // the place where the body rotation can be directly set
-        // without problems
+        // Rotation is applied in the physics force callback as that's the place where the body rotation
+        // can be directly set without problems
 
         HandleChemoreceptorLines(delta);
 
@@ -726,7 +791,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead)
+        if (Dead || IsForPreviewOnly || PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         try
@@ -786,6 +851,57 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         return detections;
+    }
+
+    /// <summary>
+    ///   Tries to find an engulfable entity as close to this microbe as possible.
+    /// </summary>
+    /// <param name="engulfables">List of all engulfable entities in the world</param>
+    /// <param name="searchRadius">How wide to search around the point</param>
+    /// <returns>The nearest found point for the engulfable entity or null</returns>
+    public Vector3? FindNearestEngulfable(List<IEngulfable> engulfables, float searchRadius = 200)
+    {
+        if (searchRadius < 1)
+            throw new ArgumentException("searchRadius must be >= 1");
+
+        // If the microbe cannot absorb, no need for this
+        if (Membrane.Type.CellWall)
+            return null;
+
+        Vector3? nearestPoint = null;
+        float nearestDistanceSquared = float.MaxValue;
+        var searchRadiusSquared = searchRadius * searchRadius;
+
+        // Retrieve nearest potential entities
+        foreach (var entity in engulfables)
+        {
+            if (entity.Compounds.Compounds.Count <= 0 || entity.PhagocytosisStep != PhagocytosisPhase.None)
+                continue;
+
+            var spatial = entity.EntityNode;
+
+            // Skip entities that are out of range
+            if ((spatial.Translation - Translation).LengthSquared() > searchRadiusSquared)
+                continue;
+
+            // Skip non-engulfable entities
+            if (!CanEngulf(entity))
+                continue;
+
+            // Skip entities that have no useful compounds
+            if (!entity.Compounds.Compounds.Any(x => Compounds.IsUseful(x.Key)))
+                continue;
+
+            var distance = (spatial.Translation - Translation).LengthSquared();
+
+            if (nearestPoint == null || distance < nearestDistanceSquared)
+            {
+                nearestPoint = spatial.Translation;
+                nearestDistanceSquared = distance;
+            }
+        }
+
+        return nearestPoint;
     }
 
     public void OverrideScaleForPreview(float scale)
@@ -891,8 +1007,19 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         OrganelleParent.Scale = scale;
     }
 
+    private void ApplyRenderPriority()
+    {
+        var material = Membrane.MaterialToEdit;
+
+        if (material != null)
+            material.RenderPriority = RenderPriority;
+    }
+
     private Node GetStageAsParent()
     {
+        if (HostileEngulfer.Value != null)
+            return HostileEngulfer.Value.GetStageAsParent();
+
         if (Colony == null)
             return GetParent();
 
@@ -925,12 +1052,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             force *= 0.5f;
         }
 
-        if (IsPlayerMicrobe)
-            force *= CheatManager.Speed;
+        if (IsPlayerMicrobe && CheatManager.Speed > 1)
+            force *= Mass * CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * appliedFactor *
             (CellTypeProperties.MembraneType.MovementFactor -
-                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
@@ -943,15 +1070,60 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     /// <summary>
-    ///   Just slerps towards a fixed amount the target point
+    ///   Just slerps towards the target point with the amount being defined by the cell rotation speed.
+    ///   For now, eventually we want to use physics forces to turn
     /// </summary>
     private Transform GetNewPhysicsRotation(Transform transform)
     {
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
+        float speed = RotationSpeed;
+        var ownRotation = RotationSpeed;
+
+        if (Colony != null && ColonyParent == null)
+        {
+            // Calculate help and extra inertia caused by the colony member cells
+            if (cachedColonyRotationMultiplier == null)
+            {
+                // TODO: move this to MicrobeInternalCalculations once this is needed to be shown in the multicellular
+                // editor
+                float colonyInertia = 0.1f;
+                float colonyRotationHelp = 0;
+
+                foreach (var colonyMember in Colony.ColonyMembers)
+                {
+                    if (colonyMember == this)
+                        continue;
+
+                    var distance = colonyMember.Transform.origin.LengthSquared();
+
+                    if (distance < MathUtils.EPSILON)
+                        continue;
+
+                    colonyInertia += distance * colonyMember.MassFromOrganelles *
+                        Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
+
+                    // TODO: should this use the member rotation speed (which is dependent on its size and how many
+                    // cilia there are that far away) or just a count of cilia and the distance
+                    colonyRotationHelp += colonyMember.RotationSpeed *
+                        Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distance);
+                }
+
+                var multiplier = colonyRotationHelp / colonyInertia;
+
+                cachedColonyRotationMultiplier = Mathf.Clamp(multiplier, Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
+                    Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
+            }
+
+            speed *= cachedColonyRotationMultiplier.Value;
+
+            speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
+                Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));
+        }
+
         // Need to manually normalize everything, otherwise the slerp fails
-        Quat slerped = transform.basis.Quat().Normalized().Slerp(
-            target.basis.Quat().Normalized(), 0.2f);
+        // Delta is not used here as the physics frames occur at a fixed number of times per second
+        Quat slerped = transform.basis.Quat().Normalized().Slerp(target.basis.Quat().Normalized(), speed);
 
         return new Transform(new Basis(slerped), transform.origin);
     }
@@ -961,14 +1133,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     private void RefreshProcesses()
     {
-        if (processes == null)
-        {
-            processes = new List<TweakedProcess>();
-        }
-        else
-        {
-            processes.Clear();
-        }
+        processes.Clear();
 
         if (organelles == null)
             return;
@@ -999,6 +1164,32 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         processesDirty = false;
+    }
+
+    private void RefreshEnzymes()
+    {
+        enzymes.Clear();
+
+        if (organelles == null)
+            return;
+
+        // Cells have a minimum of at least one unit of lipase enzyme
+        enzymes[lipase] = 1;
+
+        foreach (var organelle in organelles.Organelles)
+        {
+            foreach (var enzyme in organelle.StoredEnzymes)
+            {
+                // Filter out invalid enzyme values
+                if (enzyme.Value <= 0)
+                    continue;
+
+                enzymes.TryGetValue(enzyme.Key, out int existing);
+                enzymes[enzyme.Key] = existing + enzyme.Value;
+            }
+        }
+
+        enzymesDirty = false;
     }
 
     private void CountHexes()

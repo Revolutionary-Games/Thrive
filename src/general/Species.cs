@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowed]
+[JSONAlwaysDynamicType]
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {
@@ -32,6 +32,13 @@ public abstract class Species : ICloneable
     public string Epithet { get; set; }
 
     public Color Colour { get; set; } = new(1, 1, 1);
+
+    /// <summary>
+    ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
+    ///   that old species that should no longer be in use, are not used. Once this has been set to true, don't set
+    ///   this back to false.
+    /// </summary>
+    public bool Obsolete { get; set; }
 
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
@@ -68,6 +75,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
+    [JsonIgnore]
     public abstract string StringCode { get; }
 
     /// <summary>
@@ -79,11 +87,24 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
+    /// <summary>
+    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling. Player's species will be emphasized
+    ///   with bolding.
+    /// </summary>
+    [JsonIgnore]
+    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
     [JsonIgnore]
     public bool IsExtinct => Population <= 0;
+
+    /// <summary>
+    ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
+    ///   regarding its properties, including <see cref="RepositionToOrigin"/>
+    /// </summary>
+    public abstract void OnEdited();
 
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
@@ -107,23 +128,32 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
+    ///     TODO: THIS ASSUMPTION IS NOW INVALID. WE MAY HAVE A BUG. AUTO-EVO SPECIES NUMBERS NOW NEED EXTRA CACHING
+    ///     especially probably affects things if auto-evo is not set to run while playing.
     ///     This should be made sure to not affect auto-evo. As long
     ///     as auto-evo uses the per patch population numbers this
     ///     doesn't affect that.
     ///   </para>
     ///   <para>
-    ///     In addition to this an external population effect needs to
-    ///     be sent to auto-evo, otherwise this effect disappears when
-    ///     auto-evo finishes.
+    ///     In addition to this an external population effect needs to be sent to auto-evo,
+    ///     otherwise this effect disappears when auto-evo finishes.
     ///   </para>
     /// </remarks>
-    public void ApplyImmediatePopulationChange(long constant, float coefficient)
+    public void ApplyImmediatePopulationChange(long constant, float coefficient, Patch patch)
     {
-        Population = (long)(Population * coefficient);
-        Population += constant;
+        ThrowPopulationChangeErrorIfNotPlayer();
 
-        if (Population < 0)
-            Population = 0;
+        var oldPopulation = patch.GetSpeciesPopulation(this);
+        var population = (long)(oldPopulation * coefficient);
+        population += constant;
+
+        if (population < 0)
+            population = 0;
+
+        var populationChange = population - oldPopulation;
+
+        patch.UpdateSpeciesPopulation(this, population);
+        Population += populationChange;
     }
 
     /// <summary>
@@ -263,5 +293,11 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    private void ThrowPopulationChangeErrorIfNotPlayer()
+    {
+        if (!PlayerSpecies)
+            throw new InvalidOperationException("Cannot apply an immediate population change to an AI species");
     }
 }

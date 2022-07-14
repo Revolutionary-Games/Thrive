@@ -36,6 +36,8 @@ GIT_MERGE_CONFLICT_MARKERS = /^<{7}\s+\S+\s*$/.freeze
 NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
 NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
 NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
+MISSING_FLOAT_DECIMAL_POINT = /(?<![\d.])[^.]\d+f\b/.freeze
+INCORRECT_FLOAT_SUFFIX_CASE = /\d+F\W/.freeze
 
 CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
@@ -251,6 +253,12 @@ def install_dotnet_tools
   end
 end
 
+def error_with_mutex(*message)
+  OUTPUT_MUTEX.synchronize do
+    error(*message)
+  end
+end
+
 def contains_merge_marker(line)
   line =~ GIT_MERGE_CONFLICT_MARKERS
 end
@@ -300,27 +308,40 @@ def handle_cs_file(path)
   original = File.read(path, encoding: 'utf-8')
   line_number = 0
 
-  OUTPUT_MUTEX.synchronize do
-    original.each_line do |line|
-      line_number += 1
+  original.each_line do |line|
+    line_number += 1
 
-      if line.include? "\t"
-        error "Line #{line_number} contains a tab"
-        errors = true
-      end
+    if line.include? "\t"
+      error_with_mutex "Line #{line_number} contains a tab"
+      errors = true
+    end
 
-      if !OS.windows? && line.include?("\r\n")
-        error "Line #{line_number} contains a windows style line ending (CR LF)"
-        errors = true
-      end
+    if !OS.windows? && line.include?("\r\n")
+      error_with_mutex "Line #{line_number} contains a windows style line ending (CR LF)"
+      errors = true
+    end
 
-      # For some reason this reports 1 too high
-      length = line.length - 1
+    # For some reason this reports 1 too high
+    length = line.length - 1
 
-      if length > MAX_LINE_LENGTH
-        error "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
-        errors = true
-      end
+    if length > MAX_LINE_LENGTH
+      error_with_mutex "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
+      errors = true
+    end
+
+    matches = line.match(MISSING_FLOAT_DECIMAL_POINT)
+
+    if matches
+      error_with_mutex "Line #{line_number} contains invalid float format "\
+                       "(missing decimal point). #{matches[0]}"
+      errors = true
+    end
+
+    matches = line.match(INCORRECT_FLOAT_SUFFIX_CASE)
+
+    if matches
+      error_with_mutex "Line #{line_number} contains uppercase float suffix. #{matches[0]}"
+      errors = true
     end
   end
 

@@ -119,7 +119,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidSystem fluidSystem, Compound cloud1, Compound? cloud2,
+    public void Init(FluidSystem fluidSystem, int renderPriority, Compound cloud1, Compound? cloud2,
         Compound? cloud3, Compound? cloud4)
     {
         this.fluidSystem = fluidSystem;
@@ -135,6 +135,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         material.SetShaderParam("colour2", cloud2?.Colour ?? blank);
         material.SetShaderParam("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParam("colour4", cloud4?.Colour ?? blank);
+
+        // CompoundCloudPlanes need different render priorities to avoid the flickering effect
+        // Which result from intersecting meshes.
+        material.RenderPriority = renderPriority;
     }
 
     /// <summary>

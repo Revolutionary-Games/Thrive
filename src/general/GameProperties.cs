@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -15,17 +16,25 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
-    private GameProperties()
+    private GameProperties(WorldGenerationSettings? settings = null)
     {
-        GameWorld = new GameWorld(new WorldGenerationSettings());
+        settings ??= new WorldGenerationSettings();
+        GameWorld = new GameWorld(settings);
         TutorialState = new TutorialState();
+    }
+
+    [JsonConstructor]
+    private GameProperties(GameWorld gameWorld, TutorialState tutorialState)
+    {
+        GameWorld = gameWorld;
+        TutorialState = tutorialState;
     }
 
     /// <summary>
     ///   The world this game is played in. Has all the species and map data
     /// </summary>
     [JsonProperty]
-    public GameWorld GameWorld { get; private set; }
+    public GameWorld GameWorld { get; }
 
     /// <summary>
     ///   When true the player is in freebuild mode and various things
@@ -38,7 +47,7 @@ public class GameProperties
     ///   The tutorial state for this game
     /// </summary>
     [JsonProperty]
-    public TutorialState TutorialState { get; private set; }
+    public TutorialState TutorialState { get; }
 
     // TODO: start using this to prevent saving
     /// <summary>
@@ -49,9 +58,9 @@ public class GameProperties
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
-    public static GameProperties StartNewMicrobeGame(bool freebuild = false)
+    public static GameProperties StartNewMicrobeGame(WorldGenerationSettings settings, bool freebuild = false)
     {
-        var game = new GameProperties();
+        var game = new GameProperties(settings);
 
         if (freebuild)
         {
@@ -72,33 +81,37 @@ public class GameProperties
     ///     this way
     ///   </para>
     /// </remarks>
-    public static GameProperties StartNewEarlyMulticellularGame()
+    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings)
     {
-        var game = new GameProperties();
-
-        var simulationParameters = SimulationParameters.Instance;
+        var game = new GameProperties(settings);
 
         // Modify the player species to actually make sense to be in the multicellular stage
-        var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
-            new Hex(0, -3), 0));
-        playerSpecies.IsBacteria = false;
-
-        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(-1, 1), 0));
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(1, 0), 0));
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
-            new Hex(0, 1), 0));
-
-        playerSpecies.RepositionToOrigin();
+        var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
+
+        game.EnterPrototypes();
+
+        return game;
+    }
+
+    /// <summary>
+    ///   Starts a new game in the late multicellular stage
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: add some other species as well to the world to make it not as empty
+    ///   </para>
+    /// </remarks>
+    public static GameProperties StartNewLateMulticellularGame(WorldGenerationSettings settings)
+    {
+        var game = new GameProperties(settings);
+
+        var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
+
+        var earlySpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
+        MakeCellPlacementMakeSenseForLateMulticellular(earlySpecies);
+        game.GameWorld.ChangeSpeciesToLateMulticellular(earlySpecies);
 
         game.EnterPrototypes();
 
@@ -136,5 +149,116 @@ public class GameProperties
     {
         GD.Print("Game is in now in prototypes. EXPECT MAJOR BUGS!");
         InPrototypes = true;
+    }
+
+    private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
+            new Hex(0, -3), 0));
+        playerSpecies.IsBacteria = false;
+
+        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
+            new Hex(-1, 1), 0));
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
+            new Hex(1, 0), 0));
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+            new Hex(0, 1), 0));
+
+        playerSpecies.OnEdited();
+        return playerSpecies;
+    }
+
+    private static void MakeCellPlacementMakeSenseForLateMulticellular(EarlyMulticellularSpecies species)
+    {
+        // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
+        species.Cells.Clear();
+
+        var type = species.CellTypes.First();
+
+        int columns = 3;
+
+        var inEachColumn = Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC / columns;
+
+        var startHex = new Hex(0, 0);
+        var columnCellOffset = new Hex(0, -1);
+
+        foreach (var columnDirection in new[] { 0, 1, -1 })
+        {
+            var columnStart = startHex + new Hex(columnDirection, 0);
+
+            bool placed = false;
+
+            // Find where we can place the first cell in this column
+            while (!placed)
+            {
+                bool breakInnerLoop = false;
+
+                while (!placed)
+                {
+                    var template = new CellTemplate(type, columnStart, 0);
+                    if (species.Cells.CanPlace(template))
+                    {
+                        species.Cells.Add(template);
+                        placed = true;
+                        break;
+                    }
+
+                    columnStart += new Hex(columnDirection, 0);
+
+                    if (breakInnerLoop)
+                        break;
+
+                    breakInnerLoop = true;
+                }
+
+                if (placed)
+                    break;
+
+                columnStart -= new Hex(0, -1);
+            }
+
+            int columnCellsLeft = inEachColumn - 1;
+
+            for (int distance = 0; distance < 10000; ++distance)
+            {
+                var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
+                if (species.Cells.CanPlace(template))
+                {
+                    species.Cells.Add(template);
+                    --columnCellsLeft;
+
+                    if (columnCellsLeft < 1)
+                        break;
+                }
+            }
+        }
+
+        // Make sure we hit the required cell count
+        while (species.Cells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+        {
+            var direction = new Vector2(0, -1);
+
+            for (int distance = 1; distance < 1000; ++distance)
+            {
+                var finalPos = direction * distance;
+                var template = new CellTemplate(type,
+                    new Hex(Mathf.RoundToInt(finalPos.x), Mathf.RoundToInt(finalPos.y)), 0);
+
+                if (species.Cells.CanPlace(template))
+                {
+                    species.Cells.Add(template);
+                    break;
+                }
+            }
+        }
+
+        species.RepositionToOrigin();
     }
 }

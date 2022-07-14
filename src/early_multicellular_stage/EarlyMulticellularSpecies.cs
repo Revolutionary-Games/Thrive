@@ -14,10 +14,10 @@ public class EarlyMulticellularSpecies : Species
 {
     public EarlyMulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
-        Cells = new CellLayout<CellTemplate>();
     }
 
-    public CellLayout<CellTemplate> Cells { get; set; }
+    [JsonProperty]
+    public CellLayout<CellTemplate> Cells { get; private set; } = new();
 
     [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
@@ -30,6 +30,18 @@ public class EarlyMulticellularSpecies : Species
 
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
+
+    public override void OnEdited()
+    {
+        RepositionToOrigin();
+        UpdateInitialCompounds();
+
+        // Make certain these are all up to date
+        foreach (var cellType in CellTypes)
+        {
+            cellType.CalculateRotationSpeed();
+        }
+    }
 
     public override void RepositionToOrigin()
     {
@@ -81,6 +93,13 @@ public class EarlyMulticellularSpecies : Species
         {
             Cells.Add((CellTemplate)cellTemplate.Clone());
         }
+
+        CellTypes.Clear();
+
+        foreach (var cellType in casted.CellTypes)
+        {
+            CellTypes.Add((CellType)cellType.Clone());
+        }
     }
 
     public override object Clone()
@@ -92,6 +111,11 @@ public class EarlyMulticellularSpecies : Species
         foreach (var cellTemplate in Cells)
         {
             result.Cells.Add((CellTemplate)cellTemplate.Clone());
+        }
+
+        foreach (var cellType in CellTypes)
+        {
+            result.CellTypes.Add((CellType)cellType.Clone());
         }
 
         return result;

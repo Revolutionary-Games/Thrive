@@ -578,14 +578,14 @@
                      results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
                          .ThenBy(s => s.Species.FormattedName))
             {
-                builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
+                builder.Append(playerReadable ? entry.Species.FormattedNameBbCode : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
 
                 if (entry.SplitFrom != null)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_FROM",
-                        playerReadable ? entry.SplitFrom.FormattedName : entry.SplitFrom.FormattedIdentifier));
+                        playerReadable ? entry.SplitFrom.FormattedNameBbCode : entry.SplitFrom.FormattedIdentifier));
 
                     builder.Append('\n');
                 }
@@ -618,7 +618,7 @@
 
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_OFF_TO",
-                        playerReadable ? entry.SplitOff.FormattedName : entry.SplitOff.FormattedIdentifier));
+                        playerReadable ? entry.SplitOff.FormattedNameBbCode : entry.SplitOff.FormattedIdentifier));
                     builder.Append('\n');
 
                     foreach (var patch in entry.SplitOffPatches)
@@ -704,7 +704,7 @@
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == entry.Species)
+                            if (effect.Species == entry.Species && effect.Patch.ID == patchPopulation.Key.ID)
                             {
                                 adjustedPopulation +=
                                     effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
@@ -828,7 +828,7 @@
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == species)
+                            if (effect.Species == species && effect.Patch.ID == patch.ID)
                             {
                                 finalPatchPopulation +=
                                     effect.Constant + (long)(effect.Species.Population * effect.Coefficient)

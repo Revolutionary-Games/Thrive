@@ -15,8 +15,6 @@ using Godot;
 /// </remarks>
 public partial class CellEditorComponent
 {
-    private Texture questionIcon = null!;
-
     [Signal]
     public delegate void Clicked();
 
@@ -103,24 +101,24 @@ public partial class CellEditorComponent
             throw new InvalidOperationException("Could not find rigidity tooltip");
 
         var healthModifier = rigidityTooltip.GetModifierInfo("health");
-        var mobilityModifier = rigidityTooltip.GetModifierInfo("mobility");
+        var baseMobilityModifier = rigidityTooltip.GetModifierInfo("baseMobility");
 
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+        float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
         healthModifier.ModifierValue = ((healthChange >= 0) ? "+" : string.Empty)
             + healthChange.ToString("F0", CultureInfo.CurrentCulture);
 
-        mobilityModifier.ModifierValue = ((mobilityChange >= 0) ? "+" : string.Empty)
-            + mobilityChange.ToString("P0", CultureInfo.CurrentCulture);
+        baseMobilityModifier.ModifierValue = ((baseMobilityChange >= 0) ? "+" : string.Empty)
+            + baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture);
 
         healthModifier.AdjustValueColor(healthChange);
-        mobilityModifier.AdjustValueColor(mobilityChange);
+        baseMobilityModifier.AdjustValueColor(baseMobilityChange);
     }
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         if (mutationPoints >= costPerStep && MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
@@ -133,9 +131,7 @@ public partial class CellEditorComponent
 
     private void UpdateSize(int size)
     {
-        sizeLabel.Text = size.ToString(CultureInfo.CurrentCulture);
-
-        UpdateCellStatsIndicators();
+        sizeLabel.Value = size;
     }
 
     private void UpdateGeneration(int generation)
@@ -145,23 +141,35 @@ public partial class CellEditorComponent
 
     private void UpdateSpeed(float speed)
     {
-        speedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
+        speedLabel.Value = (float)Math.Round(speed, 1);
+    }
 
-        UpdateCellStatsIndicators();
+    private void UpdateRotationSpeed(float speed)
+    {
+        rotationSpeedLabel.Value = (float)Math.Round(
+            MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(speed), 1);
     }
 
     private void UpdateHitpoints(float hp)
     {
-        hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
-
-        UpdateCellStatsIndicators();
+        hpLabel.Value = hp;
     }
 
     private void UpdateStorage(float storage)
     {
-        storageLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", storage);
+        storageLabel.Value = (float)Math.Round(storage, 1);
+    }
 
-        UpdateCellStatsIndicators();
+    private void UpdateTotalDigestionSpeed(float speed)
+    {
+        digestionSpeedLabel.Format = TranslationServer.Translate("DIGESTION_SPEED_VALUE");
+        digestionSpeedLabel.Value = (float)Math.Round(speed, 2);
+    }
+
+    private void UpdateTotalDigestionEfficiency(float efficiency)
+    {
+        digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
+        digestionEfficiencyLabel.Value = Mathf.RoundToInt(efficiency * 100);
     }
 
     /// <summary>
@@ -179,38 +187,75 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateOrganelleUnlockTooltips()
+    {
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+        foreach (var organelle in organelles)
+        {
+            if (organelle.InternalName == protoplasm.InternalName)
+                continue;
+
+            var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
+            if (tooltip != null)
+            {
+                tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
+            }
+        }
+    }
+
+    private void UpdateOrganelleLAWKSettings()
+    {
+        // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
+        foreach (var entry in allPartSelectionElements)
+        {
+            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
+        }
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
     }
 
     /// <summary>
-    ///   Updates the MP costs in organelle, membrane, and rigidity tooltips by setting the cost factor for each one
+    ///   Updates the MP costs for organelle, membrane, and rigidity button lists and tooltips. Taking into account
+    ///   MP cost factor.
     /// </summary>
-    private void UpdateTooltipMPCostFactors()
+    private void UpdateMPCost()
     {
-        var organelleNames = SimulationParameters.Instance.GetAllOrganelles().Select(o => o.InternalName);
-        foreach (string name in organelleNames)
+        // Set the cost factor for each organelle button
+        foreach (var entry in placeablePartSelectionElements)
         {
-            if (name == protoplasm.InternalName)
-                continue;
+            var cost = (int)Math.Min(entry.Key.MPCost * CostMultiplier, 100);
 
-            var tooltip = GetSelectionTooltip(name, "organelleSelection");
+            entry.Value.MPCost = cost;
+
+            // Set the cost factor for each organelle tooltip
+            var tooltip = GetSelectionTooltip(entry.Key.InternalName, "organelleSelection");
             if (tooltip != null)
-                tooltip.EditorCostFactor = editorCostFactor;
+                tooltip.MutationPointCost = cost;
         }
 
-        var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
-        foreach (var name in membraneNames)
+        // Set the cost factor for each membrane button
+        foreach (var entry in membraneSelectionElements)
         {
-            var tooltip = GetSelectionTooltip(name, "membraneSelection");
+            var cost = (int)Math.Min(entry.Key.EditorCost * CostMultiplier, 100);
+
+            entry.Value.MPCost = cost;
+
+            // Set the cost factor for each membrane tooltip
+            var tooltip = GetSelectionTooltip(entry.Key.InternalName, "membraneSelection");
             if (tooltip != null)
-                tooltip.EditorCostFactor = editorCostFactor;
+                tooltip.MutationPointCost = cost;
         }
 
+        // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         if (rigidityTooltip != null)
-            rigidityTooltip.EditorCostFactor = editorCostFactor;
+        {
+            rigidityTooltip.MutationPointCost = (int)Math.Min(
+                Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+        }
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
@@ -311,8 +356,7 @@ public partial class CellEditorComponent
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        totalPopulationIndicator.Show();
-        totalPopulationIndicator.Texture = questionIcon;
+        totalPopulationLabel.Value = float.NaN;
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 
@@ -348,14 +392,14 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.MPCost * editorCostFactor);
+            entry.Value.MPCost = (int)(entry.Key.MPCost * CostMultiplier);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = (int)(entry.Key.EditorCost * editorCostFactor);
+            entry.Value.MPCost = (int)(entry.Key.EditorCost * CostMultiplier);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }

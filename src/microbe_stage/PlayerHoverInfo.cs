@@ -73,14 +73,14 @@ public class PlayerHoverInfo : Node
             currentHoveredCompounds.TryGetValue(compound, out float newAmount);
 
             // Delay removing of label to reduce flickering.
-            if (newAmount == 0f && oldAmount > 0f)
+            if (newAmount == 0.0f && oldAmount > 0.0f)
             {
                 compoundDelayTimer.TryGetValue(compound, out float delayDelta);
                 delayDelta += delta;
                 if (delayDelta > Constants.COMPOUND_HOVER_INFO_REMOVE_DELAY)
                 {
                     compoundDelayTimer.Remove(compound);
-                    HoveredCompounds[compound] = 0f;
+                    HoveredCompounds[compound] = 0.0f;
                     continue;
                 }
 
@@ -109,6 +109,7 @@ public class PlayerHoverInfo : Node
             var distanceSquared = (microbe.GlobalTransform.origin - camera.CursorWorldPos).LengthSquared();
 
             // Find only cells that have the mouse position within their membrane
+            // Note: This method of calculation may not be accurate for line-shaped microbes
             if (distanceSquared > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED)
                 continue;
 

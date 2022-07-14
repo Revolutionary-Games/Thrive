@@ -12,16 +12,10 @@ using Tutorial;
 public class TutorialState : ITutorialInput
 {
     /// <summary>
-    ///   Pause state to return the game to when a tutorial popup that paused the game is closed
+    ///   True when the tutorial has paused the game
     /// </summary>
     [JsonProperty]
     private bool hasPaused;
-
-    /// <summary>
-    ///   Pause state to return the game to when a tutorial popup that paused the game is closed
-    /// </summary>
-    [JsonProperty]
-    private bool returnToPauseState;
 
     private bool needsToApplyEvenIfDisabled;
 
@@ -56,7 +50,16 @@ public class TutorialState : ITutorialInput
     public MicrobeUnbind MicrobeUnbind { get; private set; } = new();
 
     [JsonProperty]
+    public MicrobeEngulfmentExplanation MicrobeEngulfmentExplanation { get; private set; } = new();
+
+    [JsonProperty]
+    public MicrobeEngulfedExplanation MicrobeEngulfedExplanation { get; private set; } = new();
+
+    [JsonProperty]
     public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
+
+    [JsonProperty]
+    public MicrobeEngulfmentStorageFull EngulfmentStorageFull { get; private set; } = new();
 
     [JsonProperty]
     public EditorWelcome EditorWelcome { get; private set; } = new();
@@ -159,6 +162,15 @@ public class TutorialState : ITutorialInput
     }
 
     /// <summary>
+    ///   Returns true when the tutorial system is in a state where nearby engulfable entity info is wanted
+    /// </summary>
+    /// <returns>True when the tutorial system wants engulfable entity information</returns>
+    public bool WantsNearbyEngulfableInfo()
+    {
+        return GlucoseCollecting.Complete && !MicrobeEngulfmentExplanation.Complete;
+    }
+
+    /// <summary>
     ///   Position in the world to guide the player to
     /// </summary>
     /// <returns>The target position or null</returns>
@@ -197,7 +209,7 @@ public class TutorialState : ITutorialInput
         HandlePausing(gui);
 
         // Pause if the game is paused, but we didn't want to pause things
-        if (gui.GUINode.GetTree().Paused && !WantsGamePaused)
+        if (PauseManager.Instance.Paused && !WantsGamePaused)
         {
             // Apply GUI states anyway to not have a chance of locking a tutorial on screen
             ApplyGUIState(gui);
@@ -314,18 +326,7 @@ public class TutorialState : ITutorialInput
                     return;
 
                 // Pause
-                returnToPauseState = gui.GUINode.GetTree().Paused;
-
-                if (InProgressSave.IsSaving)
-                {
-                    // I'd hope this never happens but at least in developing individual scenes and things this can
-                    // happen, so we don't at least want to softlock here
-                    GD.Print("Overriding tutorial return pause state as save is in progress, " +
-                        "this shouldn't happen in normal gameplay");
-                    returnToPauseState = false;
-                }
-
-                gui.GUINode.GetTree().Paused = true;
+                PauseManager.Instance.AddPause(nameof(TutorialState));
                 hasPaused = true;
             }
         }
@@ -333,7 +334,8 @@ public class TutorialState : ITutorialInput
 
     private void UnPause(ITutorialGUI gui)
     {
-        gui.GUINode.GetTree().Paused = returnToPauseState;
+        if (hasPaused)
+            PauseManager.Instance.Resume(nameof(TutorialState));
         hasPaused = false;
     }
 
@@ -345,10 +347,13 @@ public class TutorialState : ITutorialInput
             MicrobeMovement,
             MicrobeMovementExplanation,
             GlucoseCollecting,
+            MicrobePressEditorButton,
             MicrobeStayingAlive,
             MicrobeReproduction,
-            MicrobePressEditorButton,
             MicrobeUnbind,
+            MicrobeEngulfmentExplanation,
+            MicrobeEngulfedExplanation,
+            EngulfmentStorageFull,
             CheckTheHelpMenu,
             EditorWelcome,
             PatchMap,

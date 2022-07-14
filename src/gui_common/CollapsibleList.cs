@@ -105,9 +105,10 @@ public class CollapsibleList : VBoxContainer
             clipBox.AddConstantOverride("margin_top", -(int)itemContainer.RectSize.y);
     }
 
-    public Control GetItem(string name)
+    public T GetItem<T>(string name)
+        where T : Control
     {
-        return items.Find(match => match.Name == name);
+        return (T)items.Find(match => match.Name == name);
     }
 
     public void RemoveItem(string name)
@@ -214,9 +215,7 @@ public class CollapsibleList : VBoxContainer
         tween.Start();
     }
 
-    /*
-        GUI Callbacks
-    */
+    // GUI Callbacks
 
     private void CollapseButtonPressed()
     {

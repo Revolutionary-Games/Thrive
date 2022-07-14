@@ -12,9 +12,9 @@ public abstract class
         EditorComponentWithActionsBase<TEditor, TCombinedAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
-    where TCombinedAction : CombinedMicrobeEditorAction
-    where TAction : CellEditorAction
-    where THexMove : class
+    where TCombinedAction : CombinedEditorAction
+    where TAction : EditorAction
+    where THexMove : class, IActionHex
 {
     [Export]
     public NodePath CameraPath = null!;
@@ -57,7 +57,7 @@ public abstract class
     protected readonly List<SceneDisplayer> placedModels = new();
 
     /// <summary>
-    ///   Object camera is over. Used to mov ethe camera around
+    ///   Object camera is over. Used to move the camera around
     /// </summary>
     protected Spatial cameraFollow = null!;
 
@@ -94,15 +94,14 @@ public abstract class
 
     protected int usedHoverModel;
 
-    // TODO: rename this to placementRotation in the future (for now old name is kept to keep save compatibility)
     [JsonProperty]
-    protected int organelleRot;
+    protected int placementRotation;
 
     private CustomConfirmationDialog islandPopup = null!;
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
-    private IEnumerable<(Hex Hex, int Orientation)>? mouseHoverHexes;
+    private IEnumerable<(Hex Hex, int Orientation)>? mouseHoverPositions;
 
     private Vector3 cameraPosition;
 
@@ -153,18 +152,18 @@ public abstract class
     public float CameraHeight { get; private set; } = Constants.EDITOR_DEFAULT_CAMERA_HEIGHT;
 
     [JsonIgnore]
-    public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverHexes
+    public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverPositions
     {
-        get => mouseHoverHexes;
+        get => mouseHoverPositions;
         set
         {
-            if (mouseHoverHexes == null && value == null)
+            if (mouseHoverPositions == null && value == null)
                 return;
 
-            if (mouseHoverHexes != null && value != null && mouseHoverHexes.SequenceEqual(value))
+            if (mouseHoverPositions != null && value != null && mouseHoverPositions.SequenceEqual(value))
                 return;
 
-            mouseHoverHexes = value;
+            mouseHoverPositions = value;
             UpdateMutationPointsBar();
         }
     }
@@ -176,14 +175,14 @@ public abstract class
     public bool CanCancelMove => MovingPlacedHex != null;
 
     [JsonIgnore]
+    public override bool CanCancelAction => CanCancelMove;
+
+    [JsonIgnore]
     public abstract bool HasIslands { get; }
 
     public bool IsLoadedFromSave { get; set; }
 
     protected abstract bool ForceHideHover { get; }
-
-    // TODO: remove
-    // protected override bool HasInProgressAction => CanCancelMove;
 
     public override void _Ready()
     {
@@ -231,7 +230,7 @@ public abstract class
 
         if (fresh)
         {
-            organelleRot = 0;
+            placementRotation = 0;
 
             ResetSymmetryButton();
         }
@@ -363,6 +362,8 @@ public abstract class
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
     public bool PanCameraWithMouse(float delta)
     {
+        // TODO: somehow this doesn't seem to experience the same bug as there is in EditorCamera3D where this needs a
+        // workaround
         if (!Visible)
             return false;
 
@@ -414,7 +415,7 @@ public abstract class
         if (!Visible)
             return false;
 
-        organelleRot = (organelleRot + 1) % 6;
+        placementRotation = (placementRotation + 1) % 6;
         return true;
     }
 
@@ -424,10 +425,10 @@ public abstract class
         if (!Visible)
             return false;
 
-        --organelleRot;
+        --placementRotation;
 
-        if (organelleRot < 0)
-            organelleRot = 5;
+        if (placementRotation < 0)
+            placementRotation = 5;
 
         return true;
     }
@@ -538,10 +539,11 @@ public abstract class
     public void RemoveHex(Hex hex)
     {
         var actions = new List<TAction>();
+        int alreadyDeleted = 0;
 
         RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
         {
-            var removed = TryRemoveHexAt(new Hex(q, r));
+            var removed = TryCreateRemoveHexAtAction(new Hex(q, r), ref alreadyDeleted);
 
             if (removed != null)
                 actions.Add(removed);
@@ -590,7 +592,7 @@ public abstract class
 
     public override void OnValidAction()
     {
-        GUICommon.Instance.PlayCustomSound(hexPlacementSound);
+        GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
 
     public override void _Process(float delta)
@@ -627,6 +629,9 @@ public abstract class
         usedHoverHex = 0;
         usedHoverModel = 0;
 
+        if (!Visible)
+            return;
+
         editorGrid.Translation = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }
@@ -644,8 +649,7 @@ public abstract class
     }
 
     /// <summary>
-    ///   Updates the forward pointing arrow to not overlap the edited species
-    ///   Should be called on any layout change
+    ///   Updates the forward pointing arrow to not overlap the edited species. Should be called on any layout change.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -654,7 +658,7 @@ public abstract class
     /// </remarks>
     public void UpdateArrow(bool animateMovement = true)
     {
-        var arrowPosition = CalculateEditorArrowZPosition();
+        var arrowPosition = CalculateEditorArrowZPosition() - Constants.EDITOR_ARROW_OFFSET;
 
         if (animateMovement)
         {
@@ -665,7 +669,7 @@ public abstract class
         }
         else
         {
-            editorArrow.Translation = new Vector3(0, 0, arrowPosition - Constants.EDITOR_ARROW_OFFSET);
+            editorArrow.Translation = new Vector3(0, 0, arrowPosition);
         }
     }
 
@@ -717,10 +721,17 @@ public abstract class
             }
         }
 
+        OnMoveWillSucceed();
+
         Editor.EnqueueAction(action);
         Editor.OnValidAction();
         UpdateSymmetryButton();
         return true;
+    }
+
+    protected virtual TCombinedAction CreateCombinedAction(IEnumerable<EditorAction> actions)
+    {
+        return (TCombinedAction)new CombinedEditorAction(actions);
     }
 
     protected void OnSymmetryPressed()
@@ -813,17 +824,17 @@ public abstract class
         {
             case HexEditorSymmetry.None:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
                 break;
             }
 
             case HexEditorSymmetry.XAxisSymmetry:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
                 }
 
                 break;
@@ -831,17 +842,17 @@ public abstract class
 
             case HexEditorSymmetry.FourWaySymmetry:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
-                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
-                    callback(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6);
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                    callback(q, -1 * (r + q), 9 + (-1 * placementRotation) % 6);
                 }
                 else
                 {
-                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
                 }
 
                 break;
@@ -849,12 +860,12 @@ public abstract class
 
             case HexEditorSymmetry.SixWaySymmetry:
             {
-                callback(q, r, organelleRot);
-                callback(-1 * r, r + q, (organelleRot + 1) % 6);
-                callback(-1 * (r + q), q, (organelleRot + 2) % 6);
-                callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
-                callback(r, -1 * (r + q), (organelleRot + 4) % 6);
-                callback(r + q, -1 * q, (organelleRot + 5) % 6);
+                callback(q, r, placementRotation);
+                callback(-1 * r, r + q, (placementRotation + 1) % 6);
+                callback(-1 * (r + q), q, (placementRotation + 2) % 6);
+                callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                callback(r, -1 * (r + q), (placementRotation + 4) % 6);
+                callback(r + q, -1 * q, (placementRotation + 5) % 6);
                 break;
             }
         }
@@ -864,8 +875,20 @@ public abstract class
     {
         UpdateCancelButtonVisibility();
 
-        // TODO: for multi move of organelles:
-        // Editor.NotifySymmetryAllowedStateChanged();
+        // TODO: switch to this going through the editor
+        UpdateSymmetryButton();
+    }
+
+    protected virtual void OnMoveWillSucceed()
+    {
+        MovingPlacedHex = null;
+
+        // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
+        // TODO: should this call be made through Editor here?
+        UpdateCancelButtonVisibility();
+
+        // Re-enable undo/redo button
+        Editor.NotifyUndoRedoStateChanged();
     }
 
     /// <summary>
@@ -996,9 +1019,12 @@ public abstract class
     }
 
     protected abstract void PerformActiveAction();
-    protected abstract bool DoesActionEndInProgressAction(TCombinedAction action);
 
-    protected abstract TCombinedAction CreateCombinedAction(IEnumerable<TAction> actions);
+    protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
+    {
+        // Allow only move actions with an in-progress move
+        return action.Data.Any(d => d is HexMoveActionData<THexMove>);
+    }
 
     /// <summary>
     ///   Checks if the target position is valid to place hex.
@@ -1014,7 +1040,7 @@ public abstract class
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(int q, int r);
     protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract TAction? TryRemoveHexAt(Hex location);
+    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted);
 
     protected abstract float CalculateEditorArrowZPosition();
 

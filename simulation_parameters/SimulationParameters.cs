@@ -19,6 +19,7 @@ public class SimulationParameters : Node
     private Dictionary<string, BioProcess> bioProcesses = null!;
     private Dictionary<string, Compound> compounds = null!;
     private Dictionary<string, OrganelleDefinition> organelles = null!;
+    private Dictionary<string, Enzyme> enzymes = null!;
     private Dictionary<string, MusicCategory> musicCategories = null!;
     private Dictionary<string, HelpTexts> helpTexts = null!;
     private AutoEvoConfiguration autoEvoConfiguration = null!;
@@ -26,6 +27,7 @@ public class SimulationParameters : Node
     private Dictionary<string, Gallery> gallery = null!;
     private TranslationsInfo translationsInfo = null!;
     private GameCredits gameCredits = null!;
+    private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -34,6 +36,7 @@ public class SimulationParameters : Node
     private float eukaryoticOrganellesChance;
 
     private List<Compound>? cachedCloudCompounds;
+    private List<Enzyme>? cachedDigestiveEnzymes;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -58,25 +61,21 @@ public class SimulationParameters : Node
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 
-        // Loading the compounds needs a custom JSON deserializer that can load the Compound objects, but the loader
-        // can't always be active because that breaks saving
+        // Loading compounds and enzymes needs a custom JSON deserializer that can load their respective objects, but
+        // the loader can't always be active because that breaks saving
         {
-            var compoundDeserializer = new JsonConverter[] { new CompoundLoader(null) };
+            var deserializers = new JsonConverter[] { new CompoundLoader(null), new EnzymeLoader(null) };
 
             compounds = LoadRegistry<Compound>(
-                "res://simulation_parameters/microbe_stage/compounds.json", compoundDeserializer);
+                "res://simulation_parameters/microbe_stage/compounds.json", deserializers);
+            enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
         }
 
-        membranes = LoadRegistry<MembraneType>(
-            "res://simulation_parameters/microbe_stage/membranes.json");
-        backgrounds = LoadRegistry<Background>(
-            "res://simulation_parameters/microbe_stage/backgrounds.json");
-        biomes = LoadRegistry<Biome>(
-            "res://simulation_parameters/microbe_stage/biomes.json");
-        bioProcesses = LoadRegistry<BioProcess>(
-            "res://simulation_parameters/microbe_stage/bio_processes.json");
-        organelles = LoadRegistry<OrganelleDefinition>(
-            "res://simulation_parameters/microbe_stage/organelles.json");
+        membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
+        backgrounds = LoadRegistry<Background>("res://simulation_parameters/microbe_stage/backgrounds.json");
+        biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json");
+        bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
+        organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
@@ -97,6 +96,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+
+        difficultyPresets =
+            LoadRegistry<DifficultyPreset>("res://simulation_parameters/common/difficulty_presets.json");
 
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
@@ -174,9 +176,29 @@ public class SimulationParameters : Node
         return compounds[name];
     }
 
+    public Dictionary<string, Compound> GetAllCompounds()
+    {
+        return compounds;
+    }
+
     public bool DoesCompoundExist(string name)
     {
         return compounds.ContainsKey(name);
+    }
+
+    public Enzyme GetEnzyme(string name)
+    {
+        return enzymes[name];
+    }
+
+    public IEnumerable<Enzyme> GetAllEnzymes()
+    {
+        return enzymes.Values;
+    }
+
+    public bool DoesEnzymeExist(string name)
+    {
+        return enzymes.ContainsKey(name);
     }
 
     /// <summary>
@@ -185,6 +207,11 @@ public class SimulationParameters : Node
     public List<Compound> GetCloudCompounds()
     {
         return cachedCloudCompounds ??= ComputeCloudCompounds();
+    }
+
+    public List<Enzyme> GetHydrolyticEnzymes()
+    {
+        return cachedDigestiveEnzymes ??= ComputeHydrolyticEnzymes();
     }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
@@ -197,9 +224,19 @@ public class SimulationParameters : Node
         return helpTexts[name];
     }
 
+    public Dictionary<string, Gallery> GetGalleries()
+    {
+        return gallery;
+    }
+
     public Gallery GetGallery(string name)
     {
         return gallery[name];
+    }
+
+    public bool DoesGalleryExist(string name)
+    {
+        return gallery.ContainsKey(name);
     }
 
     public TranslationsInfo GetTranslationsInfo()
@@ -212,34 +249,69 @@ public class SimulationParameters : Node
         return gameCredits;
     }
 
-    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
+    public DifficultyPreset GetDifficultyPreset(string name)
+    {
+        return difficultyPresets[name];
+    }
+
+    public DifficultyPreset GetDifficultyPresetByIndex(int index)
+    {
+        return difficultyPresets.Values.First(p => p.Index == index);
+    }
+
+    public IEnumerable<DifficultyPreset> GetAllDifficultyPresets()
+    {
+        return difficultyPresets.Values;
+    }
+
+    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
 
-        foreach (var organelle in prokaryoticOrganelles)
+        // Filter to only LAWK organelles if necessary
+        IEnumerable<OrganelleDefinition> usedOrganelles = prokaryoticOrganelles;
+        if (lawkOnly)
+            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
+
+        OrganelleDefinition? chosenOrganelle = null;
+        foreach (var organelle in usedOrganelles)
         {
+            chosenOrganelle = organelle;
             valueLeft -= organelle.ProkaryoteChance;
 
             if (valueLeft <= 0.00001f)
-                return organelle;
+                return chosenOrganelle;
         }
 
-        return prokaryoticOrganelles[prokaryoticOrganelles.Count - 1];
+        if (chosenOrganelle == null)
+            throw new InvalidOperationException("No organelle chosen to add");
+
+        return chosenOrganelle;
     }
 
-    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random)
+    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
 
-        foreach (var organelle in eukaryoticOrganelles)
+        // Filter to only LAWK organelles if necessary
+        IEnumerable<OrganelleDefinition> usedOrganelles = eukaryoticOrganelles;
+        if (lawkOnly)
+            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
+
+        OrganelleDefinition? chosenOrganelle = null;
+        foreach (var organelle in usedOrganelles)
         {
+            chosenOrganelle = organelle;
             valueLeft -= organelle.ChanceToCreate;
 
             if (valueLeft <= 0.00001f)
-                return organelle;
+                return chosenOrganelle;
         }
 
-        return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
+        if (chosenOrganelle == null)
+            throw new InvalidOperationException("No organelle chosen to add");
+
+        return chosenOrganelle;
     }
 
     public PatchMapNameGenerator GetPatchMapNameGenerator()
@@ -258,10 +330,12 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(bioProcesses);
         ApplyRegistryObjectTranslations(compounds);
         ApplyRegistryObjectTranslations(organelles);
+        ApplyRegistryObjectTranslations(enzymes);
         ApplyRegistryObjectTranslations(musicCategories);
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
         ApplyRegistryObjectTranslations(gallery);
+        ApplyRegistryObjectTranslations(difficultyPresets);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -363,10 +437,12 @@ public class SimulationParameters : Node
         CheckRegistryType(bioProcesses);
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
+        CheckRegistryType(enzymes);
         CheckRegistryType(musicCategories);
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
         CheckRegistryType(gallery);
+        CheckRegistryType(difficultyPresets);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -443,5 +519,10 @@ public class SimulationParameters : Node
     private List<Compound> ComputeCloudCompounds()
     {
         return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
+    }
+
+    private List<Enzyme> ComputeHydrolyticEnzymes()
+    {
+        return enzymes.Where(e => e.Value.Property == Enzyme.EnzymeProperty.Hydrolytic).Select(e => e.Value).ToList();
     }
 }

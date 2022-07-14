@@ -20,7 +20,7 @@
             CanTrigger = false;
         }
 
-        public override string ClosedByName { get; } = "GlucoseCollecting";
+        public override string ClosedByName => "GlucoseCollecting";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
@@ -49,16 +49,16 @@
 
                 case TutorialEventType.MicrobeCompoundsNearPlayer:
                 {
-                    var data = (CompoundPositionEventArgs)args;
+                    var data = (EntityPositionEventArgs)args;
 
-                    if (!HasBeenShown && data.GlucosePosition.HasValue && CanTrigger && !overallState.TutorialActive())
+                    if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                     {
                         Show();
                     }
 
-                    if (data.GlucosePosition.HasValue && ShownCurrently)
+                    if (data.EntityPosition.HasValue && ShownCurrently)
                     {
-                        glucosePosition = data.GlucosePosition.Value;
+                        glucosePosition = data.EntityPosition.Value;
                         return true;
                     }
 

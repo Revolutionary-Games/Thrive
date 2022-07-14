@@ -1,14 +1,19 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
+[ext_resource path="res://src/early_multicellular_stage/editor/CellPopupMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -187,21 +192,19 @@ DuplicateTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginCont
 CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
+CellPopupMenuPath = NodePath("CellPopupMenu")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
-margin_top = 41.0
+margin_top = 40.0
 margin_right = 350.0
-margin_bottom = -49.0
+margin_bottom = -50.0
 rect_min_size = Vector2( 350, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
 margin_left = 10.0
@@ -358,14 +361,14 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
 margin_right = 318.0
-margin_bottom = 108.0
+margin_bottom = 98.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
 margin_right = 308.0
-margin_bottom = 108.0
+margin_bottom = 98.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/separation = 10
@@ -385,49 +388,52 @@ Columns = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection"]
 margin_top = 34.0
 margin_right = 308.0
-margin_bottom = 108.0
+margin_bottom = 98.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer"]
 margin_right = 308.0
-margin_bottom = 35.0
+margin_bottom = 30.0
 
 [node name="Modify" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_right = 139.0
-margin_bottom = 35.0
+margin_right = 109.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 text = "MODIFY_TYPE"
 
 [node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_left = 143.0
-margin_right = 221.0
-margin_bottom = 35.0
+margin_left = 113.0
+margin_right = 239.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="Delete" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
-margin_left = 225.0
+margin_left = 243.0
 margin_right = 308.0
-margin_bottom = 35.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 text = "DELETE"
 
 [node name="Duplicate" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer"]
-margin_top = 39.0
+margin_top = 34.0
 margin_right = 308.0
-margin_bottom = 74.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 10 )
 disabled = true
 text = "DUPLICATE_TYPE"
 
 [node name="Reproduction" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
 margin_top = 40.0
-margin_right = 478.0
+margin_right = 414.0
 margin_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 8 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction"]
-margin_right = 478.0
+margin_right = 414.0
 margin_bottom = 516.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
@@ -436,8 +442,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer"]
-margin_right = 478.0
-margin_bottom = 25.0
+margin_right = 414.0
+margin_bottom = 19.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -446,29 +452,31 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer"]
-margin_right = 468.0
-margin_bottom = 25.0
+margin_right = 404.0
+margin_bottom = 19.0
 custom_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 468.0
-margin_bottom = 25.0
+margin_right = 404.0
+margin_bottom = 19.0
 
 [node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 243.0
-margin_bottom = 25.0
+margin_top = 1.0
+margin_right = 179.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 14 )
 text = "REPRODUCTION_METHOD"
 
 [node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 247.0
-margin_right = 247.0
-margin_bottom = 25.0
+margin_left = 183.0
+margin_right = 183.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 251.0
-margin_right = 468.0
-margin_bottom = 25.0
+margin_left = 187.0
+margin_right = 404.0
+margin_bottom = 19.0
 disabled = true
 text = "REPRODUCTION_BUDDING"
 items = [ "REPRODUCTION_BUDDING", null, false, 0, null ]
@@ -480,6 +488,7 @@ margin_top = 40.0
 FinishOrNextButtonPath = NodePath("")
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 13 )]
+margin_right = 641.0
 ShowNewButton = false
 
 [node name="BottomRight" type="MarginContainer" parent="."]
@@ -491,9 +500,6 @@ margin_right = -10.0
 margin_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
 margin_right = 150.0
@@ -539,6 +545,9 @@ HideCancelButton = true
 DialogText = "DISCONNECTED_CELLS_TEXT"
 
 [node name="CannotDeleteInUseType" parent="." instance=ExtResource( 7 )]
+margin_right = 0.0
+margin_bottom = 0.0
+rect_min_size = Vector2( 500, 0 )
 WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 HideCancelButton = true
 DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
@@ -559,6 +568,7 @@ __meta__ = {
 [node name="Description" type="Label" parent="NewCellTypeSetup/VBoxContainer2"]
 margin_right = 381.0
 margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
 text = "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 autowrap = true
 
@@ -572,6 +582,7 @@ rect_min_size = Vector2( 0, 5 )
 margin_top = 38.0
 margin_right = 381.0
 margin_bottom = 63.0
+custom_fonts/font = ExtResource( 8 )
 text = "NEW_NAME_COLON"
 
 [node name="NewName" type="LineEdit" parent="NewCellTypeSetup/VBoxContainer2"]
@@ -588,6 +599,8 @@ margin_bottom = 147.0
 rect_min_size = Vector2( 0, 45 )
 mouse_filter = 2
 
+[node name="CellPopupMenu" parent="." instance=ExtResource( 3 )]
+
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
@@ -601,7 +614,11 @@ mouse_filter = 2
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
 [connection signal="OnUndo" from="EditorComponentBottomLeftButtons" to="." method="Undo"]
+[connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="Confirmed" from="NewCellTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_entered" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
+[connection signal="DeletePressed" from="CellPopupMenu" to="." method="OnDeletePressed"]
+[connection signal="ModifyPressed" from="CellPopupMenu" to="." method="OnModifyPressed"]
+[connection signal="MovePressed" from="CellPopupMenu" to="." method="OnMovePressed"]

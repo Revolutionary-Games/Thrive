@@ -23,7 +23,7 @@ public abstract class HexLayout<T> : ICollection<T>
     [JsonProperty]
     protected Action<T>? onRemoved;
 
-    public HexLayout(Action<T> onAdded, Action<T>? onRemoved = null)
+    public HexLayout(Action<T>? onAdded, Action<T>? onRemoved = null)
     {
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
@@ -220,7 +220,7 @@ public abstract class HexLayout<T> : ICollection<T>
         var hexesWithNeighbours = new List<Hex> { initHex };
 
         // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = existingHexes.Select(p => p.Position).ToList();
+        var shouldBeVisited = ComputeHexCache();
 
         CheckmarkNeighbors(hexesWithNeighbours);
 

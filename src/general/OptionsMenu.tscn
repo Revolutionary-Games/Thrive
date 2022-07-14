@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -10,10 +10,15 @@
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
 
 [sub_resource type="ButtonGroup" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 258, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
@@ -53,7 +58,9 @@ ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar")
+DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
+DisplayPartNamesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -80,6 +87,7 @@ ActiveThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/P
 AssumeHyperthreadingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading")
 UseManualThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount")
 ThreadCountSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider")
+MaxSpawnedEntitiesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
 InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList")
 ResetInputsButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton")
@@ -447,9 +455,9 @@ min_value = 10.0
 max_value = 50.0
 value = 20.0
 
-[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+[node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 279.0
-margin_right = 247.0
+margin_right = 360.0
 margin_bottom = 304.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../HBoxContainer5/ChromaticToggle")
@@ -459,21 +467,59 @@ focus_next = NodePath("../GUILightsEffectToggle")
 focus_previous = NodePath("../HBoxContainer5/ChromaticAmount")
 size_flags_horizontal = 0
 pressed = true
+text = "DISPLAY_BACKGROUND_PARTICLES"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 314.0
+margin_right = 657.0
+margin_bottom = 317.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 327.0
+margin_right = 657.0
+margin_bottom = 352.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_right = 34.0
+margin_bottom = 25.0
+text = "GUI"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_left = 38.0
+margin_right = 657.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 8 )
+
+[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 362.0
+margin_right = 247.0
+margin_bottom = 387.0
+size_flags_horizontal = 0
+pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 314.0
+margin_top = 397.0
 margin_right = 300.0
-margin_bottom = 339.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../DisplayAbilitiesBar")
 focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../HBoxContainer/Back")
 focus_previous = NodePath("../DisplayAbilitiesBar")
+margin_bottom = 422.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
+
+[node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 432.0
+margin_right = 238.0
+margin_bottom = 457.0
+size_flags_horizontal = 0
+text = "DISPLAY_PART_NAMES"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1086,6 +1132,40 @@ max_value = 64.0
 value = 2.0
 rounded = true
 
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 364.0
+margin_right = 648.0
+margin_bottom = 368.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_left = 98.0
+margin_top = 430.0
+margin_right = 746.0
+margin_bottom = 461.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
+margin_top = 2.0
+margin_right = 304.0
+margin_bottom = 24.0
+text = "MAX_SPAWNED_ENTITIES"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
+margin_left = 308.0
+margin_right = 444.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 4 )
+
+[node name="MaxSpawnedEntities" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
+margin_left = 448.0
+margin_right = 648.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 200, 25 )
+size_flags_vertical = 0
+text = "LIMIT_TINY"
+items = [ "LIMIT_TINY", null, false, 0, null, "LIMIT_VERY_SMALL", null, false, 1, null, "LIMIT_SMALL", null, false, 2, null, "LIMIT_NORMAL", null, false, 3, null, "LIMIT_LARGE", null, false, 4, null, "LIMIT_VERY_LARGE", null, false, 5, null, "LIMIT_HUGE", null, false, 6, null, "LIMIT_EXTREME", null, false, 7, null ]
+selected = 0
+
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
 margin_left = 1.0
@@ -1683,8 +1763,10 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
@@ -1705,6 +1787,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading" to="." method="OnHyperthreadingToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities" to="." method="OnMaxSpawnedEntitiesSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]

@@ -1,20 +1,25 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class BehaviourActionData : MicrobeEditorCombinableActionData
+public class BehaviourActionData : EditorCombinableActionData
 {
-    public float OldValue;
     public float NewValue;
+    public float OldValue;
     public BehaviouralValueType Type;
 
-    public BehaviourActionData(float oldValue, float newValue, BehaviouralValueType type)
+    public BehaviourActionData(float newValue, float oldValue, BehaviouralValueType type)
     {
         OldValue = oldValue;
         NewValue = newValue;
         Type = type;
     }
 
-    public override int CalculateCost()
+    public override bool WantsMergeWith(CombinableActionData other)
+    {
+        return other is BehaviourActionData;
+    }
+
+    protected override int CalculateCostInternal()
     {
         // TODO: should this be free?
         return 0;
@@ -45,5 +50,25 @@ public class BehaviourActionData : MicrobeEditorCombinableActionData
             return new BehaviourActionData(behaviourChangeActionData.OldValue, NewValue, Type);
 
         return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
+    }
+
+    protected override void MergeGuaranteed(CombinableActionData other)
+    {
+        var behaviourChangeActionData = (BehaviourActionData)other;
+
+        if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
+        {
+            // Handle cancels out
+            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON)
+            {
+                NewValue = behaviourChangeActionData.NewValue;
+                return;
+            }
+
+            OldValue = behaviourChangeActionData.OldValue;
+            return;
+        }
+
+        NewValue = behaviourChangeActionData.NewValue;
     }
 }

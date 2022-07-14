@@ -73,7 +73,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -96,50 +97,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 8,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 1
+                    "ambient": 1
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 8
                 }
             }
         }
@@ -204,7 +226,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.00003,
+                    "density": 0.00005,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -217,7 +239,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "marineSnow": {
                     "name": "MARINE_SNOW",
@@ -320,50 +343,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 98,
             "compounds": {
                 "ammonia": {
-                    "amount": 300000,
-                    "density": 0.00004,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00008,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 300000,
-                    "density": 0.00004,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00008,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
-                    "amount": 300000,
-                    "density": 0.00004,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00008,
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 98
                 }
             }
         }
@@ -429,7 +473,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.00005,
+                    "density": 0.00006,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -442,7 +486,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -452,7 +497,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.00003,
+                    "density": 0.00004,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -465,50 +510,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 23,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00008,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00008,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 1
+                    "ambient": 1
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 23
                 }
             }
         }
@@ -573,7 +639,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.00003,
+                    "density": 0.00005,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -586,7 +652,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -609,7 +676,8 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "marineSnow": {
                     "name": "MARINE_SNOW",
@@ -670,7 +738,7 @@
                             "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
                         }
                     ],
-                    "density": 0.0002,
+                    "density": 0.0001,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -690,49 +758,69 @@
                             "amount": 100
                         }
                     }
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 4,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 4
                 }
             }
         }
@@ -810,7 +898,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -833,7 +922,8 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "marineSnow": {
                     "name": "MARINE_SNOW",
@@ -914,49 +1004,69 @@
                             "amount": 100
                         }
                     }
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 2,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00005,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 2
                 }
             }
         }
@@ -1034,7 +1144,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -1057,7 +1168,8 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "marineSnow": {
                     "name": "MARINE_SNOW",
@@ -1138,49 +1250,69 @@
                             "amount": 100
                         }
                     }
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 2,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.01
+                    "ambient": 0.01
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 2
                 }
             }
         }
@@ -1259,7 +1391,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -1282,50 +1415,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 17,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 1
+                    "ambient": 1
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 17
                 }
             }
         }
@@ -1359,7 +1513,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.001,
+                    "density": 0.0001,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1390,7 +1544,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.0003,
+                    "density": 0.0001,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1403,7 +1557,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -1426,50 +1581,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 23,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00008,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
-                    "amount": 225000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 200000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 23
                 }
             }
         }
@@ -1504,7 +1680,7 @@
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
                         }
                     ],
-                    "density": 0.0005,
+                    "density": 0.00005,
                     "dissolves": false,
                     "radius": 2,
                     "chunkScale": 1,
@@ -1535,7 +1711,7 @@
                             "convexShapePath": "res://assets/models/Iron4.shape"
                         }
                     ],
-                    "density": 0.0002,
+                    "density": 0.0001,
                     "dissolves": true,
                     "radius": 1,
                     "chunkScale": 1,
@@ -1548,7 +1724,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "iceShard": {
                     "name": "ICESHARD",
@@ -1558,11 +1735,11 @@
                             "convexShapePath": "res://assets/models/Iceshard1.shape"
                         }
                     ],
-                    "density": 0.002,
+                    "density": 0.0001,
                     "dissolves": false,
                     "radius": 1,
                     "chunkScale": 1,
-                    "mass": 100,
+                    "mass": 10,
                     "size": 1000,
                     "damages": 10,
                     "deleteOnTouch": false,
@@ -1577,7 +1754,7 @@
                             "convexShapePath": "res://assets/models/Iron5.shape"
                         }
                     ],
-                    "density": 0.0002,
+                    "density": 0.00002,
                     "dissolves": true,
                     "radius": 10,
                     "chunkScale": 1,
@@ -1590,50 +1767,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": -1,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.5
+                    "ambient": 0.5
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": -1
                 }
             }
         }
@@ -1712,7 +1910,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -1735,50 +1934,71 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 17,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 1
+                    "ambient": 1
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 17
                 }
             }
         }
@@ -1856,7 +2076,8 @@
                         "iron": {
                             "amount": 200
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -1879,7 +2100,8 @@
                         "iron": {
                             "amount": 60000
                         }
-                    }
+                    },
+                    "dissolverEnzyme": "rusticyanin"
                 },
                 "marineSnow": {
                     "name": "MARINE_SNOW",
@@ -1960,49 +2182,69 @@
                             "amount": 100
                         }
                     }
+                },
+                "googlyEyeCell": {
+                    "name": "GOOGLY_EYE_CELL",
+                    "meshes": [
+                        {
+                            "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "sceneModelPath": "Armature/Skeleton/Cube",
+                            "sceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "density": 1e-7,
+                    "chunkScale": 1,
+                    "size": 10,
+                    "mass": 1,
+                    "radius": 2,
+                    "easterEgg": true
                 }
             },
-            "averageTemperature": 4,
             "compounds": {
                 "ammonia": {
                     "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "glucose": {
-                    "amount": 250000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 125000,
+                    "density": 0.00004,
+                    "ambient": 0
                 },
                 "phosphates": {
-                    "amount": 200000,
-                    "density": 0.00002,
-                    "dissolved": 0
+                    "amount": 250000,
+                    "density": 0.00006,
+                    "ambient": 0
                 },
                 "hydrogensulfide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
                 },
                 "oxygen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.21
+                    "ambient": 0.21
                 },
                 "carbondioxide": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.09
+                    "ambient": 0.09
                 },
                 "nitrogen": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0.7
+                    "ambient": 0.7
                 },
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 0
+                    "ambient": 0
+                },
+                "temperature": {
+                    "amount": 0,
+                    "density": 0,
+                    "ambient": 4
                 }
             }
         }
