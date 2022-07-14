@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 13:47+0100\n"
+"POT-Creation-Date: 2022-07-14 12:36+0700\n"
 "PO-Revision-Date: 2022-06-17 13:53+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -379,13 +379,13 @@ msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1975
+#: ../src/microbe_stage/MicrobeStage.tscn:1977
 msgid "FIRE_TOXIN"
 msgstr "Выстрелить токсином"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
+#: ../src/microbe_stage/MicrobeStage.tscn:1965
 msgid "TOGGLE_ENGULF"
 msgstr "Переключить поглощение"
 
@@ -394,7 +394,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Удерживайте, чтобы отобразить меню команд"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1986
+#: ../src/microbe_stage/MicrobeStage.tscn:1988
 msgid "TOGGLE_BINDING"
 msgstr "Переключить связку"
 
@@ -403,7 +403,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Переключить развязку"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:1998
+#: ../src/microbe_stage/MicrobeStage.tscn:2000
 msgid "UNBIND_ALL"
 msgstr "Отвязать всех"
 
@@ -754,41 +754,41 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1232
+#: ../src/microbe_stage/MicrobeStage.tscn:1234
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Аммиак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1281
+#: ../src/microbe_stage/MicrobeStage.tscn:1283
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1333
+#: ../src/microbe_stage/MicrobeStage.tscn:1335
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1183
+#: ../src/microbe_stage/MicrobeStage.tscn:1185
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1556
+#: ../src/microbe_stage/MicrobeStage.tscn:1558
 msgid "OXYTOXY_NT"
 msgstr "ОксиТоксин НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1382
+#: ../src/microbe_stage/MicrobeStage.tscn:1384
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Железо"
@@ -1236,13 +1236,13 @@ msgstr "Новое имя"
 msgid "MULTIPLE_CELLS"
 msgstr "Несколько клеток"
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:76
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:94
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:143
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -1771,11 +1771,11 @@ msgstr "Закрыть"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
 #: ../src/gui_common/CompoundAmount.cs:176
-#: ../src/microbe_stage/MicrobeHUD.cs:207
+#: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -1847,7 +1847,7 @@ msgstr "Микробный Креативный Редактор"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1236 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1970,7 +1970,7 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:182
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Дополнительное"
 
@@ -2119,7 +2119,7 @@ msgstr ""
 msgid "CONFIRM_NORMAL"
 msgstr "ПОДТВЕРДИТЬ"
 
-#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
 msgid "AUTO_RESOLUTION"
 msgstr "Авто ({0}x{1})"
 
@@ -2139,370 +2139,374 @@ msgstr "Этот язык всё ещё находится в стадии ра�
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Этот язык на {0}% завершён"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:140
 msgid "GRAPHICS"
 msgstr "Графика"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:151
 msgid "SOUND"
 msgstr "Звук"
 
-#: ../src/general/OptionsMenu.tscn:160
+#: ../src/general/OptionsMenu.tscn:162
 msgid "PERFORMANCE"
 msgstr "Производительность"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:173
 msgid "INPUTS"
 msgstr "Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:216
 msgid "VSYNC"
 msgstr "Вертикальная синхронизация"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr "Полный экран"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(высокие значения ухудшают производительность)"
 
-#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
 msgid "DISABLED"
 msgstr "Отключено"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr "Разрешение:"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:306
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
-#: ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:321
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Бесконечно"
 
-#: ../src/general/OptionsMenu.tscn:335
+#: ../src/general/OptionsMenu.tscn:337
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Цветокоррекция для дальтоников:"
 
-#: ../src/general/OptionsMenu.tscn:349 ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
 msgid "NONE"
 msgstr "Отсутствует"
 
-#: ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_PROTANOPE"
 msgstr "Протанопия (Крас.-Зел.)"
 
-#: ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (Син.-Жел.)"
 
-#: ../src/general/OptionsMenu.tscn:366
+#: ../src/general/OptionsMenu.tscn:368
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая аберрация:"
 
-#: ../src/general/OptionsMenu.tscn:392
+#: ../src/general/OptionsMenu.tscn:402
+msgid "GUI"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:417
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Показать панель способностей"
 
-#: ../src/general/OptionsMenu.tscn:400
+#: ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:408
+#: ../src/general/OptionsMenu.tscn:433
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:440
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать панель способностей"
 
-#: ../src/general/OptionsMenu.tscn:441
+#: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
-#: ../src/general/OptionsMenu.tscn:467 ../src/general/OptionsMenu.tscn:507
-#: ../src/general/OptionsMenu.tscn:539 ../src/general/OptionsMenu.tscn:571
-#: ../src/general/OptionsMenu.tscn:603
+#: ../src/general/OptionsMenu.tscn:492 ../src/general/OptionsMenu.tscn:532
+#: ../src/general/OptionsMenu.tscn:564 ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:628
 msgid "MUTE"
 msgstr "Заглушить"
 
-#: ../src/general/OptionsMenu.tscn:481
+#: ../src/general/OptionsMenu.tscn:506
 msgid "MUSIC_VOLUME"
 msgstr "Громкость музыки"
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:538
 msgid "AMBIANCE_VOLUME"
 msgstr "Громкость окружения"
 
-#: ../src/general/OptionsMenu.tscn:545
+#: ../src/general/OptionsMenu.tscn:570
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
 
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:602
 msgid "GUI_VOLUME"
 msgstr "Громкость пользовательского интерфейса"
 
-#: ../src/general/OptionsMenu.tscn:621
+#: ../src/general/OptionsMenu.tscn:646
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода звука:"
 
-#: ../src/general/OptionsMenu.tscn:649
+#: ../src/general/OptionsMenu.tscn:674
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.tscn:667 ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
 msgid "RESET"
 msgstr "Сбросить"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:710
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Помогите Перевести Эту Игру"
 
-#: ../src/general/OptionsMenu.tscn:711
+#: ../src/general/OptionsMenu.tscn:736
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака из Компонентов"
 
-#: ../src/general/OptionsMenu.tscn:726
+#: ../src/general/OptionsMenu.tscn:751
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мин. интервал облака симуляции:"
 
-#: ../src/general/OptionsMenu.tscn:733 ../src/general/OptionsMenu.tscn:775
+#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
-#: ../src/general/OptionsMenu.tscn:768
+#: ../src/general/OptionsMenu.tscn:793
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель разрешения облака:"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:834
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время игры"
 
-#: ../src/general/OptionsMenu.tscn:829
+#: ../src/general/OptionsMenu.tscn:854
 msgid "DETECTED_CPU_COUNT"
 msgstr "Число обнаруженных ядер процессора:"
 
-#: ../src/general/OptionsMenu.tscn:846
+#: ../src/general/OptionsMenu.tscn:871
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Текущие задачи:"
 
-#: ../src/general/OptionsMenu.tscn:860
+#: ../src/general/OptionsMenu.tscn:885
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Предположим, что в процессоре включена гиперпоточность"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:893
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:903
 msgid "THREADS"
 msgstr "Потоки:"
 
-#: ../src/general/OptionsMenu.tscn:923
+#: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:938 ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "ПОДТВЕРДИТЬ"
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Дополнительное"
 
-#: ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
 msgstr "Сбросить Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:1040
+#: ../src/general/OptionsMenu.tscn:1065
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1073
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать вступление микроба при новой игре"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1081
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1095
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:1133
+#: ../src/general/OptionsMenu.tscn:1158
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Чит-коды включены"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1178
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
-#: ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1189
 msgid "CUSTOM_USERNAME"
 msgstr "Кастомное имя пользователя:"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1215
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть Папку со Скриншотами"
 
-#: ../src/general/OptionsMenu.tscn:1198
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть Папку с Логами"
 
-#: ../src/general/OptionsMenu.tscn:1208
+#: ../src/general/OptionsMenu.tscn:1233
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим отладки JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматически"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Всегда"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
-#: ../src/general/OptionsMenu.tscn:1259 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1284 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1301
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1288
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1296
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Восстановить до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1297
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Вы действительно хотите сбросить настройки клавиш до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1306
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1326
+#: ../src/general/OptionsMenu.tscn:1351
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вы имеете не сохранённые изменения, которые можете потерять.\n"
 "Вы хотите продолжить?"
 
-#: ../src/general/OptionsMenu.tscn:1349
+#: ../src/general/OptionsMenu.tscn:1374
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1384
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отменить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1376
+#: ../src/general/OptionsMenu.tscn:1401
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Отмена"
 
-#: ../src/general/OptionsMenu.tscn:1387 ../src/general/OptionsMenu.tscn:1395
+#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
 msgid "ERROR"
 msgstr "Ошибка"
 
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1422
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
-#: ../src/general/OptionsMenu.tscn:1405
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папка скриншотов не найдена"
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1432
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
-#: ../src/general/PauseMenu.cs:329
+#: ../src/general/PauseMenu.cs:332
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Вы действительно хотите вернуться в главное меню?\n"
 "Весь несохраненный прогресс будет утерян."
 
-#: ../src/general/PauseMenu.cs:345
+#: ../src/general/PauseMenu.cs:348
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Вы действительно хотите выйти из игры?\n"
@@ -2576,35 +2580,35 @@ msgstr "Вымерли из биома"
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:888
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "изобилие"
 
-#: ../src/general/StageHUDBase.cs:890
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "немного"
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "изрядное количество"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:895
 msgid "CATEGORY_SOME"
 msgstr "некоторое количество"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "очень мало"
 
-#: ../src/general/StageHUDBase.cs:1098
+#: ../src/general/StageHUDBase.cs:1099
 msgid "PLAYER_CELL"
 msgstr "Клетка Игрока"
 
-#: ../src/general/StageHUDBase.cs:1111
+#: ../src/general/StageHUDBase.cs:1112
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -2936,8 +2940,8 @@ msgstr "\"Raw\""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "Нет данных"
 
@@ -2975,7 +2979,7 @@ msgid "SLIDESHOW"
 msgstr "Слайд-шоу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2198
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
@@ -3348,7 +3352,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопласт представляет собой двумембранный органоид, содержащий термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования ее эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения глюкозы из воды и газообразного углекислого газа в процессе, называемом Термосинтезом. Скорость выработки глюкозы зависит от концентрации углекислого газа в атмосфере и температуры."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Клеточные процессы не происходят"
 
@@ -3393,8 +3397,8 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Сигнальные агенты позволяют клеткам создавать химические вещества, на которые могут реагировать другие клетки. Сигнальные химические вещества могут быть использованы для привлечения других клеток или предупреждения их об опасности, заставляя их отступать."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:152
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:160
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:161
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1552
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Будет реализовано."
@@ -3512,42 +3516,42 @@ msgid "LOOKING_AT"
 msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "NOTHING_HERE"
 msgstr "Здесь ничего нет"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:506
+#: ../src/microbe_stage/MicrobeStage.tscn:508
 msgid "COMPOUNDS_COLON"
 msgstr "Соединения:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:546
+#: ../src/microbe_stage/MicrobeStage.tscn:548
 msgid "SPECIES_COLON"
 msgstr "Виды:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:623
+#: ../src/microbe_stage/MicrobeStage.tscn:625
 msgid "ENVIRONMENT"
 msgstr "Окружающая среда"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:891
+#: ../src/microbe_stage/MicrobeStage.tscn:893
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:947
+#: ../src/microbe_stage/MicrobeStage.tscn:949
 msgid "LIGHT"
 msgstr "Свет"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1002
+#: ../src/microbe_stage/MicrobeStage.tscn:1004
 msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1085
+#: ../src/microbe_stage/MicrobeStage.tscn:1087
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3556,7 +3560,7 @@ msgid "COMPOUNDS"
 msgstr "Соединения"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1496
+#: ../src/microbe_stage/MicrobeStage.tscn:1498
 msgid "AGENTS"
 msgstr "Химические Агенты"
 
@@ -3570,7 +3574,7 @@ msgid "AWAKEN"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1658
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
@@ -3666,19 +3670,19 @@ msgstr "Показать/скрыть процессы клетки"
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Самоубийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:709
+#: ../src/microbe_stage/Microbe.Contact.cs:714
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешное ограбление"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:716
+#: ../src/microbe_stage/Microbe.Contact.cs:721
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:895
+#: ../src/microbe_stage/Microbe.Contact.cs:900
 msgid "DEATH"
 msgstr "смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1148
+#: ../src/microbe_stage/Microbe.Contact.cs:1153
 msgid "ESCAPE_ENGULFING"
 msgstr "избежали поглощение"
 
@@ -3740,21 +3744,21 @@ msgstr "Стань Агрессивным"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал Для Передачи"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:198
+#: ../src/microbe_stage/MicrobeHUD.cs:197
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:308
+#: ../src/microbe_stage/MicrobeHUD.cs:295
 msgid "STUFF_AT"
 msgstr "Вещи в {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:397
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
+#: ../src/microbe_stage/MicrobeHUD.cs:384
+#: ../src/microbe_stage/MicrobeStage.tscn:1627
 msgid "BECOME_MULTICELLULAR"
 msgstr "Стать многоклеточным ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:433
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeStage.tscn:1638
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
@@ -3762,19 +3766,19 @@ msgstr "Стать макроскопическим ({0}/{1})"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Невозможно использовать чит Создать Противника, так как этот биом не содержит каких-либо видов противников"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:455
+#: ../src/microbe_stage/MicrobeStage.tscn:457
 msgid "AT_CURSOR"
 msgstr "Под Курсором:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1432
+#: ../src/microbe_stage/MicrobeStage.tscn:1434
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1621
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Перейти к следующей стадии игры (многоклеточному). Доступно с тех пор, как вы получили достаточно большую колонию."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1804
+#: ../src/microbe_stage/MicrobeStage.tscn:1806
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Войдите в редактор для модификации видов"
 
@@ -3842,61 +3846,61 @@ msgstr "Целенаправленный"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
 msgid "ATP_PRODUCTION"
 msgstr "АТФ Производство"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:278
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "СЛИШКОМ МАЛО ПРОИЗВОДСТВА АТФ!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:307
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:327
 msgid "OSMOREGULATION"
 msgstr "Осморегуляция"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
 msgid "BASE_MOVEMENT"
 msgstr "Базовое Передвижение"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:502
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, что приводит к нескорректированному населению {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая пригодность: {4})"
 

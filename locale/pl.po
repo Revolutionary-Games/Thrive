@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 13:47+0100\n"
+"POT-Creation-Date: 2022-07-14 12:36+0700\n"
 "PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: Amam Town <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -367,13 +367,13 @@ msgstr "Umiejętności"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1975
+#: ../src/microbe_stage/MicrobeStage.tscn:1977
 msgid "FIRE_TOXIN"
 msgstr "Strzał toksyną"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
+#: ../src/microbe_stage/MicrobeStage.tscn:1965
 msgid "TOGGLE_ENGULF"
 msgstr "Przełączenie fagocytozy"
 
@@ -382,7 +382,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Przytrzymaj aby wyświetlić polecenia dla kolonii"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1986
+#: ../src/microbe_stage/MicrobeStage.tscn:1988
 msgid "TOGGLE_BINDING"
 msgstr "Przełączenie wiązania"
 
@@ -391,7 +391,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Przełączenie odwiązywania"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:1998
+#: ../src/microbe_stage/MicrobeStage.tscn:2000
 msgid "UNBIND_ALL"
 msgstr "Odwiąż wszystkie"
 
@@ -738,41 +738,41 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1232
+#: ../src/microbe_stage/MicrobeStage.tscn:1234
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Amoniak (NH₃)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1281
+#: ../src/microbe_stage/MicrobeStage.tscn:1283
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosforany (PO₄³⁻)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1333
+#: ../src/microbe_stage/MicrobeStage.tscn:1335
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Siarkowodór (H₂S)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1183
+#: ../src/microbe_stage/MicrobeStage.tscn:1185
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glukoza (C₆H₁₂O₆)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1556
+#: ../src/microbe_stage/MicrobeStage.tscn:1558
 msgid "OXYTOXY_NT"
 msgstr "OxyToksy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1382
+#: ../src/microbe_stage/MicrobeStage.tscn:1384
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
@@ -1215,13 +1215,13 @@ msgstr "Nowa Nazwa"
 msgid "MULTIPLE_CELLS"
 msgstr "Wiele Komórek"
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:76
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:94
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:143
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -1767,11 +1767,11 @@ msgstr "Zamknij"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
 #: ../src/gui_common/CompoundAmount.cs:176
-#: ../src/microbe_stage/MicrobeHUD.cs:207
+#: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -1843,7 +1843,7 @@ msgstr "Kreatywny Edytor Mikroba"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1236 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1952,7 +1952,7 @@ msgstr "Trudność"
 msgid "PLANET"
 msgstr "Planeta"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:182
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Inne"
 
@@ -2069,7 +2069,7 @@ msgstr "Podstawowy"
 msgid "CONFIRM_NORMAL"
 msgstr "Potwierdź"
 
-#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
@@ -2089,374 +2089,378 @@ msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ten język jest gotów w {0}%"
 
-#: ../src/general/OptionsMenu.tscn:138
+#: ../src/general/OptionsMenu.tscn:140
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:149
+#: ../src/general/OptionsMenu.tscn:151
 msgid "SOUND"
 msgstr "Dźwięk"
 
-#: ../src/general/OptionsMenu.tscn:160
+#: ../src/general/OptionsMenu.tscn:162
 msgid "PERFORMANCE"
 msgstr "Wydajność"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:173
 msgid "INPUTS"
 msgstr "Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:216
 msgid "VSYNC"
 msgstr "Synchronizacja pionowa"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr "Pełny ekran"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Wygładzanie krawędzi:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(wyższe wartością mogą obniżyć wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
 msgid "DISABLED"
 msgstr "Wył"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:268
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr "Rozdzielczość:"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:306
 msgid "MAX_FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
 
-#: ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:321
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Nieograniczone"
 
-#: ../src/general/OptionsMenu.tscn:335
+#: ../src/general/OptionsMenu.tscn:337
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekta kolorów dla daltonistów:"
 
-#: ../src/general/OptionsMenu.tscn:349 ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
 msgid "NONE"
 msgstr "Brak"
 
-#: ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (Czerwony-Zielony)"
 
-#: ../src/general/OptionsMenu.tscn:350
+#: ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Niebieski-Żółty)"
 
-#: ../src/general/OptionsMenu.tscn:366
+#: ../src/general/OptionsMenu.tscn:368
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberracja chromatyczna:"
 
-#: ../src/general/OptionsMenu.tscn:392
+#: ../src/general/OptionsMenu.tscn:402
+msgid "GUI"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:417
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Pokaż pasek umiejętności"
 
-#: ../src/general/OptionsMenu.tscn:400
+#: ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Wyświetlaj cząsteczki w tle"
 
-#: ../src/general/OptionsMenu.tscn:408
+#: ../src/general/OptionsMenu.tscn:433
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:440
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Pokaż pasek umiejętności"
 
-#: ../src/general/OptionsMenu.tscn:441
+#: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
 msgstr "Główna głośność"
 
-#: ../src/general/OptionsMenu.tscn:467 ../src/general/OptionsMenu.tscn:507
-#: ../src/general/OptionsMenu.tscn:539 ../src/general/OptionsMenu.tscn:571
-#: ../src/general/OptionsMenu.tscn:603
+#: ../src/general/OptionsMenu.tscn:492 ../src/general/OptionsMenu.tscn:532
+#: ../src/general/OptionsMenu.tscn:564 ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:628
 msgid "MUTE"
 msgstr "Wycisz"
 
-#: ../src/general/OptionsMenu.tscn:481
+#: ../src/general/OptionsMenu.tscn:506
 msgid "MUSIC_VOLUME"
 msgstr "Głośność muzyki"
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:538
 msgid "AMBIANCE_VOLUME"
 msgstr "Głośność otoczenia"
 
-#: ../src/general/OptionsMenu.tscn:545
+#: ../src/general/OptionsMenu.tscn:570
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
 
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:602
 msgid "GUI_VOLUME"
 msgstr "Głośność interfejsu"
 
-#: ../src/general/OptionsMenu.tscn:621
+#: ../src/general/OptionsMenu.tscn:646
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Wyjściowe urządzenie audio:"
 
-#: ../src/general/OptionsMenu.tscn:649
+#: ../src/general/OptionsMenu.tscn:674
 msgid "LANGUAGE"
 msgstr "Język:"
 
-#: ../src/general/OptionsMenu.tscn:667 ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:710
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomóż W Tłumaczeniu Gry"
 
-#: ../src/general/OptionsMenu.tscn:711
+#: ../src/general/OptionsMenu.tscn:736
 msgid "COMPOUND_CLOUDS"
 msgstr "Chmury związków"
 
-#: ../src/general/OptionsMenu.tscn:726
+#: ../src/general/OptionsMenu.tscn:751
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
-#: ../src/general/OptionsMenu.tscn:733 ../src/general/OptionsMenu.tscn:775
+#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:768
+#: ../src/general/OptionsMenu.tscn:793
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik rozdzielczości chmur:"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:834
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
-#: ../src/general/OptionsMenu.tscn:829
+#: ../src/general/OptionsMenu.tscn:854
 msgid "DETECTED_CPU_COUNT"
 msgstr "Ilość wykrytych CPU:"
 
-#: ../src/general/OptionsMenu.tscn:846
+#: ../src/general/OptionsMenu.tscn:871
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Obecne wątki:"
 
-#: ../src/general/OptionsMenu.tscn:860
+#: ../src/general/OptionsMenu.tscn:885
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Załóż, że procesor pozwala na hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:893
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:903
 msgid "THREADS"
 msgstr "Wątki:"
 
-#: ../src/general/OptionsMenu.tscn:923
+#: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksymalna ilość bytów:"
 
-#: ../src/general/OptionsMenu.tscn:938 ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_VERY_SMALL"
 msgstr "Bardzo mały"
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_SMALL"
 msgstr "Mały"
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "Potwierdź"
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_LARGE"
 msgstr "Duży"
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_VERY_LARGE"
 msgstr "Bardzo Duży"
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:939
+#: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Ekstremalny"
 
-#: ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
 msgstr "Zresetuj Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:1040
+#: ../src/general/OptionsMenu.tscn:1065
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Odtwórz wideo intro"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1073
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Odtwórz intro mikroba przy nowej grze"
 
-#: ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:1081
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Zachowana ilość autozapisów:"
 
-#: ../src/general/OptionsMenu.tscn:1095
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Zachowana ilość szybkich zapisów:"
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych rozgrywkach)"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej rozgrywce)"
 
-#: ../src/general/OptionsMenu.tscn:1133
+#: ../src/general/OptionsMenu.tscn:1158
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Pokaż ostrzeżenie o niezapisanym postępie"
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Klawisze oszustw włączone"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1178
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
 
-#: ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1189
 msgid "CUSTOM_USERNAME"
 msgstr "Własna nazwa użytkownika:"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1215
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otwórz Folder Zrzutów Ekranu"
 
-#: ../src/general/OptionsMenu.tscn:1198
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/general/OptionsMenu.tscn:1208
+#: ../src/general/OptionsMenu.tscn:1233
 msgid "JSON_DEBUG_MODE"
 msgstr "Tryb Debugu JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatycznie"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Zawsze"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nigdy"
 
-#: ../src/general/OptionsMenu.tscn:1259 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1284 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Zapisz"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1301
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1288
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1296
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Zresetować wejścia do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1297
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1306
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
-#: ../src/general/OptionsMenu.tscn:1326
+#: ../src/general/OptionsMenu.tscn:1351
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Masz niezapisane zmiany które zostaną odrzucone.\n"
 "Czy chcesz kontynuować?"
 
-#: ../src/general/OptionsMenu.tscn:1349
+#: ../src/general/OptionsMenu.tscn:1374
 msgid "SAVE_AND_CONTINUE"
 msgstr "Zapisz i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1384
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odrzuć i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1376
+#: ../src/general/OptionsMenu.tscn:1401
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Anuluj"
 
-#: ../src/general/OptionsMenu.tscn:1387 ../src/general/OptionsMenu.tscn:1395
+#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
 msgid "ERROR"
 msgstr "Błąd"
 
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1422
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
-#: ../src/general/OptionsMenu.tscn:1405
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Nie znaleziono katalogu zrzutów ekranu"
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1432
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 
-#: ../src/general/PauseMenu.cs:329
+#: ../src/general/PauseMenu.cs:332
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Czy na pewno chcesz wyjść do menu głównego?\n"
 "Utracisz cały niezapisany postęp."
 
-#: ../src/general/PauseMenu.cs:345
+#: ../src/general/PauseMenu.cs:348
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Czy na pewno chcesz wyjść z gry?\n"
@@ -2529,35 +2533,35 @@ msgstr "wyginął z biomu"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:888
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "Mnóstwo"
 
-#: ../src/general/StageHUDBase.cs:890
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "Całkiem Sporo"
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "Średnia Ilość"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:895
 msgid "CATEGORY_SOME"
 msgstr "Trochę"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_LITTLE"
 msgstr "Mało"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "Prawie Wcale"
 
-#: ../src/general/StageHUDBase.cs:1098
+#: ../src/general/StageHUDBase.cs:1099
 msgid "PLAYER_CELL"
 msgstr "Komórka Gracza"
 
-#: ../src/general/StageHUDBase.cs:1111
+#: ../src/general/StageHUDBase.cs:1112
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -2889,8 +2893,8 @@ msgstr "RAW"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "Nie Dotyczy"
 
@@ -2928,7 +2932,7 @@ msgid "SLIDESHOW"
 msgstr "Pokaz slajdów"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2198
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Brak danych do pokazania"
 
@@ -3298,7 +3302,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji ATP z wody w procesie zwanym termosyntezą. Tempo produkcji ATP skaluje się z temperaturą."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Brak procesów"
 
@@ -3343,8 +3347,8 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:152
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:160
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:161
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1552
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Do zaimplementowania."
@@ -3458,42 +3462,42 @@ msgid "LOOKING_AT"
 msgstr "Patrzysz Na:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/microbe_stage/MicrobeStage.tscn:483
 msgid "NOTHING_HERE"
 msgstr "Nic tu nie ma"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:506
+#: ../src/microbe_stage/MicrobeStage.tscn:508
 msgid "COMPOUNDS_COLON"
 msgstr "Związki:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:546
+#: ../src/microbe_stage/MicrobeStage.tscn:548
 msgid "SPECIES_COLON"
 msgstr "Gatunek:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:623
+#: ../src/microbe_stage/MicrobeStage.tscn:625
 msgid "ENVIRONMENT"
 msgstr "Środowisko"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:891
+#: ../src/microbe_stage/MicrobeStage.tscn:893
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:947
+#: ../src/microbe_stage/MicrobeStage.tscn:949
 msgid "LIGHT"
 msgstr "Światło"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1002
+#: ../src/microbe_stage/MicrobeStage.tscn:1004
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1085
+#: ../src/microbe_stage/MicrobeStage.tscn:1087
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3502,7 +3506,7 @@ msgid "COMPOUNDS"
 msgstr "Związki"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1496
+#: ../src/microbe_stage/MicrobeStage.tscn:1498
 msgid "AGENTS"
 msgstr "Czynniki"
 
@@ -3515,7 +3519,7 @@ msgid "AWAKEN"
 msgstr "Przebudzony"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1658
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
@@ -3602,19 +3606,19 @@ msgstr "Pokaż / ukryj procesy komórkowe"
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Samobójstwo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:709
+#: ../src/microbe_stage/Microbe.Contact.cs:714
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "Udane poszukiwanie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:716
+#: ../src/microbe_stage/Microbe.Contact.cs:721
 msgid "SUCCESSFUL_KILL"
 msgstr "udane zabicie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:895
+#: ../src/microbe_stage/Microbe.Contact.cs:900
 msgid "DEATH"
 msgstr "śmierć"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1148
+#: ../src/microbe_stage/Microbe.Contact.cs:1153
 msgid "ESCAPE_ENGULFING"
 msgstr "Uniknij fagocytozy"
 
@@ -3676,21 +3680,21 @@ msgstr "Zareaguj Agresją"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Komunikat Do Nadania"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:198
+#: ../src/microbe_stage/MicrobeHUD.cs:197
 msgid "DEVOURED"
 msgstr "Rozszarpany"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:308
+#: ../src/microbe_stage/MicrobeHUD.cs:295
 msgid "STUFF_AT"
 msgstr "Rzecz w {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:397
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
+#: ../src/microbe_stage/MicrobeHUD.cs:384
+#: ../src/microbe_stage/MicrobeStage.tscn:1627
 msgid "BECOME_MULTICELLULAR"
 msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:433
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeHUD.cs:420
+#: ../src/microbe_stage/MicrobeStage.tscn:1638
 msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
@@ -3698,19 +3702,19 @@ msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:455
+#: ../src/microbe_stage/MicrobeStage.tscn:457
 msgid "AT_CURSOR"
 msgstr "Pod kursorem:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1432
+#: ../src/microbe_stage/MicrobeStage.tscn:1434
 msgid "INGESTED_MATTER"
 msgstr "Wchłonięta Materia"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1621
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1804
+#: ../src/microbe_stage/MicrobeStage.tscn:1806
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
@@ -3778,63 +3782,63 @@ msgstr "Skupienie"
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
 msgid "ATP_PRODUCTION"
 msgstr "Produkcja ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:278
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKCJA ATP JEST ZA NISKA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:307
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:327
 msgid "OSMOREGULATION"
 msgstr "Osmoregulacja"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
 msgid "BASE_MOVEMENT"
 msgstr "Bazowa prędkość"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:502
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha.\n"
 "Jeśli jednak zostało ono umieszczone w obecnej sesji, cofnięcie lub ponowienie wciąż jest możliwe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 #, fuzzy
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (dopasowanie: {2}) całkowita dostępna energia: {3} (całkowite dopasowanie: {4})"
