@@ -51,6 +51,7 @@ public class PatchMapNameGenerator : IRegistryType
         // Convert first letter to uppercase
         name[0] = char.ToUpper(name[0], CultureInfo.InvariantCulture);
 
+        // Continent name is the name without the genitive
         var continentName = name;
 
         // Choose an appropriate suffix considering last letter
