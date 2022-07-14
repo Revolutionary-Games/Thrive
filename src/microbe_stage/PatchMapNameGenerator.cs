@@ -25,7 +25,7 @@ public class PatchMapNameGenerator : IRegistryType
     public string InternalName { get; set; } = null!;
 
     /// <summary>
-    ///   Generates and returns a new region name
+    ///   Generates and returns a new region name (along with a continent name, non-genitive)
     /// </summary>
     public (string ContinentName, string RegionName) Next(Random random)
     {
@@ -52,7 +52,7 @@ public class PatchMapNameGenerator : IRegistryType
         name[0] = char.ToUpper(name[0], CultureInfo.InvariantCulture);
 
         // Continent name is the name without the genitive
-        var continentName = name;
+        var continentName = name.ToString();
 
         // Choose an appropriate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
@@ -66,7 +66,7 @@ public class PatchMapNameGenerator : IRegistryType
 
         name.Append(suffixes[suffixIndex]);
 
-        return (continentName.ToString(), name.ToString());
+        return (continentName, name.ToString());
     }
 
     public void Check(string name)
