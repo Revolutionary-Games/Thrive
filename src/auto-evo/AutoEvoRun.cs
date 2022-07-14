@@ -228,7 +228,8 @@ public class AutoEvoRun
                 {
                     // It's possible for external effects to be added for extinct species (either completely extinct
                     // or extinct in the current patch)
-                    if (!results.SpeciesHasResults(entry.Species))
+                    // We ignore this for player to give the player's reproduction bonus the ability to rescue them
+                    if (!results.SpeciesHasResults(entry.Species) && !entry.Species.PlayerSpecies)
                     {
                         GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
                             " had an external effect, ignoring the effect");
