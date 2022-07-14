@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -10,10 +10,15 @@
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
 
 [sub_resource type="ButtonGroup" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 258, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
@@ -103,15 +108,12 @@ UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/PanelContai
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 295.0
-margin_top = 20.0
-margin_right = 984.0
-margin_bottom = 700.0
+margin_left = 338.0
+margin_top = 44.0
+margin_right = 1027.0
+margin_bottom = 724.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
@@ -383,34 +385,57 @@ min_value = 10.0
 max_value = 50.0
 value = 20.0
 
-[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
 margin_top = 279.0
+margin_right = 657.0
+margin_bottom = 282.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 292.0
+margin_right = 657.0
+margin_bottom = 317.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_right = 34.0
+margin_bottom = 25.0
+text = "GUI"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_left = 38.0
+margin_right = 657.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 8 )
+
+[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 327.0
 margin_right = 247.0
-margin_bottom = 304.0
+margin_bottom = 352.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 314.0
+margin_top = 362.0
 margin_right = 360.0
-margin_bottom = 339.0
+margin_bottom = 387.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 349.0
+margin_top = 397.0
 margin_right = 300.0
-margin_bottom = 374.0
+margin_bottom = 422.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 384.0
+margin_top = 432.0
 margin_right = 238.0
-margin_bottom = 409.0
+margin_bottom = 457.0
 size_flags_horizontal = 0
 text = "DISPLAY_PART_NAMES"
 
@@ -1279,28 +1304,28 @@ __meta__ = {
 }
 
 [node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 340.0
-margin_top = 360.0
-margin_right = 940.0
-margin_bottom = 360.0
+margin_left = 383.0
+margin_top = 384.0
+margin_right = 983.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 600, 0 )
 WindowTitle = "RESET_TO_DEFAULTS"
 DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 
 [node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 340.0
-margin_top = 360.0
-margin_right = 940.0
-margin_bottom = 360.0
+margin_left = 383.0
+margin_top = 384.0
+margin_right = 983.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 600, 0 )
 WindowTitle = "RESET_INPUTS_TO_DEFAULTS"
 DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
 [node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 8 )]
-margin_left = 340.0
-margin_top = 360.0
-margin_right = 940.0
-margin_bottom = 360.0
+margin_left = 383.0
+margin_top = 384.0
+margin_right = 983.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 600, 0 )
 popup_exclusive = true
 WindowTitle = "CLOSE_OPTIONS"
@@ -1379,28 +1404,28 @@ __meta__ = {
 }
 
 [node name="ConflictDialog" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 390.0
-margin_top = 360.0
-margin_right = 890.0
-margin_bottom = 360.0
+margin_left = 433.0
+margin_top = 384.0
+margin_right = 933.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "ERROR"
 
 [node name="ErrorDialog" parent="CenterContainer" instance=ExtResource( 9 )]
-margin_left = 440.0
-margin_top = 360.0
-margin_right = 840.0
-margin_bottom = 360.0
+margin_left = 483.0
+margin_top = 384.0
+margin_right = 883.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 400, 0 )
 WindowTitle = "ERROR"
 Resizable = false
 ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
 [node name="NoDirectoryDialog" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 340.0
-margin_top = 360.0
-margin_right = 940.0
-margin_bottom = 360.0
+margin_left = 383.0
+margin_top = 384.0
+margin_right = 983.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 600, 0 )
 WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 HideCancelButton = true
