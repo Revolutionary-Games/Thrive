@@ -59,7 +59,7 @@ public static class PatchMapGenerator
                 regionType = (PatchRegion.RegionType)random.Next(0, 3);
             }
 
-            var region = new PatchRegion(i, new LocalizedString(continentName), regionType, coordinates);
+            var region = new PatchRegion(i, continentName, regionType, coordinates);
             int numberOfPatches;
 
             if (regionType == PatchRegion.RegionType.Continent)
@@ -759,7 +759,7 @@ public static class PatchMapGenerator
         var regionName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
 
         // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
-        var region = new PatchRegion(0, GetPatchLocalizedName(regionName, string.Empty),
+        var region = new PatchRegion(0, regionName,
                 PatchRegion.RegionType.Predefined, new Vector2(0, 0))
             { Size = new Vector2(400, 500) };
 

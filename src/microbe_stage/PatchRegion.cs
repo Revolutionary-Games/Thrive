@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class PatchRegion
 {
-    public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates)
+    public PatchRegion(int id, string name, RegionType regionType, Vector2 screenCoordinates)
     {
         ID = id;
         Patches = new List<Patch>();
@@ -21,7 +21,7 @@ public class PatchRegion
     }
 
     [JsonConstructor]
-    public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
+    public PatchRegion(int id, string name, RegionType type, Vector2 screenCoordinates,
         float height, float width)
     {
         ID = id;
@@ -69,8 +69,18 @@ public class PatchRegion
         }
     }
 
+    /// <summary>
+    ///   The name of the region / continent
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is not translatable as this is just the output from the name generator, which isn't language specific
+    ///     currently. And even once it is a different approach than <see cref="LocalizedString"/> will be needed to
+    ///     allow randomly generated names to translate.
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
-    public LocalizedString Name { get; private set; }
+    public string Name { get; private set; }
 
     /// <summary>
     ///   Coordinates this region is to be displayed at in the GUI
