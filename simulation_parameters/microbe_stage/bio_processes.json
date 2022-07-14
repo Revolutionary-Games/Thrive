@@ -34,7 +34,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.08
+            "glucose": 0.04
         }
     },
     "oxytoxySynthesis": {
@@ -115,7 +115,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.015
+            "glucose": 0.01
         }
     },
     "iron_chemolithoautotrophy": {
@@ -123,10 +123,10 @@
         "inputs": {
             "carbondioxide": 0.09,
             "oxygen": 0.21,
-            "iron": 0.01
+            "iron": 0.02
         },
         "outputs": {
-            "atp": 2.5
+            "atp": 5
         }
     },
     "thermosynthesis": {
@@ -135,7 +135,7 @@
             "temperature": 1
         },
         "outputs": {
-            "atp": 12
+            "atp": 11
         }
     },
     "bacterial_thermosynthesis": {
@@ -144,7 +144,7 @@
             "temperature": 1
         },
         "outputs": {
-            "atp": 5
+            "atp": 4
         }
     }
 }

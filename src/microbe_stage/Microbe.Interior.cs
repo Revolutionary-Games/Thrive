@@ -1305,6 +1305,13 @@ public partial class Microbe
                 // Microbe is beyond repair, might as well consider it as dead
                 Kill();
 
+                if (IsPlayerMicrobe)
+                {
+                    // Playing from a positional audio player won't have any effect since the listener is
+                    // directly on it.
+                    PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+                }
+
                 var hostile = HostileEngulfer.Value;
                 if (hostile == null)
                     return;
