@@ -37,8 +37,6 @@ msgstr "Pasirinktinis"
 msgid "CONCEPT_ART"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
@@ -47,43 +45,35 @@ msgstr "Mikroorganizmo būsena"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#: ../simulation_parameters/common/gallery.json:360
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:81
 msgid "GENERAL"
 msgstr "Bendra"
 
-#: ../simulation_parameters/common/gallery.json:131
 #: ../simulation_parameters/common/gallery.json:133
 msgid "MODELS"
 msgstr "Modeliai"
 
-#: ../simulation_parameters/common/gallery.json:247
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr "Muzika"
 
-#: ../simulation_parameters/common/gallery.json:250
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #: ../simulation_parameters/common/gallery.json:252
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr "Visi"
 
-#: ../simulation_parameters/common/gallery.json:261
 #: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
 msgstr "Meniu"
 
-#: ../simulation_parameters/common/gallery.json:325
 #: ../simulation_parameters/common/gallery.json:327
 msgid "MICROBE_EDITOR"
 msgstr "Mikroorganizmų redaktorius"
 
 #: ../simulation_parameters/common/gallery.json:385
-#: ../simulation_parameters/common/gallery.json:383
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -100,10 +90,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:"
-"compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:"
-"compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -299,7 +286,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:393
 msgid "MOVEMENT"
 msgstr ""
 
@@ -330,18 +316,12 @@ msgstr ""
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
 #: ../src/microbe_stage/MicrobeStage.tscn:1977
-#: ../src/microbe_stage/MicrobeStage.tscn:1975
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1901
-#: ../src/microbe_stage/MicrobeStage.tscn:1979
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
 #: ../src/microbe_stage/MicrobeStage.tscn:1965
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1887
-#: ../src/microbe_stage/MicrobeStage.tscn:1967
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
@@ -351,8 +331,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:52
 #: ../src/microbe_stage/MicrobeStage.tscn:1988
-#: ../src/microbe_stage/MicrobeStage.tscn:1986
-#: ../src/microbe_stage/MicrobeStage.tscn:1990
 msgid "TOGGLE_BINDING"
 msgstr ""
 
@@ -362,8 +340,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:60
 #: ../src/microbe_stage/MicrobeStage.tscn:2000
-#: ../src/microbe_stage/MicrobeStage.tscn:1998
-#: ../src/microbe_stage/MicrobeStage.tscn:2002
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -712,9 +688,6 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
 #: ../src/microbe_stage/MicrobeStage.tscn:1234
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
-#: ../src/microbe_stage/MicrobeStage.tscn:1232
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1199
-#: ../src/microbe_stage/MicrobeStage.tscn:1236
 msgid "AMMONIA"
 msgstr ""
 
@@ -722,9 +695,6 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
 #: ../src/microbe_stage/MicrobeStage.tscn:1283
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
-#: ../src/microbe_stage/MicrobeStage.tscn:1281
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1251
-#: ../src/microbe_stage/MicrobeStage.tscn:1285
 msgid "PHOSPHATE"
 msgstr ""
 
@@ -732,9 +702,6 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
 #: ../src/microbe_stage/MicrobeStage.tscn:1335
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
-#: ../src/microbe_stage/MicrobeStage.tscn:1333
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1303
-#: ../src/microbe_stage/MicrobeStage.tscn:1337
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
@@ -742,18 +709,12 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
 #: ../src/microbe_stage/MicrobeStage.tscn:1185
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
-#: ../src/microbe_stage/MicrobeStage.tscn:1183
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
-#: ../src/microbe_stage/MicrobeStage.tscn:1187
 msgid "GLUCOSE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
 #: ../src/microbe_stage/MicrobeStage.tscn:1558
-#: ../src/microbe_stage/MicrobeStage.tscn:1556
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1485
-#: ../src/microbe_stage/MicrobeStage.tscn:1560
 msgid "OXYTOXY_NT"
 msgstr ""
 
@@ -761,9 +722,6 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
-#: ../src/microbe_stage/MicrobeStage.tscn:1382
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1355
-#: ../src/microbe_stage/MicrobeStage.tscn:1386
 msgid "IRON"
 msgstr ""
 
@@ -1102,29 +1060,20 @@ msgstr ""
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:301
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 msgid "STRUCTURE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:416
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:414
 msgid "REPRODUCTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:344
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Elgsena"
 
-#: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:462
 msgid "CELLS"
@@ -1132,45 +1081,33 @@ msgstr "Ląstelės"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
 msgid "MODIFY_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:489
 msgid "DELETE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:496
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:545
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:521
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:646
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
@@ -1179,56 +1116,42 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:654
 msgid "NEXT_CAPITAL"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:572
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:586
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:706
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:701
 msgid "NEW_NAME_COLON"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:593
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:713
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:708
 msgid "NEW_NAME"
 msgstr ""
 
@@ -1243,14 +1166,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:76
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:94
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:143
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 msgid "MP_COST"
 msgstr ""
 
@@ -1776,11 +1691,11 @@ msgstr ""
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
 #: ../src/gui_common/CompoundAmount.cs:176
-#: ../src/microbe_stage/MicrobeHUD.cs:207
+#: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -1852,10 +1767,10 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
-#: ../src/saving/SaveManagerGUI.tscn:120 ../src/general/OptionsMenu.tscn:1236
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atgal"
 
@@ -1885,9 +1800,7 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
-"Įvyko klaida įkeliant vieną ar daugiau modifikatorių. Žurnalai gali turėti "
-"papildomos informacijos."
+msgstr "Įvyko klaida įkeliant vieną ar daugiau modifikatorių. Žurnalai gali turėti papildomos informacijos."
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1052
@@ -1953,9 +1866,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr ""
-"Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas "
-"skaičius"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
@@ -1965,8 +1876,7 @@ msgstr "Sunkumas"
 msgid "PLANET"
 msgstr "Planeta"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
-#: ../src/general/OptionsMenu.tscn:182
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Įvairūs"
 
@@ -2084,136 +1994,110 @@ msgid "CONFIRM_NORMAL"
 msgstr "Patvirtinti"
 
 #: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
-#: ../src/general/OptionsMenu.tscn:293 ../src/general/OptionsMenu.cs:629
-#: ../src/general/OptionsMenu.tscn:292
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:988 ../src/general/OptionsMenu.cs:982
+#: ../src/general/OptionsMenu.cs:988
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1020 ../src/general/OptionsMenu.cs:1014
+#: ../src/general/OptionsMenu.cs:1020
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1024 ../src/general/OptionsMenu.cs:1018
+#: ../src/general/OptionsMenu.cs:1024
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1028 ../src/general/OptionsMenu.cs:1022
+#: ../src/general/OptionsMenu.cs:1028
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:140 ../src/general/OptionsMenu.tscn:138
-#: ../src/general/OptionsMenu.tscn:137
+#: ../src/general/OptionsMenu.tscn:140
 msgid "GRAPHICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:151 ../src/general/OptionsMenu.tscn:149
-#: ../src/general/OptionsMenu.tscn:148
+#: ../src/general/OptionsMenu.tscn:151
 msgid "SOUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:162 ../src/general/OptionsMenu.tscn:160
-#: ../src/general/OptionsMenu.tscn:159
+#: ../src/general/OptionsMenu.tscn:162
 msgid "PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:173 ../src/general/OptionsMenu.tscn:171
-#: ../src/general/OptionsMenu.tscn:170
+#: ../src/general/OptionsMenu.tscn:173
 msgid "INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:216 ../src/general/OptionsMenu.tscn:214
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:216
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:223 ../src/general/OptionsMenu.tscn:221
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:245 ../src/general/OptionsMenu.tscn:243
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:252 ../src/general/OptionsMenu.tscn:250
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
-#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:266
-#: ../src/general/OptionsMenu.tscn:264
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:268 ../src/general/OptionsMenu.tscn:266
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:268
 msgid "TWO_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:268 ../src/general/OptionsMenu.tscn:266
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:268
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:268 ../src/general/OptionsMenu.tscn:266
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:268
 msgid "EIGHT_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:268 ../src/general/OptionsMenu.tscn:266
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:268
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:282 ../src/general/OptionsMenu.tscn:280
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:306 ../src/general/OptionsMenu.tscn:304
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:306
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:319
-#: ../src/general/OptionsMenu.tscn:318
+#: ../src/general/OptionsMenu.tscn:321
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:337 ../src/general/OptionsMenu.tscn:335
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:337
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
-#: ../src/general/OptionsMenu.tscn:349 ../src/general/OptionsMenu.tscn:350
-#: ../src/general/OptionsMenu.tscn:348
 msgid "NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:352 ../src/general/OptionsMenu.tscn:350
-#: ../src/general/OptionsMenu.tscn:349
+#: ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:352 ../src/general/OptionsMenu.tscn:350
-#: ../src/general/OptionsMenu.tscn:349
+#: ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:368 ../src/general/OptionsMenu.tscn:366
-#: ../src/general/OptionsMenu.tscn:365
+#: ../src/general/OptionsMenu.tscn:368
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:394 ../src/general/OptionsMenu.tscn:400
-#: ../src/general/OptionsMenu.tscn:399
+#: ../src/general/OptionsMenu.tscn:394
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
@@ -2221,348 +2105,275 @@ msgstr ""
 msgid "GUI"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:425 ../src/general/OptionsMenu.tscn:392
-#: ../src/general/OptionsMenu.tscn:391
+#: ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:433 ../src/general/OptionsMenu.tscn:408
-#: ../src/general/OptionsMenu.tscn:407
+#: ../src/general/OptionsMenu.tscn:433
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:440 ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:440
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:466 ../src/general/OptionsMenu.tscn:441
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:492 ../src/general/OptionsMenu.tscn:532
 #: ../src/general/OptionsMenu.tscn:564 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:628 ../src/general/OptionsMenu.tscn:467
-#: ../src/general/OptionsMenu.tscn:507 ../src/general/OptionsMenu.tscn:539
-#: ../src/general/OptionsMenu.tscn:571 ../src/general/OptionsMenu.tscn:603
-#: ../src/general/OptionsMenu.tscn:459 ../src/general/OptionsMenu.tscn:499
-#: ../src/general/OptionsMenu.tscn:531 ../src/general/OptionsMenu.tscn:563
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:628
 msgid "MUTE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:506 ../src/general/OptionsMenu.tscn:481
-#: ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.tscn:506
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:538 ../src/general/OptionsMenu.tscn:513
-#: ../src/general/OptionsMenu.tscn:505
+#: ../src/general/OptionsMenu.tscn:538
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:570 ../src/general/OptionsMenu.tscn:545
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:570
 msgid "SFX_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:602 ../src/general/OptionsMenu.tscn:577
-#: ../src/general/OptionsMenu.tscn:569
+#: ../src/general/OptionsMenu.tscn:602
 msgid "GUI_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:646 ../src/general/OptionsMenu.tscn:621
-#: ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:646
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:674 ../src/general/OptionsMenu.tscn:649
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:674
 msgid "LANGUAGE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
-#: ../src/general/OptionsMenu.tscn:667 ../src/general/OptionsMenu.tscn:1247
-#: ../src/general/OptionsMenu.tscn:659 ../src/general/OptionsMenu.tscn:1239
 msgid "RESET"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:710 ../src/general/OptionsMenu.tscn:685
-#: ../src/general/OptionsMenu.tscn:677
+#: ../src/general/OptionsMenu.tscn:710
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:736 ../src/general/OptionsMenu.tscn:711
-#: ../src/general/OptionsMenu.tscn:703
+#: ../src/general/OptionsMenu.tscn:736
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:751 ../src/general/OptionsMenu.tscn:726
-#: ../src/general/OptionsMenu.tscn:718
+#: ../src/general/OptionsMenu.tscn:751
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
-#: ../src/general/OptionsMenu.tscn:733 ../src/general/OptionsMenu.tscn:775
-#: ../src/general/OptionsMenu.tscn:725 ../src/general/OptionsMenu.tscn:767
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:793 ../src/general/OptionsMenu.tscn:768
-#: ../src/general/OptionsMenu.tscn:760
+#: ../src/general/OptionsMenu.tscn:793
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:834 ../src/general/OptionsMenu.tscn:809
-#: ../src/general/OptionsMenu.tscn:801
+#: ../src/general/OptionsMenu.tscn:834
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:854 ../src/general/OptionsMenu.tscn:829
-#: ../src/general/OptionsMenu.tscn:821
+#: ../src/general/OptionsMenu.tscn:854
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:871 ../src/general/OptionsMenu.tscn:846
-#: ../src/general/OptionsMenu.tscn:838
+#: ../src/general/OptionsMenu.tscn:871
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:885 ../src/general/OptionsMenu.tscn:860
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:885
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:893 ../src/general/OptionsMenu.tscn:868
-#: ../src/general/OptionsMenu.tscn:860
+#: ../src/general/OptionsMenu.tscn:893
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:903 ../src/general/OptionsMenu.tscn:878
-#: ../src/general/OptionsMenu.tscn:870
+#: ../src/general/OptionsMenu.tscn:903
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:948 ../src/general/OptionsMenu.tscn:923
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
-#: ../src/general/OptionsMenu.tscn:938 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_NORMAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1038 ../src/general/OptionsMenu.tscn:1013
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1065 ../src/general/OptionsMenu.tscn:1040
-#: ../src/general/OptionsMenu.tscn:1032
+#: ../src/general/OptionsMenu.tscn:1065
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1073 ../src/general/OptionsMenu.tscn:1048
-#: ../src/general/OptionsMenu.tscn:1040
+#: ../src/general/OptionsMenu.tscn:1073
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1081 ../src/general/OptionsMenu.tscn:1056
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1081
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1092 ../src/general/OptionsMenu.tscn:1067
-#: ../src/general/OptionsMenu.tscn:1059
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1120 ../src/general/OptionsMenu.tscn:1095
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1145 ../src/general/OptionsMenu.tscn:1120
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1145
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1152 ../src/general/OptionsMenu.tscn:1127
-#: ../src/general/OptionsMenu.tscn:1119
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1158 ../src/general/OptionsMenu.tscn:1133
-#: ../src/general/OptionsMenu.tscn:1125
+#: ../src/general/OptionsMenu.tscn:1158
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1145
-#: ../src/general/OptionsMenu.tscn:1137
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1178 ../src/general/OptionsMenu.tscn:1153
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1178
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1189 ../src/general/OptionsMenu.tscn:1164
-#: ../src/general/OptionsMenu.tscn:1156
+#: ../src/general/OptionsMenu.tscn:1189
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1215 ../src/general/OptionsMenu.tscn:1190
-#: ../src/general/OptionsMenu.tscn:1182
+#: ../src/general/OptionsMenu.tscn:1215
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1198
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1233 ../src/general/OptionsMenu.tscn:1208
-#: ../src/general/OptionsMenu.tscn:1200
+#: ../src/general/OptionsMenu.tscn:1233
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
-#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
-#: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1215
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1248 ../src/general/OptionsMenu.tscn:1223
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1248 ../src/general/OptionsMenu.tscn:1223
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1284 ../src/saving/NewSaveMenu.tscn:74
-#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1251
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1301 ../src/general/OptionsMenu.tscn:1276
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1301
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1312 ../src/general/OptionsMenu.tscn:1287
-#: ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1313 ../src/general/OptionsMenu.tscn:1288
-#: ../src/general/OptionsMenu.tscn:1280
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1296
-#: ../src/general/OptionsMenu.tscn:1288
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1322 ../src/general/OptionsMenu.tscn:1297
-#: ../src/general/OptionsMenu.tscn:1289
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1331 ../src/general/OptionsMenu.tscn:1306
-#: ../src/general/OptionsMenu.tscn:1298
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1351 ../src/general/OptionsMenu.tscn:1326
-#: ../src/general/OptionsMenu.tscn:1318
+#: ../src/general/OptionsMenu.tscn:1351
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1374 ../src/general/OptionsMenu.tscn:1349
-#: ../src/general/OptionsMenu.tscn:1341
+#: ../src/general/OptionsMenu.tscn:1374
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1384 ../src/general/OptionsMenu.tscn:1359
-#: ../src/general/OptionsMenu.tscn:1351
+#: ../src/general/OptionsMenu.tscn:1384
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1401
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/modding/NewModGUI.tscn:472 ../src/general/OptionsMenu.tscn:1376
-#: ../src/general/OptionsMenu.tscn:1368
+#: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
-#: ../src/general/OptionsMenu.tscn:1387 ../src/general/OptionsMenu.tscn:1395
-#: ../src/general/OptionsMenu.tscn:1379
 msgid "ERROR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1422 ../src/general/OptionsMenu.tscn:1397
-#: ../src/general/OptionsMenu.tscn:1389
+#: ../src/general/OptionsMenu.tscn:1422
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1430 ../src/general/OptionsMenu.tscn:1405
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1432 ../src/general/OptionsMenu.tscn:1407
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1432
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:332 ../src/general/PauseMenu.cs:329
+#: ../src/general/PauseMenu.cs:332
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:348 ../src/general/PauseMenu.cs:345
+#: ../src/general/PauseMenu.cs:348
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -2592,7 +2403,6 @@ msgid "STATISTICS"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
-#: ../src/microbe_stage/HUDBottomBar.tscn:120
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2634,35 +2444,35 @@ msgstr ""
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:889 ../src/general/StageHUDBase.cs:888
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:891 ../src/general/StageHUDBase.cs:890
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:893 ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:895 ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:895
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:897 ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:899 ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1099 ../src/general/StageHUDBase.cs:1098
+#: ../src/general/StageHUDBase.cs:1099
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1112 ../src/general/StageHUDBase.cs:1111
+#: ../src/general/StageHUDBase.cs:1112
 msgid "SPECIES_N_TIMES"
 msgstr ""
 
@@ -2982,8 +2792,8 @@ msgstr "Neap."
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "N/A"
 
@@ -3022,7 +2832,6 @@ msgstr "Skaidrių peržiūra"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2198
 #, fuzzy
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nėra duomenų rodymui"
@@ -3079,7 +2888,6 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr "Pamoka"
@@ -3373,7 +3181,6 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -3421,10 +3228,6 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:153
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:161
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1552
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:152
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:160
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:145
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1550
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -3526,97 +3329,68 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:423
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
 msgid "LOOKING_AT"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
 #: ../src/microbe_stage/MicrobeStage.tscn:483
-#: ../src/microbe_stage/MicrobeStage.tscn:481
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
-#: ../src/microbe_stage/MicrobeStage.tscn:485
 msgid "NOTHING_HERE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
 #: ../src/microbe_stage/MicrobeStage.tscn:508
-#: ../src/microbe_stage/MicrobeStage.tscn:506
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:472
-#: ../src/microbe_stage/MicrobeStage.tscn:510
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
 #: ../src/microbe_stage/MicrobeStage.tscn:548
-#: ../src/microbe_stage/MicrobeStage.tscn:546
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:512
-#: ../src/microbe_stage/MicrobeStage.tscn:550
 msgid "SPECIES_COLON"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
 #: ../src/microbe_stage/MicrobeStage.tscn:625
-#: ../src/microbe_stage/MicrobeStage.tscn:623
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:591
-#: ../src/microbe_stage/MicrobeStage.tscn:627
 msgid "ENVIRONMENT"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
 #: ../src/microbe_stage/MicrobeStage.tscn:893
-#: ../src/microbe_stage/MicrobeStage.tscn:891
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:857
-#: ../src/microbe_stage/MicrobeStage.tscn:895
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:913
-#: ../src/microbe_stage/MicrobeStage.tscn:951
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:947
+#: ../src/microbe_stage/MicrobeStage.tscn:949
 msgid "LIGHT"
 msgstr "Lengvas"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:968
-#: ../src/microbe_stage/MicrobeStage.tscn:1006
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1002
+#: ../src/microbe_stage/MicrobeStage.tscn:1004
 msgid "PRESSURE_SHORT"
 msgstr "Spaud."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1051
-#: ../src/microbe_stage/MicrobeStage.tscn:1089
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
+#: ../src/microbe_stage/MicrobeStage.tscn:1087
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1085
 msgid "COMPOUNDS"
 msgstr "Junginiai"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1425
-#: ../src/microbe_stage/MicrobeStage.tscn:1500
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1496
+#: ../src/microbe_stage/MicrobeStage.tscn:1498
 msgid "AGENTS"
 msgstr "Agentai"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1557
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
 msgid "BECOME_AWARE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 #: ../src/microbe_stage/MicrobeStage.tscn:1658
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -3641,39 +3415,31 @@ msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 msgid "INTERNALS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:373
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 msgid "DISCONNECTED_METABALLS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:679
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:693
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -3698,32 +3464,26 @@ msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:83
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:134
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:714
-#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:721
-#: ../src/microbe_stage/Microbe.Contact.cs:716
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:900
-#: ../src/microbe_stage/Microbe.Contact.cs:895
 msgid "DEATH"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:1153
-#: ../src/microbe_stage/Microbe.Contact.cs:1148
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3784,28 +3544,20 @@ msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:197
-#: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:295
-#: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:384
 #: ../src/microbe_stage/MicrobeStage.tscn:1627
-#: ../src/microbe_stage/MicrobeHUD.cs:397
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
-#: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:420
 #: ../src/microbe_stage/MicrobeStage.tscn:1638
-#: ../src/microbe_stage/MicrobeHUD.cs:433
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
-#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
@@ -3814,26 +3566,18 @@ msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:457
-#: ../src/microbe_stage/MicrobeStage.tscn:455
-#: ../src/microbe_stage/MicrobeStage.tscn:459
 msgid "AT_CURSOR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/MicrobeStage.tscn:1432
-#: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
-#: ../src/microbe_stage/MicrobeStage.tscn:1621
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1806
-#: ../src/microbe_stage/MicrobeStage.tscn:1804
-#: ../src/microbe_stage/MicrobeStage.tscn:1808
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3903,75 +3647,59 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
 msgid "ATP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:278
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:307
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:327
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "OSMOREGULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "BASE_MOVEMENT"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:502
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
 msgid "ENERGY_SOURCES"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4113,7 +3841,6 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:259
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -4236,7 +3963,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:122
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
 msgstr ""
 
@@ -5247,30 +4973,24 @@ msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:121
-msgid "MULTICELLULAR"
-msgstr "Daugialąstis"
+#~ msgid "MULTICELLULAR"
+#~ msgstr "Daugialąstis"
