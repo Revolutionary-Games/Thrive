@@ -9,15 +9,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class PatchRegion
 {
-    // TODO: Move these to Constants.cs
-
-    [JsonIgnore]
-    public readonly float RegionLineWidth = 4.0f;
-
-    [JsonIgnore]
-    public readonly float PatchMargin = 4.0f;
-
-    public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates)
+    public PatchRegion(int id, string name, RegionType regionType, Vector2 screenCoordinates)
     {
         ID = id;
         Patches = new List<Patch>();
@@ -29,8 +21,8 @@ public class PatchRegion
     }
 
     [JsonConstructor]
-    public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
-        float height, float width, bool usesSpecialLinking)
+    public PatchRegion(int id, string name, RegionType type, Vector2 screenCoordinates,
+        float height, float width)
     {
         ID = id;
         Name = name;
@@ -38,17 +30,14 @@ public class PatchRegion
         ScreenCoordinates = screenCoordinates;
         Height = height;
         Width = width;
-        UsesSpecialLinking = usesSpecialLinking;
     }
 
     public enum RegionType
     {
-        Predefined,
-        Sea,
-        Ocean,
-        Continent,
-        Vent,
-        Cave,
+        Sea = 0,
+        Ocean = 1,
+        Continent = 2,
+        Predefined = 3,
     }
 
     [JsonProperty]
@@ -60,11 +49,6 @@ public class PatchRegion
     /// <summary>
     ///   Regions this is next to
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this may contain non-simulation regions (drawing only) which must be refactored out of here
-    ///   </para>
-    /// </remarks>
     [JsonIgnore]
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
 
@@ -85,20 +69,24 @@ public class PatchRegion
         }
     }
 
+    /// <summary>
+    ///   The name of the region / continent
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is not translatable as this is just the output from the name generator, which isn't language specific
+    ///     currently. And even once it is a different approach than <see cref="LocalizedString"/> will be needed to
+    ///     allow randomly generated names to translate.
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
-    public LocalizedString Name { get; private set; }
+    public string Name { get; private set; }
 
     /// <summary>
     ///   Coordinates this region is to be displayed at in the GUI
     /// </summary>
     [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
-
-    /// <summary>
-    ///   When <c>true</c> this region is marked as having special line connection and drawing logic
-    /// </summary>
-    [JsonProperty]
-    public bool UsesSpecialLinking { get; set; }
 
     /// <summary>
     ///   The patches in this region. This is last because other constructor params need to be loaded from JSON first
