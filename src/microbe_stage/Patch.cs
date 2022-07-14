@@ -21,11 +21,12 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchRegion region)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchRegion region)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
+        BiomeType = type;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
     }
@@ -57,6 +58,9 @@ public class Patch
     /// </summary>
     [JsonProperty]
     public PatchRegion Region { get; private set; } = null!;
+
+    [JsonProperty]
+    public BiomeType BiomeType { get; private set; }
 
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
