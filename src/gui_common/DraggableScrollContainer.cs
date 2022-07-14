@@ -40,7 +40,7 @@ public class DraggableScrollContainer : ScrollContainer
     private Int2 lastScrollValues;
 
     [Export]
-    public float DragSensitivity { get; set; } = 3.5f;
+    public float DragSensitivity { get; set; } = 1.0f;
 
     [Export]
     public float MaxZoom { get; set; } = 2.5f;
@@ -138,7 +138,7 @@ public class DraggableScrollContainer : ScrollContainer
             // vice versa.
             var scaleInverse = 1 / contentScale;
 
-            Pan(new Vector2(
+            ImmediatePan(new Vector2(
                 ScrollHorizontal - (int)(motion.Relative.x * scaleInverse) * DragSensitivity,
                 ScrollVertical - (int)(motion.Relative.y * scaleInverse) * DragSensitivity));
         }
