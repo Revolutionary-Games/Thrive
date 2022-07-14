@@ -499,7 +499,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         GameWorld.AlterSpeciesPopulationInCurrentPatch(
             GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("EXTINCT_IN_PATCH"),
-            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         // Do not grant the player population even if the global population is 0,

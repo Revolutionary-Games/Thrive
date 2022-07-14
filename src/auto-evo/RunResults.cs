@@ -191,6 +191,45 @@
             }
         }
 
+        /// <summary>
+        ///   Creates a blank results for the player species
+        /// </summary>
+        /// <param name="playerSpecies">The player species</param>
+        /// <param name="patchesToFillResultsFor">
+        ///   Patches to add results for if the species is missing from results. All patches in the used map need
+        ///   to be included here, otherwise population counting will throw an exception later.
+        /// </param>
+        /// <exception cref="ArgumentException">If species is not valid</exception>
+        /// <remarks>
+        ///   <para>
+        ///     When the player has 0 global population, but has not lost the game due to making it to the editor,
+        ///     the player species wouldn't have any results, but as that breaks a lot of stuff we need to create blank
+        ///     results for the player in that case. <see cref="AutoEvoRun.AddPlayerSpeciesPopulationChangeClampStep"/>
+        ///     handles calling this.
+        ///   </para>
+        /// </remarks>
+        public void AddPlayerSpeciesBlankResult(Species playerSpecies, IEnumerable<Patch> patchesToFillResultsFor)
+        {
+            if (!playerSpecies.PlayerSpecies)
+                throw new ArgumentException("Species must be player species");
+
+            lock (results)
+            {
+                if (results.ContainsKey(playerSpecies))
+                    return;
+
+                var result = new SpeciesResult(playerSpecies);
+
+                // All patches need to have a population result for population counting to work
+                foreach (var patch in patchesToFillResultsFor)
+                {
+                    result.NewPopulationInPatches[patch] = 0;
+                }
+
+                results[playerSpecies] = result;
+            }
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)
