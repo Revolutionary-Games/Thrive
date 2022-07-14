@@ -415,6 +415,12 @@ public class AutoEvoRun
         steps.Enqueue(new LambdaStep(
             result =>
             {
+                if (!result.SpeciesHasResults(playerSpecies))
+                {
+                    GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
+                    result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
+                }
+
                 foreach (var entry in map.Patches)
                 {
                     var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
