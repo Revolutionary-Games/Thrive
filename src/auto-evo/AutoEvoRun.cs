@@ -228,7 +228,8 @@ public class AutoEvoRun
                 {
                     // It's possible for external effects to be added for extinct species (either completely extinct
                     // or extinct in the current patch)
-                    if (!results.SpeciesHasResults(entry.Species))
+                    // We ignore this for player to give the player's reproduction bonus the ability to rescue them
+                    if (!results.SpeciesHasResults(entry.Species) && !entry.Species.PlayerSpecies)
                     {
                         GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
                             " had an external effect, ignoring the effect");
@@ -415,6 +416,12 @@ public class AutoEvoRun
         steps.Enqueue(new LambdaStep(
             result =>
             {
+                if (!result.SpeciesHasResults(playerSpecies))
+                {
+                    GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
+                    result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
+                }
+
                 foreach (var entry in map.Patches)
                 {
                     var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);

@@ -294,11 +294,16 @@ public class GameWorld : ISaveLoadable
     public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
         bool immediate = false, float coefficient = 1)
     {
-        if (constant == 0 || coefficient == 0)
+        // It sort of makes sense to allow 0 coefficient to force population to 0, that's why this check is here
+        // now if this effect would do nothing, then it is skipped
+        if (constant == 0 && Math.Abs(coefficient - 1) < MathUtils.EPSILON)
             return;
 
         if (species == null)
             throw new ArgumentException("species is null");
+
+        if (coefficient < 0)
+            throw new ArgumentException("coefficient may not be negative");
 
         if (string.IsNullOrEmpty(description))
             throw new ArgumentException("May not be empty or null", nameof(description));
@@ -309,7 +314,9 @@ public class GameWorld : ISaveLoadable
             if (!species.PlayerSpecies)
                 throw new ArgumentException("immediate effect is only for player dying");
 
-            GD.Print("Applying immediate population effect (should only be used for the player dying)");
+            GD.Print(
+                $"Applying immediate population effect to {species.FormattedIdentifier}, constant: " +
+                $"{constant}, coefficient: {coefficient}, reason: {description}");
 
             species.ApplyImmediatePopulationChange(constant, coefficient, patch);
         }
