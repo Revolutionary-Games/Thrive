@@ -110,10 +110,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 338.0
-margin_top = 44.0
-margin_right = 1027.0
-margin_bottom = 724.0
+margin_left = 295.0
+margin_top = 20.0
+margin_right = 984.0
+margin_bottom = 700.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
@@ -385,16 +385,24 @@ min_value = 10.0
 max_value = 50.0
 value = 20.0
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+[node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 279.0
+margin_right = 360.0
+margin_bottom = 304.0
+size_flags_horizontal = 0
+pressed = true
+text = "DISPLAY_BACKGROUND_PARTICLES"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 314.0
 margin_right = 657.0
-margin_bottom = 282.0
+margin_bottom = 317.0
 rect_min_size = Vector2( 0, 3 )
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 292.0
+margin_top = 327.0
 margin_right = 657.0
-margin_bottom = 317.0
+margin_bottom = 352.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
 margin_right = 34.0
@@ -409,20 +417,12 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 327.0
-margin_right = 247.0
-margin_bottom = 352.0
-size_flags_horizontal = 0
-pressed = true
-text = "DISPLAY_ABILITIES_BAR"
-
-[node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 362.0
-margin_right = 360.0
+margin_right = 247.0
 margin_bottom = 387.0
 size_flags_horizontal = 0
 pressed = true
-text = "DISPLAY_BACKGROUND_PARTICLES"
+text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 397.0
@@ -1304,28 +1304,28 @@ __meta__ = {
 }
 
 [node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 383.0
-margin_top = 384.0
-margin_right = 983.0
-margin_bottom = 384.0
+margin_left = 340.0
+margin_top = 360.0
+margin_right = 940.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
 WindowTitle = "RESET_TO_DEFAULTS"
 DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 
 [node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 383.0
-margin_top = 384.0
-margin_right = 983.0
-margin_bottom = 384.0
+margin_left = 340.0
+margin_top = 360.0
+margin_right = 940.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
 WindowTitle = "RESET_INPUTS_TO_DEFAULTS"
 DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
 [node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 8 )]
-margin_left = 383.0
-margin_top = 384.0
-margin_right = 983.0
-margin_bottom = 384.0
+margin_left = 340.0
+margin_top = 360.0
+margin_right = 940.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
 popup_exclusive = true
 WindowTitle = "CLOSE_OPTIONS"
@@ -1404,28 +1404,28 @@ __meta__ = {
 }
 
 [node name="ConflictDialog" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 433.0
-margin_top = 384.0
-margin_right = 933.0
-margin_bottom = 384.0
+margin_left = 390.0
+margin_top = 360.0
+margin_right = 890.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "ERROR"
 
 [node name="ErrorDialog" parent="CenterContainer" instance=ExtResource( 9 )]
-margin_left = 483.0
-margin_top = 384.0
-margin_right = 883.0
-margin_bottom = 384.0
+margin_left = 440.0
+margin_top = 360.0
+margin_right = 840.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 400, 0 )
 WindowTitle = "ERROR"
 Resizable = false
 ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
 [node name="NoDirectoryDialog" parent="CenterContainer" instance=ExtResource( 6 )]
-margin_left = 383.0
-margin_top = 384.0
-margin_right = 983.0
-margin_bottom = 384.0
+margin_left = 340.0
+margin_top = 360.0
+margin_right = 940.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
 WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 HideCancelButton = true
@@ -1443,8 +1443,8 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
