@@ -19,19 +19,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Lengvas"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Vidutinis"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Sunkus"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Pasirinktinis"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -41,7 +41,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
 msgid "MICROBE_STAGE"
-msgstr ""
+msgstr "Mikroorganizmo būsena"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
@@ -50,28 +50,28 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:81
 msgid "GENERAL"
-msgstr ""
+msgstr "Bendra"
 
 #: ../simulation_parameters/common/gallery.json:133
 msgid "MODELS"
-msgstr ""
+msgstr "Modeliai"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Muzika"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
-msgstr ""
+msgstr "Visi"
 
 #: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
-msgstr ""
+msgstr "Meniu"
 
 #: ../simulation_parameters/common/gallery.json:327
 msgid "MICROBE_EDITOR"
-msgstr ""
+msgstr "Mikroorganizmų redaktorius"
 
 #: ../simulation_parameters/common/gallery.json:385
 msgid "MULTICELLULAR_EDITOR"
@@ -90,7 +90,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -443,7 +443,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Perjungti į priekinę kamerą"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
@@ -753,7 +753,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Temperatūra"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
@@ -1072,12 +1072,12 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:344
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
-msgstr ""
+msgstr "Elgsena"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:462
 msgid "CELLS"
-msgstr ""
+msgstr "Ląstelės"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
@@ -1698,7 +1698,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
@@ -1706,48 +1706,48 @@ msgstr ""
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Gliukozės koncentracija smarkiai sumažėjo!"
 
 #: ../src/general/MainMenu.cs:241
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Prisijungęs kaip: {0}"
 
 #: ../src/general/MainMenu.tscn:175
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pradėti naują žaidimą"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Naujas žaidimas"
 
 #: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Įkelti anksčiau išsaugotus žaidimus"
 
 #: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Įkelti žaidimą"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pakeisti nustatymus"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
-msgstr ""
+msgstr "Nustatymai"
 
 #: ../src/general/MainMenu.tscn:215
 msgid "TOOLS"
-msgstr ""
+msgstr "Įrankiai"
 
 #: ../src/general/MainMenu.tscn:226
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Peržiūrėti išeities kodą"
 
 #: ../src/general/MainMenu.tscn:237
 msgid "EXTRAS"
-msgstr ""
+msgstr "Priedai"
 
 #: ../src/general/MainMenu.tscn:248
 msgid "CREDITS"
@@ -1755,11 +1755,11 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Baigti žaidimą"
 
 #: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
-msgstr ""
+msgstr "Išeiti"
 
 #: ../src/general/MainMenu.tscn:280
 msgid "MICROBE_FREEBUILD_EDITOR"
@@ -1772,19 +1772,19 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
-msgstr ""
+msgstr "Atgal"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
-msgstr ""
+msgstr "Modifikacijos"
 
 #: ../src/general/MainMenu.tscn:374
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Meno galerija"
 
 #: ../src/general/MainMenu.tscn:386
 msgid "LICENSES"
-msgstr ""
+msgstr "Licencijos"
 
 #: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
@@ -1800,21 +1800,21 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
+msgstr "Įvyko klaida įkeliant vieną ar daugiau modifikatorių. Žurnalai gali turėti papildomos informacijos."
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1052
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Pradėti žaidimą tokiais nustatymais"
 
 #: ../src/general/NewGameSettings.cs:291
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "Kai kurie nustatymai yra neteisingi"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Išankstinis sunkumo nustatymas"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
@@ -1829,12 +1829,12 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Gyvybės kilmė"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:844
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
+msgstr "(pradžios vieta)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:858
@@ -1866,43 +1866,43 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr ""
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Sunkumas"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Planeta"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
-msgstr ""
+msgstr "Įvairūs"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Mutacijos sąnaudų daugiklis"
 
 #: ../src/general/NewGameSettings.tscn:412
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
 
 #: ../src/general/NewGameSettings.tscn:429
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "DI mutacijos greitis"
 
 #: ../src/general/NewGameSettings.tscn:474
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 #: ../src/general/NewGameSettings.tscn:491
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr ""
+msgstr "Junginių debesies tankis"
 
 #: ../src/general/NewGameSettings.tscn:536
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
+msgstr "(junginių debesų tankis aplinkoje)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
@@ -1914,7 +1914,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Gliukozės susilaikymas aplinkoje"
 
 #: ../src/general/NewGameSettings.tscn:659
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
@@ -1922,7 +1922,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:676
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Osmoreguliacijos sąnaudų daugiklis"
 
 #: ../src/general/NewGameSettings.tscn:721
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
@@ -1991,7 +1991,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1053
 msgid "CONFIRM_NORMAL"
-msgstr ""
+msgstr "Patvirtinti"
 
 #: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
 msgid "AUTO_RESOLUTION"
@@ -2683,23 +2683,23 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:514
 msgid "AUGUST"
-msgstr ""
+msgstr "Rugpjūtis"
 
 #: ../src/gui_common/CreditsScroll.cs:515
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "Rugsėjis"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "OCTOBER"
-msgstr ""
+msgstr "Spalis"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
-msgstr ""
+msgstr "Lapkritis"
 
 #: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
-msgstr ""
+msgstr "Gruodis"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
@@ -2711,11 +2711,11 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Kūrėjai"
 
 #: ../src/gui_common/PlaybackControls.tscn:107
 msgid "STOP"
-msgstr ""
+msgstr "Sustabdyti"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -2731,11 +2731,11 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Pasirinkite spalvą žaidimo lange"
 
 #: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Pridėti spalvą kaip išankstinį nustatymą"
 
 #: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
@@ -2759,31 +2759,35 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "Raudonos spalvos kanalo reikšmė"
 
 #: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "Žalios spalvos kanalo reikšmė"
 
 #: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "Mėlynos spalvos kanalo reikšmė"
 
 #: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Spalvos alfa kanalo reikšmė"
 
 #: ../src/gui_common/TweakedColourPicker.cs:581
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Spalva: {0}\n"
+"Kairysis pelės klavišas: Naudoti šį išankstinį nustatymą\n"
+"Dešinysis pelės klavišas: Ištrinti šį išankstinį nustatymą"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
+#, fuzzy
 msgid "RAW"
-msgstr ""
+msgstr "Neap."
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -2791,45 +2795,46 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
-msgstr ""
+msgstr "N/A"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Spustelėkite du kartus peržiūrai pilname ekrane"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
-msgstr ""
+msgstr "Pavadinimas:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
 msgid "DESCRIPTION_COLON"
-msgstr ""
+msgstr "Aprašymas:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
-msgstr ""
+msgstr "Dailininkas:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
 msgid "UNTITLED"
-msgstr ""
+msgstr "Be pavadinimo"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Galerijos žiūryklė"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Išfiltruoti elementus pagal kategoriją:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Skaidrių peržiūra"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#, fuzzy
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Nėra duomenų rodymui"
 
 #: ../src/gui_common/charts/line/LineChart.cs:652
 msgid "INVALID_DATA_TO_PLOT"
@@ -2838,7 +2843,7 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.cs:1116
 #: ../src/gui_common/charts/line/LineChart.cs:1208
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Negalima rodyti daugiau nei {0} duomenų rinkinį (-ių)!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1122
 #: ../src/gui_common/charts/line/LineChart.cs:1213
@@ -2847,21 +2852,21 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "Peržiūrėti"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
-msgstr ""
+msgstr "Gerai"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Nukopijuoti klaidą į iškarpinę"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "GPL licenzijos tekstas nurodo:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2885,35 +2890,35 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Pamoka"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Atidaryti meniu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Atidaryti pagalbos langą"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:68
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Ar jūs klestėsite?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Baigti redagavimą ir grįžti į aplinką"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 msgid "NEXT_EDITOR_TAB"
-msgstr ""
+msgstr "Pereiti prie kito redaktoriaus skirtuko"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Pakeisti simetriją"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Atšaukti paskutinį veiksmą"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "REDO_THE_LAST_ACTION"
@@ -2921,11 +2926,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Sukurti naują mikroorganizmą"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Atsitiktinai parinkti rūšies pavadinimą"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "MEMBRANE_RIGIDITY"
@@ -3355,12 +3360,12 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
 #: ../src/microbe_stage/MicrobeStage.tscn:949
 msgid "LIGHT"
-msgstr ""
+msgstr "Lengvas"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
 #: ../src/microbe_stage/MicrobeStage.tscn:1004
 msgid "PRESSURE_SHORT"
-msgstr ""
+msgstr "Spaud."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
 #: ../src/microbe_stage/MicrobeStage.tscn:1087
@@ -3369,12 +3374,12 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "Junginiai"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
 #: ../src/microbe_stage/MicrobeStage.tscn:1498
 msgid "AGENTS"
-msgstr ""
+msgstr "Agentai"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1557
 msgid "BECOME_AWARE"
@@ -3700,11 +3705,11 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
-msgstr ""
+msgstr "Membrana"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr ""
+msgstr "Ieškoti..."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:460
 msgid "STRUCTURAL"
@@ -4386,7 +4391,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:460
 msgid "CREATING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Kuriama..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
@@ -4394,7 +4399,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Įkeliama..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
@@ -4410,11 +4415,11 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr ""
+msgstr "Informacijos išsaugojimas nepavyko dėl išimties: {0}"
 
 #: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
-msgstr ""
+msgstr "Klaida: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
@@ -4430,11 +4435,11 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
-msgstr ""
+msgstr "Sukurti naują"
 
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
-msgstr ""
+msgstr "Įvesti egzistuojantį ID"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
@@ -4442,19 +4447,19 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "ID kodas"
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr ""
+msgstr "Pritaikyti"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr ""
+msgstr "Elemento pavadinimas:"
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
+msgstr "Elemento aprašymas:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -4462,7 +4467,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "Matomas"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
@@ -4474,7 +4479,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Naršyti"
 
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
@@ -4510,7 +4515,7 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.cs:254
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "Vidinis pavadinimas yra privalomas"
 
 #: ../src/modding/NewModGUI.cs:260
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
@@ -4550,12 +4555,12 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
-msgstr ""
+msgstr "Sukurti"
 
 #: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:101
 #: ../src/saving/InProgressLoad.cs:150
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Įkeliamas žaidimas"
 
 #: ../src/saving/InProgressLoad.cs:81
 msgid "READING_SAVE_DATA"
@@ -4579,7 +4584,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:152
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr ""
+msgstr "Apdorojami įkrauti objektai"
 
 #: ../src/saving/InProgressLoad.cs:167
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
@@ -4587,7 +4592,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:173
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Įkrovimas baigtas"
 
 #: ../src/saving/InProgressLoad.cs:200
 msgid "ERROR_LOADING"
@@ -4599,11 +4604,11 @@ msgstr ""
 
 #: ../src/saving/InProgressSave.cs:203
 msgid "SAVING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Išsaugoma..."
 
 #: ../src/saving/InProgressSave.cs:242
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Išsaugojimas nepavyko"
 
 #: ../src/saving/InProgressSave.cs:243
 msgid "ERROR_SAVING"
@@ -4611,7 +4616,7 @@ msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:81
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "Failas nurodytu pavadinimu {0} jau yra. Perrašyti?"
 
 #: ../src/saving/NewSaveMenu.cs:199
 msgid "INVALID_SAVE_NAME_POPUP"
@@ -4623,11 +4628,11 @@ msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
-msgstr ""
+msgstr "Pavadinimas:"
 
 #: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Papildomi nustatymai"
 
 #: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
@@ -4691,7 +4696,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Įkeliama..."
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
@@ -4986,3 +4991,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
+
+#~ msgid "MULTICELLULAR"
+#~ msgstr "Daugialąstis"

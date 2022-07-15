@@ -21,19 +21,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Легкий"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Нормальний"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Важкий"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Звичайний"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -42,32 +42,21 @@ msgstr "Концепт-арт"
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
-"\n"
-"Життя.\n"
-"\n"
-"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
-"\n"
-"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+msgstr "Мікробна стадія"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Перейдіть до наступного сходинки гри (багатоклітиності). Доступний при достатньому розмірі колонії."
+msgstr "Багатоклітинна стадія"
 
 #: ../simulation_parameters/common/gallery.json:81
-#, fuzzy
 msgid "GENERAL"
-msgstr "Генерація:"
+msgstr "Загальгне"
 
 #: ../simulation_parameters/common/gallery.json:133
-#, fuzzy
 msgid "MODELS"
-msgstr "Режим Бога"
+msgstr "Моделі"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
@@ -75,24 +64,20 @@ msgstr "Музика"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Все"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
 msgstr "Меню"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Завантаження мікробного редактору"
+msgstr "Мікробний редактор"
 
 #: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Завантаження мікробного редактору"
+msgstr "Багатоклітинний редактор"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -2550,7 +2535,7 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:179
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr "повернутись до гри"
+msgstr "Повернутись до гри"
 
 #: ../src/general/PauseMenu.tscn:180
 msgid "RESUME"
@@ -5370,9 +5355,8 @@ msgstr ""
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу [thrive:input]g_unbind_all[/thrive:input]."
 
-#, fuzzy
 #~ msgid "MULTICELLULAR"
-#~ msgstr "Перейдіть до наступного сходинки гри (багатоклітиності). Доступний при достатньому розмірі колонії."
+#~ msgstr "Багатоклітинність"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Пангонійські жерла"
