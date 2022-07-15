@@ -1026,6 +1026,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Due to the parent of the colony leader is the hostile engulfer (and not the actual stage)
         // when it's being engulfed, we need to get the actual stage node by accessing it from
         // the hostile engulfer instead
+        // NOTE: This is only useful to the colony members when the master is engulfed.
         if (Colony.Master.HostileEngulfer.Value != null)
             return Colony.Master.HostileEngulfer.Value.GetStageAsParent();
 
