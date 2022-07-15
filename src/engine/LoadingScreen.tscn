@@ -32,9 +32,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 4 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 ArtworkPath = NodePath("CoolArt")
 ArtDescriptionPath = NodePath("CenterContainer/ArtDescription")
 LoadingMessagePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingMessage")
@@ -132,11 +129,12 @@ __meta__ = {
 
 [node name="TipLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
 margin_top = 42.0
-margin_right = 1088.0
+margin_right = 650.0
 margin_bottom = 64.0
+rect_min_size = Vector2( 650, 0 )
 rect_clip_content = false
 mouse_filter = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 8
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
