@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-14 14:21+0700\n"
-"PO-Revision-Date: 2022-06-27 19:21+0000\n"
+"PO-Revision-Date: 2022-07-15 08:38+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -37,7 +37,7 @@ msgstr "Personalizado"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr "Arte Conceitual"
+msgstr "Artes"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
@@ -60,7 +60,7 @@ msgstr "Modelos"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr "Música"
+msgstr "Músicas"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
@@ -100,32 +100,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Você também pode engolir células, bactérias, pedaços de ferro e de células menores que você pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isso custará [thrive:compound type=\"atp\"][/thrive:compound] adicional e sua célula irá mover mais lentamente. Não se esqueça de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Estruturas Procarióticas\n"
-"\n"
-"Metabolossomos: Produz [thrive:compound type=\"atp\"][/thrive:compound] por meio da [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Proteína Quimiossintetizante: Produz metade da [thrive:compound type=\"glucose\"][/thrive:compound] por meio do [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] comparado com o quimioplasto, porém também realiza a glicólise, e ocupa 1 Hexágono\n"
-"\n"
-"Tilacoide: Produz um terço da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] comparado a um cloroplasto, mas também realiza a glicólise, e ocupa um espaço\n"
-"\n"
-"Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Converte nitrogênio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
-"\n"
-"Citoplasma: Tem espaço de armazenamento e realiza a Glicólise (Produz pequenas quantidades de [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Assim que o engolimento terminar, os objetos pegos serão mantidos dentro da membrana para serem digeridos, se possível. Caso contrário, eles serão expulsos, por isso tenha certeza que você tenha as mutações necessárias para processá-los. As enzimas, contidas no lisossomo, ajudam a digestão a se tornar mais eficiente."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Use [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] e o mouse para se mover. Pressione [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] se você tiver um vacúolo de toxinas. Aperte [thrive:input]g_toggle_engulf[/thrive:input] para ativar ou desativar o modo de engolir. Você pode ampliar ou reduzir a câmera com a roda do mouse."
+msgstr "Contudo, o lisossomo é exclusivo aos eucariontes, as células procarióticas, como não têm essa organela, digerem sua comida de forma ineficiente. Isso não é um problema para pequenas células, porém uma célula grande não ter lisossomos é muito desvantajoso."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Use [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] e o mouse para se mover. Pressione [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] se você tiver um vacúolo de toxinas. Aperte [thrive:input]g_toggle_engulf[/thrive:input] para ativar ou desativar o modo de engolir. Você pode ampliar ou reduzir a câmera com a roda do mouse."
+msgstr "Em particular, as paredes celulares de celulose e quitina não podem ser digeridas sem o uso de enzimas apropriadas."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -490,38 +474,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Mover organela"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Movimento"
+msgstr "Movimento 3D"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Ir para cima ou pular"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Ir para baixo ou abaixar"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editor"
+msgstr "Editor 3D"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Segure para alternar entre os modos mover e girar"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Alternar para a visão frontal"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Alternar para a câmera da direita"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Alternar para a câmera de cima"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -695,9 +677,8 @@ msgstr "Pedaço de ferro grande"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Célula do jogador"
+msgstr "Célula com os olhos sexys"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -1903,9 +1884,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Começar um novo jogo"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Configurações inválidas"
+msgstr "Algumas configurações são inválidas"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
@@ -1961,7 +1941,6 @@ msgstr "Seed aleatória do planeta"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
 
@@ -2200,7 +2179,7 @@ msgstr "Mostrar partículas de fundo"
 
 #: ../src/general/OptionsMenu.tscn:410
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #: ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2211,9 +2190,8 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efeitos de luz na interface"
 
 #: ../src/general/OptionsMenu.tscn:440
-#, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "Exibir barra de habilidades"
+msgstr "Exibir nomes dos botões de seleções de partes"
 
 #: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
@@ -2303,39 +2281,33 @@ msgstr "Número máximo de entidades:"
 
 #: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Minúsculo"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_VERY_SMALL"
 msgstr "Bem pequeno"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_SMALL"
 msgstr "Pequeno"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "Confirmar"
+msgstr "Normal"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_LARGE"
 msgstr "Grande"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_VERY_LARGE"
 msgstr "Bem grande"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Enorme"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Extremo"
 
@@ -3240,12 +3212,11 @@ msgstr "Um metabolossomo modificado responsável pela produção de uma forma pr
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
+msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+msgstr "A termossintase é uma proteína que muda de forma usando a convecção térmica. Quando exposta ao calor, ela se dobra ligando-se ao ADP. Quando resfriada, ela se desdobra e é reciclada em ATP em um processo chamado termossíntese. A taxa de produção de ATP aumenta com a temperatura ambiente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3376,14 +3347,12 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
+msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
@@ -3430,7 +3399,7 @@ msgstr "Não pode engolir"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
-msgstr ""
+msgstr "Imune ao engolimento"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -3477,14 +3446,12 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Mostra/Esconde o aviso de quando o jogador tenta sair do jogo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
-#, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
-msgstr "Tempo Passado: {0:#,#} anos"
+msgstr "Clique, arraste e dê zoom para mover"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:423
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+msgstr "Olhando para:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
 #: ../src/microbe_stage/MicrobeStage.tscn:483
@@ -3536,13 +3503,12 @@ msgid "AGENTS"
 msgstr "Agentes"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1557
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Bioma: {0}"
+msgstr "Tornar-se Ciente"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
 msgid "AWAKEN"
-msgstr ""
+msgstr "Despertar"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 #: ../src/microbe_stage/MicrobeStage.tscn:1658
@@ -3551,34 +3517,30 @@ msgstr "POPULAÇÃO:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
+msgstr "Protótipo macroscópico"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
-#, fuzzy
 msgid "MACROSCOPIC_PROTOYPE_WARNING"
 msgstr ""
-"O jogo salvo selecionado foi feito em um protótipo com uma versão diferente do jogo.\n"
-"Por causa disso, esse salvamento não pôde ser carregado, porque salvamentos de protótipos não são atualizáveis.\n"
-"Manter a compatibilidade dos jogos salvos para os protótipos seria um fardo, pois seu conteúdo é reformulado frequentemente e mantê-la tornaria o desenvolvimento dos protótipos mais lento."
+"Parabéns por chegar no protótipo da seção macroscópica do Estágio Multicelular!\n"
+"\n"
+"Por conta de limitações no desenvolvimento do jogo, não foi possível adicionar a gameplay da seção em 3d nessa versão. Você pode, no entanto, voltar ao editor para continuar a construir seu organismo."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Carregando Editor Multicelular Inicial"
+msgstr "Carregando Editor Multicelular"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Selecione um tipo de célula para editá-lo aqui"
+msgstr "Selecione um tipo de tecido para editá-lo aqui"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Não é possível mover uma metaball na sua árvore de descendentes"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Externo"
+msgstr "Vísceras"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:373
 msgid "APPEARANCE"
@@ -3586,36 +3548,30 @@ msgstr "Aparência"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Reprodução"
+msgstr "Assexual"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Células Desconectadas"
+msgstr "Metaballs Desconectadas"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Há células desconectadas do resto do organismo.\n"
-"Por favor, conecte todas as células para continuar."
+"Há metaballs desconectadas do resto do organismo.\n"
+"Por favor, conecte todas as metaballs para continuar."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:679
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Criar novo tipo de célula"
+msgstr "Criar novo tipo de tecido"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:693
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Você pode criar novos tipos de célula duplicando os que já existem e os renomeando. Os tipos de célula podem ser alterados para especializá-los em diferentes funções. Ao alterá-los no editor, todas as células no organismo serão atualizadas."
+msgstr "Você pode criar novos tipos de tecido duplicando os que já existem e os renomeando. Os tipos de tecido podem ser alterados para especializá-los em diferentes funções. Ao alterá-los no editor, todos os tecidos no organismo serão atualizadas."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Múltiplas Células"
+msgstr "Múltiplos Metaballs"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3755,7 +3711,7 @@ msgstr "Abre o editor e modifica a sua espécie"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Pangoninano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:841
 msgid "PATCH_NAME"
@@ -4036,9 +3992,8 @@ msgstr "MP Infinito"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-#, fuzzy
 msgid "FIND_CURRENT_PATCH"
-msgstr "Caminho do ícone do mod é inválido"
+msgstr "Ir para a região atual"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4175,7 +4130,7 @@ msgstr "Nenhum evento registrado"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
-msgstr "Precisa de um núcleo"
+msgstr "Requer um núcleo"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
@@ -4194,19 +4149,16 @@ msgid "LINE_COLOUR"
 msgstr "Cor da Linha:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "Os cílios são semelhantes aos flagelos, mas ao invés de fornecerem força de impulso direcional, eles fornecem força rotacional para ajudar as células a girar."
+msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célula já produz um pouco dessa enzima sem o lisossomo, mas ao selecionar essa opção você aumentará sua eficácia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "O vacúolo é uma organela membranosa interna usada para o armazenamento da célula. Composta de várias vesículas, estruturas membranosas menores amplamente usadas nas células para o armazenamento que se fundiram. É preenchida com água usada para conter moléculas, enzimas, sólidos, e outras substâncias. Sua forma é fluida e pode variar em cada célula."
+msgstr "A celulase permite que sua célula quebre membranas de celulase. Cada adição aumenta sua eficácia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Os cílios são semelhantes aos flagelos, mas ao invés de fornecerem força de impulso direcional, eles fornecem força rotacional para ajudar as células a girar."
+msgstr "A quitinase permite que sua célula quebre membranas de quitina. Cada adição aumenta a sua eficácia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
 msgid "SELECT_ENZYME"
@@ -4561,7 +4513,7 @@ msgstr "Etiquetas contém somente espaços em branco"
 
 #: ../src/modding/ModUploader.cs:341
 msgid "INVALID_TAG"
-msgstr "Tag inválida \"{0}\" específicada"
+msgstr "Tag inválida \"{0}\" especificada"
 
 #: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
@@ -5276,32 +5228,30 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-los.\n"
+"A sua célula tem uma capacidade limitada para objetos que podem ser engolidos de uma vez. Esse limite é relativo ao seu tamanho; células menores têm menos capacidade.\n"
 "\n"
-"Para sair da colônia basta clicar em sua própria célula ou pressionar a tecla [thrive:input]g_unbind_all[/thrive:input]."
+"Quando cheio, um micróbio não pode engolir mais. É preciso esperar que pelo menos um objeto seja digerido."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-los.\n"
+"Engula coisas ao passar por cima deles no modo apropriado. Ative e desative esse modo ao apertar [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Para sair da colônia basta clicar em sua própria célula ou pressionar a tecla [thrive:input]g_unbind_all[/thrive:input]."
+"Pare de engolir quando o objeto esteja sendo puxado.\n"
+"\n"
+"Siga a linha da sua célula para o objeto mais próximo."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-los.\n"
+"Sua célula foi fagocitada e está em processo de digestão; acima de sua barra de saúde é mostrado o progresso. Ela morrerá quando o processo estiver terminado, ou quando for atingido um limite de tempo.\n"
 "\n"
-"Para sair da colônia basta clicar em sua própria célula ou pressionar a tecla [thrive:input]g_unbind_all[/thrive:input]."
+"Você pode pressionar o botão de suicídio para renascer, mas lembre-se: sempre há uma chance de escapar."
 
-#, fuzzy
 #~ msgid "MULTICELLULAR"
-#~ msgstr "Estágio Multicelular"
+#~ msgstr "Multicelular"
 
 #~ msgid "TINY"
 #~ msgstr "Minúsculo"

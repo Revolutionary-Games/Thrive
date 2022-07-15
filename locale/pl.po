@@ -2282,39 +2282,33 @@ msgstr "Maksymalna ilość bytów:"
 
 #: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Malutki"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_VERY_SMALL"
 msgstr "Bardzo mały"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_SMALL"
 msgstr "Mały"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "Potwierdź"
+msgstr "Normalny"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_LARGE"
 msgstr "Duży"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_VERY_LARGE"
 msgstr "Bardzo Duży"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Ogromny"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Ekstremalny"
 
@@ -3453,9 +3447,8 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Włącza/wyłącza ostrzeżenia o niezapisanym postępie, gdy gracz próbuje wyjść z gry."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
-#, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
-msgstr "Upłynęło {0:#,#} lat."
+msgstr "Klikaj, przeciągaj i przybliżaj by się poruszać."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:423
 msgid "LOOKING_AT"
@@ -3720,7 +3713,7 @@ msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Panoński"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:841
 msgid "PATCH_NAME"
@@ -4004,9 +3997,8 @@ msgstr "Nieskończone Punkty Mutacji"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-#, fuzzy
 msgid "FIND_CURRENT_PATCH"
-msgstr "Niewłaściwa ścieżka do ikony modu"
+msgstr "Znajdź Aktualny Obszar"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4276,9 +4268,8 @@ msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:461
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "{0}: wczytywanie tworu zawiodło z powodu wyjątku: {1}"
+msgstr "{0}: wyładowywanie Harmonii moda zawiodło z powodu wyjątku: {1}"
 
 #: ../src/modding/ModLoader.cs:473
 msgid "PCK_LOAD_FAILED"
@@ -4437,7 +4428,7 @@ msgstr "Nazwa:"
 
 #: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "Nazwa wewnętrzna (pliku):"
 
 #: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
@@ -4449,7 +4440,7 @@ msgstr "Ikona:"
 
 #: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
-msgstr ""
+msgstr "URL informacji o modzie:"
 
 #: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
@@ -4597,7 +4588,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "Numer ID"
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
@@ -4625,7 +4616,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "Zdjęcie Poglądowe Przedmiotu:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
@@ -4721,9 +4712,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Tworzenie obiektów z pliku zapisu"
 
 #: ../src/saving/InProgressLoad.cs:112
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr "Podczas wczytywania pliku zapisu nastąpił wyjątek"
+msgstr "Podczas wczytywania danych zapisu nastąpił wyjątek"
 
 #: ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_IS_INVALID"
@@ -4738,7 +4728,6 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Przetwarzanie wczytanych obiektów"
 
 #: ../src/saving/InProgressLoad.cs:167
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 
@@ -4767,7 +4756,6 @@ msgid "ERROR_SAVING"
 msgstr "Błąd zapisu"
 
 #: ../src/saving/NewSaveMenu.cs:81
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Wybrana nazwa pliku ({0}) już istnieje. Nadpisać?"
 
@@ -4792,40 +4780,36 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Nadpisz istniejący zapis:"
 
 #: ../src/saving/NewSaveMenu.tscn:117
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Nadpisz istniejący zapis:"
+msgstr "Nadpisać istniejący zapis?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Nie może pochłaniać"
+msgstr "Nie Można Napisać Zapisu"
 
 #: ../src/saving/NewSaveMenu.tscn:124
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Auto-ewolucja nie może się uruchomić"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
-"Aktualizacja wybranego zapisu zawiodła przez następujący błąd:\n"
-"{0}"
 
 #: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Zapis niemożliwy z powodu:"
 
 #: ../src/saving/SaveHelper.cs:496
-#, fuzzy
 msgid "PLAYER_EXTINCT"
-msgstr "gracz zginął"
+msgstr "gracz wyginął"
 
 #: ../src/saving/SaveHelper.cs:515
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Protanopia (Czerwony-Zielony)"
+msgstr ""
+"Grasz w prototypy późniejszych etapów, które znajdują się w grze.\n"
+"Mogą być one niedokończone oraz używać grafik zastępczych, ogólnie bardzo surowe,\n"
+"a czasem nawet praktycznie niegrywalne. Z tej przyczyny zapisywanie nie jest obecnie możliwe.\n"
+"Niektóre części prototypów mogą pozwolić na ograniczone zapisy."
 
 #: ../src/saving/SaveHelper.cs:527
 msgid "SAVING_SUCCEEDED"
@@ -4882,9 +4866,8 @@ msgstr ""
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/saving/SaveList.tscn:93
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
-msgstr "Wczytać nieważny zapis?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -4894,7 +4877,6 @@ msgstr ""
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/saving/SaveList.tscn:101
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Wybrany zapis jest niekompatybilny"
 
@@ -4906,7 +4888,6 @@ msgstr ""
 "Ponieważ Thrive jest nadal we wczesnym stadium rozwoju, kompatybilność zapisów nie jest wysokim priorytetem i dlatego nie wszystkie wersje mają aktualizer zapisów."
 
 #: ../src/saving/SaveList.tscn:112
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Wybrany zapis jest aktualizowalny"
 
@@ -4927,9 +4908,8 @@ msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Wybrany zapis jest niekompatybilny"
+msgstr "Wybrany zapis jest niekompatybilnym prototypem"
 
 #: ../src/saving/SaveList.tscn:129
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
@@ -4949,18 +4929,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "Zdrowie:"
+msgstr "Typ:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Opis:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Generacja:"
+msgstr "Wersja:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4983,12 +4961,12 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Usunięcia zapisów nie można cofnąć, jesteś pewien że chcesz usunąć te {0} zapisów?"
 
 #: ../src/saving/SaveManagerGUI.cs:237
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
-"Usunięcie starych auto-zapisów i szybkich zapisów nie może zostać cofnięte czy jesteś pewien że chcesz usunąć:\n"
-"- {0} auto zapisów\n"
-"- {1} szybkich zapisów"
+"Usunięcie wszystkich starych Auto oraz Szybkich zapisów nie może zostać cofnięte, czy jesteś pewien, że chcesz na stałe usunąć następujące?\n"
+" - {0} Auto zapis(ów)\n"
+" - {1} Szybki(ch) zapis(ów)\n"
+" - {2} Zapasowy(ch) zapis(ów)"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -5015,12 +4993,10 @@ msgid "SELECTED_COLON"
 msgstr "Wybrane:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr "Usunąć wybrane zapisy?"
+msgstr "Usunąć wybrany/e zapis(y)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Usunąć stare zapisy?"
 
@@ -5050,20 +5026,19 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Niezalogowano na Steam"
 
 #: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam jest obecnie niedostępny, spróbuj ponownie."
 
 #: ../src/steam/SteamClient.cs:538
-#, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
-msgstr ""
+msgstr "Przekroczono limit wielkości lub ilości plików chmury Steam"
 
 #: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
@@ -5071,12 +5046,11 @@ msgstr "Plik nie znaleziony"
 
 #: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr ""
+msgstr "Steam oflagował ten plik jako już udostępniony, Proszę odświeżyć"
 
 #: ../src/steam/SteamClient.cs:546
-#, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "gracz zginął"
+msgstr "Steam zgłosił błąd zduplikowanej nazwy"
 
 #: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
@@ -5087,9 +5061,8 @@ msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Twoje konto steam nie posiada gry Thrive"
 
 #: ../src/steam/SteamClient.cs:552
-#, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Zapis nie zadziałał! Pojawił się błąd"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"

@@ -21,23 +21,24 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Facile"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Difficile"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Personnalisé"
 
 #: ../simulation_parameters/common/gallery.json:3
+#, fuzzy
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Concept artistique"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
@@ -60,9 +61,8 @@ msgid "MULTICELLULAR_STAGE"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
 #: ../simulation_parameters/common/gallery.json:81
-#, fuzzy
 msgid "GENERAL"
-msgstr "Génération :"
+msgstr "Général"
 
 #: ../simulation_parameters/common/gallery.json:133
 #, fuzzy
@@ -71,7 +71,7 @@ msgstr "Mode Tout-Puissant"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Musique"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
@@ -513,11 +513,11 @@ msgstr "Mouvement"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Avancer ou sauter"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Reculer ou s'accroupir"
 
 #: ../simulation_parameters/common/input_options.json:171
 #, fuzzy
@@ -525,20 +525,23 @@ msgid "3D_EDITOR"
 msgstr "Éditeur"
 
 #: ../simulation_parameters/common/input_options.json:175
+#, fuzzy
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Maintenir pour changer entre les modes panoramique ou rotatif"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Passer en camera frontale"
 
 #: ../simulation_parameters/common/input_options.json:183
+#, fuzzy
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Passer en camera latérale droite"
 
 #: ../simulation_parameters/common/input_options.json:187
+#, fuzzy
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Passer en camera plongée"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -572,7 +575,7 @@ msgstr "Divers"
 
 #: ../simulation_parameters/common/input_options.json:231
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pause"
 
 #: ../simulation_parameters/common/input_options.json:235
 #, fuzzy
@@ -849,7 +852,7 @@ msgstr "Température"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
 #, fuzzy
@@ -1199,7 +1202,7 @@ msgstr "Comportement"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:462
 #, fuzzy
 msgid "CELLS"
-msgstr "Cellulose"
+msgstr "Cellules"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
@@ -1328,7 +1331,7 @@ msgstr "état de lancement :"
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:436
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Action bloquée pendant qu'une autre est en cours"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:73
 #, fuzzy
@@ -1349,8 +1352,9 @@ msgstr "Respiration aérobie"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
+#, fuzzy
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
 #, fuzzy
@@ -1359,8 +1363,26 @@ msgstr "Souris inconnue"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
+"Temps de traitement: {0} s\n"
+"Temps des physiques: {1} s\n"
+"Entités: {2} Autre : {3}\n"
+"Apparus: {4} Disparus: {5}\n"
+"Blocs utilisées: {6}\n"
+"Mémoire utilisée: {7}\n"
+"Mémoire GPU: {8}\n"
+"Objets générés: {9}\n"
+"Appels graphiques: {10} 2D: {11}\n"
+"Sommets générés: {12}\n"
+"Changements matériels: {13}\n"
+"Changements du shader: {14}\n"
+"Blocs orphelins: {15}\n"
+"Latence audio: {16} ms\n"
+"Threads totaux: {17}\n"
+"Temps total du CPU: \n"
+"{18}"
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -1369,8 +1391,9 @@ msgid "METRICS"
 msgstr "Afficher/cacher les FPS"
 
 #: ../src/engine/DebugOverlays.tscn:86
+#, fuzzy
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Panneau débugger"
 
 #: ../src/engine/DebugOverlays.tscn:96
 #, fuzzy
@@ -1378,8 +1401,9 @@ msgid "FPS_DISPLAY"
 msgstr "Lire média"
 
 #: ../src/engine/DebugOverlays.tscn:110
+#, fuzzy
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Créer des entités avec les formes de collision"
 
 #: ../src/engine/DebugOverlays.tscn:117
 #, fuzzy
@@ -1972,12 +1996,13 @@ msgstr "Menu de pause"
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Difficulté prédéfinie"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
+#, fuzzy
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Seulement LAWK"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:821
@@ -1991,8 +2016,9 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
+#, fuzzy
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Origine de la vie"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:844
@@ -2014,23 +2040,27 @@ msgstr "Suicide"
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
+#, fuzzy
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Cheminées hydrothermales"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
+#, fuzzy
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Petit bassin chaud"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
+#, fuzzy
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermie (aléatoire)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:876
+#, fuzzy
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Graine planétaire aléatoire"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
@@ -2040,19 +2070,20 @@ msgstr "Mettre le jeu en pause"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Difficulté"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Planète"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Spéc"
 
 #: ../src/general/NewGameSettings.tscn:367
+#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Multiplicateur de coût de mutation"
 
 #: ../src/general/NewGameSettings.tscn:412
 #, fuzzy
@@ -2085,8 +2116,9 @@ msgstr ""
 "Les microbes prudents éviteront de risquer leur vie pour accéder à ces débris."
 
 #: ../src/general/NewGameSettings.tscn:553
+#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Pénalité de mort de population du joueur"
 
 #: ../src/general/NewGameSettings.tscn:598
 #, fuzzy
@@ -2094,8 +2126,9 @@ msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'auto-évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de la valeur sélective de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à la valeur sélective totale de toutes les espèces."
 
 #: ../src/general/NewGameSettings.tscn:615
+#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Rétention environnementale de glucose"
 
 #: ../src/general/NewGameSettings.tscn:659
 #, fuzzy
@@ -2113,8 +2146,9 @@ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Coût en osmorégulation"
 
 #: ../src/general/NewGameSettings.tscn:733
+#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Nuage de glucose à la sortie de l'éditeur"
 
 #: ../src/general/NewGameSettings.tscn:740
 #, fuzzy
@@ -2139,15 +2173,15 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Procédural"
 
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Classique"
 
 #: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "La génération de planète arrive bientôt!"
 
 #: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
@@ -2155,8 +2189,9 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
 #: ../src/general/NewGameSettings.tscn:982
+#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les étapes suivantes atteintes)"
 
 #: ../src/general/NewGameSettings.tscn:994
 #, fuzzy
@@ -2178,8 +2213,9 @@ msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
 #: ../src/general/NewGameSettings.tscn:1031
+#, fuzzy
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Avancée"
 
 #: ../src/general/NewGameSettings.tscn:1042
 #, fuzzy
@@ -2188,7 +2224,7 @@ msgstr "Suicide"
 
 #: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Basique"
 
 #: ../src/general/NewGameSettings.tscn:1053
 #, fuzzy
@@ -2301,8 +2337,9 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberration chromatique :"
 
 #: ../src/general/OptionsMenu.tscn:394
+#, fuzzy
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Afficher les particules en arrière-plan"
 
 #: ../src/general/OptionsMenu.tscn:410
 msgid "GUI"
@@ -2408,19 +2445,19 @@ msgstr "Threads :"
 
 #: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "Nombre maximum d'entités:"
 
 #: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Minuscule"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_SMALL"
-msgstr ""
+msgstr "Très petit"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_SMALL"
-msgstr ""
+msgstr "Petit"
 
 #: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
@@ -2429,15 +2466,15 @@ msgstr "ACCEPTER"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_LARGE"
-msgstr ""
+msgstr "Grand"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_LARGE"
-msgstr ""
+msgstr "Très grand"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Énorme"
 
 #: ../src/general/OptionsMenu.tscn:964
 #, fuzzy
@@ -2668,7 +2705,7 @@ msgstr "a disparu de la planète"
 #: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -3054,8 +3091,9 @@ msgid "N_A"
 msgstr "Aucun"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
+#, fuzzy
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Double-cliquer pour voir en plein écran"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
@@ -3078,17 +3116,20 @@ msgid "UNTITLED"
 msgstr "Terrain : {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
+#, fuzzy
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Visionneur de la galerie"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
+#, fuzzy
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Filtrer les objets par catégories:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#, fuzzy
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Diaporama"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
@@ -3542,8 +3583,9 @@ msgid "DIGESTION_SPEED"
 msgstr "Vitesse d'absorption des ressources"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
+#, fuzzy
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Efficience digestive"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3581,8 +3623,9 @@ msgstr "Ne peut pas absorber"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
+#, fuzzy
 msgid "INVULNERABLE_TO_ENGULFMENT"
-msgstr ""
+msgstr "Invulnérabilité à l'absorption"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -3695,8 +3738,9 @@ msgid "BECOME_AWARE"
 msgstr "Terrain : {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
+#, fuzzy
 msgid "AWAKEN"
-msgstr ""
+msgstr "Conscient"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 #: ../src/microbe_stage/MicrobeStage.tscn:1658
@@ -3725,8 +3769,9 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Sélectionnez un type de cellule à éditer ici depuis l'onglet de l'éditeur"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
+#, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Impossible de bouger une métaballe dans l'arbre généalogique"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 #, fuzzy
@@ -3840,8 +3885,9 @@ msgid "SPAWN_ENEMY"
 msgstr "Invoquer un ennemi"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
+#, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center] Appuyer sur [thrive:input]g_pause[/thrive:input] pour relancer[/center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:109
 #, fuzzy
@@ -3874,8 +3920,9 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "relieur"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:197
+#, fuzzy
 msgid "DEVOURED"
-msgstr ""
+msgstr "Dévoré"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:295
 msgid "STUFF_AT"
@@ -3902,8 +3949,9 @@ msgid "AT_CURSOR"
 msgstr "Au pointeur :"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1434
+#, fuzzy
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "Matière ingérée"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -3915,8 +3963,9 @@ msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:35
+#, fuzzy
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Pangonienne"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:841
 #, fuzzy
@@ -3924,8 +3973,9 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PausePrompt.tscn:23
+#, fuzzy
 msgid "PAUSED"
-msgstr ""
+msgstr "EN PAUSE"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3979,8 +4029,9 @@ msgid "FOCUSED"
 msgstr "Monomaniaque"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+#, fuzzy
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
@@ -4013,12 +4064,16 @@ msgid "CELL_TYPE_NAME"
 msgstr "Nom du Type de Cellule"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
+#, fuzzy
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
+"Impossible de supprimer le nucleus car c'est une évolution irréversible.\n"
+"Cependant, s'il a été placé durant la session actuelle, le défaire ou le refaire est possible."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
+#, fuzzy
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Impossible de supprimer la dernière organelle"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
@@ -4553,7 +4608,7 @@ msgstr "Température"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Non"
 
 #: ../src/modding/ModManager.cs:959
 #, fuzzy
@@ -4998,8 +5053,9 @@ msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Suicide"
 
 #: ../src/modding/NewModGUI.tscn:441
+#, fuzzy
 msgid "USE_AUTO_HARMONY"
-msgstr ""
+msgstr "Utiliser le chargement auto-harmonie"
 
 #: ../src/modding/NewModGUI.tscn:465
 #, fuzzy

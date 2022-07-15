@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-14 14:21+0700\n"
-"PO-Revision-Date: 2022-07-09 08:32+0000\n"
+"PO-Revision-Date: 2022-07-14 14:50+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -167,17 +167,21 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "מבנים פרוקריוטיים\n"
 "\n"
+"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
 "מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
-"\n"
 "תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
+"\n"
+"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
 "\n"
 "רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן אנאירובי\n"
 "\n"
-"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:compound type=\"atp\"][/thrive:compound])"
+"אוקסיטוקסיזום: הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"תרמוסינטאז: מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעמצאות שינוי טמפרטורה"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -204,6 +208,10 @@ msgstr ""
 "מיטוכונדריון: מפיק [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound] וחמצן אטמוספרי באופן יותר יעיל מציטופלזמה\n"
 "\n"
 "כלורופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מאור שמש ופחמן דו חמצני אטמוספרי\n"
+"\n"
+"תרמופלסט: מייצר [thrive:compound type=\"atp\"][/thrive:compound] באמצעות שינוי טמפרטורה\n"
+"\n"
+"ליזוזום: מכיל אנזימי עיכול\n"
 "\n"
 "כימופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מ[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
@@ -2178,7 +2186,7 @@ msgstr "הצג חלקיקי רקע"
 
 #: ../src/general/OptionsMenu.tscn:410
 msgid "GUI"
-msgstr ""
+msgstr "ממשק משתמש"
 
 #: ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2189,9 +2197,8 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
 #: ../src/general/OptionsMenu.tscn:440
-#, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "תצוגת רשימת יכולות"
+msgstr "הצג שמות כפתורי בחירת חלקים"
 
 #: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
@@ -2281,41 +2288,35 @@ msgstr "מספר מרבי של ישויות:"
 
 #: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "זעיר"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_VERY_SMALL"
 msgstr "מאוד קטן"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_SMALL"
 msgstr "קטן"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "אשר"
+msgstr "רגיל"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_LARGE"
 msgstr "גדול"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_VERY_LARGE"
 msgstr "מאוד גדול"
 
 #: ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "ענק"
 
 #: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
 msgid "LIMIT_EXTREME"
-msgstr "קיצוני"
+msgstr "מפלצתי"
 
 #: ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
@@ -3523,15 +3524,14 @@ msgstr "אוכלוסיה:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
+msgstr "מקרוסקופי אבטיפוס"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
-#, fuzzy
 msgid "MACROSCOPIC_PROTOYPE_WARNING"
 msgstr ""
-"השמירה שנבחרה לטעינה נעשתה באבטיפוס שבגרסת Thrive שונה.\n"
-"בגלל זה השמירה לא יכלה לטעון ששמירות אבטיפוס לא ניתנות לעדכון.\n"
-"תחזוק יכולות שמירה בשביל אבטיפוס עלול להיות נטל גדול שדברים ועבוד מחדש נעשה בתכופות מרבית ושכתוב שלהם יכולה להאט את פיתוח האבטיפוס בהרבה."
+"ברכות על הגעת לאב הטיפוס לקטע המקרוסקופי של השלב הרב-תאי!\n"
+"\n"
+"בעקבות אילוצי פיתוח, לא הצלחנו להוסיף משחקיות מקרוסקופית תלת מימדית בגרסה זו. עם זאת, אתה יכול לחזור לעורך כדי להמשיך לבנות את האורגניזם שלך."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -5237,28 +5237,25 @@ msgstr "הראה עכשיו"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"לתא שלך מוגבל עד כמה חומרים יכולים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא כך שתא קטן יכולים לבלוע פחות חומרים בבת אחת.\n"
+"לתא שלך מוגבל עד כמה אובייקטים מסוגלים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא; תא קטן מכיל פחות מקום.\n"
 "\n"
-"אם התא שלך מלא, הוא לא מסוגל יותר לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעכלו לחלוטין חומר אחד או יותר."
+"כאשר שתא שלך מלא, הוא לא מסוגל לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעוכלו לחלוטין אובייקט אחד או יותר."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"לבלוע חומרים על ידי תנועה עליהם ואז להפעיל את המצב הבליעה על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input] בשביל למשוך אותם פנימה.\n"
+"לבלוע אובייקטים על ידי תנועה עליהם בזמן שמצב בליעה פועל. את מצב הבליעה מופעל על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"המשך לבלוע עד שהחומר נבלע לחלוטין.\n"
+"המשך לבלוע עד שאובייקט נבלע לחלוטין.\n"
 "\n"
 "עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"התא שלך נבלע, וזה אומר שהתא הבולע מתחיל לעכל.\n"
+"התא שלך נבלע ומתחיל להתעכל. תהליך מוצג על מד החיים. התא שלך יוגדר כמת ברגע שהתהליך יסתיים או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
-"תהליך העיכול נראה במד החיים (ימין מטה) כאחוז. התא שלך יוגדר כמת ברגע שזה מגיע ל100% או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
-"\n"
-"לחץ על כפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
+"אתה יכול להשתמש בכפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
 
 #~ msgid "MULTICELLULAR"
 #~ msgstr "רב תאים"
