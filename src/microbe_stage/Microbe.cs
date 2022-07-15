@@ -301,9 +301,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem, GameProperties currentGame, bool isPlayer)
+    public void Init(CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
+        bool isPlayer)
     {
         this.cloudSystem = cloudSystem;
+        this.spawnSystem = spawnSystem;
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
 

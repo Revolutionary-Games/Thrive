@@ -22,6 +22,9 @@ public partial class Microbe
     private CompoundCloudSystem? cloudSystem;
 
     [JsonProperty]
+    private ISpawnSystem? spawnSystem;
+
+    [JsonProperty]
     private Compound? queuedToxinToEmit;
 
     /// <summary>
@@ -390,10 +393,10 @@ public partial class Microbe
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawnSystem!.AddEntityToTrack(copyEntity);
 
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
@@ -702,9 +705,6 @@ public partial class Microbe
 
         lastCheckedReproduction = 0;
 
-        // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
-        // might make a lot of cells use less CPU power
-
         // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
         if (IsMulticellular && ColonyParent == null)
         {
@@ -875,6 +875,14 @@ public partial class Microbe
         }
         else
         {
+            // Skip reproducing if we would go too much over the entity limit
+            if (!spawnSystem!.IsUnderEntityLimitForReproducing())
+            {
+                // Set this to false so that we re-check in a few frames if we can reproduce then
+                allOrganellesDivided = false;
+                return;
+            }
+
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,

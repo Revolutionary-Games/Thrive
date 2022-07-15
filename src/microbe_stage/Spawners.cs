@@ -41,13 +41,14 @@ public static class SpawnHelpers
 {
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
-        CompoundCloudSystem cloudSystem, GameProperties currentGame, CellType? multicellularCellType = null)
+        CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
+        CellType? multicellularCellType = null)
     {
         var microbe = (Microbe)microbeScene.Instance();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
-        microbe.Init(cloudSystem, currentGame, !aiControlled);
+        microbe.Init(cloudSystem, spawnSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
@@ -103,8 +104,8 @@ public static class SpawnHelpers
     // TODO: this is likely a huge cause of lag. Would be nice to be able
     // to spawn these so that only one per tick is spawned.
     public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
-        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, GameProperties currentGame,
-        Random random)
+        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem,
+        GameProperties currentGame, Random random)
     {
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
@@ -115,7 +116,7 @@ public static class SpawnHelpers
             // Dont spawn them on top of each other because it
             // causes them to bounce around and lag
             yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                cloudSystem, currentGame);
+                cloudSystem, spawnSystem, currentGame);
 
             curSpawn += new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
         }
@@ -213,13 +214,14 @@ public static class SpawnHelpers
     }
 
     public static MulticellularCreature SpawnCreature(Species species, Vector3 location,
-        Node worldRoot, PackedScene multicellularScene, bool aiControlled, GameProperties currentGame)
+        Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
+        GameProperties currentGame)
     {
         var creature = (MulticellularCreature)multicellularScene.Instance();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
-        creature.Init(currentGame, !aiControlled);
+        creature.Init(spawnSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(creature);
         creature.Translation = location;
@@ -265,14 +267,15 @@ public class MicrobeSpawner : Spawner
 
     public Species Species { get; }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
+        // TODO: figure out why these spawn. At least in some player provided logs this seemed to happen quite a bit
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
 
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
-            currentGame);
+            spawnSystem, currentGame);
 
         if (first.IsMulticellular)
         {
@@ -287,7 +290,7 @@ public class MicrobeSpawner : Spawner
         if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, worldNode,
-                         microbeScene, cloudSystem, currentGame, random))
+                         microbeScene, cloudSystem, spawnSystem, currentGame, random))
             {
                 yield return colonyMember;
 
@@ -314,7 +317,7 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
@@ -338,7 +341,7 @@ public class ChunkSpawner : Spawner
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
             random);
