@@ -640,7 +640,7 @@ public static class Constants
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 4;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
