@@ -310,6 +310,10 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             case EditorTab.CellEditor:
             {
+                // This must be set visible before CheckAndApplyCellTypeEdit otherwise it won't update already placed
+                // visuals
+                bodyPlanEditorTab.Show();
+
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
                 // tab as that's the only exit point and the point where we actually need to use the edited cell
                 // type information
@@ -317,7 +321,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
                 CheckAndApplyCellTypeEdit();
 
-                bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
