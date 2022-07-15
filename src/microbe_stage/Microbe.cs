@@ -1023,6 +1023,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (Colony == null)
             return GetParent();
 
+        if (Colony.Master.HostileEngulfer.Value != null)
+            return Colony.Master.HostileEngulfer.Value.GetStageAsParent();
+
         return Colony.Master.GetParent();
     }
 
