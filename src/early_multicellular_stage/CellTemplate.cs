@@ -2,6 +2,7 @@
 using Godot;
 using Newtonsoft.Json;
 
+[JsonObject(IsReference = true)]
 public class CellTemplate : IPositionedCell, ICloneable, IActionHex
 {
     private int orientation;
