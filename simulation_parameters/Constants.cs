@@ -119,6 +119,12 @@ public static class Constants
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
+    ///   This controls how many entities over the entity limit we allow things to reproduce. This is so that even when
+    ///   the spawn system has spawned things until the limit is full, the spawned things can still reproduce.
+    /// </summary>
+    public const float REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER = 1.15f;
+
+    /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
     ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
     /// </summary>
@@ -640,7 +646,7 @@ public static class Constants
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 4;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle

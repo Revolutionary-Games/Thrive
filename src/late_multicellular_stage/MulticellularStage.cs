@@ -13,6 +13,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 {
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
+    private SpawnSystem dummySpawner = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     public MulticellularCamera NoPlayerCamera { get; private set; } = null!;
 
     [JsonProperty]
@@ -58,6 +62,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // These need to be created here as well for child property save load to work
         // TODO: systems
+
+        // We don't actually spawn anything currently, and anyway will want a different spawn system for late
+        // multicellular
+        dummySpawner = new SpawnSystem(rootOfDynamicallySpawned);
     }
 
     public override void StartMusic()
@@ -229,7 +237,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // NoPlayerCamera.Current = false;
 
         Player = SpawnHelpers.SpawnCreature(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMulticellularScene(), false, CurrentGame!);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMulticellularScene(), false, dummySpawner, CurrentGame!);
         Player.AddToGroup(Constants.PLAYER_GROUP);
 
         Player.OnDeath = OnPlayerDied;
