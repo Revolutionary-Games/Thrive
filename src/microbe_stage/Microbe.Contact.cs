@@ -459,6 +459,8 @@ public partial class Microbe
     {
         Membrane.WigglyNess = 0;
 
+        UnreadyToReproduce();
+
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
         var hostile = HostileEngulfer.Value;
