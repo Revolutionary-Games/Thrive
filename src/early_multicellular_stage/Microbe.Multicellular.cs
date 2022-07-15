@@ -266,10 +266,10 @@ public partial class Microbe
     private Microbe CreateMulticellularColonyMemberCell(CellType cellType)
     {
         var newCell = SpawnHelpers.SpawnMicrobe(Species, Translation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame, cellType);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame, cellType);
 
         // Make it despawn like normal (if our colony is accidentally somehow disbanded)
-        SpawnSystem.AddEntityToTrack(newCell);
+        spawnSystem!.AddEntityToTrack(newCell);
 
         // Remove the compounds from the created cell
         newCell.Compounds.ClearCompounds();

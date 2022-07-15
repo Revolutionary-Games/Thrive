@@ -200,7 +200,7 @@ public class MicrobeStage : StageBase<Microbe>
         if (Player != null)
         {
             var playerTransform = Player.GlobalTransform;
-            spawner.Process(delta, playerTransform.origin, playerTransform.basis.GetEuler());
+            spawner.Process(delta, playerTransform.origin);
             Clouds.ReportPlayerPosition(playerTransform.origin);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
@@ -526,7 +526,7 @@ public class MicrobeStage : StageBase<Microbe>
             return;
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, CurrentGame!);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, spawner, CurrentGame!);
         Player.AddToGroup(Constants.PLAYER_GROUP);
 
         Player.OnDeath = OnPlayerDied;
@@ -667,11 +667,11 @@ public class MicrobeStage : StageBase<Microbe>
         var randomSpecies = species.Random(random);
 
         var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds, spawner,
             CurrentGame!);
 
         // Make the cell despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawner.AddEntityToTrack(copyEntity);
     }
 
     [DeserializedCallbackAllowed]

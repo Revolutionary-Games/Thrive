@@ -890,7 +890,7 @@ public partial class Microbe
             droppedCorpseChunks.Add(chunk);
 
             // Add to the spawn system to make these chunks limit possible number of entities
-            SpawnSystem.AddEntityToTrack(chunk);
+            spawnSystem!.AddEntityToTrack(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
