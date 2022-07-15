@@ -1025,6 +1025,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (Colony == null)
             return GetParent();
 
+        // If the colony leader is engulfed, the colony children, when the colony is disbanded, need to access the
+        // stage through the engulfer. Because at that point the colony leader is already re-parented to the engulfer,
+        // so its parent is no longer the stage here.
+        if (Colony.Master.HostileEngulfer.Value != null)
+            return Colony.Master.HostileEngulfer.Value.GetStageAsParent();
+
         return Colony.Master.GetParent();
     }
 
