@@ -52,7 +52,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string processesDescription = string.Empty;
     private int mpCost;
     private bool requiresNucleus;
-    private float editorCostFactor = 1.0f;
 
     [Export]
     public string DisplayName
@@ -128,24 +127,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float EditorCostFactor
-    {
-        get => editorCostFactor;
-        set
-        {
-            editorCostFactor = value;
-            UpdateMpCost();
-        }
-    }
-
-    [Export]
-    public float DisplayDelay { get; set; } = 0.0f;
+    public float DisplayDelay { get; set; }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
 
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
-    public bool HideOnMousePress { get; set; }
+    public bool HideOnMouseAction { get; set; }
 
     public Control ToolTipNode => this;
 
@@ -325,7 +313,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = mpCost.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateRequiresNucleus()

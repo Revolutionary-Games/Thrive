@@ -14,7 +14,7 @@
             UsesPlayerPositionGuidance = true;
         }
 
-        public override string ClosedByName { get; } = "MicrobeEngulfmentExplanation";
+        public override string ClosedByName => "MicrobeEngulfmentExplanation";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {

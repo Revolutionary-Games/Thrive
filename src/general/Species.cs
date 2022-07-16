@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowed]
+[JSONAlwaysDynamicType]
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {
@@ -75,6 +75,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
+    [JsonIgnore]
     public abstract string StringCode { get; }
 
     /// <summary>

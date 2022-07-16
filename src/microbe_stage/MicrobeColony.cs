@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -11,7 +12,6 @@ public class MicrobeColony
 
     private bool hexCountDirty = true;
     private float hexCount;
-    private float usedIngestionCapacity;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -24,6 +24,12 @@ public class MicrobeColony
         // Grab initial state from microbe to preserve that (only really important for multicellular)
         state = master.State;
     }
+
+    /// <summary>
+    ///   The colony lead cell. Needs to be before <see cref="ColonyMembers"/> for JSON deserialization to work
+    /// </summary>
+    [JsonProperty]
+    public Microbe Master { get; private set; }
 
     /// <summary>
     ///   Returns all members of this colony including the colony leader.
@@ -49,9 +55,6 @@ public class MicrobeColony
         }
     }
 
-    [JsonProperty]
-    public Microbe Master { get; private set; }
-
     /// <summary>
     ///   The total hex count from all members of this colony.
     /// </summary>
@@ -69,16 +72,14 @@ public class MicrobeColony
     /// <summary>
     ///   The accumulation of all the colony member's <see cref="Microbe.UsedIngestionCapacity"/>.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This unfortunately is not cached as <see cref="Microbe.UsedIngestionCapacity"/> can change
+    ///     every frame.
+    ///   </para>
+    /// </remarks>
     [JsonIgnore]
-    public float UsedIngestionCapacity
-    {
-        get
-        {
-            if (hexCountDirty)
-                UpdateHexCount();
-            return usedIngestionCapacity;
-        }
-    }
+    public float UsedIngestionCapacity => ColonyMembers.Sum(c => c.UsedIngestionCapacity);
 
     /// <summary>
     ///   Creates a colony for a microbe, with the given microbe as the master,
@@ -161,12 +162,10 @@ public class MicrobeColony
     private void UpdateHexCount()
     {
         hexCount = 0;
-        usedIngestionCapacity = 0;
 
         foreach (var member in ColonyMembers)
         {
             hexCount += member.EngulfSize;
-            usedIngestionCapacity += member.UsedIngestionCapacity;
         }
     }
 }

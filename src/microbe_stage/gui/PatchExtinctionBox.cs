@@ -85,4 +85,10 @@ public class PatchExtinctionBox : Control
         detailsPanel.IsPatchMoveValid = drawer.SelectedPatch != null;
         detailsPanel.SelectedPatch = drawer.SelectedPatch;
     }
+
+    private void OnFindCurrentPatchPressed()
+    {
+        // Unlike the editor patch map, don't select the player patch here, since it's disabled
+        mapDrawer.CenterScroll();
+    }
 }

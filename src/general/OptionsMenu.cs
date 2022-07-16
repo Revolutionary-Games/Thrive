@@ -73,6 +73,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath GUILightEffectsTogglePath = null!;
 
+    [Export]
+    public NodePath DisplayPartNamesTogglePath = null!;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath = null!;
@@ -243,6 +246,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
+    private CustomCheckBox displayPartNamesToggle = null!;
 
     // Sound tab
     private Control soundTab = null!;
@@ -364,6 +368,7 @@ public class OptionsMenu : ControlWithInput
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
+        displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -513,6 +518,7 @@ public class OptionsMenu : ControlWithInput
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        displayPartNamesToggle.Pressed = settings.DisplayPartNames;
         DisplayResolution();
 
         // Sound
@@ -1249,6 +1255,13 @@ public class OptionsMenu : ControlWithInput
     private void OnGUILightEffectsToggled(bool toggle)
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplayPartNamesToggled(bool toggle)
+    {
+        Settings.Instance.DisplayPartNames.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

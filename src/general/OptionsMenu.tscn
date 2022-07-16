@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -10,10 +10,15 @@
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
 
 [sub_resource type="ButtonGroup" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 258, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
@@ -53,6 +58,7 @@ ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelCon
 DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar")
 DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
+DisplayPartNamesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -102,9 +108,6 @@ UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/PanelContai
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 295.0
@@ -382,29 +385,59 @@ min_value = 10.0
 max_value = 50.0
 value = 20.0
 
-[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 279.0
-margin_right = 247.0
-margin_bottom = 304.0
-size_flags_horizontal = 0
-pressed = true
-text = "DISPLAY_ABILITIES_BAR"
-
 [node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 314.0
+margin_top = 279.0
 margin_right = 360.0
-margin_bottom = 339.0
+margin_bottom = 304.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 314.0
+margin_right = 657.0
+margin_bottom = 317.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 327.0
+margin_right = 657.0
+margin_bottom = 352.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_right = 34.0
+margin_bottom = 25.0
+text = "GUI"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
+margin_left = 38.0
+margin_right = 657.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 8 )
+
+[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 362.0
+margin_right = 247.0
+margin_bottom = 387.0
+size_flags_horizontal = 0
+pressed = true
+text = "DISPLAY_ABILITIES_BAR"
+
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 349.0
+margin_top = 397.0
 margin_right = 300.0
-margin_bottom = 374.0
+margin_bottom = 422.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
+
+[node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 432.0
+margin_right = 238.0
+margin_bottom = 457.0
+size_flags_horizontal = 0
+text = "DISPLAY_PART_NAMES"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -927,8 +960,8 @@ margin_right = 648.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "TINY"
-items = [ "TINY", null, false, 0, null, "VERY_SMALL", null, false, 1, null, "SMALL", null, false, 2, null, "NORMAL", null, false, 3, null, "LARGE", null, false, 4, null, "VERY_LARGE", null, false, 5, null, "HUGE", null, false, 6, null, "EXTREME", null, false, 7, null ]
+text = "LIMIT_TINY"
+items = [ "LIMIT_TINY", null, false, 0, null, "LIMIT_VERY_SMALL", null, false, 1, null, "LIMIT_SMALL", null, false, 2, null, "LIMIT_NORMAL", null, false, 3, null, "LIMIT_LARGE", null, false, 4, null, "LIMIT_VERY_LARGE", null, false, 5, null, "LIMIT_HUGE", null, false, 6, null, "LIMIT_EXTREME", null, false, 7, null ]
 selected = 0
 
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
@@ -1410,9 +1443,10 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]

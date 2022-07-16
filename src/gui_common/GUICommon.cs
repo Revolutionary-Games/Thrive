@@ -62,7 +62,7 @@ public class GUICommon : NodeWithInput
         popup.RectPosition = new Vector2(left, top);
     }
 
-    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
+    public static void SmoothlyUpdateBar(Range bar, float target, float delta)
     {
         if (delta <= 0)
         {
@@ -118,6 +118,7 @@ public class GUICommon : NodeWithInput
         if (customPopup != null)
         {
             customPopup.CustomHide();
+            popup!.EmitSignal(nameof(CustomDialog.Closed));
         }
         else
         {

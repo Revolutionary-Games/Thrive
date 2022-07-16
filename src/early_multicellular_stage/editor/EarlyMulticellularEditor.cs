@@ -55,11 +55,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         get
         {
-            if (cellEditorTab.Visible)
-                return cellEditorTab.CanCancelAction;
-
             if (bodyPlanEditorTab.Visible)
                 return bodyPlanEditorTab.CanCancelAction;
+
+            if (cellEditorTab.Visible)
+                return cellEditorTab.CanCancelAction;
 
             return false;
         }
@@ -175,7 +175,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
         reportTab.UpdateReportTabPatchSelector();
 
-        // TODO: this should be saved so that the text can be accurate if this is updated
         reportTab.UpdateGlucoseReduction(CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
 
         if (fresh)
@@ -265,7 +264,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewEarlyMulticellularGame();
+        return GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings());
     }
 
     protected override void PerformAutoSave()
@@ -311,12 +310,17 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             case EditorTab.CellEditor:
             {
+                // This must be set visible before CheckAndApplyCellTypeEdit otherwise it won't update already placed
+                // visuals
+                bodyPlanEditorTab.Show();
+
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
                 // tab as that's the only exit point and the point where we actually need to use the edited cell
                 // type information
+                // TODO: write an explanation here why this needs to be before the visibility adjustment
+                // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
                 CheckAndApplyCellTypeEdit();
 
-                bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
@@ -344,6 +348,9 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                     cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
+                    // TODO: check if this now has fixed the arrow positioning after tab change (see comment in the
+                    // above case)
+                    cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
                 }
 
@@ -402,7 +409,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         if (selectedCellTypeToEdit == null)
             return;
 
-        // Only do something if the user did has done any action in the past
+        // Only do something if the user has done any action in the past
         if (!history.CanUndo())
             return;
 

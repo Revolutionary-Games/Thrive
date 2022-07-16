@@ -3,7 +3,7 @@
         "Name": "CONCEPT_ART",
         "AssetCategories": {
             "MicrobeStage": {
-                "Name": "CELLS",
+                "Name": "MICROBE_STAGE",
                 "Assets": [
                     {
                         "Title": "Abyss",
@@ -57,14 +57,29 @@
                     }
                 ]
             },
-            "General": {
-                "Name": "GENERAL",
+            "MulticellularStage": {
+                "Name": "MULTICELLULAR_STAGE",
                 "Assets": [
                     {
                         "Title": "Been Grinding for Da View",
                         "Artist": "Uniow",
                         "ResourcePath": "res://assets/concept_art/been-grinding-for-da-view.jpg"
                     },
+                    {
+                        "Title": "Early Evolution Aquatic",
+                        "Artist": "KloudCreator",
+                        "ResourcePath": "res://assets/concept_art/early-evolution-aquatic.jpg"
+                    },
+                    {
+                        "Title": "Tree Creature",
+                        "Artist": "MirrorMonkey2",
+                        "ResourcePath": "res://assets/concept_art/tree-creature.jpg"
+                    }
+                ]
+            },
+            "General": {
+                "Name": "GENERAL",
+                "Assets": [
                     {
                         "Title": "Disturbance",
                         "Artist": "~sciocont",
@@ -104,11 +119,6 @@
                         "Title": "Shining Planet",
                         "Artist": "~sciocont",
                         "ResourcePath": "res://assets/concept_art/shining-planet.jpg"
-                    },
-                    {
-                        "Title": "Tree Creature",
-                        "Artist": "MirrorMonkey2",
-                        "ResourcePath": "res://assets/concept_art/tree-creature.jpg"
                     },
                     {
                         "Title": "Tribe Gang",

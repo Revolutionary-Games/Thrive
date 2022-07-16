@@ -12,18 +12,6 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
-    [JsonProperty]
-    public readonly int ID;
-
-    [JsonProperty]
-    public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
-
-    [JsonProperty]
-    public readonly Biome BiomeTemplate;
-
-    [JsonProperty]
-    public readonly int[] Depth = new int[2] { -1, -1 };
-
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
@@ -33,16 +21,49 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchRegion region)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
+        BiomeType = type;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        Region = region;
+    }
+
+    [JsonConstructor]
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
+    {
+        Name = name;
+        ID = id;
+        BiomeTemplate = biomeTemplate;
+        this.currentSnapshot = currentSnapshot;
     }
 
     [JsonProperty]
+    public int ID { get; }
+
+    [JsonIgnore]
+    public ISet<Patch> Adjacent { get; } = new HashSet<Patch>();
+
+    [JsonProperty]
+    public Biome BiomeTemplate { get; }
+
+    [JsonProperty]
     public LocalizedString Name { get; private set; }
+
+    /// <summary>
+    ///   The region this patch belongs to. This has nullability suppression here to solve the circular dependency with
+    ///   <see cref="PatchRegion.Patches"/>
+    /// </summary>
+    [JsonProperty]
+    public PatchRegion Region { get; private set; } = null!;
+
+    [JsonProperty]
+    public BiomeType BiomeType { get; private set; }
+
+    [JsonProperty]
+    public int[] Depth { get; private set; } = { -1, -1 };
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI

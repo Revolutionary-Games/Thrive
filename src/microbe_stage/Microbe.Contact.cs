@@ -216,12 +216,13 @@ public partial class Microbe
     {
         get
         {
-            if (CellTypeProperties.IsBacteria)
-            {
-                return HexCount * 0.5f;
-            }
+            // Scale with digested progress
+            var size = HexCount * (1 - DigestedAmount);
 
-            return HexCount;
+            if (CellTypeProperties.IsBacteria)
+                return size * 0.5f;
+
+            return size;
         }
     }
 
@@ -446,6 +447,10 @@ public partial class Microbe
         if (Membrane.Type.CellWall)
             return false;
 
+        // Godmode grants player complete engulfment invulnerability
+        if (targetAsMicrobe != null && targetAsMicrobe.IsPlayerMicrobe && CheatManager.GodMode)
+            return false;
+
         // Needs to be big enough to engulf
         return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
@@ -453,6 +458,8 @@ public partial class Microbe
     public void OnAttemptedToBeEngulfed()
     {
         Membrane.WigglyNess = 0;
+
+        UnreadyToReproduce();
 
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
@@ -466,6 +473,8 @@ public partial class Microbe
                 organelle.UpdateRenderPriority(newPriority);
             }
         }
+
+        Colony?.RemoveFromColony(this);
 
         // Just in case player is engulfed again after escaping
         playerEngulfedDeathTimer = 0;
@@ -521,7 +530,7 @@ public partial class Microbe
 
     public void ClearEngulfedObjects()
     {
-        foreach (var engulfed in engulfedObjects)
+        foreach (var engulfed in engulfedObjects.ToList())
         {
             if (engulfed.Object.Value != null)
             {
@@ -536,7 +545,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true if this microbe is currently in the process of attempting to engulf something.
+    ///   Returns true if this microbe is currently in the process of ingesting engulfables.
     /// </summary>
     public bool IsPullingInEngulfables()
     {
@@ -645,7 +654,9 @@ public partial class Microbe
         {
             OnUnbound?.Invoke(this);
 
-            RevertNodeParent();
+            if (PhagocytosisStep == PhagocytosisPhase.None)
+                RevertNodeParent();
+
             ai?.ResetAI();
 
             Mode = ModeEnum.Rigid;
@@ -883,7 +894,7 @@ public partial class Microbe
             droppedCorpseChunks.Add(chunk);
 
             // Add to the spawn system to make these chunks limit possible number of entities
-            SpawnSystem.AddEntityToTrack(chunk);
+            spawnSystem!.AddEntityToTrack(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
@@ -1092,6 +1103,10 @@ public partial class Microbe
                 State = MicrobeState.Normal;
             }
         }
+        else
+        {
+            attemptingToEngulf.Clear();
+        }
 
         // Play sound
         if (State == MicrobeState.Engulf)
@@ -1157,7 +1172,11 @@ public partial class Microbe
 
             var body = engulfable as RigidBody;
             if (body == null)
+            {
+                attemptingToEngulf.Remove(engulfable);
+                engulfedObjects.Remove(engulfedObject);
                 continue;
+            }
 
             body.Mode = ModeEnum.Static;
 
@@ -1169,11 +1188,6 @@ public partial class Microbe
 
             if (!engulfedObject.Interpolate)
                 continue;
-
-            // Ingestion hasn't completed yet but the cell is no longer in engulfment mode, cancel ingestion.
-            // Engulfment mode must be kept until internalization is complete
-            if (State != MicrobeState.Engulf && engulfable.PhagocytosisStep == PhagocytosisPhase.Ingestion)
-                EjectEngulfable(engulfable, 1.0f);
 
             if (AnimateBulkTransport(delta, engulfedObject))
             {
@@ -1399,6 +1413,9 @@ public partial class Microbe
 
             // TODO: should this also check for pilus before removing the collision?
             hitMicrobe.touchedEntities.Remove(engulfable);
+
+            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+                hitMicrobe.attemptingToEngulf.Remove(engulfable);
         }
     }
 
@@ -1527,6 +1544,8 @@ public partial class Microbe
             return;
         }
 
+        attemptingToEngulf.Remove(target);
+
         var body = target as RigidBody;
         if (body == null)
         {
@@ -1538,18 +1557,11 @@ public partial class Microbe
         if (engulfedObject == null)
             return;
 
-        if (engulfedObject.HasBeenIngested)
-        {
-            UsedIngestionCapacity -= target.EngulfSize;
-
-            if (UsedIngestionCapacity < 0)
-                UsedIngestionCapacity = 0;
-        }
-
         target.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
 
-        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
-            body.Translation.x, body.Translation.z);
+        // The back of the microbe
+        var exit = Hex.AxialToCartesian(new Hex(0, 1));
+        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
@@ -1791,9 +1803,6 @@ public partial class Microbe
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);
 
-        UsedIngestionCapacity += engulfable.EngulfSize;
-        engulfed.HasBeenIngested = true;
-
         OnSuccessfulEngulfment?.Invoke(this, engulfable);
         engulfable.OnIngestedFromEngulfment();
     }
@@ -1808,7 +1817,6 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         expelledObjects.Add(engulfed);
 
-        engulfed.ReclaimedByAnotherHost = false;
         engulfable.PhagocytosisStep = PhagocytosisPhase.None;
 
         foreach (string group in engulfed.OriginalGroups)
@@ -1900,8 +1908,6 @@ public partial class Microbe
         [JsonProperty]
         public Array OriginalGroups { get; private set; } = new();
 
-        public bool HasBeenIngested { get; set; }
-        public bool ReclaimedByAnotherHost { get; set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }
         public float AnimationTimeElapsed { get; set; }

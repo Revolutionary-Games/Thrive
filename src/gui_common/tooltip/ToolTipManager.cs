@@ -177,24 +177,28 @@ public class ToolTipManager : CanvasLayer
 
     public override void _Input(InputEvent @event)
     {
-        if (MainToolTip == null)
-            return;
-
-        if (@event is InputEventMouseButton mouseButton &&
-            mouseButton.Pressed && MainToolTip.HideOnMousePress)
+        if (MainToolTip?.HideOnMouseAction == true)
         {
-            // This is to avoid flickering when smashing mouse press multiple times
-            // on the transient tooltip
-            if (currentIsTemporary && !MainToolTip.ToolTipNode.Visible)
-                return;
-
-            UpdateToolTipVisibility(MainToolTip, false);
-            displayTimer = MainToolTip.DisplayDelay;
-
-            if (currentIsTemporary)
+            // For mouse press, only trigger when it's button down, we don't want the tooltip to be hidden
+            // the second the mouse is released
+            // NOTE: Notice mouse motion needs extra check for zero vector relative value,
+            // see: https://github.com/godotengine/godot/issues/20357
+            if ((@event is InputEventMouseButton button && button.Pressed) ||
+                (@event is InputEventMouseMotion motion && motion.Relative != Vector2.Zero))
             {
-                currentIsTemporary = false;
-                MainToolTip = null;
+                // This is to avoid flickering when smashing mouse press multiple times
+                // on the transient tooltip
+                if (currentIsTemporary && !MainToolTip.ToolTipNode.Visible)
+                    return;
+
+                UpdateToolTipVisibility(MainToolTip, false);
+                displayTimer = MainToolTip.DisplayDelay;
+
+                if (currentIsTemporary)
+                {
+                    currentIsTemporary = false;
+                    MainToolTip = null;
+                }
             }
         }
     }
@@ -213,7 +217,7 @@ public class ToolTipManager : CanvasLayer
         }
 
         popup.Description = message;
-        popup.HideOnMousePress = true;
+        popup.HideOnMouseAction = true;
         popup.TransitionType = ToolTipTransitioning.Fade;
         popup.DisplayDelay = 0;
 

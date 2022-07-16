@@ -119,6 +119,12 @@ public static class Constants
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
+    ///   This controls how many entities over the entity limit we allow things to reproduce. This is so that even when
+    ///   the spawn system has spawned things until the limit is full, the spawned things can still reproduce.
+    /// </summary>
+    public const float REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER = 1.15f;
+
+    /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
     ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
     /// </summary>
@@ -384,7 +390,16 @@ public static class Constants
     /// </summary>
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
-    public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
+    /// <summary>
+    ///   How often in seconds damage is checked and applied when cell digests a toxic cell
+    /// </summary>
+    public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
+
+    /// <summary>
+    ///   Determines how big of a fraction of damage (of total health)
+    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    /// </summary>
+    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
@@ -430,7 +445,7 @@ public static class Constants
     public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
-    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 2.0f;
+    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus
@@ -441,6 +456,11 @@ public static class Constants
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
+
+    public const int METABALL_ADD_COST = 7;
+    public const int METABALL_REMOVE_COST = 5;
+    public const int METABALL_MOVE_COST = 3;
+    public const int METABALL_RESIZE_COST = 3;
 
     public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
 
@@ -626,7 +646,7 @@ public static class Constants
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 4;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
@@ -770,10 +790,14 @@ public static class Constants
     /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
+    public const string ENTITY_TAG_CREATURE = "creature";
+
     /// <summary>
     ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
+
+    public const string PLAYER_GROUP = "player";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
@@ -909,6 +933,13 @@ public static class Constants
     public const float MAX_GLUCOSE_DECAY = 0.95f;
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+
+    // Constants for procedural patch map
+    public const float PATCH_NODE_RECT_LENGTH = 64.0f;
+    public const float PATCH_AND_REGION_MARGIN = 2 * 3.0f;
+    public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
+    public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
+    public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

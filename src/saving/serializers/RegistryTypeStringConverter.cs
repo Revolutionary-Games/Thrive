@@ -132,7 +132,7 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 /// </summary>
 public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<Compound>
 {
-    protected override string TypeName { get; } = "compound";
+    protected override string TypeName => "compound";
 }
 
 /// <summary>
@@ -140,5 +140,5 @@ public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<Com
 /// </summary>
 public class EnzymeStringConverter : RegistryTypeStringSingleTypeConverter<Enzyme>
 {
-    protected override string TypeName { get; } = "enzyme";
+    protected override string TypeName => "enzyme";
 }

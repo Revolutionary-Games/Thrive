@@ -7,7 +7,7 @@
     /// </summary>
     public class MicrobeUnbind : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeUnbind";
+        public override string ClosedByName => "MicrobeUnbind";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
