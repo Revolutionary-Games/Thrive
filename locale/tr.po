@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 14:02+0800\n"
+"POT-Creation-Date: 2022-07-16 15:10+0800\n"
 "PO-Revision-Date: 2022-07-14 11:07+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -983,12 +983,12 @@ msgstr "Sil"
 msgid "LYSOSOME"
 msgstr "Lizozom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:578
+#: ../src/auto-evo/AutoEvoExploringTool.cs:579
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:586
+#: ../src/auto-evo/AutoEvoExploringTool.cs:587
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -997,159 +997,169 @@ msgstr ""
 "ATP varken ise hücren iyileşir.\n"
 "ATP üretmek için yeterli glukoz topladığından emin ol."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:84
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:90
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:96
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 #, fuzzy
 msgid "VIEWER"
 msgstr "Galeri Görüntüleyicisi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:143
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "mutasyona uğradı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:149
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:151
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {1} arazisine göç etti"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:163
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:193
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:199
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:211
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:228
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "arazide nesli tükendi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:245
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:262
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutasyon Puanı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:279
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:281
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:292
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:298
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:310
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:312
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:324
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:352
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Kuşak:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:393
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Sanatçı:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:398
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:400
 #, fuzzy
 msgid "READY"
 msgstr "İş Parçacıkları:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:407
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "konsantrasyonu ile"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:413
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:419
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 #, fuzzy
 msgid "ABORT"
 msgstr "Durduruldu."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:460
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:469
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Kuşak:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:518
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:476
+#, fuzzy
+msgid "SELECT_A_GENERATION"
+msgstr "{0} türü {1} popülasyon ile"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:510
+#, fuzzy
+msgid "SPECIES"
+msgstr "Tür Listesi"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:517
+#, fuzzy
+msgid "SELECT_A_SPECIES"
+msgstr "Detayları görmek için bir arazi seçin"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
-#, fuzzy
-msgid "SPECIES_IN_GENERATION"
-msgstr "{0} türü {1} popülasyon ile"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:606
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:612
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Tür Listesi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:661
 msgid "HEX_VIEW"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:696
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:695
 #, fuzzy
 msgid "PREVIEW"
 msgstr "önceki:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:711
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1159,12 +1169,12 @@ msgstr "önceki:"
 msgid "BACK"
 msgstr "Geri"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:716
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
 #: ../src/general/PauseMenu.cs:332
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""

@@ -87,6 +87,14 @@ public class CustomDropDown : MenuButton
     }
 
     /// <summary>
+    ///   Helper for clearing the items in the dictionary.
+    /// </summary>
+    public void ClearAllItems()
+    {
+        items.Clear();
+    }
+
+    /// <summary>
     ///   Returns the index of an item containing the given name/text in a section.
     /// </summary>
     /// <param name="name">The item text</param>

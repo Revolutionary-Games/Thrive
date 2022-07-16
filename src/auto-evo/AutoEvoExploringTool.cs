@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Godot.Collections;
 using HarmonyLib;
 
 public class AutoEvoExploringTool : NodeWithInput
@@ -15,6 +14,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
     [Export]
     public NodePath HistoryReportSplitPath = null!;
+
+    [Export]
+    public NodePath SpeciesSelectPanelPath = null!;
 
     [Export]
     public NodePath ReportPath = null!;
@@ -101,7 +103,7 @@ public class AutoEvoExploringTool : NodeWithInput
     // Report paths
 
     [Export]
-    public NodePath HistoryContainerPath = null!;
+    public NodePath HistoryListMenuPath = null!;
 
     [Export]
     public NodePath ResultsLabelPath = null!;
@@ -115,7 +117,7 @@ public class AutoEvoExploringTool : NodeWithInput
     public NodePath HexPreviewPath = null!;
 
     [Export]
-    public NodePath SpeciesListPath = null!;
+    public NodePath SpeciesListMenuPath = null!;
 
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
@@ -127,20 +129,17 @@ public class AutoEvoExploringTool : NodeWithInput
     /// <summary>
     ///   This list stores copy of species in every generation.
     /// </summary>
-    private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistoryList = new();
+    private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
     /// <summary>
     ///   This list stores all auto-evo results.
     /// </summary>
     private readonly List<LocalizedStringBuilder> runResultsList = new();
 
-    // ButtonGroups to allow checkboxes automatically uncheck
-    private readonly ButtonGroup historyCheckBoxesGroup = new();
-    private readonly ButtonGroup speciesListCheckBoxesGroup = new();
-
     // Tabs
     private Control configTab = null!;
     private Control historyReportSplit = null!;
+    private Control speciesSelectPanel = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
 
@@ -173,18 +172,16 @@ public class AutoEvoExploringTool : NodeWithInput
     private Button playWithCurrentSettingButton = null!;
 
     // Report controls
-    private VBoxContainer generationHistoryList = null!;
     private CustomRichTextLabel autoEvoResultsLabel = null!;
+    private CustomDropDown historyListMenu = null!;
 
     // Viewer controls
     private SpeciesPreview speciesPreview = null!;
     private CellHexPreview hexPreview = null!;
-    private VBoxContainer speciesList = null!;
+    private CustomDropDown speciesListMenu = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
-
-    private PackedScene customCheckBoxScene = null!;
 
     /// <summary>
     ///   The game itself
@@ -227,6 +224,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         configTab = GetNode<Control>(ConfigEditorPath);
         historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
+        speciesSelectPanel = GetNode<Control>(SpeciesSelectPanelPath);
         reportTab = GetNode<Control>(ReportPath);
         viewerTab = GetNode<Control>(ViewerPath);
 
@@ -261,16 +259,14 @@ public class AutoEvoExploringTool : NodeWithInput
         playWithCurrentSettingButton = GetNode<Button>(PlayWithCurrentSettingPath);
 
         autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
-        generationHistoryList = GetNode<VBoxContainer>(HistoryContainerPath);
+        historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
-        speciesList = GetNode<VBoxContainer>(SpeciesListPath);
+        speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
-
-        customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
 
         // Init game
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
@@ -298,6 +294,10 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
             autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
         useBiodiversityForceSplitCheckBox.Pressed = autoEvoConfiguration.UseBiodiversityForceSplit;
+
+        // Connect custom dropdown handler
+        historyListMenu.Popup.Connect("index_pressed", this, nameof(HistoryListMenuIndexChanged));
+        speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
 
         // Mark ready, later on autoEvoConfiguration values should only be changed from the GUI
         ready = true;
@@ -366,6 +366,7 @@ public class AutoEvoExploringTool : NodeWithInput
             {
                 configTab.Visible = false;
                 viewerTab.Visible = false;
+                speciesSelectPanel.Visible = false;
                 historyReportSplit.Visible = true;
                 reportTab.Visible = true;
                 break;
@@ -375,6 +376,7 @@ public class AutoEvoExploringTool : NodeWithInput
             {
                 reportTab.Visible = false;
                 configTab.Visible = false;
+                speciesSelectPanel.Visible = true;
                 historyReportSplit.Visible = true;
                 viewerTab.Visible = true;
                 break;
@@ -457,16 +459,8 @@ public class AutoEvoExploringTool : NodeWithInput
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         // Add check box to history container
-        var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-        checkBox.Text = (currentGeneration + 1).ToString();
-        checkBox.Group = historyCheckBoxesGroup;
-        checkBox.Connect("toggled", this, nameof(GenerationCheckBoxToggled),
-            new Array { currentGeneration });
-        generationHistoryList.AddChild(checkBox);
-
-        // History checkboxes are in one button group, so this automatically releases other buttons
-        // History label is updated in button toggled signal callback
-        checkBox.Pressed = true;
+        historyListMenu.AddItem((currentGeneration + 1).ToString(), true, Colors.White);
+        historyListMenu.CreateElements();
 
         // Apply the results
         autoEvoRun.ApplyAllEffects(true);
@@ -505,10 +499,12 @@ public class AutoEvoExploringTool : NodeWithInput
         runOneStepButton.Disabled = false;
     }
 
-    private void GenerationCheckBoxToggled(bool state, int index)
+    private void HistoryListMenuIndexChanged(int index)
     {
-        if (state && generationDisplayed != index)
+        if (generationDisplayed != index)
         {
+            historyListMenu.Text = (index + 1).ToString();
+
             generationDisplayed = index;
             UpdateAutoEvoReport();
             UpdateSpeciesList();
@@ -525,29 +521,29 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesList()
     {
-        // Clear the current ones
-        speciesList.FreeChildren();
+        speciesListMenu.ClearAllItems();
 
         foreach (var pair in speciesHistoryList[generationDisplayed].OrderBy(p => p.Value.FormattedName))
         {
-            var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-            checkBox.Text = pair.Value.FormattedIdentifier;
-            checkBox.Group = speciesListCheckBoxesGroup;
-            checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
-            speciesList.AddChild(checkBox);
+            speciesListMenu.AddItem(pair.Value.FormattedName, true, Colors.White);
         }
+
+        speciesListMenu.CreateElements();
     }
 
-    private void SpeciesListCheckBoxToggled(bool state, uint speciesIndex)
+    private void SpeciesListMenuIndexChanged(int index)
     {
-        var species = speciesHistoryList[generationDisplayed][speciesIndex];
+        var speciesName = speciesListMenu.Popup.GetItemText(index);
+        var species = speciesHistoryList[generationDisplayed].Values.First(p => p.FormattedName == speciesName);
 
-        if (state)
-        {
-            speciesPreview.PreviewSpecies = species;
-            hexPreview.PreviewSpecies = species as MicrobeSpecies;
-            UpdateSpeciesDetail(species);
-        }
+        if (species == speciesPreview.PreviewSpecies)
+            return;
+
+        speciesListMenu.Text = species.FormattedName;
+
+        speciesPreview.PreviewSpecies = species;
+        hexPreview.PreviewSpecies = species as MicrobeSpecies;
+        UpdateSpeciesDetail(species);
     }
 
     private void UpdateSpeciesDetail(Species species)
