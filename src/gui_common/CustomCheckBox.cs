@@ -33,7 +33,7 @@ public class CustomCheckBox : Button
         Disabled,
     }
 
-    private bool Radio => Group != null;
+    public bool Radio => Group != null;
 
     public override void _Ready()
     {
