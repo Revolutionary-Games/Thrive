@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -20,6 +21,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
 
+    [Export]
+    public NodePath SeedLabelPath = null!;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -38,6 +42,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     protected PatchMapDrawer mapDrawer = null!;
     protected PatchDetailsPanel detailsPanel = null!;
+    private Label seedLabel = null!;
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -54,6 +59,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
         detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
+        seedLabel = GetNode<Label>(SeedLabelPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
@@ -78,6 +84,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             canStillMove = true;
             UpdatePlayerPatch(playerPatchOnEntry);
         }
+
+        seedLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SEED_LABEL"),
+            owningEditor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 
     public void SetMap(PatchMap map)
