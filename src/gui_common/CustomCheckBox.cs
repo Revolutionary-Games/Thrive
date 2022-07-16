@@ -12,11 +12,18 @@ public class CustomCheckBox : Button
     private Texture pressedNormal = null!;
     private Texture pressedHovered = null!;
     private Texture pressedClicked = null!;
+    private Texture radioUnpressedNormal = null!;
+    private Texture radioUnpressedHovered = null!;
+    private Texture radioUnpressedClicked = null!;
+    private Texture radioPressedNormal = null!;
+    private Texture radioPressedHovered = null!;
+    private Texture radioPressedClicked = null!;
 
     private bool pressing;
-    private CheckState currentCheckState;
+    private bool radio;
+    private State currentState;
 
-    private enum CheckState
+    private enum State
     {
         UnpressedNormal,
         UnpressedHovered,
@@ -27,6 +34,20 @@ public class CustomCheckBox : Button
         Disabled,
     }
 
+    /// <summary>
+    ///   Override base property Group to draw our custom radio icon.
+    /// </summary>
+    public new ButtonGroup? Group
+    {
+        get => base.Group;
+        set
+        {
+            base.Group = value;
+
+            radio = Group != null;
+        }
+    }
+
     public override void _Ready()
     {
         unpressedNormal = GetIcon("UnpressedNormal", "CheckBox");
@@ -35,6 +56,15 @@ public class CustomCheckBox : Button
         pressedNormal = GetIcon("PressedNormal", "CheckBox");
         pressedHovered = GetIcon("PressedHovered", "CheckBox");
         pressedClicked = GetIcon("PressedClicked", "CheckBox");
+        radioUnpressedNormal = GetIcon("RadioUnpressedNormal", "CheckBox");
+        radioUnpressedHovered = GetIcon("RadioUnpressedHovered", "CheckBox");
+        radioUnpressedClicked = GetIcon("RadioUnpressedClicked", "CheckBox");
+        radioPressedNormal = GetIcon("RadioPressedNormal", "CheckBox");
+        radioPressedHovered = GetIcon("RadioPressedHovered", "CheckBox");
+        radioPressedClicked = GetIcon("RadioPressedClicked", "CheckBox");
+
+        radio = Group != null;
+
         UpdateIcon();
     }
 
@@ -42,17 +72,17 @@ public class CustomCheckBox : Button
     {
         if (pressing && !Disabled)
         {
-            currentCheckState = Pressed ? CheckState.PressedClicked : CheckState.UnpressedClicked;
+            currentState = Pressed ? State.PressedClicked : State.UnpressedClicked;
         }
         else
         {
-            currentCheckState = GetDrawMode() switch
+            currentState = GetDrawMode() switch
             {
-                DrawMode.Disabled => CheckState.Disabled,
-                DrawMode.Normal => CheckState.UnpressedNormal,
-                DrawMode.Hover => CheckState.UnpressedHovered,
-                DrawMode.Pressed => CheckState.PressedNormal,
-                DrawMode.HoverPressed => CheckState.PressedHovered,
+                DrawMode.Disabled => State.Disabled,
+                DrawMode.Normal => State.UnpressedNormal,
+                DrawMode.Hover => State.UnpressedHovered,
+                DrawMode.Pressed => State.PressedNormal,
+                DrawMode.HoverPressed => State.PressedHovered,
                 _ => throw new ArgumentOutOfRangeException(GetDrawMode().ToString()),
             };
         }
@@ -79,16 +109,33 @@ public class CustomCheckBox : Button
 
     private void UpdateIcon()
     {
-        Icon = currentCheckState switch
+        if (radio)
         {
-            CheckState.Disabled => Pressed ? pressedNormal : unpressedNormal,
-            CheckState.UnpressedNormal => unpressedNormal,
-            CheckState.UnpressedHovered => unpressedHovered,
-            CheckState.UnpressedClicked => unpressedClicked,
-            CheckState.PressedNormal => pressedNormal,
-            CheckState.PressedHovered => pressedHovered,
-            CheckState.PressedClicked => pressedClicked,
-            _ => throw new ArgumentOutOfRangeException(nameof(currentCheckState)),
-        };
+            Icon = currentState switch
+            {
+                State.Disabled => Pressed ? radioPressedNormal : radioUnpressedNormal,
+                State.UnpressedNormal => radioUnpressedNormal,
+                State.UnpressedHovered => radioUnpressedHovered,
+                State.UnpressedClicked => radioUnpressedClicked,
+                State.PressedNormal => radioPressedNormal,
+                State.PressedHovered => radioPressedHovered,
+                State.PressedClicked => radioPressedClicked,
+                _ => throw new ArgumentOutOfRangeException(nameof(currentState)),
+            };
+        }
+        else
+        {
+            Icon = currentState switch
+            {
+                State.Disabled => Pressed ? pressedNormal : unpressedNormal,
+                State.UnpressedNormal => unpressedNormal,
+                State.UnpressedHovered => unpressedHovered,
+                State.UnpressedClicked => unpressedClicked,
+                State.PressedNormal => pressedNormal,
+                State.PressedHovered => pressedHovered,
+                State.PressedClicked => pressedClicked,
+                _ => throw new ArgumentOutOfRangeException(nameof(currentState)),
+            };
+        }
     }
 }
