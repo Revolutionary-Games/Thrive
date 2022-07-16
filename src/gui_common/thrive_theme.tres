@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=69 format=2]
+[gd_resource type="Theme" load_steps=73 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -23,6 +23,10 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=21]
 [ext_resource path="res://src/gui_common/fonts/Lato-Italic-Small.tres" type="DynamicFont" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-BoldItalic-Small.tres" type="DynamicFont" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/radioA.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/radioB.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/gui/bevel/radioAhover.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/radioBhover.png" type="Texture" id=27]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -465,12 +469,18 @@ CheckBox/fonts/font = ExtResource( 8 )
 CheckBox/icons/PressedClicked = ExtResource( 19 )
 CheckBox/icons/PressedHovered = ExtResource( 20 )
 CheckBox/icons/PressedNormal = ExtResource( 5 )
+CheckBox/icons/RadioPressedClicked = ExtResource( 27 )
+CheckBox/icons/RadioPressedHovered = ExtResource( 27 )
+CheckBox/icons/RadioPressedNormal = ExtResource( 25 )
+CheckBox/icons/RadioUnpressedClicked = ExtResource( 26 )
+CheckBox/icons/RadioUnpressedHovered = ExtResource( 26 )
+CheckBox/icons/RadioUnpressedNormal = ExtResource( 24 )
 CheckBox/icons/UnpressedClicked = ExtResource( 20 )
 CheckBox/icons/UnpressedHovered = ExtResource( 18 )
 CheckBox/icons/UnpressedNormal = ExtResource( 6 )
 CheckBox/icons/checked = ExtResource( 5 )
-CheckBox/icons/radio_checked = null
-CheckBox/icons/radio_unchecked = null
+CheckBox/icons/radio_checked = ExtResource( 25 )
+CheckBox/icons/radio_unchecked = ExtResource( 24 )
 CheckBox/icons/unchecked = ExtResource( 6 )
 CheckBox/styles/disabled = SubResource( 6 )
 CheckBox/styles/focus = SubResource( 7 )
