@@ -20,7 +20,6 @@ public class CustomCheckBox : Button
     private Texture radioPressedClicked = null!;
 
     private bool pressing;
-    private bool radio;
     private State currentState;
 
     private enum State
@@ -34,19 +33,7 @@ public class CustomCheckBox : Button
         Disabled,
     }
 
-    /// <summary>
-    ///   Override base property Group to draw our custom radio icon.
-    /// </summary>
-    public new ButtonGroup? Group
-    {
-        get => base.Group;
-        set
-        {
-            base.Group = value;
-
-            radio = Group != null;
-        }
-    }
+    private bool Radio => Group != null;
 
     public override void _Ready()
     {
@@ -62,8 +49,6 @@ public class CustomCheckBox : Button
         radioPressedNormal = GetIcon("RadioPressedNormal", "CheckBox");
         radioPressedHovered = GetIcon("RadioPressedHovered", "CheckBox");
         radioPressedClicked = GetIcon("RadioPressedClicked", "CheckBox");
-
-        radio = Group != null;
 
         UpdateIcon();
     }
@@ -109,7 +94,7 @@ public class CustomCheckBox : Button
 
     private void UpdateIcon()
     {
-        if (radio)
+        if (Radio)
         {
             Icon = currentState switch
             {
