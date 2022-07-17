@@ -80,7 +80,7 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath UseBiodiversityForceSplitPath = null!;
 
-    // Status & control paths
+    // Status and control paths
 
     [Export]
     public NodePath CurrentGenerationLabelPath = null!;
@@ -201,7 +201,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private int currentGeneration;
 
     /// <summary>
-    ///   The generation report & viewer tab is displaying,
+    ///   The generation that report and viewer tab is displaying,
     ///   which equals to the selected popup item index of <see cref="historyListMenu"/>
     /// </summary>
     private int generationDisplayed;
