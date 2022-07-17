@@ -26,6 +26,7 @@ public class PatchExtinctionBox : Control
 
             mapDrawer.Map = value ?? throw new ArgumentException("New map can't be null");
             mapDrawer.SetPatchEnabledStatuses(value.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+            mapDrawer.MarkDirty();
         }
     }
 
