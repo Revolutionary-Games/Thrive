@@ -49,7 +49,13 @@ public class PatchMapDrawer : Control
         get => map;
         set
         {
-            map = value ?? throw new ArgumentNullException(nameof(value), "setting to null not allowed");
+            if (value == null)
+                throw new ArgumentNullException(nameof(value), "setting to null not allowed");
+
+            if (map == value)
+                return;
+
+            map = value;
             dirty = true;
 
             playerPatch ??= map.CurrentPatch;
@@ -91,6 +97,8 @@ public class PatchMapDrawer : Control
 
     public override void _Ready()
     {
+        base._Ready();
+
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
@@ -102,6 +110,8 @@ public class PatchMapDrawer : Control
 
     public override void _Process(float delta)
     {
+        base._Process(delta);
+
         CheckForDirtyNodes();
 
         if (dirty)
@@ -120,6 +130,8 @@ public class PatchMapDrawer : Control
     /// </summary>
     public override void _Draw()
     {
+        base._Draw();
+
         if (Map == null)
             return;
 
