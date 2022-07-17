@@ -25,15 +25,9 @@ public class PatchMap : ISaveLoadable
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
     [JsonIgnore]
-    public IEnumerable<KeyValuePair<int, PatchRegion>> NormallyDrawnRegions =>
-        Regions.Where(r => !r.Value.UsesSpecialLinking);
-
-    /// <summary>
-    ///   These regions use special logic on how they are linked and positioned to other regions (and drawn)
-    /// </summary>
-    [JsonIgnore]
-    public IEnumerable<KeyValuePair<int, PatchRegion>> SpeciallyDrawnRegions =>
-        Regions.Where(r => r.Value.UsesSpecialLinking);
+    public Vector2 Center =>
+        Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
+        / Regions.Count;
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -93,14 +87,6 @@ public class PatchMap : ISaveLoadable
         }
 
         Regions[region.ID] = region;
-    }
-
-    public bool IsSpeciallyDrawnRegion(int id)
-    {
-        if (!Regions.TryGetValue(id, out var region))
-            return false;
-
-        return region.UsesSpecialLinking;
     }
 
     /// <summary>

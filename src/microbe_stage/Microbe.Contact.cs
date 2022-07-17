@@ -459,6 +459,8 @@ public partial class Microbe
     {
         Membrane.WigglyNess = 0;
 
+        UnreadyToReproduce();
+
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
         var hostile = HostileEngulfer.Value;
@@ -471,6 +473,8 @@ public partial class Microbe
                 organelle.UpdateRenderPriority(newPriority);
             }
         }
+
+        Colony?.RemoveFromColony(this);
 
         // Just in case player is engulfed again after escaping
         playerEngulfedDeathTimer = 0;
@@ -650,7 +654,9 @@ public partial class Microbe
         {
             OnUnbound?.Invoke(this);
 
-            RevertNodeParent();
+            if (PhagocytosisStep == PhagocytosisPhase.None)
+                RevertNodeParent();
+
             ai?.ResetAI();
 
             Mode = ModeEnum.Rigid;
@@ -888,7 +894,7 @@ public partial class Microbe
             droppedCorpseChunks.Add(chunk);
 
             // Add to the spawn system to make these chunks limit possible number of entities
-            SpawnSystem.AddEntityToTrack(chunk);
+            spawnSystem!.AddEntityToTrack(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }

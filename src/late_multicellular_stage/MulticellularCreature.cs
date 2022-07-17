@@ -21,6 +21,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonProperty]
     private CreatureAI? ai;
 
+    [JsonProperty]
+    private ISpawnSystem? spawnSystem;
+
     // TODO: implement
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses => new();
@@ -92,8 +95,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(GameProperties currentGame, bool isPlayer)
+    public void Init(ISpawnSystem spawnSystem, GameProperties currentGame, bool isPlayer)
     {
+        this.spawnSystem = spawnSystem;
         CurrentGame = currentGame;
         IsPlayerCreature = isPlayer;
 
@@ -140,10 +144,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // Create the offspring
         var copyEntity = SpawnHelpers.SpawnCreature(Species, currentPosition + separation,
-            GetParent(), SpawnHelpers.LoadMulticellularScene(), true, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMulticellularScene(), true, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawnSystem!.AddEntityToTrack(copyEntity);
 
         // TODO: some kind of resource splitting for the offspring?
 
@@ -155,6 +159,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public void BecomeFullyGrown()
     {
         // TODO: implement growth
+        // Once growth is added check spawnSystem.IsUnderEntityLimitForReproducing before calling SpawnOffspring
     }
 
     public void ResetGrowth()

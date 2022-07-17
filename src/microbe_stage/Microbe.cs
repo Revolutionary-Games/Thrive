@@ -301,9 +301,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem, GameProperties currentGame, bool isPlayer)
+    public void Init(CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
+        bool isPlayer)
     {
         this.cloudSystem = cloudSystem;
+        this.spawnSystem = spawnSystem;
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
 
@@ -1022,6 +1024,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         if (Colony == null)
             return GetParent();
+
+        // If the colony leader is engulfed, the colony children, when the colony is disbanded, need to access the
+        // stage through the engulfer. Because at that point the colony leader is already re-parented to the engulfer,
+        // so its parent is no longer the stage here.
+        if (Colony.Master.HostileEngulfer.Value != null)
+            return Colony.Master.HostileEngulfer.Value.GetStageAsParent();
 
         return Colony.Master.GetParent();
     }
