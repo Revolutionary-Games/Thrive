@@ -74,13 +74,13 @@ public class ModInfo
     ///   This is shown as the version of Thrive this mod version is recommended to be used with
     /// </summary>
     [JsonRequired]
-    public string? RecommendedThriveVersion { get; set; } = null!;
+    public string RecommendedThriveVersion { get; set; } = null!;
 
     /// <summary>
     ///   The mod will refuse to be loaded if current game version is lower than this version
     /// </summary>
     [JsonRequired]
-    public string? MinimumThriveVersion { get; set; } = null!;
+    public string MinimumThriveVersion { get; set; } = null!;
 
     /// <summary>
     ///   The mod will refuse to be loaded if current game version is higher than this version
@@ -106,13 +106,13 @@ public class ModInfo
     public List<string>? IncompatibleMods { get; set; }
 
     /// <summary>
-    ///   Mods that has to be loaded before this one. Different from dependencies as it won't error if not included.
+    ///   Mods that have to be loaded before this one. Different from dependencies as it won't error if not included.
     /// </summary>
     [JsonProperty("Load Before")]
     public List<string>? LoadBefore { get; set; }
 
     /// <summary>
-    ///   Mods that has to be loaded after this one. Different from dependencies as it won't error if not included.
+    ///   Mods that have to be loaded after this one. Different from dependencies as it won't error if not included.
     /// </summary>
     [JsonProperty("Load After")]
     public List<string>? LoadAfter { get; set; }

@@ -108,6 +108,21 @@ public static class StringUtils
     }
 
     /// <summary>
+    ///   Splits strings into different chunks by commas.
+    /// </summary>
+    /// <returns>A list of trimmed substrings, starting from the beginning of the input string.</returns>
+    public static List<string> SplitByComma(string input)
+    {
+        var seperatedList = new List<string>();
+        if (!string.IsNullOrWhiteSpace(input))
+        {
+            Array.ForEach(input.Split(","), s => seperatedList.Add(s.Trim()));
+        }
+
+        return seperatedList;
+    }
+
+    /// <summary>
     ///   Parses a list of "key=value" pairs into a dictionary. Overrides duplicate keys with newer ones.
     /// </summary>
     /// <returns>

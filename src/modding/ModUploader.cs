@@ -334,7 +334,7 @@ public class ModUploader : Control
                 return false;
             }
 
-            foreach (var tag in editedTags.Text.Split(','))
+            foreach (var tag in StringUtils.SplitByComma(editedTags.Text))
             {
                 if (!SteamHandler.Tags.Contains(tag))
                 {
@@ -511,7 +511,7 @@ public class ModUploader : Control
 
         if (!string.IsNullOrWhiteSpace(editedTags.Text))
         {
-            updateData.Tags = editedTags.Text.Split(',').ToList();
+            updateData.Tags = StringUtils.SplitByComma(editedTags.Text)
             GD.Print("Setting item tags: ", string.Join(", ", updateData.Tags));
         }
 

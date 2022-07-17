@@ -111,6 +111,7 @@ FullInfoRequiredModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/V
 FullInfoLoadBeforePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadBefore")
 FullInfoLoadAfterPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadAfter")
 FullInfoIncompatibleModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModIncompatibleMods")
+FullInfoAutoHarmonyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/UseHarmony")
 OpenWorkshopButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/WorkshopBrowse")
 ModUploaderButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/Upload")
 NewModGUIPath = NodePath("NewModGUI")

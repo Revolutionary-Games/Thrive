@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Environment = System.Environment;
@@ -289,12 +290,12 @@ public class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
-        editedInfo.PreviewImages = SeperateFieldByComma(previewImagesFile.Text);
-        editedInfo.Dependencies = SeperateFieldByComma(dependencies.Text);
-        editedInfo.RequiredMods = SeperateFieldByComma(requiredMods.Text);
-        editedInfo.LoadBefore = SeperateFieldByComma(loadBefore.Text);
-        editedInfo.LoadAfter = SeperateFieldByComma(loadAfter.Text);
-        editedInfo.IncompatibleMods = SeperateFieldByComma(incompatibleMods.Text);
+        editedInfo.PreviewImages = StringUtils.SplitByComma(previewImagesFile.Text);
+        editedInfo.Dependencies = StringUtils.SplitByComma(dependencies.Text);
+        editedInfo.RequiredMods = StringUtils.SplitByComma(requiredMods.Text);
+        editedInfo.LoadBefore = StringUtils.SplitByComma(loadBefore.Text);
+        editedInfo.LoadAfter = StringUtils.SplitByComma(loadAfter.Text);
+        editedInfo.IncompatibleMods = StringUtils.SplitByComma(incompatibleMods.Text);
         editedInfo.UseAutoHarmony = assemblyModAutoHarmony.Pressed;
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
@@ -315,17 +316,6 @@ public class NewModGUI : Control
         }
 
         return true;
-    }
-
-    private List<string> SeperateFieldByComma(string condensedString)
-    {
-        var seperatedList = new List<string>();
-        if (!string.IsNullOrWhiteSpace(condensedString))
-        {
-            Array.ForEach(condensedString.Split(","), s => seperatedList.Add(s.Trim()));
-        }
-
-        return seperatedList;
     }
 
     private string? ValidateFormData()
@@ -443,8 +433,7 @@ public class NewModGUI : Control
 
     private void PreviewFileDialogFilesSelected(string[] paths)
     {
-        List<string> allFileNames = new List<string>();
-        Array.ForEach(paths, currentPath => allFileNames.Add(Path.GetFileName(currentPath)));
+        string[] allFileNames = paths.Select(currentPath => Path.GetFileName(currentPath)).ToArray();
         previewImagesFile.Text = string.Join(", ", allFileNames);
     }
 }
