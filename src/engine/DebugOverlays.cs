@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Main script for debugging.
@@ -70,6 +71,11 @@ public partial class DebugOverlays : Control
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
         fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
+
+        AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+        {
+            GD.PrintErr($"Unhandled exception from {sender}:\n{args.ExceptionObject}");
+        };
     }
 
     public override void _Process(float delta)
