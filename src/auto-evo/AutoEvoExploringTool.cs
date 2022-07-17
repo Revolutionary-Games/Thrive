@@ -201,9 +201,10 @@ public class AutoEvoExploringTool : NodeWithInput
     private int currentGeneration;
 
     /// <summary>
-    ///   The generation report & viewer tab is displaying
+    ///   The generation report & viewer tab is displaying,
+    ///   which equals to the selected popup item index of <see cref="historyListMenu"/>
     /// </summary>
-    private int generationDisplayed = -1;
+    private int generationDisplayed;
 
     private bool ready;
 
@@ -459,7 +460,7 @@ public class AutoEvoExploringTool : NodeWithInput
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         // Add check box to history container
-        historyListMenu.AddItem((currentGeneration + 1).ToString(), true, Colors.White);
+        historyListMenu.AddItem((currentGeneration + 1).ToString(), false, Colors.White);
         historyListMenu.CreateElements();
 
         // Apply the results
@@ -501,14 +502,14 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void HistoryListMenuIndexChanged(int index)
     {
-        if (generationDisplayed != index)
-        {
-            historyListMenu.Text = (index + 1).ToString();
+        if (generationDisplayed == index)
+            return;
 
-            generationDisplayed = index;
-            UpdateAutoEvoReport();
-            UpdateSpeciesList();
-        }
+        historyListMenu.Text = (index + 1).ToString();
+
+        generationDisplayed = index;
+        UpdateAutoEvoReport();
+        UpdateSpeciesList();
     }
 
     private void UpdateAutoEvoReport()
@@ -525,7 +526,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         foreach (var pair in speciesHistoryList[generationDisplayed].OrderBy(p => p.Value.FormattedName))
         {
-            speciesListMenu.AddItem(pair.Value.FormattedName, true, Colors.White);
+            speciesListMenu.AddItem(pair.Value.FormattedName, false, Colors.White);
         }
 
         speciesListMenu.CreateElements();
