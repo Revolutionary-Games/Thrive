@@ -156,6 +156,11 @@ public class PatchMapDrawer : Control
         EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates);
     }
 
+    public void MarkDirty()
+    {
+        dirty = true;
+    }
+
     /// <summary>
     ///   Stores patch node status values that will be applied when creating the patch nodes
     /// </summary>
