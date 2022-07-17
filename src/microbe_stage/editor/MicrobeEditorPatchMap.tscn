@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=1]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=14]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=18]
@@ -51,6 +52,7 @@ script = ExtResource( 28 )
 FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
 MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("MarginContainer/HSplitContainer/PatchDetailsPanel")
+SeedLabelPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/SeedLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -123,6 +125,15 @@ margin_right = 187.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 7 )
 text = "FIND_CURRENT_PATCH"
+
+[node name="SeedLabel" type="Label" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 591.0
+margin_right = 896.0
+margin_bottom = 608.0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 3 )
+text = "SEED_LABEL"
 
 [node name="PatchDetailsPanel" parent="MarginContainer/HSplitContainer" instance=ExtResource( 2 )]
 margin_left = 920.0
