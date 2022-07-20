@@ -602,8 +602,8 @@ public static class PatchMapGenerator
 
                         case PatchRegion.RegionType.Continent:
                         {
-                            LinkPatches(region.Patches[0],
-                                adjacent.Patches.OrderBy(_ => random.Next()).First(IsWaterPatch));
+                            LinkPatches(region.Patches[0], adjacent.Patches.OrderBy(_ => random.Next())
+                                .First(p => IsWaterPatch(p) && p.BiomeType != BiomeType.Tidepool));
                             break;
                         }
                     }
