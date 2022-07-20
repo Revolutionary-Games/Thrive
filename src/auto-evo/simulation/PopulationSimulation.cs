@@ -183,7 +183,7 @@
 
             foreach (var currentSpecies in species)
             {
-                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies));
+                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies, cache));
             }
 
             foreach (var niche in niches)
@@ -241,7 +241,7 @@
 
             foreach (var currentSpecies in species)
             {
-                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
+                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch.Biome);
                 var individualCost = energyBalanceInfo.TotalConsumptionStationary;
 
                 // Modify populations based on energy

@@ -14,27 +14,78 @@
     public class SimulationCache
     {
         private readonly WorldGenerationSettings worldSettings;
-        private readonly Dictionary<(MicrobeSpecies, Patch), EnergyBalanceInfo> cachedEnergyBalances = new();
+        private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
+        private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
+        private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+
+        private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
+            new();
 
         public SimulationCache(WorldGenerationSettings worldSettings)
         {
             this.worldSettings = worldSettings;
         }
 
-        public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, Patch patch)
+        public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
         {
-            var key = (species, patch);
+            var key = (species, biomeConditions);
 
             if (cachedEnergyBalances.TryGetValue(key, out var cached))
             {
                 return cached;
             }
 
-            cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, patch.Biome, species.MembraneType,
+            cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
                 species.PlayerSpecies, worldSettings);
 
             cachedEnergyBalances.Add(key, cached);
             return cached;
+        }
+
+        public float GetBaseSpeedForSpecies(MicrobeSpecies species)
+        {
+            if (cachedBaseSpeeds.TryGetValue(species, out var cached))
+            {
+                return cached;
+            }
+
+            cached = species.BaseSpeed;
+
+            cachedBaseSpeeds.Add(species, cached);
+            return cached;
+        }
+
+        public float GetBaseHexSizeForSpecies(MicrobeSpecies species)
+        {
+            if (cachedBaseHexSizes.TryGetValue(species, out var cached))
+            {
+                return cached;
+            }
+
+            cached = species.BaseHexSize;
+
+            cachedBaseHexSizes.Add(species, cached);
+            return cached;
+        }
+
+        public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, BiomeConditions biomeConditions)
+        {
+            var key = (process, biomeConditions);
+
+            if (cachedProcessSpeeds.TryGetValue(key, out var cached))
+            {
+                return cached;
+            }
+
+            cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions);
+
+            cachedProcessSpeeds.Add(key, cached);
+            return cached;
+        }
+
+        public bool MatchesSettings(WorldGenerationSettings checkAgainst)
+        {
+            return worldSettings.Equals(checkAgainst);
         }
     }
 }

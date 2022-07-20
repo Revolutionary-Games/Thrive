@@ -12,12 +12,12 @@
         private readonly float preySpeed;
         private readonly float totalEnergy;
 
-        public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey)
+        public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey, SimulationCache simulationCache)
         {
             this.prey = prey;
             this.patch = patch;
-            preyHexSize = prey.BaseHexSize;
-            preySpeed = prey.BaseSpeed;
+            preyHexSize = simulationCache.GetBaseHexSizeForSpecies(prey);
+            preySpeed = simulationCache.GetBaseSpeedForSpecies(prey);
             patch.SpeciesInPatch.TryGetValue(prey, out long population);
             totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
         }
@@ -34,9 +34,12 @@
 
             var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
-            var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
-            var predatorSpeed = microbeSpecies.BaseSpeed;
-            predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalance;
+            // TODO: if these two methods were combined it might result in better performance with needing just
+            // one dictionary lookup
+            var microbeSpeciesHexSize = simulationCache.GetBaseHexSizeForSpecies(microbeSpecies);
+            var predatorSpeed = simulationCache.GetBaseSpeedForSpecies(microbeSpecies);
+
+            predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).FinalBalance;
 
             // It's great if you can engulf this prey, but only if you can catch it
             var engulfScore = 0.0f;
