@@ -252,7 +252,7 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
-            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) && !microbe.AffectedBySlime &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 

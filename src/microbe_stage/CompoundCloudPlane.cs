@@ -508,6 +508,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (!storage.IsUseful(compound))
                 continue;
 
+            // Don't add slime to the cell's storage
+            if (compound == SimulationParameters.Instance.GetCompound("slime"))
+                continue;
+
             // Overestimate of how much compounds we get
             float generousAmount = HackyAddress(Density[localX, localY], i) *
                 Constants.SKIP_TRYING_TO_ABSORB_RATIO;

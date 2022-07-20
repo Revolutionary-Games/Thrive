@@ -317,6 +317,11 @@ public partial class Microbe
         queuedToxinToEmit = toxinCompound;
     }
 
+    public void SecreteSlime(float delta)
+    {
+        EjectCompound(SimulationParameters.Instance.GetCompound("slime"), Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta, 8);
+    }
+
     /// <summary>
     ///   Report that a pilus shape was added to this microbe. Called by PilusComponent
     /// </summary>
@@ -461,11 +466,11 @@ public partial class Microbe
     /// <summary>
     ///   Throws some compound out of this Microbe, up to maxAmount
     /// </summary>
-    public float EjectCompound(Compound compound, float maxAmount)
+    public float EjectCompound(Compound compound, float maxAmount, float displacement = 0)
     {
         float amount = Compounds.TakeCompound(compound, maxAmount);
 
-        SpawnEjectedCompound(compound, amount);
+        SpawnEjectedCompound(compound, amount, displacement);
         return amount;
     }
 
@@ -596,6 +601,8 @@ public partial class Microbe
 
         cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
+
+        AffectedBySlime = cloudSystem.AmountAvailable(SimulationParameters.Instance.GetCompound("slime"), GlobalTransform.origin, 1.0f) > Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE;
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
@@ -1085,20 +1092,20 @@ public partial class Microbe
     ///     the compound to the cloud system at the right position.
     ///   </para>
     /// </remarks>
-    private void SpawnEjectedCompound(Compound compound, float amount)
+    private void SpawnEjectedCompound(Compound compound, float amount, float displacement = 0)
     {
         var amountToEject = amount * Constants.MICROBE_VENT_COMPOUND_MULTIPLIER;
 
-        if (amountToEject <= 0)
+        if (amountToEject <= MathUtils.EPSILON)
             return;
 
-        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
+        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition(displacement));
     }
 
     /// <summary>
     ///   Calculates a world pos for emitting compounds
     /// </summary>
-    private Vector3 CalculateNearbyWorldPosition()
+    private Vector3 CalculateNearbyWorldPosition(float displacement = 0)
     {
         // OLD CODE kept here in case we want a more accurate membrane position, also this code
         // produces an incorrect world position which needs fixing if this were to be used
@@ -1140,7 +1147,7 @@ public partial class Microbe
 
         // Unlike the commented block of code above, this uses cheap membrane radius to calculate
         // distance for cheaper computations
-        var distance = Membrane.EncompassingCircleRadius;
+        var distance = Membrane.EncompassingCircleRadius + displacement;
 
         // The membrane radius doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)

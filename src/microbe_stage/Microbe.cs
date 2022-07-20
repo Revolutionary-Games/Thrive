@@ -86,6 +86,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
+    public bool AffectedBySlime;
 
     /// <summary>
     ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -1059,6 +1060,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Not enough ATP to move at full speed
             force *= 0.5f;
         }
+
+        if (AffectedBySlime)
+            force *= 0.25f;
 
         if (IsPlayerMicrobe && CheatManager.Speed > 1)
             force *= Mass * CheatManager.Speed;

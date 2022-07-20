@@ -249,7 +249,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var colony = stage!.Player!.Colony;
         if (colony == null)
         {
-            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy);
+            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy) || GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(slime);
         }
 
         return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
@@ -312,7 +312,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             showToxin = player.AgentVacuoleCount > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin,
+        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, player.AffectedBySlime, showToxin,
             player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;

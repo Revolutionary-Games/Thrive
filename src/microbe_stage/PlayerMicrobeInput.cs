@@ -68,6 +68,12 @@ public class PlayerMicrobeInput : NodeWithInput
         stage.Player?.EmitToxin();
     }
 
+    [RunOnKey("g_secrete_slime")]
+    public void SecreteSlime(float delta)
+    {
+        stage.Player?.SecreteSlime(delta);
+    }
+
     [RunOnKeyDown("g_toggle_engulf")]
     public void ToggleEngulf()
     {
@@ -78,7 +84,7 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
-        else if (!stage.Player.Membrane.Type.CellWall)
+        else if (!stage.Player.Membrane.Type.CellWall && !stage.Player.AffectedBySlime)
         {
             stage.Player.State = Microbe.MicrobeState.Engulf;
         }

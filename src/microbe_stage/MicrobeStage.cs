@@ -501,6 +501,8 @@ public class MicrobeStage : StageBase<Microbe>
         if (!IsLoadedFromSave)
         {
             Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            var slime = SimulationParameters.Instance.GetCompound("slime");
+            Clouds.AddCloud(slime, 300000.0f, new Vector3(0.0f, 0.0f, 50.0f));
         }
 
         patchManager.CurrentGame = CurrentGame;

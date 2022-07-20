@@ -171,6 +171,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath OxytoxyBarPath = null!;
 
     [Export]
+    public NodePath SlimeBarPath = null!;
+
+    [Export]
     public NodePath AgentsPanelBarContainerPath = null!;
 
     [Export]
@@ -205,6 +208,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound nitrogen = null!;
     protected Compound oxygen = null!;
     protected Compound oxytoxy = null!;
+    protected Compound slime = null!;
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
@@ -295,6 +299,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private ActionButton fireToxinHotkey = null!;
     private Control agentsPanel = null!;
     private ProgressBar oxytoxyBar = null!;
+    private ProgressBar slimeBar = null!;
     private CustomDialog? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
 
@@ -399,6 +404,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         compoundsPanelCompressButton = GetNode<Button>(CompoundsPanelCompressButtonPath);
 
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
+        slimeBar = GetNode<ProgressBar>(SlimeBarPath);
         atpBar = GetNode<TextureProgress>(AtpBarPath);
         healthBar = GetNode<TextureProgress>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
@@ -453,6 +459,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
         oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        slime = SimulationParameters.Instance.GetCompound("slime");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
@@ -940,6 +947,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
+
+        slimeBar.MaxValue = compounds.GetCapacityForCompound(slime);
+        GUICommon.SmoothlyUpdateBar(slimeBar, compounds.GetCompoundAmount(slime), delta);
+        slimeBar.GetNode<Label>("Value").Text = slimeBar.Value + " / " + slimeBar.MaxValue;
     }
 
     protected void UpdateReproductionProgress()
@@ -1150,9 +1161,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract void UpdateAbilitiesHotBar();
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showingSignaling, bool engulfOn)
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool engulfBlocked, bool showToxin, bool showingSignaling, bool engulfOn)
     {
         engulfHotkey.Visible = showEngulf;
+        engulfHotkey.Disabled = engulfBlocked;
         fireToxinHotkey.Visible = showToxin;
         signallingAgentsHotkey.Visible = showingSignaling;
 
