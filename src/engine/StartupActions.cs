@@ -16,11 +16,11 @@ public class StartupActions : Node
         // TODO: for devbuilds it would be nice to print the hash here
         GD.Print("This is Thrive version: ", Constants.Version);
 
-        // Add crash logger if debugger not attached
+        // Add unhandled exception logger if debugger not attached
         if (!Debugger.IsAttached)
         {
-            GD.Print("Crash logger attached");
-            GD.UnhandledException += CrashLogger.UnhandledException;
+            GD.Print("Unhandled exception logger attached");
+            GD.UnhandledException += UnhandledExceptionLogger.UnhandledException;
         }
 
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
