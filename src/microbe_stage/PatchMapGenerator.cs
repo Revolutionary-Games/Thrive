@@ -65,21 +65,32 @@ public static class PatchMapGenerator
 
             if (regionType == PatchRegion.RegionType.Continent)
             {
-                // Ensure the region is non-empty if we need a tidepool
-                numberOfPatches = random.Next(tidepool == null ? 1 : 0, 4);
-
                 // All continents must have at least one coastal patch.
                 NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName);
+
+                // Ensure the region is non-empty if we need a tidepool.
+                // Region should not have duplicate biomes, so at most 2 patches will be added.
+                numberOfPatches = random.Next(tidepool == null ? 1 : 0, 3);
+
+                using var availableBiomes =
+                    new[] { BiomeType.Estuary, BiomeType.Tidepool }.OrderBy(_ => random.Next()).GetEnumerator();
 
                 while (numberOfPatches > 0)
                 {
                     // Add at least one tidepool to the map, otherwise choose randomly
-                    var patchIndex = tidepool == null ? BiomeType.Tidepool : (BiomeType)random.Next(0, 3);
-                    var patch = NewPredefinedPatch(patchIndex, ++currentPatchId, region, regionName);
+                    availableBiomes.MoveNext();
+                    var biomeType = availableBiomes.Current;
+                    var patch = NewPredefinedPatch(biomeType, ++currentPatchId, region, regionName);
                     --numberOfPatches;
 
-                    if (patchIndex == BiomeType.Tidepool)
+                    if (biomeType == BiomeType.Tidepool)
                         tidepool ??= patch;
+                }
+
+                // If there's no tidepool, add one
+                if (tidepool == null)
+                {
+                    NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
                 }
             }
             else
@@ -113,7 +124,7 @@ public static class PatchMapGenerator
                 NewPredefinedPatch(BiomeType.Cave, ++currentPatchId, region, regionName);
             }
 
-            BuildRegion(region);
+            BuildRegionSize(region);
             coordinates = GenerateCoordinates(region, map, random, minDistance);
 
             // If there is no more place for the current region, abandon it.
@@ -329,7 +340,12 @@ public static class PatchMapGenerator
         return i < Constants.PATCH_GENERATION_MAX_RETRIES ? coordinate : Vector2.Inf;
     }
 
-    private static void BuildPatches(PatchRegion region, Random random)
+    private static bool IsWaterPatch(Patch patch)
+    {
+        return patch.BiomeType != BiomeType.Cave && patch.BiomeType != BiomeType.Vents;
+    }
+
+    private static void BuildPatchesInRegion(PatchRegion region, Random random)
     {
         var sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
 
@@ -485,7 +501,7 @@ public static class PatchMapGenerator
         }
     }
 
-    private static void BuildRegion(PatchRegion region)
+    private static void BuildRegionSize(PatchRegion region)
     {
         // Initial size with no patch in it
         region.Width = region.Height = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN;
@@ -524,8 +540,7 @@ public static class PatchMapGenerator
 
             case PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea:
             {
-                int verticalPatchCount = region.Patches.Count(p =>
-                    p.BiomeType != BiomeType.Cave && p.BiomeType != BiomeType.Vents);
+                int verticalPatchCount = region.Patches.Count(IsWaterPatch);
 
                 region.Width += offset;
 
@@ -544,7 +559,7 @@ public static class PatchMapGenerator
     {
         foreach (var region in map.Regions)
         {
-            BuildPatches(region.Value, random);
+            BuildPatchesInRegion(region.Value, random);
             foreach (var patch in region.Value.Patches)
             {
                 map.AddPatch(patch);
@@ -572,7 +587,9 @@ public static class PatchMapGenerator
                     {
                         case PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean:
                         {
-                            int maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count) - 1;
+                            int maxIndex =
+                                Math.Min(region.Patches.Count(IsWaterPatch), adjacent.Patches.Count(IsWaterPatch)) - 1;
+
                             int lowestConnectedLevel = random.Next(0, maxIndex);
 
                             for (int i = 0; i <= lowestConnectedLevel; ++i)
@@ -585,7 +602,8 @@ public static class PatchMapGenerator
 
                         case PatchRegion.RegionType.Continent:
                         {
-                            LinkPatches(region.Patches[0], adjacent.Patches.Random(random));
+                            LinkPatches(region.Patches[0],
+                                adjacent.Patches.OrderBy(_ => random.Next()).First(IsWaterPatch));
                             break;
                         }
                     }
@@ -600,7 +618,9 @@ public static class PatchMapGenerator
                 {
                     if (adjacent.Type == PatchRegion.RegionType.Continent)
                     {
-                        int maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count);
+                        int maxIndex =
+                            Math.Min(region.Patches.Count(IsWaterPatch), adjacent.Patches.Count(IsWaterPatch));
+
                         int patchIndex = random.Next(0, maxIndex);
                         LinkPatches(region.Patches[patchIndex], adjacent.Patches[patchIndex]);
                     }
