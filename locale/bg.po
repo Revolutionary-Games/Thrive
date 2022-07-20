@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-16 15:13+0100\n"
-"PO-Revision-Date: 2022-07-14 11:07+0000\n"
+"PO-Revision-Date: 2022-07-17 18:13+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -1949,7 +1949,7 @@ msgstr "Произволно създаване на планетата"
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Тази стойност трябва да е положително цяло число"
+msgstr "Идентификаторът трябва да е положително цяло число"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
@@ -4006,9 +4006,8 @@ msgstr "Текущо местообитание"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:133
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
-#, fuzzy
 msgid "SEED_LABEL"
-msgstr "Биом: {0}"
+msgstr "Идентификатор: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
