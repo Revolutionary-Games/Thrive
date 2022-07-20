@@ -55,7 +55,7 @@
             var oxytoxyScore = 0.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
-                if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
+                if (organelle.Definition.HasPilusComponent)
                 {
                     pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
                     continue;

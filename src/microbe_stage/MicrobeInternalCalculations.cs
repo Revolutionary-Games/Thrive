@@ -8,7 +8,7 @@ public static class MicrobeInternalCalculations
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
 
-        var movementOrganelles = organelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>())
+        var movementOrganelles = organelles.Where(o => o.Definition.HasMovementComponent)
             .ToList();
 
         foreach (var organelle in movementOrganelles)
@@ -61,7 +61,7 @@ public static class MicrobeInternalCalculations
         {
             microbeMass += organelle.Definition.Mass;
 
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
 
@@ -133,7 +133,7 @@ public static class MicrobeInternalCalculations
         {
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
-            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            if (organelle.Definition.HasCiliaComponent)
             {
                 ++ciliaCount;
 
