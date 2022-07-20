@@ -13,6 +13,7 @@
         private readonly PatchMap map;
         private readonly Species species;
         private readonly Random random;
+        private readonly SimulationCache cache;
 
         public FindBestMigration(AutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
             PatchMap map, Species species, Random random, int migrationsToTry,
@@ -23,6 +24,7 @@
             this.map = map;
             this.species = species;
             this.random = new Random(random.Next());
+            cache = new SimulationCache(worldSettings);
         }
 
         public override bool CanRunConcurrently => true;
@@ -44,7 +46,7 @@
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetGlobalPopulation(species);
 
@@ -63,16 +65,14 @@
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
+
+            // Only simulate the affected patches
             config.PatchesToRun.Add(migration.From);
             config.PatchesToRun.Add(migration.To);
 
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
-            // TODO: this could be faster to just simulate the source and
-            // destination patches (assuming in the future no global effects of
-            // migrations are added, which would need a full patch map
-            // simulation anyway)
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetGlobalPopulation(species);
 

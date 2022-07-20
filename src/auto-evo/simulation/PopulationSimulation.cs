@@ -17,10 +17,16 @@
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        public static void Simulate(SimulationConfiguration parameters)
+        public static void Simulate(SimulationConfiguration parameters, SimulationCache? existingCache)
         {
+            if (existingCache?.MatchesSettings(parameters.WorldSettings) == false)
+                throw new ArgumentException("Given cache doesn't match world settings");
+
+            // This only seems to help a bit, so caching entirely in an auto-evo task by adding the cache parameter
+            // to IRunStep.RunStep might not be worth the effort at all
+            var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
+
             var random = new Random();
-            var cache = new SimulationCache(parameters.WorldSettings);
 
             var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 
