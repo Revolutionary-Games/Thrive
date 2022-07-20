@@ -81,8 +81,7 @@
 
             foreach (var currentSpecies in species)
             {
-                var currentResult = new RunResults.SpeciesResult(currentSpecies);
-                results.ReplaceSpeciesResult(currentSpecies, currentResult);
+                var currentResult = results.GetSpeciesResultForInternalUse(currentSpecies);
 
                 foreach (var patch in patches)
                 {
@@ -131,7 +130,7 @@
 
                     // All species even ones not in a patch need to have their population numbers added
                     // as the simulation expects to be able to get the populations
-                    currentResult.NewPopulationInPatches.Add(patch, currentPopulation);
+                    currentResult.NewPopulationInPatches[patch] = currentPopulation;
                 }
             }
 
