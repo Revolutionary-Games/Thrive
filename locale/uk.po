@@ -89,9 +89,9 @@ msgstr ""
 "input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
 "input],[thrive:input]g_move_right[/thrive:input] та миша для переміщення. "
 "[thrive:input]g_fire_toxin[/thrive:input] стріляти [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound] якщо маєте токсинову вакуоль. [thrive:"
+"\"oxytoxy\"][/thrive:compound], якщо маєте токсинову вакуоль. [thrive:"
 "input]g_toggle_engulf[/thrive:input] для перемикання режиму поглинання. Ви "
-"можете змінювати масштаб за допомогою колесика миші."
+"можете змінювати масштаб за допомогою коліщатка миші."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -2891,7 +2891,7 @@ msgstr "Команда з проджект менеджменту"
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr "Допоміжні сили/програмінг"
+msgstr "Pull Requests / Програмування"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
@@ -4268,11 +4268,11 @@ msgstr "Типи Мембрани"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:546
 msgid "FLUIDITY_RIGIDITY"
-msgstr "Рідкуватість / Жорсткість"
+msgstr "Рухливість / Жорсткість"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
 msgid "FLUID"
-msgstr "Рідкуватість"
+msgstr "Рухливість"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
 msgid "RIGID"
@@ -4327,8 +4327,8 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ця панель показує очікувану чисельність популяції через авто-ево(атоматичну "
 "еволюцію) для відредагованого виду.\n"
-"Авто-ево запускає симуляцію популяцій, яка є іншою частину ( окрім вашого "
-"власного виконання) яка впливає на вашу популяцію."
+"Авто-ево запускає симуляцію популяцій, яка є іншим фактором ( окрім вашого "
+"власного виконання), який впливає на вашу популяцію."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:936
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1152
@@ -4610,7 +4610,7 @@ msgstr "ВИМИРАННЯ"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Як і 99% усіх видів які коли-небудь існували, ваш вид також вимер. Інші "
-"заповнять вашу нішу процвітуть, але це будете не ви. Ви будете забуті, "
+"заповнять вашу нішу і процвітатимуть, але це будете не ви. Ви будете забуті, "
 "невдалий експеримент еволюції."
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
@@ -4653,7 +4653,7 @@ msgstr "ВИМИРАННЯ В ДІЛЯНЦІ"
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 "Ваш вид загинув в цій ділянці.\n"
-"Але це ще не кінець ви досі здатні вибрати нову ділянку для гри!"
+"Але це ще не кінець, ви досі здатні вибрати нову ділянку для гри!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
