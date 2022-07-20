@@ -94,8 +94,7 @@ public class MicrobeStage : StageBase<Microbe>
         // Start a new game if started directly from MicrobeStage.tscn
         if (CurrentGame == null)
         {
-            WorldGenerationSettings settings = new WorldGenerationSettings();
-            CurrentGame = GameProperties.StartNewMicrobeGame(settings);
+            CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         }
 
         ResolveNodeReferences();
