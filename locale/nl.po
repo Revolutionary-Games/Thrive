@@ -8,32 +8,32 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-16 15:13+0100\n"
-"PO-Revision-Date: 2022-04-07 14:12+0000\n"
-"Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
+"PO-Revision-Date: 2022-07-20 09:20+0000\n"
+"Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Gemakkelijk"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normaal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Moeilijk"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Aangepast"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -100,32 +100,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou opnemen door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt je langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/thrive:input] te drukken om te stoppen."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Procaryote Structuren\n"
-"\n"
-"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] van [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolise uit, en neemt 1 Hex in beslag\n"
-"\n"
-"Thylakoïden: Produceert 1/3 van de hoeveelheid [thrive:compound type=\"glucose\"][/thrive:compound] dan een normale chloroplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
-"\n"
-"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"Cytoplasma: Bevat opslagruimte en voert glycolyse uit (Produceert kleine hoeveelheden [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Zodra je klaar bent met fagocytose zullen alle objecten die daarbij gevangen zijn in het celmembraan vastgehouden worden tot ze verteerd worden. Onverteerbare objecten zullen altijd uitgescheiden worden, dus wees er zeker van dat je de nodige mutaties om ze te kunnen verwerken hebt. Enzymen helpen enorm met vertering; deze enzymen worden geleverd door lysozomen en het is dan ook zeer aan te raden om dit organel te evolueren, aangezien het de spijsvertering veel efficiënter maakt."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
+msgstr "Lysozoom is echter alleen beschikbaar voor eukaryoten. Prokaryoten hebben zulke organellen niet en verteren voedsel dus nogal slecht. Voor kleinere cellen is dat geen probleem, maar voor grotere cellen is het niet hebben van lysozomen een enorm nadeel."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
+msgstr "Met name celwanden van cellulose en chitine kunnen niet verteerd worden zonder het benodigde enzym."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -388,8 +372,9 @@ msgid "TOGGLE_ENGULF"
 msgstr "Overspoelen"
 
 #: ../simulation_parameters/common/input_options.json:48
+#, fuzzy
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Houd ingedrukt om de pakcommando's te tonen"
 
 #: ../simulation_parameters/common/input_options.json:52
 #: ../src/microbe_stage/MicrobeStage.tscn:1988
@@ -484,38 +469,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Verplaats organellen"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Beweging"
+msgstr "3D-beweging"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Opwaarts bewegen of springen"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Neerwaarts bewegen of bukken"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editor"
+msgstr "3D-editor"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Houd ingedrukt om tussen slepen en draaien te wisselen"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Overschakelen naar frontale camera"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Overschakelen naar rechtercamera"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Overschakelen naar bovencamera"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -552,18 +535,16 @@ msgid "TOGGLE_PAUSE"
 msgstr "Pauzeren"
 
 #: ../simulation_parameters/common/input_options.json:235
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Open/Sluit debug paneel"
+msgstr "Open/Sluit debugpaneel"
 
 #: ../simulation_parameters/common/input_options.json:239
 msgid "TOGGLE_FPS"
 msgstr "FPS-Teller"
 
 #: ../simulation_parameters/common/input_options.json:243
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "FPS-Teller"
+msgstr "Open/sluit FPS-teller"
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "QUICK_SAVE"
@@ -586,9 +567,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Fullscreen"
 
 #: ../simulation_parameters/common/input_options.json:267
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "Ontbinden aan/uit"
+msgstr "Schakel de HUD in/uit"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -632,9 +612,8 @@ msgstr "Ijzer-chemolithoautotrofie"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Chemosynthese"
+msgstr "Thermosynthese"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -822,21 +801,19 @@ msgstr "Zonlicht"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
-msgstr ""
+msgstr "Temperatuur"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Cellulose"
+msgstr "Cellulase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Chitine"
+msgstr "Chitinase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -914,9 +891,8 @@ msgstr "Stikstofbindende plastide"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Chemosynthese"
+msgstr "Thermosynthase"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -992,21 +968,18 @@ msgstr "Cilia"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oxytoxysoom"
+msgstr "Lysozoom"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
 msgstr "Afgebroken."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Afgerond."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Niet bezig."
 
@@ -1019,9 +992,8 @@ msgid "STARTING"
 msgstr "Starten"
 
 #: ../src/auto-evo/AutoEvoRun.cs:294
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "Bevolking van {0} veranderd met {1} in {2} vanwege: {3}"
 
 #: ../src/auto-evo/RunResults.cs:593
 msgid "POPULATION_COLON"
@@ -1036,24 +1008,20 @@ msgid "PREVIOUS_COLON"
 msgstr "vorige:"
 
 #: ../src/auto-evo/RunResults.cs:626
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "gen code:"
+msgstr "afgesplitst van {0}"
 
 #: ../src/auto-evo/RunResults.cs:639
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "gen code:"
+msgstr "is verschenen om een niche te vullen"
 
 #: ../src/auto-evo/RunResults.cs:642
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "verspreid naar patches:"
+msgstr "is verschenen door verschillende selectiedruk"
 
 #: ../src/auto-evo/RunResults.cs:659
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "verspreid naar patches:"
+msgstr "bevolking in sommige gebieden afgesplitst om nieuwe soort {0} te vormen"
 
 #: ../src/auto-evo/RunResults.cs:675
 msgid "SPECIES_HAS_A_MUTATION"
@@ -1064,7 +1032,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen code:"
 
 #: ../src/auto-evo/RunResults.cs:691
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "verspreid naar patches:"
 
@@ -1073,9 +1040,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} door de sturen: {1} populatie van patch: {2}"
 
 #: ../src/auto-evo/RunResults.cs:718
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "POPULATIE:"
+msgstr "bevolking in gebieden:"
 
 #: ../src/auto-evo/RunResults.cs:828
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1083,68 +1049,63 @@ msgstr "stierf uit op de planeet"
 
 #: ../src/auto-evo/RunResults.cs:883
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] is uitgestorven!"
 
 #: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr ""
+msgstr "De bevolking van [b][u]{0}[/u][/b] is vermeerderd tot {1}"
 
 #: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr ""
+msgstr "De bevolking van [b][u]{0}[/u][/b] is verminderd tot {1}"
 
 #: ../src/auto-evo/RunResults.cs:907
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] is verdwenen van dit gebied"
 
 #: ../src/auto-evo/RunResults.cs:931
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd van dit gebied naar {1}"
 
 #: ../src/auto-evo/RunResults.cs:936
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd van {1} naar {2}"
 
 #: ../src/auto-evo/RunResults.cs:942
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd naar {1}"
 
 #: ../src/auto-evo/RunResults.cs:961
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "gen code:"
+msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort om een niche te vullen"
 
 #: ../src/auto-evo/RunResults.cs:967
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "verspreid naar patches:"
+msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
 msgstr "Error: chunk niet gevonden"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "Samenstellings-wolken"
+msgstr "Verbruik van {0}"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "Samenstellings-wolken"
+msgstr "Verbruik van {0}"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Uniform verdeelde voedselbron van {0} in de omgeving"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Predatie van {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:39
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Gebruikersnaam:"
+msgstr "Stam"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:301
@@ -1154,9 +1115,8 @@ msgstr "Structuur"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:416
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "gereproduceerd"
+msgstr "Reproductie"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:344
@@ -1182,15 +1142,13 @@ msgstr "Verwijder"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "Dupliceer Speler"
+msgstr "Dupliceer type"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:545
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "gereproduceerd"
+msgstr "Reproductiemethode:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
@@ -1213,48 +1171,46 @@ msgstr "VOLGENDE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Onverbonden cellen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
+"Er zijn cellen die niet met de rest verbonden zijn.\n"
+"Gelieve alle geplaatse cellen met elkaar te verbinden om verder te gaan."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#, fuzzy
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Niet mogelijk om gebruikt celtype te verwijderen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Een celtype dat momenteel gebruikt wordt in je lichaamsplan kan niet verwijderd worden"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Maak een nieuwe microbe"
+msgstr "Maak een nieuw celtype"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:572
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr "Je kunt nieuwe soorten cellen maken door bestaande cellen te dupliceren en ze een nieuwe naam te geven. Celtypes kunnen aangepast worden om ze te specialiseren voor verschillende functies. Wanneer je een celtype aanpast zullen alle geplaatste cellen van dat type geüpdated worden."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:586
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:706
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Snelheid:"
+msgstr "Nieuwe naam:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:593
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:713
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Nieuw spel"
+msgstr "Nieuwe naam"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_CELLS"
-msgstr "Plaats organellen"
+msgstr "Meerdere cellen"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
@@ -1263,13 +1219,13 @@ msgstr "Plaats organellen"
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
+#, fuzzy
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Microbe-editor Laden"
+msgstr "Vroege Multicellulaire bewerker laden"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
@@ -1288,66 +1244,77 @@ msgstr "uitvoeringsstatus:"
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Actie geblokkeerd tijdens een andere actie"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:73
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Kies een celtype om hier te bewerken vanuit het Editortabblad"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
-#, fuzzy
 msgid "FPS"
-msgstr "Maximale FPS:"
+msgstr "FPS: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
-#, fuzzy
 msgid "FRAME_DURATION"
-msgstr "aërobe ademhaling"
+msgstr "Delta: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Onbekende muisknop"
+msgstr "Onbekend op Windows"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
+"Procestijd: {0} s\n"
+"Fysicatijd: {1} s\n"
+"Entiteiten: {2}, andere: {3}\n"
+"Gespawned: {4}, Ongespawned: {5}\n"
+"Gebruikte nodes: {6}\n"
+"Gebruikt geheugen: {7}\n"
+"GPU-geheugen: {8}\n"
+"Gerenderde objecten: {9}\n"
+"Draw calls: {10}, waarvan 2D: {11}\n"
+"Gerenderde vertexen: {12}\n"
+"Materiaalveranderingen: {13}\n"
+"Shaderveranderingen: {14}\n"
+"Verweesde nodes: {15}\n"
+"Audiovertraging: {16} ms\n"
+"Totaal aantal threads: {17}\n"
+"Totale CPU-tijd:\n"
+"{18}"
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
-#, fuzzy
 msgid "METRICS"
-msgstr "FPS-Teller"
+msgstr "Prestatietellers"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Debugpaneel"
 
 #: ../src/engine/DebugOverlays.tscn:96
-#, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "Media Afspelen"
+msgstr "Toon FPS"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Spawn entiteit met botsingsvorm"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "ENTITY_LABEL"
-msgstr ""
+msgstr "Entiteitslabel"
 
 #: ../src/engine/DebugOverlays.tscn:128
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Help met vertalen"
+msgstr "Transparantie"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
 msgid "LOADING"
@@ -1472,9 +1439,8 @@ msgid "ESCAPE"
 msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Terug"
+msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
@@ -1485,13 +1451,14 @@ msgid "SYSREQ"
 msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
+#, fuzzy
 msgid "PAGEUP"
-msgstr ""
+msgstr "Pagina naar boven"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 #, fuzzy
 msgid "PAGEDOWN"
-msgstr "Beweeg omlaag"
+msgstr "Pagina naar beneden"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
@@ -1503,23 +1470,23 @@ msgstr "Numlock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
@@ -1534,7 +1501,6 @@ msgid "VOLUMEDOWN"
 msgstr "Geluid Zachter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-#, fuzzy
 msgid "VOLUMEMUTE"
 msgstr "Geluid Uit"
 
@@ -1715,9 +1681,8 @@ msgid "KP9"
 msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Onbekende muisknop"
+msgstr "Onbekende knop"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -1812,19 +1777,19 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}concentratie is met {1} gedaald"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Glucoseconcentratie is drastisch gedaald!"
 
 #: ../src/general/MainMenu.cs:241
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Ingelogd als: {0}"
 
 #: ../src/general/MainMenu.tscn:175
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Start een nieuw spel"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
@@ -1832,7 +1797,7 @@ msgstr "Nieuw spel"
 
 #: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Laad eerder opgeslagen spellen"
 
 #: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -1840,9 +1805,8 @@ msgid "LOAD_GAME"
 msgstr "Laad spel"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Hervat"
+msgstr "Pas je instellingen aan"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
@@ -1866,7 +1830,7 @@ msgstr "Credits"
 
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Verlaat het spel"
 
 #: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
@@ -1887,15 +1851,15 @@ msgstr "Terug"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
-msgstr ""
+msgstr "Mods"
 
 #: ../src/general/MainMenu.tscn:374
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Kunstgalerie"
 
 #: ../src/general/MainMenu.tscn:386
 msgid "LICENSES"
-msgstr ""
+msgstr "Licenties"
 
 #: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
@@ -1907,89 +1871,86 @@ msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijn
 
 #: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
-msgstr ""
+msgstr "Foutmeldingen bij het laden van de mod"
 
 #: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het laden van een of meerdere mods. Logs kunnen bijkomende informatie bevatten."
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1052
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Hervat"
+msgstr "Start het spel met deze instellingen"
 
 #: ../src/general/NewGameSettings.cs:291
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr ""
+msgstr "Sommige instellingen zijn ongeldig"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Vooraf ingestelde moelijkheidsgraad"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
+#, fuzzy
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Enkel LZWHK"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:821
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "(beperkt onderdelen en mogelijkheden tot enkel Leven Zoals Wij Het Kennen)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Oorsprong van het leven"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:844
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
+msgstr "(startlocatie)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:858
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Hervat"
+msgstr "Sommige opties kunnen uitgeschakeld zijn als \"Enkel LZWHK\" ingeschakeld is"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hydrothermale bronnen"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Klein warm vijvertje"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermia (willekeurig)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Willekeurige seed voor de planeet"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Hervat"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Moeilijkheidsgraad"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Planeet"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
@@ -1997,59 +1958,52 @@ msgstr "Overig"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Multiplier voor mutatiekost"
 
 #: ../src/general/NewGameSettings.tscn:412
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(kost van organellen, membranen en andere items in de editor)"
 
 #: ../src/general/NewGameSettings.tscn:429
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutatiepunten"
+msgstr "Mutatiesnelheid van de AI"
 
 #: ../src/general/NewGameSettings.tscn:474
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "(snelheid waarmee AI-soorten muteren)"
 
 #: ../src/general/NewGameSettings.tscn:491
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Samenstellings-wolken"
+msgstr "Dichtheid van verbindingswolken"
 
 #: ../src/general/NewGameSettings.tscn:536
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr "Samenstellings-wolken"
+msgstr "(dichtheid van wolken van verbindingen zoals glucose en ammoniak in de omgeving)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Penalisatie van dood van speler"
 
 #: ../src/general/NewGameSettings.tscn:598
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "(coëfficient voor de vermindering in bevolking van spelersoort voor elke keer dat de speler dood gaat)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Retentie van glucose in de omgeving"
 
 #: ../src/general/NewGameSettings.tscn:659
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "(proportie van de glucose die overblijft in de omgeving elke generatie)"
 
 #: ../src/general/NewGameSettings.tscn:676
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulatiekosten"
 
 #: ../src/general/NewGameSettings.tscn:721
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Osmoregulatiekosten"
+msgstr "(kost van osmoregulatie van spelersoort)"
 
 #: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
