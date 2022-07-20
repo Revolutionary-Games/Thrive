@@ -61,12 +61,24 @@
             // Copy extra species
             species.AddRange(parameters.ExtraSpecies);
 
-            // Prepare population numbers for each patch for each of the included species
-            foreach (var entry in parameters.OriginalMap.Patches)
+            foreach (var entry in species)
             {
-                var patch = entry.Value;
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (entry == null)
+                    throw new Exception("Species in a simulation run is null");
+            }
 
-                foreach (var currentSpecies in species)
+            // Prepare population numbers for each patch for each of the included species
+            var patches = parameters.OriginalMap.Patches.Values;
+
+            var results = parameters.Results;
+
+            foreach (var currentSpecies in species)
+            {
+                var currentResult = new RunResults.SpeciesResult(currentSpecies);
+                results.ReplaceSpeciesResult(currentSpecies, currentResult);
+
+                foreach (var patch in patches)
                 {
                     long currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
 
@@ -113,15 +125,8 @@
 
                     // All species even ones not in a patch need to have their population numbers added
                     // as the simulation expects to be able to get the populations
-                    parameters.Results.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation);
+                    currentResult.NewPopulationInPatches.Add(patch, currentPopulation);
                 }
-            }
-
-            foreach (var entry in species)
-            {
-                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
-                if (entry == null)
-                    throw new Exception("Species in a simulation run is null");
             }
 
             return species;

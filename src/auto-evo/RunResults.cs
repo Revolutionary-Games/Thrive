@@ -230,6 +230,22 @@
             }
         }
 
+        /// <summary>
+        ///   Replaces the results for a given species with the specific value
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Should be used very carefully and not at all by normal auto-evo steps. Used for more efficient auto-evo
+        ///     run setups. Doesn't use any locking as this is not meant to be called before a run is started.
+        ///   </para>
+        /// </remarks>
+        /// <param name="species">The species to replace results for</param>
+        /// <param name="newResults">The new results to reset</param>
+        public void ReplaceSpeciesResult(Species species, SpeciesResult newResults)
+        {
+            results[species] = newResults;
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)
