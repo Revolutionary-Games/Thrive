@@ -65,13 +65,15 @@
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
-
-            // Only simulate the affected patches
             config.PatchesToRun.Add(migration.From);
             config.PatchesToRun.Add(migration.To);
 
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
+            // TODO: this could be faster to just simulate the source and destination patches
+            // (assuming in the future no global effects of migrations are added, which would need a full patch map
+            // simulation anyway). However that would need to take into account that the no-migration variant,
+            // as it simulates all patches, would always result in higher populations
             PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetGlobalPopulation(species);
