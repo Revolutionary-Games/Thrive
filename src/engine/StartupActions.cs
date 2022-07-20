@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using Godot;
 using Path = System.IO.Path;
@@ -14,6 +15,13 @@ public class StartupActions : Node
         // Print game version
         // TODO: for devbuilds it would be nice to print the hash here
         GD.Print("This is Thrive version: ", Constants.Version);
+
+        // Add crash logger if debugger not attached
+        if (!Debugger.IsAttached)
+        {
+            GD.Print("Crash logger attached");
+            GD.UnhandledException += CrashLogger.UnhandledException;
+        }
 
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
             TranslationServer.GetLocale());
