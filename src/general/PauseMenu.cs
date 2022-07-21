@@ -190,6 +190,8 @@ public class PauseMenu : CustomDialog
         helpScreen.Category = HelpCategory;
         InputManager.RegisterReceiver(this);
 
+        GetTree().SetAutoAcceptQuit(false);
+
         base._EnterTree();
     }
 
@@ -199,6 +201,8 @@ public class PauseMenu : CustomDialog
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
+
+        GetTree().SetAutoAcceptQuit(true);
     }
 
     public override void _Ready()
@@ -209,6 +213,16 @@ public class PauseMenu : CustomDialog
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+    }
+
+    public override void _Notification(int notification)
+    {
+        base._Notification(notification);
+
+        if (notification == NotificationWmQuitRequest)
+        {
+            ExitPressed();
+        }
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
