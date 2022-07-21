@@ -170,15 +170,18 @@ public class GalleryViewer : CustomDialog
             {
                 categoryCards[gallery.Key][category.Key] = new List<GalleryCard>();
 
+                int cardIndex = 0;
                 foreach (var asset in category.Value.Assets)
                 {
-                    var created = CreateGalleryItem(asset, itemsButtonGroup);
+                    var created = CreateGalleryItem(asset, itemsButtonGroup, cardIndex);
                     cardTile.AddChild(created);
 
                     if (category.Key != ALL_CATEGORY)
                         categoryCards[gallery.Key][ALL_CATEGORY].Add(created);
 
                     categoryCards[gallery.Key][category.Key].Add(created);
+
+                    cardIndex++;
                 }
 
                 if (category.Key == ALL_CATEGORY)
@@ -212,15 +215,17 @@ public class GalleryViewer : CustomDialog
         UpdateSlideshowButton();
     }
 
-    private GalleryCard CreateGalleryItem(Asset asset, ButtonGroup buttonGroup)
+    private GalleryCard CreateGalleryItem(Asset asset, ButtonGroup buttonGroup, int cardIndex)
     {
         GalleryCard item;
 
         switch (asset.Type)
         {
             case AssetType.Texture:
+                // cardIndex and IsImageOnlyCard are used to load the cards in the first tab seuqentially
                 item = GalleryCardScene.Instance<GalleryCard>();
-                item.Thumbnail = GD.Load<Texture>(asset.ResourcePath);
+                item.IsImageOnlyCard = true;
+                item.CardIndex = cardIndex;
                 break;
             case AssetType.ModelScene:
                 item = GalleryCardModelScene.Instance<GalleryCardModel>();

@@ -8,13 +8,6 @@ public class GalleryCardModel : GalleryCard
 
     private bool finishedLoadingImage;
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        imageLoadingIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);

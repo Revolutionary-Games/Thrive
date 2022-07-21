@@ -11,9 +11,13 @@ public class GalleryCard : Button
     [Export]
     public Texture MissingTexture = null!;
 
+    private const float LOAD_TIME_PER_CARD = 0.1f;
+
     private Label? titleLabel;
     private TextureRect? imagePreview;
     private Texture? thumbnail;
+    private bool isLoaded = false;
+    private float time;
 
     [Signal]
     public delegate void OnFullscreenView(GalleryCard item);
@@ -23,6 +27,10 @@ public class GalleryCard : Button
     /// </summary>
     [Export]
     public bool CanBeShownInASlideshow { get; set; } = true;
+
+    public bool IsImageOnlyCard { get; set; } = false;
+
+    public int CardIndex { get; set; }
 
     public Asset Asset { get; set; } = null!;
 
@@ -42,6 +50,18 @@ public class GalleryCard : Button
         imagePreview = GetNode<TextureRect>(TextureRectPath);
 
         UpdatePreview();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        time += delta;
+        if (IsImageOnlyCard && !isLoaded && time >= CardIndex * LOAD_TIME_PER_CARD)
+        {
+            Thumbnail = GD.Load<Texture>(Asset.ResourcePath);
+            isLoaded = true;
+        }
     }
 
     public override void _GuiInput(InputEvent @event)
