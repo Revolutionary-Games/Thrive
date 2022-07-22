@@ -51,6 +51,8 @@ public class PauseMenu : CustomDialog
 
     private bool exiting;
 
+    private int exitTries;
+
     [Signal]
     public delegate void OnResumed();
 
@@ -352,7 +354,10 @@ public class PauseMenu : CustomDialog
     {
         exitType = ExitType.QuitGame;
 
-        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        ++exitTries;
+
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning
+            || exitTries >= Constants.FORCE_CLOSE_PROGRAM_MAX_TRIES)
         {
             ConfirmExit();
         }
@@ -361,6 +366,8 @@ public class PauseMenu : CustomDialog
             GUICommon.Instance.PlayButtonPressSound();
             unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
+            unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
+            unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
         }
     }
 
@@ -388,6 +395,11 @@ public class PauseMenu : CustomDialog
                 Quit();
                 break;
         }
+    }
+
+    private void CancelExit()
+    {
+        exitTries = 0;
     }
 
     private void ReturnToMenu()
