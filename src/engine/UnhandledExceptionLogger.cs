@@ -1,11 +1,11 @@
 ﻿using Godot;
 
 /// <summary>
-///   Unhandled exception logger for any unhandled Mono exceptions
+///   Unhandled exception logger for any unhandled C# exceptions
 /// </summary>
 public class UnhandledExceptionLogger
 {
-    public static void UnhandledException(object sender, UnhandledExceptionArgs args)
+    public static void OnUnhandledException(object sender, UnhandledExceptionArgs args)
     {
         GD.PrintErr("------------ Begin of Unhandled Exception Log ------------\n",
             "The following exception prevented the game from running:\n\n",
