@@ -215,6 +215,9 @@ public class PauseMenu : CustomDialog
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
     }
 
     public override void _Notification(int notification)
@@ -223,7 +226,9 @@ public class PauseMenu : CustomDialog
 
         if (notification == NotificationWmQuitRequest)
         {
-            ExitPressed();
+            // For some reason we need to perform this later, otherwise Godot complains about a node being busy
+            // setting up children
+            Invoke.Instance.Perform(ExitPressed);
         }
     }
 
@@ -357,7 +362,7 @@ public class PauseMenu : CustomDialog
         ++exitTries;
 
         if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning
-            || exitTries >= Constants.FORCE_CLOSE_PROGRAM_MAX_TRIES)
+            || exitTries >= Constants.FORCE_CLOSE_AFTER_TRIES)
         {
             ConfirmExit();
         }
@@ -366,8 +371,6 @@ public class PauseMenu : CustomDialog
             GUICommon.Instance.PlayButtonPressSound();
             unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
-            unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
-            unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
         }
     }
 
