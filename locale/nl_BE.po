@@ -7,92 +7,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:13+0100\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2022-07-20 14:32+0300\n"
+"PO-Revision-Date: 2022-07-20 09:20+0000\n"
+"Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Makkelijk"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normaal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Moeilijk"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Aangepast"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Conceptkunst"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Op een verre buitenaardse planeet hebben eeuwenlange vulkanische activiteit en meteoorinslagen geleid tot de ontwikkeling van een nieuw fenomeen in het universum.\n"
-"\n"
-"Leven.\n"
-"\n"
-"Eenvoudige microben leven in de diepe delen van de oceaan. Jij bent de laatste universele gemeenschappelijke voorouder (LUCA) op deze planeet.\n"
-"\n"
-"Om te overleven in deze vijandige wereld, moet je alle verbindingen die je kunt vinden verzamelen en elke generatie evolueren om te concurreren met de andere soorten microben."
+msgstr "Microbestadium"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Organel plaatsen"
+msgstr "Multicellulair stadium"
 
 #: ../simulation_parameters/common/gallery.json:81
-#, fuzzy
 msgid "GENERAL"
-msgstr "Generatie:"
+msgstr "Algemeen"
 
 #: ../simulation_parameters/common/gallery.json:133
-#, fuzzy
 msgid "MODELS"
-msgstr "God modus"
+msgstr "Modellen"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Muziek"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Alle"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
-msgstr "Menu(toets)"
+msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Microbe editor laden"
+msgstr "Microbebewerker"
 
 #: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Microbe editor laden"
+msgstr "Multicellulaire bewerker"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -115,27 +100,12 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Je kan ook cellen, bacteriën, ijzerbrokken en cel brokken omsluiten die kleiner zijn dan jezelf door [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit zal extra [thrive:compound type=\"atp\"][/thrive:compound] kosten en zal je vertragen. Vergeet niet om een tweede keer op [thrive:input]g_toggle_engulf[/thrive:input] te drukken om de omsluitmodus te stoppen."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Prokaryotische Structuren\n"
-"\n"
-"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] van [thrive:compound type=\"glucose\"][/thrive:compound].\n"
-"\n"
-"Chemosynthetiserende Proteïnes: Produceren half het aantal [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogen sulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolyse uit, neemt 1 zeshoek in.\n"
-"\n"
-"Thylakoïden: Produceren 1/3de van het aantal [thrive:compound type=\"glucose\"][/thrive:compound] dat een normale chloroplast produceert, maar voert ook glycolyse uit, en neemt 1 zeshoek in.\n"
-"\n"
-"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound] anaëroob.\n"
-"\n"
-"Cytoplasma: Heeft opslagruimte en voert glycolise uit (produceert kleine hoeveelheden aan [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Zodra fagocytose klaar is zullen alle gevangen objecten in het celmembraan gehouden worden om verteerd te worden. Onverteerbare objecten zullen altijd uitgescheiden worden, dus zorg ervoor dat je de mutaties hebt die nodig zijn om ze te kunnen verwerken. Enzymen helpen bij de vertering en worden geleverd door het lysozoom. Het is sterk aangeraden om dit organen te evolueren om vertering stukken efficiënter te maken."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een toxine vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de omsluitmodus aan te zetten. Je kan in en uit zoomen met het muiswiel."
+msgstr "Lysozomen zijn echter enkel beschikbaar voor eukaryoten. Prokaryoten hebben zo'n organel niet, en dus verloopt de vertering nogal sloom. Voor kleine cellen is dat geen probleem, maar het is als grotere cel zeer nadelig om geen lysozomen te hebben."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
@@ -1226,7 +1196,7 @@ msgstr "ANNULEER ACTIE"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:161
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:164
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "VOLGENDE"
@@ -1820,7 +1790,7 @@ msgid "CLOSE"
 msgstr "Sluit"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -2638,40 +2608,40 @@ msgstr "speler stierf"
 msgid "EXTINCT_IN_PATCH"
 msgstr "stierf uit op de planeet"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "een overvloed"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "Redelijk wat"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "een degelijke hoeveelheid"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "een beetje"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "klein"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "heel klein"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "Spelerscel"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3837,7 +3807,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Kan geen cheat voor spawn-vijand gebruiken omdat deze patch geen vijandige soorten bevat"
 
@@ -4146,13 +4116,13 @@ msgstr "Microbe editor laden"
 msgid "INFINITE_MP"
 msgstr "Oneindige MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:124
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:127
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Ongeldige mod icoon map"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:133
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
 #, fuzzy
 msgid "SEED_LABEL"

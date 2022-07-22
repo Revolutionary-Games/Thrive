@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:13+0100\n"
-"PO-Revision-Date: 2022-07-14 11:07+0000\n"
+"POT-Creation-Date: 2022-07-20 14:32+0300\n"
+"PO-Revision-Date: 2022-07-17 18:13+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -1176,7 +1176,7 @@ msgstr "ОТКАЗ"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:161
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:164
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
@@ -1772,7 +1772,7 @@ msgid "CLOSE"
 msgstr "Затваряне"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -1949,7 +1949,7 @@ msgstr "Произволно създаване на планетата"
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Тази стойност трябва да е положително цяло число"
+msgstr "Идентификаторът трябва да е положително цяло число"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
@@ -2528,40 +2528,40 @@ msgstr "измиране"
 msgid "EXTINCT_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в изобилно количество"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "в обилно количество"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "в задоволително количество"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "в умерено количество"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "в ограничено количество"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} ({1} индивида)"
 
@@ -3696,7 +3696,7 @@ msgstr "Многоклетъчен организъм ({0} от {1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Макроскопичен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -3999,16 +3999,15 @@ msgstr "Зареждане на микробния редактор"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:124
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:127
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Текущо местообитание"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:133
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
-#, fuzzy
 msgid "SEED_LABEL"
-msgstr "Биом: {0}"
+msgstr "Идентификатор: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
