@@ -719,8 +719,8 @@
         "editorButtonGroup": "External",
         "editorButtonOrder": 3
     },
-    "slimeSecretor": {
-        "mpCost": 45,
+    "mucilageJet": {
+        "mpCost": 60,
         "initialComposition": {
             "ammonia": 1,
             "phosphates": 1
@@ -732,8 +732,7 @@
             }
         ],
         "processes": {
-            "glycolysis": 1,
-            "slime_synthesis": 1
+            "mucilage_synthesis": 1
         },
         "components": {
             "processor": {
@@ -741,16 +740,16 @@
             },
             "storage": {
                 "capacity": 0.5
-            }
+            },
+            "slimeJet": {}
         },
-        "prokaryoteChance": 0.2,
-        "chanceToCreate": 0.2,
+        "prokaryoteChance": 0.5,
+        "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
-        "name": "SLIME_SECRETOR",
-        "productionColour": "#834acb",
-        "consumptionColour": "#c4303d",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
+        "name": "MUCILAGE_JET",
+        "consumptionColour": "#00ffcc",
+        "iconPath": "res://assets/textures/gui/bevel/parts/MucilageJetIcon.png",
         "editorButtonGroup": "External",
         "editorButtonOrder": 3
     },

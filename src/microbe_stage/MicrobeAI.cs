@@ -252,7 +252,7 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
-            bool engulfPrey = microbe.CanEngulf(possiblePrey) && !microbe.AffectedBySlime &&
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
@@ -477,11 +477,15 @@ public class MicrobeAI
 
         microbe.LookAtPoint = targetPosition;
 
-        // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
-        if (DistanceFromMe(predatorLocation) < 100.0f &&
-            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+        if (DistanceFromMe(predatorLocation) < 100.0f)
         {
-            MoveWithRandomTurn(2.5f, 3.0f, random);
+            // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus
+            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+                MoveWithRandomTurn(2.5f, 3.0f, random);
+
+            // There's also a chance to jet away if we can
+            if (RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random) && microbe.SlimeJetCount > 0)
+                SecreteMucilage();
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -515,6 +519,9 @@ public class MicrobeAI
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
+
+        if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random) && microbe.SlimeJetCount > 0)
+            SecreteMucilage();
     }
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)
@@ -715,6 +722,14 @@ public class MicrobeAI
                 microbe.LookAtPoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
             }
+        }
+    }
+
+    private void SecreteMucilage()
+    {
+        if (microbe.Hitpoints > 0 && microbe.SlimeJetCount > 0)
+        {
+            microbe.QueueSecreteMucilage();
         }
     }
 

@@ -15,6 +15,7 @@ public partial class Microbe
     private readonly CompoundBag compounds = new(0.0f);
 
     private Compound atp = null!;
+    private Compound mucilage = null!;
 
     private Enzyme lipase = null!;
 
@@ -26,6 +27,9 @@ public partial class Microbe
 
     [JsonProperty]
     private Compound? queuedToxinToEmit;
+    
+    [JsonProperty]
+    private bool queuedSecreteMucilage;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -96,6 +100,9 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     public int AgentVacuoleCount { get; private set; }
+
+    [JsonProperty]
+    public int SlimeJetCount { get; private set; }
 
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
@@ -319,7 +326,16 @@ public partial class Microbe
 
     public void SecreteSlime(float delta)
     {
-        EjectCompound(SimulationParameters.Instance.GetCompound("slime"), Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta, 8);
+        if (SlimeJetCount < 1)
+            return;
+
+        // TODO eject in the direction of each jet and add together
+        SlimeJetFactor = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * SlimeJetCount * delta, 4);
+    }
+
+    public void QueueSecreteMucilage()
+    {
+        queuedSecreteMucilage = true;
     }
 
     /// <summary>
@@ -602,7 +618,8 @@ public partial class Microbe
         cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
-        AffectedBySlime = cloudSystem.AmountAvailable(SimulationParameters.Instance.GetCompound("slime"), GlobalTransform.origin, 1.0f) > Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE;
+        // Cells with jets aren't affected by mucilage
+        SlowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) > Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJetCount < 1;
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
@@ -1034,6 +1051,9 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
 
+        if (organelle.IsMucilageJet)
+            SlimeJetCount += 1;
+
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
@@ -1047,6 +1067,9 @@ public partial class Microbe
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
+
+        if (organelle.IsMucilageJet)
+            SlimeJetCount -= 1;
 
         organelle.OnRemovedFromMicrobe();
 

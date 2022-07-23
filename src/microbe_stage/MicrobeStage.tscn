@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=15]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/ingestedmatter.png" type="Texture" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/parts/MucilageJetIcon.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=41]
@@ -171,7 +173,7 @@ bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 bg_color = Color( 0.882353, 0.498039, 0.498039, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
-bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
+bg_color = Color( 0, 0.498039, 0.4, 1 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
@@ -398,6 +400,7 @@ AmmoniaInv = ExtResource( 3 )
 PhosphatesInv = ExtResource( 4 )
 HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
+SecreteMucilageHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteMucilage")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 PausePromptPath = NodePath("PausePrompt")
@@ -406,7 +409,7 @@ HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginC
 HoverPanelSeparatorPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/SpeciesSeparator")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
-SlimeBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer2/slime")
+MucilageBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer")
 ExtinctionBoxScene = ExtResource( 70 )
 PatchExtinctionBoxScene = ExtResource( 94 )
@@ -1452,8 +1455,8 @@ valign = 1
 [node name="AgentsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 margin_top = 473.0
 margin_right = 254.0
-margin_bottom = 567.0
-rect_min_size = Vector2( 254, 94 )
+margin_bottom = 593.0
+rect_min_size = Vector2( 254, 120 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1463,7 +1466,7 @@ custom_styles/panel = SubResource( 2 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 255.0
-margin_bottom = 93.049
+margin_bottom = 122.0
 
 [node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_right = 254.0
@@ -1508,7 +1511,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 254.0
-margin_bottom = 92.0
+margin_bottom = 121.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
@@ -1521,7 +1524,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 244.0
-margin_bottom = 30.0
+margin_bottom = 59.0
 
 [node name="oxytoxy" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 margin_right = 220.0
@@ -1573,15 +1576,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarContainer2" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body"]
-margin_left = 22.0
-margin_top = 5.0
-margin_right = 244.0
-margin_bottom = 30.0
-
-[node name="slime" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer2" groups=["CompoundBar"]]
+[node name="mucilage" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+margin_top = 29.0
 margin_right = 220.0
-margin_bottom = 25.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 25 )
@@ -1589,7 +1587,7 @@ custom_styles/bg = SubResource( 26 )
 step = 0.1
 percent_visible = false
 
-[node name="SlimeIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer2/slime"]
+[node name="MucilageIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 anchor_left = -0.00454545
 anchor_right = -0.00454545
 margin_left = -12.0
@@ -1598,19 +1596,19 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 57 )
+texture = ExtResource( 18 )
 expand = true
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer2/slime"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 margin_left = 18.0
 margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "SLIME"
+text = "MUCILAGE"
 valign = 1
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer2/slime"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -45.0
@@ -2063,16 +2061,16 @@ toggle_mode = true
 ActionIcon = ExtResource( 89 )
 ActionName = "g_pack_commands"
 
-[node name="SecreteSlime" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+[node name="SecreteMucilage" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
-hint_tooltip = "SECRETE_SLIME"
+hint_tooltip = "SECRETE_MUCILAGE"
 focus_mode = 2
-ActionIcon = ExtResource( 15 )
+ActionIcon = ExtResource( 19 )
 ActionName = "g_secrete_slime"
 
 [node name="HintText" type="Label" parent="MicrobeHUD"]
@@ -2133,7 +2131,7 @@ visible = true
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
-[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/SecreteSlime" to="PlayerMicrobeInput" method="SecreteSlime"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/SecreteMucilage" to="PlayerMicrobeInput" method="SecreteMucilage"]
 [connection signal="Cancelled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]

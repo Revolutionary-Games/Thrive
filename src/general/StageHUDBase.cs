@@ -147,6 +147,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath EngulfHotkeyPath = null!;
 
     [Export]
+    public NodePath SecreteMucilageHotkeyPath = null!;
+
+    [Export]
     public NodePath SignallingAgentsHotkeyPath = null!;
 
     [Export]
@@ -171,7 +174,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath OxytoxyBarPath = null!;
 
     [Export]
-    public NodePath SlimeBarPath = null!;
+    public NodePath MucilageBarPath = null!;
 
     [Export]
     public NodePath AgentsPanelBarContainerPath = null!;
@@ -208,7 +211,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound nitrogen = null!;
     protected Compound oxygen = null!;
     protected Compound oxytoxy = null!;
-    protected Compound slime = null!;
+    protected Compound mucilage = null!;
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
@@ -217,6 +220,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
+    protected ActionButton secreteMucilageHotkey = null!;
     protected ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
@@ -299,7 +303,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private ActionButton fireToxinHotkey = null!;
     private Control agentsPanel = null!;
     private ProgressBar oxytoxyBar = null!;
-    private ProgressBar slimeBar = null!;
+    private ProgressBar mucilageBar = null!;
     private CustomDialog? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
 
@@ -404,7 +408,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         compoundsPanelCompressButton = GetNode<Button>(CompoundsPanelCompressButtonPath);
 
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
-        slimeBar = GetNode<ProgressBar>(SlimeBarPath);
+        mucilageBar = GetNode<ProgressBar>(MucilageBarPath);
         atpBar = GetNode<TextureProgress>(AtpBarPath);
         healthBar = GetNode<TextureProgress>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
@@ -432,6 +436,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
 
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
+        secreteMucilageHotkey = GetNode<ActionButton>(SecreteMucilageHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
@@ -459,7 +464,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
         oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        slime = SimulationParameters.Instance.GetCompound("slime");
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
@@ -948,9 +953,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
 
-        slimeBar.MaxValue = compounds.GetCapacityForCompound(slime);
-        GUICommon.SmoothlyUpdateBar(slimeBar, compounds.GetCompoundAmount(slime), delta);
-        slimeBar.GetNode<Label>("Value").Text = slimeBar.Value + " / " + slimeBar.MaxValue;
+        mucilageBar.MaxValue = compounds.GetCapacityForCompound(mucilage);
+        GUICommon.SmoothlyUpdateBar(mucilageBar, compounds.GetCompoundAmount(mucilage), delta);
+        mucilageBar.GetNode<Label>("Value").Text = mucilageBar.Value + " / " + mucilageBar.MaxValue;
     }
 
     protected void UpdateReproductionProgress()
@@ -1161,15 +1166,16 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract void UpdateAbilitiesHotBar();
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool engulfBlocked, bool showToxin, bool showingSignaling, bool engulfOn)
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showMucilage, bool showingSignaling, bool engulfOn)
     {
         engulfHotkey.Visible = showEngulf;
-        engulfHotkey.Disabled = engulfBlocked;
         fireToxinHotkey.Visible = showToxin;
+        secreteMucilageHotkey.Visible = showMucilage;
         signallingAgentsHotkey.Visible = showingSignaling;
 
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
+        secreteMucilageHotkey.Pressed = Input.IsActionPressed(secreteMucilageHotkey.ActionName);
         signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
     }
 

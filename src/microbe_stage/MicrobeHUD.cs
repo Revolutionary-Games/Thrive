@@ -249,7 +249,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var colony = stage!.Player!.Colony;
         if (colony == null)
         {
-            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy) || GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(slime);
+            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy) || GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(mucilage);
         }
 
         return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
@@ -301,18 +301,21 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var player = stage!.Player!;
 
         bool showToxin;
+        bool showMucilage;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Colony != null)
         {
             showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
+            showMucilage = player.Colony.ColonyMembers.Any(c => c.SlimeJetCount > 0);
         }
         else
         {
             showToxin = player.AgentVacuoleCount > 0;
+            showMucilage = player.SlimeJetCount > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, player.AffectedBySlime, showToxin,
+        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showMucilage,
             player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;

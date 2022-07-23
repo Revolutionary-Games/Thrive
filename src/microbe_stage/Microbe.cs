@@ -86,7 +86,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
-    public bool AffectedBySlime;
+    public bool SlowedBySlime;
+    public float SlimeJetFactor;
 
     /// <summary>
     ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -336,6 +337,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         atp = SimulationParameters.Instance.GetCompound("atp");
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
@@ -673,6 +675,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             EmitToxin(queuedToxinToEmit);
             queuedToxinToEmit = null;
+        }
+
+        if (queuedSecreteMucilage)
+        {
+            SecreteSlime(delta);
+
+            if (Compounds.GetCompoundAmount(mucilage) < Constants.MIN_MUCILAGE_TO_VENT)
+                queuedSecreteMucilage = false;
         }
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
@@ -1061,8 +1071,21 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             force *= 0.5f;
         }
 
-        if (AffectedBySlime)
-            force *= 0.25f;
+        if (SlowedBySlime)
+            force /= Constants.MUCILAGE_IMPEDE_FACTOR;
+
+        foreach (var organelle in organelles!)
+        {
+            if (!organelle.HasComponent<SlimeJetComponent>())
+                continue;
+
+            var jetComponent = (SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent);
+            force += (Constants.MUCILAGE_JET_FACTOR * SlimeJetFactor *
+                Math.Max(jetComponent.GetDirection().Dot(MovementDirection), 0)) / MassFromOrganelles;
+        }
+
+        // Reset the amount of secreted mucilage after using it to move
+        SlimeJetFactor = 0;
 
         if (IsPlayerMicrobe && CheatManager.Speed > 1)
             force *= Mass * CheatManager.Speed;

@@ -47,14 +47,13 @@
             "oxytoxy": 1.5
         }
     },
-    "slime_synthesis": {
-        "name": "SLIME_SYNTHESIS",
+    "mucilage_synthesis": {
+        "name": "MUCILAGE_SYNTHESIS",
         "inputs": {
-            "oxygen": 1,
-            "atp": 8
+            "glucose": 0.01
         },
         "outputs": {
-            "slime": 1.5
+            "mucilage": 0.15
         }
     },
     "bacterial_oxytoxySynthesis": {

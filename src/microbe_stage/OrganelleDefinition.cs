@@ -442,6 +442,7 @@ public class OrganelleDefinition : IRegistryType
         public AgentVacuoleComponentFactory? AgentVacuole;
         public BindingAgentComponentFactory? BindingAgent;
         public MovementComponentFactory? Movement;
+        public SlimeJetComponentFactory? SlimeJet;
         public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
         public SignalingAgentComponentFactory? SignalingAgent;
@@ -499,6 +500,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Movement.Check(name);
                 allFactories.Add(Movement);
+                ++count;
+            }
+
+            if (SlimeJet != null)
+            {
+                SlimeJet.Check(name);
+                allFactories.Add(SlimeJet);
                 ++count;
             }
 

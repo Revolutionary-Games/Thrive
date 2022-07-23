@@ -69,7 +69,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_secrete_slime")]
-    public void SecreteSlime(float delta)
+    public void SecreteMucilage(float delta)
     {
         stage.Player?.SecreteSlime(delta);
     }
@@ -84,7 +84,7 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
-        else if (!stage.Player.Membrane.Type.CellWall && !stage.Player.AffectedBySlime)
+        else if (!stage.Player.Membrane.Type.CellWall)
         {
             stage.Player.State = Microbe.MicrobeState.Engulf;
         }

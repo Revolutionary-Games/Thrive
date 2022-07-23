@@ -206,6 +206,10 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
+    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+    public const float MUCILAGE_JET_FACTOR = 300.0f;
+    public const float MIN_MUCILAGE_TO_VENT = 0.02f;
+
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually
