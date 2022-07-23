@@ -299,7 +299,7 @@ public partial class CellEditorComponent
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
             if (tooltip == null)
-                return;
+                throw new InvalidOperationException("Could not find process production tooltip");
 
             subBar.RegisterToolTipForControl(tooltip);
 

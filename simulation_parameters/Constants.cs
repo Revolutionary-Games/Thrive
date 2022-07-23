@@ -208,7 +208,8 @@ public static class Constants
 
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
     public const float MUCILAGE_JET_FACTOR = 300.0f;
-    public const float MIN_MUCILAGE_TO_VENT = 0.02f;
+    public const float MUCILAGE_MIN_TO_VENT = 0.02f;
+    public const float MUCILAGE_COOLDOWN_TIMER = 2.0f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to

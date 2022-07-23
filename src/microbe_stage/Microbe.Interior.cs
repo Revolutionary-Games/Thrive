@@ -142,6 +142,9 @@ public partial class Microbe
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
 
+    [JsonProperty]
+    public float SlimeSecretionCooldown { get; private set; }
+
     [JsonIgnore]
     public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
 
@@ -329,8 +332,15 @@ public partial class Microbe
         if (SlimeJetCount < 1)
             return;
 
+        if (SlimeSecretionCooldown > 0)
+            return;
+
         // TODO eject in the direction of each jet and add together
         SlimeJetFactor = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * SlimeJetCount * delta, 4);
+
+        // Once we hit zero, start a cooldown timer
+        if (SlimeJetFactor < Constants.MUCILAGE_MIN_TO_VENT)
+            SlimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
     }
 
     public void QueueSecreteMucilage()

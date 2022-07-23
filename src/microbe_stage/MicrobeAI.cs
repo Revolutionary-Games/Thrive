@@ -484,7 +484,7 @@ public class MicrobeAI
                 MoveWithRandomTurn(2.5f, 3.0f, random);
 
             // There's also a chance to jet away if we can
-            if (RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random) && microbe.SlimeJetCount > 0)
+            if (RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random))
                 SecreteMucilage();
         }
 
@@ -520,7 +520,7 @@ public class MicrobeAI
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
 
-        if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random) && microbe.SlimeJetCount > 0)
+        if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
             SecreteMucilage();
     }
 

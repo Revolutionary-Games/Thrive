@@ -606,6 +606,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
 
+        SlimeSecretionCooldown -= delta;
+        if (SlimeSecretionCooldown < 0)
+            SlimeSecretionCooldown = 0;
+
         lastCheckedATPDamage += delta;
 
         if (!Membrane.Dirty)
@@ -681,7 +685,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             SecreteSlime(delta);
 
-            if (Compounds.GetCompoundAmount(mucilage) < Constants.MIN_MUCILAGE_TO_VENT)
+            if (Compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT)
                 queuedSecreteMucilage = false;
         }
 
