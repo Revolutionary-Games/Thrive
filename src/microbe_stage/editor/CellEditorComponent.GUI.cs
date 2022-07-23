@@ -116,19 +116,6 @@ public partial class CellEditorComponent
         baseMobilityModifier.AdjustValueColor(baseMobilityChange);
     }
 
-    private void UpdateRigiditySliderState(int mutationPoints)
-    {
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        if (mutationPoints >= costPerStep && MovingPlacedHex == null)
-        {
-            rigiditySlider.Editable = true;
-        }
-        else
-        {
-            rigiditySlider.Editable = false;
-        }
-    }
-
     private void UpdateSize(int size)
     {
         sizeLabel.Value = size;

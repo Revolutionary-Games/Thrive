@@ -278,6 +278,8 @@ public partial class CellEditorComponent :
 
     private bool microbePreviewMode;
 
+    private int originalRigidity;
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -487,8 +489,6 @@ public partial class CellEditorComponent :
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
 
-        UpdateRigiditySliderState(Editor.MutationPoints);
-
         UpdateCancelButtonVisibility();
 
         if (IsMulticellularEditor)
@@ -598,6 +598,7 @@ public partial class CellEditorComponent :
         // that just marks things dirty and we update our stats on the next _Process call)
         Membrane = Editor.EditedCellProperties!.MembraneType;
         Rigidity = Editor.EditedCellProperties.MembraneRigidity;
+        originalRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
         Colour = Editor.EditedCellProperties.Colour;
 
         if (!IsMulticellularEditor)
@@ -742,12 +743,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
-    {
-        base.OnMutationPointsChanged(mutationPoints);
-        UpdateRigiditySliderState(mutationPoints);
-    }
-
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
@@ -853,18 +848,18 @@ public partial class CellEditorComponent :
             return;
 
         int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
+        int cost = (Math.Abs(rigidity - originalRigidity) - Math.Abs(intRigidity - originalRigidity)) * costPerStep;
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsLeft = Editor.MutationPoints / costPerStep;
-            if (stepsLeft < 1)
-            {
-                UpdateRigiditySlider(intRigidity);
-                return;
-            }
+            int maxSteps = Math.Abs(intRigidity - originalRigidity) + Editor.MutationPoints / costPerStep;
 
-            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            rigidity = rigidity > originalRigidity ? originalRigidity + maxSteps : originalRigidity - maxSteps;
+
+            UpdateRigiditySlider(rigidity);
+
+            // The last function call already added an action, so we can return now.
+            return;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
