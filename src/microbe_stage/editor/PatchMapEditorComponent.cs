@@ -152,23 +152,23 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             return true;
 
         // Can move to any patch that player species inhabits or their adjacent
-        return GetMovablePatches(playerPatchOnEntry).Contains(patch);
+        return GetMovablePatches().Contains(patch);
     }
 
-    private HashSet<Patch> GetMovablePatches(Patch origin, HashSet<Patch>? visited = null)
+    private HashSet<Patch> GetMovablePatches()
     {
-        visited ??= new HashSet<Patch>();
-        visited.Add(origin);
+        var movablePatches = Editor.CurrentGame.GameWorld.Map.Patches.Values.Where(p =>
+            p.SpeciesInPatch.ContainsKey(Editor.CurrentGame.GameWorld.PlayerSpecies)).ToHashSet();
 
-        if (!origin.SpeciesInPatch.ContainsKey(Editor.CurrentGame.GameWorld.PlayerSpecies))
-            return visited;
-
-        foreach (var adjacent in origin.Adjacent.Where(a => !visited.Contains(a)))
+        foreach (var patch in movablePatches.ToList())
         {
-            visited = GetMovablePatches(adjacent, visited);
+            foreach (var adjacent in patch.Adjacent)
+            {
+                movablePatches.Add(adjacent);
+            }
         }
 
-        return visited;
+        return movablePatches;
     }
 
     private void SetPlayerPatch(Patch? patch)
