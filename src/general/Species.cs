@@ -60,7 +60,7 @@ public abstract class Species : ICloneable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   Unique id of this species, used to identity this
+    ///   Unique id of this species, used to identify this
     /// </summary>
     /// <remarks>
     ///   <para>

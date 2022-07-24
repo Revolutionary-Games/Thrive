@@ -453,8 +453,11 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private void ApplyAutoEvoRun()
     {
+        // Apply the results
+        autoEvoRun!.ApplyAllEffects(true);
+
         // Add run results
-        RunResults results = autoEvoRun!.Results!;
+        RunResults results = autoEvoRun.Results!;
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
@@ -463,8 +466,6 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu.AddItem((currentGeneration + 1).ToString(), false, Colors.White);
         historyListMenu.CreateElements();
 
-        // Apply the results
-        autoEvoRun.ApplyAllEffects(true);
         currentGenerationLabel.Text = (++currentGeneration).ToString();
     }
 
@@ -502,7 +503,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void HistoryListMenuIndexChanged(int index)
     {
-        if (generationDisplayed == index)
+        if (generationDisplayed == index && speciesListMenu.Popup.GetItemCount() > 0)
             return;
 
         historyListMenu.Text = (index + 1).ToString();
@@ -550,7 +551,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private void UpdateSpeciesDetail(Species species)
     {
         /*
-        speciesDetailsLabel.ExtendedBbcode = $"[b]Species:[/b]\n  {species.FormattedNameBbCode}\n" +
+        speciesDetailsLabel.ExtendedBbcode = $"[b]Species:[/b]\n  {species.FormattedNameBbCode}:{species.ID}\n" +
             $"[b]Generation:[/b]\n  {species.Generation}\n" +
             $"[b]Population:[/b]\n  {species.Population}\n" +
             $"[b]Colour:[/b]\n  #{species.Colour.ToHtml()}\n" +
@@ -572,8 +573,9 @@ public class AutoEvoExploringTool : NodeWithInput
         */
 
         speciesDetailsLabel.ExtendedBbcode = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("SPECIES_DETAIL_TEXT"), species.FormattedNameBbCode, species.Generation,
-            species.Population, species.Colour.ToHtml(), species.Behaviour.Join(b => b.Key + ": " + b.Value, "\n  "));
+            TranslationServer.Translate("SPECIES_DETAIL_TEXT"), species.FormattedNameBbCode, species.ID,
+            species.Generation, species.Population, species.Colour.ToHtml(),
+            species.Behaviour.Join(b => b.Key + ": " + b.Value, "\n  "));
 
         switch (species)
         {
