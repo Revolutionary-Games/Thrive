@@ -941,6 +941,8 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    public const int FORCE_CLOSE_AFTER_TRIES = 3;
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>

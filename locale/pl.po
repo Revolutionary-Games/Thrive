@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:13+0100\n"
+"POT-Creation-Date: 2022-07-20 14:32+0300\n"
 "PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: Amam Town <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -379,7 +379,7 @@ msgstr "Przełączenie fagocytozy"
 
 #: ../simulation_parameters/common/input_options.json:48
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr "Przytrzymaj aby wyświetlić polecenia dla kolonii"
+msgstr "Przytrzymaj aby wyświetlić menu poleceń grupowych"
 
 #: ../simulation_parameters/common/input_options.json:52
 #: ../src/microbe_stage/MicrobeStage.tscn:1988
@@ -1037,15 +1037,15 @@ msgstr "kod genetyczny:"
 
 #: ../src/auto-evo/RunResults.cs:691
 msgid "SPREAD_TO_PATCHES"
-msgstr "rozpowszechnił się do biomów:"
+msgstr "rozpowszechnił się do obszarów:"
 
 #: ../src/auto-evo/RunResults.cs:699
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr "{0} wysyłając: {1} populacji z biomu: {2}"
+msgstr "{0} wysyłając: {1} populacji z obszaru: {2}"
 
 #: ../src/auto-evo/RunResults.cs:718
 msgid "POPULATION_IN_PATCHES"
-msgstr "populacja w biomach:"
+msgstr "populacja w obszarach:"
 
 #: ../src/auto-evo/RunResults.cs:828
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1065,11 +1065,11 @@ msgstr "populacja gatunku [b][u]{0}[/u][/b] zmniejszyła się do {1}"
 
 #: ../src/auto-evo/RunResults.cs:907
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "Gatunek [b][u]{0}[/u][/b] wyginął z tego biomu"
+msgstr "Gatunek [b][u]{0}[/u][/b] wyginął z tego obszaru"
 
 #: ../src/auto-evo/RunResults.cs:931
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do tego biomu z {1}"
+msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do tego obszaru z {1}"
 
 #: ../src/auto-evo/RunResults.cs:936
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
@@ -1077,7 +1077,7 @@ msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się z {2} do {1}"
 
 #: ../src/auto-evo/RunResults.cs:942
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do biomu {1}"
+msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do obszaru {1}"
 
 #: ../src/auto-evo/RunResults.cs:961
 msgid "TIMELINE_NICHE_FILL"
@@ -1168,7 +1168,7 @@ msgstr "ANULUJ AKCJĘ"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:161
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:164
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "DALEJ"
@@ -1394,7 +1394,7 @@ msgstr "Pomoc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "KEY_BACK"
-msgstr "Cofnij"
+msgstr "Wróć"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
@@ -1765,7 +1765,7 @@ msgid "CLOSE"
 msgstr "Zamknij"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -1848,7 +1848,7 @@ msgstr "Kreatywny Edytor Mikroba"
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
-msgstr "Cofnij"
+msgstr "Wróć"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -1890,7 +1890,7 @@ msgstr "Niektóre ustawienia są nieważnie"
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr "Ustawienie poziomu trudności"
+msgstr "Poziom trudności"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
@@ -1927,7 +1927,7 @@ msgstr "Kominy hydrotermalne"
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
-msgstr "Ciepły staw mały"
+msgstr "Ciepły mały staw"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
@@ -1982,7 +1982,7 @@ msgstr "(Gęstość chmur związków w środowisku)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "Karz populacyjna za śmierć gracza"
+msgstr "Kara populacyjna za śmierć gracza"
 
 #: ../src/general/NewGameSettings.tscn:598
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
@@ -2035,7 +2035,7 @@ msgstr "Generacja planety już wkrótce!"
 
 #: ../src/general/NewGameSettings.tscn:975
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Zawieraj prototypy późniejszych etapów"
+msgstr "Zawiera prototypy późniejszych etapów"
 
 #: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
@@ -2179,7 +2179,7 @@ msgstr "Wyświetlaj cząsteczki w tle"
 
 #: ../src/general/OptionsMenu.tscn:410
 msgid "GUI"
-msgstr ""
+msgstr "Interfejs Graficzny"
 
 #: ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2190,9 +2190,8 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
 #: ../src/general/OptionsMenu.tscn:440
-#, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "Pokaż pasek umiejętności"
+msgstr "Pokaż nazwy przycisków wyboru części"
 
 #: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
@@ -2520,42 +2519,42 @@ msgstr "gracz zginął"
 
 #: ../src/general/StageBase.cs:501
 msgid "EXTINCT_IN_PATCH"
-msgstr "wyginął z biomu"
+msgstr "wymarły w obszarze"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "Mnóstwo"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "Całkiem Sporo"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "Średnia Ilość"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "Trochę"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "Mało"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "Prawie Wcale"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "Komórka Gracza"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3518,7 +3517,7 @@ msgstr "POPULACJA:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
+msgstr "Prototyp makroskopijności"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
 #, fuzzy
@@ -3691,7 +3690,7 @@ msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
 
@@ -3995,12 +3994,12 @@ msgstr "Wczytywanie edytora mikrobów"
 msgid "INFINITE_MP"
 msgstr "Nieskończone Punkty Mutacji"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:124
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:127
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Znajdź Aktualny Obszar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:133
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
 #, fuzzy
 msgid "SEED_LABEL"
@@ -4217,7 +4216,7 @@ msgstr "Obecne Gatunki"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "Przenieś się do tego obszaru"
+msgstr "Przenieś się do Tego Obszaru"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 msgid "PATCH_EXTINCTION_CAPITAL"
@@ -4402,7 +4401,7 @@ msgstr "Nowe"
 
 #: ../src/modding/ModManager.tscn:530
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Wiele modów wymaga ponownego uruchomienia gry, by się załadować i odładować poprawnie. Używaj tylko modów,którym ufasz, jako że mogą zawierać kod wykonywalny."
+msgstr "Wiele modów wymaga ponownego uruchomienia gry, by się załadować i wyładować poprawnie. Używaj tylko modów,którym ufasz, jako że mogą zawierać kod wykonywalny."
 
 #: ../src/modding/ModManager.tscn:557
 msgid "ENABLE_ALL_COMPATIBLE"
@@ -4450,7 +4449,7 @@ msgstr "URL informacji o modzie:"
 
 #: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
-msgstr ""
+msgstr "Licencja Moda:"
 
 #: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
@@ -5088,13 +5087,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"To jest mapa biomów.\n"
+"To jest mapa obszarów.\n"
 "\n"
-"Każda ikona reprezentuje unikalne środowisko, które możesz zamieszkiwać, z panelem po twojej prawej, opisującym warunki panujące w obecnie wybranym biomie.\n"
+"Każda ikona reprezentuje unikalne środowisko, które możesz zamieszkiwać, z panelem po twojej prawej, opisującym warunki panujące w obecnie wybranym obszarze.\n"
 "\n"
-"Jeśli wybierzesz biom połączony z zamieszkiwanym przez ciebie, możesz nacisnąć przycisk \"Przenieś się do tego biomu\" po prawej by tam migrować. (Biomy zamieszkałe przez twój gatunek otoczone są cyjanową ramką)\n"
+"Jeśli wybierzesz obszar połączony z takim zamieszkiwanym przez ciebie, możesz nacisnąć przycisk \"Przenieś się do tego obszaru\" po prawej by tam migrować. (Obszary zamieszkane przez twój gatunek otoczone są cyjanową ramką)\n"
 "\n"
-"Spróbuj wybrać jakiś biom by kontynuować."
+"Spróbuj wybrać jakiś obszar by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"

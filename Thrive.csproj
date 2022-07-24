@@ -54,6 +54,7 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\UnhandledExceptionLogger.cs" />
     <Compile Include="src\engine\DebugOverlays.cs" />
     <Compile Include="src\engine\DebugOverlays.EntityLabel.cs" />
     <Compile Include="src\engine\DebugOverlays.FPSCounter.cs" />
@@ -556,7 +557,7 @@
       <Version>1.2.0-beta.435</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.2.1</Version>
+      <Version>2.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
