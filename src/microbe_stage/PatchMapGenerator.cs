@@ -819,6 +819,8 @@ public static class PatchMapGenerator
         foreach (var patch in region.Patches)
             map.AddPatch(patch);
 
+        map.CreateAdjacenciesFromPatchData();
+
         return map;
     }
 
