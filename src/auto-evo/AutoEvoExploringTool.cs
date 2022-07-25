@@ -122,6 +122,9 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
 
+    [Export]
+    public NodePath EvolutionaryTreePath = null!;
+
     // Exit confirm path
     [Export]
     public NodePath ExitConfirmationDialogPath = null!;
@@ -180,6 +183,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private CellHexPreview hexPreview = null!;
     private CustomDropDown speciesListMenu = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
+    private EvolutionaryTree evolutionaryTree = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -266,12 +270,14 @@ public class AutoEvoExploringTool : NodeWithInput
         hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
+        evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
         // Init game
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+        evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
 
         // Init config control values
         allowSpeciesToNotMutateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMutate;
@@ -458,6 +464,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         // Add run results
         RunResults results = autoEvoRun.Results!;
+        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, currentGeneration);
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
