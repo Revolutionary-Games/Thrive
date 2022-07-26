@@ -2,32 +2,56 @@
 using System.Linq;
 using AutoEvo;
 using Godot;
+using Godot.Collections;
 
 public class EvolutionaryTree : Control
 {
     private readonly List<EvolutionaryTreeNode> nodes = new();
 
-    private readonly Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)> speciesOrigin = new();
+    private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latest = new();
+
+    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)> speciesOrigin = new();
+
+    private readonly ButtonGroup nodesGroup = new();
 
     private PackedScene treeNodeScene = null!;
 
     private uint maxSpeciesId;
 
+    private int latestGeneration;
+
+    [Signal]
+    public delegate void SpeciesSelected(int generation, uint id);
+
     public override void _Ready()
     {
+        base._Ready();
+
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
+    }
+
+    public override void _Draw()
+    {
+        base._Draw();
+
+        foreach (var node in nodes)
+        {
+            if (node.ParentNode == null)
+                continue;
+
+            DrawLine(node.ParentNode.Center, node.Center);
+        }
+
+        foreach (var latestNode in latest.Values.Where(n => !n.LastGeneration))
+        {
+            var position = latestNode.Center;
+            DrawLine(position, new Vector2(100 * latestGeneration + latestNode.RectSize.x, position.y));
+        }
     }
 
     public void Init(Species player)
     {
-        var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
-        node.Generation = -1;
-        node.Species = player;
-        node.LastGeneration = false;
-        node.ParentNode = null;
-
-        nodes.Add(node);
-        AddChild(node);
+        SetupTreeNode(player, null, 0);
 
         speciesOrigin.Add(player.ID, (uint.MaxValue, 0));
     }
@@ -41,64 +65,59 @@ public class EvolutionaryTree : Control
 
             if (result.SplitFrom != null)
             {
-                var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
-                node.Generation = generation;
-                node.Species = species;
-                node.LastGeneration = false;
-                node.ParentNode = nodes.First(n => n.Species == result.SplitFrom);
-                node.RectPosition = new Vector2(generation * 50, 0);
+                SetupTreeNode(species, nodes.First(n => n.Species == result.SplitFrom), generation);
 
-                nodes.Add(node);
-                AddChild(node);
-
-                speciesOrigin.Add(species.ID, (node.ParentNode.Species.ID, generation));
+                speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
             }
             else if (result.MutatedProperties != null)
             {
-                var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
-                node.Generation = generation;
-                node.Species = result.MutatedProperties;
-                node.LastGeneration = false;
-                node.ParentNode = nodes.First(n => n.Species == species);
-                node.RectPosition = new Vector2(generation * 100, 0);
-
-                nodes.Add(node);
-                AddChild(node);
+                SetupTreeNode(result.MutatedProperties, nodes.First(n => n.Species == species), generation);
+            }
+            else if (result.Species.Population <= 0)
+            {
+                SetupTreeNode(species, nodes.First(n => n.Species == species), generation - 1, true);
             }
 
             if (species.ID > maxSpeciesId)
                 maxSpeciesId = species.ID;
         }
 
-        AdjustTree();
+        latestGeneration = generation;
+
+        BuildTree();
     }
 
-    private void AdjustTree()
+    private EvolutionaryTreeNode SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation, bool isLastGeneration = false)
     {
-        var root = new TreeNode { ID = nodes[0].Species.ID };
-        CreateTree(root);
+        var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
+        node.Generation = generation;
+        node.Species = species;
+        node.LastGeneration = false;
+        node.ParentNode = parent;
+        node.RectPosition = new Vector2(generation * 100, 0);
+        node.LastGeneration = isLastGeneration;
+        node.Group = nodesGroup;
+        node.Connect("button_down", this, nameof(OnTreeNodeSelected), new Array { node });
 
-        int index = 0;
-        AdjustTree(root, ref index);
+        nodes.Add(node);
+        AddChild(node);
+        latest[species.ID] = node;
+
+        return node;
     }
 
-    private void CreateTree(TreeNode node)
+    private void BuildTree()
     {
-        var id = node.ID;
+        uint index = 0;
+        BuildTree(nodes[0].Species.ID, ref index);
 
-        node.Children.AddRange(speciesOrigin.Where(p => p.Value.ParentSpeciesID == id)
-            .OrderBy(p => p.Value.SplitGeneration)
-            .Select(p => new TreeNode { ID = p.Key }));
-
-        foreach (var child in node.Children)
-        {
-            CreateTree(child);
-        }
+        Update();
     }
 
-    private void AdjustTree(TreeNode node, ref int index)
+    private void BuildTree(uint id, ref uint index)
     {
-        foreach (var treeNode in nodes.Where(n => n.Species.ID == node.ID))
+        // Adjust nodes of this species' vertical position based on index
+        foreach (var treeNode in nodes.Where(n => n.Species.ID == id))
         {
             var position = treeNode.RectPosition;
             position.y = index * 50;
@@ -107,15 +126,33 @@ public class EvolutionaryTree : Control
 
         ++index;
 
-        foreach (var child in node.Children)
+        // Search for derived species and do this recursively.
+        // The later a species derived, the closer it is to its parent. This avoids any crossings in the tree.
+        foreach (var child in speciesOrigin.Where(p => p.Value.ParentSpeciesID == id)
+            .OrderByDescending(p => p.Value.SplitGeneration)
+            .Select(p => p.Key))
         {
-            AdjustTree(child, ref index);
+            BuildTree(child, ref index);
         }
     }
 
-    private class TreeNode
+    private void DrawLine(Vector2 from, Vector2 to)
     {
-        public readonly List<TreeNode> Children = new();
-        public uint ID;
+        if (to.y - from.y < MathUtils.EPSILON)
+        {
+            DrawLine(from, to, Colors.DarkCyan, 4.0f, true);
+        }
+        else
+        {
+            var mid = to - new Vector2(100 / 2.0f, 0);
+            DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f, true);
+            DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f, true);
+            DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f, true);
+        }
+    }
+
+    private void OnTreeNodeSelected(EvolutionaryTreeNode node)
+    {
+        EmitSignal(nameof(SpeciesSelected), node.Generation, node.Species.ID);
     }
 }

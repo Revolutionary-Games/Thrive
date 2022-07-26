@@ -559,11 +559,21 @@ public class AutoEvoExploringTool : NodeWithInput
         if (species == speciesPreview.PreviewSpecies)
             return;
 
-        speciesListMenu.Text = species.FormattedName;
+        UpdateSpeciesPreview(species);
+    }
 
+    private void UpdateSpeciesPreview(Species species)
+    {
+        speciesListMenu.Text = species.FormattedName;
         speciesPreview.PreviewSpecies = species;
         hexPreview.PreviewSpecies = species as MicrobeSpecies;
         UpdateSpeciesDetail(species);
+    }
+
+    private void EvolutionaryTreeNodeSelected(int generation, uint id)
+    {
+        HistoryListMenuIndexChanged(generation);
+        UpdateSpeciesPreview(speciesHistoryList[generation][id]);
     }
 
     private void UpdateSpeciesDetail(Species species)
