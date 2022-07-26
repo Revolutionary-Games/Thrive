@@ -158,6 +158,8 @@ public class PatchMapNode : MarginContainer
 
     public override void _Ready()
     {
+        base._Ready();
+
         if (patch == null)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
@@ -174,6 +176,8 @@ public class PatchMapNode : MarginContainer
 
     public override void _Process(float delta)
     {
+        base._Process(delta);
+
         currentBlinkTime += delta;
         if (currentBlinkTime > HalfBlinkInterval)
         {

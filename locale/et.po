@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:10+0800\n"
+"POT-Creation-Date: 2022-07-26 15:16+0800\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1014,12 +1014,12 @@ msgstr "cilia"
 msgid "LYSOSOME"
 msgstr "Oksütoksisoom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:579
+#: ../src/auto-evo/AutoEvoExploringTool.cs:604
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:613
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1028,167 +1028,164 @@ msgstr ""
 "Kui teil on ATP, taastate tervist.\n"
 "Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:95
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "teade"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:160
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "on muteerunud"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:151
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:167
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:163
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:200
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:214
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:221
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:234
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:252
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Lapist välja surnud"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:270
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:281
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:320
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:334
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:312
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:324
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Põlvkond:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:393
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "eelmine:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:400
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:432
 #, fuzzy
 msgid "READY"
 msgstr "Teemad:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:447
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:453
 #, fuzzy
 msgid "ABORT"
 msgstr "Katkestatud."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:469
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:500
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Põlvkond:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:476
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:507
 #, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "{0} elanikkonnaga: {1}"
+msgstr "Valige valik"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:510
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:541
 #, fuzzy
 msgid "SPECIES"
 msgstr "Liikide nimekiri"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:517
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:548
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Siin üksikasjade kuvamiseks valige plaaster"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulemused:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:612
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+#, fuzzy
+msgid "EVOLUTIONARY_TREE"
+msgstr "Autor Revolutionary Games Studio"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Liikide nimekiri"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:661
-msgid "HEX_VIEW"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:695
-msgid "PREVIEW"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:740
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1198,13 +1195,13 @@ msgstr ""
 msgid "BACK"
 msgstr "tagasi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:744
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Kinnitage väljumine"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#: ../src/general/PauseMenu.cs:332
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:745
+#: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Kas soovite kindlasti peamenüüst väljuda?\n"
@@ -1241,99 +1238,99 @@ msgstr "alustamine"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:594
 msgid "POPULATION_COLON"
 msgstr "elanikkond:"
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:603
 msgid "WENT_EXTINCT_IN"
 msgstr "suri välja {0}"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:609
 msgid "PREVIOUS_COLON"
 msgstr "eelmine:"
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:627
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "eraldatud kasutajast {0}"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:640
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "tekkis nišši täitma"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:643
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "tekkis erineva valikusurve tõttu"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populatsioon mõnel laigul jagunes uuteks liikideks {0}:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:676
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on muteerunud"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "geenikood:"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:692
 msgid "SPREAD_TO_PATCHES"
 msgstr "levinud plaastritele:"
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:700
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} saates: {1} elanikkond paigast: {2}"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:719
 msgid "POPULATION_IN_PATCHES"
 msgstr "populatsioon laikudena:"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:829
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "suri planeedilt välja"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] on välja surnud!"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] elanikkond on kasvanud väärtuseni {1}"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] elanikkond on vähenenud väärtusele {1}"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on sellelt paigalt kadunud"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa [u]{0}[/u] elanikkonnast on sellesse plaastrisse rännanud asukohast {1}"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohast {2} asukohta {1}"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] eraldus niši täitmiseks uue liigina [u]{1}[/u]-st"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] eraldus erineva valikusurve tõttu uuest liigist [u]{1}[/u]"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
 msgstr "Viga: tükki ei leitud"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} tarbimine"
 
@@ -1345,7 +1342,7 @@ msgstr "{0} tarbimine"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0} ühtlaselt jaotunud keskkonnatoiduallikas"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} rööv"
 
@@ -1410,7 +1407,7 @@ msgstr "TÜHISTAGE TEGEVUS"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "JÄRGMINE"
@@ -1998,7 +1995,7 @@ msgid "CLOSE"
 msgstr "Sulge"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -2730,7 +2727,7 @@ msgstr "Ekraanitõmmiste kataloogi ei leitud"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Proovige teha ekraanipilte!"
 
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Kas olete kindel, et soovite mängust lahkuda?\n"
@@ -2799,40 +2796,40 @@ msgstr "mängija suri"
 msgid "EXTINCT_IN_PATCH"
 msgstr "Lapist välja surnud"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "küllus"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "üsna palju"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "õiglane summa"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "mõni"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "pisut"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "väga vähe"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "Mängija rakk"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3994,7 +3991,7 @@ msgstr "Hakka mitmerakuliseks ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ei saa kasutada vaenlase pettust, kuna see plaaster ei sisalda ühtegi vaenlase liiki"
 
@@ -4305,6 +4302,12 @@ msgstr "Lõpmatu MP"
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Kehtetu modiikooni tee"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+#, fuzzy
+msgid "SEED_LABEL"
+msgstr "biome: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -5049,7 +5052,7 @@ msgstr "Laadimine lõpetatud"
 msgid "ERROR_LOADING"
 msgstr "Viga laadimisel"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Juba laaditud ressursside vabastamine ebaõnnestus: {0}"
 

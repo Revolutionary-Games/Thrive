@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:10+0800\n"
-"PO-Revision-Date: 2022-07-14 11:07+0000\n"
+"POT-Creation-Date: 2022-07-26 15:16+0800\n"
+"PO-Revision-Date: 2022-07-17 18:13+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -983,12 +983,12 @@ msgstr "Реснички"
 msgid "LYSOSOME"
 msgstr "Лизозома"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:579
+#: ../src/auto-evo/AutoEvoExploringTool.cs:604
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} ({1} индивида)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:613
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -997,169 +997,165 @@ msgstr ""
 "Ако имате АТФ, точките здраве се възстановяват.\n"
 "Събирайте глюкоза за да произвеждате АТФ."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:95
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
 #, fuzzy
 msgid "VIEWER"
 msgstr "Галерия на „Thrive“"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:160
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:151
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:167
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:163
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:200
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:214
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:221
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:234
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:252
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:270
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Мутационни точки"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:281
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:320
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:334
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:312
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:324
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:393
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Автор:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:400
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:432
 #, fuzzy
 msgid "READY"
 msgstr "Нишки:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "от концентрацията на"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:447
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:453
 #, fuzzy
 msgid "ABORT"
 msgstr "Прекратена."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:469
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:500
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Поколение:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:476
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:507
 #, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "{0}: {1} индивида"
+msgstr "Изберете команда"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:510
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:541
 #, fuzzy
 msgid "SPECIES"
 msgstr "Списък на създанията"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:517
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:548
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Изберете зона"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:612
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+#, fuzzy
+msgid "EVOLUTIONARY_TREE"
+msgstr "От „Revolutionary Games Studio“"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Списък на създанията"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:661
-msgid "HEX_VIEW"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:695
-#, fuzzy
-msgid "PREVIEW"
-msgstr "предишна:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:740
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1169,13 +1165,13 @@ msgstr "предишна:"
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:744
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#: ../src/general/PauseMenu.cs:332
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:745
+#: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
@@ -1211,99 +1207,99 @@ msgstr "Започната"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "популацията на „{0}“ в {2} се промени с {1} индивида поради {3} на създанията"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:594
 msgid "POPULATION_COLON"
 msgstr "популация:"
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:603
 msgid "WENT_EXTINCT_IN"
 msgstr "изчезнаха от {0}"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:609
 msgid "PREVIOUS_COLON"
 msgstr "предишна:"
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:627
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "отделиха се от популацията на „{0}“"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:640
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "появиха се за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:643
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "появиха се поради селекционен натиск"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "от популацията в следните зони се отделиха „{0}“:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:676
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генен код:"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:692
 msgid "SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:700
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:719
 msgid "POPULATION_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:829
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "„[b][u]{0}[/u][/b]“ изчезнаха!"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Популацията на „[b][u]{0}[/u][/b]“ се увеличи на {1} индивида"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Популацията на „[b][u]{0}[/u][/b]“ се понижи на {1} индивида"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "„[b][u]{0}[/u][/b]“ изчезнаха от тази зона"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в тази зона от {1}"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в {1} от {2}"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в {1}"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "„[b][u]{0}[/u][/b]“ се отделиха от „[b][u]{1}[/u][/b]“ за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "„[b][u]{0}[/u][/b]“ се отделиха от „[b][u]{1}[/u][/b]“ поради селекционен натиск"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
 msgstr "Грешка: Фрагментът не е намерен"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}"
 
@@ -1315,7 +1311,7 @@ msgstr "{0}"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "„{0}“"
 
@@ -1380,7 +1376,7 @@ msgstr "ОТКАЗ"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
@@ -1976,7 +1972,7 @@ msgid "CLOSE"
 msgstr "Затваряне"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -2149,7 +2145,7 @@ msgstr "Произволно създаване на планетата"
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Тази стойност трябва да е положително цяло число"
+msgstr "Идентификаторът трябва да е положително цяло число"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
@@ -2654,7 +2650,7 @@ msgstr "Папката със снимки не съществува"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Трябва да направите няколко снимки!"
 
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да излезете от играта?\n"
@@ -2718,40 +2714,40 @@ msgstr "измиране"
 msgid "EXTINCT_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в изобилно количество"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "в обилно количество"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "в задоволително количество"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "в умерено количество"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "в ограничено количество"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} ({1} индивида)"
 
@@ -3886,7 +3882,7 @@ msgstr "Многоклетъчен организъм ({0} от {1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Макроскопичен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -4193,6 +4189,11 @@ msgstr "Неограничени МТ"
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Текущо местообитание"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+msgid "SEED_LABEL"
+msgstr "Идентификатор: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4925,7 +4926,7 @@ msgstr "Зареждането приключи"
 msgid "ERROR_LOADING"
 msgstr "Грешка по време на зареждането"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Неуспешно освобождаване на заредените ресурси: {0}"
 
@@ -5527,6 +5528,9 @@ msgstr ""
 
 #~ msgid "POPULATION"
 #~ msgstr "популация:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "предишна:"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "текуща популация в зоните:"

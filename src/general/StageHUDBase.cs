@@ -648,8 +648,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     public void ShowPatchExtinctionBox()
     {
-        winExtinctBoxHolder.Show();
-
         if (patchExtinctionBox == null)
         {
             patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
@@ -658,10 +656,15 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
         }
 
-        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
-        patchExtinctionBox.Map = stage.GameWorld.Map;
+        if (!winExtinctBoxHolder.Visible)
+        {
+            winExtinctBoxHolder.Show();
 
-        patchExtinctionBox.Show();
+            patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+            patchExtinctionBox.Map = stage.GameWorld.Map;
+
+            patchExtinctionBox.Show();
+        }
     }
 
     public void HidePatchExtinctionBox()

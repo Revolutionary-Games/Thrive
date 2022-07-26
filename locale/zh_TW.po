@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:10+0800\n"
+"POT-Creation-Date: 2022-07-26 15:16+0800\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1012,12 +1012,12 @@ msgstr "纖毛"
 msgid "LYSOSOME"
 msgstr "毒素體"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:579
+#: ../src/auto-evo/AutoEvoExploringTool.cs:604
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:613
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1026,168 +1026,164 @@ msgstr ""
 "當你有ATP時，你的生命值就會再生。\n"
 "請確保收集足夠的葡萄糖來產生ATP。"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:95
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "報告"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:160
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "發生突變"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:151
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:167
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "[u]{0}[/u] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:163
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:200
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:214
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:221
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:234
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:252
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "從這個區域滅絕了"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:270
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "突變點數"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:281
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:320
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:334
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:312
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:324
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:393
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "物種："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:400
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:432
 #, fuzzy
 msgid "READY"
 msgstr "線程："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "濃度為"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:447
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:453
 #, fuzzy
 msgid "ABORT"
 msgstr "取消。"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:469
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:500
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:476
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:507
 #, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "物種人口"
+msgstr "選取的："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:510
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:541
 #, fuzzy
 msgid "SPECIES"
 msgstr "物種列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:517
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:548
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo 結果："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:612
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+#, fuzzy
+msgid "EVOLUTIONARY_TREE"
+msgstr "由Revolutionary Games Studio製作"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "物種列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:661
-msgid "HEX_VIEW"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:695
-#, fuzzy
-msgid "PREVIEW"
-msgstr "先前："
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:740
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1197,13 +1193,13 @@ msgstr "先前："
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:744
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "確認退出"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#: ../src/general/PauseMenu.cs:332
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:745
+#: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "你確定要退出到主菜單嗎？\n"
@@ -1242,105 +1238,105 @@ msgstr "啟動中"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "原{0}人口變動了{1}，原因：{2}"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:594
 #, fuzzy
 msgid "POPULATION_COLON"
 msgstr "總人口："
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:603
 msgid "WENT_EXTINCT_IN"
 msgstr "在 {0} 中滅絕"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:609
 #, fuzzy
 msgid "PREVIOUS_COLON"
 msgstr "物種："
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:627
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "从{0}分裂出来的"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:640
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "出現來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:643
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "由於不同的演化壓力而出現"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "在一些地區的種群分支成了新的物種{0}："
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:676
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "發生突變"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "基因密碼："
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:692
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "傳播到的區域："
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:700
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "由區域{2}派出{1}個生物擴散到：{0}"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:719
 #, fuzzy
 msgid "POPULATION_IN_PATCHES"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:829
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "從這個星球上滅絕了"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] 已經滅絕了！"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] 人口已經增加到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] 人口已经減少到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] 已經從這個區域消失"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分 [u]{0}[/u] 人口已從 {1} 遷移到此補丁"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] 人口的一部分已從 {2} 遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] 從 [u]{1}[/u] 中分離出來，作為一個新物種來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] 由於不同的演化壓力，從 [u]{1}[/u] 作為一個新物種分離出來"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 #, fuzzy
 msgid "NOT_FOUND_CHUNK"
 msgstr "大鐵塊"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
 
@@ -1352,7 +1348,7 @@ msgstr "{0}消耗"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "均勻分佈{0}的環境食物來源"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0}的捕食"
 
@@ -1424,7 +1420,7 @@ msgstr "取消"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
@@ -2018,7 +2014,7 @@ msgid "CLOSE"
 msgstr "關閉"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -2752,7 +2748,7 @@ msgstr "找不到截圖目錄"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "嘗試截一些圖吧！"
 
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "你確定要退出遊戲嗎？\n"
@@ -2821,40 +2817,40 @@ msgstr "玩家死亡"
 msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "充裕"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "不少"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "相當數量"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "中等"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "少"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "玩家細胞"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -4016,7 +4012,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
@@ -4328,6 +4324,12 @@ msgstr "無限變異點"
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "無效的MOD圖標路徑"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+#, fuzzy
+msgid "SEED_LABEL"
+msgstr "生物群系：{0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -5076,7 +5078,7 @@ msgstr "加載完成"
 msgid "ERROR_LOADING"
 msgstr "加載時出錯"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". 未能釋放已加載的資源：{0}"
 
@@ -5667,6 +5669,9 @@ msgstr ""
 
 #~ msgid "POPULATION"
 #~ msgstr "人口："
+
+#~ msgid "PREVIOUS"
+#~ msgstr "先前："
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "區域中的人口："

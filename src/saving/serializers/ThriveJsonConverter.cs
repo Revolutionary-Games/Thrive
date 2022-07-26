@@ -699,8 +699,12 @@ public abstract class BaseThriveConverter : JsonConverter
 
                     // Protection against disposed stuff that is very easy to make a mistake about. Seems to be caused
                     // by carelessly keeping references to other game entities that are saved.
-                    GD.PrintErr("Problem trying to save a property: ", e);
+
+                    // Write the property name here to make the writer at path correct
                     writer.WritePropertyName(property.Name);
+
+                    GD.PrintErr($"Problem trying to save a property (at: {writer.Path}): ", e);
+
                     serializer.Serialize(writer, null);
                     continue;
                 }

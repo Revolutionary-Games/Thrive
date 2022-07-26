@@ -990,6 +990,28 @@
         }
 
         /// <summary>
+        ///   Returns the results for a given species for use by auto-evo internally
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Should be used very carefully and not at all by normal auto-evo steps. Used for more efficient auto-evo
+        ///     run setups. Doesn't use any locking as this is not meant to be called before a run is started.
+        ///   </para>
+        /// </remarks>
+        /// <param name="species">The species to get the results for</param>
+        /// <returns>The species results for the species, modifications should be done very carefully</returns>
+        internal SpeciesResult GetSpeciesResultForInternalUse(Species species)
+        {
+            if (results.TryGetValue(species, out var result))
+                return result;
+
+            result = new SpeciesResult(species);
+            results[species] = result;
+
+            return result;
+        }
+
+        /// <summary>
         ///   Logs an event description into game world and a patch. Use this if the event description in question
         ///   is exactly the same.
         /// </summary>

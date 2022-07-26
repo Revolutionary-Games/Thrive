@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-16 15:10+0800\n"
-"PO-Revision-Date: 2022-07-05 12:02+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2022-07-26 15:16+0800\n"
+"PO-Revision-Date: 2022-07-14 12:36+0700\n"
+"Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -983,7 +983,7 @@ msgstr "Cilia"
 msgid "LYSOSOME"
 msgstr "Lysosome"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:579
+#: ../src/auto-evo/AutoEvoExploringTool.cs:604
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Species[/b]\n"
@@ -997,7 +997,7 @@ msgstr ""
 "[b]Behaviour[/b]\n"
 "  {5}\n"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:613
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stage[/b]\n"
@@ -1013,153 +1013,149 @@ msgstr ""
 "[b]Base Hex Size[/b]\n"
 "  {4}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:95
 msgid "CONFIG"
 msgstr "Config"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:103
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Report"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
 msgid "VIEWER"
 msgstr "Viewer"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:160
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Allow species to not mutate"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:151
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:167
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Allow species to not migrate"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:163
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Biodiversity attempt fill chance"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:200
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Biodiversity from neighbour patch chance"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:214
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr "Biodiversity nearby patch is free population"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:221
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biodiversity split is mutated"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:234
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Low biodiversity limit"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:252
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Maximum species in patch"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:270
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Move attempts per species"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutations per species"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:281
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "New biodiversity increasing species population"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:320
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Protect migrations from species cap"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Protect new cells from species cap"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:334
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr "Refund migrations in extinctions"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:312
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Strict niche competition"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:324
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr "Species split by mutation threshold population amount"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Species split by mutation threshold population fraction"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Use biodiversity force split"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Current Generation:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:393
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 msgid "STATUS_COLON"
 msgstr "Status:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:400
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:432
 msgid "READY"
 msgstr "Ready"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 msgid "FINISH_ONE_GENERATION"
 msgstr "Finish One Gegeration"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:447
 msgid "RUN_ONE_STEP"
 msgstr "Run One Step"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:453
 msgid "ABORT"
 msgstr "Abort"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Play With Current Setting"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:469
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:500
 msgid "GENERATIONS"
 msgstr "Generations"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:476
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:507
 msgid "SELECT_A_GENERATION"
 msgstr "Select a generation"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:510
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:541
 msgid "SPECIES"
 msgstr "Species"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:517
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:548
 msgid "SELECT_A_SPECIES"
 msgstr "Select a species"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo results:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:612
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+msgid "EVOLUTIONARY_TREE"
+msgstr "Evolutionary tree"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 msgid "SPECIES_DETAILS"
 msgstr "Species Details"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:661
-msgid "HEX_VIEW"
-msgstr "Hex View"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:695
-msgid "PREVIEW"
-msgstr "Preview"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:740
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1169,13 +1165,13 @@ msgstr "Preview"
 msgid "BACK"
 msgstr "Back"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:744
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Confirm Exit"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#: ../src/general/PauseMenu.cs:332
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:745
+#: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Are you sure you want to exit to the main menu?\n"
@@ -1209,99 +1205,99 @@ msgstr "Starting"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:594
 msgid "POPULATION_COLON"
 msgstr "population:"
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:603
 msgid "WENT_EXTINCT_IN"
 msgstr "went extinct in {0}"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:609
 msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:627
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "split off from {0}"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:640
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "emerged to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:643
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "emerged due to differing selection pressures"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "population in some patches split off to form new species {0}:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:676
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has mutated"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gene code:"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:692
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:700
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} by sending: {1} population from patch: {2}"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:719
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:829
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] has gone extinct!"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:894 ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] population has increased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:900 ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] population has decreased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] has disappeared from this patch"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated into this patch from {1}"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:937
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1} from {2}"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:943
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1}"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:962
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
 msgstr "Error: chunk not found"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} consumption"
 
@@ -1313,7 +1309,7 @@ msgstr "{0} consumption"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Uniformly spread environmental food source of {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
@@ -1378,7 +1374,7 @@ msgstr "CANCEL ACTION"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "NEXT"
@@ -1974,7 +1970,7 @@ msgid "CLOSE"
 msgstr "Close"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -2651,7 +2647,7 @@ msgstr "No screenshot directory found"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Try taking some screenshots!"
 
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Are you sure you want to quit the game?\n"
@@ -2715,40 +2711,40 @@ msgstr "player died"
 msgid "EXTINCT_IN_PATCH"
 msgstr "extinct in patch"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:901
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
 msgstr "some"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
-#: ../src/general/StageHUDBase.cs:904
+#: ../src/general/StageHUDBase.cs:907
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
-#: ../src/general/StageHUDBase.cs:1104
+#: ../src/general/StageHUDBase.cs:1107
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
-#: ../src/general/StageHUDBase.cs:1117
+#: ../src/general/StageHUDBase.cs:1120
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3883,7 +3879,7 @@ msgstr "Become Multicellular ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
@@ -4190,6 +4186,11 @@ msgstr "Infinite MP"
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Find Current Patch"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+msgid "SEED_LABEL"
+msgstr "Planet seed: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4922,7 +4923,7 @@ msgstr "Load finished"
 msgid "ERROR_LOADING"
 msgstr "Error Loading"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Failed to free already loaded resources: {0}"
 
@@ -5435,6 +5436,12 @@ msgstr ""
 "Your cell has been engulfed and is being digested. The progress is shown on your health bar. Your cell will be dead once it finishes or a maximum time limit is reached.\n"
 "\n"
 "You can use the suicide button to skip and respawn, but remember there's always a chance that you'll escape!"
+
+#~ msgid "HEX_VIEW"
+#~ msgstr "Hex View"
+
+#~ msgid "PREVIEW"
+#~ msgstr "Preview"
 
 #~ msgid "MULTICELLULAR"
 #~ msgstr "Multicellular"
