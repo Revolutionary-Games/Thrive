@@ -267,16 +267,17 @@ public class PatchMap : ISaveLoadable
     /// <summary>
     ///   Gets the species population in all patches.
     /// </summary>
-    public long GetSpeciesGlobalPopulation(Species species)
+    public long GetSpeciesGlobalSimulationPopulation(Species species)
     {
-        long sum = 0;
+        return Patches.Values.Sum(p => p.GetSpeciesSimulationPopulation(species));
+    }
 
-        foreach (var entry in Patches.Values)
-        {
-            sum += entry.GetSpeciesPopulation(species);
-        }
-
-        return sum;
+    /// <summary>
+    ///   Gets the species gameplay population (<see cref="Patch.GetSpeciesGameplayPopulation"/>) in all patches.
+    /// </summary>
+    public long GetSpeciesGlobalGameplayPopulation(Species species)
+    {
+        return Patches.Values.Sum(p => p.GetSpeciesGameplayPopulation(species));
     }
 
     /// <summary>
@@ -337,6 +338,18 @@ public class PatchMap : ISaveLoadable
         }
 
         return found.ToList();
+    }
+
+    /// <summary>
+    ///   Called after auto-evo has applied results. Clears the previous gameplay populations so that next time
+    ///   gameplay populations are used they start off with the new simulation computed values.
+    /// </summary>
+    public void DiscardGameplayPopulations()
+    {
+        foreach (var entry in Patches)
+        {
+            entry.Value.DiscardGameplayPopulations();
+        }
     }
 
     /// <summary>

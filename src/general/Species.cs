@@ -51,8 +51,7 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Changing this has no effect as this is set after auto-evo
-    ///     from the per patch populations.
+    ///     Changing this has no effect as this is set after auto-evo from the per patch populations.
     ///   </para>
     /// </remarks>
     public long Population { get; set; } = 1;
@@ -64,9 +63,8 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     In the previous version a string name was used to identify
-    ///     species, but it was just the word species followed by a
-    ///     sequential number, so now this is an actual number.
+    ///     In the previous version a string name was used to identify species, but it was just the word species
+    ///     followed by a sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -143,17 +141,14 @@ public abstract class Species : ICloneable
     {
         ThrowPopulationChangeErrorIfNotPlayer();
 
-        var oldPopulation = patch.GetSpeciesPopulation(this);
+        var oldPopulation = patch.GetSpeciesGameplayPopulation(this);
         var population = (long)(oldPopulation * coefficient);
         population += constant;
 
         if (population < 0)
             population = 0;
 
-        var populationChange = population - oldPopulation;
-
-        patch.UpdateSpeciesPopulation(this, population);
-        Population += populationChange;
+        patch.UpdateSpeciesGameplayPopulation(this, population);
     }
 
     /// <summary>
