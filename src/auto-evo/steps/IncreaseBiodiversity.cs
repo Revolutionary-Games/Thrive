@@ -14,6 +14,7 @@
         private readonly Patch patch;
         private readonly AutoEvoConfiguration configuration;
         private readonly Random random;
+        private readonly SimulationCache cache;
 
         private readonly Mutations mutations = new();
 
@@ -30,6 +31,7 @@
             this.patch = patch;
             this.configuration = configuration;
             this.random = new Random(random.Next());
+            cache = new SimulationCache(worldSettings);
         }
 
         public int TotalSteps => 2;
@@ -142,7 +144,7 @@
                 // TODO: should we apply the population reduction to splitFrom?
             }
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetPopulationInPatch(split, patch);
 
