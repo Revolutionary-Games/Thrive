@@ -277,6 +277,17 @@ public class AutoEvoExploringTool : NodeWithInput
         // Init game
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+
+        // Init generation 0 (LUCA)
+        runResultsList.Add(new LocalizedStringBuilder());
+        speciesHistoryList.Add(new Dictionary<uint, Species>
+        {
+            { gameProperties.GameWorld.PlayerSpecies.ID, gameProperties.GameWorld.PlayerSpecies },
+        });
+        historyListMenu.AddItem("0", false, Colors.White);
+        historyListMenu.CreateElements();
+        HistoryListMenuIndexChanged(0);
+
         evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
 
         // Init config control values
@@ -464,16 +475,16 @@ public class AutoEvoExploringTool : NodeWithInput
 
         // Add run results
         RunResults results = autoEvoRun.Results!;
-        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, currentGeneration);
+        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, ++currentGeneration);
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         // Add check box to history container
-        historyListMenu.AddItem((currentGeneration + 1).ToString(), false, Colors.White);
+        historyListMenu.AddItem(currentGeneration.ToString(), false, Colors.White);
         historyListMenu.CreateElements();
 
-        currentGenerationLabel.Text = (++currentGeneration).ToString();
+        currentGenerationLabel.Text = currentGeneration.ToString();
     }
 
     /// <summary>
@@ -513,7 +524,7 @@ public class AutoEvoExploringTool : NodeWithInput
         if (generationDisplayed == index && speciesListMenu.Popup.GetItemCount() > 0)
             return;
 
-        historyListMenu.Text = (index + 1).ToString();
+        historyListMenu.Text = index.ToString();
 
         generationDisplayed = index;
         UpdateAutoEvoReport();
