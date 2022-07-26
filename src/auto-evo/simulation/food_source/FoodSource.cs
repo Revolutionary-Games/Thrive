@@ -28,7 +28,8 @@
         /// <returns>A formattable that has the description in it</returns>
         public abstract IFormattable GetDescription();
 
-        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch)
+        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch,
+            SimulationCache simulationCache)
         {
             var energyCreationScore = 0.0f;
 
@@ -38,8 +39,7 @@
                 {
                     if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
                     {
-                        var processEfficiency = ProcessSystem.CalculateProcessMaximumSpeed(
-                            process, patch.Biome).Efficiency;
+                        var processEfficiency = simulationCache.GetProcessMaximumSpeed(process, patch.Biome).Efficiency;
 
                         if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
                         {
