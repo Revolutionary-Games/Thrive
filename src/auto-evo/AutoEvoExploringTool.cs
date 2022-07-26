@@ -317,7 +317,7 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu.Popup.Connect("index_pressed", this, nameof(HistoryListMenuIndexChanged));
         speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
 
-        // Mark ready, later on autoEvoConfiguration values should only be changed from the GUI
+        // Mark ready, later on autoEvoConfiguration values should only be changed through GUI
         ready = true;
     }
 
