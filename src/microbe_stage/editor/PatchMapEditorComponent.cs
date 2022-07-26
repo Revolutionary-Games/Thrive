@@ -151,7 +151,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         if (Editor.FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
             return true;
 
-        // Can move to any patch that player species inhabits or their adjacent
+        // Can move to any patch that player species inhabits or is adjacent to such a patch
         return GetMovablePatches().Contains(patch);
     }
 
