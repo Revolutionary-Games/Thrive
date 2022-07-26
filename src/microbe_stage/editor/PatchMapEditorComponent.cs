@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -29,13 +31,6 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     /// </summary>
     [JsonProperty]
     protected Patch? targetPatch;
-
-    /// <summary>
-    ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
-    ///   start)
-    /// </summary>
-    [JsonProperty]
-    protected bool canStillMove;
 
     [JsonProperty]
     protected Patch playerPatchOnEntry = null!;
@@ -81,7 +76,6 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
                 throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
 
-            canStillMove = true;
             UpdatePlayerPatch(playerPatchOnEntry);
         }
 
@@ -149,32 +143,32 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         if (patch == null)
             return false;
 
-        var from = CurrentPatch;
-
         // Can't go to the patch you are in
-        if (from == patch)
+        if (CurrentPatch == patch)
             return false;
-
-        // Can return to the patch the player started in, as a way to "undo" the change
-        if (patch == playerPatchOnEntry)
-            return true;
 
         // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
         if (Editor.FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
             return true;
 
-        // Can't move if out of moves
-        if (!canStillMove)
-            return false;
+        // Can move to any patch that player species inhabits or is adjacent to such a patch
+        return GetMovablePatches().Contains(patch);
+    }
 
-        // Need to have a connection to move
-        foreach (var adjacent in from.Adjacent)
+    private HashSet<Patch> GetMovablePatches()
+    {
+        var movablePatches = Editor.CurrentGame.GameWorld.Map.Patches.Values.Where(p =>
+            p.SpeciesInPatch.ContainsKey(Editor.CurrentGame.GameWorld.PlayerSpecies)).ToHashSet();
+
+        foreach (var patch in movablePatches.ToList())
         {
-            if (adjacent == patch)
-                return true;
+            foreach (var adjacent in patch.Adjacent)
+            {
+                movablePatches.Add(adjacent);
+            }
         }
 
-        return false;
+        return movablePatches;
     }
 
     private void SetPlayerPatch(Patch? patch)
@@ -182,16 +176,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         if (!IsPatchMoveValid(patch))
             return;
 
-        // One move per editor cycle allowed, unless freebuilding
-        if (!Editor.FreeBuilding)
-            canStillMove = false;
-
         if (patch == playerPatchOnEntry)
         {
             targetPatch = null;
-
-            // Undoing the move, restores the move
-            canStillMove = true;
         }
         else
         {
