@@ -87,12 +87,12 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Your cell uses [thrive:compound type=\"atp\"][/thrive:compound] as its energy source, if it runs out you will die."
+msgstr "Your cell uses [thrive:compound type=\"atp\"][/thrive:compound] as its energy source; if it runs out you will die."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "To unlock the editor and reproduce you need to gather [thrive:compound type=\"ammonia\"][/thrive:compound] (Orange Cloud) and [thrive:compound type=\"phosphates\"][/thrive:compound] (Purple Cloud)."
+msgstr "To unlock the editor and reproduce you need to gather [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) and [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -101,25 +101,25 @@ msgstr "You can also engulf cells, bacteria, iron chunks and cell chunks that ar
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Once engulfment is finished, any objects caught in the engulfment will then be kept inside the membrane to be digested. Non-digestible objects will always be expelled so make sure you have the necessary mutations that enable processing them first. Enzymes will help with digestion and is provided by the Lysosome, it's recommended to evolve this organelle to make digestion much more efficient."
+msgstr "Once engulfment is finished, any objects caught in the engulfment will then be kept inside the membrane to be digested. Indigestible objects will always be expelled, so make sure you have the necessary mutations that enable processing them first. Enzymes will help with digestion and is provided by the lysosome; evolve this organelle to make digestion much more efficient."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "However, Lysosome is exclusive only to eukaryotes, prokaryotes on the other hand don't have such organelle and so it digests its food rather inefficiently. For small cells this is fine but for larger cells, having no lysosomes is very disadvantageous."
+msgstr "However, lysosomes are exclusive to eukaryotes. Prokaryotes don't have such organelles and digest their food rather inefficiently. For small cells this is fine, but for larger cells having no lysosomes is very disadvantageous."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Cellulose and Chitin cell walls in particular can't be digested without having the prerequisite enzyme than can break them down first."
+msgstr "Cellulose and chitin cell walls in particular can't be digested without having the prerequisite enzyme that can break them down first."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which means the bigger your cell is, the more Mitochondria, Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing [thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
+msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which means the bigger your cell is, the more mitochondria, metabolosomes or rusticyanin (or cytoplasm, which does glycolysis) you need to avoid losing [thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "There are many Organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
+msgstr "There are many organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -147,7 +147,7 @@ msgstr "To reproduce you need to divide each of your organelles into two. Organe
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "For now, if your population drops to zero, you go extinct."
+msgstr "If your population drops to zero, you go extinct."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -160,7 +160,7 @@ msgstr "Be wary because your competitors are evolving alongside you. Every time 
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "By binding with other cells, you can build a cell colony where the cells share the compounds they absorb and produce with each other. In order to be able to bind with another cell, you need to have the binding agents organelle and move into them after entering binding mode by pressing [thrive:input]g_toggle_binding[/thrive:input]. You can only bind with cells of your own species. While in a colony, you can't divide your cell and enter the editor (for now). To enter the editor, collect the required compounds and leave the colony by pressing [thrive:input]g_unbind_all[/thrive:input]. Large cell colonies are the way towards multicellularity."
+msgstr "By aggregating with other cells, you can build a grex where the cells share the compounds they absorb and produce with each other. To bind with another cell, your cell needs to produce acrasin, a special signaling agent that allows your cell and others to adhere after entering binding mode by pressing [thrive:input]g_toggle_binding[/thrive:input]. You can only bind with cells of your own species. While in a grex, you can't divide your cell and enter the editor (for now). To enter the editor, collect the required compounds and leave the grex by pressing [thrive:input]g_unbind_all[/thrive:input]. Large cell colonies are the way towards multicellularity."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -203,7 +203,7 @@ msgstr ""
 "\n"
 "Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles, doubles your cell's size and reduces the damage taken by 50% (can only be evolved once)\n"
 "\n"
-"Binding Agent: Allows binding with other cells\n"
+"Acrasin: A special signaling agent that allows binding with other cells to form a grex. Required to advance to the Multicellular Stage.\n"
 "\n"
 "Mitochondrion: Produces [thrive:compound type=\"atp\"][/thrive:compound] out of [thrive:compound type=\"glucose\"][/thrive:compound] and atmospheric O2 much more efficiently than cytoplasm\n"
 "\n"
@@ -3263,11 +3263,11 @@ msgstr "Cilia hairs are similar to the flagella but instead of providing directi
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding mode. When in binding mode you can attach other cells of your species to your colony by moving into them. To leave a colony press [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding mode. When in binding mode you can adhere other cells of your species to your grex by moving into them. To leave a grex press [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1401
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Allows binding with other cells. This is the first step towards multicellularity. When your cell is part of a colony, compounds are shared between cells. You can't enter the editor while part of a colony so you need to unbind once collecting enough compounds to divide your cell."
+msgstr "Allows adhesion with other cells. This is the first step towards multicellularity. When your cell is part of a grex, compounds are shared between cells. You can't enter the editor while part of a grex, so you need to disband once collecting enough compounds to divide your cell."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -3710,7 +3710,7 @@ msgstr "Ingested Matter"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Move to the next stage of the game (multicellular). Available once you have a big enough cell colony."
+msgstr "Move to the next stage of the game (multicellular). Available once you have a big enough grex."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1806
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -4022,7 +4022,7 @@ msgstr "years"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
-msgstr "Atmospheric Gasses"
+msgstr "Atmospheric Gases"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
 msgid "SPECIES_LIST"
@@ -4238,7 +4238,7 @@ msgstr "YOU HAVE THRIVED!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world. You may also add binding agents to build a cell colony and check the later game prototypes."
+msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world. You may also add acrasin to build a grex and check the later game prototypes."
 
 #: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
 msgid "CANT_LOAD_MOD_INFO"
@@ -5224,9 +5224,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"You have entered unbind mode. In this mode you can click on colony members to unbind them.\n"
+"You have entered unbind mode. In this mode you can click on grex members to unbind them.\n"
 "\n"
-"To leave the colony entirely you can click on your own cell or press the [thrive:input]g_unbind_all[/thrive:input] key."
+"To leave the grex entirely you can click on your own cell or press the [thrive:input]g_unbind_all[/thrive:input] key."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
