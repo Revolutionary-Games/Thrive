@@ -49,7 +49,7 @@
 
             // Directly feed the population results to the main results object
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, null);
 
             return true;
         }
