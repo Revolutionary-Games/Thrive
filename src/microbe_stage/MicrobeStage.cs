@@ -91,6 +91,9 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base._Ready();
 
+        // Start a new game if started directly from MicrobeStage.tscn
+        CurrentGame ??= GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
+
         ResolveNodeReferences();
 
         glucose = SimulationParameters.Instance.GetCompound("glucose");
