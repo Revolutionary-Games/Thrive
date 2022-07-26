@@ -303,9 +303,6 @@ public class PatchMap : ISaveLoadable
             {
                 patch.Value.RemoveSpecies(speciesEntry.Key);
 
-                GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
-                    patch.Value.Name);
-
                 if (!nonExtinctSpecies.Contains(speciesEntry.Key))
                 {
                     result.Add(speciesEntry.Key);
