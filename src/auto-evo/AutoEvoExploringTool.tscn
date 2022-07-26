@@ -111,7 +111,6 @@ group = SubResource( 1 )
 text = "VIEWER"
 
 [node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
-visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
@@ -459,6 +458,7 @@ margin_bottom = 300.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
