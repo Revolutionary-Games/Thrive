@@ -10,7 +10,8 @@ public class EvolutionaryTree : Control
 
     private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latest = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)> speciesOrigin = new();
+    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
+        speciesOrigin = new();
 
     private readonly ButtonGroup nodesGroup = new();
 
@@ -87,7 +88,8 @@ public class EvolutionaryTree : Control
         BuildTree();
     }
 
-    private EvolutionaryTreeNode SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation, bool isLastGeneration = false)
+    private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
+        bool isLastGeneration = false)
     {
         var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
         node.Generation = generation;
@@ -102,8 +104,6 @@ public class EvolutionaryTree : Control
         nodes.Add(node);
         AddChild(node);
         latest[species.ID] = node;
-
-        return node;
     }
 
     private void BuildTree()
@@ -129,8 +129,8 @@ public class EvolutionaryTree : Control
         // Search for derived species and do this recursively.
         // The later a species derived, the closer it is to its parent. This avoids any crossings in the tree.
         foreach (var child in speciesOrigin.Where(p => p.Value.ParentSpeciesID == id)
-            .OrderByDescending(p => p.Value.SplitGeneration)
-            .Select(p => p.Key))
+                     .OrderByDescending(p => p.Value.SplitGeneration)
+                     .Select(p => p.Key))
         {
             BuildTree(child, ref index);
         }
