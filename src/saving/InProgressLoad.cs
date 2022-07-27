@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using Godot;
 using Saving;
 
@@ -236,8 +235,7 @@ public class InProgressLoad
         }
         catch (Exception e2)
         {
-            return string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"), e2);
+            return TranslationServer.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE").FormatSafe(e2);
         }
 
         return string.Empty;

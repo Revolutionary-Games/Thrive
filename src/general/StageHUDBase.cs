@@ -686,23 +686,18 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, oxygenPercentage);
+        oxygenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(oxygenPercentage);
 
         co2Bar.MaxValue = 100;
         co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, co2Percentage);
+        co2Bar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(co2Percentage);
 
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, nitrogenPercentage);
+        nitrogenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(nitrogenPercentage);
 
-        sunlightLabel.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperatureBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, unitFormat, averageTemperature, temperature.Unit);
+        sunlightLabel.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(sunlightPercentage);
+        temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
 
         // TODO: pressure?
     }
@@ -1117,8 +1112,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             if (hoveredSpeciesCount.Value > 1)
             {
                 AddHoveredCellLabel(
-                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
-                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+                    TranslationServer.Translate("SPECIES_N_TIMES").FormatSafe(hoveredSpeciesCount.Key.FormattedName,
+                        hoveredSpeciesCount.Value));
             }
             else
             {

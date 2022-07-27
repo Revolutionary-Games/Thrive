@@ -205,7 +205,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             // Show the digestion progress to the player
             hp = 1 - (stage.Player!.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
             maxHP = Constants.FULLY_DIGESTED_LIMIT;
-            hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
+            hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
             playerWasDigested = true;
             FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
         }
@@ -292,8 +292,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     protected override string GetMouseHoverCoordinateText()
     {
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("STUFF_AT"),
-            stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
+        return TranslationServer.Translate("STUFF_AT")
+            .FormatSafe(stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
     }
 
     protected override void UpdateAbilitiesHotBar()
@@ -381,8 +381,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        multicellularButton.Text = string.Format(TranslationServer.Translate("BECOME_MULTICELLULAR"), playerColonySize,
-            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
+        multicellularButton.Text = TranslationServer.Translate("BECOME_MULTICELLULAR")
+            .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
     }
 
     private void UpdateMacroscopicButton(Microbe player)
@@ -417,8 +417,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        macroscopicButton.Text = string.Format(TranslationServer.Translate("BECOME_MACROSCOPIC"), playerColonySize,
-            Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
+        macroscopicButton.Text = TranslationServer.Translate("BECOME_MACROSCOPIC")
+            .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
     }
 
     private void OnBecomeMulticellularPressed()

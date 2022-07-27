@@ -632,8 +632,8 @@ public class OptionsMenu : ControlWithInput
             return;
 
         var screenResolution = OS.WindowSize * OS.GetScreenScale();
-        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
-            screenResolution.x, screenResolution.y);
+        resolution.Text = TranslationServer.Translate("AUTO_RESOLUTION")
+            .FormatSafe(screenResolution.x, screenResolution.y);
     }
 
     /// <summary>
@@ -1028,7 +1028,7 @@ public class OptionsMenu : ControlWithInput
             textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
         }
 
-        languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
+        languageProgressLabel.Text = textFormat.FormatSafe(Mathf.Floor(progress));
     }
 
     // GUI Control Callbacks

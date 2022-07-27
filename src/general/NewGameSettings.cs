@@ -564,9 +564,7 @@ public class NewGameSettings : ControlWithInput
     private void OnGlucoseDecayRateValueChanged(double percentage)
     {
         percentage = Math.Round(percentage, 2);
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-        glucoseDecayRateReadout.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            percentage);
+        glucoseDecayRateReadout.Text = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(percentage);
         settings.GlucoseDecay = (float)percentage * 0.01f;
 
         UpdateSelectedDifficultyPresetControl();
