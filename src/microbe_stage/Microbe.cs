@@ -429,7 +429,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 AddChild(engulfable.EntityNode);
 
                 if (engulfed.Phagosome.Value != null)
-                    engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
+                    Invoke.Instance.Queue(() => engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value));
             }
         }
 
