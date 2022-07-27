@@ -279,7 +279,7 @@ public class AutoEvoRun
         foreach (var entry in ExternalEffects)
         {
             var key = (entry.Species, entry.EventType, entry.Patch);
-            var speciesPopulation = entry.Species.Population;
+            var speciesPopulation = entry.Patch.GetSpeciesGameplayPopulation(entry.Species);
 
             combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
 
@@ -432,7 +432,8 @@ public class AutoEvoRun
                         continue;
 
                     // Adjust to the specified fraction of the full population change
-                    var previousPopulation = entry.Value.GetSpeciesPopulation(previousPopulationFrom ?? playerSpecies);
+                    var previousPopulation =
+                        entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
 
                     var change = resultPopulation.Value - previousPopulation;
 

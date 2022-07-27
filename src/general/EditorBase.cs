@@ -804,8 +804,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         foreach (var species in extinct)
         {
             CurrentGame.GameWorld.RemoveSpecies(species);
-
-            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
         }
 
         // Clear the run to make the cell stage start a new run when we go back there
