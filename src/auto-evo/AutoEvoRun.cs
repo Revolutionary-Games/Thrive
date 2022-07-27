@@ -216,10 +216,6 @@ public class AutoEvoRun
     {
         if (ExternalEffects.Count > 0)
         {
-            // Effects are applied in the current patch
-            var currentPatch = Parameters.World.Map.CurrentPatch ??
-                throw new InvalidOperationException("Cannot apply external effects without current map patch");
-
             foreach (var entry in ExternalEffects)
             {
                 try
@@ -233,7 +229,7 @@ public class AutoEvoRun
                     }
 
                     // It's possible for external effects to be added for extinct species (either completely extinct
-                    // or extinct in the current patch)
+                    // or extinct in the patch it applies to)
                     // We ignore this for player to give the player's reproduction bonus the ability to rescue them
                     if (!results.SpeciesHasResults(entry.Species) && !entry.Species.PlayerSpecies)
                     {
@@ -242,10 +238,10 @@ public class AutoEvoRun
                         continue;
                     }
 
-                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
+                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
-                        entry.Species, currentPatch, currentPopulation + entry.Constant);
+                        entry.Species, entry.Patch, currentPopulation + entry.Constant);
                 }
                 catch (Exception e)
                 {
