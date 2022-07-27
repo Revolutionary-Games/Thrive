@@ -270,6 +270,18 @@ Code style rules
 - Avoid globals. Especially in object trees where you can easily
   enough pass the reference along.
 
+- Do not use `string.Format` with a translated format string, as
+  translation mistakes can crash the game in that case. Instead either
+  use `LocalizedString`, `LocalizedStringBuilder`, or
+  `StringUtils.FormatSafe`. Those ways will automatically catch
+  exceptions from broken translations and return the format string
+  un-formatted. `StringUtils` will likely want to be invoked as an
+  extension method on the string (`"example".FormatSafe(...)`). If the
+  format string is not user suplied normal `string.Format` is allowed,
+  but should be passed `CultureInfo.CurrentCulture` as the first
+  parameter as we want text shown to the user in the user's selected
+  locale.
+
 - Prefer `List` and other concrete containers over `IList` and similar
   interfaces. `IList` should be used only in very special cases that
   require it. In many cases `IEnumerable` is the preferred type to use

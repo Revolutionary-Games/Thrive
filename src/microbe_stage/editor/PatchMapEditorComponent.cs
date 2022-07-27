@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -79,8 +78,8 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             UpdatePlayerPatch(playerPatchOnEntry);
         }
 
-        seedLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SEED_LABEL"),
-            owningEditor.CurrentGame.GameWorld.WorldSettings.Seed);
+        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+            .FormatSafe(owningEditor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 
     public void SetMap(PatchMap map)

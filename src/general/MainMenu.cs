@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -237,8 +236,8 @@ public class MainMenu : NodeWithInput
         else
         {
             storeLoggedInDisplay.Visible = true;
-            storeLoggedInDisplay.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("STORE_LOGGED_IN_AS"), SteamHandler.Instance.DisplayName);
+            storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+                .FormatSafe(SteamHandler.Instance.DisplayName);
         }
     }
 
