@@ -250,7 +250,7 @@
 
                     // We ignore the return value as population results are added for all existing patches for all
                     // species (if the species is not in the patch the population is 0 in the results)
-                    patch.UpdateSpeciesPopulation(entry.Key, populationEntry.Value);
+                    patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value);
                 }
 
                 if (entry.Value.NewlyCreated != null)
@@ -286,15 +286,15 @@
                     var from = world.Map.GetPatch(spreadEntry.From.ID);
                     var to = world.Map.GetPatch(spreadEntry.To.ID);
 
-                    long remainingPopulation = from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
-                    long newPopulation = to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
+                    long remainingPopulation = from.GetSpeciesSimulationPopulation(entry.Key) - spreadEntry.Population;
+                    long newPopulation = to.GetSpeciesSimulationPopulation(entry.Key) + spreadEntry.Population;
 
-                    if (!from.UpdateSpeciesPopulation(entry.Key, remainingPopulation))
+                    if (!from.UpdateSpeciesSimulationPopulation(entry.Key, remainingPopulation))
                     {
                         GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
                     }
 
-                    if (!to.UpdateSpeciesPopulation(entry.Key, newPopulation))
+                    if (!to.UpdateSpeciesSimulationPopulation(entry.Key, newPopulation))
                     {
                         if (!to.AddSpecies(entry.Key, newPopulation))
                         {
@@ -314,12 +314,12 @@
                         {
                             var patch = world.Map.GetPatch(splitOffPatch.ID);
 
-                            var population = patch.GetSpeciesPopulation(entry.Key);
+                            var population = patch.GetSpeciesSimulationPopulation(entry.Key);
 
                             if (population <= 0)
                                 continue;
 
-                            if (!patch.UpdateSpeciesPopulation(entry.Key, 0))
+                            if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, 0))
                             {
                                 GD.PrintErr("RunResults failed to update population for a species that split");
                             }
@@ -336,6 +336,8 @@
                     }
                 }
             }
+
+            world.Map.DiscardGameplayPopulations();
         }
 
         /// <summary>
@@ -607,7 +609,7 @@
                     builder.Append(' ');
                     builder.Append(new LocalizedString("PREVIOUS_COLON"));
                     builder.Append(' ');
-                    builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
+                    builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesSimulationPopulation(species));
                 }
 
                 builder.Append('\n');
@@ -746,8 +748,8 @@
                             if (effect.Species == entry.Species && effect.Patch.ID == patchPopulation.Key.ID)
                             {
                                 adjustedPopulation +=
-                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
-                                    - effect.Species.Population;
+                                    effect.Constant + (long)(patchPopulation.Value * effect.Coefficient)
+                                    - patchPopulation.Value;
                             }
                         }
                     }
@@ -763,7 +765,8 @@
                     }
                     else
                     {
-                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
+                                .GetSpeciesSimulationPopulation(entry.Species) >
                             0)
                         {
                             include = true;
@@ -849,10 +852,11 @@
                 {
                     long globalPopulation = GetGlobalPopulation(species, true, true);
 
-                    var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
+                    var previousGlobalPopulation = world.Map.GetSpeciesGlobalSimulationPopulation(species);
 
-                    var finalPatchPopulation = GetPopulationInPatch(species, patch);
-                    var previousPatchPopulation = patch.GetSpeciesPopulation(species);
+                    var unadjustedPopulation = GetPopulationInPatch(species, patch);
+                    var finalPatchPopulation = unadjustedPopulation;
+                    var previousPatchPopulation = patch.GetSpeciesSimulationPopulation(species);
 
                     finalPatchPopulation += CountSpeciesSpreadPopulation(species, patch);
 
@@ -870,8 +874,8 @@
                             if (effect.Species == species && effect.Patch.ID == patch.ID)
                             {
                                 finalPatchPopulation +=
-                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
-                                    - effect.Species.Population;
+                                    effect.Constant + (long)(unadjustedPopulation * effect.Coefficient)
+                                    - unadjustedPopulation;
                             }
                         }
                     }

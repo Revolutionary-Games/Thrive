@@ -268,7 +268,8 @@ public class PatchDetailsPanel : PanelContainer
         foreach (var species in SelectedPatch.SpeciesInPatch.Keys)
         {
             speciesList.AppendLine(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                "SPECIES_WITH_POPULATION"), species.FormattedNameBbCode, SelectedPatch.GetSpeciesPopulation(species)));
+                    "SPECIES_WITH_POPULATION"), species.FormattedNameBbCode,
+                SelectedPatch.GetSpeciesSimulationPopulation(species)));
         }
 
         label.ExtendedBbcode = speciesList.ToString();

@@ -840,7 +840,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected void UpdatePopulation()
     {
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
-        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesPopulation(playerSpecies);
+        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
 
         if (population <= 0 && stage.HasPlayer)
             population = 1;
