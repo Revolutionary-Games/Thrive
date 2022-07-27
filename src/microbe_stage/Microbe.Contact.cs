@@ -534,7 +534,7 @@ public partial class Microbe
         {
             if (engulfed.Object.Value != null)
             {
-                EjectEngulfable(engulfed.Object.Value);
+                engulfedObjects.Remove(engulfed);
                 engulfed.Object.Value.DestroyDetachAndQueueFree();
             }
 
