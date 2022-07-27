@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-20 14:34+0300\n"
-"PO-Revision-Date: 2022-07-20 09:20+0000\n"
-"Last-Translator: Ivan <vanya123256@gmail.com>\n"
+"PO-Revision-Date: 2022-07-24 11:52+0000\n"
+"Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2199,7 +2199,7 @@ msgstr "Включить световые эффекты GUI"
 #: ../src/general/OptionsMenu.tscn:440
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "Показать панель способностей"
+msgstr "Показать название кнопок выбора частей:"
 
 #: ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
@@ -3458,9 +3458,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Нажимайте, перетаскивайте, приближайте и отдаляйте чтобы осмотреться"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:423
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Смотрите на:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
 #: ../src/microbe_stage/MicrobeStage.tscn:483
@@ -3517,7 +3516,7 @@ msgstr "Станьте осведомлены"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
 msgid "AWAKEN"
-msgstr ""
+msgstr "Пробудить"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 #: ../src/microbe_stage/MicrobeStage.tscn:1658
@@ -3544,8 +3543,9 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Выберите тип ткани во вкладке редактора для изменения"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
+#, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Невозможно переместить метасферу в его древо потомков"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 msgid "INTERNALS"
@@ -3561,9 +3561,8 @@ msgid "REPRODUCTION_ASEXUAL"
 msgstr "Бесполое"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Отсоединенные Клетки"
+msgstr "Отсоединенные метасферы"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
 #, fuzzy
@@ -3581,9 +3580,8 @@ msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Вы можете создать новые типы тканей копируя уже существующие под новым названием. Ткани можно изменять в редакторе клеток, чтобы сделать их более подходящими под разные роли."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Несколько клеток"
+msgstr "Группа метасфер"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3684,8 +3682,9 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал Для Передачи"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:197
+#, fuzzy
 msgid "DEVOURED"
-msgstr ""
+msgstr "Съеденный"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:295
 msgid "STUFF_AT"
@@ -3723,7 +3722,7 @@ msgstr "Войдите в редактор для модификации вид�
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:764
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Пангонский"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:833
 msgid "PATCH_NAME"
@@ -4922,17 +4921,16 @@ msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Выбранное сохранение несовместимо"
+msgstr "Выбрано сохранение с несовместимым прототипом"
 
 #: ../src/saving/SaveList.tscn:129
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"Известно, что выбранное для загрузки сохранение несовместимо с этой версией Thrive.\n"
-"И нет средства для обновления этого сохранения для новой версии.\n"
-"Поскольку Thrive все еще находится на ранней стадии разработки, совместимость с сохранениями не является приоритетной задачей, поэтому для всех версий не существует конвертера для сохранений."
+"Выбранное для загрузки сохранение сделано в прототипе с помощью другой версии Thrive.\n"
+"Поэтому сохранение не может быть загружено, так как прототипы не могут быть обновлены.\n"
+"Поддержание совместимости сохранений прототипов будет очень сложно, так как многое перерабатывается и написание обновлений сохранений бы сильно замедлило разработку."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
