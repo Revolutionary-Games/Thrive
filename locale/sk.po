@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-20 14:34+0300\n"
-"PO-Revision-Date: 2022-07-20 09:20+0000\n"
+"PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
 "Language: sk\n"
@@ -2541,7 +2541,7 @@ msgstr "hráč zomrel"
 
 #: ../src/general/StageBase.cs:501
 msgid "EXTINCT_IN_PATCH"
-msgstr ""
+msgstr "vyhynul v tejto oblasti"
 
 #: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
@@ -2549,23 +2549,20 @@ msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:897
-#, fuzzy
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "veľké množstvo"
 
 #: ../src/general/StageHUDBase.cs:899
-#, fuzzy
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "celkom dosť"
 
 #: ../src/general/StageHUDBase.cs:901
-#, fuzzy
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatočné množstvo"
 
 #: ../src/general/StageHUDBase.cs:903
 msgid "CATEGORY_SOME"
-msgstr "niektoré"
+msgstr "trochu"
 
 #: ../src/general/StageHUDBase.cs:905
 msgid "CATEGORY_LITTLE"
@@ -2593,7 +2590,7 @@ msgstr "{0} mil"
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr "{0} K"
+msgstr "{0} tis"
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -2634,19 +2631,19 @@ msgstr "Hlavní umelci"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Vedúci zvukár"
 
 #: ../src/gui_common/CreditsScroll.cs:248
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Vedúci zvukári"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Vedúci kontaktu s komunitou"
 
 #: ../src/gui_common/CreditsScroll.cs:254
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Vedúci kontaktu s komunitou"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
@@ -2687,18 +2684,20 @@ msgstr "Externí prispievatelia"
 #: ../src/gui_common/CreditsScroll.cs:314
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive je open source projekt.\n"
+"Môžeš prispieť aj keď nie si súčasťou tímu (formou pull request) ."
 
 #: ../src/gui_common/CreditsScroll.cs:329
 msgid "PATRONS"
-msgstr ""
+msgstr "Patróni"
 
 #: ../src/gui_common/CreditsScroll.cs:335
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Budúci vývoj Thrive môžeš podporiť na Patreone."
 
 #: ../src/gui_common/CreditsScroll.cs:352
 msgid "DONATIONS"
-msgstr ""
+msgstr "Príspevky"
 
 #: ../src/gui_common/CreditsScroll.cs:375
 msgid "TRANSLATORS"
@@ -2706,11 +2705,14 @@ msgstr "Prekladatelia"
 
 #: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licencie a použité knižnice"
 
 #: ../src/gui_common/CreditsScroll.cs:486
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Ďakujeme, že si hral našu hru!\n"
+"\n"
+"Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
 
 #: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROGRAMMING_TEAM"
@@ -2730,7 +2732,7 @@ msgstr "Zvukári"
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
-msgstr ""
+msgstr "Kontakt s komunitou"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "GAME_DESIGN_TEAM"
@@ -2742,11 +2744,11 @@ msgstr "Testeri"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
+msgstr "Projektoví manažéri"
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Externí programátori"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
@@ -2754,7 +2756,7 @@ msgstr "VIP podporovatelia"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Devbuilds podporovatelia"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "SUPPORTER_PATRONS"
@@ -2809,7 +2811,6 @@ msgid "DECEMBER"
 msgstr "December"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
-#, fuzzy
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Od Revolutionary Games Studio"
 
@@ -2828,6 +2829,8 @@ msgstr "Stop"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Uložená verzia hry, ktorú sa pokúšaš načítať, nezodpovedá verzii hry. \n"
+"Načítaj ju manuálne cez menu."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -2835,63 +2838,71 @@ msgstr "Uložená hra má inú verziu"
 
 #: ../src/gui_common/RadialMenu.cs:63
 msgid "SELECT_OPTION"
-msgstr ""
+msgstr "Vyber možnosť"
 
 #: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Zvoľ farbu z herného okna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Pridať aktuálnu farbu ako prednastavenú"
 
 #: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"Zapnúť alebo vypnúť režim OSJ (Odtieň, Saturácia, Jas).\n"
+"Nemôže byť zapnutý v režime raw."
 
 #: ../src/gui_common/TweakedColourPicker.cs:391
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"Zapnúť alebo vypnúť režim raw.\n"
+"V režime raw môžeš hodnoty R, G, B nastaviť nad úroveň 1.0.\n"
+"Nemôže byť zapnutý v režime OSJ."
 
 #: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Odtieň - časť farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Saturácia - množstvo sivej farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Jas - svetlosť alebo intenzita farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "Hodnota červeného kanála farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "Hodnota zeleného kanála farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "Hodnota modrého kanála farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Hodnota alfa kanála farby"
 
 #: ../src/gui_common/TweakedColourPicker.cs:581
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Farba: {0}\n"
+"Ľavé tlačidlo myši: Použiť toto prednastavenie\n"
+"Pravé tlačidlo myši: Vymazať toto prednastavenie"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr "HSV"
+msgstr "OSJ"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr "Surový"
+msgstr "Raw"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -2903,11 +2914,11 @@ msgstr "N/A"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Dvojitým kliknutím zobraziť na celej obrazovke"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
-msgstr "Titul:"
+msgstr "Názov:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
 msgid "DESCRIPTION_COLON"
@@ -2915,7 +2926,7 @@ msgstr "Popis:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
-msgstr "Umelec:"
+msgstr "Autor:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
 msgid "UNTITLED"
@@ -2923,7 +2934,7 @@ msgstr "Bez názvu"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Zobrazovač galérie"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
@@ -2941,21 +2952,21 @@ msgstr "Žiadne údaje na zobrazenie"
 
 #: ../src/gui_common/charts/line/LineChart.cs:652
 msgid "INVALID_DATA_TO_PLOT"
-msgstr ""
+msgstr "Neplatné údaje na vykreslenie"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1116
 #: ../src/gui_common/charts/line/LineChart.cs:1208
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Nie je povolené zobraziť viac ako {0} dátových súborov!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1122
 #: ../src/gui_common/charts/line/LineChart.cs:1213
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Nie je povolené zobraziť menej ako {0} dátových súborov!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "Prezrieť"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
@@ -2969,7 +2980,7 @@ msgstr "Kopírovať chybu do schránky"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "Text licencie GPL je nasledujúci:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2977,7 +2988,7 @@ msgstr "Thrive Licencie"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "Licencie pokrývajúce časti Thrive sú zobrazené tu"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -3001,11 +3012,11 @@ msgstr "Otvoriť menu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Otvoriť nápovedu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:68
 msgid "WILL_YOU_THRIVE"
-msgstr "Budete prosperovať?"
+msgstr "Budeš prosperovať?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
@@ -3021,15 +3032,15 @@ msgstr "Zmeniť symetriu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "UNDO_THE_LAST_ACTION"
-msgstr "Vrátiť späť poslednú akciu"
+msgstr "Zrušiť poslednú zmenu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Vrátiť poslednú zmenu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CREATE_A_NEW_MICROBE"
-msgstr "Vytvoriť nový mikrób"
+msgstr "Vytvoriť nového mikróba"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "RANDOMIZE_SPECIES_NAME"
@@ -3041,7 +3052,7 @@ msgstr "Tuhosť membrány"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Tuhšia membrána je odolnejšia voči poškodeniu, ale sťažuje pohyb bunky."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:159
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
@@ -3085,7 +3096,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "Premieňa [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:282
 msgid "CYTOPLASM_DESCRIPTION"
@@ -3148,7 +3159,7 @@ msgstr "Náklady na osmoreguláciu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:381
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -3160,7 +3171,7 @@ msgstr "Tylakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Produkuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound]. Množstvo závisí od [thrive:compound type=\"carbondioxide\"]oxidu uhličitého[/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"]slnečného žiarenia[/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:482
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -3168,7 +3179,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Premieňa [thrive:compound type=\"hydrogensulfide\"]sírovodík[/thrive:compound] na [thrive:compound type=\"glucose\"]glukózu[/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"carbondioxide\"]oxidu uhličitého [/thrive:compound]. Taktiežpremieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -3176,7 +3187,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Premieňa [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"carbondioxide\"]oxidu uhličitého[/thrive:compound] a [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:681
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -3184,7 +3195,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"nitrogen\"]dusíka[/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:778
 msgid "NITROGENASE_DESCRIPTION"
@@ -3192,7 +3203,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]. Môže vypustiť toxíny stlačením [thrive:input]g_fire_toxin[/thrive:input]. Keď je množstvo [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízke, streľba je stále možná, ale bude mať znížené poškodenie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:876
 msgid "OXYTOXISOME_DESC"
@@ -3200,7 +3211,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] pomocou teplotných gradientov. Množstvo závisí od [thrive:compound type=\"temperature\"] teploty [/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 msgid "THERMOSYNTHASE_DESCRIPTION"
@@ -3208,7 +3219,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Používa [thrive:compound type=\"atp\"][/thrive:compound] na zvýšenie rýchlosti pohybu bunky."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1099
 msgid "FLAGELLUM_DESCRIPTION"
@@ -3220,7 +3231,7 @@ msgstr "Rýchlosť"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1233
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Môže sa použiť na bodnutie iných buniek alebo na obranu proti ich toxínom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1234
 msgid "PREDATORY_PILUS_DESCRIPTION"
@@ -3228,7 +3239,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1293
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Chemoreceptor umožňuje detegovať zlúčeniny z väčšej vzdialenosti. Po umiestnení je možné upraviť typ zlúčeniny a farbu vodiacej čiary."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1294
 msgid "CHEMORECEPTOR_DESCRIPTION"
