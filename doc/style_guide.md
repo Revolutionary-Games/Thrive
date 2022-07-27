@@ -277,7 +277,7 @@ Code style rules
   exceptions from broken translations and return the format string
   un-formatted. `StringUtils` will likely want to be invoked as an
   extension method on the string (`"example".FormatSafe(...)`). If the
-  format string is not user suplied normal `string.Format` is allowed,
+  format string is not user supplied, normal `string.Format` is allowed,
   but should be passed `CultureInfo.CurrentCulture` as the first
   parameter as we want text shown to the user in the user's selected
   locale.
