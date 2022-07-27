@@ -67,6 +67,9 @@ public partial class CellEditorComponent
 
         UpdateMicrobePartSelections();
         UpdateMutationPointsBar();
+
+        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
     }
 
     private void CheckRunningAutoEvoPrediction()
