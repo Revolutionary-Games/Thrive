@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -134,9 +133,7 @@ public class AutoEvoRun
                 var percentage = CompletionFraction * 100;
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps.
-                return string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTO-EVO_STEPS_DONE"),
-                    percentage, CompleteSteps, total);
+                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total);
             }
 
             return TranslationServer.Translate("STARTING");

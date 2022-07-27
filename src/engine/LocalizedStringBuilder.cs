@@ -72,7 +72,7 @@ public class LocalizedStringBuilder : IFormattable
 
     public LocalizedStringBuilder Append(string value, params object[] args)
     {
-        return Append((object)string.Format(CultureInfo.CurrentCulture, value, args));
+        return Append((object)value.FormatSafe(args));
     }
 
     public LocalizedStringBuilder Append(char value)

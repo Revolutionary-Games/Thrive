@@ -303,8 +303,7 @@ public partial class CellEditorComponent
 
             subBar.RegisterToolTipForControl(tooltip);
 
-            tooltip.Description = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION"),
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
                 SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
                 energyBalance.Production[subBar.Name]);
         }
@@ -341,9 +340,8 @@ public partial class CellEditorComponent
                 }
             }
 
-            tooltip.Description = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION"), displayName,
-                energyBalance.Consumption[subBar.Name]);
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION").FormatSafe(
+                displayName, energyBalance.Consumption[subBar.Name]);
         }
     }
 
