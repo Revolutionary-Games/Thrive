@@ -272,7 +272,8 @@ Code style rules
 
 - Prefer `List` and other concrete containers over `IList` and similar
   interfaces. `IList` should be used only in very special cases that
-  require it.
+  require it. In many cases `IEnumerable` is the preferred type to use
+  to not place constraints on other code unnecessarily.
 
 - Methods should not use `=> style` bodies, properties when they are
   short should use that style bodies.
@@ -357,6 +358,9 @@ Godot usage
 - For spacing elements use either a spacer (that has a visual
   appearance) or for invisible space use an empty Control with rect
   `minsize` set to the amount of blank you want.
+
+- Don't use text in the GUI with leading or trailing spaces to add
+  padding, see previous bullet instead.
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
@@ -466,10 +470,7 @@ Godot usage
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
-  ", variable);`
-
-- Don't use text in the GUI with leading or trailing spaces to add
-  padding, see previous bullet instead.
+  ", variable);` Or use string interpolation.
 
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
