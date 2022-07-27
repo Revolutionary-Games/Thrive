@@ -232,7 +232,7 @@ public class AutoEvoRun
                     long currentPop = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
-                        entry.Species, entry.Patch, (int)(currentPop * entry.Coefficient) + entry.Constant);
+                        entry.Species, entry.Patch, (long)(currentPop * entry.Coefficient) + entry.Constant);
                 }
                 catch (Exception e)
                 {
