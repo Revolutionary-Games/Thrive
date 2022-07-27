@@ -64,7 +64,14 @@ public class EvolutionaryTree : Control
             var species = speciesResultPair.Key;
             var result = speciesResultPair.Value;
 
-            if (result.SplitFrom != null)
+            if (result.Species.Population <= 0)
+            {
+                if (result.SplitFrom == null)
+                {
+                    SetupTreeNode(species, nodes.First(n => n.Species == species), generation - 1, true);
+                }
+            }
+            else if (result.SplitFrom != null)
             {
                 SetupTreeNode(species, nodes.First(n => n.Species == result.SplitFrom), generation);
 
@@ -73,10 +80,6 @@ public class EvolutionaryTree : Control
             else if (result.MutatedProperties != null)
             {
                 SetupTreeNode(result.MutatedProperties, nodes.First(n => n.Species == species), generation);
-            }
-            else if (result.Species.Population <= 0)
-            {
-                SetupTreeNode(species, nodes.First(n => n.Species == species), generation - 1, true);
             }
 
             if (species.ID > maxSpeciesId)
