@@ -38,7 +38,7 @@ public static class SaveHelper
         LastModifiedFirst,
 
         /// <summary>
-        ///   The first modified (on disk) save is first
+        ///   The first modified (on disk) save is first (oldest first)
         /// </summary>
         FirstModifiedFirst,
 
@@ -307,7 +307,11 @@ public static class SaveHelper
     public static void DeleteSave(string saveName)
     {
         using var directory = new Directory();
-        directory.Remove(Path.Combine(Constants.SAVE_FOLDER, saveName));
+        var finalPath = Path.Combine(Constants.SAVE_FOLDER, saveName);
+        directory.Remove(finalPath);
+
+        if (directory.FileExists(finalPath))
+            GD.PrintErr("Failed to delete: ", finalPath);
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -317,8 +321,10 @@ public static class SaveHelper
 
         foreach (var save in allSaveNames)
         {
-            if (save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
-                currentSaveNames.Add(save);
+            if (!save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
+                continue;
+
+            currentSaveNames.Add(save);
 
             if (currentSaveNames.Count > maximumCount && currentSaveNames.Count > 0)
             {
