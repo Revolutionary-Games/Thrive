@@ -26,7 +26,8 @@ public class EvolutionaryTree : Control
 
     private readonly ButtonGroup nodesGroup = new();
 
-    private Font latoSmall = null!;
+    private Font latoSmallItalic = null!;
+    private Font latoSmallRegular = null!;
 
     private PackedScene treeNodeScene = null!;
 
@@ -49,7 +50,8 @@ public class EvolutionaryTree : Control
         treeNodeSize = tempNode.RectSize;
         tempNode.QueueFree();
 
-        latoSmall = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
+        latoSmallItalic = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
+        latoSmallRegular = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
     public void Init(Species luca)
@@ -74,12 +76,11 @@ public class EvolutionaryTree : Control
                 new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.DarkCyan, TIMELINE_LINE_THICKNESS, true);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", i) + " "
-                + TranslationServer.Translate("MEGA_YEARS");
-            var size = latoSmall.GetStringSize(localizedText);
-            DrawString(latoSmall, new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
+            var localizedText = i + " " + TranslationServer.Translate("MEGA_YEARS");
+            var size = latoSmallItalic.GetStringSize(localizedText);
+            DrawString(latoSmallRegular, new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y),
-                localizedText, Colors.DarkCyan);
+                localizedText, Colors.Cyan);
         }
 
         // Draw node connection lines
@@ -97,13 +98,13 @@ public class EvolutionaryTree : Control
             var lineStart = latestNode.Center;
             var lineEnd = new Vector2(GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x, lineStart.y);
             DrawLine(lineStart, lineEnd);
-            DrawString(latoSmall, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0), speciesNames[latestNode.SpeciesID]);
+            DrawString(latoSmallItalic, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0), speciesNames[latestNode.SpeciesID]);
         }
 
         // Draw extinct species name
         foreach (var extinctedSpecies in latestNodes.Values.Where(n => n.LastGeneration))
         {
-            DrawString(latoSmall, new Vector2(
+            DrawString(latoSmallItalic, new Vector2(
                 extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + SPECIES_NAME_OFFSET,
                 extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
         }
