@@ -36,7 +36,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         int result = 0;
 
         // Get the minimum cost action
-        var minimum = History.Select(action =>
+        var (mpRegain, combinedData) = History.Select(action =>
         {
             return combinableAction.GetInterferenceModeWith(action) switch
             {
@@ -48,10 +48,10 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             };
         }).OrderByDescending(p => p.Item1).FirstOrDefault();
 
-        result -= minimum.Item1;
+        result -= mpRegain;
 
-        if (minimum.Item2 != null)
-            combinableAction = minimum.Item2;
+        if (combinedData != null)
+            combinableAction = combinedData;
 
         result += combinableAction.CalculateCost();
         return result;
@@ -66,22 +66,43 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         var processedHistory = History;
         var copyLength = processedHistory.Count;
 
-        for (int compareToIndex = 0; compareToIndex < copyLength - 1; ++compareToIndex)
+        for (int compareIndex = 1; compareIndex < copyLength; ++compareIndex)
         {
-            for (int compareIndex = compareToIndex + 1; compareIndex < copyLength; ++compareIndex)
+            while (true)
             {
-                switch (processedHistory[compareIndex].GetInterferenceModeWith(processedHistory[compareToIndex]))
+                // Get the minimum cost action
+                var (_, minimumCostCombinableAction, mode) = processedHistory.Take(compareIndex).Select(action =>
                 {
-                    case ActionInterferenceMode.NoInterference:
-                        break;
+                    var thisAction = processedHistory[compareIndex];
+                    return thisAction.GetInterferenceModeWith(action) switch
+                    {
+                        ActionInterferenceMode.Combinable => (
+                            ((EditorCombinableActionData)thisAction.Combine(action)).CalculateCost(),
+                            action, ActionInterferenceMode.Combinable),
+                        ActionInterferenceMode.CancelsOut => (
+                            -action.CalculateCost(), action, ActionInterferenceMode.CancelsOut),
+                        ActionInterferenceMode.ReplacesOther => (
+                            thisAction.CalculateCost() - action.CalculateCost(), action,
+                            ActionInterferenceMode.ReplacesOther),
+                        _ => (0, null, ActionInterferenceMode.NoInterference),
+                    };
+                }).OrderBy(p => p.Item1).FirstOrDefault();
 
+                // If no more can be merged together, try next one.
+                if (minimumCostCombinableAction == null)
+                    break;
+
+                var minimumCostCombinableActionIndex = processedHistory.IndexOf(minimumCostCombinableAction);
+
+                switch (mode)
+                {
                     case ActionInterferenceMode.Combinable:
                     {
                         var combinedValue = (EditorCombinableActionData)processedHistory[compareIndex]
-                            .Combine(processedHistory[compareToIndex]);
+                            .Combine(minimumCostCombinableAction);
                         processedHistory.RemoveAt(compareIndex);
-                        processedHistory.RemoveAt(compareToIndex);
-                        processedHistory.Insert(compareToIndex, combinedValue);
+                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
+                        processedHistory.Insert(minimumCostCombinableActionIndex, combinedValue);
                         --copyLength;
                         --compareIndex;
                         break;
@@ -89,26 +110,25 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
                     case ActionInterferenceMode.ReplacesOther:
                     {
-                        processedHistory.RemoveAt(compareToIndex);
+                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
                         --copyLength;
-                        --compareToIndex;
-                        compareIndex = copyLength;
+                        --compareIndex;
                         break;
                     }
 
                     case ActionInterferenceMode.CancelsOut:
                     {
                         processedHistory.RemoveAt(compareIndex);
-                        processedHistory.RemoveAt(compareToIndex);
+                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
                         copyLength -= 2;
-                        --compareToIndex;
-                        compareIndex = copyLength;
+                        compareIndex -= 2;
                         break;
                     }
-
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
+
+                // If mode is as follows, no more check is needed.
+                if (mode == ActionInterferenceMode.CancelsOut)
+                    break;
             }
         }
 
