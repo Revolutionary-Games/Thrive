@@ -39,7 +39,7 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
-    private CrossFadableTextureRect? slideableTextureRect;
+    private CrossFadableTextureRect? slideTextureRect;
     private Control? toolbar;
     private Button? closeButton;
     private Button? slideShowModeButton;
@@ -119,7 +119,7 @@ public class SlideScreen : CustomDialog
 
     public override void _Ready()
     {
-        slideableTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
+        slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
         toolbar = GetNode<Control>(SlideToolbarPath);
         closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
@@ -289,11 +289,11 @@ public class SlideScreen : CustomDialog
             return;
         }
 
-        if (items == null || slideableTextureRect == null)
+        if (items == null || slideTextureRect == null)
             return;
 
         var item = items[currentSlideIndex];
-        slideableTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateScreen()
@@ -305,7 +305,7 @@ public class SlideScreen : CustomDialog
 
     private void UpdateSlide()
     {
-        if (items == null || slideTitleLabel == null || slideableTextureRect == null || slideShowModeButton == null)
+        if (items == null || slideTitleLabel == null || slideTextureRect == null || slideShowModeButton == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -315,7 +315,7 @@ public class SlideScreen : CustomDialog
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
         slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
-        slideableTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateModelViewer()
@@ -352,7 +352,7 @@ public class SlideScreen : CustomDialog
     {
         var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (playbackControls == null || slideableTextureRect == null)
+        if (playbackControls == null || slideTextureRect == null)
             return;
 
         if (item?.Asset.Type != AssetType.AudioPlayback)
@@ -366,7 +366,7 @@ public class SlideScreen : CustomDialog
         playbackControls?.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
-        slideableTextureRect.Texture = item.MissingTexture;
+        slideTextureRect.Texture = item.MissingTexture;
     }
 
     private void UpdateHandles()
