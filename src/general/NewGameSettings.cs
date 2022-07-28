@@ -236,6 +236,7 @@ public class NewGameSettings : ControlWithInput
 
         foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
         {
+            // The untranslated name will be translated automatically by Godot during runtime
             difficultyPresetButton.AddItem(preset.UntranslatedName);
             difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
         }
