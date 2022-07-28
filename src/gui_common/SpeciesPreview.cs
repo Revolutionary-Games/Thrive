@@ -46,5 +46,9 @@ public class SpeciesPreview : Control
             task = new ImageTask(microbeSpecies);
             PhotoStudio.Instance.SubmitTask(task);
         }
+        else
+        {
+            GD.PrintErr("Unknown species type to preview: ", previewSpecies);
+        }
     }
 }

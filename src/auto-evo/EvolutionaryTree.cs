@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
@@ -51,6 +52,14 @@ public class EvolutionaryTree : Control
         latoSmall = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
     }
 
+    public void Init(Species luca)
+    {
+        SetupTreeNode(luca, null, 0);
+
+        speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
+        speciesNames.Add(luca.ID, luca.FormattedName);
+    }
+
     public override void _Draw()
     {
         base._Draw();
@@ -65,7 +74,8 @@ public class EvolutionaryTree : Control
                 new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.DarkCyan, TIMELINE_LINE_THICKNESS, true);
 
-            var localizedText = i + " " + TranslationServer.Translate("MEGA_YEARS");
+            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", i) + " "
+                + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmall.GetStringSize(localizedText);
             DrawString(latoSmall, new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y),
@@ -97,14 +107,6 @@ public class EvolutionaryTree : Control
                 extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + SPECIES_NAME_OFFSET,
                 extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
         }
-    }
-
-    public void Init(Species player)
-    {
-        SetupTreeNode(player, null, 0);
-
-        speciesOrigin.Add(player.ID, (uint.MaxValue, 0));
-        speciesNames.Add(player.ID, player.FormattedName);
     }
 
     public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation)

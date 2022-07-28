@@ -988,11 +988,19 @@
             }
         }
 
+        /// <summary>
+        ///   Call this only when auto-evo has finished. Calling at runtime will result in
+        ///   incorrect result and random CollectionModifiedException.
+        /// </summary>
         public IEnumerator GetEnumerator()
         {
             return results.GetEnumerator();
         }
 
+        /// <summary>
+        ///   Call this only when auto-evo has finished. Calling at runtime will result in
+        ///   incorrect result and random CollectionModifiedException.
+        /// </summary>
         IEnumerator<KeyValuePair<Species, SpeciesResult>> IEnumerable<KeyValuePair<Species, SpeciesResult>>.
             GetEnumerator()
         {

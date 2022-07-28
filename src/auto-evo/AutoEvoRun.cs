@@ -13,7 +13,7 @@ using Thread = System.Threading.Thread;
 /// </summary>
 public class AutoEvoRun
 {
-    private readonly AutoEvoConfiguration configuration;
+    protected readonly AutoEvoConfiguration configuration;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied

@@ -7,7 +7,7 @@ using Object = Godot.Object;
 /// </summary>
 public class DraggableScrollContainer : ScrollContainer
 {
-    [Export]
+    [Export(hintString: "If set to null, the first child is used.")]
     public NodePath? ContentPath;
 
     /// <summary>

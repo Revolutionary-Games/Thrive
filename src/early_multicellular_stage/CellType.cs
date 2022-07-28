@@ -75,18 +75,8 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     public void ApplySceneParameters(Spatial instancedScene)
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
-
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        var tempSpecies = new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
-        {
-            IsBacteria = false,
-        };
-
-        microbe.ApplySpecies(tempSpecies);
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
+            .ApplySceneParameters(instancedScene);
     }
 
     public float CalculatePhotographDistance(Spatial instancedScene)

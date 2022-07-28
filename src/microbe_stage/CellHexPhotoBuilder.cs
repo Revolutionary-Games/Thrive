@@ -49,8 +49,7 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
         var validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
         var modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
-        foreach (Node node in GetChildren())
-            node.DetachAndQueueFree();
+        this.QueueFreeChildren();
 
         if (Species == null)
             throw new InvalidOperationException("Species is ont initialized");
@@ -59,8 +58,7 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
         foreach (var organelle in organelleLayout.Organelles)
         {
             var position = organelle.Position;
-            var itemHexes = organelle.RotatedHexes;
-            foreach (var hex in itemHexes)
+            foreach (var hex in organelle.RotatedHexes)
             {
                 var pos = Hex.AxialToCartesian(hex + position);
 
@@ -73,8 +71,6 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
 
         foreach (var organelle in organelleLayout)
         {
-            // Hexes are handled by UpdateAlreadyPlacedHexes
-
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
@@ -120,8 +116,7 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
         foreach (var organelle in species.Organelles)
         {
             var position = organelle.Position;
-            var itemHexes = organelle.RotatedHexes;
-            foreach (var hex in itemHexes)
+            foreach (var hex in organelle.RotatedHexes)
             {
                 var pos = Hex.AxialToCartesian(hex + position);
                 farthest = Mathf.Max(farthest, pos.DistanceTo(Vector3.Zero));

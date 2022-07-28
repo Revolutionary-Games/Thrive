@@ -6,14 +6,11 @@ using AutoEvo;
 /// </summary>
 public class EditorAutoEvoRun : AutoEvoRun
 {
-    private readonly AutoEvoConfiguration configuration;
-
     public EditorAutoEvoRun(GameWorld world, Species originalEditedSpecies, Species modifiedProperties,
         AutoEvoConfiguration? configuration = null) : base(world, configuration)
     {
         OriginalEditedSpecies = originalEditedSpecies;
         ModifiedProperties = modifiedProperties;
-        this.configuration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration;
     }
 
     public Species OriginalEditedSpecies { get; }

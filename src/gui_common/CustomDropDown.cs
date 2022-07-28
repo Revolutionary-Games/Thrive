@@ -89,6 +89,11 @@ public class CustomDropDown : MenuButton
     /// <summary>
     ///   Helper for clearing the items in the dictionary.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This method doesn't cause rebuilt of the popup.
+    ///   </para>
+    /// </remarks>
     public void ClearAllItems()
     {
         items.Clear();
