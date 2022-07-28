@@ -401,11 +401,11 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             if (GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("No current patch set");
 
-            if (playerSpecies.Population <= 0)
+            if (IsGameOver())
             {
                 GameOver();
             }
-            else if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            else if (GameWorld.Map.CurrentPatch.GetSpeciesGameplayPopulation(playerSpecies) <= 0)
             {
                 // Has run out of population in current patch but not globally
                 PlayerExtinctInPatch();
@@ -421,7 +421,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
     protected bool IsGameOver()
     {
-        return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
+        return GameWorld.Map.GetSpeciesGlobalGameplayPopulation(CurrentGame!.GameWorld.PlayerSpecies) <= 0 &&
+            !CurrentGame.FreeBuild;
     }
 
     /// <summary>

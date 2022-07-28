@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Nito.Collections;
@@ -88,8 +87,8 @@ public partial class DebugOverlays
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
                     OS.GetName() == Constants.OS_WINDOWS_NAME ?
                         TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
-                        string.Format(CultureInfo.CurrentCulture, mibFormat, usedMemory),
-                    string.Format(CultureInfo.CurrentCulture, mibFormat, usedVideoMemory),
+                        mibFormat.FormatSafe(usedMemory),
+                    mibFormat.FormatSafe(usedVideoMemory),
                     Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),

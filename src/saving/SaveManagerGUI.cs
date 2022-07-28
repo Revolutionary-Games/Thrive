@@ -128,8 +128,8 @@ public class SaveManagerGUI : Control
         getBackupCountTask = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MIB_VALUE"),
-            Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
+        totalSaveSize.Text = TranslationServer.Translate("MIB_VALUE")
+            .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
 
         UpdateSelectedCount();
         UpdateButtonsStatus();
@@ -220,9 +220,7 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         deleteSelectedConfirmDialog.DialogText =
-            string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
-                Selected.Count);
+            TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING").FormatSafe(Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredShrink();
     }
 
@@ -232,10 +230,8 @@ public class SaveManagerGUI : Control
         int quickSavesToDeleteCount = Math.Max(currentQuickSaveCount - 1, 0);
         int oldBackupsToDeleteCount = Math.Max(currentBackupCount, 0);
 
-        deleteOldConfirmDialog.DialogText =
-            string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING_2"),
-                autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
+        deleteOldConfirmDialog.DialogText = TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING_2").FormatSafe(
+            autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredShrink();
     }
 

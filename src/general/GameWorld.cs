@@ -235,7 +235,6 @@ public class GameWorld : ISaveLoadable
 
         species.OnBecomePartOfWorld(++speciesIdCounter);
         worldSpecies[species.ID] = species;
-        GD.Print("New species has become part of the world: ", species.FormattedIdentifier);
     }
 
     /// <summary>

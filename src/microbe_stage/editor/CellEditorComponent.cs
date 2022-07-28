@@ -2037,12 +2037,12 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
+        var populationFormat = TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+
         if (!string.IsNullOrEmpty(bestPatchName))
         {
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(bestPatchName),
-                bestPatchPopulation);
+            bestPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
         }
         else
         {
@@ -2051,10 +2051,8 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(worstPatchName),
-                worstPatchPopulation);
+            worstPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
         }
         else
         {

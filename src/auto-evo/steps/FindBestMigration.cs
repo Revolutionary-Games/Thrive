@@ -107,7 +107,7 @@
                 {
                     Patch patch = entry[0].Value;
 
-                    var population = patch.GetSpeciesPopulation(species);
+                    var population = patch.GetSpeciesSimulationPopulation(species);
                     if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                         continue;
 

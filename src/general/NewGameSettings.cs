@@ -236,8 +236,9 @@ public class NewGameSettings : ControlWithInput
 
         foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
         {
-            difficultyPresetButton.AddItem(preset.Name);
-            difficultyPresetAdvancedButton.AddItem(preset.Name);
+            // The untranslated name will be translated automatically by Godot during runtime
+            difficultyPresetButton.AddItem(preset.UntranslatedName);
+            difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
         }
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
@@ -564,9 +565,7 @@ public class NewGameSettings : ControlWithInput
     private void OnGlucoseDecayRateValueChanged(double percentage)
     {
         percentage = Math.Round(percentage, 2);
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-        glucoseDecayRateReadout.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            percentage);
+        glucoseDecayRateReadout.Text = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(percentage);
         settings.GlucoseDecay = (float)percentage * 0.01f;
 
         UpdateSelectedDifficultyPresetControl();
