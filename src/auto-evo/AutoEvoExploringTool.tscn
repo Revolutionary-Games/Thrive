@@ -651,10 +651,14 @@ margin_right = 786.0
 margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+MaxZoom = 1.0
+MinZoom = 0.4
 ShowScrollbars = false
 ContentPath = NodePath("EvolutionaryTree")
 
 [node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer" instance=ExtResource( 14 )]
+margin_right = 786.0
+margin_bottom = 462.0
 
 [node name="SpeciesDetailPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
 margin_left = 828.0

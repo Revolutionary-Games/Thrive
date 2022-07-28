@@ -10,7 +10,7 @@ public class EvolutionaryTree : Control
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latest = new();
+    private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latestNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
@@ -48,7 +48,7 @@ public class EvolutionaryTree : Control
             DrawLine(node.ParentNode.Center, node.Center);
         }
 
-        foreach (var latestNode in latest.Values.Where(n => !n.LastGeneration))
+        foreach (var latestNode in latestNodes.Values.Where(n => !n.LastGeneration))
         {
             var lineStart = latestNode.Center;
             var lineEnd = new Vector2(100 * latestGeneration + latestNode.RectSize.x, lineStart.y);
@@ -56,7 +56,7 @@ public class EvolutionaryTree : Control
             DrawString(latoSmall, lineEnd + new Vector2(10, 0), speciesNames[latestNode.SpeciesID]);
         }
 
-        foreach (var extinctedSpecies in latest.Values.Where(n => n.LastGeneration))
+        foreach (var extinctedSpecies in latestNodes.Values.Where(n => n.LastGeneration))
         {
             DrawString(latoSmall, new Vector2(extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + 10,
                 extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
@@ -107,6 +107,12 @@ public class EvolutionaryTree : Control
         latestGeneration = generation;
 
         BuildTree();
+        AdjustSize();
+    }
+
+    private void AdjustSize()
+    {
+        RectMinSize = new Vector2(100 * latestGeneration + 200, 50 * maxSpeciesId + 200);
     }
 
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
@@ -124,7 +130,7 @@ public class EvolutionaryTree : Control
 
         nodes.Add(node);
         AddChild(node);
-        latest[species.ID] = node;
+        latestNodes[species.ID] = node;
     }
 
     private void BuildTree()
