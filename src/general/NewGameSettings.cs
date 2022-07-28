@@ -234,11 +234,7 @@ public class NewGameSettings : ControlWithInput
         normal = SimulationParameters.Instance.GetDifficultyPreset("normal");
         custom = SimulationParameters.Instance.GetDifficultyPreset("custom");
 
-        foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
-        {
-            difficultyPresetButton.AddItem(preset.Name);
-            difficultyPresetAdvancedButton.AddItem(preset.Name);
-        }
+        UpdateDifficultyPresetControl();
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
@@ -247,6 +243,12 @@ public class NewGameSettings : ControlWithInput
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+            UpdateDifficultyPresetControl();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -304,6 +306,18 @@ public class NewGameSettings : ControlWithInput
         OnGlucoseDecayRateValueChanged(preset.GlucoseDecay * 100);
         OnOsmoregulationMultiplierValueChanged(preset.OsmoregulationMultiplier);
         OnFreeGlucoseCloudToggled(preset.FreeGlucoseCloud);
+    }
+
+    private void UpdateDifficultyPresetControl()
+    {
+        difficultyPresetButton.Clear();
+        difficultyPresetAdvancedButton.Clear();
+
+        foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
+        {
+            difficultyPresetButton.AddItem(preset.Name);
+            difficultyPresetAdvancedButton.AddItem(preset.Name);
+        }
     }
 
     private string GenerateNewRandomSeed()
