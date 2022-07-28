@@ -310,13 +310,16 @@ public class NewGameSettings : ControlWithInput
 
     private void UpdateDifficultyPresetControl()
     {
-        difficultyPresetButton.Clear();
-        difficultyPresetAdvancedButton.Clear();
-
         foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
         {
-            difficultyPresetButton.AddItem(preset.Name);
-            difficultyPresetAdvancedButton.AddItem(preset.Name);
+            if (difficultyPresetButton.GetItemIndex(preset.Index) == -1)
+                difficultyPresetButton.AddItem(preset.Name);
+
+            if (difficultyPresetAdvancedButton.GetItemIndex(preset.Index) == -1)
+                difficultyPresetAdvancedButton.AddItem(preset.Name);
+
+            difficultyPresetButton.SetItemText(preset.Index, preset.Name);
+            difficultyPresetAdvancedButton.SetItemText(preset.Index, preset.Name);
         }
     }
 
