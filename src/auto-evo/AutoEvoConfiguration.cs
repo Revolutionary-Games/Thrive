@@ -6,8 +6,8 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Like all registry types, this should not be modified during runtime at all.
-///     The reason the properties are modifiable is to allow auto-evo exploring tool to modify its own copy of the settings
+///     Like all registry types, this should not be modified during runtime at all. The reason the properties
+///     are modifiable is to allow auto-evo exploring tool to modify its own copy of the settings.
 ///   </para>
 /// </remarks>
 public class AutoEvoConfiguration : IRegistryType, ICloneable
