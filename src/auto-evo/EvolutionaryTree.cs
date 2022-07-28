@@ -8,6 +8,8 @@ public class EvolutionaryTree : Control
 {
     private readonly List<EvolutionaryTreeNode> nodes = new();
 
+    private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
+
     private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latest = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
@@ -51,13 +53,13 @@ public class EvolutionaryTree : Control
             var lineStart = latestNode.Center;
             var lineEnd = new Vector2(100 * latestGeneration + latestNode.RectSize.x, lineStart.y);
             DrawLine(lineStart, lineEnd);
-            DrawString(latoSmall, lineEnd + new Vector2(10, 0), latestNode.Species.FormattedIdentifier);
+            DrawString(latoSmall, lineEnd + new Vector2(10, 0), speciesNames[latestNode.SpeciesID]);
         }
 
         foreach (var extinctedSpecies in latest.Values.Where(n => n.LastGeneration))
         {
             DrawString(latoSmall, new Vector2(extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + 10,
-                extinctedSpecies.Center.y), extinctedSpecies.Species.FormattedName, Colors.DarkRed);
+                extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
         }
     }
 
@@ -66,6 +68,7 @@ public class EvolutionaryTree : Control
         SetupTreeNode(player, null, 0);
 
         speciesOrigin.Add(player.ID, (uint.MaxValue, 0));
+        speciesNames.Add(player.ID, player.FormattedName);
     }
 
     public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation)
@@ -79,18 +82,22 @@ public class EvolutionaryTree : Control
             {
                 if (result.SplitFrom == null)
                 {
-                    SetupTreeNode(species, nodes.First(n => n.Species == species), generation - 1, true);
+                    SetupTreeNode((Species)species.Clone(),
+                        nodes.FindLast(n => n.SpeciesID == species.ID), generation - 1, true);
                 }
             }
             else if (result.SplitFrom != null)
             {
-                SetupTreeNode(species, nodes.First(n => n.Species == result.SplitFrom), generation);
+                SetupTreeNode((Species)species.Clone(),
+                    nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
 
                 speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
+                speciesNames.Add(species.ID, species.FormattedName);
             }
             else if (result.MutatedProperties != null)
             {
-                SetupTreeNode(result.MutatedProperties, nodes.First(n => n.Species == species), generation);
+                SetupTreeNode((Species)result.MutatedProperties.Clone(),
+                    nodes.FindLast(n => n.SpeciesID == species.ID), generation);
             }
 
             if (species.ID > maxSpeciesId)
@@ -107,7 +114,7 @@ public class EvolutionaryTree : Control
     {
         var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
         node.Generation = generation;
-        node.Species = species;
+        node.SpeciesID = species.ID;
         node.LastGeneration = false;
         node.ParentNode = parent;
         node.RectPosition = new Vector2(generation * 100, 0);
@@ -123,7 +130,7 @@ public class EvolutionaryTree : Control
     private void BuildTree()
     {
         uint index = 0;
-        BuildTree(nodes[0].Species.ID, ref index);
+        BuildTree(nodes[0].SpeciesID, ref index);
 
         Update();
     }
@@ -131,7 +138,7 @@ public class EvolutionaryTree : Control
     private void BuildTree(uint id, ref uint index)
     {
         // Adjust nodes of this species' vertical position based on index
-        foreach (var treeNode in nodes.Where(n => n.Species.ID == id))
+        foreach (var treeNode in nodes.Where(n => n.SpeciesID == id))
         {
             var position = treeNode.RectPosition;
             position.y = index * 50;
@@ -167,6 +174,6 @@ public class EvolutionaryTree : Control
 
     private void OnTreeNodeSelected(EvolutionaryTreeNode node)
     {
-        EmitSignal(nameof(SpeciesSelected), node.Generation, node.Species.ID);
+        EmitSignal(nameof(SpeciesSelected), node.Generation, node.SpeciesID);
     }
 }

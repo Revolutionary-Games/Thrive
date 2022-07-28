@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 public class EvolutionaryTreeNode : TextureButton
 {
@@ -20,7 +19,7 @@ public class EvolutionaryTreeNode : TextureButton
 
     public int Generation { get; set; }
 
-    public Species Species { get; set; } = null!;
+    public uint SpeciesID { get; set; }
 
     public bool LastGeneration
     {
