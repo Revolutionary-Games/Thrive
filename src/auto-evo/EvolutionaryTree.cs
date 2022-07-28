@@ -15,6 +15,8 @@ public class EvolutionaryTree : Control
 
     private readonly ButtonGroup nodesGroup = new();
 
+    private Font latoSmall = null!;
+
     private PackedScene treeNodeScene = null!;
 
     private uint maxSpeciesId;
@@ -29,6 +31,7 @@ public class EvolutionaryTree : Control
         base._Ready();
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
+        latoSmall = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
     }
 
     public override void _Draw()
@@ -45,8 +48,16 @@ public class EvolutionaryTree : Control
 
         foreach (var latestNode in latest.Values.Where(n => !n.LastGeneration))
         {
-            var position = latestNode.Center;
-            DrawLine(position, new Vector2(100 * latestGeneration + latestNode.RectSize.x, position.y));
+            var lineStart = latestNode.Center;
+            var lineEnd = new Vector2(100 * latestGeneration + latestNode.RectSize.x, lineStart.y);
+            DrawLine(lineStart, lineEnd);
+            DrawString(latoSmall, lineEnd + new Vector2(10, 0), latestNode.Species.FormattedIdentifier);
+        }
+
+        foreach (var extinctedSpecies in latest.Values.Where(n => n.LastGeneration))
+        {
+            DrawString(latoSmall, new Vector2(extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + 10,
+                extinctedSpecies.Center.y), extinctedSpecies.Species.FormattedName, Colors.DarkRed);
         }
     }
 
