@@ -308,8 +308,8 @@
                 {
                     if (entry.Value.SplitOffPatches != null)
                     {
-                        // Set populations to 0 for the patches that moved and replace the results for the split off
-                        // species with those
+                        // Set populations to 0 for the patches that split off and use the populations for the split
+                        // off species
                         foreach (var splitOffPatch in entry.Value.SplitOffPatches)
                         {
                             var patch = world.Map.GetPatch(splitOffPatch.ID);
@@ -555,8 +555,12 @@
         ///   Makes summary text
         /// </summary>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
-        /// <param name="playerReadable">if true ids are removed from the output</param>
-        /// <param name="effects">if not null these effects are applied to the population numbers</param>
+        /// <param name="playerReadable">If true ids are removed from the output</param>
+        /// <param name="effects">
+        ///   If not null these effects are applied to the population numbers.
+        ///   Must be final effects with <see cref="ExternalEffect.Coefficient"/> set to 1 created by
+        ///   <see cref="AutoEvoRun.CalculateFinalExternalEffectSizes"/>
+        /// </param>
         /// <returns>The generated summary text</returns>
         public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect>? effects = null)
@@ -740,16 +744,21 @@
                     }
 
                     // Apply external effects
-                    if (effects != null && previousPopulations != null &&
-                        previousPopulations.CurrentPatch!.ID == patchPopulation.Key.ID)
+                    if (effects != null && previousPopulations != null)
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == entry.Species && effect.Patch.ID == patchPopulation.Key.ID)
+                            if (effect.Species == entry.Species && effect.Patch == patchPopulation.Key)
                             {
-                                adjustedPopulation +=
-                                    effect.Constant + (long)(patchPopulation.Value * effect.Coefficient)
-                                    - patchPopulation.Value;
+                                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                                if (effect.Coefficient != 1)
+                                {
+                                    GD.PrintErr(
+                                        "CalculateFinalExternalEffectSizes has not been called to finalize" +
+                                        $" external effects passed to {nameof(MakeSummary)}");
+                                }
+
+                                adjustedPopulation += effect.Constant;
                             }
                         }
                     }
@@ -766,8 +775,7 @@
                     else
                     {
                         if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
-                                .GetSpeciesSimulationPopulation(entry.Species) >
-                            0)
+                                .GetSpeciesSimulationPopulation(entry.Species) > 0)
                         {
                             include = true;
                         }
@@ -867,15 +875,13 @@
                     }
 
                     // Apply external effects
-                    if (effects != null && world.Map.CurrentPatch.ID == patch.ID)
+                    if (effects != null)
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == species && effect.Patch.ID == patch.ID)
+                            if (effect.Species == species && effect.Patch == patch)
                             {
-                                finalPatchPopulation +=
-                                    effect.Constant + (long)(unadjustedPopulation * effect.Coefficient)
-                                    - unadjustedPopulation;
+                                finalPatchPopulation += effect.Constant;
                             }
                         }
                     }

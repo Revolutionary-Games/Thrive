@@ -621,6 +621,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (run.Results != null)
         {
+            // External effects need to be finalized now before we use them for printing summaries or anything like
+            // that
+            run.CalculateFinalExternalEffectSizes();
+
             autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
