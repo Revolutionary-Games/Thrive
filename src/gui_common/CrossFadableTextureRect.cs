@@ -3,7 +3,7 @@
 /// <summary>
 ///   Displays image that can be changed smoothly with fade.
 /// </summary>
-public class SlideableTextureRect : TextureRect
+public class CrossFadableTextureRect : TextureRect
 {
     private Texture? image;
     private Tween tween = null!;

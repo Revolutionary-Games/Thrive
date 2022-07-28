@@ -39,7 +39,7 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
-    private SlideableTextureRect? slideableTextureRect;
+    private CrossFadableTextureRect? slideableTextureRect;
     private Control? toolbar;
     private Button? closeButton;
     private Button? slideShowModeButton;
@@ -119,7 +119,7 @@ public class SlideScreen : CustomDialog
 
     public override void _Ready()
     {
-        slideableTextureRect = GetNode<SlideableTextureRect>(SlideTextureRectPath);
+        slideableTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
         toolbar = GetNode<Control>(SlideToolbarPath);
         closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);

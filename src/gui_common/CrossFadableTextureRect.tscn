@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/gui_common/SlideableTextureRect.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/CrossFadableTextureRect.cs" type="Script" id=1]
 
-[node name="SlideableTextureRect" type="TextureRect"]
+[node name="CrossFadableTextureRect" type="TextureRect"]
 margin_right = 1280.0
 margin_bottom = 720.0
 mouse_filter = 2

@@ -37,7 +37,7 @@ public class LoadingScreen : Control
 
     private readonly Random random = new();
 
-    private SlideableTextureRect artworkRect = null!;
+    private CrossFadableTextureRect artworkRect = null!;
     private Label? artDescriptionLabel;
     private Label? loadingMessageLabel;
     private Label? loadingDescriptionLabel;
@@ -118,7 +118,7 @@ public class LoadingScreen : Control
 
     public override void _Ready()
     {
-        artworkRect = GetNode<SlideableTextureRect>(ArtworkPath);
+        artworkRect = GetNode<CrossFadableTextureRect>(ArtworkPath);
         artDescriptionLabel = GetNode<Label>(ArtDescriptionPath);
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
