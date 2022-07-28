@@ -35,30 +35,23 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     {
         int result = 0;
 
-        foreach (var action in History)
+        // Get the minimum cost action
+        var minimum = History.Select(action =>
         {
-            switch (combinableAction.GetInterferenceModeWith(action))
+            return combinableAction.GetInterferenceModeWith(action) switch
             {
-                case ActionInterferenceMode.Combinable:
-                {
-                    result -= action.CalculateCost();
-                    combinableAction = (EditorCombinableActionData)combinableAction.Combine(action);
-                    break;
-                }
+                ActionInterferenceMode.Combinable => (action.CalculateCost(),
+                    (EditorCombinableActionData?)combinableAction.Combine(action)),
+                ActionInterferenceMode.CancelsOut => (action.CalculateCost() + combinableAction.CalculateCost(), null),
+                ActionInterferenceMode.ReplacesOther => (action.CalculateCost(), null),
+                _ => (0, null),
+            };
+        }).OrderByDescending(p => p.Item1).FirstOrDefault();
 
-                case ActionInterferenceMode.CancelsOut:
-                {
-                    result -= action.CalculateCost();
-                    return result;
-                }
+        result -= minimum.Item1;
 
-                case ActionInterferenceMode.ReplacesOther:
-                {
-                    result -= action.CalculateCost();
-                    break;
-                }
-            }
-        }
+        if (minimum.Item2 != null)
+            combinableAction = minimum.Item2;
 
         result += combinableAction.CalculateCost();
         return result;
