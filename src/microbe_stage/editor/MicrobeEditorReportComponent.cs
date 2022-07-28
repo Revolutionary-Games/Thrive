@@ -412,6 +412,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
         UpdateTimeline(Editor.SelectedPatch);
         UpdateReportTabPatchSelector();
+        UpdateReportTabStatistics(Editor.CurrentPatch);
     }
 
     protected override void RegisterTooltips()
