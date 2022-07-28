@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-20 14:34+0300\n"
+"POT-Creation-Date: 2022-07-28 10:18+0300\n"
 "PO-Revision-Date: 2022-07-14 11:07+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -983,123 +983,123 @@ msgstr "Sil"
 msgid "LYSOSOME"
 msgstr "Lizozom"
 
-#: ../src/auto-evo/AutoEvoRun.cs:122
+#: ../src/auto-evo/AutoEvoRun.cs:121
 msgid "ABORTED_DOT"
 msgstr "Durduruldu."
 
-#: ../src/auto-evo/AutoEvoRun.cs:125
+#: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "FINISHED_DOT"
 msgstr "Bitti."
 
-#: ../src/auto-evo/AutoEvoRun.cs:128
+#: ../src/auto-evo/AutoEvoRun.cs:127
 msgid "NOT_RUNNING_DOT"
 msgstr "Çalışmıyor."
 
-#: ../src/auto-evo/AutoEvoRun.cs:138
+#: ../src/auto-evo/AutoEvoRun.cs:136
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "%{0:F1} tamamlandı. {1:n0}/{2:n0} adım."
 
-#: ../src/auto-evo/AutoEvoRun.cs:142
+#: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "STARTING"
 msgstr "Başlıyor"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:345
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} popülasyonu {2} arazisinde {1} defa değişti çünkü: {3}"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:599
 msgid "POPULATION_COLON"
 msgstr "popülasyonu:"
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:608
 msgid "WENT_EXTINCT_IN"
 msgstr "{0} arazisinde nesli tükendi"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:614
 msgid "PREVIOUS_COLON"
 msgstr "önceki:"
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:632
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "{0} türünden ayrıldı"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:645
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "alanı doldurmak için ortaya çıktı"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:648
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "seçilim baskılarının değişmesinden dolayı ortaya çıktı"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:665
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "bazı arazilerdeki popülasyonlar, yeni türler oluşturmak için ayrıldı {0}:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:681
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mutasyona uğradı"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:686
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen kodu:"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:697
 msgid "SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:705
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0}: {1} popülasyon {2} adlı araziden göç etti"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:724
 msgid "POPULATION_IN_PATCHES"
 msgstr "arazideki popülasyon:"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:839
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "gezegende nesli tükendi"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:893
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] türünün nesli tükendi!"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:903 ../src/auto-evo/RunResults.cs:925
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] popülasyonu {1} sayısına çıktı"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] popülasyonu {1} sayısına düştü"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:917
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b], araziden yok oldu"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:941
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {1} arazisinden bu araziye göç etti"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:946
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {2} arazisinden {1} arazisine göç etti"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:952
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {1} arazisine göç etti"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:971
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b], alanı doldurmak için, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:977
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b], farklı seçilim baskılarından dolayı, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
 msgstr "Hata: parça bulunamadı"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} tüketimi"
 
@@ -1111,7 +1111,7 @@ msgstr "{0} tüketimi"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0} çevresel besin kaynağı eşit oranda dağıtılarak"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} türünün yenilmesi"
 
@@ -1227,7 +1227,7 @@ msgstr "Birden Fazla Hücre"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:148
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
@@ -1250,7 +1250,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
-#: ../src/general/EditorBase.cs:648
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1261,25 +1261,25 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seç"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:76
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:89
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Windows'ta bilinmiyor"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -1334,7 +1334,7 @@ msgstr "Yükleniyor"
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Bir tuşa bas..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:129
+#: ../src/engine/input/key_mapping/InputGroupList.cs:127
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "{0} ile ilgili bir uyumsuzluk var.\n"
@@ -1744,11 +1744,11 @@ msgstr "Özel Fare Tuşu 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Bilinmeyen fare tuşu"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:56
+#: ../src/general/Asset.cs:54
 msgid "ART_BY"
 msgstr "Resmi yapan: {0}"
 
@@ -1772,14 +1772,14 @@ msgid "CLOSE"
 msgstr "Kapat"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
-#: ../src/gui_common/CompoundAmount.cs:176
+#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -1791,7 +1791,7 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 
-#: ../src/general/MainMenu.cs:241
+#: ../src/general/MainMenu.cs:239
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
@@ -1885,12 +1885,12 @@ msgstr "Mod Yükleme Hataları"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi içerebilir."
 
-#: ../src/general/NewGameSettings.cs:284
+#: ../src/general/NewGameSettings.cs:285
 #: ../src/general/NewGameSettings.tscn:1052
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Oyuna bu ayarlarla gir"
 
-#: ../src/general/NewGameSettings.cs:291
+#: ../src/general/NewGameSettings.cs:292
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Bazı ayarlar geçersiz"
 
@@ -2454,13 +2454,13 @@ msgstr "Ekran görüntüsü dizini bulunamadı"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Bir ekran görüntüsü almayı dene!"
 
-#: ../src/general/PauseMenu.cs:332
+#: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ana menüye dönmek istediğine emin misin?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Oyundan çıkmak istediğine emin misin?\n"
@@ -2520,60 +2520,60 @@ msgstr "Çıkışı Onayla"
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
-#: ../src/general/StageBase.cs:438
+#: ../src/general/StageBase.cs:439
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
-#: ../src/general/StageBase.cs:501
+#: ../src/general/StageBase.cs:502
 msgid "EXTINCT_IN_PATCH"
 msgstr "arazide nesli tükendi"
 
 #: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:897
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "bol miktarda"
 
-#: ../src/general/StageHUDBase.cs:899
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "oldukça fazla"
 
-#: ../src/general/StageHUDBase.cs:901
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "makul miktarda"
 
-#: ../src/general/StageHUDBase.cs:903
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_SOME"
 msgstr "biraz"
 
-#: ../src/general/StageHUDBase.cs:905
+#: ../src/general/StageHUDBase.cs:900
 msgid "CATEGORY_LITTLE"
 msgstr "az miktarda"
 
-#: ../src/general/StageHUDBase.cs:907
+#: ../src/general/StageHUDBase.cs:902
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "çok az miktarda"
 
-#: ../src/general/StageHUDBase.cs:1107
+#: ../src/general/StageHUDBase.cs:1102
 msgid "PLAYER_CELL"
 msgstr "Oyuncu Hücresi"
 
-#: ../src/general/StageHUDBase.cs:1120
+#: ../src/general/StageHUDBase.cs:1115
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/general/StringUtils.cs:22
+#: ../src/general/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mr"
 
-#: ../src/general/StringUtils.cs:31
+#: ../src/general/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mn"
 
-#: ../src/general/StringUtils.cs:40
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} B"
 
@@ -2825,21 +2825,21 @@ msgstr "Kayıt farklı bir sürüme sahip"
 msgid "SELECT_OPTION"
 msgstr "Bir Seçenek Seç"
 
-#: ../src/gui_common/TweakedColourPicker.cs:388
+#: ../src/gui_common/TweakedColourPicker.cs:387
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Oyun penceresinden bir renk seç"
 
-#: ../src/gui_common/TweakedColourPicker.cs:389
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Mevcut rengi ön ayar olarak ekle"
 
-#: ../src/gui_common/TweakedColourPicker.cs:390
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "HSV (Renk, Doygunluk, Değer) modunu aç veya kapat.\n"
 "Raw moddayken kullanılamaz."
 
-#: ../src/gui_common/TweakedColourPicker.cs:391
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Raw modu aç veya kapat.\n"
@@ -2847,35 +2847,35 @@ msgstr ""
 "Renk değerleri 1.0'ın ötesine gider.\n"
 "HSV modundayken kullanılamaz."
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Renk değeri, rengin kendisi"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Doygunluk değeri, belli bir renkteki gri miktarı"
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Değer (parlaklık) değeri, renkteki parlaklığın şiddeti"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:400
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Rengin kırmızı kanal değeri"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Rengin yeşil kanal değeri"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Rengin mavi kanal değeri"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:405
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Rengin alfa kanalı değeri"
 
-#: ../src/gui_common/TweakedColourPicker.cs:581
+#: ../src/gui_common/TweakedColourPicker.cs:579
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Renk: {0}\n"
@@ -2894,7 +2894,7 @@ msgstr "Raw"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2059
 msgid "N_A"
 msgstr "Bilinmeyen"
 
@@ -2931,22 +2931,22 @@ msgstr "Öğeleri kategori cinsinden filtrele:"
 msgid "SLIDESHOW"
 msgstr "Slayt Gösterisi"
 
-#: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/gui_common/charts/line/LineChart.cs:645
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2191
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
-#: ../src/gui_common/charts/line/LineChart.cs:652
+#: ../src/gui_common/charts/line/LineChart.cs:649
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Çizmek için Geçersiz Veri"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1208
+#: ../src/gui_common/charts/line/LineChart.cs:1112
+#: ../src/gui_common/charts/line/LineChart.cs:1204
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1122
-#: ../src/gui_common/charts/line/LineChart.cs:1213
+#: ../src/gui_common/charts/line/LineChart.cs:1118
+#: ../src/gui_common/charts/line/LineChart.cs:1209
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha az gösterilemez!"
 
@@ -3716,11 +3716,11 @@ msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücr
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Editöre gir ve türünde değişiklik yap"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:764
+#: ../src/microbe_stage/PatchMapGenerator.cs:784
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Pangonik"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:833
+#: ../src/microbe_stage/PatchMapGenerator.cs:855
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3776,32 +3776,32 @@ msgstr "Duyarlı"
 msgid "FOCUSED"
 msgstr "Odaklanmış"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:278
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:281
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:307
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:327
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:329
 msgid "OSMOREGULATION"
 msgstr "Ozmoregülasyon"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:335
 msgid "BASE_MOVEMENT"
 msgstr "Temel Hareket"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3819,24 +3819,23 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Son organel silinemez"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanıyor"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2176
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} ile açığa çıkan enerji miktarı: {1} (uyum başarısı: {2}) mevcut toplam enerji miktarı: {3} (toplam uyum başarısı: {4})"
 
@@ -4005,7 +4004,7 @@ msgid "FIND_CURRENT_PATCH"
 msgstr "Mevcut Araziyi Bul"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
 msgid "SEED_LABEL"
 msgstr "Gezegen tohumu: {0}"
 
@@ -4038,16 +4037,16 @@ msgstr "Gezegende nesli tükendi"
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Arazide nesli tükendi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:372
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Myö"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:387
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Geçen Zaman: {0:#,#} yıl"
 
@@ -4190,15 +4189,15 @@ msgstr "SOYUN TÜKENDİ"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Varolmuş bütün türlerin %99'u gibi senin türünün de nesli tükendi. Diğerleri senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:271
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} türü {1} popülasyon ile"
 
@@ -4240,47 +4239,47 @@ msgstr "BAŞARDIN!"
 msgid "WIN_TEXT"
 msgstr "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, bu bildiri gittikten sonra da oynamaya devam edebilirsin veya yeni bir konumda, yeni bir oyun başlatabilirsin."
 
-#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "{0} için mod bilgisi yüklenemiyor"
 
-#: ../src/modding/ModLoader.cs:250
+#: ../src/modding/ModLoader.cs:247
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: derleme yükleme işlemi başarısız, olağandışı durum oluştu: {1}"
 
-#: ../src/modding/ModLoader.cs:267
+#: ../src/modding/ModLoader.cs:262
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: yüklenebilir kaynak yok"
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod derlemesi kaldırma yöntem çağrısı başarısız"
 
-#: ../src/modding/ModLoader.cs:302
+#: ../src/modding/ModLoader.cs:292
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod derlemesi kaldırma yöntem çağrısı başarısız, olağandışı durum oluştu: {1}"
 
-#: ../src/modding/ModLoader.cs:384
+#: ../src/modding/ModLoader.cs:373
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: mod derlemesinde belirtilen mod sınıfı \"{1}\" bulunamadı"
 
-#: ../src/modding/ModLoader.cs:397
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod derlemesi başlatma yöntem çağrısı başarısız"
 
-#: ../src/modding/ModLoader.cs:413
+#: ../src/modding/ModLoader.cs:398
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod derlemesi başlatma yöntem çağrısı başarısız, olağandışı durum oluştu: {1}"
 
-#: ../src/modding/ModLoader.cs:438
+#: ../src/modding/ModLoader.cs:421
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}: mod Harmony yüklemesi başarısız, olağandışı durum oluştu: {1}"
 
-#: ../src/modding/ModLoader.cs:461
+#: ../src/modding/ModLoader.cs:442
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: mod Harmony kaldırması başarısız, olağandışı durum oluştu: {1}"
 
-#: ../src/modding/ModLoader.cs:473
+#: ../src/modding/ModLoader.cs:453
 msgid "PCK_LOAD_FAILED"
 msgstr "pck dosyasının ({0}) yüklenmesi başarısız"
 
@@ -4499,75 +4498,75 @@ msgstr "Yeniden Başlatma Gerekli"
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Bir ya da daha fazla modun düzgün olarak yüklenmesi ya da kaldırılması için oyunun yeniden başlatılması gerekir"
 
-#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:273 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Atölye içeriği bu klasörden karşıya yüklenecek: {0}"
 
-#: ../src/modding/ModUploader.cs:305
+#: ../src/modding/ModUploader.cs:304
 msgid "MISSING_TITLE"
 msgstr "Başlık eksik"
 
-#: ../src/modding/ModUploader.cs:311
+#: ../src/modding/ModUploader.cs:310
 msgid "MISSING_DESCRIPTION"
 msgstr "Açıklama eksik"
 
-#: ../src/modding/ModUploader.cs:319
+#: ../src/modding/ModUploader.cs:318
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Açıklama çok uzun"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
+#: ../src/modding/ModUploader.cs:324 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
 
-#: ../src/modding/ModUploader.cs:333
+#: ../src/modding/ModUploader.cs:332
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Etiketler yalnızca beyaz boşluk içerir"
 
-#: ../src/modding/ModUploader.cs:341
+#: ../src/modding/ModUploader.cs:340
 msgid "INVALID_TAG"
 msgstr "Geçersiz etiket \"{0}\" belirlendi"
 
-#: ../src/modding/ModUploader.cs:355
+#: ../src/modding/ModUploader.cs:353
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr "Resim önizlemesi bulunmuyor"
 
-#: ../src/modding/ModUploader.cs:362
+#: ../src/modding/ModUploader.cs:360
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "Resim önizlemesi çok büyük"
 
-#: ../src/modding/ModUploader.cs:417
+#: ../src/modding/ModUploader.cs:415
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID geçerli bir sayı değil"
 
-#: ../src/modding/ModUploader.cs:460
+#: ../src/modding/ModUploader.cs:458
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Oluşturuluyor..."
 
-#: ../src/modding/ModUploader.cs:474
+#: ../src/modding/ModUploader.cs:472
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Sonuç başarılı ancak herhangi bir ID bulunamadı"
 
-#: ../src/modding/ModUploader.cs:519
+#: ../src/modding/ModUploader.cs:517
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Karşıya Yükleniyor..."
 
-#: ../src/modding/ModUploader.cs:556
+#: ../src/modding/ModUploader.cs:554
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Öğeyi Steam Atölyesi'ne yükleme başarılı ancak gösterilmeden önce Atölye [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul etmen gerekir"
 
-#: ../src/modding/ModUploader.cs:560
+#: ../src/modding/ModUploader.cs:558
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Öğeyi Steam Atölyesi'ne yükleme başarılı"
 
-#: ../src/modding/ModUploader.cs:620
+#: ../src/modding/ModUploader.cs:618
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "Bu öğeyi göndererek Steam Atölyesi'nin [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul edersin"
 
-#: ../src/modding/ModUploader.cs:645
+#: ../src/modding/ModUploader.cs:642
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Bilgi kaydetme başarısız, olağandışı durum oluştu: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
+#: ../src/modding/ModUploader.cs:656 ../src/modding/NewModGUI.cs:304
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Hata: {0}"
 
@@ -4655,31 +4654,31 @@ msgstr "Resim Önizlemesi Seç"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Yükleme Başarılı"
 
-#: ../src/modding/NewModGUI.cs:180
+#: ../src/modding/NewModGUI.cs:179
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Benim Harika Modum"
 
-#: ../src/modding/NewModGUI.cs:239
+#: ../src/modding/NewModGUI.cs:238
 msgid "INVALID_URL_FORMAT"
 msgstr "Geçersiz URL formatı"
 
-#: ../src/modding/NewModGUI.cs:254
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "İç ad gerekli"
 
-#: ../src/modding/NewModGUI.cs:260
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "İç ad, büyük harfle başlamalıdır"
 
-#: ../src/modding/NewModGUI.cs:266
+#: ../src/modding/NewModGUI.cs:265
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Belirtilen iç ada sahip bir mod zaten var"
 
-#: ../src/modding/NewModGUI.cs:282
+#: ../src/modding/NewModGUI.cs:280
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Gerekli alanda eksik ya da geçersiz format : {0}"
 
-#: ../src/modding/NewModGUI.cs:293
+#: ../src/modding/NewModGUI.cs:290
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ek doğrulamalar bir sorun algıladı: {0}"
 
@@ -4707,48 +4706,48 @@ msgstr "Oto Harmony Yüklemeyi Kullan"
 msgid "CREATE"
 msgstr "Oluştur"
 
-#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:101
-#: ../src/saving/InProgressLoad.cs:150
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:100
+#: ../src/saving/InProgressLoad.cs:149
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
-#: ../src/saving/InProgressLoad.cs:81
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "Kayıt verisi okunuyor"
 
-#: ../src/saving/InProgressLoad.cs:103
+#: ../src/saving/InProgressLoad.cs:102
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan objeler oluşturuluyor"
 
-#: ../src/saving/InProgressLoad.cs:112
+#: ../src/saving/InProgressLoad.cs:111
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_IS_INVALID"
 msgstr "Kayıt geçersiz"
 
-#: ../src/saving/InProgressLoad.cs:139
+#: ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
 
-#: ../src/saving/InProgressLoad.cs:152
+#: ../src/saving/InProgressLoad.cs:151
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Yüklenen objeler işleniyor"
 
-#: ../src/saving/InProgressLoad.cs:167
+#: ../src/saving/InProgressLoad.cs:166
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Yüklenen objeleri işlerken bir sorun oluştu"
 
-#: ../src/saving/InProgressLoad.cs:173
+#: ../src/saving/InProgressLoad.cs:172
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
 
-#: ../src/saving/InProgressLoad.cs:200
+#: ../src/saving/InProgressLoad.cs:199
 msgid "ERROR_LOADING"
 msgstr "Yükleme Hatası"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:238
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
@@ -4764,11 +4763,11 @@ msgstr "Kaydetme başarısız"
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
-#: ../src/saving/NewSaveMenu.cs:81
+#: ../src/saving/NewSaveMenu.cs:79
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
-#: ../src/saving/NewSaveMenu.cs:199
+#: ../src/saving/NewSaveMenu.cs:196
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Kayıt adı özel karakterler içeremez (<>:\"/\\|?*)"
 
@@ -4800,19 +4799,19 @@ msgstr "Kayıt Yazılamadı"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Kayıt dosyası yazma girişimi başarısız oldu. Girilen kayıt ismi fazla uzun veya kayıt klasörüne yazma erişimin yok."
 
-#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
+#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
-#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Kaydetmek şu an mümkün değil çünkü:"
 
-#: ../src/saving/SaveHelper.cs:496
+#: ../src/saving/SaveHelper.cs:502
 msgid "PLAYER_EXTINCT"
 msgstr "Oyuncunun nesli tükendi"
 
-#: ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:521
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Oyuna dahil edilen sonraki evrelerin prototiplerini oynamaktasın.\n"
@@ -4820,7 +4819,7 @@ msgstr ""
 "ve her zaman oynanabilir halde olmayabilir. Bu bakımdan oyunu kaydetmek şu an için mümkün değil.\n"
 "Prototipin bazı kısımları kısıtlı olarak kaydetmeyieizin verebilir."
 
-#: ../src/saving/SaveHelper.cs:527
+#: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
 msgstr "Kaydetme başarılı"
 
@@ -4840,7 +4839,7 @@ msgstr "Çabuk kayıt"
 msgid "SAVE_INVALID"
 msgstr "Geçersiz"
 
-#: ../src/saving/SaveList.cs:219
+#: ../src/saving/SaveList.cs:217
 msgid "SAVE_DELETE_WARNING"
 msgstr "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek istediğinden emin misin?"
 
@@ -4965,11 +4964,11 @@ msgstr "Yükle"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
 
-#: ../src/saving/SaveManagerGUI.cs:224
+#: ../src/saving/SaveManagerGUI.cs:223
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı olarak silmek istediğinden emin misin?"
 
-#: ../src/saving/SaveManagerGUI.cs:237
+#: ../src/saving/SaveManagerGUI.cs:233
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, aşağıdaki kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
