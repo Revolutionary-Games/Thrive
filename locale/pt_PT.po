@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-20 14:34+0300\n"
+"POT-Creation-Date: 2022-07-28 10:18+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1012,124 +1012,124 @@ msgstr "Cílios"
 msgid "LYSOSOME"
 msgstr "Oxitoxissoma"
 
-#: ../src/auto-evo/AutoEvoRun.cs:122
+#: ../src/auto-evo/AutoEvoRun.cs:121
 msgid "ABORTED_DOT"
 msgstr "Abortado."
 
-#: ../src/auto-evo/AutoEvoRun.cs:125
+#: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "FINISHED_DOT"
 msgstr "Concluído."
 
-#: ../src/auto-evo/AutoEvoRun.cs:128
+#: ../src/auto-evo/AutoEvoRun.cs:127
 msgid "NOT_RUNNING_DOT"
 msgstr "Não está a decorrer."
 
-#: ../src/auto-evo/AutoEvoRun.cs:138
+#: ../src/auto-evo/AutoEvoRun.cs:136
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% concluído. {1:n0}/{2:n0} etapas."
 
-#: ../src/auto-evo/AutoEvoRun.cs:142
+#: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "STARTING"
 msgstr "A iniciar"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:345
 #, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "A população de {0} alterou-se por {1} devido a: {2}"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:599
 msgid "POPULATION_COLON"
 msgstr "População:"
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:608
 msgid "WENT_EXTINCT_IN"
 msgstr "extinguiu-se em {0}"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:614
 msgid "PREVIOUS_COLON"
 msgstr "Anterior:"
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:632
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "separar-se de {0}"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:645
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "surgiu para preencher um nicho"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:648
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "surgiu devido a diferentes pressões de seleção"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:665
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "a população em algumas casas dividiu-se para formar novas espécies {0}:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:681
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "tem uma mutação"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:686
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "código do gene:"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:697
 msgid "SPREAD_TO_PATCHES"
 msgstr "Espalhou para as regiões:"
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:705
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} enviando: {1} indivíduos da região: {2}"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:724
 msgid "POPULATION_IN_PATCHES"
 msgstr "população em regiões:"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:839
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "extinguiram-se no planeta"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:893
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] foi extinto!"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:903 ../src/auto-evo/RunResults.cs:925
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] População aumentou para {1}"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] População decresceu para {1}"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:917
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] desapareceu desta região"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:941
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Parte da população de [u]{0}[/u] migrou para esta região a partir de {1}"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:946
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte da população de [u]{0}[/u] migrou para {1} de {2}"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:952
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte da população de [u]{0}[/u] migrou para {1}"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:971
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] separou-se de [u]{1}[/u] como uma nova espécie para preencher um nicho"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:977
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] separou-se de [u]{1}[/u] como uma nova espécie devido a diferentes pressões de seleção"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
 msgstr "Erro: bloco não encontrado"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} consumo"
 
@@ -1141,7 +1141,7 @@ msgstr "{0} consumo"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Espalhar uniformemente a fonte de comida ambiental de {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
@@ -1271,7 +1271,7 @@ msgstr "Colocar organelo"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:148
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
@@ -1295,7 +1295,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estados de execução:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
-#: ../src/general/EditorBase.cs:648
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1306,28 +1306,28 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "Max FPS:"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Respiração Aeróbica"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:76
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:89
 #, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "O ID da Steam Workshop é desconhecido para este mod"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -1369,7 +1369,7 @@ msgstr "A carregar"
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressiona uma tecla..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:129
+#: ../src/engine/input/key_mapping/InputGroupList.cs:127
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Há um conflito com {0}.\n"
@@ -1779,11 +1779,11 @@ msgstr "Rato Especial 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Rato botão desconhecido"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:56
+#: ../src/general/Asset.cs:54
 msgid "ART_BY"
 msgstr "Arte por {0}"
 
@@ -1807,14 +1807,14 @@ msgid "CLOSE"
 msgstr "Fechar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
-#: ../src/gui_common/CompoundAmount.cs:176
+#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1826,7 +1826,7 @@ msgstr "{0} concentrações diminuíram em {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "As concentrações de glicose caíram drasticamente!"
 
-#: ../src/general/MainMenu.cs:241
+#: ../src/general/MainMenu.cs:239
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
 
@@ -1924,13 +1924,13 @@ msgstr "Erro ao carregar Mods"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ocorreram erros ao carregar um ou mais mods. Os logs podem conter informações adicionais."
 
-#: ../src/general/NewGameSettings.cs:284
+#: ../src/general/NewGameSettings.cs:285
 #: ../src/general/NewGameSettings.tscn:1052
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
 
-#: ../src/general/NewGameSettings.cs:291
+#: ../src/general/NewGameSettings.cs:292
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Menu de pausa"
@@ -2545,13 +2545,13 @@ msgstr "Nenhum diretório de captura de ecrã encontrado"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Tente tirar algumas capturas de ecrã!"
 
-#: ../src/general/PauseMenu.cs:332
+#: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Tens a certeza de que desejas sair para o menu principal?\n"
 "Perderás todo o progresso não guardado."
 
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Tens a certeza de que desejas sair do jogo?\n"
@@ -2615,61 +2615,61 @@ msgstr "Confirmar Saída"
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduzido"
 
-#: ../src/general/StageBase.cs:438
+#: ../src/general/StageBase.cs:439
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
-#: ../src/general/StageBase.cs:501
+#: ../src/general/StageBase.cs:502
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "Extinguiram-se na região"
 
 #: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:897
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "uma abundância"
 
-#: ../src/general/StageHUDBase.cs:899
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "um bocado"
 
-#: ../src/general/StageHUDBase.cs:901
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "uma quantidade razoável"
 
-#: ../src/general/StageHUDBase.cs:903
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_SOME"
 msgstr "algum"
 
-#: ../src/general/StageHUDBase.cs:905
+#: ../src/general/StageHUDBase.cs:900
 msgid "CATEGORY_LITTLE"
 msgstr "pouco"
 
-#: ../src/general/StageHUDBase.cs:907
+#: ../src/general/StageHUDBase.cs:902
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/general/StageHUDBase.cs:1107
+#: ../src/general/StageHUDBase.cs:1102
 msgid "PLAYER_CELL"
 msgstr "Célula do jogador"
 
-#: ../src/general/StageHUDBase.cs:1120
+#: ../src/general/StageHUDBase.cs:1115
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/general/StringUtils.cs:22
+#: ../src/general/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} mM"
 
-#: ../src/general/StringUtils.cs:31
+#: ../src/general/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:40
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} m"
 
@@ -2922,21 +2922,21 @@ msgstr "O jogo guardado tem uma versão diferente"
 msgid "SELECT_OPTION"
 msgstr "Seleciona uma opção"
 
-#: ../src/gui_common/TweakedColourPicker.cs:388
+#: ../src/gui_common/TweakedColourPicker.cs:387
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Escolha uma cor a partir da janela do jogo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:389
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Adicionar a cor atual como predefinição"
 
-#: ../src/gui_common/TweakedColourPicker.cs:390
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Ligar ou desligar o modo HSV (matiz, saturação, valor).\n"
 "Não pode ser ativado no modo bruto."
 
-#: ../src/gui_common/TweakedColourPicker.cs:391
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Ativa ou desativa o modo bruto.\n"
@@ -2944,35 +2944,35 @@ msgstr ""
 "das cores R, G, B ir além de 1.0.\n"
 "Não pode ser ligado no modo HSV."
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Valor de matiz, parte da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Valor de saturação, a quantidade de cinza em uma cor particular"
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Valor (brilho) valor, brilho ou intensidade da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:400
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Valor do canal vermelho da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Valor do canal verde da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Valor do canal azul da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:405
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Valor do canal alfa da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:581
+#: ../src/gui_common/TweakedColourPicker.cs:579
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Cor: {0}\n"
@@ -2991,7 +2991,7 @@ msgstr "Cru"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2059
 msgid "N_A"
 msgstr "N/A"
 
@@ -3032,22 +3032,22 @@ msgstr ""
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/gui_common/charts/line/LineChart.cs:645
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2191
 msgid "NO_DATA_TO_SHOW"
 msgstr "Sem Dados a Mostrar"
 
-#: ../src/gui_common/charts/line/LineChart.cs:652
+#: ../src/gui_common/charts/line/LineChart.cs:649
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Dados inválidos"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1208
+#: ../src/gui_common/charts/line/LineChart.cs:1112
+#: ../src/gui_common/charts/line/LineChart.cs:1204
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Não é permitido mostrar mais de {0} conjuntos de dados!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1122
-#: ../src/gui_common/charts/line/LineChart.cs:1213
+#: ../src/gui_common/charts/line/LineChart.cs:1118
+#: ../src/gui_common/charts/line/LineChart.cs:1209
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Não é permitido mostrar menos de {0} conjunto(s) de dados!"
 
@@ -3840,11 +3840,11 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Adicionar um novo atalho de teclado"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:764
+#: ../src/microbe_stage/PatchMapGenerator.cs:784
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:833
+#: ../src/microbe_stage/PatchMapGenerator.cs:855
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Caverna"
@@ -3901,32 +3901,32 @@ msgstr "Reactivo"
 msgid "FOCUSED"
 msgstr "Focado"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
 msgid "ATP_PRODUCTION"
 msgstr "Produção de ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:278
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:281
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:307
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:327
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:329
 msgid "OSMOREGULATION"
 msgstr "Osmorregulação"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:335
 msgid "BASE_MOVEMENT"
 msgstr "Movimento Base"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3942,24 +3942,23 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total recolhida é {0} com custo individual de {1} resultando em população inalterada de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
 msgid "ENERGY_SOURCES"
 msgstr "Fontes de energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2176
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (aptidão: {2}) energia total disponível: {3} (aptidão total: {4})"
 
@@ -4133,7 +4132,7 @@ msgid "FIND_CURRENT_PATCH"
 msgstr "Caminho do ícone do mod inválido"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bioma: {0}"
@@ -4167,16 +4166,16 @@ msgstr "Extinguiram-se no planeta"
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Extinguiram-se na região"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:372
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "milhões de anos"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:387
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Tempo Passado: {0:#,#} anos"
 
@@ -4326,15 +4325,15 @@ msgstr "EXTINÇÃO"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Assim como 99% de todas as espécies que já existiram, a tua espécie foi extinta. Outras irão ocupar o teu ninho e prosperar, mas não serás tu. Tu serás esquecido, uma experiência falhada na evolução."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m abaixo do nível do mar"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:271
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} com população: {1}"
 
@@ -4376,49 +4375,49 @@ msgstr "TU PROSPERASTE!"
 msgid "WIN_TEXT"
 msgstr "Parabéns, ganhaste esta versão do Thrive! Podes continuar a jogar depois deste ecrã fechar se desejares, ou começar um novo jogo num novo mundo."
 
-#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Não foi possível carregar as informações do mod {0}"
 
-#: ../src/modding/ModLoader.cs:250
+#: ../src/modding/ModLoader.cs:247
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: o carregamento do assembly falhou com uma exceção: {1}"
 
-#: ../src/modding/ModLoader.cs:267
+#: ../src/modding/ModLoader.cs:262
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: não tem recursos carregáveis"
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: falha ao chamar o método de descarregamento do assembly do mod"
 
-#: ../src/modding/ModLoader.cs:302
+#: ../src/modding/ModLoader.cs:292
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: a chamada do método de descarregamento do assembly do mod falhou com uma exceção: {1}"
 
-#: ../src/modding/ModLoader.cs:384
+#: ../src/modding/ModLoader.cs:373
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: classe do mod especificada \"{1}\" não encontrada no assembly do mod"
 
-#: ../src/modding/ModLoader.cs:397
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: falha ao chamar o método de inicialização do assembly do mod"
 
-#: ../src/modding/ModLoader.cs:413
+#: ../src/modding/ModLoader.cs:398
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: a chamada do método de inicialização do assembly do mod falhou com uma exceção: {1}"
 
-#: ../src/modding/ModLoader.cs:438
+#: ../src/modding/ModLoader.cs:421
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}: a chamada do método de inicialização do assembly do mod falhou com uma exceção: {1}"
 
-#: ../src/modding/ModLoader.cs:461
+#: ../src/modding/ModLoader.cs:442
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: a chamada do método de descarregamento do assembly do mod falhou com uma exceção: {1}"
 
-#: ../src/modding/ModLoader.cs:473
+#: ../src/modding/ModLoader.cs:453
 msgid "PCK_LOAD_FAILED"
 msgstr "Falha ao carregar o arquivo pck ({0})"
 
@@ -4640,75 +4639,75 @@ msgstr "Reinicialização Necessária"
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Um ou mais mods requerem a reinicialização do jogo para carregar ou descarregar corretamente"
 
-#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:273 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "O conteúdo do workshop será carregado da pasta: {0}"
 
-#: ../src/modding/ModUploader.cs:305
+#: ../src/modding/ModUploader.cs:304
 msgid "MISSING_TITLE"
 msgstr "Falta um título"
 
-#: ../src/modding/ModUploader.cs:311
+#: ../src/modding/ModUploader.cs:310
 msgid "MISSING_DESCRIPTION"
 msgstr "Falta uma descrição"
 
-#: ../src/modding/ModUploader.cs:319
+#: ../src/modding/ModUploader.cs:318
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Descrição é demasiado longa"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
+#: ../src/modding/ModUploader.cs:324 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Notas de alteração são demasiado longas"
 
-#: ../src/modding/ModUploader.cs:333
+#: ../src/modding/ModUploader.cs:332
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Tags contém apenas espaços em branco"
 
-#: ../src/modding/ModUploader.cs:341
+#: ../src/modding/ModUploader.cs:340
 msgid "INVALID_TAG"
 msgstr "Tag inválida \"{0}\" especificada"
 
-#: ../src/modding/ModUploader.cs:355
+#: ../src/modding/ModUploader.cs:353
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr "A imagem de pré-visualização não existe"
 
-#: ../src/modding/ModUploader.cs:362
+#: ../src/modding/ModUploader.cs:360
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "A imagem de pré-visualização é muito grande"
 
-#: ../src/modding/ModUploader.cs:417
+#: ../src/modding/ModUploader.cs:415
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "O ID não é um número válido"
 
-#: ../src/modding/ModUploader.cs:460
+#: ../src/modding/ModUploader.cs:458
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "A criar..."
 
-#: ../src/modding/ModUploader.cs:474
+#: ../src/modding/ModUploader.cs:472
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Resultado indicado como sucesso, mas nenhum ID foi retornado"
 
-#: ../src/modding/ModUploader.cs:519
+#: ../src/modding/ModUploader.cs:517
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "A carregar..."
 
-#: ../src/modding/ModUploader.cs:556
+#: ../src/modding/ModUploader.cs:554
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "O upload do item para o Steam Workshop foi bem-sucedido, mas precisas de aceitar os termos de serviço do Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement] antes de ficar visível"
 
-#: ../src/modding/ModUploader.cs:560
+#: ../src/modding/ModUploader.cs:558
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "O upload do item para o Steam Workshop foi bem-sucedido"
 
-#: ../src/modding/ModUploader.cs:620
+#: ../src/modding/ModUploader.cs:618
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "Ao enviar este item, tu concordas com os [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]termos de serviço[/url][/color] do Steam Workshop"
 
-#: ../src/modding/ModUploader.cs:645
+#: ../src/modding/ModUploader.cs:642
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Falha ao guardar as informações devido à exceção: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
+#: ../src/modding/ModUploader.cs:656 ../src/modding/NewModGUI.cs:304
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erro: {0}"
 
@@ -4797,31 +4796,31 @@ msgstr "Selecionar imagem de pré-visualização"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Carregamento bem-sucedido"
 
-#: ../src/modding/NewModGUI.cs:180
+#: ../src/modding/NewModGUI.cs:179
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "O meu mod incrível"
 
-#: ../src/modding/NewModGUI.cs:239
+#: ../src/modding/NewModGUI.cs:238
 msgid "INVALID_URL_FORMAT"
 msgstr "Formato de URL inválido"
 
-#: ../src/modding/NewModGUI.cs:254
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "O nome interno é obrigatório"
 
-#: ../src/modding/NewModGUI.cs:260
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "O nome interno deve começar com letra maiúscula"
 
-#: ../src/modding/NewModGUI.cs:266
+#: ../src/modding/NewModGUI.cs:265
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Já existe um mod com o nome interno especificado"
 
-#: ../src/modding/NewModGUI.cs:282
+#: ../src/modding/NewModGUI.cs:280
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Formato ausente ou inválido de um campo obrigatório: {0}"
 
-#: ../src/modding/NewModGUI.cs:293
+#: ../src/modding/NewModGUI.cs:290
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validações adicionais detectaram um problema: {0}"
 
@@ -4850,48 +4849,48 @@ msgstr ""
 msgid "CREATE"
 msgstr "Criar"
 
-#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:101
-#: ../src/saving/InProgressLoad.cs:150
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:100
+#: ../src/saving/InProgressLoad.cs:149
 msgid "LOADING_GAME"
 msgstr "A carregar o jogo"
 
-#: ../src/saving/InProgressLoad.cs:81
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "A ler dados guardados"
 
-#: ../src/saving/InProgressLoad.cs:103
+#: ../src/saving/InProgressLoad.cs:102
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "A criar objetos a partir do jogo guardado"
 
-#: ../src/saving/InProgressLoad.cs:112
+#: ../src/saving/InProgressLoad.cs:111
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Ocorreu um erro ao carregar os dados guardados"
 
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo guardado é inválido"
 
-#: ../src/saving/InProgressLoad.cs:139
+#: ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "O jogo guardado tem um estado de jogo inválido"
 
-#: ../src/saving/InProgressLoad.cs:152
+#: ../src/saving/InProgressLoad.cs:151
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "A processar objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:167
+#: ../src/saving/InProgressLoad.cs:166
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Ocorreu um erro durante o processamento de objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:173
+#: ../src/saving/InProgressLoad.cs:172
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
 
-#: ../src/saving/InProgressLoad.cs:200
+#: ../src/saving/InProgressLoad.cs:199
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:238
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Erro ao libertar recursos carregados: {0}"
 
@@ -4907,11 +4906,11 @@ msgstr "Falha ao guardar"
 msgid "ERROR_SAVING"
 msgstr "Erro ao gravar"
 
-#: ../src/saving/NewSaveMenu.cs:81
+#: ../src/saving/NewSaveMenu.cs:79
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "O nome do arquivo escolhido ({0}) já existe. Desejas substituir?"
 
-#: ../src/saving/NewSaveMenu.cs:199
+#: ../src/saving/NewSaveMenu.cs:196
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "O nome do ficheiro guardado não pode conter caracteres especiais (<>:\"/\\|?*)"
 
@@ -4945,24 +4944,24 @@ msgstr "Não pode engolir"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
+#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Falha ao guardar! Ocorreu uma exceção"
 
-#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Guardar o jogo não é possível devido a:"
 
-#: ../src/saving/SaveHelper.cs:496
+#: ../src/saving/SaveHelper.cs:502
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador está extinto"
 
-#: ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:521
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanóptico (Vermelho-Verde)"
 
-#: ../src/saving/SaveHelper.cs:527
+#: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
 msgstr "Guardado com sucesso"
 
@@ -4982,7 +4981,7 @@ msgstr "Guardar rapidamente"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/SaveList.cs:219
+#: ../src/saving/SaveList.cs:217
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar este jogo guardado não pode ser revertido, tens a certeza que desejas apagar permanentemente {0}?"
 
@@ -5111,11 +5110,11 @@ msgstr "Carregar"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
 
-#: ../src/saving/SaveManagerGUI.cs:224
+#: ../src/saving/SaveManagerGUI.cs:223
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Apagar o(s) jogo(s) selecionado(s) não pode ser revertido, tens a certeza que desejas apagar permanentemente {0} jogo(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:237
+#: ../src/saving/SaveManagerGUI.cs:233
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
