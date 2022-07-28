@@ -88,10 +88,14 @@ public class InProgressLoad
                 break;
             case State.ReadingData:
             {
+                // Wait for transition to finish.
+                // Workaround for #1406
+                if (TransitionManager.Instance.HasQueuedTransitions)
+                    break;
+
                 // Start suppressing loaded node deletion
                 TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
 
-                // TODO: do this in a background thread if possible
                 try
                 {
                     // Invalid is given as the target state here, because it's unknown yet.
