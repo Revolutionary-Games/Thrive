@@ -78,6 +78,15 @@ public class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateDescription();
+            UpdateValue();
+        }
+    }
+
     public void ResetInitialValue()
     {
         initialValue = null;
