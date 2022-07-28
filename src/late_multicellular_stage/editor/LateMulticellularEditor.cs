@@ -343,6 +343,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
                 CheckAndApplyCellTypeEdit();
 
+                // This doesn't need to be before CheckAndApplyCellTypeEdit like in early multicellular editor as
+                // this doesn't skip anything even if the tab is not visible yet
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
 

@@ -12,6 +12,8 @@ public class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
+    private string? heightWorkaroundRanForString;
+
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
@@ -84,7 +86,18 @@ public class CustomRichTextLabel : RichTextLabel
         // See https://github.com/Revolutionary-Games/Thrive/issues/2236
         // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
 #pragma warning disable CA2245 // Necessary for workaround
-        Invoke.Instance.QueueForObject(() => BbcodeText = BbcodeText, this);
+        Invoke.Instance.QueueForObject(() =>
+        {
+            var bbCode = BbcodeText;
+
+            // Only run this once to not absolutely tank performance with long rich text labels
+            if (heightWorkaroundRanForString == bbCode)
+                return;
+
+            heightWorkaroundRanForString = bbCode;
+
+            BbcodeText = bbCode;
+        }, this);
 #pragma warning restore CA2245
     }
 

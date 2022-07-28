@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using Godot;
 using Saving;
 
@@ -206,9 +205,13 @@ public class InProgressLoad
 
                 SaveHelper.MarkLastSaveToCurrentTime();
 
-                // Make certain that if some game element paused and we unloaded it without it realizing that, we
-                // don't get stuck in paused mode
-                PauseManager.Instance.ForceClear();
+                if (success)
+                {
+                    // Make certain that if some game element paused and we unloaded it without it realizing that, we
+                    // don't get stuck in paused mode. But only on success because the failure dialog will want to
+                    // clear its own pause lock and print an error if it can't.
+                    PauseManager.Instance.ForceClear();
+                }
 
                 return;
             }
@@ -232,8 +235,7 @@ public class InProgressLoad
         }
         catch (Exception e2)
         {
-            return string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"), e2);
+            return TranslationServer.Translate("SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE").FormatSafe(e2);
         }
 
         return string.Empty;

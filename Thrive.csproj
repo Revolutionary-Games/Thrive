@@ -54,6 +54,7 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\UnhandledExceptionLogger.cs" />
     <Compile Include="src\engine\DebugOverlays.cs" />
     <Compile Include="src\engine\DebugOverlays.EntityLabel.cs" />
     <Compile Include="src\engine\DebugOverlays.FPSCounter.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="src\late_multicellular_stage\CreatureAI.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularCamera.cs" />
     <Compile Include="src\late_multicellular_stage\PlayerMulticellularInput.cs" />
+    <Compile Include="src\microbe_stage\BiomeType.cs" />
     <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\ModifierInfoLabel.cs" />
@@ -292,6 +294,7 @@
     <Compile Include="src\microbe_stage\gui\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\IEngulfable.cs" />
+    <Compile Include="src\microbe_stage\ISpawnSystem.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -554,7 +557,7 @@
       <Version>1.2.0-beta.435</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.2.1</Version>
+      <Version>2.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

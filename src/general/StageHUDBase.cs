@@ -480,7 +480,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (stage.HasPlayer)
         {
             UpdateNeededBars();
-            UpdateCompoundBars();
+            UpdateCompoundBars(delta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
         }
@@ -648,8 +648,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     public void ShowPatchExtinctionBox()
     {
-        winExtinctBoxHolder.Show();
-
         if (patchExtinctionBox == null)
         {
             patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
@@ -658,10 +656,15 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
         }
 
-        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
-        patchExtinctionBox.Map = stage.GameWorld.Map;
+        if (!winExtinctBoxHolder.Visible)
+        {
+            winExtinctBoxHolder.Show();
 
-        patchExtinctionBox.Show();
+            patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+            patchExtinctionBox.Map = stage.GameWorld.Map;
+
+            patchExtinctionBox.Show();
+        }
     }
 
     public void HidePatchExtinctionBox()
@@ -683,23 +686,18 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, oxygenPercentage);
+        oxygenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(oxygenPercentage);
 
         co2Bar.MaxValue = 100;
         co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, co2Percentage);
+        co2Bar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(co2Percentage);
 
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, nitrogenPercentage);
+        nitrogenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(nitrogenPercentage);
 
-        sunlightLabel.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperatureBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, unitFormat, averageTemperature, temperature.Unit);
+        sunlightLabel.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(sunlightPercentage);
+        temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
 
         // TODO: pressure?
     }
@@ -836,7 +834,13 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected void UpdatePopulation()
     {
-        populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
+        var playerSpecies = stage!.GameWorld.PlayerSpecies;
+        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
+
+        if (population <= 0 && stage.HasPlayer)
+            population = 1;
+
+        populationLabel.Text = population.FormatNumber();
     }
 
     /// <summary>
@@ -903,33 +907,33 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <summary>
     ///   Updates the compound bars with the correct values.
     /// </summary>
-    protected virtual void UpdateCompoundBars()
+    protected virtual void UpdateCompoundBars(float delta)
     {
         var compounds = GetPlayerStorage();
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
-        glucoseBar.Value = compounds.GetCompoundAmount(glucose);
+        GUICommon.SmoothlyUpdateBar(glucoseBar, compounds.GetCompoundAmount(glucose), delta);
         glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
 
         ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
-        ammoniaBar.Value = compounds.GetCompoundAmount(ammonia);
+        GUICommon.SmoothlyUpdateBar(ammoniaBar, compounds.GetCompoundAmount(ammonia), delta);
         ammoniaBar.GetNode<Label>("Value").Text = ammoniaBar.Value + " / " + ammoniaBar.MaxValue;
 
         phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
-        phosphateBar.Value = compounds.GetCompoundAmount(phosphates);
+        GUICommon.SmoothlyUpdateBar(phosphateBar, compounds.GetCompoundAmount(phosphates), delta);
         phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
 
         hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
-        hydrogenSulfideBar.Value = compounds.GetCompoundAmount(hydrogensulfide);
+        GUICommon.SmoothlyUpdateBar(hydrogenSulfideBar, compounds.GetCompoundAmount(hydrogensulfide), delta);
         hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
             hydrogenSulfideBar.MaxValue;
 
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
-        ironBar.Value = compounds.GetCompoundAmount(iron);
+        GUICommon.SmoothlyUpdateBar(ironBar, compounds.GetCompoundAmount(iron), delta);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
-        oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
+        GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
     }
 
@@ -1108,8 +1112,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             if (hoveredSpeciesCount.Value > 1)
             {
                 AddHoveredCellLabel(
-                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
-                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+                    TranslationServer.Translate("SPECIES_N_TIMES").FormatSafe(hoveredSpeciesCount.Key.FormattedName,
+                        hoveredSpeciesCount.Value));
             }
             else
             {

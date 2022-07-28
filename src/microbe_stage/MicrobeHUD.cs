@@ -185,42 +185,29 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     {
         if (stage?.Player != null && stage.Player.PhagocytosisStep != PhagocytosisPhase.Ingested)
         {
+            playerWasDigested = false;
+            healthBar.TintProgress = defaultHealthBarColour;
             base.UpdateHealth(delta);
             return;
         }
 
         float hp = 0;
 
-        if (stage!.Player != null)
-            hp = stage.Player.Hitpoints;
-
         string hpText = playerWasDigested ?
             TranslationServer.Translate("DEVOURED") :
             hp.ToString(CultureInfo.CurrentCulture);
 
-        // Update to the player's current HP, unless the player does not exist
-        if (stage.Player != null)
+        // Update to the player's current digested progress, unless the player does not exist
+        if (stage!.HasPlayer)
         {
-            // Change mode depending on whether the player is ingested or not
-            if (stage.Player.PhagocytosisStep == PhagocytosisPhase.Ingested)
-            {
-                var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
+            var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
-                // Show the digestion progress to the player
-                hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
-                maxHP = Constants.FULLY_DIGESTED_LIMIT;
-                hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
-                playerWasDigested = true;
-                FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
-            }
-            else
-            {
-                hp = stage.Player.Hitpoints;
-                maxHP = stage.Player.MaxHitpoints;
-                hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
-                playerWasDigested = false;
-                healthBar.TintProgress = defaultHealthBarColour;
-            }
+            // Show the digestion progress to the player
+            hp = 1 - (stage.Player!.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+            maxHP = Constants.FULLY_DIGESTED_LIMIT;
+            hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
+            playerWasDigested = true;
+            FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
         }
 
         healthBar.MaxValue = maxHP;
@@ -273,12 +260,12 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
     }
 
-    protected override void UpdateCompoundBars()
+    protected override void UpdateCompoundBars(float delta)
     {
-        base.UpdateCompoundBars();
+        base.UpdateCompoundBars(delta);
 
         ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
-        ingestedMatterBar.Value = GetPlayerUsedIngestionCapacity();
+        GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
 
@@ -305,8 +292,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     protected override string GetMouseHoverCoordinateText()
     {
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("STUFF_AT"),
-            stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
+        return TranslationServer.Translate("STUFF_AT")
+            .FormatSafe(stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
     }
 
     protected override void UpdateAbilitiesHotBar()
@@ -394,8 +381,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        multicellularButton.Text = string.Format(TranslationServer.Translate("BECOME_MULTICELLULAR"), playerColonySize,
-            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
+        multicellularButton.Text = TranslationServer.Translate("BECOME_MULTICELLULAR")
+            .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
     }
 
     private void UpdateMacroscopicButton(Microbe player)
@@ -430,15 +417,15 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        macroscopicButton.Text = string.Format(TranslationServer.Translate("BECOME_MACROSCOPIC"), playerColonySize,
-            Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
+        macroscopicButton.Text = TranslationServer.Translate("BECOME_MACROSCOPIC")
+            .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
     }
 
     private void OnBecomeMulticellularPressed()
     {
         if (!Paused)
         {
-            bottomLeftBar.Paused = true;
+            PauseButtonPressed(true);
         }
         else
         {
@@ -453,7 +440,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         // The game should have been paused already but just in case
         if (Paused)
         {
-            bottomLeftBar.Paused = false;
+            PauseButtonPressed(false);
         }
     }
 

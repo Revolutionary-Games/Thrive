@@ -52,7 +52,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string processesDescription = string.Empty;
     private int mpCost;
     private bool requiresNucleus;
-    private float editorCostFactor = 1.0f;
 
     [Export]
     public string DisplayName
@@ -124,17 +123,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             requiresNucleus = value;
             UpdateRequiresNucleus();
-        }
-    }
-
-    [Export]
-    public float EditorCostFactor
-    {
-        get => editorCostFactor;
-        set
-        {
-            editorCostFactor = value;
-            UpdateMpCost();
         }
     }
 
@@ -273,8 +261,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             else
             {
                 modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
-                    + string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-                        (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
+                    + TranslationServer.Translate("PERCENTAGE_VALUE")
+                        .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
             }
 
             if (modifier.Name == "osmoregulationCost")
@@ -325,7 +313,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = mpCost.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateRequiresNucleus()

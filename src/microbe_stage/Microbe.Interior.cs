@@ -22,6 +22,9 @@ public partial class Microbe
     private CompoundCloudSystem? cloudSystem;
 
     [JsonProperty]
+    private ISpawnSystem? spawnSystem;
+
+    [JsonProperty]
     private Compound? queuedToxinToEmit;
 
     /// <summary>
@@ -390,10 +393,10 @@ public partial class Microbe
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawnSystem!.AddEntityToTrack(copyEntity);
 
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
@@ -702,9 +705,6 @@ public partial class Microbe
 
         lastCheckedReproduction = 0;
 
-        // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
-        // might make a lot of cells use less CPU power
-
         // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
         if (IsMulticellular && ColonyParent == null)
         {
@@ -875,6 +875,14 @@ public partial class Microbe
         }
         else
         {
+            // Skip reproducing if we would go too much over the entity limit
+            if (!spawnSystem!.IsUnderEntityLimitForReproducing())
+            {
+                // Set this to false so that we re-check in a few frames if we can reproduce then
+                allOrganellesDivided = false;
+                return;
+            }
+
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
@@ -1092,6 +1100,9 @@ public partial class Microbe
     /// </summary>
     private Vector3 CalculateNearbyWorldPosition()
     {
+        // OLD CODE kept here in case we want a more accurate membrane position, also this code
+        // produces an incorrect world position which needs fixing if this were to be used
+        /*
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
@@ -1125,6 +1136,22 @@ public partial class Microbe
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+        */
+
+        // Unlike the commented block of code above, this uses cheap membrane radius to calculate
+        // distance for cheaper computations
+        var distance = Membrane.EncompassingCircleRadius;
+
+        // The membrane radius doesn't take being bacteria into account
+        if (CellTypeProperties.IsBacteria)
+            distance *= 0.5f;
+
+        // The back of the microbe
+        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Back);
+
+        var result = GlobalTransform.origin + (ejectionDirection * distance);
+
+        return result;
     }
 
     private void HandleChemoreceptorLines(float delta)
@@ -1152,6 +1179,8 @@ public partial class Microbe
 
         var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+
+        float usedCapacity = 0.0f;
 
         // Handle logic if the objects that are being digested are the ones we have engulfed
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
@@ -1193,7 +1222,6 @@ public partial class Microbe
 
             var totalAmountLeft = 0.0f;
 
-            var hasAnyUsefulCompounds = false;
             foreach (var compound in compoundTypes.Values)
             {
                 if (!compound.Digestible)
@@ -1207,45 +1235,40 @@ public partial class Microbe
                 var totalAvailable = originalAmount + additionalAmount;
                 totalAmountLeft += totalAvailable;
 
-                if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
+                if (totalAvailable <= 0)
                     continue;
-
-                hasAnyUsefulCompounds = true;
 
                 var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(Enzymes[usedEnzyme]);
                 amount *= delta;
 
-                // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
-                // maximum efficiency
-                // TODO: Maybe set max efficiency lower to 80%?
+                // Efficiency starts from 40% up to 60%. This means at least 7 lysosomes are needed to achieve
+                // "maximum" efficiency
                 var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(Enzymes[usedEnzyme]);
 
                 var taken = Mathf.Min(totalAvailable, amount);
 
+                // Toxin damage
                 if (compound == oxytoxy && taken > 0)
                 {
                     lastCheckedOxytoxyDigestionDamage += delta;
 
-                    if (lastCheckedOxytoxyDigestionDamage >=
-                        Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION)
+                    if (lastCheckedOxytoxyDigestionDamage >= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL)
                     {
-                        lastCheckedOxytoxyDigestionDamage -=
-                            Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION;
-                        Damage(MaxHitpoints * taken, "oxytoxy");
+                        lastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
+                        Damage(MaxHitpoints * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
                     }
                 }
-
-                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
-                // entirely full then this object won't be digested and would just be stored away until it's needed
-                // again
-                if (Compounds.GetCompoundAmount(compound) > Compounds.Capacity)
-                    continue;
 
                 if (additionalCompounds?.ContainsKey(compound) == true)
                     additionalCompounds[compound] -= taken;
 
                 engulfable.Compounds.TakeCompound(compound, taken);
-                Compounds.AddCompound(compound, taken * efficiency);
+
+                var takenAdjusted = taken * efficiency;
+                var added = Compounds.AddCompound(compound, takenAdjusted);
+
+                // Eject excess
+                SpawnEjectedCompound(compound, takenAdjusted - added);
             }
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
@@ -1256,19 +1279,15 @@ public partial class Microbe
 
             if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
             {
-                // Ignore size from foreign-ingested objects for now
-                if (!engulfedObject.ReclaimedByAnotherHost)
-                    UsedIngestionCapacity -= engulfable.EngulfSize;
-
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
             }
-
-            // Expel this object as it has no use
-            if (!hasAnyUsefulCompounds && engulfable.PhagocytosisStep != PhagocytosisPhase.Digested)
+            else
             {
-                EjectEngulfable(engulfable);
+                usedCapacity += engulfable.EngulfSize;
             }
         }
+
+        UsedIngestionCapacity = usedCapacity;
 
         // Else handle logic if the cell that's being/has been digested is us
         if (PhagocytosisStep == PhagocytosisPhase.None)
@@ -1294,6 +1313,13 @@ public partial class Microbe
                 // Microbe is beyond repair, might as well consider it as dead
                 Kill();
 
+                if (IsPlayerMicrobe)
+                {
+                    // Playing from a positional audio player won't have any effect since the listener is
+                    // directly on it.
+                    PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+                }
+
                 var hostile = HostileEngulfer.Value;
                 if (hostile == null)
                     return;
@@ -1307,7 +1333,6 @@ public partial class Microbe
                         engulfed.HostileEngulfer.Value = hostile;
                         hostile.engulfedObjects.Add(other);
                         engulfed.EntityNode.ReParentWithTransform(hostile);
-                        other.ReclaimedByAnotherHost = true;
                     }
                 }
             }

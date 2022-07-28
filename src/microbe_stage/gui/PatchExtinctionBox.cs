@@ -25,7 +25,9 @@ public class PatchExtinctionBox : Control
                 throw new InvalidOperationException($"{nameof(PlayerSpecies)} must be set first");
 
             mapDrawer.Map = value ?? throw new ArgumentException("New map can't be null");
-            mapDrawer.SetPatchEnabledStatuses(value.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+            mapDrawer.SetPatchEnabledStatuses(value.Patches.Values,
+                p => p.GetSpeciesGameplayPopulation(PlayerSpecies) > 0);
+            mapDrawer.MarkDirty();
         }
     }
 

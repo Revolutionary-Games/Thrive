@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -134,9 +133,7 @@ public class AutoEvoRun
                 var percentage = CompletionFraction * 100;
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps.
-                return string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTO-EVO_STEPS_DONE"),
-                    percentage, CompleteSteps, total);
+                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total);
             }
 
             return TranslationServer.Translate("STARTING");
@@ -211,34 +208,40 @@ public class AutoEvoRun
     /// <remarks>
     ///   <para>
     ///     This has to be called after this run is finished. This also applies the results so ApplyResults shouldn't be
-    ///     called when using external effects.
+    ///     called when using external effects. <see cref="CalculateFinalExternalEffectSizes"/> must be called first,
+    ///     that should be called even before generating the result summaries to make sure they are accurate.
     ///   </para>
     /// </remarks>
     public void ApplyExternalEffects()
     {
         if (ExternalEffects.Count > 0)
         {
-            // Effects are applied in the current patch
-            var currentPatch = Parameters.World.Map.CurrentPatch ??
-                throw new InvalidOperationException("Cannot apply external effects without current map patch");
-
             foreach (var entry in ExternalEffects)
             {
                 try
                 {
+                    // Make sure CalculateFinalExternalEffectSizes has been called
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (entry.Coefficient != 1)
+                    {
+                        throw new Exception(
+                            "CalculateFinalExternalEffectSizes has not been called to finalize external effects");
+                    }
+
                     // It's possible for external effects to be added for extinct species (either completely extinct
-                    // or extinct in the current patch)
-                    if (!results.SpeciesHasResults(entry.Species))
+                    // or extinct in the patch it applies to)
+                    // We ignore this for player to give the player's reproduction bonus the ability to rescue them
+                    if (!results.SpeciesHasResults(entry.Species) && !entry.Species.PlayerSpecies)
                     {
                         GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
                             " had an external effect, ignoring the effect");
                         continue;
                     }
 
-                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
+                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
-                        entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
+                        entry.Species, entry.Patch, currentPopulation + entry.Constant);
                 }
                 catch (Exception e)
                 {
@@ -248,6 +251,48 @@ public class AutoEvoRun
         }
 
         results.ApplyResults(Parameters.World, false);
+    }
+
+    /// <summary>
+    ///   Calculates the final sizes of external effects. This is a separate method to unify the logic and avoid
+    ///   bugs regarding when results are applied and what base populations are used in the external effects.
+    ///   Must be called before <see cref="ApplyExternalEffects"/> or <see cref="RunResults.MakeSummary"/> is called.
+    /// </summary>
+    public void CalculateFinalExternalEffectSizes()
+    {
+        if (ExternalEffects.Count < 1)
+            return;
+
+        // For subsequent effects to work we need to track the changes we do
+        var adjustedPopulations = new Dictionary<(Species, Patch), long>();
+
+        foreach (var effect in ExternalEffects)
+        {
+            var key = (effect.Species, effect.Patch);
+
+            if (!adjustedPopulations.TryGetValue(key, out var population))
+            {
+                population = results.GetPopulationInPatchIfExists(effect.Species, effect.Patch) ?? 0;
+            }
+
+            var newPopulation = (long)(population * effect.Coefficient) + effect.Constant;
+
+            var change = newPopulation - population;
+
+            // This *probably* can't overflow, but just in case check for that case
+            if (change > int.MaxValue)
+            {
+                GD.PrintErr(
+                    "Converting external effect caused a data overflow! We need to change " +
+                    "external effects to use longs.");
+                change = int.MaxValue;
+            }
+
+            effect.Coefficient = 1;
+            effect.Constant = (int)change;
+
+            adjustedPopulations[key] = newPopulation;
+        }
     }
 
     /// <summary>
@@ -270,6 +315,12 @@ public class AutoEvoRun
     /// <summary>
     ///   Makes a summary of external effects
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     <see cref="CalculateFinalExternalEffectSizes"/> needs to be called before this is called to have accurate
+    ///     numbers
+    ///   </para>
+    /// </remarks>
     /// <returns>The summary of external effects.</returns>
     public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
@@ -278,12 +329,13 @@ public class AutoEvoRun
         foreach (var entry in ExternalEffects)
         {
             var key = (entry.Species, entry.EventType, entry.Patch);
-            var speciesPopulation = entry.Species.Population;
 
             combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
 
-            combinedExternalEffects[key] = existingEffectAmount +
-                entry.Constant + (long)(speciesPopulation * entry.Coefficient) - speciesPopulation;
+            // We can ignore coefficients because we trust that CalculateFinalExternalEffectSizes has been called first
+            // and so we also don't need to
+
+            combinedExternalEffects[key] = existingEffectAmount + entry.Constant;
         }
 
         var builder = new LocalizedStringBuilder(300);
@@ -415,6 +467,12 @@ public class AutoEvoRun
         steps.Enqueue(new LambdaStep(
             result =>
             {
+                if (!result.SpeciesHasResults(playerSpecies))
+                {
+                    GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
+                    result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
+                }
+
                 foreach (var entry in map.Patches)
                 {
                     var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
@@ -425,7 +483,8 @@ public class AutoEvoRun
                         continue;
 
                     // Adjust to the specified fraction of the full population change
-                    var previousPopulation = entry.Value.GetSpeciesPopulation(previousPopulationFrom ?? playerSpecies);
+                    var previousPopulation =
+                        entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
 
                     var change = resultPopulation.Value - previousPopulation;
 

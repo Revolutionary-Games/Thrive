@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A specialized button to display a microbe part for selection in the cell editor.
@@ -18,6 +17,7 @@ public class MicrobePartSelection : MarginContainer
     private Texture? partIcon;
     private string name = "Error: unset";
     private bool locked;
+    private bool alwaysShowLabel;
     private bool selected;
 
     /// <summary>
@@ -86,6 +86,20 @@ public class MicrobePartSelection : MarginContainer
         }
     }
 
+    /// <summary>
+    ///   Whether this button should always display the part name.
+    /// </summary>
+    [Export]
+    public bool AlwaysShowLabel
+    {
+        get => alwaysShowLabel;
+        set
+        {
+            alwaysShowLabel = value;
+            UpdateLabels();
+        }
+    }
+
     public bool Selected
     {
         get => selected;
@@ -105,9 +119,25 @@ public class MicrobePartSelection : MarginContainer
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
 
+        OnDisplayPartNamesChanged(Settings.Instance.DisplayPartNames);
+        Settings.Instance.DisplayPartNames.OnChanged += OnDisplayPartNamesChanged;
+
         UpdateButton();
         UpdateLabels();
         UpdateIcon();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.DisplayPartNames.OnChanged -= OnDisplayPartNamesChanged;
+    }
+
+    private void OnDisplayPartNamesChanged(bool displayed)
+    {
+        if (nameLabel != null)
+            nameLabel.Visible = displayed || AlwaysShowLabel;
     }
 
     private void UpdateLabels()
@@ -115,8 +145,7 @@ public class MicrobePartSelection : MarginContainer
         if (mpLabel == null || nameLabel == null)
             return;
 
-        mpLabel.Text = string.Format(
-            CultureInfo.CurrentCulture, TranslationServer.Translate("MP_COST"), MPCost);
+        mpLabel.Text = TranslationServer.Translate("MP_COST").FormatSafe(MPCost);
 
         nameLabel.Text = PartName;
 
