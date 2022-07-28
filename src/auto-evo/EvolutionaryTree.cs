@@ -6,6 +6,11 @@ using Godot.Collections;
 
 public class EvolutionaryTree : Control
 {
+    private const float TIMELINE_HEIGHT = 50.0f;
+    private const float SPECIES_SEPARATION = 50.0f;
+    private const float GENERATION_SEPARATION = 100.0f;
+    private const float SPECIES_NAME_OFFSET = 10.0f;
+
     private readonly List<EvolutionaryTreeNode> nodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
@@ -51,14 +56,15 @@ public class EvolutionaryTree : Control
         foreach (var latestNode in latestNodes.Values.Where(n => !n.LastGeneration))
         {
             var lineStart = latestNode.Center;
-            var lineEnd = new Vector2(100 * latestGeneration + latestNode.RectSize.x, lineStart.y);
+            var lineEnd = new Vector2(GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x, lineStart.y);
             DrawLine(lineStart, lineEnd);
-            DrawString(latoSmall, lineEnd + new Vector2(10, 0), speciesNames[latestNode.SpeciesID]);
+            DrawString(latoSmall, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0), speciesNames[latestNode.SpeciesID]);
         }
 
         foreach (var extinctedSpecies in latestNodes.Values.Where(n => n.LastGeneration))
         {
-            DrawString(latoSmall, new Vector2(extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + 10,
+            DrawString(latoSmall, new Vector2(
+                extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + SPECIES_NAME_OFFSET,
                 extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
         }
     }
@@ -112,7 +118,8 @@ public class EvolutionaryTree : Control
 
     private void AdjustSize()
     {
-        RectMinSize = new Vector2(100 * latestGeneration + 200, 50 * maxSpeciesId + 200);
+        RectMinSize = new Vector2(GENERATION_SEPARATION * latestGeneration + 200,
+            SPECIES_SEPARATION * maxSpeciesId + 200);
     }
 
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
@@ -123,7 +130,7 @@ public class EvolutionaryTree : Control
         node.SpeciesID = species.ID;
         node.LastGeneration = false;
         node.ParentNode = parent;
-        node.RectPosition = new Vector2(generation * 100, 0);
+        node.RectPosition = new Vector2(generation * GENERATION_SEPARATION, TIMELINE_HEIGHT);
         node.LastGeneration = isLastGeneration;
         node.Group = nodesGroup;
         node.Connect("button_down", this, nameof(OnTreeNodeSelected), new Array { node });
@@ -147,7 +154,7 @@ public class EvolutionaryTree : Control
         foreach (var treeNode in nodes.Where(n => n.SpeciesID == id))
         {
             var position = treeNode.RectPosition;
-            position.y = index * 50;
+            position.y = TIMELINE_HEIGHT + index * SPECIES_SEPARATION;
             treeNode.RectPosition = position;
         }
 
@@ -171,7 +178,7 @@ public class EvolutionaryTree : Control
         }
         else
         {
-            var mid = to - new Vector2(100 / 2.0f, 0);
+            var mid = to - new Vector2(GENERATION_SEPARATION / 2.0f, 0);
             DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f, true);
             DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f, true);
             DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f, true);
