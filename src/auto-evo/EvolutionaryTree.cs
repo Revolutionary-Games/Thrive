@@ -7,6 +7,9 @@ using Godot.Collections;
 public class EvolutionaryTree : Control
 {
     private const float TIMELINE_HEIGHT = 50.0f;
+    private const float TIMELINE_LINE_THICKNESS = 2.0f;
+    private const float TIMELINE_LINE_Y = 5.0f;
+    private const float TIMELINE_MARK_SIZE = 4.0f;
     private const float SPECIES_SEPARATION = 50.0f;
     private const float GENERATION_SEPARATION = 100.0f;
     private const float SPECIES_NAME_OFFSET = 10.0f;
@@ -26,6 +29,8 @@ public class EvolutionaryTree : Control
 
     private PackedScene treeNodeScene = null!;
 
+    private Vector2 treeNodeSize;
+
     private uint maxSpeciesId;
 
     private int latestGeneration;
@@ -38,6 +43,11 @@ public class EvolutionaryTree : Control
         base._Ready();
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
+
+        var tempNode = treeNodeScene.Instance<EvolutionaryTreeNode>();
+        treeNodeSize = tempNode.RectSize;
+        tempNode.QueueFree();
+
         latoSmall = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
     }
 
@@ -45,6 +55,24 @@ public class EvolutionaryTree : Control
     {
         base._Draw();
 
+        // Draw timeline
+        DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.DarkCyan,
+            TIMELINE_LINE_THICKNESS, true);
+
+        for (int i = 0; i <= latestGeneration; i++)
+        {
+            DrawLine(new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
+                new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
+                Colors.DarkCyan, TIMELINE_LINE_THICKNESS, true);
+
+            var localizedText = i + " " + TranslationServer.Translate("MEGA_YEARS");
+            var size = latoSmall.GetStringSize(localizedText);
+            DrawString(latoSmall, new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
+                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y),
+                localizedText, Colors.DarkCyan);
+        }
+
+        // Draw node connection lines
         foreach (var node in nodes)
         {
             if (node.ParentNode == null)
@@ -53,6 +81,7 @@ public class EvolutionaryTree : Control
             DrawLine(node.ParentNode.Center, node.Center);
         }
 
+        // Draw lines that indicate the species goes on till current generation, and species name
         foreach (var latestNode in latestNodes.Values.Where(n => !n.LastGeneration))
         {
             var lineStart = latestNode.Center;
@@ -61,6 +90,7 @@ public class EvolutionaryTree : Control
             DrawString(latoSmall, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0), speciesNames[latestNode.SpeciesID]);
         }
 
+        // Draw extinct species name
         foreach (var extinctedSpecies in latestNodes.Values.Where(n => n.LastGeneration))
         {
             DrawString(latoSmall, new Vector2(
