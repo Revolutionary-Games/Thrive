@@ -91,7 +91,7 @@ public class CustomDropDown : MenuButton
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This method doesn't cause rebuilt of the popup.
+    ///     This method doesn't cause rebuild of the popup.
     ///   </para>
     /// </remarks>
     public void ClearAllItems()
