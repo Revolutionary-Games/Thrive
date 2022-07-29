@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-29 09:19+0800\n"
+"POT-Creation-Date: 2022-07-29 13:14+0800\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: 84634E1A607A <ajax-dong@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -972,12 +972,17 @@ msgstr "纤毛"
 msgid "LYSOSOME"
 msgstr "溶酶体"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:616
+#: ../src/auto-evo/AutoEvoExploringTool.cs:488
+#, fuzzy
+msgid "FINISH_X_GENERATIONS"
+msgstr " "
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:673
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0}（x{1}）"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:638
+#: ../src/auto-evo/AutoEvoExploringTool.cs:695
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -986,165 +991,165 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:95
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:103
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
 #, fuzzy
 msgid "VIEWER"
 msgstr "图库浏览器"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:159
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "发生变异"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:166
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "一部分[u]{0}[/u]种群已经移民到了{1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:179
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:199
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:220
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:233
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "在这个地区里灭绝了"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:269
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "变异点（MP）"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:319
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:326
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:340
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:353
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:373
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:385
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:407
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "画师："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:431
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 #, fuzzy
 msgid "READY"
 msgstr "线程："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:440
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr " "
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:446
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:452
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 #, fuzzy
 msgid "ABORT"
 msgstr "中止。"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:458
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:500
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:507
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "选择一个选项"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:541
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 #, fuzzy
 msgid "SPECIES"
 msgstr "物种列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:548
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "选择一个地区以显示详细"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "由Revolutionary Games Studio制作"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:689
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "物种列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:744
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1154,12 +1159,12 @@ msgstr "物种列表"
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:748
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:749
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1196,7 +1201,7 @@ msgstr "启动中"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0}在{2}中的种群数量变化了{1}，原因：{3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:78
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -3074,8 +3079,8 @@ msgstr "Raw"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2059
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "N/A"
 
@@ -3113,7 +3118,7 @@ msgid "SLIDESHOW"
 msgstr "幻灯片"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2191
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -3997,35 +4002,35 @@ msgstr "移动需求"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:502
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:525
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "不能删除细胞核，因为这是个不可逆的进化。除非是在当前世代中进化的，那样仍允许撤消或重做"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2176
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 

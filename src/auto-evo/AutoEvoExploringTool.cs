@@ -92,6 +92,12 @@ public class AutoEvoExploringTool : NodeWithInput
     public NodePath RunStatusLabelPath = null!;
 
     [Export]
+    public NodePath FinishXGenerationsSpinBoxPath = null!;
+
+    [Export]
+    public NodePath FinishXGenerationsButtonPath = null!;
+
+    [Export]
     public NodePath RunGenerationButtonPath = null!;
 
     [Export]
@@ -172,6 +178,8 @@ public class AutoEvoExploringTool : NodeWithInput
     // Status controls
     private Label currentGenerationLabel = null!;
     private Label runStatusLabel = null!;
+    private SpinBox finishXGenerationsSpinBox = null!;
+    private Button finishXGenerationsButton = null!;
     private Button finishOneGenerationButton = null!;
     private Button runOneStepButton = null!;
     private Button abortButton = null!;
@@ -212,6 +220,8 @@ public class AutoEvoExploringTool : NodeWithInput
     ///   which equals to the selected popup item index of <see cref="historyListMenu"/>
     /// </summary>
     private int generationDisplayed;
+
+    private int generationsPendingToRun;
 
     private bool ready;
 
@@ -261,6 +271,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
+        finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
+        finishXGenerationsButton = GetNode<Button>(FinishXGenerationsButtonPath);
         finishOneGenerationButton = GetNode<Button>(RunGenerationButtonPath);
         runOneStepButton = GetNode<Button>(RunStepButtonPath);
         abortButton = GetNode<Button>(AbortButtonPath);
@@ -286,6 +298,9 @@ public class AutoEvoExploringTool : NodeWithInput
         evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
 
         InitConfigControl();
+
+        // Init button translation
+        OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
 
         // Connect custom dropdown handler
         historyListMenu.Popup.Connect("index_pressed", this, nameof(HistoryListMenuIndexChanged));
@@ -322,6 +337,12 @@ public class AutoEvoExploringTool : NodeWithInput
                 playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = true;
             }
+        }
+
+        if (autoEvoRun == null && generationsPendingToRun > 0)
+        {
+            FinishOneGeneration();
+            --generationsPendingToRun;
         }
     }
 
@@ -461,13 +482,34 @@ public class AutoEvoExploringTool : NodeWithInput
         autoEvoConfiguration.UseBiodiversityForceSplit = useBiodiversityForceSplitCheckBox.Pressed;
     }
 
+    private void OnFinishXGenerationsSpinBoxValueChanged(float value)
+    {
+        finishXGenerationsButton.Text =
+            TranslationServer.Translate("FINISH_X_GENERATIONS").FormatSafe(Math.Round(value));
+    }
+
+    /// <summary>
+    ///   Sequentially finish X generations
+    /// </summary>
+    private void OnFinishXGenerationsButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
+
+        FinishOneGeneration();
+    }
+
     /// <summary>
     ///   Run a new generation or finish the current generation async
     /// </summary>
     private void OnFinishOneGenerationButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+        FinishOneGeneration();
+    }
 
+    private void FinishOneGeneration()
+    {
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             // If the previous one has finished / failed
@@ -540,6 +582,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (autoEvoRun?.WasSuccessful == false)
             autoEvoRun.Abort();
+
+        generationsPendingToRun = 0;
 
         finishOneGenerationButton.Disabled = false;
         runOneStepButton.Disabled = false;

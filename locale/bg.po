@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-29 09:19+0800\n"
+"POT-Creation-Date: 2022-07-29 13:14+0800\n"
 "PO-Revision-Date: 2022-07-22 10:22+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -983,12 +983,17 @@ msgstr "Реснички"
 msgid "LYSOSOME"
 msgstr "Лизозома"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:616
+#: ../src/auto-evo/AutoEvoExploringTool.cs:488
+#, fuzzy
+msgid "FINISH_X_GENERATIONS"
+msgstr "от концентрацията на"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:673
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} ({1} индивида)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:638
+#: ../src/auto-evo/AutoEvoExploringTool.cs:695
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -997,165 +1002,165 @@ msgstr ""
 "Ако имате АТФ, точките здраве се възстановяват.\n"
 "Събирайте глюкоза за да произвеждате АТФ."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:95
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:103
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
 #, fuzzy
 msgid "VIEWER"
 msgstr "Галерия на „Thrive“"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:159
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:166
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:179
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:199
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:220
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:233
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:269
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Мутационни точки"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:319
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:326
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:340
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:353
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:373
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:385
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:407
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Автор:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:431
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 #, fuzzy
 msgid "READY"
 msgstr "Нишки:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:440
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "от концентрацията на"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:446
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:452
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 #, fuzzy
 msgid "ABORT"
 msgstr "Прекратена."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:458
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:500
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Поколение:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:507
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Изберете команда"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:541
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 #, fuzzy
 msgid "SPECIES"
 msgstr "Списък на създанията"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:548
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Изберете зона"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "От „Revolutionary Games Studio“"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:689
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Списък на създанията"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:744
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
@@ -1165,12 +1170,12 @@ msgstr "Списък на създанията"
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:748
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:749
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1207,7 +1212,7 @@ msgstr "Започната"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "популацията на „{0}“ в {2} се промени с {1} индивида поради {3} на създанията"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:78
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -3085,8 +3090,8 @@ msgstr "НЦ"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2059
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "Няма"
 
@@ -3124,7 +3129,7 @@ msgid "SLIDESHOW"
 msgstr "Слайдшоу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2191
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -3997,37 +4002,37 @@ msgstr "Базово движение"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:502
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:525
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядрото е необратима еволюция и не може да бъде премахнато,\n"
 "освен ако не е добавено по време на текущата сесия на редактора"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последният органел не може да бъде премахнат"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на „{1}“"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2176
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
