@@ -7,7 +7,7 @@ public class CellHexesPhotoBuilder : Spatial, IPhotographable
     private bool radiusDirty;
     private MicrobeSpecies? species;
 
-    public string SceneToPhotographPath => "res://src/microbe_stage/CellHexPhotoBuilder.tscn";
+    public string SceneToPhotographPath => "res://src/microbe_stage/CellHexesPhotoBuilder.tscn";
 
     public float Radius
     {
