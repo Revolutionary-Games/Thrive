@@ -191,7 +191,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Viewer controls
     private SpeciesPreview speciesPreview = null!;
-    private CellHexPreview hexPreview = null!;
+    private CellHexesPreview hexesPreview = null!;
     private CustomDropDown speciesListMenu = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private EvolutionaryTree evolutionaryTree = null!;
@@ -289,7 +289,7 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
+        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
@@ -674,7 +674,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (species is MicrobeSpecies microbeSpecies)
         {
-            hexPreview.PreviewSpecies = microbeSpecies;
+            hexesPreview.PreviewSpecies = microbeSpecies;
         }
         else
         {

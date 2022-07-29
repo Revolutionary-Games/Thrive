@@ -16,7 +16,7 @@
 ///     </list>
 ///   </para>
 /// </remarks>
-public abstract class PhotographPreview : Control
+public abstract class PhotographablePreview : Control
 {
     [Export]
     public NodePath TextureRectPath = null!;

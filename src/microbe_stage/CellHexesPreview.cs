@@ -1,4 +1,4 @@
-﻿public class CellHexPreview : PhotographPreview
+﻿public class CellHexesPreview : PhotographablePreview
 {
     private MicrobeSpecies? microbeSpecies;
 
@@ -17,6 +17,6 @@
 
     protected override ImageTask SetupImageTask()
     {
-        return new ImageTask(new CellHexPhotoBuilder { Species = microbeSpecies });
+        return new ImageTask(new CellHexesPhotoBuilder { Species = microbeSpecies });
     }
 }

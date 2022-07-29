@@ -8,13 +8,13 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
-[ext_resource path="res://src/gui_common/PhotographPreview.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/microbe_stage/CellHexPreview.cs" type="Script" id=15]
+[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 resource_name = "TabsButtonGroup"

@@ -417,10 +417,10 @@ public partial class CellEditorComponent :
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
         Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
-    public static void InitOrganelleModel(SceneDisplayer organelleModel, OrganelleTemplate organelle)
+    public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
         organelleModel.Transform = new Transform(
-            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganellePosition);
+            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganelleModelPosition);
 
         organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
             Constants.DEFAULT_HEX_SIZE);
@@ -1688,6 +1688,7 @@ public partial class CellEditorComponent :
     {
         var islands = editedMicrobeOrganelles.GetIslandHexes();
 
+        // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this changes that needs change too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
             editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, Editor.HexPlacedThisSession(o))), islands,
@@ -1710,7 +1711,7 @@ public partial class CellEditorComponent :
 
                 var organelleModel = placedModels[nextFreeOrganelle++];
 
-                InitOrganelleModel(organelleModel, organelle);
+                UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
                 organelleModel.Visible = !MicrobePreviewMode;
 

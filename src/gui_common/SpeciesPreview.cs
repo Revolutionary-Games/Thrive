@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class SpeciesPreview : PhotographPreview
+public class SpeciesPreview : PhotographablePreview
 {
     private Species? previewSpecies;
 

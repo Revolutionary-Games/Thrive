@@ -23,7 +23,8 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
 
     public Hex Position { get; set; }
 
-    public Vector3 OrganellePosition => Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset();
+    [JsonIgnore]
+    public Vector3 OrganelleModelPosition => Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset();
 
     /// <summary>
     ///   This is now the number of times to rotate. This used to be the angle in degrees

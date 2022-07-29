@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class CellHexPhotoBuilder : Spatial, IPhotographable
+public class CellHexesPhotoBuilder : Spatial, IPhotographable
 {
     private float radius;
     private bool radiusDirty;
@@ -32,14 +32,14 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
 
     public void ApplySceneParameters(Spatial instancedScene)
     {
-        var builder = (CellHexPhotoBuilder)instancedScene;
+        var builder = (CellHexesPhotoBuilder)instancedScene;
         builder.Species = Species;
         builder.BuildHexStruct();
     }
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((CellHexPhotoBuilder)instancedScene).Radius *
+        return PhotoStudio.CameraDistanceFromRadiusOfObject(((CellHexesPhotoBuilder)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 
@@ -54,6 +54,8 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
         if (Species == null)
             throw new InvalidOperationException("Species is ont initialized");
 
+        // TODO: The code below is partly duplicate to CellEditorComponent and HexEditorComponentBase.
+        // If that code changes this needs change too.
         var organelleLayout = Species.Organelles.Organelles;
         foreach (var organelle in organelleLayout)
         {
@@ -77,7 +79,7 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
                 var organelleModel = (SceneDisplayer)modelScene.Instance();
                 AddChild(organelleModel);
 
-                CellEditorComponent.InitOrganelleModel(organelleModel, organelle);
+                CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
                 CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
                     organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
