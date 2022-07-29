@@ -692,18 +692,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesDetail(Species species)
     {
-        /*
-          [b]Species:[/b]
-            {0}:{1}
-          [b]Generation:[/b]
-            {2}
-          [b]Population:[/b]
-            {3}
-          [b]Colour:[/b]
-            #{4}
-          [b]Behaviour[/b]
-            {5}
-        */
         speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
             species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
             string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
@@ -712,20 +700,6 @@ public class AutoEvoExploringTool : NodeWithInput
         {
             case MicrobeSpecies microbeSpecies:
             {
-                /*
-                  [b]Stage:[/b]
-                    Microbe
-                  [b]Membrane Type:[/b]
-                    {0}
-                  [b]Membrane Rigidity:[/b]
-                    {1}
-                  [b]Base Speed:[/b]
-                    {2}
-                  [b]Base Rotation Speed[/b]
-                    {3}
-                  [b]Base Hex Size[/b]
-                    {4}
-                */
                 speciesDetailsLabel.ExtendedBbcode += TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT")
                     .FormatSafe(microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
                         microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
