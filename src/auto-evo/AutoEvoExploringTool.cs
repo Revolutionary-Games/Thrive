@@ -580,8 +580,8 @@ public class AutoEvoExploringTool : NodeWithInput
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
 
         // Apply the results
-        autoEvoRun.ApplyAllResultsAndEffects(true);
         gameProperties.GameWorld.OnTimePassed(1);
+        autoEvoRun.ApplyAllResultsAndEffects(true);
 
         // Add run results, this must be called after results are applied to generate unique species ID
         evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, ++currentGeneration);
