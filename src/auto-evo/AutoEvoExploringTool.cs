@@ -446,6 +446,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void ConfirmExit()
     {
+        // Abort the current run to avoid problems
+        autoEvoRun?.Abort();
+
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             SceneManager.Instance.ReturnToMenu, false);
     }
