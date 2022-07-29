@@ -356,6 +356,15 @@ public class AutoEvoExploringTool : NodeWithInput
         useBiodiversityForceSplitCheckBox.Pressed = autoEvoConfiguration.UseBiodiversityForceSplit;
     }
 
+    /// <summary>
+    ///   Add LUCA species (player) to the tool, because this species exists throughout the exploration
+    ///   and will not mutate or migrate.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: It will be nice to unmark LUCA as player species so that it will evolve with others.
+    ///   </para>
+    /// </remarks>
     private void InitLucaGeneration()
     {
         runResultsList.Add(new LocalizedStringBuilder());
