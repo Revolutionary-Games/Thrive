@@ -588,6 +588,9 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu.AddItem(currentGeneration.ToString(), false, Colors.White);
         historyListMenu.CreateElements();
 
+        // Select the current generation
+        HistoryListMenuIndexChanged(currentGeneration);
+
         currentGenerationLabel.Text = currentGeneration.ToString();
     }
 

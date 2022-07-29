@@ -46,10 +46,6 @@ public class EvolutionaryTree : Control
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
-        var tempNode = treeNodeScene.Instance<EvolutionaryTreeNode>();
-        treeNodeSize = tempNode.RectSize;
-        tempNode.QueueFree();
-
         latoSmallItalic = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
         latoSmallRegular = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
@@ -57,6 +53,7 @@ public class EvolutionaryTree : Control
     public void Init(Species luca)
     {
         SetupTreeNode(luca, null, 0);
+        treeNodeSize = nodes[0].RectSize;
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);

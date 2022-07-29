@@ -1,18 +1,21 @@
 ﻿using Godot;
 
+/// <summary>
+///   EvolutionaryTreeNode represents a selectable node where a species come about, mutates, or extincts
+///   in <see cref="EvolutionaryTree"/>
+/// </summary>
 public class EvolutionaryTreeNode : TextureButton
 {
     private Texture unpressedNormalGreen = null!;
     private Texture unpressedHoveredGreen = null!;
     private Texture pressedNormalGreen = null!;
 
-    // Due to the fact that Godot doesn't have a pressed hover texture builtin, this is commented out.
-    // private Texture pressedHoveredGreen = null!;
-
     private Texture unpressedNormalRed = null!;
     private Texture unpressedHoveredRed = null!;
     private Texture pressedNormalRed = null!;
 
+    // Due to the fact that Godot doesn't have a pressed hover texture builtin, this is commented out.
+    // private Texture pressedHoveredGreen = null!;
     // private Texture pressedHoveredRed = null!;
 
     private bool lastGeneration;
