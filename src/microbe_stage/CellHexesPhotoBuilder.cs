@@ -52,7 +52,7 @@ public class CellHexesPhotoBuilder : Spatial, IPhotographable
         this.QueueFreeChildren();
 
         if (Species == null)
-            throw new InvalidOperationException("Species is ont initialized");
+            throw new InvalidOperationException("Species is not initialized");
 
         // TODO: The code below is partly duplicate to CellEditorComponent and HexEditorComponentBase.
         // If that code is changed this needs changes too.

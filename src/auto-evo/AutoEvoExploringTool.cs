@@ -4,9 +4,9 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Auto-evo exploring tool is a scene that contains numerous tool to debug and exploring auto-evo.
-///   You can change the parameters to see how auto-evo responds, you can get a clearer view of how species evolves,
-///   and you can start a game based on the current progress.
+///   Auto-evo exploring tool is a scene that contains numerous tool to debug, test, and explore auto-evo.
+///   You can change the parameters to see how auto-evo responds, get a clearer view of how species evolves,
+///   and start a game based on the simulation results.
 /// </summary>
 public class AutoEvoExploringTool : NodeWithInput
 {
