@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-28 10:18+0300\n"
+"POT-Creation-Date: 2022-07-29 15:57+0700\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1335,7 +1335,7 @@ msgstr "Štítok entity"
 msgid "TRANSPARENCY"
 msgstr "Priehľadnosť"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
+#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "Načítanie"
 
@@ -1783,7 +1783,7 @@ msgid "CLOSE"
 msgstr "Zavrieť"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/general/NewGameSettings.cs:578 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -1860,7 +1860,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Neobmedzený editor mikróbov"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1055
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1896,198 +1896,247 @@ msgstr "Chyba načítania režimu"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Pri načítaní jedného alebo viac režimov došlo k chybám. Protokoly môžu obsahovať ďalšie informácie."
 
-#: ../src/general/NewGameSettings.cs:285
-#: ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/NewGameSettings.cs:295
+#: ../src/general/NewGameSettings.tscn:1095
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Vstúp do hry s týmito nastaveniami"
 
-#: ../src/general/NewGameSettings.cs:292
+#: ../src/general/NewGameSettings.cs:302
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Niektoré nastavenia sú neplatné"
 
-#: ../src/general/NewGameSettings.tscn:115
-#: ../src/general/NewGameSettings.tscn:328
+#: ../src/general/NewGameSettings.tscn:116
+#: ../src/general/NewGameSettings.tscn:371
 msgid "DIFFICULTY_PRESET"
 msgstr "Nastavenie obtiažnosti"
 
-#: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:814
+#: ../src/general/NewGameSettings.tscn:143
+#: ../src/general/NewGameSettings.tscn:857
 msgid "LAWK_ONLY"
 msgstr "Realistická hra"
 
-#: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:821
+#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:864
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "obmedzuje časti a schopnosti iba na život, ako ho poznáme"
 
-#: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:837
+#: ../src/general/NewGameSettings.tscn:166
+#: ../src/general/NewGameSettings.tscn:880
 msgid "LIFE_ORIGIN"
 msgstr "Pôvod života"
 
-#: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:887
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(začiatočná poloha)"
 
-#: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:858
+#: ../src/general/NewGameSettings.tscn:187
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Niektoré možnosti môžu byť vypnuté, ak je realistický režim zapnutý"
 
-#: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:860
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermálne prieduchy"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_POND"
 msgstr "Teplé jazierko"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:904
 #, fuzzy
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (náhodne)"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:210
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_NO_COLON"
+msgstr "Maximálny počet entít:"
+
+#: ../src/general/NewGameSettings.tscn:217
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_EXPLANATION"
+msgstr "Maximálny počet entít:"
+
+#: ../src/general/NewGameSettings.tscn:232
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_TOOLTIP"
+msgstr "Maximálny počet entít:"
+
+#: ../src/general/NewGameSettings.tscn:234
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_TINY"
+msgstr "Maličký"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_VERY_SMALL"
+msgstr "Veľmi malý"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_SMALL"
+msgstr "Malý"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_NORMAL"
+msgstr "Normálny"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_LARGE"
+msgstr "Veľký"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_VERY_LARGE"
+msgstr "Veľmi veľký"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_HUGE"
+msgstr "Obrovský"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_EXTREME"
+msgstr "Extrémny"
+
+#: ../src/general/NewGameSettings.tscn:247
+#: ../src/general/NewGameSettings.tscn:919
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodné semeno planéty"
 
-#: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:266
+#: ../src/general/NewGameSettings.tscn:938
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
 
-#: ../src/general/NewGameSettings.tscn:268
+#: ../src/general/NewGameSettings.tscn:311
 msgid "DIFFICULTY"
 msgstr "Obtiažnosť"
 
-#: ../src/general/NewGameSettings.tscn:278
+#: ../src/general/NewGameSettings.tscn:321
 msgid "PLANET"
 msgstr "Planéta"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
+#: ../src/general/NewGameSettings.tscn:331 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Rôzne"
 
-#: ../src/general/NewGameSettings.tscn:367
+#: ../src/general/NewGameSettings.tscn:410
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Násobiteľ nákladov na mutáciu"
 
-#: ../src/general/NewGameSettings.tscn:412
+#: ../src/general/NewGameSettings.tscn:455
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(náklady na organely, membrány a ďalšie predmety v editore)"
 
-#: ../src/general/NewGameSettings.tscn:429
+#: ../src/general/NewGameSettings.tscn:472
 msgid "AI_MUTATION_RATE"
 msgstr "Miera mutácie AI"
 
-#: ../src/general/NewGameSettings.tscn:474
+#: ../src/general/NewGameSettings.tscn:517
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
-#: ../src/general/NewGameSettings.tscn:491
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Hustota oblaku zlúčenín"
 
-#: ../src/general/NewGameSettings.tscn:536
+#: ../src/general/NewGameSettings.tscn:579
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(hustota oblakov zlúčenín v prostredí)"
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:596
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Trest za smrť hráča"
 
-#: ../src/general/NewGameSettings.tscn:598
+#: ../src/general/NewGameSettings.tscn:641
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(koeficient populácie druhu, ktorý klesne zakaždým keď hráč zomrie)"
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:658
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Environmentálna retencia glukózy"
 
-#: ../src/general/NewGameSettings.tscn:659
+#: ../src/general/NewGameSettings.tscn:702
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proporcia glukózy v prostredí každú generáciu"
 
-#: ../src/general/NewGameSettings.tscn:676
+#: ../src/general/NewGameSettings.tscn:719
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Násobiteľ nákladov na osmoreguláciu"
 
-#: ../src/general/NewGameSettings.tscn:721
+#: ../src/general/NewGameSettings.tscn:764
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(náklady na osmoreguláciu druhu hráča)"
 
-#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:776
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Po opustení editora sa vytvorí oblak glukózy"
 
-#: ../src/general/NewGameSettings.tscn:740
+#: ../src/general/NewGameSettings.tscn:783
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(začni s oblakom glukózy v blízkosti každou generáciou)"
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:819
 msgid "PATCH_MAP_TYPE"
 msgstr "Typ mapy"
 
-#: ../src/general/NewGameSettings.tscn:783
+#: ../src/general/NewGameSettings.tscn:826
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(generuj mapu procedurálne alebo použi klasické rozmiestnenie)"
 
-#: ../src/general/NewGameSettings.tscn:798
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:841
+#: ../src/general/NewGameSettings.tscn:842
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedurálny"
 
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:842
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Klasický"
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:986
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generovanie planéty už čoskoro!"
 
-#: ../src/general/NewGameSettings.tscn:975
+#: ../src/general/NewGameSettings.tscn:1018
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Zahrnúť prototypy neskoršej fázy"
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:1025
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(akonáhle sa dostaneš do ďalšej fázy, niektoré funkcie môžu byť nedostupné)"
 
-#: ../src/general/NewGameSettings.tscn:994
+#: ../src/general/NewGameSettings.tscn:1037
 msgid "EASTER_EGGS"
 msgstr "Zahrnúť Easter eggy"
 
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(náhodne umiestnené tajomstvá v hre)"
 
-#: ../src/general/NewGameSettings.tscn:1029
+#: ../src/general/NewGameSettings.tscn:1072
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otvoriť zobrazenie rozšírených nastavení"
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1074
 msgid "ADVANCED_VIEW"
 msgstr "Rozšírené"
 
-#: ../src/general/NewGameSettings.tscn:1042
+#: ../src/general/NewGameSettings.tscn:1085
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1086
 msgid "BASIC_VIEW"
 msgstr "Základné"
 
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1096
 msgid "CONFIRM_NORMAL"
 msgstr "Potvrdiť"
 
@@ -2300,38 +2349,6 @@ msgstr "Vlákna:"
 #: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximálny počet entít:"
-
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_TINY"
-msgstr "Maličký"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_VERY_SMALL"
-msgstr "Veľmi malý"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_SMALL"
-msgstr "Malý"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_NORMAL"
-msgstr "Normálny"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_LARGE"
-msgstr "Veľký"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_VERY_LARGE"
-msgstr "Veľmi veľký"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_HUGE"
-msgstr "Obrovský"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_EXTREME"
-msgstr "Extrémny"
 
 #: ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
@@ -2941,7 +2958,7 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrovať položky podľa kategórie:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Prezentácia"
 

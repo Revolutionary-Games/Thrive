@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-28 10:18+0300\n"
+"POT-Creation-Date: 2022-07-29 15:57+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1245,7 +1245,7 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
+#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr ""
 
@@ -1689,7 +1689,7 @@ msgid "CLOSE"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/general/NewGameSettings.cs:578 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -1766,7 +1766,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1055
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1802,194 +1802,242 @@ msgstr ""
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Įvyko klaida įkeliant vieną ar daugiau modifikatorių. Žurnalai gali turėti papildomos informacijos."
 
-#: ../src/general/NewGameSettings.cs:285
-#: ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/NewGameSettings.cs:295
+#: ../src/general/NewGameSettings.tscn:1095
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pradėti žaidimą tokiais nustatymais"
 
-#: ../src/general/NewGameSettings.cs:292
+#: ../src/general/NewGameSettings.cs:302
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Kai kurie nustatymai yra neteisingi"
 
-#: ../src/general/NewGameSettings.tscn:115
-#: ../src/general/NewGameSettings.tscn:328
+#: ../src/general/NewGameSettings.tscn:116
+#: ../src/general/NewGameSettings.tscn:371
 msgid "DIFFICULTY_PRESET"
 msgstr "Išankstinis sunkumo nustatymas"
 
-#: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:814
+#: ../src/general/NewGameSettings.tscn:143
+#: ../src/general/NewGameSettings.tscn:857
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:821
+#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:864
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:837
+#: ../src/general/NewGameSettings.tscn:166
+#: ../src/general/NewGameSettings.tscn:880
 msgid "LIFE_ORIGIN"
 msgstr "Gyvybės kilmė"
 
-#: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:887
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(pradžios vieta)"
 
-#: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:858
+#: ../src/general/NewGameSettings.tscn:187
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:860
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:210
+msgid "MAX_SPAWNED_ENTITIES_NO_COLON"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:217
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_EXPLANATION"
+msgstr "(junginių debesų tankis aplinkoje)"
+
+#: ../src/general/NewGameSettings.tscn:232
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_TOOLTIP"
+msgstr "(junginių debesų tankis aplinkoje)"
+
+#: ../src/general/NewGameSettings.tscn:234
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_TINY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_VERY_SMALL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_SMALL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_NORMAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_LARGE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_VERY_LARGE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_HUGE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_EXTREME"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:247
+#: ../src/general/NewGameSettings.tscn:919
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:266
+#: ../src/general/NewGameSettings.tscn:938
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
-#: ../src/general/NewGameSettings.tscn:268
+#: ../src/general/NewGameSettings.tscn:311
 msgid "DIFFICULTY"
 msgstr "Sunkumas"
 
-#: ../src/general/NewGameSettings.tscn:278
+#: ../src/general/NewGameSettings.tscn:321
 msgid "PLANET"
 msgstr "Planeta"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
+#: ../src/general/NewGameSettings.tscn:331 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Įvairūs"
 
-#: ../src/general/NewGameSettings.tscn:367
+#: ../src/general/NewGameSettings.tscn:410
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutacijos sąnaudų daugiklis"
 
-#: ../src/general/NewGameSettings.tscn:412
+#: ../src/general/NewGameSettings.tscn:455
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
 
-#: ../src/general/NewGameSettings.tscn:429
+#: ../src/general/NewGameSettings.tscn:472
 msgid "AI_MUTATION_RATE"
 msgstr "DI mutacijos greitis"
 
-#: ../src/general/NewGameSettings.tscn:474
+#: ../src/general/NewGameSettings.tscn:517
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
-#: ../src/general/NewGameSettings.tscn:491
+#: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Junginių debesies tankis"
 
-#: ../src/general/NewGameSettings.tscn:536
+#: ../src/general/NewGameSettings.tscn:579
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(junginių debesų tankis aplinkoje)"
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:596
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:598
+#: ../src/general/NewGameSettings.tscn:641
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:658
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Gliukozės susilaikymas aplinkoje"
 
-#: ../src/general/NewGameSettings.tscn:659
+#: ../src/general/NewGameSettings.tscn:702
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:676
+#: ../src/general/NewGameSettings.tscn:719
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoreguliacijos sąnaudų daugiklis"
 
-#: ../src/general/NewGameSettings.tscn:721
+#: ../src/general/NewGameSettings.tscn:764
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:776
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:740
+#: ../src/general/NewGameSettings.tscn:783
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:819
 msgid "PATCH_MAP_TYPE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:783
+#: ../src/general/NewGameSettings.tscn:826
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:798
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:841
+#: ../src/general/NewGameSettings.tscn:842
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:842
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:986
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:975
+#: ../src/general/NewGameSettings.tscn:1018
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:1025
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:994
+#: ../src/general/NewGameSettings.tscn:1037
 msgid "EASTER_EGGS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1029
+#: ../src/general/NewGameSettings.tscn:1072
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1074
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1042
+#: ../src/general/NewGameSettings.tscn:1085
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1086
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1096
 msgid "CONFIRM_NORMAL"
 msgstr "Patvirtinti"
 
@@ -2201,38 +2249,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_TINY"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_VERY_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_NORMAL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_EXTREME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1038
@@ -2826,7 +2842,7 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Išfiltruoti elementus pagal kategoriją:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Skaidrių peržiūra"
 

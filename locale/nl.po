@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-28 10:18+0300\n"
+"POT-Creation-Date: 2022-07-29 15:57+0700\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1316,7 +1316,7 @@ msgstr "Entiteitslabel"
 msgid "TRANSPARENCY"
 msgstr "Transparantie"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
+#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "Laden"
 
@@ -1764,7 +1764,7 @@ msgid "CLOSE"
 msgstr "Sluiten"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/general/NewGameSettings.cs:578 ../src/general/StageHUDBase.cs:684
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -1841,7 +1841,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1055
 #: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1877,202 +1877,252 @@ msgstr "Foutmeldingen bij het laden van de mod"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er is een fout opgetreden bij het laden van een of meerdere mods. Logs kunnen bijkomende informatie bevatten."
 
-#: ../src/general/NewGameSettings.cs:285
-#: ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/NewGameSettings.cs:295
+#: ../src/general/NewGameSettings.tscn:1095
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start het spel met deze instellingen"
 
-#: ../src/general/NewGameSettings.cs:292
+#: ../src/general/NewGameSettings.cs:302
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Sommige instellingen zijn ongeldig"
 
-#: ../src/general/NewGameSettings.tscn:115
-#: ../src/general/NewGameSettings.tscn:328
+#: ../src/general/NewGameSettings.tscn:116
+#: ../src/general/NewGameSettings.tscn:371
 msgid "DIFFICULTY_PRESET"
 msgstr "Vooraf ingestelde moelijkheidsgraad"
 
-#: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:814
+#: ../src/general/NewGameSettings.tscn:143
+#: ../src/general/NewGameSettings.tscn:857
 #, fuzzy
 msgid "LAWK_ONLY"
 msgstr "Enkel LZWHK"
 
-#: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:821
+#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:864
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(beperkt onderdelen en mogelijkheden tot enkel Leven Zoals Wij Het Kennen)"
 
-#: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:837
+#: ../src/general/NewGameSettings.tscn:166
+#: ../src/general/NewGameSettings.tscn:880
 msgid "LIFE_ORIGIN"
 msgstr "Oorsprong van het leven"
 
-#: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:887
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(startlocatie)"
 
-#: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:858
+#: ../src/general/NewGameSettings.tscn:187
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Sommige opties kunnen uitgeschakeld zijn als \"Enkel LZWHK\" ingeschakeld is"
 
-#: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:860
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:903
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermale bronnen"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_POND"
 msgstr "Klein warm vijvertje"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:904
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (willekeurig)"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:210
+msgid "MAX_SPAWNED_ENTITIES_NO_COLON"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:217
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_EXPLANATION"
+msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+
+#: ../src/general/NewGameSettings.tscn:232
+#, fuzzy
+msgid "MAX_SPAWNED_ENTITIES_TOOLTIP"
+msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+
+#: ../src/general/NewGameSettings.tscn:234
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_TINY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_VERY_SMALL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_SMALL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+#, fuzzy
+msgid "LIMIT_NORMAL"
+msgstr "BEVESTIGEN"
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_LARGE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_VERY_LARGE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+msgid "LIMIT_HUGE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:235 ../src/general/OptionsMenu.tscn:964
+#, fuzzy
+msgid "LIMIT_EXTREME"
+msgstr "Extra's"
+
+#: ../src/general/NewGameSettings.tscn:247
+#: ../src/general/NewGameSettings.tscn:919
 msgid "PLANET_RANDOM_SEED"
 msgstr "Willekeurige seed voor de planeet"
 
-#: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:266
+#: ../src/general/NewGameSettings.tscn:938
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
 
-#: ../src/general/NewGameSettings.tscn:268
+#: ../src/general/NewGameSettings.tscn:311
 msgid "DIFFICULTY"
 msgstr "Moeilijkheidsgraad"
 
-#: ../src/general/NewGameSettings.tscn:278
+#: ../src/general/NewGameSettings.tscn:321
 msgid "PLANET"
 msgstr "Planeet"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
+#: ../src/general/NewGameSettings.tscn:331 ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Overig"
 
-#: ../src/general/NewGameSettings.tscn:367
+#: ../src/general/NewGameSettings.tscn:410
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Multiplier voor mutatiekost"
 
-#: ../src/general/NewGameSettings.tscn:412
+#: ../src/general/NewGameSettings.tscn:455
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(kost van organellen, membranen en andere items in de editor)"
 
-#: ../src/general/NewGameSettings.tscn:429
+#: ../src/general/NewGameSettings.tscn:472
 msgid "AI_MUTATION_RATE"
 msgstr "Mutatiesnelheid van de AI"
 
-#: ../src/general/NewGameSettings.tscn:474
+#: ../src/general/NewGameSettings.tscn:517
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(snelheid waarmee AI-soorten muteren)"
 
-#: ../src/general/NewGameSettings.tscn:491
+#: ../src/general/NewGameSettings.tscn:534
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Dichtheid van verbindingswolken"
 
-#: ../src/general/NewGameSettings.tscn:536
+#: ../src/general/NewGameSettings.tscn:579
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(dichtheid van wolken van verbindingen zoals glucose en ammoniak in de omgeving)"
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:596
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Penalisatie van dood van speler"
 
-#: ../src/general/NewGameSettings.tscn:598
+#: ../src/general/NewGameSettings.tscn:641
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coëfficient voor de vermindering in bevolking van spelersoort voor elke keer dat de speler dood gaat)"
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:658
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retentie van glucose in de omgeving"
 
-#: ../src/general/NewGameSettings.tscn:659
+#: ../src/general/NewGameSettings.tscn:702
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(proportie van de glucose die overblijft in de omgeving elke generatie)"
 
-#: ../src/general/NewGameSettings.tscn:676
+#: ../src/general/NewGameSettings.tscn:719
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulatiekosten"
 
-#: ../src/general/NewGameSettings.tscn:721
+#: ../src/general/NewGameSettings.tscn:764
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(kost van osmoregulatie van spelersoort)"
 
-#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:776
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:740
+#: ../src/general/NewGameSettings.tscn:783
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:819
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Kaart met plekken"
 
-#: ../src/general/NewGameSettings.tscn:783
+#: ../src/general/NewGameSettings.tscn:826
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:798
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:841
+#: ../src/general/NewGameSettings.tscn:842
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:842
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:986
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:975
+#: ../src/general/NewGameSettings.tscn:1018
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Plaats organellen"
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:1025
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:994
+#: ../src/general/NewGameSettings.tscn:1037
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een nakomeling van het roofdier of de prooi?"
 
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:1044
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "{0} populatie veranderd met {1} vanwege: {2}"
 
-#: ../src/general/NewGameSettings.tscn:1029
+#: ../src/general/NewGameSettings.tscn:1072
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Hervat"
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1074
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1042
+#: ../src/general/NewGameSettings.tscn:1085
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Hervat"
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1086
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1096
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "BEVESTIGEN"
@@ -2292,40 +2342,6 @@ msgstr "Threads:"
 #: ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_TINY"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_VERY_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
-msgid "LIMIT_NORMAL"
-msgstr "BEVESTIGEN"
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:964
-#, fuzzy
-msgid "LIMIT_EXTREME"
-msgstr "Extra's"
 
 #: ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
@@ -2942,7 +2958,7 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr ""
 

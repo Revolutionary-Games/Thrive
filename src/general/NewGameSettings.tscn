@@ -57,6 +57,7 @@ FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOpt
 MapTypeButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
+MaxSpawnedEntitiesButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/MaxSpawnedEntities")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
 LAWKAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
@@ -70,25 +71,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 365.0
-margin_top = 236.0
-margin_right = 915.0
-margin_bottom = 484.0
+margin_left = 339.0
+margin_top = 208.0
+margin_right = 941.0
+margin_bottom = 511.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 550.0
-margin_bottom = 208.0
+margin_right = 602.0
+margin_bottom = 263.0
 rect_min_size = Vector2( 550, 200 )
 
 [node name="Main" type="MarginContainer" parent="CenterContainer/VBoxContainer/BasicOptions"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 549.0
-margin_bottom = 207.0
+margin_right = 601.0
+margin_bottom = 262.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -97,15 +98,15 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 533.0
-margin_bottom = 191.0
+margin_right = 585.0
+margin_bottom = 246.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
-margin_right = 518.0
+margin_right = 570.0
 margin_bottom = 25.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
@@ -116,14 +117,14 @@ text = "DIFFICULTY_PRESET"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
 margin_left = 254.0
-margin_right = 314.0
+margin_right = 366.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
-margin_left = 318.0
-margin_right = 518.0
+margin_left = 370.0
+margin_right = 570.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 __meta__ = {
@@ -132,7 +133,7 @@ __meta__ = {
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 35.0
-margin_right = 518.0
+margin_right = 570.0
 margin_bottom = 80.0
 
 [node name="LAWK" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
@@ -143,14 +144,14 @@ text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
 margin_top = 29.0
-margin_right = 518.0
+margin_right = 570.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
 text = "LAWK_ONLY_EXPLANATION"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 90.0
-margin_right = 518.0
+margin_right = 570.0
 margin_bottom = 135.0
 size_flags_horizontal = 3
 
@@ -173,14 +174,14 @@ text = "LIFE_ORIGIN_EXPLANATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
 margin_left = 177.0
-margin_right = 314.0
+margin_right = 366.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 3 )
 
 [node name="LifeOrigin" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_left = 318.0
-margin_right = 518.0
+margin_left = 370.0
+margin_right = 570.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 hint_tooltip = "LIFE_ORIGIN_TOOLTIP"
@@ -192,10 +193,52 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 145.0
-margin_right = 518.0
-margin_bottom = 176.0
+margin_right = 570.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4"]
+margin_right = 359.0
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/VBoxContainer"]
+margin_right = 359.0
+margin_bottom = 25.0
+mouse_filter = 0
+text = "MAX_SPAWNED_ENTITIES_NO_COLON"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/VBoxContainer"]
+margin_top = 29.0
+margin_right = 359.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "MAX_SPAWNED_ENTITIES_EXPLANATION"
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4"]
+margin_left = 363.0
+margin_right = 366.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
+
+[node name="MaxSpawnedEntities" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4"]
+margin_left = 370.0
+margin_right = 570.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+hint_tooltip = "MAX_SPAWNED_ENTITIES_TOOLTIP"
+size_flags_vertical = 0
+text = "LIMIT_TINY"
+items = [ "LIMIT_TINY", null, false, 0, null, "LIMIT_VERY_SMALL", null, false, 1, null, "LIMIT_SMALL", null, false, 2, null, "LIMIT_NORMAL", null, false, 3, null, "LIMIT_LARGE", null, false, 4, null, "LIMIT_VERY_LARGE", null, false, 5, null, "LIMIT_HUGE", null, false, 6, null, "LIMIT_EXTREME", null, false, 7, null ]
+selected = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+margin_top = 200.0
+margin_right = 570.0
+margin_bottom = 231.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
@@ -205,14 +248,14 @@ text = "PLANET_RANDOM_SEED"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 margin_left = 233.0
-margin_right = 314.0
+margin_right = 366.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
-margin_left = 318.0
-margin_right = 518.0
+margin_left = 370.0
+margin_right = 570.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 200, 0 )
 
@@ -1001,9 +1044,9 @@ custom_fonts/font = ExtResource( 3 )
 text = "EASTER_EGGS_EXPLANATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 213.0
-margin_right = 550.0
-margin_bottom = 248.0
+margin_top = 268.0
+margin_right = 602.0
+margin_bottom = 303.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -1016,14 +1059,14 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 180.0
+margin_right = 232.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )
 
 [node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 184.0
-margin_right = 359.0
+margin_left = 236.0
+margin_right = 411.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 hint_tooltip = "ADVANCED_VIEW_BUTTON_TOOLTIP"
@@ -1046,8 +1089,8 @@ __meta__ = {
 }
 
 [node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 363.0
-margin_right = 550.0
+margin_left = 415.0
+margin_right = 602.0
 margin_bottom = 35.0
 hint_tooltip = "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 text = "CONFIRM_NORMAL"
@@ -1058,6 +1101,7 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer4/MaxSpawnedEntities" to="." method="OnMaxSpawnedEntitiesSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
