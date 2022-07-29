@@ -46,7 +46,7 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
     private void BuildHexStruct()
     {
         var hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
-        var validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
+        var hexMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
         var modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
         this.QueueFreeChildren();
@@ -54,8 +54,8 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
         if (Species == null)
             throw new InvalidOperationException("Species is ont initialized");
 
-        var organelleLayout = Species.Organelles;
-        foreach (var organelle in organelleLayout.Organelles)
+        var organelleLayout = Species.Organelles.Organelles;
+        foreach (var organelle in organelleLayout)
         {
             var position = organelle.Position;
             foreach (var hex in organelle.RotatedHexes)
@@ -64,7 +64,7 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
 
                 var hexNode = (MeshInstance)hexScene.Instance();
                 AddChild(hexNode);
-                hexNode.MaterialOverride = validMaterial;
+                hexNode.MaterialOverride = hexMaterial;
                 hexNode.Translation = pos;
             }
         }
@@ -74,32 +74,14 @@ public class CellHexPhotoBuilder : Spatial, IPhotographable
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
-                var pos = Hex.AxialToCartesian(organelle.Position) +
-                    organelle.Definition.CalculateModelOffset();
-
                 var organelleModel = (SceneDisplayer)modelScene.Instance();
                 AddChild(organelleModel);
 
-                organelleModel.Transform = new Transform(
-                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
+                CellEditorComponent.InitOrganelleModel(organelleModel, organelle);
 
-                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                    Constants.DEFAULT_HEX_SIZE);
-
-                UpdateOrganellePlaceHolderScene(organelleModel,
+                CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
                     organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
             }
-        }
-    }
-
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
-    {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
-        if (material != null)
-        {
-            material.RenderPriority = renderPriority;
         }
     }
 

@@ -417,6 +417,29 @@ public partial class CellEditorComponent :
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
         Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
+    public static void InitOrganelleModel(SceneDisplayer organelleModel, OrganelleTemplate organelle)
+    {
+        organelleModel.Transform = new Transform(
+            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganellePosition);
+
+        organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+            Constants.DEFAULT_HEX_SIZE);
+    }
+
+    /// <summary>
+    ///   Updates the organelle model displayer to have the specified scene in it
+    /// </summary>
+    public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
+    {
+        organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -1679,9 +1702,6 @@ public partial class CellEditorComponent :
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
-                var pos = Hex.AxialToCartesian(organelle.Position) +
-                    organelle.Definition.CalculateModelOffset();
-
                 if (nextFreeOrganelle >= placedModels.Count)
                 {
                     // New organelle model needed
@@ -1690,11 +1710,7 @@ public partial class CellEditorComponent :
 
                 var organelleModel = placedModels[nextFreeOrganelle++];
 
-                organelleModel.Transform = new Transform(
-                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
-
-                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                    Constants.DEFAULT_HEX_SIZE);
+                InitOrganelleModel(organelleModel, organelle);
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
@@ -1767,20 +1783,6 @@ public partial class CellEditorComponent :
         }
 
         organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI!, Editor);
-    }
-
-    /// <summary>
-    ///   Updates the organelle model displayer to have the specified scene in it
-    /// </summary>
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
-    {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
-        if (material != null)
-        {
-            material.RenderPriority = renderPriority;
-        }
     }
 
     /// <summary>
