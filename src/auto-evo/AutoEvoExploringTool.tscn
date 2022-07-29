@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -8,12 +8,13 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
-[ext_resource path="res://src/gui_common/SpeciesPreview.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/microbe_stage/CellHexPreview.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/gui_common/PhotographPreview.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/microbe_stage/CellHexPreview.cs" type="Script" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 resource_name = "TabsButtonGroup"
@@ -741,14 +742,11 @@ margin_right = 310.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 
-[node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 10 )]
-margin_right = 153.0
-margin_bottom = 200.0
-
 [node name="SpeciesPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 157.0
-margin_right = 310.0
-margin_bottom = 200.0
+script = ExtResource( 10 )
+
+[node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
+script = ExtResource( 15 )
 
 [node name="SpeciesInfoLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 204.0

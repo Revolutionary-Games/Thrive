@@ -1,45 +1,25 @@
-﻿using Godot;
-
-public class CellHexPreview : Control
+﻿public class CellHexPreview : PhotographPreview
 {
-    [Export]
-    public NodePath TextureRectPath = null!;
-
-    private TextureRect textureRect = null!;
     private MicrobeSpecies? microbeSpecies;
-    private ImageTask? task;
 
     public MicrobeSpecies? PreviewSpecies
     {
         get => microbeSpecies;
         set
         {
+            if (PreviewSpecies == value)
+                return;
+
             microbeSpecies = value;
-            UpdateHexPreview();
+            UpdatePreview();
         }
     }
 
-    public override void _Ready()
+    protected override ImageTask SetupImageTask()
     {
-        base._Ready();
+        var imageTask = new ImageTask(new CellHexPhotoBuilder { Species = microbeSpecies });
+        PhotoStudio.Instance.SubmitTask(imageTask);
 
-        textureRect = GetNode<TextureRect>(TextureRectPath);
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        if (task?.Finished == true)
-        {
-            textureRect.Texture = task.FinalImage;
-            task = null;
-        }
-    }
-
-    private void UpdateHexPreview()
-    {
-        task = new ImageTask(new CellHexPhotoBuilder { Species = microbeSpecies });
-        PhotoStudio.Instance.SubmitTask(task);
+        return imageTask;
     }
 }
