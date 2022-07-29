@@ -347,6 +347,14 @@ public class AutoEvoExploringTool : NodeWithInput
         }
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Abort the current run to avoid problems
+        autoEvoRun?.Abort();
+    }
+
     [RunOnKeyDown("ui_cancel")]
     public void AskExit()
     {
@@ -446,9 +454,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void ConfirmExit()
     {
-        // Abort the current run to avoid problems
-        autoEvoRun?.Abort();
-
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             SceneManager.Instance.ReturnToMenu, false);
     }
