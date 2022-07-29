@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
@@ -67,14 +66,14 @@ public class EvolutionaryTree : Control
         base._Draw();
 
         // Draw timeline
-        DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.DarkCyan,
+        DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.Cyan,
             TIMELINE_LINE_THICKNESS, true);
 
         for (int i = 0; i <= latestGeneration; i++)
         {
             DrawLine(new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
                 new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
-                Colors.DarkCyan, TIMELINE_LINE_THICKNESS, true);
+                Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
 
             var localizedText = i + " " + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmallItalic.GetStringSize(localizedText);
@@ -98,7 +97,8 @@ public class EvolutionaryTree : Control
             var lineStart = latestNode.Center;
             var lineEnd = new Vector2(GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x, lineStart.y);
             DrawLine(lineStart, lineEnd);
-            DrawString(latoSmallItalic, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0), speciesNames[latestNode.SpeciesID]);
+            DrawString(latoSmallItalic, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0),
+                speciesNames[latestNode.SpeciesID]);
         }
 
         // Draw extinct species name
@@ -166,7 +166,7 @@ public class EvolutionaryTree : Control
         node.RectPosition = new Vector2(generation * GENERATION_SEPARATION, TIMELINE_HEIGHT);
         node.LastGeneration = isLastGeneration;
         node.Group = nodesGroup;
-        node.Connect("button_down", this, nameof(OnTreeNodeSelected), new Array { node });
+        node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
         nodes.Add(node);
         AddChild(node);

@@ -789,7 +789,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
-        run.ApplyAllEffects(FreeBuilding);
+        run.ApplyAllResultsAndEffects(FreeBuilding);
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();

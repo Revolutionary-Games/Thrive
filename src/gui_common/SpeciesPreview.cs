@@ -14,6 +14,9 @@ public class SpeciesPreview : Control
         get => previewSpecies;
         set
         {
+            if (previewSpecies == value)
+                return;
+
             previewSpecies = value;
 
             if (previewSpecies != null)

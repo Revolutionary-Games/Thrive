@@ -748,9 +748,9 @@ rect_min_size = Vector2( 400, 0 )
 WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ 0 ]]
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ 1 ]]
-[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ 2 ]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]

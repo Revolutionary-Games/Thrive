@@ -211,6 +211,8 @@ public class AutoEvoRun
         if (Running)
             return;
 
+        Running = true;
+
         var task = new Task(Run);
 
         TaskExecutor.Instance.AddTask(task);
@@ -244,7 +246,7 @@ public class AutoEvoRun
     ///     that should be called even before generating the result summaries to make sure they are accurate.
     ///   </para>
     /// </remarks>
-    public void ApplyAllEffects(bool playerCantGoExtinct)
+    public void ApplyAllResultsAndEffects(bool playerCantGoExtinct)
     {
         if (!Finished || Running)
         {
@@ -644,8 +646,6 @@ public class AutoEvoRun
         foreach (var species in extinct)
         {
             Parameters.World.RemoveSpecies(species);
-
-            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
         }
     }
 
