@@ -17,9 +17,6 @@
 
     protected override ImageTask SetupImageTask()
     {
-        var imageTask = new ImageTask(new CellHexPhotoBuilder { Species = microbeSpecies });
-        PhotoStudio.Instance.SubmitTask(imageTask);
-
-        return imageTask;
+        return new ImageTask(new CellHexPhotoBuilder { Species = microbeSpecies });
     }
 }

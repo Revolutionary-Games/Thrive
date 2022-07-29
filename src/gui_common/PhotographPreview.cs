@@ -3,6 +3,19 @@
 /// <summary>
 ///   Base class for displaying photograph tasks
 /// </summary>
+/// <remarks>
+///   <para>
+///     To use this, instantiate its scene, extend this class and decide:
+///     <list type="bullet">
+///       <item>
+///         When to update preview by calling UpdatePreview()
+///       </item>
+///       <item>
+///         What to preview by overriding SetupImageTask()
+///       </item>
+///     </list>
+///   </para>
+/// </remarks>
 public abstract class PhotographPreview : Control
 {
     [Export]
@@ -18,6 +31,9 @@ public abstract class PhotographPreview : Control
 
         textureRect = GetNode<TextureRect>(TextureRectPath);
         loadingTexture = textureRect.Texture;
+
+        // This is to prevent the loading texture from shown
+        // before the first photograph is added.
         textureRect.Texture = null;
     }
 
@@ -36,7 +52,27 @@ public abstract class PhotographPreview : Control
     {
         textureRect.Texture = loadingTexture;
         task = SetupImageTask();
+
+        if (task != null)
+            PhotoStudio.Instance.SubmitTask(task);
     }
 
+    /// <summary>
+    ///   Return an ImageTask ready for PhotoStudio to process
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Do NOT submit the task in this function
+    ///   </para>
+    /// </remarks>
+    /// <example>
+    ///   <code>
+    ///     protected override ImageTask? SetupImageTask()
+    ///     {
+    ///         return conditionValid ? new ImageTask(new IPhotographable()) : null;
+    ///     }
+    ///   </code>
+    /// </example>
+    /// <returns>An image task, or null if condition not satisfied</returns>
     protected abstract ImageTask? SetupImageTask();
 }

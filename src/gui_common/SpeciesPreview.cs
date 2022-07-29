@@ -23,10 +23,7 @@ public class SpeciesPreview : PhotographPreview
     {
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
-            var imageTask = new ImageTask(microbeSpecies);
-            PhotoStudio.Instance.SubmitTask(imageTask);
-
-            return imageTask;
+            return new ImageTask(microbeSpecies);
         }
 
         GD.PrintErr("Unknown species type to preview: ", previewSpecies);
