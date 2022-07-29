@@ -6,6 +6,7 @@ using Godot.Collections;
 
 public class EvolutionaryTree : Control
 {
+    private const float LEFT_MARGIN = 5.0f;
     private const float TIMELINE_HEIGHT = 50.0f;
     private const float TIMELINE_LINE_THICKNESS = 2.0f;
     private const float TIMELINE_LINE_Y = 5.0f;
@@ -71,13 +72,15 @@ public class EvolutionaryTree : Control
 
         for (int i = 0; i <= latestGeneration; i++)
         {
-            DrawLine(new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
-                new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
+            DrawLine(new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
+                new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2,
+                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
 
             var localizedText = i + " " + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmallItalic.GetStringSize(localizedText);
-            DrawString(latoSmallRegular, new Vector2(i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
+            DrawString(latoSmallRegular, new Vector2(
+                    LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y),
                 localizedText, Colors.Cyan);
         }
@@ -95,7 +98,8 @@ public class EvolutionaryTree : Control
         foreach (var latestNode in latestNodes.Values.Where(n => !n.LastGeneration))
         {
             var lineStart = latestNode.Center;
-            var lineEnd = new Vector2(GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x, lineStart.y);
+            var lineEnd = new Vector2(LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x,
+                lineStart.y);
             DrawLine(lineStart, lineEnd);
             DrawString(latoSmallItalic, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0),
                 speciesNames[latestNode.SpeciesID]);
@@ -163,7 +167,7 @@ public class EvolutionaryTree : Control
         node.SpeciesID = species.ID;
         node.LastGeneration = false;
         node.ParentNode = parent;
-        node.RectPosition = new Vector2(generation * GENERATION_SEPARATION, TIMELINE_HEIGHT);
+        node.RectPosition = new Vector2(LEFT_MARGIN + generation * GENERATION_SEPARATION, TIMELINE_HEIGHT);
         node.LastGeneration = isLastGeneration;
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });

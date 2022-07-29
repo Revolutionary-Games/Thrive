@@ -278,7 +278,7 @@ public class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
         // Init game
-        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
+        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
 
         InitLucaGeneration();
@@ -311,6 +311,7 @@ public class AutoEvoExploringTool : NodeWithInput
                 autoEvoRun = null;
                 finishOneGenerationButton.Disabled = false;
                 runOneStepButton.Disabled = false;
+                playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = true;
             }
             else if (autoEvoRun.Aborted)
@@ -318,6 +319,7 @@ public class AutoEvoExploringTool : NodeWithInput
                 autoEvoRun = null;
                 finishOneGenerationButton.Disabled = false;
                 runOneStepButton.Disabled = false;
+                playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = true;
             }
         }
@@ -473,6 +475,7 @@ public class AutoEvoExploringTool : NodeWithInput
         // Disable these buttons
         finishOneGenerationButton.Disabled = true;
         runOneStepButton.Disabled = true;
+        playWithCurrentSettingButton.Disabled = true;
         abortButton.Disabled = false;
     }
 
@@ -483,13 +486,13 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         var results = autoEvoRun!.Results!;
 
-        // Make summary
+        // Make summary, this must be called before results are applied so that summary is correct
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
 
         // Apply the results
         autoEvoRun.ApplyAllResultsAndEffects(true);
 
-        // Add run results
+        // Add run results, this must be called after results are applied to generate unique species ID
         evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, ++currentGeneration);
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
@@ -531,6 +534,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         finishOneGenerationButton.Disabled = false;
         runOneStepButton.Disabled = false;
+        playWithCurrentSettingButton.Disabled = false;
     }
 
     private void HistoryListMenuIndexChanged(int index)
@@ -654,6 +658,8 @@ public class AutoEvoExploringTool : NodeWithInput
         {
             // Instantiate a new editor scene
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+            gameProperties.EnterFreeBuild();
 
             // Copy our currently setup game to the editor
             editor.CurrentGame = gameProperties;
