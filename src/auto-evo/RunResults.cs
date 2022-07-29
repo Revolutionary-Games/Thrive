@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo
 {
     using System;
+    using System.Collections;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,7 +15,7 @@
     ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
     ///   </para>
     /// </remarks>
-    public class RunResults
+    public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
     {
         /// <summary>
         ///   The per-species results
@@ -985,6 +986,25 @@
                     }
                 }
             }
+        }
+
+        /// <summary>
+        ///   Call this only when auto-evo has finished. Calling at runtime will result in
+        ///   incorrect result and random CollectionModifiedException.
+        /// </summary>
+        public IEnumerator GetEnumerator()
+        {
+            return results.GetEnumerator();
+        }
+
+        /// <summary>
+        ///   Call this only when auto-evo has finished. Calling at runtime will result in
+        ///   incorrect result and random CollectionModifiedException.
+        /// </summary>
+        IEnumerator<KeyValuePair<Species, SpeciesResult>> IEnumerable<KeyValuePair<Species, SpeciesResult>>.
+            GetEnumerator()
+        {
+            return results.GetEnumerator();
         }
 
         /// <summary>
