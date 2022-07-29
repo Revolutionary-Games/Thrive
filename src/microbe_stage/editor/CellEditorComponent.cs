@@ -1688,7 +1688,7 @@ public partial class CellEditorComponent :
     {
         var islands = editedMicrobeOrganelles.GetIslandHexes();
 
-        // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this changes that needs change too.
+        // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
             editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, Editor.HexPlacedThisSession(o))), islands,

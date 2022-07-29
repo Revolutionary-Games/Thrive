@@ -55,7 +55,7 @@ public class CellHexesPhotoBuilder : Spatial, IPhotographable
             throw new InvalidOperationException("Species is ont initialized");
 
         // TODO: The code below is partly duplicate to CellEditorComponent and HexEditorComponentBase.
-        // If that code changes this needs change too.
+        // If that code is changed this needs changes too.
         var organelleLayout = Species.Organelles.Organelles;
         foreach (var organelle in organelleLayout)
         {
