@@ -232,6 +232,13 @@ public class AutoEvoExploringTool : NodeWithInput
         Viewer,
     }
 
+    private enum RunControlState
+    {
+        Ready,
+        Running,
+        Paused,
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -324,18 +331,12 @@ public class AutoEvoExploringTool : NodeWithInput
 
                 // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
-                finishOneGenerationButton.Disabled = false;
-                runOneStepButton.Disabled = false;
-                playWithCurrentSettingButton.Disabled = false;
-                abortButton.Disabled = true;
+                SetControlButtonsState(RunControlState.Ready);
             }
             else if (autoEvoRun.Aborted)
             {
                 autoEvoRun = null;
-                finishOneGenerationButton.Disabled = false;
-                runOneStepButton.Disabled = false;
-                playWithCurrentSettingButton.Disabled = false;
-                abortButton.Disabled = true;
+                SetControlButtonsState(RunControlState.Ready);
             }
         }
 
@@ -396,6 +397,45 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu.AddItem("0", false, Colors.White);
         historyListMenu.CreateElements();
         HistoryListMenuIndexChanged(0);
+    }
+
+    private void SetControlButtonsState(RunControlState runControlState)
+    {
+        switch (runControlState)
+        {
+            case RunControlState.Ready:
+            {
+                finishXGenerationsSpinBox.Editable = true;
+                finishXGenerationsButton.Disabled = false;
+                finishOneGenerationButton.Disabled = false;
+                runOneStepButton.Disabled = false;
+                playWithCurrentSettingButton.Disabled = false;
+                abortButton.Disabled = true;
+                break;
+            }
+
+            case RunControlState.Running:
+            {
+                finishXGenerationsSpinBox.Editable = false;
+                finishXGenerationsButton.Disabled = true;
+                finishOneGenerationButton.Disabled = true;
+                runOneStepButton.Disabled = true;
+                playWithCurrentSettingButton.Disabled = true;
+                abortButton.Disabled = false;
+                break;
+            }
+
+            case RunControlState.Paused:
+            {
+                finishXGenerationsSpinBox.Editable = true;
+                finishXGenerationsButton.Disabled = false;
+                finishOneGenerationButton.Disabled = false;
+                runOneStepButton.Disabled = false;
+                playWithCurrentSettingButton.Disabled = false;
+                abortButton.Disabled = false;
+                break;
+            }
+        }
     }
 
     private void OnBackButtonPressed()
@@ -523,11 +563,7 @@ public class AutoEvoExploringTool : NodeWithInput
             autoEvoRun.Continue();
         }
 
-        // Disable these buttons
-        finishOneGenerationButton.Disabled = true;
-        runOneStepButton.Disabled = true;
-        playWithCurrentSettingButton.Disabled = true;
-        abortButton.Disabled = false;
+        SetControlButtonsState(RunControlState.Running);
     }
 
     /// <summary>
@@ -570,7 +606,7 @@ public class AutoEvoExploringTool : NodeWithInput
         // To avoid concurrent steps
         autoEvoRun.FullSpeed = false;
         autoEvoRun.OneStep();
-        abortButton.Disabled = false;
+        SetControlButtonsState(RunControlState.Paused);
     }
 
     /// <summary>
@@ -585,9 +621,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         generationsPendingToRun = 0;
 
-        finishOneGenerationButton.Disabled = false;
-        runOneStepButton.Disabled = false;
-        playWithCurrentSettingButton.Disabled = false;
+        SetControlButtonsState(RunControlState.Ready);
     }
 
     private void HistoryListMenuIndexChanged(int index)
