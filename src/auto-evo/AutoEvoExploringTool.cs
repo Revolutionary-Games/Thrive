@@ -326,7 +326,7 @@ public class AutoEvoExploringTool : NodeWithInput
     [RunOnKeyDown("ui_cancel")]
     public void AskExit()
     {
-        exitConfirmationDialog.PopupCentered();
+        exitConfirmationDialog.PopupCenteredShrink();
     }
 
     private void InitConfigControl()

@@ -137,7 +137,7 @@ public class AutoEvoRun
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps. [Paused.]
                 return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
-                    + (Running ? string.Empty : " " + TranslationServer.Translate("PAUSED_DOT"));
+                    + (Running ? string.Empty : " " + TranslationServer.Translate("OPERATION_PAUSED_DOT"));
             }
 
             return TranslationServer.Translate("STARTING");
