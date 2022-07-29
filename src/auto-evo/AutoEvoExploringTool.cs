@@ -300,11 +300,11 @@ public class AutoEvoExploringTool : NodeWithInput
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
 
-        InitLucaGeneration();
+        InitFirstGeneration();
 
         evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
 
-        InitConfigControl();
+        InitConfigControls();
 
         // Init button translation
         OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
@@ -353,7 +353,7 @@ public class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
-    private void InitConfigControl()
+    private void InitConfigControls()
     {
         allowSpeciesToNotMutateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMutate;
         allowSpeciesToNotMigrateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMigrate;
@@ -387,7 +387,7 @@ public class AutoEvoExploringTool : NodeWithInput
     ///     TODO: It will be nice to unmark LUCA as player species so that it will evolve with others.
     ///   </para>
     /// </remarks>
-    private void InitLucaGeneration()
+    private void InitFirstGeneration()
     {
         runResultsList.Add(new LocalizedStringBuilder());
         speciesHistoryList.Add(new Dictionary<uint, Species>
