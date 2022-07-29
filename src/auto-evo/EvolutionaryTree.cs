@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
@@ -74,7 +75,8 @@ public class EvolutionaryTree : Control
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
 
-            var localizedText = i + " " + TranslationServer.Translate("MEGA_YEARS");
+            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", 1e8 * i) + " "
+                + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmallItalic.GetStringSize(localizedText);
             DrawString(latoSmallRegular, new Vector2(
                     LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
