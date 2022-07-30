@@ -395,23 +395,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
-margin_left = 114.0
+margin_left = 109.0
 margin_top = 101.0
-margin_right = 432.0
+margin_right = 437.0
 margin_bottom = 446.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 6 )
 text = "CURRENT_GENERATION_COLON"
 
 [node name="CurrentGenerationLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 35.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 55.0
 custom_fonts/font = ExtResource( 7 )
 text = "0"
@@ -421,14 +421,14 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 65.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 90.0
 custom_fonts/font = ExtResource( 6 )
 text = "STATUS_COLON"
 
 [node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 100.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 120.0
 custom_fonts/font = ExtResource( 7 )
 text = "READY"
@@ -438,7 +438,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 130.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 165.0
 
 [node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
@@ -446,39 +446,39 @@ margin_right = 72.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 min_value = 2.0
-value = 2.0
+value = 10.0
 align = 1
 
 [node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 76.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 35.0
-text = "FINISH_2_GENERATIONS"
+text = "FINISH_10_GENERATIONS"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 175.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 210.0
 text = "FINISH_ONE_GENERATION"
 
 [node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 220.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 255.0
 text = "RUN_ONE_STEP"
 
 [node name="Abort" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 265.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 300.0
 text = "ABORT"
 
 [node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 310.0
-margin_right = 318.0
+margin_right = 328.0
 margin_bottom = 345.0
 text = "PLAY_WITH_CURRENT_SETTING"
 

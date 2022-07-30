@@ -25,6 +25,8 @@ public class EvolutionaryTree : Control
     private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
 
+    private readonly System.Collections.Generic.Dictionary<int, double> generationTime = new();
+
     private readonly ButtonGroup nodesGroup = new();
 
     private Font latoSmallItalic = null!;
@@ -58,6 +60,7 @@ public class EvolutionaryTree : Control
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);
+        generationTime.Add(0, 0);
     }
 
     public override void _Draw()
@@ -75,7 +78,7 @@ public class EvolutionaryTree : Control
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0}", i * 100) + " "
+            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmallItalic.GetStringSize(localizedText);
             DrawString(latoSmallRegular, new Vector2(
@@ -113,7 +116,7 @@ public class EvolutionaryTree : Control
         }
     }
 
-    public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation)
+    public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation, double time)
     {
         foreach (var speciesResultPair in results.OrderBy(r => r.Value.Species.ID))
         {
@@ -147,6 +150,7 @@ public class EvolutionaryTree : Control
         }
 
         latestGeneration = generation;
+        generationTime[generation] = time;
 
         BuildTree();
         AdjustSize();
