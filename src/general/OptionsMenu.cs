@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -75,6 +75,15 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath DisplayPartNamesTogglePath = null!;
+
+    [Export]
+    public NodePath GPUNamePath = null!;
+
+    [Export]
+    public NodePath DisplayDriverNamePath = null!;
+
+    [Export]
+    public NodePath VideoMemoryPath = null!;
 
     // Sound tab.
     [Export]
@@ -247,6 +256,9 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
     private CustomCheckBox displayPartNamesToggle = null!;
+    private Label gpuName = null!;
+    private Label displayDriverName = null!;
+    private Label videoMemory = null!;
 
     // Sound tab
     private Control soundTab = null!;
@@ -369,6 +381,9 @@ public class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
         displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
+        gpuName = GetNode<Label>(GPUNamePath);
+        displayDriverName = GetNode<Label>(DisplayDriverNamePath);
+        videoMemory = GetNode<Label>(VideoMemoryPath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -443,6 +458,7 @@ public class OptionsMenu : ControlWithInput
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
             DisplayResolution();
+            DisplayGpuInfo();
         }
         else if (what == NotificationResized)
         {
@@ -520,6 +536,7 @@ public class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.Pressed = settings.DisplayPartNames;
         DisplayResolution();
+        DisplayGpuInfo();
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -634,6 +651,36 @@ public class OptionsMenu : ControlWithInput
         var screenResolution = OS.WindowSize * OS.GetScreenScale();
         resolution.Text = TranslationServer.Translate("AUTO_RESOLUTION")
             .FormatSafe(screenResolution.x, screenResolution.y);
+    }
+    /// <summary>
+    /// Displays the GPU name, the display driver name and used video memory
+    /// </summary>
+    private void DisplayGpuInfo() {
+        if (gpuName != null) {
+            var videoAdapterName = VisualServer.GetVideoAdapterName();
+            gpuName.Text = TranslationServer.Translate("AUTO_GPU_NAME")
+                .FormatSafe(videoAdapterName);
+        }
+        if (displayDriverName != null) {
+            if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2) {
+                // Gles2 is being used
+                displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
+                    .FormatSafe(TranslationServer.Translate("GLES2"));
+            } else {
+                // Gles3 is being used
+                displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
+                    .FormatSafe(TranslationServer.Translate("GLES3"));
+            }
+        }
+        if (videoMemory != null) {
+            // Byte-to-Mebibyte conversion constant
+            var videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / 1048576.0;
+            // Round to 2 places after the floating point
+            decimal decimalVideoMemory = Math.Round((decimal)videoMemoryInMebibytes, 2);
+            
+            videoMemory.Text = TranslationServer.Translate("AUTO_VIDEO_MEMORY")
+                .FormatSafe(decimalVideoMemory);
+        }
     }
 
     /// <summary>

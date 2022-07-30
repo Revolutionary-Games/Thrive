@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-29 13:14+0800\n"
+"POT-Creation-Date: 2022-07-30 18:12+0300\n"
 "PO-Revision-Date: 2022-07-17 18:13+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -983,17 +983,17 @@ msgstr "ריס"
 msgid "LYSOSOME"
 msgstr "ליזוזום"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:488
+#: ../src/auto-evo/AutoEvoExploringTool.cs:536
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "עם ריכוז של"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:673
+#: ../src/auto-evo/AutoEvoExploringTool.cs:707
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:695
+#: ../src/auto-evo/AutoEvoExploringTool.cs:715
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1002,180 +1002,180 @@ msgstr ""
 "ואתה מתרפא כל עוד יש לך ATP.\n"
 "הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "תסקיר"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 #, fuzzy
 msgid "VIEWER"
 msgstr "מציג גלריה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "עבר מוטציה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה ל{1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "נכחד מהאזור"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "נקודות מוטציה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "דור:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "אומן:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
 #, fuzzy
 msgid "READY"
 msgstr "נושאים:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "עם ריכוז של"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:472
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:478
 #, fuzzy
 msgid "ABORT"
 msgstr "הופל."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:526
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "דור:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:533
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "בחר אפשרות"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:567
 #, fuzzy
 msgid "SPECIES"
 msgstr "רשימת מינים"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:574
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "בחר אזור להצגת פרטים כאן"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "תוצאות מפתח אוטומטי:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:670
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "עלי ידי Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "רשימת מינים"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:461 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/OptionsMenu.tscn:1336 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "חזור"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "אשר יציאה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1212,7 +1212,7 @@ msgstr "מתחיל"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב-{1} בתוך {2} בגלל: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:79
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -1537,7 +1537,7 @@ msgstr "תווית ישות"
 msgid "TRANSPARENCY"
 msgstr "שקיפות"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
+#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "טוען"
 
@@ -2076,19 +2076,19 @@ msgstr "גלרית אומנות"
 msgid "LICENSES"
 msgstr "רישיונות"
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING"
 msgstr "אזהרת GLES2"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:509
 msgid "MOD_LOAD_ERRORS"
 msgstr "שגיאה בעליית המוד"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:510
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "שגיאה קרתה בזמן שטען אחד או יותר מודים. תיעודם עשויים להכיל מידע נוסף."
 
@@ -2166,7 +2166,7 @@ msgstr "קושי"
 msgid "PLANET"
 msgstr "כוכב לכת"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "שונות"
 
@@ -2283,381 +2283,418 @@ msgstr "בסיסי"
 msgid "CONFIRM_NORMAL"
 msgstr "אשר"
 
-#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.cs:651 ../src/general/OptionsMenu.tscn:298
 msgid "AUTO_RESOLUTION"
 msgstr "אוטומטי ({0}X{1})"
 
-#: ../src/general/OptionsMenu.cs:988
+#: ../src/general/OptionsMenu.cs:660 ../src/general/OptionsMenu.tscn:426
+#, fuzzy
+msgid "AUTO_GPU_NAME"
+msgstr "שם משתמש מותאם אישית:"
+
+#: ../src/general/OptionsMenu.cs:666 ../src/general/OptionsMenu.cs:670
+#: ../src/general/OptionsMenu.tscn:450
+#, fuzzy
+msgid "AUTO_DISPLAY_DRIVER_NAME"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#: ../src/general/OptionsMenu.cs:667
+msgid "GLES2"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:671
+msgid "GLES3"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:676 ../src/general/OptionsMenu.tscn:474
+msgid "AUTO_VIDEO_MEMORY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:1030
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "פלט ברירת מחדל"
 
-#: ../src/general/OptionsMenu.cs:1020
+#: ../src/general/OptionsMenu.cs:1062
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/general/OptionsMenu.cs:1024
+#: ../src/general/OptionsMenu.cs:1066
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 
-#: ../src/general/OptionsMenu.cs:1028
+#: ../src/general/OptionsMenu.cs:1070
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "שפה זו היינו {0}% הושלם"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:143
 msgid "GRAPHICS"
 msgstr "גרפיקה"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:154
 msgid "SOUND"
 msgstr "קול"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:165
 msgid "PERFORMANCE"
 msgstr "ביצועים"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:176
 msgid "INPUTS"
 msgstr "קלטים"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:219
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/OptionsMenu.tscn:223
+#: ../src/general/OptionsMenu.tscn:226
 msgid "FULLSCREEN"
 msgstr "מסך מלא"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:248
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "החלקת גרפיקה:"
 
-#: ../src/general/OptionsMenu.tscn:252
+#: ../src/general/OptionsMenu.tscn:255
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ערכים גבוהים מדרדר ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
 msgid "DISABLED"
 msgstr "כבוי"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:271
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:271
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:271
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:271
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:285
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
 
-#: ../src/general/OptionsMenu.tscn:306
+#: ../src/general/OptionsMenu.tscn:309
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:324
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "ללא הגבלה"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:340
 msgid "COLOURBLIND_CORRECTION"
 msgstr "תיקון לעיוורון צבעים:"
 
-#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:354 ../src/general/OptionsMenu.tscn:355
 msgid "NONE"
 msgstr "ריק"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:355
 msgid "CORRECTION_PROTANOPE"
 msgstr "פרוטנופ (אדום-ירוק)"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:355
 msgid "CORRECTION_TRITANOPE"
 msgstr "טריטנופ (כחול - צהוב)"
 
-#: ../src/general/OptionsMenu.tscn:368
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CHROMATIC_ABERRATION"
 msgstr "סטייה כרומטית:"
 
-#: ../src/general/OptionsMenu.tscn:394
+#: ../src/general/OptionsMenu.tscn:397
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "הצג חלקיקי רקע"
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:413
+#, fuzzy
+msgid "GPU_NAME"
+msgstr "{0} {1}"
+
+#: ../src/general/OptionsMenu.tscn:437
+#, fuzzy
+msgid "DISPLAY_DRIVER_NAME"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#: ../src/general/OptionsMenu.tscn:461
+msgid "VIDEO_MEMORY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:485
 msgid "GUI"
 msgstr "ממשק משתמש"
 
-#: ../src/general/OptionsMenu.tscn:425
+#: ../src/general/OptionsMenu.tscn:500
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "תצוגת רשימת יכולות"
 
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:508
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:515
 msgid "DISPLAY_PART_NAMES"
 msgstr "הצג שמות כפתורי בחירת חלקים"
 
-#: ../src/general/OptionsMenu.tscn:466
+#: ../src/general/OptionsMenu.tscn:541
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
-#: ../src/general/OptionsMenu.tscn:492 ../src/general/OptionsMenu.tscn:532
-#: ../src/general/OptionsMenu.tscn:564 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:567 ../src/general/OptionsMenu.tscn:607
+#: ../src/general/OptionsMenu.tscn:639 ../src/general/OptionsMenu.tscn:671
+#: ../src/general/OptionsMenu.tscn:703
 msgid "MUTE"
 msgstr "השתק"
 
-#: ../src/general/OptionsMenu.tscn:506
+#: ../src/general/OptionsMenu.tscn:581
 msgid "MUSIC_VOLUME"
 msgstr "עוצמת מוזיקה"
 
-#: ../src/general/OptionsMenu.tscn:538
+#: ../src/general/OptionsMenu.tscn:613
 msgid "AMBIANCE_VOLUME"
 msgstr "עוצמת אווירה"
 
-#: ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:645
 msgid "SFX_VOLUME"
 msgstr "עוצמת אפקטים"
 
-#: ../src/general/OptionsMenu.tscn:602
+#: ../src/general/OptionsMenu.tscn:677
 msgid "GUI_VOLUME"
 msgstr "עוצמת ממשק עזרים"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:721
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "פלט מכשיר שמע:"
 
-#: ../src/general/OptionsMenu.tscn:674
+#: ../src/general/OptionsMenu.tscn:749
 msgid "LANGUAGE"
 msgstr "שפה:"
 
-#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:767 ../src/general/OptionsMenu.tscn:1347
 msgid "RESET"
 msgstr "איפוס"
 
-#: ../src/general/OptionsMenu.tscn:710
+#: ../src/general/OptionsMenu.tscn:785
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "עזור לתרגם את המשחק"
 
-#: ../src/general/OptionsMenu.tscn:736
+#: ../src/general/OptionsMenu.tscn:811
 msgid "COMPOUND_CLOUDS"
 msgstr "ענני תרכובות"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:826
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "מרווח מינימלי של הדמיית ענן:"
 
-#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
+#: ../src/general/OptionsMenu.tscn:833 ../src/general/OptionsMenu.tscn:875
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(ערכים גבוהים יותר מגדילים ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:793
+#: ../src/general/OptionsMenu.tscn:868
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "מחליק רזולוציית ענן:"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:909
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "הפעל התפתחות אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:929
 msgid "DETECTED_CPU_COUNT"
 msgstr "זוהה ספירת מעבד:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:946
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "נושאים נוכחים:"
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:960
 msgid "ASSUME_HYPERTHREADING"
 msgstr "נניח שלמעבד יכול להפעיל מרבה-נושאים"
 
-#: ../src/general/OptionsMenu.tscn:893
+#: ../src/general/OptionsMenu.tscn:968
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "הגדר ידנית את מספר נושאי הרקע"
 
-#: ../src/general/OptionsMenu.tscn:903
+#: ../src/general/OptionsMenu.tscn:978
 msgid "THREADS"
 msgstr "נושאים:"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:1023
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1038 ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_TINY"
 msgstr "זעיר"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_VERY_SMALL"
 msgstr "מאוד קטן"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_SMALL"
 msgstr "קטן"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_NORMAL"
 msgstr "רגיל"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_LARGE"
 msgstr "גדול"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_VERY_LARGE"
 msgstr "מאוד גדול"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_HUGE"
 msgstr "ענק"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1039
 msgid "LIMIT_EXTREME"
 msgstr "מפלצתי"
 
-#: ../src/general/OptionsMenu.tscn:1038
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "RESET_INPUTS"
 msgstr "איפוס קלטים"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1140
 msgid "PLAY_INTRO_VIDEO"
 msgstr "הפעל סרטון פתיחה"
 
-#: ../src/general/OptionsMenu.tscn:1073
+#: ../src/general/OptionsMenu.tscn:1148
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "הפעל פתיח שלב המיקרוב במשחק חדש"
 
-#: ../src/general/OptionsMenu.tscn:1081
+#: ../src/general/OptionsMenu.tscn:1156
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "שמירה אוטומטית במהלך המשחק"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1167
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "כמות שמירה אוטומטית שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1195
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "כמות שמירה מהירה שניתן לשמור:"
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1220
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "הצג מדריכים (בשמירות חדשות)"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1227
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "הצג מדריכים (בשמירה נוכחית)"
 
-#: ../src/general/OptionsMenu.tscn:1158
+#: ../src/general/OptionsMenu.tscn:1233
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "הראה אזהרת התקדמות ללא שמירה"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1245
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "מקשי קודים מופעלים"
 
-#: ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:1253
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
 
-#: ../src/general/OptionsMenu.tscn:1189
+#: ../src/general/OptionsMenu.tscn:1264
 msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "פתח תיקיית צילומי מסך"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1298
 msgid "OPEN_LOGS_FOLDER"
 msgstr "פתח תקיית קבצי לוג"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1308
 msgid "JSON_DEBUG_MODE"
 msgstr "מצב ניפוי JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1322 ../src/general/OptionsMenu.tscn:1323
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "באופן אוטומטי"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1323
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "תמיד"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1323
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "לעולם לא"
 
-#: ../src/general/OptionsMenu.tscn:1284 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1359 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "שמור"
 
-#: ../src/general/OptionsMenu.tscn:1301
+#: ../src/general/OptionsMenu.tscn:1376
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ברירת מחדל"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1387
 msgid "RESET_TO_DEFAULTS"
 msgstr "איפוס לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1388
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1396
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "איפוס קלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1397
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות הקלטים לברירת מחדל?"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1406
 msgid "CLOSE_OPTIONS"
 msgstr "לסגור אפשרויות?"
 
-#: ../src/general/OptionsMenu.tscn:1351
+#: ../src/general/OptionsMenu.tscn:1426
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "ישנם שינויים שלא נשמרו שיימחקו.\n"
 "האם ברצונך להמשיך?"
 
-#: ../src/general/OptionsMenu.tscn:1374
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "SAVE_AND_CONTINUE"
 msgstr "שמור והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1384
+#: ../src/general/OptionsMenu.tscn:1459
 msgid "DISCARD_AND_CONTINUE"
 msgstr "מחק והמשך"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1476
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "ביטול"
 
-#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1487 ../src/general/OptionsMenu.tscn:1495
 msgid "ERROR"
 msgstr "שגיאה"
 
-#: ../src/general/OptionsMenu.tscn:1422
+#: ../src/general/OptionsMenu.tscn:1497
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשות לקובץ התצורה."
 
-#: ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1505
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "לא נמצאה ספריית צילומי מסך"
 
-#: ../src/general/OptionsMenu.tscn:1432
+#: ../src/general/OptionsMenu.tscn:1507
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "נסה לצלם כמה צילומי מסך!"
 
@@ -3090,8 +3127,8 @@ msgstr "\"טרי\""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
 msgid "N_A"
 msgstr "לא זמין"
 
@@ -3124,12 +3161,12 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "סננן לפי קטגוריה:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "מצגת"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4016,23 +4053,23 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
