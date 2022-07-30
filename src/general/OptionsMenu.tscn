@@ -59,6 +59,9 @@ DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/PanelCon
 DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
 DisplayPartNamesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle")
+GpuNamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7/GpuName")
+DisplayDriverNamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8/DisplayDriverName")
+VideoMemoryPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9/VideoMemory")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -399,10 +402,82 @@ margin_right = 657.0
 margin_bottom = 317.0
 rect_min_size = Vector2( 0, 3 )
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
 margin_top = 327.0
 margin_right = 657.0
 margin_bottom = 352.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
+margin_right = 106.0
+margin_bottom = 25.0
+text = "GPU_NAME"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
+margin_left = 110.0
+margin_right = 484.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 2 )
+
+[node name="GpuName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
+margin_left = 488.0
+margin_right = 657.0
+margin_bottom = 25.0
+text = "AUTO_GPU_NAME"
+align = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 362.0
+margin_right = 657.0
+margin_bottom = 387.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_right = 223.0
+margin_bottom = 25.0
+text = "DISPLAY_DRIVER_NAME"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_left = 227.0
+margin_right = 367.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 2 )
+
+[node name="DisplayDriverName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_left = 371.0
+margin_right = 657.0
+margin_bottom = 25.0
+text = "AUTO_DISPLAY_DRIVER_NAME"
+align = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 397.0
+margin_right = 657.0
+margin_bottom = 422.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9"]
+margin_right = 149.0
+margin_bottom = 25.0
+text = "VIDEO_MEMORY"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9"]
+margin_left = 153.0
+margin_right = 441.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 2 )
+
+[node name="VideoMemory" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9"]
+margin_left = 445.0
+margin_right = 657.0
+margin_bottom = 25.0
+text = "AUTO_VIDEO_MEMORY"
+align = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
+margin_top = 432.0
+margin_right = 657.0
+margin_bottom = 457.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer6"]
 margin_right = 34.0
@@ -417,25 +492,25 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 362.0
+margin_top = 467.0
 margin_right = 247.0
-margin_bottom = 387.0
+margin_bottom = 492.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 397.0
+margin_top = 502.0
 margin_right = 300.0
-margin_bottom = 422.0
+margin_bottom = 527.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 432.0
+margin_top = 537.0
 margin_right = 238.0
-margin_bottom = 457.0
+margin_bottom = 562.0
 size_flags_horizontal = 0
 text = "DISPLAY_PART_NAMES"
 
