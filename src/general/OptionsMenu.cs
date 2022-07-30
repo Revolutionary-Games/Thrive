@@ -675,8 +675,10 @@ public class OptionsMenu : ControlWithInput
                 .FormatSafe(TranslationServer.Translate("GLES3"));
         }
 
-        // Byte-to-Mebibyte conversion constant
-        var videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / 1048576.0;
+        float videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed);
+
+        // Convert to mebibytes
+        videoMemoryInMebibytes /= Constants.MEBIBYTE;
 
         // Round to 2 places after the floating point
         decimal decimalVideoMemory = Math.Round((decimal)videoMemoryInMebibytes, 2);
