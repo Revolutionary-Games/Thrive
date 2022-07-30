@@ -67,14 +67,14 @@ public class EvolutionaryTree : Control
 
         // Draw timeline
         DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.Cyan,
-            TIMELINE_LINE_THICKNESS, true);
+            TIMELINE_LINE_THICKNESS);
 
         for (int i = 0; i <= latestGeneration; i++)
         {
             DrawLine(new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
                 new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2,
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
-                Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
+                Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
             var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
@@ -230,14 +230,14 @@ public class EvolutionaryTree : Control
     {
         if (to.y - from.y < MathUtils.EPSILON)
         {
-            DrawLine(from, to, Colors.DarkCyan, 4.0f, true);
+            DrawLine(from, to, Colors.DarkCyan, 4.0f);
         }
         else
         {
             var mid = to - new Vector2(GENERATION_SEPARATION / 2.0f, 0);
-            DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f, true);
-            DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f, true);
-            DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f, true);
+            DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f);
+            DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f);
+            DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f);
         }
     }
 
