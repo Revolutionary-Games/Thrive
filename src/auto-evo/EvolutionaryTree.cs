@@ -16,11 +16,9 @@ public class EvolutionaryTree : Control
     private const float GENERATION_SEPARATION = 100.0f;
     private const float SPECIES_NAME_OFFSET = 10.0f;
 
-    private readonly List<EvolutionaryTreeNode> nodes = new();
+    private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
-
-    private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latestNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
@@ -56,7 +54,7 @@ public class EvolutionaryTree : Control
     public void Init(Species luca)
     {
         SetupTreeNode(luca, null, 0);
-        treeNodeSize = nodes[0].RectSize;
+        treeNodeSize = speciesNodes[luca.ID][0].RectSize;
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);
@@ -87,8 +85,8 @@ public class EvolutionaryTree : Control
                 localizedText, Colors.Cyan);
         }
 
-        // Draw node connection lines
-        foreach (var node in nodes)
+        // Draw new species connection lines
+        foreach (var node in speciesNodes.Values.Select(l => l.First()))
         {
             if (node.ParentNode == null)
                 continue;
@@ -96,23 +94,39 @@ public class EvolutionaryTree : Control
             DrawLine(node.ParentNode.Center, node.Center);
         }
 
-        // Draw lines that indicate the species goes on till current generation, and species name
-        foreach (var latestNode in latestNodes.Values.Where(n => !n.LastGeneration))
+        float treeRightPosition = LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + treeNodeSize.x;
+
+        // Draw horizontal lines
+        foreach (var nodeList in speciesNodes.Values)
         {
-            var lineStart = latestNode.Center;
-            var lineEnd = new Vector2(LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x,
-                lineStart.y);
+            var lineStart = nodeList.First().Center;
+
+            var lastNode = nodeList.Last();
+
+            // If species extinct, line ends at the last node; else it ends at the right end of the tree
+            var lineEnd = lastNode.LastGeneration ?
+                lastNode.Center :
+                new Vector2(treeRightPosition, lineStart.y);
+
             DrawLine(lineStart, lineEnd);
-            DrawString(latoSmallItalic, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0),
-                speciesNames[latestNode.SpeciesID]);
         }
 
-        // Draw extinct species name
-        foreach (var extinctedSpecies in latestNodes.Values.Where(n => n.LastGeneration))
+        // Draw species name
+        foreach (var pair in speciesNodes)
         {
-            DrawString(latoSmallItalic, new Vector2(
-                extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + SPECIES_NAME_OFFSET,
-                extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
+            var lastNode = pair.Value.Last();
+            if (lastNode.LastGeneration)
+            {
+                DrawString(latoSmallItalic, new Vector2(
+                    lastNode.RectPosition.x + lastNode.RectSize.x + SPECIES_NAME_OFFSET,
+                    lastNode.Center.y), speciesNames[pair.Key], Colors.DarkRed);
+            }
+            else
+            {
+                DrawString(latoSmallItalic,
+                    new Vector2(treeRightPosition + SPECIES_NAME_OFFSET, pair.Value.First().Center.y),
+                    speciesNames[pair.Key]);
+            }
         }
     }
 
@@ -128,13 +142,13 @@ public class EvolutionaryTree : Control
                 if (result.SplitFrom == null)
                 {
                     SetupTreeNode((Species)species.Clone(),
-                        nodes.FindLast(n => n.SpeciesID == species.ID), generation - 1, true);
+                        speciesNodes[species.ID].Last(), generation - 1, true);
                 }
             }
             else if (result.SplitFrom != null)
             {
                 SetupTreeNode((Species)species.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
+                    speciesNodes[result.SplitFrom.ID].Last(), generation);
 
                 speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
                 speciesNames.Add(species.ID, species.FormattedName);
@@ -142,7 +156,7 @@ public class EvolutionaryTree : Control
             else if (result.MutatedProperties != null)
             {
                 SetupTreeNode((Species)result.MutatedProperties.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == species.ID), generation);
+                    speciesNodes[species.ID].Last(), generation);
             }
 
             if (species.ID > maxSpeciesId)
@@ -175,15 +189,17 @@ public class EvolutionaryTree : Control
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
-        nodes.Add(node);
+        if (!speciesNodes.ContainsKey(species.ID))
+            speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
+
+        speciesNodes[species.ID].Add(node);
         AddChild(node);
-        latestNodes[species.ID] = node;
     }
 
     private void BuildTree()
     {
         uint index = 0;
-        BuildTree(nodes[0].SpeciesID, ref index);
+        BuildTree(speciesNodes.First().Key, ref index);
 
         Update();
     }
@@ -191,7 +207,7 @@ public class EvolutionaryTree : Control
     private void BuildTree(uint id, ref uint index)
     {
         // Adjust nodes of this species' vertical position based on index
-        foreach (var treeNode in nodes.Where(n => n.SpeciesID == id))
+        foreach (var treeNode in speciesNodes[id])
         {
             var position = treeNode.RectPosition;
             position.y = TIMELINE_HEIGHT + index * SPECIES_SEPARATION;
