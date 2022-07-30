@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -77,7 +77,7 @@ public class OptionsMenu : ControlWithInput
     public NodePath DisplayPartNamesTogglePath = null!;
 
     [Export]
-    public NodePath GPUNamePath = null!;
+    public NodePath GpuNamePath = null!;
 
     [Export]
     public NodePath DisplayDriverNamePath = null!;
@@ -381,7 +381,7 @@ public class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
         displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
-        gpuName = GetNode<Label>(GPUNamePath);
+        gpuName = GetNode<Label>(GpuNamePath);
         displayDriverName = GetNode<Label>(DisplayDriverNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
 
@@ -652,35 +652,37 @@ public class OptionsMenu : ControlWithInput
         resolution.Text = TranslationServer.Translate("AUTO_RESOLUTION")
             .FormatSafe(screenResolution.x, screenResolution.y);
     }
+
     /// <summary>
     /// Displays the GPU name, the display driver name and used video memory
     /// </summary>
-    private void DisplayGpuInfo() {
-        if (gpuName != null) {
-            var videoAdapterName = VisualServer.GetVideoAdapterName();
-            gpuName.Text = TranslationServer.Translate("AUTO_GPU_NAME")
-                .FormatSafe(videoAdapterName);
+    private void DisplayGpuInfo()
+    {
+        var videoAdapterName = VisualServer.GetVideoAdapterName();
+        gpuName.Text = TranslationServer.Translate("AUTO_GPU_NAME")
+            .FormatSafe(videoAdapterName);
+
+        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
+        {
+            // Gles2 is being used
+            displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
+                .FormatSafe(TranslationServer.Translate("GLES2"));
         }
-        if (displayDriverName != null) {
-            if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2) {
-                // Gles2 is being used
-                displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
-                    .FormatSafe(TranslationServer.Translate("GLES2"));
-            } else {
-                // Gles3 is being used
-                displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
-                    .FormatSafe(TranslationServer.Translate("GLES3"));
-            }
+        else
+        {
+            // Gles3 is being used
+            displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
+                .FormatSafe(TranslationServer.Translate("GLES3"));
         }
-        if (videoMemory != null) {
-            // Byte-to-Mebibyte conversion constant
-            var videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / 1048576.0;
-            // Round to 2 places after the floating point
-            decimal decimalVideoMemory = Math.Round((decimal)videoMemoryInMebibytes, 2);
-            
-            videoMemory.Text = TranslationServer.Translate("AUTO_VIDEO_MEMORY")
-                .FormatSafe(decimalVideoMemory);
-        }
+
+        // Byte-to-Mebibyte conversion constant
+        var videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed) / 1048576.0;
+
+        // Round to 2 places after the floating point
+        decimal decimalVideoMemory = Math.Round((decimal)videoMemoryInMebibytes, 2);
+
+        videoMemory.Text = TranslationServer.Translate("AUTO_VIDEO_MEMORY")
+            .FormatSafe(decimalVideoMemory);
     }
 
     /// <summary>
