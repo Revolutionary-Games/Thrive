@@ -26,6 +26,9 @@ public class MainMenu : NodeWithInput
     public NodePath FreebuildButtonPath = null!;
 
     [Export]
+    public NodePath AutoEvoExploringButtonPath = null!;
+
+    [Export]
     public NodePath CreditsContainerPath = null!;
 
     [Export]
@@ -66,6 +69,7 @@ public class MainMenu : NodeWithInput
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
+    private Button autoEvoExploringButton = null!;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -172,6 +176,7 @@ public class MainMenu : NodeWithInput
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
+        autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
@@ -338,6 +343,16 @@ public class MainMenu : NodeWithInput
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private void OnAutoEvoExploringPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        autoEvoExploringButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good

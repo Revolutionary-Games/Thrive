@@ -25,7 +25,10 @@
     <Compile Include="simulation_parameters\EnzymeLoader.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
+    <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
+    <Compile Include="src\auto-evo\EvolutionaryTree.cs" />
+    <Compile Include="src\auto-evo\EvolutionaryTreeNode.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\ChunkFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
@@ -114,6 +117,9 @@
     <Compile Include="src\general\Asset.cs" />
     <Compile Include="src\general\AssetCategory.cs" />
     <Compile Include="src\general\AssetType.cs" />
+    <Compile Include="src\gui_common\PhotographablePreview.cs" />
+    <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
+    <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
     <Compile Include="src\general\EditorBase.cs" />
@@ -188,6 +194,7 @@
     <Compile Include="src\gui_common\PlayButton.cs" />
     <Compile Include="src\gui_common\RadialMenu.cs" />
     <Compile Include="src\gui_common\RadialPopup.cs" />
+    <Compile Include="src\gui_common\SpeciesPreview.cs" />
     <Compile Include="src\gui_common\CrossFadableTextureRect.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
