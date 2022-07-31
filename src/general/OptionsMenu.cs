@@ -687,7 +687,7 @@ public class OptionsMenu : ControlWithInput
         videoMemoryInMebibytes /= Constants.MEBIBYTE;
 
         // Round to 2 places after the floating point
-        var decimalVideoMemory = Mathf.Round(videoMemoryInMebibytes * 100) / 100;
+        var decimalVideoMemory = Math.Round((float)videoMemoryInMebibytes, 2);
 
         videoMemory.Text = TranslationServer.Translate("VIDEO_MEMORY_MIB")
             .FormatSafe(decimalVideoMemory);
