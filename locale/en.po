@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-30 18:12+0300\n"
-"PO-Revision-Date: 2022-07-30 18:37+0300\n"
+"POT-Creation-Date: 2022-07-31 17:40+0300\n"
+"PO-Revision-Date: 2022-07-31 17:44+0300\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1161,7 +1161,7 @@ msgstr "Species Details"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:461 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1336 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2072,19 +2072,19 @@ msgstr "Art Gallery"
 msgid "LICENSES"
 msgstr "Licenses"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
-#: ../src/general/MainMenu.tscn:505
+#: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "You are running Thrive with GLES2. This is severely untested and is likely to cause issues. Try to update your video drivers and/or force AMD or Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:509
+#: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Loading Errors"
 
-#: ../src/general/MainMenu.tscn:510
+#: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
@@ -2279,44 +2279,48 @@ msgstr "Basic"
 msgid "CONFIRM_NORMAL"
 msgstr "Confirm"
 
-#: ../src/general/OptionsMenu.cs:651 ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:298
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:660 ../src/general/OptionsMenu.tscn:426
+#: ../src/general/OptionsMenu.cs:662 ../src/general/OptionsMenu.tscn:426
 msgid "AUTO_GPU_NAME"
 msgstr "{0}"
 
-#: ../src/general/OptionsMenu.cs:666 ../src/general/OptionsMenu.cs:670
-#: ../src/general/OptionsMenu.tscn:450
-msgid "AUTO_DISPLAY_DRIVER_NAME"
+#: ../src/general/OptionsMenu.cs:668 ../src/general/OptionsMenu.cs:674
+#: ../src/general/OptionsMenu.cs:680 ../src/general/OptionsMenu.tscn:450
+msgid "CURRENT_DISPLAY_DRIVER_NAME"
 msgstr "{0}"
 
-#: ../src/general/OptionsMenu.cs:667
+#: ../src/general/OptionsMenu.cs:669
 msgid "GLES2"
 msgstr "Gles2"
 
-#: ../src/general/OptionsMenu.cs:671
+#: ../src/general/OptionsMenu.cs:675
 msgid "GLES3"
 msgstr "Gles3"
 
-#: ../src/general/OptionsMenu.cs:676 ../src/general/OptionsMenu.tscn:474
-msgid "AUTO_VIDEO_MEMORY"
+#: ../src/general/OptionsMenu.cs:681
+msgid "UNKNOWN_DISPLAY_DRIVER"
+msgstr "Unknown"
+
+#: ../src/general/OptionsMenu.cs:692 ../src/general/OptionsMenu.tscn:474
+msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
-#: ../src/general/OptionsMenu.cs:1030
+#: ../src/general/OptionsMenu.cs:1045
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1077
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/general/OptionsMenu.cs:1066
+#: ../src/general/OptionsMenu.cs:1081
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "This language is still a work in progress ({0}% complete)"
 
-#: ../src/general/OptionsMenu.cs:1070
+#: ../src/general/OptionsMenu.cs:1085
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "This language is {0}% complete"
 
@@ -5473,6 +5477,9 @@ msgstr ""
 "Your cell has been engulfed and is being digested. The progress is shown on your health bar. Your cell will be dead once it finishes or a maximum time limit is reached.\n"
 "\n"
 "You can use the suicide button to skip and respawn, but remember there's always a chance that you'll escape!"
+
+#~ msgid "AUTO_VIDEO_MEMORY"
+#~ msgstr "{0} MiB"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Not running."
