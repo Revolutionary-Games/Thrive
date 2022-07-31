@@ -404,16 +404,10 @@ size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
-[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer"]
 margin_top = 314.0
 margin_right = 657.0
-margin_bottom = 317.0
-rect_min_size = Vector2( 0, 3 )
-
-[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer"]
-margin_top = 327.0
-margin_right = 657.0
-margin_bottom = 352.0
+margin_bottom = 339.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 106.0
@@ -438,9 +432,9 @@ align = 2
 autowrap = true
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer"]
-margin_top = 362.0
+margin_top = 349.0
 margin_right = 657.0
-margin_bottom = 387.0
+margin_bottom = 374.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer/HBoxContainer8"]
 margin_right = 230.0
@@ -462,9 +456,9 @@ text = "CURRENT_USED_RENDERER_NAME"
 align = 2
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer"]
-margin_top = 397.0
+margin_top = 384.0
 margin_right = 657.0
-margin_bottom = 422.0
+margin_bottom = 409.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer/HBoxContainer9"]
 margin_right = 149.0
@@ -486,9 +480,9 @@ text = "VIDEO_MEMORY_MIB"
 align = 2
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer"]
-margin_top = 432.0
+margin_top = 419.0
 margin_right = 657.0
-margin_bottom = 457.0
+margin_bottom = 444.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer/HBoxContainer6"]
 margin_right = 34.0
@@ -503,25 +497,25 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 467.0
+margin_top = 454.0
 margin_right = 247.0
-margin_bottom = 492.0
+margin_bottom = 479.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 502.0
+margin_top = 489.0
 margin_right = 300.0
-margin_bottom = 527.0
+margin_bottom = 514.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 537.0
+margin_top = 524.0
 margin_right = 238.0
-margin_bottom = 562.0
+margin_bottom = 549.0
 size_flags_horizontal = 0
 text = "DISPLAY_PART_NAMES"
 
@@ -1054,7 +1048,7 @@ selected = 0
 visible = false
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 679.0
+margin_right = 688.0
 margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -1064,7 +1058,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 663.0
+margin_right = 672.0
 margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
@@ -1072,15 +1066,16 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer"]
-margin_right = 648.0
-margin_bottom = 526.0
+margin_right = 657.0
+margin_bottom = 523.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer"]
-margin_right = 648.0
-margin_bottom = 522.0
+margin_right = 657.0
+margin_bottom = 519.0
+rect_clip_content = false
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -1088,16 +1083,16 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer"]
-margin_right = 648.0
-margin_bottom = 522.0
+margin_right = 657.0
+margin_bottom = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
 
 [node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
-margin_right = 638.0
-margin_bottom = 512.0
+margin_right = 647.0
+margin_bottom = 509.0
 custom_constants/separation = 30
 script = ExtResource( 3 )
 __meta__ = {
@@ -1107,20 +1102,20 @@ ConflictDialogPath = NodePath("../../../../../../../../ConflictDialog")
 ResetInputsDialog = NodePath("../../../../../../../../DefaultsInputsConfirm")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer"]
-margin_top = 522.0
-margin_right = 648.0
-margin_bottom = 526.0
+margin_top = 519.0
+margin_right = 657.0
+margin_bottom = 523.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer"]
-margin_top = 536.0
-margin_right = 648.0
+margin_top = 533.0
+margin_right = 657.0
 margin_bottom = 568.0
 alignment = 2
 
 [node name="ResetInputsButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer"]
-margin_left = 505.0
-margin_right = 648.0
-margin_bottom = 32.0
+margin_left = 503.0
+margin_right = 657.0
+margin_bottom = 35.0
 text = "RESET_INPUTS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
