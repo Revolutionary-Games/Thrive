@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -80,7 +80,7 @@ public class OptionsMenu : ControlWithInput
     public NodePath GpuNamePath = null!;
 
     [Export]
-    public NodePath DisplayDriverNamePath = null!;
+    public NodePath UsedRendererNamePath = null!;
 
     [Export]
     public NodePath VideoMemoryPath = null!;
@@ -257,7 +257,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox guiLightEffectsToggle = null!;
     private CustomCheckBox displayPartNamesToggle = null!;
     private Label gpuName = null!;
-    private Label displayDriverName = null!;
+    private Label usedRendererName = null!;
     private Label videoMemory = null!;
 
     // Sound tab
@@ -382,7 +382,7 @@ public class OptionsMenu : ControlWithInput
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
         displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
         gpuName = GetNode<Label>(GpuNamePath);
-        displayDriverName = GetNode<Label>(DisplayDriverNamePath);
+        usedRendererName = GetNode<Label>(UsedRendererNamePath);
         videoMemory = GetNode<Label>(VideoMemoryPath);
 
         // Sound
@@ -665,19 +665,19 @@ public class OptionsMenu : ControlWithInput
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
         {
             // Gles2 is being used
-            displayDriverName.Text = TranslationServer.Translate("CURRENT_DISPLAY_DRIVER_NAME")
+            usedRendererName.Text = TranslationServer.Translate("CURRENT_USED_RENDERER_NAME")
                 .FormatSafe(TranslationServer.Translate("GLES2"));
         }
         else if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles3)
         {
             // Gles3 is being used
-            displayDriverName.Text = TranslationServer.Translate("CURRENT_DISPLAY_DRIVER_NAME")
+            usedRendererName.Text = TranslationServer.Translate("CURRENT_USED_RENDERER_NAME")
                 .FormatSafe(TranslationServer.Translate("GLES3"));
         }
         else
         {
             // An unknown display driver is being used
-            displayDriverName.Text = TranslationServer.Translate("CURRENT_DISPLAY_DRIVER_NAME")
+            usedRendererName.Text = TranslationServer.Translate("CURRENT_USED_RENDERER_NAME")
                 .FormatSafe(TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER"));
         }
 

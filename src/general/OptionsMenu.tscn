@@ -60,7 +60,7 @@ DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/P
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
 DisplayPartNamesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayPartNamesToggle")
 GpuNamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7/GpuName")
-DisplayDriverNamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8/DisplayDriverName")
+UsedRendererNamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8/UsedRendererName")
 VideoMemoryPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9/VideoMemory")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
@@ -414,17 +414,20 @@ text = "GPU_NAME"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
 margin_left = 110.0
-margin_right = 484.0
+margin_right = 381.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="GpuName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer7"]
-margin_left = 488.0
+margin_left = 385.0
 margin_right = 657.0
 margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "AUTO_GPU_NAME"
 align = 2
+autowrap = true
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
 margin_top = 362.0
@@ -432,22 +435,22 @@ margin_right = 657.0
 margin_bottom = 387.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
-margin_right = 223.0
+margin_right = 230.0
 margin_bottom = 25.0
-text = "DISPLAY_DRIVER_NAME"
+text = "USED_RENDERER_NAME"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
-margin_left = 227.0
-margin_right = 329.0
+margin_left = 234.0
+margin_right = 322.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
-[node name="DisplayDriverName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
-margin_left = 333.0
+[node name="UsedRendererName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
+margin_left = 326.0
 margin_right = 657.0
 margin_bottom = 25.0
-text = "CURRENT_DISPLAY_DRIVER_NAME"
+text = "CURRENT_USED_RENDERER_NAME"
 align = 2
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]

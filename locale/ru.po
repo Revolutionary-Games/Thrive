@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-31 17:40+0300\n"
+"POT-Creation-Date: 2022-07-31 20:09+0300\n"
 "PO-Revision-Date: 2022-07-24 11:52+0000\n"
 "Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1163,7 +1163,7 @@ msgstr "Список Видов"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1336 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1339 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1208,7 +1208,7 @@ msgstr "В паузе"
 msgid "STARTING"
 msgstr "Запуск"
 
-#: ../src/auto-evo/AutoEvoRun.cs:352
+#: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Популяция {0} изменена на {1} к {2}, по причине: {3}"
 
@@ -2287,15 +2287,15 @@ msgstr "Подтвердить"
 msgid "AUTO_RESOLUTION"
 msgstr "Авто ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:662 ../src/general/OptionsMenu.tscn:426
+#: ../src/general/OptionsMenu.cs:662 ../src/general/OptionsMenu.tscn:428
 #, fuzzy
 msgid "AUTO_GPU_NAME"
 msgstr "Кастомное имя пользователя:"
 
 #: ../src/general/OptionsMenu.cs:668 ../src/general/OptionsMenu.cs:674
-#: ../src/general/OptionsMenu.cs:680 ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.cs:680 ../src/general/OptionsMenu.tscn:453
 #, fuzzy
-msgid "CURRENT_DISPLAY_DRIVER_NAME"
+msgid "CURRENT_USED_RENDERER_NAME"
 msgstr "Показать название кнопок выбора частей:"
 
 #: ../src/general/OptionsMenu.cs:669
@@ -2311,23 +2311,23 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Показать название кнопок выбора частей:"
 
-#: ../src/general/OptionsMenu.cs:692 ../src/general/OptionsMenu.tscn:474
+#: ../src/general/OptionsMenu.cs:690 ../src/general/OptionsMenu.tscn:477
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1045
+#: ../src/general/OptionsMenu.cs:1043
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
 
-#: ../src/general/OptionsMenu.cs:1077
+#: ../src/general/OptionsMenu.cs:1075
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
 
-#: ../src/general/OptionsMenu.cs:1081
+#: ../src/general/OptionsMenu.cs:1079
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Этот язык всё ещё находится в стадии разработки ({0}% завершено)"
 
-#: ../src/general/OptionsMenu.cs:1085
+#: ../src/general/OptionsMenu.cs:1083
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Этот язык на {0}% завершён"
 
@@ -2424,283 +2424,282 @@ msgstr "Отображение фоновых частиц"
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:437
-#, fuzzy
-msgid "DISPLAY_DRIVER_NAME"
-msgstr "Показать название кнопок выбора частей:"
+#: ../src/general/OptionsMenu.tscn:440
+msgid "USED_RENDERER_NAME"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:461
+#: ../src/general/OptionsMenu.tscn:464
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:485
+#: ../src/general/OptionsMenu.tscn:488
 msgid "GUI"
 msgstr "Графический интерфейс"
 
-#: ../src/general/OptionsMenu.tscn:500
+#: ../src/general/OptionsMenu.tscn:503
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Показать панель способностей"
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:511
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
-#: ../src/general/OptionsMenu.tscn:515
+#: ../src/general/OptionsMenu.tscn:518
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать название кнопок выбора частей:"
 
-#: ../src/general/OptionsMenu.tscn:541
+#: ../src/general/OptionsMenu.tscn:544
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
-#: ../src/general/OptionsMenu.tscn:567 ../src/general/OptionsMenu.tscn:607
-#: ../src/general/OptionsMenu.tscn:639 ../src/general/OptionsMenu.tscn:671
-#: ../src/general/OptionsMenu.tscn:703
+#: ../src/general/OptionsMenu.tscn:570 ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:674
+#: ../src/general/OptionsMenu.tscn:706
 msgid "MUTE"
 msgstr "Заглушить"
 
-#: ../src/general/OptionsMenu.tscn:581
+#: ../src/general/OptionsMenu.tscn:584
 msgid "MUSIC_VOLUME"
 msgstr "Громкость музыки"
 
-#: ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:616
 msgid "AMBIANCE_VOLUME"
 msgstr "Громкость окружения"
 
-#: ../src/general/OptionsMenu.tscn:645
+#: ../src/general/OptionsMenu.tscn:648
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
 
-#: ../src/general/OptionsMenu.tscn:677
+#: ../src/general/OptionsMenu.tscn:680
 msgid "GUI_VOLUME"
 msgstr "Громкость пользовательского интерфейса"
 
-#: ../src/general/OptionsMenu.tscn:721
+#: ../src/general/OptionsMenu.tscn:724
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода звука:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:752
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.tscn:767 ../src/general/OptionsMenu.tscn:1347
+#: ../src/general/OptionsMenu.tscn:770 ../src/general/OptionsMenu.tscn:1350
 msgid "RESET"
 msgstr "Сбросить"
 
-#: ../src/general/OptionsMenu.tscn:785
+#: ../src/general/OptionsMenu.tscn:788
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Помогите Перевести Эту Игру"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:814
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака из Компонентов"
 
-#: ../src/general/OptionsMenu.tscn:826
+#: ../src/general/OptionsMenu.tscn:829
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мин. интервал облака симуляции:"
 
-#: ../src/general/OptionsMenu.tscn:833 ../src/general/OptionsMenu.tscn:875
+#: ../src/general/OptionsMenu.tscn:836 ../src/general/OptionsMenu.tscn:878
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:871
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель разрешения облака:"
 
-#: ../src/general/OptionsMenu.tscn:909
+#: ../src/general/OptionsMenu.tscn:912
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время игры"
 
-#: ../src/general/OptionsMenu.tscn:929
+#: ../src/general/OptionsMenu.tscn:932
 msgid "DETECTED_CPU_COUNT"
 msgstr "Число обнаруженных ядер процессора:"
 
-#: ../src/general/OptionsMenu.tscn:946
+#: ../src/general/OptionsMenu.tscn:949
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Текущие задачи:"
 
-#: ../src/general/OptionsMenu.tscn:960
+#: ../src/general/OptionsMenu.tscn:963
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Предположим, что в процессоре включена гиперпоточность"
 
-#: ../src/general/OptionsMenu.tscn:968
+#: ../src/general/OptionsMenu.tscn:971
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:981
 msgid "THREADS"
 msgstr "Потоки:"
 
-#: ../src/general/OptionsMenu.tscn:1023
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальное количество сущностей:"
 
-#: ../src/general/OptionsMenu.tscn:1038 ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1041 ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_TINY"
 msgstr "Крохотное"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_VERY_SMALL"
 msgstr "Очень маленькое"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_SMALL"
 msgstr "Маленькое"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_NORMAL"
 msgstr "Нормальное"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_LARGE"
 msgstr "Большое"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_VERY_LARGE"
 msgstr "Очень большое"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_HUGE"
 msgstr "Огромное"
 
-#: ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "LIMIT_EXTREME"
 msgstr "Экстремальное"
 
-#: ../src/general/OptionsMenu.tscn:1113
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "RESET_INPUTS"
 msgstr "Сбросить Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:1140
+#: ../src/general/OptionsMenu.tscn:1143
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:1148
+#: ../src/general/OptionsMenu.tscn:1151
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать вступление микроба при новой игре"
 
-#: ../src/general/OptionsMenu.tscn:1156
+#: ../src/general/OptionsMenu.tscn:1159
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
-#: ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:1227
+#: ../src/general/OptionsMenu.tscn:1230
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
 
-#: ../src/general/OptionsMenu.tscn:1245
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Чит-коды включены"
 
-#: ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1256
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
-#: ../src/general/OptionsMenu.tscn:1264
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "CUSTOM_USERNAME"
 msgstr "Кастомное имя пользователя:"
 
-#: ../src/general/OptionsMenu.tscn:1290
+#: ../src/general/OptionsMenu.tscn:1293
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть Папку со Скриншотами"
 
-#: ../src/general/OptionsMenu.tscn:1298
+#: ../src/general/OptionsMenu.tscn:1301
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть Папку с Логами"
 
-#: ../src/general/OptionsMenu.tscn:1308
+#: ../src/general/OptionsMenu.tscn:1311
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим отладки JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1322 ../src/general/OptionsMenu.tscn:1323
+#: ../src/general/OptionsMenu.tscn:1325 ../src/general/OptionsMenu.tscn:1326
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматически"
 
-#: ../src/general/OptionsMenu.tscn:1323
+#: ../src/general/OptionsMenu.tscn:1326
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Всегда"
 
-#: ../src/general/OptionsMenu.tscn:1323
+#: ../src/general/OptionsMenu.tscn:1326
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1362 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:1376
+#: ../src/general/OptionsMenu.tscn:1379
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:1387
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1391
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1396
+#: ../src/general/OptionsMenu.tscn:1399
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Восстановить до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1400
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Вы действительно хотите сбросить настройки клавиш до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1409
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1426
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вы имеете не сохранённые изменения, которые можете потерять.\n"
 "Вы хотите продолжить?"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1452
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1459
+#: ../src/general/OptionsMenu.tscn:1462
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отменить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1476
+#: ../src/general/OptionsMenu.tscn:1479
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Отмена"
 
-#: ../src/general/OptionsMenu.tscn:1487 ../src/general/OptionsMenu.tscn:1495
+#: ../src/general/OptionsMenu.tscn:1490 ../src/general/OptionsMenu.tscn:1498
 msgid "ERROR"
 msgstr "Ошибка"
 
-#: ../src/general/OptionsMenu.tscn:1497
+#: ../src/general/OptionsMenu.tscn:1500
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
-#: ../src/general/OptionsMenu.tscn:1505
+#: ../src/general/OptionsMenu.tscn:1508
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папка скриншотов не найдена"
 
-#: ../src/general/OptionsMenu.tscn:1507
+#: ../src/general/OptionsMenu.tscn:1510
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
@@ -4936,8 +4935,8 @@ msgstr "Использовать автозагрузку Harmony"
 msgid "CREATE"
 msgstr "Создать"
 
-#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:100
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
 msgstr "Загрузка Игры"
 
@@ -4945,39 +4944,39 @@ msgstr "Загрузка Игры"
 msgid "READING_SAVE_DATA"
 msgstr "Чтение данных сохранения"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
 
-#: ../src/saving/InProgressLoad.cs:111
+#: ../src/saving/InProgressLoad.cs:113
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Во время загрузки сохранённых данных произошла ошибка"
 
-#: ../src/saving/InProgressLoad.cs:137
+#: ../src/saving/InProgressLoad.cs:139
 msgid "SAVE_IS_INVALID"
 msgstr "Сохранение сломано"
 
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:140
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Файл сохранения имеет недействительную сцену состояния игры"
 
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:153
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обработка загруженных объектов"
 
-#: ../src/saving/InProgressLoad.cs:166
+#: ../src/saving/InProgressLoad.cs:168
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Во время обработки загружаемых объектов произошла ошибка"
 
-#: ../src/saving/InProgressLoad.cs:172
+#: ../src/saving/InProgressLoad.cs:174
 msgid "LOAD_FINISHED"
 msgstr "Загрузка завершена"
 
-#: ../src/saving/InProgressLoad.cs:199
+#: ../src/saving/InProgressLoad.cs:201
 msgid "ERROR_LOADING"
 msgstr "Ошибка Загрузки"
 
-#: ../src/saving/InProgressLoad.cs:238
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Не удалось освободить уже загруженные ресурсы: {0}"
 
@@ -5491,6 +5490,10 @@ msgstr ""
 "Ваша клетка была поглощена и переваривается. Прогресс отображается на вашей шкале здоровья. Ваша клетка умрёт как только переваривание завершится или будет достигнут лимит по времени.\n"
 "\n"
 "Вы можете использовать кнопку суицида чтобы пропустить этот этап, но помните, что всегда есть шанс спастись!"
+
+#, fuzzy
+#~ msgid "DISPLAY_DRIVER_NAME"
+#~ msgstr "Показать название кнопок выбора частей:"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не запущен."
