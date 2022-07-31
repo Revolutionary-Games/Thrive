@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-30 18:12+0300\n"
+"POT-Creation-Date: 2022-07-31 17:40+0300\n"
 "PO-Revision-Date: 2022-07-27 09:39+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1162,7 +1162,7 @@ msgstr "Lista delle specie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:461 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1336 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2076,19 +2076,19 @@ msgstr "Galleria"
 msgid "LICENSES"
 msgstr "Licenze"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
 msgstr "Avvertimento Modalità GLES2"
 
-#: ../src/general/MainMenu.tscn:505
+#: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/MainMenu.tscn:509
+#: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errori di caricamento mod"
 
-#: ../src/general/MainMenu.tscn:510
+#: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Si sono verificati degli errori nel caricamento di una o più mod. I log potrebbero contenere informazioni ulteriori."
 
@@ -2283,46 +2283,51 @@ msgstr "Di base"
 msgid "CONFIRM_NORMAL"
 msgstr "Conferma"
 
-#: ../src/general/OptionsMenu.cs:651 ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:298
 msgid "AUTO_RESOLUTION"
 msgstr "Automatica ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:660 ../src/general/OptionsMenu.tscn:426
+#: ../src/general/OptionsMenu.cs:662 ../src/general/OptionsMenu.tscn:426
 #, fuzzy
 msgid "AUTO_GPU_NAME"
 msgstr "Nome utente personalizzato:"
 
-#: ../src/general/OptionsMenu.cs:666 ../src/general/OptionsMenu.cs:670
-#: ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.cs:668 ../src/general/OptionsMenu.cs:674
+#: ../src/general/OptionsMenu.cs:680 ../src/general/OptionsMenu.tscn:450
 #, fuzzy
-msgid "AUTO_DISPLAY_DRIVER_NAME"
+msgid "CURRENT_DISPLAY_DRIVER_NAME"
 msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
 
-#: ../src/general/OptionsMenu.cs:667
+#: ../src/general/OptionsMenu.cs:669
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:671
+#: ../src/general/OptionsMenu.cs:675
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:676 ../src/general/OptionsMenu.tscn:474
-msgid "AUTO_VIDEO_MEMORY"
+#: ../src/general/OptionsMenu.cs:681
+#, fuzzy
+msgid "UNKNOWN_DISPLAY_DRIVER"
+msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+
+#: ../src/general/OptionsMenu.cs:692 ../src/general/OptionsMenu.tscn:474
+msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1030
+#: ../src/general/OptionsMenu.cs:1045
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1077
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
-#: ../src/general/OptionsMenu.cs:1066
+#: ../src/general/OptionsMenu.cs:1081
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Questa traduzione è ancora in corso ({0}% fatto)"
 
-#: ../src/general/OptionsMenu.cs:1070
+#: ../src/general/OptionsMenu.cs:1085
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Percentuale di completamento di questa traduzione: {0}%"
 
