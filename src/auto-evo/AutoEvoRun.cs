@@ -277,6 +277,13 @@ public class AutoEvoRun
         {
             var key = (effect.Species, effect.Patch);
 
+            // If the species is extinct, don't try to calculate the coefficient values as that will cause an error
+            if (!results.SpeciesHasResults(effect.Species))
+            {
+                effect.Coefficient = 1;
+                continue;
+            }
+
             if (!adjustedPopulations.TryGetValue(key, out var population))
             {
                 population = results.GetPopulationInPatchIfExists(effect.Species, effect.Patch) ?? 0;
