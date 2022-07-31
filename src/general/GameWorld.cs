@@ -82,6 +82,9 @@ public class GameWorld : ISaveLoadable
     [JsonProperty]
     public Species PlayerSpecies { get; private set; } = null!;
 
+    [JsonIgnore]
+    public IReadOnlyDictionary<uint, Species> Species => worldSpecies;
+
     [JsonProperty]
     public PatchMap Map { get; private set; } = null!;
 

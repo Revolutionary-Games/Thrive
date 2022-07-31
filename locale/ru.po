@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-28 10:18+0300\n"
+"POT-Creation-Date: 2022-07-29 13:14+0800\n"
 "PO-Revision-Date: 2022-07-24 11:52+0000\n"
 "Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -983,115 +983,326 @@ msgstr "Ресничка"
 msgid "LYSOSOME"
 msgstr "Лизосома"
 
-#: ../src/auto-evo/AutoEvoRun.cs:121
+#: ../src/auto-evo/AutoEvoExploringTool.cs:488
+#, fuzzy
+msgid "FINISH_X_GENERATIONS"
+msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:673
+#, fuzzy
+msgid "SPECIES_DETAIL_TEXT"
+msgstr "{0} (x{1})"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:695
+#, fuzzy
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Следите за своей шкалой здоровья рядом со шкалой АТФ (снизу справа).\n"
+"Ваша клетка умрёт, если у нее закончится здоровье.\n"
+"Вы восстанавливаете здоровье, пока у вас есть АТФ.\n"
+"Убедитесь, что собрано достаточно глюкозы для производства АТФ."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
+msgid "CONFIG"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+msgid "REPORT"
+msgstr "Отчёт"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#, fuzzy
+msgid "VIEWER"
+msgstr "Просмотр Галереи"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
+#, fuzzy
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "мутировал"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
+#, fuzzy
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
+#, fuzzy
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "Вымерли в биоме"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
+#, fuzzy
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "Очки мутации"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
+msgid "STRICT_NICHE_COMPETITION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#, fuzzy
+msgid "CURRENT_GENERATION_COLON"
+msgstr "Поколение:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
+#, fuzzy
+msgid "STATUS_COLON"
+msgstr "Создатель:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
+#, fuzzy
+msgid "READY"
+msgstr "Потоки:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#, fuzzy
+msgid "FINISH_ONE_GENERATION"
+msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+msgid "RUN_ONE_STEP"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#, fuzzy
+msgid "ABORT"
+msgstr "Отменено."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#, fuzzy
+msgid "GENERATIONS"
+msgstr "Поколение:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#, fuzzy
+msgid "SELECT_A_GENERATION"
+msgstr "Выберите вариант"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#, fuzzy
+msgid "SPECIES"
+msgstr "Список Видов"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#, fuzzy
+msgid "SELECT_A_SPECIES"
+msgstr "Выберите биом для просмотра деталей"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
+msgid "AUTO_EVO_RESULTS"
+msgstr "Результаты авто-эво:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#, fuzzy
+msgid "EVOLUTIONARY_TREE"
+msgstr "Автор: Revolutionary Games Studio"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#, fuzzy
+msgid "SPECIES_DETAILS"
+msgstr "Список Видов"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/saving/SaveManagerGUI.tscn:120
+msgid "BACK"
+msgstr "Назад"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
+#: ../src/general/PauseMenu.tscn:288
+msgid "CONFIRM_EXIT"
+msgstr "Подтвердить выход"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
+#: ../src/general/PauseMenu.cs:353
+msgid "RETURN_TO_MENU_WARNING"
+msgstr ""
+"Вы действительно хотите вернуться в главное меню?\n"
+"Весь несохраненный прогресс будет утерян."
+
+#: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
 msgstr "Отменено."
 
-#: ../src/auto-evo/AutoEvoRun.cs:124
+#: ../src/auto-evo/AutoEvoRun.cs:127
 msgid "FINISHED_DOT"
 msgstr "Завершено."
 
-#: ../src/auto-evo/AutoEvoRun.cs:127
-msgid "NOT_RUNNING_DOT"
-msgstr "Не запущен."
+#: ../src/auto-evo/AutoEvoRun.cs:130
+#, fuzzy
+msgid "NOT_STARTED_DOT"
+msgstr "Отменено."
 
-#: ../src/auto-evo/AutoEvoRun.cs:136
+#: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завершено. {1:n0}/{2:n0} шагов."
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:140
+#, fuzzy
+msgid "OPERATION_PAUSED_DOT"
+msgstr "В паузе"
+
+#: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Запуск"
 
-#: ../src/auto-evo/AutoEvoRun.cs:345
+#: ../src/auto-evo/AutoEvoRun.cs:352
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Популяция {0} изменена на {1} к {2}, по причине: {3}"
 
-#: ../src/auto-evo/RunResults.cs:599
+#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
+#: ../src/microbe_stage/editor/TimelineTab.cs:187
+msgid "MEGA_YEARS"
+msgstr "Миллион Лет"
+
+#: ../src/auto-evo/RunResults.cs:600
 msgid "POPULATION_COLON"
 msgstr "популяция:"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:609
 msgid "WENT_EXTINCT_IN"
 msgstr "вымерли в {0}"
 
-#: ../src/auto-evo/RunResults.cs:614
+#: ../src/auto-evo/RunResults.cs:615
 msgid "PREVIOUS_COLON"
 msgstr "предыдущий:"
 
-#: ../src/auto-evo/RunResults.cs:632
+#: ../src/auto-evo/RunResults.cs:633
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "Отделившихся от {0}"
 
-#: ../src/auto-evo/RunResults.cs:645
+#: ../src/auto-evo/RunResults.cs:646
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "возникли, чтобы заполнить нишу"
 
-#: ../src/auto-evo/RunResults.cs:648
+#: ../src/auto-evo/RunResults.cs:649
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "возникли в связи с различным давлением отбора"
 
-#: ../src/auto-evo/RunResults.cs:665
+#: ../src/auto-evo/RunResults.cs:666
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "популяция в некоторых биомах разделилась, образовав новые виды {0}:"
 
-#: ../src/auto-evo/RunResults.cs:681
+#: ../src/auto-evo/RunResults.cs:682
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "мутировал"
 
-#: ../src/auto-evo/RunResults.cs:686
+#: ../src/auto-evo/RunResults.cs:687
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генетический код:"
 
-#: ../src/auto-evo/RunResults.cs:697
+#: ../src/auto-evo/RunResults.cs:698
 msgid "SPREAD_TO_PATCHES"
 msgstr "распространяется в биомы:"
 
-#: ../src/auto-evo/RunResults.cs:705
+#: ../src/auto-evo/RunResults.cs:706
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} отправив: {1} популяции из биома: {2}"
 
-#: ../src/auto-evo/RunResults.cs:724
+#: ../src/auto-evo/RunResults.cs:725
 msgid "POPULATION_IN_PATCHES"
 msgstr "Популяция в биомах:"
 
-#: ../src/auto-evo/RunResults.cs:839
+#: ../src/auto-evo/RunResults.cs:840
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "вымерли с планеты"
 
-#: ../src/auto-evo/RunResults.cs:893
+#: ../src/auto-evo/RunResults.cs:894
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "Вид [b][u]{0}[/u][/b] вымер!"
 
-#: ../src/auto-evo/RunResults.cs:903 ../src/auto-evo/RunResults.cs:925
+#: ../src/auto-evo/RunResults.cs:904 ../src/auto-evo/RunResults.cs:926
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Популяция вида [b][u]{0}[/u][/b] увеличилась до {1}"
 
-#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:910 ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Популяция вида [b][u]{0}[/u][/b] уменьшилась до {1}"
 
-#: ../src/auto-evo/RunResults.cs:917
+#: ../src/auto-evo/RunResults.cs:918
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Вид [b][u]{0}[/u][/b] исчез из этого биома"
 
-#: ../src/auto-evo/RunResults.cs:941
+#: ../src/auto-evo/RunResults.cs:942
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в этот биом из {1}"
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:947
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1} из {2}"
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:953
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
 
-#: ../src/auto-evo/RunResults.cs:971
+#: ../src/auto-evo/RunResults.cs:972
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид, чтобы заполнить нишу"
 
-#: ../src/auto-evo/RunResults.cs:977
+#: ../src/auto-evo/RunResults.cs:978
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид в связи с различными условиями отбора"
 
@@ -1176,7 +1387,7 @@ msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:164
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
@@ -1791,71 +2002,67 @@ msgstr "Концентрация {0} снизилась на {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрация глюкозы резко упала!"
 
-#: ../src/general/MainMenu.cs:239
+#: ../src/general/MainMenu.cs:244
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
-#: ../src/general/MainMenu.tscn:175
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Новая Игра"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:179
 msgid "NEW_GAME"
 msgstr "Новая Игра"
 
-#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
-#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
-#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:201 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:205 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:215
+#: ../src/general/MainMenu.tscn:216
 msgid "TOOLS"
 msgstr "Инструменты"
 
-#: ../src/general/MainMenu.tscn:226
+#: ../src/general/MainMenu.tscn:227
 msgid "VIEW_SOURCE_CODE"
 msgstr "Обзор Исходного Кода"
 
-#: ../src/general/MainMenu.tscn:237
+#: ../src/general/MainMenu.tscn:238
 msgid "EXTRAS"
 msgstr "Дополнительное"
 
-#: ../src/general/MainMenu.tscn:248
+#: ../src/general/MainMenu.tscn:249
 msgid "CREDITS"
 msgstr "Титры"
 
-#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Выйти из игры"
 
-#: ../src/general/MainMenu.tscn:260
+#: ../src/general/MainMenu.tscn:261
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/general/MainMenu.tscn:280
+#: ../src/general/MainMenu.tscn:281
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Креативный Редактор"
 
-#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
-#: ../src/saving/SaveManagerGUI.tscn:120
-msgid "BACK"
-msgstr "Назад"
+#: ../src/general/MainMenu.tscn:293
+#, fuzzy
+msgid "AUTO_EVO_EXPLORING_TOOL"
+msgstr "статус запуска:"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -2455,12 +2662,6 @@ msgstr "Папка скриншотов не найдена"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
-#: ../src/general/PauseMenu.cs:353
-msgid "RETURN_TO_MENU_WARNING"
-msgstr ""
-"Вы действительно хотите вернуться в главное меню?\n"
-"Весь несохраненный прогресс будет утерян."
-
 #: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
@@ -2512,10 +2713,6 @@ msgstr "Вернуться в Меню"
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
 msgstr "Выход"
-
-#: ../src/general/PauseMenu.tscn:288
-msgid "CONFIRM_EXIT"
-msgstr "Подтвердить выход"
 
 #: ../src/general/StageBase.cs:383
 msgid "PLAYER_REPRODUCED"
@@ -2894,8 +3091,8 @@ msgstr "\"Raw\""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2059
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "Нет данных"
 
@@ -2933,7 +3130,7 @@ msgid "SLIDESHOW"
 msgstr "Слайд-шоу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2191
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
@@ -3809,37 +4006,37 @@ msgstr "Базовое Передвижение"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:502
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:525
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Нельзя удалить ядро, это необратимая эволюция.\n"
 "Однако, если оно добавлено в текущей сессии, отмена и возврат всё ещё допустимы"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, что приводит к нескорректированному населению {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2176
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая пригодность: {4})"
 
@@ -4002,12 +4199,12 @@ msgstr "Загрузка Микробного Редактора"
 msgid "INFINITE_MP"
 msgstr "Бесконечные MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:127
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Найти текущий биом"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
 msgid "SEED_LABEL"
 msgstr "Сид планеты: {0}"
@@ -4045,11 +4242,6 @@ msgstr "Вымерли из биома"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
-msgid "MEGA_YEARS"
-msgstr "Миллион Лет"
-
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Времени прошло: {0:#,#} лет"
@@ -4065,10 +4257,6 @@ msgstr "Пищевая Цепочка"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:228
 msgid "TIMELINE"
 msgstr "Временная Шкала"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
-msgid "AUTO_EVO_RESULTS"
-msgstr "Результаты авто-эво:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:300
 msgid "EXTERNAL_EFFECTS"
@@ -4099,10 +4287,6 @@ msgstr "Популяция Вида"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физические Условия"
-
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
-msgid "REPORT"
-msgstr "Отчёт"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
@@ -5265,6 +5449,9 @@ msgstr ""
 "Ваша клетка была поглощена и переваривается. Прогресс отображается на вашей шкале здоровья. Ваша клетка умрёт как только переваривание завершится или будет достигнут лимит по времени.\n"
 "\n"
 "Вы можете использовать кнопку суицида чтобы пропустить этот этап, но помните, что всегда есть шанс спастись!"
+
+#~ msgid "NOT_RUNNING_DOT"
+#~ msgstr "Не запущен."
 
 #, fuzzy
 #~ msgid "MULTICELLULAR"

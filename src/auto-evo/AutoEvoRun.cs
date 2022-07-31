@@ -13,6 +13,8 @@ using Thread = System.Threading.Thread;
 /// </summary>
 public class AutoEvoRun
 {
+    protected readonly AutoEvoConfiguration configuration;
+
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
@@ -39,9 +41,10 @@ public class AutoEvoRun
 
     private int completeSteps;
 
-    public AutoEvoRun(GameWorld world)
+    public AutoEvoRun(GameWorld world, AutoEvoConfiguration? configuration = null)
     {
         Parameters = new RunParameters(world);
+        this.configuration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration;
     }
 
     private enum RunStage
@@ -86,7 +89,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The total duration auto-evo processing took
     /// </summary>
-    public TimeSpan? RunDuration { get; private set; }
+    public TimeSpan RunDuration { get; private set; } = TimeSpan.Zero;
 
     public float CompletionFraction
     {
@@ -123,8 +126,8 @@ public class AutoEvoRun
             if (Finished)
                 return TranslationServer.Translate("FINISHED_DOT");
 
-            if (!Running)
-                return TranslationServer.Translate("NOT_RUNNING_DOT");
+            if (!started)
+                return TranslationServer.Translate("NOT_STARTED_DOT");
 
             int total = totalSteps;
 
@@ -132,8 +135,9 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                // {0:F1}% done. {1:n0}/{2:n0} steps.
-                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total);
+                // {0:F1}% done. {1:n0}/{2:n0} steps. [Paused.]
+                return TranslationServer.Translate("AUTO-EVO_STEPS_DONE").FormatSafe(percentage, CompleteSteps, total)
+                    + (Running ? string.Empty : " " + TranslationServer.Translate("OPERATION_PAUSED_DOT"));
             }
 
             return TranslationServer.Translate("STARTING");
@@ -174,6 +178,46 @@ public class AutoEvoRun
         started = true;
     }
 
+    public void OneStep()
+    {
+        if (Running)
+            return;
+
+        started = true;
+
+        var timer = new Stopwatch();
+        timer.Start();
+
+        Running = true;
+
+        try
+        {
+            if (Step())
+                Finished = true;
+        }
+        catch (Exception e)
+        {
+            Aborted = true;
+            GD.PrintErr("Auto-evo failed with an exception: ", e);
+        }
+
+        Running = false;
+
+        RunDuration += timer.Elapsed;
+    }
+
+    public void Continue()
+    {
+        if (Running)
+            return;
+
+        Running = true;
+
+        var task = new Task(Run);
+
+        TaskExecutor.Instance.AddTask(task);
+    }
+
     public void Abort()
     {
         Aborted = true;
@@ -192,65 +236,28 @@ public class AutoEvoRun
         return Finished;
     }
 
-    public void ApplyResults()
+    /// <summary>
+    ///   Applies things added by addExternalPopulationEffect and auto-evo results
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This has to be called after this run is finished.
+    ///     <see cref="CalculateFinalExternalEffectSizes"/> must be called first,
+    ///     that should be called even before generating the result summaries to make sure they are accurate.
+    ///   </para>
+    /// </remarks>
+    public void ApplyAllResultsAndEffects(bool playerCantGoExtinct)
     {
         if (!Finished || Running)
         {
             throw new InvalidOperationException("Can't apply run results before it is done");
         }
 
-        results.ApplyResults(Parameters.World, false);
-    }
-
-    /// <summary>
-    ///   Applies things added by addExternalPopulationEffect
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This has to be called after this run is finished. This also applies the results so ApplyResults shouldn't be
-    ///     called when using external effects. <see cref="CalculateFinalExternalEffectSizes"/> must be called first,
-    ///     that should be called even before generating the result summaries to make sure they are accurate.
-    ///   </para>
-    /// </remarks>
-    public void ApplyExternalEffects()
-    {
-        if (ExternalEffects.Count > 0)
-        {
-            foreach (var entry in ExternalEffects)
-            {
-                try
-                {
-                    // Make sure CalculateFinalExternalEffectSizes has been called
-                    // ReSharper disable once CompareOfFloatsByEqualityOperator
-                    if (entry.Coefficient != 1)
-                    {
-                        throw new Exception(
-                            "CalculateFinalExternalEffectSizes has not been called to finalize external effects");
-                    }
-
-                    // It's possible for external effects to be added for extinct species (either completely extinct
-                    // or extinct in the patch it applies to)
-                    // We ignore this for player to give the player's reproduction bonus the ability to rescue them
-                    if (!results.SpeciesHasResults(entry.Species) && !entry.Species.PlayerSpecies)
-                    {
-                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
-                            " had an external effect, ignoring the effect");
-                        continue;
-                    }
-
-                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
-
-                    results.AddPopulationResultForSpecies(
-                        entry.Species, entry.Patch, currentPopulation + entry.Constant);
-                }
-                catch (Exception e)
-                {
-                    GD.PrintErr("External effect can't be applied: ", e);
-                }
-            }
-        }
+        ApplyExternalEffects();
 
         results.ApplyResults(Parameters.World, false);
+
+        UpdateMap(playerCantGoExtinct);
     }
 
     /// <summary>
@@ -370,7 +377,7 @@ public class AutoEvoRun
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
-        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
+        var autoEvoConfiguration = configuration;
 
         foreach (var entry in map.Patches)
         {
@@ -399,14 +406,14 @@ public class AutoEvoRun
                     steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
                         worldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowNoMutation,
+                        autoEvoConfiguration.AllowSpeciesToNotMutate,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
                     steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
                         random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowNoMigration));
+                        autoEvoConfiguration.AllowSpeciesToNotMigrate));
                 }
             }
 
@@ -530,7 +537,7 @@ public class AutoEvoRun
         Running = false;
         Finished = true;
 
-        RunDuration = timer.Elapsed;
+        RunDuration += timer.Elapsed;
     }
 
     /// <summary>
@@ -625,5 +632,66 @@ public class AutoEvoRun
 
         // Doing the steps counting this way is slightly faster than an increment after each step
         Interlocked.Add(ref completeSteps, steps);
+    }
+
+    private void UpdateMap(bool playerCantGoExtinct)
+    {
+        Parameters.World.Map.UpdateGlobalTimePeriod(Parameters.World.TotalPassedTime);
+
+        // Update populations before recording conditions - should not affect per-patch population
+        Parameters.World.Map.UpdateGlobalPopulations();
+
+        // Needs to be before the remove extinct species call, so that extinct species could still be stored
+        // for reference in patch history (e.g. displaying it as zero on the species population chart)
+        foreach (var entry in Parameters.World.Map.Patches)
+        {
+            entry.Value.RecordSnapshot(true);
+        }
+
+        var extinct = Parameters.World.Map.RemoveExtinctSpecies(playerCantGoExtinct);
+
+        foreach (var species in extinct)
+        {
+            Parameters.World.RemoveSpecies(species);
+        }
+    }
+
+    private void ApplyExternalEffects()
+    {
+        if (ExternalEffects.Count > 0)
+        {
+            foreach (var entry in ExternalEffects)
+            {
+                try
+                {
+                    // Make sure CalculateFinalExternalEffectSizes has been called
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (entry.Coefficient != 1)
+                    {
+                        throw new Exception(
+                            "CalculateFinalExternalEffectSizes has not been called to finalize external effects");
+                    }
+
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the patch it applies to)
+                    // We ignore this for player to give the player's reproduction bonus the ability to rescue them
+                    if (!results.SpeciesHasResults(entry.Species) && !entry.Species.PlayerSpecies)
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
+
+                    results.AddPopulationResultForSpecies(
+                        entry.Species, entry.Patch, currentPopulation + entry.Constant);
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("External effect can't be applied: ", e);
+                }
+            }
+        }
     }
 }
