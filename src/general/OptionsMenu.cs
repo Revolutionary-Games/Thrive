@@ -665,14 +665,20 @@ public class OptionsMenu : ControlWithInput
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
         {
             // Gles2 is being used
-            displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
+            displayDriverName.Text = TranslationServer.Translate("CURRENT_DISPLAY_DRIVER_NAME")
                 .FormatSafe(TranslationServer.Translate("GLES2"));
+        }
+        else if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles3)
+        {
+            // Gles3 is being used
+            displayDriverName.Text = TranslationServer.Translate("CURRENT_DISPLAY_DRIVER_NAME")
+                .FormatSafe(TranslationServer.Translate("GLES3"));
         }
         else
         {
-            // Gles3 is being used
-            displayDriverName.Text = TranslationServer.Translate("AUTO_DISPLAY_DRIVER_NAME")
-                .FormatSafe(TranslationServer.Translate("GLES3"));
+            // An unknown display driver is being used
+            displayDriverName.Text = TranslationServer.Translate("CURRENT_DISPLAY_DRIVER_NAME")
+                .FormatSafe(TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER"));
         }
 
         float videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed);
@@ -683,7 +689,7 @@ public class OptionsMenu : ControlWithInput
         // Round to 2 places after the floating point
         decimal decimalVideoMemory = Math.Round((decimal)videoMemoryInMebibytes, 2);
 
-        videoMemory.Text = TranslationServer.Translate("AUTO_VIDEO_MEMORY")
+        videoMemory.Text = TranslationServer.Translate("VIDEO_MEMORY_MIB")
             .FormatSafe(decimalVideoMemory);
     }
 

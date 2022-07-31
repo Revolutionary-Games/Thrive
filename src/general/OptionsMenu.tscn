@@ -438,16 +438,16 @@ text = "DISPLAY_DRIVER_NAME"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
 margin_left = 227.0
-margin_right = 367.0
+margin_right = 329.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="DisplayDriverName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer8"]
-margin_left = 371.0
+margin_left = 333.0
 margin_right = 657.0
 margin_bottom = 25.0
-text = "AUTO_DISPLAY_DRIVER_NAME"
+text = "CURRENT_DISPLAY_DRIVER_NAME"
 align = 2
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
@@ -462,16 +462,16 @@ text = "VIDEO_MEMORY"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9"]
 margin_left = 153.0
-margin_right = 441.0
+margin_right = 461.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="VideoMemory" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer9"]
-margin_left = 445.0
+margin_left = 465.0
 margin_right = 657.0
 margin_bottom = 25.0
-text = "AUTO_VIDEO_MEMORY"
+text = "VIDEO_MEMORY_MIB"
 align = 2
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
