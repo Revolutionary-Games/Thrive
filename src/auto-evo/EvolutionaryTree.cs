@@ -16,14 +16,14 @@ public class EvolutionaryTree : Control
     private const float GENERATION_SEPARATION = 100.0f;
     private const float SPECIES_NAME_OFFSET = 10.0f;
 
-    private readonly List<EvolutionaryTreeNode> nodes = new();
+    private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, EvolutionaryTreeNode> latestNodes = new();
-
     private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
+
+    private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
 
     private readonly ButtonGroup nodesGroup = new();
 
@@ -54,10 +54,11 @@ public class EvolutionaryTree : Control
     public void Init(Species luca)
     {
         SetupTreeNode(luca, null, 0);
-        treeNodeSize = nodes[0].RectSize;
+        treeNodeSize = speciesNodes[luca.ID][0].RectSize;
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);
+        generationTimes.Add(0, 0);
     }
 
     public override void _Draw()
@@ -66,16 +67,16 @@ public class EvolutionaryTree : Control
 
         // Draw timeline
         DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.Cyan,
-            TIMELINE_LINE_THICKNESS, true);
+            TIMELINE_LINE_THICKNESS);
 
         for (int i = 0; i <= latestGeneration; i++)
         {
             DrawLine(new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
                 new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2,
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
-                Colors.Cyan, TIMELINE_LINE_THICKNESS, true);
+                Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0}", i * 100) + " "
+            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmallItalic.GetStringSize(localizedText);
             DrawString(latoSmallRegular, new Vector2(
@@ -84,8 +85,8 @@ public class EvolutionaryTree : Control
                 localizedText, Colors.Cyan);
         }
 
-        // Draw node connection lines
-        foreach (var node in nodes)
+        // Draw new species connection lines
+        foreach (var node in speciesNodes.Values.Select(l => l.First()))
         {
             if (node.ParentNode == null)
                 continue;
@@ -93,27 +94,43 @@ public class EvolutionaryTree : Control
             DrawLine(node.ParentNode.Center, node.Center);
         }
 
-        // Draw lines that indicate the species goes on till current generation, and species name
-        foreach (var latestNode in latestNodes.Values.Where(n => !n.LastGeneration))
+        float treeRightPosition = LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + treeNodeSize.x;
+
+        // Draw horizontal lines
+        foreach (var nodeList in speciesNodes.Values)
         {
-            var lineStart = latestNode.Center;
-            var lineEnd = new Vector2(LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + latestNode.RectSize.x,
-                lineStart.y);
+            var lineStart = nodeList.First().Center;
+
+            var lastNode = nodeList.Last();
+
+            // If species extinct, line ends at the last node; else it ends at the right end of the tree
+            var lineEnd = lastNode.LastGeneration ?
+                lastNode.Center :
+                new Vector2(treeRightPosition, lineStart.y);
+
             DrawLine(lineStart, lineEnd);
-            DrawString(latoSmallItalic, lineEnd + new Vector2(SPECIES_NAME_OFFSET, 0),
-                speciesNames[latestNode.SpeciesID]);
         }
 
-        // Draw extinct species name
-        foreach (var extinctedSpecies in latestNodes.Values.Where(n => n.LastGeneration))
+        // Draw species name
+        foreach (var pair in speciesNodes)
         {
-            DrawString(latoSmallItalic, new Vector2(
-                extinctedSpecies.RectPosition.x + extinctedSpecies.RectSize.x + SPECIES_NAME_OFFSET,
-                extinctedSpecies.Center.y), speciesNames[extinctedSpecies.SpeciesID], Colors.DarkRed);
+            var lastNode = pair.Value.Last();
+            if (lastNode.LastGeneration)
+            {
+                DrawString(latoSmallItalic, new Vector2(
+                    lastNode.RectPosition.x + lastNode.RectSize.x + SPECIES_NAME_OFFSET,
+                    lastNode.Center.y), speciesNames[pair.Key], Colors.DarkRed);
+            }
+            else
+            {
+                DrawString(latoSmallItalic,
+                    new Vector2(treeRightPosition + SPECIES_NAME_OFFSET, pair.Value.First().Center.y),
+                    speciesNames[pair.Key]);
+            }
         }
     }
 
-    public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation)
+    public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation, double time)
     {
         foreach (var speciesResultPair in results.OrderBy(r => r.Value.Species.ID))
         {
@@ -125,13 +142,13 @@ public class EvolutionaryTree : Control
                 if (result.SplitFrom == null)
                 {
                     SetupTreeNode((Species)species.Clone(),
-                        nodes.FindLast(n => n.SpeciesID == species.ID), generation - 1, true);
+                        speciesNodes[species.ID].Last(), generation - 1, true);
                 }
             }
             else if (result.SplitFrom != null)
             {
                 SetupTreeNode((Species)species.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == result.SplitFrom.ID), generation);
+                    speciesNodes[result.SplitFrom.ID].Last(), generation);
 
                 speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
                 speciesNames.Add(species.ID, species.FormattedName);
@@ -139,7 +156,7 @@ public class EvolutionaryTree : Control
             else if (result.MutatedProperties != null)
             {
                 SetupTreeNode((Species)result.MutatedProperties.Clone(),
-                    nodes.FindLast(n => n.SpeciesID == species.ID), generation);
+                    speciesNodes[species.ID].Last(), generation);
             }
 
             if (species.ID > maxSpeciesId)
@@ -147,6 +164,7 @@ public class EvolutionaryTree : Control
         }
 
         latestGeneration = generation;
+        generationTimes[generation] = time;
 
         BuildTree();
         AdjustSize();
@@ -171,15 +189,17 @@ public class EvolutionaryTree : Control
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
-        nodes.Add(node);
+        if (!speciesNodes.ContainsKey(species.ID))
+            speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
+
+        speciesNodes[species.ID].Add(node);
         AddChild(node);
-        latestNodes[species.ID] = node;
     }
 
     private void BuildTree()
     {
         uint index = 0;
-        BuildTree(nodes[0].SpeciesID, ref index);
+        BuildTree(speciesNodes.First().Key, ref index);
 
         Update();
     }
@@ -187,7 +207,7 @@ public class EvolutionaryTree : Control
     private void BuildTree(uint id, ref uint index)
     {
         // Adjust nodes of this species' vertical position based on index
-        foreach (var treeNode in nodes.Where(n => n.SpeciesID == id))
+        foreach (var treeNode in speciesNodes[id])
         {
             var position = treeNode.RectPosition;
             position.y = TIMELINE_HEIGHT + index * SPECIES_SEPARATION;
@@ -210,14 +230,14 @@ public class EvolutionaryTree : Control
     {
         if (to.y - from.y < MathUtils.EPSILON)
         {
-            DrawLine(from, to, Colors.DarkCyan, 4.0f, true);
+            DrawLine(from, to, Colors.DarkCyan, 4.0f);
         }
         else
         {
             var mid = to - new Vector2(GENERATION_SEPARATION / 2.0f, 0);
-            DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f, true);
-            DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f, true);
-            DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f, true);
+            DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f);
+            DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f);
+            DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f);
         }
     }
 
