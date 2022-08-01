@@ -23,7 +23,7 @@ public class EvolutionaryTree : Control
     private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
 
-    private readonly System.Collections.Generic.Dictionary<int, double> generationTime = new();
+    private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
 
     private readonly ButtonGroup nodesGroup = new();
 
@@ -58,7 +58,7 @@ public class EvolutionaryTree : Control
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);
-        generationTime.Add(0, 0);
+        generationTimes.Add(0, 0);
     }
 
     public override void _Draw()
@@ -76,7 +76,7 @@ public class EvolutionaryTree : Control
                     TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime[i]) + " "
+            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
             var size = latoSmallItalic.GetStringSize(localizedText);
             DrawString(latoSmallRegular, new Vector2(
@@ -164,7 +164,7 @@ public class EvolutionaryTree : Control
         }
 
         latestGeneration = generation;
-        generationTime[generation] = time;
+        generationTimes[generation] = time;
 
         BuildTree();
         AdjustSize();
