@@ -430,7 +430,13 @@ public class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
         }
 
-        return probablePaths.OrderBy(CalculatePathPriority).First().Path;
+        // Choose a best path
+        return probablePaths.Select(p => (p.Path, CalculatePathPriorityTuple(p)))
+            .OrderBy(p => p.Item2.RegionIntersectionCount)
+            .ThenBy(p => p.Item2.PathIntersectionCount)
+            .ThenBy(p => p.Item2.StartPointOverlapCount)
+            .ThenByDescending(p => p.Item2.Priority)
+            .First().Path;
     }
 
     /// <summary>
@@ -557,16 +563,8 @@ public class PatchMapDrawer : Control
     /// <summary>
     ///   Calculate priority of a path for sorting.
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Priority should be within (-10, 10)
-    ///   </para>
-    /// </remarks>
-    /// <returns>
-    ///   Calculated priority: 8bit region intersection; 8bit path intersection;
-    ///   8bit start point intersection; 8bit priority
-    /// </returns>
-    private uint CalculatePathPriority((Vector2[] Path, int Priority) pathPriorityTuple)
+    private (int RegionIntersectionCount, int PathIntersectionCount, int StartPointOverlapCount, int Priority)
+        CalculatePathPriorityTuple((Vector2[] Path, int Priority) pathPriorityTuple)
     {
         var (path, priority) = pathPriorityTuple;
 
@@ -654,8 +652,7 @@ public class PatchMapDrawer : Control
         }
 
         // The highest priority has the lowest value.
-        return (uint)((regionIntersectionCount << 24) + (pathIntersectionCount << 16) +
-            (startPointOverlapCount << 8) - priority);
+        return (regionIntersectionCount, pathIntersectionCount, startPointOverlapCount, priority);
     }
 
     private void DrawRegionLinks()
