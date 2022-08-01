@@ -430,7 +430,7 @@ public class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
         }
 
-        return probablePaths.OrderBy(IntersectionCountWithPriority).First().Path;
+        return probablePaths.OrderBy(CalculatePathPriority).First().Path;
     }
 
     /// <summary>
@@ -555,33 +555,38 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   Get intersection count and priority for sorting.
+    ///   Calculate priority of a path for sorting.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Note that priority should be within (-10, 10), and the return value is relative.
+    ///     Priority should be within (-10, 10)
     ///   </para>
     /// </remarks>
-    private int IntersectionCountWithPriority((Vector2[] Path, int Priority) pathPriorityTuple)
+    /// <returns>
+    ///   Calculated priority: 8bit region intersection; 8bit path intersection;
+    ///   8bit start point intersection; 8bit priority
+    /// </returns>
+    private uint CalculatePathPriority((Vector2[] Path, int Priority) pathPriorityTuple)
     {
         var (path, priority) = pathPriorityTuple;
 
         // Intersections with regions are considered worse than that with lines.
         // So an intersect with region adds count by 10.
-        int count = 0;
+        int regionIntersectionCount = 0;
+        int pathIntersectionCount = 0;
+        int startPointOverlapCount = 0;
 
         for (int i = 1; i < path.Length; ++i)
         {
             var startPoint = path[i - 1];
             var endPoint = path[i];
 
-            // Calculate the number of intersecting regions
             foreach (var region in map.Regions.Values)
             {
                 var regionRect = new Rect2(region.ScreenCoordinates, region.Size);
                 if (SegmentRectangleIntersects(startPoint, endPoint, regionRect))
                 {
-                    count += 10;
+                    ++regionIntersectionCount;
                 }
             }
         }
@@ -597,53 +602,60 @@ public class PatchMapDrawer : Control
                 for (int j = 1; j < target.Length; ++j)
                 {
                     if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
-                        ++count;
+                        ++pathIntersectionCount;
                 }
             }
 
             // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
             if (path[0] == target[0])
             {
-                --count;
+                --pathIntersectionCount;
 
                 // And if they goes the same direction, the second segment intersects but it actually isn't either.
                 if (Math.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < MathUtils.EPSILON)
-                    --count;
+                {
+                    --pathIntersectionCount;
+                    ++startPointOverlapCount;
+                }
             }
             else if (path[0] == target[target.Length - 1])
             {
-                --count;
+                --pathIntersectionCount;
 
                 if (Math.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
                     < MathUtils.EPSILON)
                 {
-                    --count;
+                    --pathIntersectionCount;
+                    ++startPointOverlapCount;
                 }
             }
             else if (path[path.Length - 1] == target[0])
             {
-                --count;
+                --pathIntersectionCount;
 
                 if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
                     < MathUtils.EPSILON)
                 {
-                    --count;
+                    --pathIntersectionCount;
+                    ++startPointOverlapCount;
                 }
             }
             else if (path[path.Length - 1] == target[target.Length - 1])
             {
-                --count;
+                --pathIntersectionCount;
 
                 if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
                         target[target.Length - 1])) < MathUtils.EPSILON)
                 {
-                    --count;
+                    --pathIntersectionCount;
+                    ++startPointOverlapCount;
                 }
             }
         }
 
         // The highest priority has the lowest value.
-        return 100 * count - priority;
+        return (uint)((regionIntersectionCount << 24) + (pathIntersectionCount << 16) +
+            (startPointOverlapCount << 8) - priority);
     }
 
     private void DrawRegionLinks()
