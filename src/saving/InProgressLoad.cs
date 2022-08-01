@@ -79,19 +79,21 @@ public class InProgressLoad
                     MainGameState.Invalid,
                     TranslationServer.Translate("READING_SAVE_DATA"));
 
-                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, Step, false, false);
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
                 JSONDebug.FlushJSONTracesOut();
 
-                break;
+                // Continue after transition finishes
+                return;
             case State.ReadingData:
             {
                 // Start suppressing loaded node deletion
                 TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
 
-                // TODO: do this in a background thread if possible
+                // TODO: do this in a background thread once possible
+                // https://github.com/Revolutionary-Games/Thrive/issues/1406
                 try
                 {
                     // Invalid is given as the target state here, because it's unknown yet.
