@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-31 20:09+0300\n"
+"POT-Creation-Date: 2022-08-01 15:00+0300\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1158,7 +1158,7 @@ msgstr "Список видів"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1339 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -2278,51 +2278,40 @@ msgstr "Базовий"
 msgid "CONFIRM_NORMAL"
 msgstr "Підтвердити"
 
-#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
 msgid "AUTO_RESOLUTION"
 msgstr "Автоматично ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:662 ../src/general/OptionsMenu.tscn:428
-#, fuzzy
-msgid "AUTO_GPU_NAME"
-msgstr "Звичайне ім'я користувача:"
-
-#: ../src/general/OptionsMenu.cs:668 ../src/general/OptionsMenu.cs:674
-#: ../src/general/OptionsMenu.cs:680 ../src/general/OptionsMenu.tscn:453
-#, fuzzy
-msgid "CURRENT_USED_RENDERER_NAME"
-msgstr "Панель назв кнопок вибору"
-
-#: ../src/general/OptionsMenu.cs:669
+#: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:675
+#: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:681
+#: ../src/general/OptionsMenu.cs:676
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Панель назв кнопок вибору"
 
-#: ../src/general/OptionsMenu.cs:690 ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1043
+#: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення за замовчуванням"
 
-#: ../src/general/OptionsMenu.cs:1075
+#: ../src/general/OptionsMenu.cs:1070
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця ситуацію!!!"
 
-#: ../src/general/OptionsMenu.cs:1079
+#: ../src/general/OptionsMenu.cs:1074
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Прогрес перекладу на цю мову зараз солов'їну ({0}% готово)"
 
-#: ../src/general/OptionsMenu.cs:1083
+#: ../src/general/OptionsMenu.cs:1078
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ця мова на {0}% готова"
 
@@ -2342,358 +2331,358 @@ msgstr "Продуктивність"
 msgid "INPUTS"
 msgstr "Керування"
 
-#: ../src/general/OptionsMenu.tscn:219
+#: ../src/general/OptionsMenu.tscn:235
 msgid "VSYNC"
 msgstr "Вертикальна синхронізація(VSync)"
 
-#: ../src/general/OptionsMenu.tscn:226
+#: ../src/general/OptionsMenu.tscn:242
 msgid "FULLSCREEN"
 msgstr "Повноекрання"
 
-#: ../src/general/OptionsMenu.tscn:248
+#: ../src/general/OptionsMenu.tscn:264
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Згладжування кількох зразків:"
 
-#: ../src/general/OptionsMenu.tscn:255
+#: ../src/general/OptionsMenu.tscn:271
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(вищі значення погіршать продуктивність)"
 
-#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:286 ../src/general/OptionsMenu.tscn:287
 msgid "DISABLED"
 msgstr "Вимкнено"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:287
 msgid "TWO_TIMES"
 msgstr "2х"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FOUR_TIMES"
 msgstr "4х"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:287
 msgid "EIGHT_TIMES"
 msgstr "8х"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:287
 msgid "SIXTEEN_TIMES"
 msgstr "16х"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:301
 msgid "RESOLUTION"
 msgstr "Резолюції:"
 
-#: ../src/general/OptionsMenu.tscn:309
+#: ../src/general/OptionsMenu.tscn:325
 msgid "MAX_FPS"
 msgstr "МАКСимальні кількість FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:340
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Необмежено"
 
-#: ../src/general/OptionsMenu.tscn:340
+#: ../src/general/OptionsMenu.tscn:356
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Кольорокорекція:"
 
-#: ../src/general/OptionsMenu.tscn:354 ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:370 ../src/general/OptionsMenu.tscn:371
 msgid "NONE"
 msgstr "Нічого"
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CORRECTION_PROTANOPE"
 msgstr "Протаноп (червоно-зелений)"
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританоп (блакитно-жовтий)"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберація:"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:413
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:423
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:450
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:474
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:488
+#: ../src/general/OptionsMenu.tscn:498
 msgid "GUI"
 msgstr "ГІК"
 
-#: ../src/general/OptionsMenu.tscn:503
+#: ../src/general/OptionsMenu.tscn:513
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Панель здібностей дисплею"
 
-#: ../src/general/OptionsMenu.tscn:511
+#: ../src/general/OptionsMenu.tscn:521
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Увімкнути світлові ефекти ГІК"
 
-#: ../src/general/OptionsMenu.tscn:518
+#: ../src/general/OptionsMenu.tscn:528
 msgid "DISPLAY_PART_NAMES"
 msgstr "Панель назв кнопок вибору"
 
-#: ../src/general/OptionsMenu.tscn:544
+#: ../src/general/OptionsMenu.tscn:554
 msgid "MASTER_VOLUME"
 msgstr "Загальна гучність"
 
-#: ../src/general/OptionsMenu.tscn:570 ../src/general/OptionsMenu.tscn:610
-#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:674
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
+#: ../src/general/OptionsMenu.tscn:716
 msgid "MUTE"
 msgstr "Вимкнути"
 
-#: ../src/general/OptionsMenu.tscn:584
+#: ../src/general/OptionsMenu.tscn:594
 msgid "MUSIC_VOLUME"
 msgstr "Гучність музики"
 
-#: ../src/general/OptionsMenu.tscn:616
+#: ../src/general/OptionsMenu.tscn:626
 msgid "AMBIANCE_VOLUME"
 msgstr "Гучність оточення"
 
-#: ../src/general/OptionsMenu.tscn:648
+#: ../src/general/OptionsMenu.tscn:658
 msgid "SFX_VOLUME"
 msgstr "Гучність SFX"
 
-#: ../src/general/OptionsMenu.tscn:680
+#: ../src/general/OptionsMenu.tscn:690
 msgid "GUI_VOLUME"
 msgstr "Гучність ГІК"
 
-#: ../src/general/OptionsMenu.tscn:724
+#: ../src/general/OptionsMenu.tscn:734
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення аудіо:"
 
-#: ../src/general/OptionsMenu.tscn:752
+#: ../src/general/OptionsMenu.tscn:762
 msgid "LANGUAGE"
 msgstr "Мова:"
 
-#: ../src/general/OptionsMenu.tscn:770 ../src/general/OptionsMenu.tscn:1350
+#: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
 msgid "RESET"
 msgstr "Скинути"
 
-#: ../src/general/OptionsMenu.tscn:788
+#: ../src/general/OptionsMenu.tscn:798
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Допомоти з перекладом гри"
 
-#: ../src/general/OptionsMenu.tscn:814
+#: ../src/general/OptionsMenu.tscn:824
 msgid "COMPOUND_CLOUDS"
 msgstr "Хмари сполук"
 
-#: ../src/general/OptionsMenu.tscn:829
+#: ../src/general/OptionsMenu.tscn:839
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мінімальний інтервал симуляції хмари:"
 
-#: ../src/general/OptionsMenu.tscn:836 ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(вищі значення покращать продуктивність)"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:881
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Дільник роздільної здатності хмари:"
 
-#: ../src/general/OptionsMenu.tscn:912
+#: ../src/general/OptionsMenu.tscn:922
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускати авто-ево під час гри"
 
-#: ../src/general/OptionsMenu.tscn:932
+#: ../src/general/OptionsMenu.tscn:942
 msgid "DETECTED_CPU_COUNT"
 msgstr "Виявлено ядер ЦП:"
 
-#: ../src/general/OptionsMenu.tscn:949
+#: ../src/general/OptionsMenu.tscn:959
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Поточні обчислення:"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:973
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Вважається ЦП ввімкнув гіперчитання"
 
-#: ../src/general/OptionsMenu.tscn:971
+#: ../src/general/OptionsMenu.tscn:981
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Встановити кількість фонових потоків вручну"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:991
 msgid "THREADS"
 msgstr "Обрахунки:"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальне число сутностей:"
 
-#: ../src/general/OptionsMenu.tscn:1041 ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_TINY"
 msgstr "Крихітний"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_VERY_SMALL"
 msgstr "Дуже малий"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_SMALL"
 msgstr "Малий"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_NORMAL"
 msgstr "Нормальний"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_LARGE"
 msgstr "Великий"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_VERY_LARGE"
 msgstr "Дуже великий"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_HUGE"
 msgstr "Велетенський"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_EXTREME"
 msgstr "Екстримальний"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "RESET_INPUTS"
 msgstr "Скинути зміни"
 
-#: ../src/general/OptionsMenu.tscn:1143
+#: ../src/general/OptionsMenu.tscn:1154
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Програвати інтро"
 
-#: ../src/general/OptionsMenu.tscn:1151
+#: ../src/general/OptionsMenu.tscn:1162
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "програвати інтро з мікробом перед новою грою"
 
-#: ../src/general/OptionsMenu.tscn:1159
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автозбереження під час гри"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Кількість можливих автозбереженнь:"
 
-#: ../src/general/OptionsMenu.tscn:1198
+#: ../src/general/OptionsMenu.tscn:1209
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Кількість можливих швидких збережень:"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показати туторіали (в новій грі)"
 
-#: ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:1241
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показати туторіал (в поточній грі)"
 
-#: ../src/general/OptionsMenu.tscn:1236
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Програвати попередження про незбережену гру"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Кнопки ввімкнення читів"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "CUSTOM_USERNAME"
 msgstr "Звичайне ім'я користувача:"
 
-#: ../src/general/OptionsMenu.tscn:1293
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Відкрити папку скріншотів"
 
-#: ../src/general/OptionsMenu.tscn:1301
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Відкрити папку журналів"
 
-#: ../src/general/OptionsMenu.tscn:1311
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим направення JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1325 ../src/general/OptionsMenu.tscn:1326
+#: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматично"
 
-#: ../src/general/OptionsMenu.tscn:1326
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Завжди"
 
-#: ../src/general/OptionsMenu.tscn:1326
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ніколи"
 
-#: ../src/general/OptionsMenu.tscn:1362 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Зберегти"
 
-#: ../src/general/OptionsMenu.tscn:1379
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "За замовчуванням"
 
-#: ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1401
 msgid "RESET_TO_DEFAULTS"
 msgstr "Скинути до замовчування?"
 
-#: ../src/general/OptionsMenu.tscn:1391
+#: ../src/general/OptionsMenu.tscn:1402
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Ви точно хочете скинути УСІ налаштування до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Скинути вхідні дані до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1400
+#: ../src/general/OptionsMenu.tscn:1411
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Ви точно хочете скинути вхідні дані до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1409
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "CLOSE_OPTIONS"
 msgstr "Закрити налаштування?"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Ви маєте незбережені дії які будуть скасовані.\n"
 "Бажаєте продовжити?"
 
-#: ../src/general/OptionsMenu.tscn:1452
+#: ../src/general/OptionsMenu.tscn:1463
 msgid "SAVE_AND_CONTINUE"
 msgstr "Зберегти й продовжити"
 
-#: ../src/general/OptionsMenu.tscn:1462
+#: ../src/general/OptionsMenu.tscn:1473
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Відмінити й продовжити"
 
-#: ../src/general/OptionsMenu.tscn:1479
+#: ../src/general/OptionsMenu.tscn:1490
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Скасувати"
 
-#: ../src/general/OptionsMenu.tscn:1490 ../src/general/OptionsMenu.tscn:1498
+#: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
 msgid "ERROR"
 msgstr "Помилка"
 
-#: ../src/general/OptionsMenu.tscn:1500
+#: ../src/general/OptionsMenu.tscn:1511
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Помилка: Невдалось зберегти нові налаштування конфігурованих файлів."
 
-#: ../src/general/OptionsMenu.tscn:1508
+#: ../src/general/OptionsMenu.tscn:1519
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Не знайдено каталог скріншотів"
 
-#: ../src/general/OptionsMenu.tscn:1510
+#: ../src/general/OptionsMenu.tscn:1521
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Спробуйте зробити декілька скріншотів!"
 
@@ -5478,6 +5467,14 @@ msgstr ""
 "Ваша клітина була поглинена та перетравлена. Прогрес показує вашу панель здоров'я. Ваша клітина помре, коли воно закінчиться або ви досягнете максимальний ліміт часу.\n"
 "\n"
 "Ви можете використовувати кнопку суїциду для пропуску та респавну, але пам'ятайте, що завжди є шанс на втечу!"
+
+#, fuzzy
+#~ msgid "AUTO_GPU_NAME"
+#~ msgstr "Звичайне ім'я користувача:"
+
+#, fuzzy
+#~ msgid "CURRENT_USED_RENDERER_NAME"
+#~ msgstr "Панель назв кнопок вибору"
 
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"

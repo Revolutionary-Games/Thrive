@@ -658,27 +658,22 @@ public class OptionsMenu : ControlWithInput
     /// </summary>
     private void DisplayGpuInfo()
     {
-        var videoAdapterName = VisualServer.GetVideoAdapterName();
-        gpuName.Text = TranslationServer.Translate("AUTO_GPU_NAME")
-            .FormatSafe(videoAdapterName);
+        gpuName.Text = VisualServer.GetVideoAdapterName();
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
         {
             // Gles2 is being used
-            usedRendererName.Text = TranslationServer.Translate("CURRENT_USED_RENDERER_NAME")
-                .FormatSafe(TranslationServer.Translate("GLES2"));
+            usedRendererName.Text = TranslationServer.Translate("GLES2");
         }
         else if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles3)
         {
             // Gles3 is being used
-            usedRendererName.Text = TranslationServer.Translate("CURRENT_USED_RENDERER_NAME")
-                .FormatSafe(TranslationServer.Translate("GLES3"));
+            usedRendererName.Text = TranslationServer.Translate("GLES3");
         }
         else
         {
             // An unknown display driver is being used
-            usedRendererName.Text = TranslationServer.Translate("CURRENT_USED_RENDERER_NAME")
-                .FormatSafe(TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER"));
+            usedRendererName.Text = TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER");
         }
 
         float videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed);
