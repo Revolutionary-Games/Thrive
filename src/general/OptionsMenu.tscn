@@ -435,7 +435,7 @@ margin_right = 647.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "AUTO_GPU_NAME"
+text = "GTX 1080"
 align = 2
 autowrap = true
 __meta__ = {
@@ -454,16 +454,16 @@ text = "USED_RENDERER_NAME"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 margin_left = 234.0
-margin_right = 312.0
+margin_right = 579.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="UsedRendererName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-margin_left = 316.0
+margin_left = 583.0
 margin_right = 647.0
 margin_bottom = 25.0
-text = "CURRENT_USED_RENDERER_NAME"
+text = "GLES3"
 align = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
