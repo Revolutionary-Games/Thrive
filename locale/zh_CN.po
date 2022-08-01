@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-29 13:14+0800\n"
+"POT-Creation-Date: 2022-08-01 15:00+0300\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: 84634E1A607A <ajax-dong@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -972,17 +972,17 @@ msgstr "纤毛"
 msgid "LYSOSOME"
 msgstr "溶酶体"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:488
+#: ../src/auto-evo/AutoEvoExploringTool.cs:536
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr " "
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:673
+#: ../src/auto-evo/AutoEvoExploringTool.cs:707
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0}（x{1}）"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:695
+#: ../src/auto-evo/AutoEvoExploringTool.cs:715
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -991,180 +991,180 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 #, fuzzy
 msgid "VIEWER"
 msgstr "图库浏览器"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "发生变异"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "一部分[u]{0}[/u]种群已经移民到了{1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "在这个地区里灭绝了"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "变异点（MP）"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "画师："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
 #, fuzzy
 msgid "READY"
 msgstr "线程："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr " "
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:472
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:478
 #, fuzzy
 msgid "ABORT"
 msgstr "中止。"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:526
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:533
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "选择一个选项"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:567
 #, fuzzy
 msgid "SPECIES"
 msgstr "物种列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:574
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "选择一个地区以显示详细"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:670
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "由Revolutionary Games Studio制作"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "物种列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1197,11 +1197,11 @@ msgstr "暂停中"
 msgid "STARTING"
 msgstr "启动中"
 
-#: ../src/auto-evo/AutoEvoRun.cs:352
+#: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0}在{2}中的种群数量变化了{1}，原因：{3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:79
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -1526,7 +1526,7 @@ msgstr "实体标签"
 msgid "TRANSPARENCY"
 msgstr "透明度"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
+#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "载入中"
 
@@ -2155,7 +2155,7 @@ msgstr "难度"
 msgid "PLANET"
 msgstr "星球"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "杂项"
 
@@ -2272,381 +2272,411 @@ msgstr "基本"
 msgid "CONFIRM_NORMAL"
 msgstr "确认"
 
-#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
 msgid "AUTO_RESOLUTION"
 msgstr "自动（{0}x{1}）"
 
-#: ../src/general/OptionsMenu.cs:988
+#: ../src/general/OptionsMenu.cs:666
+msgid "GLES2"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:671
+msgid "GLES3"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:676
+#, fuzzy
+msgid "UNKNOWN_DISPLAY_DRIVER"
+msgstr "显示细胞器名称"
+
+#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
+msgid "VIDEO_MEMORY_MIB"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
-#: ../src/general/OptionsMenu.cs:1020
+#: ../src/general/OptionsMenu.cs:1070
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
-#: ../src/general/OptionsMenu.cs:1024
+#: ../src/general/OptionsMenu.cs:1074
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此翻译仍在开发中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:1028
+#: ../src/general/OptionsMenu.cs:1078
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此翻译已完成 {0}%"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:143
 msgid "GRAPHICS"
 msgstr "图像"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:154
 msgid "SOUND"
 msgstr "声音"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:165
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:176
 msgid "INPUTS"
 msgstr "输入"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:235
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/OptionsMenu.tscn:223
+#: ../src/general/OptionsMenu.tscn:242
 msgid "FULLSCREEN"
 msgstr "全屏"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:264
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重采样抗锯齿："
 
-#: ../src/general/OptionsMenu.tscn:252
+#: ../src/general/OptionsMenu.tscn:271
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（设置的太高会影响性能）"
 
-#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:286 ../src/general/OptionsMenu.tscn:287
 msgid "DISABLED"
 msgstr "已禁用"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:301
 msgid "RESOLUTION"
 msgstr "分辨率："
 
-#: ../src/general/OptionsMenu.tscn:306
+#: ../src/general/OptionsMenu.tscn:325
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:340
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "不受限"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:356
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:370 ../src/general/OptionsMenu.tscn:371
 msgid "NONE"
 msgstr "无"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CORRECTION_PROTANOPE"
 msgstr "红绿色盲"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
-#: ../src/general/OptionsMenu.tscn:368
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/general/OptionsMenu.tscn:394
+#: ../src/general/OptionsMenu.tscn:413
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:423
+#, fuzzy
+msgid "GPU_NAME"
+msgstr "{0}{1}"
+
+#: ../src/general/OptionsMenu.tscn:450
+msgid "USED_RENDERER_NAME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:474
+msgid "VIDEO_MEMORY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:498
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/general/OptionsMenu.tscn:425
+#: ../src/general/OptionsMenu.tscn:513
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "显示能力栏"
 
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:521
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:528
 msgid "DISPLAY_PART_NAMES"
 msgstr "显示细胞器名称"
 
-#: ../src/general/OptionsMenu.tscn:466
+#: ../src/general/OptionsMenu.tscn:554
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#: ../src/general/OptionsMenu.tscn:492 ../src/general/OptionsMenu.tscn:532
-#: ../src/general/OptionsMenu.tscn:564 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
+#: ../src/general/OptionsMenu.tscn:716
 msgid "MUTE"
 msgstr "静音"
 
-#: ../src/general/OptionsMenu.tscn:506
+#: ../src/general/OptionsMenu.tscn:594
 msgid "MUSIC_VOLUME"
 msgstr "音乐音量"
 
-#: ../src/general/OptionsMenu.tscn:538
+#: ../src/general/OptionsMenu.tscn:626
 msgid "AMBIANCE_VOLUME"
 msgstr "环境声效"
 
-#: ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:658
 msgid "SFX_VOLUME"
 msgstr "音效音量"
 
-#: ../src/general/OptionsMenu.tscn:602
+#: ../src/general/OptionsMenu.tscn:690
 msgid "GUI_VOLUME"
 msgstr "GUI音量"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:734
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "音频输出设备："
 
-#: ../src/general/OptionsMenu.tscn:674
+#: ../src/general/OptionsMenu.tscn:762
 msgid "LANGUAGE"
 msgstr "语言："
 
-#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
 msgid "RESET"
 msgstr "重置"
 
-#: ../src/general/OptionsMenu.tscn:710
+#: ../src/general/OptionsMenu.tscn:798
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "帮忙翻译这个游戏"
 
-#: ../src/general/OptionsMenu.tscn:736
+#: ../src/general/OptionsMenu.tscn:824
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:839
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
 
-#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
+#: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的数值有助于提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:793
+#: ../src/general/OptionsMenu.tscn:881
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "云分辨率除数："
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:922
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在游戏中启用auto-evo"
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:942
 msgid "DETECTED_CPU_COUNT"
 msgstr "检测到的CPU数量："
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:959
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "当前线程："
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:973
 msgid "ASSUME_HYPERTHREADING"
 msgstr "假设CPU已启用超线程"
 
-#: ../src/general/OptionsMenu.tscn:893
+#: ../src/general/OptionsMenu.tscn:981
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
 
-#: ../src/general/OptionsMenu.tscn:903
+#: ../src/general/OptionsMenu.tscn:991
 msgid "THREADS"
 msgstr "线程："
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "实体数量限制："
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_TINY"
 msgstr "极少"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_VERY_SMALL"
 msgstr "少"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_SMALL"
 msgstr "较少"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_NORMAL"
 msgstr "一般"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_LARGE"
 msgstr "较多"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_VERY_LARGE"
 msgstr "多"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_HUGE"
 msgstr "很多"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_EXTREME"
 msgstr "极多"
 
-#: ../src/general/OptionsMenu.tscn:1038
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "RESET_INPUTS"
 msgstr "重置输入"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1154
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放游戏开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1073
+#: ../src/general/OptionsMenu.tscn:1162
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在开始新游戏时播放微生物阶段开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1081
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1209
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1241
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1158
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "启用作弊键"
 
-#: ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
-#: ../src/general/OptionsMenu.tscn:1189
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "打开截图存放文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "OPEN_LOGS_FOLDER"
 msgstr "打开日志文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON调试模式："
 
-#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "自动"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "总是"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "从不"
 
-#: ../src/general/OptionsMenu.tscn:1284 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "保存"
 
-#: ../src/general/OptionsMenu.tscn:1301
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1401
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1402
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "将输入重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1411
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "你确定要把输入设置重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
-#: ../src/general/OptionsMenu.tscn:1351
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
 "你想继续吗？"
 
-#: ../src/general/OptionsMenu.tscn:1374
+#: ../src/general/OptionsMenu.tscn:1463
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
-#: ../src/general/OptionsMenu.tscn:1384
+#: ../src/general/OptionsMenu.tscn:1473
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1490
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
 msgid "ERROR"
 msgstr "错误"
 
-#: ../src/general/OptionsMenu.tscn:1422
+#: ../src/general/OptionsMenu.tscn:1511
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
-#: ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1519
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
-#: ../src/general/OptionsMenu.tscn:1432
+#: ../src/general/OptionsMenu.tscn:1521
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
@@ -3079,8 +3109,8 @@ msgstr "Raw"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
 msgid "N_A"
 msgstr "N/A"
 
@@ -3113,12 +3143,12 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按类别过滤项目："
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "幻灯片"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -4014,23 +4044,23 @@ msgstr "不能删除细胞核，因为这是个不可逆的进化。除非是在
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -4896,8 +4926,8 @@ msgstr "使用自动Harmony加载"
 msgid "CREATE"
 msgstr "创建"
 
-#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:100
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
 msgstr "载入游戏"
 
@@ -4905,39 +4935,39 @@ msgstr "载入游戏"
 msgid "READING_SAVE_DATA"
 msgstr "读取存档数据中"
 
-#: ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:104
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
 
-#: ../src/saving/InProgressLoad.cs:111
+#: ../src/saving/InProgressLoad.cs:113
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
 
-#: ../src/saving/InProgressLoad.cs:137
+#: ../src/saving/InProgressLoad.cs:139
 msgid "SAVE_IS_INVALID"
 msgstr "存档无效"
 
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:140
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "存档具有无效的游戏状态场景"
 
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:153
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "处理载入的物体中"
 
-#: ../src/saving/InProgressLoad.cs:166
+#: ../src/saving/InProgressLoad.cs:168
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "处理载入的对象时发生异常"
 
-#: ../src/saving/InProgressLoad.cs:172
+#: ../src/saving/InProgressLoad.cs:174
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
 
-#: ../src/saving/InProgressLoad.cs:199
+#: ../src/saving/InProgressLoad.cs:201
 msgid "ERROR_LOADING"
 msgstr "载入时出错"
 
-#: ../src/saving/InProgressLoad.cs:238
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". 未能释放已加载的资源：{0}"
 
@@ -5450,6 +5480,18 @@ msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+
+#, fuzzy
+#~ msgid "AUTO_GPU_NAME"
+#~ msgstr "自定义用户名："
+
+#, fuzzy
+#~ msgid "CURRENT_USED_RENDERER_NAME"
+#~ msgstr "显示细胞器名称"
+
+#, fuzzy
+#~ msgid "DISPLAY_DRIVER_NAME"
+#~ msgstr "显示细胞器名称"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "未运行。"
