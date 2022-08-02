@@ -77,6 +77,9 @@
                     {
                         // Tutorial is now complete
                         Hide();
+
+                        overallState.MicrobeReproduction.ReportPreviousTutorialComplete();
+
                         return true;
                     }
 

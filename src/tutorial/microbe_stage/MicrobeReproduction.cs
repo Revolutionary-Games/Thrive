@@ -19,22 +19,19 @@
         {
             switch (eventType)
             {
-                case TutorialEventType.MicrobePlayerSpawned:
-                {
-                    if (!Complete && !ProcessWhileHidden)
-                    {
-                        ProcessWhileHidden = true;
-                        Time = 0;
-                    }
-
-                    break;
-                }
-
                 case TutorialEventType.MicrobePlayerReadyToEdit:
-                    Inhibit();
+                    if (ShownCurrently)
+                        Hide();
+
                     break;
                 case TutorialEventType.EnteredMicrobeEditor:
-                    Inhibit();
+                    if (ShownCurrently)
+                        Hide();
+
+                    // Show this next time after the editor in case the player got to the editor early
+                    if (!HasBeenShown)
+                        ReportPreviousTutorialComplete();
+
                     break;
             }
 
@@ -45,6 +42,15 @@
         {
             base.Hide();
             ProcessWhileHidden = false;
+        }
+
+        public void ReportPreviousTutorialComplete()
+        {
+            if (ProcessWhileHidden)
+                return;
+
+            ProcessWhileHidden = true;
+            Time = 0;
         }
 
         protected override void OnProcess(TutorialState overallState, float delta)
