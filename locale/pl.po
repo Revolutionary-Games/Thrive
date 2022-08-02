@@ -103,9 +103,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Aby odblokować edytor i się rozmnożyć musisz zbierać [thrive:compound type="
-"\"ammonia\"][/thrive:compound] (Pomarańczowe Chmury) i [thrive:compound type="
-"\"phosphates\"][/thrive:compound] (Fioletowe Chmury)."
+"Aby odblokować edytor i się rozmnożyć, musisz zbierać [thrive:compound type="
+"\"ammonia\"][/thrive:compound] (pomarańczowe chmury) i [thrive:compound type="
+"\"phosphates\"][/thrive:compound] (fioletowe chmury)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -125,31 +125,31 @@ msgstr ""
 "procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. "
 "Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne "
 "mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z "
-"trawieniem i są dostarczane przez Lizosom, zaleca się ewolucję tej organelli "
-"by uczynić trawienie znacznie wydajniejszym."
+"trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić "
+"trawienie znacznie wydajniejszym."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
 msgstr ""
-"Jednak Lizosom jest wyłącznie dla eukariontów, natomiast prokarionty nie "
-"mają takiej organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla "
-"małych komórek jest to w porządku lecz dla większych, brak lizosomów jest "
-"bardzo niekorzystny."
+"Jednak lizosomy są wyłącznie dla eukariontów, prokarionty nie mają takich "
+"organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych "
+"komórek jest to w porządku, lecz dla większych, brak lizosomów jest bardzo "
+"niekorzystny."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
 msgstr ""
-"W szczególności Celulozowe oraz Chitynowe ściany komórkowe nie mogą być "
-"trawione bez posiadania niezbędnego enzymu który może je najpierw rozbić."
+"W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą być "
+"trawione bez posiadania niezbędnego enzymu który może najpierw je rozbić."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co "
-"oznacza że im większa jest twoja komórka, tym więcej Mitochondriów, "
-"Metabolosomów lub Rusticyjaniny (albo cytozolu, który przeprowadza "
-"Glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type="
+"oznacza że im większa jest twoja komórka, tym więcej mitochondriów, "
+"metabolosomów lub rusticyjaniny (albo cytozolu, który przeprowadza "
+"glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type="
 "\"atp\"][/thrive:compound] stojąc w miejscu."
 
 #: ../simulation_parameters/common/help_texts.json:38
@@ -213,14 +213,14 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki "
-"dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby móc związać "
-"się z inną komórką, niezbędna organella z czynnikami wiążącymi. Po "
-"wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do "
-"komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami "
-"twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i "
-"wejść do edytora (jak na razie). Żeby wejść do edytora, uzbieraj wymagane "
-"zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. "
-"Duże kolonie komórek są drogą do wielokomórkowości (jeszcze nie w grze)."
+"dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby związać się z "
+"inną komórką, twoja komórka potrzebuje czynnika wiążącego. Po wciśnięciu "
+"[thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z "
+"którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego "
+"gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do "
+"edytora . Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię "
+"naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek "
+"są drogą do wielokomórkowości."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -1118,10 +1118,12 @@ msgid "LYSOSOME"
 msgstr "Lizosom"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
+#: ../src/auto-evo/AutoEvoExploringTool.cs:488
 msgid "FINISH_X_GENERATIONS"
 msgstr "Zakończ {0} Pokoleń"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:707
+#: ../src/auto-evo/AutoEvoExploringTool.cs:673
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Gatunek[/b]\n"
@@ -1136,6 +1138,7 @@ msgstr ""
 "  {5}\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:715
+#: ../src/auto-evo/AutoEvoExploringTool.cs:695
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Etap[/b]\n"
@@ -1152,144 +1155,179 @@ msgstr ""
 "  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
 msgid "CONFIG"
 msgstr "Plik Konfiguracji"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 msgid "REPORT"
 msgstr "Raport"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
 msgid "VIEWER"
 msgstr "Przeglądarka"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Pozwól gatunkowi nie mutować"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Pozwól gatunkowi nie migrować"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Maksymalna liczba gatunków w obszarze"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutacje na gatunki"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Obecne Pokolenie:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
 msgid "STATUS_COLON"
 msgstr "Status:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "READY"
 msgstr "Gotowy"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:466
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 msgid "FINISH_ONE_GENERATION"
 msgstr "Zakończ Jedno Pokolenie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:472
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:478
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 msgid "ABORT"
 msgstr "Przerwij"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:526
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 msgid "GENERATIONS"
 msgstr "Pokolenia"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:533
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "SELECT_A_GENERATION"
 msgstr "Wybierz pokolenie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:567
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "SPECIES"
 msgstr "Gatunek"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:574
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 msgid "SELECT_A_SPECIES"
 msgstr "Wybierz gatunek"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:623
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 msgid "AUTO_EVO_RESULTS"
 msgstr "Rezultat Auto-Ewolucji:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:670
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
 msgid "SPECIES_DETAILS"
 msgstr "Detale Gatunku"
 
@@ -1300,16 +1338,20 @@ msgstr "Detale Gatunku"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/general/OptionsMenu.tscn:1261
 msgid "BACK"
 msgstr "Wróć"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:771
 #: ../src/general/PauseMenu.tscn:288
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
 msgid "CONFIRM_EXIT"
 msgstr "Potwierdź Wyjście"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #: ../src/general/PauseMenu.cs:353
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Czy na pewno chcesz wyjść do menu głównego?\n"
@@ -1339,13 +1381,14 @@ msgstr "Spauzowano."
 msgid "STARTING"
 msgstr "Zaczynanie"
 
-#: ../src/auto-evo/AutoEvoRun.cs:359
+#: ../src/auto-evo/AutoEvoRun.cs:359 ../src/auto-evo/AutoEvoRun.cs:352
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populacja {0} zmieniła się o {1} w {2} z powodu: {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:79
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 msgid "MEGA_YEARS"
 msgstr "Milionów Lat"
 
@@ -1680,6 +1723,7 @@ msgid "TRANSPARENCY"
 msgstr "Przejrzystość"
 
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
 msgid "LOADING"
 msgstr "Wczytywanie"
 
@@ -2316,6 +2360,7 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Inne"
 
@@ -2435,6 +2480,7 @@ msgid "CONFIRM_NORMAL"
 msgstr "Potwierdź"
 
 #: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
@@ -2455,109 +2501,111 @@ msgstr "Pokaż nazwy przycisków wyboru części"
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1038 ../src/general/OptionsMenu.cs:988
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Domyślne urządzenie wyjściowe"
 
-#: ../src/general/OptionsMenu.cs:1070
+#: ../src/general/OptionsMenu.cs:1070 ../src/general/OptionsMenu.cs:1020
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, "
 "pomóż to zmienić!"
 
-#: ../src/general/OptionsMenu.cs:1074
+#: ../src/general/OptionsMenu.cs:1074 ../src/general/OptionsMenu.cs:1024
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 
-#: ../src/general/OptionsMenu.cs:1078
+#: ../src/general/OptionsMenu.cs:1078 ../src/general/OptionsMenu.cs:1028
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ten język jest gotów w {0}%"
 
-#: ../src/general/OptionsMenu.tscn:143
+#: ../src/general/OptionsMenu.tscn:143 ../src/general/OptionsMenu.tscn:140
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:154
+#: ../src/general/OptionsMenu.tscn:154 ../src/general/OptionsMenu.tscn:151
 msgid "SOUND"
 msgstr "Dźwięk"
 
-#: ../src/general/OptionsMenu.tscn:165
+#: ../src/general/OptionsMenu.tscn:165 ../src/general/OptionsMenu.tscn:162
 msgid "PERFORMANCE"
 msgstr "Wydajność"
 
-#: ../src/general/OptionsMenu.tscn:176
+#: ../src/general/OptionsMenu.tscn:176 ../src/general/OptionsMenu.tscn:173
 msgid "INPUTS"
 msgstr "Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:235 ../src/general/OptionsMenu.tscn:216
 msgid "VSYNC"
 msgstr "Synchronizacja pionowa"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:242 ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr "Pełny ekran"
 
-#: ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:264 ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Wygładzanie krawędzi:"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:271 ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(wyższe wartością mogą obniżyć wydajność)"
 
 #: ../src/general/OptionsMenu.tscn:286 ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
 msgid "DISABLED"
 msgstr "Wył"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:301
+#: ../src/general/OptionsMenu.tscn:301 ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr "Rozdzielczość:"
 
-#: ../src/general/OptionsMenu.tscn:325
+#: ../src/general/OptionsMenu.tscn:325 ../src/general/OptionsMenu.tscn:306
 msgid "MAX_FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
 
-#: ../src/general/OptionsMenu.tscn:340
+#: ../src/general/OptionsMenu.tscn:340 ../src/general/OptionsMenu.tscn:321
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Nieograniczone"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:356 ../src/general/OptionsMenu.tscn:337
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekta kolorów dla daltonistów:"
 
 #: ../src/general/OptionsMenu.tscn:370 ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
 msgid "NONE"
 msgstr "Brak"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:371 ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (Czerwony-Zielony)"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:371 ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Niebieski-Żółty)"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:368
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberracja chromatyczna:"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:413 ../src/general/OptionsMenu.tscn:394
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Wyświetlaj cząsteczki w tle"
 
@@ -2574,277 +2622,285 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:498
+#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:410
 msgid "GUI"
 msgstr "Interfejs Graficzny"
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Pokaż pasek umiejętności"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:433
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
-#: ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:528 ../src/general/OptionsMenu.tscn:440
 msgid "DISPLAY_PART_NAMES"
 msgstr "Pokaż nazwy przycisków wyboru części"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:554 ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
 msgstr "Główna głośność"
 
 #: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
 #: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
-#: ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:716 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:532 ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:628
 msgid "MUTE"
 msgstr "Wycisz"
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:594 ../src/general/OptionsMenu.tscn:506
 msgid "MUSIC_VOLUME"
 msgstr "Głośność muzyki"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:626 ../src/general/OptionsMenu.tscn:538
 msgid "AMBIANCE_VOLUME"
 msgstr "Głośność otoczenia"
 
-#: ../src/general/OptionsMenu.tscn:658
+#: ../src/general/OptionsMenu.tscn:658 ../src/general/OptionsMenu.tscn:570
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:690 ../src/general/OptionsMenu.tscn:602
 msgid "GUI_VOLUME"
 msgstr "Głośność interfejsu"
 
-#: ../src/general/OptionsMenu.tscn:734
+#: ../src/general/OptionsMenu.tscn:734 ../src/general/OptionsMenu.tscn:646
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Wyjściowe urządzenie audio:"
 
-#: ../src/general/OptionsMenu.tscn:762
+#: ../src/general/OptionsMenu.tscn:762 ../src/general/OptionsMenu.tscn:674
 msgid "LANGUAGE"
 msgstr "Język:"
 
 #: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
+#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:798 ../src/general/OptionsMenu.tscn:710
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomóż W Tłumaczeniu Gry"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:824 ../src/general/OptionsMenu.tscn:736
 msgid "COMPOUND_CLOUDS"
 msgstr "Chmury związków"
 
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:839 ../src/general/OptionsMenu.tscn:751
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
 #: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
+#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:881 ../src/general/OptionsMenu.tscn:793
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik rozdzielczości chmur:"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:922 ../src/general/OptionsMenu.tscn:834
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:942 ../src/general/OptionsMenu.tscn:854
 msgid "DETECTED_CPU_COUNT"
 msgstr "Ilość wykrytych CPU:"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:959 ../src/general/OptionsMenu.tscn:871
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Obecne wątki:"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:973 ../src/general/OptionsMenu.tscn:885
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Załóż, że procesor pozwala na hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:981 ../src/general/OptionsMenu.tscn:893
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:991 ../src/general/OptionsMenu.tscn:903
 msgid "THREADS"
 msgstr "Wątki:"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1036 ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksymalna ilość bytów:"
 
 #: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
 msgstr "Malutki"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_SMALL"
 msgstr "Bardzo mały"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_SMALL"
 msgstr "Mały"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_NORMAL"
 msgstr "Normalny"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_LARGE"
 msgstr "Duży"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_LARGE"
 msgstr "Bardzo Duży"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
 msgstr "Ogromny"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_EXTREME"
 msgstr "Ekstremalny"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1127 ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
 msgstr "Zresetuj Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:1154
+#: ../src/general/OptionsMenu.tscn:1154 ../src/general/OptionsMenu.tscn:1065
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Odtwórz wideo intro"
 
-#: ../src/general/OptionsMenu.tscn:1162
+#: ../src/general/OptionsMenu.tscn:1162 ../src/general/OptionsMenu.tscn:1073
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Odtwórz intro mikroba przy nowej grze"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1081
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1092
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Zachowana ilość autozapisów:"
 
-#: ../src/general/OptionsMenu.tscn:1209
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1120
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Zachowana ilość szybkich zapisów:"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1234 ../src/general/OptionsMenu.tscn:1145
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych rozgrywkach)"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1241 ../src/general/OptionsMenu.tscn:1152
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej rozgrywce)"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1158
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Pokaż ostrzeżenie o niezapisanym postępie"
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1170
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Klawisze oszustw włączone"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1267 ../src/general/OptionsMenu.tscn:1178
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
 
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1189
 msgid "CUSTOM_USERNAME"
 msgstr "Własna nazwa użytkownika:"
 
-#: ../src/general/OptionsMenu.tscn:1304
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1215
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otwórz Folder Zrzutów Ekranu"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1312 ../src/general/OptionsMenu.tscn:1223
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1322 ../src/general/OptionsMenu.tscn:1233
 msgid "JSON_DEBUG_MODE"
 msgstr "Tryb Debugu JSON:"
 
 #: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatycznie"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Zawsze"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nigdy"
 
 #: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1284
 msgid "SAVE"
 msgstr "Zapisz"
 
-#: ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1390 ../src/general/OptionsMenu.tscn:1301
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1401 ../src/general/OptionsMenu.tscn:1312
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1402 ../src/general/OptionsMenu.tscn:1313
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości "
 "domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1410 ../src/general/OptionsMenu.tscn:1321
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Zresetować wejścia do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1411 ../src/general/OptionsMenu.tscn:1322
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości "
 "domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1420 ../src/general/OptionsMenu.tscn:1331
 msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
-#: ../src/general/OptionsMenu.tscn:1440
+#: ../src/general/OptionsMenu.tscn:1440 ../src/general/OptionsMenu.tscn:1351
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Masz niezapisane zmiany które zostaną odrzucone.\n"
 "Czy chcesz kontynuować?"
 
-#: ../src/general/OptionsMenu.tscn:1463
+#: ../src/general/OptionsMenu.tscn:1463 ../src/general/OptionsMenu.tscn:1374
 msgid "SAVE_AND_CONTINUE"
 msgstr "Zapisz i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1473
+#: ../src/general/OptionsMenu.tscn:1473 ../src/general/OptionsMenu.tscn:1384
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odrzuć i kontynuuj"
 
 #: ../src/general/OptionsMenu.tscn:1490
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/modding/NewModGUI.tscn:472
+#: ../src/modding/NewModGUI.tscn:472 ../src/general/OptionsMenu.tscn:1401
 msgid "CANCEL"
 msgstr "Anuluj"
 
 #: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
 msgid "ERROR"
 msgstr "Błąd"
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1511 ../src/general/OptionsMenu.tscn:1422
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1519 ../src/general/OptionsMenu.tscn:1430
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Nie znaleziono katalogu zrzutów ekranu"
 
-#: ../src/general/OptionsMenu.tscn:1521
+#: ../src/general/OptionsMenu.tscn:1521 ../src/general/OptionsMenu.tscn:1432
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 
@@ -3279,6 +3335,8 @@ msgstr "RAW"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "Nie Dotyczy"
 
@@ -3312,11 +3370,13 @@ msgstr "Filtruj przedmioty kategorią:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
 msgstr "Pokaz slajdów"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Brak danych do pokazania"
 
@@ -3622,11 +3682,14 @@ msgstr ""
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Białka chemosyntezy (określane też jako \"białka chemosyntezujące\") są "
-"małymi białkowymi strukturami, które umieją przekształcać H₂S, H₂O i gazowy "
-"CO₂ w glukozę w procesie nazywającym się chemosyntezą siarkową. Tempo "
-"produkcji glukozy skaluje się z koncentracją dwutlenku węgla. Jako że białka "
-"chemosynteczne są zawieszone bezpośrednio w cytozolu, otaczający płyn "
-"przeprowadza glikolizę."
+"małymi białkowymi strukturami, które umieją przekształcać [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type="
+"\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose"
+"\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/"
+"b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] "
+"skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w "
+"cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -4429,24 +4492,29 @@ msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym "
 "nieuregulowaną populację {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 #, fuzzy
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
@@ -4858,9 +4926,10 @@ msgstr "PRZETRWAŁEŚ!"
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr ""
-"Gratulację udało ci się przejść tą wersję Thrive! Jeśli chcesz możesz "
-"kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym "
-"świecie."
+"Gratulację, udało ci się przejść tą wersję Thrive! Jeśli chcesz, możesz "
+"kontynuować grę po zniknięciu tej wiadomości lub rozpocząć nową grę w nowym "
+"świecie. Możesz również dodać czynniki wiążące by zbudować kolonię komórek i "
+"wypróbować prototypy późniejszych etapów."
 
 #: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
@@ -5346,7 +5415,8 @@ msgid "CREATE"
 msgstr "Stwórz"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:151 ../src/saving/InProgressLoad.cs:100
+#: ../src/saving/InProgressLoad.cs:149
 msgid "LOADING_GAME"
 msgstr "Wczytywanie Gry"
 
@@ -5354,39 +5424,39 @@ msgstr "Wczytywanie Gry"
 msgid "READING_SAVE_DATA"
 msgstr "Wczytywanie danych zapisu"
 
-#: ../src/saving/InProgressLoad.cs:104
+#: ../src/saving/InProgressLoad.cs:104 ../src/saving/InProgressLoad.cs:102
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Tworzenie obiektów z pliku zapisu"
 
-#: ../src/saving/InProgressLoad.cs:113
+#: ../src/saving/InProgressLoad.cs:113 ../src/saving/InProgressLoad.cs:111
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Podczas wczytywania danych zapisu nastąpił wyjątek"
 
-#: ../src/saving/InProgressLoad.cs:139
+#: ../src/saving/InProgressLoad.cs:139 ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_IS_INVALID"
 msgstr "Nieprawidłowy zapis"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:140 ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:153 ../src/saving/InProgressLoad.cs:151
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Przetwarzanie wczytanych obiektów"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:168 ../src/saving/InProgressLoad.cs:166
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 
-#: ../src/saving/InProgressLoad.cs:174
+#: ../src/saving/InProgressLoad.cs:174 ../src/saving/InProgressLoad.cs:172
 msgid "LOAD_FINISHED"
 msgstr "Wczytywanie zakończone"
 
-#: ../src/saving/InProgressLoad.cs:201
+#: ../src/saving/InProgressLoad.cs:201 ../src/saving/InProgressLoad.cs:199
 msgid "ERROR_LOADING"
 msgstr "Błąd wczytywania"
 
-#: ../src/saving/InProgressLoad.cs:240
+#: ../src/saving/InProgressLoad.cs:240 ../src/saving/InProgressLoad.cs:238
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
