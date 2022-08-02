@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-02 13:55+0300\n"
-"PO-Revision-Date: 2022-07-31 20:14+0300\n"
+"PO-Revision-Date: 2022-08-02 14:14+0300\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -92,7 +92,7 @@ msgstr "Your cell uses [thrive:compound type=\"atp\"][/thrive:compound] as its e
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "To unlock the editor and reproduce you need to gather [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) and [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud)."
+msgstr "To unlock the editor and reproduce you need to stay alive long enough. Gathering [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) and [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud) speeds up growth."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -142,7 +142,7 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] can be conv
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "To reproduce you need to divide each of your organelles into two. Organelles need [thrive:compound type=\"ammonia\"][/thrive:compound] and [thrive:compound type=\"phosphate\"][/thrive:compound] to split in half."
+msgstr "To reproduce you need to divide each of your organelles into two. Organelles need [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphate\"][/thrive:compound], and time to split in half."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -5416,8 +5416,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.\n"
-"Look at the bars encircling the large button in the bottom right to see how much more you need. These bars become white when filled."
+"In order to reproduce you need to duplicate all of your organelles by surviving long enough.\n"
+"Collecting ammonia and phosphates speeds up reproduction.\n"
+"Look at the bars encircling the button in the bottom right to see your progress. The bars become white when done."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
