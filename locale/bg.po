@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-01 15:00+0300\n"
-"PO-Revision-Date: 2022-07-22 10:22+0000\n"
+"PO-Revision-Date: 2022-08-02 10:51+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -160,7 +160,7 @@ msgstr "Внимавайте, защото Вие не сте единствен
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Чрез свързването с други клетки може да създадете клетъчна колония, в която клетките споделят химичните съединения помежду си. За да се свържете с друга клетка, трябва да имате свързващ агент и да сте в режим на свързване, който се включва с натискане на [thrive:input]g_toggle_binding[/thrive:input]. Може да се свържете само с индивиди от Вашите създания. Докато сте част от клетъчната колония, възпроизвеждането не е възможно. За да се възпроизведете, трябва да съберете нужните химични съединения и да напуснете клетъчната колония с натискане на [thrive:input]g_unbind_all[/thrive:input]. Големите клетъчни колонии са първата стъпка към многоклетъчните организми."
+msgstr "Свързващият агент позволява създаването на клетъчна колония, в която клетките споделят химичните съединения помежду си. Режимът на свързване се включва с натискане на [thrive:input]g_toggle_binding[/thrive:input]. Докато сте част от клетъчната колония, възпроизвеждането не е възможно. За да се възпроизведете, трябва да съберете нужните химични съединения и да напуснете клетъчната колония с натискане на [thrive:input]g_unbind_all[/thrive:input]. Големите клетъчни колонии са първата стъпка към многоклетъчните организми."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -2078,11 +2078,11 @@ msgstr "Лицензи"
 
 #: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение за „GLES2“"
+msgstr "Предупреждение за GLES2"
 
 #: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "В момента „Thrive“ се изпълнява с „GLES2“. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
+msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
 #: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
@@ -2289,20 +2289,19 @@ msgstr "Автоматична ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Наименования на органелите"
+msgstr "Неизвестен"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} МиБ"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2409,17 +2408,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Фонови частици"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} — {1}"
+msgstr "Видеокарта:"
 
 #: ../src/general/OptionsMenu.tscn:450
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Визуализатор:"
 
 #: ../src/general/OptionsMenu.tscn:474
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Използвана графична памет:"
 
 #: ../src/general/OptionsMenu.tscn:498
 msgid "GUI"
@@ -4040,7 +4038,7 @@ msgstr "Наименование на клетката"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Ядрото е необратима еволюция и не може да бъде премахнато,\n"
-"освен ако не е добавено по време на текущата сесия на редактора"
+"освен ако не е добавено по време на текущата сесия на редактора."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -5475,9 +5473,6 @@ msgstr ""
 "\n"
 "Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"
 
-#~ msgid "NOT_RUNNING_DOT"
-#~ msgstr "Не се изпълнява."
-
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Потребителско име:"
@@ -5905,3 +5900,7 @@ msgstr ""
 
 #~ msgid "SPEED_OF_THE_CELL"
 #~ msgstr "на движение на клетката."
+
+#: ../src/auto-evo/AutoEvoRun.cs:127
+msgid "NOT_RUNNING_DOT"
+msgstr "Не се изпълнява."
