@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-01 15:00+0300\n"
+"POT-Creation-Date: 2022-08-02 13:55+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -1019,12 +1019,12 @@ msgstr "Oksitoksisom"
 msgid "FINISH_X_GENERATIONS"
 msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:707
+#: ../src/auto-evo/AutoEvoExploringTool.cs:708
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "Daftar Spesies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:715
+#: ../src/auto-evo/AutoEvoExploringTool.cs:716
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1136,50 +1136,50 @@ msgstr "Spesies:"
 msgid "READY"
 msgstr "Threads:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:472
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:478
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 #, fuzzy
 msgid "ABORT"
 msgstr "Dibatalkan."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:526
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generasi:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:533
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Terpilih:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:567
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 #, fuzzy
 msgid "SPECIES"
 msgstr "Daftar Spesies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:574
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Pilih daerah untuk menampilkan rincian"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Hasil auto-evo:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:670
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Oleh Revolutionary Games Studio"
@@ -1192,7 +1192,7 @@ msgstr "Daftar Spesies"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1244,7 +1244,7 @@ msgstr "Memulai"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:79
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -2036,7 +2036,7 @@ msgid "CLOSE"
 msgstr "Tutup"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -2378,7 +2378,7 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Tampilkan Bilah Kemampuan Sel"
 
-#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -2493,294 +2493,294 @@ msgstr ""
 msgid "GPU_NAME"
 msgstr "Gua"
 
-#: ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:474
+#: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:498
+#: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:522
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Tampilkan Bilah Kemampuan Sel"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:530
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktifkan Efek Cahaya GUI"
 
-#: ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:537
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Tampilkan Bilah Kemampuan Sel"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:563
 msgid "MASTER_VOLUME"
 msgstr "Volume master"
 
-#: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
-#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
-#: ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:589 ../src/general/OptionsMenu.tscn:629
+#: ../src/general/OptionsMenu.tscn:661 ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:725
 msgid "MUTE"
 msgstr "Bisu"
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:603
 msgid "MUSIC_VOLUME"
 msgstr "Volume musik"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:635
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume lingkungan"
 
-#: ../src/general/OptionsMenu.tscn:658
+#: ../src/general/OptionsMenu.tscn:667
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:699
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/general/OptionsMenu.tscn:734
+#: ../src/general/OptionsMenu.tscn:743
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output audio:"
 
-#: ../src/general/OptionsMenu.tscn:762
+#: ../src/general/OptionsMenu.tscn:771
 msgid "LANGUAGE"
 msgstr "Bahasa:"
 
-#: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
 msgid "RESET"
 msgstr "Setel ulang"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:807
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Bantu Alih Bahasa Permainan"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:833
 msgid "COMPOUND_CLOUDS"
 msgstr "Awan senyawa"
 
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:848
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Interval Minimum Simulasi\n"
 "Awan:"
 
-#: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
+#: ../src/general/OptionsMenu.tscn:855 ../src/general/OptionsMenu.tscn:897
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(Nilai tinggi menambah performa)"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:890
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pembagi Resolusi Awan:"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:931
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Jalankan auto-evo selama berlangsungnya permainan"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:951
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Terpilih:"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:968
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Simpan dan lanjut"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:982
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asumsikan hyperthreading diaktifkan pada CPU"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:990
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Atur jumlah background thread secara manual"
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:1000
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1060 ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "KONFIRMASI"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Lainnya"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1136
 msgid "RESET_INPUTS"
 msgstr "Setel Ulang Input"
 
-#: ../src/general/OptionsMenu.tscn:1154
+#: ../src/general/OptionsMenu.tscn:1163
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Putar video pengantar"
 
-#: ../src/general/OptionsMenu.tscn:1162
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Putar Video Pengantar Mikroba saat Permainan Baru"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1179
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Save otomatis ketika bermain"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Jumlah save otomatis tersimpan:"
 
-#: ../src/general/OptionsMenu.tscn:1209
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Jumlah save cepat tersimpan:"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1243
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tampilkan tutorial (di permainan baru)"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1250
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tampilkan tutorial (di permainan saat ini)"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1256
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 "Kamu memiliki perubahan yang belum tersimpan yang akan dibuang.\n"
 "Apakah kamu ingin lanjut?"
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1268
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Aktifkan tombol cheat"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1276
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
 
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1287
 msgid "CUSTOM_USERNAME"
 msgstr "Nama Pengguna Kustom:"
 
-#: ../src/general/OptionsMenu.tscn:1304
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Buka Folder Tangkapan Layar"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Buka Folder Catatan"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Simpan"
 
-#: ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1399
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Semula"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "RESET_TO_DEFAULTS"
 msgstr "Setel ulang ke semula?"
 
-#: ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1411
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Apakah kamu yakin ingin menyetel ulang SEMUA pengaturan ke nilai semula?"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Setel ulang input ke semula?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Apakah kamu yakin ingin menyetel ulang pengaturan input ke nilai semula?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "CLOSE_OPTIONS"
 msgstr "Tutup pilihan?"
 
-#: ../src/general/OptionsMenu.tscn:1440
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kamu memiliki perubahan yang belum tersimpan yang akan dibuang.\n"
 "Apakah kamu ingin lanjut?"
 
-#: ../src/general/OptionsMenu.tscn:1463
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "SAVE_AND_CONTINUE"
 msgstr "Simpan dan lanjut"
 
-#: ../src/general/OptionsMenu.tscn:1473
+#: ../src/general/OptionsMenu.tscn:1482
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Buang dan lanjut"
 
-#: ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1499
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Batal"
 
-#: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1520
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Gagal menyimpan pengaturan baru ke file konfigurasi."
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1528
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Buka Folder Tangkapan Layar"
 
-#: ../src/general/OptionsMenu.tscn:1521
+#: ../src/general/OptionsMenu.tscn:1530
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Ambil tangkapan layar"
@@ -2854,40 +2854,40 @@ msgstr "pemain mati"
 msgid "EXTINCT_IN_PATCH"
 msgstr "telah punah dari planet"
 
-#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:883
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:885
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:887
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1102
+#: ../src/general/StageHUDBase.cs:1093
 msgid "PLAYER_CELL"
 msgstr "Sel Pemain"
 
-#: ../src/general/StageHUDBase.cs:1115
+#: ../src/general/StageHUDBase.cs:1106
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Daftar Spesies"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-01 15:00+0300\n"
+"POT-Creation-Date: 2022-08-02 13:55+0300\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1029,12 +1029,12 @@ msgstr "Oxytoxisome"
 msgid "FINISH_X_GENERATIONS"
 msgstr "avec une concentration de"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:707
+#: ../src/auto-evo/AutoEvoExploringTool.cs:708
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:715
+#: ../src/auto-evo/AutoEvoExploringTool.cs:716
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1148,50 +1148,50 @@ msgstr "Espèces :"
 msgid "READY"
 msgstr "Threads :"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "avec une concentration de"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:472
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:478
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 #, fuzzy
 msgid "ABORT"
 msgstr "Abandon."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:526
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Génération :"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:533
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Sélectionnez une Option"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:567
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 #, fuzzy
 msgid "SPECIES"
 msgstr "Espèces Présentes"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:574
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Choisir une parcelle pour voir ses détails ici"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Résultats de l'auto-évo :"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:670
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Par Revolutionary Game Studio"
@@ -1204,7 +1204,7 @@ msgstr "Espèces Présentes"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1256,7 +1256,7 @@ msgstr "Démarrage"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} changement de population de {1} en raison de : {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:79
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -2072,7 +2072,7 @@ msgid "CLOSE"
 msgstr "Fermer"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -2456,7 +2456,7 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Afficher la barre des capacités"
 
-#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -2570,291 +2570,291 @@ msgstr "Afficher les particules en arrière-plan"
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:474
+#: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:498
+#: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:522
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Afficher la barre des capacités"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:530
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Activer les effets lumineux dans l'interface utilisateur"
 
-#: ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:537
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Afficher la barre des capacités"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:563
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
-#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
-#: ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:589 ../src/general/OptionsMenu.tscn:629
+#: ../src/general/OptionsMenu.tscn:661 ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:725
 msgid "MUTE"
 msgstr "Silencieux"
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:603
 msgid "MUSIC_VOLUME"
 msgstr "Volume de la musique"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:635
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume d'ambiance"
 
-#: ../src/general/OptionsMenu.tscn:658
+#: ../src/general/OptionsMenu.tscn:667
 msgid "SFX_VOLUME"
 msgstr "Volume des effets spéciaux"
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:699
 msgid "GUI_VOLUME"
 msgstr "Volume de l'interface"
 
-#: ../src/general/OptionsMenu.tscn:734
+#: ../src/general/OptionsMenu.tscn:743
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Périphérique de sortie audio :"
 
-#: ../src/general/OptionsMenu.tscn:762
+#: ../src/general/OptionsMenu.tscn:771
 msgid "LANGUAGE"
 msgstr "Langue :"
 
-#: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
 msgid "RESET"
 msgstr "Recommencer"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:807
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aidez nous à traduire le jeu"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:833
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuages de composés"
 
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:848
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalle minimal de simulation des nuages :"
 
-#: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
+#: ../src/general/OptionsMenu.tscn:855 ../src/general/OptionsMenu.tscn:897
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(des valeurs plus hautes améliorent les performances)"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:890
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Diviseur de résolution des nuages :"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:931
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activer l'auto-évolution en jeu"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:951
 msgid "DETECTED_CPU_COUNT"
 msgstr "Nombre de CPU détectés :"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:968
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Threads actuels :"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:982
 #, fuzzy
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Supposer que l'hyper-threading du CPU est activé"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:990
 #, fuzzy
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Saisie manuelle du nombre de threads en arrière-plan"
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:1000
 msgid "THREADS"
 msgstr "Threads :"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Nombre maximum d'entités:"
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1060 ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_TINY"
 msgstr "Minuscule"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_SMALL"
 msgstr "Très petit"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_SMALL"
 msgstr "Petit"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "ACCEPTER"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_LARGE"
 msgstr "Grand"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_LARGE"
 msgstr "Très grand"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_HUGE"
 msgstr "Énorme"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Extras"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1136
 msgid "RESET_INPUTS"
 msgstr "Réinitialiser les entrées"
 
-#: ../src/general/OptionsMenu.tscn:1154
+#: ../src/general/OptionsMenu.tscn:1163
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Jouer la vidéo d'intro"
 
-#: ../src/general/OptionsMenu.tscn:1162
+#: ../src/general/OptionsMenu.tscn:1171
 #, fuzzy
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Jouer la vidéo d'introduction à chaque nouvelle partie"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1179
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sauvegarde automatique en jeu"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes à conserver :"
 
-#: ../src/general/OptionsMenu.tscn:1209
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes rapide à conserver :"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1243
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Afficher les tutoriels (dans les nouvelles parties)"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1250
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Afficher les tutoriels (dans la partie actuelle)"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1256
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Avertissement lorsque la progression n'a pas été sauvegardé"
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1268
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Codes de triche activés"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1276
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utiliser un nom d'utilisateur personnalisé"
 
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1287
 msgid "CUSTOM_USERNAME"
 msgstr "Pseudo personnalisé :"
 
-#: ../src/general/OptionsMenu.tscn:1304
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Ouvrir le dossier de captures d'écran"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Ouvrir le dossier des Logs"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "JSON_DEBUG_MODE"
 msgstr "Mode de débogage de JSON :"
 
-#: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatiquement"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Toujours"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Jamais"
 
-#: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Sauvegarder"
 
-#: ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1399
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Par Défaut"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "RESET_TO_DEFAULTS"
 msgstr "Restaurer par défaut ?"
 
-#: ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1411
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Êtes-vous sûr de vouloir restaurer tous les paramètres par défaut ?"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Remettre les touches à zéro?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par défauts ?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "CLOSE_OPTIONS"
 msgstr "Fermer les paramètres ?"
 
-#: ../src/general/OptionsMenu.tscn:1440
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Des changements non sauvegardés vont être abandonnés.\n"
 "Voulez-vous continuer ?"
 
-#: ../src/general/OptionsMenu.tscn:1463
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "SAVE_AND_CONTINUE"
 msgstr "Sauvegarder et continuer"
 
-#: ../src/general/OptionsMenu.tscn:1473
+#: ../src/general/OptionsMenu.tscn:1482
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuler et continuer"
 
-#: ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1499
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Annuler"
 
-#: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
 msgid "ERROR"
 msgstr "Erreur"
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1520
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier de configuration."
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1528
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Pas de dossier de captures d'écrans trouvé"
 
-#: ../src/general/OptionsMenu.tscn:1521
+#: ../src/general/OptionsMenu.tscn:1530
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Essayez de prendre une capture d'écran !"
@@ -2928,42 +2928,42 @@ msgstr "le joueur est mort"
 msgid "EXTINCT_IN_PATCH"
 msgstr "a disparu de la planète"
 
-#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:883
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abondance"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:885
 #, fuzzy
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "en grande quantité"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:887
 #, fuzzy
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "en bonne quantité"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_SOME"
 msgstr "en moyenne quantité"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_LITTLE"
 msgstr "en faible quantité"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "en très faible quantité"
 
-#: ../src/general/StageHUDBase.cs:1102
+#: ../src/general/StageHUDBase.cs:1093
 msgid "PLAYER_CELL"
 msgstr "Cellule du joueur"
 
-#: ../src/general/StageHUDBase.cs:1115
+#: ../src/general/StageHUDBase.cs:1106
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
