@@ -74,17 +74,20 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                 var (_, minimumCostCombinableAction, mode) = processedHistory.Take(compareIndex).Select(action =>
                 {
                     var thisAction = processedHistory[compareIndex];
+
+                    // Assume that the other action's cost stays the same
                     return thisAction.GetInterferenceModeWith(action) switch
                     {
                         ActionInterferenceMode.Combinable => (
-                            ((EditorCombinableActionData)thisAction.Combine(action)).CalculateCost(),
+                            ((EditorCombinableActionData)thisAction.Combine(action)).CalculateCost()
+                            - action.CalculateCost(),
                             action, ActionInterferenceMode.Combinable),
                         ActionInterferenceMode.CancelsOut => (
                             -action.CalculateCost(), action, ActionInterferenceMode.CancelsOut),
                         ActionInterferenceMode.ReplacesOther => (
                             thisAction.CalculateCost() - action.CalculateCost(), action,
                             ActionInterferenceMode.ReplacesOther),
-                        _ => (0, null, ActionInterferenceMode.NoInterference),
+                        _ => (thisAction.CalculateCost(), null, ActionInterferenceMode.NoInterference),
                     };
                 }).OrderBy(p => p.Item1).FirstOrDefault();
 
