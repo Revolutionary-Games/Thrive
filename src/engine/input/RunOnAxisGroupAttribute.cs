@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -20,6 +19,15 @@ public class RunOnAxisGroupAttribute : InputAttribute
     ///   All the axes that are managed by this Attribute
     /// </summary>
     private readonly List<RunOnAxisAttribute> axes = new();
+
+    // These two variables exist to make OnProcess more efficient
+    private readonly List<float> currentAxisValues = new();
+
+    /// <summary>
+    ///   Cached call parameters object to not recreate this all the time.
+    ///   This needs to be <code>object[]</code> to match CallMethod's parameter declaration.
+    /// </summary>
+    private object[]? callParameters;
 
     /// <summary>
     ///   Should the method be invoked when all of the inputs are in their idle states
@@ -41,18 +49,47 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        List<(float CurrentValue, float DefaultValue)> axisValues =
-            axes.Select(axis => (axis.CurrentResult, axis.DefaultState)).ToList();
+        // Read new axis values
+        // TODO: could this run only if OnInput used something?
+        int axisCount = axes.Count;
+
+        int wantedLength = axisCount + 1;
+        if (callParameters?.Length != wantedLength)
+            callParameters = new object[wantedLength];
+
+        for (int i = 0; i < axisCount; ++i)
+        {
+            var value = axes[i].CurrentResult;
+            currentAxisValues[i] = value;
+
+            // This is applied here for more performance as InvokeAlsoWithNoInput seems very common, and assigning
+            // two variables in a single loop is hopefully really optimized in the runtime
+            callParameters[i + 1] = value;
+        }
 
         // Skip process if all axes have default values, and invoke also with no input is not set
-        if (!InvokeAlsoWithNoInput && axisValues.All(p => Math.Abs(p.CurrentValue - p.DefaultValue) < 0.001f))
-            return;
+        if (!InvokeAlsoWithNoInput)
+        {
+            bool hasDifference = false;
 
-        var callParameters = axisValues.Select(p => p.CurrentValue).ToList();
-        callParameters.Insert(0, delta);
+            // TODO: check if combining this into the first loop in this method would be faster
+            for (int i = 0; i < axisCount; ++i)
+            {
+                var difference = currentAxisValues[i] - axes[i].DefaultState;
+                if (difference is > 0.001f or < -0.001f)
+                {
+                    hasDifference = true;
+                    break;
+                }
+            }
 
-        // Casting to an object[] to match CallMethods parameter declaration
-        CallMethod(callParameters.Cast<object>().ToArray());
+            if (!hasDifference)
+                return;
+        }
+
+        callParameters[0] = delta;
+
+        CallMethod(callParameters);
     }
 
     public override void FocusLost()
@@ -60,24 +97,9 @@ public class RunOnAxisGroupAttribute : InputAttribute
         axes.ForEach(p => p.FocusLost());
     }
 
-    public override bool Equals(object obj)
-    {
-        if (!base.Equals(obj) || !(obj is RunOnAxisGroupAttribute group))
-            return false;
-
-        return axes.SequenceEqual(group.axes);
-    }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            return (base.GetHashCode() * 397) ^ axes.GetHashCode();
-        }
-    }
-
     internal void AddAxis(RunOnAxisAttribute axis)
     {
         axes.Add(axis);
+        currentAxisValues.Add(axis.DefaultState);
     }
 }
