@@ -33,28 +33,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// </summary>
     public int WhatWouldActionCost(EditorCombinableActionData combinableAction)
     {
-        int result = 0;
-
-        // Get the minimum cost action
-        var (mpRegain, combinedData) = History.Select(action =>
-        {
-            return combinableAction.GetInterferenceModeWith(action) switch
-            {
-                ActionInterferenceMode.Combinable => (action.CalculateCost(),
-                    (EditorCombinableActionData?)combinableAction.Combine(action)),
-                ActionInterferenceMode.CancelsOut => (action.CalculateCost() + combinableAction.CalculateCost(), null),
-                ActionInterferenceMode.ReplacesOther => (action.CalculateCost(), null),
-                _ => (0, null),
-            };
-        }).OrderByDescending(p => p.Item1).FirstOrDefault();
-
-        result -= mpRegain;
-
-        if (combinedData != null)
-            combinableAction = combinedData;
-
-        result += combinableAction.CalculateCost();
-        return result;
+        return combinableAction.CalculateCost() + GetLeastCostCombineTuple(combinableAction, History).CostDelta;
     }
 
     /// <summary>
@@ -71,22 +50,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             while (true)
             {
                 // Get the minimum cost action
-                var (_, minimumCostCombinableAction, mode) = processedHistory.Take(compareIndex).Select(action =>
-                {
-                    var thisAction = processedHistory[compareIndex];
-                    var interferenceMode = thisAction.GetInterferenceModeWith(action);
-
-                    // Assume that the other action's cost stays the same
-                    return (interferenceMode switch
-                    {
-                        ActionInterferenceMode.Combinable => ((EditorCombinableActionData)thisAction.Combine(action))
-                            .CalculateCost() - action.CalculateCost(),
-                        ActionInterferenceMode.CancelsOut => action.CalculateCost(),
-                        ActionInterferenceMode.ReplacesOther => thisAction.CalculateCost() - action.CalculateCost(),
-                        ActionInterferenceMode.NoInterference => thisAction.CalculateCost(),
-                        _ => throw new ArgumentOutOfRangeException(),
-                    }, action, interferenceMode);
-                }).OrderBy(p => p.Item1).FirstOrDefault();
+                var (_, minimumCostCombinableAction, mode) =
+                    GetLeastCostCombineTuple(processedHistory[compareIndex], processedHistory.Take(compareIndex));
 
                 // If no more can be merged together, try next one.
                 if (mode == ActionInterferenceMode.NoInterference)
@@ -202,6 +167,37 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         where THex : class, IActionHex
     {
         return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
+    }
+
+    /// <summary>
+    ///   Pick the data with which you can regain maximum MP to combine.
+    /// </summary>
+    /// <param name="currentData">The data you want to combine</param>
+    /// <param name="previousData">A list of data currentData may combine with</param>
+    /// <returns>
+    ///   Three-element tuple:
+    ///   CostDelta is non-positive, indicating the amount of MP you will regain;
+    ///   MinimumCostActionData is the action data to combine with (not yet combined);
+    ///   Mode is the interference mode currentData has with MinimumCostActionData.
+    /// </returns>
+    private static (int CostDelta, EditorCombinableActionData MinimumCostActionData, ActionInterferenceMode Mode)
+        GetLeastCostCombineTuple(EditorCombinableActionData currentData,
+            IEnumerable<EditorCombinableActionData> previousData)
+    {
+        return previousData.Select(data =>
+        {
+            var interferenceMode = currentData.GetInterferenceModeWith(data);
+
+            return (interferenceMode switch
+            {
+                ActionInterferenceMode.Combinable => ((EditorCombinableActionData)currentData.Combine(data))
+                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(),
+                ActionInterferenceMode.CancelsOut => -data.CalculateCost() - currentData.CalculateCost(),
+                ActionInterferenceMode.ReplacesOther => -data.CalculateCost(),
+                ActionInterferenceMode.NoInterference => 0,
+                _ => throw new ArgumentOutOfRangeException(nameof(interferenceMode)),
+            }, data, interferenceMode);
+        }).OrderBy(p => p.Item1).FirstOrDefault();
     }
 
     private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)
