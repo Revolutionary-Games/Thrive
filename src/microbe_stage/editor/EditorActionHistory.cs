@@ -87,12 +87,14 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                         ActionInterferenceMode.ReplacesOther => (
                             thisAction.CalculateCost() - action.CalculateCost(), action,
                             ActionInterferenceMode.ReplacesOther),
-                        _ => (thisAction.CalculateCost(), null, ActionInterferenceMode.NoInterference),
+                        ActionInterferenceMode.NoInterference => (
+                            thisAction.CalculateCost(), action, ActionInterferenceMode.NoInterference),
+                        _ => throw new ArgumentOutOfRangeException(),
                     };
                 }).OrderBy(p => p.Item1).FirstOrDefault();
 
                 // If no more can be merged together, try next one.
-                if (minimumCostCombinableAction == null)
+                if (mode == ActionInterferenceMode.NoInterference)
                     break;
 
                 var minimumCostCombinableActionIndex = processedHistory.IndexOf(minimumCostCombinableAction);
