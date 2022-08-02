@@ -104,8 +104,8 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Editörü açmak ve hücreni çoğaltmak için [thrive:compound type=\"ammonia"
-"\"]Amonyak[/thrive:compound] (Turuncu Bulut) ve [thrive:compound type="
-"\"phosphates\"]Fosfat[/thrive:compound] (Mor Bulut) biriktirmen gerekir."
+"\"]amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type="
+"\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmen gerekir."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -120,41 +120,42 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
-"Yutma mekanizması tamamlandığında, yutulan herhangi bir nesne sindirilmek "
-"için hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler dışarı "
+"Yutma tamamlandığında, yutulan herhangi bir nesne sindirilmek için hücre "
+"zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı "
 "atılacak. Bu yüzden, ilk önce, bu nesneleri işlemeyi sağlayan gerekli "
 "mutasyonlara sahip olduğundan emin ol. Enzimler sindirim konusunda yardımcı "
-"olur ve Lizozom tarafından karşılanır. Sindirimi daha etkili hale getirmek "
-"için bu organeli evrimleştirmen önerilir."
+"olur ve lizozom tarafından karşılanır. Sindirimi daha etkili hale getirmek "
+"için lizozom organelini evrimleştir."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
 msgstr ""
-"Ancak, Lizozom sadece ökaryotlara özgü bir organel. Öte yandan, prokaryotlar "
-"böyle bir organele sahip değil ve onlar besini daha verimsiz bir biçimde "
-"sindirir."
+"Ancak, lizozomlar sadece ökaryotlara özgü bir organel. Öte yandan, "
+"prokaryotlar böyle bir organele sahip değil ve onlar besini daha verimsiz "
+"bir biçimde sindirir. Küçük hücreler için bu iyi, ancak daha büyük hücreler "
+"için, lizozomlara sahip olmamak çok dezavantajlıdır."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
 msgstr ""
-"Özellikle Selüloz ve Kitin hücre duvarları, onları parçalayan gerekli "
+"Özellikle selüloz ve kitin hücre duvarları, onları parçalayan gerekli "
 "enzimler olmadan sindirilemez."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Ozmoregülasyon [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal "
-"olur. Bu demek oluyor ki hücren ne kadar büyükse, o kadar çok Mitokondri, "
-"Metabolozom ya da Rustisiyanine (veya glikoliz yapan sitoplazmaya) ihtiyacın "
-"var. Böylece hücren durgun haldeyken [thrive:compound type=\"atp\"]ATP[/"
-"thrive:compound] kaybını önleyebilirsin."
+"Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal "
+"olur. Bu demek oluyor ki hücren ne kadar büyükse, hücren durgun haldeyken "
+"[thrive:compound type=\"atp\"]ATP[/thrive:compound] kaybını önlemek için o "
+"kadar çok mitokondri, metabolozom ya da rustisiyanine (veya glikoliz yapan "
+"sitoplazmaya) ihtiyacın var."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"Editörde, evrimleşmeni sağlayan birçok Organel bulunuyor. Böylece geniş "
+"Editörde, evrimleşmeni sağlayan birçok organel bulunuyor. Böylece geniş "
 "kapsamda, farklı oynama şekillerine olanak var."
 
 #: ../simulation_parameters/common/help_texts.json:42
@@ -187,12 +188,13 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller "
-"bölünmek için amonyak ve fosfat gerektirir."
+"bölünmek için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve "
+"[thrive:compound type=\"phosphate\"]fosfat[/thrive:compound] gerektirir."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Şu an için, eğer popülasyonun sıfıra düşerse neslin tükenir."
+msgstr "Eğer popülasyonun sıfıra düşerse neslin tükenir."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -213,14 +215,14 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiri için "
 "üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre "
-"ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve [thrive:"
-"input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna "
-"girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait "
-"hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre "
-"giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik "
-"toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak "
-"koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri "
-"çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
+"ile bağ kurmak için, hücren ile diğer hücrelerin birbirine bağlanmasını "
+"sağlayan bağlayıcı ajana sahip olman gerekir. [thrive:"
+"input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna gir. "
+"Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, "
+"hücreni bölemez ve editöre giremezsin. Editöre girmek için, ilk önce, "
+"yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] "
+"tuşuna basarak koloniden ayrılmalısın. Büyük hücre kolonileri çok "
+"hücreliliğe doğru giden yoldur."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -280,7 +282,8 @@ msgstr ""
 "Ayrıca hücrenin büyüklüğünü iki katına çıkarır ve hasarı %50'ye indirir. "
 "(Yalnızca bir kez evrimleşilir)\n"
 "\n"
-"Bağlayıcı Ajan: Diğer hücrelerle bağ kurmaya izin verir\n"
+"Bağlayıcı Ajan: Diğer hücrelerle bağ kurmaya izin verir. Çok Hücreli "
+"Evresine ilerlemek için gereklidir.\n"
 "\n"
 "Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve "
 "atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:compound] "
@@ -292,7 +295,8 @@ msgstr ""
 "Termoplast: Sıcaklık değişimini kullanarak [thrive:compound type=\"atp"
 "\"]ATP[/thrive:compound] üretir\n"
 "\n"
-"Lizozom: Sindirim enzimleri içerir\n"
+"Lizozom: Sindirim enzimleri içerir. Enzimler, sindirim verimliliğini "
+"hızlandırır ve geliştirir.\n"
 "\n"
 "Kemoplast: [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürden[/"
 "thrive:compound] [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] "
@@ -1134,10 +1138,12 @@ msgid "LYSOSOME"
 msgstr "Lizozom"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
+#: ../src/auto-evo/AutoEvoExploringTool.cs:488
 msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Kuşak Tamamla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:707
+#: ../src/auto-evo/AutoEvoExploringTool.cs:673
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Tür[/b]\n"
@@ -1152,6 +1158,7 @@ msgstr ""
 "  {5}\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:715
+#: ../src/auto-evo/AutoEvoExploringTool.cs:695
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Evre[/b]\n"
@@ -1168,144 +1175,179 @@ msgstr ""
 "  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:97
 msgid "CONFIG"
 msgstr "Yapılandırma"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 msgid "REPORT"
 msgstr "Rapor"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
 msgid "VIEWER"
 msgstr "Görüntüleyici"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Türün mutasyona uğramasına izin verme"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:168
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Türün göç etmesine izin verme"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Biyoçeşitlilik girişimi doldurma olasılığı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:201
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Komşu arazi olasılığından biyoçeşitlilik"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr "Yakınlardaki arazinin biyoçeşitliliği serbest popülasyona sahip"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:222
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biyoçeşitlilik ayrımı mutasyona sahip"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:235
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Biyoçeşitlilik alt sınırı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:253
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Arazideki maksimum tür sayısı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:271
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Tür başına göç girişimi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Tür başına mutasyon"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:307
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Tür popülasyonunu artıran yeni biyoçeşitlilik"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:321
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Maksimum tür sınırından göçleri koru"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:328
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Makisimum tür sınırından yeni hücreleri koru"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr "Soy tükenmesinde göçleri iade et"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:342
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Katı alan mücadelesi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:355
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr "Mutasyon ile ayrılan tür alt sınırının popülasyon miktarı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:375
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Mutasyon ile ayrılan tür alt sınırının popülasyon kesimi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Ayrılmaya zorlayan biyoçeşitliliği kullan"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Mevcut Kuşak:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
 msgid "STATUS_COLON"
 msgstr "Durum:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "READY"
 msgstr "Hazır"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:466
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 msgid "FINISH_ONE_GENERATION"
 msgstr "Bir Kuşak Tamamla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:472
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr "Bir Adım İlerle"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:478
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 msgid "ABORT"
 msgstr "Durdur"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:526
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 msgid "GENERATIONS"
 msgstr "Kuşaklar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:533
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "SELECT_A_GENERATION"
 msgstr "Bir kuşak seç"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:567
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "SPECIES"
 msgstr "Türler"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:574
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 msgid "SELECT_A_SPECIES"
 msgstr "Bir tür seç"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:623
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:670
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:714
 msgid "SPECIES_DETAILS"
 msgstr "Tür Detayları"
 
@@ -1316,16 +1358,20 @@ msgstr "Tür Detayları"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/general/OptionsMenu.tscn:1261
 msgid "BACK"
 msgstr "Geri"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:771
 #: ../src/general/PauseMenu.tscn:288
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #: ../src/general/PauseMenu.cs:353
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:774
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ana menüye dönmek istediğine emin misin?\n"
@@ -1355,13 +1401,14 @@ msgstr "Duraklatıldı."
 msgid "STARTING"
 msgstr "Başlıyor"
 
-#: ../src/auto-evo/AutoEvoRun.cs:359
+#: ../src/auto-evo/AutoEvoRun.cs:359 ../src/auto-evo/AutoEvoRun.cs:352
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} popülasyonu {2} arazisinde {1} defa değişti çünkü: {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:79
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 msgid "MEGA_YEARS"
 msgstr "Myö"
 
@@ -1698,6 +1745,7 @@ msgid "TRANSPARENCY"
 msgstr "Saydamlık"
 
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
 msgid "LOADING"
 msgstr "Yükleniyor"
 
@@ -2333,6 +2381,7 @@ msgid "PLANET"
 msgstr "Gezegen"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/OptionsMenu.tscn:184
 msgid "MISC"
 msgstr "Diğer"
 
@@ -2451,6 +2500,7 @@ msgid "CONFIRM_NORMAL"
 msgstr "Onayla"
 
 #: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
 msgid "AUTO_RESOLUTION"
 msgstr "Otomatik ({0}x{1})"
 
@@ -2471,108 +2521,110 @@ msgstr "Parça seçim butonu isimlerini göster"
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1038 ../src/general/OptionsMenu.cs:988
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/general/OptionsMenu.cs:1070
+#: ../src/general/OptionsMenu.cs:1070 ../src/general/OptionsMenu.cs:1020
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
 
-#: ../src/general/OptionsMenu.cs:1074
+#: ../src/general/OptionsMenu.cs:1074 ../src/general/OptionsMenu.cs:1024
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:1078
+#: ../src/general/OptionsMenu.cs:1078 ../src/general/OptionsMenu.cs:1028
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
-#: ../src/general/OptionsMenu.tscn:143
+#: ../src/general/OptionsMenu.tscn:143 ../src/general/OptionsMenu.tscn:140
 msgid "GRAPHICS"
 msgstr "Grafikler"
 
-#: ../src/general/OptionsMenu.tscn:154
+#: ../src/general/OptionsMenu.tscn:154 ../src/general/OptionsMenu.tscn:151
 msgid "SOUND"
 msgstr "Ses"
 
-#: ../src/general/OptionsMenu.tscn:165
+#: ../src/general/OptionsMenu.tscn:165 ../src/general/OptionsMenu.tscn:162
 msgid "PERFORMANCE"
 msgstr "Performans"
 
-#: ../src/general/OptionsMenu.tscn:176
+#: ../src/general/OptionsMenu.tscn:176 ../src/general/OptionsMenu.tscn:173
 msgid "INPUTS"
 msgstr "Girişler"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:235 ../src/general/OptionsMenu.tscn:216
 msgid "VSYNC"
 msgstr "Dikey eşitleme"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:242 ../src/general/OptionsMenu.tscn:223
 msgid "FULLSCREEN"
 msgstr "Tam ekran"
 
-#: ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:264 ../src/general/OptionsMenu.tscn:245
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:271 ../src/general/OptionsMenu.tscn:252
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(daha üst değerler performansı düşürür)"
 
 #: ../src/general/OptionsMenu.tscn:286 ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
 msgid "DISABLED"
 msgstr "Devre Dışı"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:287
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:268
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:301
+#: ../src/general/OptionsMenu.tscn:301 ../src/general/OptionsMenu.tscn:282
 msgid "RESOLUTION"
 msgstr "Çözünürlük:"
 
-#: ../src/general/OptionsMenu.tscn:325
+#: ../src/general/OptionsMenu.tscn:325 ../src/general/OptionsMenu.tscn:306
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
-#: ../src/general/OptionsMenu.tscn:340
+#: ../src/general/OptionsMenu.tscn:340 ../src/general/OptionsMenu.tscn:321
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Sınırsız"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:356 ../src/general/OptionsMenu.tscn:337
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Renk düzeltme:"
 
 #: ../src/general/OptionsMenu.tscn:370 ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
 msgid "NONE"
 msgstr "Yok"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:371 ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanop (Kırmızı-Yeşil)"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:371 ../src/general/OptionsMenu.tscn:352
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanop (Mavi-Sarı)"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:368
 msgid "CHROMATIC_ABERRATION"
 msgstr "Renk sapması:"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:413 ../src/general/OptionsMenu.tscn:394
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Arkaplan parçacıklarını göster"
 
@@ -2589,275 +2641,283 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:498
+#: ../src/general/OptionsMenu.tscn:498 ../src/general/OptionsMenu.tscn:410
 msgid "GUI"
 msgstr "Arayüz"
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:425
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Yetenekler çubuğunu göster"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:433
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
-#: ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:528 ../src/general/OptionsMenu.tscn:440
 msgid "DISPLAY_PART_NAMES"
 msgstr "Parça seçim butonu isimlerini göster"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:554 ../src/general/OptionsMenu.tscn:466
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
 #: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
 #: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
-#: ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:716 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:532 ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:596 ../src/general/OptionsMenu.tscn:628
 msgid "MUTE"
 msgstr "Sessiz"
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:594 ../src/general/OptionsMenu.tscn:506
 msgid "MUSIC_VOLUME"
 msgstr "Müzik seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:626 ../src/general/OptionsMenu.tscn:538
 msgid "AMBIANCE_VOLUME"
 msgstr "Ortam seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:658
+#: ../src/general/OptionsMenu.tscn:658 ../src/general/OptionsMenu.tscn:570
 msgid "SFX_VOLUME"
 msgstr "Ses efekti seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:690 ../src/general/OptionsMenu.tscn:602
 msgid "GUI_VOLUME"
 msgstr "Arayüz seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:734
+#: ../src/general/OptionsMenu.tscn:734 ../src/general/OptionsMenu.tscn:646
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ses çıkış aygıtı:"
 
-#: ../src/general/OptionsMenu.tscn:762
+#: ../src/general/OptionsMenu.tscn:762 ../src/general/OptionsMenu.tscn:674
 msgid "LANGUAGE"
 msgstr "Dil:"
 
 #: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
+#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
 msgid "RESET"
 msgstr "Sıfırla"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:798 ../src/general/OptionsMenu.tscn:710
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Oyunun Çevrilmesine Yardımcı Ol"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:824 ../src/general/OptionsMenu.tscn:736
 msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutları"
 
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:839 ../src/general/OptionsMenu.tscn:751
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Bulut simülasyonu minimum aralığı:"
 
 #: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
+#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(üst değerler performansı arttırır)"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:881 ../src/general/OptionsMenu.tscn:793
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Bulut çözünürlük bölücü:"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:922 ../src/general/OptionsMenu.tscn:834
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Oyun esnasında oto-evrimi çalıştır"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:942 ../src/general/OptionsMenu.tscn:854
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tespit edilen CPU sayısı:"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:959 ../src/general/OptionsMenu.tscn:871
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Mevcut iş parçacıkları:"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:973 ../src/general/OptionsMenu.tscn:885
 msgid "ASSUME_HYPERTHREADING"
 msgstr "CPU'da hiper iş parçacığını etkin varsay"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:981 ../src/general/OptionsMenu.tscn:893
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını elle ayarla"
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:991 ../src/general/OptionsMenu.tscn:903
 msgid "THREADS"
 msgstr "İş Parçacıkları:"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1036 ../src/general/OptionsMenu.tscn:948
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksimum varlık sayısı:"
 
 #: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_TINY"
 msgstr "Aşırı küçük"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_SMALL"
 msgstr "Çok küçük"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_SMALL"
 msgstr "Küçük"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_NORMAL"
 msgstr "Normal"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_LARGE"
 msgstr "Büyük"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_VERY_LARGE"
 msgstr "Çok büyük"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_HUGE"
 msgstr "Aşırı büyük"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1052 ../src/general/OptionsMenu.tscn:964
 msgid "LIMIT_EXTREME"
 msgstr "En büyük"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1127 ../src/general/OptionsMenu.tscn:1038
 msgid "RESET_INPUTS"
 msgstr "Girişleri sıfırla"
 
-#: ../src/general/OptionsMenu.tscn:1154
+#: ../src/general/OptionsMenu.tscn:1154 ../src/general/OptionsMenu.tscn:1065
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Tanıtım videosunu oynat"
 
-#: ../src/general/OptionsMenu.tscn:1162
+#: ../src/general/OptionsMenu.tscn:1162 ../src/general/OptionsMenu.tscn:1073
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Yeni oyunda mikrop tanıtımını oynat"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1081
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Oyun esnasında otomatik olarak kaydet"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1181 ../src/general/OptionsMenu.tscn:1092
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Saklanacak otomatik kayıt miktarı:"
 
-#: ../src/general/OptionsMenu.tscn:1209
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1120
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Saklanacak çabuk kayıt miktarı:"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1234 ../src/general/OptionsMenu.tscn:1145
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Oyun rehberini göster (yeni oyunlarda)"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1241 ../src/general/OptionsMenu.tscn:1152
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Oyun rehberini göster (mevcut oyunda)"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1158
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1170
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Hile tuşları aktif"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1267 ../src/general/OptionsMenu.tscn:1178
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
 
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1189
 msgid "CUSTOM_USERNAME"
 msgstr "Özel kullanıcı adı:"
 
-#: ../src/general/OptionsMenu.tscn:1304
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1215
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Ekran Görüntüsünün Kaydedildiği Klasörü Aç"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1312 ../src/general/OptionsMenu.tscn:1223
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Log Klasörünü Aç"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1322 ../src/general/OptionsMenu.tscn:1233
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON hata ayıklama modu:"
 
 #: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Otomatik olarak"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Her zaman"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1248
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Hiçbir zaman"
 
 #: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1284
 msgid "SAVE"
 msgstr "Kaydet"
 
-#: ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1390 ../src/general/OptionsMenu.tscn:1301
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Varsayılanlar"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1401 ../src/general/OptionsMenu.tscn:1312
 msgid "RESET_TO_DEFAULTS"
 msgstr "Varsayılanlara sıfırlansın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1402 ../src/general/OptionsMenu.tscn:1313
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1410 ../src/general/OptionsMenu.tscn:1321
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Girişler varsayılana sıfırlansın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1411 ../src/general/OptionsMenu.tscn:1322
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Giriş ayarlarını varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1420 ../src/general/OptionsMenu.tscn:1331
 msgid "CLOSE_OPTIONS"
 msgstr "Ayarlar kapatılsın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1440
+#: ../src/general/OptionsMenu.tscn:1440 ../src/general/OptionsMenu.tscn:1351
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kaydedilmemiş değişiklikler var.\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/general/OptionsMenu.tscn:1463
+#: ../src/general/OptionsMenu.tscn:1463 ../src/general/OptionsMenu.tscn:1374
 msgid "SAVE_AND_CONTINUE"
 msgstr "Kaydet ve devam et"
 
-#: ../src/general/OptionsMenu.tscn:1473
+#: ../src/general/OptionsMenu.tscn:1473 ../src/general/OptionsMenu.tscn:1384
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Yoksay ve devam et"
 
 #: ../src/general/OptionsMenu.tscn:1490
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/modding/NewModGUI.tscn:472
+#: ../src/modding/NewModGUI.tscn:472 ../src/general/OptionsMenu.tscn:1401
 msgid "CANCEL"
 msgstr "İptal"
 
 #: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
 msgid "ERROR"
 msgstr "Hata"
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1511 ../src/general/OptionsMenu.tscn:1422
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hata: Yeni ayarlar konfigürasyon dosyasına kaydedilemedi."
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1519 ../src/general/OptionsMenu.tscn:1430
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Ekran görüntüsü dizini bulunamadı"
 
-#: ../src/general/OptionsMenu.tscn:1521
+#: ../src/general/OptionsMenu.tscn:1521 ../src/general/OptionsMenu.tscn:1432
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Bir ekran görüntüsü almayı dene!"
 
@@ -3296,6 +3356,8 @@ msgstr "Raw"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2051
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
 msgid "N_A"
 msgstr "Bilinmeyen"
 
@@ -3329,11 +3391,13 @@ msgstr "Öğeleri kategori cinsinden filtrele:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
 msgstr "Slayt Gösterisi"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -3525,10 +3589,12 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; "
 "iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımdan oluşur. "
-"Yaptığı işlevlerden biri glikolizdir, yani glukozun ATP enerjisine dönüşümü. "
-"Gelişmiş metabolizmaya öncü organellerden yoksun hücreler, enerji almak için "
-"sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak "
-"için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+"Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type="
+"\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/"
+"thrive:compound] dönüşümü. Gelişmiş metabolizmaya öncü organellerden yoksun "
+"hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca "
+"hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için "
+"kullanılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:299
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:402
@@ -3597,11 +3663,15 @@ msgstr ""
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. "
-"Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar glukozu "
-"ATP'ye çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak "
-"için oksijen gerektirir ve ortamda bulunan düşük seviyelerdeki oksijen, onun "
-"ATP sentezleme hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı "
-"kaldığından, etrafında bulunan akışkan glikoliz yapabilir."
+"Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar "
+"[thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound "
+"type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. "
+"Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/"
+"thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:"
+"compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound "
+"type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar "
+"direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
+"[b]glikoliz[/b] yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 msgid "THYLAKOID"
@@ -3619,12 +3689,16 @@ msgstr ""
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. "
-"Pigmentler, Fotosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
-"ayrıca yapıya kendine özgü bir renk verir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır. "
-"Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
-"glikoliz yapabilir."
+"Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan [thrive:"
+"compound type=\"glucose\"]glukoz[/thrive:compound] ve [thrive:compound type="
+"\"carbondioxide\"]karbondioksit[/thrive:compound] gazı üretmek için [thrive:"
+"compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu "
+"pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:"
+"compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound "
+"type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve "
+"[thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru "
+"orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında "
+"bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -3639,12 +3713,16 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"Kemosentez yapan proteinler, Hidrojen Sülfür Kemosentezi adı verilen bir "
-"işlemde, hidrojen sülfür, su ve karbondioksit gazını glukoza dönüştüren, "
-"sitoplazmada bulunan küçük proteinler kümesidir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ile doğru orantılıdır. Kemosentez yapan "
+"Kemosentez yapan proteinler, [b]hidrojen sülfür kemosentezi[/b] adı verilen "
+"bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/"
+"thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/"
+"thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/"
+"thrive:compound] dönüştüren, sitoplazmada bulunan küçük proteinler "
+"kümesidir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:"
+"compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/"
+"thrive:compound] konsantrasyonu ile doğru orantılıdır. Kemosentez yapan "
 "proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
-"glikoliz yapabilir."
+"[b]glikoliz[/b] yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -3657,9 +3735,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:681
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için "
-"karbondioksit gazı ve oksijen kullanan bir proteindir. Demir Solunumu olarak "
-"adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+"Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:"
+"compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve "
+"[thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir "
+"proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin "
+"sonradan kullanacağı enerjiyi verir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -3671,10 +3751,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:778
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek için "
-"azot gazı ve ATP formundaki hücresel enerjiyi kullanan bir proteindir. Bu "
-"işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz direkt "
-"sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz yapabilir."
+"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type="
+"\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type="
+"\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp"
+"\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir "
+"proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. "
+"Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
+"[b]glikoliz[/b] yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -3690,8 +3773,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:876
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"OksiToksi NT toksik ajanının basit bir formunun üretilmesinden sorumlu, "
-"değişime uğramış bir metabolozom."
+"[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik "
+"ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir "
+"metabolozom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
@@ -3704,10 +3788,12 @@ msgstr ""
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
 "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu "
-"onun, termosentez adı verilen bir işlemde, ısıya maruz kalırken katlanmasını "
-"ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de "
-"açılmasını ve ADP'nin ATP'ye dönüşmesini sağlar. ATP üretimi, sıcaklık ile "
-"doğru orantılıdır."
+"onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken "
+"katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz "
+"kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/"
+"thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/"
+"thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/"
+"thrive:compound] ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3780,10 +3866,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Bağlanma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] "
-"tuşuna bas. Bağlanma modundayken, kendi türüne ait diğer hücrelere "
+"Bağ kurma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] "
+"tuşuna bas. Bağ kurma modundayken, kendi türüne ait diğer hücrelere "
 "yaklaşarak onları kolonine ekleyebilirsin. Bir koloniden ayrılmak için "
-"[thrive:input]g_unbind_all[/thrive:input] tuşuna bas."
+"[thrive:input]g_unbind_all[/thrive:input] tuşuna bas. Diğer hücrelere "
+"bağlıyken editöre giremezsin."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1401
 msgid "BINDING_AGENT_DESCRIPTION"
@@ -3825,10 +3912,14 @@ msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı "
 "bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere "
-"özümsenmiş bir prokaryottur. Mitokondri, Oksijenli Solunum adı verilen bir "
-"işlemde, glukozu ATP'ye sitoplazmada olduğundan çok daha etkili bir şekilde "
-"dönüştürür. Ancak çalışmak için oksijen gerektirir ve ortamda bulunan düşük "
-"seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır."
+"özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı "
+"verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:"
+"compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] "
+"sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak "
+"çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] "
+"gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type="
+"\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp"
+"\"]ATP[/thrive:compound] sentezleme hızını yavaşlatır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -3844,10 +3935,14 @@ msgstr ""
 "Kloroplast zarsı keseler içinde birbirinin üstüne dizili, ışığa hassas "
 "pigmentler içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı "
 "tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Kloroplasttaki "
-"pigmentler, Fotosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
-"ayrıca yapıya kendine özgü bir renk verir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır."
+"pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan [thrive:"
+"compound type=\"glucose\"]glukoz[/thrive:compound] ve [thrive:compound type="
+"\"carbondioxide\"]karbondioksit[/thrive:compound] gazı üretmek için ışık "
+"enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk "
+"verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] "
+"oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:"
+"compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:"
+"compound] şiddeti ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
@@ -3862,8 +3957,11 @@ msgstr ""
 "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas "
 "pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı "
 "tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki "
-"pigmentler, termosentez adı verilen bir işlemde, sudan ATP üretmek için "
-"çevredeki ısı farkını kullanır. ATP üretimi, sıcaklıkla doğru orantılıdır."
+"pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:"
+"compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı "
+"farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] "
+"üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] "
+"doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
@@ -3881,10 +3979,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1860
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
-"Kemoplast, Hidrojen Sülfür Kemosentezi adı verilen bir işlemde, hidrojen "
-"sülfür, su ve karbondioksit gazını glukoza çeviren proteinler içeren çift "
-"zarlı bir yapıdır. Üretilen glukoz oranı, karbondioksit konsantrasyonu ile "
-"doğru orantılıdır."
+"Kemoplast, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, "
+"[thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], "
+"[thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı "
+"ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] çeviren "
+"proteinler içeren çift zarlı bir yapıdır. Üretilen [thrive:compound type="
+"\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type="
+"\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
@@ -3897,9 +3999,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
-"Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan amonyağı "
-"üretmek için azot gazı, oksijen ve ATP formundaki hücresel enerjiyi kullanan "
-"bir proteindir. Bu işlem Oksijenli Azot Fiksasyonu olarak anılır."
+"Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan [thrive:"
+"compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:"
+"compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound "
+"type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp"
+"\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir "
+"proteindir. Bu işlem [b]oksijenli azot fiksasyonu[/b] olarak anılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
@@ -3928,9 +4033,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2142
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
-"Toksin kofulu, oksitoksi toksinlerinin özel üretimi, depolanması ve "
-"salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, "
-"salınabilecek toksin oranını arttırır."
+"Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] "
+"toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir "
+"kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2239
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
@@ -3957,15 +4062,15 @@ msgstr "Henüz Eklenmedi."
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye "
-"edilebilir. Aynı anda yalnızca bir enzim kullanılabilir."
+"edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, "
 "hücre zarına bağlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri "
-"aldığı maddeleri sindirmesini sağlar ve otofaji adı verilen bir işlemle yan "
-"ürünleri temizler."
+"aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir "
+"işlemle yan ürünleri temizler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
@@ -4471,24 +4576,29 @@ msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Son organel silinemez"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} "
 "dengelenmemiş popülasyonla sonuçlanıyor"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0} ile açığa çıkan enerji miktarı: {1} (uyum başarısı: {2}) mevcut toplam "
@@ -4652,7 +4762,7 @@ msgstr "Bileşik Dengesi"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:259
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "Tür adı, ikili adlandırma sistemine uymalı (Cins ve Epitet) !"
+msgstr "Tür adı, ikili adlandırma sistemine uymalı (cins ve epitet) !"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
 msgid "SPECIES_NAME_DOT_DOT_DOT"
@@ -4904,9 +5014,10 @@ msgstr "BAŞARDIN!"
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr ""
-"Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, bu bildiri "
+"Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, bu mesaj "
 "gittikten sonra da oynamaya devam edebilirsin veya yeni bir konumda, yeni "
-"bir oyun başlatabilirsin."
+"bir oyun başlatabilirsin. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun "
+"prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsin."
 
 #: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
@@ -5401,7 +5512,8 @@ msgid "CREATE"
 msgstr "Oluştur"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
-#: ../src/saving/InProgressLoad.cs:151
+#: ../src/saving/InProgressLoad.cs:151 ../src/saving/InProgressLoad.cs:100
+#: ../src/saving/InProgressLoad.cs:149
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
@@ -5409,39 +5521,39 @@ msgstr "Oyun Yükleniyor"
 msgid "READING_SAVE_DATA"
 msgstr "Kayıt verisi okunuyor"
 
-#: ../src/saving/InProgressLoad.cs:104
+#: ../src/saving/InProgressLoad.cs:104 ../src/saving/InProgressLoad.cs:102
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan objeler oluşturuluyor"
 
-#: ../src/saving/InProgressLoad.cs:113
+#: ../src/saving/InProgressLoad.cs:113 ../src/saving/InProgressLoad.cs:111
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
-#: ../src/saving/InProgressLoad.cs:139
+#: ../src/saving/InProgressLoad.cs:139 ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_IS_INVALID"
 msgstr "Kayıt geçersiz"
 
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:140 ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
 
-#: ../src/saving/InProgressLoad.cs:153
+#: ../src/saving/InProgressLoad.cs:153 ../src/saving/InProgressLoad.cs:151
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Yüklenen objeler işleniyor"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:168 ../src/saving/InProgressLoad.cs:166
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Yüklenen objeleri işlerken bir sorun oluştu"
 
-#: ../src/saving/InProgressLoad.cs:174
+#: ../src/saving/InProgressLoad.cs:174 ../src/saving/InProgressLoad.cs:172
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
 
-#: ../src/saving/InProgressLoad.cs:201
+#: ../src/saving/InProgressLoad.cs:201 ../src/saving/InProgressLoad.cs:199
 msgid "ERROR_LOADING"
 msgstr "Yükleme Hatası"
 
-#: ../src/saving/InProgressLoad.cs:240
+#: ../src/saving/InProgressLoad.cs:240 ../src/saving/InProgressLoad.cs:238
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
@@ -6029,6 +6141,10 @@ msgstr ""
 "Bu işlemi atlamak için intihar butonuna bas ve yeniden doğ. Ama unutma, her "
 "zaman kaçmak için bir şansın var!"
 
+#: ../src/auto-evo/AutoEvoRun.cs:127
+msgid "NOT_RUNNING_DOT"
+msgstr "Çalışmıyor."
+
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "Özel kullanıcı adı:"
@@ -6040,9 +6156,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "DISPLAY_DRIVER_NAME"
 #~ msgstr "Parça seçim butonu isimlerini göster"
-
-#~ msgid "NOT_RUNNING_DOT"
-#~ msgstr "Çalışmıyor."
 
 #~ msgid "MULTICELLULAR"
 #~ msgstr "Çok Hücreli"
