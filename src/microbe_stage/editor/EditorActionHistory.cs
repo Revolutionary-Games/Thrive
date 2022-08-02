@@ -74,23 +74,18 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                 var (_, minimumCostCombinableAction, mode) = processedHistory.Take(compareIndex).Select(action =>
                 {
                     var thisAction = processedHistory[compareIndex];
+                    var interferenceMode = thisAction.GetInterferenceModeWith(action);
 
                     // Assume that the other action's cost stays the same
-                    return thisAction.GetInterferenceModeWith(action) switch
+                    return (interferenceMode switch
                     {
-                        ActionInterferenceMode.Combinable => (
-                            ((EditorCombinableActionData)thisAction.Combine(action)).CalculateCost()
-                            - action.CalculateCost(),
-                            action, ActionInterferenceMode.Combinable),
-                        ActionInterferenceMode.CancelsOut => (
-                            -action.CalculateCost(), action, ActionInterferenceMode.CancelsOut),
-                        ActionInterferenceMode.ReplacesOther => (
-                            thisAction.CalculateCost() - action.CalculateCost(), action,
-                            ActionInterferenceMode.ReplacesOther),
-                        ActionInterferenceMode.NoInterference => (
-                            thisAction.CalculateCost(), action, ActionInterferenceMode.NoInterference),
+                        ActionInterferenceMode.Combinable => ((EditorCombinableActionData)thisAction.Combine(action))
+                            .CalculateCost() - action.CalculateCost(),
+                        ActionInterferenceMode.CancelsOut => action.CalculateCost(),
+                        ActionInterferenceMode.ReplacesOther => thisAction.CalculateCost() - action.CalculateCost(),
+                        ActionInterferenceMode.NoInterference => thisAction.CalculateCost(),
                         _ => throw new ArgumentOutOfRangeException(),
-                    };
+                    }, action, interferenceMode);
                 }).OrderBy(p => p.Item1).FirstOrDefault();
 
                 // If no more can be merged together, try next one.
