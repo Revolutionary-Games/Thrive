@@ -309,13 +309,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Gives organelles more compounds to grow
+    ///   Gives organelles more compounds to grow (or takes free compounds).
+    ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
     /// </summary>
-    public void GrowOrganelle(CompoundBag compounds)
+    public void GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft)
     {
         float totalTaken = 0;
 
-        // TODO: should we just check a single type per frame (and remove once done) so we can skip creating a bunch
+        // TODO: should we just check a single type per update (and remove once done) so we can skip creating a bunch
         // of extra lists
         foreach (var key in compoundsLeft.Keys.ToArray())
         {
@@ -324,28 +325,45 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (amountNeeded <= 0.0f)
                 continue;
 
+            if (allowedCompoundUse <= 0)
+                break;
+
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
+
+            if (freeCompoundsLeft > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, freeCompoundsLeft);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                freeCompoundsLeft -= usedFreeCompounds;
+            }
+
             // Take compounds if the cell has what we need
-            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how
-            // much of a certain compound must exist before we take
-            // some
-            var amountAvailable = compounds.GetCompoundAmount(key)
-                - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how much of a certain compound must exist before we
+            // take some
+            var amountAvailable =
+                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
 
-            if (amountAvailable <= MathUtils.EPSILON)
-                continue;
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
 
-            // We can take some
-            var amountToTake = Mathf.Min(amountNeeded, amountAvailable);
+                usedAmount += compounds.TakeCompound(key, amountToTake);
+            }
 
-            var amount = compounds.TakeCompound(key, amountToTake);
-            var left = amountNeeded - amount;
+            allowedCompoundUse -= usedAmount;
+
+            var left = amountNeeded - usedAmount;
 
             if (left < 0.0001f)
                 left = 0;
 
             compoundsLeft[key] = left;
 
-            totalTaken += amount;
+            totalTaken += usedAmount;
         }
 
         if (totalTaken > 0)

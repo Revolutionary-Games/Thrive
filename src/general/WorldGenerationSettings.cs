@@ -100,6 +100,16 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud { get; set; }
 
     /// <summary>
+    ///  Whether microbes get free reproduction compounds at a steady background rate
+    /// </summary>
+    public bool PassiveGainOfReproductionCompounds { get; set; } = true;
+
+    /// <summary>
+    ///  Whether microbes are limited in how fast they can consume reproduction compounds to grow
+    /// </summary>
+    public bool LimitReproductionCompoundUseSpeed { get; set; } = true;
+
+    /// <summary>
     ///  Basic patch map generation type (procedural or the static classic map)
     /// </summary>
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
