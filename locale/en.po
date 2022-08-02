@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-20 14:32+0300\n"
-"PO-Revision-Date: 2022-07-14 12:36+0700\n"
+"POT-Creation-Date: 2022-08-01 15:00+0300\n"
+"PO-Revision-Date: 2022-07-31 20:14+0300\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -114,12 +114,12 @@ msgstr "Cellulose and Chitin cell walls in particular can't be digested without 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which means the bigger your cell is, the more Mitochondria, Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing [thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
+msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which means the bigger your cell is, the more Mitochondria, Metabolosomes or Rusticyanin (or Cytoplasm, which does glycolysis) you need to avoid losing [thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "There are many Organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
+msgstr "There are many organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -983,123 +983,331 @@ msgstr "Cilia"
 msgid "LYSOSOME"
 msgstr "Lysosome"
 
-#: ../src/auto-evo/AutoEvoRun.cs:122
+#: ../src/auto-evo/AutoEvoExploringTool.cs:536
+msgid "FINISH_X_GENERATIONS"
+msgstr "Finish {0} Generations"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:707
+msgid "SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Species[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Colour[/b]\n"
+"  #{4}\n"
+"[b]Behaviour[/b]\n"
+"  {5}\n"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:715
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stage[/b]\n"
+"  Microbe\n"
+"[b]Membrane Type[/b]\n"
+"  {0}\n"
+"[b]Membrane Rigidity[/b]\n"
+"  {1}\n"
+"[b]Base Speed[/b]\n"
+"  {2}\n"
+"[b]Base Rotation Speed[/b]\n"
+"  {3}\n"
+"[b]Base Hex Size[/b]\n"
+"  {4}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+msgid "CONFIG"
+msgstr "Config"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+msgid "REPORT"
+msgstr "Report"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+msgid "VIEWER"
+msgstr "Viewer"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "Allow species to not mutate"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "Allow species to not migrate"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr "Biodiversity attempt fill chance"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr "Biodiversity from neighbour patch chance"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr "Biodiversity nearby patch is free population"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr "Biodiversity split is mutated"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr "Low biodiversity limit"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "Maximum species in patch"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr "Move attempts per species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "Mutations per species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr "New biodiversity increasing species population"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr "Protect migrations from species cap"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr "Protect new cells from species cap"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr "Refund migrations in extinctions"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+msgid "STRICT_NICHE_COMPETITION"
+msgstr "Strict niche competition"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr "Species split by mutation threshold population amount"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr "Species split by mutation threshold population fraction"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr "Use biodiversity force split"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+msgid "CURRENT_GENERATION_COLON"
+msgstr "Current Generation:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+msgid "STATUS_COLON"
+msgstr "Status:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+msgid "READY"
+msgstr "Ready"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
+msgid "FINISH_ONE_GENERATION"
+msgstr "Finish One Generation"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:472
+msgid "RUN_ONE_STEP"
+msgstr "Run One Step"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:478
+msgid "ABORT"
+msgstr "Abort"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+msgid "PLAY_WITH_CURRENT_SETTING"
+msgstr "Play With Current Setting"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:526
+msgid "GENERATIONS"
+msgstr "Generations"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:533
+msgid "SELECT_A_GENERATION"
+msgstr "Select a generation"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:567
+msgid "SPECIES"
+msgstr "Species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:574
+msgid "SELECT_A_SPECIES"
+msgstr "Select a species"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
+msgid "AUTO_EVO_RESULTS"
+msgstr "Auto-evo results:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:670
+msgid "EVOLUTIONARY_TREE"
+msgstr "Evolutionary Tree"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+msgid "SPECIES_DETAILS"
+msgstr "Species Details"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/PauseMenu.tscn:263
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/saving/SaveManagerGUI.tscn:120
+msgid "BACK"
+msgstr "Back"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
+#: ../src/general/PauseMenu.tscn:288
+msgid "CONFIRM_EXIT"
+msgstr "Confirm Exit"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
+#: ../src/general/PauseMenu.cs:353
+msgid "RETURN_TO_MENU_WARNING"
+msgstr ""
+"Are you sure you want to exit to the main menu?\n"
+"You will lose any unsaved progress."
+
+#: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
 msgstr "Aborted."
 
-#: ../src/auto-evo/AutoEvoRun.cs:125
+#: ../src/auto-evo/AutoEvoRun.cs:127
 msgid "FINISHED_DOT"
 msgstr "Finished."
 
-#: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING_DOT"
-msgstr "Not running."
+#: ../src/auto-evo/AutoEvoRun.cs:130
+msgid "NOT_STARTED_DOT"
+msgstr "Not started."
 
-#: ../src/auto-evo/AutoEvoRun.cs:138
+#: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% done. {1:n0}/{2:n0} steps."
 
-#: ../src/auto-evo/AutoEvoRun.cs:142
+#: ../src/auto-evo/AutoEvoRun.cs:140
+msgid "OPERATION_PAUSED_DOT"
+msgstr "Paused."
+
+#: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Starting"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/EvolutionaryTree.cs:79
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
+#: ../src/microbe_stage/editor/TimelineTab.cs:187
+msgid "MEGA_YEARS"
+msgstr "Myr"
+
+#: ../src/auto-evo/RunResults.cs:600
 msgid "POPULATION_COLON"
 msgstr "population:"
 
-#: ../src/auto-evo/RunResults.cs:602
+#: ../src/auto-evo/RunResults.cs:609
 msgid "WENT_EXTINCT_IN"
 msgstr "went extinct in {0}"
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:615
 msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
-#: ../src/auto-evo/RunResults.cs:626
+#: ../src/auto-evo/RunResults.cs:633
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "split off from {0}"
 
-#: ../src/auto-evo/RunResults.cs:639
+#: ../src/auto-evo/RunResults.cs:646
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "emerged to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:642
+#: ../src/auto-evo/RunResults.cs:649
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "emerged due to differing selection pressures"
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:666
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "population in some patches split off to form new species {0}:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:682
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has mutated"
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:687
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gene code:"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:698
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:706
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} by sending: {1} population from patch: {2}"
 
-#: ../src/auto-evo/RunResults.cs:718
+#: ../src/auto-evo/RunResults.cs:725
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/auto-evo/RunResults.cs:828
+#: ../src/auto-evo/RunResults.cs:840
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
-#: ../src/auto-evo/RunResults.cs:883
+#: ../src/auto-evo/RunResults.cs:894
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] has gone extinct!"
 
-#: ../src/auto-evo/RunResults.cs:893 ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:904 ../src/auto-evo/RunResults.cs:926
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] population has increased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:899 ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:910 ../src/auto-evo/RunResults.cs:932
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] population has decreased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:918
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] has disappeared from this patch"
 
-#: ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:942
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated into this patch from {1}"
 
-#: ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:947
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1} from {2}"
 
-#: ../src/auto-evo/RunResults.cs:942
+#: ../src/auto-evo/RunResults.cs:953
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1}"
 
-#: ../src/auto-evo/RunResults.cs:961
+#: ../src/auto-evo/RunResults.cs:972
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:967
+#: ../src/auto-evo/RunResults.cs:978
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
 msgstr "Error: chunk not found"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} consumption"
 
@@ -1111,7 +1319,7 @@ msgstr "{0} consumption"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Uniformly spread environmental food source of {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:88
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
@@ -1176,7 +1384,7 @@ msgstr "CANCEL ACTION"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:164
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "NEXT"
@@ -1227,7 +1435,7 @@ msgstr "Multiple Cells"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:148
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
@@ -1250,7 +1458,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
-#: ../src/general/EditorBase.cs:648
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1261,25 +1469,25 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Select a cell type to edit here from the editor tab"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:76
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:89
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Unknown on Windows"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -1326,7 +1534,7 @@ msgstr "Entity label"
 msgid "TRANSPARENCY"
 msgstr "Transparency"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:169
+#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "Loading"
 
@@ -1334,7 +1542,7 @@ msgstr "Loading"
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Press a key..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:129
+#: ../src/engine/input/key_mapping/InputGroupList.cs:127
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "There is a conflict with {0}.\n"
@@ -1744,11 +1952,11 @@ msgstr "Mouse Special 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Unknown mouse"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:56
+#: ../src/general/Asset.cs:54
 msgid "ART_BY"
 msgstr "Art by {0}"
 
@@ -1772,14 +1980,14 @@ msgid "CLOSE"
 msgstr "Close"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:684
-#: ../src/gui_common/CompoundAmount.cs:176
+#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1791,71 +1999,66 @@ msgstr "{0} concentrations have decreased by {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucose concentrations have drastically dropped!"
 
-#: ../src/general/MainMenu.cs:241
+#: ../src/general/MainMenu.cs:244
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
-#: ../src/general/MainMenu.tscn:175
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start a new game"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:179
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Load previously saved games"
 
-#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:201 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:205 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:215
+#: ../src/general/MainMenu.tscn:216
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/general/MainMenu.tscn:226
+#: ../src/general/MainMenu.tscn:227
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"
 
-#: ../src/general/MainMenu.tscn:237
+#: ../src/general/MainMenu.tscn:238
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:248
+#: ../src/general/MainMenu.tscn:249
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
 
-#: ../src/general/MainMenu.tscn:260
+#: ../src/general/MainMenu.tscn:261
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/general/MainMenu.tscn:280
+#: ../src/general/MainMenu.tscn:281
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1261 ../src/general/PauseMenu.tscn:263
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
-#: ../src/saving/SaveManagerGUI.tscn:120
-msgid "BACK"
-msgstr "Back"
+#: ../src/general/MainMenu.tscn:293
+msgid "AUTO_EVO_EXPLORING_TOOL"
+msgstr "Auto-Evo Exploring Tool"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -1885,12 +2088,12 @@ msgstr "Mod Loading Errors"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
-#: ../src/general/NewGameSettings.cs:284
+#: ../src/general/NewGameSettings.cs:285
 #: ../src/general/NewGameSettings.tscn:1052
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Enter the game with these settings"
 
-#: ../src/general/NewGameSettings.cs:291
+#: ../src/general/NewGameSettings.cs:292
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Some settings are invalid"
 
@@ -1959,7 +2162,7 @@ msgstr "Difficulty"
 msgid "PLANET"
 msgstr "Planet"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Misc"
 
@@ -2076,391 +2279,413 @@ msgstr "Basic"
 msgid "CONFIRM_NORMAL"
 msgstr "Confirm"
 
-#: ../src/general/OptionsMenu.cs:635 ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:988
+#: ../src/general/OptionsMenu.cs:666
+msgid "GLES2"
+msgstr "GLES2"
+
+#: ../src/general/OptionsMenu.cs:671
+msgid "GLES3"
+msgstr "GLES3"
+
+#: ../src/general/OptionsMenu.cs:676
+msgid "UNKNOWN_DISPLAY_DRIVER"
+msgstr "Unknown"
+
+#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
+msgid "VIDEO_MEMORY_MIB"
+msgstr "{0} MiB"
+
+#: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
-#: ../src/general/OptionsMenu.cs:1020
+#: ../src/general/OptionsMenu.cs:1070
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/general/OptionsMenu.cs:1024
+#: ../src/general/OptionsMenu.cs:1074
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "This language is still a work in progress ({0}% complete)"
 
-#: ../src/general/OptionsMenu.cs:1028
+#: ../src/general/OptionsMenu.cs:1078
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "This language is {0}% complete"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:143
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:154
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:165
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:176
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:235
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:223
+#: ../src/general/OptionsMenu.tscn:242
 msgid "FULLSCREEN"
 msgstr "Fullscreen"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:264
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:252
+#: ../src/general/OptionsMenu.tscn:271
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:286 ../src/general/OptionsMenu.tscn:287
 msgid "DISABLED"
 msgstr "Disabled"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:268
+#: ../src/general/OptionsMenu.tscn:287
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:301
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:306
+#: ../src/general/OptionsMenu.tscn:325
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:340
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Unlimited"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:356
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind correction:"
 
-#: ../src/general/OptionsMenu.tscn:351 ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:370 ../src/general/OptionsMenu.tscn:371
 msgid "NONE"
 msgstr "None"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanope (Red-Green)"
 
-#: ../src/general/OptionsMenu.tscn:352
+#: ../src/general/OptionsMenu.tscn:371
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blue-Yellow)"
 
-#: ../src/general/OptionsMenu.tscn:368
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic aberration:"
 
-#: ../src/general/OptionsMenu.tscn:394
+#: ../src/general/OptionsMenu.tscn:413
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Display background particles"
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:423
+msgid "GPU_NAME"
+msgstr "GPU:"
+
+#: ../src/general/OptionsMenu.tscn:450
+msgid "USED_RENDERER_NAME"
+msgstr "Used renderer:"
+
+#: ../src/general/OptionsMenu.tscn:474
+msgid "VIDEO_MEMORY"
+msgstr "Currently used video memory:"
+
+#: ../src/general/OptionsMenu.tscn:498
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/general/OptionsMenu.tscn:425
+#: ../src/general/OptionsMenu.tscn:513
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Display abilities bar"
 
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:521
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI light effects"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:528
 msgid "DISPLAY_PART_NAMES"
 msgstr "Display part selection button names"
 
-#: ../src/general/OptionsMenu.tscn:466
+#: ../src/general/OptionsMenu.tscn:554
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
-#: ../src/general/OptionsMenu.tscn:492 ../src/general/OptionsMenu.tscn:532
-#: ../src/general/OptionsMenu.tscn:564 ../src/general/OptionsMenu.tscn:596
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
+#: ../src/general/OptionsMenu.tscn:716
 msgid "MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:506
+#: ../src/general/OptionsMenu.tscn:594
 msgid "MUSIC_VOLUME"
 msgstr "Music volume"
 
-#: ../src/general/OptionsMenu.tscn:538
+#: ../src/general/OptionsMenu.tscn:626
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance volume"
 
-#: ../src/general/OptionsMenu.tscn:570
+#: ../src/general/OptionsMenu.tscn:658
 msgid "SFX_VOLUME"
 msgstr "SFX volume"
 
-#: ../src/general/OptionsMenu.tscn:602
+#: ../src/general/OptionsMenu.tscn:690
 msgid "GUI_VOLUME"
 msgstr "GUI volume"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:734
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio output device:"
 
-#: ../src/general/OptionsMenu.tscn:674
+#: ../src/general/OptionsMenu.tscn:762
 msgid "LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:710
+#: ../src/general/OptionsMenu.tscn:798
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help Translate The Game"
 
-#: ../src/general/OptionsMenu.tscn:736
+#: ../src/general/OptionsMenu.tscn:824
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:839
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Cloud simulation minimum interval:"
 
-#: ../src/general/OptionsMenu.tscn:758 ../src/general/OptionsMenu.tscn:800
+#: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:793
+#: ../src/general/OptionsMenu.tscn:881
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Cloud resolution divisor:"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:922
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:942
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detected CPU count:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:959
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Current threads:"
 
-#: ../src/general/OptionsMenu.tscn:885
+#: ../src/general/OptionsMenu.tscn:973
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
 
-#: ../src/general/OptionsMenu.tscn:893
+#: ../src/general/OptionsMenu.tscn:981
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
 
-#: ../src/general/OptionsMenu.tscn:903
+#: ../src/general/OptionsMenu.tscn:991
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum number of entities:"
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_TINY"
 msgstr "Tiny"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_VERY_SMALL"
 msgstr "Very small"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_SMALL"
 msgstr "Small"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_NORMAL"
 msgstr "Normal"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_LARGE"
 msgstr "Large"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_VERY_LARGE"
 msgstr "Very large"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_HUGE"
 msgstr "Huge"
 
-#: ../src/general/OptionsMenu.tscn:964
+#: ../src/general/OptionsMenu.tscn:1052
 msgid "LIMIT_EXTREME"
 msgstr "Extreme"
 
-#: ../src/general/OptionsMenu.tscn:1038
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "RESET_INPUTS"
 msgstr "Reset Inputs"
 
-#: ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:1154
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:1073
+#: ../src/general/OptionsMenu.tscn:1162
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Play microbe intro on new game"
 
-#: ../src/general/OptionsMenu.tscn:1081
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1209
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1241
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
-#: ../src/general/OptionsMenu.tscn:1158
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Show unsaved progress warning"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:1178
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
-#: ../src/general/OptionsMenu.tscn:1189
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "CUSTOM_USERNAME"
 msgstr "Custom username:"
 
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshot Folder"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mode:"
 
-#: ../src/general/OptionsMenu.tscn:1247 ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatically"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Always"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Never"
 
-#: ../src/general/OptionsMenu.tscn:1284 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Save"
 
-#: ../src/general/OptionsMenu.tscn:1301
+#: ../src/general/OptionsMenu.tscn:1390
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaults"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1401
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1402
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1411
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Are you sure you want to reset the input settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "CLOSE_OPTIONS"
 msgstr "Close options?"
 
-#: ../src/general/OptionsMenu.tscn:1351
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "You have unsaved changes that will be discarded.\n"
 "Do you wish to continue?"
 
-#: ../src/general/OptionsMenu.tscn:1374
+#: ../src/general/OptionsMenu.tscn:1463
 msgid "SAVE_AND_CONTINUE"
 msgstr "Save and continue"
 
-#: ../src/general/OptionsMenu.tscn:1384
+#: ../src/general/OptionsMenu.tscn:1473
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Discard and continue"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1490
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/general/OptionsMenu.tscn:1412 ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1422
+#: ../src/general/OptionsMenu.tscn:1511
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
-#: ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1519
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "No screenshot directory found"
 
-#: ../src/general/OptionsMenu.tscn:1432
+#: ../src/general/OptionsMenu.tscn:1521
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Try taking some screenshots!"
 
-#: ../src/general/PauseMenu.cs:332
-msgid "RETURN_TO_MENU_WARNING"
-msgstr ""
-"Are you sure you want to exit to the main menu?\n"
-"You will lose any unsaved progress."
-
-#: ../src/general/PauseMenu.cs:348
+#: ../src/general/PauseMenu.cs:372
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Are you sure you want to quit the game?\n"
@@ -2512,68 +2737,64 @@ msgstr "Return to Menu"
 msgid "EXIT"
 msgstr "Exit"
 
-#: ../src/general/PauseMenu.tscn:288
-msgid "CONFIRM_EXIT"
-msgstr "Confirm Exit"
-
 #: ../src/general/StageBase.cs:383
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/general/StageBase.cs:438
+#: ../src/general/StageBase.cs:439
 msgid "PLAYER_DIED"
 msgstr "player died"
 
-#: ../src/general/StageBase.cs:501
+#: ../src/general/StageBase.cs:502
 msgid "EXTINCT_IN_PATCH"
 msgstr "extinct in patch"
 
 #: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:897
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
-#: ../src/general/StageHUDBase.cs:899
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
-#: ../src/general/StageHUDBase.cs:901
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
-#: ../src/general/StageHUDBase.cs:903
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_SOME"
 msgstr "some"
 
-#: ../src/general/StageHUDBase.cs:905
+#: ../src/general/StageHUDBase.cs:900
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
-#: ../src/general/StageHUDBase.cs:907
+#: ../src/general/StageHUDBase.cs:902
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
-#: ../src/general/StageHUDBase.cs:1107
+#: ../src/general/StageHUDBase.cs:1102
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
-#: ../src/general/StageHUDBase.cs:1120
+#: ../src/general/StageHUDBase.cs:1115
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/general/StringUtils.cs:22
+#: ../src/general/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../src/general/StringUtils.cs:31
+#: ../src/general/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
 
-#: ../src/general/StringUtils.cs:40
+#: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
@@ -2825,21 +3046,21 @@ msgstr "Save has different version"
 msgid "SELECT_OPTION"
 msgstr "Select An Option"
 
-#: ../src/gui_common/TweakedColourPicker.cs:388
+#: ../src/gui_common/TweakedColourPicker.cs:387
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Pick a colour from the game window"
 
-#: ../src/gui_common/TweakedColourPicker.cs:389
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Add current colour as a preset"
 
-#: ../src/gui_common/TweakedColourPicker.cs:390
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Switch HSV (Hue, Saturation, Value) mode on or off.\n"
 "Can't be turned on when in raw mode."
 
-#: ../src/gui_common/TweakedColourPicker.cs:391
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Switch raw mode on or off.\n"
@@ -2847,35 +3068,35 @@ msgstr ""
 "colour values to go beyond 1.0.\n"
 "Can't be turned on in HSV mode."
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Hue value, portion of colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Saturation value, the amount of gray in a particular colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) value, brightness or intensity of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:400
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Red channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Green channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Blue channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:405
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alpha channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:581
+#: ../src/gui_common/TweakedColourPicker.cs:579
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Colour: {0}\n"
@@ -2893,8 +3114,8 @@ msgstr "Raw"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2049
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2061
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
 msgid "N_A"
 msgstr "N/A"
 
@@ -2927,26 +3148,26 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filter items by category:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Slideshow"
 
-#: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/gui_common/charts/line/LineChart.cs:645
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
-#: ../src/gui_common/charts/line/LineChart.cs:652
+#: ../src/gui_common/charts/line/LineChart.cs:649
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Invalid Data to Plot"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1208
+#: ../src/gui_common/charts/line/LineChart.cs:1112
+#: ../src/gui_common/charts/line/LineChart.cs:1204
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Not allowed to show more than {0} datasets!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1122
-#: ../src/gui_common/charts/line/LineChart.cs:1213
+#: ../src/gui_common/charts/line/LineChart.cs:1118
+#: ../src/gui_common/charts/line/LineChart.cs:1209
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Not allowed to show less than {0} dataset(s)!"
 
@@ -3716,11 +3937,11 @@ msgstr "Move to the next stage of the game (multicellular). Available once you h
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:764
+#: ../src/microbe_stage/PatchMapGenerator.cs:784
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Pangonian"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:833
+#: ../src/microbe_stage/PatchMapGenerator.cs:855
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3776,67 +3997,66 @@ msgstr "Responsive"
 msgid "FOCUSED"
 msgstr "Focused"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:272
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:277
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:278
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:281
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:307
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:327
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:329
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:335
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:345
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:502
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:525
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Can't delete the nucleus as this is an irreversible evolution.\n"
 "However if placed in the current session, undo or redo is still permitted"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1153
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Can't delete the last organelle"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2055
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 
@@ -3999,13 +4219,13 @@ msgstr "Loading Microbe Editor"
 msgid "INFINITE_MP"
 msgstr "Infinite MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:127
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Find Current Patch"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:88
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
 msgid "SEED_LABEL"
 msgstr "Planet seed: {0}"
 
@@ -4038,16 +4258,11 @@ msgstr "Extinct from the planet"
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Extinct from patch"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:372
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
-msgid "MEGA_YEARS"
-msgstr "Myr"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:387
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Time Passed: {0:#,#} years"
 
@@ -4062,10 +4277,6 @@ msgstr "Food Chain"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:228
 msgid "TIMELINE"
 msgstr "Timeline"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
-msgid "AUTO_EVO_RESULTS"
-msgstr "Auto-evo results:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:300
 msgid "EXTERNAL_EFFECTS"
@@ -4096,10 +4307,6 @@ msgstr "Species Population"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Physical Conditions"
-
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
-msgid "REPORT"
-msgstr "Report"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
@@ -4190,15 +4397,15 @@ msgstr "EXTINCTION"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:271
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -4240,47 +4447,47 @@ msgstr "YOU HAVE THRIVED!"
 msgid "WIN_TEXT"
 msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world. You may also add binding agents to build a cell colony and check the later game prototypes."
 
-#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Can't load mod info for {0}"
 
-#: ../src/modding/ModLoader.cs:250
+#: ../src/modding/ModLoader.cs:247
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: assembly loading failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:267
+#: ../src/modding/ModLoader.cs:262
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: has no loadable resources"
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod's assembly unload method call failed"
 
-#: ../src/modding/ModLoader.cs:302
+#: ../src/modding/ModLoader.cs:292
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly unload method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:384
+#: ../src/modding/ModLoader.cs:373
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: specified mod class \"{1}\" not found in mod's assembly"
 
-#: ../src/modding/ModLoader.cs:397
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod's assembly initialize method call failed"
 
-#: ../src/modding/ModLoader.cs:413
+#: ../src/modding/ModLoader.cs:398
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly initialize method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:438
+#: ../src/modding/ModLoader.cs:421
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}: mod's Harmony loading failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:461
+#: ../src/modding/ModLoader.cs:442
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: mod's Harmony unloading failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:473
+#: ../src/modding/ModLoader.cs:453
 msgid "PCK_LOAD_FAILED"
 msgstr "Loading of pck file ({0}) failed"
 
@@ -4499,75 +4706,75 @@ msgstr "Restart Required"
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "One or more mods requires a game restart to load or unload properly"
 
-#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:273 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop content will be uploaded from folder: {0}"
 
-#: ../src/modding/ModUploader.cs:305
+#: ../src/modding/ModUploader.cs:304
 msgid "MISSING_TITLE"
 msgstr "Title is missing"
 
-#: ../src/modding/ModUploader.cs:311
+#: ../src/modding/ModUploader.cs:310
 msgid "MISSING_DESCRIPTION"
 msgstr "Description is missing"
 
-#: ../src/modding/ModUploader.cs:319
+#: ../src/modding/ModUploader.cs:318
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Description is too long"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
+#: ../src/modding/ModUploader.cs:324 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Change notes is too long"
 
-#: ../src/modding/ModUploader.cs:333
+#: ../src/modding/ModUploader.cs:332
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Tags contains only whitespace"
 
-#: ../src/modding/ModUploader.cs:341
+#: ../src/modding/ModUploader.cs:340
 msgid "INVALID_TAG"
 msgstr "Invalid tag \"{0}\" specified"
 
-#: ../src/modding/ModUploader.cs:355
+#: ../src/modding/ModUploader.cs:353
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr "Preview image doesn't exist"
 
-#: ../src/modding/ModUploader.cs:362
+#: ../src/modding/ModUploader.cs:360
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "Preview image file is too large"
 
-#: ../src/modding/ModUploader.cs:417
+#: ../src/modding/ModUploader.cs:415
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID is not a valid number"
 
-#: ../src/modding/ModUploader.cs:460
+#: ../src/modding/ModUploader.cs:458
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Creating..."
 
-#: ../src/modding/ModUploader.cs:474
+#: ../src/modding/ModUploader.cs:472
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Result indicated success but no ID was returned"
 
-#: ../src/modding/ModUploader.cs:519
+#: ../src/modding/ModUploader.cs:517
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Uploading..."
 
-#: ../src/modding/ModUploader.cs:556
+#: ../src/modding/ModUploader.cs:554
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Item upload to the Steam Workshop has succeeded, but you need to accept the Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] before it is visible"
 
-#: ../src/modding/ModUploader.cs:560
+#: ../src/modding/ModUploader.cs:558
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Item upload to the Steam Workshop has succeeded"
 
-#: ../src/modding/ModUploader.cs:620
+#: ../src/modding/ModUploader.cs:618
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "By submitting this item, you agree to Steam Workshop's [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:645
+#: ../src/modding/ModUploader.cs:642
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Saving information failed due to exception: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
+#: ../src/modding/ModUploader.cs:656 ../src/modding/NewModGUI.cs:304
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -4655,31 +4862,31 @@ msgstr "Select Preview Image"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload Succeeded"
 
-#: ../src/modding/NewModGUI.cs:180
+#: ../src/modding/NewModGUI.cs:179
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "My Awesome Mod"
 
-#: ../src/modding/NewModGUI.cs:239
+#: ../src/modding/NewModGUI.cs:238
 msgid "INVALID_URL_FORMAT"
 msgstr "Invalid URL format"
 
-#: ../src/modding/NewModGUI.cs:254
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Internal name is required"
 
-#: ../src/modding/NewModGUI.cs:260
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Internal name should begin with a capital letter"
 
-#: ../src/modding/NewModGUI.cs:266
+#: ../src/modding/NewModGUI.cs:265
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "There is already a mod with the specified internal name"
 
-#: ../src/modding/NewModGUI.cs:282
+#: ../src/modding/NewModGUI.cs:280
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Missing or invalid format of a required field: {0}"
 
-#: ../src/modding/NewModGUI.cs:293
+#: ../src/modding/NewModGUI.cs:290
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Additional validations detected an issue: {0}"
 
@@ -4707,48 +4914,48 @@ msgstr "Use Auto Harmony Loading"
 msgid "CREATE"
 msgstr "Create"
 
-#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:101
-#: ../src/saving/InProgressLoad.cs:150
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
+#: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
 msgstr "Loading Game"
 
-#: ../src/saving/InProgressLoad.cs:81
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "Reading save data"
 
-#: ../src/saving/InProgressLoad.cs:103
+#: ../src/saving/InProgressLoad.cs:104
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creating objects from save"
 
-#: ../src/saving/InProgressLoad.cs:112
+#: ../src/saving/InProgressLoad.cs:113
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
 
-#: ../src/saving/InProgressLoad.cs:138
+#: ../src/saving/InProgressLoad.cs:139
 msgid "SAVE_IS_INVALID"
 msgstr "Save is invalid"
 
-#: ../src/saving/InProgressLoad.cs:139
+#: ../src/saving/InProgressLoad.cs:140
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Save has invalid game state scene"
 
-#: ../src/saving/InProgressLoad.cs:152
+#: ../src/saving/InProgressLoad.cs:153
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processing loaded objects"
 
-#: ../src/saving/InProgressLoad.cs:167
+#: ../src/saving/InProgressLoad.cs:168
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "An exception happened while processing loaded objects"
 
-#: ../src/saving/InProgressLoad.cs:173
+#: ../src/saving/InProgressLoad.cs:174
 msgid "LOAD_FINISHED"
 msgstr "Load finished"
 
-#: ../src/saving/InProgressLoad.cs:200
+#: ../src/saving/InProgressLoad.cs:201
 msgid "ERROR_LOADING"
 msgstr "Error Loading"
 
-#: ../src/saving/InProgressLoad.cs:236
+#: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Failed to free already loaded resources: {0}"
 
@@ -4764,11 +4971,11 @@ msgstr "Save failed"
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
 
-#: ../src/saving/NewSaveMenu.cs:81
+#: ../src/saving/NewSaveMenu.cs:79
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "The chosen filename ({0}) already exists. Overwrite?"
 
-#: ../src/saving/NewSaveMenu.cs:199
+#: ../src/saving/NewSaveMenu.cs:196
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Save name may not contain special characters (<>:\"/\\|?*)"
 
@@ -4800,19 +5007,19 @@ msgstr "Cannot Write Save"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "The attempt to write this save file has failed. The save name may be too long or you may not have write access to the save folder."
 
-#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
+#: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Saving failed! An exception happened"
 
-#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Saving is not currently possible due to:"
 
-#: ../src/saving/SaveHelper.cs:496
+#: ../src/saving/SaveHelper.cs:502
 msgid "PLAYER_EXTINCT"
 msgstr "Player is extinct"
 
-#: ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:521
 msgid "IN_PROTOTYPE"
 msgstr ""
 "You are playing the later stage prototypes that are included with the game. \n"
@@ -4820,7 +5027,7 @@ msgstr ""
 "and not always very playable. As such saving is not currently possible. \n"
 "Some parts of prototypes may allow limited saving."
 
-#: ../src/saving/SaveHelper.cs:527
+#: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
@@ -4840,7 +5047,7 @@ msgstr "Quicksave"
 msgid "SAVE_INVALID"
 msgstr "Invalid"
 
-#: ../src/saving/SaveList.cs:219
+#: ../src/saving/SaveList.cs:217
 msgid "SAVE_DELETE_WARNING"
 msgstr "Deleting this save cannot be undone, are you sure you want to permanently delete {0}?"
 
@@ -4965,11 +5172,11 @@ msgstr "Load"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
 
-#: ../src/saving/SaveManagerGUI.cs:224
+#: ../src/saving/SaveManagerGUI.cs:223
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete {0} save(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:237
+#: ../src/saving/SaveManagerGUI.cs:233
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Deleting all old Auto and Quick saves cannot be undone, are you sure you want to permanently delete the following?\n"
@@ -5262,6 +5469,27 @@ msgstr ""
 "\n"
 "You can use the suicide button to skip and respawn, but remember there's always a chance that you'll escape!"
 
+#~ msgid "AUTO_GPU_NAME"
+#~ msgstr "{0}"
+
+#~ msgid "CURRENT_USED_RENDERER_NAME"
+#~ msgstr "{0}"
+
+#~ msgid "DISPLAY_DRIVER_NAME"
+#~ msgstr "Display Driver:"
+
+#~ msgid "AUTO_VIDEO_MEMORY"
+#~ msgstr "{0} MiB"
+
+#~ msgid "NOT_RUNNING_DOT"
+#~ msgstr "Not running."
+
+#~ msgid "HEX_VIEW"
+#~ msgstr "Hex View"
+
+#~ msgid "PREVIEW"
+#~ msgstr "Preview"
+
 #~ msgid "MULTICELLULAR"
 #~ msgstr "Multicellular"
 
@@ -5270,12 +5498,6 @@ msgstr ""
 
 #~ msgid "HUGE"
 #~ msgstr "Huge"
-
-#~ msgid "PATCH_EXTINCTION"
-#~ msgstr "Patch Extinction"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} with population: {1}"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangonian Vents"
@@ -5324,9 +5546,6 @@ msgstr ""
 
 #~ msgid "POPULATION"
 #~ msgstr "population:"
-
-#~ msgid "PREVIOUS"
-#~ msgstr "previous:"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "population in patches:"
@@ -5423,9 +5642,6 @@ msgstr ""
 
 #~ msgid "DOT_RATE_SCALES"
 #~ msgstr ". Rate scales"
-
-#~ msgid "WITH_CONCENTRATION_OF"
-#~ msgstr "with concentration of"
 
 #~ msgid "OXYGEN_DOT"
 #~ msgstr "Oxygen."

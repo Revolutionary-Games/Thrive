@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -9,7 +10,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
-public class MicrobeSpecies : Species, ICellProperties
+public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -70,6 +71,9 @@ public class MicrobeSpecies : Species, ICellProperties
     [JsonIgnore]
     public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
         * (IsBacteria ? 0.5f : 1.0f);
+
+    [JsonIgnore]
+    public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
 
     public override void OnEdited()
     {
@@ -182,5 +186,22 @@ public class MicrobeSpecies : Species, ICellProperties
         }
 
         return hash;
+    }
+
+    public void ApplySceneParameters(Spatial instancedScene)
+    {
+        var microbe = (Microbe)instancedScene;
+        microbe.IsForPreviewOnly = true;
+
+        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
+        microbe._Ready();
+
+        microbe.ApplySpecies(this);
+    }
+
+    public float CalculatePhotographDistance(Spatial instancedScene)
+    {
+        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 }

@@ -78,8 +78,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             UpdatePlayerPatch(playerPatchOnEntry);
         }
 
-        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
-            .FormatSafe(owningEditor.CurrentGame.GameWorld.WorldSettings.Seed);
+        UpdateSeedLabel();
     }
 
     public void SetMap(PatchMap map)
@@ -131,6 +130,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     protected override void OnTranslationsChanged()
     {
         UpdateShownPatchDetails();
+        UpdateSeedLabel();
     }
 
     /// <summary>
@@ -195,6 +195,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
+    }
+
+    private void UpdateSeedLabel()
+    {
+        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+            .FormatSafe(Editor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 
     private void OnFindCurrentPatchPressed()
