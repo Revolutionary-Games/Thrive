@@ -138,6 +138,8 @@ public class WorldGenerationSettings
             $", Glucose decay: {GlucoseDecay}" +
             $", Osmoregulation multiplier: {OsmoregulationMultiplier}" +
             $", Free glucose cloud: {FreeGlucoseCloud}" +
+            $", Passive Reproduction: {PassiveGainOfReproductionCompounds}" +
+            $", Limit Growth Rate: {LimitReproductionCompoundUseSpeed}" +
             $", Map type: {MapType}" +
             $", Include Multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
