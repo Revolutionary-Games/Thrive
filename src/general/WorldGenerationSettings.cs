@@ -51,6 +51,8 @@ public class WorldGenerationSettings
             GlucoseDecay = value.GlucoseDecay;
             OsmoregulationMultiplier = value.OsmoregulationMultiplier;
             FreeGlucoseCloud = value.FreeGlucoseCloud;
+            PassiveGainOfReproductionCompounds = value.PassiveReproduction;
+            LimitReproductionCompoundUseSpeed = value.LimitGrowthRate;
         }
     }
 
