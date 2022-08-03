@@ -492,10 +492,11 @@ public partial class Microbe
         // Calculate how many compounds the cell already has absorbed to grow
         gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
 
-        // Add the currently held compounds, but only in a non-multicellular colony, because otherwise the bars would
-        // turn white even before reproduction is ready due to reproduction rate being time limited again
-        if (Constants.ALWAYS_SHOW_RATE_LIMITED_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
-            (Colony != null && !IsMulticellular))
+        // Add the currently held compounds, but only if configured as this can be pretty confusing for players
+        // to have the bars in ready to reproduce state for a while before the time limited reproduction actually
+        // catches up
+        if (Constants.ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
+            !GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
         {
             foreach (var key in gatheredCompounds.Keys.ToList())
             {
@@ -744,7 +745,11 @@ public partial class Microbe
         }
 
         if (Colony != null)
+        {
+            // TODO: should the colony just passively get the reproduction compounds in its storage?
+            // Otherwise early multicellular colonies lose the passive reproduction feature
             return;
+        }
 
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);

@@ -311,12 +311,10 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_MAX_DELTA_FRAME = 0.2f;
 
     /// <summary>
-    ///   Only in a non-multicellular colony does it make sense to show gathered compounds in the reproduction bars
-    ///   (or at least that's the opinion if this value is false), because in other cases due to the rate limited
-    ///   nature of their use, the bars can go to the reproduction ready state way too early, so this prevents
-    ///   that.
+    ///   Because reproduction progress is most often time limited,
+    ///   the bars can go to the reproduction ready state way too early, so this being false prevents that.
     /// </summary>
-    public const bool ALWAYS_SHOW_RATE_LIMITED_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS = false;
+    public const bool ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS = false;
 
     /// <summary>
     ///   How much total compounds can be absorbed by organelles to grow per second
