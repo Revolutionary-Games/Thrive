@@ -278,7 +278,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private bool ValidateNameSize(string name)
     {
-        return speciesNameEdit.GetFont("font").GetStringSize(name).x < (speciesNameEdit.RectSize.x);
+        return speciesNameEdit.GetFont("font").GetStringSize(name).x < speciesNameEdit.RectSize.x;
     }
 
     private void OnRandomizeNamePressed()
