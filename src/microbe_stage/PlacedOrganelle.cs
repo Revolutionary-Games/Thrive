@@ -312,13 +312,16 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     ///   Gives organelles more compounds to grow (or takes free compounds).
     ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
     /// </summary>
-    public void GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft)
+    public void GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
+        bool reverseCompoundsLeftOrder)
     {
         float totalTaken = 0;
 
         // TODO: should we just check a single type per update (and remove once done) so we can skip creating a bunch
         // of extra lists
-        foreach (var key in compoundsLeft.Keys.ToArray())
+        foreach (var key in reverseCompoundsLeftOrder ?
+                     compoundsLeft.Keys.Reverse().ToArray() :
+                     compoundsLeft.Keys.ToArray())
         {
             var amountNeeded = compoundsLeft[key];
 
@@ -353,6 +356,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
                 usedAmount += compounds.TakeCompound(key, amountToTake);
             }
+
+            if (usedAmount < MathUtils.EPSILON)
+                continue;
 
             allowedCompoundUse -= usedAmount;
 
@@ -390,8 +396,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Calculates how much compounds this organelle has absorbed
-    ///   already, adds to the dictionary
+    ///   Calculates how much compounds this organelle has absorbed already, adds to the dictionary
     /// </summary>
     public float CalculateAbsorbedCompounds(Dictionary<Compound, float> result)
     {

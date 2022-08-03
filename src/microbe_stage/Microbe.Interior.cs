@@ -54,6 +54,12 @@ public partial class Microbe
     private float lastCheckedReproduction;
 
     /// <summary>
+    ///   Flips every reproduction update. Used to make compound use for reproduction distribute more evenly between
+    ///   the compound types.
+    /// </summary>
+    private bool consumeReproductionCompoundsReverse;
+
+    /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
     ///   messing with this value if we used the Capacity from the
@@ -569,11 +575,11 @@ public partial class Microbe
         {
             // For single microbes the base reproduction cost needs to be calculated here
             // TODO: can we make this more efficient somehow
-            var originalValues = Species.BaseReproductionCost;
-
-            foreach (var entry in requiredCompoundsForBaseReproduction)
+            foreach (var entry in Species.BaseReproductionCost)
             {
-                var used = originalValues[entry.Key] - entry.Value;
+                requiredCompoundsForBaseReproduction.TryGetValue(entry.Key, out var remaining);
+
+                var used = entry.Value - remaining;
 
                 result.TryGetValue(entry.Key, out var alreadyUsed);
 
@@ -719,6 +725,7 @@ public partial class Microbe
             return;
 
         var elapsedSinceLastUpdate = lastCheckedReproduction;
+        consumeReproductionCompoundsReverse = !consumeReproductionCompoundsReverse;
 
         lastCheckedReproduction = 0;
 
@@ -732,18 +739,8 @@ public partial class Microbe
         if (Colony != null)
             return;
 
-        float remainingAllowedCompoundUse = float.MaxValue;
-        float remainingFreeCompounds = 0;
-
-        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
-        {
-            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * elapsedSinceLastUpdate;
-        }
-
-        if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
-        {
-            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * elapsedSinceLastUpdate;
-        }
+        var (remainingAllowedCompoundUse, remainingFreeCompounds) =
+            CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
 
         bool reproductionStageComplete = true;
 
@@ -771,7 +768,8 @@ public partial class Microbe
                 continue;
 
             // Give it some compounds to make it larger.
-            organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds);
+            organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                consumeReproductionCompoundsReverse);
 
             if (organelle.GrowthValue >= 1.0f)
             {
@@ -783,6 +781,9 @@ public partial class Microbe
                 // Needs more stuff
                 reproductionStageComplete = false;
             }
+
+            // TODO: can we quit this loop early if we still would have dozens of organelles to check but don't have
+            // any compounds left to give them (that are probably useful)?
         }
 
         // Splitting the queued organelles.
@@ -805,10 +806,6 @@ public partial class Microbe
 
             foreach (var organelle in organelles.Organelles)
             {
-                // Check if already done
-                if (organelle.WasSplit)
-                    continue;
-
                 // In the second phase all unique organelles are given compounds
                 // It used to be that only the nucleus was given compounds here
                 if (!organelle.Definition.Unique)
@@ -821,10 +818,12 @@ public partial class Microbe
                     break;
                 }
 
-                organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds);
-
+                // Unique organelles don't split so we use the growth value to know when something is fully grown
                 if (organelle.GrowthValue < 1.0f)
                 {
+                    organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                        consumeReproductionCompoundsReverse);
+
                     // Nucleus (or another unique organelle) needs more compounds
                     reproductionStageComplete = false;
                 }
@@ -834,58 +833,9 @@ public partial class Microbe
         if (reproductionStageComplete)
         {
             // Nucleus (and other unique organelles) are also now ready to reproduce
-            // TODO: should we just check a single type per update (and remove once done) so we can skip creating
-            // a bunch of extra lists
-            foreach (var key in requiredCompoundsForBaseReproduction.Keys.ToArray())
+            if (!ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds))
             {
-                var amountNeeded = requiredCompoundsForBaseReproduction[key];
-
-                if (amountNeeded <= 0.0f)
-                    continue;
-
-                if (remainingAllowedCompoundUse <= 0)
-                    break;
-
-                // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
-                float usedAmount = 0;
-
-                float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
-
-                if (remainingFreeCompounds > 0)
-                {
-                    var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
-                    usedAmount += usedFreeCompounds;
-                    allowedUseAmount -= usedFreeCompounds;
-                    remainingFreeCompounds -= usedFreeCompounds;
-                }
-
-                // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
-                // organelle growth
-                var amountAvailable =
-                    compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
-
-                if (amountAvailable > MathUtils.EPSILON)
-                {
-                    // We can take some
-                    var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
-
-                    usedAmount += compounds.TakeCompound(key, amountToTake);
-                }
-
-                remainingAllowedCompoundUse -= usedAmount;
-
-                var left = amountNeeded - usedAmount;
-
-                if (left < 0.0001f)
-                {
-                    left = 0;
-                }
-                else
-                {
-                    reproductionStageComplete = false;
-                }
-
-                requiredCompoundsForBaseReproduction[key] = left;
+                reproductionStageComplete = false;
             }
         }
 
@@ -897,6 +847,102 @@ public partial class Microbe
             // For NPC cells this immediately splits them and the allOrganellesDivided flag is reset
             ReadyToReproduce();
         }
+    }
+
+    private (float RemainingAllowedCompoundUse, float RemainingFreeCompounds)
+        CalculateFreeCompoundsAndLimits(float delta)
+    {
+        float remainingAllowedCompoundUse = float.MaxValue;
+        float remainingFreeCompounds = 0;
+
+        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
+        {
+            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta;
+        }
+
+        if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
+        {
+            // TODO: make the current patch affect this?
+            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta;
+        }
+
+        return (remainingAllowedCompoundUse, remainingFreeCompounds);
+    }
+
+    private bool ProcessBaseReproductionCost(ref float remainingAllowedCompoundUse, ref float remainingFreeCompounds,
+        Dictionary<Compound, float>? trackCompoundUse = null)
+    {
+        if (remainingAllowedCompoundUse <= 0)
+        {
+            return false;
+        }
+
+        bool reproductionStageComplete = true;
+
+        foreach (var key in consumeReproductionCompoundsReverse ?
+                     requiredCompoundsForBaseReproduction.Keys.Reverse() :
+                     requiredCompoundsForBaseReproduction.Keys)
+        {
+            var amountNeeded = requiredCompoundsForBaseReproduction[key];
+
+            if (amountNeeded <= 0.0f)
+                continue;
+
+            // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+            if (remainingFreeCompounds > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                remainingFreeCompounds -= usedFreeCompounds;
+            }
+
+            // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
+            // organelle growth
+            var amountAvailable =
+                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                usedAmount += compounds.TakeCompound(key, amountToTake);
+            }
+
+            if (usedAmount < MathUtils.EPSILON)
+                continue;
+
+            remainingAllowedCompoundUse -= usedAmount;
+
+            if (trackCompoundUse != null)
+            {
+                trackCompoundUse.TryGetValue(key, out var trackedAlreadyUsed);
+                trackCompoundUse[key] = trackedAlreadyUsed + usedAmount;
+            }
+
+            var left = amountNeeded - usedAmount;
+
+            if (left < 0.0001f)
+            {
+                requiredCompoundsForBaseReproduction.Remove(key);
+            }
+            else
+            {
+                requiredCompoundsForBaseReproduction[key] = left;
+            }
+
+            // As we don't make duplicate lists, we can only process a single type per call
+            // So we can't know here if we are fully ready
+            reproductionStageComplete = false;
+            break;
+        }
+
+        return reproductionStageComplete;
     }
 
     /// <summary>
