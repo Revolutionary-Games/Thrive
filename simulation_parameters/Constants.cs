@@ -1031,6 +1031,9 @@ public static class Constants
     private const uint ReproductionProgressIntervalLessThanMaxDelta =
         (MICROBE_REPRODUCTION_PROGRESS_INTERVAL < MICROBE_REPRODUCTION_MAX_DELTA_FRAME) ? 0 : -42;
 
+    private const uint ReproductionTutorialDelaysAreSensible =
+        (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
