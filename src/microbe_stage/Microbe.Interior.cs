@@ -492,22 +492,25 @@ public partial class Microbe
         // Calculate how many compounds the cell already has absorbed to grow
         gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
 
-        // Add the currently held compounds
-        var keys = new List<Compound>(gatheredCompounds.Keys);
-
-        foreach (var key in keys)
+        // Add the currently held compounds, but only in a non-multicellular colony, because otherwise the bars would
+        // turn white even before reproduction is ready due to reproduction rate being time limited again
+        if (Constants.ALWAYS_SHOW_RATE_LIMITED_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
+            (Colony != null && !IsMulticellular))
         {
-            float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
-                Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
-
-            if (value > 0)
+            foreach (var key in gatheredCompounds.Keys.ToList())
             {
-                float existing = gatheredCompounds[key];
+                float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
+                    Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
-                // Only up to the total needed
-                float total = totalCompounds[key];
+                if (value > 0)
+                {
+                    float existing = gatheredCompounds[key];
 
-                gatheredCompounds[key] = Math.Min(total, existing + value);
+                    // Only up to the total needed
+                    float total = totalCompounds[key];
+
+                    gatheredCompounds[key] = Math.Min(total, existing + value);
+                }
             }
         }
 
@@ -723,6 +726,10 @@ public partial class Microbe
         // Limit how often the reproduction logic is ran
         if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
             return;
+
+        // Limit how big progress spikes lag can cause
+        if (lastCheckedReproduction > Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME)
+            lastCheckedReproduction = Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME;
 
         var elapsedSinceLastUpdate = lastCheckedReproduction;
         consumeReproductionCompoundsReverse = !consumeReproductionCompoundsReverse;

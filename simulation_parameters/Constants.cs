@@ -306,6 +306,19 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
+    ///   Used to prevent lag / loading causing big jumps in reproduction progress
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_MAX_DELTA_FRAME = 0.2f;
+
+    /// <summary>
+    ///   Only in a non-multicellular colony does it make sense to show gathered compounds in the reproduction bars
+    ///   (or at least that's the opinion if this value is false), because in other cases due to the rate limited
+    ///   nature of their use, the bars can go to the reproduction ready state way too early, so this prevents
+    ///   that.
+    /// </summary>
+    public const bool ALWAYS_SHOW_RATE_LIMITED_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS = false;
+
+    /// <summary>
     ///   How much total compounds can be absorbed by organelles to grow per second
     /// </summary>
     public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.9f;
@@ -1016,6 +1029,9 @@ public static class Constants
 
     private const uint FreeCompoundAmountIsLessThanUsePerSecond =
         (MICROBE_REPRODUCTION_FREE_COMPOUNDS < MICROBE_REPRODUCTION_MAX_COMPOUND_USE) ? 0 : -42;
+
+    private const uint ReproductionProgressIntervalLessThanMaxDelta =
+        (MICROBE_REPRODUCTION_PROGRESS_INTERVAL < MICROBE_REPRODUCTION_MAX_DELTA_FRAME) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
