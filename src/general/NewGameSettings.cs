@@ -229,12 +229,14 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplier.MinValue = Constants.MIN_OSMOREGULATION_MULTIPLIER;
         osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
 
-        settings = new WorldGenerationSettings();
-        difficultyPresets = SimulationParameters.Instance.GetAllDifficultyPresets();
-        normal = SimulationParameters.Instance.GetDifficultyPreset("normal");
-        custom = SimulationParameters.Instance.GetDifficultyPreset("custom");
+        var simulationParameters = SimulationParameters.Instance;
 
-        foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
+        settings = new WorldGenerationSettings();
+        difficultyPresets = simulationParameters.GetAllDifficultyPresets();
+        normal = simulationParameters.GetDifficultyPreset("normal");
+        custom = simulationParameters.GetDifficultyPreset("custom");
+
+        foreach (var preset in difficultyPresets.OrderBy(p => p.Index))
         {
             // The untranslated name will be translated automatically by Godot during runtime
             difficultyPresetButton.AddItem(preset.UntranslatedName);
@@ -295,16 +297,7 @@ public class NewGameSettings : ControlWithInput
 
     private void InitialiseToPreset(DifficultyPreset preset)
     {
-        difficultyPresetButton.Selected = preset.Index;
-        difficultyPresetAdvancedButton.Selected = preset.Index;
-
-        OnMPMultiplierValueChanged(preset.MPMultiplier);
-        OnAIMutationRateValueChanged(preset.AIMutationMultiplier);
-        OnCompoundDensityValueChanged(preset.CompoundDensity);
-        OnPlayerDeathPopulationPenaltyValueChanged(preset.PlayerDeathPopulationPenalty);
-        OnGlucoseDecayRateValueChanged(preset.GlucoseDecay * 100);
-        OnOsmoregulationMultiplierValueChanged(preset.OsmoregulationMultiplier);
-        OnFreeGlucoseCloudToggled(preset.FreeGlucoseCloud);
+        OnDifficultyPresetSelected(preset.Index);
     }
 
     private string GenerateNewRandomSeed()
@@ -463,13 +456,13 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetButton.Selected = index;
         difficultyPresetAdvancedButton.Selected = index;
 
-        DifficultyPreset preset = SimulationParameters.Instance.GetDifficultyPresetByIndex(index);
+        var preset = SimulationParameters.Instance.GetDifficultyPresetByIndex(index);
         settings.Difficulty = preset;
 
         // If custom was selected, open the advanced view to the difficulty tab
         if (preset.InternalName == custom.InternalName)
         {
-            ChangeSettingsTab("Difficulty");
+            ChangeSettingsTab(SelectedOptionsTab.Difficulty.ToString());
             ProcessAdvancedSelection();
             return;
         }
@@ -487,7 +480,7 @@ public class NewGameSettings : ControlWithInput
 
     private void UpdateSelectedDifficultyPresetControl()
     {
-        foreach (DifficultyPreset preset in difficultyPresets)
+        foreach (var preset in difficultyPresets)
         {
             // Ignore custom until the end
             if (preset.InternalName == custom.InternalName)
