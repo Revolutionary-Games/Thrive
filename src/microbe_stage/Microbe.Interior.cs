@@ -739,7 +739,7 @@ public partial class Microbe
         // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
         if (IsMulticellular && ColonyParent == null)
         {
-            HandleMulticellularReproduction();
+            HandleMulticellularReproduction(elapsedSinceLastUpdate);
             return;
         }
 
@@ -959,6 +959,7 @@ public partial class Microbe
     {
         requiredCompoundsForBaseReproduction.Clear();
         requiredCompoundsForBaseReproduction.Merge(Species.BaseReproductionCost);
+        totalNeededForMulticellularGrowth = null;
     }
 
     private void OnPlayerDuplicationCheat(object sender, EventArgs e)
@@ -1062,10 +1063,13 @@ public partial class Microbe
             }
             else
             {
-                SetupRequiredBaseReproductionCompounds();
-
                 Divide();
+
                 enoughResourcesForBudding = false;
+
+                // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
+                // spam, and for consistency with non-multicellular microbes
+                SetupRequiredBaseReproductionCompounds();
             }
         }
     }
