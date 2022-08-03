@@ -85,6 +85,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
+    public NodePath PassiveReproductionButtonPath = null!;
+
+    [Export]
+    public NodePath LimitGrowthRateButtonPath = null!;
+
+    [Export]
     public NodePath MapTypeButtonPath = null!;
 
     [Export]
@@ -144,6 +150,8 @@ public class NewGameSettings : ControlWithInput
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
     private Button freeGlucoseCloudButton = null!;
+    private Button passiveReproductionButton = null!;
+    private Button limitGrowthRateButton = null!;
 
     // Planet controls
     private OptionButton mapTypeButton = null!;
@@ -205,6 +213,8 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
+        passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
+        limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
         mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
@@ -412,6 +422,8 @@ public class NewGameSettings : ControlWithInput
         settings.GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f;
         settings.OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
+        settings.PassiveGainOfReproductionCompounds = passiveReproductionButton.Pressed;
+        settings.LimitReproductionCompoundUseSpeed = limitGrowthRateButton.Pressed;
 
         settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
 
@@ -474,6 +486,8 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
+        passiveReproductionButton.Pressed = preset.PassiveReproduction;
+        limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -506,6 +520,12 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             if (freeGlucoseCloudButton.Pressed != preset.FreeGlucoseCloud)
+                continue;
+
+            if (passiveReproductionButton.Pressed != preset.PassiveReproduction)
+                continue;
+
+            if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -576,6 +596,20 @@ public class NewGameSettings : ControlWithInput
     private void OnFreeGlucoseCloudToggled(bool pressed)
     {
         settings.FreeGlucoseCloud = pressed;
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnPassiveReproductionToggled(bool pressed)
+    {
+        settings.PassiveGainOfReproductionCompounds = pressed;
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnGrowthRateToggled(bool pressed)
+    {
+        settings.LimitReproductionCompoundUseSpeed = pressed;
 
         UpdateSelectedDifficultyPresetControl();
     }
