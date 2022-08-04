@@ -269,7 +269,7 @@ public class MicrobeSpawner : Spawner
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
-        // TODO: figure out why these spawn. At least in some player provided logs this seemed to happen quite a bit
+        // This should no longer happen, but let's keep this print here to keep track of the situation
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
 

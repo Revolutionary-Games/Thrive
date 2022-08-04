@@ -134,13 +134,8 @@ public class PatchManager : IChildPropertiesLoadCallback
                 density *= CurrentGame.GameWorld.WorldSettings.CompoundDensity;
 
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
+                () => new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value),
+                    Constants.MICROBE_SPAWN_RADIUS));
         }
     }
 
@@ -160,14 +155,9 @@ public class PatchManager : IChildPropertiesLoadCallback
                 Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
 
             HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Key.InternalName,
-                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount));
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.CLOUD_SPAWN_RADIUS);
-                    return spawner;
-                });
+                () => new CreatedSpawner(entry.Key.InternalName,
+                    Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount),
+                    Constants.CLOUD_SPAWN_RADIUS));
         }
     }
 
@@ -200,15 +190,9 @@ public class PatchManager : IChildPropertiesLoadCallback
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, CurrentGame));
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                }, new MicrobeSpawnerComparer());
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
+                    compoundCloudSystem, CurrentGame), Constants.MICROBE_SPAWN_RADIUS),
+                new MicrobeSpawnerComparer());
         }
     }
 
@@ -259,6 +243,11 @@ public class PatchManager : IChildPropertiesLoadCallback
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
             newSpawner ??= createNew();
+
+            // Register this here to not cause problems if the new spawner was created just to compare against the old
+            // object (and the code execution never got here)
+            spawnSystem.AddSpawnType(newSpawner.Spawner, density, newSpawner.WantedRadius);
+
             existingSpawners.Add(newSpawner);
         }
     }
@@ -316,14 +305,22 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private class CreatedSpawner
     {
-        public Spawner Spawner;
-        public string Name;
+        public readonly Spawner Spawner;
+        public readonly string Name;
+
+        /// <summary>
+        ///   The wanted radius that is passed to <see cref="SpawnSystem.AddSpawnType"/> when this is initially
+        ///   registered
+        /// </summary>
+        public readonly int WantedRadius;
+
         public bool Marked = true;
 
-        public CreatedSpawner(string name, Spawner spawner)
+        public CreatedSpawner(string name, Spawner spawner, int wantedRadius)
         {
             Name = name;
             Spawner = spawner;
+            WantedRadius = wantedRadius;
         }
     }
 
