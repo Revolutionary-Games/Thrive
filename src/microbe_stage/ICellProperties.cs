@@ -28,7 +28,7 @@ public interface ICellProperties
 public static class CellPropertiesHelpers
 {
     /// <summary>
-    ///   The total compound in the composition of all organelles
+    ///   The total compounds in the composition of all organelles
     /// </summary>
     public static Dictionary<Compound, float> CalculateTotalComposition(this ICellProperties properties)
     {
