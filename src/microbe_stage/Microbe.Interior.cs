@@ -941,12 +941,12 @@ public partial class Microbe
 
             if (left < 0.0001f)
             {
-                requiredCompoundsForBaseReproduction.Remove(key);
+                // We don't remove these values even when empty as we rely on detecting this being empty for earlier
+                // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
+                left = 0;
             }
-            else
-            {
-                requiredCompoundsForBaseReproduction[key] = left;
-            }
+
+            requiredCompoundsForBaseReproduction[key] = left;
 
             // As we don't make duplicate lists, we can only process a single type per call
             // So we can't know here if we are fully ready
