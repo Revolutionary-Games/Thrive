@@ -41,6 +41,24 @@ public static class Constants
     public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
     /// <summary>
+    ///   Scale factor for how dense microbes spawn (also affected by their populations).
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Due to an earlier problem old, species spawners were never cleared so they accumulated a lot.
+    ///     This multiplier has now been increased quite a bit to try to make the lower number of species spawners
+    ///     result in the same level of microbe spawning.
+    ///   </para>
+    /// </remarks>
+    public const float MICROBE_SPAWN_DENSITY_SCALE_FACTOR = 0.022f;
+
+    /// <summary>
+    ///   Along with <see cref="MICROBE_SPAWN_DENSITY_SCALE_FACTOR"/> affects spawn density of microbes.
+    ///   The lower this multiplier is set the more evenly species with different populations are spawned.
+    /// </summary>
+    public const float MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER = 1 / 25.0f;
+
+    /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
