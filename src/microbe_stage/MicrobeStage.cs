@@ -368,6 +368,9 @@ public class MicrobeStage : StageBase<Microbe>
 
             if (microbe == Player)
                 playerHandled = true;
+
+            if (microbe.Species != multicellularSpecies)
+                throw new Exception("Failed to apply multicellular species");
         }
 
         if (!playerHandled)

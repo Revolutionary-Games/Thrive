@@ -239,6 +239,11 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         if (existing != null)
         {
+            if (existing.Marked)
+            {
+                GD.PrintErr($"Multiple spawn items want to use the same spawner {existing.Name} ({existing})");
+            }
+
             existing.Marked = true;
 
             if (existing.Spawner.Density != density)

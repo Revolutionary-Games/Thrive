@@ -298,6 +298,11 @@ public class MicrobeSpawner : Spawner
             }
         }
     }
+
+    public override string ToString()
+    {
+        return $"MicrobeSpawner for {Species}";
+    }
 }
 
 /// <summary>
@@ -324,6 +329,11 @@ public class CompoundCloudSpawner : Spawner
         // We don't spawn entities
         return null;
     }
+
+    public override string ToString()
+    {
+        return $"CloudSpawner for {compound}";
+    }
 }
 
 /// <summary>
@@ -349,5 +359,10 @@ public class ChunkSpawner : Spawner
         yield return chunk;
 
         ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
+    }
+
+    public override string ToString()
+    {
+        return $"ChunkSpawner for {chunkType.Name}";
     }
 }
