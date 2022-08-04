@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-01 15:00+0300\n"
-"PO-Revision-Date: 2022-07-27 06:44+0000\n"
-"Last-Translator: mykocalico <badtimecat@gmail.com>\n"
+"POT-Creation-Date: 2022-08-02 13:55+0300\n"
+"PO-Revision-Date: 2022-08-02 10:51+0000\n"
+"Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "Twoja komórka używa [thrive:compound type=\"atp\"][/thrive:compound] j
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Aby odblokować edytor i się rozmnożyć musisz zbierać [thrive:compound type=\"ammonia\"][/thrive:compound] (Pomarańczowe Chmury) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Fioletowe Chmury)."
+msgstr "Aby odblokować edytor i się rozmnożyć, musisz zbierać [thrive:compound type=\"ammonia\"][/thrive:compound] (pomarańczowe chmury) i [thrive:compound type=\"phosphates\"][/thrive:compound] (fioletowe chmury)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -101,20 +101,20 @@ msgstr "Możesz również pochłaniać komórki, bakterie, odłamki żelaza i ka
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez Lizosom, zaleca się ewolucję tej organelli by uczynić trawienie znacznie wydajniejszym."
+msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić trawienie znacznie wydajniejszym."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Jednak Lizosom jest wyłącznie dla eukariontów, natomiast prokarionty nie mają takiej organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych komórek jest to w porządku lecz dla większych, brak lizosomów jest bardzo niekorzystny."
+msgstr "Jednak lizosomy są wyłącznie dla eukariontów, prokarionty nie mają takich organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych komórek jest to w porządku, lecz dla większych, brak lizosomów jest bardzo niekorzystny."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W szczególności Celulozowe oraz Chitynowe ściany komórkowe nie mogą być trawione bez posiadania niezbędnego enzymu który może je najpierw rozbić."
+msgstr "W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą być trawione bez posiadania niezbędnego enzymu który może najpierw je rozbić."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej Mitochondriów, Metabolosomów lub Rusticyjaniny (albo cytozolu, który przeprowadza Glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
+msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytozolu, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -160,7 +160,7 @@ msgstr "Uważaj ponieważ twoi przeciwnicy ewoluują razem z tobą. Za każdym r
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby móc związać się z inną komórką, niezbędna organella z czynnikami wiążącymi. Po wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do edytora (jak na razie). Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek są drogą do wielokomórkowości (jeszcze nie w grze)."
+msgstr "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby związać się z inną komórką, twoja komórka potrzebuje czynnika wiążącego. Po wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do edytora . Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek są drogą do wielokomórkowości."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -976,27 +976,42 @@ msgid "LYSOSOME"
 msgstr "Lizosom"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "z koncentracją"
+msgstr "Zakończ {0} Pokoleń"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:707
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:708
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
+msgstr ""
+"[b]Gatunek[/b]\n"
+"  {0}:{1}\n"
+"5[b]Pokolenie[/b]\n"
+"  {2}\n"
+"8[b]Populacja[/b]\n"
+"  {3}\n"
+"[b]Kolor[/b]\n"
+"  #{4}\n"
+"[b]Zachowanie[/b]\n"
+"  {5}\n"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:715
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:716
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
-"Twoja komórka umiera jeśli utraci całe swoje zdrowie.\n"
-"Możesz się zregenerować, jeśli masz wystarczająco dużo ATP.\n"
-"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
+"[b]Etap[/b]\n"
+"  Mikrob\n"
+"[b]Typ Błony[/b]\n"
+"  {0}\n"
+"[b]Sztywność Błony[/b]\n"
+"  {1}\n"
+"[b]Prędkość Bazowa[/b]\n"
+"  {2}\n"
+"[b]Bazowa Prędkość Rotacji[/b]\n"
+"  {3}\n"
+"[b]Wielkość Bazowa (w heksach)[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
-msgstr ""
+msgstr "Plik Konfiguracji"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1004,19 +1019,16 @@ msgid "REPORT"
 msgstr "Raport"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
-#, fuzzy
 msgid "VIEWER"
-msgstr "Przeglądarka Galerii"
+msgstr "Przeglądarka"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "zmutował"
+msgstr "Pozwól gatunkowi nie mutować"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się do obszaru {1}"
+msgstr "Pozwól gatunkowi nie migrować"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
@@ -1039,18 +1051,16 @@ msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "wymarły w obszarze"
+msgstr "Maksymalna liczba gatunków w obszarze"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Punkty Mutacji"
+msgstr "Mutacje na gatunki"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
@@ -1085,77 +1095,66 @@ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
-#, fuzzy
 msgid "CURRENT_GENERATION_COLON"
-msgstr "Generacja:"
+msgstr "Obecne Pokolenie:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:427
-#, fuzzy
 msgid "STATUS_COLON"
-msgstr "Artysta:"
+msgstr "Status:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:434
-#, fuzzy
 msgid "READY"
-msgstr "Wątki:"
+msgstr "Gotowy"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
 msgid "FINISH_ONE_GENERATION"
-msgstr "z koncentracją"
+msgstr "Zakończ Jedno Pokolenie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:472
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:478
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 msgid "ABORT"
-msgstr "Przerwano."
+msgstr "Przerwij"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:526
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 msgid "GENERATIONS"
-msgstr "Generacja:"
+msgstr "Pokolenia"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:533
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "SELECT_A_GENERATION"
-msgstr "Wybierz Opcję"
+msgstr "Wybierz pokolenie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:567
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "SPECIES"
-msgstr "Lista gatunków"
+msgstr "Gatunek"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:574
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
 msgid "SELECT_A_SPECIES"
-msgstr "Wybierz obszar by zobaczyć jego szczegóły"
+msgstr "Wybierz gatunek"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:623
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Rezultat Auto-Ewolucji:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:670
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
 msgid "EVOLUTIONARY_TREE"
-msgstr "Wykonane Przez Revolutionary Games Studio"
+msgstr "Drzewo Filogenetyczne"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#, fuzzy
 msgid "SPECIES_DETAILS"
-msgstr "Lista gatunków"
+msgstr "Detale Gatunku"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1183,18 +1182,16 @@ msgid "FINISHED_DOT"
 msgstr "Ukończono."
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "Przerwano."
+msgstr "Nie zaczęto."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "ZAPAUZOWANO"
+msgstr "Spauzowano."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
@@ -1204,7 +1201,7 @@ msgstr "Zaczynanie"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populacja {0} zmieniła się o {1} w {2} z powodu: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:79
+#: ../src/auto-evo/EvolutionaryTree.cs:80
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
@@ -1976,7 +1973,7 @@ msgid "CLOSE"
 msgstr "Zamknij"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:684
+#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -2053,9 +2050,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Kreatywny Edytor Mikroba"
 
 #: ../src/general/MainMenu.tscn:293
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "Status działania:"
+msgstr "Narzędzie Eksploracji Auto-Ewo"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -2293,7 +2289,7 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Pokaż nazwy przycisków wyboru części"
 
-#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -2406,281 +2402,281 @@ msgstr "Wyświetlaj cząsteczki w tle"
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:474
+#: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:498
+#: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
 msgstr "Interfejs Graficzny"
 
-#: ../src/general/OptionsMenu.tscn:513
+#: ../src/general/OptionsMenu.tscn:522
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Pokaż pasek umiejętności"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:530
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Włącz efekty świetlne GUI"
 
-#: ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:537
 msgid "DISPLAY_PART_NAMES"
 msgstr "Pokaż nazwy przycisków wyboru części"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:563
 msgid "MASTER_VOLUME"
 msgstr "Główna głośność"
 
-#: ../src/general/OptionsMenu.tscn:580 ../src/general/OptionsMenu.tscn:620
-#: ../src/general/OptionsMenu.tscn:652 ../src/general/OptionsMenu.tscn:684
-#: ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:589 ../src/general/OptionsMenu.tscn:629
+#: ../src/general/OptionsMenu.tscn:661 ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:725
 msgid "MUTE"
 msgstr "Wycisz"
 
-#: ../src/general/OptionsMenu.tscn:594
+#: ../src/general/OptionsMenu.tscn:603
 msgid "MUSIC_VOLUME"
 msgstr "Głośność muzyki"
 
-#: ../src/general/OptionsMenu.tscn:626
+#: ../src/general/OptionsMenu.tscn:635
 msgid "AMBIANCE_VOLUME"
 msgstr "Głośność otoczenia"
 
-#: ../src/general/OptionsMenu.tscn:658
+#: ../src/general/OptionsMenu.tscn:667
 msgid "SFX_VOLUME"
 msgstr "Głośność efektów dźwiękowych"
 
-#: ../src/general/OptionsMenu.tscn:690
+#: ../src/general/OptionsMenu.tscn:699
 msgid "GUI_VOLUME"
 msgstr "Głośność interfejsu"
 
-#: ../src/general/OptionsMenu.tscn:734
+#: ../src/general/OptionsMenu.tscn:743
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Wyjściowe urządzenie audio:"
 
-#: ../src/general/OptionsMenu.tscn:762
+#: ../src/general/OptionsMenu.tscn:771
 msgid "LANGUAGE"
 msgstr "Język:"
 
-#: ../src/general/OptionsMenu.tscn:780 ../src/general/OptionsMenu.tscn:1361
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:807
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomóż W Tłumaczeniu Gry"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:833
 msgid "COMPOUND_CLOUDS"
 msgstr "Chmury związków"
 
-#: ../src/general/OptionsMenu.tscn:839
+#: ../src/general/OptionsMenu.tscn:848
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
-#: ../src/general/OptionsMenu.tscn:846 ../src/general/OptionsMenu.tscn:888
+#: ../src/general/OptionsMenu.tscn:855 ../src/general/OptionsMenu.tscn:897
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(większe wartości zwiększają wydajność)"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:890
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Dzielnik rozdzielczości chmur:"
 
-#: ../src/general/OptionsMenu.tscn:922
+#: ../src/general/OptionsMenu.tscn:931
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
-#: ../src/general/OptionsMenu.tscn:942
+#: ../src/general/OptionsMenu.tscn:951
 msgid "DETECTED_CPU_COUNT"
 msgstr "Ilość wykrytych CPU:"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:968
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Obecne wątki:"
 
-#: ../src/general/OptionsMenu.tscn:973
+#: ../src/general/OptionsMenu.tscn:982
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Załóż, że procesor pozwala na hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:990
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
 
-#: ../src/general/OptionsMenu.tscn:991
+#: ../src/general/OptionsMenu.tscn:1000
 msgid "THREADS"
 msgstr "Wątki:"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksymalna ilość bytów:"
 
-#: ../src/general/OptionsMenu.tscn:1051 ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1060 ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_TINY"
 msgstr "Malutki"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_SMALL"
 msgstr "Bardzo mały"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_SMALL"
 msgstr "Mały"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_NORMAL"
 msgstr "Normalny"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_LARGE"
 msgstr "Duży"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_LARGE"
 msgstr "Bardzo Duży"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_HUGE"
 msgstr "Ogromny"
 
-#: ../src/general/OptionsMenu.tscn:1052
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_EXTREME"
 msgstr "Ekstremalny"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1136
 msgid "RESET_INPUTS"
 msgstr "Zresetuj Wejścia"
 
-#: ../src/general/OptionsMenu.tscn:1154
+#: ../src/general/OptionsMenu.tscn:1163
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Odtwórz wideo intro"
 
-#: ../src/general/OptionsMenu.tscn:1162
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Odtwórz intro mikroba przy nowej grze"
 
-#: ../src/general/OptionsMenu.tscn:1170
+#: ../src/general/OptionsMenu.tscn:1179
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
 
-#: ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Zachowana ilość autozapisów:"
 
-#: ../src/general/OptionsMenu.tscn:1209
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Zachowana ilość szybkich zapisów:"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1243
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Pokazuj samouczki (w nowych rozgrywkach)"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1250
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Pokazuj samouczki (w aktualnej rozgrywce)"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1256
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Pokaż ostrzeżenie o niezapisanym postępie"
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1268
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Klawisze oszustw włączone"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1276
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
 
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1287
 msgid "CUSTOM_USERNAME"
 msgstr "Własna nazwa użytkownika:"
 
-#: ../src/general/OptionsMenu.tscn:1304
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otwórz Folder Zrzutów Ekranu"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1331
 msgid "JSON_DEBUG_MODE"
 msgstr "Tryb Debugu JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1336 ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatycznie"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Zawsze"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nigdy"
 
-#: ../src/general/OptionsMenu.tscn:1373 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Zapisz"
 
-#: ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1399
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Domyślne"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "RESET_TO_DEFAULTS"
 msgstr "Przywrócić do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1411
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Zresetować wejścia do domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości domyślnych?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "CLOSE_OPTIONS"
 msgstr "Zamknąć opcje?"
 
-#: ../src/general/OptionsMenu.tscn:1440
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Masz niezapisane zmiany które zostaną odrzucone.\n"
 "Czy chcesz kontynuować?"
 
-#: ../src/general/OptionsMenu.tscn:1463
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "SAVE_AND_CONTINUE"
 msgstr "Zapisz i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1473
+#: ../src/general/OptionsMenu.tscn:1482
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odrzuć i kontynuuj"
 
-#: ../src/general/OptionsMenu.tscn:1490
+#: ../src/general/OptionsMenu.tscn:1499
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Anuluj"
 
-#: ../src/general/OptionsMenu.tscn:1501 ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
 msgid "ERROR"
 msgstr "Błąd"
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1520
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
-#: ../src/general/OptionsMenu.tscn:1519
+#: ../src/general/OptionsMenu.tscn:1528
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Nie znaleziono katalogu zrzutów ekranu"
 
-#: ../src/general/OptionsMenu.tscn:1521
+#: ../src/general/OptionsMenu.tscn:1530
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 
@@ -2748,40 +2744,40 @@ msgstr "gracz zginął"
 msgid "EXTINCT_IN_PATCH"
 msgstr "wymarły w obszarze"
 
-#: ../src/general/StageHUDBase.cs:685 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:883
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "Mnóstwo"
 
-#: ../src/general/StageHUDBase.cs:894
+#: ../src/general/StageHUDBase.cs:885
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "Całkiem Sporo"
 
-#: ../src/general/StageHUDBase.cs:896
+#: ../src/general/StageHUDBase.cs:887
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "Średnia Ilość"
 
-#: ../src/general/StageHUDBase.cs:898
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_SOME"
 msgstr "Trochę"
 
-#: ../src/general/StageHUDBase.cs:900
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_LITTLE"
 msgstr "Mało"
 
-#: ../src/general/StageHUDBase.cs:902
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "Prawie Wcale"
 
-#: ../src/general/StageHUDBase.cs:1102
+#: ../src/general/StageHUDBase.cs:1093
 msgid "PLAYER_CELL"
 msgstr "Komórka Gracza"
 
-#: ../src/general/StageHUDBase.cs:1115
+#: ../src/general/StageHUDBase.cs:1106
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3411,7 +3407,7 @@ msgstr "Przekształcają [thrive:compound type=\"hydrogensulfide\"][/thrive:comp
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Białka chemosyntezy (określane też jako \"białka chemosyntezujące\") są małymi białkowymi strukturami, które umieją przekształcać H₂S, H₂O i gazowy CO₂ w glukozę w procesie nazywającym się chemosyntezą siarkową. Tempo produkcji glukozy skaluje się z koncentracją dwutlenku węgla. Jako że białka chemosynteczne są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza glikolizę."
+msgstr "Białka chemosyntezy (określane też jako \"białka chemosyntezujące\") są małymi białkowymi strukturami, które umieją przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -3747,12 +3743,11 @@ msgid "MACROSCOPIC_PROTOTYPE_INFO"
 msgstr "Prototyp makroskopijności"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
-#, fuzzy
 msgid "MACROSCOPIC_PROTOYPE_WARNING"
 msgstr ""
-"Wybrany zapis do załadowania został stworzony w prototypie z inną wersją Thrive.\n"
-"Z tej przyczyny ten zapis nie może zostać załadowany jako iż zapisu z prototypów są nieaktualizacyjne.\n"
-"Utrzymywanie kompatybilności zapisów dla prototypów byłoby dużym obciążeniem ze względu częstych zmian a pisanie aktualizacji zapisów mocno spowolniłoby rozwój prototypów."
+"Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu Wielokomórkowca!\n"
+"\n"
+"Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4227,9 +4222,8 @@ msgstr "Znajdź Aktualny Obszar"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
-#, fuzzy
 msgid "SEED_LABEL"
-msgstr "Biom: {0}"
+msgstr "Ziarno planety: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4447,7 +4441,7 @@ msgstr "PRZETRWAŁEŚ!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Gratulację udało ci się przejść tą wersję Thrive! Jeśli chcesz możesz kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym świecie."
+msgstr "Gratulację, udało ci się przejść tą wersję Thrive! Jeśli chcesz, możesz kontynuować grę po zniknięciu tej wiadomości lub rozpocząć nową grę w nowym świecie. Możesz również dodać czynniki wiążące by zbudować kolonię komórek i wypróbować prototypy późniejszych etapów."
 
 #: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
@@ -4730,7 +4724,7 @@ msgstr "Opis zmian jest zbyt długi"
 
 #: ../src/modding/ModUploader.cs:332
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "Tagi zawierają tylko znaki białe"
 
 #: ../src/modding/ModUploader.cs:340
 msgid "INVALID_TAG"
@@ -4754,7 +4748,7 @@ msgstr "Tworzenie..."
 
 #: ../src/modding/ModUploader.cs:472
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "Rezultat wskazał sukces lecz ID nie zostało zwrócone"
 
 #: ../src/modding/ModUploader.cs:517
 msgid "UPLOADING_DOT_DOT_DOT"
@@ -4762,15 +4756,15 @@ msgstr "Ładowanie..."
 
 #: ../src/modding/ModUploader.cs:554
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
+msgstr "Przekazanie przedmiotu do Warsztatu Steam powiodło się, lecz musisz zaakceptować [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] Warsztatu zanim stanie się widoczny"
 
 #: ../src/modding/ModUploader.cs:558
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Przekazanie przedmiotu do Warsztatu Steam powiodło się"
 
 #: ../src/modding/ModUploader.cs:618
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr ""
+msgstr "Poprzez przesyłanie tego przedmiotu, zgadzasz się na [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] Warsztatu Steam"
 
 #: ../src/modding/ModUploader.cs:642
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -4782,7 +4776,7 @@ msgstr "Błąd: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
-msgstr ""
+msgstr "Przekazywacz Modów"
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
@@ -4822,7 +4816,7 @@ msgstr "Opis Przedmiotu:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr ""
+msgstr "Gdy przedmiot stał się widoczny, będzie widoczny dla każdego"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
@@ -4830,7 +4824,7 @@ msgstr "Widoczne"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "Tagi Przedmiotu (przecinek \",\" oddzielony):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
@@ -4846,7 +4840,7 @@ msgstr "Usuń dane lokalne odnośnie tego przedmiotu. Użyteczne jeśli podałe�
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Usuń Dane Lokalne"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
@@ -4898,7 +4892,7 @@ msgstr "Stwórz Nowego Moda"
 
 #: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "Instrukcje dla moderów są dostępne na"
 
 #: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
@@ -4959,7 +4953,7 @@ msgstr "Błąd wczytywania"
 
 #: ../src/saving/InProgressLoad.cs:240
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Nie udało się odblokować już załadowanych zasobów: {0}"
 
 #: ../src/saving/InProgressSave.cs:203
 msgid "SAVING_DOT_DOT_DOT"
@@ -5011,7 +5005,7 @@ msgstr ""
 
 #: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
+msgstr "Zapisywanie nie powiodło się! Zdarzył się wyjątek"
 
 #: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
 msgid "SAVING_NOT_POSSIBLE"
@@ -5055,7 +5049,7 @@ msgstr "Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien 
 
 #: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Nie Znaleziono Zapisów"
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
@@ -5232,7 +5226,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
-msgstr ""
+msgstr "Twoje konto Steam obecnie ograniczenia do udostępniania plików. Prosimy skontaktować się z działem pomocy Steam"
 
 #: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
