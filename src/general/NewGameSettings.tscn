@@ -54,6 +54,8 @@ GlucoseDecayRateReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOp
 OsmoregulationMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier")
 OsmoregulationMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplierReadout")
 FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud")
+PassiveReproductionButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer9/PassiveReproductionProgress")
+LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer10/LimitGrowthRate")
 MapTypeButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
@@ -290,14 +292,14 @@ text = "MISC"
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
 margin_right = 700.0
-margin_bottom = 600.0
+margin_bottom = 608.0
 rect_min_size = Vector2( 700, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 699.0
-margin_bottom = 599.0
+margin_bottom = 607.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -307,7 +309,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 683.0
-margin_bottom = 583.0
+margin_bottom = 591.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -329,13 +331,13 @@ text = "DIFFICULTY_PRESET"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
 margin_left = 254.0
-margin_right = 430.0
+margin_right = 464.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
-margin_left = 434.0
+margin_left = 468.0
 margin_right = 668.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
@@ -739,6 +741,44 @@ margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
 text = "FREE_GLUCOSE_CLOUD_EXPLANATION"
 
+[node name="VBoxContainer9" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 476.0
+margin_right = 668.0
+margin_bottom = 521.0
+
+[node name="PassiveReproductionProgress" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer9" instance=ExtResource( 4 )]
+margin_right = 376.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+pressed = true
+text = "PASSIVE_REPRODUCTION_PROGRESS"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer9"]
+margin_top = 29.0
+margin_right = 668.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+
+[node name="VBoxContainer10" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 531.0
+margin_right = 668.0
+margin_bottom = 576.0
+
+[node name="LimitGrowthRate" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer10" instance=ExtResource( 4 )]
+margin_right = 221.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+pressed = true
+text = "LIMIT_GROWTH_RATE"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer10"]
+margin_top = 29.0
+margin_right = 668.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "LIMIT_GROWTH_RATE_EXPLANATION"
+
 [node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
 margin_left = 1.0
@@ -1071,6 +1111,8 @@ __meta__ = {
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier" to="." method="OnOsmoregulationMultiplierValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer9/PassiveReproductionProgress" to="." method="OnPassiveReproductionToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer10/LimitGrowthRate" to="." method="OnGrowthRateToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType" to="." method="OnMapTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]

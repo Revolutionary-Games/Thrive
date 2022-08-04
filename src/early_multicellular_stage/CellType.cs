@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -83,18 +82,6 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     {
         return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
-    }
-
-    public Dictionary<Compound, float> CalculateTotalComposition()
-    {
-        var result = new Dictionary<Compound, float>();
-
-        foreach (var organelle in Organelles)
-        {
-            result.Merge(organelle.Definition.InitialComposition);
-        }
-
-        return result;
     }
 
     public object Clone()

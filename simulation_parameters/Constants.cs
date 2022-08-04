@@ -306,6 +306,36 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
+    ///   Used to prevent lag / loading causing big jumps in reproduction progress
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_MAX_DELTA_FRAME = 0.2f;
+
+    /// <summary>
+    ///   Because reproduction progress is most often time limited,
+    ///   the bars can go to the reproduction ready state way too early, so this being false prevents that.
+    /// </summary>
+    public const bool ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS = false;
+
+    /// <summary>
+    ///   How much total compounds can be absorbed by organelles to grow per second
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.85f;
+
+    /// <summary>
+    ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
+    ///   reproduction use. Note this limit applies to all compounds combined, not to each individual compound type.
+    ///   This is because it is way easier to implement that way.
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.30f;
+
+    /// <summary>
+    ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 10;
+
+    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 10;
+
+    /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
     ///   is dealt to a microbe at a time when it is out of ATP.
     /// </summary>
@@ -664,7 +694,7 @@ public static class Constants
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
-    public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
+    public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
 
@@ -994,6 +1024,15 @@ public static class Constants
 
     private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
         (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
+
+    private const uint FreeCompoundAmountIsLessThanUsePerSecond =
+        (MICROBE_REPRODUCTION_FREE_COMPOUNDS < MICROBE_REPRODUCTION_MAX_COMPOUND_USE) ? 0 : -42;
+
+    private const uint ReproductionProgressIntervalLessThanMaxDelta =
+        (MICROBE_REPRODUCTION_PROGRESS_INTERVAL < MICROBE_REPRODUCTION_MAX_DELTA_FRAME) ? 0 : -42;
+
+    private const uint ReproductionTutorialDelaysAreSensible =
+        (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823

@@ -77,6 +77,8 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     public override void OnEdited()
     {
+        base.OnEdited();
+
         RepositionToOrigin();
         UpdateInitialCompounds();
         CalculateRotationSpeed();

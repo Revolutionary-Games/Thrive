@@ -39,6 +39,8 @@ public class LateMulticellularSpecies : Species
 
     public override void OnEdited()
     {
+        base.OnEdited();
+
         RepositionToOrigin();
         UpdateInitialCompounds();
     }

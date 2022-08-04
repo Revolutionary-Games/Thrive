@@ -57,6 +57,12 @@ public class DifficultyPreset : IRegistryType
     /// </summary>
     public bool FreeGlucoseCloud;
 
+    /// <inheritdoc cref="WorldGenerationSettings.PassiveGainOfReproductionCompounds"/>
+    public bool PassiveReproduction;
+
+    /// <inheritdoc cref="WorldGenerationSettings.LimitReproductionCompoundUseSpeed"/>
+    public bool LimitGrowthRate;
+
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649

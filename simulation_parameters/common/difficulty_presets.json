@@ -8,7 +8,9 @@
         "playerDeathPopulationPenalty": 1,
         "glucoseDecay": 0.9,
         "osmoregulationMultiplier": 0.8,
-        "freeGlucoseCloud": true
+        "freeGlucoseCloud": true,
+        "passiveReproduction": true,
+        "limitGrowthRate": false
     },
     "normal": {
         "name": "DIFFICULTY_PRESET_NORMAL",
@@ -19,7 +21,9 @@
         "playerDeathPopulationPenalty": 1,
         "glucoseDecay": 0.8,
         "osmoregulationMultiplier": 1,
-        "freeGlucoseCloud": true
+        "freeGlucoseCloud": true,
+        "passiveReproduction": true,
+        "limitGrowthRate": true
     },
     "hard": {
         "name": "DIFFICULTY_PRESET_HARD",
@@ -30,7 +34,9 @@
         "playerDeathPopulationPenalty": 2,
         "glucoseDecay": 0.5,
         "osmoregulationMultiplier": 1.2,
-        "freeGlucoseCloud": false
+        "freeGlucoseCloud": false,
+        "passiveReproduction": true,
+        "limitGrowthRate": true
     },
     "custom": {
         "name": "DIFFICULTY_PRESET_CUSTOM",
