@@ -45,7 +45,7 @@ public static class Constants
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Due to an earlier problem old, species spawners were never cleared so they accumulated a lot.
+    ///     Due to an earlier problem, old species spawners were never cleared so they accumulated a lot.
     ///     This multiplier has now been increased quite a bit to try to make the lower number of species spawners
     ///     result in the same level of microbe spawning.
     ///   </para>
