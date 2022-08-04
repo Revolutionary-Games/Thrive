@@ -709,14 +709,13 @@ public class AutoEvoExploringTool : NodeWithInput
             species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
             string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
 
-        speciesDetailsLabel.ExtendedBbcode += "\n";
-
         switch (species)
         {
             case MicrobeSpecies microbeSpecies:
             {
-                speciesDetailsLabel.ExtendedBbcode += TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT")
-                    .FormatSafe(microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
+                speciesDetailsLabel.ExtendedBbcode += "\n" +
+                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
+                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
                         microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
                 break;
             }
