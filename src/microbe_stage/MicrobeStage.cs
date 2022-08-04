@@ -378,6 +378,9 @@ public class MicrobeStage : StageBase<Microbe>
 
         GameWorld.NotifySpeciesChangedStages();
 
+        // Make sure no queued player species can spawn with the old species
+        spawner.ClearSpawnQueue();
+
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
         var editor = (EarlyMulticellularEditor)scene.Instance();
