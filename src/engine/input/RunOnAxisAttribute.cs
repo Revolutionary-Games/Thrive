@@ -162,22 +162,6 @@ public class RunOnAxisAttribute : InputAttribute
         }
     }
 
-    public override bool Equals(object obj)
-    {
-        if (!base.Equals(obj) || !(obj is RunOnAxisAttribute axis))
-            return false;
-
-        return inputs.Count == axis.inputs.Count && !inputs.Except(axis.inputs).Any();
-    }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            return (base.GetHashCode() * 397) ^ inputs.GetHashCode();
-        }
-    }
-
     private void OnInputNumberOverflow()
     {
         foreach (var input in inputs)
