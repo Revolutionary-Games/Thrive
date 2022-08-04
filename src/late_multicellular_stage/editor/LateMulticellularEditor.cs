@@ -128,7 +128,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
         cellEditorTab.UpdatePatchDependentBalanceData();
 
-        reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
+        reportTab.UpdatePatchDetails(patch);
 
         UpdateBackgrounds(patch);
     }
@@ -213,8 +213,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdateReportTabStatistics(CurrentPatch);
-            reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
         UpdateBackgrounds(CurrentPatch);
@@ -242,6 +241,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         {
             editorComponent.Init(this, fresh);
         }
+
+        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEditorReady()
@@ -264,8 +265,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdateReportTabStatistics(CurrentPatch);
-        reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
     }
 
     protected override void OnUndoPerformed()
@@ -399,6 +399,11 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    private void OnSelectPatchForReportTab(Patch patch)
+    {
+        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void UpdateBackgrounds(Patch patch)

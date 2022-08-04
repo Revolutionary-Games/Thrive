@@ -47,6 +47,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonIgnore]
     public Patch? SelectedPatch => targetPatch;
 
+    /// <summary>
+    ///   Called when the selected patch changes
+    /// </summary>
+    [JsonIgnore]
+    public Action<Patch>? OnSelectedPatchChanged { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -55,7 +61,13 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
         seedLabel = GetNode<Label>(SeedLabelPath);
 
-        mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = _ =>
+        {
+            UpdateShownPatchDetails();
+
+            if (mapDrawer.SelectedPatch != null)
+                OnSelectedPatchChanged?.Invoke(mapDrawer.SelectedPatch);
+        };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
     }
