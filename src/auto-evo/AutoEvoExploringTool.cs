@@ -709,6 +709,8 @@ public class AutoEvoExploringTool : NodeWithInput
             species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
             string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
 
+        speciesDetailsLabel.ExtendedBbcode += "\n";
+
         switch (species)
         {
             case MicrobeSpecies microbeSpecies:
