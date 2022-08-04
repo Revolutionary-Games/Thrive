@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -185,6 +186,15 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
+    [Export]
+    public NodePath FossilisationButtonLayerPath = null!;
+
+    [Export]
+    public PackedScene FossilisationButtonScene = null!;
+
+    [Export]
+    public NodePath FossilisationDialogPath = null!;
+
     // Inspections and cleanup disagree here
     // ReSharper disable RedundantNameQualifier
     protected readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
@@ -300,6 +310,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private Array compoundBars = null!;
     private ProcessPanel processPanel = null!;
+
+    private Control fossilisationButtonLayer = null!;
+    private FossilisationDialog fossilisationDialog = null!;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
@@ -457,6 +470,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
 
+        fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
+        fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
+
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();
         UpdatePausePrompt();
@@ -492,6 +508,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         UpdatePopulation();
         UpdateProcessPanel();
         UpdatePanelSizing(delta);
+
+        UpdateFossilisationButtons();
     }
 
     public void PauseButtonPressed(bool buttonState)
@@ -510,6 +528,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (paused)
         {
             pausePrompt.Show();
+            ShowFossilisationButtons();
 
             // Pause the game
             PauseManager.Instance.AddPause(nameof(IStageHUD));
@@ -517,6 +536,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         else
         {
             pausePrompt.Hide();
+            HideFossilisationButtons();
 
             // Unpause the game
             PauseManager.Instance.Resume(nameof(IStageHUD));
@@ -691,6 +711,32 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
 
         // TODO: pressure?
+    }
+
+    public void ShowFossilisationButtons()
+    {
+        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+        foreach (var microbe in microbes)
+        {
+            var button = FossilisationButtonScene.Instance<FossilisationButton>();
+            button.AttachedMicrobe = microbe;
+            button.OnFossilisationDialogOpened = ShowFossilisationDialog;
+            fossilisationButtonLayer.AddChild(button);
+        }
+    }
+
+    public void HideFossilisationButtons()
+    {
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        {
+            button.DetachAndQueueFree();
+        }
+    }
+
+    public void ShowFossilisationDialog(Species species)
+    {
+        fossilisationDialog.SelectedSpecies = species;
+        fossilisationDialog.Show();
     }
 
     /// <summary>
@@ -1335,6 +1381,14 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         else
         {
             pauseInfo.Visible = false;
+        }
+    }
+
+    private void UpdateFossilisationButtons()
+    {
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        {
+            button.UpdatePosition();
         }
     }
 }
