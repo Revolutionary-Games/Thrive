@@ -102,22 +102,6 @@ public class RunOnKeyAttribute : InputAttribute
         HeldDown = false;
     }
 
-    public override bool Equals(object obj)
-    {
-        if (!base.Equals(obj) || !(obj is RunOnKeyAttribute key))
-            return false;
-
-        return string.Equals(InputName, key.InputName, StringComparison.InvariantCulture);
-    }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            return (base.GetHashCode() * 397) ^ InputName.GetHashCode();
-        }
-    }
-
     protected void Prime()
     {
         primed = true;
