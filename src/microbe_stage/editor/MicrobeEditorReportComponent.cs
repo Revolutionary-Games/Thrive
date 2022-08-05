@@ -363,14 +363,11 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     public void UpdateGlucoseReduction(float value)
     {
-        var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-            Math.Round(value * 100));
+        var percentage = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
 
         // The amount of glucose has been reduced to {0} of the previous amount.
-        glucoseReductionLabel.Text =
-            string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"),
-                percentage);
+        glucoseReductionLabel.Text = TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
+            .FormatSafe(percentage);
     }
 
     public void UpdateTimeIndicator(double value)
@@ -383,9 +380,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         if (tooltip == null)
             throw new InvalidOperationException("Could not find time indicator tooltip");
 
-        tooltip.Description = string.Format(
-            CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
-            Editor.CurrentGame.GameWorld.TotalPassedTime);
+        tooltip.Description = TranslationServer.Translate("TIME_INDICATOR_TOOLTIP")
+            .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public override void OnInsufficientMP(bool playSound = true)
@@ -416,6 +412,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
         UpdateTimeline(Editor.SelectedPatch);
         UpdateReportTabPatchSelector();
+        UpdateReportTabStatistics(Editor.CurrentPatch);
     }
 
     protected override void RegisterTooltips()

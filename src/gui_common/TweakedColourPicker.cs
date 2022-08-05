@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -577,9 +576,8 @@ public class TweakedColourPicker : ColorPicker
 
         private void UpdateTooltip()
         {
-            HintTooltip = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"),
-                Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
+            HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP")
+                .FormatSafe(Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
         }
     }
 

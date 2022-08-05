@@ -369,8 +369,6 @@ public class InputManager : Node
                         }
                         else
                         {
-                            // TODO: it seems likely that if a class with input attributes is inherited a duplicate
-                            // key error will be raised in here
                             // Give the attribute a reference to the method it is placed on
                             attribute.Init(methodInfo);
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Path = System.IO.Path;
@@ -271,8 +270,8 @@ public class ModUploader : Control
             changeNotes.Text = "Initial version";
         }
 
-        toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
+        toBeUploadedContentLocation.Text = TranslationServer.Translate("CONTENT_UPLOADED_FROM")
+            .FormatSafe(ProjectSettings.GlobalizePath(selectedMod.Folder));
 
         UpdatePreviewRect();
     }
@@ -338,8 +337,7 @@ public class ModUploader : Control
             {
                 if (!SteamHandler.Tags.Contains(tag))
                 {
-                    SetError(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("INVALID_TAG"),
-                        tag));
+                    SetError(TranslationServer.Translate("INVALID_TAG").FormatSafe(tag));
                     return false;
                 }
             }
@@ -641,9 +639,7 @@ public class ModUploader : Control
         catch (Exception e)
         {
             GD.PrintErr("Saving workshop data failed: ", e);
-            SetError(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO"),
-                e.Message));
+            SetError(TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO").FormatSafe(e.Message));
             return false;
         }
 
@@ -657,8 +653,7 @@ public class ModUploader : Control
             ClearError();
         }
 
-        errorDisplay.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("FORM_ERROR_MESSAGE"),
-            message);
+        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()
