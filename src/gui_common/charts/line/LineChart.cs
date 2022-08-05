@@ -658,12 +658,18 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void UpdateLineSegments()
     {
-        foreach (var data in dataSets.Where(p => p.Value.Draw))
+        foreach (var data in dataSets)
         {
             // Create into List so we can use IndexOf
             var points = data.Value.DataPoints.ToList();
 
             if (points.Count <= 0 || !dataLines.TryGetValue(data.Key, out var dataLine))
+                continue;
+
+            dataLine.Visible = data.Value.Draw;
+
+            // Skip drawing if line isn't visible
+            if (!dataLine.Visible)
                 continue;
 
             // This is actually the first point (left-most)
@@ -693,8 +699,6 @@ public class LineChart : VBoxContainer
 
                 previousPoint = point;
             }
-
-            dataLine.Visible = data.Value.Draw;
         }
     }
 
@@ -1303,8 +1307,10 @@ public class LineChart : VBoxContainer
 
         public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
         {
+            var finalValue = new Vector3(i, targetPos.x, targetPos.y);
+
             tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.x, initialPos.y),
-                new Vector3(i, targetPos.x, targetPos.y), 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
+                finalValue, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
             tween.Start();
         }
 
