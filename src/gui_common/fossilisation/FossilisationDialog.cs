@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public class FossilisationDialog : CustomDialog
 {
@@ -13,6 +14,9 @@ public class FossilisationDialog : CustomDialog
     public NodePath HexPreviewPath = null!;
 
     [Export]
+    public NodePath FossiliseButtonPath = null!;
+
+    [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
 
     public Species SelectedSpecies
@@ -20,34 +24,113 @@ public class FossilisationDialog : CustomDialog
         get => selectedSpecies;
         set
         {
-            selectedSpecies = value;
+            selectedSpecies = (Species)value.Clone();
 
-            UpdateSpeciesName(selectedSpecies.FormattedName);
+            SetNewName(selectedSpecies.FormattedName);
             UpdateSpeciesPreview();
             UpdateSpeciesDetails();
         }
     }
 
-    private LineEdit nameEdit = null!;
+    private LineEdit speciesNameEdit = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
+    private Button fossiliseButton = null!;
 
     private Species selectedSpecies = null!;
+
+    /// <summary>
+    ///   True when one of our (name related) Controls is hovered. This needs to be known to know if a click happened
+    ///   outside the name editing controls, for detecting when the name needs to be validated.
+    /// </summary>
+    private bool controlsHoveredOver;
 
     public override void _Ready()
     {
         base._Ready();
 
-        nameEdit = GetNode<LineEdit>(NameEditPath);
+        speciesNameEdit = GetNode<LineEdit>(NameEditPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
+        fossiliseButton = GetNode<Button>(FossiliseButtonPath);
     }
 
-    private void UpdateSpeciesName(string name)
+    public void SetNewName(string name)
     {
-        nameEdit.Text = name;
+        speciesNameEdit.Text = name;
+
+        // Callback is manually called because the function isn't called automatically here
+        OnNameTextChanged(name);
+    }
+
+    public void ReportValidityOfName(bool valid)
+    {
+        if (valid)
+        {
+            GUICommon.MarkInputAsValid(speciesNameEdit);
+            fossiliseButton.Disabled = false;
+
+            SelectedSpecies.UpdateNameIfValid(speciesNameEdit.Text);
+        }
+        else
+        {
+            GUICommon.MarkInputAsInvalid(speciesNameEdit);
+            fossiliseButton.Disabled = true;
+        }
+    }
+
+    public void OnClickedOffName()
+    {
+        var focused = GetFocusOwner();
+
+        // Ignore if the species name line edit wasn't focused or if one of our controls is hovered
+        if (focused != speciesNameEdit || controlsHoveredOver)
+            return;
+
+        PerformValidation(speciesNameEdit.Text);
+    }
+
+    private void OnNameTextChanged(string newText)
+    {
+        ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX));
+    }
+
+    private void OnNameTextEntered(string newText)
+    {
+        PerformValidation(newText);
+    }
+
+    private void PerformValidation(string text)
+    {
+        // Only defocus if the name is valid to indicate invalid namings to the player
+        if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
+        {
+            speciesNameEdit.ReleaseFocus();
+        }
+        else
+        {
+            // Prevents user from doing other actions with an invalid name
+            GetTree().SetInputAsHandled();
+
+            // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+
+            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
+        }
+    }
+
+    private void OnRandomizeNamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        var randomizedName = nameGenerator.GenerateNameSection() + " " +
+            nameGenerator.GenerateNameSection(null, true);
+
+        speciesNameEdit.Text = randomizedName;
+        OnNameTextChanged(randomizedName);
     }
 
     private void UpdateSpeciesPreview()
@@ -82,6 +165,19 @@ public class FossilisationDialog : CustomDialog
 
     private void OnFossilisePressed()
     {
+        // TODO save this species
+        GD.Print(SelectedSpecies.FormattedName);
+
         Hide();
+    }
+
+    private void OnControlMouseEntered()
+    {
+        controlsHoveredOver = true;
+    }
+
+    private void OnControlMouseExited()
+    {
+        controlsHoveredOver = false;
     }
 }
