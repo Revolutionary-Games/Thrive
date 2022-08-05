@@ -20,6 +20,8 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     private readonly Dictionary<Control, List<ICustomToolTip>> tooltips = new();
 
+    private readonly Dictionary<string, Control> groupsByName = new();
+
     private Control groupHolder = null!;
 
     private bool display;
@@ -281,6 +283,7 @@ public class ToolTipManager : CanvasLayer
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
         groupHolder.AddChild(groupNode);
+        groupsByName.Add(name, groupNode);
 
         tooltips.Add(groupNode, new List<ICustomToolTip>());
 
@@ -372,16 +375,10 @@ public class ToolTipManager : CanvasLayer
 
     private Control? GetGroup(string name, bool verbose = true)
     {
-        foreach (var group in tooltips.Keys)
-        {
-            if (group.Name == name)
-                return group;
-        }
-
-        if (verbose)
+        if (!groupsByName.TryGetValue(name, out var group) && verbose)
             GD.PrintErr("Tooltip group with name '" + name + "' not found");
 
-        return null;
+        return group;
     }
 
     /// <summary>
@@ -399,6 +396,7 @@ public class ToolTipManager : CanvasLayer
                 collectedTooltips.Add(tooltip);
             }
 
+            groupsByName.Add(group.Name, group);
             tooltips.Add(group, collectedTooltips);
         }
     }

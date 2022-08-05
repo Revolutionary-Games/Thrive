@@ -78,7 +78,7 @@ AutoEvoSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContain
 TimelineSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
 AutoEvoSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
 TimelineSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
-TimelineEventsContainerPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
+TimelineEventsContainerPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
 TimeIndicatorPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
 PhysicalConditionsIconLegendPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend")
 TemperatureChartPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature")
@@ -338,7 +338,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 29 )
 script = ExtResource( 4 )
-EventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
+GlobalEventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
+LocalEventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/LocalEventsContainer")
 ScrollContainerPath = NodePath("MarginContainer/ScrollContainer")
 LocalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
 GlobalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
@@ -368,7 +369,12 @@ size_flags_vertical = 3
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+[node name="GlobalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+margin_right = 809.0
+margin_bottom = 202.0
+
+[node name="LocalEventsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+visible = false
 margin_right = 809.0
 margin_bottom = 202.0
 
@@ -391,7 +397,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="GlobalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
-margin_right = 104.0
+margin_right = 151.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "TIMELINE_GLOBAL_FILTER_TOOLTIP"
@@ -403,8 +409,8 @@ group = SubResource( 40 )
 text = "GLOBAL_INITIAL_LETTER"
 
 [node name="LocalFilter" type="Button" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
-margin_left = 108.0
-margin_right = 203.0
+margin_left = 155.0
+margin_right = 297.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "TIMELINE_LOCAL_FILTER_TOOLTIP"
