@@ -71,7 +71,7 @@ public class TimelineTab : PanelContainer
     public void UpdateTimeline(IEditorReportData editor, Patch? selectedPatch, Patch? patch = null)
     {
         if (editor.CurrentGame == null)
-            throw new ArgumentException($"Editor must be initialized ({nameof(IEditorReportData.CurrentGame)} is null");
+            throw new ArgumentException($"Editor must be initialized ({nameof(IEditorReportData.CurrentGame)} is null)");
 
         eventsContainer.FreeChildren();
 

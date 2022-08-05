@@ -232,21 +232,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Returns the number of shown datasets.
     /// </summary>
-    public int VisibleDataSets
-    {
-        get
-        {
-            var count = 0;
-
-            foreach (var data in dataSets)
-            {
-                if (data.Value.Draw)
-                    count++;
-            }
-
-            return count;
-        }
-    }
+    public int VisibleDataSets => dataSets.Count(data => data.Value.Draw);
 
     public override void _Ready()
     {
@@ -672,7 +658,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void UpdateLineSegments()
     {
-        foreach (var data in dataSets)
+        foreach (var data in dataSets.Where(p => p.Value.Draw))
         {
             // Create into List so we can use IndexOf
             var points = data.Value.DataPoints.ToList();
