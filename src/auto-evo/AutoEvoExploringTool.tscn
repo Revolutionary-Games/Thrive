@@ -668,9 +668,13 @@ custom_fonts/font = ExtResource( 4 )
 text = "EVOLUTIONARY_TREE"
 
 [node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 14 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 24.0
 margin_right = 786.0
 margin_bottom = 486.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="SpeciesDetailPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
 margin_left = 828.0
