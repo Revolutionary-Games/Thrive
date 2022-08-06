@@ -42,6 +42,12 @@ public class EvolutionaryTree : Control
 
     private Vector2 treeNodeSize;
 
+    private Vector2 dragOffset;
+    private bool timelineDragging;
+    private bool treeDragging;
+    private Vector2 lastMousePosition;
+    private bool treeDirty;
+
     private uint maxSpeciesId;
 
     private int latestGeneration;
@@ -55,6 +61,8 @@ public class EvolutionaryTree : Control
 
         timeline = GetNode<Control>(TimelinePath);
         timeline.Connect("draw", this, nameof(TimelineDraw));
+        timeline.Connect("gui_input", this, nameof(TimelineGUIInput));
+        timeline.Connect("mouse_exited", this, nameof(TimelineMouseExit));
 
         tree = GetNode<Control>(TreePath);
         tree.Connect("draw", this, nameof(TreeDraw));
@@ -73,6 +81,18 @@ public class EvolutionaryTree : Control
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);
         generationTimes.Add(0, 0);
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (treeDirty)
+        {
+            timeline.Update();
+            tree.Update();
+            UpdateTreeNodeRectPosition();
+        }
     }
 
     public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation, double time)
@@ -112,6 +132,8 @@ public class EvolutionaryTree : Control
         generationTimes[generation] = time;
 
         BuildTree();
+
+        treeDirty = true;
     }
 
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
@@ -122,7 +144,7 @@ public class EvolutionaryTree : Control
         node.SpeciesID = species.ID;
         node.LastGeneration = false;
         node.ParentNode = parent;
-        node.RectPosition = new Vector2(LEFT_MARGIN + generation * GENERATION_SEPARATION, 0);
+        node.Position = new Vector2(LEFT_MARGIN + generation * GENERATION_SEPARATION, 0);
         node.LastGeneration = isLastGeneration;
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
@@ -134,12 +156,18 @@ public class EvolutionaryTree : Control
         tree.AddChild(node);
     }
 
+    private void UpdateTreeNodeRectPosition()
+    {
+        foreach (var node in speciesNodes.Values.SelectMany(speciesNodeList => speciesNodeList))
+        {
+            node.RectPosition = node.Position + dragOffset;
+        }
+    }
+
     private void BuildTree()
     {
         uint index = 0;
         BuildTree(speciesNodes.First().Key, ref index);
-
-        tree.Update();
     }
 
     private void BuildTree(uint id, ref uint index)
@@ -147,9 +175,9 @@ public class EvolutionaryTree : Control
         // Adjust nodes of this species' vertical position based on index
         foreach (var treeNode in speciesNodes[id])
         {
-            var position = treeNode.RectPosition;
+            var position = treeNode.Position;
             position.y = index * SPECIES_SEPARATION;
-            treeNode.RectPosition = position;
+            treeNode.Position = position;
         }
 
         ++index;
@@ -167,15 +195,15 @@ public class EvolutionaryTree : Control
     private void TimelineDraw()
     {
         // Draw timeline
-        timeline.DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.Cyan,
-            TIMELINE_LINE_THICKNESS);
+        timeline.DrawLine(new Vector2(0, TIMELINE_LINE_Y) + dragOffset,
+            new Vector2(latestGeneration * GENERATION_SEPARATION + 100, TIMELINE_LINE_Y) + dragOffset, Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
         for (int i = 0; i <= latestGeneration; i++)
         {
             timeline.DrawLine(
-                new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y),
+                new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y) + dragOffset,
                 new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2,
-                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
+                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE) + dragOffset,
                 Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
             var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
@@ -183,9 +211,36 @@ public class EvolutionaryTree : Control
             var size = latoSmallItalic.GetStringSize(localizedText);
             timeline.DrawString(latoSmallRegular, new Vector2(
                     LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
-                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y),
+                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y) + dragOffset,
                 localizedText, Colors.Cyan);
         }
+    }
+
+    private void TimelineGUIInput(InputEvent @event)
+    {
+        if (@event is not InputEventMouse)
+            return;
+
+        if (@event is InputEventMouseButton buttonEvent)
+        {
+            timelineDragging = (buttonEvent.ButtonMask & ((int)ButtonList.Left | (int)ButtonList.Right)) != 0;
+            if (timelineDragging)
+                lastMousePosition = buttonEvent.Position;
+        }
+        else if (@event is InputEventMouseMotion motionEvent)
+        {
+            if (timelineDragging)
+            {
+                dragOffset += new Vector2((motionEvent.Position - lastMousePosition).x, 0);
+                lastMousePosition = motionEvent.Position;
+                treeDirty = true;
+            }
+        }
+    }
+
+    private void TimelineMouseExit()
+    {
+        timelineDragging = false;
     }
 
     private void TreeDraw()
@@ -211,7 +266,7 @@ public class EvolutionaryTree : Control
             // If species extinct, line ends at the last node; else it ends at the right end of the tree
             var lineEnd = lastNode.LastGeneration ?
                 lastNode.Center :
-                new Vector2(treeRightPosition, lineStart.y);
+                new Vector2(treeRightPosition, lineStart.y) + dragOffset;
 
             TreeDrawLine(lineStart, lineEnd);
         }

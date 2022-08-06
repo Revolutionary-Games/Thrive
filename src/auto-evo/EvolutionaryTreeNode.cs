@@ -40,6 +40,8 @@ public class EvolutionaryTreeNode : TextureButton
 
     public EvolutionaryTreeNode? ParentNode { get; set; }
 
+    public Vector2 Position { get; set; }
+
     public Vector2 Center => RectPosition + RectSize / 2;
 
     public override void _Ready()

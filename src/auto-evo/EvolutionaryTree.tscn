@@ -5,6 +5,7 @@
 [node name="EvolutionaryTree" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = true
 mouse_filter = 1
 script = ExtResource( 1 )
 TimelinePath = NodePath("VBoxContainer/Timeline")
