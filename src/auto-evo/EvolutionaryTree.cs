@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
-using Godot.Collections;
 
 public class EvolutionaryTree : Control
 {
@@ -15,21 +14,29 @@ public class EvolutionaryTree : Control
     public NodePath TreePath = null!;
 
     private const float LEFT_MARGIN = 5.0f;
+    private const float TIMELINE_HEIGHT = 50.0f;
     private const float TIMELINE_LINE_THICKNESS = 2.0f;
-    private const float TIMELINE_LINE_Y = 5.0f;
+    private const float TIMELINE_AXIS_Y = 5.0f;
     private const float TIMELINE_MARK_SIZE = 4.0f;
+    private const float TREE_LINE_THICKNESS = 4.0f;
     private const float SPECIES_SEPARATION = 50.0f;
     private const float GENERATION_SEPARATION = 100.0f;
     private const float SPECIES_NAME_OFFSET = 10.0f;
+    private const float ZOOM_FACTOR = 0.9f;
+    private const float SIZE_FACTOR_MIN = 0.2f;
+    private const float SIZE_FACTOR_MAX = 1.0f;
+    private const float SMALL_FONT_SIZE = 14.0f;
 
-    private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
+    private static readonly Vector2 TreeNodeInitialSize = new Vector2(30, 30);
 
-    private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
+    private readonly Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
+    private readonly Dictionary<uint, string> speciesNames = new();
+
+    private readonly Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
 
-    private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
+    private readonly Dictionary<int, double> generationTimes = new();
 
     private readonly ButtonGroup nodesGroup = new();
 
@@ -47,17 +54,20 @@ public class EvolutionaryTree : Control
     private Vector2 dragDelta;
     private bool dragging;
     private Vector2 lastMousePosition;
+
+    private float sizeFactor = 1.0f;
+
     private bool dirty;
 
     private uint maxSpeciesId;
 
     private int latestGeneration;
 
-    private Vector2 TreeSize =>
-        new Vector2(latestGeneration * GENERATION_SEPARATION + 200, maxSpeciesId * SPECIES_SEPARATION + 100);
-
     [Signal]
     public delegate void SpeciesSelected(int generation, uint id);
+
+    private Vector2 TreeSize =>
+        new Vector2(latestGeneration * GENERATION_SEPARATION + 200, maxSpeciesId * SPECIES_SEPARATION + 100);
 
     public override void _Ready()
     {
@@ -75,18 +85,20 @@ public class EvolutionaryTree : Control
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
-        latoSmallItalic = GD.Load<Font>("res://src/gui_common/fonts/Lato-Italic-Small.tres");
-        latoSmallRegular = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres");
+        // Font size is adjusted dynamically so these need to be a copy.
+        latoSmallItalic = (Font)GD.Load("res://src/gui_common/fonts/Lato-Italic-Small.tres").Duplicate();
+        latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres").Duplicate();
     }
 
     public void Init(Species luca)
     {
         SetupTreeNode(luca, null, 0);
-        treeNodeSize = speciesNodes[luca.ID][0].RectSize;
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
         speciesNames.Add(luca.ID, luca.FormattedName);
         generationTimes.Add(0, 0);
+
+        dirty = true;
     }
 
     public override void _Process(float delta)
@@ -95,9 +107,11 @@ public class EvolutionaryTree : Control
 
         if (dirty)
         {
+            timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
+            UpdateTreeNodeSizeAndPosition();
             timeline.Update();
             tree.Update();
-            UpdateTreeNodeRectPosition();
+            dirty = false;
         }
     }
 
@@ -162,11 +176,15 @@ public class EvolutionaryTree : Control
         tree.AddChild(node);
     }
 
-    private void UpdateTreeNodeRectPosition()
+    private void UpdateTreeNodeSizeAndPosition()
     {
+        treeNodeSize = sizeFactor * TreeNodeInitialSize;
+
         foreach (var node in speciesNodes.Values.SelectMany(speciesNodeList => speciesNodeList))
         {
-            node.RectPosition = node.Position + dragOffset;
+            node.RectPosition = sizeFactor * (node.Position + dragOffset);
+            node.RectMinSize = treeNodeSize;
+            node.RectSize = treeNodeSize;
         }
     }
 
@@ -203,24 +221,30 @@ public class EvolutionaryTree : Control
     /// </summary>
     private void TimelineDraw()
     {
+        var timelineAxisY = sizeFactor * TIMELINE_AXIS_Y;
+        var lineThickness = sizeFactor * TIMELINE_LINE_THICKNESS;
+        var markSize = sizeFactor * TIMELINE_MARK_SIZE;
+
         // Draw timeline axis, which is static.
-        timeline.DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.Cyan,
-            TIMELINE_LINE_THICKNESS);
+        timeline.DrawLine(new Vector2(0, timelineAxisY),
+            new Vector2(RectSize.x, timelineAxisY), Colors.Cyan, lineThickness);
+
+        latoSmallRegular.Set("size", sizeFactor * SMALL_FONT_SIZE);
 
         // Draw time marks
         for (int i = 0; i <= latestGeneration; i++)
         {
-            var x = dragOffset.x + LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2;
+            var x = sizeFactor * (dragOffset.x + LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2);
 
-            timeline.DrawLine(new Vector2(x, TIMELINE_LINE_Y), new Vector2(x, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
-                Colors.Cyan, TIMELINE_LINE_THICKNESS);
+            timeline.DrawLine(new Vector2(x, timelineAxisY), new Vector2(x, timelineAxisY + markSize),
+                Colors.Cyan, lineThickness);
 
             var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
 
-            var size = latoSmallItalic.GetStringSize(localizedText);
+            var size = latoSmallRegular.GetStringSize(localizedText);
             timeline.DrawString(latoSmallRegular, new Vector2(x - size.x / 2,
-                TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y), localizedText, Colors.Cyan);
+                timelineAxisY + markSize * 2 + size.y), localizedText, Colors.Cyan);
         }
     }
 
@@ -241,12 +265,24 @@ public class EvolutionaryTree : Control
             dragging = (buttonEvent.ButtonMask & ((int)ButtonList.Left | (int)ButtonList.Right)) != 0;
             if (dragging)
                 lastMousePosition = buttonEvent.Position;
+
+            if (buttonEvent.Pressed &&
+                (ButtonList)buttonEvent.ButtonIndex is ButtonList.WheelDown or ButtonList.WheelUp)
+            {
+                bool zoomIn = (ButtonList)buttonEvent.ButtonIndex == ButtonList.WheelUp;
+                sizeFactor =
+                    Mathf.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
+                        SIZE_FACTOR_MIN, SIZE_FACTOR_MAX);
+
+                BindOffsetToTreeSize();
+                dirty = true;
+            }
         }
         else if (@event is InputEventMouseMotion motionEvent)
         {
             if (dragging)
             {
-                var delta = motionEvent.Position - lastMousePosition;
+                var delta = (motionEvent.Position - lastMousePosition) / sizeFactor;
                 dragDelta = horizontalOnly ? new Vector2(delta.x, 0) : delta;
                 dragOffset += dragDelta;
                 lastMousePosition = motionEvent.Position;
@@ -260,7 +296,7 @@ public class EvolutionaryTree : Control
     {
         // TreeSize may be less than RectSize, so the later Min and Max is not merged into Clamp.
         // Note that dragOffset's x and y should both be negative.
-        var start = RectSize - TreeSize;
+        var start = RectSize / sizeFactor - TreeSize;
 
         float x = dragOffset.x;
         x = Math.Max(x, start.x);
@@ -289,8 +325,8 @@ public class EvolutionaryTree : Control
             TreeDrawLine(node.ParentNode.Center, node.Center);
         }
 
-        float treeRightPosition =
-            dragOffset.x + LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + treeNodeSize.x;
+        float treeRightPosition = sizeFactor * (dragOffset.x + LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration) +
+            treeNodeSize.x;
 
         // Draw horizontal lines
         foreach (var nodeList in speciesNodes.Values)
@@ -307,6 +343,10 @@ public class EvolutionaryTree : Control
             TreeDrawLine(lineStart, lineEnd);
         }
 
+        latoSmallItalic.Set("size", sizeFactor * SMALL_FONT_SIZE);
+
+        float speciesNameOffset = sizeFactor * SPECIES_NAME_OFFSET;
+
         // Draw species name
         foreach (var pair in speciesNodes)
         {
@@ -314,13 +354,13 @@ public class EvolutionaryTree : Control
             if (lastNode.LastGeneration)
             {
                 tree.DrawString(latoSmallItalic, new Vector2(
-                    lastNode.RectPosition.x + treeNodeSize.x + SPECIES_NAME_OFFSET,
+                    lastNode.RectPosition.x + treeNodeSize.x + speciesNameOffset,
                     lastNode.Center.y), speciesNames[pair.Key], Colors.DarkRed);
             }
             else
             {
                 tree.DrawString(latoSmallItalic,
-                    new Vector2(treeRightPosition + SPECIES_NAME_OFFSET, pair.Value.First().Center.y),
+                    new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.y),
                     speciesNames[pair.Key]);
             }
         }
@@ -328,16 +368,18 @@ public class EvolutionaryTree : Control
 
     private void TreeDrawLine(Vector2 from, Vector2 to)
     {
+        var lineWidth = sizeFactor * TREE_LINE_THICKNESS;
+
         if (to.y - from.y < MathUtils.EPSILON)
         {
-            tree.DrawLine(from, to, Colors.DarkCyan, 4.0f);
+            tree.DrawLine(from, to, Colors.DarkCyan, lineWidth);
         }
         else
         {
-            var mid = to - new Vector2(GENERATION_SEPARATION / 2.0f, 0);
-            tree.DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, 4.0f);
-            tree.DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, 4.0f);
-            tree.DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, 4.0f);
+            var mid = to - new Vector2(sizeFactor * GENERATION_SEPARATION / 2.0f, 0);
+            tree.DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, lineWidth);
+            tree.DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, lineWidth);
+            tree.DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, lineWidth);
         }
     }
 
