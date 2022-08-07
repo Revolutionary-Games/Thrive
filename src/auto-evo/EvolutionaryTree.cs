@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using AutoEvo;
@@ -43,14 +44,17 @@ public class EvolutionaryTree : Control
     private Vector2 treeNodeSize;
 
     private Vector2 dragOffset;
-    private bool timelineDragging;
-    private bool treeDragging;
+    private Vector2 dragDelta;
+    private bool dragging;
     private Vector2 lastMousePosition;
-    private bool treeDirty;
+    private bool dirty;
 
     private uint maxSpeciesId;
 
     private int latestGeneration;
+
+    private Vector2 TreeSize =>
+        new Vector2(latestGeneration * GENERATION_SEPARATION + 200, maxSpeciesId * SPECIES_SEPARATION + 100);
 
     [Signal]
     public delegate void SpeciesSelected(int generation, uint id);
@@ -61,11 +65,13 @@ public class EvolutionaryTree : Control
 
         timeline = GetNode<Control>(TimelinePath);
         timeline.Connect("draw", this, nameof(TimelineDraw));
-        timeline.Connect("gui_input", this, nameof(TimelineGUIInput));
-        timeline.Connect("mouse_exited", this, nameof(TimelineMouseExit));
+        timeline.Connect("gui_input", this, nameof(GUIInput), new Godot.Collections.Array(true));
+        timeline.Connect("mouse_exited", this, nameof(MouseExit));
 
         tree = GetNode<Control>(TreePath);
         tree.Connect("draw", this, nameof(TreeDraw));
+        tree.Connect("gui_input", this, nameof(GUIInput), new Godot.Collections.Array(false));
+        tree.Connect("mouse_exited", this, nameof(MouseExit));
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
@@ -87,7 +93,7 @@ public class EvolutionaryTree : Control
     {
         base._Process(delta);
 
-        if (treeDirty)
+        if (dirty)
         {
             timeline.Update();
             tree.Update();
@@ -133,7 +139,7 @@ public class EvolutionaryTree : Control
 
         BuildTree();
 
-        treeDirty = true;
+        dirty = true;
     }
 
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
@@ -147,7 +153,7 @@ public class EvolutionaryTree : Control
         node.Position = new Vector2(LEFT_MARGIN + generation * GENERATION_SEPARATION, 0);
         node.LastGeneration = isLastGeneration;
         node.Group = nodesGroup;
-        node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
+        node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Godot.Collections.Array { node });
 
         if (!speciesNodes.ContainsKey(species.ID))
             speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
@@ -192,55 +198,84 @@ public class EvolutionaryTree : Control
         }
     }
 
+    /// <summary>
+    ///   Draw timeline, which only responds to horizontal drag.
+    /// </summary>
     private void TimelineDraw()
     {
-        // Draw timeline
-        timeline.DrawLine(new Vector2(0, TIMELINE_LINE_Y) + dragOffset,
-            new Vector2(latestGeneration * GENERATION_SEPARATION + 100, TIMELINE_LINE_Y) + dragOffset, Colors.Cyan, TIMELINE_LINE_THICKNESS);
+        // Draw timeline axis, which is static.
+        timeline.DrawLine(new Vector2(0, TIMELINE_LINE_Y), new Vector2(RectSize.x, TIMELINE_LINE_Y), Colors.Cyan,
+            TIMELINE_LINE_THICKNESS);
 
+        // Draw time marks
         for (int i = 0; i <= latestGeneration; i++)
         {
-            timeline.DrawLine(
-                new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2, TIMELINE_LINE_Y) + dragOffset,
-                new Vector2(LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2,
-                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE) + dragOffset,
+            var x = dragOffset.x + LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2;
+
+            timeline.DrawLine(new Vector2(x, TIMELINE_LINE_Y), new Vector2(x, TIMELINE_LINE_Y + TIMELINE_MARK_SIZE),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
             var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
+
             var size = latoSmallItalic.GetStringSize(localizedText);
-            timeline.DrawString(latoSmallRegular, new Vector2(
-                    LEFT_MARGIN + i * GENERATION_SEPARATION + treeNodeSize.x / 2 - size.x / 2,
-                    TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y) + dragOffset,
-                localizedText, Colors.Cyan);
+            timeline.DrawString(latoSmallRegular, new Vector2(x - size.x / 2,
+                TIMELINE_LINE_Y + TIMELINE_MARK_SIZE * 2 + size.y), localizedText, Colors.Cyan);
         }
     }
 
-    private void TimelineGUIInput(InputEvent @event)
+    /// <summary>
+    ///   _GUIInput for sub-controls.
+    /// </summary>
+    /// <param name="event">Godot input event</param>
+    /// <param name="horizontalOnly">
+    ///   Binding parameter. If set to true, only horizontal offset will be considered.
+    /// </param>
+    private void GUIInput(InputEvent @event, bool horizontalOnly)
     {
         if (@event is not InputEventMouse)
             return;
 
         if (@event is InputEventMouseButton buttonEvent)
         {
-            timelineDragging = (buttonEvent.ButtonMask & ((int)ButtonList.Left | (int)ButtonList.Right)) != 0;
-            if (timelineDragging)
+            dragging = (buttonEvent.ButtonMask & ((int)ButtonList.Left | (int)ButtonList.Right)) != 0;
+            if (dragging)
                 lastMousePosition = buttonEvent.Position;
         }
         else if (@event is InputEventMouseMotion motionEvent)
         {
-            if (timelineDragging)
+            if (dragging)
             {
-                dragOffset += new Vector2((motionEvent.Position - lastMousePosition).x, 0);
+                var delta = motionEvent.Position - lastMousePosition;
+                dragDelta = horizontalOnly ? new Vector2(delta.x, 0) : delta;
+                dragOffset += dragDelta;
                 lastMousePosition = motionEvent.Position;
-                treeDirty = true;
+                BindOffsetToTreeSize();
+                dirty = true;
             }
         }
     }
 
-    private void TimelineMouseExit()
+    private void BindOffsetToTreeSize()
     {
-        timelineDragging = false;
+        // TreeSize may be less than RectSize, so the later Min and Max is not merged into Clamp.
+        // Note that dragOffset's x and y should both be negative.
+        var start = RectSize - TreeSize;
+
+        float x = dragOffset.x;
+        x = Math.Max(x, start.x);
+        x = Math.Min(x, 0);
+
+        float y = dragOffset.y;
+        y = Math.Max(y, start.y);
+        y = Math.Min(y, 0);
+
+        dragOffset = new Vector2(x, y);
+    }
+
+    private void MouseExit()
+    {
+        dragging = false;
     }
 
     private void TreeDraw()
@@ -254,7 +289,8 @@ public class EvolutionaryTree : Control
             TreeDrawLine(node.ParentNode.Center, node.Center);
         }
 
-        float treeRightPosition = LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + treeNodeSize.x;
+        float treeRightPosition =
+            dragOffset.x + LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + treeNodeSize.x;
 
         // Draw horizontal lines
         foreach (var nodeList in speciesNodes.Values)
@@ -266,7 +302,7 @@ public class EvolutionaryTree : Control
             // If species extinct, line ends at the last node; else it ends at the right end of the tree
             var lineEnd = lastNode.LastGeneration ?
                 lastNode.Center :
-                new Vector2(treeRightPosition, lineStart.y) + dragOffset;
+                new Vector2(treeRightPosition, lineStart.y);
 
             TreeDrawLine(lineStart, lineEnd);
         }
@@ -278,7 +314,7 @@ public class EvolutionaryTree : Control
             if (lastNode.LastGeneration)
             {
                 tree.DrawString(latoSmallItalic, new Vector2(
-                    lastNode.RectPosition.x + lastNode.RectSize.x + SPECIES_NAME_OFFSET,
+                    lastNode.RectPosition.x + treeNodeSize.x + SPECIES_NAME_OFFSET,
                     lastNode.Center.y), speciesNames[pair.Key], Colors.DarkRed);
             }
             else
