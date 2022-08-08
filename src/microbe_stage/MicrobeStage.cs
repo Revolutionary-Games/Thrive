@@ -111,12 +111,14 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base._EnterTree();
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void ResolveNodeReferences()
@@ -675,6 +677,11 @@ public class MicrobeStage : StageBase<Microbe>
 
         // Make the cell despawn like normal
         spawner.AddEntityToTrack(copyEntity);
+    }
+
+    private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
+    {
+        spawner.DespawnAll();
     }
 
     [DeserializedCallbackAllowed]

@@ -23,6 +23,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnSpawnEnemyCheatUsed;
 
     /// <summary>
+    ///   Fired whenever the user uses the "Despawn All Entities" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnDespawnAllEntitiesCheatUsed;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -67,6 +72,11 @@ public static class CheatManager
     public static void SpawnEnemy()
     {
         OnSpawnEnemyCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
+
+    public static void DespawnAllEntities()
+    {
+        OnDespawnAllEntitiesCheatUsed?.Invoke(null, EventArgs.Empty);
     }
 
     public static void DisableAllCheats()
