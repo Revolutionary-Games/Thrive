@@ -33,6 +33,9 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// </summary>
     public int WhatWouldActionCost(EditorCombinableActionData combinableAction)
     {
+        if (CheatManager.InfiniteMP)
+            return 0;
+
         return combinableAction.CalculateCost() + GetLeastCostCombineTuple(combinableAction, History).CostDelta;
     }
 
@@ -41,6 +44,9 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// </summary>
     public int CalculateMutationPointsLeft()
     {
+        if (CheatManager.InfiniteMP)
+            return Constants.BASE_MUTATION_POINTS;
+
         // As History is a reference, changing this affects the history cache
         var processedHistory = History;
         var copyLength = processedHistory.Count;
