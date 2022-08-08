@@ -30,14 +30,15 @@ public class EvolutionaryTree : Control
 
     private static readonly Vector2 TreeNodeSize = new(30, 30);
 
-    private readonly Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
+    // ReSharper disable 4 times RedundantNameQualifier
+    private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
-    private readonly Dictionary<uint, string> speciesNames = new();
+    private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
 
-    private readonly Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
+    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
         speciesOrigin = new();
 
-    private readonly Dictionary<int, double> generationTimes = new();
+    private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
 
     private readonly ButtonGroup nodesGroup = new();
 
