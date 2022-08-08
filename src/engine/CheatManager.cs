@@ -49,6 +49,11 @@ public static class CheatManager
     public static bool InfiniteMP { get; set; }
 
     /// <summary>
+    ///   Can move to any patch in the editor.
+    /// </summary>
+    public static bool MoveToAnyPatch { get; set; }
+
+    /// <summary>
     ///   Forces the player microbe to duplicate without going to the editor
     /// </summary>
     public static void PlayerDuplication()
@@ -72,6 +77,7 @@ public static class CheatManager
         Speed = 1.0f;
 
         InfiniteMP = false;
+        MoveToAnyPatch = false;
     }
 
     public static void HideCheatMenus()
