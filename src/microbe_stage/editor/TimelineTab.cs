@@ -85,6 +85,8 @@ public class TimelineTab : PanelContainer
         // If global time changes, global events need to be updated
         if (Math.Abs(lastUpdateGameTime - editor.CurrentGame.GameWorld.TotalPassedTime) > MathUtils.EPSILON)
         {
+            lastUpdateGameTime = editor.CurrentGame.GameWorld.TotalPassedTime;
+
             globalEventsContainer.FreeChildren();
             cachedGlobalTimelineElements = new List<TimelineSection>();
 
