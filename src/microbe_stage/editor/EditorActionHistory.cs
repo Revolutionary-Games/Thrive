@@ -97,7 +97,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                     }
                 }
 
-                // If mode is as follows, no more check is needed.
+                // If mode is the following, no more checks are needed.
                 if (mode == ActionInterferenceMode.CancelsOut)
                     break;
             }
