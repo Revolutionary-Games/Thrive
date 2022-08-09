@@ -36,7 +36,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         if (CheatManager.InfiniteMP)
             return 0;
 
-        return combinableAction.CalculateCost() + GetLeastCostCombineTuple(combinableAction, History).CostDelta;
+        return combinableAction.CalculateCost() + FindCheapestActionToCombineWith(combinableAction, History).CostDelta;
     }
 
     /// <summary>
@@ -57,7 +57,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             {
                 // Get the minimum cost action
                 var (_, minimumCostCombinableAction, mode) =
-                    GetLeastCostCombineTuple(processedHistory[compareIndex], processedHistory.Take(compareIndex));
+                    FindCheapestActionToCombineWith(processedHistory[compareIndex],
+                        processedHistory.Take(compareIndex));
 
                 // If no more can be merged together, try next one.
                 if (mode == ActionInterferenceMode.NoInterference)
@@ -187,7 +188,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     ///   Mode is the interference mode currentData has with MinimumCostActionData.
     /// </returns>
     private static (int CostDelta, EditorCombinableActionData MinimumCostActionData, ActionInterferenceMode Mode)
-        GetLeastCostCombineTuple(EditorCombinableActionData currentData,
+        FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
             IEnumerable<EditorCombinableActionData> previousData)
     {
         return previousData.Select(data =>
