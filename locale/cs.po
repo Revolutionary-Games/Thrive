@@ -1133,6 +1133,7 @@ msgstr ""
 "{5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:716
+#: ../src/auto-evo/AutoEvoExploringTool.cs:717
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Období[/b]\n"
@@ -1617,6 +1618,8 @@ msgstr "status spuštění:"
 #: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Akce je zablokována zatímco probíhá jiná akce"
 
@@ -2935,7 +2938,7 @@ msgstr "hráč se rozmnožil"
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
-#: ../src/general/StageBase.cs:502
+#: ../src/general/StageBase.cs:502 ../src/general/StageBase.cs:515
 msgid "EXTINCT_IN_PATCH"
 msgstr "vyhynulý v tomto prostředí"
 
@@ -4721,6 +4724,7 @@ msgstr "Nalézt nynější prostředí"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:214
 msgid "SEED_LABEL"
 msgstr "Seed planety: {0}"
 
