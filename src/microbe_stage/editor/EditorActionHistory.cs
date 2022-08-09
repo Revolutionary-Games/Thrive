@@ -176,7 +176,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     /// <summary>
-    ///   Pick the data with which you can regain maximum MP to combine.
+    ///   Finds the way to combine an action with previous actions so that the maximum amount of MP is saved.
     /// </summary>
     /// <param name="currentData">The data you want to combine</param>
     /// <param name="previousData">A list of data <see cref="currentData"/> may combine with</param>
