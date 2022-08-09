@@ -4332,9 +4332,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Spawni nepřítele"
+msgstr "Zlikvidovat všechny věci"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4713,9 +4712,8 @@ msgid "INFINITE_MP"
 msgstr "Nekonečné MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Přesunout na toto místo"
+msgstr "Přesunout na jakékoliv místo"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -5901,11 +5899,10 @@ msgstr ""
 "thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Odstranění organel stojí MP, ovšem to pouze v případě, že se nejedná o "
-"aktuální relaci editace.\n"
+"Odstranění organel taky stojí MP jelikož je to mutace, ovšem to pouze v "
+"případě, že se nejedná o aktuální relaci editace.\n"
 "\n"
 "Kliknutím pravým tlačítkem na organely zobrazíš nabídku organel a výběrem "
 "možnosti odstranění je odebereš.\n"
@@ -5915,21 +5912,20 @@ msgstr ""
 "Pokračuj kliknutím na tlačítko Zpět."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Když vybíráš, které organely přidat, věnuj pozornost tipům pro organely, na "
 "kterých procesech se podílejí a jaké sloučeniny používají a vyrábějí.\n"
 "\n"
 "Věnuj také pozornost vyrovnávací liště ATP vpravo nahoře, abys zajistil/a, "
-"že tvoje buňka přežije.\n"
+"kolik energie tvoje buňka vyrábí a kolik je potřeba aby přežila. Když horní "
+"lišta je kratší než spodní lišta nevyrabuješ dost energií.\n"
 "\n"
 "Před umístěním můžeš organely otočit pomocí A a D (výchozí klávesy).\n"
 "\n"
 "Pokračuj stisknutím tlačítka vrátit (poblíž tlačítka Zpět)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To jsou základní úpravy tvého druhu. Další možnosti můžeš zhlédnout na "
@@ -5938,7 +5934,9 @@ msgstr ""
 "Svůj druh můžeš přejmenovat kliknutím na název aktuálního druhu a upravením "
 "textu.\n"
 "\n"
-"Zpočátku bys měl/a mít svoji buňku malou a směřovat k povrchovým skvrnám.\n"
+"Abys přežil v tomu drsnému světu si musíš najít spolehliví zdroj energie "
+"poněvadž přírodní množství glukózy bude rychle klesat. Zpočátku bys měl/a "
+"mít svoji buňku malou a směřovat k povrchovým skvrnám.\n"
 "\n"
 "Hodně štěstí!"
 
@@ -5947,11 +5945,10 @@ msgid "GOT_IT"
 msgstr "Rozumím"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Tento panel zobrazuje předpověď budoucího počtu obyvatel. Tato čísla "
-"pocházejí ze simulace populace auto-evo.\n"
+"pocházejí ze simulace populace z Automatické-evoluce.\n"
 "\n"
 "Nezohledňují vaši individuální výkonnost. Takže ve vaší současné oblasti "
 "budete mít lepší výkon, když vstoupíte do editoru.\n"
@@ -5963,7 +5960,6 @@ msgstr ""
 "otazníkem na panelu. Chcete-li pokračovat, stiskněte jej."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Měli byste se soustředit na jeden nebo dva zdroje energie, abyste nemuseli "
@@ -5973,8 +5969,8 @@ msgstr ""
 "volbou neprovádět žádné změny, protože každá část stojí ATP na udržení a "
 "vyžaduje více zdrojů na rozdělení.\n"
 "\n"
-"Jednou z možných strategií je zůstat jedním šestiúhelníkem cytoplazmy a před "
-"pořízením organel pro fotosyntézu zamířit jen k povrchovým oblastem."
+"Jednou z možných strategií je zůstat jedním šestiúhelníkem z cytoplazma a "
+"před pořízením organel pro fotosyntézu zamířit jen k povrchovým oblastem."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
@@ -5992,9 +5988,7 @@ msgstr ""
 "možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly "
 "ostatním druhům mikrobů."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Zobrazit tutoriál"
 
@@ -6029,41 +6023,34 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely "
 "shromážděním dostatečného množství amoniaku a fosfátů.\n"
+"\n"
 "Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě "
-"potřebuješ."
+"potřebuješ. Pruhy, když dokončeno, zbělali."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Nasbíral(a) jsi dostatek surovin pro dělení.\n"
+"Nasbíral/a jsi dostatek surovin pro dělení buňky.\n"
 "\n"
-"Nyní jsi připraven(a) na úpravu svého druhu.\n"
+"Nyní jsi připraven/a na úpravu svého druhu.\n"
 "\n"
 "Pro spuštění editoru stiskni blikající tlačítko editoru vpravo dole."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy "
+"Vstoupil/a jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy "
 "kolonie, čímž je odpojíš.\n"
 "\n"
-"K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení "
-"všech."
+"Na odpuštění kolonie klikni na svou buňku nebo stiskni klávesu [thrive:"
+"input]g_unbind_all[/thrive:input]pro odpojení všech."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Pokud si stále nevíte rady s herními mechanismy, podívejte se do nápovědy. "
@@ -6071,22 +6058,14 @@ msgstr ""
 "\n"
 "Ještě jedna rada: pohled můžete zvětšit pomocí kolečka myši."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutoriál"
+msgstr "Podívat se na tutoriál"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy "
-"kolonie, čímž je odpojíš.\n"
-"\n"
-"K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení "
-"všech."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
