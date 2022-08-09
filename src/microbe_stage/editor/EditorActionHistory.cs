@@ -179,7 +179,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     ///   Pick the data with which you can regain maximum MP to combine.
     /// </summary>
     /// <param name="currentData">The data you want to combine</param>
-    /// <param name="previousData">A list of data currentData may combine with</param>
+    /// <param name="previousData">A list of data <see cref="currentData"/> may combine with</param>
     /// <returns>
     ///   Three-element tuple:
     ///   CostDelta is non-positive, indicating the amount of MP you will regain;
