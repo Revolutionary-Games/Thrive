@@ -752,7 +752,6 @@ public class PatchMapDrawer : Control
         }
 
         UpdateNodeSelections();
-        NotifySelectionChanged();
     }
 
     private void UpdateNodeSelections()
