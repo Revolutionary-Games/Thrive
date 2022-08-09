@@ -370,12 +370,18 @@ public class MicrobeStage : StageBase<Microbe>
 
             if (microbe == Player)
                 playerHandled = true;
+
+            if (microbe.Species != multicellularSpecies)
+                throw new Exception("Failed to apply multicellular species");
         }
 
         if (!playerHandled)
             throw new Exception("Did not find player to apply multicellular species to");
 
         GameWorld.NotifySpeciesChangedStages();
+
+        // Make sure no queued player species can spawn with the old species
+        spawner.ClearSpawnQueue();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
