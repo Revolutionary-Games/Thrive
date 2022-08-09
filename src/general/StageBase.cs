@@ -104,7 +104,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     }
 
     /// <summary>
-    ///   True when transitioning to the editor
+    ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
+    ///   otherwise some tree exit operations won't run correctly.
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
@@ -168,6 +169,18 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     }
 
     protected abstract IStageHUD BaseHUD { get; }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Cancel auto-evo if it is running to not leave background runs from other games running if the player
+        // just loaded a save
+        if (!MovingToEditor)
+        {
+            GameWorld.ResetAutoEvoRun();
+        }
+    }
 
     public virtual void ResolveNodeReferences()
     {

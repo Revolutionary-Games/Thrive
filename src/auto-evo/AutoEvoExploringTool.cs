@@ -713,8 +713,9 @@ public class AutoEvoExploringTool : NodeWithInput
         {
             case MicrobeSpecies microbeSpecies:
             {
-                speciesDetailsLabel.ExtendedBbcode += TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT")
-                    .FormatSafe(microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
+                speciesDetailsLabel.ExtendedBbcode += "\n" +
+                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
+                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
                         microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
                 break;
             }

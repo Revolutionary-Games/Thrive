@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
@@ -31,17 +32,20 @@ public abstract class InputAttribute : Attribute
     /// </summary>
     public int Priority { get; set; }
 
+    /// <summary>
+    ///   This class needs a custom equals to work in <see cref="InputManager.attributes"/> but a full value comparison
+    ///   would sap way too much performance so we use the references for equality and hash code.
+    /// </summary>
+    /// <param name="obj">The object to compare against</param>
+    /// <returns>True if equal</returns>
     public override bool Equals(object obj)
     {
-        if (!(obj is InputAttribute attr))
-            return false;
-
-        return Equals(attr.Method, Method);
+        return ReferenceEquals(this, obj);
     }
 
     public override int GetHashCode()
     {
-        return Method != null ? Method.GetHashCode() : 0;
+        return RuntimeHelpers.GetHashCode(this);
     }
 
     /// <summary>
@@ -69,6 +73,9 @@ public abstract class InputAttribute : Attribute
     /// <param name="method">The method this attribute is associated with</param>
     internal void Init(MethodBase? method)
     {
+        if (Method != null)
+            throw new ArgumentException("Trying to re-initialize attribute with different method");
+
         Method = method;
     }
 

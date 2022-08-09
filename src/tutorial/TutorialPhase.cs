@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A single tutorial in the game. Tutorials are split into subclasses to make the structure of the code much better.
 /// </summary>
+[JsonObject(IsReference = true)]
 public abstract class TutorialPhase
 {
     /// <summary>

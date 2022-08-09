@@ -15,6 +15,12 @@ using Newtonsoft.Json;
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {
+    /// <summary>
+    ///   This is not an auto property to make save compatibility easier
+    /// </summary>
+    [JsonProperty]
+    private Dictionary<Compound, float>? cachedBaseReproductionCost;
+
     protected Species(uint id, string genus, string epithet)
     {
         ID = id;
@@ -27,6 +33,13 @@ public abstract class Species : ICloneable
     /// </summary>
     [JsonProperty]
     public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
+
+    /// <summary>
+    ///   The base compounds needed to reproduce an individual of this species. Do not modify the returned value.
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Compound, float> BaseReproductionCost =>
+        cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
     public string Genus { get; set; }
     public string Epithet { get; set; }
@@ -102,7 +115,10 @@ public abstract class Species : ICloneable
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
     /// </summary>
-    public abstract void OnEdited();
+    public virtual void OnEdited()
+    {
+        cachedBaseReproductionCost = null;
+    }
 
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
@@ -165,6 +181,8 @@ public abstract class Species : ICloneable
             Behaviour[entry.Key] = entry.Value;
 
         Colour = mutation.Colour;
+
+        cachedBaseReproductionCost = null;
 
         // These don't mutate for a species
         // genus;
@@ -239,7 +257,7 @@ public abstract class Species : ICloneable
 
     public override string ToString()
     {
-        return FormattedIdentifier;
+        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
     }
 
     /// <summary>
@@ -249,8 +267,7 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual int GetVisualHashCode()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607)
-            ^ (Colour.GetHashCode() * 617);
+        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
     }
 
     internal virtual void CopyDataToConvertedSpecies(Species species)
@@ -288,6 +305,27 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    private Dictionary<Compound, float> CalculateBaseReproductionCost()
+    {
+        var result = new Dictionary<Compound, float>();
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        if (Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA > 0)
+        {
+            result.Add(simulationParameters.GetCompound("ammonia"),
+                Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA);
+        }
+
+        if (Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES > 0)
+        {
+            result.Add(simulationParameters.GetCompound("phosphates"),
+                Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
+        }
+
+        return result;
     }
 
     private void ThrowPopulationChangeErrorIfNotPlayer()

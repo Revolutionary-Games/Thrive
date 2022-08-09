@@ -109,10 +109,7 @@ public class SpawnSystem : ISpawnSystem
 
     public void DespawnAll()
     {
-        foreach (var queuedSpawn in queuedSpawns)
-            queuedSpawn.Dispose();
-
-        queuedSpawns.Clear();
+        ClearSpawnQueue();
         int despawned = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
@@ -130,6 +127,18 @@ public class SpawnSystem : ISpawnSystem
             debugOverlay.ReportDespawns(despawned);
 
         ClearSpawnCoordinates();
+    }
+
+    /// <summary>
+    ///   Clears all of the queued spawns. For use when the queue might contain something that
+    ///   should not be allowed to spawn.
+    /// </summary>
+    public void ClearSpawnQueue()
+    {
+        foreach (var queuedSpawn in queuedSpawns)
+            queuedSpawn.Dispose();
+
+        queuedSpawns.Clear();
     }
 
     /// <summary>

@@ -51,6 +51,8 @@ public class WorldGenerationSettings
             GlucoseDecay = value.GlucoseDecay;
             OsmoregulationMultiplier = value.OsmoregulationMultiplier;
             FreeGlucoseCloud = value.FreeGlucoseCloud;
+            PassiveGainOfReproductionCompounds = value.PassiveReproduction;
+            LimitReproductionCompoundUseSpeed = value.LimitGrowthRate;
         }
     }
 
@@ -100,6 +102,16 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud { get; set; }
 
     /// <summary>
+    ///  Whether microbes get free reproduction compounds at a steady background rate
+    /// </summary>
+    public bool PassiveGainOfReproductionCompounds { get; set; } = true;
+
+    /// <summary>
+    ///  Whether microbes are limited in how fast they can consume reproduction compounds to grow
+    /// </summary>
+    public bool LimitReproductionCompoundUseSpeed { get; set; } = true;
+
+    /// <summary>
     ///  Basic patch map generation type (procedural or the static classic map)
     /// </summary>
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
@@ -128,6 +140,8 @@ public class WorldGenerationSettings
             $", Glucose decay: {GlucoseDecay}" +
             $", Osmoregulation multiplier: {OsmoregulationMultiplier}" +
             $", Free glucose cloud: {FreeGlucoseCloud}" +
+            $", Passive Reproduction: {PassiveGainOfReproductionCompounds}" +
+            $", Limit Growth Rate: {LimitReproductionCompoundUseSpeed}" +
             $", Map type: {MapType}" +
             $", Include Multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +

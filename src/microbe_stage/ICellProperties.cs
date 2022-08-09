@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Generic interface to allow working with microbe species and also multicellular species' individual cell types
@@ -22,4 +23,22 @@ public interface ICellProperties
 
     public void RepositionToOrigin();
     public void UpdateNameIfValid(string newName);
+}
+
+public static class CellPropertiesHelpers
+{
+    /// <summary>
+    ///   The total compounds in the composition of all organelles
+    /// </summary>
+    public static Dictionary<Compound, float> CalculateTotalComposition(this ICellProperties properties)
+    {
+        var result = new Dictionary<Compound, float>();
+
+        foreach (var organelle in properties.Organelles)
+        {
+            result.Merge(organelle.Definition.InitialComposition);
+        }
+
+        return result;
+    }
 }
