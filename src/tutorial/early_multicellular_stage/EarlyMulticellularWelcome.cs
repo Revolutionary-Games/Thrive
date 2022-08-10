@@ -7,6 +7,11 @@
     /// </summary>
     public class EarlyMulticellularWelcome : TutorialPhase
     {
+        public EarlyMulticellularWelcome()
+        {
+            Pauses = true;
+        }
+
         public override string ClosedByName => "EarlyMulticellularWelcome";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)

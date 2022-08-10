@@ -268,7 +268,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
             if (value)
             {
-                earlyMulticellularWelcome.Show();
+                earlyMulticellularWelcome.PopupCenteredShrink();
             }
             else
             {
