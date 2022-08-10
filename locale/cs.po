@@ -214,12 +214,14 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Spojením s ostatními buňkami můžeš vytvořit kolonii, ve které buňky sdílejí "
 "sloučeniny, které absorbují a vytvářejí. Pro spojení s jinou buňkou musí "
-"vaše buňka obsahovat pojící organelu, kterou se jí dotknete po zapnutí "
-"spojovacího módu. Spojit se můžete pouze s buňkami vašeho druhu. Když jste v "
-"kolonii, nemůžete svou buňku dělit ani s ní vstoupit do editoru (prozatím). "
-"Pro vstup do editoru po nasbírání dostatku sloučenin nejdřív opusťte "
-"kolonii. Velké kolonie buněk jsou cestou k mnohobuněčným organismům (zatím "
-"nejsou ve hře)."
+"vaše buňka obsahovat pojící organelu, kterou se dotknete po zapnutí "
+"spojovacího módu, do toho vstoupíte skrz zmáčknutím [thrive:"
+"input]g_toggle_binding[/thrive:input]. Spojit se můžete pouze s buňkami "
+"vašeho druhu. Když jste v kolonii, nemůžete svou buňku dělit ani s ní "
+"vstoupit do editoru (prozatím).Pro vstup do editoru po nasbírání dostatku "
+"sloučenin nejdřív opusťte kolonii, nato zmáčknete [thrive:"
+"input]g_unbind_all[/thrive:input]. Velké kolonie buněk jsou cestou k "
+"mnohobuněčným organismům (zatím nejsou ve hře)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -6062,21 +6064,27 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Podívat se na tutoriál"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
+"Tvoje buňka ma omezenou kapacitu na předměty které může sníst najednou. "
+"Tento limit ze založen na velikosti buňky; menší buňky mají menší kapacitu.\n"
+"\n"
+"Buňka, když plna, nic víc nemůže jíst. Abys mohl/a jist dál, musíš počkat až "
+"jeden nebo dvě předměty jsou úplně strávený."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy "
-"kolonie, čímž je odpojíš.\n"
+"Můžeš sníst předměty když se přes ně pohybuješ a jsi během toho v "
+"pohlcovacího módu. Abys zapnul pohlcovací mód zmáčkni [thrive:"
+"input]g_toggle_engulf[/thrive:input]\n"
 "\n"
-"K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení "
-"všech."
+"Přestaň pohlcovat až se ten předmět vtáhne dovnitř do buňky.\n"
+"\n"
+"Jed po čáře od tvé buňky k nedaleký jedlý předměty."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
