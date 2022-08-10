@@ -850,6 +850,11 @@ public static class Constants
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
+    public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
+    public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
+    public const bool TRACK_ACTUAL_RESOURCE_LOAD_TIMES = false;
+    public const float REPORT_LOAD_TIMES_OF_BY = 0.1f;
+
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
