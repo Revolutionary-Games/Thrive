@@ -31,6 +31,8 @@ StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
+LeaveColonyTutorialPath = NodePath("LeaveColonyTutorial")
+EarlyMulticellularWelcomePath = NodePath("EarlyMulticellularWelcome")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
 EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
 EngulfedExplanationPath = NodePath("EngulfedTutorial")
@@ -326,6 +328,68 @@ margin_bottom = 61.0
 rect_min_size = Vector2( 260, 275 )
 Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 
+[node name="LeaveColonyTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+
+[node name="EarlyMulticellularWelcome" type="Popup" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -189.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 260, 240 )
+theme = ExtResource( 2 )
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+WindowTitle = "TUTORIAL"
+Description = "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EarlyMulticellularWelcome"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer"]
+margin_right = 260.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
+margin_right = 260.0
+margin_bottom = 24.0
+custom_fonts/normal_font = ExtResource( 4 )
+ExtendedBbcode = ""
+
+[node name="Control" type="Control" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 260.0
+margin_bottom = 204.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer"]
+margin_left = 26.0
+margin_top = 208.0
+margin_right = 234.0
+margin_bottom = 240.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 6 )
+text = "CLOSE"
+
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
@@ -350,3 +414,8 @@ Description = "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 [connection signal="popup_hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
 [connection signal="hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
 [connection signal="popup_hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
+[connection signal="hide" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= [ "LeaveColonyTutorial" ]]
+[connection signal="popup_hide" from="LeaveColonyTutorial" to="." method="OnSpecificCloseClicked" binds= [ "LeaveColonyTutorial" ]]
+[connection signal="hide" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
+[connection signal="popup_hide" from="EarlyMulticellularWelcome" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
+[connection signal="pressed" from="EarlyMulticellularWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "EarlyMulticellularWelcome" ]]
