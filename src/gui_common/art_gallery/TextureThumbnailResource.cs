@@ -31,7 +31,7 @@ public class TextureThumbnailResource : ITextureResource
     public bool RequiresSyncLoad => true;
     public bool UsesPostProcessing => false;
     public bool RequiresSyncPostProcess => true;
-    public float EstimatedTimeRequired => 0.01f;
+    public float EstimatedTimeRequired => 0.015f;
     public bool LoadingPrepared { get; set; }
     public bool Loaded { get; private set; }
     public string Identifier => $"Thumbnail/{texturePath}";
