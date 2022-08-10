@@ -202,8 +202,9 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的"
 "化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要"
-"连接的细胞。你只能连接同物种细胞。（目前）你在细胞群中无法复制并进入细胞编辑"
-"器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要先脱离原细胞群。大"
+"连接的细胞，按[thrive:input] g_toggle_binding[/thrive:input]进入连接模式。你"
+"在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞"
+"编辑器，你需要按 [thrive:input]g_unbind_all[/thrive:input]键脱离原细胞群。大"
 "的细胞群是形成多细胞生物（开发中）的基础。"
 
 #: ../simulation_parameters/common/help_texts.json:74
@@ -211,15 +212,18 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "原核结构\n"
 "\n"
+"细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/"
+"thrive:compound]）\n"
+"\n"
 "代谢体：用[thrive:compound type=\"glucose\"][/thrive:compound]生产[thrive:"
 "compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的[thrive:compound type=\"glucose\"][/"
+"thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
 "化学合成蛋白：跟化学质体比同一份[thrive:compound type=\"hydrogensulfide\"][/"
 "thrive:compound]只能产出半份[thrive:compound type=\"glucose\"][/thrive:"
 "compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
-"\n"
-"类囊体：跟正常的叶绿体比只能产出1/3的[thrive:compound type=\"glucose\"][/"
-"thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
 "铁硫菌蓝蛋白：将[thrive:compound type=\"iron\"][/thrive:compound]转换成"
 "[thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -227,8 +231,10 @@ msgstr ""
 "固氮酶：在无氧环境下将大气中的氮和[thrive:compound type=\"atp\"][/thrive:"
 "compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/"
-"thrive:compound]）"
+"毒素体：将[thrive:compound type=\"atp\"][/thrive:compound]转化为[thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
+"\n"
+"热合成酶：利用温度梯度产生[thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -240,7 +246,9 @@ msgstr ""
 "\n"
 "菌毛：可以用来捅其它细胞或防护毒素\n"
 "\n"
-"化学感受器：允许从更远的地方探测化合物"
+"化学感受器：允许从更远的地方探测化合物\n"
+"\n"
+"纤毛：增加细胞转动速度"
 
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -2470,11 +2478,11 @@ msgstr "自动（{0}x{1}）"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
 msgid "UNKNOWN_DISPLAY_DRIVER"
@@ -3892,7 +3900,7 @@ msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化"
-"通过内吞作用吸收的物质，并在一个称为自噬的过程中清洁细胞的废物。"
+"通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
@@ -3927,7 +3935,8 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不"
-"需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
+"需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层"
+"墙[/b]，使其容易被捕食者吞噬。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3951,7 +3960,8 @@ msgstr "免疫胞吞"
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不"
-"需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
+"需要多少能量来维持形状，但吸收营养和移动的速度都很慢。. [b]几丁质酶可以消化这"
+"堵墙[/b]，使其容易被捕食者吞噬。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -4070,7 +4080,7 @@ msgstr "变得有意识"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
 msgid "AWAKEN"
-msgstr ""
+msgstr "唤醒"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 #: ../src/microbe_stage/MicrobeStage.tscn:1656
@@ -4100,7 +4110,7 @@ msgstr "从编辑器选项卡中选择要在此处编辑的组织类型"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "无法移动金属球到其自己的树形子节点"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 msgid "INTERNALS"
@@ -4217,9 +4227,8 @@ msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "实体数量限制："
+msgstr "杀死所有实体"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4390,8 +4399,8 @@ msgstr "细胞类型名称"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-"不能删除细胞核，因为这是个不可逆的进化。除非是在当前世代中进化的，那样仍允许"
-"撤消或重做"
+"不能删除细胞核，因为这是个不可逆的进化。\n"
+"除非是在当前世代中进化的，那样仍允许撤消或重做。"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4583,9 +4592,8 @@ msgid "INFINITE_MP"
 msgstr "无限变异点"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "移动到这个地区"
+msgstr "移动到任意地区"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -5422,8 +5430,9 @@ msgstr "玩家已灭绝"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "你正在玩的是游戏中包含的后期原型。\n"
-"这些原型可能非常不完整，使用占位图形，而且一般来说非常粗糙。\n"
-"因此，目前不可能保存。"
+"这些原型可能非常不完整，使用占位图形，而且一般来说非常粗糙，\n"
+"并不可游玩。因此，保存目前是不可能的。\n"
+"原型的某些部分可能允许有限的保存。"
 
 #: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
@@ -5719,7 +5728,8 @@ msgstr ""
 "屏幕中央的六角形是你的细胞，它由一个细胞质组件组成。\n"
 "\n"
 "要继续，从左边的面板上选择一个细胞器。然后左键点击屏幕中间显示的六角形旁边，"
-"你可以用A和D（默认键）旋转部件。"
+"你可以用[thrive:input]e_rotate_left[/thrive:input] 和 [thrive:"
+"input]e_rotate_right[/thrive:input]旋转部件。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -5841,6 +5851,7 @@ msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速"
 "度。\n"
+"\n"
 "右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
@@ -5859,7 +5870,8 @@ msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+"要完全离开细胞群，你可以点击你自己的细胞或按下“[thrive:input]解除所有连接[/"
+"thrive:input]”键。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
