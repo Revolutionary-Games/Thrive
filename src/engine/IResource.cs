@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 ///   A game resource loadable through <see cref="ResourceManager"/>
 /// </summary>
 public interface IResource
@@ -30,6 +32,11 @@ public interface IResource
     ///   Used to uniquely identify what resource this is
     /// </summary>
     public string Identifier { get; }
+
+    /// <summary>
+    ///   If not null this is called on the main thread once this resource has been loaded
+    /// </summary>
+    public Action<IResource>? OnComplete { get; set; }
 
     /// <summary>
     ///   Loading is prepared in a background operation

@@ -38,6 +38,15 @@ public class ResourceManager : Node
 
     public static ResourceManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
+    public Texture LoadingIcon { get; private set; } = null!;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        LoadingIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -52,7 +61,10 @@ public class ResourceManager : Node
         timeTracker.Restart();
 
         if (processingBackgroundResource?.Loaded == true)
+        {
+            processingBackgroundResource.OnComplete?.Invoke(processingBackgroundResource);
             processingBackgroundResource = null;
+        }
 
         if (preparingBackgroundResource?.LoadingPrepared == true)
             preparingBackgroundResource = null;
@@ -100,6 +112,12 @@ public class ResourceManager : Node
 
                         if (processingBackgroundResource == null)
                         {
+                            if (resource.UsesPostProcessing && resource.RequiresSyncPostProcess)
+                            {
+                                throw new NotImplementedException(
+                                    "Missing handling for requiring sync post process but supporting async load");
+                            }
+
                             TaskExecutor.Instance.AddTask(new Task(() => { PerformFullLoad(resource); }));
 
                             processingBackgroundResource = resource;
@@ -117,6 +135,8 @@ public class ResourceManager : Node
                     {
                         // TODO: allow splitting the post processing to the next frame
                         PerformFullLoad(resource);
+                        resource.OnComplete?.Invoke(resource);
+
                         didSomething = true;
                         progressedLoading = true;
                         processingResources.RemoveAt(i);

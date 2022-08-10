@@ -377,11 +377,14 @@ public class SaveListItem : PanelContainer
         public bool RequiresSyncPostProcess => true;
         public float EstimatedTimeRequired => 0.025f;
         public bool LoadingPrepared { get; set; }
-        public bool Loaded { get; set; }
+        public bool Loaded { get; private set; }
         public string Identifier => $"{nameof(SaveInfoAndScreenshot)}/{saveName}";
 
-        public Save? Save { get; set; }
-        public ImageTexture? Screenshot { get; set; }
+        // TODO: maybe this should switch to using the callback to update the state rather than _Process?
+        public Action<IResource>? OnComplete { get; set; }
+
+        public Save? Save { get; private set; }
+        public ImageTexture? Screenshot { get; private set; }
 
         public void PrepareLoading()
         {
