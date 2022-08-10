@@ -6,6 +6,15 @@ using AutoEvo;
 using Godot;
 using Array = Godot.Collections.Array;
 
+/// <summary>
+///   An evolutionary tree showing species origins and mutations. Supports dragging and zooming.
+/// </summary>
+/// <remarks>
+///   <para>
+///     To use this, simply add this inside any controller and adjust its size.
+///     Don't put this under a draggable controller.
+///   </para>
+/// </remarks>
 public class EvolutionaryTree : Control
 {
     [Export]
@@ -14,20 +23,49 @@ public class EvolutionaryTree : Control
     [Export]
     public NodePath TreePath = null!;
 
+    /// <summary>
+    ///   Tree left margin to avoid timeline mark being cut off.
+    /// </summary>
     private const float LEFT_MARGIN = 5.0f;
+
     private const float TIMELINE_HEIGHT = 50.0f;
     private const float TIMELINE_LINE_THICKNESS = 2.0f;
     private const float TIMELINE_AXIS_Y = 5.0f;
-    private const float TIMELINE_MARK_SIZE = 4.0f;
+    private const float TIMELINE_MARK_LENGTH = 4.0f;
     private const float TREE_LINE_THICKNESS = 4.0f;
+
+    /// <summary>
+    ///   Vertical separation between species.
+    /// </summary>
     private const float SPECIES_SEPARATION = 50.0f;
+
+    /// <summary>
+    ///   Horizontal separation between generations.
+    /// </summary>
     private const float GENERATION_SEPARATION = 100.0f;
+
+    /// <summary>
+    ///   The horizontal offset where species name is drawn to the right of the button or line
+    /// </summary>
     private const float SPECIES_NAME_OFFSET = 10.0f;
+
+    /// <summary>
+    ///   Each time the control is zoomed, sizeFactor gets multiplied (or divided) by this factor.
+    ///   This allows for smooth zooming, that zoom will not seem too quick when small, nor too slow when big.
+    /// </summary>
     private const float ZOOM_FACTOR = 0.9f;
+
     private const float SIZE_FACTOR_MIN = 0.2f;
     private const float SIZE_FACTOR_MAX = 1.0f;
+
+    /// <summary>
+    ///   Default size of lato-small font.
+    /// </summary>
     private const float SMALL_FONT_SIZE = 14.0f;
 
+    /// <summary>
+    ///   Default size of <see cref="EvolutionaryTreeNode"/>.
+    /// </summary>
     private static readonly Vector2 TreeNodeSize = new(30, 30);
 
     // ReSharper disable 4 times RedundantNameQualifier
@@ -40,22 +78,48 @@ public class EvolutionaryTree : Control
 
     private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
 
+    /// <summary>
+    ///   All EvolutionaryTreeNodes are in this group so that they works radio.
+    /// </summary>
     private readonly ButtonGroup nodesGroup = new();
 
+    /// <summary>
+    ///   Timeline part of <see cref="EvolutionaryTree"/>. Consists of an axis and multiple time marks.
+    /// </summary>
     private Control timeline = null!;
+
+    /// <summary>
+    ///   Tree part of <see cref="EvolutionaryTree"/>. Consists of many buttons and connection lines.
+    /// </summary>
     private Control tree = null!;
 
+    // Local copy of fonts
     private Font latoSmallItalic = null!;
     private Font latoSmallRegular = null!;
 
     private PackedScene treeNodeScene = null!;
 
+    /// <summary>
+    ///   Drag offset relative to tree.
+    /// </summary>
     private Vector2 dragOffset;
+
     private bool dragging;
     private Vector2 lastMousePosition;
 
+    /// <summary>
+    ///   The tree's size factor.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///      <see cref="Control.RectScale"/> is not used here so that we know the drawn parts.
+    ///   </para>
+    /// </remarks>
     private float sizeFactor = 1.0f;
 
+    /// <summary>
+    ///   If redraw is needed.
+    /// </summary>
     private bool dirty;
 
     private uint maxSpeciesId;
@@ -106,10 +170,14 @@ public class EvolutionaryTree : Control
 
         if (dirty)
         {
+            // SizeFlagVertical is set to ShrinkEnd, so that adjusting min size adjusts actual size.
             timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
             UpdateTreeNodeSizeAndPosition();
+
+            // Inform them to update
             timeline.Update();
             tree.Update();
+
             dirty = false;
         }
     }
@@ -181,9 +249,12 @@ public class EvolutionaryTree : Control
 
         foreach (var node in speciesNodes.Values.SelectMany(speciesNodeList => speciesNodeList))
         {
-            node.RectPosition = sizeFactor * (node.Position + dragOffset);
             node.RectMinSize = treeNodeSize;
+
+            // RectSize needs to be adjusted explicitly even when SizeFlag set to ShrinkEnd.
             node.RectSize = treeNodeSize;
+
+            node.RectPosition = sizeFactor * (node.Position + dragOffset);
         }
     }
 
@@ -216,13 +287,19 @@ public class EvolutionaryTree : Control
     }
 
     /// <summary>
-    ///   Draw timeline, which only responds to horizontal drag.
+    ///   <see cref="Control._Draw"/> of <see cref="timeline"/>
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Timeline only responds to horizontal drag.
+    ///   </para>
+    /// </remarks>
     private void TimelineDraw()
     {
+        // When zoomed, these constants need to be multiplied by sizeFactor.
         var timelineAxisY = sizeFactor * TIMELINE_AXIS_Y;
         var lineThickness = sizeFactor * TIMELINE_LINE_THICKNESS;
-        var markSize = sizeFactor * TIMELINE_MARK_SIZE;
+        var markSize = sizeFactor * TIMELINE_MARK_LENGTH;
 
         // Draw timeline axis, which is static.
         timeline.DrawLine(new Vector2(0, timelineAxisY),
@@ -248,9 +325,9 @@ public class EvolutionaryTree : Control
     }
 
     /// <summary>
-    ///   _GUIInput for sub-controls.
+    ///   _GUIInput for <see cref="timeline"/> and <see cref="tree"/>.
     /// </summary>
-    /// <param name="event">Godot input event</param>
+    /// <param name="event">Godot input event, see <see cref="Control._GuiInput"/></param>
     /// <param name="horizontalOnly">
     ///   Binding parameter. If set to true, only horizontal offset will be considered.
     /// </param>
@@ -307,11 +384,17 @@ public class EvolutionaryTree : Control
         dragOffset = new Vector2(x, y);
     }
 
+    /// <summary>
+    ///   Stop dragging when mouse exit <see cref="timeline"/> or <see cref="tree"/>
+    /// </summary>
     private void MouseExit()
     {
         dragging = false;
     }
 
+    /// <summary>
+    ///   <see cref="Control._Draw"/> of <see cref="tree"/>
+    /// </summary>
     private void TreeDraw()
     {
         // Draw new species connection lines
@@ -364,6 +447,14 @@ public class EvolutionaryTree : Control
         }
     }
 
+    /// <summary>
+    ///   Draw a line in <see cref="tree"/>. Separate a normal line into 2 horizontal ones and a vertical one.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     <see cref="from"/> should be the left point and <see cref="to"/> the right point.
+    ///   </para>
+    /// </remarks>
     private void TreeDrawLine(Vector2 from, Vector2 to)
     {
         var lineWidth = sizeFactor * TREE_LINE_THICKNESS;
