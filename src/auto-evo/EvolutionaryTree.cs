@@ -59,6 +59,11 @@ public class EvolutionaryTree : Control
     private const float SIZE_FACTOR_MAX = 1.0f;
 
     /// <summary>
+    ///   Draws outside this margin will be omitted to improve performance.
+    /// </summary>
+    private const float DRAW_MARGIN = 30.0f;
+
+    /// <summary>
     ///   Default size of lato-small font.
     /// </summary>
     private const float SMALL_FONT_SIZE = 14.0f;
@@ -67,6 +72,11 @@ public class EvolutionaryTree : Control
     ///   Default size of <see cref="EvolutionaryTreeNode"/>.
     /// </summary>
     private static readonly Vector2 TreeNodeSize = new(30, 30);
+
+    /// <summary>
+    ///   Auxiliary vector for <see cref="DRAW_MARGIN"/>
+    /// </summary>
+    private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
     // ReSharper disable 4 times RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
@@ -397,10 +407,20 @@ public class EvolutionaryTree : Control
     /// </summary>
     private void TreeDraw()
     {
+        var drawRegion = new Rect2(RectPosition - DrawMargin, RectSize + DrawMargin);
+
         // Draw new species connection lines
         foreach (var node in speciesNodes.Values.Select(l => l.First()))
         {
             if (node.ParentNode == null)
+                continue;
+
+            // If the vertical position is outside draw region, skip.
+            if (node.Center.y < drawRegion.Position.y || node.ParentNode.Center.y > drawRegion.End.y)
+                continue;
+
+            // Horizontal too.
+            if (node.Center.x < drawRegion.Position.x || node.ParentNode.Center.x > drawRegion.End.x)
                 continue;
 
             TreeDrawLine(node.ParentNode.Center, node.Center);
@@ -413,6 +433,10 @@ public class EvolutionaryTree : Control
         foreach (var nodeList in speciesNodes.Values)
         {
             var lineStart = nodeList.First().Center;
+
+            // If the line is outside draw region, skip it.
+            if (lineStart.y < drawRegion.Position.y || lineStart.y > drawRegion.End.y)
+                continue;
 
             var lastNode = nodeList.Last();
 
@@ -432,6 +456,11 @@ public class EvolutionaryTree : Control
         foreach (var pair in speciesNodes)
         {
             var lastNode = pair.Value.Last();
+
+            // If the string is outside draw region, skip it.
+            if (lastNode.Center.y < drawRegion.Position.y || lastNode.Center.x > drawRegion.End.x)
+                continue;
+
             if (lastNode.LastGeneration)
             {
                 tree.DrawString(latoSmallItalic,
