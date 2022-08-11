@@ -18,7 +18,7 @@ public static class ToolTipHelper
     private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new();
 
     /// <summary>
-    ///   Instantiates a default tooltip scene
+    ///   Gets a default tooltip scene from cache, or instantiates a default tooltip scene if there isn't any.
     /// </summary>
     public static DefaultToolTip GetDefaultToolTip()
     {
