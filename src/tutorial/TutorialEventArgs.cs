@@ -97,3 +97,15 @@ public class CallbackEventArgs : TutorialEventArgs
 
     public Action Data { get; }
 }
+
+public class MicrobeColonyEventArgs : TutorialEventArgs
+{
+    public MicrobeColonyEventArgs(MicrobeColony? colony)
+    {
+        Colony = colony;
+    }
+
+    public MicrobeColony? Colony { get; }
+
+    public bool HasColony => Colony != null;
+}
