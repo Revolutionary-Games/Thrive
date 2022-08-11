@@ -397,7 +397,7 @@ public class LineChart : VBoxContainer
                 point.Size *= isChild ? 1.5f : 1;
 
                 // Create tooltip for the point markers
-                var toolTip = ToolTipHelper.CreateDefaultToolTip();
+                var toolTip = ToolTipHelper.GetDefaultToolTip();
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
                     $"{point.X.FormatNumber()} {XAxisName}" :
@@ -718,7 +718,7 @@ public class LineChart : VBoxContainer
             newCollisionRect.Connect("mouse_exited", dataLine, nameof(dataLine.OnMouseExit));
 
             // Create tooltip
-            var tooltip = ToolTipHelper.CreateDefaultToolTip();
+            var tooltip = ToolTipHelper.GetDefaultToolTip();
 
             tooltip.DisplayName = datasetName + "line" + firstPoint.Coordinate;
             tooltip.Description = datasetName;
@@ -1049,7 +1049,7 @@ public class LineChart : VBoxContainer
                 }
 
                 // Create tooltips
-                var toolTip = ToolTipHelper.CreateDefaultToolTip();
+                var toolTip = ToolTipHelper.GetDefaultToolTip();
 
                 toolTip.DisplayName = data.Key;
                 toolTip.Description = data.Key;

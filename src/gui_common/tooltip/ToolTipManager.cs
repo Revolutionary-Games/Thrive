@@ -158,7 +158,8 @@ public class ToolTipManager : CanvasLayer
 
         if (popup == null)
         {
-            popup = ToolTipHelper.CreateDefaultToolTip();
+            popup = ToolTipHelper.GetDefaultToolTip();
+            popup.Name = "popup";
             AddToolTip(popup);
         }
 
@@ -197,7 +198,16 @@ public class ToolTipManager : CanvasLayer
             return;
         }
 
-        tooltip.ToolTipNode.DetachAndQueueFree();
+        tooltip.ToolTipNode.Detach();
+
+        if (tooltip is DefaultToolTip defaultToolTip)
+        {
+            ToolTipHelper.RestoreDefaultToolTip(defaultToolTip);
+        }
+        else
+        {
+            tooltip.ToolTipNode.QueueFree();
+        }
 
         var retrievedGroup = GetGroup(group);
         if (retrievedGroup == null)
