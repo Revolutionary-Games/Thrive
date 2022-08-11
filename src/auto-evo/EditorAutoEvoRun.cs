@@ -6,8 +6,7 @@ using AutoEvo;
 /// </summary>
 public class EditorAutoEvoRun : AutoEvoRun
 {
-    public EditorAutoEvoRun(GameWorld world, Species originalEditedSpecies, Species modifiedProperties,
-        AutoEvoConfiguration? configuration = null) : base(world, configuration)
+    public EditorAutoEvoRun(GameWorld world, Species originalEditedSpecies, Species modifiedProperties) : base(world)
     {
         OriginalEditedSpecies = originalEditedSpecies;
         ModifiedProperties = modifiedProperties;
