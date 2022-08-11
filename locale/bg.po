@@ -92,7 +92,7 @@ msgstr "Вашата клетка използва [thrive:compound type=\"atp\"
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "За възпроизвеждане и влизане в редактора, трябва да съберете [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] (оранжевите облаци) и [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound] (лилавите облаци)."
+msgstr "За възпроизвеждане и влизане в редактора, трябва да разполагате с достатъчно хранителни вещества. Събирането на [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] (оранжевите облаци) и [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound] (лилавите облаци) ускорява този процес."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -142,7 +142,7 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"]Сероводородът[/th
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "За възпроизвеждане, органелите на клетката трябва да се разделят на две. За да го направят, те се нуждаят от [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] и [thrive:compound type=\"phosphate\"]фосфат[/thrive:compound]."
+msgstr "За възпроизвеждане, органелите на клетката трябва да се разделят на две. За да го направят, те се нуждаят от [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], [thrive:compound type=\"phosphate\"]фосфат[/thrive:compound] и време."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -999,7 +999,7 @@ msgstr ""
 "[b]Цвят[/b]\n"
 "  #{4}\n"
 "[b]Поведение[/b]\n"
-"  {5}\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:717
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -5450,13 +5450,13 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"За възпроизвеждане, органелите на клетката трябва да се удвоят. За да го направят те се нуждаят от определено количество амоняк и фосфат.\n"
+"За възпроизвеждане, органелите на клетката трябва да се удвоят. Събирането на амоняк и фосфат ускорява този процес.\n"
 "Наблюдавайте запълването на лентите около бутона на редактора долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Събрахте достатъчно хранителни вещества за възпроизвеждането на Вашата клетка.\n"
+"Разполагате с достатъчно хранителни вещества за възпроизвеждането на Вашата клетка.\n"
 "\n"
 "Вашите създания могат да еволюират.\n"
 "\n"
@@ -5945,3 +5945,11 @@ msgstr "Започнете да процъфтявате"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не се изпълнява."
+
+#~ msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+#~ msgstr ""
+#~ "Вашата клетка е погълната, това означава, че поглъщащата клетка ще започне храносмилането си.\n"
+#~ "\n"
+#~ "Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) като процент. Вашата клетка ще умре, след като той достигне 100% или бъде достигнато максималното време на изчакване.\n"
+#~ "\n"
+#~ "Натиснете бутона за извършване на самоубийство, за да пропуснете този процес, но не забравяйте, че винаги има шанс да се спасите!"

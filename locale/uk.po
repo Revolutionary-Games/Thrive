@@ -979,27 +979,42 @@ msgid "LYSOSOME"
 msgstr "Лізосома"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "Дозволяє з'єднуватися з іншими клітинами.Це перший крок до багатоклітинності. Коли ваша клітина– частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднання."
+msgstr "Завершення {0} генерацій"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:708
-#, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
+msgstr ""
+"[b]Види[/b]\n"
+"  {0}:{1}\n"
+"[b]Генерація[/b]\n"
+"  {2}\n"
+"[b]Популяція[/b]\n"
+"  {3}\n"
+"[b]Колір[/b]\n"
+"  #{4}\n"
+"[b]Поведінка[/b]\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:717
-#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"Зберігайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
-"Ваша клітина вмре якщо збіжить здоров'я.\n"
-"Ви відновлюєте здоров'я, поки є АТФ.\n"
-"Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
+"[b]Стадія[/b]\n"
+"  Мікроб\n"
+"[b]Тип мембрани[/b]\n"
+"  {0}\n"
+"[b]Жорсткість мембрани[/b]\n"
+"  {1}\n"
+"[b]Базова швидкість[/b]\n"
+"  {2}\n"
+"[b]Базова швидкість обертання[/b]\n"
+"  {3}\n"
+"[b]Базовий розмір гексу[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
-msgstr ""
+msgstr "Конфігурація"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1007,138 +1022,124 @@ msgid "REPORT"
 msgstr "Звіт"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
-#, fuzzy
 msgid "VIEWER"
-msgstr "Переглянути галерею"
+msgstr "Переглядач"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "мутував"
+msgstr "Дозволити виду не мутувати"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Частина популяції [u]{0}[/u] мігрувала до {1}"
+msgstr "Дозволити виду не мігрувати"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Шанси утворити новий вид для збільшення біорізноманіття з сусідньої ділянки"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Біорізноманіття коло ділянки– це фільна популяція"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Розкол біорізноманіття– це матації"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Низький ліміт біорізноманіття"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "вимерли в ділянці"
+msgstr "Максимум видів в ділянці"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Переміщення спроб на вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Очки мутації"
+msgstr "Мутації на вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "Нове біорізноманіття збільшує видові популяції"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Захисні міграції від витісняючих видів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Захист нових клітин від витісняючих видів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "Повернення міграцій у вимираннях"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Жорстка нішева конкуренція"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "Види розділенні за мутаційним поргом розміру популяції"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "Види розділенні за мутаційним поргом частки популяції"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "Використання біорізноманіття розділенням сил"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
-#, fuzzy
 msgid "CURRENT_GENERATION_COLON"
-msgstr "Генерація:"
+msgstr "Поточна Генерація:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:427
-#, fuzzy
 msgid "STATUS_COLON"
-msgstr "Художник:"
+msgstr "Статус:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:434
-#, fuzzy
 msgid "READY"
-msgstr "Обрахунки:"
+msgstr "Готово"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:465
-#, fuzzy
 msgid "FINISH_ONE_GENERATION"
-msgstr "Дозволяє з'єднуватися з іншими клітинами.Це перший крок до багатоклітинності. Коли ваша клітина– частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднання."
+msgstr "Кінець однієї генерації"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Робиться один крок"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:477
-#, fuzzy
 msgid "ABORT"
-msgstr "Перервано."
+msgstr "Перервано"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "Грати з поточними налаштуваннями"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:525
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "Генерація:"
+msgstr "Генерації"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
-#, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "Виберіть налаштування"
+msgstr "Виберіть генерацію"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
-#, fuzzy
 msgid "SPECIES"
-msgstr "Список видів"
+msgstr "Види"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:573
-#, fuzzy
 msgid "SELECT_A_SPECIES"
-msgstr "Виберіть ділянку для перегляду деталей"
+msgstr "Обрати види"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
@@ -1146,14 +1147,12 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Результати авто-ево:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:669
-#, fuzzy
 msgid "EVOLUTIONARY_TREE"
-msgstr "Виробництва Revolutionary Games Studio"
+msgstr "Еволюційне дерево"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#, fuzzy
 msgid "SPECIES_DETAILS"
-msgstr "Список видів"
+msgstr "Деталі видів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
@@ -1186,18 +1185,16 @@ msgid "FINISHED_DOT"
 msgstr "Завершено."
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "Перервано."
+msgstr "Не починати."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% зроблено. {1:n0}/{2:n0} виконується."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "ПАУЗА"
+msgstr "Зупинити."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
@@ -2055,9 +2052,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
 #: ../src/general/MainMenu.tscn:293
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "статус виконання:"
+msgstr "Інструменти дослідження авто-ево"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -2303,20 +2299,19 @@ msgstr "Автоматично ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Панель назв кнопок вибору"
+msgstr "Невідомо"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2423,17 +2418,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "ЦПУ:"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Використовуваний рендер:"
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Поточна використовувана відеопам'ять:"
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
@@ -3497,7 +3491,7 @@ msgstr "Усі клітини «бачають» лиш через хеморе�
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Збільшує швидкість маневру великих клітин."
+msgstr "Збільшує швидкість обертання великих клітин."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
 msgid "CILIA_DESCRIPTION"
@@ -5437,7 +5431,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Зберігайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
+"Тримайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
 "Ваша клітина вмре якщо збіжить здоров'я.\n"
 "Ви відновлюєте здоров'я, поки є АТФ.\n"
 "Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."

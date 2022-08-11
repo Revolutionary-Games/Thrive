@@ -92,7 +92,7 @@ msgstr "A sua célula utiliza [thrive:compound type=\"atp\"][/thrive:compound] c
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Para desbloquear o editor e reproduzir você precisa coletar [thrive:compound type=\"ammonia\"][/thrive:compound] (nuvem laranja) e [thrive:compound type=\"phosphates\"][/thrive:compound] (nuvem roxa)."
+msgstr "Para desbloquear o editor e reproduzir é preciso ficar vivo por tempo suficiente. Coletar [thrive:compound type=\"ammonia\"][/thrive:compound] (nuvem laranja) e [thrive:compound type=\"phosphates\"][/thrive:compound] (nuvem roxa) acelera o crescimento da célula."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -142,7 +142,7 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser co
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Para se reproduzir, você precisa dividir cada uma de suas organelas em duas. As organelas precisam de amônia e fosfato para se dividirem."
+msgstr "Para se reproduzir, você precisa dividir cada uma de suas organelas em duas. As organelas precisam de amônia, fosfato e tempo para se dividirem."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -1032,23 +1032,24 @@ msgstr "Permitir que a espécie não migre"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Probabilidade da criação de uma nova espécie em regiões com poucas espécies (biodiversidade baixa)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#, fuzzy
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Probabilidade da criação de uma nova espécie para aumentar a biodiversidade de uma região próxima"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "População grátis é dada às espécies que aumentam a biodiversidade de uma região próxima"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Espécies que aumentam a biodiversidade são mutadas na criação"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 msgid "MAXIMUM_SPECIES_IN_PATCH"
@@ -1056,7 +1057,7 @@ msgstr "Máximo de espécies na região"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Tentativas de migração por espécie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 msgid "MUTATIONS_PER_SPECIES"
@@ -1064,7 +1065,7 @@ msgstr "Mutações por espécie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "População inicial para espécies que aumentam a biodiversidade"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
@@ -1080,7 +1081,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Competição por nichos mais forte (diferenças de aptidão exageradas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
@@ -1120,7 +1121,7 @@ msgstr "Abortar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "Jogar com essas configurações"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:525
 msgid "GENERATIONS"
@@ -2082,9 +2083,8 @@ msgstr "Houve erros ao carregar um ou mais mods. Os logs podem conter mais infor
 
 #: ../src/general/NewGameSettings.cs:297
 #: ../src/general/NewGameSettings.tscn:1092
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Começar um novo jogo"
+msgstr "Entrar no jogo com essas configurações"
 
 #: ../src/general/NewGameSettings.cs:304
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
@@ -2217,12 +2217,11 @@ msgstr "(começar com uma nuvem de glicose próxima após cada reprodução)"
 
 #: ../src/general/NewGameSettings.tscn:754
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "Ganhar compostos para a reprodução passivamente"
 
 #: ../src/general/NewGameSettings.tscn:761
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
 #: ../src/general/NewGameSettings.tscn:773
 #, fuzzy
@@ -2297,20 +2296,19 @@ msgstr "Auto ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "Desconhecido"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2417,17 +2415,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "GPU:"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Renderizador usado:"
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Memória de vídeo usada atualmente:"
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
@@ -5441,17 +5438,18 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Para reproduzir você precisa duplicar todas as suas organelas coletando uma quantidade suficiente de amônia e fosfato.\n"
-"Veja o indicador no canto inferior esquerdo para ver o quanto precisa. As barras tornam-se brancas ao ficarem completas."
+"Para reproduzir você precisa duplicar todas as suas organelas sobrevivendo por tempo suficiente. Coletar amônia e fosfato acelera o processo.\n"
+"\n"
+"Observe as barras em torno do botão no canto inferior direito para ver o progresso. Elas tornam-se brancas ao ficarem completas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Você coletou recursos o bastante para sua célula dividir-se.\n"
+"Você sobreviveu tempo suficiente para que sua célula se divida.\n"
 "\n"
 "Agora você está pronto para editar sua espécie.\n"
 "\n"
-"Para entrar no editor, aperte o botão do editor que está piscando no canto inferior direito."
+"Para entrar no editor, aperte o botão que está piscando no canto inferior direito."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"

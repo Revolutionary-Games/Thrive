@@ -114,7 +114,7 @@ msgstr "W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytozolu, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
+msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytoplazmy, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -167,17 +167,21 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Struktury Prokariotyczne\n"
 "\n"
-"Metabolosomy: Wydzielają [thrive:compound type=\"atp\"][/thrive:compound] podczas utleniania [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Cytoplazma: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] niż chemoplast, ale cytozol wokół nich przeprowadza glikolizę. Zajmują 1 Heks\n"
+"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound] ile normalny chloroplast, ale cytozol wokół nich przeprowadza glikolizę. Zajmują 1 Heks\n"
+"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] niż chemoplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
+"\n"
+"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound] ile normalny chloroplast, ale również przeprowadzają glikolizę. Zajmują 1 Heks\n"
 "\n"
 "Rustycyjanina: Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Cytozol: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound])"
+"Oksytoksysom: Zmienia[thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -1056,7 +1060,7 @@ msgstr "Maksymalna liczba gatunków w obszarze"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "próby ruchu na gatunek"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 msgid "MUTATIONS_PER_SPECIES"
@@ -1068,7 +1072,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Ochrona dopiero co przeniesionych gatunków przed limitem gatunków"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
@@ -2135,7 +2139,7 @@ msgstr "Ciepły mały staw"
 #: ../src/general/NewGameSettings.tscn:191
 #: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Panspermia (losowa)"
+msgstr "Panspermia (losowy)"
 
 #: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:916
@@ -2213,7 +2217,7 @@ msgstr "Darmowa chmura glukozy przy opuszczaniu edytora"
 
 #: ../src/general/NewGameSettings.tscn:742
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr "(zacznij z darmową chmurą glukozy w pobliżu każdego pokolenia)"
+msgstr "(zacznij z darmową chmurą glukozy w pobliżu, każdego pokolenia)"
 
 #: ../src/general/NewGameSettings.tscn:754
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
@@ -5311,15 +5315,15 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nieznany błąd Steama"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w Edytorze Mikroba.\n"
-"Tutaj możesz przejrzeć co się wydarzyło od początku gry lub od ostatniego pobytu w edytorze, a następnie dokonać zmian w twoim gatunku.\n"
 "\n"
-"W tej zakładce możesz zobaczyć raport o istniejących gatunkach i ich populacjach w danych biomach. Możesz też oglądać u góry zmiany w środowisku.\n"
+"Tutaj możesz przejrzeć co się wydarzyło podczas poprzednich pokoleń, a następnie dokonać zmian w swoim gatunku.\n"
 "\n"
-"Żeby przejść do zakłądki edytora, naciśnij przycisk \"dalej\" w prawym dolnym rogu."
+"Ta zakładka daje ci listę zmian w obszarze, który obecnie zasiedlasz. Wypróbuj rozmaite narzędzia w twojej dyspozycji żeby dowiedzieć się więcej na temat wydarzeń w twoim świecie!\n"
+"\n"
+"Gdy będziesz gotowy, naciśnij przycisk \"dalej\" w prawym dolnym rogu by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -5377,10 +5381,9 @@ msgid "GOT_IT"
 msgstr "Rozumiem"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji autoewolucji.\n"
+"Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji auto-ewolucji.\n"
 "\n"
 "Nie biorą one w rachubę twojego osobistego działania, więc w obecnym środowisku będziesz prowadził lepsze życie kiedy wejdziesz do edytora.\n"
 "\n"
@@ -5389,14 +5392,13 @@ msgstr ""
 "Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij, by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Skup się na jednym lub dwóch źródłach energii, żebyś nie potrzebował wszystkich istniejących zadobów aby przetrwać.\n"
 "\n"
-"Uważnie rozważ czy dodawanie organelli to dobry pomysł. Czasami nie robienie zmian to dobry pomysł, jako iż każde organellum wymaga ATP i większych ilości zasobów do podziału.\n"
+"Uważnie rozważ czy dodawanie organelli to dobry pomysł, nie zawsze musisz zmieniać to, co już działa, jako iż każda część wymaga ATP i większych ilości zasobów do rozmnażania.\n"
 "\n"
-"Jedną z możliwych strategii jest pozostanie pojedynczym heksem i udawanie się do środowisk powierzchniowych zanim dodasz organella fotosyntezujace."
+"Jedną z możliwych strategii jest pozostanie pojedynczym heksem cytoplazmy i udawanie się do środowisk powierzchniowych zanim dodasz organella fotosyntezujace."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
@@ -5410,9 +5412,8 @@ msgstr ""
 "Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
-#, fuzzy
 msgid "SHOW_TUTORIALS"
-msgstr "Pokaż samouczki"
+msgstr "Pokazuj samouczki"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
 msgid "BEGIN_THRIVING"
@@ -5443,42 +5444,37 @@ msgstr ""
 "Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez zebranie wystarczająco dużo amoniaku i fosforanów.\n"
-"Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze potrzebujesz."
+"Patrz na paski w prawym dolnym rogu żeby sprawdzić ile jeszcze potrzebujesz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Zdobyłeś wystarczająco dużo zasobów żeby twoja komórka mogła się podzielić.\n"
+"Zdobyłeś wystarczająco dużo zasobów żeby twoja komórka mogła się rozmnożyć.\n"
 "\n"
-"Jesteś teraz gotowy do edycji twojego gatunku.\n"
+"Z każdym rozmnożeniem, będziesz zabrany do edytora.\n"
 "\n"
-"Aby otworzyć edytor naciśnij migajacy przycisk w prawym dolnym rogu."
+"Aby otworzyć edytor naciśnij durzy migający przycisk w prawym dolnym rogu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Jeżeli nadal nie rozumiesz mechanik gry, wypróbuj menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
+"Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
 "\n"
 "Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka myszy."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Samouczek"
+msgstr "Oglądaj Teraz"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 #, fuzzy

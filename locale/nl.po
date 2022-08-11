@@ -92,7 +92,7 @@ msgstr "Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als e
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Om de editor te ontgrendelen en voort te planten moet je [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type=\"phosphates\"][/thrive:compound] (Paarse Wolk) verzamelen."
+msgstr "Om de editor te ontgrendelen en voort te planten moet je lang genoeg overleven. Door [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type=\"fosfaten\"][/thrive:compound] (Paarse Wolk) te verzamelen versnel je de groei."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -142,7 +142,7 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Om jezelf voort te planten moet je al je organellen in tweeën delen. Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
+msgstr "Om jezelf voort te planten moet je al je organellen in tweeën delen. Organellen hebben ammoniak, fosfaten en tijd nodig om in tweeën te splitsen."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -974,7 +974,7 @@ msgstr "Lysozoom"
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "met een concentratie van"
+msgstr "Eindig een specifiek aantal gesimuleerde soort generaties"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:708
 #, fuzzy
@@ -997,7 +997,7 @@ msgstr "Rapport"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "VIEWER"
-msgstr ""
+msgstr "Kijker"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
 #, fuzzy
@@ -1011,23 +1011,24 @@ msgstr "Een deel van de bevolking van [b][u]{0}[/u][/b] is gemigreerd naar {1}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Kans in elke patch met een aantal soorten (lage biodiversiteit) om nieuwe soorten te ontwikkelen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#, fuzzy
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Kans om nieuwe soorten te ontwikkelen om de biodiversiteit te vergroten vanuit een nabijgelegen gebied"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Door biodiversiteit vergrote soorten van nabijgelegen gebieden krijgen gratis populatie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Biodiversiteit vergroot soort mutaties tijdens creatie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 #, fuzzy
@@ -1036,7 +1037,7 @@ msgstr "stierf uit op de planeet"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Verplaats pogingen per soort"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 #, fuzzy
@@ -1045,31 +1046,31 @@ msgstr "Mutatiepunten"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "Start populatie voor biodiversiteit vergrotende soorten"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Bescherm recent gemigreerde soorten van soort cap"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Bescherm zojuist gecreëerde soorten van soort cap"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "Terugkeer migratie in geval van uitsterven in het doel gebied"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Strikt niche competitie(fitnes verschillen zijn overdreven)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "Minimale populatie voor soorten om te delen bij meerdere goed gevonden mutaties"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "Minimale populatie fractie van een soort om splitsing bij mutaties toe te staan"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"

@@ -92,7 +92,7 @@ msgstr "La tua cellula usa l'[thrive:compound type=\"atp\"][/thrive:compound] co
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Per sbloccare l'editor e riprodurti, devi raccogliere [thrive:compound type=\"ammonia\"][/thrive:compound] (nuvole arancioni) e [thrive:compound type=\"phosphates\"][/thrive:compound] (nuvole viola)."
+msgstr "Per sbloccare l'editor e riprodurti, devi prima rimanere in vita abbastanza a lungo. Tuttavia, puoi velocizzare la tua crescita raccogliendo [thrive:compound type=\"ammonia\"][/thrive:compound] (nuvole arancioni) e [thrive:compound type=\"phosphates\"][/thrive:compound] (nuvole viola)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -1060,7 +1060,7 @@ msgstr "Limite inferiore biodiversità"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Numero massimo di specie per zona"
+msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
@@ -1068,7 +1068,7 @@ msgstr "Tentativi di migrazione per specie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Mutazioni per specie"
+msgstr "Tentativi di mutazione per specie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
@@ -1076,11 +1076,11 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Proteggi le migrazioni dal tetto specie"
+msgstr "Proteggi le popolazioni appena migrate dal tetto specie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Proteggi le nuove cellule dal tetto specie"
+msgstr "Proteggi le specie appena create dal tetto specie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
@@ -1088,7 +1088,7 @@ msgstr "Rimborsa le migrazioni nelle estinzioni"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr "Forte competizione di nicchia"
+msgstr "Forte competizione di nicchia (le differenze di idoneità sono accentuate)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
@@ -5452,11 +5452,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Hai raccolto abbastanza risorse perché la tua cellula si riproduca.\n"
+"Sei sopravvissuto abbastanza a lungo perché la tua cellula si riproduca.\n"
 "\n"
-"Ogni volta che ti riproduci, sarai portato all'editor.\n"
+"Ogni volta che ti riproduci sarai portato all'editor.\n"
 "\n"
-"Per accedere all'editor, quando sei pronto, premi il pulsante lampeggiante in basso a destra."
+"Per accedere all'editor, premi il pulsante lampeggiante in basso a destra."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"

@@ -92,7 +92,7 @@ msgstr "התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compou
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "בשביל לפתוח את העורך ולהתרבות, אתה צריך לצבור [thrive:compound type=\"ammonia\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type=\"phosphates\"][/thrive:compound] (הענן הסגול)."
+msgstr "בשביל לפתוח את העורך ולהתרבות, אתה להשאר בחיים. אסיפת[thrive:compound type=\"ammonia\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type=\"phosphates\"][/thrive:compound] (הענן הסגול) מגביר קצב גדילה."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -142,7 +142,7 @@ msgstr "ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "כדי להתרבות, עליכם לחלק כל אחד מהאברונים לשניים. האברונים זקוקים לאמוניה ופוספט על מנת להתפצל לשניים."
+msgstr "כדי להתרבות, עליכם לחלק כל אחד מהאברונים לשניים. האברונים זקוקים ל[thrive:compound type=\"ammonia\"][/thrive:compound] ,[thrive:compound type=\"phosphates\"][/thrive:compound] וזמן על מנת להתפצל לשניים."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -999,7 +999,7 @@ msgstr ""
 "[b]צבע[/b]\n"
 " #{4}\n"
 "[b]התנהגות[/b]\n"
-" {5}\n"
+" {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:717
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -1032,35 +1032,35 @@ msgstr "צופה"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "אפשר למינים ללא לפתח מוטציות"
+msgstr "מאפשר למינים לא לפתח מוטציות (אם לא ניתן למצוא מוטציות טובות)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "אפשר למינים לא לנדוד"
+msgstr "מאפשר למינים לא לנדוד (אם לא נמצא מקום טוב לנדוד לו)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "סיכוי למגוון הביולוגי למלא"
+msgstr "הסיכוי לכל אזור אם מעט מינים (מגוון ביולוגי נמוך) ליצור מינים חדשים"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "סיכוי למגוון ביולוגי מהאזור השכן"
+msgstr "סיכוי למינים חדשים להגדיל את מגוון ביולוגי מאזורים שכנים"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "סיכוי למגוון ביולוגי מאזורים קרובים חסרי אוכלוסיה"
+msgstr "מהגדיל את מספר המינים של מגוון ביולוגי מאזורים קרובים חסרי אוכלוסיה"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "חלק ממגוון ביולוגי השתנתה"
+msgstr "מינים המגדילים את המגוון הביולוגי עובר מוטציה עם היווצרותם"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "מגבלת מיעוט מגוון ביולוגי"
+msgstr "שקול אזורים עם עד כה מספר מינים בעלי מגוון ביולוגי נמוך"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "כמות מרבי של מינים באזור"
+msgstr "מספר מינים מרבי באזור לפני הכחדות מכוונות"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
@@ -1068,39 +1068,39 @@ msgstr "ניסיונות מעבר למין"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "מטוציות למין"
+msgstr "ניסיונות התפתחות מוטציות למין"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "מגוון ביולוגי חדש מגדיל כמות אוכלוסיית המינים"
+msgstr "אוכלוסיה ראשונית למינים הגדלים במגוון הביולוגי"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "מגן נדידות ממכסה מינים"
+msgstr "הגן על אוכלוסיות שהיגרו ממכסת מינים"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "הגן תאים חדשים ממכסת מינים"
+msgstr "הגן על מינים חדשים ממכסת מינים"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "החזר הגירה מהכחדות"
+msgstr "החזר הגירה במקרה של מהכחדה מאזור מטרה"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr "תחרות נישה קפדנית"
+msgstr "תחרות נישה קפדנית (הבדלי הכושר מוגזמים)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "מינים מפוצלים לפי כמות אוכלוסיית סף מוטציה"
+msgstr "אוכלוסיה המינימלית למינים להתפצל על ידי מספר מוטציות טובות שפותחו"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "המינים מפוצלים לפי חלק אוכלוסיית סף מוטציה"
+msgstr "חלק מאוכלוסייה המינימלי של מין שמאפשר פיצול על ידי מוטציות"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "השתמש בפיצול בכוח את המגוון הביולוגי"
+msgstr "יצירת מינים שמגדילה את המגוון הביולוגי גונבת מספרי אוכלוסיה ממינים קיימים"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
 msgid "CURRENT_GENERATION_COLON"
@@ -2224,22 +2224,19 @@ msgstr "(מתחיל עם ענן גלוקוז חופשי קרוב בכל דור)"
 
 #: ../src/general/NewGameSettings.tscn:754
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "השג באופן פסיבי התקדמות הרבייה"
 
 #: ../src/general/NewGameSettings.tscn:761
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(המהירות המוטציות שנוצרים במיני AI )"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
 
 #: ../src/general/NewGameSettings.tscn:773
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "רגיל"
+msgstr "הגבל שימוש בתרכובות לצורך גידול"
 
 #: ../src/general/NewGameSettings.tscn:780
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(המהירות המוטציות שנוצרים במיני AI )"
+msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
 
 #: ../src/general/NewGameSettings.tscn:816
 msgid "PATCH_MAP_TYPE"
@@ -2304,20 +2301,19 @@ msgstr "אוטומטי ({0}X{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "הצג שמות כפתורי בחירת חלקים"
+msgstr "לא ידוע"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2424,17 +2420,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "הצג חלקיקי רקע"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "מעבד גרפי:"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "מעבד בשימוש:"
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
@@ -4060,8 +4055,8 @@ msgstr "שם סוג תא"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-"לא ניתן להסיר את הגרעין שכן זהו התפתחות בלתי-הפיכה.\n"
-"אך אם זה הונח במצג הנוכחי, ביטול או עשיה מחדש עדין מותרים"
+"לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
+"אך אם זה הונח במצג הנוכחי, ביטול או עשיה מחדש עדין מותרים."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -5448,17 +5443,18 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לאסוף מספיק אמוניה ופוספט.\n"
-"תסתכל על האינדיקטור שבצד השמאלית התחתונה בשביל לראות עוד כמה צריך. האינדיקטור הופך ללבן מתי שהוא מלא."
+"בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לשרוד מספיק זמן. אסוף אמונה ופוספט על מנת להאיץ את תהליך הרבייה.\n"
+"\n"
+"תסתכל על האינדיקטור העגלגל שבצד השמאלית התחתונה בשביל לראות עד כמה התקדמת. האינדיקטור הופך ללבן מתי שהוא מוכן."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"אתה אספת מספיק תרכובות בשביל לגרום לתא שלך להתרבות.\n"
+"אתה שרדת מספיק זמן בשביל לגרום לתא שלך להתרבות.\n"
 "\n"
 "בכל פעם שאתה מתרבה, אתה תגיע לעורך.\n"
 "\n"
-"בשביל להיכנס לעורך לחץ על הכפתור הגדול המהבהב בימין תחתון המסך כשאתה מוכן."
+"בשביל להיכנס לעורך, לחץ על הכפתור הגדול המהבהב בימין תחתון."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
