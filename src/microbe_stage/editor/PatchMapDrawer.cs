@@ -737,7 +737,10 @@ public class PatchMapDrawer : Control
         connections.Clear();
 
         if (Map == null)
+        {
+            SelectedPatch = null;
             return;
+        }
 
         foreach (var entry in Map.Patches)
         {
@@ -759,9 +762,33 @@ public class PatchMapDrawer : Control
             nodes.Add(node.Patch, node);
         }
 
-        UpdateNodeSelections();
+        bool runNodeSelectionsUpdate = true;
 
-        // NotifySelectionChanged();
+        if (SelectedPatch != null)
+        {
+            // Unset the selected patch if it was removed from the map
+            bool found = false;
+            foreach (var node in nodes.Values)
+            {
+                if (node.Patch == SelectedPatch)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                SelectedPatch = null;
+
+                // Changing the selected patch already updates the node selections so we skip a duplicate call with
+                // this flag
+                runNodeSelectionsUpdate = false;
+            }
+        }
+
+        if (runNodeSelectionsUpdate)
+            UpdateNodeSelections();
     }
 
     private void UpdateNodeSelections()
