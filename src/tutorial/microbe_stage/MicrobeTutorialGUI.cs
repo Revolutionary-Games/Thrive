@@ -46,6 +46,12 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath UnbindTutorialPath = null!;
 
     [Export]
+    public NodePath LeaveColonyTutorialPath = null!;
+
+    [Export]
+    public NodePath EarlyMulticellularWelcomePath = null!;
+
+    [Export]
     public NodePath CheckTheHelpMenuPath = null!;
 
     [Export]
@@ -76,6 +82,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog engulfmentExplanation = null!;
     private CustomDialog engulfedExplanation = null!;
     private CustomDialog engulfmentFullCapacity = null!;
+    private CustomDialog leaveColonyTutorial = null!;
+    private CustomDialog earlyMulticellularWelcome = null!;
 
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
@@ -231,6 +239,44 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool LeaveColonyTutorialVisible
+    {
+        get => leaveColonyTutorial.Visible;
+        set
+        {
+            if (value == leaveColonyTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                leaveColonyTutorial.Show();
+            }
+            else
+            {
+                leaveColonyTutorial.Hide();
+            }
+        }
+    }
+
+    public bool EarlyMulticellularWelcomeVisible
+    {
+        get => earlyMulticellularWelcome.Visible;
+        set
+        {
+            if (value == earlyMulticellularWelcome.Visible)
+                return;
+
+            if (value)
+            {
+                earlyMulticellularWelcome.PopupCenteredShrink();
+            }
+            else
+            {
+                earlyMulticellularWelcome.Hide();
+            }
+        }
+    }
+
     public float MicrobeMovementRotation
     {
         get => microbeMovementKeyPrompts.RectRotation;
@@ -340,6 +386,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         engulfmentExplanation = GetNode<CustomDialog>(EngulfmentExplanationPath);
         engulfedExplanation = GetNode<CustomDialog>(EngulfedExplanationPath);
         engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
+        leaveColonyTutorial = GetNode<CustomDialog>(LeaveColonyTutorialPath);
+        earlyMulticellularWelcome = GetNode<CustomDialog>(EarlyMulticellularWelcomePath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 

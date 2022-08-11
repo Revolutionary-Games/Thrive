@@ -1095,6 +1095,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
         float speed = RotationSpeed;
+
+        if (IsPlayerMicrobe && CheatManager.Speed > 1)
+            speed *= CheatManager.Speed;
+
         var ownRotation = RotationSpeed;
 
         if (Colony != null && ColonyParent == null)
