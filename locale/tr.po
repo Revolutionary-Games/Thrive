@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-10 20:42+0300\n"
-"PO-Revision-Date: 2022-07-14 11:07+0000\n"
+"PO-Revision-Date: 2022-08-11 10:21+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -119,7 +119,7 @@ msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Editörde, evrimleşmeni sağlayan birçok organel bulunuyor. Böylece geniş kapsamda, farklı oynama şekillerine olanak var."
+msgstr "Editörde, evrimleşmeni sağlayan birçok organel bulunur. Böylece geniş kapsamda, farklı oynama şekillerine olanak var."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -246,7 +246,7 @@ msgstr "İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında,
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
+msgstr "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybedersen, birkaç altıgenlik alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -286,7 +286,7 @@ msgstr "Ama şu mavi hücreler var ya."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı biyomlardaki bileşikler farklı oranlarda oluşuyor."
+msgstr "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı biyomlardaki bileşikler farklı oranlarda oluşur."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
@@ -2078,7 +2078,7 @@ msgstr "GLES2 Mod Uyarısı"
 
 #: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Thrive'ı GLES2 ile çalıştırıyorsun. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
+msgstr "Thrive'ı GLES2 ile çalıştırmaktasın. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
 
 #: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
@@ -3051,7 +3051,7 @@ msgstr "Durdur"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"Yüklemeye çalıştığın kayıt sürümü oyunun sürümüyle eşleşmiyor.\n"
+"Yüklemeye çalıştığın kayıt sürümü oyunun sürümüyle eşleşmemekte.\n"
 "Lütfen kaydı menüden manüel olarak yükle."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
@@ -3940,7 +3940,7 @@ msgstr "Makroskopik Ol ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermiyor"
+msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermemekte"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "AT_CURSOR"
@@ -4071,7 +4071,7 @@ msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_SUMMARY_LINE"
-msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanıyor"
+msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
 msgid "ENERGY_SOURCES"
@@ -4203,7 +4203,7 @@ msgstr "Negatif ATP Dengesi"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
+"Mikrobun, hayatta kalmak için yeterli ATP üretmemekte!\n"
 "Devam etmek istiyor musun?"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
@@ -4474,7 +4474,7 @@ msgstr "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, 
 
 #: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
-msgstr "{0} için mod bilgisi yüklenemiyor"
+msgstr "{0} için mod bilgisi yüklenemedi"
 
 #: ../src/modding/ModLoader.cs:247
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
@@ -4761,7 +4761,7 @@ msgstr "Geçersiz etiket \"{0}\" belirlendi"
 
 #: ../src/modding/ModUploader.cs:353
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr "Resim önizlemesi bulunmuyor"
+msgstr "Resim önizlemesi bulunamadı"
 
 #: ../src/modding/ModUploader.cs:360
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
@@ -5050,7 +5050,7 @@ msgstr ""
 "Oyuna dahil edilen sonraki evrelerin prototiplerini oynamaktasın.\n"
 "Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir, genel olarak çok kaba görünebilir\n"
 "ve her zaman oynanabilir halde olmayabilir. Bu bakımdan oyunu kaydetmek şu an için mümkün değil.\n"
-"Prototipin bazı kısımları kısıtlı olarak kaydetmeyieizin verebilir."
+"Prototipin bazı kısımları kısıtlı olarak kaydetmeye izin verebilir."
 
 #: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
@@ -5124,9 +5124,9 @@ msgstr "Seçilen kayıt uyumsuz"
 #: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu görünüyor.\n"
+"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu görülmekte.\n"
 "Ayrıca, bu kaydı yükseltmek için kayıt yükseltici yok.\n"
-"Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt yükseltici bulunmuyor."
+"Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt yükseltici bulunmamakta."
 
 #: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
@@ -5157,7 +5157,7 @@ msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Yüklemek için seçilen kayıt, farklı Thrive sürümüne ait bir prototipte yapılmış bir kayıt.\n"
 "Prototip kayıtları yükseltilebilir olmadığı için, bu kayıt yüklenemez.\n"
-"Bir şeyler sıklıkla yenilendiği ve kayıt yükseltmelerini yazmak prototip gelişimini çok yavaşlattığı için, prototipler için kayıt uyumluluğunu sürdürmek büyük bir sorumluluk gerektiriyor."
+"Bir şeyler sıklıkla yenilendiği ve kayıt yükseltmelerini yazmak prototip gelişimini çok yavaşlattığı için, prototipler için kayıt uyumluluğunu sürdürmek büyük bir sorumluluk gerektirmekte."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -5496,24 +5496,29 @@ msgstr ""
 "Bu işlemi atlamak için intihar butonuna bas ve yeniden doğ. Ama unutma, her zaman kaçmak için bir şansın var!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Yutma modunda, nesnelerin üzerlerine gelerek onları yut. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas.\n"
+"Yeterli miktarda [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] topladın. Ancak çok hücreli olmayan bir koloni içinde olduğun için üremeye başlayamazsın.\n"
 "\n"
-"Nesne tamamen içeri alındığında yutmayı durdur.\n"
-"\n"
-"Yakınlardaki bir yutulabilir nesneye doğru uzanan bu çizgiyi takip et."
+"Çok hücreli olmayı planlıyorsan, koloniden ayrılıp editöre girmen gerekir.\n"
+"Gelişimine devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrıl."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Çok Hücreli Editörü'nün İlk Kısmı Yükleniyor"
+msgstr ""
+"Çok Hücreli Evresi'ne hoşgeldin!\n"
+"\n"
+"Tek hücreli aşamada türüne rehberlik ederek başarıya ulaştın.\n"
+"\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve editöre girmek için yine organizmanı geliştirmeye devam etmen gerekiyor.\n"
+"\n"
+"Ancak, artık editörde koloninin hücre düzenini tasarlayabilir ve hücrelerini çeşitli görevler için özelleştirebilirsin. Unutma, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
+"\n"
+"Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsan, ufak bir tomurcuğu kontrol etmeye başlarsın ve hücre düzeninin geri kalanını büyütmen gerekir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "İlerlemeye Başla"
+msgstr "İlerlemeye Devam Et"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Çalışmıyor."
