@@ -29,6 +29,11 @@ public static class NodeHelpers
     /// <summary>
     ///   Detach a node from its parent
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Be very careful not to cause a resource leak if the node is detached but not freed.
+    ///   </para>
+    /// </remarks>
     public static void Detach(this Node node)
     {
         var parent = node.GetParent();

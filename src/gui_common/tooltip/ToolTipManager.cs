@@ -202,7 +202,7 @@ public class ToolTipManager : CanvasLayer
 
         if (tooltip is DefaultToolTip defaultToolTip)
         {
-            ToolTipHelper.RestoreDefaultToolTip(defaultToolTip);
+            ToolTipHelper.ReturnDefaultToolTip(defaultToolTip);
         }
         else
         {

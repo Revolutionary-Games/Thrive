@@ -25,10 +25,8 @@ public static class ToolTipHelper
         return DefaultToolTipCache.Count == 0 ? (DefaultToolTip)DefaultTipScene.Instance() : DefaultToolTipCache.Pop();
     }
 
-    public static void RestoreDefaultToolTip(DefaultToolTip toolTip)
+    public static void ReturnDefaultToolTip(DefaultToolTip toolTip)
     {
-        toolTip.Description = nameof(DefaultToolTip);
-        toolTip.DisplayName = nameof(DefaultToolTip);
         DefaultToolTipCache.Push(toolTip);
     }
 
