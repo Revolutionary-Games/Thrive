@@ -718,6 +718,9 @@ public class PatchMapDrawer : Control
         }
     }
 
+    /// <summary>
+    ///   Clears the map and rebuilds all nodes
+    /// </summary>
     private void RebuildMapNodes()
     {
         foreach (var node in nodes.Values)
@@ -729,7 +732,10 @@ public class PatchMapDrawer : Control
         connections.Clear();
 
         if (Map == null)
+        {
+            SelectedPatch = null;
             return;
+        }
 
         foreach (var entry in Map.Patches)
         {
@@ -751,19 +757,44 @@ public class PatchMapDrawer : Control
             nodes.Add(node.Patch, node);
         }
 
-        UpdateNodeSelections();
-        NotifySelectionChanged();
+        bool runNodeSelectionsUpdate = true;
+
+        if (SelectedPatch != null)
+        {
+            // Unset the selected patch if it was removed from the map
+            bool found = false;
+            foreach (var node in nodes.Values)
+            {
+                if (node.Patch == SelectedPatch)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                SelectedPatch = null;
+
+                // Changing the selected patch already updates the node selections so we skip a duplicate call with
+                // this flag
+                runNodeSelectionsUpdate = false;
+            }
+        }
+
+        if (runNodeSelectionsUpdate)
+            UpdateNodeSelections();
     }
 
     private void UpdateNodeSelections()
     {
         foreach (var node in nodes.Values)
         {
-            node.Selected = node.Patch == selectedPatch;
+            node.Selected = node.Patch == SelectedPatch;
             node.Marked = node.Patch == playerPatch;
 
-            if (selectedPatch != null)
-                node.AdjacentToSelectedPatch = selectedPatch.Adjacent.Contains(node.Patch);
+            if (SelectedPatch != null)
+                node.AdjacentToSelectedPatch = SelectedPatch.Adjacent.Contains(node.Patch);
         }
     }
 
