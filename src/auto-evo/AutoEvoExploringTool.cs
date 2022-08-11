@@ -297,8 +297,9 @@ public class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
         // Init game
-        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
+            { AutoEvoConfiguration = autoEvoConfiguration });
 
         InitFirstGeneration();
 
@@ -561,7 +562,7 @@ public class AutoEvoExploringTool : NodeWithInput
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             // If the previous one has finished / failed
-            autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration) { FullSpeed = true };
+            autoEvoRun = new AutoEvoRun(gameProperties.GameWorld) { FullSpeed = true };
             autoEvoRun.Start();
         }
         else
@@ -613,7 +614,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
-            autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration);
+            autoEvoRun = new AutoEvoRun(gameProperties.GameWorld);
         }
 
         // To avoid concurrent steps
