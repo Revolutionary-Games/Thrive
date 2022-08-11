@@ -220,7 +220,18 @@ public class GalleryViewer : CustomDialog
         {
             case AssetType.Texture:
                 item = GalleryCardScene.Instance<GalleryCard>();
-                item.Thumbnail = GD.Load<Texture>(asset.ResourcePath);
+
+                // To avoid massive lag spikes, only set a placeholder loading icon here and queue a load for the icon
+                var resourceManager = ResourceManager.Instance;
+
+                item.Thumbnail = resourceManager.LoadingIcon;
+
+                var loadingResource =
+                    new TextureThumbnailResource(asset.ResourcePath, Constants.GALLERY_THUMBNAIL_MAX_WIDTH);
+
+                loadingResource.OnComplete = _ => { item.Thumbnail = loadingResource.LoadedTexture; };
+
+                resourceManager.QueueLoad(loadingResource);
                 break;
             case AssetType.ModelScene:
                 item = GalleryCardModelScene.Instance<GalleryCardModel>();
