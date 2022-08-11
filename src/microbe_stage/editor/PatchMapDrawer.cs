@@ -718,6 +718,14 @@ public class PatchMapDrawer : Control
         }
     }
 
+    /// <summary>
+    ///   Clear the map and rebuild all nodes
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Be aware if selected patch needs change if any map change is applied.
+    ///   </para>
+    /// </remarks>
     private void RebuildMapNodes()
     {
         foreach (var node in nodes.Values)
@@ -752,6 +760,8 @@ public class PatchMapDrawer : Control
         }
 
         UpdateNodeSelections();
+
+        // NotifySelectionChanged();
     }
 
     private void UpdateNodeSelections()
