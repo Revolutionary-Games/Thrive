@@ -758,11 +758,11 @@ public class PatchMapDrawer : Control
     {
         foreach (var node in nodes.Values)
         {
-            node.Selected = node.Patch == selectedPatch;
+            node.Selected = node.Patch == SelectedPatch;
             node.Marked = node.Patch == playerPatch;
 
-            if (selectedPatch != null)
-                node.AdjacentToSelectedPatch = selectedPatch.Adjacent.Contains(node.Patch);
+            if (SelectedPatch != null)
+                node.AdjacentToSelectedPatch = SelectedPatch.Adjacent.Contains(node.Patch);
         }
     }
 
