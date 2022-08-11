@@ -989,22 +989,38 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:708
-#, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
+msgstr ""
+"[b]Виды[/b]\n"
+"  {0}:{1}\n"
+"[b]Поколения[/b]\n"
+"  {2}\n"
+"[b]Популяция[/b]\n"
+"  {3}\n"
+"[b]Цвет[/b]\n"
+"  #{4}\n"
+"[b]Поведение[/b]\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:717
-#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"Следите за своей шкалой здоровья рядом со шкалой АТФ (снизу справа).\n"
-"Ваша клетка умрёт, если у нее закончится здоровье.\n"
-"Вы восстанавливаете здоровье, пока у вас есть АТФ.\n"
-"Убедитесь, что собрано достаточно глюкозы для производства АТФ."
+"[b]Этап[/b]\n"
+"  Микроб\n"
+"[b]Тип мембраны[/b]\n"
+"  {0}\n"
+"[b]Жёсткость Мембраны[/b]\n"
+"  {1}\n"
+"[b]Базовая скорость[/b]\n"
+"  {2}\n"
+"[b]Базовая скорость поворота[/b]\n"
+"  {3}\n"
+"[b]Базовый размер (в клетках)[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
-msgstr ""
+msgstr "Конфигурация"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1012,23 +1028,20 @@ msgid "REPORT"
 msgstr "Отчёт"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
-#, fuzzy
 msgid "VIEWER"
-msgstr "Просмотр Галереи"
+msgstr "Просмотр"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "мутировал"
+msgstr "Разрешить видам не мутировать (если не найдена хорошая мутация)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
+msgstr "Разрешить видам не мигрировать (если не найдена хорошая миграция)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Шанс в каждом биоме с небольшим количеством видов (низкое биоразнообразие) создать новый вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"

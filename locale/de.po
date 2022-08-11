@@ -47,9 +47,8 @@ msgstr "Mikroben Stadium"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
+msgstr "Mehrzelliges Stadium"
 
 #: ../simulation_parameters/common/gallery.json:81
 msgid "GENERAL"
@@ -69,19 +68,16 @@ msgid "ALL"
 msgstr "Alle"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
 msgstr "Menü"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Lade Mikrobeneditor"
+msgstr "Mikrobeneditor"
 
 #: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Lade Mikrobeneditor"
+msgstr "Mikrobeneditor"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -2327,9 +2323,8 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1034
-#, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Interessanter Fakt: Das Nasentierchen und Pantoffeltierchen sind ein Musterbeispiel für ein Raubtier-Beute-Verhältnis, das jahrzehntelang untersucht wurde. Bist du nun das Nasentierchen oder das Pantoffeltierchen? Jäger oder Gejagter?"
+msgstr "Easter eggs einbeziehen"
 
 #: ../src/general/NewGameSettings.tscn:1041
 #, fuzzy
@@ -4574,9 +4569,10 @@ msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "AUSSTERBEN"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution."
+msgstr ""
+"Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution.\n"
+"Aber keine sorge, es ist noch nicht alles verloren, du kannst einen andere Art auswählen mit der du spielen möchtest und ihr beim gedeihen zu helfen (oder auch nicht)!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"

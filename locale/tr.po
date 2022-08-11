@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-10 20:42+0300\n"
-"PO-Revision-Date: 2022-07-14 11:07+0000\n"
+"PO-Revision-Date: 2022-08-11 10:21+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -92,7 +92,7 @@ msgstr "Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/th
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Editörü açmak ve hücreni çoğaltmak için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmen gerekir."
+msgstr "Editörü açmak ve hücreni çoğaltmak için hücrenin yeterince uzun süre hayatta kalması gerekir. [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmek büyümeyi hızlandırır."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -119,7 +119,7 @@ msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Editörde, evrimleşmeni sağlayan birçok organel bulunuyor. Böylece geniş kapsamda, farklı oynama şekillerine olanak var."
+msgstr "Editörde, evrimleşmeni sağlayan birçok organel bulunur. Böylece geniş kapsamda, farklı oynama şekillerine olanak var."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -142,7 +142,7 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:comp
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller bölünmek için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphate\"]fosfat[/thrive:compound] gerektirir."
+msgstr "Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller bölünmek için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve zaman gerektirir."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -160,7 +160,7 @@ msgstr "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre gi
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiri için üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, hücren ile diğer hücrelerin birbirine bağlanmasını sağlayan bağlayıcı ajana sahip olman gerekir. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna gir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin. Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur."
+msgstr "Bağlayıcı ajan, hücrenin ve aynı türden diğer hücrelerin, aldıkları bileşikleri paylaşan ve birbiri için üreten hücrelerin bulunduğu bir hücre kolonisi kurmasını sağlar. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna gir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin. Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -246,7 +246,7 @@ msgstr "İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında,
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
+msgstr "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybedersen, birkaç altıgenlik alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -286,7 +286,7 @@ msgstr "Ama şu mavi hücreler var ya."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı biyomlardaki bileşikler farklı oranlarda oluşuyor."
+msgstr "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı biyomlardaki bileşikler farklı oranlarda oluşur."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
@@ -999,7 +999,7 @@ msgstr ""
 "[b]Renk[/b]\n"
 "  #{4}\n"
 "[b]Davranış[/b]\n"
-"  {5}\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:717
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -1032,35 +1032,35 @@ msgstr "Görüntüleyici"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Türün mutasyona uğramasına izin verme"
+msgstr "Türün mutasyona uğramasına izin verme (iyi bir mutasyon bulunamazsa)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Türün göç etmesine izin verme"
+msgstr "Türün göç etmesine izin verme (göç edilecek bir yer bulunamazsa)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Biyoçeşitlilik girişimi doldurma olasılığı"
+msgstr "Çok az türe (düşük biyoçeşitlilik) sahip her arazide yeni bir tür oluşturma olasılığı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Komşu arazi olasılığından biyoçeşitlilik"
+msgstr "Yakınlardaki bir arazideki biyoçeşitliliği arttırmak için yeni bir tür oluşturma olasılığı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Yakınlardaki arazinin biyoçeşitliliği serbest popülasyona sahip"
+msgstr "Yakınlardaki arazide tür oluşumunu arttıran biyoçeşitliliğe bedava popülasyon verilsin"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biyoçeşitlilik ayrımı mutasyona sahip"
+msgstr "Tür oluşumunu arttıran biyoçeşitlilik, oluşum ile mutasyona uğrasın"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Biyoçeşitlilik alt sınırı"
+msgstr "Düşük biyoçeşitliliğe sahip bu kadar miktarda tür içeren arazileri göz önünde bulundur"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Arazideki maksimum tür sayısı"
+msgstr "Zorunlu soy tükenmelerinden önce bir arazideki maksimum tür sayısı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
@@ -1068,39 +1068,39 @@ msgstr "Tür başına göç girişimi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Tür başına mutasyon"
+msgstr "Tür başına mutasyon denemesi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Tür popülasyonunu artıran yeni biyoçeşitlilik"
+msgstr "Başlangıçtaki popülasyon için tür oluşumunu arttıran biyoçeşitlilik"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Maksimum tür sınırından göçleri koru"
+msgstr "Maksimum tür sınırından yalnızca yeni göç eden popülasyonları koru"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Makisimum tür sınırından yeni hücreleri koru"
+msgstr "Maksimum tür sınırından yalnızca yeni oluşan türleri koru"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Soy tükenmesinde göçleri iade et"
+msgstr "Soy tükenmesi durumunda, hedef arazideki göçleri iade et"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr "Katı alan mücadelesi"
+msgstr "Sıkı alan mücadelesi (uyum başarısı farklılıkları abartılı)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Mutasyon ile ayrılan tür alt sınırının popülasyon miktarı"
+msgstr "Birden fazla iyi mutasyon ile ayrılan türler için minimum popülasyon"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Mutasyon ile ayrılan tür alt sınırının popülasyon kesimi"
+msgstr "Bir türün, mutasyon ile ayrılması sağlanan, minimum popülasyon bölümü"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Ayrılmaya zorlayan biyoçeşitliliği kullan"
+msgstr "Tür oluşumunu arttıran biyoçeşitlilik mevcut türlerden popülasyon çalsın"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
 msgid "CURRENT_GENERATION_COLON"
@@ -1396,7 +1396,7 @@ msgstr "Bağlı Olmayan Hücreler"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
+"Birbirine bağlı olmayan bir ya da daha fazla hücre var.\n"
 "Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbirine bağla."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
@@ -2078,7 +2078,7 @@ msgstr "GLES2 Mod Uyarısı"
 
 #: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Thrive'ı GLES2 ile çalıştırıyorsun. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
+msgstr "Thrive'ı GLES2 ile çalıştırmaktasın. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
 
 #: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
@@ -2224,22 +2224,19 @@ msgstr "(her kuşağa, yakınlardaki serbest bir glukoz bulutuyla başla)"
 
 #: ../src/general/NewGameSettings.tscn:754
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "Üreme işlemini pasif olarak gerçekleştir"
 
 #: ../src/general/NewGameSettings.tscn:761
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(AI türlerinin mutasyona uğrama hızı)"
+msgstr "(üreme bileşiklerini herhangi bir şey yapmadan, pasif olarak, ortamdan al)"
 
 #: ../src/general/NewGameSettings.tscn:773
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Normal"
+msgstr "Büyümeyi sağlayan bileşiklerin kullanımını sınırlandır"
 
 #: ../src/general/NewGameSettings.tscn:780
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(AI türlerinin mutasyona uğrama hızı)"
+msgstr "(etkinleştirildiğinde büyüme hızını sınırlandırır, devre dışı bırakıldığında sadece mevcut bileşikler büyüme hızını etkiler)"
 
 #: ../src/general/NewGameSettings.tscn:816
 msgid "PATCH_MAP_TYPE"
@@ -2304,20 +2301,19 @@ msgstr "Otomatik ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Parça seçim butonu isimlerini göster"
+msgstr "Bilinmeyen"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2424,17 +2420,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Arkaplan parçacıklarını göster"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "GPU:"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Kullanılan işleyici:"
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Mevcut kullanılan grafik belleği:"
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
@@ -3056,7 +3051,7 @@ msgstr "Durdur"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"Yüklemeye çalıştığın kayıt sürümü oyunun sürümüyle eşleşmiyor.\n"
+"Yüklemeye çalıştığın kayıt sürümü oyunun sürümüyle eşleşmemekte.\n"
 "Lütfen kaydı menüden manüel olarak yükle."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
@@ -3894,9 +3889,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Düşman Oluştur"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Maksimum varlık sayısı:"
+msgstr "Bütün Varlıkları Yok Et"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -3946,7 +3940,7 @@ msgstr "Makroskopik Ol ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermiyor"
+msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermemekte"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "AT_CURSOR"
@@ -4061,7 +4055,7 @@ msgstr "Hücre Türü İsmi"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Bu geri dönüşü olmayan bir evrim olduğu için çekirdek silinemez.\n"
-"Ancak, eğer mevcut süreçte yerleştirildiyse, geri alma ya da yinelemeye izin verilir"
+"Ancak, eğer mevcut süreçte yerleştirildiyse, geri alma ya da yinelemeye izin verilir."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4077,7 +4071,7 @@ msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_SUMMARY_LINE"
-msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanıyor"
+msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
 msgid "ENERGY_SOURCES"
@@ -4209,7 +4203,7 @@ msgstr "Negatif ATP Dengesi"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
+"Mikrobun, hayatta kalmak için yeterli ATP üretmemekte!\n"
 "Devam etmek istiyor musun?"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
@@ -4247,9 +4241,8 @@ msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Bu Araziye Git"
+msgstr "Herhangi Bir Araziye Git"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4481,7 +4474,7 @@ msgstr "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, 
 
 #: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
 msgid "CANT_LOAD_MOD_INFO"
-msgstr "{0} için mod bilgisi yüklenemiyor"
+msgstr "{0} için mod bilgisi yüklenemedi"
 
 #: ../src/modding/ModLoader.cs:247
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
@@ -4768,7 +4761,7 @@ msgstr "Geçersiz etiket \"{0}\" belirlendi"
 
 #: ../src/modding/ModUploader.cs:353
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr "Resim önizlemesi bulunmuyor"
+msgstr "Resim önizlemesi bulunamadı"
 
 #: ../src/modding/ModUploader.cs:360
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
@@ -5057,7 +5050,7 @@ msgstr ""
 "Oyuna dahil edilen sonraki evrelerin prototiplerini oynamaktasın.\n"
 "Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir, genel olarak çok kaba görünebilir\n"
 "ve her zaman oynanabilir halde olmayabilir. Bu bakımdan oyunu kaydetmek şu an için mümkün değil.\n"
-"Prototipin bazı kısımları kısıtlı olarak kaydetmeyieizin verebilir."
+"Prototipin bazı kısımları kısıtlı olarak kaydetmeye izin verebilir."
 
 #: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
@@ -5131,9 +5124,9 @@ msgstr "Seçilen kayıt uyumsuz"
 #: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu görünüyor.\n"
+"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu görülmekte.\n"
 "Ayrıca, bu kaydı yükseltmek için kayıt yükseltici yok.\n"
-"Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt yükseltici bulunmuyor."
+"Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt yükseltici bulunmamakta."
 
 #: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
@@ -5164,7 +5157,7 @@ msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Yüklemek için seçilen kayıt, farklı Thrive sürümüne ait bir prototipte yapılmış bir kayıt.\n"
 "Prototip kayıtları yükseltilebilir olmadığı için, bu kayıt yüklenemez.\n"
-"Bir şeyler sıklıkla yenilendiği ve kayıt yükseltmelerini yazmak prototip gelişimini çok yavaşlattığı için, prototipler için kayıt uyumluluğunu sürdürmek büyük bir sorumluluk gerektiriyor."
+"Bir şeyler sıklıkla yenilendiği ve kayıt yükseltmelerini yazmak prototip gelişimini çok yavaşlattığı için, prototipler için kayıt uyumluluğunu sürdürmek büyük bir sorumluluk gerektirmekte."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -5448,17 +5441,18 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün organellerini ikiye katlaman gerekir.\n"
-"Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki büyük butonu saran çubuklara bak. Bu çubuklar dolduğunda beyaz hale gelir."
+"Hücreni çoğaltmak için yeterince uzun süre hayatta kalarak bütün organellerini ikiye katlaman gerekir. Amonyak ve fosfat toplamak üremeyi hızlandırır.\n"
+"\n"
+"İlerlemeni görmek için sağ alttaki butonu saran çubuklara bak. Bu çubuklar bittiğinde beyaza döner."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Hücrenin bölünmesi için yeterince kaynak topladın.\n"
+"Hücrenin bölünmesi için yeterince uzun süre hayatta kaldın.\n"
 "\n"
 "Hücren her çoğaldığında, editöre yönlendirilirsin.\n"
 "\n"
-"Hazır olunca, editöre girmek için sağ altta yanıp sönen büyük butona bas."
+"Editöre girmek için sağ altta yanıp sönen büyük butona bas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
@@ -5502,24 +5496,29 @@ msgstr ""
 "Bu işlemi atlamak için intihar butonuna bas ve yeniden doğ. Ama unutma, her zaman kaçmak için bir şansın var!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Yutma modunda, nesnelerin üzerlerine gelerek onları yut. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas.\n"
+"Yeterli miktarda [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] topladın. Ancak çok hücreli olmayan bir koloni içinde olduğun için üremeye başlayamazsın.\n"
 "\n"
-"Nesne tamamen içeri alındığında yutmayı durdur.\n"
-"\n"
-"Yakınlardaki bir yutulabilir nesneye doğru uzanan bu çizgiyi takip et."
+"Çok hücreli olmayı planlıyorsan, koloniden ayrılıp editöre girmen gerekir.\n"
+"Gelişimine devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrıl."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Çok Hücreli Editörü'nün İlk Kısmı Yükleniyor"
+msgstr ""
+"Çok Hücreli Evresi'ne hoşgeldin!\n"
+"\n"
+"Tek hücreli aşamada türüne rehberlik ederek başarıya ulaştın.\n"
+"\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve editöre girmek için yine organizmanı geliştirmeye devam etmen gerekiyor.\n"
+"\n"
+"Ancak, artık editörde koloninin hücre düzenini tasarlayabilir ve hücrelerini çeşitli görevler için özelleştirebilirsin. Unutma, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
+"\n"
+"Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsan, ufak bir tomurcuğu kontrol etmeye başlarsın ve hücre düzeninin geri kalanını büyütmen gerekir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "İlerlemeye Başla"
+msgstr "İlerlemeye Devam Et"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Çalışmıyor."

@@ -92,7 +92,7 @@ msgstr "你的细胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "为进入细胞编辑器去繁殖，你需要先收集足够的[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色云）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色云）。"
+msgstr "为进入细胞编辑器去繁殖，你需要先获得足够久。收集足够的[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色云）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色云）可以加快生长。"
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -142,7 +142,7 @@ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通过
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "你需要将每个细胞器都一分为二以繁殖；这需要氨和硫酸盐。"
+msgstr "你需要将每个细胞器都一分为二才能繁殖；细胞器需要[thrive:compound type=\"ammonia\"][/thrive:compound]和[thrive:compound type=\"phosphates\"][/thrive:compound]，以及充足的时间才能分裂。"
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -160,24 +160,28 @@ msgstr "保持警惕，你的竞争对手也在和你一起进化。每当你进
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要连接的细胞。你只能连接同物种细胞。（目前）你在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要先脱离原细胞群。大的细胞群是形成多细胞生物（开发中）的基础。"
+msgstr "你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要连接的细胞，按[thrive:input] g_toggle_binding[/thrive:input]进入连接模式。你在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要按 [thrive:input]g_unbind_all[/thrive:input]键脱离原细胞群。大的细胞群是形成多细胞生物（开发中）的基础。"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "原核结构\n"
 "\n"
+"细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/thrive:compound]）\n"
+"\n"
 "代谢体：用[thrive:compound type=\"glucose\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"化学合成蛋白：跟化学质体比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能产出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
-"\n"
 "类囊体：跟正常的叶绿体比只能产出1/3的[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
+"\n"
+"化学合成蛋白：跟化学质体比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能产出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
 "\n"
 "铁硫菌蓝蛋白：将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "固氮酶：在无氧环境下将大气中的氮和[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/thrive:compound]）"
+"毒素体：将[thrive:compound type=\"atp\"][/thrive:compound]转化为[thrive:compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
+"\n"
+"热合成酶：利用温度梯度产生[thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -188,7 +192,9 @@ msgstr ""
 "\n"
 "菌毛：可以用来捅其它细胞或防护毒素\n"
 "\n"
-"化学感受器：允许从更远的地方探测化合物"
+"化学感受器：允许从更远的地方探测化合物\n"
+"\n"
+"纤毛：增加细胞转动速度"
 
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -675,9 +681,8 @@ msgstr "大铁块"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "玩家细胞"
+msgstr "呆滞眼球细胞"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -973,23 +978,38 @@ msgid "LYSOSOME"
 msgstr "溶酶体"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr " "
+msgstr "完成{0}次世代"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:708
-#, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0}（x{1}）"
+msgstr ""
+"[b]物种[/b]\n"
+"  {0}：{1}\n"
+"[b]世代[/b]\n"
+"  {2}\n"
+"[b]种群数量[/b]\n"
+"  {3}\n"
+"[b]颜色[/b]\n"
+"  #{4}\n"
+"[b]行为[/b]\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:717
-#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
-"生命值归零你的细胞就会死。\n"
-"只要你还有ATP，你的生命值就会不断恢复。\n"
-"所以要确保总是有足够的葡萄糖来产出ATP。"
+"[b]阶段[/b]\n"
+"  微生物\n"
+"[b]膜类型[/b]\n"
+"  {0}\n"
+"[b]膜刚度[/b]\n"
+"  {1}\n"
+"[b]基础速度[/b]\n"
+"  {2}\n"
+"[b]基础转动速度[/b]\n"
+"  {3}\n"
+"[b]基础六角格大小[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
@@ -1001,138 +1021,124 @@ msgid "REPORT"
 msgstr "报告"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
-#, fuzzy
 msgid "VIEWER"
-msgstr "图库浏览器"
+msgstr "查看器"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "发生变异"
+msgstr "允许物种不变异（如果没有发现好的变异）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "一部分[u]{0}[/u]种群已经移民到了{1}"
+msgstr "允许物种不迁移（如果没有发现良好的迁移情况）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "在每个物种较少（生物多样性低）的地区中创造一个新的物种的几率"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "从临近地区创造一个新的物种来增加生物多样性的几率"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "从临近地区来的增加生物多样性的物种获得额外的种群数量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "新物种生成必须突变"
+msgstr "增加生物多样性的物种会在创造时被变异"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "生物多样性下限"
+msgstr "将物种数量小于此的区块认为是生物多样性低"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "在这个地区里灭绝了"
+msgstr "在启用强制灭绝之前一个地区所能容纳的最大物种数量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "每物种迁徙尝试次数"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "变异点（MP）"
+msgstr "每个物种的变异尝试次数"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "增加生物多样性物种的初始种群数量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "保护刚刚迁移的生物不受物种上限的影响"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "保护刚刚创造的物种不受物种上限的影响"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "灭绝迁徙补偿"
+msgstr "在目标地区灭绝的情况下，退还迁移的费用"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "严格的生态位竞争（适应性差异被夸大）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "通过多个良好的突变来分裂物种所需的最小种群数量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "允许通过突变分裂的物种的所需最小种群数量比例"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "增加生物多样性的物种在创造时从现有的物种中窃取种群数量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
-#, fuzzy
 msgid "CURRENT_GENERATION_COLON"
-msgstr "世代："
+msgstr "当前世代："
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:427
-#, fuzzy
 msgid "STATUS_COLON"
-msgstr "画师："
+msgstr "状态："
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:434
-#, fuzzy
 msgid "READY"
-msgstr "线程："
+msgstr "准备就绪"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:465
-#, fuzzy
 msgid "FINISH_ONE_GENERATION"
-msgstr " "
+msgstr "完成一次世代"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "运行一步"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:477
-#, fuzzy
 msgid "ABORT"
-msgstr "中止。"
+msgstr "中止"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "使用当前设置"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:525
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "世代："
+msgstr "世代"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
-#, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "选择一个选项"
+msgstr "选择一个世代"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
-#, fuzzy
 msgid "SPECIES"
-msgstr "物种列表"
+msgstr "物种"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:573
-#, fuzzy
 msgid "SELECT_A_SPECIES"
-msgstr "选择一个地区以显示详细"
+msgstr "选择一个物种"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
@@ -1140,14 +1146,12 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:669
-#, fuzzy
 msgid "EVOLUTIONARY_TREE"
-msgstr "由Revolutionary Games Studio制作"
+msgstr "演化树"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#, fuzzy
 msgid "SPECIES_DETAILS"
-msgstr "物种列表"
+msgstr "物种信息"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
@@ -1180,18 +1184,16 @@ msgid "FINISHED_DOT"
 msgstr "完成。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "中止。"
+msgstr "未开始。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "暂停中"
+msgstr "暂停中。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
@@ -2049,9 +2051,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
 #: ../src/general/MainMenu.tscn:293
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "运行状态："
+msgstr "Auto-Evo探索工具"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -2098,12 +2099,12 @@ msgstr "难度预设"
 #: ../src/general/NewGameSettings.tscn:144
 #: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "仅限已知生命形式"
 
 #: ../src/general/NewGameSettings.tscn:151
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "（只允许使用人类已观测到的生物组分与行为）"
+msgstr "（只允许使用人类已观测到的生物的组件与能力）"
 
 #: ../src/general/NewGameSettings.tscn:167
 #: ../src/general/NewGameSettings.tscn:877
@@ -2217,22 +2218,19 @@ msgstr "（每一代开始时在玩家旁自动生成一块葡萄糖云）"
 
 #: ../src/general/NewGameSettings.tscn:754
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "被动获得的繁殖进度"
 
 #: ../src/general/NewGameSettings.tscn:761
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "（AI物种突变的速度）"
+msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 #: ../src/general/NewGameSettings.tscn:773
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "一般"
+msgstr "限制繁殖化合物使用"
 
 #: ../src/general/NewGameSettings.tscn:780
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "（AI物种突变的速度）"
+msgstr "（启用时会限制生长速度，如果关闭的话那么生长速度便仅受可用的化合物数量的影响）"
 
 #: ../src/general/NewGameSettings.tscn:816
 msgid "PATCH_MAP_TYPE"
@@ -2297,20 +2295,19 @@ msgstr "自动（{0}x{1}）"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "显示细胞器名称"
+msgstr "未知"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0}MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2417,17 +2414,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0}{1}"
+msgstr "GPU:"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "使用的渲染器："
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "当前使用的视频内存："
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
@@ -3595,7 +3591,7 @@ msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为自噬的过程中清洁细胞的废物。"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
@@ -3624,7 +3620,7 @@ msgstr "有两层的细胞膜，对伤害有更好的防护能力，也不需要
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
+msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3646,7 +3642,7 @@ msgstr "免疫胞吞"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
+msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。. [b]几丁质酶可以消化这堵墙[/b]，使其容易被捕食者吞噬。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -3746,13 +3742,12 @@ msgid "AGENTS"
 msgstr "物质"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1557
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "生物群系：{0}"
+msgstr "变得有意识"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
 msgid "AWAKEN"
-msgstr ""
+msgstr "唤醒"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 #: ../src/microbe_stage/MicrobeStage.tscn:1656
@@ -3761,34 +3756,30 @@ msgstr "种群数量："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
+msgstr "宏观原型"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
-#, fuzzy
 msgid "MACROSCOPIC_PROTOYPE_WARNING"
 msgstr ""
-"所选择的要载入的存档是在一个不同的Thrive版本的原型中创建的存档。\n"
-"原型存档是不能升级的，因此这个因此不能被载入。\n"
-"维护原型存档的兼容性将是一个很大的负担，因为有很多事物要经常重做，编写存档升级将大大减慢原型开发。"
+"祝贺你达到了多细胞阶段的宏观部分的原型！\n"
+"\n"
+"由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "载入早期多细胞编辑器中"
+msgstr "载入多细胞编辑器中"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "从编辑器选项卡中选择要在此处编辑的细胞类型"
+msgstr "从编辑器选项卡中选择要在此处编辑的组织类型"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "无法移动金属球到其自己的树形子节点"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
-#, fuzzy
 msgid "INTERNALS"
-msgstr "外部"
+msgstr "内部"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:373
 msgid "APPEARANCE"
@@ -3796,36 +3787,30 @@ msgstr "外观"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "繁殖"
+msgstr "无性别"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "未连接的细胞"
+msgstr "未连接的元球"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"有一些细胞没有连接到其它细胞上。\n"
-"请把所有细胞连接起来以继续。"
+"有一些元球没有连接到其它细胞上。\n"
+"请将所有放置的元球移到其它元球旁边以继续。"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:679
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "创建新细胞类型"
+msgstr "创建新组织类型"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:693
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "你可以通过复制现有的细胞类型并给它们一个新的名字来创建新的细胞类型。细胞类型可以被修改以使其专门用于不同的目的。当修改一个细胞类型时，所有该类型的已放置的细胞都会被更新。"
+msgstr "你可以通过复制现有的组织类型并给它们一个新的名字来创建新的组织类型。组织类型可以用细胞编辑器来修改以使其专门用于不同的目的。"
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "多个细胞"
+msgstr "多个元球"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3898,9 +3883,8 @@ msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "实体数量限制："
+msgstr "杀死所有实体"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -3932,7 +3916,7 @@ msgstr "要发出的信号"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:197
 msgid "DEVOURED"
-msgstr ""
+msgstr "被吞噬"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:295
 msgid "STUFF_AT"
@@ -3958,7 +3942,7 @@ msgstr "鼠标指针处："
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1432
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "摄入的物质"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1621
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -3970,7 +3954,7 @@ msgstr "进入编辑器并修改你的物种"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:784
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "盘古宙"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:855
 msgid "PATCH_NAME"
@@ -4030,7 +4014,7 @@ msgstr "专注"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
@@ -4063,7 +4047,9 @@ msgstr "细胞类型名称"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "不能删除细胞核，因为这是个不可逆的进化。除非是在当前世代中进化的，那样仍允许撤消或重做"
+msgstr ""
+"不能删除细胞核，因为这是个不可逆的进化。\n"
+"除非是在当前世代中进化的，那样仍允许撤消或重做。"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4158,14 +4144,12 @@ msgid "STORAGE_COLON"
 msgstr "存储："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "速度："
+msgstr "消化速度："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "描叙："
+msgstr "消化效率："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -4251,21 +4235,18 @@ msgid "INFINITE_MP"
 msgstr "无限变异点"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "移动到这个地区"
+msgstr "移动到任意地区"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-#, fuzzy
 msgid "FIND_CURRENT_PATCH"
-msgstr "无效的mod图标路径"
+msgstr "找到当前的地区"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-#, fuzzy
 msgid "SEED_LABEL"
-msgstr "生物群系：{0}"
+msgstr "星球种子：{0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -4408,24 +4389,20 @@ msgid "LINE_COLOUR"
 msgstr "线条颜色："
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "纤毛与鞭毛相似，但它们不提供方向性推力，而是提供旋转力，帮助细胞转动。"
+msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体你的细胞也能产生一些这种酶，但通过选择这种类型，你将增加其有效性。"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "液泡是一个内部膜质细胞器，用于在细胞内储存。它们由几个囊泡组成，囊泡是在细胞中广泛用于储存的较小的膜结构，它们融合在一起。它充满了水，用来容纳分子、酶、固体和其他物质。它们的形状是不固定的，在不同的细胞之间可以有所不同。"
+msgstr "纤维素酶使细胞能够分解纤维素膜。每次添加都会增加其有效性。"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "纤毛与鞭毛相似，但它们不提供方向性推力，而是提供旋转力，帮助细胞转动。"
+msgstr "几丁质酶使细胞能够分解几丁质膜。每次添加都会增加其有效性。"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
-#, fuzzy
 msgid "SELECT_ENZYME"
-msgstr "选中的Mod："
+msgstr "选中的酶："
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -4472,14 +4449,14 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "灭绝"
+msgstr "地区灭绝"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "就像世上存在过的99%的物种一样，你的物种灭绝了。其它的物种会来取代你的生态位并发展兴盛，但那不会是你。作为进化中一个失败的实验品，你将被遗忘。"
+msgstr ""
+"你的物种已经在这个地区中灭绝了。\n"
+"但这还没有结束，你仍然可以选择一个新的地区继续游玩！"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -5065,8 +5042,9 @@ msgstr "玩家已灭绝"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "你正在玩的是游戏中包含的后期原型。\n"
-"这些原型可能非常不完整，使用占位图形，而且一般来说非常粗糙。\n"
-"因此，目前不可能保存。"
+"这些原型可能非常不完整，使用占位图形，而且一般来说非常粗糙，\n"
+"并不可游玩。因此，保存目前是不可能的。\n"
+"原型的某些部分可能允许有限的保存。"
 
 #: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
@@ -5218,12 +5196,12 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "删除被选中的这些存档将无法撤消，确定要永久删除这{0}个存档吗？"
 
 #: ../src/saving/SaveManagerGUI.cs:233
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "删除所有自动和快速存档将无法撤消，确定要永久删除这些存档吗？\n"
 "- {0} 个自动存档\n"
-"- {1} 个快速存档"
+"- {1} 个快速存档\n"
+"- {2} 个备份存档"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -5354,7 +5332,7 @@ msgstr ""
 "\n"
 "屏幕中央的六角形是你的细胞，它由一个细胞质组件组成。\n"
 "\n"
-"要继续，从左边的面板上选择一个细胞器。然后左键点击屏幕中间显示的六角形旁边，你可以用A和D（默认键）旋转部件。"
+"要继续，从左边的面板上选择一个细胞器。然后左键点击屏幕中间显示的六角形旁边，你可以用[thrive:input]e_rotate_left[/thrive:input] 和 [thrive:input]e_rotate_right[/thrive:input]旋转部件。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -5457,13 +5435,14 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
-"看看右下角的大按钮周围的条形图，看看你还需要多少。这些条形图在填满后会变成白色。"
+"繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
+"\n"
+"右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"你已经收集了足够让你的细胞分裂的资源。\n"
+"你已经存活的足够久以让你的细胞分裂了。\n"
 "\n"
 "每次你分裂细胞时你就会进入编辑器。\n"
 "\n"
@@ -5474,7 +5453,7 @@ msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+"要完全离开细胞群，你可以点击你自己的细胞或按下“[thrive:input]解除所有连接[/thrive:input]”键。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
@@ -5488,28 +5467,27 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
+"你的细胞对一次可吞噬的物体的能力是有限的。这个限制基于大小；较小的细胞的容量较小。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+"当充满时，细胞不能吞噬更多的东西。要继续吞噬，要等到一个或多个摄入的物体被完全消化。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
+"在吞噬模式下，通过在物体上移动来吞噬它们。按[thrive:input]g_toggle_engulf[/thrive:input]来切换吞噬模式。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+"物体被拉入后即可停止吞噬。\n"
+"\n"
+"沿着你的细胞上出现的路线前往附近的可吞噬物体。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
+"你的细胞已经被吞噬，正在被消化。进度显示在你的健康栏上。一旦完成或达到最大的时间限制，你的细胞就会死亡。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+"你可以使用自杀按钮跳过并重生，但请记住，你总是有机会逃脱的！"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
