@@ -18,13 +18,17 @@ public static class ToolTipHelper
     private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new();
 
     /// <summary>
-    ///   Gets a default tooltip scene from cache, or instantiates a default tooltip scene if there isn't any.
+    ///   Gets a default tooltip instance from cache, or instantiates a default tooltip scene if the cache is empty.
     /// </summary>
     public static DefaultToolTip GetDefaultToolTip()
     {
         return DefaultToolTipCache.Count == 0 ? (DefaultToolTip)DefaultTipScene.Instance() : DefaultToolTipCache.Pop();
     }
 
+    /// <summary>
+    ///   Returns a default tooltip instance to the cache for <see cref="GetDefaultToolTip"/>
+    /// </summary>
+    /// <param name="toolTip">The tooltip to return to the cache</param>
     public static void ReturnDefaultToolTip(DefaultToolTip toolTip)
     {
         DefaultToolTipCache.Push(toolTip);
