@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
@@ -399,7 +399,7 @@ public class MainMenu : NodeWithInput
     {
         System.Diagnostics.Process.Start("https://twitter.com/Thrive_Game");
     }
-    
+
     private void OnWebsitePressed()
     {
         System.Diagnostics.Process.Start("https://revolutionarygamesstudio.com");
@@ -409,7 +409,6 @@ public class MainMenu : NodeWithInput
     {
         System.Diagnostics.Process.Start("https://www.facebook.com/Thrive-182887991751358/");
     }
-
 
     private void OnYouTubePressed()
     {
