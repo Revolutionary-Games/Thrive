@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -387,32 +388,32 @@ public class MainMenu : NodeWithInput
     private void OnDiscordPressed()
     {
         // Open the url as a process. The OS will handle selecting the default browser.
-        System.Diagnostics.Process.Start("https://discordapp.com/invite/ECR9E8x");
+        Process.Start("https://discordapp.com/invite/ECR9E8x");
     }
 
     private void OnRedditPressed()
     {
-        System.Diagnostics.Process.Start("https://www.reddit.com/r/thrive/");
+        Process.Start("https://www.reddit.com/r/thrive/");
     }
 
     private void OnTwitterPressed()
     {
-        System.Diagnostics.Process.Start("https://twitter.com/Thrive_Game");
+        Process.Start("https://twitter.com/Thrive_Game");
     }
 
     private void OnWebsitePressed()
     {
-        System.Diagnostics.Process.Start("https://revolutionarygamesstudio.com");
+        Process.Start("https://revolutionarygamesstudio.com");
     }
 
     private void OnFacebookPressed()
     {
-        System.Diagnostics.Process.Start("https://www.facebook.com/Thrive-182887991751358/");
+        Process.Start("https://www.facebook.com/Thrive-182887991751358/");
     }
 
     private void OnYouTubePressed()
     {
-        System.Diagnostics.Process.Start("https://www.youtube.com/c/RevolutionaryGames");
+        Process.Start("https://www.youtube.com/c/RevolutionaryGames");
     }
 
     private void OnReturnFromOptions()
