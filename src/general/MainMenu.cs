@@ -383,13 +383,13 @@ public class MainMenu : NodeWithInput
         // Show the options
         options.OpenFromMainMenu();
     }
-    
+
     private void OnDiscordPressed()
     {
         // Open the url as a process. The OS will handle selecting the default browser.
         System.Diagnostics.Process.Start("https://discordapp.com/invite/ECR9E8x");
     }
-    
+
     private void OnRedditPressed()
     {
         System.Diagnostics.Process.Start("https://www.reddit.com/r/thrive/");
@@ -404,7 +404,7 @@ public class MainMenu : NodeWithInput
     {
         System.Diagnostics.Process.Start("https://revolutionarygamesstudio.com");
     }
-    
+
     private void OnFacebookPressed()
     {
         System.Diagnostics.Process.Start("https://www.facebook.com/Thrive-182887991751358/");
