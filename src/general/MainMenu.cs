@@ -72,6 +72,8 @@ public class MainMenu : NodeWithInput
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
 
+    private Control socialContainer = null;
+
     private Label storeLoggedInDisplay = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
@@ -184,6 +186,7 @@ public class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
+        socialContainer = GetNode<Control>("SocialMedia");
 
         MenuArray?.Clear();
 
@@ -387,33 +390,32 @@ public class MainMenu : NodeWithInput
 
     private void OnDiscordPressed()
     {
-        // Open the url as a process. The OS will handle selecting the default browser.
-        Process.Start("https://discordapp.com/invite/ECR9E8x");
+        OS.ShellOpen("https://discordapp.com/invite/ECR9E8x");
     }
 
     private void OnRedditPressed()
     {
-        Process.Start("https://www.reddit.com/r/thrive/");
+        OS.ShellOpen("https://www.reddit.com/r/thrive/");
     }
 
     private void OnTwitterPressed()
     {
-        Process.Start("https://twitter.com/Thrive_Game");
+        OS.ShellOpen("https://twitter.com/Thrive_Game");
     }
 
     private void OnWebsitePressed()
     {
-        Process.Start("https://revolutionarygamesstudio.com");
+        OS.ShellOpen("https://revolutionarygamesstudio.com");
     }
 
     private void OnFacebookPressed()
     {
-        Process.Start("https://www.facebook.com/Thrive-182887991751358/");
+        OS.ShellOpen("https://www.facebook.com/Thrive-182887991751358/");
     }
 
     private void OnYouTubePressed()
     {
-        Process.Start("https://www.youtube.com/c/RevolutionaryGames");
+        OS.ShellOpen("https://www.youtube.com/c/RevolutionaryGames");
     }
 
     private void OnReturnFromOptions()
@@ -456,7 +458,7 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(uint.MaxValue, false);
 
         // Hide Social Icons
-        GetNode<Control>("SocialMedia").Visible = false;
+        socialContainer.Visible = false;
 
         // Show the credits view
         credits.Restart();
@@ -469,7 +471,7 @@ public class MainMenu : NodeWithInput
         credits.Pause();
 
         // Show Social Icons
-        GetNode<Control>("SocialMedia").Visible = true;
+        socialContainer.Visible = true;
 
         SetCurrentMenu(0, false);
     }
@@ -498,7 +500,7 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(uint.MaxValue, false);
 
         // Hide Social Icons
-        GetNode<Control>("SocialMedia").Visible = false;
+        socialContainer.Visible = false;
 
         // Show the mods view
         modManager.Visible = true;
@@ -508,8 +510,7 @@ public class MainMenu : NodeWithInput
     {
         modManager.Visible = false;
 
-        // Show Social Icons
-        GetNode<Control>("SocialMedia").Visible = true;
+        socialContainer.Visible = true;
 
         SetCurrentMenu(0, false);
     }
