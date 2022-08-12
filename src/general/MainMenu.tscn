@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,11 +12,17 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/textures/gui/social_media/discord.svg" type="Texture" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionary_games.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/social_media/youtube.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/social_media/twitter.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/gui/social_media/facebook.png" type="Texture" id=22]
+[ext_resource path="res://assets/textures/gui/social_media/reddit.png" type="Texture" id=23]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -504,6 +510,64 @@ rect_min_size = Vector2( 400, 350 )
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
+[node name="SocialMedia" type="Control" parent="."]
+margin_right = 42.0
+margin_bottom = 43.0
+
+[node name="DiscordButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 13.0
+margin_top = 665.0
+margin_right = 49.0
+margin_bottom = 701.0
+texture_normal = ExtResource( 13 )
+expand = true
+stretch_mode = 5
+
+[node name="YouTubeButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 62.0
+margin_top = 665.0
+margin_right = 98.0
+margin_bottom = 701.0
+texture_normal = ExtResource( 20 )
+expand = true
+stretch_mode = 5
+
+[node name="TwitterButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 111.0
+margin_top = 665.0
+margin_right = 147.0
+margin_bottom = 701.0
+texture_normal = ExtResource( 21 )
+expand = true
+stretch_mode = 5
+
+[node name="FacebookButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 159.0
+margin_top = 665.0
+margin_right = 195.0
+margin_bottom = 701.0
+texture_normal = ExtResource( 22 )
+expand = true
+stretch_mode = 5
+
+[node name="RedditButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 206.0
+margin_top = 665.0
+margin_right = 242.0
+margin_bottom = 701.0
+texture_normal = ExtResource( 23 )
+expand = true
+stretch_mode = 5
+
+[node name="WebsiteButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 254.0
+margin_top = 665.0
+margin_right = 290.0
+margin_bottom = 701.0
+texture_normal = ExtResource( 19 )
+expand = true
+stretch_mode = 5
+
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]
@@ -527,3 +591,9 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
+[connection signal="pressed" from="SocialMedia/DiscordButton" to="." method="OnDiscordPressed"]
+[connection signal="pressed" from="SocialMedia/YouTubeButton" to="." method="OnYouTubePressed"]
+[connection signal="pressed" from="SocialMedia/TwitterButton" to="." method="OnTwitterPressed"]
+[connection signal="pressed" from="SocialMedia/FacebookButton" to="." method="OnFacebookPressed"]
+[connection signal="pressed" from="SocialMedia/RedditButton" to="." method="OnRedditPressed"]
+[connection signal="pressed" from="SocialMedia/WebsiteButton" to="." method="OnWebsitePressed"]
