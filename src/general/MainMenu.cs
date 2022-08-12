@@ -455,6 +455,9 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
+        // Hide Social Icons
+        GetNode<Control>("SocialMedia").Visible = false;
+
         // Show the credits view
         credits.Restart();
         creditsContainer.Visible = true;
@@ -464,6 +467,9 @@ public class MainMenu : NodeWithInput
     {
         creditsContainer.Visible = false;
         credits.Pause();
+
+        // Show Social Icons
+        GetNode<Control>("SocialMedia").Visible = true;
 
         SetCurrentMenu(0, false);
     }
@@ -491,6 +497,9 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
+        // Hide Social Icons
+        GetNode<Control>("SocialMedia").Visible = false;
+
         // Show the mods view
         modManager.Visible = true;
     }
@@ -498,6 +507,10 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromMods()
     {
         modManager.Visible = false;
+
+        // Show Social Icons
+        GetNode<Control>("SocialMedia").Visible = true;
+
         SetCurrentMenu(0, false);
     }
 
