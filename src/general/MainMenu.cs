@@ -72,7 +72,7 @@ public class MainMenu : NodeWithInput
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
 
-    private Control socialContainer = null;
+    private Control socialContainer = null!;
 
     private Label storeLoggedInDisplay = null!;
 
