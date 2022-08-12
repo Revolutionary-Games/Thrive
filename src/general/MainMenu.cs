@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -384,43 +383,17 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
+        // Hide Social Icons
+        socialContainer.Visible = false;
+
         // Show the options
         options.OpenFromMainMenu();
-    }
-
-    private void OnDiscordPressed()
-    {
-        OS.ShellOpen("https://discordapp.com/invite/ECR9E8x");
-    }
-
-    private void OnRedditPressed()
-    {
-        OS.ShellOpen("https://www.reddit.com/r/thrive/");
-    }
-
-    private void OnTwitterPressed()
-    {
-        OS.ShellOpen("https://twitter.com/Thrive_Game");
-    }
-
-    private void OnWebsitePressed()
-    {
-        OS.ShellOpen("https://revolutionarygamesstudio.com");
-    }
-
-    private void OnFacebookPressed()
-    {
-        OS.ShellOpen("https://www.facebook.com/Thrive-182887991751358/");
-    }
-
-    private void OnYouTubePressed()
-    {
-        OS.ShellOpen("https://www.youtube.com/c/RevolutionaryGames");
     }
 
     private void OnReturnFromOptions()
     {
         options.Visible = false;
+        socialContainer.Visible = true;
         SetCurrentMenu(0, false);
     }
 
@@ -527,5 +500,63 @@ public class MainMenu : NodeWithInput
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
+    }
+
+    private void OnDiscordPressed()
+    {
+        OS.ShellOpen("https://discordapp.com/invite/ECR9E8x");
+    }
+
+    private void OnRedditPressed()
+    {
+        OS.ShellOpen("https://www.reddit.com/r/thrive/");
+    }
+
+    private void OnTwitterPressed()
+    {
+        OS.ShellOpen("https://twitter.com/Thrive_Game");
+    }
+
+    private void OnCommunityPressed()
+    {
+        OS.ShellOpen("https://community.revolutionarygamesstudio.com");
+    }
+
+    private void OnFacebookPressed()
+    {
+        OS.ShellOpen("https://www.facebook.com/Thrive-182887991751358/");
+    }
+
+    private void OnYouTubePressed()
+    {
+        OS.ShellOpen("https://www.youtube.com/c/RevolutionaryGames");
+    }
+
+    private void OnGithubPressed()
+    {
+        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
+    }
+
+    private void OnPatreonPressed()
+    {
+        OS.ShellOpen("https://www.patreon.com/brand");
+    }
+
+    private void OnSteamPressed()
+    {
+        OS.ShellOpen("https://steamcommunity.com/groups/ThriveGame");
+    }
+    private void OnDeveloperPressed()
+    {
+        OS.ShellOpen("https://forum.revolutionarygamesstudio.com");
+    }
+    private void OnWikiPressed()
+    {
+        OS.ShellOpen("https://wiki.revolutionarygamesstudio.com/wiki/Main_Page");
+    }
+
+    private void OnItchPressed()
+    {
+        OS.ShellOpen("https://revolutionarygames.itch.io/thrive");
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,17 +12,23 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/textures/gui/social_media/discord.svg" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/social_media/discord.png" type="Texture" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/textures/gui/social_media/revolutionary_games.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/social_media/developer_forum.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/social_media/youtube.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/social_media/twitter.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/social_media/facebook.png" type="Texture" id=22]
 [ext_resource path="res://assets/textures/gui/social_media/reddit.png" type="Texture" id=23]
+[ext_resource path="res://assets/textures/gui/social_media/github.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/social_media/steam.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/gui/social_media/patreon.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/social_media/community.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/social_media/wiki.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/gui/social_media/itch.png" type="Texture" id=29]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -515,56 +521,110 @@ margin_right = 42.0
 margin_bottom = 43.0
 
 [node name="DiscordButton" type="TextureButton" parent="SocialMedia"]
-margin_left = 13.0
-margin_top = 665.0
-margin_right = 49.0
-margin_bottom = 701.0
+margin_left = 260.0
+margin_top = 670.0
+margin_right = 289.0
+margin_bottom = 699.0
 texture_normal = ExtResource( 13 )
 expand = true
 stretch_mode = 5
 
 [node name="YouTubeButton" type="TextureButton" parent="SocialMedia"]
-margin_left = 62.0
-margin_top = 665.0
-margin_right = 98.0
-margin_bottom = 701.0
+margin_left = 12.0
+margin_top = 670.0
+margin_right = 41.0
+margin_bottom = 699.0
 texture_normal = ExtResource( 20 )
 expand = true
 stretch_mode = 5
 
+[node name="ItchButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 13.0
+margin_top = 634.0
+margin_right = 92.0
+margin_bottom = 663.0
+texture_normal = ExtResource( 29 )
+expand = true
+stretch_mode = 5
+
 [node name="TwitterButton" type="TextureButton" parent="SocialMedia"]
-margin_left = 111.0
-margin_top = 665.0
-margin_right = 147.0
-margin_bottom = 701.0
+margin_left = 49.0
+margin_top = 670.0
+margin_right = 78.0
+margin_bottom = 699.0
 texture_normal = ExtResource( 21 )
 expand = true
 stretch_mode = 5
 
 [node name="FacebookButton" type="TextureButton" parent="SocialMedia"]
-margin_left = 159.0
-margin_top = 665.0
-margin_right = 195.0
-margin_bottom = 701.0
+margin_left = 84.0
+margin_top = 670.0
+margin_right = 113.0
+margin_bottom = 699.0
 texture_normal = ExtResource( 22 )
 expand = true
 stretch_mode = 5
 
 [node name="RedditButton" type="TextureButton" parent="SocialMedia"]
-margin_left = 206.0
-margin_top = 665.0
-margin_right = 242.0
-margin_bottom = 701.0
+margin_left = 225.0
+margin_top = 670.0
+margin_right = 254.0
+margin_bottom = 699.0
 texture_normal = ExtResource( 23 )
 expand = true
 stretch_mode = 5
 
-[node name="WebsiteButton" type="TextureButton" parent="SocialMedia"]
-margin_left = 254.0
-margin_top = 665.0
-margin_right = 290.0
-margin_bottom = 701.0
+[node name="CommunityButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 294.0
+margin_top = 670.0
+margin_right = 323.0
+margin_bottom = 699.0
+texture_normal = ExtResource( 27 )
+expand = true
+stretch_mode = 5
+
+[node name="DeveloperButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 329.0
+margin_top = 670.0
+margin_right = 358.0
+margin_bottom = 699.0
 texture_normal = ExtResource( 19 )
+expand = true
+stretch_mode = 5
+
+[node name="WikiButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 365.0
+margin_top = 670.0
+margin_right = 394.0
+margin_bottom = 699.0
+texture_normal = ExtResource( 28 )
+expand = true
+stretch_mode = 5
+
+[node name="GithubButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 119.0
+margin_top = 670.0
+margin_right = 148.0
+margin_bottom = 699.0
+texture_normal = ExtResource( 24 )
+expand = true
+stretch_mode = 5
+
+[node name="PatreonButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 155.0
+margin_top = 670.0
+margin_right = 184.0
+margin_bottom = 699.0
+texture_normal = ExtResource( 26 )
+expand = true
+stretch_mode = 5
+
+[node name="SteamButton" type="TextureButton" parent="SocialMedia"]
+margin_left = 190.0
+margin_top = 670.0
+margin_right = 219.0
+margin_bottom = 699.0
+texture_normal = ExtResource( 25 )
 expand = true
 stretch_mode = 5
 
@@ -593,7 +653,13 @@ stretch_mode = 5
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
 [connection signal="pressed" from="SocialMedia/DiscordButton" to="." method="OnDiscordPressed"]
 [connection signal="pressed" from="SocialMedia/YouTubeButton" to="." method="OnYouTubePressed"]
+[connection signal="pressed" from="SocialMedia/ItchButton" to="." method="OnItchPressed"]
 [connection signal="pressed" from="SocialMedia/TwitterButton" to="." method="OnTwitterPressed"]
 [connection signal="pressed" from="SocialMedia/FacebookButton" to="." method="OnFacebookPressed"]
 [connection signal="pressed" from="SocialMedia/RedditButton" to="." method="OnRedditPressed"]
-[connection signal="pressed" from="SocialMedia/WebsiteButton" to="." method="OnWebsitePressed"]
+[connection signal="pressed" from="SocialMedia/CommunityButton" to="." method="OnCommunityPressed"]
+[connection signal="pressed" from="SocialMedia/DeveloperButton" to="." method="OnDeveloperPressed"]
+[connection signal="pressed" from="SocialMedia/WikiButton" to="." method="OnWikiPressed"]
+[connection signal="pressed" from="SocialMedia/GithubButton" to="." method="OnGithubPressed"]
+[connection signal="pressed" from="SocialMedia/PatreonButton" to="." method="OnPatreonPressed"]
+[connection signal="pressed" from="SocialMedia/SteamButton" to="." method="OnSteamPressed"]
