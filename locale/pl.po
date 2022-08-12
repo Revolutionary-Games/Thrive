@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-03 14:44+0300\n"
+"POT-Creation-Date: 2022-08-10 20:42+0300\n"
 "PO-Revision-Date: 2022-08-02 10:51+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -114,7 +114,7 @@ msgstr "W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytozolu, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
+msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytoplazmy, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -167,17 +167,21 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Struktury Prokariotyczne\n"
 "\n"
-"Metabolosomy: Wydzielają [thrive:compound type=\"atp\"][/thrive:compound] podczas utleniania [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Cytoplazma: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] niż chemoplast, ale cytozol wokół nich przeprowadza glikolizę. Zajmują 1 Heks\n"
+"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound] ile normalny chloroplast, ale cytozol wokół nich przeprowadza glikolizę. Zajmują 1 Heks\n"
+"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] niż chemoplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
+"\n"
+"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound] ile normalny chloroplast, ale również przeprowadzają glikolizę. Zajmują 1 Heks\n"
 "\n"
 "Rustycyjanina: Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Cytozol: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound])"
+"Oksytoksysom: Zmienia[thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -367,13 +371,13 @@ msgstr "Umiejętności"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1977
+#: ../src/microbe_stage/MicrobeStage.tscn:1975
 msgid "FIRE_TOXIN"
 msgstr "Strzał toksyną"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1965
+#: ../src/microbe_stage/MicrobeStage.tscn:1963
 msgid "TOGGLE_ENGULF"
 msgstr "Przełączenie fagocytozy"
 
@@ -382,7 +386,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Przytrzymaj aby wyświetlić menu poleceń grupowych"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1986
 msgid "TOGGLE_BINDING"
 msgstr "Przełączenie wiązania"
 
@@ -391,7 +395,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Przełączenie odwiązywania"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:2000
+#: ../src/microbe_stage/MicrobeStage.tscn:1998
 msgid "UNBIND_ALL"
 msgstr "Odwiąż wszystkie"
 
@@ -506,8 +510,8 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Przełącz do kamery z góry"
 
 #: ../simulation_parameters/common/input_options.json:196
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Oszustwa"
 
@@ -738,41 +742,41 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1234
+#: ../src/microbe_stage/MicrobeStage.tscn:1232
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Amoniak (NH₃)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1283
+#: ../src/microbe_stage/MicrobeStage.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosforany (PO₄³⁻)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1335
+#: ../src/microbe_stage/MicrobeStage.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Siarkowodór (H₂S)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1185
+#: ../src/microbe_stage/MicrobeStage.tscn:1183
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glukoza (C₆H₁₂O₆)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1558
+#: ../src/microbe_stage/MicrobeStage.tscn:1556
 msgid "OXYTOXY_NT"
 msgstr "OxyToksy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1384
+#: ../src/microbe_stage/MicrobeStage.tscn:1382
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
@@ -801,7 +805,7 @@ msgstr "Światło słoneczne"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:163
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
@@ -993,7 +997,7 @@ msgstr ""
 "[b]Zachowanie[/b]\n"
 "  {5}\n"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:716
+#: ../src/auto-evo/AutoEvoExploringTool.cs:717
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Etap[/b]\n"
@@ -1056,7 +1060,7 @@ msgstr "Maksymalna liczba gatunków w obszarze"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "próby ruchu na gatunek"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
 msgid "MUTATIONS_PER_SPECIES"
@@ -1068,7 +1072,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Ochrona dopiero co przeniesionych gatunków przed limitem gatunków"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
@@ -1202,7 +1206,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populacja {0} zmieniła się o {1} w {2} z powodu: {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:80
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Milionów Lat"
@@ -1437,21 +1441,21 @@ msgstr "{0} MP"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Status działania:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Czynność zablokowana, kiedy inna jest w trakcie wykonywania"
@@ -1977,8 +1981,8 @@ msgstr "Zamknij"
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
@@ -2135,7 +2139,7 @@ msgstr "Ciepły mały staw"
 #: ../src/general/NewGameSettings.tscn:191
 #: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Panspermia (losowa)"
+msgstr "Panspermia (losowy)"
 
 #: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:916
@@ -2213,7 +2217,7 @@ msgstr "Darmowa chmura glukozy przy opuszczaniu edytora"
 
 #: ../src/general/NewGameSettings.tscn:742
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr "(zacznij z darmową chmurą glukozy w pobliżu każdego pokolenia)"
+msgstr "(zacznij z darmową chmurą glukozy w pobliżu, każdego pokolenia)"
 
 #: ../src/general/NewGameSettings.tscn:754
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
@@ -2751,15 +2755,15 @@ msgstr "Wróć do Menu"
 msgid "EXIT"
 msgstr "Wyjdź"
 
-#: ../src/general/StageBase.cs:383
+#: ../src/general/StageBase.cs:396
 msgid "PLAYER_REPRODUCED"
 msgstr "gracz się rozmnożył"
 
-#: ../src/general/StageBase.cs:439
+#: ../src/general/StageBase.cs:452
 msgid "PLAYER_DIED"
 msgstr "gracz zginął"
 
-#: ../src/general/StageBase.cs:502
+#: ../src/general/StageBase.cs:515
 msgid "EXTINCT_IN_PATCH"
 msgstr "wymarły w obszarze"
 
@@ -3228,8 +3232,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr "Samouczek"
 
@@ -3696,43 +3701,43 @@ msgid "LOOKING_AT"
 msgstr "Patrzysz Na:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:481
 msgid "NOTHING_HERE"
 msgstr "Nic tu nie ma"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:508
+#: ../src/microbe_stage/MicrobeStage.tscn:506
 msgid "COMPOUNDS_COLON"
 msgstr "Związki:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:546
 msgid "SPECIES_COLON"
 msgstr "Gatunek:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:625
+#: ../src/microbe_stage/MicrobeStage.tscn:623
 msgid "ENVIRONMENT"
 msgstr "Środowisko"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:893
+#: ../src/microbe_stage/MicrobeStage.tscn:891
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:949
+#: ../src/microbe_stage/MicrobeStage.tscn:947
 msgid "LIGHT"
 msgstr "Światło"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1004
+#: ../src/microbe_stage/MicrobeStage.tscn:1002
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1087
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/MicrobeStage.tscn:1085
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
@@ -3740,7 +3745,7 @@ msgid "COMPOUNDS"
 msgstr "Związki"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1498
+#: ../src/microbe_stage/MicrobeStage.tscn:1496
 msgid "AGENTS"
 msgstr "Czynniki"
 
@@ -3753,7 +3758,7 @@ msgid "AWAKEN"
 msgstr "Przebudzony"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1658
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
@@ -3859,31 +3864,36 @@ msgstr "Uniknij fagocytozy"
 msgid "REPRODUCED"
 msgstr "Rozmnożyły się"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
 msgstr "Nieskończone Związki"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "GODMODE"
 msgstr "Tryb Boga"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "NO_AI"
 msgstr "Brak SI"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
 msgid "PLAYER_SPEED"
 msgstr ""
 "Prędkość\n"
 "Gracza"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
 msgid "PLAYER_DUPLICATE"
 msgstr "Powiel Gracza"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
 msgid "SPAWN_ENEMY"
 msgstr "Przywołaj Przeciwnika"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#, fuzzy
+msgid "DESPAWN_ENTITIES"
+msgstr "Maksymalna ilość bytów:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -3922,32 +3932,32 @@ msgid "STUFF_AT"
 msgstr "Rzecz w {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:384
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "BECOME_MULTICELLULAR"
 msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:420
-#: ../src/microbe_stage/MicrobeStage.tscn:1638
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:665
+#: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:457
+#: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "AT_CURSOR"
 msgstr "Pod kursorem:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
+#: ../src/microbe_stage/MicrobeStage.tscn:1432
 msgid "INGESTED_MATTER"
 msgstr "Wchłonięta Materia"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1621
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1804
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
@@ -4230,9 +4240,14 @@ msgstr "Nazwa gatunku..."
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "Nieskończone Punkty Mutacji"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
+#, fuzzy
+msgid "MOVE_TO_ANY_PATCH"
+msgstr "Przenieś się do Tego Obszaru"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4240,46 +4255,46 @@ msgid "FIND_CURRENT_PATCH"
 msgstr "Znajdź Aktualny Obszar"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 msgid "SEED_LABEL"
 msgstr "Ziarno planety: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
+msgid "TIME_INDICATOR_TOOLTIP"
+msgstr "Upłynęło {0:#,#} lat"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 msgid "YEARS"
 msgstr "lata"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gazy Atmosferyczne"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
 msgid "SPECIES_LIST"
 msgstr "Lista gatunków"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:343
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:356
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Wyginął z planety"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:344
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:355
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:415
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Wyginął z obszaru"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
-msgid "TIME_INDICATOR_TOOLTIP"
-msgstr "Upłynęło {0:#,#} lat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
 msgid "AUTO_EVO"
@@ -5300,15 +5315,15 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nieznany błąd Steama"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w Edytorze Mikroba.\n"
-"Tutaj możesz przejrzeć co się wydarzyło od początku gry lub od ostatniego pobytu w edytorze, a następnie dokonać zmian w twoim gatunku.\n"
 "\n"
-"W tej zakładce możesz zobaczyć raport o istniejących gatunkach i ich populacjach w danych biomach. Możesz też oglądać u góry zmiany w środowisku.\n"
+"Tutaj możesz przejrzeć co się wydarzyło podczas poprzednich pokoleń, a następnie dokonać zmian w swoim gatunku.\n"
 "\n"
-"Żeby przejść do zakłądki edytora, naciśnij przycisk \"dalej\" w prawym dolnym rogu."
+"Ta zakładka daje ci listę zmian w obszarze, który obecnie zasiedlasz. Wypróbuj rozmaite narzędzia w twojej dyspozycji żeby dowiedzieć się więcej na temat wydarzeń w twoim świecie!\n"
+"\n"
+"Gdy będziesz gotowy, naciśnij przycisk \"dalej\" w prawym dolnym rogu by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -5366,10 +5381,9 @@ msgid "GOT_IT"
 msgstr "Rozumiem"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji autoewolucji.\n"
+"Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji auto-ewolucji.\n"
 "\n"
 "Nie biorą one w rachubę twojego osobistego działania, więc w obecnym środowisku będziesz prowadził lepsze życie kiedy wejdziesz do edytora.\n"
 "\n"
@@ -5378,16 +5392,15 @@ msgstr ""
 "Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij, by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Skup się na jednym lub dwóch źródłach energii, żebyś nie potrzebował wszystkich istniejących zadobów aby przetrwać.\n"
 "\n"
-"Uważnie rozważ czy dodawanie organelli to dobry pomysł. Czasami nie robienie zmian to dobry pomysł, jako iż każde organellum wymaga ATP i większych ilości zasobów do podziału.\n"
+"Uważnie rozważ czy dodawanie organelli to dobry pomysł, nie zawsze musisz zmieniać to, co już działa, jako iż każda część wymaga ATP i większych ilości zasobów do rozmnażania.\n"
 "\n"
-"Jedną z możliwych strategii jest pozostanie pojedynczym heksem i udawanie się do środowisk powierzchniowych zanim dodasz organella fotosyntezujace."
+"Jedną z możliwych strategii jest pozostanie pojedynczym heksem cytoplazmy i udawanie się do środowisk powierzchniowych zanim dodasz organella fotosyntezujace."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
@@ -5398,23 +5411,22 @@ msgstr ""
 "\n"
 "Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "SHOW_TUTORIALS"
-msgstr "Pokaż samouczki"
+msgstr "Pokazuj samouczki"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
 msgid "BEGIN_THRIVING"
 msgstr "Zacznij żyć"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
 "\n"
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Zbierz glukozę (białe chmury) przepływając przez nie.\n"
@@ -5423,7 +5435,7 @@ msgstr ""
 "\n"
 "Podążaj za linią wychodzącą z twojej komórki do pobliskiej glukozy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
@@ -5431,45 +5443,40 @@ msgstr ""
 "Możesz się zregenerować, jeśli masz wystarczająco dużo ATP.\n"
 "Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez zebranie wystarczająco dużo amoniaku i fosforanów.\n"
-"Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze potrzebujesz."
+"Patrz na paski w prawym dolnym rogu żeby sprawdzić ile jeszcze potrzebujesz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Zdobyłeś wystarczająco dużo zasobów żeby twoja komórka mogła się podzielić.\n"
+"Zdobyłeś wystarczająco dużo zasobów żeby twoja komórka mogła się rozmnożyć.\n"
 "\n"
-"Jesteś teraz gotowy do edycji twojego gatunku.\n"
+"Z każdym rozmnożeniem, będziesz zabrany do edytora.\n"
 "\n"
-"Aby otworzyć edytor naciśnij migajacy przycisk w prawym dolnym rogu."
+"Aby otworzyć edytor naciśnij durzy migający przycisk w prawym dolnym rogu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Jeżeli nadal nie rozumiesz mechanik gry, wypróbuj menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
+"Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
 "\n"
 "Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka myszy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Samouczek"
+msgstr "Oglądaj Teraz"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5477,7 +5484,7 @@ msgstr ""
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5485,13 +5492,31 @@ msgstr ""
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"\n"
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#, fuzzy
+msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#, fuzzy
+msgid "CONTINUE_THRIVING"
+msgstr "Zacznij żyć"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

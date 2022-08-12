@@ -257,7 +257,7 @@ public abstract class Species : ICloneable
 
     public override string ToString()
     {
-        return FormattedIdentifier;
+        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
     }
 
     /// <summary>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-03 14:44+0300\n"
+"POT-Creation-Date: 2022-08-10 20:42+0300\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: Juuso Vahala <juuso.raimosamuli@gmail.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -37,7 +37,7 @@ msgstr "Mukautettu"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Konseptitaide"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
@@ -71,7 +71,7 @@ msgstr "Kuolemattomuus"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Musiikki"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
@@ -404,13 +404,13 @@ msgstr "Kyvyt"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1977
+#: ../src/microbe_stage/MicrobeStage.tscn:1975
 msgid "FIRE_TOXIN"
 msgstr "Ammu myrkkyä"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1965
+#: ../src/microbe_stage/MicrobeStage.tscn:1963
 msgid "TOGGLE_ENGULF"
 msgstr "Aloita/lopeta nieleminen"
 
@@ -419,7 +419,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Pohjassapidettynä näytä lauman komentovalikko"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1986
 msgid "TOGGLE_BINDING"
 msgstr "Aloita/lopeta kiinnittyminen"
 
@@ -428,7 +428,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Aloita/Lopeta erkanemistila"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:2000
+#: ../src/microbe_stage/MicrobeStage.tscn:1998
 msgid "UNBIND_ALL"
 msgstr "Erkane kaikista"
 
@@ -517,11 +517,11 @@ msgstr "Liikkuminen"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Liiku ylöspäin tai hyppää"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Liiku alaspäin tai kyykisty"
 
 #: ../simulation_parameters/common/input_options.json:171
 #, fuzzy
@@ -545,8 +545,8 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:196
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Huijauskoodit"
 
@@ -780,41 +780,41 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1234
+#: ../src/microbe_stage/MicrobeStage.tscn:1232
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1283
+#: ../src/microbe_stage/MicrobeStage.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosfaatti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1335
+#: ../src/microbe_stage/MicrobeStage.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1185
+#: ../src/microbe_stage/MicrobeStage.tscn:1183
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glukoosi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1558
+#: ../src/microbe_stage/MicrobeStage.tscn:1556
 msgid "OXYTOXY_NT"
 msgstr "Happimyrkky"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1384
+#: ../src/microbe_stage/MicrobeStage.tscn:1382
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Rauta"
@@ -843,7 +843,7 @@ msgstr "Auringonvalo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:163
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
@@ -851,7 +851,7 @@ msgstr "Lämpötila"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipaasi"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
 #, fuzzy
@@ -1031,7 +1031,7 @@ msgstr "konsentraatiosta riippuen"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:716
+#: ../src/auto-evo/AutoEvoExploringTool.cs:717
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1052,7 +1052,7 @@ msgstr "Raportti"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "VIEWER"
-msgstr ""
+msgstr "Tarkastelija"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
 #, fuzzy
@@ -1066,7 +1066,7 @@ msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Uuden lajin luomisen mahdollisuus pienen lajimäärän (matala biodiversiteetti) alueissa"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
@@ -1152,7 +1152,7 @@ msgstr "konsentraatiosta riippuen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Aja Yksi Askel"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:477
 #, fuzzy
@@ -1252,7 +1252,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} populaatio muuttui {1} syystä: {2}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:80
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -1493,21 +1493,21 @@ msgstr "{0} MP"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Ladataan mikrobieditoria"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -1529,7 +1529,7 @@ msgstr "Ruutuaika: {0}"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:76
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:89
 #, fuzzy
@@ -1549,7 +1549,7 @@ msgstr "Näytä FPS-laskuri"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Virheenkorjauspaneeli"
 
 #: ../src/engine/DebugOverlays.tscn:96
 #, fuzzy
@@ -2020,8 +2020,8 @@ msgstr "Sulje"
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
@@ -2143,12 +2143,12 @@ msgstr "Pysäytysmenu"
 #: ../src/general/NewGameSettings.tscn:117
 #: ../src/general/NewGameSettings.tscn:330
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Vaikeustason esiasetus"
 
 #: ../src/general/NewGameSettings.tscn:144
 #: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Vain LAWK"
 
 #: ../src/general/NewGameSettings.tscn:151
 #: ../src/general/NewGameSettings.tscn:861
@@ -2163,7 +2163,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:167
 #: ../src/general/NewGameSettings.tscn:877
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Elämän alkuperä"
 
 #: ../src/general/NewGameSettings.tscn:174
 #: ../src/general/NewGameSettings.tscn:884
@@ -2186,22 +2186,22 @@ msgstr "Kuole"
 #: ../src/general/NewGameSettings.tscn:900
 #: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Mustat savuttajat"
 
 #: ../src/general/NewGameSettings.tscn:191
 #: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Lämmin pieni allas"
 
 #: ../src/general/NewGameSettings.tscn:191
 #: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermia (satunnainen)"
 
 #: ../src/general/NewGameSettings.tscn:206
 #: ../src/general/NewGameSettings.tscn:916
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Planeetan satunnainen lähtöarvo"
 
 #: ../src/general/NewGameSettings.tscn:225
 #: ../src/general/NewGameSettings.tscn:935
@@ -2211,11 +2211,11 @@ msgstr "Laita peli tauolle"
 
 #: ../src/general/NewGameSettings.tscn:270
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Vaikeustaso"
 
 #: ../src/general/NewGameSettings.tscn:280
 msgid "PLANET"
-msgstr ""
+msgstr "Planeetta"
 
 #: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
@@ -2223,7 +2223,7 @@ msgstr "Muut"
 
 #: ../src/general/NewGameSettings.tscn:369
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Mutaatiohinnan kerroin"
 
 #: ../src/general/NewGameSettings.tscn:414
 #, fuzzy
@@ -2266,7 +2266,7 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 
 #: ../src/general/NewGameSettings.tscn:617
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Ympäristön glukoosin säilyminen"
 
 #: ../src/general/NewGameSettings.tscn:661
 #, fuzzy
@@ -2333,7 +2333,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:839
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Klassinen"
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "PLANET_GENERATION_TEASER"
@@ -2391,11 +2391,11 @@ msgstr "Automaattinen ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
 #, fuzzy
@@ -2404,7 +2404,7 @@ msgstr "Näytä kykypalkki"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2508,7 +2508,7 @@ msgstr "Kromaattinen vääristymä:"
 
 #: ../src/general/OptionsMenu.tscn:413
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Näytä taustahiukkasia"
 
 #: ../src/general/OptionsMenu.tscn:423
 #, fuzzy
@@ -2517,7 +2517,7 @@ msgstr "{0} {1}"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Käytetty renderöijä:"
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
@@ -2525,7 +2525,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
-msgstr ""
+msgstr "Käyttöliittymä"
 
 #: ../src/general/OptionsMenu.tscn:522
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2628,15 +2628,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1060 ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Hyvin pieni"
 
 #: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_SMALL"
-msgstr ""
+msgstr "Erittäin pieni"
 
 #: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_SMALL"
-msgstr ""
+msgstr "Pieni"
 
 #: ../src/general/OptionsMenu.tscn:1061
 #, fuzzy
@@ -2645,15 +2645,15 @@ msgstr "VAHVISTA"
 
 #: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_LARGE"
-msgstr ""
+msgstr "Suuri"
 
 #: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_VERY_LARGE"
-msgstr ""
+msgstr "Erittäin suuri"
 
 #: ../src/general/OptionsMenu.tscn:1061
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Valtava"
 
 #: ../src/general/OptionsMenu.tscn:1061
 #, fuzzy
@@ -2855,15 +2855,15 @@ msgstr "Palaa Päävalikkoon"
 msgid "EXIT"
 msgstr "Poistu"
 
-#: ../src/general/StageBase.cs:383
+#: ../src/general/StageBase.cs:396
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
-#: ../src/general/StageBase.cs:439
+#: ../src/general/StageBase.cs:452
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
-#: ../src/general/StageBase.cs:502
+#: ../src/general/StageBase.cs:515
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "sukupuuttoon planeetalta"
@@ -2871,15 +2871,16 @@ msgstr "sukupuuttoon planeetalta"
 #: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:883
+#, fuzzy
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "yltäkylläisyys"
 
 #: ../src/general/StageHUDBase.cs:885
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "jonkin verran"
 
 #: ../src/general/StageHUDBase.cs:887
 msgid "CATEGORY_A_FAIR_AMOUNT"
@@ -2940,19 +2941,19 @@ msgstr "Pääohjelmoijat"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Johtava Teoreetikko"
 
 #: ../src/gui_common/CreditsScroll.cs:236
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Johtavat Teoreetikot"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Johtava Taiteilija"
 
 #: ../src/gui_common/CreditsScroll.cs:242
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Johtavat Taiteilijat"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEAD"
@@ -3278,7 +3279,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Diaesitys"
 
 #: ../src/gui_common/charts/line/LineChart.cs:645
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
@@ -3336,8 +3337,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriaali"
@@ -3724,7 +3726,7 @@ msgstr "Resurssien imeytymisen nopeus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Sulatuksen Tehokkuus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3763,7 +3765,7 @@ msgstr "Ei voi niellä"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
-msgstr ""
+msgstr "Immuuni Nielaisulle"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -3819,43 +3821,43 @@ msgid "LOOKING_AT"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:481
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:508
+#: ../src/microbe_stage/MicrobeStage.tscn:506
 msgid "COMPOUNDS_COLON"
 msgstr "Yhdisteet:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:546
 msgid "SPECIES_COLON"
 msgstr "Lajit:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:625
+#: ../src/microbe_stage/MicrobeStage.tscn:623
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:893
+#: ../src/microbe_stage/MicrobeStage.tscn:891
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:949
+#: ../src/microbe_stage/MicrobeStage.tscn:947
 msgid "LIGHT"
 msgstr "Valo"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1004
+#: ../src/microbe_stage/MicrobeStage.tscn:1002
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1087
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/MicrobeStage.tscn:1085
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
@@ -3863,7 +3865,7 @@ msgid "COMPOUNDS"
 msgstr "Yhdisteet"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1498
+#: ../src/microbe_stage/MicrobeStage.tscn:1496
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
 
@@ -3874,16 +3876,16 @@ msgstr "Biomi: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
 msgid "AWAKEN"
-msgstr ""
+msgstr "Herää"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1658
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
+msgstr "Makroskooppisen vaiheen prototyyppi"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
 #, fuzzy
@@ -3991,31 +3993,36 @@ msgstr "pakeni nielaisulta"
 msgid "REPRODUCED"
 msgstr "jatkoi sukuaan"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
 msgstr "Loputtomat Yhdisteet"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "GODMODE"
 msgstr "Kuolemattomuus"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "NO_AI"
 msgstr "Ei tekoälyä"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
 msgid "PLAYER_SPEED"
 msgstr ""
 "Pelaajan\n"
 "nopeus"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "pelaaja kuoli"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
 msgid "SPAWN_ENEMY"
+msgstr "Luo vihollinen"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#, fuzzy
+msgid "DESPAWN_ENTITIES"
 msgstr "Luo vihollinen"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
@@ -4024,15 +4031,15 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:109
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Ei Käskyä"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:110
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Seuraa Minua"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:111
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Liiku Luokseni"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:112
 msgid "SIGNAL_COMMAND_FLEE"
@@ -4040,55 +4047,55 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:113
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
+msgstr "Muutu Agressiiviseksi"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:116
 msgid "SIGNAL_TO_EMIT"
-msgstr ""
+msgstr "Viesti Erittää"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:197
 msgid "DEVOURED"
-msgstr ""
+msgstr "Syöty"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:295
 msgid "STUFF_AT"
 msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:384
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Muutu Monisoluiseksi ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:420
-#: ../src/microbe_stage/MicrobeStage.tscn:1638
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Muutu Makroskooppiseksi ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:665
+#: ../src/microbe_stage/MicrobeStage.cs:687
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Luo vihollinen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:457
+#: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "AT_CURSOR"
 msgstr "Kursorin alla:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
+#: ../src/microbe_stage/MicrobeStage.tscn:1432
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "Nielty Aine"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1621
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1804
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:784
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Pangonialainen"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:855
 msgid "PATCH_NAME"
@@ -4148,7 +4155,7 @@ msgstr "Keskittynyt"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
@@ -4177,7 +4184,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:525
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Solutyypin Nimi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4201,7 +4208,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Energianlähteet:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
 msgid "FOOD_SOURCE_ENERGY_INFO"
@@ -4369,9 +4376,14 @@ msgstr "Lajin nimi..."
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ladataan mikrobieditoria"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "Loputon MP"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
+#, fuzzy
+msgid "MOVE_TO_ANY_PATCH"
+msgstr "Siirry tälle alueelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4380,49 +4392,49 @@ msgid "FIND_CURRENT_PATCH"
 msgstr "Peruuta nykyinen toimenpide"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Biomi: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
+msgid "TIME_INDICATOR_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 msgid "YEARS"
 msgstr "vuotta"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Ilmakehän kaasut"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
 msgid "SPECIES_LIST"
 msgstr "Lista lajeista"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:343
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:356
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "sukupuuttoon planeetalta"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:344
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:355
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:415
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "sukupuuttoon planeetalta"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
-msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
 msgid "AUTO_EVO"
@@ -4442,7 +4454,7 @@ msgstr "Ulkoiset vaikutukset:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Näytä maailmanlaajuiset tapahtumat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "GLOBAL_INITIAL_LETTER"
@@ -4450,7 +4462,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Näytä paikalliset tapahtumat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
 msgid "LOCAL_INITIAL_LETTER"
@@ -4505,7 +4517,7 @@ msgstr "Sukupuuttoon kuolleet lajit"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Tapahtumia ei tallennettu"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -4518,7 +4530,7 @@ msgstr "Ympäristön yhdistelmät:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Etsintäsäde:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
@@ -4660,11 +4672,11 @@ msgstr "Lataus on valmistunut"
 
 #: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
-msgstr ""
+msgstr "Virheellinen modikuvakkeen polku"
 
 #: ../src/modding/ModManager.cs:311
 msgid "INVALID_URL_SCHEME"
-msgstr ""
+msgstr "Virheellinen URL-osoitemalli"
 
 #: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -4706,7 +4718,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:119
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Saatavilla Olevat Modit"
 
 #: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
@@ -4745,7 +4757,7 @@ msgstr "Valittu:"
 #: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
 #: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
-msgstr ""
+msgstr "Modin Tekijä:"
 
 #: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
 #: ../src/modding/NewModGUI.tscn:163
@@ -4755,7 +4767,7 @@ msgstr "Versio:"
 
 #: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
+msgstr "Thriven Suositeltu Versio:"
 
 #: ../src/modding/ModManager.tscn:413
 #, fuzzy
@@ -4770,7 +4782,7 @@ msgstr "Kuvaus:"
 
 #: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
-msgstr ""
+msgstr "Näytä Lisää Tietoa"
 
 #: ../src/modding/ModManager.tscn:480
 #, fuzzy
@@ -4779,7 +4791,7 @@ msgstr "Avaa osoite"
 
 #: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Selaa Steam Workshopia"
 
 #: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
 #, fuzzy
@@ -4802,11 +4814,11 @@ msgstr "Valittu tallennus ei ole yhteensopiva"
 
 #: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Hyväksy Muutokset"
 
 #: ../src/modding/ModManager.tscn:577
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
+msgstr "Tallentamattomia muutoksia"
 
 #: ../src/modding/ModManager.tscn:578
 #, fuzzy
@@ -4820,7 +4832,7 @@ msgstr "Hylkää ja jatka"
 
 #: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
-msgstr ""
+msgstr "Täydet Modin Tiedot"
 
 #: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 #, fuzzy
@@ -4829,7 +4841,7 @@ msgstr "Nimi:"
 
 #: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "Sisäinen nimi (Kansio):"
 
 #: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
@@ -4838,11 +4850,11 @@ msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun l
 
 #: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
-msgstr ""
+msgstr "Kuvakkeen Tiedosto:"
 
 #: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
-msgstr ""
+msgstr "Modin Tietojen URL:"
 
 #: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 #, fuzzy
@@ -4851,15 +4863,15 @@ msgstr "Lisenssit"
 
 #: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr ""
+msgstr "Suositeltu Thriven Versio:"
 
 #: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
-msgstr ""
+msgstr "Pienin Vaadittu Thrive-versio:"
 
 #: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr ""
+msgstr "Suurin Tuettu Thrive Versio:"
 
 #: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 #, fuzzy
@@ -4868,7 +4880,7 @@ msgstr "Alueen nimi"
 
 #: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
-msgstr ""
+msgstr "Modin Assembly:"
 
 #: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
@@ -4890,7 +4902,7 @@ msgstr "Lataa rikkinäinen tallennus?"
 
 #: ../src/modding/ModManager.tscn:1013
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Uudelleenkäynnistys Vaaditaan"
 
 #: ../src/modding/ModManager.tscn:1015
 #, fuzzy
@@ -4976,11 +4988,11 @@ msgstr "Virhe: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
-msgstr ""
+msgstr "Modin Lähettäjä"
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr ""
+msgstr "Lähetettävä Modi:"
 
 #: ../src/modding/ModUploader.tscn:109
 #, fuzzy
@@ -5003,7 +5015,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "ID-Numero"
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
@@ -5033,7 +5045,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "Kohteen Esikatselukuva:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
@@ -5046,7 +5058,7 @@ msgstr "Jatka"
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Poista Paikallinen Data"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
@@ -5060,7 +5072,7 @@ msgstr "\"{0}\" - {1}"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr ""
+msgstr "Valitse Esikatselukuva"
 
 #: ../src/modding/ModUploader.tscn:336
 #, fuzzy
@@ -5074,7 +5086,7 @@ msgstr "Pistä muita soluja tällä."
 
 #: ../src/modding/NewModGUI.cs:238
 msgid "INVALID_URL_FORMAT"
-msgstr ""
+msgstr "Virheellinen URL muoto"
 
 #: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRED"
@@ -5108,7 +5120,7 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "Wikimme"
 
 #: ../src/modding/NewModGUI.tscn:439
 #, fuzzy
@@ -5265,7 +5277,7 @@ msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopull
 
 #: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Tallennuksia Ei Löytynyt"
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 #, fuzzy
@@ -5433,7 +5445,7 @@ msgstr "Avaa tallennusten kansio"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Kokeile tallennuksen tekemistä!"
 
 #: ../src/steam/SteamClient.cs:68 ../src/steam/SteamClient.cs:75
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -5470,7 +5482,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Tiedostoa ei löytynyt"
 
 #: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
@@ -5584,7 +5596,7 @@ msgstr ""
 "\n"
 "Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
@@ -5595,23 +5607,23 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Näytä tutoriaalit"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
 msgid "BEGIN_THRIVING"
 msgstr "Aloita selviytyminen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kerää glukooria (valkeat yhdistepilvet) liikkumalla niihin.\n"
@@ -5620,7 +5632,7 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
@@ -5628,13 +5640,13 @@ msgstr ""
 "Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
 "Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
 "Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Olet kerännyt tarpeeksi yhdisteitä, jotta solusi voi jakaantua.\n"
@@ -5643,24 +5655,24 @@ msgstr ""
 "\n"
 "Avataksesi editorin, paina suurta vilkkuvaa painiketta alhaalla oikealla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5668,7 +5680,7 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5676,13 +5688,31 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"\n"
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#, fuzzy
+msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Ladataan mikrobieditoria"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#, fuzzy
+msgid "CONTINUE_THRIVING"
+msgstr "Aloita selviytyminen"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
