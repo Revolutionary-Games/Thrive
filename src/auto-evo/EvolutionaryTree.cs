@@ -487,6 +487,7 @@ public class EvolutionaryTree : Control
     private void TreeDrawLine(Vector2 from, Vector2 to)
     {
         var lineWidth = sizeFactor * TREE_LINE_THICKNESS;
+        var halfLineWidth = lineWidth / 2;
 
         if (to.y - from.y < MathUtils.EPSILON)
         {
@@ -496,7 +497,11 @@ public class EvolutionaryTree : Control
         {
             var mid = to - new Vector2(sizeFactor * GENERATION_SEPARATION / 2.0f, 0);
             tree.DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, lineWidth);
-            tree.DrawLine(new Vector2(mid.x, from.y), new Vector2(mid.x, to.y), Colors.DarkCyan, lineWidth);
+
+            // We draw vertical line a little longer so the turning point is good.
+            tree.DrawLine(new Vector2(mid.x, from.y - halfLineWidth), new Vector2(mid.x, to.y + halfLineWidth),
+                Colors.DarkCyan, lineWidth);
+
             tree.DrawLine(new Vector2(mid.x, to.y), to, Colors.DarkCyan, lineWidth);
         }
     }
