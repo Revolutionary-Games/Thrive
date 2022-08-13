@@ -188,7 +188,6 @@ public class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         socialContainer = GetNode<Control>("SocialMedia");
-        thriveButton = socialContainer.GetNode<TextureButton>("ThriveButton");
         extraSites = GetNode<Node>("MenuContainers").GetNode<Control>("Menus").GetNode<VBoxContainer>("CommunitySites");
 
         MenuArray?.Clear();
