@@ -73,7 +73,7 @@ public class MainMenu : NodeWithInput
 
     private Control socialContainer = null!;
     private VBoxContainer extraSites = null!;
-    private bool extraSitesShown = false;
+    private bool extraSitesShown;
 
     private Label storeLoggedInDisplay = null!;
 
