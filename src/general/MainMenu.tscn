@@ -437,9 +437,6 @@ mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "GAME WIKI"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="CommunitySite" type="Button" parent="MenuContainers/Menus/CommunitySites"]
 margin_top = 50.0
@@ -460,9 +457,6 @@ mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "DEVELOPER SITE"
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false

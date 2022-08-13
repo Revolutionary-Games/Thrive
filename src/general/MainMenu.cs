@@ -72,7 +72,6 @@ public class MainMenu : NodeWithInput
     private Button autoEvoExploringButton = null!;
 
     private Control socialContainer = null!;
-    private TextureButton thriveButton = null!;
     private VBoxContainer extraSites = null!;
     private bool extraSitesShown = false;
 
