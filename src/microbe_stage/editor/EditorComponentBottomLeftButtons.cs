@@ -229,7 +229,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
-            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) && ValidateNameSize(newText));
+            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) && ValidateNameLength(newText));
         }
 
         EmitSignal(nameof(OnNameSet), newText);
@@ -245,10 +245,10 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
-            bool nameSizeValid = ValidateNameSize(text);
+            bool nameLengthValid = ValidateNameLength(text);
 
             // Only defocus if the name is valid to indicate invalid namings to the player
-            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX) && nameSizeValid)
+            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX) && nameLengthValid)
             {
                 speciesNameEdit.ReleaseFocus();
             }
@@ -258,7 +258,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
                 GetTree().SetInputAsHandled();
 
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
-                if (!nameSizeValid)
+                if (!nameLengthValid)
                 {
                     ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPECIES_NAME_TOO_LONG_POPUP"), 2.5f);
                 }
@@ -276,9 +276,9 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         }
     }
 
-    private bool ValidateNameSize(string name)
+    private bool ValidateNameLength(string name)
     {
-        return speciesNameEdit.GetFont("font").GetStringSize(name).x < speciesNameEdit.RectSize.x;
+        return speciesNameEdit.GetFont("font").GetStringSize(name).x < Constants.MAX_SPECIES_NAME_LENGTH_PIXELS;
     }
 
     private void OnRandomizeNamePressed()
