@@ -72,6 +72,9 @@ public class MainMenu : NodeWithInput
     private Button autoEvoExploringButton = null!;
 
     private Control socialContainer = null!;
+    private TextureButton thriveButton = null!;
+    private VBoxContainer extraSites = null!;
+    private bool extraSitesShown = false;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -186,6 +189,8 @@ public class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         socialContainer = GetNode<Control>("SocialMedia");
+        thriveButton = socialContainer.GetNode<TextureButton>("ThriveButton");
+        extraSites = GetNode<Node>("MenuContainers").GetNode<Control>("Menus").GetNode<VBoxContainer>("CommunitySites");
 
         MenuArray?.Clear();
 
@@ -546,10 +551,27 @@ public class MainMenu : NodeWithInput
     {
         OS.ShellOpen("https://steamcommunity.com/groups/ThriveGame");
     }
+
+    private void OnThrivePressed()
+    {
+        // Toggle the extra menu shown or hidden.
+        if (!extraSitesShown)
+        {
+            extraSites.Visible = true;
+            extraSitesShown = true;
+        }
+        else
+        {
+            extraSites.Visible = false;
+            extraSitesShown = false;
+        }
+    }
+
     private void OnDeveloperPressed()
     {
         OS.ShellOpen("https://forum.revolutionarygamesstudio.com");
     }
+
     private void OnWikiPressed()
     {
         OS.ShellOpen("https://wiki.revolutionarygamesstudio.com/wiki/Main_Page");
