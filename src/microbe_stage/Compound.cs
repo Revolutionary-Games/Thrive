@@ -31,6 +31,11 @@ public class Compound : IRegistryType
     public bool IsEnvironmental;
 
     /// <summary>
+    ///   How much compound is passively absorbed a second
+    /// </summary>
+    public float AbsorptionRate;
+
+    /// <summary>
     ///   Unit for this compound, if applicable (e.g. °C for temperature)
     /// </summary>
     public string? Unit;

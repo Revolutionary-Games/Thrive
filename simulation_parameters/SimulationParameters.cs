@@ -36,6 +36,7 @@ public class SimulationParameters : Node
     private float eukaryoticOrganellesChance;
 
     private List<Compound>? cachedCloudCompounds;
+    private List<Compound>? cachedPassiveCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -207,6 +208,11 @@ public class SimulationParameters : Node
     public List<Compound> GetCloudCompounds()
     {
         return cachedCloudCompounds ??= ComputeCloudCompounds();
+    }
+
+    public List<Compound> GetPassiveCompounds()
+    {
+        return cachedPassiveCompounds ??= ComputePassiveCompounds();
     }
 
     public List<Enzyme> GetHydrolyticEnzymes()
@@ -519,6 +525,11 @@ public class SimulationParameters : Node
     private List<Compound> ComputeCloudCompounds()
     {
         return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
+    }
+
+    private List<Compound> ComputePassiveCompounds()
+    {
+        return compounds.Where(p => p.Value.AbsorptionRate != 0).Select(p => p.Value).ToList();
     }
 
     private List<Enzyme> ComputeHydrolyticEnzymes()

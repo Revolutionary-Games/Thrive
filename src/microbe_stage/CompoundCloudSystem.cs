@@ -10,6 +10,12 @@ using Newtonsoft.Json;
 /// </summary>
 public class CompoundCloudSystem : Node, ISaveLoadedTracked
 {
+    /// <summary>
+    ///   The cloud resolution of the first cloud
+    /// </summary>
+    [JsonIgnore]
+    public int Resolution;
+
     [JsonProperty]
     private int neededCloudsAtOnePosition;
 
@@ -31,12 +37,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
     [JsonIgnore]
     private float currentBrightness = 1.0f;
-
-    /// <summary>
-    ///   The cloud resolution of the first cloud
-    /// </summary>
-    [JsonIgnore]
-    public int Resolution => clouds[0].Resolution;
 
     public bool IsLoadedFromSave { get; set; }
 
@@ -65,6 +65,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     {
         var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
+        Resolution = Settings.Instance.CloudResolution;
+
         if (!IsLoadedFromSave)
         {
             clouds.Clear();
@@ -74,13 +76,13 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count /
             (float)Constants.CLOUDS_IN_ONE);
 
-        // We need to dynamically spawn more / delete some if this doesn't match
+        /*// We need to dynamically spawn more / delete some if this doesn't match
         while (clouds.Count < neededCloudsAtOnePosition)
         {
             var createdCloud = (CompoundCloudPlane)cloudScene.Instance();
             clouds.Add(createdCloud);
             AddChild(createdCloud);
-        }
+        }*/
 
         // TODO: this should be changed to detect which clouds are safe to delete
         while (clouds.Count > neededCloudsAtOnePosition)

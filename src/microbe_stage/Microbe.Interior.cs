@@ -622,6 +622,10 @@ public partial class Microbe
         cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
+        var passiveCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
+        foreach (var passiveCompound in passiveCompounds)
+            Compounds.AddCompound(passiveCompound, passiveCompound.AbsorptionRate * delta);
+
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
             var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
