@@ -1,65 +1,63 @@
+﻿using System;
 using System.Collections;
 using Godot;
 
-public class DayNightCycle
+public class DayNightCycle : Godot.Node
 {
     /*
-
-    * stuff we need at a minimum / TL;DR
-        exact time
-        states for dawn, day, dusk, and night
+    * stuff we need
         config parameters; a JSON file
-        methods to feed timeOfDay to relevant shaders
         methods to manipulate environment node for lighting and post-process
+    */
 
-    * for simplicity's sake, the time can just be a float property (hour.minute)
-        public float Time{ get; set; };
+    /*
 
-    * a state machine is the natural solution for this class, maybe state pattern too.
-      doesn't necessarily have to be an enum and switch state machine specifically.
-        public enum TimeOfDay
-        {
-            Dawn,
-            Day,
-            Dusk,
-            Night
-        }
+    Gamedungeons Notes:
 
-        public TimeOfDay timeOfDay;
+    * Almost all of these should be converted to json. I really don't know how.
 
-        switch(timeOfDay)
-            case TimeOfDay.Dawn
-            {
-                Patch.LightLevel = DawnLightLevel(this.Time);
-                break;
-            }
-
-            case TimeOfDay.Day
-            {
-                if (Patch.LightLevel != DAY_LIGHT_LEVEL)
-                    Patch.LightLevel = DAY_LIGHT_LEVEL;
-                else
-                    break;
-            }
-
-            case TimeOfDay.Dusk
-            {
-                Patch.LightLevel = DuskLightLevel(this.Time);
-                break;
-            }
-
-            case TimeOfDay.Night
-            {
-                if (Patch.LightLevel != NIGHT_LIGHT_LEVEL)
-                    Patch.LightLevel = NIGHT_LIGHT_LEVEL;
-                else
-                    break;
-            }
-
-    * we need various parameters that can be changed on a per planet basis like:
-        how long a day is
-        light levels for day and night if not const
-        graphical particularities like color during sunrise/sunset, when to apply post fx
+    * Probably need to add save support
 
     */
+
+    public float HoursPerDay = 24;
+    private static DayNightCycle? instance;
+
+    /// <summary>
+    ///   This is how long it takes to complete a full day in realtime seconds
+    /// </summary>
+    private float realTimePerDay = 120;
+    private float minLightPercentage = 0.1f; // For realism this should be removed.
+    private int daytimeLeangthFactor = 3;
+    private DayNightCycle()
+    {
+        instance = this;
+    }
+
+    public static DayNightCycle Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    /// <summary>
+    ///   The current time in hours
+    /// </summary>
+    public float Time { get; set; }
+
+    public float PercentOfDayElapsed
+    {
+        get { return Time / HoursPerDay; }
+    }
+
+    /// <summary>
+    ///   The percentage of daylight you should get.
+    ///   light = min(-abs(PercentOfDayElapsed*12-6)+daytimeLeangthFactor, 1)
+    ///   desmos: https://www.desmos.com/calculator/iidhrbrpe2
+    /// </summary>
+    public float DayLightPercentage
+    {
+        get { return Math.Min(Math.Max(-Math.Abs(PercentOfDayElapsed * 12 - 6) + daytimeLeangthFactor, minLightPercentage), 1); }
+    }
+
+    public override void _Process(float delta)
+    {
+        Time = (Time + (1 / realTimePerDay) * HoursPerDay * delta) % HoursPerDay;
+    }
 }
