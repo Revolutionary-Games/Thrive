@@ -510,8 +510,6 @@ public partial class CellEditorComponent :
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
 
-        UpdateRigiditySliderState(Editor.MutationPoints);
-
         UpdateCancelButtonVisibility();
 
         if (IsMulticellularEditor)
@@ -765,12 +763,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
-    {
-        base.OnMutationPointsChanged(mutationPoints);
-        UpdateRigiditySliderState(mutationPoints);
-    }
-
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
@@ -861,43 +853,39 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void OnRigidityChanged(int rigidity)
+    public void OnRigidityChanged(int desiredRigidity)
     {
-        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
-            UpdateRigiditySlider(intRigidity);
+            UpdateRigiditySlider(previousRigidity);
             return;
         }
 
-        if (intRigidity == rigidity)
+        if (previousRigidity == desiredRigidity)
             return;
 
         int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
+
+        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
+        {
+            CostMultiplier = CostMultiplier,
+        };
+
+        var cost = Editor.WhatWouldActionsCost(new[] { data });
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsLeft = Editor.MutationPoints / costPerStep;
-            if (stepsLeft < 1)
-            {
-                UpdateRigiditySlider(intRigidity);
-                return;
-            }
+            int stepsToCutOff = (cost - Editor.MutationPoints) / costPerStep;
+            data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
+                Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
         }
 
-        var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
-        var prevRigidity = Rigidity;
-
-        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
-            new RigidityActionData(newRigidity, prevRigidity)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction, data);
 
         Editor.EnqueueAction(action);
     }
