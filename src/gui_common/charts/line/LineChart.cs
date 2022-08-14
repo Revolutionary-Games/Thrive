@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -233,21 +232,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Returns the number of shown datasets.
     /// </summary>
-    public int VisibleDataSets
-    {
-        get
-        {
-            var count = 0;
-
-            foreach (var data in dataSets)
-            {
-                if (data.Value.Draw)
-                    count++;
-            }
-
-            return count;
-        }
-    }
+    public int VisibleDataSets => dataSets.Count(data => data.Value.Draw);
 
     public override void _Ready()
     {
@@ -412,23 +397,21 @@ public class LineChart : VBoxContainer
                 point.Size *= isChild ? 1.5f : 1;
 
                 // Create tooltip for the point markers
-                var toolTip = ToolTipHelper.CreateDefaultToolTip();
+                var toolTip = ToolTipHelper.GetDefaultToolTip();
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
                     $"{point.X.FormatNumber()} {XAxisName}" :
-                    string.Format(CultureInfo.CurrentCulture,
-                        TooltipXAxisFormat!, point.X);
+                    TooltipXAxisFormat!.FormatSafe(point.X);
 
                 var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
                     $"{point.Y.FormatNumber()} {YAxisName}" :
-                    string.Format(CultureInfo.CurrentCulture,
-                        TooltipYAxisFormat!, point.Y);
+                    TooltipYAxisFormat!.FormatSafe(point.Y);
 
                 toolTip.DisplayName = data.Key + point;
                 toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
 
                 toolTip.DisplayDelay = 0;
-                toolTip.HideOnMousePress = false;
+                toolTip.HideOnMouseAction = false;
                 toolTip.TransitionType = ToolTipTransitioning.Immediate;
                 toolTip.Positioning = ToolTipPositioning.ControlBottomRightCorner;
 
@@ -683,6 +666,12 @@ public class LineChart : VBoxContainer
             if (points.Count <= 0 || !dataLines.TryGetValue(data.Key, out var dataLine))
                 continue;
 
+            dataLine.Visible = data.Value.Draw;
+
+            // Skip drawing if line isn't visible
+            if (!dataLine.Visible)
+                continue;
+
             // This is actually the first point (left-most)
             var previousPoint = points.Last();
 
@@ -710,8 +699,6 @@ public class LineChart : VBoxContainer
 
                 previousPoint = point;
             }
-
-            dataLine.Visible = data.Value.Draw;
         }
     }
 
@@ -731,7 +718,7 @@ public class LineChart : VBoxContainer
             newCollisionRect.Connect("mouse_exited", dataLine, nameof(dataLine.OnMouseExit));
 
             // Create tooltip
-            var tooltip = ToolTipHelper.CreateDefaultToolTip();
+            var tooltip = ToolTipHelper.GetDefaultToolTip();
 
             tooltip.DisplayName = datasetName + "line" + firstPoint.Coordinate;
             tooltip.Description = datasetName;
@@ -1000,9 +987,7 @@ public class LineChart : VBoxContainer
         childChart.inspectButton.Hide();
     }
 
-    /*
-        GUI Callbacks
-    */
+    // GUI Callbacks
 
     private void OnInspectButtonPressed()
     {
@@ -1016,9 +1001,7 @@ public class LineChart : VBoxContainer
         chartPopup.Hide();
     }
 
-    /*
-        Subclasses
-    */
+    // Subclasses
 
     public class DatasetsIconLegend : Reference, IDataSetsLegend
     {
@@ -1066,7 +1049,7 @@ public class LineChart : VBoxContainer
                 }
 
                 // Create tooltips
-                var toolTip = ToolTipHelper.CreateDefaultToolTip();
+                var toolTip = ToolTipHelper.GetDefaultToolTip();
 
                 toolTip.DisplayName = data.Key;
                 toolTip.Description = data.Key;
@@ -1115,15 +1098,15 @@ public class LineChart : VBoxContainer
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
                     icon.Pressed = false;
-                    ToolTipManager.Instance.ShowPopup(string.Format(
-                        CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MAX_VISIBLE_DATASET_WARNING"), chart.MaxDisplayedDataSet), 1f);
+                    ToolTipManager.Instance.ShowPopup(
+                        TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
+                            .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
                     icon.Pressed = true;
-                    ToolTipManager.Instance.ShowPopup(string.Format(
-                        CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MIN_VISIBLE_DATASET_WARNING"), chart.MinDisplayedDataSet), 1f);
+                    ToolTipManager.Instance.ShowPopup(
+                        TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
+                            .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }
@@ -1207,14 +1190,14 @@ public class LineChart : VBoxContainer
             switch (result)
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
-                    ToolTipManager.Instance.ShowPopup(string.Format(
-                        CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MAX_VISIBLE_DATASET_WARNING"), chart.MaxDisplayedDataSet), 1f);
+                    ToolTipManager.Instance.ShowPopup(
+                        TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
+                            .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
-                    ToolTipManager.Instance.ShowPopup(string.Format(
-                        CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MIN_VISIBLE_DATASET_WARNING"), chart.MinDisplayedDataSet), 1f);
+                    ToolTipManager.Instance.ShowPopup(
+                        TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
+                            .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }
@@ -1324,8 +1307,10 @@ public class LineChart : VBoxContainer
 
         public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
         {
+            var finalValue = new Vector3(i, targetPos.x, targetPos.y);
+
             tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.x, initialPos.y),
-                new Vector3(i, targetPos.x, targetPos.y), 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
+                finalValue, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
             tween.Start();
         }
 

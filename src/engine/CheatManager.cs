@@ -23,6 +23,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnSpawnEnemyCheatUsed;
 
     /// <summary>
+    ///   Fired whenever the user uses the "Despawn All Entities" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnDespawnAllEntitiesCheatUsed;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -49,6 +54,11 @@ public static class CheatManager
     public static bool InfiniteMP { get; set; }
 
     /// <summary>
+    ///   Can move to any patch in the editor.
+    /// </summary>
+    public static bool MoveToAnyPatch { get; set; }
+
+    /// <summary>
     ///   Forces the player microbe to duplicate without going to the editor
     /// </summary>
     public static void PlayerDuplication()
@@ -64,14 +74,20 @@ public static class CheatManager
         OnSpawnEnemyCheatUsed?.Invoke(null, EventArgs.Empty);
     }
 
+    public static void DespawnAllEntities()
+    {
+        OnDespawnAllEntitiesCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
+
     public static void DisableAllCheats()
     {
         InfiniteCompounds = false;
         GodMode = false;
         NoAI = false;
-        Speed = 1f;
+        Speed = 1.0f;
 
         InfiniteMP = false;
+        MoveToAnyPatch = false;
     }
 
     public static void HideCheatMenus()

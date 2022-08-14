@@ -7,16 +7,38 @@
 /// [Tool]
 public class TutorialDialog : CustomDialog
 {
+    [Export]
+    public NodePath LabelPath = null!;
+
+    private CustomRichTextLabel? label;
+
     private Tween tween = new();
+
+    private string description = string.Empty;
+
+    [Export(PropertyHint.MultilineText)]
+    public string Description
+    {
+        get => description;
+        set
+        {
+            description = value;
+            UpdateLabel();
+        }
+    }
 
     /// <summary>
     ///   Tweakable delay to make tutorial sequences flow more naturally.
     /// </summary>
     [Export]
-    public float ShowDelay { get; set; } = 0.7f;
+    public float ShowDelay { get; set; } = 0.5f;
 
     public override void _Ready()
     {
+        label = GetNode<CustomRichTextLabel>(LabelPath);
+
+        UpdateLabel();
+
         AddChild(tween);
     }
 
@@ -33,5 +55,13 @@ public class TutorialDialog : CustomDialog
             this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
             Tween.EaseType.Out, ShowDelay);
         tween.Start();
+    }
+
+    private void UpdateLabel()
+    {
+        if (label == null)
+            return;
+
+        label.ExtendedBbcode = TranslationServer.Translate(Description);
     }
 }

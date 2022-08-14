@@ -24,12 +24,12 @@ public abstract class HexPopupMenu : PopupPanel
     protected Button? moveButton;
     protected Button? modifyButton;
 
-    protected float editorCostFactor = 1.0f;
-
     private bool showPopup;
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
+
+    private string? deleteTooltip;
 
     [Signal]
     public delegate void DeletePressed();
@@ -39,12 +39,6 @@ public abstract class HexPopupMenu : PopupPanel
 
     [Signal]
     public delegate void ModifyPressed();
-
-    public float EditorCostFactor
-    {
-        get => editorCostFactor;
-        set => editorCostFactor = value;
-    }
 
     public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
@@ -100,6 +94,16 @@ public abstract class HexPopupMenu : PopupPanel
         {
             enableModify = value;
             UpdateModifyButton();
+        }
+    }
+
+    public string? DeleteOptionTooltip
+    {
+        get => deleteTooltip;
+        set
+        {
+            deleteTooltip = value;
+            UpdateDeleteButton();
         }
     }
 

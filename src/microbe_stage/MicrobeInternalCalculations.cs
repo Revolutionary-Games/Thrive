@@ -8,7 +8,7 @@ public static class MicrobeInternalCalculations
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
 
-        var movementOrganelles = organelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>())
+        var movementOrganelles = organelles.Where(o => o.Definition.HasMovementComponent)
             .ToList();
 
         foreach (var organelle in movementOrganelles)
@@ -61,7 +61,7 @@ public static class MicrobeInternalCalculations
         {
             microbeMass += organelle.Definition.Mass;
 
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
 
@@ -101,7 +101,7 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
         float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+            (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
@@ -133,7 +133,7 @@ public static class MicrobeInternalCalculations
         {
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
-            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            if (organelle.Definition.HasCiliaComponent)
             {
                 ++ciliaCount;
 
@@ -168,6 +168,46 @@ public static class MicrobeInternalCalculations
     public static float RotationSpeedToUserReadableNumber(float rawSpeed)
     {
         return rawSpeed * 500;
+    }
+
+    public static float CalculateDigestionSpeed(int enzymeCount)
+    {
+        var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
+        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
+
+        return amount + buff;
+    }
+
+    public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles)
+    {
+        var multiplier = 0;
+        foreach (var organelle in organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<LysosomeComponentFactory>())
+                ++multiplier;
+        }
+
+        return CalculateDigestionSpeed(multiplier);
+    }
+
+    public static float CalculateDigestionEfficiency(int enzymeCount)
+    {
+        var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
+        var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
+
+        return Mathf.Clamp(absorption + buff, 0.0f, 0.6f);
+    }
+
+    public static float CalculateTotalDigestionEfficiency(IEnumerable<OrganelleTemplate> organelles)
+    {
+        var multiplier = 0;
+        foreach (var organelle in organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<LysosomeComponentFactory>())
+                ++multiplier;
+        }
+
+        return CalculateDigestionEfficiency(multiplier);
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

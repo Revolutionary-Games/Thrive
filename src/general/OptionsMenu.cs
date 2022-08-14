@@ -10,9 +10,7 @@ using Saving;
 /// </summary>
 public class OptionsMenu : ControlWithInput
 {
-    /*
-      GUI Control Paths
-    */
+    // GUI Control Paths
 
     // Options control buttons.
 
@@ -70,7 +68,22 @@ public class OptionsMenu : ControlWithInput
     public NodePath DisplayAbilitiesBarTogglePath = null!;
 
     [Export]
+    public NodePath DisplayBackgroundParticlesTogglePath = null!;
+
+    [Export]
     public NodePath GUILightEffectsTogglePath = null!;
+
+    [Export]
+    public NodePath DisplayPartNamesTogglePath = null!;
+
+    [Export]
+    public NodePath GpuNamePath = null!;
+
+    [Export]
+    public NodePath UsedRendererNamePath = null!;
+
+    [Export]
+    public NodePath VideoMemoryPath = null!;
 
     // Sound tab.
     [Export]
@@ -148,6 +161,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath ThreadCountSliderPath = null!;
+
+    [Export]
+    public NodePath MaxSpawnedEntitiesPath = null!;
 
     // Inputs tab.
     [Export]
@@ -237,7 +253,12 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
+    private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
+    private CustomCheckBox displayPartNamesToggle = null!;
+    private Label gpuName = null!;
+    private Label usedRendererName = null!;
+    private Label videoMemory = null!;
 
     // Sound tab
     private Control soundTab = null!;
@@ -267,6 +288,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox assumeHyperthreading = null!;
     private CustomCheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
+    private OptionButton maxSpawnedEntities = null!;
 
     // Inputs tab
     private Control inputsTab = null!;
@@ -294,9 +316,7 @@ public class OptionsMenu : ControlWithInput
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
 
-    /*
-      Misc
-    */
+    // Misc
 
     private OptionsMode optionsMode;
     private SelectedOptionsTab selectedOptionsTab;
@@ -311,9 +331,7 @@ public class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
-    /*
-      Signals
-    */
+    // Signals
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -360,7 +378,12 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
+        displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
+        displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
+        gpuName = GetNode<Label>(GpuNamePath);
+        usedRendererName = GetNode<Label>(UsedRendererNamePath);
+        videoMemory = GetNode<Label>(VideoMemoryPath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -393,6 +416,7 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
         useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
+        maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -434,6 +458,7 @@ public class OptionsMenu : ControlWithInput
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
             DisplayResolution();
+            DisplayGpuInfo();
         }
         else if (what == NotificationResized)
         {
@@ -507,8 +532,11 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
+        displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        displayPartNamesToggle.Pressed = settings.DisplayPartNames;
         DisplayResolution();
+        DisplayGpuInfo();
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -537,6 +565,7 @@ public class OptionsMenu : ControlWithInput
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
         threadCountSlider.Editable = settings.UseManualThreadCount;
+        maxSpawnedEntities.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntities);
 
         UpdateDetectedCPUCount();
 
@@ -620,8 +649,41 @@ public class OptionsMenu : ControlWithInput
             return;
 
         var screenResolution = OS.WindowSize * OS.GetScreenScale();
-        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
-            screenResolution.x, screenResolution.y);
+        resolution.Text = TranslationServer.Translate("AUTO_RESOLUTION")
+            .FormatSafe(screenResolution.x, screenResolution.y);
+    }
+
+    /// <summary>
+    /// Displays the GPU name, the display driver name and used video memory
+    /// </summary>
+    private void DisplayGpuInfo()
+    {
+        gpuName.Text = VisualServer.GetVideoAdapterName();
+
+        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
+        {
+            // Gles2 is being used
+            usedRendererName.Text = TranslationServer.Translate("GLES2");
+        }
+        else if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles3)
+        {
+            // Gles3 is being used
+            usedRendererName.Text = TranslationServer.Translate("GLES3");
+        }
+        else
+        {
+            // An unknown display driver is being used
+            usedRendererName.Text = TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER");
+        }
+
+        float videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed);
+
+        // Convert to mebibytes
+        videoMemoryInMebibytes /= Constants.MEBIBYTE;
+
+        // Round to 2 places after the floating point
+        videoMemory.Text = TranslationServer.Translate("VIDEO_MEMORY_MIB")
+            .FormatSafe(Math.Round(videoMemoryInMebibytes, 2));
     }
 
     /// <summary>
@@ -755,6 +817,58 @@ public class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid cloud resolution index");
                 return 2;
+        }
+    }
+
+    private int MaxEntitiesIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Constants.TINY_MAX_SPAWNED_ENTITIES;
+            case 1:
+                return Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES;
+            case 2:
+                return Constants.SMALL_MAX_SPAWNED_ENTITIES;
+            case 3:
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
+            case 4:
+                return Constants.LARGE_MAX_SPAWNED_ENTITIES;
+            case 5:
+                return Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES;
+            case 6:
+                return Constants.HUGE_MAX_SPAWNED_ENTITIES;
+            case 7:
+                return Constants.EXTREME_MAX_SPAWNED_ENTITIES;
+            default:
+                GD.PrintErr("invalid max entities count index");
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
+        }
+    }
+
+    private int MaxEntitiesValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case Constants.TINY_MAX_SPAWNED_ENTITIES:
+                return 0;
+            case Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES:
+                return 1;
+            case Constants.SMALL_MAX_SPAWNED_ENTITIES:
+                return 2;
+            case Constants.NORMAL_MAX_SPAWNED_ENTITIES:
+                return 3;
+            case Constants.LARGE_MAX_SPAWNED_ENTITIES:
+                return 4;
+            case Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES:
+                return 5;
+            case Constants.HUGE_MAX_SPAWNED_ENTITIES:
+                return 6;
+            case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
+                return 7;
+            default:
+                GD.PrintErr("invalid max entities count value");
+                return 3;
         }
     }
 
@@ -964,12 +1078,10 @@ public class OptionsMenu : ControlWithInput
             textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
         }
 
-        languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
+        languageProgressLabel.Text = textFormat.FormatSafe(Mathf.Floor(progress));
     }
 
-    /*
-      GUI Control Callbacks
-    */
+    // GUI Control Callbacks
 
     private void OnBackPressed()
     {
@@ -1183,9 +1295,23 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnDisplayBackgroundParticlesToggled(bool toggle)
+    {
+        Settings.Instance.DisplayBackgroundParticles.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnGUILightEffectsToggled(bool toggle)
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplayPartNamesToggled(bool toggle)
+    {
+        Settings.Instance.DisplayPartNames.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
@@ -1322,6 +1448,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+    }
+
+    private void OnMaxSpawnedEntitiesSelected(int index)
+    {
+        Settings.Instance.MaxSpawnedEntities.Value = MaxEntitiesIndexToValue(index);
+
+        UpdateResetSaveButtonState();
     }
 
     // Input Callbacks

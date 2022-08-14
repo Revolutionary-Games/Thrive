@@ -38,20 +38,15 @@ public static class NodeGroupSaveHelper
         }
     }
 
-    public static void ReadGroups(JObject item, Node instance, JsonReader reader, JsonSerializer serializer)
+    public static void ReadGroups(InProgressObjectDeserialization objectLoad, Node instance)
     {
-        _ = reader;
-        _ = serializer;
+        var (name, value, _, _) = objectLoad.GetCustomProperty(GROUP_JSON_PROPERTY_NAME);
 
-        var groupValues = item[GROUP_JSON_PROPERTY_NAME];
-
-        var groups = groupValues?.ToObject<List<string>>();
-
-        if (groups != null)
+        if (name != null && value != null)
         {
-            foreach (var group in groups)
+            foreach (var group in (JArray)value)
             {
-                instance.AddToGroup(group);
+                instance.AddToGroup(group.ValueNotNull<string>());
             }
         }
     }

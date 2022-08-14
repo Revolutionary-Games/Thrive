@@ -52,11 +52,13 @@ public enum ToolTipTransitioning
 public interface ICustomToolTip
 {
     /// <summary>
-    ///   Used as the human readable name for this tooltip, as opposed to the Node name
-    ///   which usually functions as the "InternalName".
+    ///   The displayable name/title for this tooltip.
     /// </summary>
     string DisplayName { get; set; }
 
+    /// <summary>
+    ///   The main message the tooltip contains.
+    /// </summary>
     string? Description { get; set; }
 
     /// <summary>
@@ -74,7 +76,7 @@ public interface ICustomToolTip
     /// </summary>
     ToolTipTransitioning TransitionType { get; set; }
 
-    bool HideOnMousePress { get; set; }
+    bool HideOnMouseAction { get; set; }
 
     /// <summary>
     ///   Control node of this tooltip

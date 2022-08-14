@@ -10,17 +10,28 @@ public static class ToolTipHelper
     private static readonly PackedScene DefaultTipScene = GD.Load<PackedScene>(
         "res://src/gui_common/tooltip/DefaultToolTip.tscn");
 
+    private static readonly Stack<DefaultToolTip> DefaultToolTipCache = new();
+
     /// <summary>
     ///   A helper static member to store enter/exit callback for registered tooltips to keep it from unloading.
     /// </summary>
     private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new();
 
     /// <summary>
-    ///   Instantiates a default tooltip scene
+    ///   Gets a default tooltip instance from cache, or instantiates a default tooltip scene if the cache is empty.
     /// </summary>
-    public static DefaultToolTip CreateDefaultToolTip()
+    public static DefaultToolTip GetDefaultToolTip()
     {
-        return (DefaultToolTip)DefaultTipScene.Instance();
+        return DefaultToolTipCache.Count == 0 ? (DefaultToolTip)DefaultTipScene.Instance() : DefaultToolTipCache.Pop();
+    }
+
+    /// <summary>
+    ///   Returns a default tooltip instance to the cache for <see cref="GetDefaultToolTip"/>
+    /// </summary>
+    /// <param name="toolTip">The tooltip to return to the cache</param>
+    public static void ReturnDefaultToolTip(DefaultToolTip toolTip)
+    {
+        DefaultToolTipCache.Push(toolTip);
     }
 
     /// <summary>

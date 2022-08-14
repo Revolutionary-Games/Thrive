@@ -174,7 +174,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else
             {
-                GD.Print("Loaded cell editor with no cell to edit set");
+                GD.Print("Loaded body plan editor with no cell to edit set");
             }
         }
 
@@ -312,12 +312,12 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return;
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount, 0);
         }
 
         if (cellDataDirty)
@@ -473,13 +473,13 @@ public partial class CellBodyPlanEditorComponent :
 
         if (MovingPlacedHex == null)
         {
-            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, false);
         }
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
                 new List<HexWithData<CellTemplate>>
-                    { MovingPlacedHex }, false);
+                    { MovingPlacedHex }, true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -561,7 +561,7 @@ public partial class CellBodyPlanEditorComponent :
             highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
         }
 
-        return highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET;
+        return highestPointInMiddleRows;
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species)

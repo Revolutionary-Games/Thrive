@@ -11,10 +11,16 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowed]
+[JSONAlwaysDynamicType]
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {
+    /// <summary>
+    ///   This is not an auto property to make save compatibility easier
+    /// </summary>
+    [JsonProperty]
+    private Dictionary<Compound, float>? cachedBaseReproductionCost;
+
     protected Species(uint id, string genus, string epithet)
     {
         ID = id;
@@ -28,10 +34,24 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
+    /// <summary>
+    ///   The base compounds needed to reproduce an individual of this species. Do not modify the returned value.
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Compound, float> BaseReproductionCost =>
+        cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
+
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
     public Color Colour { get; set; } = new(1, 1, 1);
+
+    /// <summary>
+    ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
+    ///   that old species that should no longer be in use, are not used. Once this has been set to true, don't set
+    ///   this back to false.
+    /// </summary>
+    public bool Obsolete { get; set; }
 
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
@@ -44,8 +64,7 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Changing this has no effect as this is set after auto-evo
-    ///     from the per patch populations.
+    ///     Changing this has no effect as this is set after auto-evo from the per patch populations.
     ///   </para>
     /// </remarks>
     public long Population { get; set; } = 1;
@@ -53,13 +72,12 @@ public abstract class Species : ICloneable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   Unique id of this species, used to identity this
+    ///   Unique id of this species, used to identify this
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     In the previous version a string name was used to identify
-    ///     species, but it was just the word species followed by a
-    ///     sequential number, so now this is an actual number.
+    ///     In the previous version a string name was used to identify species, but it was just the word species
+    ///     followed by a sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -68,6 +86,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
+    [JsonIgnore]
     public abstract string StringCode { get; }
 
     /// <summary>
@@ -79,6 +98,13 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
+    /// <summary>
+    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling. Player's species will be emphasized
+    ///   with bolding.
+    /// </summary>
+    [JsonIgnore]
+    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
@@ -89,7 +115,10 @@ public abstract class Species : ICloneable
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
     /// </summary>
-    public abstract void OnEdited();
+    public virtual void OnEdited()
+    {
+        cachedBaseReproductionCost = null;
+    }
 
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
@@ -113,23 +142,29 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
+    ///     TODO: THIS ASSUMPTION IS NOW INVALID. WE MAY HAVE A BUG. AUTO-EVO SPECIES NUMBERS NOW NEED EXTRA CACHING
+    ///     especially probably affects things if auto-evo is not set to run while playing.
     ///     This should be made sure to not affect auto-evo. As long
     ///     as auto-evo uses the per patch population numbers this
     ///     doesn't affect that.
     ///   </para>
     ///   <para>
-    ///     In addition to this an external population effect needs to
-    ///     be sent to auto-evo, otherwise this effect disappears when
-    ///     auto-evo finishes.
+    ///     In addition to this an external population effect needs to be sent to auto-evo,
+    ///     otherwise this effect disappears when auto-evo finishes.
     ///   </para>
     /// </remarks>
-    public void ApplyImmediatePopulationChange(long constant, float coefficient)
+    public void ApplyImmediatePopulationChange(long constant, float coefficient, Patch patch)
     {
-        Population = (long)(Population * coefficient);
-        Population += constant;
+        ThrowPopulationChangeErrorIfNotPlayer();
 
-        if (Population < 0)
-            Population = 0;
+        var oldPopulation = patch.GetSpeciesGameplayPopulation(this);
+        var population = (long)(oldPopulation * coefficient);
+        population += constant;
+
+        if (population < 0)
+            population = 0;
+
+        patch.UpdateSpeciesGameplayPopulation(this, population);
     }
 
     /// <summary>
@@ -146,6 +181,8 @@ public abstract class Species : ICloneable
             Behaviour[entry.Key] = entry.Value;
 
         Colour = mutation.Colour;
+
+        cachedBaseReproductionCost = null;
 
         // These don't mutate for a species
         // genus;
@@ -220,7 +257,7 @@ public abstract class Species : ICloneable
 
     public override string ToString()
     {
-        return FormattedIdentifier;
+        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
     }
 
     /// <summary>
@@ -230,8 +267,7 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual int GetVisualHashCode()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607)
-            ^ (Colour.GetHashCode() * 617);
+        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
     }
 
     internal virtual void CopyDataToConvertedSpecies(Species species)
@@ -269,5 +305,32 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    private Dictionary<Compound, float> CalculateBaseReproductionCost()
+    {
+        var result = new Dictionary<Compound, float>();
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        if (Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA > 0)
+        {
+            result.Add(simulationParameters.GetCompound("ammonia"),
+                Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA);
+        }
+
+        if (Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES > 0)
+        {
+            result.Add(simulationParameters.GetCompound("phosphates"),
+                Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
+        }
+
+        return result;
+    }
+
+    private void ThrowPopulationChangeErrorIfNotPlayer()
+    {
+        if (!PlayerSpecies)
+            throw new InvalidOperationException("Cannot apply an immediate population change to an AI species");
     }
 }

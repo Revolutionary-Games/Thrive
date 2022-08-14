@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -125,9 +124,8 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
-            inputActionItem.DisplayName, inputActionItem.DisplayName);
+        conflictDialog.DialogText = TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT")
+            .FormatSafe(inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();
     }
@@ -165,7 +163,7 @@ public class InputGroupList : VBoxContainer
         if (activeInputGroupList != null)
         {
             foreach (var inputGroupItem in activeInputGroupList)
-                inputGroupItem.DetachAndFree();
+                inputGroupItem.Free();
         }
 
         activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);

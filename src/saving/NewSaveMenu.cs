@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Globalization;
+using System.IO;
 using System.Linq;
 using Godot;
 using Path = System.IO.Path;
@@ -76,9 +76,7 @@ public class NewSaveMenu : Control
     private void ShowOverwriteConfirm(string name)
     {
         // The chosen filename ({0}) already exists. Overwrite?
-        overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS"),
-            name);
+        overwriteConfirm.DialogText = TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS").FormatSafe(name);
         overwriteConfirm.PopupCenteredShrink();
     }
 
@@ -110,6 +108,19 @@ public class NewSaveMenu : Control
         // Verify name is writable
         var name = GetSaveName();
         var path = Path.Combine(Constants.SAVE_FOLDER, name);
+
+        // Make sure the save folder exists, otherwise the write test will always fail
+        try
+        {
+            FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
+        }
+        catch (IOException e)
+        {
+            GD.PrintErr("Could not make sure save folder exists for save writability check: ", e);
+            attemptWriteFailAccept.PopupCenteredShrink();
+            return;
+        }
+
         if (!FileHelpers.Exists(path) && FileHelpers.TryWriteFile(path) != Error.Ok)
         {
             attemptWriteFailAccept.PopupCenteredShrink();

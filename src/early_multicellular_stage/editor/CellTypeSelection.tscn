@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/early_multicellular_stage/editor/CellTypeSelection.cs" type="Script" id=2]
 
+[sub_resource type="ButtonGroup" id=1]
+
 [node name="CellTypeSelection" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+AlwaysShowLabel = true
+
+[node name="Button" parent="VBoxContainer" index="0"]
+group = SubResource( 1 )

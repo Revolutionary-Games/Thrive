@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -177,28 +176,6 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Change the TweakedColourPicker's current colour.
-    ///   <remarks>
-    ///     Have to disable warning CA1721 because this hides Godot property Color
-    ///     to emit a signal when changing its color. This can't be renamed.
-    ///   </remarks>
-    /// </summary>
-#pragma warning disable CA1721
-    public new Color Color
-#pragma warning restore CA1721
-    {
-        get => base.Color;
-        set
-        {
-            if (Color == value)
-                return;
-
-            base.Color = value;
-            EmitSignal("color_changed", value);
-        }
-    }
-
-    /// <summary>
     ///   Hide Godot property PresetsEnabled to avoid unexpected changes
     ///   which may cause the hidden native buttons reappear.
     /// </summary>
@@ -297,7 +274,7 @@ public class TweakedColourPicker : ColorPicker
             {
                 // Cancel
                 pickingColor = false;
-                Color = colorBeforePicking;
+                SetColour(colorBeforePicking);
             }
 
             AcceptEvent();
@@ -319,6 +296,22 @@ public class TweakedColourPicker : ColorPicker
             UpdateTooltips();
 
         base._Notification(what);
+    }
+
+    /// <summary>
+    ///   Change the TweakedColourPicker's current colour.
+    ///   <remarks>
+    ///     This emits the color_changed signal, used by the custom colour picker preset when it's selected so
+    ///     that other elements can be notified of the newly selected colour.
+    ///   </remarks>
+    /// </summary>
+    public void SetColour(Color colour)
+    {
+        if (Color == colour)
+            return;
+
+        Color = colour;
+        EmitSignal("color_changed", colour);
     }
 
     /// <summary>
@@ -383,7 +376,7 @@ public class TweakedColourPicker : ColorPicker
         if (colour.b > 1)
             colour.b = 1;
 
-        Color = colour;
+        SetColour(colour);
     }
 
     private void UpdateTooltips()
@@ -485,7 +478,7 @@ public class TweakedColourPicker : ColorPicker
     {
         if (colour.IsValidHtmlColor())
         {
-            Color = new Color(colour);
+            SetColour(new Color(colour));
         }
         else
         {
@@ -522,7 +515,7 @@ public class TweakedColourPicker : ColorPicker
         position.y = viewportTexture.GetHeight() - position.y;
 
         viewportTexture.Lock();
-        Color = viewportTexture.GetPixelv(position);
+        SetColour(viewportTexture.GetPixelv(position));
         viewportTexture.Unlock();
 
         pickerTimeElapsed = 0;
@@ -562,7 +555,7 @@ public class TweakedColourPicker : ColorPicker
                     case ButtonList.Left:
                     {
                         GetTree().SetInputAsHandled();
-                        owner.Color = Color;
+                        owner.SetColour(Color);
                         return;
                     }
 
@@ -583,9 +576,8 @@ public class TweakedColourPicker : ColorPicker
 
         private void UpdateTooltip()
         {
-            HintTooltip = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"),
-                Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
+            HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP")
+                .FormatSafe(Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
         }
     }
 

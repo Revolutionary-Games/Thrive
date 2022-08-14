@@ -4,7 +4,7 @@ public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompound
 {
     public float Amount;
     public float Density;
-    public float Dissolved;
+    public float Ambient;
 
     public static bool operator ==(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
     {
@@ -28,11 +28,11 @@ public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompound
 
     public override int GetHashCode()
     {
-        return (int)(Amount + Density + Dissolved);
+        return (int)(Amount + Density + Ambient);
     }
 
     public bool Equals(EnvironmentalCompoundProperties other)
     {
-        return Amount == other.Amount && Density == other.Density && Dissolved == other.Dissolved;
+        return Amount == other.Amount && Density == other.Density && Ambient == other.Ambient;
     }
 }

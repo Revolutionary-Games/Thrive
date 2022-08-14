@@ -9,7 +9,7 @@
     {
         private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
-        public override string ClosedByName { get; } = "CellEditorIntroduction";
+        public override string ClosedByName => "CellEditorIntroduction";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

@@ -238,7 +238,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                 return;
             }
 
-            OnEditorReady();
+            Ready = true;
+            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, OnEditorReady, false, false);
         }
 
         // Auto save after editor entry is complete
@@ -284,8 +285,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(MicrobeEditor.OnEditorExitTransitionFinished));
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeOut, 0.3f, OnEditorExitTransitionFinished, false);
+
         return true;
     }
 
@@ -558,6 +560,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
 
                 CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
+
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
             }
             else
             {
@@ -586,7 +590,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // Make sure non-default tab button is highlighted right if we loaded a save where the tab was changed
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
-            FadeIn();
+            // Just assume that a transition is finished (even though one may still be running after save load is
+            // complete). This should be fine as it will just be skipped if the player immediately exits the editor
+            // to the stage
+            TransitionFinished = true;
         }
 
         if (CurrentGame == null)
@@ -614,6 +621,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (run.Results != null)
         {
+            // External effects need to be finalized now before we use them for printing summaries or anything like
+            // that
+            run.CalculateFinalExternalEffectSizes();
+
             autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
@@ -758,11 +769,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         stage.OnReturnFromEditor();
     }
 
-    private void OnFinishTransitioning()
-    {
-        TransitionFinished = true;
-    }
-
     private void MakeSureEditorReturnIsGood()
     {
         if (currentGame == null)
@@ -783,28 +789,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
-        run.ApplyExternalEffects();
-
-        CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
-
-        // Update populations before recording conditions - should not affect per-patch population
-        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
-
-        // Needs to be before the remove extinct species call, so that extinct species could still be stored
-        // for reference in patch history (e.g. displaying it as zero on the species population chart)
-        foreach (var entry in CurrentGame.GameWorld.Map.Patches)
-        {
-            entry.Value.RecordSnapshot(true);
-        }
-
-        var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
-
-        foreach (var species in extinct)
-        {
-            CurrentGame.GameWorld.RemoveSpecies(species);
-
-            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
-        }
+        run.ApplyAllResultsAndEffects(FreeBuilding);
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
@@ -837,8 +822,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     private void FadeIn()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnFinishTransitioning));
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, 0.5f, () => TransitionFinished = true, false);
     }
 
     private void StartMusic()

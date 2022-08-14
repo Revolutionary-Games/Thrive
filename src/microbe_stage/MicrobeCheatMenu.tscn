@@ -9,9 +9,6 @@
 theme = ExtResource( 1 )
 popup_exclusive = true
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 WindowTitle = "CHEATS"
 Resizable = true
 InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
@@ -20,6 +17,7 @@ DisableAIPath = NodePath("VBoxContainer/DisableAI")
 SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
+DespawnAllEntitiesPath = NodePath("VBoxContainer/DespawnAllEntities")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 177.0
@@ -57,7 +55,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer/Speed"]
-margin_right = 101.0
+margin_right = 100.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_SPEED"
@@ -66,7 +64,7 @@ __meta__ = {
 }
 
 [node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Speed"]
-margin_left = 105.0
+margin_left = 104.0
 margin_right = 177.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
@@ -95,6 +93,13 @@ text = "SPAWN_ENEMY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DespawnAllEntities" type="Button" parent="VBoxContainer"]
+margin_top = 146.0
+margin_right = 177.0
+margin_bottom = 173.0
+custom_fonts/font = ExtResource( 3 )
+text = "DESPAWN_ENTITIES"
 
 [connection signal="toggled" from="VBoxContainer/InfiniteCompounds" to="." method="SetInfiniteCompounds"]
 [connection signal="toggled" from="VBoxContainer/GodMode" to="." method="SetGodMode"]
