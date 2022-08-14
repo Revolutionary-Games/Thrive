@@ -177,7 +177,7 @@ public class SpawnSystem : ISpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, ref spawnsLeftThisFrame, estimateEntityCount);
+            SpawnAllTypes(playerPosition, ref spawnsLeftThisFrame);
         }
         else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
         {
@@ -215,7 +215,7 @@ public class SpawnSystem : ISpawnSystem
 
             bool finished = false;
 
-            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
+            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities.Value &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
@@ -266,12 +266,8 @@ public class SpawnSystem : ISpawnSystem
         }
     }
 
-    private void SpawnEntities(Vector3 playerPosition, ref int spawnsLeftThisFrame, int existing)
+    private void SpawnAllTypes(Vector3 playerPosition, ref int spawnsLeftThisFrame)
     {
-        // If there are already too many entities, don't spawn more
-        if (existing >= Settings.Instance.MaxSpawnedEntities)
-            return;
-
         var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x /
             Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
@@ -322,6 +318,9 @@ public class SpawnSystem : ISpawnSystem
 
         foreach (var spawnType in spawnTypes)
         {
+            if (SpawnsBlocked(spawnType))
+                continue;
+
             var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.y * Constants.SPAWN_SECTOR_SIZE);
 
@@ -348,6 +347,9 @@ public class SpawnSystem : ISpawnSystem
         {
             if (spawnType is MicrobeSpawner)
             {
+                if (SpawnsBlocked(spawnType))
+                    continue;
+
                 spawns += SpawnWithSpawner(spawnType,
                     playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
                         Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
@@ -361,7 +363,16 @@ public class SpawnSystem : ISpawnSystem
     }
 
     /// <summary>
-    ///   Does a single spawn with a spawner
+    ///   Checks that spawning this type is currently allowed
+    /// </summary>
+    private bool SpawnsBlocked(Spawner spawnType)
+    {
+        return spawnType is not CompoundCloudSpawner &&
+            estimateEntityCount >= Settings.Instance.MaxSpawnedEntities.Value;
+    }
+
+    /// <summary>
+    ///   Does a single spawn with a spawner. Does NOT check we're under the entity limit.
     /// </summary>
     private int SpawnWithSpawner(Spawner spawnType, Vector3 location, ref int spawnsLeftThisFrame)
     {
@@ -372,43 +383,40 @@ public class SpawnSystem : ISpawnSystem
             return spawns;
         }
 
-        if (spawnType is CompoundCloudSpawner || estimateEntityCount < Settings.Instance.MaxSpawnedEntities)
+        var enumerable = spawnType.Spawn(worldRoot, location, this);
+
+        if (enumerable == null)
+            return spawns;
+
+        bool finished = false;
+
+        var spawner = enumerable.GetEnumerator();
+
+        while (spawnsLeftThisFrame > 0)
         {
-            var enumerable = spawnType.Spawn(worldRoot, location, this);
-
-            if (enumerable == null)
-                return spawns;
-
-            bool finished = false;
-
-            var spawner = enumerable.GetEnumerator();
-
-            while (spawnsLeftThisFrame > 0)
+            if (!spawner.MoveNext())
             {
-                if (!spawner.MoveNext())
-                {
-                    finished = true;
-                    break;
-                }
-
-                if (spawner.Current == null)
-                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
-
-                ProcessSpawnedEntity(spawner.Current, spawnType);
-                ++spawns;
-                ++estimateEntityCount;
-                --spawnsLeftThisFrame;
+                finished = true;
+                break;
             }
 
-            if (!finished)
-            {
-                // Store the remaining items in the enumerator for later
-                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
-            }
-            else
-            {
-                spawner.Dispose();
-            }
+            if (spawner.Current == null)
+                throw new NullReferenceException("spawn enumerator is not allowed to return null");
+
+            ProcessSpawnedEntity(spawner.Current, spawnType);
+            ++spawns;
+            ++estimateEntityCount;
+            --spawnsLeftThisFrame;
+        }
+
+        if (!finished)
+        {
+            // Store the remaining items in the enumerator for later
+            queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
+        }
+        else
+        {
+            spawner.Dispose();
         }
 
         return spawns;
