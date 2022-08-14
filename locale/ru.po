@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-14 13:27-0300\n"
+"POT-Creation-Date: 2022-08-14 18:03-0300\n"
 "PO-Revision-Date: 2022-07-24 11:52+0000\n"
 "Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -23,15 +23,15 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr "Легко"
 
-#: ../simulation_parameters/common/difficulty_presets.json:14
+#: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Нормально"
 
-#: ../simulation_parameters/common/difficulty_presets.json:25
+#: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Сложно"
 
-#: ../simulation_parameters/common/difficulty_presets.json:36
+#: ../simulation_parameters/common/difficulty_presets.json:42
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Пользовательский"
 
@@ -63,7 +63,7 @@ msgid "MUSIC"
 msgstr "Музыка"
 
 #: ../simulation_parameters/common/gallery.json:252
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 msgid "ALL"
 msgstr "всё"
 
@@ -375,13 +375,13 @@ msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1977
+#: ../src/microbe_stage/MicrobeStage.tscn:1975
 msgid "FIRE_TOXIN"
 msgstr "Выстрелить токсином"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1965
+#: ../src/microbe_stage/MicrobeStage.tscn:1963
 msgid "TOGGLE_ENGULF"
 msgstr "Переключить поглощение"
 
@@ -390,7 +390,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Удерживайте, чтобы отобразить меню команд"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1986
 msgid "TOGGLE_BINDING"
 msgstr "Переключить связку"
 
@@ -399,7 +399,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Переключить развязку"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:2000
+#: ../src/microbe_stage/MicrobeStage.tscn:1998
 msgid "UNBIND_ALL"
 msgstr "Отвязать всех"
 
@@ -514,8 +514,8 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Переключить на вид спереди"
 
 #: ../simulation_parameters/common/input_options.json:196
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Чит-коды"
 
@@ -746,41 +746,41 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1234
+#: ../src/microbe_stage/MicrobeStage.tscn:1232
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Аммиак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1283
+#: ../src/microbe_stage/MicrobeStage.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1335
+#: ../src/microbe_stage/MicrobeStage.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1185
+#: ../src/microbe_stage/MicrobeStage.tscn:1183
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1558
+#: ../src/microbe_stage/MicrobeStage.tscn:1556
 msgid "OXYTOXY_NT"
 msgstr "ОксиТоксин НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1384
+#: ../src/microbe_stage/MicrobeStage.tscn:1382
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Железо"
@@ -802,15 +802,15 @@ msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3985
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:628
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Солнечный Свет"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:163
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:617
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr "Температура"
@@ -983,12 +983,12 @@ msgstr "Ресничка"
 msgid "LYSOSOME"
 msgstr "Лизосома"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:536
+#: ../src/auto-evo/AutoEvoExploringTool.cs:537
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:708
+#: ../src/auto-evo/AutoEvoExploringTool.cs:709
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Виды[/b]\n"
@@ -1002,7 +1002,7 @@ msgstr ""
 "[b]Поведение[/b]\n"
 "  {5}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:716
+#: ../src/auto-evo/AutoEvoExploringTool.cs:718
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Этап[/b]\n"
@@ -1174,8 +1174,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Список Видов"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
-#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1052
 #: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1226,8 +1226,8 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Популяция {0} изменена на {1} к {2}, по причине: {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:80
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
+#: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr "Миллион Лет"
 
@@ -1339,7 +1339,7 @@ msgstr "Равномерно распределенный экологическ
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Истребление {0}"
 
-#: ../src/early_multicellular_stage/CellType.cs:39
+#: ../src/early_multicellular_stage/CellType.cs:38
 msgid "STEM_CELL_NAME"
 msgstr "Название вида клетки"
 
@@ -1401,7 +1401,7 @@ msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
 
@@ -1461,21 +1461,21 @@ msgstr "{0} MP"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Загрузка Раннего Многоклеточного Редактора"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Действие заблокировано до окончания предыдущего"
@@ -1996,12 +1996,12 @@ msgid "CLOSE"
 msgstr "Закрыть"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:568 ../src/general/StageHUDBase.cs:675
+#: ../src/general/NewGameSettings.cs:581 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
@@ -2019,280 +2019,300 @@ msgstr "Концентрация глюкозы резко упала!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
-#: ../src/general/MainMenu.tscn:176
+#: ../src/general/MainMenu.tscn:173
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Новая Игра"
 
-#: ../src/general/MainMenu.tscn:179
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Новая Игра"
 
-#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
-#: ../src/general/MainMenu.tscn:201 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
-#: ../src/general/MainMenu.tscn:205 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Инструменты"
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Обзор Исходного Кода"
 
-#: ../src/general/MainMenu.tscn:238
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Дополнительное"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Титры"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Выйти из игры"
 
-#: ../src/general/MainMenu.tscn:261
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Креативный Редактор"
 
-#: ../src/general/MainMenu.tscn:293
+#: ../src/general/MainMenu.tscn:290
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "статус запуска:"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:374
+#: ../src/general/MainMenu.tscn:371
 msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
-#: ../src/general/MainMenu.tscn:386
+#: ../src/general/MainMenu.tscn:383
 msgid "LICENSES"
 msgstr "Лицензии"
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
-#: ../src/general/NewGameSettings.cs:285
-#: ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/NewGameSettings.cs:297
+#: ../src/general/NewGameSettings.tscn:1092
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать игру с этими настройками"
 
-#: ../src/general/NewGameSettings.cs:292
+#: ../src/general/NewGameSettings.cs:304
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Некоторые настройки неправильные"
 
-#: ../src/general/NewGameSettings.tscn:115
-#: ../src/general/NewGameSettings.tscn:328
+#: ../src/general/NewGameSettings.tscn:117
+#: ../src/general/NewGameSettings.tscn:330
 msgid "DIFFICULTY_PRESET"
 msgstr "Шаблон сложности"
 
-#: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:814
+#: ../src/general/NewGameSettings.tscn:144
+#: ../src/general/NewGameSettings.tscn:854
 msgid "LAWK_ONLY"
 msgstr "Только ЖКМЗ"
 
-#: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:821
+#: ../src/general/NewGameSettings.tscn:151
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ограничивает органеллы и способности только теми, которые встречаются в природе (Жизнь, Какой Мы её Знаем))"
 
-#: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:837
+#: ../src/general/NewGameSettings.tscn:167
+#: ../src/general/NewGameSettings.tscn:877
 msgid "LIFE_ORIGIN"
 msgstr "Происхождение жизни"
 
-#: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:174
+#: ../src/general/NewGameSettings.tscn:884
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(начальная локация)"
 
-#: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:858
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Некоторые варианты могут быть недоступны если включен режим ЖКМЗ"
 
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:860
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:191
+#: ../src/general/NewGameSettings.tscn:900
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гидротермальные источники"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:191
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_POND"
 msgstr "Небольшое теплое озеро"
 
-#: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:191
+#: ../src/general/NewGameSettings.tscn:901
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Панспермия (случайно)"
 
-#: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:916
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
 
-#: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:225
+#: ../src/general/NewGameSettings.tscn:935
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
 
-#: ../src/general/NewGameSettings.tscn:268
+#: ../src/general/NewGameSettings.tscn:270
 msgid "DIFFICULTY"
 msgstr "Сложность"
 
-#: ../src/general/NewGameSettings.tscn:278
+#: ../src/general/NewGameSettings.tscn:280
 msgid "PLANET"
 msgstr "Планета"
 
-#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Дополнительное"
 
-#: ../src/general/NewGameSettings.tscn:367
+#: ../src/general/NewGameSettings.tscn:369
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Коэффициент стоимости мутации"
 
-#: ../src/general/NewGameSettings.tscn:412
+#: ../src/general/NewGameSettings.tscn:414
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(стоимость органелл, мембран и т. д. в редакторе)"
 
-#: ../src/general/NewGameSettings.tscn:429
+#: ../src/general/NewGameSettings.tscn:431
 msgid "AI_MUTATION_RATE"
 msgstr "Скорость мутации ИИ"
 
-#: ../src/general/NewGameSettings.tscn:474
+#: ../src/general/NewGameSettings.tscn:476
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(скорость, с которой ИИ будет мутировать)"
 
-#: ../src/general/NewGameSettings.tscn:491
+#: ../src/general/NewGameSettings.tscn:493
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Плотность облака вещества"
 
-#: ../src/general/NewGameSettings.tscn:536
+#: ../src/general/NewGameSettings.tscn:538
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(плотность облаков веществ в окружающей среде)"
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:555
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Изменение популяции от смерти игрока"
 
-#: ../src/general/NewGameSettings.tscn:598
+#: ../src/general/NewGameSettings.tscn:600
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(коэффициент уменьшения популяции вида с каждой смертью игрока)"
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:617
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Сохранение природной глюкозы"
 
-#: ../src/general/NewGameSettings.tscn:659
+#: ../src/general/NewGameSettings.tscn:661
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
 
-#: ../src/general/NewGameSettings.tscn:676
+#: ../src/general/NewGameSettings.tscn:678
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Множитель стоимости осморегуляции"
 
-#: ../src/general/NewGameSettings.tscn:721
+#: ../src/general/NewGameSettings.tscn:723
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(стоимость осморегуляции вида игрока)"
 
-#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:735
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Бесплатное облако глюкозы при выходе из редактора"
 
-#: ../src/general/NewGameSettings.tscn:740
+#: ../src/general/NewGameSettings.tscn:742
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(начало с облаком глюкозы возле каждого поколения)"
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:754
+#, fuzzy
+msgid "PASSIVE_REPRODUCTION_PROGRESS"
+msgstr "(скорость, с которой ИИ будет мутировать)"
+
+#: ../src/general/NewGameSettings.tscn:761
+#, fuzzy
+msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
+msgstr "(скорость, с которой ИИ будет мутировать)"
+
+#: ../src/general/NewGameSettings.tscn:773
+#, fuzzy
+msgid "LIMIT_GROWTH_RATE"
+msgstr "Нормальное"
+
+#: ../src/general/NewGameSettings.tscn:780
+#, fuzzy
+msgid "LIMIT_GROWTH_RATE_EXPLANATION"
+msgstr "(скорость, с которой ИИ будет мутировать)"
+
+#: ../src/general/NewGameSettings.tscn:816
 msgid "PATCH_MAP_TYPE"
 msgstr "Тип карты биомов"
 
-#: ../src/general/NewGameSettings.tscn:783
+#: ../src/general/NewGameSettings.tscn:823
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(генерировать карту биомов процедурно или использовать классическое расположение)"
 
-#: ../src/general/NewGameSettings.tscn:798
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:838
+#: ../src/general/NewGameSettings.tscn:839
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Процедурная"
 
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:839
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Классическая"
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:983
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Генерация планеты в разработке!"
 
-#: ../src/general/NewGameSettings.tscn:975
+#: ../src/general/NewGameSettings.tscn:1015
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включить прототипы поздних стадий игры"
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:1022
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(некоторые функции могут быть недоступны как только вы достигнете следующего этапа)"
 
-#: ../src/general/NewGameSettings.tscn:994
+#: ../src/general/NewGameSettings.tscn:1034
 msgid "EASTER_EGGS"
 msgstr "Включить пасхальные яйца"
 
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:1041
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(случайно расположенные секреты в игре)"
 
-#: ../src/general/NewGameSettings.tscn:1029
+#: ../src/general/NewGameSettings.tscn:1069
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Открыть меню продвинутой настройки"
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1071
 msgid "ADVANCED_VIEW"
 msgstr "Продвинутый вид"
 
-#: ../src/general/NewGameSettings.tscn:1042
+#: ../src/general/NewGameSettings.tscn:1082
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Вернуться к базовому виду меню настроек"
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1083
 msgid "BASIC_VIEW"
 msgstr "Базовый вид"
 
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1093
 msgid "CONFIRM_NORMAL"
 msgstr "Подтвердить"
 
@@ -2732,7 +2752,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Полная статистика о текущей игре"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -3155,7 +3175,7 @@ msgstr "Описание:"
 msgid "ARTIST_COLON"
 msgstr "Создатель:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:259
 msgid "UNTITLED"
 msgstr "Без Имени"
 
@@ -3172,22 +3192,22 @@ msgstr "Фильтровать предметы по категориям:"
 msgid "SLIDESHOW"
 msgstr "Слайд-шоу"
 
-#: ../src/gui_common/charts/line/LineChart.cs:645
+#: ../src/gui_common/charts/line/LineChart.cs:631
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
-#: ../src/gui_common/charts/line/LineChart.cs:649
+#: ../src/gui_common/charts/line/LineChart.cs:635
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Невозможно отобразить данные"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1112
-#: ../src/gui_common/charts/line/LineChart.cs:1204
+#: ../src/gui_common/charts/line/LineChart.cs:1102
+#: ../src/gui_common/charts/line/LineChart.cs:1194
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Не разрешается показывать более {0} наборов данных!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1118
-#: ../src/gui_common/charts/line/LineChart.cs:1209
+#: ../src/gui_common/charts/line/LineChart.cs:1108
+#: ../src/gui_common/charts/line/LineChart.cs:1199
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Невозможно показать меньше, чем {0} наборов данных!"
 
@@ -3234,8 +3254,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr "Руководство"
 
@@ -3702,51 +3723,51 @@ msgid "LOOKING_AT"
 msgstr "Смотрите на:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:481
 msgid "NOTHING_HERE"
 msgstr "Здесь ничего нет"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:508
+#: ../src/microbe_stage/MicrobeStage.tscn:506
 msgid "COMPOUNDS_COLON"
 msgstr "Соединения:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:546
 msgid "SPECIES_COLON"
 msgstr "Виды:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:625
+#: ../src/microbe_stage/MicrobeStage.tscn:623
 msgid "ENVIRONMENT"
 msgstr "Окружающая среда"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:893
+#: ../src/microbe_stage/MicrobeStage.tscn:891
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:949
+#: ../src/microbe_stage/MicrobeStage.tscn:947
 msgid "LIGHT"
 msgstr "Свет"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1004
+#: ../src/microbe_stage/MicrobeStage.tscn:1002
 msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1087
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/MicrobeStage.tscn:1085
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr "Соединения"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1498
+#: ../src/microbe_stage/MicrobeStage.tscn:1496
 msgid "AGENTS"
 msgstr "Химические Агенты"
 
@@ -3759,7 +3780,7 @@ msgid "AWAKEN"
 msgstr "Пробудить"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1658
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
@@ -3863,35 +3884,40 @@ msgstr "смерть"
 msgid "ESCAPE_ENGULFING"
 msgstr "избежали поглощение"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:889
+#: ../src/microbe_stage/Microbe.Interior.cs:1059
 msgid "REPRODUCED"
 msgstr "Воспроизведено"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
 msgstr "Бесконечные Соединения"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "GODMODE"
 msgstr "Режим Бога"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "NO_AI"
 msgstr "Выключить ИИ"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
 msgid "PLAYER_SPEED"
 msgstr ""
 "Скорость\n"
 "Игрока"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
 msgid "PLAYER_DUPLICATE"
 msgstr "Клонировать Игрока"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
 msgid "SPAWN_ENEMY"
 msgstr "Создать Противника"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#, fuzzy
+msgid "DESPAWN_ENTITIES"
+msgstr "Максимальное количество сущностей:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -3931,32 +3957,32 @@ msgid "STUFF_AT"
 msgstr "Вещи в {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:384
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "BECOME_MULTICELLULAR"
 msgstr "Стать многоклеточным ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:420
-#: ../src/microbe_stage/MicrobeStage.tscn:1638
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:665
+#: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Невозможно использовать чит Создать Противника, так как этот биом не содержит каких-либо видов противников"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:457
+#: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "AT_CURSOR"
 msgstr "Под Курсором:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
+#: ../src/microbe_stage/MicrobeStage.tscn:1432
 msgid "INGESTED_MATTER"
 msgstr "Поглощённая материя"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1621
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Перейти к следующей стадии игры (многоклеточному). Доступно с тех пор, как вы получили достаточно большую колонию."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1804
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Войдите в редактор для модификации видов"
 
@@ -4243,9 +4269,14 @@ msgstr "Название вида..."
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "Бесконечные MP"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
+#, fuzzy
+msgid "MOVE_TO_ANY_PATCH"
+msgstr "Двигаться к Этому Биому"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4253,46 +4284,46 @@ msgid "FIND_CURRENT_PATCH"
 msgstr "Найти текущий биом"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 msgid "SEED_LABEL"
 msgstr "Сид планеты: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
+msgid "TIME_INDICATOR_TOOLTIP"
+msgstr "Времени прошло: {0:#,#} лет"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 msgid "YEARS"
 msgstr "лет"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:638
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:672
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферные Газы"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
 msgid "SPECIES_LIST"
 msgstr "Список Видов"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:343
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:356
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Исчезли с планеты"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:344
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:355
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:415
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Вымерли из биома"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
-msgid "TIME_INDICATOR_TOOLTIP"
-msgstr "Времени прошло: {0:#,#} лет"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
 msgid "AUTO_EVO"
@@ -4310,28 +4341,28 @@ msgstr "Временная Шкала"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Внешние Эффекты:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Показать глобальные события"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "Г"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Показать местные события"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Л"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:500
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
 msgid "SPECIES_POPULATION"
 msgstr "Популяция Вида"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:538
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физические Условия"
@@ -4373,7 +4404,7 @@ msgstr "Модифицировать"
 msgid "EXTINCT_SPECIES"
 msgstr "Вымершие Виды"
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:244
+#: ../src/microbe_stage/editor/TimelineTab.cs:260
 msgid "NO_EVENTS_RECORDED"
 msgstr "Никаких событий не зафиксировано"
 
@@ -5399,7 +5430,7 @@ msgstr ""
 "\n"
 "Одна из возможных стратегий состоит в том, чтобы оставаться одной клеткой цитоплазмы и просто сначала направиться к поверхностным биомам, прежде чем получать органеллы фотосинтеза."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далекой чужой планете, эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
@@ -5410,22 +5441,22 @@ msgstr ""
 "\n"
 "Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "SHOW_TUTORIALS"
 msgstr "Показать Обучение"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
 msgid "BEGIN_THRIVING"
 msgstr "Начать Процветание"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Для управления клеткой используйте клавиши, показанные рядом с клеткой (в центре экрана), и мышь для управления ориентацией клетки.\n"
 "\n"
 "Попробуйте все клавиши в течении нескольких секунд, чтобы продолжить."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Собирайте глюкозу (белые облака), перемещаясь по ней.\n"
@@ -5434,7 +5465,7 @@ msgstr ""
 "\n"
 "Следуйте по линии от вашей клетки к ближайшей глюкозе."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Следите за своей шкалой здоровья рядом со шкалой АТФ (снизу справа).\n"
@@ -5442,13 +5473,13 @@ msgstr ""
 "Вы восстанавливаете здоровье, пока у вас есть АТФ.\n"
 "Убедитесь, что собрано достаточно глюкозы для производства АТФ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для размножения вам нужно продублировать все ваши органеллы, собрав достаточное количество аммиака и фосфатов.\n"
 "Посмотрите на индикатор в правом нижнем углу, чтобы увидеть, сколько еще вам осталось. Полностью заполненные индикаторы станут белыми."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Вы собрали достаточно ресурсов для деления клетки.\n"
@@ -5457,32 +5488,32 @@ msgstr ""
 "\n"
 "Чтобы войти в редактор нажмите на мигающую кнопку редактора справа внизу."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вы вошли в режим отвязки. В этом режиме вы можете нажимать на членов колонии, чтобы отвязывать их.\n"
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную клетку или нажать клавишу [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Если вы все еще испытываете трудности с игровой механикой, проверьте меню справки. Вы можете открыть его с помощью кнопки со знаком вопроса в левом нижнем углу.\n"
 "\n"
 "Еще один совет: вы можете уменьшить масштаб изображения с помощью колеса прокрутки."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Обучение"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Вместимость клетки для поглощённых предметов ограничена. Ограничение основано на размере, чем меньше клетка, тем меньше вместимость.\n"
 "\n"
 "Полная клетка не может поглотить что-либо ещё. Чтобы продолжить поглощать, подождите пока что-то из уже поглощённого будет полностью переварено."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Поглощайте объекты, двигаясь сквозь них в режиме поглощения. Режим поглощения переключается клавишей [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -5491,49 +5522,32 @@ msgstr ""
 "\n"
 "Следуйте за идущей от вашей клетки линией к ближайшему объекту для поглощения."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Ваша клетка была поглощена и переваривается. Прогресс отображается на вашей шкале здоровья. Ваша клетка умрёт как только переваривание завершится или будет достигнут лимит по времени.\n"
 "\n"
 "Вы можете использовать кнопку суицида чтобы пропустить этот этап, но помните, что всегда есть шанс спастись!"
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
-#~ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-#~ msgstr "(скорость, с которой ИИ будет мутировать)"
+msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Поглощайте объекты, двигаясь сквозь них в режиме поглощения. Режим поглощения переключается клавишей [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Прекратите поглощение как только объект втянут внутрь клетки.\n"
+"\n"
+"Следуйте за идущей от вашей клетки линией к ближайшему объекту для поглощения."
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
-#~ msgid "LIMIT_GROWTH_RATE"
-#~ msgstr "Нормальное"
+msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Загрузка Раннего Многоклеточного Редактора"
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 #, fuzzy
-#~ msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-#~ msgstr "(скорость, с которой ИИ будет мутировать)"
-
-#, fuzzy
-#~ msgid "DESPAWN_ENTITIES"
-#~ msgstr "Максимальное количество сущностей:"
-
-#, fuzzy
-#~ msgid "MOVE_TO_ANY_PATCH"
-#~ msgstr "Двигаться к Этому Биому"
-
-#, fuzzy
-#~ msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
-#~ msgstr ""
-#~ "Поглощайте объекты, двигаясь сквозь них в режиме поглощения. Режим поглощения переключается клавишей [thrive:input]g_toggle_engulf[/thrive:input].\n"
-#~ "\n"
-#~ "Прекратите поглощение как только объект втянут внутрь клетки.\n"
-#~ "\n"
-#~ "Следуйте за идущей от вашей клетки линией к ближайшему объекту для поглощения."
-
-#, fuzzy
-#~ msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-#~ msgstr "Загрузка Раннего Многоклеточного Редактора"
-
-#, fuzzy
-#~ msgid "CONTINUE_THRIVING"
-#~ msgstr "Начать Процветание"
+msgid "CONTINUE_THRIVING"
+msgstr "Начать Процветание"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
