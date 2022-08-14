@@ -363,7 +363,7 @@ public class SpawnSystem : ISpawnSystem
     }
 
     /// <summary>
-    ///   Checks that spawning this type is currently allowed
+    ///   Checks whether we're currently blocked from spawning this type
     /// </summary>
     private bool SpawnsBlocked(Spawner spawnType)
     {
