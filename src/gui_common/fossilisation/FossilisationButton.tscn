@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/textures/gui/bevel/suicideButtonHover.png" type="Texture" id=1]
-[ext_resource path="res://assets/textures/gui/bevel/suicideButton.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/fossilisationButtonHover.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/fossilisationButton.png" type="Texture" id=2]
 [ext_resource path="res://src/gui_common/fossilisation/FossilisationButton.cs" type="Script" id=3]
 
 [node name="FossilisationButton" type="TextureButton"]
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 margin_right = -1245.0
 margin_bottom = -685.0
 rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "FOSSILISATION_BUTTON_TOOLTIP"
+hint_tooltip = "Fossilise this species"
 focus_mode = 0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 1 )
