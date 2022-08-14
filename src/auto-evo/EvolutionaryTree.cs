@@ -23,11 +23,6 @@ public class EvolutionaryTree : Control
     [Export]
     public NodePath TreePath = null!;
 
-    /// <summary>
-    ///   Tree left margin to avoid timeline mark being cut off.
-    /// </summary>
-    private const float LEFT_MARGIN = 5.0f;
-
     private const float TIMELINE_HEIGHT = 50.0f;
     private const float TIMELINE_LINE_THICKNESS = 2.0f;
     private const float TIMELINE_AXIS_Y = 5.0f;
@@ -160,7 +155,9 @@ public class EvolutionaryTree : Control
 
         // Font size is adjusted dynamically so these need to be a copy.
         latoSmallItalic = (Font)GD.Load("res://src/gui_common/fonts/Lato-Italic-Small.tres").Duplicate();
-        latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres").Duplicate();
+
+        // LatoRegular is used in the timeline part which has a fixed size, so we don't need to clone.
+        latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
     public void Init(Species luca)
@@ -181,7 +178,7 @@ public class EvolutionaryTree : Control
         if (dirty)
         {
             // SizeFlagVertical is set to ShrinkEnd, so that adjusting min size adjusts actual size.
-            timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
+            // timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
             UpdateTreeNodeSizeAndPosition();
 
             // Inform them to update
@@ -241,7 +238,7 @@ public class EvolutionaryTree : Control
         node.SpeciesID = species.ID;
         node.LastGeneration = false;
         node.ParentNode = parent;
-        node.Position = new Vector2(LEFT_MARGIN + generation * GENERATION_SEPARATION, 0);
+        node.Position = new Vector2(generation * GENERATION_SEPARATION, 0);
         node.LastGeneration = isLastGeneration;
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
@@ -306,31 +303,34 @@ public class EvolutionaryTree : Control
     /// </remarks>
     private void TimelineDraw()
     {
-        // When zoomed, these constants need to be multiplied by sizeFactor.
-        var timelineAxisY = sizeFactor * TIMELINE_AXIS_Y;
-        var lineThickness = sizeFactor * TIMELINE_LINE_THICKNESS;
-        var markSize = sizeFactor * TIMELINE_MARK_LENGTH;
-
         // Draw timeline axis, which is static.
-        timeline.DrawLine(new Vector2(0, timelineAxisY),
-            new Vector2(RectSize.x, timelineAxisY), Colors.Cyan, lineThickness);
+        timeline.DrawLine(new Vector2(0, TIMELINE_AXIS_Y),
+            new Vector2(RectSize.x, TIMELINE_AXIS_Y), Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
-        latoSmallRegular.Set("size", sizeFactor * SMALL_FONT_SIZE);
+        int increment = (int)Math.Ceiling(1 / sizeFactor);
 
         // Draw time marks
-        for (int i = 0; i <= latestGeneration; i++)
-        {
-            var x = sizeFactor * (dragOffset.x + LEFT_MARGIN + i * GENERATION_SEPARATION + TreeNodeSize.x / 2);
+        int firstDrawnGeneration =
+            (int)Math.Ceiling((-dragOffset.x - TreeNodeSize.x / 2) / GENERATION_SEPARATION / increment) * increment;
 
-            timeline.DrawLine(new Vector2(x, timelineAxisY), new Vector2(x, timelineAxisY + markSize),
-                Colors.Cyan, lineThickness);
+        int lastDrawnGeneration =
+            Math.Min((int)Math.Floor((RectSize.x / sizeFactor - dragOffset.x - TreeNodeSize.x / 2) /
+                GENERATION_SEPARATION), latestGeneration);
+
+        for (int i = firstDrawnGeneration; i <= lastDrawnGeneration; i += increment)
+        {
+            var x = sizeFactor * (dragOffset.x + i * GENERATION_SEPARATION + TreeNodeSize.x / 2);
+
+            timeline.DrawLine(new Vector2(x, TIMELINE_AXIS_Y), new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH),
+                Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
             var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
                 + TranslationServer.Translate("MEGA_YEARS");
 
             var size = latoSmallRegular.GetStringSize(localizedText);
-            timeline.DrawString(latoSmallRegular, new Vector2(x - size.x / 2,
-                timelineAxisY + markSize * 2 + size.y), localizedText, Colors.Cyan);
+
+            timeline.DrawString(latoSmallRegular, new Vector2(Mathf.Clamp(x - size.x / 2, 0, RectSize.x - size.x),
+                TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH * 2 + size.y), localizedText, Colors.Cyan);
         }
     }
 
@@ -426,8 +426,8 @@ public class EvolutionaryTree : Control
             TreeDrawLine(node.ParentNode.Center, node.Center);
         }
 
-        float treeRightPosition = sizeFactor *
-            (dragOffset.x + LEFT_MARGIN + GENERATION_SEPARATION * latestGeneration + TreeNodeSize.x);
+        float treeRightPosition =
+            sizeFactor * (dragOffset.x + GENERATION_SEPARATION * latestGeneration + TreeNodeSize.x);
 
         // Draw horizontal lines
         foreach (var nodeList in speciesNodes.Values)
