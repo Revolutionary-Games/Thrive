@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -2049,20 +2049,33 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
-visible = true
 
+[connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
+[connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
+[connection signal="OnCompoundsToggled" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="CompoundButtonPressed"]
+[connection signal="OnHelpPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenHelp"]
+[connection signal="OnMenuPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenMenu"]
+[connection signal="OnPausePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="PauseButtonPressed"]
+[connection signal="OnProcessesPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
+[connection signal="OnSuicidePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/VBoxContainer/Control/Multicellular" to="MicrobeHUD" method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/VBoxContainer/Control/Macroscopic" to="MicrobeHUD" method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
+[connection signal="OnClosed" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
+[connection signal="Cancelled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
+[connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
+[connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
+[connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
+[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="MicrobeHUD/PausePrompt"]
