@@ -181,7 +181,7 @@ public class EvolutionaryTree : Control
         if (dirty)
         {
             // SizeFlagVertical is set to ShrinkEnd, so that adjusting min size adjusts actual size.
-            timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
+            // timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
             UpdateTreeNodeSizeAndPosition();
 
             // Inform them to update
@@ -307,18 +307,20 @@ public class EvolutionaryTree : Control
     private void TimelineDraw()
     {
         // When zoomed, these constants need to be multiplied by sizeFactor.
-        var timelineAxisY = sizeFactor * TIMELINE_AXIS_Y;
-        var lineThickness = sizeFactor * TIMELINE_LINE_THICKNESS;
-        var markSize = sizeFactor * TIMELINE_MARK_LENGTH;
+        var timelineAxisY = /* sizeFactor * */ TIMELINE_AXIS_Y;
+        var lineThickness = /* sizeFactor * */ TIMELINE_LINE_THICKNESS;
+        var markSize = /* sizeFactor * */ TIMELINE_MARK_LENGTH;
 
         // Draw timeline axis, which is static.
         timeline.DrawLine(new Vector2(0, timelineAxisY),
             new Vector2(RectSize.x, timelineAxisY), Colors.Cyan, lineThickness);
 
-        latoSmallRegular.Set("size", sizeFactor * SMALL_FONT_SIZE);
+        // latoSmallRegular.Set("size", sizeFactor * SMALL_FONT_SIZE);
+
+        var increment = (int)Math.Ceiling(1 / sizeFactor);
 
         // Draw time marks
-        for (int i = 0; i <= latestGeneration; i++)
+        for (int i = 0; i <= latestGeneration; i += increment)
         {
             var x = sizeFactor * (dragOffset.x + LEFT_MARGIN + i * GENERATION_SEPARATION + TreeNodeSize.x / 2);
 
@@ -329,6 +331,10 @@ public class EvolutionaryTree : Control
                 + TranslationServer.Translate("MEGA_YEARS");
 
             var size = latoSmallRegular.GetStringSize(localizedText);
+
+            if (i == 0 && x - size.x / 2 < 0)
+                continue;
+
             timeline.DrawString(latoSmallRegular, new Vector2(x - size.x / 2,
                 timelineAxisY + markSize * 2 + size.y), localizedText, Colors.Cyan);
         }
