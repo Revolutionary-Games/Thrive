@@ -878,11 +878,13 @@ public partial class CellEditorComponent :
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsToCutOff = (cost - Editor.MutationPoints) / costPerStep;
+            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
                 Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
+            // Action is enqueued or canceled here, so we don't need to go on.
             UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            return;
         }
 
         var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction, data);
