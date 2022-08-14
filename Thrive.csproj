@@ -57,6 +57,9 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\IResource.cs" />
+    <Compile Include="src\engine\ITextureResource.cs" />
+    <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\UnhandledExceptionLogger.cs" />
     <Compile Include="src\engine\DebugOverlays.cs" />
     <Compile Include="src\engine\DebugOverlays.EntityLabel.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="src\general\Asset.cs" />
     <Compile Include="src\general\AssetCategory.cs" />
     <Compile Include="src\general\AssetType.cs" />
+    <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
@@ -506,6 +510,7 @@
     <Compile Include="src\steam\WorkshopItemData.cs" />
     <Compile Include="src\steam\WorkshopItemState.cs" />
     <Compile Include="src\steam\WorkshopResult.cs" />
+    <Compile Include="src\tutorial\early_multicellular_stage\EarlyMulticellularWelcome.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
     <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />
@@ -519,6 +524,7 @@
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
     <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\CheckTheHelpMenu.cs" />
+    <Compile Include="src\tutorial\microbe_stage\LeaveColonyTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfedExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfmentExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />

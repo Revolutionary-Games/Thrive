@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-03 14:44+0300\n"
+"POT-Creation-Date: 2022-08-10 20:42+0300\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -370,13 +370,13 @@ msgstr "Здібності"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1977
+#: ../src/microbe_stage/MicrobeStage.tscn:1975
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1965
+#: ../src/microbe_stage/MicrobeStage.tscn:1963
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
 
@@ -385,7 +385,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Утримуйте для показу меню пакету команд"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1986
 msgid "TOGGLE_BINDING"
 msgstr "Перемкнути з'єднування"
 
@@ -394,7 +394,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Перемкнути роз'єднання"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:2000
+#: ../src/microbe_stage/MicrobeStage.tscn:1998
 msgid "UNBIND_ALL"
 msgstr "Роз'єднати всіх"
 
@@ -509,8 +509,8 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Перемкнути на вигляд верхньої камери"
 
 #: ../simulation_parameters/common/input_options.json:196
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Чити"
 
@@ -741,41 +741,41 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1234
+#: ../src/microbe_stage/MicrobeStage.tscn:1232
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Аміак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1283
+#: ../src/microbe_stage/MicrobeStage.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1335
+#: ../src/microbe_stage/MicrobeStage.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1185
+#: ../src/microbe_stage/MicrobeStage.tscn:1183
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1558
+#: ../src/microbe_stage/MicrobeStage.tscn:1556
 msgid "OXYTOXY_NT"
 msgstr "Окситоциновий нуклеотид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1384
+#: ../src/microbe_stage/MicrobeStage.tscn:1382
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Залізо"
@@ -804,7 +804,7 @@ msgstr "Сонячне світло"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:163
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
@@ -979,27 +979,42 @@ msgid "LYSOSOME"
 msgstr "Лізосома"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:536
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "Дозволяє з'єднуватися з іншими клітинами.Це перший крок до багатоклітинності. Коли ваша клітина– частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднання."
+msgstr "Завершення {0} генерацій"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:708
-#, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
+msgstr ""
+"[b]Види[/b]\n"
+"  {0}:{1}\n"
+"[b]Генерація[/b]\n"
+"  {2}\n"
+"[b]Популяція[/b]\n"
+"  {3}\n"
+"[b]Колір[/b]\n"
+"  #{4}\n"
+"[b]Поведінка[/b]\n"
+"  {5}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:716
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:717
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"Зберігайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
-"Ваша клітина вмре якщо збіжить здоров'я.\n"
-"Ви відновлюєте здоров'я, поки є АТФ.\n"
-"Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
+"[b]Стадія[/b]\n"
+"  Мікроб\n"
+"[b]Тип мембрани[/b]\n"
+"  {0}\n"
+"[b]Жорсткість мембрани[/b]\n"
+"  {1}\n"
+"[b]Базова швидкість[/b]\n"
+"  {2}\n"
+"[b]Базова швидкість обертання[/b]\n"
+"  {3}\n"
+"[b]Базовий розмір гексу[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:98
 msgid "CONFIG"
-msgstr ""
+msgstr "Конфігурація"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:106
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1007,138 +1022,124 @@ msgid "REPORT"
 msgstr "Звіт"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
-#, fuzzy
 msgid "VIEWER"
-msgstr "Переглянути галерею"
+msgstr "Переглядач"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:162
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "мутував"
+msgstr "Дозволити виду не мутувати"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:169
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Частина популяції [u]{0}[/u] мігрувала до {1}"
+msgstr "Дозволити виду не мігрувати"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:202
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Шанси утворити новий вид для збільшення біорізноманіття з сусідньої ділянки"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Біорізноманіття коло ділянки– це фільна популяція"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:223
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Розкол біорізноманіття– це матації"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:236
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Низький ліміт біорізноманіття"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:254
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "вимерли в ділянці"
+msgstr "Максимум видів в ділянці"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:272
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Переміщення спроб на вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:290
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Очки мутації"
+msgstr "Мутації на вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:308
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "Нове біорізноманіття збільшує видові популяції"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Захисні міграції від витісняючих видів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:329
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Захист нових клітин від витісняючих видів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "Повернення міграцій у вимираннях"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Жорстка нішева конкуренція"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "Види розділенні за мутаційним поргом розміру популяції"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:376
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "Види розділенні за мутаційним поргом частки популяції"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "Використання біорізноманіття розділенням сил"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:410
-#, fuzzy
 msgid "CURRENT_GENERATION_COLON"
-msgstr "Генерація:"
+msgstr "Поточна Генерація:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:427
-#, fuzzy
 msgid "STATUS_COLON"
-msgstr "Художник:"
+msgstr "Статус:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:434
-#, fuzzy
 msgid "READY"
-msgstr "Обрахунки:"
+msgstr "Готово"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:465
-#, fuzzy
 msgid "FINISH_ONE_GENERATION"
-msgstr "Дозволяє з'єднуватися з іншими клітинами.Це перший крок до багатоклітинності. Коли ваша клітина– частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднання."
+msgstr "Кінець однієї генерації"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:471
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Робиться один крок"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:477
-#, fuzzy
 msgid "ABORT"
-msgstr "Перервано."
+msgstr "Перервано"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:483
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "Грати з поточними налаштуваннями"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:525
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "Генерація:"
+msgstr "Генерації"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
-#, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "Виберіть налаштування"
+msgstr "Виберіть генерацію"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
-#, fuzzy
 msgid "SPECIES"
-msgstr "Список видів"
+msgstr "Види"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:573
-#, fuzzy
 msgid "SELECT_A_SPECIES"
-msgstr "Виберіть ділянку для перегляду деталей"
+msgstr "Обрати види"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
@@ -1146,14 +1147,12 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Результати авто-ево:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:669
-#, fuzzy
 msgid "EVOLUTIONARY_TREE"
-msgstr "Виробництва Revolutionary Games Studio"
+msgstr "Еволюційне дерево"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:715
-#, fuzzy
 msgid "SPECIES_DETAILS"
-msgstr "Список видів"
+msgstr "Деталі видів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
@@ -1186,18 +1185,16 @@ msgid "FINISHED_DOT"
 msgstr "Завершено."
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "Перервано."
+msgstr "Не починати."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% зроблено. {1:n0}/{2:n0} виконується."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "ПАУЗА"
+msgstr "Зупинити."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
@@ -1208,7 +1205,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} зміна населення {1} на {2} через: {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:80
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:376
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Млнр"
@@ -1443,21 +1440,21 @@ msgstr "{0} ОM"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Завантаження раннього багатоклітинного редактору"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус виконання:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:386
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:438
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Дія заблокована, поки не завершилася інша"
@@ -1982,8 +1979,8 @@ msgstr "Закрити"
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
 msgid "PERCENTAGE_VALUE"
@@ -2055,9 +2052,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
 #: ../src/general/MainMenu.tscn:293
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "статус виконання:"
+msgstr "Інструменти дослідження авто-ево"
 
 #: ../src/general/MainMenu.tscn:361
 msgid "MODS"
@@ -2303,20 +2299,19 @@ msgstr "Автоматично ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:666
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:671
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:676
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Панель назв кнопок вибору"
+msgstr "Невідомо"
 
 #: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1038
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2423,17 +2418,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
 
 #: ../src/general/OptionsMenu.tscn:423
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "ЦПУ:"
 
 #: ../src/general/OptionsMenu.tscn:453
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Використовуваний рендер:"
 
 #: ../src/general/OptionsMenu.tscn:480
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Поточна використовувана відеопам'ять:"
 
 #: ../src/general/OptionsMenu.tscn:507
 msgid "GUI"
@@ -2757,15 +2751,15 @@ msgstr "Повернутись до меню"
 msgid "EXIT"
 msgstr "Вихід"
 
-#: ../src/general/StageBase.cs:383
+#: ../src/general/StageBase.cs:396
 msgid "PLAYER_REPRODUCED"
 msgstr "гравець розмножився"
 
-#: ../src/general/StageBase.cs:439
+#: ../src/general/StageBase.cs:452
 msgid "PLAYER_DIED"
 msgstr "гравець помер"
 
-#: ../src/general/StageBase.cs:502
+#: ../src/general/StageBase.cs:515
 msgid "EXTINCT_IN_PATCH"
 msgstr "вимерли в ділянці"
 
@@ -3234,8 +3228,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
@@ -3496,7 +3491,7 @@ msgstr "Усі клітини «бачають» лиш через хеморе�
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Збільшує швидкість маневру великих клітин."
+msgstr "Збільшує швидкість обертання великих клітин."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
 msgid "CILIA_DESCRIPTION"
@@ -3702,43 +3697,43 @@ msgid "LOOKING_AT"
 msgstr "Дивиться на:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:483
+#: ../src/microbe_stage/MicrobeStage.tscn:481
 msgid "NOTHING_HERE"
 msgstr "Тут нічого"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:508
+#: ../src/microbe_stage/MicrobeStage.tscn:506
 msgid "COMPOUNDS_COLON"
 msgstr "Сполуки:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:546
 msgid "SPECIES_COLON"
 msgstr "Види:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:625
+#: ../src/microbe_stage/MicrobeStage.tscn:623
 msgid "ENVIRONMENT"
 msgstr "Оточення"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:893
+#: ../src/microbe_stage/MicrobeStage.tscn:891
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:949
+#: ../src/microbe_stage/MicrobeStage.tscn:947
 msgid "LIGHT"
 msgstr "Світло"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1004
+#: ../src/microbe_stage/MicrobeStage.tscn:1002
 msgid "PRESSURE_SHORT"
 msgstr "Тиск."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1087
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/MicrobeStage.tscn:1085
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
@@ -3746,7 +3741,7 @@ msgid "COMPOUNDS"
 msgstr "Сполуки"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1498
+#: ../src/microbe_stage/MicrobeStage.tscn:1496
 msgid "AGENTS"
 msgstr "Агенти"
 
@@ -3759,7 +3754,7 @@ msgid "AWAKEN"
 msgstr "Пробудити"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1658
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
 
@@ -3865,31 +3860,36 @@ msgstr "уникнення поглинання"
 msgid "REPRODUCED"
 msgstr "розмножено"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
 msgstr "Нескінченні сполуки"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "GODMODE"
 msgstr "Режим Бога"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "NO_AI"
 msgstr "Без ШІ"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
 msgid "PLAYER_SPEED"
 msgstr ""
 "Швидкість\n"
 "Гравця"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
 msgid "PLAYER_DUPLICATE"
 msgstr "Дублікат гравця"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#, fuzzy
+msgid "DESPAWN_ENTITIES"
+msgstr "Максимальне число сутностей:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -3928,32 +3928,32 @@ msgid "STUFF_AT"
 msgstr "Нахилити на {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:384
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітиності ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:420
-#: ../src/microbe_stage/MicrobeStage.tscn:1638
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:665
+#: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:457
+#: ../src/microbe_stage/MicrobeStage.tscn:455
 msgid "AT_CURSOR"
 msgstr "Курсорі на:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
+#: ../src/microbe_stage/MicrobeStage.tscn:1432
 msgid "INGESTED_MATTER"
 msgstr "Проковтнута річ"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1621
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Перейдіть до наступного сходинки гри (багатоклітиності). Доступний при достатньому розмірі колонії."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1804
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Увійдіть до редактору та модифікуйте свої види"
 
@@ -4233,9 +4233,14 @@ msgstr "Назва виду..."
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Завантаження мікробного редактору"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "Нескінчені МО"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
+#, fuzzy
+msgid "MOVE_TO_ANY_PATCH"
+msgstr "Переміститися на цю ділянку"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4243,46 +4248,46 @@ msgid "FIND_CURRENT_PATCH"
 msgstr "Знайдено поточну ділянку"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:202
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 msgid "SEED_LABEL"
 msgstr "Сід планети: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
+msgid "TIME_INDICATOR_TOOLTIP"
+msgstr "Минуло часу: {0:#,#} років"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 msgid "YEARS"
 msgstr "роки"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферні гази"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
 msgid "SPECIES_LIST"
 msgstr "Список видів"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:343
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:356
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "вимерли на цілій планеті"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:344
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:355
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:415
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 msgid "EXTINCT_FROM_PATCH"
 msgstr "вимерли в ділянці"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:369
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:383
-msgid "TIME_INDICATOR_TOOLTIP"
-msgstr "Минуло часу: {0:#,#} років"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
 msgid "AUTO_EVO"
@@ -5388,7 +5393,7 @@ msgstr ""
 "\n"
 "Однією з можливих стратегій є залишатися на одному гексі цитоплазми і просто вирушати на поверхню, перш ніж отримати органели фотосинтезу."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
@@ -5399,22 +5404,22 @@ msgstr ""
 "\n"
 "Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "SHOW_TUTORIALS"
 msgstr "Показати туторіали"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
 msgid "BEGIN_THRIVING"
 msgstr "Почніть процвітання"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Для контролю вашої клітини використовуйте клавіші показані навколо неї(в центрі екрану) та мишку для контролю напряму.\n"
 "\n"
 "Затиснісніть клавіші протягом кількох секунд, щоб продовжити."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Збирайте глюкозу(білі хмари) рухаючись по них.\n"
@@ -5423,21 +5428,21 @@ msgstr ""
 "\n"
 "Слідкуйте за лінією біля вашої клітини до глюкози поблизу."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Зберігайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
+"Тримайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
 "Ваша клітина вмре якщо збіжить здоров'я.\n"
 "Ви відновлюєте здоров'я, поки є АТФ.\n"
 "Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для розмноження потрібно подвоїти кожну свою органелу зібравши достатньо аміаку та фосфатів.\n"
 "Погляньте на смужки навколо великої кнопки знизу справа, аби бачити як багато вам треба. Ці смужки стануть білими, коли заповняться."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Ви зібрали необхідну кількість ресурсів для поділу вашої клітини.\n"
@@ -5446,32 +5451,32 @@ msgstr ""
 "\n"
 "Для переходу в радактор натисніть блимаючу кнопку редактора знизу справа."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Ви перейшли до розв'язувального режиму. В цьому режимі ви можете клацнути на членів колонії для розв'язування з ними.\n"
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Труднощі? Подивіться довідкове меню. Ви можете відкрити його за допомогою кнопки із знаком питання знизу зліва.\n"
 "\n"
 "Ще одна підказка: Ви можете зменшувати зображення за допомогою колесика миші."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Ваша клітина має обмежену ємність для об'єктів, які можуть бути поглинуті одразу. Це обмеження базується на розмірі; менші клітини мають меншу місткість.\n"
 "\n"
 "Коли клітина заповнена, вона може поглинути білбше об'єктів. Щоб продовжити поглинання, зачекайте, коли перетравляться один чи кілька об'єктів."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Поглинайте об'єкти рухаючись по них в режимі поглинання. Увімкніть режим поглинання натиснувши [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -5480,12 +5485,32 @@ msgstr ""
 "\n"
 "Слідкуйте за лінією від вашої камери до найближчого об'єкта, що може поглинутись."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Ваша клітина була поглинена та перетравлена. Прогрес показує вашу панель здоров'я. Ваша клітина помре, коли воно закінчиться або ви досягнете максимальний ліміт часу.\n"
 "\n"
 "Ви можете використовувати кнопку суїциду для пропуску та респавну, але пам'ятайте, що завжди є шанс на втечу!"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
+msgstr ""
+"Поглинайте об'єкти рухаючись по них в режимі поглинання. Увімкніть режим поглинання натиснувши [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"\n"
+"Щоб зупинити поглинання коли об'єкт поглинеться.\n"
+"\n"
+"Слідкуйте за лінією від вашої камери до найближчого об'єкта, що може поглинутись."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#, fuzzy
+msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Завантаження раннього багатоклітинного редактору"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#, fuzzy
+msgid "CONTINUE_THRIVING"
+msgstr "Почніть процвітання"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

@@ -126,6 +126,11 @@ public class WorldGenerationSettings
     /// </summary>
     public bool EasterEggs { get; set; } = true;
 
+    /// <summary>
+    ///   The auto-evo configuration this world uses
+    /// </summary>
+    public AutoEvoConfiguration AutoEvoConfiguration { get; set; } = SimulationParameters.Instance.AutoEvoConfiguration;
+
     public override string ToString()
     {
         return "World generation settings: [" +

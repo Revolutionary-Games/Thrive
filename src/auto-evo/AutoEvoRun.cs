@@ -41,10 +41,10 @@ public class AutoEvoRun
 
     private int completeSteps;
 
-    public AutoEvoRun(GameWorld world, AutoEvoConfiguration? configuration = null)
+    public AutoEvoRun(GameWorld world)
     {
         Parameters = new RunParameters(world);
-        this.configuration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration;
+        configuration = world.WorldSettings.AutoEvoConfiguration;
     }
 
     private enum RunStage
