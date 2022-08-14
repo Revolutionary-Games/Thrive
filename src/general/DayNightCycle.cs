@@ -29,6 +29,8 @@ public class DayNightCycle : Godot.Node
 
      * Almost all of these should be converted to json. I really don't know how.
 
+     * Probably need to add save support
+
     */
 
     public const float HoursPerDay = 24;
@@ -41,11 +43,11 @@ public class DayNightCycle : Godot.Node
     /// <summary>
     ///   The current time in hours
     /// </summary>
-    public float Time { get; private set; }
+    public float Time { get; set; }
 
     public float PercentOfDayElapsed
     {
-        get { return HoursPerDay / Time; }
+        get { return Time / HoursPerDay; }
     }
 
     /// <summary>
