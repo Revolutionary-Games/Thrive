@@ -727,9 +727,9 @@ public class MicrobeAI
 
     private void SecreteMucilage()
     {
-        if (microbe.Hitpoints > 0 && microbe.SlimeJetCount > 0)
+        if (microbe.Hitpoints > 0 && microbe.SlimeJets.Count > 0)
         {
-            microbe.QueueSecreteMucilage();
+            microbe.QueueSecreteSlime();
         }
     }
 

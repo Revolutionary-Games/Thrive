@@ -87,7 +87,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
     public bool SlowedBySlime;
-    public float SlimeJetFactor;
+    public Vector3 SlimeJetFactor;
 
     /// <summary>
     ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -690,12 +690,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             queuedToxinToEmit = null;
         }
 
-        if (queuedSecreteMucilage)
+        if (queuedSecreteSlime)
         {
             SecreteSlime(delta);
 
             if (Compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT)
-                queuedSecreteMucilage = false;
+                queuedSecreteSlime = false;
         }
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
@@ -1087,18 +1087,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (SlowedBySlime)
             force /= Constants.MUCILAGE_IMPEDE_FACTOR;
 
-        foreach (var organelle in organelles!)
-        {
-            if (!organelle.HasComponent<SlimeJetComponent>())
-                continue;
-
-            var jetComponent = (SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent);
-            force += (Constants.MUCILAGE_JET_FACTOR * SlimeJetFactor *
-                Math.Max(jetComponent.GetDirection().Dot(MovementDirection), 0)) / MassFromOrganelles;
-        }
+        force += Constants.MUCILAGE_JET_FACTOR * Math.Max(SlimeJetFactor.Dot(MovementDirection), 0) / MassFromOrganelles;
 
         // Reset the amount of secreted mucilage after using it to move
-        SlimeJetFactor = 0;
+        SlimeJetFactor = Vector3.Zero;
 
         if (IsPlayerMicrobe && CheatManager.Speed > 1)
             force *= Mass * CheatManager.Speed;

@@ -173,7 +173,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
 
     [JsonIgnore]
-    public bool IsMucilageJet => HasComponent<SlimeJetComponent>();
+    public bool IsSlimeJet => HasComponent<SlimeJetComponent>();
 
     [JsonIgnore]
     public bool IsBindingAgent => HasComponent<BindingAgentComponent>();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -172,11 +172,14 @@ bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 [sub_resource type="StyleBoxFlat" id=38]
 bg_color = Color( 0.882353, 0.498039, 0.498039, 1 )
 
-[sub_resource type="StyleBoxFlat" id=25]
-bg_color = Color( 0, 0.498039, 0.4, 1 )
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0, 0.498039, 0.4, 1 )
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
@@ -1531,7 +1534,7 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 25 )
+custom_styles/fg = SubResource( 40 )
 custom_styles/bg = SubResource( 26 )
 step = 0.1
 percent_visible = false
@@ -1547,9 +1550,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 57 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 margin_left = 18.0

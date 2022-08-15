@@ -252,7 +252,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy) || GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(mucilage);
         }
 
-        return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
+        return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy) || c.Compounds.IsSpecificallySetUseful(mucilage));
     }
 
     protected override ICompoundStorage GetPlayerStorage()
@@ -307,12 +307,12 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (player.Colony != null)
         {
             showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
-            showMucilage = player.Colony.ColonyMembers.Any(c => c.SlimeJetCount > 0);
+            showMucilage = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
         }
         else
         {
             showToxin = player.AgentVacuoleCount > 0;
-            showMucilage = player.SlimeJetCount > 0;
+            showMucilage = player.SlimeJets.Count > 0;
         }
 
         UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showMucilage,

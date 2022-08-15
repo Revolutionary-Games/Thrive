@@ -32,7 +32,7 @@ public partial class Microbe
     private Compound? queuedToxinToEmit;
     
     [JsonProperty]
-    private bool queuedSecreteMucilage;
+    private bool queuedSecreteSlime;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -111,7 +111,7 @@ public partial class Microbe
     public int AgentVacuoleCount { get; private set; }
 
     [JsonProperty]
-    public int SlimeJetCount { get; private set; }
+    public List<SlimeJetComponent> SlimeJets { get; } = new();
 
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
@@ -339,23 +339,29 @@ public partial class Microbe
 
     public void SecreteSlime(float delta)
     {
-        if (SlimeJetCount < 1)
+        if (SlimeJets.Count < 1)
             return;
 
         if (SlimeSecretionCooldown > 0)
             return;
 
-        // TODO eject in the direction of each jet and add together
-        SlimeJetFactor = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * SlimeJetCount * delta, 4);
+        var totalSlimeSecreted = 0.0f;
+
+        foreach (var jet in SlimeJets)
+        {
+            var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta, -jet.GetDirection(), 4);
+            SlimeJetFactor += slimeSecreted * -jet.GetDirection();
+            totalSlimeSecreted += slimeSecreted;
+        }
 
         // Once we hit zero, start a cooldown timer
-        if (SlimeJetFactor < Constants.MUCILAGE_MIN_TO_VENT)
+        if (totalSlimeSecreted < Constants.MUCILAGE_MIN_TO_VENT)
             SlimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
     }
 
-    public void QueueSecreteMucilage()
+    public void QueueSecreteSlime()
     {
-        queuedSecreteMucilage = true;
+        queuedSecreteSlime = true;
     }
 
     /// <summary>
@@ -502,11 +508,11 @@ public partial class Microbe
     /// <summary>
     ///   Throws some compound out of this Microbe, up to maxAmount
     /// </summary>
-    public float EjectCompound(Compound compound, float maxAmount, float displacement = 0)
+    public float EjectCompound(Compound compound, float maxAmount, Vector3 direction, float displacement = 0)
     {
         float amount = Compounds.TakeCompound(compound, maxAmount);
 
-        SpawnEjectedCompound(compound, amount, displacement);
+        SpawnEjectedCompound(compound, amount, direction, displacement);
         return amount;
     }
 
@@ -654,7 +660,7 @@ public partial class Microbe
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         // Cells with jets aren't affected by mucilage
-        SlowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) > Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJetCount < 1;
+        SlowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) > Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJets.Count < 1;
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
@@ -684,14 +690,14 @@ public partial class Microbe
             // Vent if not useful, or if overflowed the capacity
             if (!Compounds.IsUseful(type))
             {
-                amountToVent -= EjectCompound(type, amountToVent);
+                amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
             else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
             {
                 // Vent the part that went over
                 float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
 
-                amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent));
+                amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
 
             if (amountToVent <= 0)
@@ -1236,8 +1242,8 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
 
-        if (organelle.IsMucilageJet)
-            SlimeJetCount += 1;
+        if (organelle.IsSlimeJet)
+            SlimeJets.Add((SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent));
 
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
@@ -1253,8 +1259,8 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
 
-        if (organelle.IsMucilageJet)
-            SlimeJetCount -= 1;
+        if (organelle.IsSlimeJet)
+            SlimeJets.Remove((SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent));
 
         organelle.OnRemovedFromMicrobe();
 
@@ -1300,20 +1306,20 @@ public partial class Microbe
     ///     the compound to the cloud system at the right position.
     ///   </para>
     /// </remarks>
-    private void SpawnEjectedCompound(Compound compound, float amount, float displacement = 0)
+    private void SpawnEjectedCompound(Compound compound, float amount, Vector3 direction, float displacement = 0)
     {
         var amountToEject = amount * Constants.MICROBE_VENT_COMPOUND_MULTIPLIER;
 
         if (amountToEject <= MathUtils.EPSILON)
             return;
 
-        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition(displacement));
+        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition(direction, displacement));
     }
 
     /// <summary>
     ///   Calculates a world pos for emitting compounds
     /// </summary>
-    private Vector3 CalculateNearbyWorldPosition(float displacement = 0)
+    private Vector3 CalculateNearbyWorldPosition(Vector3 direction, float displacement = 0)
     {
         // OLD CODE kept here in case we want a more accurate membrane position, also this code
         // produces an incorrect world position which needs fixing if this were to be used
@@ -1355,14 +1361,15 @@ public partial class Microbe
 
         // Unlike the commented block of code above, this uses cheap membrane radius to calculate
         // distance for cheaper computations
-        var distance = Membrane.EncompassingCircleRadius + displacement;
+        var distance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
             distance *= 0.5f;
 
-        // The back of the microbe
-        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Back);
+        distance += displacement;
+
+        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(direction);
 
         var result = GlobalTransform.origin + (ejectionDirection * distance);
 
@@ -1483,7 +1490,7 @@ public partial class Microbe
                 var added = Compounds.AddCompound(compound, takenAdjusted);
 
                 // Eject excess
-                SpawnEjectedCompound(compound, takenAdjusted - added);
+                SpawnEjectedCompound(compound, takenAdjusted - added, Vector3.Back);
             }
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)

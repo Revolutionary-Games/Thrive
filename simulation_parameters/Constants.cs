@@ -225,7 +225,7 @@ public static class Constants
     public const float OXYTOXY_DAMAGE = 15.0f;
 
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
-    public const float MUCILAGE_JET_FACTOR = 150.0f;
+    public const float MUCILAGE_JET_FACTOR = 225.0f;
     public const float MUCILAGE_MIN_TO_VENT = 0.02f;
     public const float MUCILAGE_COOLDOWN_TIMER = 2.0f;
 

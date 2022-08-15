@@ -1033,9 +1033,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
         var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
+        var agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
 
         environmentPanelVBoxContainer.RectSize = new Vector2(environmentPanelVBoxContainer.RectMinSize.x, 0);
         compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
+        agentsPanelVBoxContainer.RectSize = new Vector2(agentsPanelVBoxContainer.RectMinSize.x, 0);
 
         // Multiply interpolation value with delta time to make it not be affected by framerate
         var environmentPanelSize = environmentPanel.RectMinSize.LinearInterpolate(
@@ -1044,8 +1046,12 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         var compoundsPanelSize = compoundsPanel.RectMinSize.LinearInterpolate(
             new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
 
+        var agentsPanelSize = agentsPanel.RectMinSize.LinearInterpolate(
+            new Vector2(agentsPanel.RectMinSize.x, agentsPanelVBoxContainer.RectSize.y), 5 * delta);
+
         environmentPanel.RectMinSize = environmentPanelSize;
         compoundsPanel.RectMinSize = compoundsPanelSize;
+        agentsPanel.RectMinSize = agentsPanelSize;
     }
 
     /// <summary>
