@@ -7,6 +7,8 @@ public class WorldGenerationSettings
 {
     private DifficultyPreset difficulty = null!;
 
+    private AutoEvoConfiguration autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
+
     public WorldGenerationSettings()
     {
         // Default to normal difficulty unless otherwise specified
@@ -129,7 +131,17 @@ public class WorldGenerationSettings
     /// <summary>
     ///   The auto-evo configuration this world uses
     /// </summary>
-    public AutoEvoConfiguration AutoEvoConfiguration { get; set; } = SimulationParameters.Instance.AutoEvoConfiguration;
+    public AutoEvoConfiguration AutoEvoConfiguration
+    {
+        get => autoEvoConfiguration;
+        set
+        {
+            if (value == null!)
+                return;
+
+            autoEvoConfiguration = value;
+        }
+    }
 
     public override string ToString()
     {
