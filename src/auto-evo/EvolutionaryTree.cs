@@ -59,11 +59,6 @@ public class EvolutionaryTree : Control
     private const float DRAW_MARGIN = 30.0f;
 
     /// <summary>
-    ///   Default size of lato-small font.
-    /// </summary>
-    private const float SMALL_FONT_SIZE = 14.0f;
-
-    /// <summary>
     ///   Default size of <see cref="EvolutionaryTreeNode"/>.
     /// </summary>
     private static readonly Vector2 TreeNodeSize = new(30, 30);
@@ -73,7 +68,7 @@ public class EvolutionaryTree : Control
     /// </summary>
     private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
-    // ReSharper disable 4 times RedundantNameQualifier
+    // ReSharper disable RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
@@ -82,6 +77,8 @@ public class EvolutionaryTree : Control
         speciesOrigin = new();
 
     private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
+
+    // ReSharper enable RedundantNameQualifier
 
     /// <summary>
     ///   All EvolutionaryTreeNodes are in this group so that they works radio.
@@ -113,6 +110,11 @@ public class EvolutionaryTree : Control
     private Vector2 lastMousePosition;
 
     /// <summary>
+    ///   Default size of lato-small font.
+    /// </summary>
+    private float smallFontSize;
+
+    /// <summary>
     ///   The tree's size factor.
     /// </summary>
     /// <remarks>
@@ -142,19 +144,13 @@ public class EvolutionaryTree : Control
         base._Ready();
 
         timeline = GetNode<Control>(TimelinePath);
-        timeline.Connect("draw", this, nameof(TimelineDraw));
-        timeline.Connect("gui_input", this, nameof(GUIInput), new Array(true));
-        timeline.Connect("mouse_exited", this, nameof(MouseExit));
-
         tree = GetNode<Control>(TreePath);
-        tree.Connect("draw", this, nameof(TreeDraw));
-        tree.Connect("gui_input", this, nameof(GUIInput), new Array(false));
-        tree.Connect("mouse_exited", this, nameof(MouseExit));
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/EvolutionaryTreeNode.tscn");
 
-        // Font size is adjusted dynamically so these need to be a copy.
+        // Font size is adjusted dynamically so this needs to be a copy.
         latoSmallItalic = (Font)GD.Load("res://src/gui_common/fonts/Lato-Italic-Small.tres").Duplicate();
+        smallFontSize = (int)latoSmallItalic.Get("size");
 
         // LatoRegular is used in the timeline part which has a fixed size, so we don't need to clone.
         latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
@@ -177,8 +173,6 @@ public class EvolutionaryTree : Control
 
         if (dirty)
         {
-            // SizeFlagVertical is set to ShrinkEnd, so that adjusting min size adjusts actual size.
-            // timeline.RectMinSize = new Vector2(0, sizeFactor * TIMELINE_HEIGHT);
             UpdateTreeNodeSizeAndPosition();
 
             // Inform them to update
@@ -448,7 +442,7 @@ public class EvolutionaryTree : Control
             TreeDrawLine(lineStart, lineEnd);
         }
 
-        latoSmallItalic.Set("size", sizeFactor * SMALL_FONT_SIZE);
+        latoSmallItalic.Set("size", sizeFactor * smallFontSize);
 
         float speciesNameOffset = sizeFactor * SPECIES_NAME_OFFSET;
 

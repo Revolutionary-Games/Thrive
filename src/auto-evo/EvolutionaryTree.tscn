@@ -29,3 +29,10 @@ margin_bottom = 720.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="draw" from="VBoxContainer/Timeline" to="." method="TimelineDraw"]
+[connection signal="gui_input" from="VBoxContainer/Timeline" to="." method="GUIInput" binds= [ true ]]
+[connection signal="mouse_exited" from="VBoxContainer/Timeline" to="." method="MouseExit"]
+[connection signal="draw" from="VBoxContainer/Tree" to="." method="TreeDraw"]
+[connection signal="gui_input" from="VBoxContainer/Tree" to="." method="GUIInput" binds= [ false ]]
+[connection signal="mouse_exited" from="VBoxContainer/Tree" to="." method="MouseExit"]
