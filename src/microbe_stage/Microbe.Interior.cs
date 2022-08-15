@@ -114,7 +114,7 @@ public partial class Microbe
     public int AgentVacuoleCount { get; private set; }
 
     [JsonProperty]
-    public List<SlimeJetComponent> SlimeJets { get; } = new();
+    public List<SlimeJetComponent> SlimeJets { get; private set; } = new();
 
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work

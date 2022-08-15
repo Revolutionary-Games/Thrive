@@ -232,12 +232,12 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 225.0f;
+    public const float MUCILAGE_JET_FACTOR = 300.0f;
 
     /// <summary>
     ///  Minimum stored slime needed to start secreting
     /// </summary>
-    public const float MUCILAGE_MIN_TO_VENT = 0.02f;
+    public const float MUCILAGE_MIN_TO_VENT = 0.01f;
 
     /// <summary>
     ///  Length in seconds for slime secretion cooldown
