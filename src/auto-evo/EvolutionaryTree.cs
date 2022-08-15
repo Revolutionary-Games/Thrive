@@ -492,7 +492,7 @@ public class EvolutionaryTree : Control
             var mid = to - new Vector2(sizeFactor * GENERATION_SEPARATION / 2.0f, 0);
             tree.DrawLine(from, new Vector2(mid.x, from.y), Colors.DarkCyan, lineWidth);
 
-            // We draw vertical line a little longer so the turning point is good.
+            // We draw vertical line a little longer so the turning point looks better.
             tree.DrawLine(new Vector2(mid.x, from.y - halfLineWidth), new Vector2(mid.x, to.y + halfLineWidth),
                 Colors.DarkCyan, lineWidth);
 
