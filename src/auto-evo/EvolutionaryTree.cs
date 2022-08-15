@@ -350,9 +350,17 @@ public class EvolutionaryTree : Control
                 (ButtonList)buttonEvent.ButtonIndex is ButtonList.WheelDown or ButtonList.WheelUp)
             {
                 bool zoomIn = (ButtonList)buttonEvent.ButtonIndex == ButtonList.WheelUp;
+
+                // The current mouse position relative to tree
+                var mouseTreePosition = buttonEvent.Position / sizeFactor - dragOffset;
+
+                // Update size factor
                 sizeFactor =
                     Mathf.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
                         SIZE_FACTOR_MIN, SIZE_FACTOR_MAX);
+
+                // Update drag offset so that the mouseTreePosition stays the same
+                dragOffset = buttonEvent.Position / sizeFactor - mouseTreePosition;
 
                 BindOffsetToTreeSize();
                 dirty = true;
