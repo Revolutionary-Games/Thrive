@@ -172,7 +172,7 @@ public partial class CellEditorComponent
     private void UpdateTotalDigestionEfficiency(float efficiency)
     {
         digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
-        digestionEfficiencyLabel.Value = Mathf.RoundToInt(efficiency * 100);
+        digestionEfficiencyLabel.Value = efficiency * 100;
     }
 
     /// <summary>
