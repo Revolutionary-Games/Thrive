@@ -12,7 +12,7 @@ size = Vector2( 800, 400 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-render_priority = -2
+render_priority = -100
 shader = ExtResource( 5 )
 shader_param/repeats = Vector2( 2, 1 )
 shader_param/layer0 = ExtResource( 6 )
