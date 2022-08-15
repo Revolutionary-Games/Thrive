@@ -46,18 +46,24 @@
             if (microbeSpeciesHexSize / preyHexSize >
                 Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
             {
-                engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+                // Catch scores grossly accounts for how many preys you catch in a run;
+                var catchScore = 0.0f;
 
-                // The faster the better
-                engulfScore *= predatorSpeed / preySpeed;
+                // First, you may hunt individual preys, but only if you are fast enough...
+                if (predatorSpeed > preySpeed)
+                {
+                    // You catch more preys if you are fast, and if they are slow.
+                    // This incentizes engulfment strategies in these cases.
+                    catchScore += predatorSpeed / preySpeed;
+                }
+
+                // ... but you may also catch them by luck (e.g. when they run into you),
+                // and this is especially easy if you're huge.
+                // This is also used to incentize size in microbe species.
+                catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
 
                 // Allow for some degree of lucky engulfment
-                engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-
-                // Favor larger microbes, as if they stand more chances in a fight/can digest prey faster.
-                // Here it is artificially after speed comparison for gamey incentive.
-                // Compensating lower speed requires at least PREDATION_SCORE/LUCKY_CATCH_PROBABILITY more hexes.
-                engulfScore += microbeSpeciesHexSize;
+                engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
             }
 
             var pilusScore = 0.0f;
