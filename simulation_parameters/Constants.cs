@@ -224,9 +224,24 @@ public static class Constants
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
+    /// <summary>
+    ///   How much a cell's speed is slowed when travelling through slime
+    /// </summary>
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+
+    /// <summary>
+    ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
+    /// </summary>
     public const float MUCILAGE_JET_FACTOR = 225.0f;
+
+    /// <summary>
+    ///  Minimum stored slime needed to start secreting
+    /// </summary>
     public const float MUCILAGE_MIN_TO_VENT = 0.02f;
+
+    /// <summary>
+    ///  Length in seconds for slime secretion cooldown
+    /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 2.0f;
 
     /// <summary>

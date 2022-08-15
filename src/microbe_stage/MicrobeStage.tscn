@@ -403,7 +403,7 @@ AmmoniaInv = ExtResource( 3 )
 PhosphatesInv = ExtResource( 4 )
 HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
-SecreteMucilageHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteMucilage")
+SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 PausePromptPath = NodePath("PausePrompt")
@@ -2061,7 +2061,7 @@ toggle_mode = true
 ActionIcon = ExtResource( 89 )
 ActionName = "g_pack_commands"
 
-[node name="SecreteMucilage" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+[node name="SecreteSlime" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -2131,7 +2131,7 @@ visible = true
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
-[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/SecreteMucilage" to="PlayerMicrobeInput" method="SecreteMucilage"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/SecreteSlime" to="PlayerMicrobeInput" method="SecreteSlime"]
 [connection signal="Cancelled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]

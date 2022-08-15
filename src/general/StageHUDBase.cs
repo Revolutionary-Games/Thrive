@@ -147,7 +147,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath EngulfHotkeyPath = null!;
 
     [Export]
-    public NodePath SecreteMucilageHotkeyPath = null!;
+    public NodePath SecreteSlimeHotkeyPath = null!;
 
     [Export]
     public NodePath SignallingAgentsHotkeyPath = null!;
@@ -220,7 +220,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
-    protected ActionButton secreteMucilageHotkey = null!;
+    protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
@@ -436,7 +436,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
 
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
-        secreteMucilageHotkey = GetNode<ActionButton>(SecreteMucilageHotkeyPath);
+        secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
@@ -1158,17 +1158,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract void UpdateAbilitiesHotBar();
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showMucilage,
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
         bool showingSignaling, bool engulfOn)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
-        secreteMucilageHotkey.Visible = showMucilage;
+        secreteSlimeHotkey.Visible = showSlime;
         signallingAgentsHotkey.Visible = showingSignaling;
 
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
-        secreteMucilageHotkey.Pressed = Input.IsActionPressed(secreteMucilageHotkey.ActionName);
+        secreteSlimeHotkey.Pressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
         signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
     }
 

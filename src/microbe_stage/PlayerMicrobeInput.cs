@@ -69,7 +69,7 @@ public class PlayerMicrobeInput : NodeWithInput
     }
 
     [RunOnKey("g_secrete_slime")]
-    public void SecreteMucilage(float delta)
+    public void SecreteSlime(float delta)
     {
         stage.Player?.SecreteSlime(delta);
     }

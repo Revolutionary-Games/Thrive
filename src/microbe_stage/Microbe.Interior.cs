@@ -55,6 +55,9 @@ public partial class Microbe
     [JsonProperty]
     private float playerEngulfedDeathTimer;
 
+    [JsonProperty]
+    private float slimeSecretionCooldown;
+
     private float lastCheckedReproduction;
 
     /// <summary>
@@ -150,9 +153,6 @@ public partial class Microbe
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
-
-    [JsonProperty]
-    public float SlimeSecretionCooldown { get; private set; }
 
     [JsonIgnore]
     public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
@@ -337,29 +337,40 @@ public partial class Microbe
         queuedToxinToEmit = toxinCompound;
     }
 
+    /// <summary>
+    ///   Tries to secrete slime if possible
+    /// </summary>
     public void SecreteSlime(float delta)
     {
         if (SlimeJets.Count < 1)
             return;
 
-        if (SlimeSecretionCooldown > 0)
+        if (slimeSecretionCooldown > 0)
             return;
 
         var totalSlimeSecreted = 0.0f;
 
+        // Reset the jet factor before calculating
+        slimeJetFactor = Vector3.Zero;
+
+        // Secrete slime and gather overall force from directions determined by equipped jets
         foreach (var jet in SlimeJets)
         {
             var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
-                -jet.GetDirection(), 4);
-            SlimeJetFactor += slimeSecreted * jet.GetDirection();
+                -jet.GetDirection(), 2);
+            slimeJetFactor += slimeSecreted * jet.GetDirection();
             totalSlimeSecreted += slimeSecreted;
         }
 
         // Once we hit zero, start a cooldown timer
         if (totalSlimeSecreted < Constants.MUCILAGE_MIN_TO_VENT)
-            SlimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
+            slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
     }
 
+    /// <summary>
+    ///   Makes this Microbe start secreting slime on the next update. Used by the AI from a background thread.
+    ///   Only one can be queued at once
+    /// </summary>
     public void QueueSecreteSlime()
     {
         queuedSecreteSlime = true;
@@ -661,7 +672,7 @@ public partial class Microbe
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         // Cells with jets aren't affected by mucilage
-        SlowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
+        slowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
             Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJets.Count < 1;
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)

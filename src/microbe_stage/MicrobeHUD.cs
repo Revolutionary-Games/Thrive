@@ -304,21 +304,21 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var player = stage!.Player!;
 
         bool showToxin;
-        bool showMucilage;
+        bool showSlime;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Colony != null)
         {
             showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
-            showMucilage = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
+            showSlime = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
         }
         else
         {
             showToxin = player.AgentVacuoleCount > 0;
-            showMucilage = player.SlimeJets.Count > 0;
+            showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showMucilage,
+        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showSlime,
             player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;

@@ -485,7 +485,7 @@ public class MicrobeAI
 
             // There's also a chance to jet away if we can
             if (RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random))
-                SecreteMucilage();
+                SecreteSlime();
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -520,8 +520,9 @@ public class MicrobeAI
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
 
+        // Predators can use slime jets as an ambush mechanism
         if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
-            SecreteMucilage();
+            SecreteSlime();
     }
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)
@@ -725,7 +726,7 @@ public class MicrobeAI
         }
     }
 
-    private void SecreteMucilage()
+    private void SecreteSlime()
     {
         if (microbe.Hitpoints > 0 && microbe.SlimeJets.Count > 0)
         {
