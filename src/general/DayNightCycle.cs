@@ -61,12 +61,12 @@ public class DayNightCycle : Godot.Node
 
     /// <summary>
     ///   The percentage of daylight you should get.
-    ///   light = max(-abs(PercentOfDayElapsed*4-2)+1, minLightPercentage)
-    ///   desmos: https://www.desmos.com/calculator/qfq0fcs4om
+    ///   light = min(max(-abs(PercentOfDayElapsed*6-3)+2, minLightPercentage), 1)
+    ///   desmos: https://www.desmos.com/calculator/pjnh5rm023
     /// </summary>
     public float DayLightPercentage
     {
-        get { return Math.Max(-Math.Abs(PercentOfDayElapsed * 4 - 2) + 1, minLightPercentage); }
+        get { return Math.Min(Math.Max(-Math.Abs(PercentOfDayElapsed * 6 - 3) + 2, minLightPercentage), 1); }
     }
 
     public override void _Process(float delta)
