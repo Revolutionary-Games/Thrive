@@ -71,7 +71,6 @@ public class CellPopupMenu : HexPopupMenu
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
-        mpCost = (int)(mpCost * editorCostFactor);
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 
@@ -88,7 +87,6 @@ public class CellPopupMenu : HexPopupMenu
                 0))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
-        mpCost = (int)(mpCost * editorCostFactor);
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 

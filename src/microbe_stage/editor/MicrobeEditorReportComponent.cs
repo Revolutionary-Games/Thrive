@@ -71,8 +71,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     private Label timeIndicator = null!;
     private Label glucoseReductionLabel = null!;
-    private Label autoEvoLabel = null!;
-    private Label externalEffectsLabel = null!;
+    private CustomRichTextLabel autoEvoLabel = null!;
+    private CustomRichTextLabel externalEffectsLabel = null!;
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
 
@@ -108,8 +108,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
-        externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
+        autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
+        externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
         temperatureChart = GetNode<LineChart>(TemperatureChartPath);
@@ -142,35 +142,106 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
-        reportTabPatchSelector.Select(Editor.CurrentPatch.ID);
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(Editor.CurrentPatch.ID));
     }
 
-    public void UpdateReportTabPatchSelectorSelection(int patchID)
+    public void UpdatePatchDetails(Patch currentOrSelectedPatch, Patch? selectedPatch = null)
     {
-        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
+        selectedPatch ??= currentOrSelectedPatch;
+
+        UpdateReportTabStatistics(currentOrSelectedPatch);
+
+        UpdateTimeline(selectedPatch);
+
+        UpdateReportTabPatchName(currentOrSelectedPatch);
+
+        UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
     }
 
-    public void UpdatePatchDetails(Patch patch, PatchMapDrawer mapDrawer)
+    public void UpdateTimeIndicator(double value)
     {
-        UpdateReportTabStatistics(patch);
+        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
+            + TranslationServer.Translate("MEGA_YEARS");
 
-        UpdateTimeline(mapDrawer.SelectedPatch);
+        var tooltip = ToolTipManager.Instance.GetToolTip("timeIndicator", "editor");
 
-        UpdateReportTabPatchName(patch);
+        if (tooltip == null)
+            throw new InvalidOperationException("Could not find time indicator tooltip");
+
+        tooltip.Description = TranslationServer.Translate("TIME_INDICATOR_TOOLTIP")
+            .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
+    }
+
+    public void UpdateGlucoseReduction(float value)
+    {
+        var percentage = TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
+
+        // The amount of glucose has been reduced to {0} of the previous amount.
+        glucoseReductionLabel.Text = TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
+            .FormatSafe(percentage);
     }
 
     public void UpdateAutoEvoResults(string results, string external)
     {
-        autoEvoLabel.Text = results;
-        externalEffectsLabel.Text = external;
+        autoEvoLabel.ExtendedBbcode = results;
+        externalEffectsLabel.ExtendedBbcode = external;
     }
 
-    public void UpdateReportTabPatchName(Patch patch)
+    public override void OnInsufficientMP(bool playSound = true)
+    {
+        // This component doesn't use actions
+    }
+
+    public override void OnActionBlockedWhileAnotherIsInProgress()
+    {
+    }
+
+    public override void OnMutationPointsChanged(int mutationPoints)
+    {
+    }
+
+    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+    }
+
+    public override void OnValidAction()
+    {
+    }
+
+    protected override void OnTranslationsChanged()
+    {
+        Editor.SendAutoEvoResultsToReportComponent();
+        UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
+        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
+        UpdateTimeline(Editor.SelectedPatch);
+        UpdateReportTabPatchSelector();
+        UpdateReportTabStatistics(Editor.CurrentPatch);
+    }
+
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        timeIndicator.RegisterToolTipForControl("timeIndicator", "editor");
+
+        var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
+        var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
+
+        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
+        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
+    }
+
+    private void UpdateReportTabPatchSelectorSelection(int patchID)
+    {
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
+    }
+
+    private void UpdateReportTabPatchName(Patch patch)
     {
         reportTabPatchName.Text = patch.Name.ToString();
     }
 
-    public void UpdateReportTabStatistics(Patch patch)
+    private void UpdateReportTabStatistics(Patch patch)
     {
         temperatureChart.ClearDataSets();
         sunlightChart.ClearDataSets();
@@ -217,7 +288,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         {
             var snapshot = patch.History.ElementAt(i);
 
-            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
+            var temperature = SimulationParameters.Instance.GetCompound("temperature");
+            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod,
+                snapshot.Biome.Compounds[temperature].Ambient)
             {
                 MarkerColour = temperatureData.Colour,
             });
@@ -354,79 +427,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    public void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)
+    private void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)
     {
         timelineSubtab.UpdateTimeline(Editor, mapSelectedPatch, patch);
-    }
-
-    public void UpdateGlucoseReduction(float value)
-    {
-        var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-            value * 100);
-
-        // The amount of glucose has been reduced to {0} of the previous amount.
-        glucoseReductionLabel.Text =
-            string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"),
-                percentage);
-    }
-
-    public void UpdateTimeIndicator(double value)
-    {
-        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
-            + TranslationServer.Translate("MEGA_YEARS");
-
-        var tooltip = ToolTipManager.Instance.GetToolTip("timeIndicator", "editor");
-
-        if (tooltip == null)
-            throw new InvalidOperationException("Could not find time indicator tooltip");
-
-        tooltip.Description = string.Format(
-            CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
-            Editor.CurrentGame.GameWorld.TotalPassedTime);
-    }
-
-    public override void OnInsufficientMP(bool playSound = true)
-    {
-        // This component doesn't use actions
-    }
-
-    public override void OnActionBlockedWhileAnotherIsInProgress()
-    {
-    }
-
-    public override void OnMutationPointsChanged(int mutationPoints)
-    {
-    }
-
-    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
-    {
-    }
-
-    public override void OnValidAction()
-    {
-    }
-
-    protected override void OnTranslationsChanged()
-    {
-        Editor.SendAutoEvoResultsToReportComponent();
-        UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
-        UpdateTimeline(Editor.SelectedPatch);
-        UpdateReportTabPatchSelector();
-    }
-
-    protected override void RegisterTooltips()
-    {
-        base.RegisterTooltips();
-
-        timeIndicator.RegisterToolTipForControl("timeIndicator", "editor");
-
-        var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
-        var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-
-        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
-        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
     }
 
     private void SetReportSubtab(string tab)

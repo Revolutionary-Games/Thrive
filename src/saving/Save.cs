@@ -135,6 +135,36 @@ public class Save
         return save;
     }
 
+    public static (SaveInformation Info, byte[]? ScreenshotData) LoadInfoAndRawScreenshotFromSave(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        try
+        {
+            var (info, _, screenshot) = LoadDataFromFile(target, true, false, true);
+
+            return (ParseSaveInfo(info), screenshot);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load save info and screenshot buffer from ${saveName}, error: ${e}");
+            return (SaveInformation.CreateInvalid(), null);
+        }
+    }
+
+    public static Save ConstructSaveFromInfoAndScreenshotBuffer(string saveName, SaveInformation info,
+        byte[]? screenshotData)
+    {
+        var save = new Save { Name = saveName, Info = info };
+
+        if (screenshotData != null)
+        {
+            save.Screenshot = ImageFromBuffer(screenshotData);
+        }
+
+        return save;
+    }
+
     public static (SaveInformation Info, JObject SaveObject, Image? Screenshot) LoadJSONStructureFromFile(
         string saveName)
     {
@@ -288,13 +318,7 @@ public class Save
 
         if (info)
         {
-            if (string.IsNullOrEmpty(infoStr))
-            {
-                throw new IOException("couldn't find info content in save");
-            }
-
-            infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
-                throw new JsonException("SaveInformation is null");
+            infoResult = ParseSaveInfo(infoStr);
         }
 
         if (save)
@@ -311,17 +335,36 @@ public class Save
 
         if (screenshot)
         {
-            imageResult = new Image();
-
-            if (screenshotData?.Length > 0)
-            {
-                imageResult.LoadPngFromBuffer(screenshotData);
-            }
+            if (screenshotData != null)
+                imageResult = ImageFromBuffer(screenshotData);
 
             // Not a critical error that screenshot is missing even if it was requested
         }
 
         return (infoResult, saveResult, imageResult);
+    }
+
+    private static SaveInformation ParseSaveInfo(string? infoStr)
+    {
+        if (string.IsNullOrEmpty(infoStr))
+        {
+            throw new IOException("couldn't find info content in save");
+        }
+
+        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+            throw new JsonException("SaveInformation is null");
+    }
+
+    private static Image ImageFromBuffer(byte[] buffer)
+    {
+        var result = new Image();
+
+        if (buffer.Length > 0)
+        {
+            result.LoadPngFromBuffer(buffer);
+        }
+
+        return result;
     }
 
     private static (string? InfoStr, string? SaveStr, byte[]? Screenshot) LoadDataFromFile(string file, bool info,

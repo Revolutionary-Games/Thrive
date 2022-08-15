@@ -22,27 +22,12 @@ public class PatchMapNameGenerator : IRegistryType
     // ReSharper disable once StringLiteralTypo
     private string vowels = "aeiouy";
 
-    private string? continentName;
-    private string? patchName;
-
-    public string ContinentName
-    {
-        get => continentName ?? throw new InvalidOperationException("Value not generated yet");
-        private set => continentName = value;
-    }
-
-    public string PatchName
-    {
-        get => patchName ?? throw new InvalidOperationException("Value not generated yet");
-        private set => patchName = value;
-    }
-
     public string InternalName { get; set; } = null!;
 
     /// <summary>
-    ///   Generates and returns a new patch name
+    ///   Generates and returns a new region name (along with a continent name, non-genitive)
     /// </summary>
-    public string Next(Random random)
+    public (string ContinentName, string RegionName) Next(Random random)
     {
         int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
         if (nameLength == 4)
@@ -67,7 +52,7 @@ public class PatchMapNameGenerator : IRegistryType
         name[0] = char.ToUpper(name[0], CultureInfo.InvariantCulture);
 
         // Continent name is the name without the genitive
-        ContinentName = name.ToString();
+        var continentName = name.ToString();
 
         // Choose an appropriate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
@@ -81,9 +66,7 @@ public class PatchMapNameGenerator : IRegistryType
 
         name.Append(suffixes[suffixIndex]);
 
-        PatchName = name.ToString();
-
-        return PatchName;
+        return (continentName, name.ToString());
     }
 
     public void Check(string name)

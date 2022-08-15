@@ -8,7 +8,8 @@ using Nito.Collections;
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
 /// </summary>
-public class SpawnSystem
+[JsonObject(IsReference = true)]
+public class SpawnSystem : ISpawnSystem
 {
     /// <summary>
     ///   Sets how often the spawn system runs and checks things
@@ -64,15 +65,6 @@ public class SpawnSystem
     }
 
     /// <summary>
-    ///   Adds an externally spawned entity to be despawned
-    /// </summary>
-    public static void AddEntityToTrack(ISpawned entity)
-    {
-        entity.DespawnRadiusSquared = Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
-        entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
-    }
-
-    /// <summary>
     ///   Adds a new spawner. Sets up the spawn radius, this radius squared,
     ///   and frequency fields based on the parameters of this
     ///   function.
@@ -97,17 +89,11 @@ public class SpawnSystem
         spawnTypes.Remove(spawner);
     }
 
-    /// <summary>
-    ///   Prepares the spawn system for a new game
-    /// </summary>
     public void Init()
     {
         Clear();
     }
 
-    /// <summary>
-    ///   Clears the spawners
-    /// </summary>
     public void Clear()
     {
         spawnTypes.Clear();
@@ -121,15 +107,9 @@ public class SpawnSystem
         despawnElapsed = 0;
     }
 
-    /// <summary>
-    ///   Despawns all spawned entities
-    /// </summary>
     public void DespawnAll()
     {
-        foreach (var queuedSpawn in queuedSpawns)
-            queuedSpawn.Dispose();
-
-        queuedSpawns.Clear();
+        ClearSpawnQueue();
         int despawned = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
@@ -150,6 +130,18 @@ public class SpawnSystem
     }
 
     /// <summary>
+    ///   Clears all of the queued spawns. For use when the queue might contain something that
+    ///   should not be allowed to spawn.
+    /// </summary>
+    public void ClearSpawnQueue()
+    {
+        foreach (var queuedSpawn in queuedSpawns)
+            queuedSpawn.Dispose();
+
+        queuedSpawns.Clear();
+    }
+
+    /// <summary>
     ///   Forgets all record of where clouds have spawned, so clouds can spawn anywhere.
     /// </summary>
     public void ClearSpawnCoordinates()
@@ -157,10 +149,7 @@ public class SpawnSystem
         coordinatesSpawned.Clear();
     }
 
-    /// <summary>
-    ///   Processes spawning and despawning things
-    /// </summary>
-    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
+    public void Process(float delta, Vector3 playerPosition)
     {
         elapsed += delta;
         despawnElapsed += delta;
@@ -171,7 +160,7 @@ public class SpawnSystem
         int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
-        HandleQueuedSpawns(ref spawnsLeftThisFrame);
+        HandleQueuedSpawns(ref spawnsLeftThisFrame, playerPosition);
 
         if (spawnsLeftThisFrame <= 0)
             return;
@@ -198,7 +187,23 @@ public class SpawnSystem
         }
     }
 
-    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame)
+    public void AddEntityToTrack(ISpawned entity)
+    {
+        entity.DespawnRadiusSquared = Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
+        entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
+
+        // Update entity count estimate to keep this about up to date, this will be corrected within a few seconds
+        // with the next spawn cycle to be exactly correct
+        ++estimateEntityCount;
+    }
+
+    public bool IsUnderEntityLimitForReproducing()
+    {
+        return estimateEntityCount < Settings.Instance.MaxSpawnedEntities.Value *
+            Constants.REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER;
+    }
+
+    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame, Vector3 playerPosition)
     {
         int spawned = 0;
 
@@ -210,7 +215,7 @@ public class SpawnSystem
 
             bool finished = false;
 
-            while (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES &&
+            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
@@ -219,10 +224,20 @@ public class SpawnSystem
                     break;
                 }
 
+                if (enumerator.Current == null)
+                    throw new Exception("Queued spawn enumerator returned null");
+
+                // Discard the whole spawn if we're too close to the player
+                var entityPosition = ((Spatial)enumerator.Current).GlobalTransform.origin;
+                if ((playerPosition - entityPosition).Length() < Constants.SPAWN_SECTOR_SIZE)
+                {
+                    enumerator.Current.DestroyDetachAndQueueFree();
+                    finished = true;
+                    break;
+                }
+
                 // Next was spawned
-                ProcessSpawnedEntity(
-                    enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
-                    spawn.SpawnType);
+                ProcessSpawnedEntity(enumerator.Current, spawn.SpawnType);
 
                 ++estimateEntityCount;
                 --spawnsLeftThisFrame;
@@ -254,7 +269,7 @@ public class SpawnSystem
     private void SpawnEntities(Vector3 playerPosition, ref int spawnsLeftThisFrame, int existing)
     {
         // If there are already too many entities, don't spawn more
-        if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+        if (existing >= Settings.Instance.MaxSpawnedEntities)
             return;
 
         var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x /
@@ -357,9 +372,9 @@ public class SpawnSystem
             return spawns;
         }
 
-        if (spawnType is CompoundCloudSpawner || estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+        if (spawnType is CompoundCloudSpawner || estimateEntityCount < Settings.Instance.MaxSpawnedEntities)
         {
-            var enumerable = spawnType.Spawn(worldRoot, location);
+            var enumerable = spawnType.Spawn(worldRoot, location, this);
 
             if (enumerable == null)
                 return spawns;

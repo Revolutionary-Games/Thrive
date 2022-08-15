@@ -9,17 +9,22 @@
     public class FindBestMigration : VariantTryingStep
     {
         private readonly AutoEvoConfiguration configuration;
+        private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly Random random;
+        private readonly SimulationCache cache;
 
-        public FindBestMigration(AutoEvoConfiguration configuration, PatchMap map, Species species,
-            Random random, int migrationsToTry, bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
+        public FindBestMigration(AutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+            PatchMap map, Species species, Random random, int migrationsToTry,
+            bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
             this.configuration = configuration;
+            this.worldSettings = worldSettings;
             this.map = map;
             this.species = species;
             this.random = new Random(random.Next());
+            cache = new SimulationCache(worldSettings);
         }
 
         public override bool CanRunConcurrently => true;
@@ -36,11 +41,12 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetGlobalPopulation(species);
 
@@ -55,7 +61,8 @@
             if (migration == null)
                 return new AttemptResult(null, -1);
 
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
             config.PatchesToRun.Add(migration.From);
@@ -63,11 +70,11 @@
 
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
-            // TODO: this could be faster to just simulate the source and
-            // destination patches (assuming in the future no global effects of
-            // migrations are added, which would need a full patch map
-            // simulation anyway)
-            PopulationSimulation.Simulate(config);
+            // TODO: this could be faster to just simulate the source and destination patches
+            // (assuming in the future no global effects of migrations are added, which would need a full patch map
+            // simulation anyway). However that would need to take into account that the no-migration variant,
+            // as it simulates all patches, would always result in higher populations
+            PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetGlobalPopulation(species);
 
@@ -100,7 +107,7 @@
                 {
                     Patch patch = entry[0].Value;
 
-                    var population = patch.GetSpeciesPopulation(species);
+                    var population = patch.GetSpeciesSimulationPopulation(species);
                     if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                         continue;
 

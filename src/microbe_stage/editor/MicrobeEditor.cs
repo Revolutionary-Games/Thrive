@@ -89,7 +89,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
         cellEditorTab.UpdatePatchDependentBalanceData();
 
-        reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
+        reportTab.UpdatePatchDetails(patch);
+
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
@@ -139,8 +140,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
         reportTab.UpdateReportTabPatchSelector();
 
-        // TODO: this should be saved so that the text can be accurate if this is updated
-        reportTab.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        reportTab.UpdateGlucoseReduction(CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
 
         if (fresh)
         {
@@ -152,8 +152,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdateReportTabStatistics(CurrentPatch);
-            reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
@@ -184,6 +183,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         {
             editorComponent.Init(this, fresh);
         }
+
+        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEditorReady()
@@ -206,8 +207,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdateReportTabStatistics(CurrentPatch);
-        reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
     }
 
     protected override void ElapseEditorEntryTime()
@@ -218,7 +218,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewMicrobeGame();
+        return GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
     }
 
     protected override void OnUndoPerformed()
@@ -311,6 +311,11 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 #pragma warning restore 162
 
         base.SetupEditedSpecies();
+    }
+
+    private void OnSelectPatchForReportTab(Patch patch)
+    {
+        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void CreateMutatedSpeciesCopy(Species species)

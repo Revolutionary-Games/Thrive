@@ -1,7 +1,6 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Base class for Godot Node derived types converters
@@ -40,6 +39,7 @@ public class BaseNodeConverter : BaseThriveConverter
             case "Scale":
             // Ignore this as this is parent relative and probably causes problems loading
             case "GlobalTransform":
+            case "RectGlobalPosition":
             // Ignore physics properties that cause deprecation warnings
             case "Friction":
             case "Bounce":
@@ -60,15 +60,20 @@ public class BaseNodeConverter : BaseThriveConverter
         return typeof(Node).IsAssignableFrom(objectType);
     }
 
+    protected override void OnConfigureObjectLoad(InProgressObjectDeserialization objectLoad)
+    {
+        objectLoad.RegisterExtraField(NodeGroupSaveHelper.GROUP_JSON_PROPERTY_NAME);
+    }
+
     protected override void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
     {
         NodeGroupSaveHelper.WriteGroups(writer, (Node)value, serializer);
     }
 
-    protected override void ReadCustomExtraFields(JObject item, object instance, JsonReader reader, Type objectType,
-        object? existingValue, JsonSerializer serializer)
+    protected override void ReadCustomExtraFields(InProgressObjectDeserialization objectLoad, object instance,
+        Type objectType, object? existingValue, JsonSerializer serializer)
     {
-        NodeGroupSaveHelper.ReadGroups(item, (Node)instance, reader, serializer);
+        NodeGroupSaveHelper.ReadGroups(objectLoad, (Node)instance);
     }
 
     protected override bool SkipMember(string name)

@@ -22,9 +22,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
+    <Compile Include="simulation_parameters\EnzymeLoader.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
+    <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
+    <Compile Include="src\auto-evo\EvolutionaryTree.cs" />
+    <Compile Include="src\auto-evo\EvolutionaryTreeNode.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\ChunkFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
@@ -48,12 +52,15 @@
     <Compile Include="src\early_multicellular_stage\editor\CellPopupMenu.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellTypeSelection.cs" />
     <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditor.cs" />
-    <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditorGUI.cs" />
     <Compile Include="src\early_multicellular_stage\IPositionedCell.cs" />
     <Compile Include="src\early_multicellular_stage\Microbe.Multicellular.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\IResource.cs" />
+    <Compile Include="src\engine\ITextureResource.cs" />
+    <Compile Include="src\engine\ResourceManager.cs" />
+    <Compile Include="src\engine\UnhandledExceptionLogger.cs" />
     <Compile Include="src\engine\DebugOverlays.cs" />
     <Compile Include="src\engine\DebugOverlays.EntityLabel.cs" />
     <Compile Include="src\engine\DebugOverlays.FPSCounter.cs" />
@@ -99,6 +106,7 @@
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
+    <Compile Include="src\engine\ObjectHelpers.cs" />
     <Compile Include="src\engine\PauseManager.cs" />
     <Compile Include="src\engine\DebugOverlays.PerformanceMetrics.cs" />
     <Compile Include="src\engine\PhotoStudio.cs" />
@@ -109,6 +117,13 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
+    <Compile Include="src\general\Asset.cs" />
+    <Compile Include="src\general\AssetCategory.cs" />
+    <Compile Include="src\general\AssetType.cs" />
+    <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\PhotographablePreview.cs" />
+    <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
+    <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
     <Compile Include="src\general\EditorBase.cs" />
@@ -132,19 +147,30 @@
     <Compile Include="src\general\IEditorWithActions.cs" />
     <Compile Include="src\general\IEditorWithPatches.cs" />
     <Compile Include="src\general\IEntity.cs" />
+    <Compile Include="src\general\IGraphicalEntity.cs" />
     <Compile Include="src\general\IHexEditor.cs" />
     <Compile Include="src\general\IndividualHexLayout.cs" />
     <Compile Include="src\general\IPositionedHex.cs" />
     <Compile Include="src\general\IReturnableGameState.cs" />
+    <Compile Include="src\general\IStage.cs" />
+    <Compile Include="src\general\IStageHUD.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\ActionInterferenceMode.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
+    <Compile Include="src\general\OrbitCamera.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\general\StageBase.cs" />
+    <Compile Include="src\general\StageHUDBase.cs" />
     <Compile Include="src\general\StringUtils.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\general\ShuffleBag.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryCardAudio.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryDetailsTooltip.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryCardModel.cs" />
+    <Compile Include="src\gui_common\art_gallery\IGalleryCardPlayback.cs" />
+    <Compile Include="src\gui_common\art_gallery\SlideScreen.cs" />
     <Compile Include="src\gui_common\charts\ChartDataSet.cs" />
     <Compile Include="src\gui_common\charts\IDataSetsLegend.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
@@ -159,16 +185,29 @@
     <Compile Include="src\gui_common\CreditsScroll.cs" />
     <Compile Include="src\gui_common\CustomDialog.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
+    <Compile Include="src\gui_common\DraggableScrollContainer.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryViewer.cs" />
     <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryCard.cs" />
     <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
     <Compile Include="src\gui_common\dialogs\LicensesDisplay.cs" />
+    <Compile Include="src\gui_common\PlaybackControls.cs" />
+    <Compile Include="src\gui_common\PlayButton.cs" />
     <Compile Include="src\gui_common\RadialMenu.cs" />
     <Compile Include="src\gui_common\RadialPopup.cs" />
+    <Compile Include="src\gui_common\SpeciesPreview.cs" />
+    <Compile Include="src\gui_common\CrossFadableTextureRect.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
+    <Compile Include="src\late_multicellular_stage\CreatureAI.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularCamera.cs" />
+    <Compile Include="src\late_multicellular_stage\PlayerMulticellularInput.cs" />
+    <Compile Include="src\microbe_stage\BiomeType.cs" />
+    <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\ModifierInfoLabel.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\SelectionMenuToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ToolTipCallbackData.cs" />
@@ -193,7 +232,28 @@
     <Compile Include="src\engine\ColourblindScreenFilter.cs" />
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
+    <Compile Include="src\general\NewGameSettings.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballMoveActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballPlacementActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballRemoveActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballResizeActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\EditorCamera3D.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\LateMulticellularEditor.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballBodyEditorComponent.Callbacks.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballBodyEditorComponent.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballEditorComponentBase.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballPopupMenu.cs" />
+    <Compile Include="src\late_multicellular_stage\IMetaballDisplayer.cs" />
+    <Compile Include="src\late_multicellular_stage\LateMulticellularSpecies.cs" />
+    <Compile Include="src\late_multicellular_stage\Metaball.cs" />
+    <Compile Include="src\late_multicellular_stage\MetaballLayout.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularCreature.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularHUD.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularMetaball.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularMetaballDisplayer.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularMetaballLayout.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularStage.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\HexMoveActionData.cs" />
@@ -224,7 +284,12 @@
     <Compile Include="src\microbe_stage\editor\MutationPointsBar.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapEditorComponent.cs" />
     <Compile Include="src\microbe_stage\editor\EditorActionHistory.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\LysosomeUpgradeGUI.cs" />
+    <Compile Include="src\microbe_stage\Endosome.cs" />
+    <Compile Include="src\microbe_stage\Enzyme.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
+    <Compile Include="src\microbe_stage\HoveredCompoundControl.cs" />
+    <Compile Include="src\microbe_stage\HUDBottomBar.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
@@ -236,7 +301,11 @@
     <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\SingleEditorAction.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
+    <Compile Include="src\microbe_stage\gui\PatchDetailsPanel.cs" />
+    <Compile Include="src\microbe_stage\gui\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
+    <Compile Include="src\microbe_stage\IEngulfable.cs" />
+    <Compile Include="src\microbe_stage\ISpawnSystem.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -274,7 +343,10 @@
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\ChemoreceptorComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SignalingAgentComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\LysosomeComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
+    <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
+    <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
@@ -322,6 +394,7 @@
     <Compile Include="src\microbe_stage\MicrobeSpecies.cs" />
     <Compile Include="src\general\GameWorld.cs" />
     <Compile Include="src\general\WorldGenerationSettings.cs" />
+    <Compile Include="src\general\DifficultyPreset.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
@@ -331,6 +404,7 @@
     <Compile Include="src\microbe_stage\PatchMap.cs" />
     <Compile Include="src\microbe_stage\PatchMapGenerator.cs" />
     <Compile Include="src\microbe_stage\PatchManager.cs" />
+    <Compile Include="src\microbe_stage\PatchRegion.cs" />
     <Compile Include="src\microbe_stage\OrganelleTemplate.cs" />
     <Compile Include="src\general\Int2.cs" />
     <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
@@ -408,6 +482,7 @@
     <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
+    <Compile Include="src\saving\serializers\InProgressObjectDeserialization.cs" />
     <Compile Include="src\saving\serializers\LocalizedStringTypeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeGroupSaveHelper.cs" />
@@ -433,6 +508,7 @@
     <Compile Include="src\steam\WorkshopItemData.cs" />
     <Compile Include="src\steam\WorkshopItemState.cs" />
     <Compile Include="src\steam\WorkshopResult.cs" />
+    <Compile Include="src\tutorial\early_multicellular_stage\EarlyMulticellularWelcome.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
     <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />
@@ -446,7 +522,11 @@
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
     <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\CheckTheHelpMenu.cs" />
+    <Compile Include="src\tutorial\microbe_stage\LeaveColonyTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfedExplanation.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfmentExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfmentStorageFull.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovementExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobePressEditorButton.cs" />
@@ -461,6 +541,7 @@
     <Compile Include="src\tutorial\TutorialPhase.cs" />
     <Compile Include="src\tutorial\TutorialState.cs" />
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
+    <Compile Include="test\MetaballTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
@@ -489,7 +570,7 @@
       <Version>1.2.0-beta.435</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.2.1</Version>
+      <Version>2.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -497,6 +578,7 @@
     <Content Include="export_presets.cfg" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
+    <Content Include="simulation_parameters\common\difficulty_presets.json" />
     <Content Include="simulation_parameters\common\gallery.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />

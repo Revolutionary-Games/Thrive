@@ -71,6 +71,9 @@ public partial class DebugOverlays
         var processorTime = currentProcess.TotalProcessorTime;
         var threads = currentProcess.Threads.Count;
         var usedMemory = Math.Round(currentProcess.WorkingSet64 / (double)Constants.MEBIBYTE, 1);
+        var usedVideoMemory = Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) /
+            Constants.MEBIBYTE, 1);
+        var mibFormat = TranslationServer.Translate("MIB_VALUE");
 
         // These don't seem to work:
         // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
@@ -81,9 +84,11 @@ public partial class DebugOverlays
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
                     entities, children, spawnHistory.Sum(), despawnHistory.Sum(),
-                    Performance.GetMonitor(Performance.Monitor.ObjectNodeCount), usedMemory,
-                    Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) / Constants.MEBIBYTE,
-                        1),
+                    Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
+                    OS.GetName() == Constants.OS_WINDOWS_NAME ?
+                        TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
+                        mibFormat.FormatSafe(usedMemory),
+                    mibFormat.FormatSafe(usedVideoMemory),
                     Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),

@@ -45,7 +45,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
     [Export]
-    public bool HideOnMousePress { get; set; } = true;
+    public bool HideOnMouseAction { get; set; } = true;
 
     public Control ToolTipNode => this;
 

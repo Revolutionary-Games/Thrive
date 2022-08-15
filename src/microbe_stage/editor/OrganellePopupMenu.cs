@@ -77,11 +77,11 @@ public class OrganellePopupMenu : HexPopupMenu
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
-        mpCost = (int)(mpCost * editorCostFactor);
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 
         deleteButton.Disabled = !EnableDeleteOption;
+        deleteButton.HintTooltip = DeleteOptionTooltip;
     }
 
     protected override void UpdateMoveButton()
@@ -97,7 +97,6 @@ public class OrganellePopupMenu : HexPopupMenu
             })) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
-        mpCost = (int)(mpCost * editorCostFactor);
 
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 

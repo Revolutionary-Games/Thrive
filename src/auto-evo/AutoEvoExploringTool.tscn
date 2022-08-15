@@ -1,0 +1,788 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
+[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
+[ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
+
+[sub_resource type="ButtonGroup" id=1]
+resource_name = "TabsButtonGroup"
+
+[node name="AutoEvoExploringTool" type="Node"]
+script = ExtResource( 1 )
+ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
+HistoryReportSplitPath = NodePath("GUI/VBoxContainer/HistoryReportSplit")
+SpeciesSelectPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel")
+ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
+ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
+AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
+AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
+BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
+BiodiversityFromNeighbourPatchChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance/BiodiversityFromNeighbourPatchChance")
+BiodiversityNearbyPatchIsFreePopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityNearbyPatchIsFreePopulation")
+BiodiversitySplitIsMutatedPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
+LowBiodiversityLimitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit/LowBiodiversityLimit")
+MaximumSpeciesInPatchPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
+MoveAttemptsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
+MutationsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
+NewBiodiversityIncreasingSpeciesPopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation/NewBiodiversityIncreasingSpeciesPopulation")
+ProtectMigrationsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/ProtectMigrationsFromSpeciesCap")
+ProtectNewCellsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/ProtectNewCellsFromSpeciesCap")
+RefundMigrationsInExtinctionsPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/RefundMigrationsInExtinctions")
+StrictNicheCompetitionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
+SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
+SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
+UseBiodiversityForceSplitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
+CurrentGenerationLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/CurrentGenerationLabel")
+RunStatusLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStatusLabel")
+FinishXGenerationsSpinBoxPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerationsSpin")
+FinishXGenerationsButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerations")
+RunGenerationButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration")
+RunStepButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep")
+AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
+PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis")
+HistoryListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
+ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
+SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
+HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
+SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
+SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
+EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer/EvolutionaryTree")
+ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
+
+[node name="BackGround" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+custom_constants/margin_right = 50
+custom_constants/margin_top = 30
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+margin_left = 50.0
+margin_top = 30.0
+margin_right = 1230.0
+margin_bottom = 690.0
+custom_constants/separation = 10
+
+[node name="TabButtons" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_right = 1180.0
+margin_bottom = 35.0
+
+[node name="ConfigButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+margin_right = 83.0
+margin_bottom = 35.0
+toggle_mode = true
+pressed = true
+group = SubResource( 1 )
+text = "CONFIG"
+
+[node name="ReportButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+margin_left = 87.0
+margin_right = 171.0
+margin_bottom = 35.0
+toggle_mode = true
+group = SubResource( 1 )
+text = "REPORT"
+
+[node name="ViewerButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+margin_left = 175.0
+margin_right = 257.0
+margin_bottom = 35.0
+toggle_mode = true
+group = SubResource( 1 )
+text = "VIEWER"
+
+[node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
+margin_top = 45.0
+margin_right = 1180.0
+margin_bottom = 615.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/ConfigEditor"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1179.0
+margin_bottom = 569.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1168.0
+margin_bottom = 558.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 591.0
+margin_bottom = 548.0
+scroll_horizontal_enabled = false
+
+[node name="ConfigEditorContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+margin_right = 591.0
+margin_bottom = 548.0
+size_flags_vertical = 3
+
+[node name="AllowSpeciesToNotMutate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_right = 591.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 7 )
+text = "ALLOW_SPECIES_TO_NOT_MUTATE"
+
+[node name="AllowSpeciesToNotMigrate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 24.0
+margin_right = 591.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 7 )
+text = "ALLOW_SPECIES_TO_NOT_MIGRATE"
+
+[node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 48.0
+margin_right = 591.0
+margin_bottom = 79.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+
+[node name="BiodiversityAttemptFillChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+max_value = 1.0
+step = 0.01
+
+[node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 83.0
+margin_right = 591.0
+margin_bottom = 114.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+
+[node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+max_value = 1.0
+step = 0.01
+
+[node name="BiodiversityNearbyPatchIsFreePopulation" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 118.0
+margin_right = 591.0
+margin_bottom = 138.0
+custom_fonts/font = ExtResource( 7 )
+text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+
+[node name="BiodiversitySplitIsMutated" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 142.0
+margin_right = 591.0
+margin_bottom = 162.0
+custom_fonts/font = ExtResource( 7 )
+text = "BIODIVERSITY_SPLIT_IS_MUTATED"
+
+[node name="LowBiodiversityLimit" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 166.0
+margin_right = 591.0
+margin_bottom = 197.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "LOW_BIODIVERSITY_LIMIT"
+
+[node name="LowBiodiversityLimit" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+
+[node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 201.0
+margin_right = 591.0
+margin_bottom = 232.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "MAXIMUM_SPECIES_IN_PATCH"
+
+[node name="MaximumSpeciesInPatch" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+
+[node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 236.0
+margin_right = 591.0
+margin_bottom = 267.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "MOVE_ATTEMPTS_PER_SPECIES"
+
+[node name="MoveAttemptsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+
+[node name="MutationsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 271.0
+margin_right = 591.0
+margin_bottom = 302.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "MUTATIONS_PER_SPECIES"
+
+[node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+
+[node name="NewBiodiversityIncreasingSpeciesPopulation" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 306.0
+margin_right = 591.0
+margin_bottom = 337.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+
+[node name="NewBiodiversityIncreasingSpeciesPopulation" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+max_value = 1000.0
+step = 10.0
+
+[node name="ProtectMigrationsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 341.0
+margin_right = 591.0
+margin_bottom = 361.0
+custom_fonts/font = ExtResource( 7 )
+text = "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+
+[node name="ProtectNewCellsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 365.0
+margin_right = 591.0
+margin_bottom = 385.0
+custom_fonts/font = ExtResource( 7 )
+text = "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+
+[node name="RefundMigrationsInExtinctions" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 389.0
+margin_right = 591.0
+margin_bottom = 409.0
+custom_fonts/font = ExtResource( 7 )
+text = "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+
+[node name="StrictNicheCompetition" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 413.0
+margin_right = 591.0
+margin_bottom = 433.0
+custom_fonts/font = ExtResource( 7 )
+text = "STRICT_NICHE_COMPETITION"
+
+[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 437.0
+margin_right = 591.0
+margin_bottom = 468.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+
+[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+max_value = 1000.0
+step = 10.0
+
+[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 472.0
+margin_right = 591.0
+margin_bottom = 503.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
+margin_top = 5.0
+margin_right = 515.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+
+[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
+margin_left = 519.0
+margin_right = 591.0
+margin_bottom = 31.0
+
+[node name="UseBiodiversityForceSplit" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 507.0
+margin_right = 591.0
+margin_bottom = 527.0
+custom_fonts/font = ExtResource( 7 )
+text = "USE_BIODIVERSITY_FORCE_SPLIT"
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 611.0
+margin_right = 1158.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
+margin_left = 109.0
+margin_top = 101.0
+margin_right = 437.0
+margin_bottom = 446.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_right = 328.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "CURRENT_GENERATION_COLON"
+
+[node name="CurrentGenerationLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 35.0
+margin_right = 328.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 328.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 6 )
+text = "STATUS_COLON"
+
+[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 328.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 7 )
+text = "READY"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 130.0
+margin_right = 328.0
+margin_bottom = 165.0
+
+[node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 72.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+min_value = 2.0
+value = 10.0
+align = 1
+
+[node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 76.0
+margin_right = 328.0
+margin_bottom = 35.0
+text = "Finish 10 Generations"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 175.0
+margin_right = 328.0
+margin_bottom = 210.0
+text = "FINISH_ONE_GENERATION"
+
+[node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 220.0
+margin_right = 328.0
+margin_bottom = 255.0
+text = "RUN_ONE_STEP"
+
+[node name="Abort" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 265.0
+margin_right = 328.0
+margin_bottom = 300.0
+text = "ABORT"
+
+[node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 310.0
+margin_right = 328.0
+margin_bottom = 345.0
+text = "PLAY_WITH_CURRENT_SETTING"
+
+[node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
+visible = false
+margin_top = 45.0
+margin_right = 1180.0
+margin_bottom = 615.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="UpperSplit" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit"]
+margin_right = 1180.0
+margin_bottom = 42.0
+custom_constants/separation = 30
+
+[node name="GenerationPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit"]
+margin_right = 575.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 574.0
+margin_bottom = 41.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 563.0
+margin_bottom = 30.0
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
+margin_right = 111.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "GENERATIONS"
+
+[node name="HistoryListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
+margin_left = 131.0
+margin_right = 310.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 0 )
+text = "SELECT_A_GENERATION"
+flat = false
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="SpeciesSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit"]
+margin_left = 605.0
+margin_right = 1180.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 574.0
+margin_bottom = 41.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 563.0
+margin_bottom = 30.0
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+margin_right = 62.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "SPECIES"
+
+[node name="SpeciesListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+margin_left = 82.0
+margin_right = 225.0
+margin_bottom = 20.0
+focus_mode = 2
+text = "SELECT_A_SPECIES"
+flat = false
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+visible = false
+margin_top = 62.0
+margin_right = 1180.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResultsPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1179.0
+margin_bottom = 507.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1168.0
+margin_bottom = 496.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer"]
+margin_right = 1158.0
+margin_bottom = 486.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 1158.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "AUTO_EVO_RESULTS"
+
+[node name="ResultsLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 24.0
+margin_right = 1158.0
+margin_bottom = 46.0
+
+[node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+margin_top = 62.0
+margin_right = 1180.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+margin_right = 808.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 807.0
+margin_bottom = 507.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 796.0
+margin_bottom = 496.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 786.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "EVOLUTIONARY_TREE"
+
+[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 13 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 24.0
+margin_right = 786.0
+margin_bottom = 486.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+MaxZoom = 1.0
+MinZoom = 0.2
+ZoomStep = 0.1
+ShowScrollbars = false
+ContentPath = NodePath("EvolutionaryTree")
+
+[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer" instance=ExtResource( 14 )]
+margin_right = 786.0
+margin_bottom = 462.0
+
+[node name="SpeciesDetailPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+margin_left = 828.0
+margin_right = 1180.0
+margin_bottom = 508.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 351.0
+margin_bottom = 507.0
+rect_min_size = Vector2( 350, 0 )
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 340.0
+margin_bottom = 496.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "SPECIES_DETAILS"
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 330.0
+margin_bottom = 486.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 320.0
+margin_bottom = 452.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 310.0
+margin_bottom = 442.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 310.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="SpeciesPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
+script = ExtResource( 10 )
+
+[node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
+script = ExtResource( 15 )
+
+[node name="SpeciesInfoLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 204.0
+margin_right = 310.0
+margin_bottom = 442.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_top = 625.0
+margin_right = 1180.0
+margin_bottom = 660.0
+
+[node name="BackButton" type="Button" parent="GUI/VBoxContainer/HBoxContainer"]
+margin_right = 62.0
+margin_bottom = 35.0
+text = "BACK"
+
+[node name="ExitConfirmationDialog" parent="." instance=ExtResource( 11 )]
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "CONFIRM_EXIT"
+DialogText = "RETURN_TO_MENU_WARNING"
+
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
+[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
+[connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
+[connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]

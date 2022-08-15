@@ -50,13 +50,13 @@ public class ProcessPanel : CustomDialog
 
     protected override void OnHidden()
     {
-        EmitSignal(nameof(OnClosed));
         base.OnHidden();
+        EmitSignal(nameof(OnClosed));
     }
 
-    private void ClosePressed()
+    private void OnClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        Hide();
+        CustomHide();
     }
 }

@@ -38,14 +38,14 @@ public class RotationEventArgs : TutorialEventArgs
     public Vector3 RotationInDegrees { get; }
 }
 
-public class CompoundPositionEventArgs : TutorialEventArgs
+public class EntityPositionEventArgs : TutorialEventArgs
 {
-    public CompoundPositionEventArgs(Vector3? glucosePosition)
+    public EntityPositionEventArgs(Vector3? position)
     {
-        GlucosePosition = glucosePosition;
+        EntityPosition = position;
     }
 
-    public Vector3? GlucosePosition { get; }
+    public Vector3? EntityPosition { get; }
 }
 
 public class CompoundBagEventArgs : TutorialEventArgs
@@ -96,4 +96,16 @@ public class CallbackEventArgs : TutorialEventArgs
     }
 
     public Action Data { get; }
+}
+
+public class MicrobeColonyEventArgs : TutorialEventArgs
+{
+    public MicrobeColonyEventArgs(MicrobeColony? colony)
+    {
+        Colony = colony;
+    }
+
+    public MicrobeColony? Colony { get; }
+
+    public bool HasColony => Colony != null;
 }

@@ -23,7 +23,8 @@ public class ReferenceResolver : IReferenceResolver
         {
             throw new KeyNotFoundException(
                 $"The reference {reference} was not found. " +
-                "Is a child referencing an ancestor? If so, you should add [UseThriveSerializer]");
+                "Is a child referencing an ancestor? If so, you should add [UseThriveSerializer] " +
+                "and make sure property order is sensible");
         }
 
         return referencedObject;

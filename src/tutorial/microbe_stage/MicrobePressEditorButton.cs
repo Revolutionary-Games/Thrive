@@ -2,14 +2,16 @@
 {
     using System;
     using Godot;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   Tells the player to press the editor button if it has been enabled too long
     /// </summary>
     public class MicrobePressEditorButton : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeEditorPress";
+        public override string ClosedByName => "MicrobeEditorPress";
 
+        [JsonIgnore]
         public Control? PressEditorButtonControl { get; set; }
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)

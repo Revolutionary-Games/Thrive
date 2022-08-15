@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -65,8 +67,8 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
-NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor")
+AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/AutoEvoExploring")
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
@@ -74,6 +76,7 @@ GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
+GalleryViewerPath = NodePath("GalleryViewer")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -88,7 +91,7 @@ __meta__ = {
 [node name="StoreUser" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -165.0
+margin_left = -468.0
 margin_top = 4.0
 margin_right = -4.0
 margin_bottom = 19.0
@@ -153,9 +156,6 @@ margin_left = -640.0
 margin_top = -227.5
 margin_right = 640.0
 margin_bottom = 227.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 margin_right = 1280.0
@@ -277,7 +277,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
-[node name="unknown" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 515.0
 margin_top = 50.0
 margin_right = 765.0
@@ -287,10 +287,9 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
-text = "???"
+text = "AUTO_EVO_EXPLORING_TOOL"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="unknown2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
@@ -369,7 +368,6 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
@@ -420,9 +418,14 @@ visible = false
 [node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
 visible = false
 
+[node name="NewGameSettings" parent="." instance=ExtResource( 18 )]
+visible = false
+
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
+
+[node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -510,13 +513,17 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Credits" to="." method="CreditsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
+[connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]

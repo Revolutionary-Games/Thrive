@@ -22,7 +22,7 @@ public class LoadingScreen : Control
     public NodePath TipLabelPath = null!;
 
     [Export]
-    public NodePath RandomizeTipTimerPath = null!;
+    public NodePath RandomizeTimerPath = null!;
 
     [Export]
     public NodePath SpinnerPath = null!;
@@ -37,7 +37,7 @@ public class LoadingScreen : Control
 
     private readonly Random random = new();
 
-    private TextureRect artworkRect = null!;
+    private CrossFadableTextureRect artworkRect = null!;
     private Label? artDescriptionLabel;
     private Label? loadingMessageLabel;
     private Label? loadingDescriptionLabel;
@@ -46,7 +46,7 @@ public class LoadingScreen : Control
 
     private bool wasVisible;
 
-    private Timer randomizeTipTimer = null!;
+    private Timer randomizeTimer = null!;
 
     private string? loadingMessage;
     private string? tip;
@@ -54,7 +54,6 @@ public class LoadingScreen : Control
     private string? artDescription;
 
     private float totalElapsed;
-    private MainGameState currentlyLoadingGameState = MainGameState.Invalid;
 
     private LoadingScreen()
     {
@@ -115,27 +114,16 @@ public class LoadingScreen : Control
         }
     }
 
-    private MainGameState CurrentlyLoadingGameState
-    {
-        get => currentlyLoadingGameState;
-        set
-        {
-            if (currentlyLoadingGameState == value)
-                return;
-
-            currentlyLoadingGameState = value;
-            RandomizeTip();
-        }
-    }
+    private MainGameState CurrentlyLoadingGameState { get; set; } = MainGameState.Invalid;
 
     public override void _Ready()
     {
-        artworkRect = GetNode<TextureRect>(ArtworkPath);
+        artworkRect = GetNode<CrossFadableTextureRect>(ArtworkPath);
         artDescriptionLabel = GetNode<Label>(ArtDescriptionPath);
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
         tipLabel = GetNode<CustomRichTextLabel>(TipLabelPath);
-        randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
+        randomizeTimer = GetNode<Timer>(RandomizeTimerPath);
         spinner = GetNode<Control>(SpinnerPath);
 
         UpdateMessage();
@@ -162,6 +150,12 @@ public class LoadingScreen : Control
         }
     }
 
+    public void RandomizeContent()
+    {
+        RandomizeTip();
+        RandomizeArt();
+    }
+
     public void RandomizeTip()
     {
         if (CurrentlyLoadingGameState == MainGameState.Invalid)
@@ -177,14 +171,13 @@ public class LoadingScreen : Control
 
     public void RandomizeArt()
     {
-        var galleryName = CurrentlyLoadingGameState == MainGameState.Invalid ?
-            "General" :
-            CurrentlyLoadingGameState.ToString();
+        var gameStateName = CurrentlyLoadingGameState.ToString();
+        var gallery = SimulationParameters.Instance.GetGallery("ConceptArt");
 
-        var gallery = SimulationParameters.Instance.GetGallery(galleryName);
-        var artwork = gallery.Artworks.Random(random);
+        var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
+        var artwork = gallery.AssetCategories[category].Assets.Random(random);
 
-        artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);
+        artworkRect.Image = GD.Load<Texture>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
 
@@ -200,7 +193,7 @@ public class LoadingScreen : Control
             if (wasVisible)
             {
                 wasVisible = false;
-                randomizeTipTimer.Stop();
+                randomizeTimer.Stop();
             }
 
             return;
@@ -217,9 +210,14 @@ public class LoadingScreen : Control
         wasVisible = true;
         totalElapsed = 0;
 
-        RandomizeArt();
+        RandomizeContent();
 
-        randomizeTipTimer.Start();
+        randomizeTimer.Start();
+    }
+
+    private void OnBecomeHidden()
+    {
+        artworkRect.Texture = null;
     }
 
     private void UpdateMessage()

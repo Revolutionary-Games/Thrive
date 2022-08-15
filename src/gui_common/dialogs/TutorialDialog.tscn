@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=4]
 
 [node name="TutorialDialog" type="Popup"]
 margin_right = 260.0
@@ -30,4 +31,5 @@ size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_right = 260.0
+custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""

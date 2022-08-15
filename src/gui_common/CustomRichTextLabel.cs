@@ -12,6 +12,8 @@ public class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
+    private string? heightWorkaroundRanForString;
+
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
@@ -43,7 +45,7 @@ public class CustomRichTextLabel : RichTextLabel
     ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
-    [Export]
+    [Export(PropertyHint.MultilineText)]
     public string? ExtendedBbcode
     {
         get => extendedBbcode;
@@ -84,7 +86,18 @@ public class CustomRichTextLabel : RichTextLabel
         // See https://github.com/Revolutionary-Games/Thrive/issues/2236
         // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
 #pragma warning disable CA2245 // Necessary for workaround
-        Invoke.Instance.QueueForObject(() => BbcodeText = BbcodeText, this);
+        Invoke.Instance.QueueForObject(() =>
+        {
+            var bbCode = BbcodeText;
+
+            // Only run this once to not absolutely tank performance with long rich text labels
+            if (heightWorkaroundRanForString == bbCode)
+                return;
+
+            heightWorkaroundRanForString = bbCode;
+
+            BbcodeText = bbCode;
+        }, this);
 #pragma warning restore CA2245
     }
 
@@ -369,9 +382,24 @@ public class CustomRichTextLabel : RichTextLabel
                         break;
                     }
 
-                    case "ENGULF_DAMAGE":
+                    case "ENGULF_COMPOUND_ABSORBING_PER_SECOND":
                     {
-                        output = Constants.ENGULF_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        output = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND.ToString(
+                            format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENZYME_DIGESTION_SPEED_UP_FRACTION":
+                    {
+                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
+                            format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION":
+                    {
+                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(
+                            format, CultureInfo.CurrentCulture);
                         break;
                     }
 

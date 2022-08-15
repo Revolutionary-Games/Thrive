@@ -49,6 +49,10 @@ public class PauseMenu : CustomDialog
     /// </summary>
     private ExitType exitType;
 
+    private bool exiting;
+
+    private int exitTries;
+
     [Signal]
     public delegate void OnResumed();
 
@@ -188,6 +192,8 @@ public class PauseMenu : CustomDialog
         helpScreen.Category = HelpCategory;
         InputManager.RegisterReceiver(this);
 
+        GetTree().AutoAcceptQuit = false;
+
         base._EnterTree();
     }
 
@@ -197,6 +203,8 @@ public class PauseMenu : CustomDialog
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
+
+        GetTree().AutoAcceptQuit = true;
     }
 
     public override void _Ready()
@@ -207,6 +215,21 @@ public class PauseMenu : CustomDialog
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
+    }
+
+    public override void _Notification(int notification)
+    {
+        base._Notification(notification);
+
+        if (notification == NotificationWmQuitRequest)
+        {
+            // For some reason we need to perform this later, otherwise Godot complains about a node being busy
+            // setting up children
+            Invoke.Instance.Perform(ExitPressed);
+        }
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -260,6 +283,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Open");
         Paused = true;
+        exiting = false;
     }
 
     public void Close()
@@ -335,7 +359,10 @@ public class PauseMenu : CustomDialog
     {
         exitType = ExitType.QuitGame;
 
-        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        ++exitTries;
+
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning
+            || exitTries >= Constants.FORCE_CLOSE_AFTER_TRIES)
         {
             ConfirmExit();
         }
@@ -357,6 +384,11 @@ public class PauseMenu : CustomDialog
 
     private void ConfirmExit()
     {
+        if (exiting)
+            return;
+
+        exiting = true;
+
         switch (exitType)
         {
             case ExitType.ReturnToMenu:
@@ -366,6 +398,11 @@ public class PauseMenu : CustomDialog
                 Quit();
                 break;
         }
+    }
+
+    private void CancelExit()
+    {
+        exitTries = 0;
     }
 
     private void ReturnToMenu()

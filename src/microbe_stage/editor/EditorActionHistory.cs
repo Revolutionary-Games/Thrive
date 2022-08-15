@@ -33,35 +33,10 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// </summary>
     public int WhatWouldActionCost(EditorCombinableActionData combinableAction)
     {
-        int result = 0;
+        if (CheatManager.InfiniteMP)
+            return 0;
 
-        foreach (var action in History)
-        {
-            switch (combinableAction.GetInterferenceModeWith(action))
-            {
-                case ActionInterferenceMode.Combinable:
-                {
-                    result -= action.CalculateCost();
-                    combinableAction = (EditorCombinableActionData)combinableAction.Combine(action);
-                    break;
-                }
-
-                case ActionInterferenceMode.CancelsOut:
-                {
-                    result -= action.CalculateCost();
-                    return result;
-                }
-
-                case ActionInterferenceMode.ReplacesOther:
-                {
-                    result -= action.CalculateCost();
-                    break;
-                }
-            }
-        }
-
-        result += combinableAction.CalculateCost();
-        return result;
+        return combinableAction.CalculateCost() + FindCheapestActionToCombineWith(combinableAction, History).CostDelta;
     }
 
     /// <summary>
@@ -69,26 +44,37 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// </summary>
     public int CalculateMutationPointsLeft()
     {
+        if (CheatManager.InfiniteMP)
+            return Constants.BASE_MUTATION_POINTS;
+
         // As History is a reference, changing this affects the history cache
         var processedHistory = History;
         var copyLength = processedHistory.Count;
 
-        for (int compareToIndex = 0; compareToIndex < copyLength - 1; ++compareToIndex)
+        for (int compareIndex = 1; compareIndex < copyLength; ++compareIndex)
         {
-            for (int compareIndex = compareToIndex + 1; compareIndex < copyLength; ++compareIndex)
+            while (true)
             {
-                switch (processedHistory[compareIndex].GetInterferenceModeWith(processedHistory[compareToIndex]))
-                {
-                    case ActionInterferenceMode.NoInterference:
-                        break;
+                // Get the minimum cost action
+                var (_, minimumCostCombinableAction, mode) =
+                    FindCheapestActionToCombineWith(processedHistory[compareIndex],
+                        processedHistory.Take(compareIndex));
 
+                // If no more can be merged together, try next one.
+                if (mode == ActionInterferenceMode.NoInterference)
+                    break;
+
+                var minimumCostCombinableActionIndex = processedHistory.IndexOf(minimumCostCombinableAction);
+
+                switch (mode)
+                {
                     case ActionInterferenceMode.Combinable:
                     {
                         var combinedValue = (EditorCombinableActionData)processedHistory[compareIndex]
-                            .Combine(processedHistory[compareToIndex]);
+                            .Combine(minimumCostCombinableAction);
                         processedHistory.RemoveAt(compareIndex);
-                        processedHistory.RemoveAt(compareToIndex);
-                        processedHistory.Insert(compareToIndex, combinedValue);
+                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
+                        processedHistory.Insert(minimumCostCombinableActionIndex, combinedValue);
                         --copyLength;
                         --compareIndex;
                         break;
@@ -96,26 +82,25 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
                     case ActionInterferenceMode.ReplacesOther:
                     {
-                        processedHistory.RemoveAt(compareToIndex);
+                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
                         --copyLength;
-                        --compareToIndex;
-                        compareIndex = copyLength;
+                        --compareIndex;
                         break;
                     }
 
                     case ActionInterferenceMode.CancelsOut:
                     {
                         processedHistory.RemoveAt(compareIndex);
-                        processedHistory.RemoveAt(compareToIndex);
+                        processedHistory.RemoveAt(minimumCostCombinableActionIndex);
                         copyLength -= 2;
-                        --compareToIndex;
-                        compareIndex = copyLength;
+                        compareIndex -= 2;
                         break;
                     }
-
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
+
+                // If mode is the following, no more checks are needed.
+                if (mode == ActionInterferenceMode.CancelsOut)
+                    break;
             }
         }
 
@@ -138,8 +123,14 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
     public override void AddAction(TAction action)
     {
-        // TODO: check if the action can be combined (for example behaviour or rigidity slider subsequent edits should
-        // combine) in a single step for undo
+        // Check if the action can be merged (for example behaviour or rigidity slider subsequent edits should
+        // merge) in a single step for undo.
+        if (ActionIndex > 0)
+        {
+            var merged = MergeNewActionIntoPreviousIfPossible(action, Actions[ActionIndex - 1]);
+            if (merged != null)
+                action = merged;
+        }
 
         // Handle adding directly the action to our history cache, this saves us from having to rebuild the cache
         if (action.Data.Any(d => d.ResetsHistory))
@@ -169,6 +160,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
         // We undo the action here as when it is added back it will be performed again
         // And we need this to adjust the ActionIndex to be right after we remove the element
+        // Note that this will clear the history cache
         if (!Undo())
             throw new Exception("Failed to undo the action we want to pop");
 
@@ -182,6 +174,128 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         where THex : class, IActionHex
     {
         return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
+    }
+
+    /// <summary>
+    ///   Finds the way to combine an action with previous actions so that the maximum amount of MP is saved.
+    /// </summary>
+    /// <param name="currentData">The data you want to combine</param>
+    /// <param name="previousData">A list of data <see cref="currentData"/> may combine with</param>
+    /// <returns>
+    ///   Three-element tuple:
+    ///   CostDelta is non-positive, indicating the amount of MP you will regain;
+    ///   MinimumCostActionData is the action data to combine with (not yet combined);
+    ///   Mode is the interference mode currentData has with MinimumCostActionData.
+    /// </returns>
+    private static (int CostDelta, EditorCombinableActionData MinimumCostActionData, ActionInterferenceMode Mode)
+        FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
+            IEnumerable<EditorCombinableActionData> previousData)
+    {
+        return previousData.Select(data =>
+        {
+            var interferenceMode = currentData.GetInterferenceModeWith(data);
+
+            return (interferenceMode switch
+            {
+                ActionInterferenceMode.Combinable => ((EditorCombinableActionData)currentData.Combine(data))
+                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(),
+                ActionInterferenceMode.CancelsOut => -data.CalculateCost() - currentData.CalculateCost(),
+                ActionInterferenceMode.ReplacesOther => -data.CalculateCost(),
+                ActionInterferenceMode.NoInterference => 0,
+                _ => throw new ArgumentOutOfRangeException(nameof(interferenceMode)),
+            }, data, interferenceMode);
+        }).OrderBy(p => p.Item1).FirstOrDefault();
+    }
+
+    private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)
+    {
+        var previousActionData = previousAction.Data.ToList();
+        var currentActionData = action.Data.ToList();
+
+        if (!currentActionData.Any())
+            return null;
+
+        // For now we allow combining only if all data values can be combined
+        bool matches = true;
+
+        foreach (var currentData in currentActionData)
+        {
+            bool currentMatched = false;
+
+            foreach (var previousData in previousActionData)
+            {
+                // TODO: technically we should store a list of canceled out actions that further currentData items
+                // are not allowed match against, but for now that doesn't seem necessary. This will become necessary
+                // with more complex combined actions, which is something we might have in the future.
+                if (previousData.WantsMergeWith(currentData) &&
+                    previousData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut
+                        or ActionInterferenceMode.Combinable)
+                {
+                    currentMatched = true;
+                    break;
+                }
+            }
+
+            if (!currentMatched)
+                matches = false;
+        }
+
+        if (!matches)
+            return null;
+
+        var newDataList = new List<EditorCombinableActionData>();
+        newDataList.AddRange(previousActionData);
+
+        // We are going to replace the new action with what we had before so we always want to pop the action from
+        // history here as it will be added back when this method returns
+        PopAndConfirmMatches(previousAction);
+
+        // Perform the combining now that we've confirmed it should be supported
+        foreach (var currentData in currentActionData)
+        {
+            bool merged = false;
+
+            foreach (var newData in newDataList)
+            {
+                // In the cancels out case we still want to merge the data so that the action can stay as a placeholder
+                // in the history keeping the original state
+                if (newData.WantsMergeWith(currentData) &&
+                    newData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut or
+                        ActionInterferenceMode.Combinable)
+                {
+                    merged = true;
+
+                    // TryMerge assumes that the data to given as the parameter to the method is always newer
+                    // so it must absolutely guaranteed that the order we loop here is correct, ie. always going
+                    // from the oldest data towards the newer data
+                    if (!newData.TryMerge(currentData))
+                    {
+                        throw new InvalidOperationException(
+                            "Action data that should have accepted a merge, didn't");
+                    }
+                }
+
+                if (merged)
+                    break;
+            }
+
+            if (!merged)
+            {
+                throw new InvalidOperationException(
+                    "Action data could not be merged after first checking that they could be merged");
+            }
+        }
+
+        previousAction.ApplyMergedData(newDataList);
+        return previousAction;
+    }
+
+    private void PopAndConfirmMatches(TAction actionInstance)
+    {
+        var previousAction = PopTopAction();
+
+        if (!ReferenceEquals(previousAction, actionInstance))
+            throw new InvalidOperationException("Popped latest action did not match expected object");
     }
 
     /// <summary>

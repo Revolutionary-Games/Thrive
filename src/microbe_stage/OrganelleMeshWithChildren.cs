@@ -15,4 +15,15 @@ public class OrganelleMeshWithChildren : MeshInstance
             }
         }
     }
+
+    public void SetDissolveEffectOfChildren(float value)
+    {
+        foreach (GeometryInstance mesh in GetChildren())
+        {
+            if (mesh.MaterialOverride is ShaderMaterial shaderMaterial)
+            {
+                shaderMaterial.SetShaderParam("dissolveValue", value);
+            }
+        }
+    }
 }

@@ -9,15 +9,17 @@
     {
         private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
+        private readonly WorldGenerationSettings worldSettings;
         private readonly List<Species>? extraSpecies;
         private readonly List<Species>? excludedSpecies;
         private readonly bool collectEnergyInfo;
 
-        public CalculatePopulation(AutoEvoConfiguration configuration, PatchMap map,
-            List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
+        public CalculatePopulation(AutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+            PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
             bool collectEnergyInfo = false)
         {
             this.configuration = configuration;
+            this.worldSettings = worldSettings;
             this.map = map;
             this.extraSpecies = extraSpecies;
             this.excludedSpecies = excludedSpecies;
@@ -31,7 +33,7 @@
         public bool RunStep(RunResults results)
         {
             // ReSharper disable RedundantArgumentDefaultValue
-            var config = new SimulationConfiguration(configuration, map, 1)
+            var config = new SimulationConfiguration(configuration, map, worldSettings, 1)
             {
                 Results = results,
                 CollectEnergyInformation = collectEnergyInfo,
@@ -47,7 +49,7 @@
 
             // Directly feed the population results to the main results object
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, null);
 
             return true;
         }

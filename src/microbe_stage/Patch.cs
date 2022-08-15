@@ -12,37 +12,65 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
-    [JsonProperty]
-    public readonly int ID;
-
-    [JsonProperty]
-    public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
-
-    [JsonProperty]
-    public readonly Biome BiomeTemplate;
-
-    [JsonProperty]
-    public readonly int[] Depth = new int[2] { -1, -1 };
-
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
     [JsonProperty]
     private readonly PatchSnapshot currentSnapshot;
 
+    /// <summary>
+    ///   The gameplay adjusted populations (only if set for a species, otherwise missing).
+    ///   <see cref="GetSpeciesGameplayPopulation"/>
+    /// </summary>
+    [JsonProperty]
+    private readonly Dictionary<Species, long> gameplayPopulations = new();
+
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchRegion region)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
+        BiomeType = type;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        Region = region;
+    }
+
+    [JsonConstructor]
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
+    {
+        Name = name;
+        ID = id;
+        BiomeTemplate = biomeTemplate;
+        this.currentSnapshot = currentSnapshot;
     }
 
     [JsonProperty]
+    public int ID { get; }
+
+    [JsonIgnore]
+    public ISet<Patch> Adjacent { get; } = new HashSet<Patch>();
+
+    [JsonProperty]
+    public Biome BiomeTemplate { get; }
+
+    [JsonProperty]
     public LocalizedString Name { get; private set; }
+
+    /// <summary>
+    ///   The region this patch belongs to. This has nullability suppression here to solve the circular dependency with
+    ///   <see cref="PatchRegion.Patches"/>
+    /// </summary>
+    [JsonProperty]
+    public PatchRegion Region { get; private set; } = null!;
+
+    [JsonProperty]
+    public BiomeType BiomeType { get; private set; }
+
+    [JsonProperty]
+    public int[] Depth { get; private set; } = { -1, -1 };
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
@@ -165,11 +193,10 @@ public class Patch
     }
 
     /// <summary>
-    ///   Adds a new species to this patch
+    ///   Adds a new species to this patch. May only be called after auto-evo has ran.
     /// </summary>
     /// <returns>True when added. False if the species was already in this patch</returns>
-    public bool AddSpecies(Species species, long population =
-        Constants.INITIAL_SPECIES_POPULATION)
+    public bool AddSpecies(Species species, long population)
     {
         if (currentSnapshot.SpeciesInPatch.ContainsKey(species))
             return false;
@@ -179,7 +206,7 @@ public class Patch
     }
 
     /// <summary>
-    ///   Removes a species from this patch
+    ///   Removes a species from this patch. May only be called after auto-evo has ran.
     /// </summary>
     /// <returns>True when a species was removed</returns>
     public bool RemoveSpecies(Species species)
@@ -188,10 +215,10 @@ public class Patch
     }
 
     /// <summary>
-    ///   Updates a species population in this patch
+    ///   Updates a species population in this patch. Should only be called by auto-evo applying the results.
     /// </summary>
     /// <returns>True on success</returns>
-    public bool UpdateSpeciesPopulation(Species species, long newPopulation)
+    public bool UpdateSpeciesSimulationPopulation(Species species, long newPopulation)
     {
         if (!currentSnapshot.SpeciesInPatch.ContainsKey(species))
             return false;
@@ -200,12 +227,75 @@ public class Patch
         return true;
     }
 
-    public long GetSpeciesPopulation(Species species)
+    /// <summary>
+    ///   Returns the auto-evo simulation confirmed population numbers
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The simulation population is different from the gameplay population in that it may not be modified by
+    ///     anything else except auto-evo results applying. Auto-evo also relies on this population number not changing
+    ///     at all while it is running. Gameplay population is an additional layer on top of the last simulation
+    ///     population to record immediate external effects. The gameplay populations are not authoritative and will be
+    ///     overridden the next time simulation populations are updated
+    ///   </para>
+    /// </remarks>
+    /// <param name="species">The species to get the population for</param>
+    /// <returns>The population amount</returns>
+    public long GetSpeciesSimulationPopulation(Species species)
     {
         if (!currentSnapshot.SpeciesInPatch.TryGetValue(species, out var population))
             return 0;
 
         return population;
+    }
+
+    /// <summary>
+    ///   Gets the population that's potentially adjusted during the current swimming around cycle (before auto-evo
+    ///   results are applied)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     See the remarks on <see cref="GetSpeciesSimulationPopulation"/> for more info
+    ///   </para>
+    /// </remarks>
+    /// <param name="species">The species to get the population for</param>
+    /// <returns>The gameplay population, or if not set the simulation population</returns>
+    public long GetSpeciesGameplayPopulation(Species species)
+    {
+        if (gameplayPopulations.TryGetValue(species, out var population))
+            return population;
+
+        return GetSpeciesSimulationPopulation(species);
+    }
+
+    /// <summary>
+    ///   Updates a species gameplay population in this patch. This maybe called even when auto-evo is running. Once
+    ///   this is called <see cref="GetSpeciesGameplayPopulation"/> starts returning the set value instead of the
+    ///   simulation population.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that gameplay results disappear when auto-evo results are applied, so the same change needs to also
+    ///     be saved as an external effect.
+    ///   </para>
+    /// </remarks>
+    /// <returns>True on success</returns>
+    public bool UpdateSpeciesGameplayPopulation(Species species, long newPopulation)
+    {
+        if (!currentSnapshot.SpeciesInPatch.ContainsKey(species))
+            return false;
+
+        gameplayPopulations[species] = newPopulation;
+        return true;
+    }
+
+    /// <summary>
+    ///   Should only be called by auto-evo results after applying themselves to clear out the gameplay populations.
+    ///   <see cref="PatchMap.DiscardGameplayPopulations"/>
+    /// </summary>
+    public void DiscardGameplayPopulations()
+    {
+        gameplayPopulations.Clear();
     }
 
     public float GetCompoundAmount(string compoundName)
@@ -218,7 +308,7 @@ public class Patch
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return Biome.Compounds[compound].Dissolved * 100;
+                return Biome.Compounds[compound].Ambient * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:
@@ -237,7 +327,7 @@ public class Patch
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+                return snapshot.Biome.Compounds[compound].Ambient * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:

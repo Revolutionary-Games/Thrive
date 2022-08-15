@@ -13,9 +13,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     private readonly List<uint> shapes = new();
 
     private bool needsColourUpdate = true;
+    private bool needsDissolveEffectUpdate = true;
 
     [JsonProperty]
     private Color colour = Colors.White;
+
+    [JsonProperty]
+    private float dissolveEffectValue;
 
     private bool growthValueDirty = true;
     private float growthValue;
@@ -91,6 +95,17 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
+    [JsonIgnore]
+    public float DissolveEffectValue
+    {
+        get => dissolveEffectValue;
+        set
+        {
+            dissolveEffectValue = value;
+            needsDissolveEffectUpdate = true;
+        }
+    }
+
     /// <summary>
     ///   True when organelle was split in preparation for reproducing
     /// </summary>
@@ -146,6 +161,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             return value;
         }
     }
+
+    [JsonProperty]
+    public Dictionary<Enzyme, int> StoredEnzymes { get; private set; } = new();
 
     /// <summary>
     ///   True if this is an agent vacuole. Number of agent vacuoles
@@ -285,46 +303,73 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         {
             UpdateColour();
         }
+
+        if (needsDissolveEffectUpdate)
+            UpdateDissolveEffect();
     }
 
     /// <summary>
-    ///   Gives organelles more compounds to grow
+    ///   Gives organelles more compounds to grow (or takes free compounds).
+    ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
     /// </summary>
-    public void GrowOrganelle(CompoundBag compounds)
+    public void GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
+        bool reverseCompoundsLeftOrder)
     {
         float totalTaken = 0;
 
-        // TODO: should we just check a single type per frame (and remove once done) so we can skip creating a bunch
+        // TODO: should we just check a single type per update (and remove once done) so we can skip creating a bunch
         // of extra lists
-        foreach (var key in compoundsLeft.Keys.ToArray())
+        foreach (var key in reverseCompoundsLeftOrder ?
+                     compoundsLeft.Keys.Reverse().ToArray() :
+                     compoundsLeft.Keys.ToArray())
         {
             var amountNeeded = compoundsLeft[key];
 
             if (amountNeeded <= 0.0f)
                 continue;
 
-            // Take compounds if the cell has what we need
-            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how
-            // much of a certain compound must exist before we take
-            // some
-            var amountAvailable = compounds.GetCompoundAmount(key)
-                - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+            if (allowedCompoundUse <= 0)
+                break;
 
-            if (amountAvailable <= MathUtils.EPSILON)
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
+
+            if (freeCompoundsLeft > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, freeCompoundsLeft);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                freeCompoundsLeft -= usedFreeCompounds;
+            }
+
+            // Take compounds if the cell has what we need
+            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how much of a certain compound must exist before we
+            // take some
+            var amountAvailable =
+                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                usedAmount += compounds.TakeCompound(key, amountToTake);
+            }
+
+            if (usedAmount < MathUtils.EPSILON)
                 continue;
 
-            // We can take some
-            var amountToTake = Mathf.Min(amountNeeded, amountAvailable);
+            allowedCompoundUse -= usedAmount;
 
-            var amount = compounds.TakeCompound(key, amountToTake);
-            var left = amountNeeded - amount;
+            var left = amountNeeded - usedAmount;
 
             if (left < 0.0001f)
                 left = 0;
 
             compoundsLeft[key] = left;
 
-            totalTaken += amount;
+            totalTaken += usedAmount;
         }
 
         if (totalTaken > 0)
@@ -351,8 +396,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Calculates how much compounds this organelle has absorbed
-    ///   already, adds to the dictionary
+    ///   Calculates how much compounds this organelle has absorbed already, adds to the dictionary
     /// </summary>
     public float CalculateAbsorbedCompounds(Dictionary<Compound, float> result)
     {
@@ -408,6 +452,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             WasSplit = false;
             SisterOrganelle = null;
         }
+    }
+
+    public void UpdateRenderPriority(int priority)
+    {
+        if (organelleMaterial == null)
+            return;
+
+        organelleMaterial.RenderPriority = priority;
     }
 
     /// <summary>
@@ -518,6 +570,16 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
 
+        if (Definition.Enzymes != null)
+        {
+            foreach (var entry in Definition.Enzymes)
+            {
+                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
+
+                StoredEnzymes[enzyme] = entry.Value;
+            }
+        }
+
         // Components
         components = new List<IOrganelleComponent>();
 
@@ -611,6 +673,18 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         needsColourUpdate = false;
     }
 
+    private void UpdateDissolveEffect()
+    {
+        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
+        {
+            organelleMeshWithChildren.SetDissolveEffectOfChildren(dissolveEffectValue);
+        }
+
+        organelleMaterial?.SetShaderParam("dissolveValue", dissolveEffectValue);
+
+        needsDissolveEffectUpdate = false;
+    }
+
     private void SetupOrganelleGraphics()
     {
         organelleSceneInstance = (Spatial)Definition.LoadedScene!.Instance();
@@ -623,7 +697,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         // Store the material of the organelle to be updated
         organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
-        organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
+        UpdateRenderPriority(Hex.GetRenderPriority(Position));
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();

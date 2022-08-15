@@ -14,18 +14,24 @@
         private readonly Patch patch;
         private readonly AutoEvoConfiguration configuration;
         private readonly Random random;
+        private readonly SimulationCache cache;
 
         private readonly Mutations mutations = new();
 
         private bool tryCurrentPatch = true;
         private bool createdASpecies;
 
-        public IncreaseBiodiversity(AutoEvoConfiguration configuration, PatchMap map, Patch patch, Random random)
+        private WorldGenerationSettings worldSettings;
+
+        public IncreaseBiodiversity(AutoEvoConfiguration configuration,
+            WorldGenerationSettings worldSettings, PatchMap map, Patch patch, Random random)
         {
+            this.worldSettings = worldSettings;
             this.map = map;
             this.patch = patch;
             this.configuration = configuration;
             this.random = new Random(random.Next());
+            cache = new SimulationCache(worldSettings);
         }
 
         public int TotalSteps => 2;
@@ -116,12 +122,16 @@
             if (splitFrom is not MicrobeSpecies fromMicrobe)
                 return null;
 
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             var split = (MicrobeSpecies)fromMicrobe.Clone();
 
             if (configuration.BiodiversitySplitIsMutated)
-                mutations.CreateMutatedSpecies(fromMicrobe, split);
+            {
+                mutations.CreateMutatedSpecies(fromMicrobe, split, worldSettings.AIMutationMultiplier,
+                    worldSettings.LAWK);
+            }
 
             // Set the starting population in the patch
             split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;
@@ -134,7 +144,7 @@
                 // TODO: should we apply the population reduction to splitFrom?
             }
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             var population = config.Results.GetPopulationInPatch(split, patch);
 

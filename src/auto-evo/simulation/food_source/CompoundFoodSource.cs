@@ -41,10 +41,10 @@
                 }
             }
 
-            var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound, patch);
+            var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound, patch, simulationCache);
 
             var energyCost = simulationCache
-                .GetEnergyBalanceForSpecies(microbeSpecies, patch)
+                .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)
                 .TotalConsumptionStationary;
 
             return compoundFindScore * compoundUseScore / energyCost;

@@ -55,11 +55,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         get
         {
-            if (cellEditorTab.Visible)
-                return cellEditorTab.CanCancelAction;
-
             if (bodyPlanEditorTab.Visible)
                 return bodyPlanEditorTab.CanCancelAction;
+
+            if (cellEditorTab.Visible)
+                return cellEditorTab.CanCancelAction;
 
             return false;
         }
@@ -109,7 +109,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
         cellEditorTab.UpdatePatchDependentBalanceData();
 
-        reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
+        reportTab.UpdatePatchDetails(patch);
+
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
@@ -175,8 +176,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
         reportTab.UpdateReportTabPatchSelector();
 
-        // TODO: this should be saved so that the text can be accurate if this is updated
-        reportTab.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        reportTab.UpdateGlucoseReduction(CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
 
         if (fresh)
         {
@@ -188,8 +188,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdateReportTabStatistics(CurrentPatch);
-            reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
@@ -217,6 +216,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         {
             editorComponent.Init(this, fresh);
         }
+
+        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEditorReady()
@@ -239,8 +240,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdateReportTabStatistics(CurrentPatch);
-        reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
     }
 
     protected override void OnUndoPerformed()
@@ -265,7 +265,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewEarlyMulticellularGame();
+        return GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings());
     }
 
     protected override void PerformAutoSave()
@@ -311,7 +311,17 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             case EditorTab.CellEditor:
             {
+                // This must be set visible before CheckAndApplyCellTypeEdit otherwise it won't update already placed
+                // visuals
                 bodyPlanEditorTab.Show();
+
+                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
+                // tab as that's the only exit point and the point where we actually need to use the edited cell
+                // type information
+                // TODO: write an explanation here why this needs to be before the visibility adjustment
+                // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
+                CheckAndApplyCellTypeEdit();
+
                 SetEditorObjectVisibility(true);
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
@@ -320,11 +330,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 // This line (and also in CellTypeEditor) doesn't help:
                 bodyPlanEditorTab.UpdateArrow();
                 bodyPlanEditorTab.UpdateCamera();
-
-                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
-                // tab as that's the only exit point and the point where we actually need to use the edited cell
-                // type information
-                CheckAndApplyCellTypeEdit();
 
                 break;
             }
@@ -344,6 +349,9 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                     cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
+                    // TODO: check if this now has fixed the arrow positioning after tab change (see comment in the
+                    // above case)
+                    cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
                 }
 
@@ -369,6 +377,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    private void OnSelectPatchForReportTab(Patch patch)
+    {
+        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void OnStartEditingCellType(string name)
@@ -402,7 +415,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         if (selectedCellTypeToEdit == null)
             return;
 
-        // Only do something if the user did has done any action in the past
+        // Only do something if the user has done any action in the past
         if (!history.CanUndo())
             return;
 
@@ -454,6 +467,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 case MembraneActionData:
                 case RigidityActionData:
                 case NewMicrobeActionData:
+                case ColourActionData:
                     affectedACell = true;
                     break;
             }

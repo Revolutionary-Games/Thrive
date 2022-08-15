@@ -12,7 +12,7 @@ public class ColonyCompoundBag : ICompoundStorage
     }
 
     [JsonProperty]
-    private MicrobeColony Colony { get; set; }
+    private MicrobeColony Colony { get; }
 
     public float GetCapacityForCompound(Compound compound)
     {
