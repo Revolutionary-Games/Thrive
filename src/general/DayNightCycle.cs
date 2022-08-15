@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Godot;
+
 public class DayNightCycle : Godot.Node
 {
     /*
@@ -33,13 +34,20 @@ public class DayNightCycle : Godot.Node
 
     */
 
-    public const float HoursPerDay = 24;
+    public float HoursPerDay = 24;
+    private static DayNightCycle? instance;
 
     /// <summary>
     ///   This is how long it takes to complete a full day in realtime seconds
     /// </summary>
-    private const float RealTimePerDay = 300;
-    private const float MinLightPercentage = 0.1f;
+    private float realTimePerDay = 120;
+    private float minLightPercentage = 0.1f;
+    private DayNightCycle()
+    {
+        instance = this;
+    }
+
+    public static DayNightCycle Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   The current time in hours
@@ -53,16 +61,16 @@ public class DayNightCycle : Godot.Node
 
     /// <summary>
     ///   The percentage of daylight you should get.
-    ///   light = max(-abs(PercentOfDayElapsed*4-2)+1, MinLightPercentage)
+    ///   light = max(-abs(PercentOfDayElapsed*4-2)+1, minLightPercentage)
     ///   desmos: https://www.desmos.com/calculator/qfq0fcs4om
     /// </summary>
     public float DayLightPercentage
     {
-        get { return Math.Max(-Math.Abs(PercentOfDayElapsed * 4 - 2) + 1, MinLightPercentage); }
+        get { return Math.Max(-Math.Abs(PercentOfDayElapsed * 4 - 2) + 1, minLightPercentage); }
     }
 
     public override void _Process(float delta)
     {
-        Time = (Time + (1 / RealTimePerDay) * HoursPerDay * delta) % HoursPerDay;
+        Time = (Time + (1 / realTimePerDay) * HoursPerDay * delta) % HoursPerDay;
     }
 }

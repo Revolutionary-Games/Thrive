@@ -669,7 +669,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         var oxygenPercentage = biome.Compounds[oxygen].Ambient * 100;
         var co2Percentage = biome.Compounds[carbondioxide].Ambient * 100;
         var nitrogenPercentage = biome.Compounds[nitrogen].Ambient * 100;
-        var sunlightPercentage = biome.Compounds[sunlight].Ambient * 100;
+        var sunlightPercentage = (int)(biome.Compounds[sunlight].Ambient * 100 * DayNightCycle.Instance.DayLightPercentage);
         var averageTemperature = biome.Compounds[temperature].Ambient;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");

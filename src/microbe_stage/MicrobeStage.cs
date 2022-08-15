@@ -276,6 +276,7 @@ public class MicrobeStage : StageBase<Microbe>
             guidanceLine.Visible = false;
         }
 
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
         UpdateLinePlayerPosition();
     }
 
@@ -641,8 +642,6 @@ public class MicrobeStage : StageBase<Microbe>
 
             Player?.ClearEngulfedObjects();
         }
-
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
         UpdateBackground();
     }

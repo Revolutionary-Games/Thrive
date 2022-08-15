@@ -11,6 +11,7 @@ public class ProcessSystem
 {
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
+    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
@@ -338,6 +339,9 @@ public class ProcessSystem
     {
         if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
+
+        if (compound == Sunlight)
+            return environmentalCompoundProperties.Ambient * DayNightCycle.Instance.DayLightPercentage;
 
         return environmentalCompoundProperties.Ambient;
     }
