@@ -29,6 +29,11 @@ public enum TutorialEventType
     MicrobePlayerCompounds,
 
     /// <summary>
+    ///   Reports the player colony status while they are alive, args is <see cref="MicrobeColonyEventArgs"/>
+    /// </summary>
+    MicrobePlayerColony,
+
+    /// <summary>
     ///   Reports total compounds the player has absorbed, args is <see cref="CompoundEventArgs"/>
     /// </summary>
     MicrobePlayerTotalCollected,
@@ -67,6 +72,11 @@ public enum TutorialEventType
     ///   Player entered the microbe editor
     /// </summary>
     EnteredMicrobeEditor,
+
+    /// <summary>
+    ///   Player entered the early multicellular stage
+    /// </summary>
+    EnteredEarlyMulticellularStage,
 
     /// <summary>
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>

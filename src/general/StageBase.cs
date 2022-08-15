@@ -104,7 +104,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     }
 
     /// <summary>
-    ///   True when transitioning to the editor
+    ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
+    ///   otherwise some tree exit operations won't run correctly.
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
@@ -168,6 +169,18 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     }
 
     protected abstract IStageHUD BaseHUD { get; }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Cancel auto-evo if it is running to not leave background runs from other games running if the player
+        // just loaded a save
+        if (!MovingToEditor)
+        {
+            GameWorld.ResetAutoEvoRun();
+        }
+    }
 
     public virtual void ResolveNodeReferences()
     {
@@ -401,11 +414,11 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             if (GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("No current patch set");
 
-            if (playerSpecies.Population <= 0)
+            if (IsGameOver())
             {
                 GameOver();
             }
-            else if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            else if (GameWorld.Map.CurrentPatch.GetSpeciesGameplayPopulation(playerSpecies) <= 0)
             {
                 // Has run out of population in current patch but not globally
                 PlayerExtinctInPatch();
@@ -421,7 +434,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
     protected bool IsGameOver()
     {
-        return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
+        return GameWorld.Map.GetSpeciesGlobalGameplayPopulation(CurrentGame!.GameWorld.PlayerSpecies) <= 0 &&
+            !CurrentGame.FreeBuild;
     }
 
     /// <summary>

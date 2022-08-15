@@ -72,6 +72,11 @@ public abstract class CheatMenu : CustomDialog
         CheatManager.InfiniteMP = value;
     }
 
+    public void SetMoveToAnyPatch(bool value)
+    {
+        CheatManager.MoveToAnyPatch = value;
+    }
+
     public void SetInfiniteCompounds(bool value)
     {
         CheatManager.InfiniteCompounds = value;

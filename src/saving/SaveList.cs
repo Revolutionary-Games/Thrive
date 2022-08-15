@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -215,9 +214,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
-        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("SAVE_DELETE_WARNING"),
-            saveName);
+        deleteConfirmDialog.DialogText = TranslationServer.Translate("SAVE_DELETE_WARNING").FormatSafe(saveName);
         deleteConfirmDialog.PopupCenteredShrink();
     }
 

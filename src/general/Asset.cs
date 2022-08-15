@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
@@ -48,12 +47,11 @@ public class Asset
 
         if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result.Append(string.Format(
-                CultureInfo.CurrentCulture, TranslationServer.Translate("ARTWORK_TITLE"), Title, Artist));
+            result.Append(TranslationServer.Translate("ARTWORK_TITLE").FormatSafe(Title, Artist));
         }
         else if (string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result.Append(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("ART_BY"), Artist));
+            result.Append(TranslationServer.Translate("ART_BY").FormatSafe(Artist));
         }
         else if (!string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Artist))
         {

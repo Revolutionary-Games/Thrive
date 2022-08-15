@@ -14,6 +14,9 @@ public partial class Microbe
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
 
+    [JsonProperty]
+    private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
+
     private Compound atp = null!;
     private Compound mucilage = null!;
 
@@ -53,6 +56,12 @@ public partial class Microbe
     private float playerEngulfedDeathTimer;
 
     private float lastCheckedReproduction;
+
+    /// <summary>
+    ///   Flips every reproduction update. Used to make compound use for reproduction distribute more evenly between
+    ///   the compound types.
+    /// </summary>
+    private bool consumeReproductionCompoundsReverse;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -203,6 +212,7 @@ public partial class Microbe
 
         // Reproduction progress is lost
         allOrganellesDivided = false;
+        SetupRequiredBaseReproductionCompounds();
 
         // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
@@ -513,22 +523,26 @@ public partial class Microbe
         // Calculate how many compounds the cell already has absorbed to grow
         gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
 
-        // Add the currently held compounds
-        var keys = new List<Compound>(gatheredCompounds.Keys);
-
-        foreach (var key in keys)
+        // Add the currently held compounds, but only if configured as this can be pretty confusing for players
+        // to have the bars in ready to reproduce state for a while before the time limited reproduction actually
+        // catches up
+        if (Constants.ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
+            !GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
-                Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
-
-            if (value > 0)
+            foreach (var key in gatheredCompounds.Keys.ToList())
             {
-                float existing = gatheredCompounds[key];
+                float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
+                    Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
-                // Only up to the total needed
-                float total = totalCompounds[key];
+                if (value > 0)
+                {
+                    float existing = gatheredCompounds[key];
 
-                gatheredCompounds[key] = Math.Min(total, existing + value);
+                    // Only up to the total needed
+                    float total = totalCompounds[key];
+
+                    gatheredCompounds[key] = Math.Min(total, existing + value);
+                }
             }
         }
 
@@ -555,15 +569,9 @@ public partial class Microbe
         if (IsMulticellular)
             return CalculateTotalBodyPlanCompounds();
 
-        var result = new Dictionary<Compound, float>();
+        var result = CellTypeProperties.CalculateTotalComposition();
 
-        foreach (var organelle in organelles)
-        {
-            if (organelle.IsDuplicate)
-                continue;
-
-            result.Merge(organelle.Definition.InitialComposition);
-        }
+        result.Merge(Species.BaseReproductionCost);
 
         return result;
     }
@@ -595,7 +603,24 @@ public partial class Microbe
         }
 
         if (compoundsUsedForMulticellularGrowth != null)
+        {
             result.Merge(compoundsUsedForMulticellularGrowth);
+        }
+        else
+        {
+            // For single microbes the base reproduction cost needs to be calculated here
+            // TODO: can we make this more efficient somehow
+            foreach (var entry in Species.BaseReproductionCost)
+            {
+                requiredCompoundsForBaseReproduction.TryGetValue(entry.Key, out var remaining);
+
+                var used = entry.Value - remaining;
+
+                result.TryGetValue(entry.Key, out var alreadyUsed);
+
+                result[entry.Key] = alreadyUsed + used;
+            }
+        }
 
         return result;
     }
@@ -737,17 +762,31 @@ public partial class Microbe
         if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
             return;
 
+        // Limit how big progress spikes lag can cause
+        if (lastCheckedReproduction > Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME)
+            lastCheckedReproduction = Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME;
+
+        var elapsedSinceLastUpdate = lastCheckedReproduction;
+        consumeReproductionCompoundsReverse = !consumeReproductionCompoundsReverse;
+
         lastCheckedReproduction = 0;
 
         // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
         if (IsMulticellular && ColonyParent == null)
         {
-            HandleMulticellularReproduction();
+            HandleMulticellularReproduction(elapsedSinceLastUpdate);
             return;
         }
 
         if (Colony != null)
+        {
+            // TODO: should the colony just passively get the reproduction compounds in its storage?
+            // Otherwise early multicellular colonies lose the passive reproduction feature
             return;
+        }
+
+        var (remainingAllowedCompoundUse, remainingFreeCompounds) =
+            CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
 
         bool reproductionStageComplete = true;
 
@@ -761,14 +800,22 @@ public partial class Microbe
             if (organelle.WasSplit)
                 continue;
 
+            // If we ran out of allowed compound use, stop early
+            if (remainingAllowedCompoundUse <= 0)
+            {
+                reproductionStageComplete = false;
+                break;
+            }
+
             // We are in G1 phase of the cell cycle, duplicate all organelles.
 
             // Except the unique organelles
             if (organelle.Definition.Unique)
                 continue;
 
-            // If Give it some compounds to make it larger.
-            organelle.GrowOrganelle(Compounds);
+            // Give it some compounds to make it larger.
+            organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                consumeReproductionCompoundsReverse);
 
             if (organelle.GrowthValue >= 1.0f)
             {
@@ -780,6 +827,9 @@ public partial class Microbe
                 // Needs more stuff
                 reproductionStageComplete = false;
             }
+
+            // TODO: can we quit this loop early if we still would have dozens of organelles to check but don't have
+            // any compounds left to give them (that are probably useful)?
         }
 
         // Splitting the queued organelles.
@@ -802,20 +852,25 @@ public partial class Microbe
 
             foreach (var organelle in organelles.Organelles)
             {
-                // Check if already done
-                if (organelle.WasSplit)
+                // In the second phase all unique organelles are given compounds
+                // It used to be that only the nucleus was given compounds here
+                if (!organelle.Definition.Unique)
                     continue;
 
-                // In the S phase, the nucleus grows as chromatin is duplicated.
-                if (organelle.Definition.InternalName != "nucleus")
-                    continue;
+                // If we ran out of allowed compound use, stop early
+                if (remainingAllowedCompoundUse <= 0)
+                {
+                    reproductionStageComplete = false;
+                    break;
+                }
 
-                // The nucleus hasn't finished replicating its DNA, give it some compounds.
-                organelle.GrowOrganelle(Compounds);
-
+                // Unique organelles don't split so we use the growth value to know when something is fully grown
                 if (organelle.GrowthValue < 1.0f)
                 {
-                    // Nucleus needs more compounds
+                    organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                        consumeReproductionCompoundsReverse);
+
+                    // Nucleus (or another unique organelle) needs more compounds
                     reproductionStageComplete = false;
                 }
             }
@@ -823,12 +878,127 @@ public partial class Microbe
 
         if (reproductionStageComplete)
         {
-            // Nucleus is also now ready to reproduce
+            // Nucleus (and other unique organelles) are also now ready to reproduce
+            if (!ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds))
+            {
+                reproductionStageComplete = false;
+            }
+        }
+
+        if (reproductionStageComplete)
+        {
+            // All organelles and base reproduction cost is now fulfilled, we are fully ready to reproduce
             allOrganellesDivided = true;
 
             // For NPC cells this immediately splits them and the allOrganellesDivided flag is reset
             ReadyToReproduce();
         }
+    }
+
+    private (float RemainingAllowedCompoundUse, float RemainingFreeCompounds)
+        CalculateFreeCompoundsAndLimits(float delta)
+    {
+        float remainingAllowedCompoundUse = float.MaxValue;
+        float remainingFreeCompounds = 0;
+
+        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
+        {
+            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta;
+        }
+
+        if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
+        {
+            // TODO: make the current patch affect this?
+            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta;
+        }
+
+        return (remainingAllowedCompoundUse, remainingFreeCompounds);
+    }
+
+    private bool ProcessBaseReproductionCost(ref float remainingAllowedCompoundUse, ref float remainingFreeCompounds,
+        Dictionary<Compound, float>? trackCompoundUse = null)
+    {
+        if (remainingAllowedCompoundUse <= 0)
+        {
+            return false;
+        }
+
+        bool reproductionStageComplete = true;
+
+        foreach (var key in consumeReproductionCompoundsReverse ?
+                     requiredCompoundsForBaseReproduction.Keys.Reverse() :
+                     requiredCompoundsForBaseReproduction.Keys)
+        {
+            var amountNeeded = requiredCompoundsForBaseReproduction[key];
+
+            if (amountNeeded <= 0.0f)
+                continue;
+
+            // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+            if (remainingFreeCompounds > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                remainingFreeCompounds -= usedFreeCompounds;
+            }
+
+            // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
+            // organelle growth
+            var amountAvailable =
+                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                usedAmount += compounds.TakeCompound(key, amountToTake);
+            }
+
+            if (usedAmount < MathUtils.EPSILON)
+                continue;
+
+            remainingAllowedCompoundUse -= usedAmount;
+
+            if (trackCompoundUse != null)
+            {
+                trackCompoundUse.TryGetValue(key, out var trackedAlreadyUsed);
+                trackCompoundUse[key] = trackedAlreadyUsed + usedAmount;
+            }
+
+            var left = amountNeeded - usedAmount;
+
+            if (left < 0.0001f)
+            {
+                // We don't remove these values even when empty as we rely on detecting this being empty for earlier
+                // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
+                left = 0;
+            }
+
+            requiredCompoundsForBaseReproduction[key] = left;
+
+            // As we don't make duplicate lists, we can only process a single type per call
+            // So we can't know here if we are fully ready
+            reproductionStageComplete = false;
+            break;
+        }
+
+        return reproductionStageComplete;
+    }
+
+    /// <summary>
+    ///   Sets up the base reproduction cost that is on top of the normal costs
+    /// </summary>
+    private void SetupRequiredBaseReproductionCompounds()
+    {
+        requiredCompoundsForBaseReproduction.Clear();
+        requiredCompoundsForBaseReproduction.Merge(Species.BaseReproductionCost);
+        totalNeededForMulticellularGrowth = null;
     }
 
     private void OnPlayerDuplicationCheat(object sender, EventArgs e)
@@ -933,7 +1103,12 @@ public partial class Microbe
             else
             {
                 Divide();
+
                 enoughResourcesForBudding = false;
+
+                // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
+                // spam, and for consistency with non-multicellular microbes
+                SetupRequiredBaseReproductionCompounds();
             }
         }
     }

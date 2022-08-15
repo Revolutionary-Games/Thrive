@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A specialized button to display a microbe part for selection in the cell editor.
@@ -146,8 +145,7 @@ public class MicrobePartSelection : MarginContainer
         if (mpLabel == null || nameLabel == null)
             return;
 
-        mpLabel.Text = string.Format(
-            CultureInfo.CurrentCulture, TranslationServer.Translate("MP_COST"), MPCost);
+        mpLabel.Text = TranslationServer.Translate("MP_COST").FormatSafe(MPCost);
 
         nameLabel.Text = PartName;
 

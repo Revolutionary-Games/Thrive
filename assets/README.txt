@@ -8,6 +8,7 @@ in the LICENSE.txt file.
 The following are the assets not covered by that license
 
 - all fonts in the font folder except for thrive.tff
+- all social media icons in the textures/gui/social_media/ folder
 
 The following fonts are licensed under the SIL Open Font License
 
@@ -16,3 +17,13 @@ The following fonts are licensed under the SIL Open Font License
 - Noto (Copyright (c) Google)
 
 SIL license text is included in "OFL.txt" file.
+
+
+Social License Info
+-------------------
+
+Assets in the folder "assets/textures/gui/social_media/" and
+subfolders are licenses by their individual corporations.
+
+These icons and images have been used in compliance with the
+individual branding requirements of each corporation/license holder.

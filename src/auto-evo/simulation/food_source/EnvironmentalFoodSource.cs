@@ -22,10 +22,10 @@
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound, patch);
+            var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound, patch, simulationCache);
 
             var energyCost = simulationCache
-                .GetEnergyBalanceForSpecies(microbeSpecies, patch)
+                .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)
                 .TotalConsumptionStationary;
 
             return energyCreationScore / energyCost;

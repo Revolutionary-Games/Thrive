@@ -76,7 +76,7 @@
 
             foreach (var patchEntry in OriginalMap.Patches)
             {
-                if (patchEntry.Value.GetSpeciesPopulation(species) > 0)
+                if (patchEntry.Value.GetSpeciesSimulationPopulation(species) > 0)
                 {
                     PatchesToRun.Add(patchEntry.Value);
                 }

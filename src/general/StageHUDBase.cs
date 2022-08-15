@@ -630,15 +630,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
-
-        // TODO: mitigation for https://github.com/Revolutionary-Games/Thrive/issues/3006 remove once solved
-        // Start auto-evo if not started already to make sure it doesn't start after we are in the editor
-        // scene, this is a potential mitigation for the issue linked above
-        if (!Settings.Instance.RunAutoEvoDuringGamePlay)
-        {
-            GD.Print("Starting auto-evo while fading into the editor as mitigation for issue #3006");
-            stage.GameWorld.IsAutoEvoFinished(true);
-        }
     }
 
     public void ShowPatchName(string localizedPatchName)
@@ -698,23 +689,18 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, oxygenPercentage);
+        oxygenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(oxygenPercentage);
 
         co2Bar.MaxValue = 100;
         co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, co2Percentage);
+        co2Bar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(co2Percentage);
 
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, nitrogenPercentage);
+        nitrogenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(nitrogenPercentage);
 
-        sunlightLabel.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperatureBar.GetNode<Label>("Value").Text =
-            string.Format(CultureInfo.CurrentCulture, unitFormat, averageTemperature, temperature.Unit);
+        sunlightLabel.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(sunlightPercentage);
+        temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
 
         // TODO: pressure?
     }
@@ -852,7 +838,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected void UpdatePopulation()
     {
         var playerSpecies = stage!.GameWorld.PlayerSpecies;
-        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesPopulation(playerSpecies);
+        var population = stage.GameWorld.Map.CurrentPatch!.GetSpeciesGameplayPopulation(playerSpecies);
 
         if (population <= 0 && stage.HasPlayer)
             population = 1;
@@ -1133,8 +1119,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             if (hoveredSpeciesCount.Value > 1)
             {
                 AddHoveredCellLabel(
-                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
-                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+                    TranslationServer.Translate("SPECIES_N_TIMES").FormatSafe(hoveredSpeciesCount.Key.FormattedName,
+                        hoveredSpeciesCount.Value));
             }
             else
             {
