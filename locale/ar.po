@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-15 16:26+0100\n"
+"POT-Creation-Date: 2022-08-15 18:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -325,7 +325,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
-msgid "SECRETE_MUCILAGE"
+msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
@@ -916,7 +916,8 @@ msgid "CHEMORECEPTOR"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:750
-msgid "MUCILAGE_JET"
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1232
+msgid "SLIME_JET"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
@@ -3354,10 +3355,6 @@ msgstr ""
 msgid "SPEED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1232
-msgid "SLIME_JET"
-msgstr ""
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1233
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -3739,7 +3736,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1093
+#: ../src/microbe_stage/Microbe.Interior.cs:1101
 msgid "REPRODUCED"
 msgstr ""
 
@@ -3803,16 +3800,16 @@ msgstr ""
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:295
+#: ../src/microbe_stage/MicrobeHUD.cs:298
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:387
+#: ../src/microbe_stage/MicrobeHUD.cs:390
 #: ../src/microbe_stage/MicrobeStage.tscn:1674
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:423
+#: ../src/microbe_stage/MicrobeHUD.cs:426
 #: ../src/microbe_stage/MicrobeStage.tscn:1685
 msgid "BECOME_MACROSCOPIC"
 msgstr ""

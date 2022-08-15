@@ -25,6 +25,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
+    public bool SlowedBySlime;
+    public Vector3 SlimeJetFactor;
+
     private HybridAudioPlayer engulfAudio = null!;
     private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
@@ -86,8 +89,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
-    public bool SlowedBySlime;
-    public Vector3 SlimeJetFactor;
 
     /// <summary>
     ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -1087,7 +1088,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (SlowedBySlime)
             force /= Constants.MUCILAGE_IMPEDE_FACTOR;
 
-        force += Constants.MUCILAGE_JET_FACTOR * Math.Max(SlimeJetFactor.Dot(MovementDirection), 0) / MassFromOrganelles;
+        force += Constants.MUCILAGE_JET_FACTOR *
+            Math.Max(SlimeJetFactor.Dot(MovementDirection), 0) / MassFromOrganelles;
 
         // Reset the amount of secreted mucilage after using it to move
         SlimeJetFactor = Vector3.Zero;

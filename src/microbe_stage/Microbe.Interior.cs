@@ -30,7 +30,7 @@ public partial class Microbe
 
     [JsonProperty]
     private Compound? queuedToxinToEmit;
-    
+
     [JsonProperty]
     private bool queuedSecreteSlime;
 
@@ -349,8 +349,9 @@ public partial class Microbe
 
         foreach (var jet in SlimeJets)
         {
-            var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta, -jet.GetDirection(), 4);
-            SlimeJetFactor += slimeSecreted * -jet.GetDirection();
+            var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
+                -jet.GetDirection(), 4);
+            SlimeJetFactor += slimeSecreted * jet.GetDirection();
             totalSlimeSecreted += slimeSecreted;
         }
 
@@ -660,7 +661,8 @@ public partial class Microbe
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         // Cells with jets aren't affected by mucilage
-        SlowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) > Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJets.Count < 1;
+        SlowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
+            Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJets.Count < 1;
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {

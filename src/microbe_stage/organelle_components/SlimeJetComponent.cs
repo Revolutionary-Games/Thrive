@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Slime-powered jet for adding bursts of speed
@@ -36,8 +35,6 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
 public class SlimeJetComponentFactory : IOrganelleComponentFactory
 {
-    public float Momentum;
-
     public IOrganelleComponent Create()
     {
         return new SlimeJetComponent();

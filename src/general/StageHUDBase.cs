@@ -1158,7 +1158,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract void UpdateAbilitiesHotBar();
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showMucilage, bool showingSignaling, bool engulfOn)
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showMucilage,
+        bool showingSignaling, bool engulfOn)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
