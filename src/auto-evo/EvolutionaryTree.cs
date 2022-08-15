@@ -81,7 +81,7 @@ public class EvolutionaryTree : Control
     // ReSharper enable RedundantNameQualifier
 
     /// <summary>
-    ///   All EvolutionaryTreeNodes are in this group so that they works radio.
+    ///   All EvolutionaryTreeNodes are in this group so that they work as radio buttons.
     /// </summary>
     private readonly ButtonGroup nodesGroup = new();
 
