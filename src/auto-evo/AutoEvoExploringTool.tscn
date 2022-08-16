@@ -577,6 +577,16 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="FilteringLabel" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+text = "FILTERING_OPTIONS"
+
+[node name="FilteringButton" type="Button" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 19.0
+text = "OPEN_FILTERING_OPTIONS"
+
 [node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
 margin_top = 62.0
