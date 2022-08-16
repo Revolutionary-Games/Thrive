@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Serializes registry types as strings instead of full objects
+///   Deserializes registry types from strings or objects (for supported types)
 /// </summary>
+/// <remarks>
+///   <para>
+///     To support both the proper registry types and also the full objects, this class is split into two: the reader
+///     and writer as they need to act on different type interfaces.
+///   </para>
+/// </remarks>
 public class RegistryTypeConverter : BaseThriveConverter
 {
+    private readonly Type registryAssignable = typeof(IRegistryAssignable);
+    private readonly Type concreteCustomizedRegistryAttribute = typeof(CustomizedRegistryTypeAttribute);
+
     public RegistryTypeConverter(ISaveContext context) : base(context)
     {
     }
@@ -16,6 +26,25 @@ public class RegistryTypeConverter : BaseThriveConverter
     {
         if (reader.TokenType == JsonToken.Null)
             return null;
+
+        // Some registry types support both the registry objects and compatible objects, so if there's an object here
+        // we can handle it if it is of one of those types
+        if (reader.TokenType == JsonToken.StartObject)
+        {
+            var targetTypeAttribute = objectType.GetCustomAttribute<SupportsCustomizedRegistryTypeAttribute>();
+
+            if (targetTypeAttribute == null)
+            {
+                throw new JsonException(
+                    $"{nameof(SupportsCustomizedRegistryTypeAttribute)} missing from registry assignable " +
+                    "interface to specify concrete created type when deserializing an object. Or unexpected start " +
+                    $"of object for registry type of {objectType.FullName}");
+            }
+
+            var actualType = targetTypeAttribute.TargetType;
+
+            return serializer.Deserialize(reader, actualType);
+        }
 
         var name = serializer.Deserialize<string>(reader);
 
@@ -40,11 +69,17 @@ public class RegistryTypeConverter : BaseThriveConverter
         if (objectType == typeof(MembraneType))
             return Context.Simulation.GetMembrane(name);
 
-        if (objectType == typeof(DifficultyPreset))
-            return Context.Simulation.GetDifficultyPreset(name);
-
         if (objectType == typeof(Enzyme))
             return Context.Simulation.GetEnzyme(name);
+
+        if (typeof(IDifficulty).IsAssignableFrom(objectType))
+            return Context.Simulation.GetDifficultyPreset(name);
+
+        if (typeof(IAutoEvoConfiguration).IsAssignableFrom(objectType) &&
+            name == SimulationParameters.AUTO_EVO_CONFIGURATION_NAME)
+        {
+            return Context.Simulation.AutoEvoConfiguration;
+        }
 
         throw new Exception("a registry type is missing from RegistryTypeConverter");
     }
@@ -57,12 +92,72 @@ public class RegistryTypeConverter : BaseThriveConverter
             return;
         }
 
-        serializer.Serialize(writer, ((IRegistryType)value).InternalName);
+        if (value is IRegistryType registryType)
+        {
+            var name = registryType.InternalName;
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new InvalidOperationException(
+                    $"A registry type ({value.GetType().FullName}) object has missing internal name, can't be saved");
+            }
+
+            serializer.Serialize(writer, name);
+        }
+        else
+        {
+            // Support writing the customized versions of objects for the registry types
+            // Note the type of value must have
+            serializer.Serialize(writer, value, value.GetType());
+        }
     }
 
     public override bool CanConvert(Type objectType)
     {
-        // Registry types are supported
-        return objectType.GetInterfaces().Contains(typeof(IRegistryType));
+        // Anything deriving from the interface that denotes it supports registry and compatible other types,
+        // can be used
+        if (!registryAssignable.IsAssignableFrom(objectType))
+            return false;
+
+        // Except the concrete customized types of registry types. If we supported those we'd run into a stackoverflow
+        // when serializing such customized variants of registry types.
+        return objectType.CustomAttributes.All(a => a.AttributeType != concreteCustomizedRegistryAttribute);
     }
+}
+
+/// <summary>
+///   Marks the real type that should be deserialized when a <see cref="IRegistryAssignable"/> type that has this
+///   attribute is deserialized from an object structure (and not a string, in which case normal registry type loading
+///   is used)
+/// </summary>
+/// <remarks>
+///   <para>
+///     Note that the concrete type this points to must have the <see cref="CustomizedRegistryTypeAttribute"/>
+///     otherwise serializing that value will result in a stackoverflow.
+///   </para>
+/// </remarks>
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
+public class SupportsCustomizedRegistryTypeAttribute : Attribute
+{
+    public SupportsCustomizedRegistryTypeAttribute(Type targetType)
+    {
+        TargetType = targetType;
+    }
+
+    public Type TargetType { get; }
+}
+
+/// <summary>
+///   Marks a class that is a customized version of a registry type.
+///   Must be set on classes that <see cref="SupportsCustomizedRegistryTypeAttribute"/> point to.
+/// </summary>
+/// <remarks>
+///   <para>
+///     As using this usually causes JSON dynamic type to be written out, this implies
+///     <see cref="JSONDynamicTypeAllowedAttribute"/> in the deserialization type binder.
+///   </para>
+/// </remarks>
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
+public class CustomizedRegistryTypeAttribute : Attribute
+{
 }
