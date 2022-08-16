@@ -229,7 +229,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
-            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX));
+            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) && ValidateNameLength(newText));
         }
 
         EmitSignal(nameof(OnNameSet), newText);
@@ -245,8 +245,10 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
+            bool nameLengthValid = ValidateNameLength(text);
+
             // Only defocus if the name is valid to indicate invalid namings to the player
-            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
+            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX) && nameLengthValid)
             {
                 speciesNameEdit.ReleaseFocus();
             }
@@ -256,7 +258,14 @@ public class EditorComponentBottomLeftButtons : MarginContainer
                 GetTree().SetInputAsHandled();
 
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
-                ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+                if (!nameLengthValid)
+                {
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPECIES_NAME_TOO_LONG_POPUP"), 2.5f);
+                }
+                else
+                {
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+                }
 
                 speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
             }
@@ -265,6 +274,11 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         {
             speciesNameEdit.ReleaseFocus();
         }
+    }
+
+    private bool ValidateNameLength(string name)
+    {
+        return speciesNameEdit.GetFont("font").GetStringSize(name).x < Constants.MAX_SPECIES_NAME_LENGTH_PIXELS;
     }
 
     private void OnRandomizeNamePressed()
