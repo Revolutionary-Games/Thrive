@@ -230,7 +230,6 @@ public class EvolutionaryTree : Control
         var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
         node.Generation = generation;
         node.SpeciesID = species.ID;
-        node.LastGeneration = false;
         node.ParentNode = parent;
         node.Position = new Vector2(generation * GENERATION_SEPARATION, 0);
         node.LastGeneration = isLastGeneration;
