@@ -707,6 +707,8 @@ public class NewGameSettings : ControlWithInput
 
     private void OnMetaClicked(object meta)
     {
+        _ = meta;
+
         EmitSignal(nameof(OnWantToSwitchToOptionsMenu));
     }
 }
