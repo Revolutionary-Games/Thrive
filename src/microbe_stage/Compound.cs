@@ -20,6 +20,11 @@ public class Compound : IRegistryType
 
     public bool IsCloud;
 
+    /// <summary>
+    ///   Scales the retention rate of this compound as a cloud in the environment (DO NOT set above 1!)
+    /// </summary>
+    public float DecayRate = 1.0f;
+
     public string IconPath = null!;
 
     /// <summary>

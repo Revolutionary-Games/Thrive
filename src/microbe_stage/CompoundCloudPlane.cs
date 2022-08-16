@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Godot;
@@ -41,6 +42,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private ImageTexture texture = null!;
     private FluidSystem? fluidSystem;
     private Compound mucilage = null!;
+
+    [JsonProperty]
+    private Vector4 decayRates;
 
     [JsonProperty]
     private Int2 position = new(0, 0);
@@ -127,6 +131,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         this.fluidSystem = fluidSystem;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
+
+        decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
+            cloud3?.DecayRate ?? 1.0f, cloud4?.DecayRate ?? 1.0f);
 
         // Setup colours
         var material = (ShaderMaterial)Material;
@@ -659,10 +666,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     r0 = r0.PositiveModulo(Size);
                     r1 = r1.PositiveModulo(Size);
 
-                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                    Density[q0, r0] += OldDensity[x, y] * decayRates * s0 * t0;
+                    Density[q0, r1] += OldDensity[x, y] * decayRates * s0 * t1;
+                    Density[q1, r0] += OldDensity[x, y] * decayRates * s1 * t0;
+                    Density[q1, r1] += OldDensity[x, y] * decayRates * s1 * t1;
                 }
             }
         }
