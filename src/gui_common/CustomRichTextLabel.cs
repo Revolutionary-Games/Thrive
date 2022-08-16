@@ -12,6 +12,8 @@ public class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
+    private string? extendedBbcodeTranslated;
+
     private string? heightWorkaroundRanForString;
 
     /// <summary>
@@ -54,6 +56,8 @@ public class CustomRichTextLabel : RichTextLabel
             // Value is always changed here even if the text didn't change, as translations may have changed
             // the compound names anyway
             extendedBbcode = value;
+
+            extendedBbcodeTranslated = TranslationServer.Translate(value);
 
             // Need to delay this so we can get the correct input controls from settings.
             Invoke.Instance.QueueForObject(ParseCustomTags, this);
@@ -446,7 +450,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     private void ParseCustomTags()
     {
-        if (extendedBbcode == null)
+        if (extendedBbcodeTranslated == null)
         {
             BbcodeText = null;
             return;
@@ -455,14 +459,14 @@ public class CustomRichTextLabel : RichTextLabel
         try
         {
             // Parse our custom tags into standard tags and display that text
-            BbcodeText = ParseCustomTagsString(extendedBbcode);
+            BbcodeText = ParseCustomTagsString(extendedBbcodeTranslated);
         }
         catch (Exception e)
         {
             GD.PrintErr("Failed to parse bbcode string due to exception: ", e);
 
             // Just display the raw markup for now
-            BbcodeText = extendedBbcode;
+            BbcodeText = extendedBbcodeTranslated;
         }
     }
 

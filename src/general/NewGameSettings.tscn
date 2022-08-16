@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/NewGameSettings.cs" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/concept_art/planet_generation.jpg" type="Texture" id=10]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -75,9 +76,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 365.0
-margin_top = 236.0
+margin_top = 208.0
 margin_right = 915.0
-margin_bottom = 484.0
+margin_bottom = 512.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,14 +86,14 @@ __meta__ = {
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 550.0
-margin_bottom = 208.0
+margin_bottom = 264.0
 rect_min_size = Vector2( 550, 200 )
 
 [node name="Main" type="MarginContainer" parent="CenterContainer/VBoxContainer/BasicOptions"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 549.0
-margin_bottom = 207.0
+margin_bottom = 263.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -102,7 +103,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 533.0
-margin_bottom = 191.0
+margin_bottom = 247.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -248,6 +249,22 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+margin_top = 186.0
+margin_right = 518.0
+margin_bottom = 186.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+margin_top = 196.0
+margin_right = 518.0
+margin_bottom = 200.0
+
+[node name="CustomRichTextLabel" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 210.0
+margin_right = 518.0
+margin_bottom = 232.0
+ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
@@ -1062,9 +1079,9 @@ custom_fonts/font = ExtResource( 3 )
 text = "EASTER_EGGS_EXPLANATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 213.0
+margin_top = 269.0
 margin_right = 550.0
-margin_bottom = 248.0
+margin_bottom = 304.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -1121,6 +1138,7 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
+[connection signal="meta_clicked" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CustomRichTextLabel" to="." method="OnMetaClicked"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= [ "Planet" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]

@@ -177,6 +177,9 @@ public class NewGameSettings : ControlWithInput
     [Signal]
     public delegate void OnNewGameSettingsClosed();
 
+    [Signal]
+    public delegate void OnWantToSwitchToOptionsMenu();
+
     private enum SelectedOptionsTab
     {
         Difficulty,
@@ -700,5 +703,10 @@ public class NewGameSettings : ControlWithInput
     private void OnEasterEggsToggled(bool pressed)
     {
         settings.EasterEggs = pressed;
+    }
+
+    private void OnMetaClicked(object meta)
+    {
+        EmitSignal(nameof(OnWantToSwitchToOptionsMenu));
     }
 }
