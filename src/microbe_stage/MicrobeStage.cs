@@ -278,6 +278,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
         UpdateLinePlayerPosition();
+        UpdateDayLightEffects();
     }
 
     [RunOnKeyDown("g_pause")]
@@ -650,6 +651,22 @@ public class MicrobeStage : StageBase<Microbe>
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
+    }
+
+    /// <summary>
+    ///     Updates the background lighting and does various post-effects
+    /// </summary>
+    private void UpdateDayLightEffects()
+    {
+        // need to have this look at Biome type instead
+        if (CurrentPatchName.ToString().Contains("Coastal") || CurrentPatchName.ToString().Contains("Estuary") ||
+            CurrentPatchName.ToString().Contains("Tidepool") || CurrentPatchName.ToString().Contains("Epipelagic") ||
+            CurrentPatchName.ToString().Contains("IceShelf"))
+        {
+            // this needs to be refactored for efficiency but, it works for now
+            Camera.MaterialToUpdate.SetShaderParam("lightLevel",
+                (GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") / 100) * lightCycle.DayLightPercentage);
+        }
     }
 
     private void SaveGame(string name)
