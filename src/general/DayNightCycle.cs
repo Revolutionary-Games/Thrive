@@ -5,32 +5,18 @@ using Godot;
 public class DayNightCycle : Godot.Node
 {
     /*
-
-    * stuff we need at a minimum / TL;DR
-        exact time
-        states for dawn, day, dusk, and night
+    * stuff we need
         config parameters; a JSON file
-        methods to feed timeOfDay to relevant shaders
         methods to manipulate environment node for lighting and post-process
-
-    * for simplicity's sake, the time can just be a float property (minute)
-        public float Time{ get; set; };
-
-
-    * we need various parameters that can be changed on a per planet basis like:
-        how long a day is
-        light levels for day and night if not const
-        graphical particularities like color during sunrise/sunset, when to apply post fx
-
     */
 
     /*
 
-     Gamedungeons Notes:
+    Gamedungeons Notes:
 
-     * Almost all of these should be converted to json. I really don't know how.
+    * Almost all of these should be converted to json. I really don't know how.
 
-     * Probably need to add save support
+    * Probably need to add save support
 
     */
 
@@ -41,7 +27,8 @@ public class DayNightCycle : Godot.Node
     ///   This is how long it takes to complete a full day in realtime seconds
     /// </summary>
     private float realTimePerDay = 120;
-    private float minLightPercentage = 0.1f;
+    private float minLightPercentage = 0.1f; // For realism this should be removed.
+    private int daytimeLeangthFactor = 3;
     private DayNightCycle()
     {
         instance = this;
@@ -61,12 +48,12 @@ public class DayNightCycle : Godot.Node
 
     /// <summary>
     ///   The percentage of daylight you should get.
-    ///   light = min(max(-abs(PercentOfDayElapsed*6-3)+2, minLightPercentage), 1)
-    ///   desmos: https://www.desmos.com/calculator/pjnh5rm023
+    ///   light = min(-abs(PercentOfDayElapsed*12-6)+daytimeLeangthFactor, 1)
+    ///   desmos: https://www.desmos.com/calculator/iidhrbrpe2
     /// </summary>
     public float DayLightPercentage
     {
-        get { return Math.Min(Math.Max(-Math.Abs(PercentOfDayElapsed * 6 - 3) + 2, minLightPercentage), 1); }
+        get { return Math.Min(Math.Max(-Math.Abs(PercentOfDayElapsed * 12 - 6) + daytimeLeangthFactor, minLightPercentage), 1); }
     }
 
     public override void _Process(float delta)
