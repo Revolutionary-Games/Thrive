@@ -2370,7 +2370,7 @@ margin_bottom = 224.0
 [node name="digestionSpeed" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
 margin_right = 333.0
 DisplayName = "DIGESTION_SPEED"
-ModifierValue = "+10%"
+ModifierValue = "+0.05"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 
 [node name="digestionEfficiency" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
@@ -2378,7 +2378,7 @@ margin_top = 24.0
 margin_right = 333.0
 margin_bottom = 44.0
 DisplayName = "DIGESTION_EFFICIENCY"
-ModifierValue = "+15%"
+ModifierValue = "+4.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 
 [node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
@@ -2986,7 +2986,7 @@ expand = true
 margin_top = 144.0
 margin_right = 333.0
 margin_bottom = 164.0
-DisplayName = "RESISTANT_TO_ENGULFMENT"
+DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameColor = Color( 0, 1, 0, 1 )
 ShowValue = false
 
@@ -3233,7 +3233,7 @@ expand = true
 margin_top = 144.0
 margin_right = 333.0
 margin_bottom = 164.0
-DisplayName = "RESISTANT_TO_ENGULFMENT"
+DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameColor = Color( 0, 1, 0, 1 )
 ShowValue = false
 
