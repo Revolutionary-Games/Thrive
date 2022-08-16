@@ -1416,8 +1416,9 @@ public partial class Microbe
                 var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(Enzymes[usedEnzyme]);
                 amount *= delta;
 
-                // Efficiency starts from 30% up to 60%. This means at least 7 lysosomes are needed to achieve
-                // "maximum" efficiency
+                // Efficiency starts from Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD up to
+                // Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM. This means at least 7 lysosomes
+                // are needed to achieve "maximum" efficiency
                 var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(Enzymes[usedEnzyme]);
 
                 var taken = Mathf.Min(totalAvailable, amount);
