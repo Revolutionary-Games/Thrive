@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-15 13:51+0700\n"
+"POT-Creation-Date: 2022-08-16 16:13+0700\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1143,26 +1143,26 @@ msgstr "Výsledky Auto-evo:"
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_DETAILS"
 msgstr "Podrobnosti druhu"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1052
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1073
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zpět"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Potvrdit ukončení"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1197,7 +1197,7 @@ msgstr "Začínání"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populace {0} se změnila o {1} za {2} z důvodu: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:322
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -2077,7 +2077,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Při načítání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
 
 #: ../src/general/NewGameSettings.cs:297
-#: ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/NewGameSettings.tscn:1113
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začít hru s tímto nastavením"
 
@@ -2085,201 +2085,201 @@ msgstr "Začít hru s tímto nastavením"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Některá nastavení nejsou platná"
 
-#: ../src/general/NewGameSettings.tscn:117
-#: ../src/general/NewGameSettings.tscn:330
+#: ../src/general/NewGameSettings.tscn:119
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET"
 msgstr "Přednastavení obtížnosti"
 
-#: ../src/general/NewGameSettings.tscn:144
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:146
+#: ../src/general/NewGameSettings.tscn:875
 msgid "LAWK_ONLY"
 msgstr "Realistický režim"
 
-#: ../src/general/NewGameSettings.tscn:151
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:153
+#: ../src/general/NewGameSettings.tscn:882
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(limituje části a schopnosti pouze na život jak ho známe)"
 
-#: ../src/general/NewGameSettings.tscn:167
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:169
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN"
 msgstr "Původ života"
 
-#: ../src/general/NewGameSettings.tscn:174
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:176
+#: ../src/general/NewGameSettings.tscn:905
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(počáteční lokace)"
 
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:919
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:921
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermální průduch"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_POND"
 msgstr "Malé teplé jezírko"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermie (náhodné)"
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:937
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodný seed planety"
 
-#: ../src/general/NewGameSettings.tscn:225
-#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:227
+#: ../src/general/NewGameSettings.tscn:956
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
-#: ../src/general/NewGameSettings.tscn:270
+#: ../src/general/NewGameSettings.tscn:272
 msgid "DIFFICULTY"
 msgstr "Obtížnost"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:282
 msgid "PLANET"
 msgstr "Planeta"
 
-#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:292 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Ostatní"
 
-#: ../src/general/NewGameSettings.tscn:369
+#: ../src/general/NewGameSettings.tscn:382
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Násobení ceny mutace"
 
-#: ../src/general/NewGameSettings.tscn:414
+#: ../src/general/NewGameSettings.tscn:427
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cena organel, membrán a jiných věcí v editoru)"
 
-#: ../src/general/NewGameSettings.tscn:431
+#: ../src/general/NewGameSettings.tscn:444
 msgid "AI_MUTATION_RATE"
 msgstr "Rychlost mutace AI"
 
-#: ../src/general/NewGameSettings.tscn:476
+#: ../src/general/NewGameSettings.tscn:489
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(rychlost mutací AI druhů)"
 
-#: ../src/general/NewGameSettings.tscn:493
+#: ../src/general/NewGameSettings.tscn:506
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Hustota oblaků sloučenin"
 
-#: ../src/general/NewGameSettings.tscn:538
+#: ../src/general/NewGameSettings.tscn:551
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(hustota oblak sloučenin v prostředí)"
 
-#: ../src/general/NewGameSettings.tscn:555
+#: ../src/general/NewGameSettings.tscn:568
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Populační penalta za smrt hráče"
 
-#: ../src/general/NewGameSettings.tscn:600
+#: ../src/general/NewGameSettings.tscn:613
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(součinitel snížení populace hráčova druhu za každou smrt hráče)"
 
-#: ../src/general/NewGameSettings.tscn:617
+#: ../src/general/NewGameSettings.tscn:630
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retence glukózy v prostředí"
 
-#: ../src/general/NewGameSettings.tscn:661
+#: ../src/general/NewGameSettings.tscn:674
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(poměr glukózy ponecháno v prostředí za každou generaci)"
 
-#: ../src/general/NewGameSettings.tscn:678
+#: ../src/general/NewGameSettings.tscn:691
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Násobitel ceny osmoregulace"
 
-#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:736
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cena osmoregulace hráčova druhu)"
 
-#: ../src/general/NewGameSettings.tscn:735
+#: ../src/general/NewGameSettings.tscn:748
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Bonusový oblak glukózy při opuštění editoru"
 
-#: ../src/general/NewGameSettings.tscn:742
+#: ../src/general/NewGameSettings.tscn:755
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(začnete s bonusovým oblakem glukózy poblíž každé generace)"
 
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:767
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Pasivní příjem pokroku reprodukce"
 
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:774
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
-#: ../src/general/NewGameSettings.tscn:773
+#: ../src/general/NewGameSettings.tscn:786
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Limit využití růstových sloučenin"
 
-#: ../src/general/NewGameSettings.tscn:780
+#: ../src/general/NewGameSettings.tscn:793
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
 
-#: ../src/general/NewGameSettings.tscn:816
+#: ../src/general/NewGameSettings.tscn:837
 msgid "PATCH_MAP_TYPE"
 msgstr "Typ mapy prostředí"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:844
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(vygeneruje mapu prostředí buď procedurálně nebo použitím klasického rozložení)"
 
-#: ../src/general/NewGameSettings.tscn:838
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:860
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedurální"
 
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:860
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Klasické"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:1004
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generováni planet již brzy!"
 
-#: ../src/general/NewGameSettings.tscn:1015
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Zahrnout prototypy pozdějších období"
 
-#: ../src/general/NewGameSettings.tscn:1022
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
-#: ../src/general/NewGameSettings.tscn:1034
+#: ../src/general/NewGameSettings.tscn:1055
 msgid "EASTER_EGGS"
 msgstr "Zahrnout Easter Eggy"
 
-#: ../src/general/NewGameSettings.tscn:1041
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
-#: ../src/general/NewGameSettings.tscn:1069
+#: ../src/general/NewGameSettings.tscn:1090
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otevřít náhled pokročilého nastavení"
 
-#: ../src/general/NewGameSettings.tscn:1071
+#: ../src/general/NewGameSettings.tscn:1092
 msgid "ADVANCED_VIEW"
 msgstr "Pokročilé"
 
-#: ../src/general/NewGameSettings.tscn:1082
+#: ../src/general/NewGameSettings.tscn:1103
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Návrat k náhledu základního nastavení"
 
-#: ../src/general/NewGameSettings.tscn:1083
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "BASIC_VIEW"
 msgstr "Základní"
 
-#: ../src/general/NewGameSettings.tscn:1093
+#: ../src/general/NewGameSettings.tscn:1114
 msgid "CONFIRM_NORMAL"
 msgstr "Potvrdit"
 
@@ -2469,7 +2469,7 @@ msgstr "Výstupní audio zařízení:"
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1369
 msgid "RESET"
 msgstr "Resetovat"
 
@@ -2553,139 +2553,139 @@ msgstr "Obří"
 msgid "LIMIT_EXTREME"
 msgstr "Extrémní"
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1135
 msgid "RESET_INPUTS"
 msgstr "Resetovat ovládání"
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1162
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Přehrát úvodní video"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spustit úvod do mikrobů v nové hře"
 
-#: ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1178
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukládání během hry"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1189
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet autosave k zachování:"
 
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Počet rychlouložení k zachování:"
 
-#: ../src/general/OptionsMenu.tscn:1243
+#: ../src/general/OptionsMenu.tscn:1242
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit tutoriály (v nových hrách)"
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1249
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit tutoriály (v aktuální hře)"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1255
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobrazení upozornění na neuložený postup"
 
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Povolit podvádění (cheaty)"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1275
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij vlastní jméno"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1286
 msgid "CUSTOM_USERNAME"
 msgstr "Vlastní uživatelské jméno:"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otevřít screenshoty"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1320
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otevřít složku protokolů"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1330
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mod:"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticky"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Vždy"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nikdy"
 
-#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1381 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Uložit"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1398
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1409
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
 
-#: ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1418
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovat ovládání ?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Jseš si jistý/á, že chceš resetovat ovládání ?"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1428
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1448
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené změny, které budou zahozeny.\n"
 "Mám pokračovat?"
 
-#: ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1471
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1482
+#: ../src/general/OptionsMenu.tscn:1481
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1498
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Zrušit"
 
-#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1509 ../src/general/OptionsMenu.tscn:1517
 msgid "ERROR"
 msgstr "Chyba"
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1519
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodařilo se uložit nové nastavení."
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1527
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Složka se snímky obrazovky nebyla nalezena"
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1529
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Zkuste udělat snímek obrazovky!"
 
@@ -4213,7 +4213,12 @@ msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje pr
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:259
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
+#, fuzzy
+msgid "SPECIES_NAME_TOO_LONG_POPUP"
+msgstr "Jméno druhu..."
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Název druhu musí odpovídat binomickému systému pojmenování (rod a epiteton)!"
 
@@ -5503,9 +5508,6 @@ msgstr "Načítání editoru mikrobů"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Začít prosperovat"
-
-#~ msgid "INVULNERABLE_TO_ENGULFMENT"
-#~ msgstr "Imunní vůči vstřebání"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-15 13:51+0700\n"
+"POT-Creation-Date: 2022-08-16 16:13+0700\n"
 "PO-Revision-Date: 2022-07-24 11:52+0000\n"
 "Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1168,27 +1168,27 @@ msgstr "Результаты авто-эво:"
 msgid "EVOLUTIONARY_TREE"
 msgstr "Автор: Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Список Видов"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1052
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1073
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Подтвердить выход"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1225,7 +1225,7 @@ msgstr "Запуск"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Популяция {0} изменена на {1} к {2}, по причине: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:322
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -2106,7 +2106,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
 #: ../src/general/NewGameSettings.cs:297
-#: ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/NewGameSettings.tscn:1113
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать игру с этими настройками"
 
@@ -2114,204 +2114,205 @@ msgstr "Начать игру с этими настройками"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Некоторые настройки неправильные"
 
-#: ../src/general/NewGameSettings.tscn:117
-#: ../src/general/NewGameSettings.tscn:330
+#: ../src/general/NewGameSettings.tscn:119
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET"
 msgstr "Шаблон сложности"
 
-#: ../src/general/NewGameSettings.tscn:144
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:146
+#: ../src/general/NewGameSettings.tscn:875
 msgid "LAWK_ONLY"
 msgstr "Только ЖКМЗ"
 
-#: ../src/general/NewGameSettings.tscn:151
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:153
+#: ../src/general/NewGameSettings.tscn:882
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(ограничивает органеллы и способности только теми, которые встречаются в природе (Жизнь, Какой Мы её Знаем))"
 
-#: ../src/general/NewGameSettings.tscn:167
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:169
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN"
 msgstr "Происхождение жизни"
 
-#: ../src/general/NewGameSettings.tscn:174
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:176
+#: ../src/general/NewGameSettings.tscn:905
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(начальная локация)"
 
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:919
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Некоторые варианты могут быть недоступны если включен режим ЖКМЗ"
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:921
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гидротермальные источники"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_POND"
 msgstr "Небольшое теплое озеро"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Панспермия (случайно)"
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:937
 msgid "PLANET_RANDOM_SEED"
 msgstr "Сид планеты"
 
-#: ../src/general/NewGameSettings.tscn:225
-#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:227
+#: ../src/general/NewGameSettings.tscn:956
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
 
-#: ../src/general/NewGameSettings.tscn:270
+#: ../src/general/NewGameSettings.tscn:272
 msgid "DIFFICULTY"
 msgstr "Сложность"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:282
 msgid "PLANET"
 msgstr "Планета"
 
-#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:292 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Дополнительное"
 
-#: ../src/general/NewGameSettings.tscn:369
+#: ../src/general/NewGameSettings.tscn:382
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Коэффициент стоимости мутации"
 
-#: ../src/general/NewGameSettings.tscn:414
+#: ../src/general/NewGameSettings.tscn:427
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(стоимость органелл, мембран и т. д. в редакторе)"
 
-#: ../src/general/NewGameSettings.tscn:431
+#: ../src/general/NewGameSettings.tscn:444
 msgid "AI_MUTATION_RATE"
 msgstr "Скорость мутации ИИ"
 
-#: ../src/general/NewGameSettings.tscn:476
+#: ../src/general/NewGameSettings.tscn:489
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(скорость, с которой ИИ будет мутировать)"
 
-#: ../src/general/NewGameSettings.tscn:493
+#: ../src/general/NewGameSettings.tscn:506
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Плотность облака вещества"
 
-#: ../src/general/NewGameSettings.tscn:538
+#: ../src/general/NewGameSettings.tscn:551
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(плотность облаков веществ в окружающей среде)"
 
-#: ../src/general/NewGameSettings.tscn:555
+#: ../src/general/NewGameSettings.tscn:568
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Изменение популяции от смерти игрока"
 
-#: ../src/general/NewGameSettings.tscn:600
+#: ../src/general/NewGameSettings.tscn:613
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(коэффициент уменьшения популяции вида с каждой смертью игрока)"
 
-#: ../src/general/NewGameSettings.tscn:617
+#: ../src/general/NewGameSettings.tscn:630
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Сохранение природной глюкозы"
 
-#: ../src/general/NewGameSettings.tscn:661
+#: ../src/general/NewGameSettings.tscn:674
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
 
-#: ../src/general/NewGameSettings.tscn:678
+#: ../src/general/NewGameSettings.tscn:691
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Множитель стоимости осморегуляции"
 
-#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:736
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(стоимость осморегуляции вида игрока)"
 
-#: ../src/general/NewGameSettings.tscn:735
+#: ../src/general/NewGameSettings.tscn:748
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Бесплатное облако глюкозы при выходе из редактора"
 
-#: ../src/general/NewGameSettings.tscn:742
+#: ../src/general/NewGameSettings.tscn:755
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(начало с облаком глюкозы возле каждого поколения)"
 
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:767
+#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "(скорость, с которой ИИ будет мутировать)"
 
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:774
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(скорость, с которой ИИ будет мутировать)"
 
-#: ../src/general/NewGameSettings.tscn:773
+#: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Нормальное"
 
-#: ../src/general/NewGameSettings.tscn:780
+#: ../src/general/NewGameSettings.tscn:793
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(скорость, с которой ИИ будет мутировать)"
 
-#: ../src/general/NewGameSettings.tscn:816
+#: ../src/general/NewGameSettings.tscn:837
 msgid "PATCH_MAP_TYPE"
 msgstr "Тип карты биомов"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:844
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(генерировать карту биомов процедурно или использовать классическое расположение)"
 
-#: ../src/general/NewGameSettings.tscn:838
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:860
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Процедурная"
 
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:860
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Классическая"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:1004
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Генерация планеты в разработке!"
 
-#: ../src/general/NewGameSettings.tscn:1015
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включить прототипы поздних стадий игры"
 
-#: ../src/general/NewGameSettings.tscn:1022
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(некоторые функции могут быть недоступны как только вы достигнете следующего этапа)"
 
-#: ../src/general/NewGameSettings.tscn:1034
+#: ../src/general/NewGameSettings.tscn:1055
 msgid "EASTER_EGGS"
 msgstr "Включить пасхальные яйца"
 
-#: ../src/general/NewGameSettings.tscn:1041
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(случайно расположенные секреты в игре)"
 
-#: ../src/general/NewGameSettings.tscn:1069
+#: ../src/general/NewGameSettings.tscn:1090
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Открыть меню продвинутой настройки"
 
-#: ../src/general/NewGameSettings.tscn:1071
+#: ../src/general/NewGameSettings.tscn:1092
 msgid "ADVANCED_VIEW"
 msgstr "Продвинутый вид"
 
-#: ../src/general/NewGameSettings.tscn:1082
+#: ../src/general/NewGameSettings.tscn:1103
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Вернуться к базовому виду меню настроек"
 
-#: ../src/general/NewGameSettings.tscn:1083
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "BASIC_VIEW"
 msgstr "Базовый вид"
 
-#: ../src/general/NewGameSettings.tscn:1093
+#: ../src/general/NewGameSettings.tscn:1114
 msgid "CONFIRM_NORMAL"
 msgstr "Подтвердить"
 
@@ -2504,7 +2505,7 @@ msgstr "Устройство вывода звука:"
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1369
 msgid "RESET"
 msgstr "Сбросить"
 
@@ -2588,139 +2589,139 @@ msgstr "Огромное"
 msgid "LIMIT_EXTREME"
 msgstr "Экстремальное"
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1135
 msgid "RESET_INPUTS"
 msgstr "Сбросить Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1162
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать вступление микроба при новой игре"
 
-#: ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1178
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1189
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1243
+#: ../src/general/OptionsMenu.tscn:1242
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1249
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1255
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
 
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Чит-коды включены"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1275
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1286
 msgid "CUSTOM_USERNAME"
 msgstr "Кастомное имя пользователя:"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть Папку со Скриншотами"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1320
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть Папку с Логами"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1330
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим отладки JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматически"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Всегда"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
-#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1381 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1398
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1409
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1418
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Восстановить до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Вы действительно хотите сбросить настройки клавиш до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1428
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1448
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вы имеете не сохранённые изменения, которые можете потерять.\n"
 "Вы хотите продолжить?"
 
-#: ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1471
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1482
+#: ../src/general/OptionsMenu.tscn:1481
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отменить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1498
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Отмена"
 
-#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1509 ../src/general/OptionsMenu.tscn:1517
 msgid "ERROR"
 msgstr "Ошибка"
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1519
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1527
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папка скриншотов не найдена"
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1529
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
@@ -4252,7 +4253,12 @@ msgstr "На этой панели показаны числа, на основ�
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:259
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
+#, fuzzy
+msgid "SPECIES_NAME_TOO_LONG_POPUP"
+msgstr "Название вида..."
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Название вида должно соответствовать биномиальной системе наименования (Род и Эпитет)!"
 
@@ -5543,9 +5549,6 @@ msgstr "Загрузка Раннего Многоклеточного Реда�
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Начать Процветание"
-
-#~ msgid "INVULNERABLE_TO_ENGULFMENT"
-#~ msgstr "Неуязвимо к поглощению"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
