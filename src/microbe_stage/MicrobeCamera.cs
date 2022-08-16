@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -55,6 +55,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [Export]
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
+
+    [JsonIgnore]
+    public ShaderMaterial MaterialToUpdate { get { return materialToUpdate; } }
 
     private ShaderMaterial materialToUpdate = null!;
 
