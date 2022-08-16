@@ -345,11 +345,8 @@ public class SpawnSystem : ISpawnSystem
         int spawns = 0;
         foreach (var spawnType in spawnTypes)
         {
-            if (spawnType is MicrobeSpawner)
+            if (!SpawnsBlocked(spawnType) && spawnType is MicrobeSpawner)
             {
-                if (SpawnsBlocked(spawnType))
-                    continue;
-
                 spawns += SpawnWithSpawner(spawnType,
                     playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
                         Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
@@ -367,8 +364,7 @@ public class SpawnSystem : ISpawnSystem
     /// </summary>
     private bool SpawnsBlocked(Spawner spawnType)
     {
-        return spawnType is not CompoundCloudSpawner &&
-            estimateEntityCount >= Settings.Instance.MaxSpawnedEntities.Value;
+        return spawnType.SpawnsEntities && estimateEntityCount >= Settings.Instance.MaxSpawnedEntities.Value;
     }
 
     /// <summary>
