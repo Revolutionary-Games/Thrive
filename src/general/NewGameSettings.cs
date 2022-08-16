@@ -85,6 +85,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
+    public NodePath PassiveReproductionButtonPath = null!;
+
+    [Export]
+    public NodePath LimitGrowthRateButtonPath = null!;
+
+    [Export]
     public NodePath MapTypeButtonPath = null!;
 
     [Export]
@@ -92,9 +98,6 @@ public class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath LifeOriginButtonAdvancedPath = null!;
-
-    [Export]
-    public NodePath MaxSpawnedEntitiesButtonPath = null!;
 
     [Export]
     public NodePath LAWKButtonPath = null!;
@@ -147,6 +150,8 @@ public class NewGameSettings : ControlWithInput
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
     private Button freeGlucoseCloudButton = null!;
+    private Button passiveReproductionButton = null!;
+    private Button limitGrowthRateButton = null!;
 
     // Planet controls
     private OptionButton mapTypeButton = null!;
@@ -168,8 +173,6 @@ public class NewGameSettings : ControlWithInput
     private IEnumerable<DifficultyPreset> difficultyPresets = null!;
     private DifficultyPreset normal = null!;
     private DifficultyPreset custom = null!;
-
-    private OptionButton maxSpawnedEntitiesButton = null!;
 
     [Signal]
     public delegate void OnNewGameSettingsClosed();
@@ -210,10 +213,11 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
+        passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
+        limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
         mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
-        maxSpawnedEntitiesButton = GetNode<OptionButton>(MaxSpawnedEntitiesButtonPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
         lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
@@ -235,19 +239,19 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplier.MinValue = Constants.MIN_OSMOREGULATION_MULTIPLIER;
         osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
 
-        settings = new WorldGenerationSettings();
-        difficultyPresets = SimulationParameters.Instance.GetAllDifficultyPresets();
-        normal = SimulationParameters.Instance.GetDifficultyPreset("normal");
-        custom = SimulationParameters.Instance.GetDifficultyPreset("custom");
+        var simulationParameters = SimulationParameters.Instance;
 
-        foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
+        settings = new WorldGenerationSettings();
+        difficultyPresets = simulationParameters.GetAllDifficultyPresets();
+        normal = simulationParameters.GetDifficultyPreset("normal");
+        custom = simulationParameters.GetDifficultyPreset("custom");
+
+        foreach (var preset in difficultyPresets.OrderBy(p => p.Index))
         {
             // The untranslated name will be translated automatically by Godot during runtime
             difficultyPresetButton.AddItem(preset.UntranslatedName);
             difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
         }
-
-        maxSpawnedEntitiesButton.Selected = MaxEntitiesValueToIndex(Settings.Instance.MaxSpawnedEntities);
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
@@ -281,8 +285,6 @@ public class NewGameSettings : ControlWithInput
             return;
 
         Show();
-
-        maxSpawnedEntitiesButton.Selected = MaxEntitiesValueToIndex(Settings.Instance.MaxSpawnedEntities);
     }
 
     public void ReportValidityOfGameSeed(bool valid)
@@ -305,16 +307,7 @@ public class NewGameSettings : ControlWithInput
 
     private void InitialiseToPreset(DifficultyPreset preset)
     {
-        difficultyPresetButton.Selected = preset.Index;
-        difficultyPresetAdvancedButton.Selected = preset.Index;
-
-        OnMPMultiplierValueChanged(preset.MPMultiplier);
-        OnAIMutationRateValueChanged(preset.AIMutationMultiplier);
-        OnCompoundDensityValueChanged(preset.CompoundDensity);
-        OnPlayerDeathPopulationPenaltyValueChanged(preset.PlayerDeathPopulationPenalty);
-        OnGlucoseDecayRateValueChanged(preset.GlucoseDecay * 100);
-        OnOsmoregulationMultiplierValueChanged(preset.OsmoregulationMultiplier);
-        OnFreeGlucoseCloudToggled(preset.FreeGlucoseCloud);
+        OnDifficultyPresetSelected(preset.Index);
     }
 
     private string GenerateNewRandomSeed()
@@ -429,6 +422,8 @@ public class NewGameSettings : ControlWithInput
         settings.GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f;
         settings.OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
+        settings.PassiveGainOfReproductionCompounds = passiveReproductionButton.Pressed;
+        settings.LimitReproductionCompoundUseSpeed = limitGrowthRateButton.Pressed;
 
         settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
 
@@ -473,13 +468,13 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetButton.Selected = index;
         difficultyPresetAdvancedButton.Selected = index;
 
-        DifficultyPreset preset = SimulationParameters.Instance.GetDifficultyPresetByIndex(index);
+        var preset = SimulationParameters.Instance.GetDifficultyPresetByIndex(index);
         settings.Difficulty = preset;
 
         // If custom was selected, open the advanced view to the difficulty tab
         if (preset.InternalName == custom.InternalName)
         {
-            ChangeSettingsTab("Difficulty");
+            ChangeSettingsTab(SelectedOptionsTab.Difficulty.ToString());
             ProcessAdvancedSelection();
             return;
         }
@@ -491,13 +486,15 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
+        passiveReproductionButton.Pressed = preset.PassiveReproduction;
+        limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
 
         UpdateSelectedDifficultyPresetControl();
     }
 
     private void UpdateSelectedDifficultyPresetControl()
     {
-        foreach (DifficultyPreset preset in difficultyPresets)
+        foreach (var preset in difficultyPresets)
         {
             // Ignore custom until the end
             if (preset.InternalName == custom.InternalName)
@@ -523,6 +520,12 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             if (freeGlucoseCloudButton.Pressed != preset.FreeGlucoseCloud)
+                continue;
+
+            if (passiveReproductionButton.Pressed != preset.PassiveReproduction)
+                continue;
+
+            if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -597,6 +600,20 @@ public class NewGameSettings : ControlWithInput
         UpdateSelectedDifficultyPresetControl();
     }
 
+    private void OnPassiveReproductionToggled(bool pressed)
+    {
+        settings.PassiveGainOfReproductionCompounds = pressed;
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnGrowthRateToggled(bool pressed)
+    {
+        settings.LimitReproductionCompoundUseSpeed = pressed;
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
     private void OnLifeOriginSelected(int index)
     {
         // Set both buttons here as we only received a signal from one of them
@@ -604,63 +621,6 @@ public class NewGameSettings : ControlWithInput
         lifeOriginButtonAdvanced.Selected = index;
 
         settings.Origin = (WorldGenerationSettings.LifeOrigin)index;
-    }
-
-    private void OnMaxSpawnedEntitiesSelected(int index)
-    {
-        Settings.Instance.MaxSpawnedEntities.Value = MaxEntitiesIndexToValue(index);
-    }
-
-    private int MaxEntitiesIndexToValue(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                return Constants.TINY_MAX_SPAWNED_ENTITIES;
-            case 1:
-                return Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES;
-            case 2:
-                return Constants.SMALL_MAX_SPAWNED_ENTITIES;
-            case 3:
-                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
-            case 4:
-                return Constants.LARGE_MAX_SPAWNED_ENTITIES;
-            case 5:
-                return Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES;
-            case 6:
-                return Constants.HUGE_MAX_SPAWNED_ENTITIES;
-            case 7:
-                return Constants.EXTREME_MAX_SPAWNED_ENTITIES;
-            default:
-                GD.PrintErr("invalid max entities count index");
-                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
-        }
-    }
-
-    private int MaxEntitiesValueToIndex(int value)
-    {
-        switch (value)
-        {
-            case Constants.TINY_MAX_SPAWNED_ENTITIES:
-                return 0;
-            case Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES:
-                return 1;
-            case Constants.SMALL_MAX_SPAWNED_ENTITIES:
-                return 2;
-            case Constants.NORMAL_MAX_SPAWNED_ENTITIES:
-                return 3;
-            case Constants.LARGE_MAX_SPAWNED_ENTITIES:
-                return 4;
-            case Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES:
-                return 5;
-            case Constants.HUGE_MAX_SPAWNED_ENTITIES:
-                return 6;
-            case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
-                return 7;
-            default:
-                GD.PrintErr("invalid max entities count value");
-                return 3;
-        }
     }
 
     private void OnMapTypeSelected(int index)

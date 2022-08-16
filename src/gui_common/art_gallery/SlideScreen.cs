@@ -149,8 +149,8 @@ public class SlideScreen : CustomDialog
                 toolbarTween.Start();
             }
 
-            if (Input.GetMouseMode() == Input.MouseMode.Hidden)
-                Input.SetMouseMode(Input.MouseMode.Visible);
+            if (Input.MouseMode == Input.MouseModeEnum.Hidden)
+                Input.MouseMode = Input.MouseModeEnum.Visible;
 
             if (toolbarHideTimer < 0)
             {
@@ -159,7 +159,7 @@ public class SlideScreen : CustomDialog
                 toolbarTween.InterpolateProperty(
                     closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 toolbarTween.Start();
-                Input.SetMouseMode(Input.MouseMode.Hidden);
+                Input.MouseMode = Input.MouseModeEnum.Hidden;
             }
         }
 
@@ -275,7 +275,7 @@ public class SlideScreen : CustomDialog
     {
         base.OnHidden();
         SlideshowMode = false;
-        Input.SetMouseMode(Input.MouseMode.Visible);
+        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 
     private void ChangeSlide(bool fade)

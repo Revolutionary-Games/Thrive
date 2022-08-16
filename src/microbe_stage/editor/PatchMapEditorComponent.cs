@@ -47,6 +47,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonIgnore]
     public Patch? SelectedPatch => targetPatch;
 
+    /// <summary>
+    ///   Called when the selected patch changes
+    /// </summary>
+    [JsonIgnore]
+    public Action<Patch>? OnSelectedPatchChanged { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -55,7 +61,13 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
         seedLabel = GetNode<Label>(SeedLabelPath);
 
-        mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = _ =>
+        {
+            UpdateShownPatchDetails();
+
+            if (mapDrawer.SelectedPatch != null)
+                OnSelectedPatchChanged?.Invoke(mapDrawer.SelectedPatch);
+        };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
     }
@@ -148,6 +160,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
         if (Editor.FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
+            return true;
+
+        if (CheatManager.MoveToAnyPatch)
             return true;
 
         // Can move to any patch that player species inhabits or is adjacent to such a patch

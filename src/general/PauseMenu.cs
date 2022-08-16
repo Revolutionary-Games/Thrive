@@ -192,7 +192,7 @@ public class PauseMenu : CustomDialog
         helpScreen.Category = HelpCategory;
         InputManager.RegisterReceiver(this);
 
-        GetTree().SetAutoAcceptQuit(false);
+        GetTree().AutoAcceptQuit = false;
 
         base._EnterTree();
     }
@@ -204,7 +204,7 @@ public class PauseMenu : CustomDialog
         InputManager.UnregisterReceiver(this);
         Paused = false;
 
-        GetTree().SetAutoAcceptQuit(true);
+        GetTree().AutoAcceptQuit = true;
     }
 
     public override void _Ready()
