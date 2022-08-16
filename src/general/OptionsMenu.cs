@@ -539,15 +539,15 @@ public class OptionsMenu : ControlWithInput
         DisplayGpuInfo();
 
         // Sound
-        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
+        masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
         masterMuted.Pressed = settings.VolumeMasterMuted;
-        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
+        musicVolume.Value = ConvertDbToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
-        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceVolume.Value = ConvertDbToSoundBar(settings.VolumeAmbiance);
         ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
-        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxVolume.Value = ConvertDbToSoundBar(settings.VolumeSFX);
         sfxMuted.Pressed = settings.VolumeSFXMuted;
-        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiVolume.Value = ConvertDbToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
         UpdateSelectedAudioOutputDevice(settings);
@@ -736,14 +736,14 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    ///   Converts the slider value (0-100) to a DB adjustment for a sound channel
+    ///   Converts the slider value (0-100) to a dB adjustment for a sound channel
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
         return GD.Linear2Db(value / 100.0f);
     }
 
-    private float ConvertDBToSoundBar(float value)
+    private float ConvertDbToSoundBar(float value)
     {
         return GD.Db2Linear(value) * 100.0f;
     }
