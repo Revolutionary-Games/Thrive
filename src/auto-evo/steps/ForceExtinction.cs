@@ -17,9 +17,9 @@
     public class ForceExtinction : IRunStep
     {
         private readonly List<Patch> patches;
-        private readonly AutoEvoConfiguration configuration;
+        private readonly IAutoEvoConfiguration configuration;
 
-        public ForceExtinction(List<Patch> patches, AutoEvoConfiguration configuration)
+        public ForceExtinction(List<Patch> patches, IAutoEvoConfiguration configuration)
         {
             this.patches = patches;
             this.configuration = configuration;

@@ -7,14 +7,14 @@
     /// </summary>
     public class CalculatePopulation : IRunStep
     {
-        private readonly AutoEvoConfiguration configuration;
+        private readonly IAutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly WorldGenerationSettings worldSettings;
         private readonly List<Species>? extraSpecies;
         private readonly List<Species>? excludedSpecies;
         private readonly bool collectEnergyInfo;
 
-        public CalculatePopulation(AutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+        public CalculatePopulation(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
             PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
             bool collectEnergyInfo = false)
         {

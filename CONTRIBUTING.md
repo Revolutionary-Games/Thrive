@@ -3,7 +3,9 @@
 This is a guide for contributing to Thrive.
 
 __Note: if you have an idea, share it on our [community
-forums](https://community.revolutionarygamesstudio.com/)!__ and don't
+forums](https://community.revolutionarygamesstudio.com/) or check out
+and vote on our [suggestions
+site](https://suggestions.revolutionarygamesstudio.com/)!__ and don't
 create an issue about it.
 
 ## Github Issues
@@ -64,7 +66,15 @@ they have to find basic issues in your PR:
 https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
 
 Requirements in Github issues are often vague, so please feel free to
-ask for more details in the issue.
+ask for more details in the issue. If you contribute a feature or fix
+that doesn't have an open issue, or a [dev
+forum](https://forum.revolutionarygamesstudio.com/) discussion, we may
+make a lot of gameplay related change requests before accepting. See
+the next paragraph for what you need to do if we won't otherwise
+accept your contribution. However, if the change you are making has many votes
+on [our suggestions
+site](https://suggestions.revolutionarygamesstudio.com/) that'll make
+it much more likely to be accepted.
 
 If you want to contribute a non-planned feature, then you must add
 code to disable your changes. Note: currently we don't have an options
@@ -87,6 +97,10 @@ You can find the necessary information about how to translate the game [here](do
 
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
+
+We have a separate planning board for only graphics tasks for artist
+to find things to work on:
+https://github.com/orgs/Revolutionary-Games/projects/4
 
 ## Continuous integration checks
 

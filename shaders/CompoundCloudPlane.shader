@@ -25,7 +25,7 @@ const float CLOUD_MAX_INTENSITY_SHOWN = 1000.f;
 
 // This needs to be less than 0.5 otherwise large cloud areas (due to the noise texture 
 // not being very high resolution) are invisible
-const float NOISE_ZERO_OFFSET = 0.45f;
+const float NOISE_ZERO_OFFSET = 0.35f;
 
 // Needs to match the value in CompoundCloudPlane.cs
 // TODO: implement this or increase the perlin noise texture size to give the clouds more detail
