@@ -664,7 +664,7 @@ public class MicrobeStage : StageBase<Microbe>
             CurrentPatchName.ToString().Contains("IceShelf"))
         {
             // this needs to be refactored for efficiency but, it works for now
-            Camera.materialToUpdate.SetShaderParam("lightLevel",
+            Camera.MaterialToUpdate.SetShaderParam("lightLevel",
                 (GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") / 100) * lightCycle.DayLightPercentage);
         }
     }
