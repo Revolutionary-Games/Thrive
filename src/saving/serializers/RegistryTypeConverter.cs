@@ -4,12 +4,12 @@ using System.Reflection;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Deserializes registry types from strings or objects (for supported types)
+///   Serializes registry types as strings or objects (for supported types)
 /// </summary>
 /// <remarks>
 ///   <para>
-///     To support both the proper registry types and also the full objects, this class is split into two: the reader
-///     and writer as they need to act on different type interfaces.
+///     See the <see cref="SupportsCustomizedRegistryTypeAttribute"/> for info on the full object serialization this
+///     supports.
 ///   </para>
 /// </remarks>
 public class RegistryTypeConverter : BaseThriveConverter
@@ -107,7 +107,7 @@ public class RegistryTypeConverter : BaseThriveConverter
         else
         {
             // Support writing the customized versions of objects for the registry types
-            // Note the type of value must have
+            // Note the type of value must have CustomizedRegistryTypeAttribute otherwise we run into a stackoverflow
             serializer.Serialize(writer, value, value.GetType());
         }
     }
