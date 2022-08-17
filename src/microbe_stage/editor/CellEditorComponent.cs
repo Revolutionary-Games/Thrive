@@ -417,6 +417,29 @@ public partial class CellEditorComponent :
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
         Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
+    public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
+    {
+        organelleModel.Transform = new Transform(
+            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganelleModelPosition);
+
+        organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+            Constants.DEFAULT_HEX_SIZE);
+    }
+
+    /// <summary>
+    ///   Updates the organelle model displayer to have the specified scene in it
+    /// </summary>
+    public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
+    {
+        organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -486,8 +509,6 @@ public partial class CellEditorComponent :
 
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
-
-        UpdateRigiditySliderState(Editor.MutationPoints);
 
         UpdateCancelButtonVisibility();
 
@@ -742,12 +763,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
-    {
-        base.OnMutationPointsChanged(mutationPoints);
-        UpdateRigiditySliderState(mutationPoints);
-    }
-
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
@@ -838,43 +853,41 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void OnRigidityChanged(int rigidity)
+    public void OnRigidityChanged(int desiredRigidity)
     {
-        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
-            UpdateRigiditySlider(intRigidity);
+            UpdateRigiditySlider(previousRigidity);
             return;
         }
 
-        if (intRigidity == rigidity)
+        if (previousRigidity == desiredRigidity)
             return;
 
         int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
+
+        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
+        {
+            CostMultiplier = CostMultiplier,
+        };
+
+        var cost = Editor.WhatWouldActionsCost(new[] { data });
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsLeft = Editor.MutationPoints / costPerStep;
-            if (stepsLeft < 1)
-            {
-                UpdateRigiditySlider(intRigidity);
-                return;
-            }
+            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
+            data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
+                Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            // Action is enqueued or canceled here, so we don't need to go on.
+            UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            return;
         }
 
-        var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
-        var prevRigidity = Rigidity;
-
-        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
-            new RigidityActionData(newRigidity, prevRigidity)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction, data);
 
         Editor.EnqueueAction(action);
     }
@@ -1665,6 +1678,7 @@ public partial class CellEditorComponent :
     {
         var islands = editedMicrobeOrganelles.GetIslandHexes();
 
+        // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
             editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, Editor.HexPlacedThisSession(o))), islands,
@@ -1679,9 +1693,6 @@ public partial class CellEditorComponent :
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
-                var pos = Hex.AxialToCartesian(organelle.Position) +
-                    organelle.Definition.CalculateModelOffset();
-
                 if (nextFreeOrganelle >= placedModels.Count)
                 {
                     // New organelle model needed
@@ -1690,11 +1701,7 @@ public partial class CellEditorComponent :
 
                 var organelleModel = placedModels[nextFreeOrganelle++];
 
-                organelleModel.Transform = new Transform(
-                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
-
-                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                    Constants.DEFAULT_HEX_SIZE);
+                UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
@@ -1767,20 +1774,6 @@ public partial class CellEditorComponent :
         }
 
         organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI!, Editor);
-    }
-
-    /// <summary>
-    ///   Updates the organelle model displayer to have the specified scene in it
-    /// </summary>
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
-    {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
-        if (material != null)
-        {
-            material.RenderPriority = renderPriority;
-        }
     }
 
     /// <summary>
@@ -2037,12 +2030,12 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
+        var populationFormat = TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+
         if (!string.IsNullOrEmpty(bestPatchName))
         {
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(bestPatchName),
-                bestPatchPopulation);
+            bestPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
         }
         else
         {
@@ -2051,10 +2044,8 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(worstPatchName),
-                worstPatchPopulation);
+            worstPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
         }
         else
         {

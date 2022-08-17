@@ -9,7 +9,10 @@ assignees: ''
 
 **Important**
 Please only submit technical bug reports here. This is not a place to make feature requests
-or suggestions. For that please visit our community forums:
+or suggestions. For that please visit our suggestions site:
+https://suggestions.revolutionarygamesstudio.com/
+
+Or our community forums for longer discussions
 https://community.revolutionarygamesstudio.com/
 
 **Describe the bug**

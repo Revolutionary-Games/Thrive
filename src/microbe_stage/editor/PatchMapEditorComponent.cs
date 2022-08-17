@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -48,6 +47,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonIgnore]
     public Patch? SelectedPatch => targetPatch;
 
+    /// <summary>
+    ///   Called when the selected patch changes
+    /// </summary>
+    [JsonIgnore]
+    public Action<Patch>? OnSelectedPatchChanged { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -56,7 +61,13 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
         seedLabel = GetNode<Label>(SeedLabelPath);
 
-        mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = _ =>
+        {
+            UpdateShownPatchDetails();
+
+            if (mapDrawer.SelectedPatch != null)
+                OnSelectedPatchChanged?.Invoke(mapDrawer.SelectedPatch);
+        };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
     }
@@ -79,8 +90,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             UpdatePlayerPatch(playerPatchOnEntry);
         }
 
-        seedLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SEED_LABEL"),
-            owningEditor.CurrentGame.GameWorld.WorldSettings.Seed);
+        UpdateSeedLabel();
     }
 
     public void SetMap(PatchMap map)
@@ -132,6 +142,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     protected override void OnTranslationsChanged()
     {
         UpdateShownPatchDetails();
+        UpdateSeedLabel();
     }
 
     /// <summary>
@@ -149,6 +160,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
         if (Editor.FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
+            return true;
+
+        if (CheatManager.MoveToAnyPatch)
             return true;
 
         // Can move to any patch that player species inhabits or is adjacent to such a patch
@@ -196,6 +210,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
+    }
+
+    private void UpdateSeedLabel()
+    {
+        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+            .FormatSafe(Editor.CurrentGame.GameWorld.WorldSettings.Seed);
     }
 
     private void OnFindCurrentPatchPressed()

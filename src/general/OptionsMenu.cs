@@ -76,6 +76,15 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath DisplayPartNamesTogglePath = null!;
 
+    [Export]
+    public NodePath GpuNamePath = null!;
+
+    [Export]
+    public NodePath UsedRendererNamePath = null!;
+
+    [Export]
+    public NodePath VideoMemoryPath = null!;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath = null!;
@@ -247,6 +256,9 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
     private CustomCheckBox displayPartNamesToggle = null!;
+    private Label gpuName = null!;
+    private Label usedRendererName = null!;
+    private Label videoMemory = null!;
 
     // Sound tab
     private Control soundTab = null!;
@@ -369,6 +381,9 @@ public class OptionsMenu : ControlWithInput
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
         displayPartNamesToggle = GetNode<CustomCheckBox>(DisplayPartNamesTogglePath);
+        gpuName = GetNode<Label>(GpuNamePath);
+        usedRendererName = GetNode<Label>(UsedRendererNamePath);
+        videoMemory = GetNode<Label>(VideoMemoryPath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -443,6 +458,7 @@ public class OptionsMenu : ControlWithInput
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
             DisplayResolution();
+            DisplayGpuInfo();
         }
         else if (what == NotificationResized)
         {
@@ -520,17 +536,18 @@ public class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.Pressed = settings.DisplayPartNames;
         DisplayResolution();
+        DisplayGpuInfo();
 
         // Sound
-        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
+        masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
         masterMuted.Pressed = settings.VolumeMasterMuted;
-        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
+        musicVolume.Value = ConvertDbToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
-        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceVolume.Value = ConvertDbToSoundBar(settings.VolumeAmbiance);
         ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
-        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxVolume.Value = ConvertDbToSoundBar(settings.VolumeSFX);
         sfxMuted.Pressed = settings.VolumeSFXMuted;
-        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiVolume.Value = ConvertDbToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
         UpdateSelectedAudioOutputDevice(settings);
@@ -632,8 +649,41 @@ public class OptionsMenu : ControlWithInput
             return;
 
         var screenResolution = OS.WindowSize * OS.GetScreenScale();
-        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
-            screenResolution.x, screenResolution.y);
+        resolution.Text = TranslationServer.Translate("AUTO_RESOLUTION")
+            .FormatSafe(screenResolution.x, screenResolution.y);
+    }
+
+    /// <summary>
+    /// Displays the GPU name, the display driver name and used video memory
+    /// </summary>
+    private void DisplayGpuInfo()
+    {
+        gpuName.Text = VisualServer.GetVideoAdapterName();
+
+        if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2)
+        {
+            // Gles2 is being used
+            usedRendererName.Text = TranslationServer.Translate("GLES2");
+        }
+        else if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles3)
+        {
+            // Gles3 is being used
+            usedRendererName.Text = TranslationServer.Translate("GLES3");
+        }
+        else
+        {
+            // An unknown display driver is being used
+            usedRendererName.Text = TranslationServer.Translate("UNKNOWN_DISPLAY_DRIVER");
+        }
+
+        float videoMemoryInMebibytes = VisualServer.GetRenderInfo(VisualServer.RenderInfo.VideoMemUsed);
+
+        // Convert to mebibytes
+        videoMemoryInMebibytes /= Constants.MEBIBYTE;
+
+        // Round to 2 places after the floating point
+        videoMemory.Text = TranslationServer.Translate("VIDEO_MEMORY_MIB")
+            .FormatSafe(Math.Round(videoMemoryInMebibytes, 2));
     }
 
     /// <summary>
@@ -686,14 +736,14 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    ///   Converts the slider value (0-100) to a DB adjustment for a sound channel
+    ///   Converts the slider value (0-100) to a dB adjustment for a sound channel
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
         return GD.Linear2Db(value / 100.0f);
     }
 
-    private float ConvertDBToSoundBar(float value)
+    private float ConvertDbToSoundBar(float value)
     {
         return GD.Db2Linear(value) * 100.0f;
     }
@@ -1028,7 +1078,7 @@ public class OptionsMenu : ControlWithInput
             textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
         }
 
-        languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
+        languageProgressLabel.Text = textFormat.FormatSafe(Mathf.Floor(progress));
     }
 
     // GUI Control Callbacks

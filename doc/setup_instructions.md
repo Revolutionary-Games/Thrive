@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.4.4 mono__. The regular version
+The currently used Godot version is __3.5 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -76,12 +76,12 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 5.0, but a
+Next you need, .NET SDK. Recommended version currently is 6.0, but a
 newer version may also work.
 
 On Linux you can use your package manager to install that. The package
-might be called `dotnet-sdk-5.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-5.0`
+might be called `dotnet-sdk-6.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-6.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an

@@ -78,6 +78,15 @@ public class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateDescription();
+            UpdateValue();
+        }
+    }
+
     public void ResetInitialValue()
     {
         initialValue = null;
@@ -110,6 +119,6 @@ public class CellStatsIndicator : HBoxContainer
 
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
             Value.ToString(CultureInfo.CurrentCulture) :
-            string.Format(CultureInfo.CurrentCulture, Format!, Value);
+            Format!.FormatSafe(Value);
     }
 }

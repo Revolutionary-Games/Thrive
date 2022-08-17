@@ -265,11 +265,13 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
+    public override bool SpawnsEntities => true;
+
     public Species Species { get; }
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
-        // TODO: figure out why these spawn. At least in some player provided logs this seemed to happen quite a bit
+        // This should no longer happen, but let's keep this print here to keep track of the situation
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
 
@@ -298,6 +300,11 @@ public class MicrobeSpawner : Spawner
             }
         }
     }
+
+    public override string ToString()
+    {
+        return $"MicrobeSpawner for {Species}";
+    }
 }
 
 /// <summary>
@@ -317,12 +324,19 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
+    public override bool SpawnsEntities => false;
+
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
         // We don't spawn entities
         return null;
+    }
+
+    public override string ToString()
+    {
+        return $"CloudSpawner for {compound}";
     }
 }
 
@@ -341,6 +355,8 @@ public class ChunkSpawner : Spawner
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
+    public override bool SpawnsEntities => true;
+
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
@@ -349,5 +365,10 @@ public class ChunkSpawner : Spawner
         yield return chunk;
 
         ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
+    }
+
+    public override string ToString()
+    {
+        return $"ChunkSpawner for {chunkType.Name}";
     }
 }

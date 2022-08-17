@@ -20,6 +20,8 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     private readonly Dictionary<Control, List<ICustomToolTip>> tooltips = new();
 
+    private readonly Dictionary<string, Control> groupsByName = new();
+
     private Control groupHolder = null!;
 
     private bool display;
@@ -105,6 +107,9 @@ public class ToolTipManager : CanvasLayer
         {
             displayTimer -= delta;
 
+            // To avoid tooltip "jumping" to the correct position once it's visible
+            UpdateCurrentTooltip(0);
+
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
@@ -112,67 +117,8 @@ public class ToolTipManager : CanvasLayer
             }
         }
 
-        // Adjust position and size
         if (MainToolTip.ToolTipNode.Visible)
-        {
-            Vector2 position;
-            var offset = 0.0f;
-
-            switch (MainToolTip.Positioning)
-            {
-                case ToolTipPositioning.LastMousePosition:
-                    position = lastMousePosition;
-                    offset = Constants.TOOLTIP_OFFSET;
-                    break;
-                case ToolTipPositioning.FollowMousePosition:
-                    position = GetViewport().GetMousePosition();
-                    offset = Constants.TOOLTIP_OFFSET;
-                    break;
-                case ToolTipPositioning.ControlBottomRightCorner:
-                {
-                    var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
-                    if (control != null)
-                    {
-                        position = new Vector2(
-                            control.RectGlobalPosition.x + control.RectSize.x,
-                            control.RectGlobalPosition.y + control.RectSize.y);
-                    }
-                    else
-                    {
-                        position = new Vector2(0, 0);
-                        GD.PrintErr("Failed to find control associated with main tooltip");
-                    }
-
-                    break;
-                }
-
-                default:
-                    throw new Exception("Invalid tooltip positioning type");
-            }
-
-            var screenSize = GetViewport().GetVisibleRect().Size;
-
-            // Clamp tooltip position so it doesn't go offscreen
-            // TODO: Take into consideration of viewport (window) resizing for the offsetting.
-            MainToolTip.ToolTipNode.RectPosition = new Vector2(
-                Mathf.Clamp(position.x + offset, 0, screenSize.x - MainToolTip.ToolTipNode.RectSize.x),
-                Mathf.Clamp(position.y + offset, 0, screenSize.y - MainToolTip.ToolTipNode.RectSize.y));
-
-            MainToolTip.ToolTipNode.RectSize = Vector2.Zero;
-
-            // Handle temporary tooltips/popup
-            if (currentIsTemporary && hideTimer >= 0)
-            {
-                hideTimer -= delta;
-
-                if (hideTimer < 0)
-                {
-                    currentIsTemporary = false;
-                    UpdateToolTipVisibility(MainToolTip, false);
-                    MainToolTip = null;
-                }
-            }
-        }
+            UpdateCurrentTooltip(delta);
     }
 
     public override void _Input(InputEvent @event)
@@ -212,7 +158,8 @@ public class ToolTipManager : CanvasLayer
 
         if (popup == null)
         {
-            popup = ToolTipHelper.CreateDefaultToolTip();
+            popup = ToolTipHelper.GetDefaultToolTip();
+            popup.Name = "popup";
             AddToolTip(popup);
         }
 
@@ -251,7 +198,16 @@ public class ToolTipManager : CanvasLayer
             return;
         }
 
-        tooltip.ToolTipNode.DetachAndQueueFree();
+        tooltip.ToolTipNode.Detach();
+
+        if (tooltip is DefaultToolTip defaultToolTip)
+        {
+            ToolTipHelper.ReturnDefaultToolTip(defaultToolTip);
+        }
+        else
+        {
+            tooltip.ToolTipNode.QueueFree();
+        }
 
         var retrievedGroup = GetGroup(group);
         if (retrievedGroup == null)
@@ -337,24 +293,102 @@ public class ToolTipManager : CanvasLayer
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
         groupHolder.AddChild(groupNode);
+        groupsByName.Add(name, groupNode);
 
         tooltips.Add(groupNode, new List<ICustomToolTip>());
 
         return groupNode;
     }
 
-    private Control? GetGroup(string name, bool verbose = true)
+    /// <summary>
+    ///   Adjusts <see cref="MainToolTip"/>'s position and size.
+    /// </summary>
+    private void UpdateCurrentTooltip(float delta)
     {
-        foreach (var group in tooltips.Keys)
+        if (MainToolTip == null)
+            return;
+
+        Vector2 position;
+        var offset = new Vector2(Constants.TOOLTIP_OFFSET, Constants.TOOLTIP_OFFSET);
+
+        switch (MainToolTip.Positioning)
         {
-            if (group.Name == name)
-                return group;
+            case ToolTipPositioning.LastMousePosition:
+                position = lastMousePosition;
+                break;
+            case ToolTipPositioning.FollowMousePosition:
+                position = GetViewport().GetMousePosition();
+                break;
+            case ToolTipPositioning.ControlBottomRightCorner:
+            {
+                var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
+                if (control != null)
+                {
+                    position = new Vector2(
+                        control.RectGlobalPosition.x + control.RectSize.x, control.RectGlobalPosition.y);
+                    offset = new Vector2(0, control.RectSize.y);
+                }
+                else
+                {
+                    position = new Vector2(0, 0);
+                    GD.PrintErr("Failed to find control associated with main tooltip");
+                }
+
+                break;
+            }
+
+            default:
+                throw new Exception("Invalid tooltip positioning type");
         }
 
-        if (verbose)
+        var screenRect = GetViewport().GetVisibleRect();
+        var newPos = new Vector2(position.x + offset.x, position.y + offset.y);
+        var tooltipSize = MainToolTip.ToolTipNode.RectSize;
+
+        if (newPos.x + tooltipSize.x > screenRect.Size.x)
+        {
+            newPos.x -= tooltipSize.x + offset.x;
+
+            if (newPos.x < screenRect.Position.x)
+                newPos.x = position.x + offset.x;
+        }
+
+        if (newPos.y + tooltipSize.y > screenRect.Size.y)
+        {
+            newPos.y -= tooltipSize.y + offset.y;
+
+            if (newPos.y < screenRect.Position.y)
+                newPos.y = position.y + offset.y;
+        }
+
+        // Clamp tooltip position so it doesn't go offscreen
+        // TODO: Take into account viewport (window) resizing for the offsetting.
+        MainToolTip.ToolTipNode.RectPosition = new Vector2(
+            Mathf.Clamp(newPos.x, 0, screenRect.Size.x - tooltipSize.x),
+            Mathf.Clamp(newPos.y, 0, screenRect.Size.y - tooltipSize.y));
+
+        MainToolTip.ToolTipNode.RectSize = Vector2.Zero;
+
+        // Handle temporary tooltips/popup
+        if (currentIsTemporary && hideTimer >= 0)
+        {
+            hideTimer -= delta;
+
+            if (hideTimer < 0)
+            {
+                currentIsTemporary = false;
+                UpdateToolTipVisibility(MainToolTip, false);
+                MainToolTip = null;
+            }
+        }
+    }
+
+    private Control? GetGroup(string name, bool verbose = true)
+    {
+        if (!groupsByName.TryGetValue(name, out var group) && verbose)
             GD.PrintErr("Tooltip group with name '" + name + "' not found");
 
-        return null;
+        return group;
     }
 
     /// <summary>
@@ -372,6 +406,7 @@ public class ToolTipManager : CanvasLayer
                 collectedTooltips.Add(tooltip);
             }
 
+            groupsByName.Add(group.Name, group);
             tooltips.Add(group, collectedTooltips);
         }
     }

@@ -68,6 +68,7 @@ __meta__ = {
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor")
+AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/AutoEvoExploring")
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
@@ -155,9 +156,6 @@ margin_left = -640.0
 margin_top = -227.5
 margin_right = 640.0
 margin_bottom = 227.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 margin_right = 1280.0
@@ -279,7 +277,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
-[node name="unknown" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 515.0
 margin_top = 50.0
 margin_right = 765.0
@@ -289,10 +287,9 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
-text = "???"
+text = "AUTO_EVO_EXPLORING_TOOL"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="unknown2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
@@ -516,6 +513,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Credits" to="." method="CreditsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]

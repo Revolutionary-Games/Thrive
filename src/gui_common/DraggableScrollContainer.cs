@@ -7,6 +7,9 @@ using Object = Godot.Object;
 /// </summary>
 public class DraggableScrollContainer : ScrollContainer
 {
+    /// <summary>
+    ///   If set to null, the first child is used.
+    /// </summary>
     [Export]
     public NodePath? ContentPath;
 
@@ -79,8 +82,7 @@ public class DraggableScrollContainer : ScrollContainer
     {
         base._Ready();
 
-        if (ContentPath == null)
-            throw new InvalidOperationException("Path to child control is expected");
+        ContentPath ??= GetChild(0).GetPath();
 
         content = GetNode<Control>(ContentPath);
         tween = new Tween();

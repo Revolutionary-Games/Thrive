@@ -385,6 +385,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if (organelles == null)
                 throw new JsonException($"Loaded microbe is missing {nameof(organelles)} property");
 
+            // Fix base reproduction cost if we we were loaded from an older save
+            if (requiredCompoundsForBaseReproduction.Count < 1)
+                SetupRequiredBaseReproductionCompounds();
+
             // Fix the tree of colonies
             if (ColonyChildren != null)
             {
@@ -478,6 +482,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+
+        if (!IsForPreviewOnly)
+        {
+            SetupRequiredBaseReproductionCompounds();
+        }
 
         FinishSpeciesSetup();
     }
@@ -1096,6 +1105,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
         float speed = RotationSpeed;
+
+        if (IsPlayerMicrobe && CheatManager.Speed > 1)
+            speed *= CheatManager.Speed;
+
         var ownRotation = RotationSpeed;
 
         if (Colony != null && ColonyParent == null)

@@ -14,6 +14,12 @@
         [JsonProperty]
         private Vector3? glucosePosition;
 
+        /// <summary>
+        ///   Holds the next tutorial we should notify we are done.
+        /// </summary>
+        [JsonProperty]
+        private MicrobeReproduction? nextTutorial;
+
         public GlucoseCollecting()
         {
             UsesPlayerPositionGuidance = true;
@@ -27,6 +33,21 @@
             gui.GlucoseTutorialVisible = ShownCurrently;
         }
 
+        public override void Hide()
+        {
+            // Whenever this is hidden we want to let the next tutorial know it can start
+            if (ShownCurrently)
+            {
+                if (nextTutorial != null)
+                {
+                    nextTutorial.ReportPreviousTutorialComplete();
+                    nextTutorial = null;
+                }
+            }
+
+            base.Hide();
+        }
+
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
             object sender)
         {
@@ -37,7 +58,7 @@
                     var compounds = ((CompoundBagEventArgs)args).Compounds;
 
                     if (!HasBeenShown && !CanTrigger &&
-                        compounds.GetCompoundAmount(glucose) < compounds.Capacity -
+                        compounds.GetCompoundAmount(glucose) < compounds.GetCapacityForCompound(glucose) -
                         Constants.GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE)
                     {
                         CanTrigger = true;
@@ -53,6 +74,7 @@
 
                     if (!HasBeenShown && data.EntityPosition.HasValue && CanTrigger && !overallState.TutorialActive())
                     {
+                        nextTutorial = overallState.MicrobeReproduction;
                         Show();
                     }
 

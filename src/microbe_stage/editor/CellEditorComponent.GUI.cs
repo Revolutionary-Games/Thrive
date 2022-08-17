@@ -67,6 +67,9 @@ public partial class CellEditorComponent
 
         UpdateMicrobePartSelections();
         UpdateMutationPointsBar();
+
+        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -114,19 +117,6 @@ public partial class CellEditorComponent
 
         healthModifier.AdjustValueColor(healthChange);
         baseMobilityModifier.AdjustValueColor(baseMobilityChange);
-    }
-
-    private void UpdateRigiditySliderState(int mutationPoints)
-    {
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        if (mutationPoints >= costPerStep && MovingPlacedHex == null)
-        {
-            rigiditySlider.Editable = true;
-        }
-        else
-        {
-            rigiditySlider.Editable = false;
-        }
     }
 
     private void UpdateSize(int size)
@@ -303,8 +293,7 @@ public partial class CellEditorComponent
 
             subBar.RegisterToolTipForControl(tooltip);
 
-            tooltip.Description = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION"),
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
                 SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
                 energyBalance.Production[subBar.Name]);
         }
@@ -341,9 +330,8 @@ public partial class CellEditorComponent
                 }
             }
 
-            tooltip.Description = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION"), displayName,
-                energyBalance.Consumption[subBar.Name]);
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION").FormatSafe(
+                displayName, energyBalance.Consumption[subBar.Name]);
         }
     }
 

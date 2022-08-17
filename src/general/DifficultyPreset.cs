@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 ///     Values for each difficulty preset, as given in difficulty_presets.json
 ///   </para>
 /// </remarks>
-public class DifficultyPreset : IRegistryType
+public class DifficultyPreset : IDifficulty, IRegistryType
 {
     /// <summary>
     ///   User readable name
@@ -17,49 +17,42 @@ public class DifficultyPreset : IRegistryType
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
-    /// <summary>
-    ///   Index for this difficulty preset in the preset menu
-    /// </summary>
-    public int Index;
-
-    /// <summary>
-    ///   Multiplier for MP costs in the editor
-    /// </summary>
-    public float MPMultiplier;
-
-    /// <summary>
-    ///   Multiplier for AI species mutation rate
-    /// </summary>
-    public float AIMutationMultiplier;
-
-    /// <summary>
-    ///   Multiplier for compound cloud density in the environment
-    /// </summary>
-    public float CompoundDensity;
-
-    /// <summary>
-    ///   Multiplier for player species population loss after player death
-    /// </summary>
-    public float PlayerDeathPopulationPenalty;
-
-    /// <summary>
-    ///   Multiplier for rate of glucose decay in the environment
-    /// </summary>
-    public float GlucoseDecay;
-
-    /// <summary>
-    ///   Multiplier for player species osmoregulation cost
-    /// </summary>
-    public float OsmoregulationMultiplier;
-
-    /// <summary>
-    ///  Whether the player starts with a free glucose cloud each time they exit the editor
-    /// </summary>
-    public bool FreeGlucoseCloud;
-
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649
+
+    /// <summary>
+    ///   Index for this difficulty preset in the preset menu
+    /// </summary>
+    [JsonProperty]
+    public int Index { get; private set; }
+
+    [JsonProperty]
+    public float MPMultiplier { get; private set; }
+
+    [JsonProperty]
+    public float AIMutationMultiplier { get; private set; }
+
+    [JsonProperty]
+    public float CompoundDensity { get; private set; }
+
+    [JsonProperty]
+    public float PlayerDeathPopulationPenalty { get; private set; }
+
+    [JsonProperty]
+    public float GlucoseDecay { get; private set; }
+
+    [JsonProperty]
+    public float OsmoregulationMultiplier { get; private set; }
+
+    [JsonProperty]
+    public bool FreeGlucoseCloud { get; private set; }
+
+    [JsonProperty]
+    public bool PassiveReproduction { get; private set; }
+
+    [JsonProperty]
+    public bool LimitGrowthRate { get; private set; }
 
     public string InternalName { get; set; } = null!;
 
@@ -78,6 +71,7 @@ public class DifficultyPreset : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Index is negative");
 
         // All presets other than custom must have valid values set for every parameter
+        // Custom is used just as a placeholder item that is replaced with CustomDifficulty when used.
         if (InternalName == "custom")
             return;
 

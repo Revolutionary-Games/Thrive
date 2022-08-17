@@ -85,7 +85,7 @@
 
                 foreach (var patch in patches)
                 {
-                    long currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
+                    long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
 
                     // If this is an extra species, this first takes the
                     // population from excluded species that match its index, if that
@@ -100,7 +100,8 @@
                             {
                                 if (parameters.ExcludedSpecies.Count > i)
                                 {
-                                    currentPopulation = patch.GetSpeciesPopulation(parameters.ExcludedSpecies[i]);
+                                    currentPopulation =
+                                        patch.GetSpeciesSimulationPopulation(parameters.ExcludedSpecies[i]);
                                     useGlobal = false;
                                 }
 
@@ -139,7 +140,7 @@
 
         private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
             IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
-            AutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration)
         {
             foreach (var entry in patchesToSimulate)
             {
@@ -155,7 +156,7 @@
         /// </summary>
         private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
             IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
-            AutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration)
         {
             _ = random;
 

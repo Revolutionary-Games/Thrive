@@ -1,11 +1,28 @@
 ﻿using System;
+using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Player configurable options for creating the game world
 /// </summary>
 public class WorldGenerationSettings
 {
-    private DifficultyPreset difficulty = null!;
+    [JsonConstructor]
+    public WorldGenerationSettings(IDifficulty difficulty)
+    {
+        if (difficulty is DifficultyPreset preset && preset.InternalName ==
+            SimulationParameters.Instance.GetDifficultyPreset("custom").InternalName)
+        {
+            GD.PrintErr(
+                $"Ignoring setting custom difficulty preset object to {nameof(WorldGenerationSettings)} " +
+                "(using normal instead). This should only happen when loading older saves");
+            Difficulty = SimulationParameters.Instance.GetDifficultyPreset("normal");
+        }
+        else
+        {
+            Difficulty = difficulty;
+        }
+    }
 
     public WorldGenerationSettings()
     {
@@ -32,27 +49,9 @@ public class WorldGenerationSettings
     public bool LAWK { get; set; }
 
     /// <summary>
-    ///   Chosen difficulty preset for this game
+    ///   Chosen difficulty for this game
     /// </summary>
-    public DifficultyPreset Difficulty
-    {
-        get => difficulty;
-        set
-        {
-            difficulty = value;
-
-            if (value.InternalName == "custom")
-                return;
-
-            MPMultiplier = value.MPMultiplier;
-            AIMutationMultiplier = value.AIMutationMultiplier;
-            CompoundDensity = value.CompoundDensity;
-            PlayerDeathPopulationPenalty = value.PlayerDeathPopulationPenalty;
-            GlucoseDecay = value.GlucoseDecay;
-            OsmoregulationMultiplier = value.OsmoregulationMultiplier;
-            FreeGlucoseCloud = value.FreeGlucoseCloud;
-        }
-    }
+    public IDifficulty Difficulty { get; set; }
 
     /// <summary>
     ///   Origin of life (starting location) on this planet
@@ -64,40 +63,33 @@ public class WorldGenerationSettings
     /// </summary>
     public int Seed { get; set; } = new Random().Next();
 
-    /// <summary>
-    ///   Multiplier for MP costs in the editor
-    /// </summary>
-    public float MPMultiplier { get; set; }
+    // The following are helper proxies to the values from the difficulty
+    [JsonIgnore]
+    public float MPMultiplier => Difficulty.MPMultiplier;
 
-    /// <summary>
-    ///   Multiplier for AI species mutation rate
-    /// </summary>
-    public float AIMutationMultiplier { get; set; }
+    [JsonIgnore]
+    public float AIMutationMultiplier => Difficulty.AIMutationMultiplier;
 
-    /// <summary>
-    ///   Multiplier for compound cloud density in the environment
-    /// </summary>
-    public float CompoundDensity { get; set; }
+    [JsonIgnore]
+    public float CompoundDensity => Difficulty.CompoundDensity;
 
-    /// <summary>
-    ///   Multiplier for player species population loss after player death
-    /// </summary>
-    public float PlayerDeathPopulationPenalty { get; set; }
+    [JsonIgnore]
+    public float PlayerDeathPopulationPenalty => Difficulty.PlayerDeathPopulationPenalty;
 
-    /// <summary>
-    ///   Multiplier for rate of glucose decay in the environment
-    /// </summary>
-    public float GlucoseDecay { get; set; }
+    [JsonIgnore]
+    public float GlucoseDecay => Difficulty.GlucoseDecay;
 
-    /// <summary>
-    ///   Multiplier for player species osmoregulation cost
-    /// </summary>
-    public float OsmoregulationMultiplier { get; set; }
+    [JsonIgnore]
+    public float OsmoregulationMultiplier => Difficulty.OsmoregulationMultiplier;
 
-    /// <summary>
-    ///  Whether the player starts with a free glucose cloud each time they exit the editor
-    /// </summary>
-    public bool FreeGlucoseCloud { get; set; }
+    [JsonIgnore]
+    public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
+
+    [JsonIgnore]
+    public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
+
+    [JsonIgnore]
+    public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
     ///  Basic patch map generation type (procedural or the static classic map)
@@ -114,20 +106,19 @@ public class WorldGenerationSettings
     /// </summary>
     public bool EasterEggs { get; set; } = true;
 
+    /// <summary>
+    ///   The auto-evo configuration this world uses
+    /// </summary>
+    public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
+        SimulationParameters.Instance.AutoEvoConfiguration;
+
     public override string ToString()
     {
         return "World generation settings: [" +
             $"LAWK: {LAWK}" +
-            $", Difficulty preset: {Difficulty}" +
+            $", Difficulty: {Difficulty.GetDescriptionString()}" +
             $", Life origin: {Origin}" +
             $", Seed: {Seed}" +
-            $", MP multiplier: {MPMultiplier}" +
-            $", AI mutation multiplier: {AIMutationMultiplier}" +
-            $", Compound density: {CompoundDensity}" +
-            $", Player death population penalty: {PlayerDeathPopulationPenalty}" +
-            $", Glucose decay: {GlucoseDecay}" +
-            $", Osmoregulation multiplier: {OsmoregulationMultiplier}" +
-            $", Free glucose cloud: {FreeGlucoseCloud}" +
             $", Map type: {MapType}" +
             $", Include Multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +

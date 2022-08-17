@@ -39,7 +39,7 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
-    private TextureRect? fullscreenTextureRect;
+    private CrossFadableTextureRect? slideTextureRect;
     private Control? toolbar;
     private Button? closeButton;
     private Button? slideShowModeButton;
@@ -51,7 +51,6 @@ public class SlideScreen : CustomDialog
     private PlaybackControls? playbackControls;
 
     private Tween popupTween = null!;
-    private Tween slideshowTween = null!;
     private Tween toolbarTween = null!;
 
     private float toolbarHideTimer;
@@ -120,7 +119,7 @@ public class SlideScreen : CustomDialog
 
     public override void _Ready()
     {
-        fullscreenTextureRect = GetNode<TextureRect>(SlideTextureRectPath);
+        slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
         toolbar = GetNode<Control>(SlideToolbarPath);
         closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
@@ -132,7 +131,6 @@ public class SlideScreen : CustomDialog
         playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
         popupTween = GetNode<Tween>("PopupTween");
-        slideshowTween = GetNode<Tween>("SlideshowTween");
         toolbarTween = GetNode<Tween>("ToolbarTween");
 
         UpdateScreen();
@@ -151,8 +149,8 @@ public class SlideScreen : CustomDialog
                 toolbarTween.Start();
             }
 
-            if (Input.GetMouseMode() == Input.MouseMode.Hidden)
-                Input.SetMouseMode(Input.MouseMode.Visible);
+            if (Input.MouseMode == Input.MouseModeEnum.Hidden)
+                Input.MouseMode = Input.MouseModeEnum.Visible;
 
             if (toolbarHideTimer < 0)
             {
@@ -161,7 +159,7 @@ public class SlideScreen : CustomDialog
                 toolbarTween.InterpolateProperty(
                     closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 toolbarTween.Start();
-                Input.SetMouseMode(Input.MouseMode.Hidden);
+                Input.MouseMode = Input.MouseModeEnum.Hidden;
             }
         }
 
@@ -277,7 +275,7 @@ public class SlideScreen : CustomDialog
     {
         base.OnHidden();
         SlideshowMode = false;
-        Input.SetMouseMode(Input.MouseMode.Visible);
+        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 
     private void ChangeSlide(bool fade)
@@ -291,11 +289,11 @@ public class SlideScreen : CustomDialog
             return;
         }
 
-        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.Black, 0.5f);
-        slideshowTween.Start();
+        if (items == null || slideTextureRect == null)
+            return;
 
-        if (!slideshowTween.IsConnected("tween_completed", this, nameof(OnSlideFaded)))
-            slideshowTween.Connect("tween_completed", this, nameof(OnSlideFaded), null, (uint)ConnectFlags.Oneshot);
+        var item = items[currentSlideIndex];
+        slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateScreen()
@@ -307,7 +305,7 @@ public class SlideScreen : CustomDialog
 
     private void UpdateSlide()
     {
-        if (items == null || slideTitleLabel == null || fullscreenTextureRect == null || slideShowModeButton == null)
+        if (items == null || slideTitleLabel == null || slideTextureRect == null || slideShowModeButton == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -317,7 +315,7 @@ public class SlideScreen : CustomDialog
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
         slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
-        fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateModelViewer()
@@ -354,7 +352,7 @@ public class SlideScreen : CustomDialog
     {
         var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (playbackControls == null || fullscreenTextureRect == null)
+        if (playbackControls == null || slideTextureRect == null)
             return;
 
         if (item?.Asset.Type != AssetType.AudioPlayback)
@@ -368,7 +366,7 @@ public class SlideScreen : CustomDialog
         playbackControls?.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
-        fullscreenTextureRect.Texture = item.MissingTexture;
+        slideTextureRect.Texture = item.MissingTexture;
     }
 
     private void UpdateHandles()
@@ -378,16 +376,6 @@ public class SlideScreen : CustomDialog
 
         toolbar.Visible = slideControlsVisible;
         closeButton.Visible = slideControlsVisible;
-    }
-
-    private void OnSlideFaded(Object @object, NodePath key)
-    {
-        _ = @object;
-        _ = key;
-
-        UpdateScreen();
-        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.White, 0.5f);
-        slideshowTween.Start();
     }
 
     private void OnScaledUp(Object @object, NodePath key)
