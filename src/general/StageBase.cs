@@ -252,9 +252,9 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
         if (debugOverlay.PerformanceMetricsVisible)
         {
-            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).ToList();
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(entities, childCount - entities);
+            debugOverlay.ReportEntities(entities.Sum(e => e.EntityWeight), childCount - entities.Count);
         }
     }
 
