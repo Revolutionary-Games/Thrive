@@ -3,10 +3,10 @@
 This is a guide for contributing to Thrive.
 
 __Note: if you have an idea, share it on our [community
-forums](https://community.revolutionarygamesstudio.com/)!__ and don't
-create an issue about it. Or for quicker suggestions, check out and
-vote on our [suggestions
-site](https://suggestions.revolutionarygamesstudio.com/).
+forums](https://community.revolutionarygamesstudio.com/) or check out
+and vote on our [suggestions
+site](https://suggestions.revolutionarygamesstudio.com/)!__ and don't
+create an issue about it.
 
 ## Github Issues
 
