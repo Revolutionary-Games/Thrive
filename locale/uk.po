@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-14 18:03-0300\n"
+"POT-Creation-Date: 2022-08-17 21:26+0800\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -978,11 +978,11 @@ msgstr "Війки"
 msgid "LYSOSOME"
 msgstr "Лізосома"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:537
+#: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
 msgstr "Завершення {0} генерацій"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:709
+#: ../src/auto-evo/AutoEvoExploringTool.cs:755
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Види[/b]\n"
@@ -996,7 +996,7 @@ msgstr ""
 "[b]Поведінка[/b]\n"
 "  {5}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:718
+#: ../src/auto-evo/AutoEvoExploringTool.cs:764
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Стадія[/b]\n"
@@ -1012,164 +1012,169 @@ msgstr ""
 "[b]Базовий розмір гексу[/b]\n"
 "  {4}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
 msgstr "Конфігурація"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#, fuzzy
+msgid "MAP"
+msgstr "АТФ"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Звіт"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
 msgstr "Переглядач"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Дозволити виду не мутувати"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Дозволити виду не мігрувати"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Шанси утворити новий вид для збільшення біорізноманіття з сусідньої ділянки"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr "Біорізноманіття коло ділянки– це фільна популяція"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Розкол біорізноманіття– це матації"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Низький ліміт біорізноманіття"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Максимум видів в ділянці"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Переміщення спроб на вид"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Мутації на вид"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Нове біорізноманіття збільшує видові популяції"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Захисні міграції від витісняючих видів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Захист нових клітин від витісняючих видів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr "Повернення міграцій у вимираннях"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Жорстка нішева конкуренція"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr "Види розділенні за мутаційним поргом розміру популяції"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Види розділенні за мутаційним поргом частки популяції"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Використання біорізноманіття розділенням сил"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Поточна Генерація:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 msgid "STATUS_COLON"
 msgstr "Статус:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
 msgid "READY"
 msgstr "Готово"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 msgid "FINISH_ONE_GENERATION"
 msgstr "Кінець однієї генерації"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
 msgstr "Робиться один крок"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 msgid "ABORT"
 msgstr "Перервано"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Грати з поточними налаштуваннями"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 msgid "GENERATIONS"
 msgstr "Генерації"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "SELECT_A_GENERATION"
 msgstr "Виберіть генерацію"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 msgid "SPECIES"
 msgstr "Види"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
 msgid "SELECT_A_SPECIES"
 msgstr "Обрати види"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:687
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Результати авто-ево:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:735
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 msgid "SPECIES_DETAILS"
 msgstr "Деталі видів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1052
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1073
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:833
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Підтвердити вихід"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1204,7 +1209,7 @@ msgstr "Почати"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} зміна населення {1} на {2} через: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:322
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -1978,7 +1983,7 @@ msgstr "Закрити"
 #: ../src/general/NewGameSettings.cs:581 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
@@ -2084,7 +2089,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
 
 #: ../src/general/NewGameSettings.cs:297
-#: ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/NewGameSettings.tscn:1113
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Увійти в гру з цими налаштуваннями"
 
@@ -2092,205 +2097,205 @@ msgstr "Увійти в гру з цими налаштуваннями"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Якісь налаштування неробочі"
 
-#: ../src/general/NewGameSettings.tscn:117
-#: ../src/general/NewGameSettings.tscn:330
+#: ../src/general/NewGameSettings.tscn:119
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET"
 msgstr "Попередня складність"
 
-#: ../src/general/NewGameSettings.tscn:144
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:146
+#: ../src/general/NewGameSettings.tscn:875
 msgid "LAWK_ONLY"
 msgstr "Тільки LAWK"
 
-#: ../src/general/NewGameSettings.tscn:151
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:153
+#: ../src/general/NewGameSettings.tscn:882
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(обмежує частини та властивості лише за Життям, Яким Ми Його Знаємо)"
 
-#: ../src/general/NewGameSettings.tscn:167
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:169
+#: ../src/general/NewGameSettings.tscn:898
 msgid "LIFE_ORIGIN"
 msgstr "Походження життя"
 
-#: ../src/general/NewGameSettings.tscn:174
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:176
+#: ../src/general/NewGameSettings.tscn:905
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(початкова локація)"
 
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:190
+#: ../src/general/NewGameSettings.tscn:919
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Деякі налаштування можуть бути вимкнені, коли вімкнений тільки LAWK"
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:921
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гідротермальні джерела"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_POND"
 msgstr "Теплий маленький ставок"
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:922
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Панспермія (рандом)"
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:937
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
 
-#: ../src/general/NewGameSettings.tscn:225
-#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:227
+#: ../src/general/NewGameSettings.tscn:956
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
 
-#: ../src/general/NewGameSettings.tscn:270
+#: ../src/general/NewGameSettings.tscn:272
 msgid "DIFFICULTY"
 msgstr "Складність"
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:282
 msgid "PLANET"
 msgstr "Планета"
 
-#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:292 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Інше"
 
-#: ../src/general/NewGameSettings.tscn:369
+#: ../src/general/NewGameSettings.tscn:382
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Множник вартості мутації"
 
-#: ../src/general/NewGameSettings.tscn:414
+#: ../src/general/NewGameSettings.tscn:427
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(ціна органел, мембран та інших речей в редакторі)"
 
-#: ../src/general/NewGameSettings.tscn:431
+#: ../src/general/NewGameSettings.tscn:444
 msgid "AI_MUTATION_RATE"
 msgstr "частота иутацій від ШІ"
 
-#: ../src/general/NewGameSettings.tscn:476
+#: ../src/general/NewGameSettings.tscn:489
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
-#: ../src/general/NewGameSettings.tscn:493
+#: ../src/general/NewGameSettings.tscn:506
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Щільність хмари сполук"
 
-#: ../src/general/NewGameSettings.tscn:538
+#: ../src/general/NewGameSettings.tscn:551
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(щільність хмари сполук у навколишньому серидовищі)"
 
-#: ../src/general/NewGameSettings.tscn:555
+#: ../src/general/NewGameSettings.tscn:568
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Штраф популяції за смерть гравця"
 
-#: ../src/general/NewGameSettings.tscn:600
+#: ../src/general/NewGameSettings.tscn:613
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(коефіціент зменшення популяції виду гравця для кожної смерті гравця)"
 
-#: ../src/general/NewGameSettings.tscn:617
+#: ../src/general/NewGameSettings.tscn:630
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Збереження глюкози в оточені"
 
-#: ../src/general/NewGameSettings.tscn:661
+#: ../src/general/NewGameSettings.tscn:674
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(частка глюкози, що залишається в навколишньому серидовищі кожну генерацію)"
 
-#: ../src/general/NewGameSettings.tscn:678
+#: ../src/general/NewGameSettings.tscn:691
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Множник вартості осморегуляції"
 
-#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:736
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(вартість осморегуляції виду гравця)"
 
-#: ../src/general/NewGameSettings.tscn:735
+#: ../src/general/NewGameSettings.tscn:748
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Безкоштовна глюкозна хмара, коли ви виходите з редактору"
 
-#: ../src/general/NewGameSettings.tscn:742
+#: ../src/general/NewGameSettings.tscn:755
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(початок з безкоштовною глюкозною хмарою біля кожної генерації)"
 
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:767
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:774
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
-#: ../src/general/NewGameSettings.tscn:773
+#: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Нормальний"
 
-#: ../src/general/NewGameSettings.tscn:780
+#: ../src/general/NewGameSettings.tscn:793
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
-#: ../src/general/NewGameSettings.tscn:816
+#: ../src/general/NewGameSettings.tscn:837
 msgid "PATCH_MAP_TYPE"
 msgstr "Тип Мапи Ділянок"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:844
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(процедурна генерація мапи ділянок або використання класичного макету"
 
-#: ../src/general/NewGameSettings.tscn:838
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:860
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Процудурно"
 
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:860
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Класично"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:1004
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Генерація планети пройшла успішно!"
 
-#: ../src/general/NewGameSettings.tscn:1015
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включаючи прототип пізньої стадії"
 
-#: ../src/general/NewGameSettings.tscn:1022
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(деякі функції можуть бути недоступні коли ви досягнете наступних етапів)"
 
-#: ../src/general/NewGameSettings.tscn:1034
+#: ../src/general/NewGameSettings.tscn:1055
 msgid "EASTER_EGGS"
 msgstr "Додання великодок"
 
-#: ../src/general/NewGameSettings.tscn:1041
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(рандомно заспавнені секрети в грі)"
 
-#: ../src/general/NewGameSettings.tscn:1069
+#: ../src/general/NewGameSettings.tscn:1090
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Відкрити вікно розширених налаштувань"
 
-#: ../src/general/NewGameSettings.tscn:1071
+#: ../src/general/NewGameSettings.tscn:1092
 msgid "ADVANCED_VIEW"
 msgstr "Передовий"
 
-#: ../src/general/NewGameSettings.tscn:1082
+#: ../src/general/NewGameSettings.tscn:1103
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Повернутися до базового вікна налаштувань"
 
-#: ../src/general/NewGameSettings.tscn:1083
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "BASIC_VIEW"
 msgstr "Базовий"
 
-#: ../src/general/NewGameSettings.tscn:1093
+#: ../src/general/NewGameSettings.tscn:1114
 msgid "CONFIRM_NORMAL"
 msgstr "Підтвердити"
 
@@ -2480,7 +2485,7 @@ msgstr "Пристрій виведення аудіо:"
 msgid "LANGUAGE"
 msgstr "Мова:"
 
-#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1369
 msgid "RESET"
 msgstr "Скинути"
 
@@ -2564,139 +2569,139 @@ msgstr "Велетенський"
 msgid "LIMIT_EXTREME"
 msgstr "Екстримальний"
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1135
 msgid "RESET_INPUTS"
 msgstr "Скинути зміни"
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1162
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Програвати інтро"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1170
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "програвати інтро з мікробом перед новою грою"
 
-#: ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1178
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автозбереження під час гри"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1189
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Кількість можливих автозбереженнь:"
 
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Кількість можливих швидких збережень:"
 
-#: ../src/general/OptionsMenu.tscn:1243
+#: ../src/general/OptionsMenu.tscn:1242
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показати туторіали (в новій грі)"
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1249
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показати туторіал (в поточній грі)"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1255
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Програвати попередження про незбережену гру"
 
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Кнопки ввімкнення читів"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1275
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1286
 msgid "CUSTOM_USERNAME"
 msgstr "Звичайне ім'я користувача:"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Відкрити папку скріншотів"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1320
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Відкрити папку журналів"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1330
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим направення JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1344 ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматично"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Завжди"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ніколи"
 
-#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1381 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Зберегти"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1398
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "За замовчуванням"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1409
 msgid "RESET_TO_DEFAULTS"
 msgstr "Скинути до замовчування?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1410
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Ви точно хочете скинути УСІ налаштування до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1418
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Скинути вхідні дані до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Ви точно хочете скинути вхідні дані до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1428
 msgid "CLOSE_OPTIONS"
 msgstr "Закрити налаштування?"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1448
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Ви маєте незбережені дії які будуть скасовані.\n"
 "Бажаєте продовжити?"
 
-#: ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1471
 msgid "SAVE_AND_CONTINUE"
 msgstr "Зберегти й продовжити"
 
-#: ../src/general/OptionsMenu.tscn:1482
+#: ../src/general/OptionsMenu.tscn:1481
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Відмінити й продовжити"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1498
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Скасувати"
 
-#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1509 ../src/general/OptionsMenu.tscn:1517
 msgid "ERROR"
 msgstr "Помилка"
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1519
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Помилка: Невдалось зберегти нові налаштування конфігурованих файлів."
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1527
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Не знайдено каталог скріншотів"
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1529
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Спробуйте зробити декілька скріншотів!"
 
@@ -3129,8 +3134,8 @@ msgstr "Необроблений"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
 msgid "N_A"
 msgstr "Н/Є"
 
@@ -3168,7 +3173,7 @@ msgid "SLIDESHOW"
 msgstr "Слайдшов"
 
 #: ../src/gui_common/charts/line/LineChart.cs:631
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2184
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -4018,64 +4023,64 @@ msgstr "Розсіяні"
 msgid "FOCUSED"
 msgstr "Зосереджені"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:155
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:262
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТф"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:281
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "Продукування АТФ вкрай мала!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:296
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:329
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "OSMOREGULATION"
 msgstr "Осморегуляція"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:335
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:525
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:523
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1164
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Ядро не підлягає видаленю, бо це необоротна еволюція. Проте, якщо ви його розмістили в цьому відвідуванні редактору, то скасування та повторення дозволенні"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1166
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Неможна видалити останню органелу"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2033
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2156
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить{0} з індивідуальною вартістю {1}, врезультаті чого– некоригована популяція з {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергії: {1} (пристосованість: {2}) загальної доступної енергії: {3}(загальна пристосованість:{4})"
 
