@@ -777,8 +777,12 @@ public class AutoEvoExploringTool : NodeWithInput
             return;
 
         // Get current snapshot
-        var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate,
-            patchHistoryList[generationDisplayed][selectedPatch.ID]);
+        var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
+            patchHistoryList[generationDisplayed][selectedPatch.ID])
+        {
+            TimePeriod = selectedPatch.TimePeriod,
+            Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+        };
 
         patchDetailsPanel.SelectedPatch = patch;
     }

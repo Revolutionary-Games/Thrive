@@ -39,11 +39,12 @@ public class Patch
     }
 
     [JsonConstructor]
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchSnapshot currentSnapshot)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
+        BiomeType = type;
         this.currentSnapshot = currentSnapshot;
     }
 
