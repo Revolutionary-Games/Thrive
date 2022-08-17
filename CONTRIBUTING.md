@@ -71,7 +71,7 @@ that doesn't have an open issue, or a [dev
 forum](https://forum.revolutionarygamesstudio.com/) discussion, we may
 make a lot of gameplay related change requests before accepting. See
 the next paragraph for what you need to do if we won't otherwise
-accept your contribution. If the change you are making has many votes
+accept your contribution. However, if the change you are making has many votes
 on [our suggestions
 site](https://suggestions.revolutionarygamesstudio.com/) that'll make
 it much more likely to be accepted.
