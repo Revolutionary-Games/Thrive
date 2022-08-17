@@ -224,6 +224,22 @@ public class EvolutionaryTree : Control
         dirty = true;
     }
 
+    public void FlagNodes(Func<EvolutionaryTreeNode, bool> flaggingFunction)
+    {
+        dirty = true;
+
+        foreach (var child in tree.GetChildren())
+        {
+            var node = child as EvolutionaryTreeNode;
+            if (node == null)
+            {
+                throw new ArgumentException("Evolutionary tree has non-node children!");
+            }
+
+            node.Flagged = flaggingFunction(node);
+        }
+    }
+
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
         bool isLastGeneration = false)
     {
@@ -233,6 +249,7 @@ public class EvolutionaryTree : Control
         node.ParentNode = parent;
         node.Position = new Vector2(generation * GENERATION_SEPARATION, 0);
         node.LastGeneration = isLastGeneration;
+        node.Flagged = false;
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
@@ -462,18 +479,19 @@ public class EvolutionaryTree : Control
             if (lastNode.Center.y < drawRegion.Position.y || lastNode.Center.x > drawRegion.End.x)
                 continue;
 
+            var speciesNamePosition = Vector2.Zero;
             if (lastNode.LastGeneration)
             {
-                tree.DrawString(latoSmallItalic,
-                    new Vector2(lastNode.RectPosition.x + sizeFactor * TreeNodeSize.x + speciesNameOffset,
-                        lastNode.Center.y), speciesNames[pair.Key], Colors.DarkRed);
+                speciesNamePosition = new Vector2(
+                    lastNode.RectPosition.x + sizeFactor * TreeNodeSize.x + speciesNameOffset, lastNode.Center.y);
             }
             else
             {
-                tree.DrawString(latoSmallItalic,
-                    new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.y),
-                    speciesNames[pair.Key]);
+                speciesNamePosition = new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.y);
             }
+
+            tree.DrawString(latoSmallItalic, speciesNamePosition, speciesNames[pair.Key],
+                lastNode.Flagged ? Colors.DarkRed : null);
         }
     }
 

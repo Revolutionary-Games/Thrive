@@ -20,6 +20,8 @@ public class EvolutionaryTreeNode : TextureButton
 
     private bool lastGeneration;
 
+    private bool flagged;
+
     public int Generation { get; set; }
 
     public uint SpeciesID { get; set; }
@@ -33,6 +35,20 @@ public class EvolutionaryTreeNode : TextureButton
                 return;
 
             lastGeneration = value;
+
+            UpdateTexture();
+        }
+    }
+
+    public bool Flagged
+    {
+        get => flagged;
+        set
+        {
+            if (flagged == value)
+                return;
+
+            flagged = value;
 
             UpdateTexture();
         }
@@ -63,7 +79,7 @@ public class EvolutionaryTreeNode : TextureButton
 
     private void UpdateTexture()
     {
-        if (lastGeneration)
+        if (flagged)
         {
             TextureNormal = unpressedNormalRed;
             TextureHover = unpressedHoveredRed;
