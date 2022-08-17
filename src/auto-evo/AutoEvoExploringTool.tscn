@@ -12,7 +12,7 @@
 [ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
-[ext_resource path="res://src/gui_common/CustomDialog.cs" type="Script" id=13]
+[ext_resource path="res://src/gui_common/dialogs/FilterWindow.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 
@@ -774,15 +774,7 @@ rect_min_size = Vector2( 400, 0 )
 WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
-[node name="FilterWindow" type="Popup" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 13 )
-
-[node name="Label" type="Label" parent="FilterWindow"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "TEST"
+[node name="FilterWindow" parent="." instance=ExtResource( 13 )]
 
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]

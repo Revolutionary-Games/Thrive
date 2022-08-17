@@ -200,7 +200,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private EvolutionaryTree evolutionaryTree = null!;
 
     // Search window
-    private CustomDialog filterWindow = null!;
+    private FilterWindow filterWindow = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -300,7 +300,7 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
 
-        filterWindow = GetNode<CustomDialog>(FilterWindowPath);
+        filterWindow = GetNode<FilterWindow>(FilterWindowPath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
