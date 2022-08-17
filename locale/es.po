@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-14 18:03-0300\n"
+"POT-Creation-Date: 2022-08-16 16:07+0700\n"
 "PO-Revision-Date: 2022-03-29 16:22+0000\n"
 "Last-Translator: Jessy Amelie Nishimura Lara <jessy8nishimura@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1184,27 +1184,27 @@ msgstr "Resultados de auto-evo:"
 msgid "EVOLUTIONARY_TREE"
 msgstr "Por Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Especies presentes"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1052
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atrás"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar salída"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1242,7 +1242,7 @@ msgstr "Comenzando"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "La población de {0} cambión en {1} debido a: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:322
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -2018,7 +2018,7 @@ msgid "CLOSE"
 msgstr "Cerrar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:581 ../src/general/StageHUDBase.cs:675
+#: ../src/general/NewGameSettings.cs:584 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
@@ -2131,29 +2131,29 @@ msgstr "Errores de carga de mod"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Se produjeron errores al cargar uno o más mods. Los registros pueden contener información adicional."
 
-#: ../src/general/NewGameSettings.cs:297
-#: ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/NewGameSettings.cs:300
+#: ../src/general/NewGameSettings.tscn:1130
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
-#: ../src/general/NewGameSettings.cs:304
+#: ../src/general/NewGameSettings.cs:307
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Menú de pausa"
 
-#: ../src/general/NewGameSettings.tscn:117
-#: ../src/general/NewGameSettings.tscn:330
+#: ../src/general/NewGameSettings.tscn:120
+#: ../src/general/NewGameSettings.tscn:360
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:144
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:147
+#: ../src/general/NewGameSettings.tscn:892
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:151
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:899
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -2162,13 +2162,13 @@ msgstr ""
 "Los Microbios valientes no se dejan intimidar por los depredadores cercanos\n"
 "y lo más probable es que contra ataquen."
 
-#: ../src/general/NewGameSettings.tscn:167
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:915
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:174
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:922
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -2177,79 +2177,83 @@ msgstr ""
 "Los Microbios valientes no se dejan intimidar por los depredadores cercanos\n"
 "y lo más probable es que contra ataquen."
 
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:191
+#: ../src/general/NewGameSettings.tscn:936
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Suicidarse"
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:194
+#: ../src/general/NewGameSettings.tscn:938
+#: ../src/general/NewGameSettings.tscn:939
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:194
+#: ../src/general/NewGameSettings.tscn:939
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:194
+#: ../src/general/NewGameSettings.tscn:939
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:954
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:225
-#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:228
+#: ../src/general/NewGameSettings.tscn:973
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Pausar el juego"
 
-#: ../src/general/NewGameSettings.tscn:270
+#: ../src/general/NewGameSettings.tscn:267
+msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:289
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:299
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:309 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Misc."
 
-#: ../src/general/NewGameSettings.tscn:369
+#: ../src/general/NewGameSettings.tscn:399
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:414
+#: ../src/general/NewGameSettings.tscn:444
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
 "Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
-#: ../src/general/NewGameSettings.tscn:431
+#: ../src/general/NewGameSettings.tscn:461
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Puntos de Mutación"
 
-#: ../src/general/NewGameSettings.tscn:476
+#: ../src/general/NewGameSettings.tscn:506
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
-#: ../src/general/NewGameSettings.tscn:493
+#: ../src/general/NewGameSettings.tscn:523
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Nubes de compuestos"
 
-#: ../src/general/NewGameSettings.tscn:538
+#: ../src/general/NewGameSettings.tscn:568
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -2257,39 +2261,39 @@ msgstr ""
 "y intentarán cazar a sus presas con toxinas si no las pueden fagocitar (comer).\n"
 "Los microbios cautelosos no se pondrán en peligro para conseguir nutrientes."
 
-#: ../src/general/NewGameSettings.tscn:555
+#: ../src/general/NewGameSettings.tscn:585
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:600
+#: ../src/general/NewGameSettings.tscn:630
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
-#: ../src/general/NewGameSettings.tscn:617
+#: ../src/general/NewGameSettings.tscn:647
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:661
+#: ../src/general/NewGameSettings.tscn:691
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
-#: ../src/general/NewGameSettings.tscn:678
+#: ../src/general/NewGameSettings.tscn:708
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Costo de Osmorregulación"
 
-#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:753
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Costo de Osmorregulación"
 
-#: ../src/general/NewGameSettings.tscn:735
+#: ../src/general/NewGameSettings.tscn:765
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:742
+#: ../src/general/NewGameSettings.tscn:772
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2297,66 +2301,66 @@ msgstr ""
 "y es posible codicien más los fragmentos de recursos.\n"
 "Los microbios reactivos cambiarán de objetivo después de un tiempo."
 
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:784
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:791
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
-#: ../src/general/NewGameSettings.tscn:773
+#: ../src/general/NewGameSettings.tscn:803
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "CONFIRMAR"
 
-#: ../src/general/NewGameSettings.tscn:780
+#: ../src/general/NewGameSettings.tscn:810
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
 
-#: ../src/general/NewGameSettings.tscn:816
+#: ../src/general/NewGameSettings.tscn:854
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Mapa de Regiones"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:861
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Los microbios activos correrán y darán vueltas cuando no suceda nada interesante.\n"
 "Los microbios sésiles permanecerán en reposo y esperarán a que cambie el entorno antes de actuar."
 
-#: ../src/general/NewGameSettings.tscn:838
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:877
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:877
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:1021
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1015
+#: ../src/general/NewGameSettings.tscn:1053
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Colocar orgánulos"
 
-#: ../src/general/NewGameSettings.tscn:1022
+#: ../src/general/NewGameSettings.tscn:1060
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1034
+#: ../src/general/NewGameSettings.tscn:1072
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Dato curioso: el didinium y el paramecio son un ejemplo de una relación depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el didinium o el paramecio? ¿Depredador o presa?"
 
-#: ../src/general/NewGameSettings.tscn:1041
+#: ../src/general/NewGameSettings.tscn:1079
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2365,64 +2369,64 @@ msgstr ""
 "Los Microbios valientes no se dejan intimidar por los depredadores cercanos\n"
 "y lo más probable es que contra ataquen."
 
-#: ../src/general/NewGameSettings.tscn:1069
+#: ../src/general/NewGameSettings.tscn:1107
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
-#: ../src/general/NewGameSettings.tscn:1071
+#: ../src/general/NewGameSettings.tscn:1109
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1082
+#: ../src/general/NewGameSettings.tscn:1120
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Suicidarse"
 
-#: ../src/general/NewGameSettings.tscn:1083
+#: ../src/general/NewGameSettings.tscn:1121
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1093
+#: ../src/general/NewGameSettings.tscn:1131
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "CONFIRMAR"
 
-#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.cs:657 ../src/general/OptionsMenu.tscn:314
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolución:"
 
-#: ../src/general/OptionsMenu.cs:666
+#: ../src/general/OptionsMenu.cs:671
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:671
+#: ../src/general/OptionsMenu.cs:676
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:676
+#: ../src/general/OptionsMenu.cs:681
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Mostrar la barra de habilidades"
 
-#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
+#: ../src/general/OptionsMenu.cs:690 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1043
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de salida predeterminado"
 
-#: ../src/general/OptionsMenu.cs:1070
+#: ../src/general/OptionsMenu.cs:1075
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "¡Esta traducción está muy incompleta ({0}% hecha) por favor ayúdanos con ella!"
 
-#: ../src/general/OptionsMenu.cs:1074
+#: ../src/general/OptionsMenu.cs:1079
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Este idioma aún es un trabajo en progreso ({0}% completado)"
 
-#: ../src/general/OptionsMenu.cs:1078
+#: ../src/general/OptionsMenu.cs:1083
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Este lenguaje está traducido en un {0}%"
 
@@ -2454,7 +2458,7 @@ msgstr "Pantalla completa"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "MSAA:"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:271 ../src/general/OptionsMenu.tscn:1054
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores más altos empeoran el rendimiento)"
 
@@ -2578,7 +2582,7 @@ msgstr "Dispositivo de salida de audio:"
 msgid "LANGUAGE"
 msgstr "Idioma:"
 
-#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1378
 msgid "RESET"
 msgstr "Restablecer"
 
@@ -2626,177 +2630,177 @@ msgstr "Ajustar manualmente el número de hilos en segundo plano"
 msgid "THREADS"
 msgstr "Hilos:"
 
-#: ../src/general/OptionsMenu.tscn:1045
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1060 ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1069 ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "CONFIRMAR"
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Extras"
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "RESET_INPUTS"
 msgstr "Restablecer entradas"
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Reproducir vídeo introductorio"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1179
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Reproducir cinemática de entrada del estadio de Microbio en nueva partida"
 
-#: ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1187
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autoguardado durante el juego"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
 
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1226
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Cantidad de guardados rápidos a almacenar:"
 
-#: ../src/general/OptionsMenu.tscn:1243
+#: ../src/general/OptionsMenu.tscn:1251
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriales (en nuevas partidas)"
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriales (en la partida actual)"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1264
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostrar aviso de progreso sin guardar"
 
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1276
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats activados"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1284
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar un nombre personalizado"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1295
 msgid "CUSTOM_USERNAME"
 msgstr "Nombre personalizado:"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Abrir carpeta de capturas de pantalla"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1329
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir carpeta de registros"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "JSON_DEBUG_MODE"
 msgstr "Modo de depuración JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automáticamente"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Siempre"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nunca"
 
-#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1390 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Guardar"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predeterminado"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1418
 msgid "RESET_TO_DEFAULTS"
 msgstr "¿Volver a los ajustes predeterminados?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "¿Está seguro de que desea restablecer TODOS las ajustes a los valores predeterminados?"
 
-#: ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1427
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "¿Restablecer entradas a los valores por defecto?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1428
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "¿Está seguro de que desea restablecer la configuración de entrada a los valores predeterminados?"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1437
 msgid "CLOSE_OPTIONS"
 msgstr "¿Cerrar Ajustes?"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Tienes cambios sin guardar que serán descartados.\n"
 "¿Deseas continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1480
 msgid "SAVE_AND_CONTINUE"
 msgstr "Guardar y continuar"
 
-#: ../src/general/OptionsMenu.tscn:1482
+#: ../src/general/OptionsMenu.tscn:1490
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar y continuar"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1507
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1518 ../src/general/OptionsMenu.tscn:1526
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1528
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Fallo al guardar nuevos ajustes al archivo de configuración."
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1536
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Abrir carpeta de capturas de pantalla"
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1538
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta tomar algunas capturas de pantalla!"
 
@@ -3830,6 +3834,10 @@ msgstr "Compuestos:"
 #: ../src/microbe_stage/MicrobeStage.tscn:546
 msgid "SPECIES_COLON"
 msgstr "Especies:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
+msgid "HOLD_FOR_CURSOR"
+msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
 #: ../src/microbe_stage/MicrobeStage.tscn:623
@@ -4957,7 +4965,7 @@ msgstr "¡Guardado fallido! Ha ocurrido la excepción siguiente: {0}"
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
-#: ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModUploader.tscn:44 ../src/modding/ModUploader.tscn:307
 msgid "MOD_UPLOADER"
 msgstr "Cargador de Mods"
 
