@@ -792,3 +792,4 @@ DialogText = "RETURN_TO_MENU_WARNING"
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
+[connection signal="Applied" from="FilterWindow" to="." method="FlagTreeNodes"]

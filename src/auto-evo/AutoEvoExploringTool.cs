@@ -201,6 +201,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Search window
     private FilterWindow filterWindow = null!;
+    private Func<EvolutionaryTreeNode, bool> flaggingFunction = n => n.LastGeneration;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -603,7 +604,7 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
-        evolutionaryTree.FlagNodes(n => n.LastGeneration);
+        evolutionaryTree.FlagNodes(flaggingFunction);
         /* Code example for flags.
          * TODO MOVE PROPERLY
          * evolutionaryTree.FlagNodes(
@@ -618,6 +619,12 @@ public class AutoEvoExploringTool : NodeWithInput
         HistoryListMenuIndexChanged(currentGeneration);
 
         currentGenerationLabel.Text = currentGeneration.ToString();
+    }
+
+    private void FlagTreeNodes()
+    {
+        flaggingFunction = n => speciesHistoryList[n.Generation][n.SpeciesID].Behaviour.Activity >= 100;
+        evolutionaryTree.FlagNodes(flaggingFunction);
     }
 
     /// <summary>
