@@ -33,8 +33,10 @@ public class BaseNodeConverter : BaseThriveConverter
             case "DynamicObject":
             case "Gizmo":
             // Ignore the extra rotation and translation related stuff that just duplicates what Transform has
+            case "GlobalTranslation":
             case "Translation":
             case "RotationDegrees":
+            case "GlobalRotation":
             case "Rotation":
             case "Scale":
             // Ignore this as this is parent relative and probably causes problems loading
