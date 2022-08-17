@@ -682,14 +682,14 @@ public static class Constants
 
     // These control how many game entities can exist at once
     // TODO: bump these back up once we resolve the performance bottleneck
-    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
-    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
-    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
-    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
-    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
-    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
-    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
-    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+    public const int TINY_MAX_SPAWNED_ENTITIES = 100;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 200;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 300;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 400;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 500;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 600;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 700;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 800;
 
     /// <summary>
     ///   Controls how fast entities are allowed to spawn
@@ -699,7 +699,12 @@ public static class Constants
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 4;
+    public const int MAX_DESPAWNS_PER_FRAME = 10;
+
+    /// <summary>
+    ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
+    /// </summary>
+    public const float ORGANELLE_ENTITY_WEIGHT = 0.5f;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
