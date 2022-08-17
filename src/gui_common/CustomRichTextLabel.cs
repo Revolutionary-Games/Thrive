@@ -12,8 +12,6 @@ public class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
-    private string? extendedBbcodeTranslated;
-
     private string? heightWorkaroundRanForString;
 
     /// <summary>
@@ -56,8 +54,6 @@ public class CustomRichTextLabel : RichTextLabel
             // Value is always changed here even if the text didn't change, as translations may have changed
             // the compound names anyway
             extendedBbcode = value;
-
-            extendedBbcodeTranslated = TranslationServer.Translate(value);
 
             // Need to delay this so we can get the correct input controls from settings.
             Invoke.Instance.QueueForObject(ParseCustomTags, this);
@@ -195,7 +191,7 @@ public class CustomRichTextLabel : RichTextLabel
                 var bbcodeNamespace = leftHandSide[0];
 
                 // Not a thrive bbcode, don't parse this
-                if (!bbcodeNamespace.Contains("thrive"))
+                if (!bbcodeNamespace.BeginsWith("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
@@ -450,7 +446,9 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     private void ParseCustomTags()
     {
-        if (extendedBbcodeTranslated == null)
+        var translated = TranslationServer.Translate(extendedBbcode);
+
+        if (translated == null)
         {
             BbcodeText = null;
             return;
@@ -459,14 +457,14 @@ public class CustomRichTextLabel : RichTextLabel
         try
         {
             // Parse our custom tags into standard tags and display that text
-            BbcodeText = ParseCustomTagsString(extendedBbcodeTranslated);
+            BbcodeText = ParseCustomTagsString(translated);
         }
         catch (Exception e)
         {
             GD.PrintErr("Failed to parse bbcode string due to exception: ", e);
 
             // Just display the raw markup for now
-            BbcodeText = extendedBbcodeTranslated;
+            BbcodeText = translated;
         }
     }
 

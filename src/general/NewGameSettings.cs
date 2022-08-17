@@ -705,7 +705,7 @@ public class NewGameSettings : ControlWithInput
         settings.EasterEggs = pressed;
     }
 
-    private void OnMetaClicked(object meta)
+    private void PerformanceNoteLinkClicked(object meta)
     {
         _ = meta;
 
