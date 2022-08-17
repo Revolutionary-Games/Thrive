@@ -8,14 +8,14 @@
     /// </summary>
     public class FindBestMigration : VariantTryingStep
     {
-        private readonly AutoEvoConfiguration configuration;
+        private readonly IAutoEvoConfiguration configuration;
         private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly Random random;
         private readonly SimulationCache cache;
 
-        public FindBestMigration(AutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+        public FindBestMigration(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
             PatchMap map, Species species, Random random, int migrationsToTry,
             bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {

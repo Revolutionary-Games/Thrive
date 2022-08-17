@@ -12,7 +12,7 @@
     {
         private readonly PatchMap map;
         private readonly Patch patch;
-        private readonly AutoEvoConfiguration configuration;
+        private readonly IAutoEvoConfiguration configuration;
         private readonly Random random;
         private readonly SimulationCache cache;
 
@@ -23,7 +23,7 @@
 
         private WorldGenerationSettings worldSettings;
 
-        public IncreaseBiodiversity(AutoEvoConfiguration configuration,
+        public IncreaseBiodiversity(IAutoEvoConfiguration configuration,
             WorldGenerationSettings worldSettings, PatchMap map, Patch patch, Random random)
         {
             this.worldSettings = worldSettings;
