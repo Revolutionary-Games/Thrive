@@ -134,6 +134,9 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath EvolutionaryTreePath = null!;
 
+    [Export]
+    public NodePath FilterWindowPath = null!;
+
     // Exit confirm path
     [Export]
     public NodePath ExitConfirmationDialogPath = null!;
@@ -195,6 +198,9 @@ public class AutoEvoExploringTool : NodeWithInput
     private CustomDropDown speciesListMenu = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private EvolutionaryTree evolutionaryTree = null!;
+
+    // Search window
+    private CustomDialog filterWindow = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -293,6 +299,8 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
+
+        filterWindow = GetNode<CustomDialog>(FilterWindowPath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
@@ -643,6 +651,13 @@ public class AutoEvoExploringTool : NodeWithInput
         generationsPendingToRun = 0;
 
         SetControlButtonsState(RunControlState.Ready);
+    }
+
+    private void OpenFilterWindow()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        filterWindow.PopupCenteredShrink();
     }
 
     private void HistoryListMenuIndexChanged(int index)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
+[ext_resource path="res://src/gui_common/CustomDialog.cs" type="Script" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 
@@ -58,6 +59,7 @@ HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxConta
 SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
 SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
+FilterWindowPath = NodePath("FilterWindow")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
@@ -555,8 +557,8 @@ custom_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 563.0
-margin_bottom = 30.0
+margin_right = 731.0
+margin_bottom = 45.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
@@ -772,6 +774,16 @@ rect_min_size = Vector2( 400, 0 )
 WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
+[node name="FilterWindow" type="Popup" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="FilterWindow"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "TEST"
+
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
@@ -784,6 +796,7 @@ DialogText = "RETURN_TO_MENU_WARNING"
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/FilteringButton" to="." method="OpenFilterWindow"]
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
