@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-10 20:42+0300\n"
+"POT-Creation-Date: 2022-08-14 18:03-0300\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -65,7 +65,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:252
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 msgid "ALL"
 msgstr ""
 
@@ -874,7 +874,7 @@ msgstr "Nitrógeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3985
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:628
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Luz solar"
@@ -882,7 +882,7 @@ msgstr "Luz solar"
 #: ../simulation_parameters/microbe_stage/compounds.json:163
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:617
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr ""
@@ -1073,16 +1073,16 @@ msgstr ""
 msgid "LYSOSOME"
 msgstr "Oxitocina"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:536
+#: ../src/auto-evo/AutoEvoExploringTool.cs:537
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "población:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:708
+#: ../src/auto-evo/AutoEvoExploringTool.cs:709
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:717
+#: ../src/auto-evo/AutoEvoExploringTool.cs:718
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1248,8 +1248,8 @@ msgid "SPECIES_DETAILS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
-#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1052
 #: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1303,7 +1303,7 @@ msgstr "{0} la población a cambiado a {1} debido a: {2}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:80
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
+#: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr ""
 
@@ -1491,7 +1491,7 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr ""
 
@@ -2098,90 +2098,90 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logeado como: {0}"
 
-#: ../src/general/MainMenu.tscn:176
+#: ../src/general/MainMenu.tscn:173
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:179
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Nuevo Juego"
 
-#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Cargar Juego"
 
-#: ../src/general/MainMenu.tscn:201 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:205 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Opciones"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Herramientas"
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:238
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Créditos"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:261
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Salida"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:293
+#: ../src/general/MainMenu.tscn:290
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:374
+#: ../src/general/MainMenu.tscn:371
 #, fuzzy
 msgid "ART_GALLERY"
 msgstr "Fan Arts"
 
-#: ../src/general/MainMenu.tscn:386
+#: ../src/general/MainMenu.tscn:383
 msgid "LICENSES"
 msgstr "Licencias"
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:498
 #, fuzzy
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 advertencia de modo"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Error cargando tus mods"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Un error ha ocurrido mientras cargábamos uno o varios de tus mods. Los logs pueden que contengan información adicional del error."
 
@@ -2335,8 +2335,9 @@ msgid "LIMIT_GROWTH_RATE"
 msgstr "Normal"
 
 #: ../src/general/NewGameSettings.tscn:780
+#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr ""
+msgstr "Normal"
 
 #: ../src/general/NewGameSettings.tscn:816
 msgid "PATCH_MAP_TYPE"
@@ -2834,7 +2835,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
 msgid "STATISTICS"
 msgstr ""
 
@@ -3247,7 +3248,7 @@ msgstr "población:"
 msgid "ARTIST_COLON"
 msgstr "anterior:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:259
 msgid "UNTITLED"
 msgstr ""
 
@@ -3264,22 +3265,22 @@ msgstr ""
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:645
+#: ../src/gui_common/charts/line/LineChart.cs:631
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:649
+#: ../src/gui_common/charts/line/LineChart.cs:635
 msgid "INVALID_DATA_TO_PLOT"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1112
-#: ../src/gui_common/charts/line/LineChart.cs:1204
+#: ../src/gui_common/charts/line/LineChart.cs:1102
+#: ../src/gui_common/charts/line/LineChart.cs:1194
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1118
-#: ../src/gui_common/charts/line/LineChart.cs:1209
+#: ../src/gui_common/charts/line/LineChart.cs:1108
+#: ../src/gui_common/charts/line/LineChart.cs:1199
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -3808,8 +3809,8 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
 #: ../src/microbe_stage/MicrobeStage.tscn:1085
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr ""
@@ -4295,7 +4296,11 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:259
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
+msgid "SPECIES_NAME_TOO_LONG_POPUP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -4344,8 +4349,8 @@ msgid "YEARS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:638
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:672
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
@@ -4380,28 +4385,28 @@ msgstr ""
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:500
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
 msgid "SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:538
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
@@ -4445,7 +4450,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:244
+#: ../src/microbe_stage/editor/TimelineTab.cs:260
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 

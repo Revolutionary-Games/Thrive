@@ -733,6 +733,8 @@ public static class Constants
 
     public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
 
+    public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
+
     /// <summary>
     ///   Scale used for one frame while membrane data is not ready yet
     /// </summary>
