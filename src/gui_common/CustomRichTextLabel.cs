@@ -193,8 +193,8 @@ public class CustomRichTextLabel : RichTextLabel
                 var closingTag = bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture);
 
                 // Not a thrive bbcode, don't parse this
-                if ((!closingTag && !bbcodeNamespace.BeginsWith("thrive")) ||
-                    (closingTag && !bbcodeNamespace.BeginsWith("/thrive")))
+                if ((!closingTag && !bbcodeNamespace.StartsWith("thrive", StringComparison.InvariantCulture)) ||
+                    (closingTag && !bbcodeNamespace.StartsWith("/thrive", StringComparison.InvariantCulture)))
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
