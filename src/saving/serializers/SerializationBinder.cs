@@ -11,7 +11,8 @@ public class SerializationBinder : DefaultSerializationBinder
 {
     private static readonly Type DynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
     private static readonly Type AlwaysDynamicTypeAttribute = typeof(JSONAlwaysDynamicTypeAttribute);
-    private static readonly Type SceneLoadedClassAttribute1 = typeof(SceneLoadedClassAttribute);
+    private static readonly Type SceneLoadedClassAttribute = typeof(SceneLoadedClassAttribute);
+    private static readonly Type CustomizedRegistryTypeAttribute = typeof(CustomizedRegistryTypeAttribute);
 
     public override Type BindToType(string? assemblyName, string typeName)
     {
@@ -22,8 +23,8 @@ public class SerializationBinder : DefaultSerializationBinder
             type = type.GetElementType() ?? throw new Exception("Array type doesn't have element type");
 
         if (type.CustomAttributes.Any(attr => attr.AttributeType == DynamicTypeAllowedAttribute ||
-                attr.AttributeType == AlwaysDynamicTypeAttribute ||
-                attr.AttributeType == SceneLoadedClassAttribute1))
+                attr.AttributeType == AlwaysDynamicTypeAttribute || attr.AttributeType == SceneLoadedClassAttribute ||
+                attr.AttributeType == CustomizedRegistryTypeAttribute))
         {
             // Allowed type
             return originalType;
