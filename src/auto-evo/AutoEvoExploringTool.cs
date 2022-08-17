@@ -623,7 +623,13 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void FlagTreeNodes()
     {
-        flaggingFunction = n => speciesHistoryList[n.Generation][n.SpeciesID].Behaviour.Activity >= 100;
+        var filter = new Filter();
+        filter.GatherFilterArguments();
+
+        var speciesFlaggingFunction = filter.ComputeFilterFunction();
+
+        flaggingFunction = n => speciesFlaggingFunction(speciesHistoryList[n.Generation][n.SpeciesID]);
+        // flaggingFunction = n => speciesHistoryList[n.Generation][n.SpeciesID].Behaviour.Activity >= 100;
         evolutionaryTree.FlagNodes(flaggingFunction);
     }
 
@@ -772,5 +778,62 @@ public class AutoEvoExploringTool : NodeWithInput
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private class Filter
+    {
+        private string filterCategory = "NONE";
+        private List<string> filterArguments = new List<string>();
+
+        private string valueComparisonID = "VALUE_COMPARISON";
+
+        // TODO TEMP
+        public void GatherFilterArguments()
+        {
+            filterCategory = valueComparisonID;
+            filterArguments.Add("ACTIVITY");
+            filterArguments.Add("100");
+            filterArguments.Add("true");
+        }
+
+        public Func<Species, bool> ComputeFilterFunction()
+        {
+            if (filterCategory == valueComparisonID)
+                return new ValueComparisonFilterFunction(filterArguments).ToFunc();
+
+            throw new NotImplementedException();
+        }
+
+        private class ValueComparisonFilterFunction
+        {
+            private static Dictionary<string, Func<Species, float>> valueFromSpeciesDictionary =
+                new Dictionary<string, Func<Species, float>>()
+                {
+                    ["ACTIVITY"] = s => s.Behaviour.Activity,
+                };
+
+            private string valueToCompare;
+            private float thresholdValue;
+            private bool greaterThan;
+            private Func<Species, float> valueFromSpecies;
+
+            public ValueComparisonFilterFunction(List<string> filterArguments)
+            {
+                valueToCompare = filterArguments[0];
+                thresholdValue = float.Parse(filterArguments[1]); // TODO EXCEPTION
+                greaterThan = bool.Parse(filterArguments[2]); // TODO EXCEPTION
+
+                if (!valueFromSpeciesDictionary.TryGetValue(valueToCompare, out valueFromSpecies))
+                    throw new ArgumentException("Incorrect argument for value comparison filtering: " + valueToCompare);
+            }
+
+            public Func<Species, bool> ToFunc()
+            {
+                if (greaterThan)
+                    return s => valueFromSpecies(s) >= thresholdValue;
+
+                return s => valueFromSpecies(s) <= thresholdValue;
+            }
+        }
     }
 }
