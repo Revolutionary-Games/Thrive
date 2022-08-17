@@ -350,7 +350,7 @@ public partial class Microbe
 
         var totalSlimeSecreted = 0.0f;
 
-        // Reset the jet factor before calculating
+        // Reset the jet factor before calculating to prevent accidental build up of speed
         slimeJetFactor = Vector3.Zero;
 
         // Secrete slime and gather overall force from directions determined by equipped jets

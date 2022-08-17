@@ -1100,6 +1100,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         force += Constants.MUCILAGE_JET_FACTOR *
             Math.Max(slimeJetFactor.Dot(MovementDirection), 0) / MassFromOrganelles;
 
+        // Reset the jet factor after moving to prevent us keeping the extra speed
+        slimeJetFactor = Vector3.Zero;
+
         if (IsPlayerMicrobe && CheatManager.Speed > 1)
             force *= Mass * CheatManager.Speed;
 
