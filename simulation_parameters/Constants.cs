@@ -878,6 +878,10 @@ public static class Constants
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
+    public const string FILE_DIALOG_IMAGE_FILTER = "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images"
+    public const string FILE_DIALOG_PCK_FILTER = "*.pck ; PCK Files"
+    public const string FILE_DIALOG_ASSEMBLY_FILTER = "*.dll ; Assembly Files"
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>

@@ -58,15 +58,15 @@ margin_right = 565.0
 margin_bottom = 465.0
 rect_min_size = Vector2( 550, 450 )
 size_flags_horizontal = 3
-scroll_vertical = 993
+scroll_vertical = 100
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomDialog/ScrollContainer"]
-margin_top = -993.0
+margin_top = -100.0
 margin_right = 544.0
-margin_bottom = 724.0
+margin_bottom = 1617.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
@@ -719,9 +719,7 @@ window_title = "Open a File"
 dialog_hide_on_ok = true
 mode = 0
 access = 2
-filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
-current_dir = "/"
-current_path = "/"
+filters = PoolStringArray( "" )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
@@ -741,8 +739,6 @@ dialog_hide_on_ok = true
 mode = 1
 access = 2
 filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
-current_dir = "/"
-current_path = "/"
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
@@ -761,9 +757,7 @@ window_title = "Open a File"
 dialog_hide_on_ok = true
 mode = 0
 access = 2
-filters = PoolStringArray( "*.pck ; Pck Files" )
-current_dir = "/"
-current_path = "/"
+filters = PoolStringArray( "" )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
@@ -782,9 +776,7 @@ window_title = "Open a File"
 dialog_hide_on_ok = true
 mode = 0
 access = 2
-filters = PoolStringArray( "*.dll ; Assembly Files" )
-current_dir = "/"
-current_path = "/"
+filters = PoolStringArray( "" )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"

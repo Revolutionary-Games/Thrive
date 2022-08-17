@@ -164,12 +164,16 @@ public class NewModGUI : Control
 
         iconFileDialog = GetNode<FileDialog>(IconFileDialogPath);
         iconFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        iconFileDialog.AddFilter(Constants.FILE_DIALOG_IMAGE_FILTER);
         pckFileDialog = GetNode<FileDialog>(PckFileDialogPath);
         pckFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        pckFileDialog.AddFilter(Constants.FILE_DIALOG_PCK_FILTER);
         assemblyFileDialog = GetNode<FileDialog>(AssemblyFileDialogPath);
         assemblyFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        assemblyFileDialog.AddFilter(Constants.FILE_DIALOG_ASSEMBLY_FILTER);
         previewFileDialog = GetNode<FileDialog>(PreviewFileDialogPath);
         previewFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        previewFileDialog.AddFilter(Constants.FILE_DIALOG_IMAGE_FILTER);
 
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
     }
