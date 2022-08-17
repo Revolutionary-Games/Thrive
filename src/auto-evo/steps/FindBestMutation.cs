@@ -9,7 +9,7 @@
     /// </summary>
     public class FindBestMutation : VariantTryingStep
     {
-        private readonly AutoEvoConfiguration configuration;
+        private readonly IAutoEvoConfiguration configuration;
         private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
@@ -19,7 +19,7 @@
 
         private readonly Mutations mutations = new();
 
-        public FindBestMutation(AutoEvoConfiguration configuration,
+        public FindBestMutation(IAutoEvoConfiguration configuration,
             WorldGenerationSettings worldSettings, PatchMap map, Species species,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
