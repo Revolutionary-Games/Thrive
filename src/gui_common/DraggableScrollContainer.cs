@@ -82,7 +82,7 @@ public class DraggableScrollContainer : ScrollContainer
     {
         base._Ready();
 
-        ContentPath ??= GetChild(0).GetPath();
+        ContentPath ??= GetChild(2).GetPath();
 
         content = GetNode<Control>(ContentPath);
         tween = new Tween();

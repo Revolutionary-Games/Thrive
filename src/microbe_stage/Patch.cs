@@ -84,6 +84,9 @@ public class Patch
     public IReadOnlyList<PatchSnapshot> History => history;
 
     [JsonIgnore]
+    public PatchSnapshot CurrentSnapshot => currentSnapshot;
+
+    [JsonIgnore]
     public double TimePeriod
     {
         get => currentSnapshot.TimePeriod;
