@@ -509,7 +509,7 @@ public class ModUploader : Control
 
         if (!string.IsNullOrWhiteSpace(editedTags.Text))
         {
-            updateData.Tags = StringUtils.SplitByComma(editedTags.Text)
+            updateData.Tags = StringUtils.SplitByComma(editedTags.Text);
             GD.Print("Setting item tags: ", string.Join(", ", updateData.Tags));
         }
 

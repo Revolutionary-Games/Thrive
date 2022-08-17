@@ -610,9 +610,7 @@ public class ModLoader : Node
             if (type == null)
             {
                 GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
-                    name, className)));
+                modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className)));
                 return false;
             }
 
