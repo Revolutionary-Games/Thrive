@@ -39,6 +39,7 @@ UploadSucceededDialogPath = NodePath("UploadSuccess")
 UploadSucceededTextPath = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
 
 [node name="Dialog" parent="." instance=ExtResource( 2 )]
+visible = true
 margin_right = 580.0
 margin_bottom = 530.0
 WindowTitle = "MOD_UPLOADER"
@@ -63,13 +64,15 @@ margin_bottom = 500.0
 rect_min_size = Vector2( 550, 500 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_vertical = 413
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer"]
-margin_right = 550.0
-margin_bottom = 880.0
+margin_top = -413.0
+margin_right = 544.0
+margin_bottom = 506.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -115,14 +118,14 @@ margin_bottom = 64.0
 alignment = 1
 
 [node name="New" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
-margin_left = 202.0
-margin_right = 341.0
+margin_left = 101.0
+margin_right = 240.0
 margin_bottom = 35.0
 text = "CREATE_NEW"
 
 [node name="Existing" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
-margin_left = 259.0
-margin_right = 458.0
+margin_left = 244.0
+margin_right = 443.0
 margin_bottom = 35.0
 toggle_mode = true
 text = "ENTER_EXISTING_ID"
@@ -160,7 +163,7 @@ text = "APPLY"
 [node name="DetailsEditor" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
 margin_top = 174.0
 margin_right = 544.0
-margin_bottom = 825.0
+margin_bottom = 864.0
 
 [node name="Label" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
 margin_right = 544.0
@@ -279,37 +282,38 @@ margin_bottom = 563.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="Forget" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+margin_top = 567.0
 margin_right = 228.0
-margin_bottom = 35.0
+margin_bottom = 602.0
 hint_tooltip = "FORGET_MOD_DETAILS_TOOLTIP"
 size_flags_horizontal = 0
 text = "FORGET_MOD_DETAILS"
 
 [node name="Label5" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 567.0
+margin_top = 606.0
 margin_right = 544.0
-margin_bottom = 592.0
+margin_bottom = 631.0
 hint_tooltip = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 mouse_filter = 1
 text = "WORKSHOP_ITEM_CHANGE_NOTES"
 
 [node name="ChangeNotes" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 596.0
+margin_top = 635.0
 margin_right = 544.0
-margin_bottom = 651.0
+margin_bottom = 690.0
 rect_min_size = Vector2( 0, 55 )
 hint_tooltip = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 
 [node name="WorkshopNotice" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 829.0
+margin_top = 868.0
 margin_right = 544.0
-margin_bottom = 851.0
+margin_bottom = 890.0
 ExtendedBbcode = "MOD_UPLOADER"
 
 [node name="Error" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
-margin_top = 855.0
+margin_top = 894.0
 margin_right = 544.0
-margin_bottom = 880.0
+margin_bottom = 919.0
 
 [node name="ButtonOverlapPreventer" type="Control" parent="Dialog/VBoxContainer2"]
 margin_top = 504.0
@@ -327,8 +331,6 @@ resizable = true
 mode_overrides_title = false
 mode = 0
 access = 2
-current_dir = "user://"
-current_path = "user://"
 
 [node name="UploadSuccess" parent="." instance=ExtResource( 5 )]
 rect_min_size = Vector2( 450, 50 )
