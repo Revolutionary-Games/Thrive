@@ -51,3 +51,6 @@ text = "APPLY"
 margin_left = 175.0
 margin_right = 175.0
 margin_bottom = 35.0
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ApplyButton" to="." method="OnApplyPressed"]

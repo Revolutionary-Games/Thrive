@@ -113,16 +113,10 @@ public class FilterWindow : CustomDialog
         EmitSignal(nameof(Applied));
     }
 
-    private void onCancelPlaced()
+    private void OnCancelPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
         EmitSignal(nameof(Cancelled));
     }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
