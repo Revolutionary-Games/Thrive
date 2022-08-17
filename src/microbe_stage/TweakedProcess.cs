@@ -19,4 +19,30 @@ public class TweakedProcess : ICloneable
     {
         return new TweakedProcess(Process, Rate);
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj))
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+        if (obj is TweakedProcess casted)
+            return Equals(casted);
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            return (Rate.GetHashCode() * 397) ^ Process.GetHashCode();
+        }
+    }
+
+    private bool Equals(TweakedProcess other)
+    {
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        return Rate == other.Rate && ReferenceEquals(Process, other.Process);
+    }
 }

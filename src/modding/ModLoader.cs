@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Godot;
@@ -446,9 +445,7 @@ public class ModLoader : Node
 
             var tempMod = new FullModDetails(name);
 
-            modErrors.Add((tempMod, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
-                name)));
+            modErrors.Add((tempMod, TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name)));
             return;
         }
 
@@ -471,9 +468,7 @@ public class ModLoader : Node
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION"),
-                    name, e)));
+                modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION").FormatSafe(name, e)));
                 return;
             }
 
@@ -488,9 +483,7 @@ public class ModLoader : Node
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
-            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES"),
-                name)));
+            modErrors.Add((info, TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES").FormatSafe(name)));
         }
     }
 
@@ -502,10 +495,7 @@ public class ModLoader : Node
         {
             GD.PrintErr("Can't unload mod due to failed info reading: ", name);
             var tempMod = new FullModDetails(name);
-
-            modErrors.Add((tempMod, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
-                name)));
+            modErrors.Add((tempMod, TranslationServer.Translate("CANT_LOAD_MOD_INFO").FormatSafe(name)));
             return;
         }
 
@@ -518,17 +508,14 @@ public class ModLoader : Node
                 if (!mod.Unload())
                 {
                     GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
-                    modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED"),
-                        name)));
+                    modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED").FormatSafe(name)));
                 }
             }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
-                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"),
-                    name, e)));
+                modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION")
+                    .FormatSafe(name, e)));
             }
 
             loadedModAssemblies.Remove(name);
@@ -613,9 +600,7 @@ public class ModLoader : Node
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
-                name, className)));
+            modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND").FormatSafe(name, className)));
             return false;
         }
 
@@ -636,9 +621,7 @@ public class ModLoader : Node
             if (!mod.Initialize(modInterface!, info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
-                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED"),
-                    name)));
+                modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED").FormatSafe(name)));
             }
 
             loadedModAssemblies.Add(name, mod);
@@ -652,9 +635,7 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
-            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"),
-                name, e)));
+            modErrors.Add((info, TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION").FormatSafe(name, e)));
         }
 
         return true;
@@ -677,9 +658,7 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", info.InternalName, ") harmony loading failed with an exception: ", e);
-            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION"),
-                info.InternalName, e)));
+            modErrors.Add((info, TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION").FormatSafe(info.InternalName, e)));
         }
     }
 
@@ -700,9 +679,7 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", info.InternalName, ") harmony unload failed with an exception: ", e);
-            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"),
-                info.InternalName, e)));
+            modErrors.Add((info, TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION").FormatSafe(info.InternalName, e)));
         }
     }
 
@@ -714,9 +691,7 @@ public class ModLoader : Node
         {
             GD.PrintErr(".pck loading failed");
             var tempMod = new FullModDetails(Path.GetFileName(path));
-            modErrors.Add((tempMod, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("PCK_LOAD_FAILED"),
-                Path.GetFileName(path))));
+            modErrors.Add((tempMod, TranslationServer.Translate("PCK_LOAD_FAILED").FormatSafe(Path.GetFileName(path))));
         }
     }
 

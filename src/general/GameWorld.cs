@@ -82,6 +82,9 @@ public class GameWorld : ISaveLoadable
     [JsonProperty]
     public Species PlayerSpecies { get; private set; } = null!;
 
+    [JsonIgnore]
+    public IReadOnlyDictionary<uint, Species> Species => worldSpecies;
+
     [JsonProperty]
     public PatchMap Map { get; private set; } = null!;
 
@@ -232,7 +235,6 @@ public class GameWorld : ISaveLoadable
 
         species.OnBecomePartOfWorld(++speciesIdCounter);
         worldSpecies[species.ID] = species;
-        GD.Print("New species has become part of the world: ", species.FormattedIdentifier);
     }
 
     /// <summary>

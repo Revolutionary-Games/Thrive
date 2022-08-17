@@ -105,7 +105,7 @@ public class ProcessSystem
             }
 
             // Take special cell components that take energy into account
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasMovementComponent)
             {
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
@@ -118,7 +118,7 @@ public class ProcessSystem
                 }
             }
 
-            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            if (organelle.Definition.HasCiliaComponent)
             {
                 var amount = Constants.CILIA_ENERGY_COST;
 

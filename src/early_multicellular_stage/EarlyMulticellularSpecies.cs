@@ -33,6 +33,8 @@ public class EarlyMulticellularSpecies : Species
 
     public override void OnEdited()
     {
+        base.OnEdited();
+
         RepositionToOrigin();
         UpdateInitialCompounds();
 

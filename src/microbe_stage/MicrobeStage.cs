@@ -111,12 +111,14 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base._EnterTree();
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void ResolveNodeReferences()
@@ -148,9 +150,17 @@ public class MicrobeStage : StageBase<Microbe>
     public override void OnFinishTransitioning()
     {
         base.OnFinishTransitioning();
-        TutorialState.SendEvent(
-            TutorialEventType.EnteredMicrobeStage,
-            new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+
+        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
+        {
+            TutorialState.SendEvent(
+                TutorialEventType.EnteredMicrobeStage,
+                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+        }
+        else
+        {
+            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
+        }
     }
 
     public override void OnFinishLoading(Save save)
@@ -214,6 +224,12 @@ public class MicrobeStage : StageBase<Microbe>
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
                 new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
+
+            // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
+            // relevant, for example only when in a colony or just leaving a colony should the player colony
+            // info be sent
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
+                new MicrobeColonyEventArgs(Player.Colony), this);
 
             elapsedSinceEntityPositionCheck += delta;
 
@@ -368,12 +384,18 @@ public class MicrobeStage : StageBase<Microbe>
 
             if (microbe == Player)
                 playerHandled = true;
+
+            if (microbe.Species != multicellularSpecies)
+                throw new Exception("Failed to apply multicellular species");
         }
 
         if (!playerHandled)
             throw new Exception("Did not find player to apply multicellular species to");
 
         GameWorld.NotifySpeciesChangedStages();
+
+        // Make sure no queued player species can spawn with the old species
+        spawner.ClearSpawnQueue();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
@@ -675,6 +697,11 @@ public class MicrobeStage : StageBase<Microbe>
 
         // Make the cell despawn like normal
         spawner.AddEntityToTrack(copyEntity);
+    }
+
+    private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
+    {
+        spawner.DespawnAll();
     }
 
     [DeserializedCallbackAllowed]

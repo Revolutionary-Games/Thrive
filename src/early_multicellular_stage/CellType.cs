@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -75,36 +74,14 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     public void ApplySceneParameters(Spatial instancedScene)
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
-
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        var tempSpecies = new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
-        {
-            IsBacteria = false,
-        };
-
-        microbe.ApplySpecies(tempSpecies);
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
+            .ApplySceneParameters(instancedScene);
     }
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
         return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
-    }
-
-    public Dictionary<Compound, float> CalculateTotalComposition()
-    {
-        var result = new Dictionary<Compound, float>();
-
-        foreach (var organelle in Organelles)
-        {
-            result.Merge(organelle.Definition.InitialComposition);
-        }
-
-        return result;
     }
 
     public object Clone()

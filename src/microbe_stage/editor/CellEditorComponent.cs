@@ -417,6 +417,29 @@ public partial class CellEditorComponent :
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
         Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
+    public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
+    {
+        organelleModel.Transform = new Transform(
+            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganelleModelPosition);
+
+        organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+            Constants.DEFAULT_HEX_SIZE);
+    }
+
+    /// <summary>
+    ///   Updates the organelle model displayer to have the specified scene in it
+    /// </summary>
+    public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
+    {
+        organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -1665,6 +1688,7 @@ public partial class CellEditorComponent :
     {
         var islands = editedMicrobeOrganelles.GetIslandHexes();
 
+        // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
             editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, Editor.HexPlacedThisSession(o))), islands,
@@ -1679,9 +1703,6 @@ public partial class CellEditorComponent :
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
-                var pos = Hex.AxialToCartesian(organelle.Position) +
-                    organelle.Definition.CalculateModelOffset();
-
                 if (nextFreeOrganelle >= placedModels.Count)
                 {
                     // New organelle model needed
@@ -1690,11 +1711,7 @@ public partial class CellEditorComponent :
 
                 var organelleModel = placedModels[nextFreeOrganelle++];
 
-                organelleModel.Transform = new Transform(
-                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
-
-                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                    Constants.DEFAULT_HEX_SIZE);
+                UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
@@ -1767,20 +1784,6 @@ public partial class CellEditorComponent :
         }
 
         organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI!, Editor);
-    }
-
-    /// <summary>
-    ///   Updates the organelle model displayer to have the specified scene in it
-    /// </summary>
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
-    {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
-        if (material != null)
-        {
-            material.RenderPriority = renderPriority;
-        }
     }
 
     /// <summary>
@@ -2037,12 +2040,12 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
+        var populationFormat = TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+
         if (!string.IsNullOrEmpty(bestPatchName))
         {
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(bestPatchName),
-                bestPatchPopulation);
+            bestPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
         }
         else
         {
@@ -2051,10 +2054,8 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(worstPatchName),
-                worstPatchPopulation);
+            worstPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
         }
         else
         {

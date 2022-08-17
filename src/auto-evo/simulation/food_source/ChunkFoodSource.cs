@@ -49,21 +49,23 @@
 
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
+            var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
             // Don't penalize species that can't move at full speed all the time as much here
-            var chunkEaterSpeed = Math.Max(microbeSpecies.BaseSpeed + energyBalance.FinalBalance,
-                microbeSpecies.BaseSpeed / 3);
+            var baseSpeed = simulationCache.GetBaseSpeedForSpecies(microbeSpecies);
+            var chunkEaterSpeed = Math.Max(baseSpeed + energyBalance.FinalBalance,
+                baseSpeed / 3);
 
             // We ponder the score for each compound by its amount, leading to pondering in proportion of total
             // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
-            var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key, patch) * c.Value);
+            var score = energyCompounds.Sum(c =>
+                EnergyGenerationScore(microbeSpecies, c.Key, patch, simulationCache) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 
             // If the species can't engulf, then they are dependent on only eating the runoff compounds
             if (microbeSpecies.MembraneType.CellWall ||
-                microbeSpecies.BaseHexSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
+                simulationCache.GetBaseHexSizeForSpecies(microbeSpecies) < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
             {
                 score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
             }

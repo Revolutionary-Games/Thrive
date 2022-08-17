@@ -270,9 +270,22 @@ Code style rules
 - Avoid globals. Especially in object trees where you can easily
   enough pass the reference along.
 
+- Do not use `string.Format` with a translated format string, as
+  translation mistakes can crash the game in that case. Instead either
+  use `LocalizedString`, `LocalizedStringBuilder`, or
+  `StringUtils.FormatSafe`. Those ways will automatically catch
+  exceptions from broken translations and return the format string
+  un-formatted. `StringUtils` will likely want to be invoked as an
+  extension method on the string (`"example".FormatSafe(...)`). If the
+  format string is not user supplied, normal `string.Format` is allowed,
+  but should be passed `CultureInfo.CurrentCulture` as the first
+  parameter as we want text shown to the user in the user's selected
+  locale.
+
 - Prefer `List` and other concrete containers over `IList` and similar
   interfaces. `IList` should be used only in very special cases that
-  require it.
+  require it. In many cases `IEnumerable` is the preferred type to use
+  to not place constraints on other code unnecessarily.
 
 - Methods should not use `=> style` bodies, properties when they are
   short should use that style bodies.
@@ -357,6 +370,9 @@ Godot usage
 - For spacing elements use either a spacer (that has a visual
   appearance) or for invisible space use an empty Control with rect
   `minsize` set to the amount of blank you want.
+
+- Don't use text in the GUI with leading or trailing spaces to add
+  padding, see previous bullet instead.
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
@@ -466,10 +482,7 @@ Godot usage
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
-  ", variable);`
-
-- Don't use text in the GUI with leading or trailing spaces to add
-  padding, see previous bullet instead.
+  ", variable);` Or use string interpolation.
 
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using Godot;
@@ -352,8 +350,7 @@ public class NewModGUI : Control
         }
         catch (JsonSerializationException e)
         {
-            SetError(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD"), e.Message));
+            SetError(TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD").FormatSafe(e.Message));
             return null;
         }
 
@@ -363,8 +360,7 @@ public class NewModGUI : Control
         }
         catch (Exception e)
         {
-            SetError(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED"), e.Message));
+            SetError(TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED").FormatSafe(e.Message));
             return null;
         }
 
@@ -378,8 +374,7 @@ public class NewModGUI : Control
             ClearError();
         }
 
-        errorDisplay.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("FORM_ERROR_MESSAGE"),
-            message);
+        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text;
 using Godot;
 
@@ -225,9 +224,7 @@ public class PatchDetailsPanel : PanelContainer
         name.Text = SelectedPatch!.Name.ToString();
 
         // Biome: {0}
-        biome.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BIOME_LABEL"),
-            SelectedPatch.BiomeTemplate.Name);
+        biome.Text = TranslationServer.Translate("BIOME_LABEL").FormatSafe(SelectedPatch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
         depth.Text = new LocalizedString("BELOW_SEA_LEVEL", SelectedPatch.Depth[0], SelectedPatch.Depth[1]).ToString();
@@ -238,37 +235,36 @@ public class PatchDetailsPanel : PanelContainer
 
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        temperatureLabel.Text = string.Format(CultureInfo.CurrentCulture, unitFormat,
-            SelectedPatch.Biome.Compounds[temperature].Ambient, temperature.Unit);
-        pressure.Text = "20 bar";
-        light.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName)) + " lx";
-        oxygen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
-        nitrogen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName));
-        co2.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName));
+        temperatureLabel.Text =
+            unitFormat.FormatSafe(SelectedPatch.Biome.Compounds[temperature].Ambient, temperature.Unit);
+        pressure.Text = unitFormat.FormatSafe(20, "bar");
+        light.Text =
+            unitFormat.FormatSafe(
+                percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName)), "lx");
+        oxygen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
+        nitrogen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName));
+        co2.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName));
 
         // Compounds
-        hydrogenSulfide.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3));
-        ammonia.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3));
-        glucose.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3));
-        phosphate.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3));
-        iron.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(SelectedPatch, ironCompound.InternalName));
+        hydrogenSulfide.Text =
+            percentageFormat.FormatSafe(
+                Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3));
+        ammonia.Text =
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3));
+        glucose.Text =
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3));
+        phosphate.Text =
+            percentageFormat.FormatSafe(
+                Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3));
+        iron.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, ironCompound.InternalName));
 
         var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
         var speciesList = new StringBuilder(100);
 
         foreach (var species in SelectedPatch.SpeciesInPatch.Keys)
         {
-            speciesList.AppendLine(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                "SPECIES_WITH_POPULATION"), species.FormattedNameBbCode, SelectedPatch.GetSpeciesPopulation(species)));
+            speciesList.AppendLine(TranslationServer.Translate("SPECIES_WITH_POPULATION").FormatSafe(
+                species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));
         }
 
         label.ExtendedBbcode = speciesList.ToString();
