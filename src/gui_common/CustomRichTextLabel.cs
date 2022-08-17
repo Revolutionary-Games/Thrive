@@ -190,8 +190,11 @@ public class CustomRichTextLabel : RichTextLabel
                 // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
+                var closingTag = bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture);
+
                 // Not a thrive bbcode, don't parse this
-                if (!bbcodeNamespace.BeginsWith("thrive"))
+                if ((!closingTag && !bbcodeNamespace.BeginsWith("thrive")) ||
+                    (closingTag && !bbcodeNamespace.BeginsWith("/thrive")))
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
@@ -203,8 +206,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 // Tag seems okay, next step is to try parse the content and the closing tag
 
-                // Is a closing tag
-                if (bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture))
+                if (closingTag)
                 {
                     if (tagStack.Count < 1)
                     {
@@ -446,13 +448,13 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     private void ParseCustomTags()
     {
-        var translated = TranslationServer.Translate(extendedBbcode);
-
-        if (translated == null)
+        if (extendedBbcode == null)
         {
             BbcodeText = null;
             return;
         }
+
+        var translated = TranslationServer.Translate(extendedBbcode);
 
         try
         {
