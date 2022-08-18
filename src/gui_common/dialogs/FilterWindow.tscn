@@ -17,15 +17,15 @@ margin_bottom = 40.0
 margin_right = 175.0
 margin_bottom = 25.0
 
-[node name="FilterList" type="PanelContainer" parent="VBoxContainer"]
+[node name="FiltersContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 29.0
 margin_right = 175.0
-margin_bottom = 31.0
+margin_bottom = 29.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 35.0
+margin_top = 33.0
 margin_right = 175.0
-margin_bottom = 70.0
+margin_bottom = 68.0
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_bottom = 35.0

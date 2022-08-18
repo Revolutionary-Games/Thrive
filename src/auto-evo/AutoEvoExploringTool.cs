@@ -670,6 +670,8 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        filterWindow.Initialize(new Dictionary<string, int>() { ["COMPARE_VALUE"] = 3 });
+
         filterWindow.PopupCenteredShrink();
     }
 
@@ -816,6 +818,8 @@ public class AutoEvoExploringTool : NodeWithInput
             private float thresholdValue;
             private bool greaterThan;
             private Func<Species, float> valueFromSpecies;
+
+            public List<string> PossibleValues => valueFromSpeciesDictionary.Keys.ToList();
 
             public ValueComparisonFilterFunction(List<string> filterArguments)
             {
