@@ -31,7 +31,7 @@ public class DraggableScrollContainer : ScrollContainer
     private Control content = null!;
     private Tween tween = null!;
 
-    private bool showScrollbars = true;
+    private bool showScrollbars = false;
     private float contentScale = 1;
 
     private Action? onPanned;
