@@ -107,7 +107,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         }
     }
 
-    [RunOnKeyDown("g_pause")]
+    // TODO: different pause key as space will be for jumping
+    // [RunOnKeyDown("g_pause")]
     public void PauseKeyPressed()
     {
         // Check nothing else has keyboard focus and pause the game
@@ -189,9 +190,16 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         //     spawner.Init();
 
         // TODO: implement
-        // If this is a new game, start the camera in top down view as a learning tool
         if (!IsLoadedFromSave)
         {
+            // If this is a new game (first time entering the stage), start the camera in top down view
+            // as a learning tool
+            if (!CurrentGame!.IsBoolSet("played_multicellular"))
+            {
+                CurrentGame.SetBool("played_multicellular", true);
+
+                // TODO: change the view
+            }
         }
 
         // patchManager.CurrentGame = CurrentGame;

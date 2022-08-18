@@ -10,7 +10,10 @@ using Newtonsoft.Json;
 public class MulticellularHUD : StageHUDBase<MulticellularStage>
 {
     [Export]
-    public NodePath PrototypeInfoPopupPath = null!;
+    public NodePath MoveToLandPopupPath = null!;
+
+    [Export]
+    public NodePath ToLandButtonPath = null!;
 
     [Export]
     public NodePath AwareButtonPath = null!;
@@ -18,7 +21,8 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Export]
     public NodePath AwakenButtonPath = null!;
 
-    private CustomDialog prototypeInfoPopup = null!;
+    private CustomDialog moveToLandPopup = null!;
+    private Button toLandButton = null!;
     private Button awareButton = null!;
     private Button awakenButton = null!;
 
@@ -35,12 +39,13 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     {
         base._Ready();
 
-        prototypeInfoPopup = GetNode<CustomDialog>(PrototypeInfoPopupPath);
+        moveToLandPopup = GetNode<CustomDialog>(MoveToLandPopupPath);
+        toLandButton = GetNode<Button>(ToLandButtonPath);
         awareButton = GetNode<Button>(AwareButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
 
-        // TODO: remove this once gameplay is added
-        prototypeInfoPopup.PopupCenteredShrink();
+        // TODO: implement this button
+        toLandButton.Disabled = true;
     }
 
     public override void _Process(float delta)
