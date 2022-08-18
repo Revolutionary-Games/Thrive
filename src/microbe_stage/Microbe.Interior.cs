@@ -18,6 +18,7 @@ public partial class Microbe
     private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
 
     private Compound atp = null!;
+    private Compound glucose = null!;
 
     private Enzyme lipase = null!;
 
@@ -607,6 +608,10 @@ public partial class Microbe
                 result[entry.Key] = existing + entry.Value;
             }
         }
+
+        // Give a bonus glucose amount at third the capacity of our compounds bag
+        result.TryGetValue(glucose, out float existingGlucose);
+        result[glucose] = existingGlucose + Compounds.Capacity / 3;
 
         return result;
     }
