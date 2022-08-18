@@ -1,6 +1,6 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 
 public class FilterWindow : CustomDialog
 {
@@ -13,8 +13,6 @@ public class FilterWindow : CustomDialog
     public NodePath ApplyButtonPath = "VBoxContainer/HBoxContainer/ApplyButton";
     public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";
     public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
-
-    private const float FILTER_NODE_SEPARATION = 100.0f;
 
     private Dictionary<string, int> filterOptions = null!;
 
@@ -123,7 +121,6 @@ public class FilterWindow : CustomDialog
         filtersContainer.FreeChildren(true);
     }
 
-    // TODO ARITY
     public void SetupFilter(Dictionary<string, int> filterOptionsWithArity, string defaultText = "--")
     {
         filterOptions = filterOptionsWithArity;
@@ -133,7 +130,7 @@ public class FilterWindow : CustomDialog
 
         var filterContainer = new HBoxContainer();
 
-        var filter = new CustomDropDown(); // filterScene.Instance<FilterNode>();
+        var filter = new CustomDropDown();
         filter.Text = defaultText;
 
         foreach (var option in filterOptionsWithArity.Keys)
@@ -158,9 +155,8 @@ public class FilterWindow : CustomDialog
 
         var filterCategoryButton = filterContainer.GetChild<CustomDropDown>(0);
 
-        // TODO set right exception
         if (filterCategoryButton == null)
-            throw new Exception();
+            throw new InvalidCastException("First child of container was not a CustomDropDown node!");
 
         var filterCategory = filterCategoryButton.Popup.GetItemText(index);
         filterCategoryButton.Text = filterCategory;
@@ -174,16 +170,7 @@ public class FilterWindow : CustomDialog
     {
         var filter = filtersContainer.GetChild(filterIndex);
 
-        // Remove all arguments, i.e. all children but the first one
-        // TODO own function
-        for (var i = 1; i < filter.GetChildCount(); i++)
-        {
-            var nodeToRemove = filter.GetChild(i);
-            filter.RemoveChild(nodeToRemove);
-
-            // We free for memory, but keeping could allow to save options...
-            nodeToRemove.Free();
-        }
+        ClearFilterArguments(filter);
 
         for (var i = 0; i < filterOptions[filterCategory]; i++)
         {
@@ -191,6 +178,23 @@ public class FilterWindow : CustomDialog
             filterArgument.Text = "??";
 
             filter.AddChild(filterArgument);
+        }
+
+        dirty = true;
+    }
+
+    /// <summary>
+    ///   Removes all arguments from a filter, but keeps the category.
+    /// </summary>
+    private void ClearFilterArguments(Node filter)
+    {
+        for (var i = 1; i < filter.GetChildCount(); i++)
+        {
+            var nodeToRemove = filter.GetChild(i);
+            filter.RemoveChild(nodeToRemove);
+
+            // We free for memory, but keeping could allow to save options...
+            nodeToRemove.Free();
         }
 
         dirty = true;
