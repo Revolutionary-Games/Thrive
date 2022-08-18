@@ -659,6 +659,7 @@ public class MicrobeStage : StageBase<Microbe>
     private void UpdateDayLightEffects()
     {
         // need to have this look at Biome type instead
+        // TODO: Consider the fact that in places with 0 sunlight this code does nothing anyway, so is the if needed?
         if (CurrentPatchName.ToString().Contains("Coastal") || CurrentPatchName.ToString().Contains("Estuary") ||
             CurrentPatchName.ToString().Contains("Tidepool") || CurrentPatchName.ToString().Contains("Epipelagic") ||
             CurrentPatchName.ToString().Contains("IceShelf"))

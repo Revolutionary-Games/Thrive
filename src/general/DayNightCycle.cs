@@ -27,7 +27,6 @@ public class DayNightCycle : Godot.Node
     ///   This is how long it takes to complete a full day in realtime seconds
     /// </summary>
     private float realTimePerDay = 120;
-    private float minLightPercentage = 0.1f; // For realism this should be removed.
     private int daytimeLeangthFactor = 3;
     private DayNightCycle()
     {
@@ -48,12 +47,12 @@ public class DayNightCycle : Godot.Node
 
     /// <summary>
     ///   The percentage of daylight you should get.
-    ///   light = min(-abs(PercentOfDayElapsed*12-6)+daytimeLeangthFactor, 1)
-    ///   desmos: https://www.desmos.com/calculator/iidhrbrpe2
+    ///   light = max(min(-abs(PercentOfDayElapsed*12-6)+daytimeLeangthFactor, 1), 0)
+    ///   desmos: https://www.desmos.com/calculator/vld26mqjr5
     /// </summary>
     public float DayLightPercentage
     {
-        get { return Math.Min(Math.Max(-Math.Abs(PercentOfDayElapsed * 12 - 6) + daytimeLeangthFactor, minLightPercentage), 1); }
+        get { return Math.Max(Math.Min(-Math.Abs(PercentOfDayElapsed * 12 - 6) + daytimeLeangthFactor, 1), 0); }
     }
 
     public override void _Process(float delta)
