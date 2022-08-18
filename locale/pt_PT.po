@@ -21,78 +21,63 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Fácil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Difícil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Personalizadas"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Arte conceitual"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
-"\n"
-"A vida.\n"
-"\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
-"\n"
-"Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
+msgstr "Fase Microbial"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Colocar organelo"
+msgstr "Fase multicelular"
 
 #: ../simulation_parameters/common/gallery.json:81
-#, fuzzy
 msgid "GENERAL"
-msgstr "Geração:"
+msgstr "Geral"
 
 #: ../simulation_parameters/common/gallery.json:133
-#, fuzzy
 msgid "MODELS"
-msgstr "Godmode"
+msgstr "Modelos"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Música"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Tudo"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "A carregar o Editor de Micróbio"
+msgstr "Editor de Microrganismos"
 
 #: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "A carregar o Editor de Micróbio"
+msgstr "Editor de multicelulas"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -115,22 +100,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Também podes engolfar células, bactérias, pedaços de ferro e pedaços de células menores do que tu pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isto custará [thrive:compound type=\"atp\"][/thrive:compound] adicional e abrandar-te-á. Não te esqueças de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Estruturas Procariotas\n"
-"\n"
-"Metabolossomas: Produz [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Proteínas Quimiossintetizantes: Produz metade da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que um quimioplasto produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
-"\n"
-"Tilacoides: Produz 1/3 da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] que um cloroplasto normal produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
-"\n"
-"Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Converte nitrogénio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
-"\n"
-"Citoplasma: Tem capacidade de armazenamento e realiza glicólise (Produz pequenas quatidades de [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Quando o engolfo terminar, quaisquer objetos presos no engolfo serão mantidos dentro da membrana para serem digeridos. Objetos indigestos serão sempre expulsos, portanto, certifica-te de teres as mutações necessárias que permitam processá-los primeiro. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolui esta organela para tornar a digestão muito mais eficiente."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
@@ -5504,14 +5475,13 @@ msgstr ""
 "Seleciona uma região para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Este é o editor de células onde podes adicionar ou remover organelos da tua espécie gastando pontos de mutação (PM).\n"
+"Este é o editor de células onde podes adicionar ou remover organelos da tua espécie gastando pontos de mutação (PM). Cada geração terá sempre 100 PM para gastar, então não te preocupes em economizar!\n"
 "\n"
-"Também podes alterar outras propriedades da tua espécie nas outras guias do editor de células.\n"
+"O hexágono no centro do ecrã é a tua célula, que é composta por um unidade de citoplasma.\n"
 "\n"
-"Para continuar, seleciona uma organela no painel à esquerda (citoplasma é uma boa escolha). Em seguida, clica com o botão esquerdo ao lado do hexágono mostrado no meio da tela para adicionar essa organela à sua espécie."
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Consegues rotacionar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 #, fuzzy

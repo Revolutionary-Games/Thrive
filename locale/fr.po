@@ -36,38 +36,27 @@ msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Personnalisé"
 
 #: ../simulation_parameters/common/gallery.json:3
-#, fuzzy
 msgid "CONCEPT_ART"
-msgstr "Concept artistique"
+msgstr "Art conceptuel"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
-"\n"
-"La vie.\n"
-"\n"
-"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
-"\n"
-"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+msgstr "Stade microbien"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
+msgstr "Stade multicellulaire"
 
 #: ../simulation_parameters/common/gallery.json:81
 msgid "GENERAL"
 msgstr "Général"
 
 #: ../simulation_parameters/common/gallery.json:133
-#, fuzzy
 msgid "MODELS"
-msgstr "Mode Tout-Puissant"
+msgstr "Modèles"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
@@ -80,19 +69,16 @@ msgid "ALL"
 msgstr "Alt"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Chargement de l'Éditeur de Microbes"
+msgstr "Éditeur de microbes"
 
 #: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Chargement de l'Éditeur de Microbes"
+msgstr "Éditeur multicellulaire"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -115,27 +101,12 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de fer, ainsi que des morceaux de cellules qui sont plus petit que vous en pressant [thrive:input]g_toggle_engulf[/thrive:input]. Cela vous coûtera plus d'[thrive:compound type=\"atp\"][/thrive:compound] et vous ralentira. N'oubliez pas de presser [thrive:input]g_toggle_engulf[/thrive:input] une seconde fois pour arrêter d'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Structures procaryotes\n"
-"\n"
-"Métabolosomes : produisent de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Protéines chimiosyntétisantes : produisent à demi-efficacité du chimioplaste du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"hydrogensulfide\"], mais réalisent aussi la glycolyse, et occupent un hexagone\n"
-"\n"
-"Thylacoïdes : produisent à un tiers de l'efficacité de [thrive:compound type=\"glucose\"][/thrive:compound] par rapport à un chloroplaste normal, mais réalisent aussi la glycolyse, et occupent un hexagone.\n"
-"\n"
-"Rusticyanine : convertit le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogénèse : convertit l'azote environnant et l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] en anaérobie\n"
-"\n"
-"Cytoplasme : offre un espace de stockage et réalise la glycolyse (qui produit une faible quantité d'[thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Une fois complètement engloutis, les objets seront maintenus dans la membrane pour être digérés. Ceux qui ne peuvent pas l'être seront automatiquement éjectés, alors vérifiez au préalable que vous avez les mutations qui permettent de les digérer. Les enzymes vous aideront pour la digestion. Elles sont produites par le lysosome ; évoluez cette organite pour rendre la digestion bien plus efficace."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Utilisez [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et la souris pour vous déplacer. Appuyez sur [thrive:input]g_fire_toxin[/thrive:input] pour tirer des [thrive:compound type=\"oxytoxy\"][/thrive:compound] si vous avez une vacuole à toxines, et [thrive:input]g_toggle_engulf[/thrive:input] pour passer en mode absorption."
+msgstr "Cependant, les lysosomes sont exclusifs aux eucaryotes. Les procaryotes n'ont pas de telles organites et digèrent leur nourriture sans grande efficacité. Cela est viable pour de petites cellules, mais ne pas avoir de lysosomes est très désavantageux."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
@@ -216,11 +187,13 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organites externes\n"
 "\n"
-"Flagelle: déplace votre cellule plus vite en consommant de l'ATP\n"
+"Flagelle : déplace votre cellule plus vite en consommant de l'[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Pilus: peut être utilisé pour perforer d'autres cellules\n"
+"Pilus : peut être utilisé pour perforer d'autres cellules, ou se défendre contre leurs toxines\n"
 "\n"
-"Chémorécepteur: permet de détecter les composés depuis une plus grande distance"
+"Chémorécepteur : permet de détecter les composés depuis une plus grande distance\n"
+"\n"
+"Cil : augmente la vitesse de rotation des cellules"
 
 #: ../simulation_parameters/common/help_texts.json:82
 #, fuzzy
@@ -260,9 +233,8 @@ msgid "LOADING_TIP"
 msgstr "Appuyez sur le bouton Revenir en Arrière dans l'éditeur pour corriger une erreur"
 
 #: ../simulation_parameters/common/help_texts.json:145
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Anecdote : les Didiniums et les Paramécies sont des cas d'école de la relation proie/prédateur qui a été étudiée pendant des décennies. Et vous, êtes-vous un Didinium, ou un Paramécie ? Un prédateur, ou bien une proie ?"
+msgstr "Anecdote : les Didiniums et les Paramécies sont des cas d'école de la relation proie/prédateur qui a été étudiée pendant des décennies. Et vous, êtes-vous un Didinium, ou un Paramécie ? Un prédateur, ou bien une proie ?"
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
@@ -410,9 +382,8 @@ msgid "TOGGLE_ENGULF"
 msgstr "Activer/désactiver Engloutir"
 
 #: ../simulation_parameters/common/input_options.json:48
-#, fuzzy
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr "Maintenir pour faire apparaitre le menu des commandes de paquet"
+msgstr "Maintenir pour faire apparaitre le menu des commandes de meute"
 
 #: ../simulation_parameters/common/input_options.json:52
 #: ../src/microbe_stage/MicrobeStage.tscn:1986
@@ -507,9 +478,8 @@ msgid "MOVE_ORGANELLE"
 msgstr "Déplacer organite"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Mouvement"
+msgstr "Mouvement tridimensionnel"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
@@ -520,9 +490,8 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Reculer ou s'accroupir"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Éditeur"
+msgstr "Éditeur tridimensionnel"
 
 #: ../simulation_parameters/common/input_options.json:175
 #, fuzzy
