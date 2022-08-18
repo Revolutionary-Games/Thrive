@@ -202,6 +202,7 @@ public class AutoEvoExploringTool : NodeWithInput
     // Search window
     private FilterWindow filterWindow = null!;
     private Func<EvolutionaryTreeNode, bool> flaggingFunction = n => n.LastGeneration;
+    private Filter speciesFilter = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -304,6 +305,9 @@ public class AutoEvoExploringTool : NodeWithInput
         filterWindow = GetNode<FilterWindow>(FilterWindowPath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
+
+        // Filter
+        SetupFilter();
 
         // Init game
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
@@ -621,10 +625,35 @@ public class AutoEvoExploringTool : NodeWithInput
         currentGenerationLabel.Text = currentGeneration.ToString();
     }
 
+    private void SetupFilter()
+    {
+        speciesFilter = new Filter();
+
+        var valueFromSpecies = new Dictionary<string, Func<Species, float>>()
+        {
+            ["ACTIVITY"] = s => s.Behaviour.Activity,
+            ["FEAR"] = s => s.Behaviour.Activity,
+        };
+
+        Func<List<Filter.FilterArgument>, Func<Species, bool>> valueComparisonFunction =
+            l => l[1].GetStringValue() == "GREATER_THAN" ?
+                s => valueFromSpecies[l[0].GetStringValue()](s) >= l[2].GetNumberValue() :
+                s => valueFromSpecies[l[0].GetStringValue()](s) <= l[2].GetNumberValue();
+
+        var valueComparisonArguments = new List<Filter.FilterArgument>()
+            {
+                new Filter.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList(), "--"),
+                new Filter.MultipleChoiceFilterArgument(new List<string>() { "GREATER_THAN", "SMALLER_THAN" }, "--"),
+                new Filter.NumberFilterArgument(0, 500, 100),
+            };
+        var valueComparisonFilter = new Filter.FilterItem(valueComparisonFunction, valueComparisonArguments);
+
+        speciesFilter.AddFilterItem("VALUE_COMPARISON", valueComparisonFilter);
+    }
+
     private void FlagTreeNodes()
     {
         var filter = new Filter();
-        filter.GatherFilterArguments();
 
         var speciesFlaggingFunction = filter.ComputeFilterFunction();
 
@@ -670,7 +699,7 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        filterWindow.Initialize(new Dictionary<string, int>() { ["COMPARE_VALUE"] = 3 });
+        filterWindow.Initialize(speciesFilter);
 
         filterWindow.PopupCenteredShrink();
     }
@@ -782,62 +811,125 @@ public class AutoEvoExploringTool : NodeWithInput
         }, false);
     }
 
-    private class Filter
+    // TODO GENERIC
+    // TODO MOVE OWN CLASS
+    public class Filter
     {
         private string filterCategory = "NONE";
-        private List<string> filterArguments = new List<string>();
 
-        private string valueComparisonID = "VALUE_COMPARISON";
+        private Dictionary<string, FilterItem> filterItems = new Dictionary<string, FilterItem>();
 
-        // TODO TEMP
-        public void GatherFilterArguments()
+        public IEnumerable<string> FilterItemsNames => filterItems.Keys;
+
+        //TODO TEMp
+        public Dictionary<string, FilterItem> FilterItems => filterItems;
+
+        public void AddFilterItem(string category, FilterItem item)
         {
-            filterCategory = valueComparisonID;
-            filterArguments.Add("ACTIVITY");
-            filterArguments.Add("100");
-            filterArguments.Add("true");
+            filterItems.Add(category, item);
+        }
+
+        public void ClearItems()
+        {
+            filterItems.Clear();
         }
 
         public Func<Species, bool> ComputeFilterFunction()
         {
-            if (filterCategory == valueComparisonID)
-                return new ValueComparisonFilterFunction(filterArguments).ToFunc();
+            // TODO EXCEPTION
+            if (!filterItems.TryGetValue(filterCategory, out var filterItem))
+                throw new Exception();
 
-            throw new NotImplementedException();
+            return filterItem.ToFunction();
         }
 
-        private class ValueComparisonFilterFunction
+        public class FilterItem
         {
-            private static Dictionary<string, Func<Species, float>> valueFromSpeciesDictionary =
-                new Dictionary<string, Func<Species, float>>()
+            public Func<List<FilterArgument>, Func<Species, bool>> FilterFunction;
+            public List<FilterArgument> FilterArguments;
+
+            public FilterItem(Func<List<FilterArgument>, Func<Species, bool>> filterFunction,
+                List<FilterArgument> filterArguments)
+            {
+                FilterFunction = filterFunction;
+                FilterArguments = filterArguments;
+            }
+
+            public Func<Species, bool> ToFunction()
+            {
+                return FilterFunction(FilterArguments);
+            }
+        }
+
+        /// <summary>
+        ///   Parent class for filters arguments
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Used to list arguments of different types. Not generic because dictionaries require non-generic types.
+        ///   </para>
+        /// </remarks>
+        public abstract class FilterArgument
+        { 
+            /// <summary>
+            ///   Helper function to get Number from NumberFilterArgument without cast.
+            /// </summary>
+            public float GetNumberValue()
+            {
+                try
                 {
-                    ["ACTIVITY"] = s => s.Behaviour.Activity,
-                };
-
-            private string valueToCompare;
-            private float thresholdValue;
-            private bool greaterThan;
-            private Func<Species, float> valueFromSpecies;
-
-            public List<string> PossibleValues => valueFromSpeciesDictionary.Keys.ToList();
-
-            public ValueComparisonFilterFunction(List<string> filterArguments)
-            {
-                valueToCompare = filterArguments[0];
-                thresholdValue = float.Parse(filterArguments[1]); // TODO EXCEPTION
-                greaterThan = bool.Parse(filterArguments[2]); // TODO EXCEPTION
-
-                if (!valueFromSpeciesDictionary.TryGetValue(valueToCompare, out valueFromSpecies))
-                    throw new ArgumentException("Incorrect argument for value comparison filtering: " + valueToCompare);
+                    return (this as NumberFilterArgument)!.Value;
+                }
+                catch (NullReferenceException)
+                {
+                    //TODO
+                    throw new Exception();
+                }
             }
 
-            public Func<Species, bool> ToFunc()
+            public string GetStringValue()
             {
-                if (greaterThan)
-                    return s => valueFromSpecies(s) >= thresholdValue;
-
-                return s => valueFromSpecies(s) <= thresholdValue;
+                try
+                {
+                    return (this as MultipleChoiceFilterArgument)!.Value;
+                }
+                catch (NullReferenceException)
+                {
+                    //TODO
+                    throw new Exception();
+                }
             }
+        }
+
+        public class NumberFilterArgument : FilterArgument
+        {
+            public readonly float MinValue;
+            public readonly float MaxValue;
+
+            private float value;
+
+            public NumberFilterArgument(float minValue, float maxValue, float defaultValue)
+            {
+                MinValue = minValue;
+                MaxValue = maxValue;
+                value = defaultValue;
+            }
+
+            public float Value => value;
+        }
+
+        public class MultipleChoiceFilterArgument : FilterArgument
+        {
+            public readonly List<string> Options;
+            private string value;
+
+            public MultipleChoiceFilterArgument(List<string> options, string defaultValue)
+            {
+                Options = options;
+                value = defaultValue;
+            }
+
+            public string Value => value;
         }
     }
 }

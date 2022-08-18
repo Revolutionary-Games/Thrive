@@ -14,7 +14,7 @@ public class FilterWindow : CustomDialog
     public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";
     public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
 
-    private Dictionary<string, int> filterOptions = null!;
+    private Dictionary<string, AutoEvoExploringTool.Filter.FilterItem> filterOptions = null!;
 
     /// <summary>
     ///   If redraw is needed.
@@ -110,10 +110,10 @@ public class FilterWindow : CustomDialog
         dirty = false;
     }
 
-    public void Initialize(Dictionary<string, int> filterOptionsWithArity, string defaultText = "--")
+    public void Initialize(AutoEvoExploringTool.Filter filter, string defaultText = "--")
     {
         ClearFilters();
-        SetupFilter(filterOptionsWithArity, defaultText);
+        SetupFilter(filter, defaultText);
     }
 
     public void ClearFilters()
@@ -121,27 +121,27 @@ public class FilterWindow : CustomDialog
         filtersContainer.FreeChildren(true);
     }
 
-    public void SetupFilter(Dictionary<string, int> filterOptionsWithArity, string defaultText = "--")
+    public void SetupFilter(AutoEvoExploringTool.Filter filter, string defaultText = "--")
     {
-        filterOptions = filterOptionsWithArity;
+        filterOptions = filter.FilterItems;
 
         if (filtersContainer == null)
             throw new SceneTreeAttachRequired();
 
         var filterContainer = new HBoxContainer();
 
-        var filter = new CustomDropDown();
-        filter.Text = defaultText;
+        var filterButton = new CustomDropDown();
+        filterButton.Text = defaultText;
 
-        foreach (var option in filterOptionsWithArity.Keys)
+        foreach (var option in filter.FilterItemsNames)
         {
-            filter.AddItem(option, false, Colors.White);
+            filterButton.AddItem(option, false, Colors.White);
         }
 
-        filter.CreateElements();
-        filter.Popup.Connect("index_pressed", this, nameof(OnNewFilterCategorySelected));
+        filterButton.CreateElements();
+        filterButton.Popup.Connect("index_pressed", this, nameof(OnNewFilterCategorySelected));
 
-        filterContainer.AddChild(filter);
+        filterContainer.AddChild(filterButton);
         filtersContainer.AddChild(filterContainer);
 
         dirty = true;
@@ -172,12 +172,28 @@ public class FilterWindow : CustomDialog
 
         ClearFilterArguments(filter);
 
-        for (var i = 0; i < filterOptions[filterCategory]; i++)
+        for (var i = 0; i < filterOptions[filterCategory].FilterArguments.Count; i++)
         {
-            var filterArgument = new CustomDropDown();
-            filterArgument.Text = "??";
+            var filterArgument = filterOptions[filterCategory].FilterArguments[i];
 
-            filter.AddChild(filterArgument);
+            if (filterArgument is AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument)
+            {
+                var filterArgumentButton = new CustomDropDown();
+                filterArgumentButton.Text = filterArgument.GetStringValue();
+                filter.AddChild(filterArgumentButton);
+            }
+            else if (filterArgument is AutoEvoExploringTool.Filter.NumberFilterArgument)
+            {
+                var filterArgumentButton = new CustomDropDown();
+
+                // TODO
+                filterArgumentButton.Text = "TODO";
+                filter.AddChild(filterArgumentButton);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         dirty = true;
