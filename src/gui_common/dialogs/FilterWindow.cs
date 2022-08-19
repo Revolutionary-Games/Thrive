@@ -14,7 +14,7 @@ public class FilterWindow : CustomDialog
     public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";
     public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
 
-    private Dictionary<string, AutoEvoExploringTool.Filter.FilterItem> filterOptions = null!;
+    private List<AutoEvoExploringTool.Filter> filters = new List<AutoEvoExploringTool.Filter>();
 
     /// <summary>
     ///   If redraw is needed.
@@ -105,6 +105,7 @@ public class FilterWindow : CustomDialog
         if (dirty)
         {
             filtersContainer.Update();
+            Update();
         }
 
         dirty = false;
@@ -118,12 +119,13 @@ public class FilterWindow : CustomDialog
 
     public void ClearFilters()
     {
+        filters.Clear();
         filtersContainer.FreeChildren(true);
     }
 
     public void SetupFilter(AutoEvoExploringTool.Filter filter, string defaultText = "--")
     {
-        filterOptions = filter.FilterItems;
+        filters.Add(filter);
 
         if (filtersContainer == null)
             throw new SceneTreeAttachRequired();
@@ -168,13 +170,23 @@ public class FilterWindow : CustomDialog
 
     private void UpdateFilterArguments(int filterIndex, string filterCategory)
     {
-        var filter = filtersContainer.GetChild(filterIndex);
+        var filter = filters[filterIndex];
 
-        ClearFilterArguments(filter);
+        if (filter == null)
+            throw new ArgumentOutOfRangeException($"No filter at index {filterIndex}");
 
-        for (var i = 0; i < filterOptions[filterCategory].FilterArguments.Count; i++)
+        var filterNode = filtersContainer.GetChild(filterIndex);
+
+        //TODO EXCEPTIONS
+
+        ClearFilterArguments(filterNode);
+
+        var filterArguments = filter.FilterItems[filterCategory].FilterArguments;
+
+        for (var i = 0; i < filterArguments.Count; i++)
         {
-            var filterArgument = filterOptions[filterCategory].FilterArguments[i];
+            // We do not use foreach to keep i;
+            var filterArgument = filterArguments[i];
 
             if (filterArgument is AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument)
             {
@@ -191,7 +203,7 @@ public class FilterWindow : CustomDialog
 
                 filterArgumentButton.CreateElements();
 
-                filter.AddChild(filterArgumentButton);
+                filterNode.AddChild(filterArgumentButton);
             }
             else if (filterArgument is AutoEvoExploringTool.Filter.NumberFilterArgument)
             {
@@ -199,7 +211,7 @@ public class FilterWindow : CustomDialog
 
                 // TODO
                 filterArgumentButton.Text = "TODO";
-                filter.AddChild(filterArgumentButton);
+                filterNode.AddChild(filterArgumentButton);
             }
             else
             {
@@ -213,12 +225,12 @@ public class FilterWindow : CustomDialog
     /// <summary>
     ///   Removes all arguments from a filter, but keeps the category.
     /// </summary>
-    private void ClearFilterArguments(Node filter)
+    private void ClearFilterArguments(Node filterNode)
     {
-        for (var i = 1; i < filter.GetChildCount(); i++)
+        for (var i = 1; i < filterNode.GetChildCount(); i++)
         {
-            var nodeToRemove = filter.GetChild(i);
-            filter.RemoveChild(nodeToRemove);
+            var nodeToRemove = filterNode.GetChild(i);
+            filterNode.RemoveChild(nodeToRemove);
 
             // We free for memory, but keeping could allow to save options...
             nodeToRemove.Free();
