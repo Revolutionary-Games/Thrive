@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/general/PauseMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/saving/NewSaveMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Close"
@@ -129,7 +130,7 @@ tracks/2/keys = {
 
 [node name="PauseMenu" type="Popup"]
 pause_mode = 2
-visible = false
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -141,6 +142,7 @@ ShowCloseButton = false
 Decorate = false
 HelpCategory = "MicrobeStage"
 PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
+ThriveopediaPath = NodePath("Thriveopedia")
 HelpScreenPath = NodePath("HelpScreen")
 LoadMenuPath = NodePath("CenterContainer/LoadMenu")
 OptionsMenuPath = NodePath("OptionsMenu")
@@ -195,14 +197,13 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 text = "LOAD_GAME"
 
-[node name="Statistics" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="Thriveopedia" type="Button" parent="CenterContainer/PrimaryMenu"]
 margin_top = 150.0
 margin_right = 250.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "STATISTICS_BUTTON_TOOLTIP"
-disabled = true
-text = "STATISTICS"
+hint_tooltip = "THRIVEOPEDIA_HINT_IN_GAME"
+text = "Thriveopedia"
 
 [node name="Help" type="Button" parent="CenterContainer/PrimaryMenu"]
 margin_top = 200.0
@@ -282,6 +283,9 @@ Category = "MicrobeStage"
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
 
+[node name="Thriveopedia" parent="." instance=ExtResource( 8 )]
+visible = false
+
 [node name="UnsavedProgressWarning" parent="." instance=ExtResource( 7 )]
 margin_right = 391.0
 rect_min_size = Vector2( 391, 0 )
@@ -295,6 +299,7 @@ anims/RESET = SubResource( 3 )
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Thriveopedia" to="." method="OpenThriveopediaPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenHelpPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
@@ -306,4 +311,5 @@ anims/RESET = SubResource( 3 )
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
+[connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnThriveopediaClosed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="ConfirmExit"]

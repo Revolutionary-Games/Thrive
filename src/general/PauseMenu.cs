@@ -16,6 +16,9 @@ public class PauseMenu : CustomDialog
     public NodePath PrimaryMenuPath = null!;
 
     [Export]
+    public NodePath ThriveopediaPath = null!;
+
+    [Export]
     public NodePath HelpScreenPath = null!;
 
     [Export]
@@ -34,6 +37,7 @@ public class PauseMenu : CustomDialog
     public NodePath UnsavedProgressWarningPath = null!;
 
     private Control primaryMenu = null!;
+    private Thriveopedia thriveopedia = null!;
     private HelpScreen helpScreen = null!;
     private Control loadMenu = null!;
     private OptionsMenu optionsMenu = null!;
@@ -82,6 +86,7 @@ public class PauseMenu : CustomDialog
     private enum ActiveMenuType
     {
         Primary,
+        Thriveopedia,
         Help,
         Load,
         Options,
@@ -148,6 +153,11 @@ public class PauseMenu : CustomDialog
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening options"));
                     break;
+                case ActiveMenuType.Thriveopedia:
+                    thriveopedia.OpenInGame(GameProperties ??
+                        throw new InvalidOperationException(
+                            $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
+                    break;
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;
@@ -210,6 +220,7 @@ public class PauseMenu : CustomDialog
     public override void _Ready()
     {
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
+        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
@@ -322,6 +333,7 @@ public class PauseMenu : CustomDialog
         return value switch
         {
             ActiveMenuType.Primary => primaryMenu,
+            ActiveMenuType.Thriveopedia => thriveopedia,
             ActiveMenuType.Help => helpScreen,
             ActiveMenuType.Load => loadMenu,
             ActiveMenuType.Options => optionsMenu,
@@ -417,6 +429,13 @@ public class PauseMenu : CustomDialog
         GetTree().Quit();
     }
 
+    private void OpenThriveopediaPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ActiveMenu = ActiveMenuType.Thriveopedia;
+    }
+
     private void CloseHelpPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -443,6 +462,11 @@ public class PauseMenu : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
 
         ActiveMenu = ActiveMenuType.Options;
+    }
+
+    private void OnThriveopediaClosed()
+    {
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OnOptionsClosed()

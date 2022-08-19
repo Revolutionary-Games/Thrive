@@ -62,6 +62,7 @@ public class MainMenu : NodeWithInput
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
+    private Thriveopedia thriveopedia = null!;
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
 
@@ -200,6 +201,7 @@ public class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
 
@@ -362,10 +364,15 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0);
     }
 
-    private void ViewSourceCodePressed()
+    private void ThriveopediaPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the options
+        thriveopedia.OpenFromMainMenu();
     }
 
     private void QuitPressed()
@@ -404,6 +411,12 @@ public class MainMenu : NodeWithInput
         OnReturnFromNewGameSettings();
         OptionsPressed();
         options.SelectOptionsTab(OptionsMenu.OptionsTab.Performance);
+    }
+
+    private void OnReturnFromThriveopedia()
+    {
+        thriveopedia.Visible = false;
+        SetCurrentMenu(0, false);
     }
 
     private void LoadGamePressed()

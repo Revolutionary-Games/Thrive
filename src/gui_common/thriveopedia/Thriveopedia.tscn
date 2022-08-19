@@ -1,0 +1,186 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/gui_common/thriveopedia/Thriveopedia.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/homeButtonHover.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/homeButton.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/homeButtonActive.png" type="Texture" id=5]
+[ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=6]
+
+[node name="Thriveopedia" type="Control"]
+margin_right = 1280.0
+margin_bottom = 720.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+BackButtonPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/BackButton")
+HomeTabPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home")
+MuseumTabPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Museum")
+StatisticsTabPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Statistics")
+StatisticsButtonPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home/CenterContainer/VBoxContainer/StatisticsButton")
+EvolutionaryTreePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Statistics/EvolutionaryTree")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1270.0
+margin_bottom = 720.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+margin_left = 45.0
+margin_top = 20.0
+margin_right = 1225.0
+margin_bottom = 700.0
+rect_min_size = Vector2( 1180, 680 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+margin_right = 1180.0
+margin_bottom = 680.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+margin_right = 1180.0
+margin_bottom = 35.0
+
+[node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 35.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+disabled = true
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ForwardButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 39.0
+margin_right = 74.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+disabled = true
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HomeButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 78.0
+margin_right = 113.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+hint_tooltip = "Home"
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+expand = true
+
+[node name="HBoxContainer2" type="MarginContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 1180.0
+margin_bottom = 640.0
+size_flags_vertical = 3
+
+[node name="Home" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 1180.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1179.0
+margin_bottom = 599.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home/CenterContainer"]
+margin_left = 464.0
+margin_top = 257.0
+margin_right = 714.0
+margin_bottom = 341.0
+
+[node name="MuseumButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home/CenterContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "Museum"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="StatisticsButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home/CenterContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 250.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "Game Statistics"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Museum" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+margin_right = 1180.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Museum"]
+margin_left = 1.0
+margin_top = 287.0
+margin_right = 839.0
+margin_bottom = 312.0
+text = "Museum"
+align = 1
+
+[node name="Statistics" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+margin_right = 1180.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EvolutionaryTree" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Statistics" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1179.0
+margin_bottom = 599.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+margin_top = 645.0
+margin_right = 1180.0
+margin_bottom = 680.0
+
+[node name="Control" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 536.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[node name="Close" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 540.0
+margin_right = 640.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+text = "CLOSE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 644.0
+margin_right = 1180.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/BackButton" to="." method="OnBackPressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/HomeButton" to="." method="OnHomePressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home/CenterContainer/VBoxContainer/MuseumButton" to="." method="OnMuseumPressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/Home/CenterContainer/VBoxContainer/StatisticsButton" to="." method="OnStatisticsPressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="OnClosePressed"]
