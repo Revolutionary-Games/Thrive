@@ -168,6 +168,29 @@ public class FilterWindow : CustomDialog
         dirty = true;
     }
 
+    private void OnNewFilterArgumentSelected(int chosenOptionIndex, int argumentIndex, int filterIndex)
+    {
+        var filterContainer = filtersContainer.GetChild(filterIndex);
+
+        if (filterContainer == null)
+            throw new ArgumentOutOfRangeException($"Filter node {filterIndex} doesn't exist!");
+
+        // First is filter category
+        // TODO SEE FOR MERGE
+        var filterCategoryButton = filterContainer.GetChild<CustomDropDown>(1 + argumentIndex);
+
+        if (filterCategoryButton == null)
+            throw new InvalidCastException($"Child {1 + argumentIndex} of container was not a CustomDropDown node!");
+
+        var filterCategory = filterCategoryButton.Popup.GetItemText(chosenOptionIndex);
+        filterCategoryButton.Text = filterCategory;
+
+        //TODO
+        GD.Print("DO SOME STUFF");
+
+        dirty = true;
+    }
+
     private void UpdateFilterArguments(int filterIndex, string filterCategory)
     {
         var filter = filters[filterIndex];
@@ -202,6 +225,8 @@ public class FilterWindow : CustomDialog
                 }
 
                 filterArgumentButton.CreateElements();
+                filterArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewFilterArgumentSelected),
+                    new Godot.Collections.Array { i, filterIndex });
 
                 filterNode.AddChild(filterArgumentButton);
             }
