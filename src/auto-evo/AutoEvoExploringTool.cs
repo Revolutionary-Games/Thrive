@@ -812,13 +812,12 @@ public class AutoEvoExploringTool : NodeWithInput
     // TODO MOVE OWN CLASS
     public class Filter
     {
-        public string filterCategory = "NONE";
+        public string FilterCategory = "NONE";
 
         private Dictionary<string, FilterItem> filterItems = new Dictionary<string, FilterItem>();
 
         public IEnumerable<string> FilterItemsNames => filterItems.Keys;
 
-        //TODO TEMp
         public Dictionary<string, FilterItem> FilterItems => filterItems;
 
         public void AddFilterItem(string category, FilterItem item)
@@ -831,31 +830,35 @@ public class AutoEvoExploringTool : NodeWithInput
             filterItems.Clear();
         }
 
-        //TODO REUSE "arg val" for filterwindow
-        //TODO NUMBER EQUIVALENT
-        //TODO CLEAN
+        // TODO NUMBER EQUIVALENT
         public void SetArgumentValue(int argumentIndex, string argumentValue)
         {
-            var x = filterItems[filterCategory].FilterArguments[argumentIndex] as MultipleChoiceFilterArgument;
+            var filterArgument = filterItems[FilterCategory].FilterArguments[argumentIndex]
+                as MultipleChoiceFilterArgument;
 
-            //TODO CHECK x not null
-            x.Value = argumentValue;
+            if (filterArgument == null)
+            {
+                throw new InvalidCastException($"Filter argument at index {argumentIndex}" +
+                    $" is not a multiple choice argument!");
+            }
 
-            filterItems[filterCategory].FilterArguments[argumentIndex] = x;
+            filterArgument!.Value = argumentValue;
+
+            filterItems[FilterCategory].FilterArguments[argumentIndex] = filterArgument;
         }
 
         public Func<Species, bool> ComputeFilterFunction()
         {
-            if (!filterItems.TryGetValue(filterCategory, out var filterItem))
-                throw new KeyNotFoundException($"No such filter category: {filterCategory}");
+            if (!filterItems.TryGetValue(FilterCategory, out var filterItem))
+                throw new KeyNotFoundException($"No such filter category: {FilterCategory}");
 
             return filterItem.ToFunction();
         }
 
         public class FilterItem
         {
-            public Func<List<FilterArgument>, Func<Species, bool>> FilterFunction;
-            public List<FilterArgument> FilterArguments;
+            public readonly Func<List<FilterArgument>, Func<Species, bool>> FilterFunction;
+            public readonly List<FilterArgument> FilterArguments;
 
             public FilterItem(Func<List<FilterArgument>, Func<Species, bool>> filterFunction,
                 List<FilterArgument> filterArguments)
@@ -891,8 +894,7 @@ public class AutoEvoExploringTool : NodeWithInput
                 }
                 catch (NullReferenceException)
                 {
-                    //TODO
-                    throw new Exception();
+                    throw new InvalidOperationException("Can't get number value from a non-numeric filter argument!");
                 }
             }
 
@@ -904,8 +906,7 @@ public class AutoEvoExploringTool : NodeWithInput
                 }
                 catch (NullReferenceException)
                 {
-                    //TODO
-                    throw new Exception();
+                    throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
                 }
             }
         }

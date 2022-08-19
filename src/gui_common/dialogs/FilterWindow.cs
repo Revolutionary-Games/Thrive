@@ -163,7 +163,7 @@ public class FilterWindow : CustomDialog
         var filterCategory = filterCategoryButton.Popup.GetItemText(index);
         filterCategoryButton.Text = filterCategory;
 
-        filters[0].filterCategory = filterCategory;
+        filters[0].FilterCategory = filterCategory;
 
         UpdateFilterArguments(filterIndex, filterCategory);
 
@@ -198,20 +198,22 @@ public class FilterWindow : CustomDialog
         var filter = filters[filterIndex];
 
         if (filter == null)
-            throw new ArgumentOutOfRangeException($"No filter at index {filterIndex}");
+            throw new ArgumentOutOfRangeException($"No filter registered at index {filterIndex}");
 
         var filterNode = filtersContainer.GetChild(filterIndex);
 
-        //TODO EXCEPTIONS
+        if (filterNode == null)
+            throw new SceneTreeAttachRequired($"No filter node registered at index {filterIndex}");
 
         ClearFilterArguments(filterNode);
 
-        var filterArguments = filter.FilterItems[filterCategory].FilterArguments;
+        if (!filter.FilterItems.TryGetValue(filterCategory, out var filterItem))
+            throw new KeyNotFoundException($"Invalid filter category: {filterCategory}");
 
-        for (var i = 0; i < filterArguments.Count; i++)
+        for (var i = 0; i < filterItem.FilterArguments.Count; i++)
         {
-            // We do not use foreach to keep i;
-            var filterArgument = filterArguments[i];
+            // We do not use foreach to keep count of i;
+            var filterArgument = filterItem.FilterArguments[i];
 
             if (filterArgument is AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument)
             {
