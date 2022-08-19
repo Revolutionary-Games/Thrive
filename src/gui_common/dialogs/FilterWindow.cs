@@ -14,7 +14,7 @@ public class FilterWindow : CustomDialog
     public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";
     public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
 
-    private List<AutoEvoExploringTool.Filter> filters = new List<AutoEvoExploringTool.Filter>();
+    private List<Filter> filters = new List<Filter>();
 
     /// <summary>
     ///   If redraw is needed.
@@ -111,7 +111,7 @@ public class FilterWindow : CustomDialog
         dirty = false;
     }
 
-    public void Initialize(AutoEvoExploringTool.Filter filter, string defaultText = "--")
+    public void Initialize(Filter filter, string defaultText = "--")
     {
         ClearFilters();
         SetupFilter(filter, defaultText);
@@ -123,7 +123,7 @@ public class FilterWindow : CustomDialog
         filtersContainer.FreeChildren(true);
     }
 
-    public void SetupFilter(AutoEvoExploringTool.Filter filter, string defaultText = "--")
+    public void SetupFilter(Filter filter, string defaultText = "--")
     {
         filters.Add(filter);
 
@@ -215,10 +215,10 @@ public class FilterWindow : CustomDialog
             // We do not use foreach to keep count of i;
             var filterArgument = filterItem.FilterArguments[i];
 
-            if (filterArgument is AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument)
+            if (filterArgument is Filter.MultipleChoiceFilterArgument)
             {
                 // Avoid casting if unnecessary to prevent requiring one variable per option
-                var multipleChoiceFilterArgument = filterArgument as AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument;
+                var multipleChoiceFilterArgument = filterArgument as Filter.MultipleChoiceFilterArgument;
 
                 var filterArgumentButton = new CustomDropDown();
                 filterArgumentButton.Text = multipleChoiceFilterArgument!.Value;
@@ -234,7 +234,7 @@ public class FilterWindow : CustomDialog
 
                 filterNode.AddChild(filterArgumentButton);
             }
-            else if (filterArgument is AutoEvoExploringTool.Filter.NumberFilterArgument)
+            else if (filterArgument is Filter.NumberFilterArgument)
             {
                 var filterArgumentButton = new CustomDropDown();
 
