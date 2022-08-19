@@ -28,23 +28,23 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchRegion region)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchRegion region)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        BiomeType = type;
+        BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
     }
 
     [JsonConstructor]
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchSnapshot currentSnapshot)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        BiomeType = type;
+        BiomeType = biomeType;
         this.currentSnapshot = currentSnapshot;
     }
 
