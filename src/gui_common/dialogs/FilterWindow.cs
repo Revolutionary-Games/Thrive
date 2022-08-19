@@ -178,8 +178,19 @@ public class FilterWindow : CustomDialog
 
             if (filterArgument is AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument)
             {
+                // Avoid casting if unnecessary to prevent requiring one variable per option
+                var multipleChoiceFilterArgument = filterArgument as AutoEvoExploringTool.Filter.MultipleChoiceFilterArgument;
+
                 var filterArgumentButton = new CustomDropDown();
-                filterArgumentButton.Text = filterArgument.GetStringValue();
+                filterArgumentButton.Text = multipleChoiceFilterArgument!.Value;
+
+                foreach (var option in multipleChoiceFilterArgument.Options)
+                {
+                    filterArgumentButton.AddItem(option, false, Colors.White);
+                }
+
+                filterArgumentButton.CreateElements();
+
                 filter.AddChild(filterArgumentButton);
             }
             else if (filterArgument is AutoEvoExploringTool.Filter.NumberFilterArgument)
