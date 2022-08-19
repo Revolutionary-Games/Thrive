@@ -49,7 +49,7 @@ Dir.chdir(LOCALE_FOLDER) do
                   'WindowTitle', '-k', 'DialogText', '-k', 'ConfirmText', '-k', 'CancelText',
                   '-k', 'ErrorMessage', '-k', 'placeholder_text', '-k', 'hint_tooltip', '-k',
                   'TranslationServer.Translate', '-k', 'ChartName', '-k', 'PauseButtonTooltip',
-                  '-k', 'PlayButtonTooltip', '-k', 'LocalizedString', '-o',
+                  '-k', 'PlayButtonTooltip', '-k', 'ExtendedBbcode', '-k', 'LocalizedString', '-o',
                   File.join(LOCALE_FOLDER, "messages#{@options[:pot_suffix]}"),
                   '../simulation_parameters', '../assets', '../src'
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
-[ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 
@@ -58,7 +57,7 @@ SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxC
 HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
 SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
-EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer/EvolutionaryTree")
+EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
@@ -66,6 +65,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
 expand = true
+stretch_mode = 7
 
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -395,23 +395,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
-margin_left = 109.0
+margin_left = 118.0
 margin_top = 101.0
-margin_right = 437.0
+margin_right = 429.0
 margin_bottom = 446.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 6 )
 text = "CURRENT_GENERATION_COLON"
 
 [node name="CurrentGenerationLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 35.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 55.0
 custom_fonts/font = ExtResource( 7 )
 text = "0"
@@ -421,14 +421,14 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 65.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 90.0
 custom_fonts/font = ExtResource( 6 )
 text = "STATUS_COLON"
 
 [node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 100.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 120.0
 custom_fonts/font = ExtResource( 7 )
 text = "READY"
@@ -438,11 +438,11 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 130.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 165.0
 
 [node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
-margin_right = 72.0
+margin_right = 83.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 min_value = 2.0
@@ -450,8 +450,8 @@ value = 10.0
 align = 1
 
 [node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 76.0
-margin_right = 328.0
+margin_left = 87.0
+margin_right = 311.0
 margin_bottom = 35.0
 text = "Finish 10 Generations"
 __meta__ = {
@@ -460,25 +460,25 @@ __meta__ = {
 
 [node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 175.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 210.0
 text = "FINISH_ONE_GENERATION"
 
 [node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 220.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 255.0
 text = "RUN_ONE_STEP"
 
 [node name="Abort" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 265.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 300.0
 text = "ABORT"
 
 [node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 310.0
-margin_right = 328.0
+margin_right = 311.0
 margin_bottom = 345.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
@@ -668,7 +668,7 @@ margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "EVOLUTIONARY_TREE"
 
-[node name="DraggableScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 13 )]
+[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 14 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 24.0
@@ -676,15 +676,6 @@ margin_right = 786.0
 margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-MaxZoom = 1.0
-MinZoom = 0.2
-ZoomStep = 0.1
-ShowScrollbars = false
-ContentPath = NodePath("EvolutionaryTree")
-
-[node name="EvolutionaryTree" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer" instance=ExtResource( 14 )]
-margin_right = 786.0
-margin_bottom = 462.0
 
 [node name="SpeciesDetailPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
 margin_left = 828.0
@@ -783,6 +774,6 @@ DialogText = "RETURN_TO_MENU_WARNING"
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
-[connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DraggableScrollContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
+[connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]

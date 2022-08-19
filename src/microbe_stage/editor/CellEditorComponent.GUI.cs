@@ -119,19 +119,6 @@ public partial class CellEditorComponent
         baseMobilityModifier.AdjustValueColor(baseMobilityChange);
     }
 
-    private void UpdateRigiditySliderState(int mutationPoints)
-    {
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
-        if (mutationPoints >= costPerStep && MovingPlacedHex == null)
-        {
-            rigiditySlider.Editable = true;
-        }
-        else
-        {
-            rigiditySlider.Editable = false;
-        }
-    }
-
     private void UpdateSize(int size)
     {
         sizeLabel.Value = size;
@@ -172,7 +159,7 @@ public partial class CellEditorComponent
     private void UpdateTotalDigestionEfficiency(float efficiency)
     {
         digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
-        digestionEfficiencyLabel.Value = Mathf.RoundToInt(efficiency * 100);
+        digestionEfficiencyLabel.Value = (float)Math.Round(efficiency * 100, 2);
     }
 
     /// <summary>

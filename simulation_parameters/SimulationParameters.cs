@@ -11,6 +11,8 @@ using File = Godot.File;
 /// </summary>
 public class SimulationParameters : Node
 {
+    public const string AUTO_EVO_CONFIGURATION_NAME = "AutoEvoConfiguration";
+
     private static SimulationParameters? instance;
 
     private Dictionary<string, MembraneType> membranes = null!;
@@ -22,7 +24,7 @@ public class SimulationParameters : Node
     private Dictionary<string, Enzyme> enzymes = null!;
     private Dictionary<string, MusicCategory> musicCategories = null!;
     private Dictionary<string, HelpTexts> helpTexts = null!;
-    private AutoEvoConfiguration autoEvoConfiguration = null!;
+    private PredefinedAutoEvoConfiguration autoEvoConfiguration = null!;
     private List<NamedInputGroup> inputGroups = null!;
     private Dictionary<string, Gallery> gallery = null!;
     private TranslationsInfo translationsInfo = null!;
@@ -42,7 +44,7 @@ public class SimulationParameters : Node
 
     public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
 
-    public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
+    public IAutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; private set; } = null!;
     public PatchMapNameGenerator PatchMapNameGenerator { get; private set; } = null!;
@@ -87,7 +89,8 @@ public class SimulationParameters : Node
         inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
 
         autoEvoConfiguration =
-            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/auto-evo_parameters.json");
+            LoadDirectObject<PredefinedAutoEvoConfiguration>(
+                "res://simulation_parameters/common/auto-evo_parameters.json");
 
         gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
 
@@ -447,6 +450,7 @@ public class SimulationParameters : Node
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
+        autoEvoConfiguration.InternalName = AUTO_EVO_CONFIGURATION_NAME;
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);
     }
