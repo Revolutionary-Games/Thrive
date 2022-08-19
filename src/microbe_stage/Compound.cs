@@ -25,6 +25,11 @@ public class Compound : IRegistryType
     /// </summary>
     public float DecayRate = 1.0f;
 
+    /// <summary>
+    ///   Whether microbes moving through this cloud will automatically collect it if they have capacity
+    /// </summary>
+    public bool IsAbsorbable = true;
+
     public string IconPath = null!;
 
     /// <summary>

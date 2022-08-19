@@ -520,6 +520,10 @@ public partial class Microbe
     /// <summary>
     ///   Throws some compound out of this Microbe, up to maxAmount
     /// </summary>
+    /// <param name="compound">The compound type to eject</param>
+    /// <param name="maxAmount">The maximum amount to eject</param>
+    /// <param name="direction">The direction in which to eject relative to the microbe</param>
+    /// <param name="displacement">How far away from the microbe to eject</param>
     public float EjectCompound(Compound compound, float maxAmount, Vector3 direction, float displacement = 0)
     {
         float amount = Compounds.TakeCompound(compound, maxAmount);

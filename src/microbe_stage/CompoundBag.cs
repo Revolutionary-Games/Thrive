@@ -71,6 +71,9 @@ public class CompoundBag : ICompoundStorage
         if (amount <= 0.0f)
             return amount;
 
+        if (!compound.IsAbsorbable)
+            return 0.0f;
+
         float existingAmount = GetCompoundAmount(compound);
 
         float newAmount = Math.Min(existingAmount + amount, Capacity);

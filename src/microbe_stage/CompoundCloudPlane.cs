@@ -40,7 +40,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private Image image = null!;
     private ImageTexture texture = null!;
     private FluidSystem? fluidSystem;
-    private Compound mucilage = null!;
 
     [JsonProperty]
     private Vector4 decayRates;
@@ -59,8 +58,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
-
         if (!IsLoadedFromSave)
         {
             Size = Settings.Instance.CloudSimulationWidth;
@@ -515,10 +512,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
             // Skip if compound is non-useful
             if (!storage.IsUseful(compound))
-                continue;
-
-            // Don't add mucilage to the cell's storage
-            if (compound == mucilage)
                 continue;
 
             // Overestimate of how much compounds we get
