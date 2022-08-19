@@ -464,6 +464,8 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_DENOMINATOR = 4;
+
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
     /// <summary>

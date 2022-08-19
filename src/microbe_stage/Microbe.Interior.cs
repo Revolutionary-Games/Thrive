@@ -609,9 +609,10 @@ public partial class Microbe
             }
         }
 
-        // Give a bonus glucose amount at third the capacity of our compounds bag
+        // Give bonus glucose at third the amount of our compounds bag capacity
         result.TryGetValue(glucose, out float existingGlucose);
-        result[glucose] = existingGlucose + Compounds.Capacity / 3;
+        result[glucose] = existingGlucose + Compounds.Capacity /
+            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_DENOMINATOR;
 
         return result;
     }
