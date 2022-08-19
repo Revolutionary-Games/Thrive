@@ -163,12 +163,14 @@ public class FilterWindow : CustomDialog
         var filterCategory = filterCategoryButton.Popup.GetItemText(index);
         filterCategoryButton.Text = filterCategory;
 
+        filters[0].filterCategory = filterCategory;
+
         UpdateFilterArguments(filterIndex, filterCategory);
 
         dirty = true;
     }
 
-    private void OnNewFilterArgumentSelected(int chosenOptionIndex, int argumentIndex, int filterIndex)
+    private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
     {
         var filterContainer = filtersContainer.GetChild(filterIndex);
 
@@ -177,16 +179,16 @@ public class FilterWindow : CustomDialog
 
         // First is filter category
         // TODO SEE FOR MERGE
-        var filterCategoryButton = filterContainer.GetChild<CustomDropDown>(1 + argumentIndex);
+        var filterArgumentButton = filterContainer.GetChild<CustomDropDown>(1 + argumentIndex);
 
-        if (filterCategoryButton == null)
+        if (filterArgumentButton == null)
             throw new InvalidCastException($"Child {1 + argumentIndex} of container was not a CustomDropDown node!");
 
-        var filterCategory = filterCategoryButton.Popup.GetItemText(chosenOptionIndex);
-        filterCategoryButton.Text = filterCategory;
+        var argumentValue = filterArgumentButton.Popup.GetItemText(argumentValueIndex);
+        filterArgumentButton.Text = argumentValue;
 
-        //TODO
-        GD.Print("DO SOME STUFF");
+        //TODO Exceptions
+        filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
 
         dirty = true;
     }

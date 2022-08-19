@@ -653,12 +653,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void FlagTreeNodes()
     {
-        var filter = new Filter();
-
-        var speciesFlaggingFunction = filter.ComputeFilterFunction();
+        var speciesFlaggingFunction = speciesFilter.ComputeFilterFunction();
 
         flaggingFunction = n => speciesFlaggingFunction(speciesHistoryList[n.Generation][n.SpeciesID]);
-        // flaggingFunction = n => speciesHistoryList[n.Generation][n.SpeciesID].Behaviour.Activity >= 100;
         evolutionaryTree.FlagNodes(flaggingFunction);
     }
 
@@ -815,7 +812,7 @@ public class AutoEvoExploringTool : NodeWithInput
     // TODO MOVE OWN CLASS
     public class Filter
     {
-        private string filterCategory = "NONE";
+        public string filterCategory = "NONE";
 
         private Dictionary<string, FilterItem> filterItems = new Dictionary<string, FilterItem>();
 
@@ -832,6 +829,19 @@ public class AutoEvoExploringTool : NodeWithInput
         public void ClearItems()
         {
             filterItems.Clear();
+        }
+
+        //TODO REUSE "arg val" for filterwindow
+        //TODO NUMBER EQUIVALENT
+        //TODO CLEAN
+        public void SetArgumentValue(int argumentIndex, string argumentValue)
+        {
+            var x = filterItems[filterCategory].FilterArguments[argumentIndex] as MultipleChoiceFilterArgument;
+
+            //TODO CHECK x not null
+            x.Value = argumentValue;
+
+            filterItems[filterCategory].FilterArguments[argumentIndex] = x;
         }
 
         public Func<Species, bool> ComputeFilterFunction()
