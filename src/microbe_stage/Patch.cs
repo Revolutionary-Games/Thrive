@@ -38,13 +38,18 @@ public class Patch
         Region = region;
     }
 
-    [JsonConstructor]
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
+        : this(name, id, biomeTemplate, currentSnapshot)
+    {
+        BiomeType = biomeType;
+    }
+
+    [JsonConstructor]
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        BiomeType = biomeType;
         this.currentSnapshot = currentSnapshot;
     }
 
