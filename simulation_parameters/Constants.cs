@@ -459,6 +459,11 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
 
+    /// <summary>
+    ///   The maximum cap for efficiency of digestion.
+    /// </summary>
+    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
+
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
     /// <summary>
@@ -732,6 +737,8 @@ public static class Constants
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
     public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+
+    public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
     /// <summary>
     ///   Scale used for one frame while membrane data is not ready yet

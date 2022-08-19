@@ -319,7 +319,7 @@ public class OptionsMenu : ControlWithInput
     // Misc
 
     private OptionsMode optionsMode;
-    private SelectedOptionsTab selectedOptionsTab;
+    private OptionsTab selectedOptionsTab;
 
     /// <summary>
     ///   Copy of the settings object that should match what is saved to the configuration file,
@@ -342,7 +342,7 @@ public class OptionsMenu : ControlWithInput
         InGame,
     }
 
-    private enum SelectedOptionsTab
+    public enum OptionsTab
     {
         Graphics,
         Sound,
@@ -443,7 +443,7 @@ public class OptionsMenu : ControlWithInput
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
 
-        selectedOptionsTab = SelectedOptionsTab.Graphics;
+        selectedOptionsTab = OptionsTab.Graphics;
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
@@ -539,15 +539,15 @@ public class OptionsMenu : ControlWithInput
         DisplayGpuInfo();
 
         // Sound
-        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
+        masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
         masterMuted.Pressed = settings.VolumeMasterMuted;
-        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
+        musicVolume.Value = ConvertDbToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
-        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceVolume.Value = ConvertDbToSoundBar(settings.VolumeAmbiance);
         ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
-        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxVolume.Value = ConvertDbToSoundBar(settings.VolumeSFX);
         sfxMuted.Pressed = settings.VolumeSFXMuted;
-        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiVolume.Value = ConvertDbToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
         UpdateSelectedAudioOutputDevice(settings);
@@ -610,6 +610,11 @@ public class OptionsMenu : ControlWithInput
         }
 
         return true;
+    }
+
+    public void SelectOptionsTab(OptionsTab tab)
+    {
+        ChangeSettingsTab(tab.ToString());
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -692,7 +697,7 @@ public class OptionsMenu : ControlWithInput
     private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
+        OptionsTab selection = (OptionsTab)Enum.Parse(typeof(OptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)
@@ -706,23 +711,23 @@ public class OptionsMenu : ControlWithInput
 
         switch (selection)
         {
-            case SelectedOptionsTab.Graphics:
+            case OptionsTab.Graphics:
                 graphicsTab.Show();
                 graphicsButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Sound:
+            case OptionsTab.Sound:
                 soundTab.Show();
                 soundButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Performance:
+            case OptionsTab.Performance:
                 performanceTab.Show();
                 performanceButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Inputs:
+            case OptionsTab.Inputs:
                 inputsTab.Show();
                 inputsButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Miscellaneous:
+            case OptionsTab.Miscellaneous:
                 miscTab.Show();
                 miscButton.Pressed = true;
                 break;
@@ -736,14 +741,14 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    ///   Converts the slider value (0-100) to a DB adjustment for a sound channel
+    ///   Converts the slider value (0-100) to a dB adjustment for a sound channel
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
         return GD.Linear2Db(value / 100.0f);
     }
 
-    private float ConvertDBToSoundBar(float value)
+    private float ConvertDbToSoundBar(float value)
     {
         return GD.Db2Linear(value) * 100.0f;
     }

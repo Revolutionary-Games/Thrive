@@ -271,9 +271,6 @@ DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="cytoplasm" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -2371,20 +2368,22 @@ margin_bottom = 295.0
 margin_bottom = 224.0
 
 [node name="digestionSpeed" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
-margin_right = 318.0
+margin_right = 333.0
 DisplayName = "DIGESTION_SPEED"
-ModifierValue = "+0.2"
+ModifierValue = "+0.05"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 
 [node name="digestionEfficiency" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
-margin_right = 318.0
+margin_top = 24.0
+margin_right = 333.0
+margin_bottom = 44.0
 DisplayName = "DIGESTION_EFFICIENCY"
-ModifierValue = "+0.2"
+ModifierValue = "+4.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 
 [node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
 DisplayName = "STORAGE"
@@ -2394,7 +2393,7 @@ ModifierIcon = ExtResource( 12 )
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource( 2 )]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
 DisplayName = "OSMOREGULATION_COST"
@@ -2780,7 +2779,7 @@ margin_top = 46.0
 margin_bottom = 210.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2815,7 +2814,7 @@ expand = true
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2849,7 +2848,7 @@ expand = true
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2883,7 +2882,7 @@ expand = true
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2917,7 +2916,7 @@ expand = true
 
 [node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 96.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 116.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2951,7 +2950,7 @@ expand = true
 
 [node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 120.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 140.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2985,9 +2984,9 @@ expand = true
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
 margin_top = 144.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 164.0
-DisplayName = "INVULNERABLE_TO_ENGULFMENT"
+DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameColor = Color( 0, 1, 0, 1 )
 ShowValue = false
 
@@ -3006,7 +3005,7 @@ Description = "CHITIN_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
 
 [node name="MarginContainer" parent="GroupHolder/membraneSelection/chitin" index="0"]
-margin_bottom = 264.0
+margin_bottom = 297.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer" index="0"]
 margin_bottom = 281.0
@@ -3023,11 +3022,11 @@ margin_top = 42.0
 margin_bottom = 42.0
 
 [node name="ModifierList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="4"]
-margin_top = 42.0
-margin_bottom = 182.0
+margin_top = 46.0
+margin_bottom = 210.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -3062,7 +3061,7 @@ expand = true
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -3078,7 +3077,7 @@ text = "-20%"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
 margin_left = 36.0
-margin_right = 224.0
+margin_right = 223.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -3087,8 +3086,8 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 228.0
-margin_right = 248.0
+margin_left = 227.0
+margin_right = 247.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -3096,7 +3095,7 @@ expand = true
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -3130,7 +3129,7 @@ expand = true
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -3146,7 +3145,7 @@ text = "+10"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
 margin_left = 28.0
-margin_right = 87.0
+margin_right = 86.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -3155,8 +3154,8 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 91.0
-margin_right = 111.0
+margin_left = 90.0
+margin_right = 110.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -3164,7 +3163,7 @@ expand = true
 
 [node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 96.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 116.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -3180,7 +3179,7 @@ text = "+40%"
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
 margin_left = 39.0
-margin_right = 182.0
+margin_right = 181.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
@@ -3189,8 +3188,8 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 186.0
-margin_right = 206.0
+margin_left = 185.0
+margin_right = 205.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -3198,7 +3197,7 @@ expand = true
 
 [node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 120.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 140.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -3232,19 +3231,19 @@ expand = true
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
 margin_top = 144.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 164.0
-DisplayName = "INVULNERABLE_TO_ENGULFMENT"
+DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameColor = Color( 0, 1, 0, 1 )
 ShowValue = false
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="5"]
-margin_top = 197.0
-margin_bottom = 201.0
+margin_top = 225.0
+margin_bottom = 229.0
 
 [node name="Description" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="6"]
-margin_top = 216.0
-margin_bottom = 233.0
+margin_top = 244.0
+margin_bottom = 266.0
 
 [node name="calciumCarbonate" parent="GroupHolder/membraneSelection" instance=ExtResource( 5 )]
 visible = false
