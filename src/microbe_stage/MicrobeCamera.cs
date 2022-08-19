@@ -57,7 +57,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     public float InterpolateZoomSpeed = 0.3f;
 
     [JsonIgnore]
-    public ShaderMaterial MaterialToUpdate { get { return materialToUpdate; } }
+    public float LightLevel = 0.0f;
 
     private ShaderMaterial materialToUpdate = null!;
 
@@ -192,6 +192,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             EmitSignal(nameof(OnZoomChanged), CameraHeight);
 
         return true;
+    }
+
+    public override void _Process(float delta)
+    {
+        materialToUpdate.SetShaderParam("lightLevel", LightLevel);
     }
 
     /// <summary>
