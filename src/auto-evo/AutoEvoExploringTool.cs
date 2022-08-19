@@ -836,9 +836,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
         public Func<Species, bool> ComputeFilterFunction()
         {
-            // TODO EXCEPTION
             if (!filterItems.TryGetValue(filterCategory, out var filterItem))
-                throw new Exception();
+                throw new KeyNotFoundException($"No such filter category: {filterCategory}");
 
             return filterItem.ToFunction();
         }
@@ -906,30 +905,26 @@ public class AutoEvoExploringTool : NodeWithInput
             public readonly float MinValue;
             public readonly float MaxValue;
 
-            private float value;
+            public float Value;
 
             public NumberFilterArgument(float minValue, float maxValue, float defaultValue)
             {
                 MinValue = minValue;
                 MaxValue = maxValue;
-                value = defaultValue;
+                Value = defaultValue;
             }
-
-            public float Value => value;
         }
 
         public class MultipleChoiceFilterArgument : FilterArgument
         {
             public readonly List<string> Options;
-            private string value;
+            public string Value;
 
             public MultipleChoiceFilterArgument(List<string> options, string defaultValue)
             {
                 Options = options;
-                value = defaultValue;
+                Value = defaultValue;
             }
-
-            public string Value => value;
         }
     }
 }
