@@ -236,11 +236,22 @@ public class FilterWindow : CustomDialog
             }
             else if (filterArgument is Filter.NumberFilterArgument)
             {
-                var filterArgumentButton = new CustomDropDown();
+                // Avoid casting if unnecessary to prevent requiring one variable per option
+                var numberFilterArgument = filterArgument as Filter.NumberFilterArgument;
 
-                // TODO
-                filterArgumentButton.Text = "TODO";
-                filterNode.AddChild(filterArgumentButton);
+                var filterArgumentContainer = new HBoxContainer();
+
+                var filterArgumentSlider = new HSlider();
+                filterArgumentSlider.MinValue = numberFilterArgument!.MinValue;
+                filterArgumentSlider.MaxValue = numberFilterArgument!.MaxValue;
+                filterArgumentSlider.RectMinSize = new Vector2(100, 25);
+                filterArgumentContainer.AddChild(filterArgumentSlider);
+
+                var filterArgumentValueLabel = new Label();
+                filterArgumentValueLabel.Text = numberFilterArgument!.Value.ToString();
+                filterArgumentContainer.AddChild(filterArgumentValueLabel);
+
+                filterNode.AddChild(filterArgumentContainer);
             }
             else
             {
