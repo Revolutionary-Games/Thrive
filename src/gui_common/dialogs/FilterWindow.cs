@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class FilterWindow : CustomDialog
+public class FilterWindow : CustomConfirmationDialog
 {
     [Export]
     public bool HideOnApply = true;
