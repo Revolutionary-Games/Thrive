@@ -9,9 +9,9 @@ public class FilterWindow : CustomConfirmationDialog
 
     // Paths for nodes
     // TODO see for having those in Godot
-    public NodePath DialogLabelPath = "VBoxContainer/Label";
+    /*public NodePath DialogLabelPath = "VBoxContainer/Label";
     public NodePath ApplyButtonPath = "VBoxContainer/HBoxContainer/ApplyButton";
-    public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";
+    public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";*/
     public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
 
     private List<Filter> filters = new List<Filter>();
@@ -22,80 +22,27 @@ public class FilterWindow : CustomConfirmationDialog
     private bool dirty;
 
     // Texts for buttons & labels
-    private string dialogText = string.Empty;
-    private string applyText = "APPLY";
-    private string cancelText = "CANCEL";
+    /*private string dialogText = string.Empty;
+    private string confirmText = "APPLY";
+    private string cancelText = "CANCEL";*/
 
     // Nodes
-    private Label? dialogLabel;
-    private Button? applyButton;
-    private Button? cancelButton;
+    /*private Label? dialogLabel;
+    private Button? confirmButton;
+    private Button? cancelButton;*/
     private VBoxContainer filtersContainer = null!;
-
-    [Signal]
-    public delegate void Applied();
-
-    [Signal]
-    public delegate void Cancelled();
-
-    /// <summary>
-    ///   The text displayed by the dialog.
-    /// </summary>
-    [Export(PropertyHint.MultilineText)]
-    public string DialogText
-    {
-        get => dialogText;
-        set
-        {
-            dialogText = value;
-
-            if (dialogLabel != null)
-                UpdateLabel();
-        }
-    }
-
-    /// <summary>
-    ///   The text to be shown on the confirm button.
-    /// </summary>
-    [Export]
-    public string ApplyText
-    {
-        get => applyText;
-        set
-        {
-            applyText = value;
-
-            if (applyButton != null)
-                UpdateButtons();
-        }
-    }
-
-    /// <summary>
-    ///   The text to be shown on the cancel button.
-    /// </summary>
-    [Export]
-    public string CancelText
-    {
-        get => cancelText;
-        set
-        {
-            cancelText = value;
-
-            if (cancelButton != null)
-                UpdateButtons();
-        }
-    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        dialogLabel = GetNode<Label>(DialogLabelPath);
-        applyButton = GetNode<Button>(ApplyButtonPath);
-        cancelButton = GetNode<Button>(CancelButtonPath);
+        base._Ready();
+        /*dialogLabel = GetNode<Label>(DialogLabelPath);
+        confirmButton = GetNode<Button>(ApplyButtonPath);
+        cancelButton = GetNode<Button>(CancelButtonPath);*/
         filtersContainer = GetNode<VBoxContainer>(FilterContainersPath);
 
-        UpdateLabel();
-        UpdateButtons();
+        /*UpdateLabel();
+        UpdateButtons();*/
     }
 
     public override void _Process(float delta)
@@ -329,7 +276,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = true;
     }
 
-    private void UpdateLabel()
+   /* private void UpdateLabel()
     {
         if (dialogLabel == null)
             throw new SceneTreeAttachRequired();
@@ -339,21 +286,21 @@ public class FilterWindow : CustomConfirmationDialog
 
     private void UpdateButtons()
     {
-        if (applyButton == null || cancelButton == null)
+        if (confirmButton == null || cancelButton == null)
             throw new SceneTreeAttachRequired();
 
-        applyButton.Text = applyText;
+        confirmButton.Text = confirmText;
         cancelButton.Text = cancelText;
-    }
+    }*/
 
-    private void OnApplyPressed()
+ /*   private void OnApplyPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
         if (HideOnApply)
             Hide();
 
-        EmitSignal(nameof(Applied));
+        EmitSignal(nameof(Confirmed));
     }
 
     private void OnCancelPressed()
@@ -361,5 +308,5 @@ public class FilterWindow : CustomConfirmationDialog
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
         EmitSignal(nameof(Cancelled));
-    }
+    }*/
 }

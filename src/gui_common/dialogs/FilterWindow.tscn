@@ -41,7 +41,7 @@ margin_left = 97.0
 margin_right = 97.0
 margin_bottom = 35.0
 
-[node name="ApplyButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 101.0
 margin_right = 171.0
 margin_bottom = 35.0
@@ -53,4 +53,4 @@ margin_right = 175.0
 margin_bottom = 35.0
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ApplyButton" to="." method="OnApplyPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]
