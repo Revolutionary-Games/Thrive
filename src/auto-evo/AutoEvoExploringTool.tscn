@@ -775,6 +775,8 @@ WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
 [node name="FilterWindow" parent="." instance=ExtResource( 13 )]
+WindowTitle = "SPECIES_FILTER_WINDOW"
+DialogText = "SELECT_SPECIES_FILTER"
 ConfirmText = "APPLY"
 
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
