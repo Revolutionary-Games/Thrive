@@ -125,8 +125,6 @@ public class FilterWindow : CustomDialog
 
     public void SetupFilter(Filter filter, string defaultText = "--")
     {
-        filters.Add(filter);
-
         if (filtersContainer == null)
             throw new SceneTreeAttachRequired();
 
@@ -141,26 +139,21 @@ public class FilterWindow : CustomDialog
         }
 
         filterButton.CreateElements();
-        filterButton.Popup.Connect("index_pressed", this, nameof(OnNewFilterCategorySelected));
+        filterButton.Popup.Connect("index_pressed", this, nameof(OnNewFilterCategorySelected),
+            new Godot.Collections.Array { filters.Count });
 
         filterContainer.AddChild(filterButton);
         filtersContainer.AddChild(filterContainer);
+        filters.Add(filter);
 
         dirty = true;
     }
 
-    private void OnNewFilterCategorySelected(int index)
+    private void OnNewFilterCategorySelected(int categoryIndex, int filterIndex)
     {
-        var filterIndex = 0;
-        // assume only 1 filter TODO EXPAND
-        var filterContainer = filtersContainer.GetChild(filterIndex);
+        var filterCategoryButton = GetFilterControl<CustomDropDown>(0, filterIndex);
 
-        var filterCategoryButton = filterContainer.GetChild<CustomDropDown>(0);
-
-        if (filterCategoryButton == null)
-            throw new InvalidCastException("First child of container was not a CustomDropDown node!");
-
-        var filterCategory = filterCategoryButton.Popup.GetItemText(index);
+        var filterCategory = filterCategoryButton.Popup.GetItemText(categoryIndex);
         filterCategoryButton.Text = filterCategory;
 
         filters[0].FilterCategory = filterCategory;
@@ -173,7 +166,7 @@ public class FilterWindow : CustomDialog
     private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
     {
         // Update GUI
-        var filterArgumentButton = GetFilterArgumentNode<CustomDropDown>(argumentIndex, filterIndex);
+        var filterArgumentButton = GetFilterControl<CustomDropDown>(1 + argumentIndex, filterIndex);
 
         var argumentValue = filterArgumentButton.Popup.GetItemText(argumentValueIndex);
         filterArgumentButton.Text = argumentValue;
@@ -188,7 +181,7 @@ public class FilterWindow : CustomDialog
     private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
     {
         // Update GUI
-        var filterArgumentContainer = GetFilterArgumentNode(argumentIndex, filterIndex);
+        var filterArgumentContainer = GetFilterControl(1 + argumentIndex, filterIndex);
 
         var filterArgumentSlider = filterArgumentContainer.GetChild<HSlider>(0);
         var filterArgumentLabel = filterArgumentContainer.GetChild<Label>(1);
@@ -215,9 +208,9 @@ public class FilterWindow : CustomDialog
     }
 
     /// <summary>
-    ///   Returns the argument node of a filter at given indices and cast it to the desired <see cref="Node"/> subtype.
+    ///   Returns the control node or group of a filter at given indices and cast it to the desired <see cref="Node"/> subtype.
     /// </summary>
-    private T GetFilterArgumentNode<T>(int argumentIndex, int filterIndex)
+    private T GetFilterControl<T>(int controlIndex, int filterIndex)
         where T : Node
     {
         var filterContainer = filtersContainer.GetChild(filterIndex);
@@ -226,10 +219,10 @@ public class FilterWindow : CustomDialog
             throw new ArgumentOutOfRangeException($"Filter node {filterIndex} doesn't exist!");
 
         // First child is filter category;
-        var filterArgument = filterContainer.GetChild<T>(1 + argumentIndex);
+        var filterArgument = filterContainer.GetChild<T>(controlIndex);
 
         if (filterArgument == null)
-            throw new SceneTreeAttachRequired($"Filter has no argument node at index {1 + argumentIndex}!");
+            throw new SceneTreeAttachRequired($"Filter has no node at index {controlIndex}!");
 
         return filterArgument;
     }
@@ -239,12 +232,12 @@ public class FilterWindow : CustomDialog
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Default implementation of <see cref="GetFilterArgumentNode{T}(int, int)"/> with <see cref="Node"/> type.
+    ///     Default implementation of <see cref="GetFilterControl{T}(int, int)"/> with <see cref="Node"/> type.
     ///   </para>
     /// </remarks>
-    private Node GetFilterArgumentNode(int argumentIndex, int filterIndex)
+    private Node GetFilterControl(int argumentIndex, int filterIndex)
     {
-        return GetFilterArgumentNode<Node>(argumentIndex, filterIndex);
+        return GetFilterControl<Node>(argumentIndex, filterIndex);
     }
 
     private void UpdateFilterArguments(int filterIndex, string filterCategory)
