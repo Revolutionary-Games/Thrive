@@ -22,7 +22,6 @@ public class Filter
         filterItems.Clear();
     }
 
-    // TODO NUMBER EQUIVALENT
     public void SetArgumentValue(int argumentIndex, string argumentValue)
     {
         var filterArgument = filterItems[FilterCategory].FilterArguments[argumentIndex]
@@ -30,8 +29,24 @@ public class Filter
 
         if (filterArgument == null)
         {
-            throw new InvalidCastException($"Filter argument at index {argumentIndex}" +
+            throw new InvalidCastException($"Filter argument with index {argumentIndex}" +
                 $" is not a multiple choice argument!");
+        }
+
+        filterArgument!.Value = argumentValue;
+
+        filterItems[FilterCategory].FilterArguments[argumentIndex] = filterArgument;
+    }
+
+    public void SetArgumentValue(int argumentIndex, float argumentValue)
+    {
+        var filterArgument = filterItems[FilterCategory].FilterArguments[argumentIndex]
+            as NumberFilterArgument;
+
+        if (filterArgument == null)
+        {
+            throw new InvalidCastException($"Filter argument with index {argumentIndex}" +
+                $" is not a number argument!");
         }
 
         filterArgument!.Value = argumentValue;

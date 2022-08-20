@@ -172,12 +172,14 @@ public class FilterWindow : CustomDialog
 
     private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
     {
+        // Update GUI
         var filterArgumentButton = GetFilterArgumentNode<CustomDropDown>(argumentIndex, filterIndex);
 
         var argumentValue = filterArgumentButton.Popup.GetItemText(argumentValueIndex);
         filterArgumentButton.Text = argumentValue;
 
-        //TODO Exceptions
+        // Update stored values
+        // TODO Exceptions
         filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
 
         dirty = true;
@@ -185,12 +187,12 @@ public class FilterWindow : CustomDialog
 
     private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
     {
+        // Update GUI
         var filterArgumentContainer = GetFilterArgumentNode(argumentIndex, filterIndex);
 
         var filterArgumentSlider = filterArgumentContainer.GetChild<HSlider>(0);
         var filterArgumentLabel = filterArgumentContainer.GetChild<Label>(1);
 
-        // Check that children exist
         if (filterArgumentSlider == null)
         {
             throw new SceneTreeAttachRequired($"Number argument with index {argumentIndex} has no children" +
@@ -205,7 +207,11 @@ public class FilterWindow : CustomDialog
 
         filterArgumentLabel.Text = argumentValue.ToString();
 
-        GD.Print("DO_SOME_STUFF");
+        // Update stored values
+        // TODO Exceptions
+        filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
+
+        dirty = true;
     }
 
     /// <summary>
