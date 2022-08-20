@@ -430,10 +430,20 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 if (engulfable == null)
                     continue;
 
-                AddChild(engulfable.EntityNode);
+                // Some engulfables were already parented to the world, in their case they don't need to be reattached
+                // here since the world node already does that.
+                // TODO: find out why some engulfables in engulfedObject are not parented to the engulfer?
+                if (!engulfable.EntityNode.IsInsideTree())
+                    AddChild(engulfable.EntityNode);
 
                 if (engulfed.Phagosome.Value != null)
-                    engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
+                {
+                    // Defer call to avoid a state where EntityGraphics is still null.
+                    // NOTE: My reasoning to why this can happen is due to some IEngulfables implementing
+                    // EntityGraphics in a way that it's initialized on _Ready and the problem occurs probably when
+                    // that IEngulfable is not yet inside the tree. - Kasterisk
+                    Invoke.Instance.Queue(() => engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value));
+                }
             }
         }
 

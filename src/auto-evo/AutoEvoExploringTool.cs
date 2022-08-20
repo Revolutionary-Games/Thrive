@@ -310,7 +310,7 @@ public class AutoEvoExploringTool : NodeWithInput
         SetupFilter();
 
         // Init game
-        autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+        autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration.Clone();
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
             { AutoEvoConfiguration = autoEvoConfiguration });
 
