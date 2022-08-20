@@ -642,8 +642,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
         var valueComparisonArguments = new List<Filter.FilterArgument>()
             {
-                new Filter.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList(), "--"),
-                new Filter.MultipleChoiceFilterArgument(new List<string>() { "GREATER_THAN", "SMALLER_THAN" }, "--"),
+                new Filter.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
+                new Filter.MultipleChoiceFilterArgument(new List<string>() { "GREATER_THAN", "SMALLER_THAN" }),
                 new Filter.NumberFilterArgument(0, 500, 100),
             };
         var valueComparisonFilter = new Filter.FilterItem(valueComparisonFunction, valueComparisonArguments);

@@ -127,6 +127,9 @@ public class Filter
 
         public NumberFilterArgument(float minValue, float maxValue, float defaultValue)
         {
+            if (defaultValue < minValue || defaultValue > maxValue)
+                throw new ArgumentOutOfRangeException($"{defaultValue} is outside the range {minValue}-{maxValue}!");
+
             MinValue = minValue;
             MaxValue = maxValue;
             Value = defaultValue;
@@ -138,10 +141,10 @@ public class Filter
         public readonly List<string> Options;
         public string Value;
 
-        public MultipleChoiceFilterArgument(List<string> options, string defaultValue)
+        public MultipleChoiceFilterArgument(List<string> options)
         {
             Options = options;
-            Value = defaultValue;
+            Value = options.Count > 0 ? options[0] : "--";
         }
     }
 }
