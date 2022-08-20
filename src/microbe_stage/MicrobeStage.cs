@@ -658,11 +658,10 @@ public class MicrobeStage : StageBase<Microbe>
     /// </summary>
     private void UpdateDayLightEffects()
     {
-        // need to have this look at Biome type instead
-        // TODO: Consider the fact that in places with 0 sunlight this code does nothing anyway, so is the if needed?
-        if (CurrentPatchName.ToString().Contains("Coastal") || CurrentPatchName.ToString().Contains("Estuary") ||
-            CurrentPatchName.ToString().Contains("Tidepool") || CurrentPatchName.ToString().Contains("Epipelagic") ||
-            CurrentPatchName.ToString().Contains("IceShelf"))
+        BiomeType biome = GameWorld.Map.CurrentPatch!.BiomeType;
+
+        if (biome is BiomeType.Tidepool or BiomeType.Estuary or BiomeType.IceShelf or BiomeType.Epipelagic
+            or BiomeType.Coastal)
         {
             // this needs to be refactored for efficiency but, it works for now
             Camera.LightLevel = (GameWorld.Map.CurrentPatch!.GetCompoundAmount(
