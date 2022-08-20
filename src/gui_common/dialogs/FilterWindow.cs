@@ -172,17 +172,7 @@ public class FilterWindow : CustomDialog
 
     private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
     {
-        var filterContainer = filtersContainer.GetChild(filterIndex);
-
-        if (filterContainer == null)
-            throw new ArgumentOutOfRangeException($"Filter node {filterIndex} doesn't exist!");
-
-        // First is filter category
-        // TODO SEE FOR MERGE
-        var filterArgumentButton = filterContainer.GetChild<CustomDropDown>(1 + argumentIndex);
-
-        if (filterArgumentButton == null)
-            throw new InvalidCastException($"Child {1 + argumentIndex} of container was not a CustomDropDown node!");
+        var filterArgumentButton = GetFilterArgumentNode<CustomDropDown>(argumentIndex, filterIndex);
 
         var argumentValue = filterArgumentButton.Popup.GetItemText(argumentValueIndex);
         filterArgumentButton.Text = argumentValue;
@@ -191,6 +181,64 @@ public class FilterWindow : CustomDialog
         filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
 
         dirty = true;
+    }
+
+    private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
+    {
+        var filterArgumentContainer = GetFilterArgumentNode(argumentIndex, filterIndex);
+
+        var filterArgumentSlider = filterArgumentContainer.GetChild<HSlider>(0);
+        var filterArgumentLabel = filterArgumentContainer.GetChild<Label>(1);
+
+        // Check that children exist
+        if (filterArgumentSlider == null)
+        {
+            throw new SceneTreeAttachRequired($"Number argument with index {argumentIndex} has no children" +
+                $" (expected HSlider)!");
+        }
+
+        if (filterArgumentLabel == null)
+        {
+            throw new SceneTreeAttachRequired($"Number argument with index {argumentIndex} has only one child" +
+                $" (expected Label)!");
+        }
+
+        filterArgumentLabel.Text = argumentValue.ToString();
+
+        GD.Print("DO_SOME_STUFF");
+    }
+
+    /// <summary>
+    ///   Returns the argument node of a filter at given indices and cast it to the desired <see cref="Node"/> subtype.
+    /// </summary>
+    private T GetFilterArgumentNode<T>(int argumentIndex, int filterIndex)
+        where T : Node
+    {
+        var filterContainer = filtersContainer.GetChild(filterIndex);
+
+        if (filterContainer == null)
+            throw new ArgumentOutOfRangeException($"Filter node {filterIndex} doesn't exist!");
+
+        // First child is filter category;
+        var filterArgument = filterContainer.GetChild<T>(1 + argumentIndex);
+
+        if (filterArgument == null)
+            throw new SceneTreeAttachRequired($"Filter has no argument node at index {1 + argumentIndex}!");
+
+        return filterArgument;
+    }
+
+    /// <summary>
+    ///   Returns the argument node of a filter at given indices.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Default implementation of <see cref="GetFilterArgumentNode{T}(int, int)"/> with <see cref="Node"/> type.
+    ///   </para>
+    /// </remarks>
+    private Node GetFilterArgumentNode(int argumentIndex, int filterIndex)
+    {
+        return GetFilterArgumentNode<Node>(argumentIndex, filterIndex);
     }
 
     private void UpdateFilterArguments(int filterIndex, string filterCategory)
@@ -250,6 +298,9 @@ public class FilterWindow : CustomDialog
                 var filterArgumentValueLabel = new Label();
                 filterArgumentValueLabel.Text = numberFilterArgument!.Value.ToString();
                 filterArgumentContainer.AddChild(filterArgumentValueLabel);
+
+                filterArgumentSlider.Connect("value_changed", this, nameof(OnNewSliderValueSelected),
+                    new Godot.Collections.Array { i, filterIndex });
 
                 filterNode.AddChild(filterArgumentContainer);
             }
