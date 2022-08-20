@@ -9,9 +9,6 @@ public class FilterWindow : CustomConfirmationDialog
 
     // Paths for nodes
     // TODO see for having those in Godot
-    /*public NodePath DialogLabelPath = "VBoxContainer/Label";
-    public NodePath ApplyButtonPath = "VBoxContainer/HBoxContainer/ApplyButton";
-    public NodePath CancelButtonPath = "VBoxContainer/HBoxContainer/CancelButton";*/
     public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
 
     private List<Filter> filters = new List<Filter>();
@@ -21,28 +18,14 @@ public class FilterWindow : CustomConfirmationDialog
     /// </summary>
     private bool dirty;
 
-    // Texts for buttons & labels
-    /*private string dialogText = string.Empty;
-    private string confirmText = "APPLY";
-    private string cancelText = "CANCEL";*/
-
     // Nodes
-    /*private Label? dialogLabel;
-    private Button? confirmButton;
-    private Button? cancelButton;*/
     private VBoxContainer filtersContainer = null!;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
-        /*dialogLabel = GetNode<Label>(DialogLabelPath);
-        confirmButton = GetNode<Button>(ApplyButtonPath);
-        cancelButton = GetNode<Button>(CancelButtonPath);*/
         filtersContainer = GetNode<VBoxContainer>(FilterContainersPath);
-
-        /*UpdateLabel();
-        UpdateButtons();*/
     }
 
     public override void _Process(float delta)
@@ -275,38 +258,4 @@ public class FilterWindow : CustomConfirmationDialog
 
         dirty = true;
     }
-
-   /* private void UpdateLabel()
-    {
-        if (dialogLabel == null)
-            throw new SceneTreeAttachRequired();
-
-        dialogLabel.Text = TranslationServer.Translate(dialogText);
-    }
-
-    private void UpdateButtons()
-    {
-        if (confirmButton == null || cancelButton == null)
-            throw new SceneTreeAttachRequired();
-
-        confirmButton.Text = confirmText;
-        cancelButton.Text = cancelText;
-    }*/
-
- /*   private void OnApplyPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (HideOnApply)
-            Hide();
-
-        EmitSignal(nameof(Confirmed));
-    }
-
-    private void OnCancelPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        Hide();
-        EmitSignal(nameof(Cancelled));
-    }*/
 }
