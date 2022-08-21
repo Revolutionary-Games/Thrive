@@ -27,6 +27,9 @@ public class Patch
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
+    
+    [JsonIgnore]
+    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchRegion region)
     {
@@ -389,6 +392,13 @@ public class Patch
         }
 
         // TODO: can we do something about the game log here?
+    }
+
+    public void UpdateBiomeConditions(DayNightCycle lightCycle)
+    {
+        var sunlight = Biome.Compounds[Sunlight];
+        sunlight.Ambient = BiomeTemplate.Conditions.Compounds[Sunlight].Ambient * lightCycle.DayLightPercentage;
+        Biome.Compounds[Sunlight] = sunlight;
     }
 
     /// <summary>

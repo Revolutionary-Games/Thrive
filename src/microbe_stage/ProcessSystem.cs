@@ -340,9 +340,6 @@ public class ProcessSystem
         if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
 
-        if (compound == Sunlight)
-            return environmentalCompoundProperties.Ambient * DayNightCycle.Instance.DayLightPercentage;
-
         return environmentalCompoundProperties.Ambient;
     }
 
