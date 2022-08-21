@@ -609,11 +609,6 @@ public class AutoEvoExploringTool : NodeWithInput
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         evolutionaryTree.FlagNodes(flaggingFunction);
-        /* Code example for flags.
-         * TODO MOVE PROPERLY
-         * evolutionaryTree.FlagNodes(
-         *  n => speciesHistoryList[n.Generation][n.SpeciesID].Behaviour.Activity >= 100);
-         */
 
         // Add checkbox to history container
         historyListMenu.AddItem(currentGeneration.ToString(), false, Colors.White);
