@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/dialogs/MultipleChoiceFilterArgumentButton.cs" type="Script" id=1]
+
+[node name="MultipleChoiceFilterArgumentButton" type="MenuButton"]
+margin_right = 12.0
+margin_bottom = 20.0
+script = ExtResource( 1 )

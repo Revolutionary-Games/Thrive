@@ -9,6 +9,9 @@ public class FilterWindow : CustomConfirmationDialog
     [Export]
     public NodePath FiltersContainerPath = null!;
 
+    private PackedScene multipleChoiceFilterArgumentScene =
+        GD.Load<PackedScene>("res://src/gui_common/dialogs/MultipleChoiceFilterArgumentButton.tscn");
+
     private readonly List<Filter> filters = new();
 
     /// <summary>
@@ -90,7 +93,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = true;
     }
 
-    private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
+    /*private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
     {
         // Update GUI
         var filterArgumentButton = GetFilterControl<CustomDropDown>(1 + argumentIndex, filterIndex);
@@ -103,7 +106,7 @@ public class FilterWindow : CustomConfirmationDialog
         filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
 
         dirty = true;
-    }
+    }*/
 
     private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
     {
@@ -193,18 +196,9 @@ public class FilterWindow : CustomConfirmationDialog
             {
                 // Avoid casting if unnecessary to prevent requiring one variable per option
 
-                var filterArgumentButton = new CustomDropDown();
-                filterArgumentButton.Text = multipleChoiceFilterArgument.Value;
-
-                foreach (var option in multipleChoiceFilterArgument.Options)
-                {
-                    filterArgumentButton.AddItem(option, false, Colors.White);
-                }
-
-                filterArgumentButton.CreateElements();
-                filterArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewFilterArgumentSelected),
-                    new Godot.Collections.Array { i, filterIndex });
-
+                var filterArgumentButton = (MultipleChoiceFilterArgumentButton)multipleChoiceFilterArgumentScene
+                    .Instance();
+                filterArgumentButton.Initialize(multipleChoiceFilterArgument);
                 filterNode.AddChild(filterArgumentButton);
             }
             else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
