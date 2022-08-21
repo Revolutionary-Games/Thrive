@@ -9,7 +9,7 @@ public class DayNightCycle : Godot.Node
     /// <summary>
     ///   This is how long it takes to complete a full day in realtime seconds
     /// </summary>
-    private float realTimePerDay = 240;
+    private float realTimePerDay = 180;
     private float daytimeDaylightLen = 16;
 
     /// <summary>
