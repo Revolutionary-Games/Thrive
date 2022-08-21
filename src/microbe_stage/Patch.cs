@@ -16,6 +16,9 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
+    [JsonIgnore]
+    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
@@ -402,6 +405,13 @@ public class Patch
         }
 
         // TODO: can we do something about the game log here?
+    }
+
+    public void UpdateBiomeConditions(DayNightCycle lightCycle)
+    {
+        var sunlight = Biome.Compounds[Sunlight];
+        sunlight.Ambient = BiomeTemplate.Conditions.Compounds[Sunlight].Ambient * lightCycle.DayLightPercentage;
+        Biome.Compounds[Sunlight] = sunlight;
     }
 
     /// <summary>

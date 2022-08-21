@@ -26,8 +26,6 @@ public class MicrobeStage : StageBase<Microbe>
     private MicrobeAISystem microbeAISystem = null!;
     private MicrobeSystem microbeSystem = null!;
 
-    private DayNightCycle lightCycle = null!;
-
     private FloatingChunkSystem floatingChunkSystem = null!;
 
     [JsonProperty]
@@ -135,7 +133,6 @@ public class MicrobeStage : StageBase<Microbe>
         HoverInfo = GetNode<PlayerHoverInfo>("PlayerHoverInfo");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
-        lightCycle = world.GetNode<DayNightCycle>("LightCycle");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
 
         // These need to be created here as well for child property save load to work
@@ -147,7 +144,7 @@ public class MicrobeStage : StageBase<Microbe>
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame);
+            worldLight, CurrentGame, lightCycle);
     }
 
     public override void OnFinishTransitioning()
@@ -206,6 +203,8 @@ public class MicrobeStage : StageBase<Microbe>
         floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
+
+        patchManager.UpdatePatchBiome();
 
         if (gameOver)
             return;

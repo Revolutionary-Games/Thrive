@@ -26,6 +26,9 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected Control hudRoot = null!;
 
     [JsonProperty]
+    protected DayNightCycle lightCycle = null!;
+
+    [JsonProperty]
     protected Random random = new();
 
     /// <summary>
@@ -196,9 +199,19 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         NodeReferencesResolved = true;
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        if (!IsLoadedFromSave)
+            lightCycle = new DayNightCycle();
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        lightCycle.Process(delta);
 
         if (gameOver)
         {

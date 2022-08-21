@@ -22,6 +22,9 @@ public class PatchManager : IChildPropertiesLoadCallback
     private DirectionalLight worldLight;
 
     [JsonProperty]
+    private DayNightCycle lightCycle;
+
+    [JsonProperty]
     private Patch? previousPatch;
 
     /// <summary>
@@ -31,13 +34,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties? currentGame)
+        GameProperties? currentGame, DayNightCycle lightCycle)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
+        this.lightCycle = lightCycle;
         CurrentGame = currentGame;
     }
 
@@ -93,6 +97,8 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
+        currentPatch.UpdateBiomeConditions(lightCycle);
+
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
 
@@ -113,6 +119,17 @@ public class PatchManager : IChildPropertiesLoadCallback
         compoundCloudSystem.SetBrightnessModifier(currentPatch.BiomeTemplate.CompoundCloudBrightness);
 
         return patchIsChanged;
+    }
+
+    public void UpdatePatchBiome()
+    {
+        if (previousPatch != null)
+        {
+            previousPatch.UpdateBiomeConditions(lightCycle);
+
+            // Update environment for process system
+            processSystem.SetBiome(previousPatch.Biome);
+        }
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)
