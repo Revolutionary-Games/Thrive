@@ -19,7 +19,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/ingestedmatter.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/parts/slimeJetAction.png" type="Texture" id=19]
-[ext_resource path="res://src/general/DayNightCycle.cs" type="Script" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=41]
@@ -419,9 +418,6 @@ shadow_enabled = true
 
 [node name="GuidanceLine" parent="World" instance=ExtResource( 75 )]
 visible = false
-
-[node name="LightCycle" type="Node" parent="World"]
-script = ExtResource( 19 )
 
 [node name="PlayerHoverInfo" type="Node" parent="."]
 pause_mode = 2
@@ -2222,6 +2218,7 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
