@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 
 public class FilterWindow : CustomConfirmationDialog
 {
-    [Export]
-    public bool HideOnApply = true;
-
     // Paths for nodes
-    // TODO see for having those in Godot
-    public NodePath FilterContainersPath = "VBoxContainer/FiltersContainer";
+    [Export]
+    public NodePath FiltersContainerPath = null!;
 
-    private List<Filter> filters = new List<Filter>();
+    private readonly List<Filter> filters = new();
 
     /// <summary>
     ///   If redraw is needed.
@@ -21,11 +19,11 @@ public class FilterWindow : CustomConfirmationDialog
     // Nodes
     private VBoxContainer filtersContainer = null!;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
-        filtersContainer = GetNode<VBoxContainer>(FilterContainersPath);
+
+        filtersContainer = GetNode<VBoxContainer>(FiltersContainerPath);
     }
 
     public override void _Process(float delta)
@@ -34,8 +32,7 @@ public class FilterWindow : CustomConfirmationDialog
 
         if (dirty)
         {
-            filtersContainer.Update();
-            Update();
+            RectSize = GetCombinedMinimumSize();
         }
 
         dirty = false;
@@ -128,7 +125,7 @@ public class FilterWindow : CustomConfirmationDialog
                 $" (expected Label)!");
         }
 
-        filterArgumentLabel.Text = argumentValue.ToString();
+        filterArgumentLabel.Text = argumentValue.ToString(CultureInfo.CurrentCulture);
 
         // Update stored values
         // TODO Exceptions
@@ -192,13 +189,12 @@ public class FilterWindow : CustomConfirmationDialog
             // We do not use foreach to keep count of i;
             var filterArgument = filterItem.FilterArguments[i];
 
-            if (filterArgument is Filter.MultipleChoiceFilterArgument)
+            if (filterArgument is Filter.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
             {
                 // Avoid casting if unnecessary to prevent requiring one variable per option
-                var multipleChoiceFilterArgument = filterArgument as Filter.MultipleChoiceFilterArgument;
 
                 var filterArgumentButton = new CustomDropDown();
-                filterArgumentButton.Text = multipleChoiceFilterArgument!.Value;
+                filterArgumentButton.Text = multipleChoiceFilterArgument.Value;
 
                 foreach (var option in multipleChoiceFilterArgument.Options)
                 {
@@ -211,21 +207,20 @@ public class FilterWindow : CustomConfirmationDialog
 
                 filterNode.AddChild(filterArgumentButton);
             }
-            else if (filterArgument is Filter.NumberFilterArgument)
+            else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
             {
                 // Avoid casting if unnecessary to prevent requiring one variable per option
-                var numberFilterArgument = filterArgument as Filter.NumberFilterArgument;
 
                 var filterArgumentContainer = new HBoxContainer();
 
                 var filterArgumentSlider = new HSlider();
-                filterArgumentSlider.MinValue = numberFilterArgument!.MinValue;
-                filterArgumentSlider.MaxValue = numberFilterArgument!.MaxValue;
+                filterArgumentSlider.MinValue = numberFilterArgument.MinValue;
+                filterArgumentSlider.MaxValue = numberFilterArgument.MaxValue;
                 filterArgumentSlider.RectMinSize = new Vector2(100, 25);
                 filterArgumentContainer.AddChild(filterArgumentSlider);
 
                 var filterArgumentValueLabel = new Label();
-                filterArgumentValueLabel.Text = numberFilterArgument!.Value.ToString();
+                filterArgumentValueLabel.Text = numberFilterArgument.Value.ToString(CultureInfo.CurrentCulture);
                 filterArgumentContainer.AddChild(filterArgumentValueLabel);
 
                 filterArgumentSlider.Connect("value_changed", this, nameof(OnNewSliderValueSelected),
