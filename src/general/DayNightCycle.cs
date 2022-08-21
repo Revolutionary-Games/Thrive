@@ -35,6 +35,5 @@ public class DayNightCycle : Godot.Node
     public override void _Process(float delta)
     {
         Time = (Time + (1 / realTimePerDay) * HoursPerDay * delta) % HoursPerDay;
-        GD.Print(DayLightPercentage);
     }
 }
