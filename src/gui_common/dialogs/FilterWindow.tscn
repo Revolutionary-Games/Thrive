@@ -1,56 +1,18 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/dialogs/FilterWindow.cs" type="Script" id=2]
 
-[node name="Popup" type="Popup"]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 1 )
+[node name="CustomConfirmationDialog" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+ConfirmText = "APPLY"
+FiltersContainerPath = NodePath("VBoxContainer/FiltersContainer")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Label" parent="VBoxContainer" index="0"]
+visible = false
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 175.0
+[node name="FiltersContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
+margin_left = -15.0
+margin_top = -15.0
+margin_right = 25.0
 margin_bottom = 25.0
-
-[node name="FiltersContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 29.0
-margin_right = 175.0
-margin_bottom = 29.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 33.0
-margin_right = 175.0
-margin_bottom = 68.0
-
-[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_bottom = 35.0
-
-[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 4.0
-margin_right = 93.0
-margin_bottom = 35.0
-text = "CANCEL"
-
-[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 97.0
-margin_right = 97.0
-margin_bottom = 35.0
-
-[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 101.0
-margin_right = 171.0
-margin_bottom = 35.0
-text = "APPLY"
-
-[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 175.0
-margin_right = 175.0
-margin_bottom = 35.0
-
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]
