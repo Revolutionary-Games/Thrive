@@ -104,7 +104,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
             BehaviouralValueType.Fear => TranslationServer.Translate("BEHAVIOUR_FEAR"),
             BehaviouralValueType.Activity => TranslationServer.Translate("BEHAVIOUR_ACTIVITY"),
             BehaviouralValueType.Focus => TranslationServer.Translate("BEHAVIOUR_FOCUS"),
-            _ => throw new ArgumentOutOfRangeException(nameof(type)),
+            _ => type.ToString(),
         };
     }
 
