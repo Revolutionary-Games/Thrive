@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -92,6 +93,19 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
                     throw new KeyNotFoundException($"{key} is not a valid BehaviouralValueType");
             }
         }
+    }
+
+    public static string GetBehaviourLocalizedString(BehaviouralValueType type)
+    {
+        return type switch
+        {
+            BehaviouralValueType.Aggression => TranslationServer.Translate("BEHAVIOUR_AGGRESSION"),
+            BehaviouralValueType.Opportunism => TranslationServer.Translate("BEHAVIOUR_OPPORTUNISM"),
+            BehaviouralValueType.Fear => TranslationServer.Translate("BEHAVIOUR_FEAR"),
+            BehaviouralValueType.Activity => TranslationServer.Translate("BEHAVIOUR_ACTIVITY"),
+            BehaviouralValueType.Focus => TranslationServer.Translate("BEHAVIOUR_FOCUS"),
+            _ => throw new ArgumentOutOfRangeException(nameof(type)),
+        };
     }
 
     public IEnumerator<KeyValuePair<BehaviouralValueType, float>> GetEnumerator()
