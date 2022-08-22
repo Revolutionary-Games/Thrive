@@ -113,7 +113,7 @@ public class FilterLine : HBoxContainer
             RemoveChild(nodeToRemove);
 
             // We free for memory, but keeping could allow to save options...
-            nodeToRemove.Free();
+            nodeToRemove.QueueFree();
         }
 
         dirty = true;
