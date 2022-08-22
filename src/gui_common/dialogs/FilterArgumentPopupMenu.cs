@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public class MultipleChoiceFilterArgumentButton : CustomDropDown
+public class FilterArgumentPopupMenu : CustomDropDown
 {
     private Filter.MultipleChoiceFilterArgument filterArgument = null!;
 

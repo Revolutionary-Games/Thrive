@@ -10,8 +10,8 @@ public class FilterWindow : CustomConfirmationDialog
 
     private readonly List<Filter> filters = new();
 
-    private PackedScene multipleChoiceFilterArgumentScene =
-        GD.Load<PackedScene>("res://src/gui_common/dialogs/MultipleChoiceFilterArgumentButton.tscn");
+    private PackedScene filterArgumentPopupMenuScene =
+        GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentPopupMenu.tscn");
     private PackedScene filterArgumentSliderScene =
         GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
 
@@ -196,7 +196,7 @@ public class FilterWindow : CustomConfirmationDialog
             if (filterArgument is Filter.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
             {
                 // TODO use name FilterArgumentButton for class?
-                var filterArgumentButton = (MultipleChoiceFilterArgumentButton)multipleChoiceFilterArgumentScene
+                var filterArgumentButton = (FilterArgumentPopupMenu)filterArgumentPopupMenuScene
                     .Instance();
                 filterArgumentButton.Initialize(multipleChoiceFilterArgument);
                 filterNode.AddChild(filterArgumentButton);
