@@ -131,11 +131,8 @@ public class FilterWindow : CustomConfirmationDialog
         if (!filter.FilterItems.TryGetValue(filterCategory, out var filterItem))
             throw new KeyNotFoundException($"Invalid filter category: {filterCategory}");
 
-        for (var i = 0; i < filterItem.FilterArguments.Count; i++)
+        foreach (var filterArgument in filterItem.FilterArguments)
         {
-            // We do not use foreach to keep count of i;
-            var filterArgument = filterItem.FilterArguments[i];
-
             if (filterArgument is Filter.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
             {
                 // TODO use name FilterArgumentButton for class?
