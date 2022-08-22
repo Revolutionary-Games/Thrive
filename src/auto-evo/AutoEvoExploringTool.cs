@@ -644,6 +644,8 @@ public class AutoEvoExploringTool : NodeWithInput
         var valueComparisonFilter = new Filter.FilterItem(valueComparisonFunction, valueComparisonArguments);
 
         speciesFilter.AddFilterItem("VALUE_COMPARISON", valueComparisonFilter);
+
+        filterWindow.Initialize(speciesFilter);
     }
 
     private void FlagTreeNodes()
@@ -690,8 +692,6 @@ public class AutoEvoExploringTool : NodeWithInput
     private void OpenFilterWindow()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        filterWindow.Initialize(speciesFilter);
 
         filterWindow.PopupCenteredShrink();
     }

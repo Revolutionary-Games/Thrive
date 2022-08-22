@@ -63,7 +63,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = true;
     }
 
-    public void MakeFilterSnapshots()
+    public void MakeFiltersSnapshots()
     {
         foreach (var filterLine in filterLines)
         {

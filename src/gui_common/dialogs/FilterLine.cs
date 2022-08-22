@@ -113,28 +113,11 @@ public class FilterLine : HBoxContainer
         AddChild(argumentChild);
     }
 
-    /// <summary>
-    ///   Removes all arguments from a filter, but keeps the category.
-    /// </summary>
-    private void ClearArguments()
+    public void MakeSnapshot()
     {
-        // We do not use GetChildren because it returns objects so we have to cast...
-        for (var i = 1; i < GetChildCount(); i++)
-        {
-            var nodeToRemove = GetChild(i);
-            RemoveChild(nodeToRemove);
+        categorySnapshot = filter.FilterCategory;
+        GD.Print("Making category snapshot: ", categorySnapshot);
 
-            // We free for memory, but keeping could allow to save options...
-            nodeToRemove.QueueFree();
-        }
-
-        arguments.Clear();
-
-        dirty = true;
-    }
-
-    private void MakeSnapshot()
-    {
         foreach (var argument in arguments)
         {
             // TODO SEE FOR inherited method
@@ -153,10 +136,10 @@ public class FilterLine : HBoxContainer
         }
     }
 
-    private void RestoreLastSnapshot()
+    public void RestoreLastSnapshot()
     {
         // TODO CATEGORY
-        if(categorySnaphot == filter.FilterCategory)
+        if (categorySnapshot == filter.FilterCategory)
         {
             foreach (var argument in arguments)
             {
@@ -178,7 +161,28 @@ public class FilterLine : HBoxContainer
         else
         {
             // TODO DEAL REDRAWING IF NOT NEEDED
-            filter.FilterCategory = categorySnapshot; 
+            filter.FilterCategory = categorySnapshot;
+            GD.Print("Restoring category ", categorySnapshot);
         }
+    }
+
+    /// <summary>
+    ///   Removes all arguments from a filter, but keeps the category.
+    /// </summary>
+    private void ClearArguments()
+    {
+        // We do not use GetChildren because it returns objects so we have to cast...
+        for (var i = 1; i < GetChildCount(); i++)
+        {
+            var nodeToRemove = GetChild(i);
+            RemoveChild(nodeToRemove);
+
+            // We free for memory, but keeping could allow to save options...
+            nodeToRemove.QueueFree();
+        }
+
+        arguments.Clear();
+
+        dirty = true;
     }
 }

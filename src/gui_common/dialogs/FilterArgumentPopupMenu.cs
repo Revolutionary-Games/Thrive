@@ -46,10 +46,12 @@ public class FilterArgumentPopupMenu : CustomDropDown
     public void MakeSnapshot()
     {
         valueSnapshot = Text;
+        GD.Print("FAPM making snapshot ", valueSnapshot);
     }
 
     public void RestoreLastSnapshot()
     {
+        GD.Print("FAPM restoring value from snapshot: ", valueSnapshot);
         Text = valueSnapshot;
         filterArgument.Value = Text;
         dirty = true;

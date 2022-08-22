@@ -57,11 +57,15 @@ public class FilterArgumentSlider : HBoxContainer
     public void MakeSnapshot()
     {
         valueSnapshot = value;
+
+        GD.Print("FAS making snapshot ", valueSnapshot);
     }
 
     public void RestoreLastSnapshot()
     {
-        OnNewValueSelected(value);
+        GD.Print("FAS restoring value from snapshot: ", valueSnapshot);
+        slider.Value = valueSnapshot;
+        OnNewValueSelected(valueSnapshot);
     }
 
     private void OnNewValueSelected(float value)
