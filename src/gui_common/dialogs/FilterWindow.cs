@@ -9,10 +9,12 @@ public class FilterWindow : CustomConfirmationDialog
     [Export]
     public NodePath FiltersContainerPath = null!;
 
+    private readonly List<Filter> filters = new();
+
     private PackedScene multipleChoiceFilterArgumentScene =
         GD.Load<PackedScene>("res://src/gui_common/dialogs/MultipleChoiceFilterArgumentButton.tscn");
-
-    private readonly List<Filter> filters = new();
+    private PackedScene filterArgumentSliderScene =
+        GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
 
     /// <summary>
     ///   If redraw is needed.
@@ -108,7 +110,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = true;
     }*/
 
-    private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
+    /*private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
     {
         // Update GUI
         var filterArgumentContainer = GetFilterControl(1 + argumentIndex, filterIndex);
@@ -135,7 +137,7 @@ public class FilterWindow : CustomConfirmationDialog
         filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
 
         dirty = true;
-    }
+    }*/
 
     /// <summary>
     ///   Returns the control node or group of a filter at given indices and cast it to the desired <see cref="Node"/> subtype.
@@ -194,8 +196,7 @@ public class FilterWindow : CustomConfirmationDialog
 
             if (filterArgument is Filter.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
             {
-                // Avoid casting if unnecessary to prevent requiring one variable per option
-
+                // TODO use name FilterArgumentButton for class?
                 var filterArgumentButton = (MultipleChoiceFilterArgumentButton)multipleChoiceFilterArgumentScene
                     .Instance();
                 filterArgumentButton.Initialize(multipleChoiceFilterArgument);
@@ -203,24 +204,9 @@ public class FilterWindow : CustomConfirmationDialog
             }
             else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
             {
-                // Avoid casting if unnecessary to prevent requiring one variable per option
-
-                var filterArgumentContainer = new HBoxContainer();
-
-                var filterArgumentSlider = new HSlider();
-                filterArgumentSlider.MinValue = numberFilterArgument.MinValue;
-                filterArgumentSlider.MaxValue = numberFilterArgument.MaxValue;
-                filterArgumentSlider.RectMinSize = new Vector2(100, 25);
-                filterArgumentContainer.AddChild(filterArgumentSlider);
-
-                var filterArgumentValueLabel = new Label();
-                filterArgumentValueLabel.Text = numberFilterArgument.Value.ToString(CultureInfo.CurrentCulture);
-                filterArgumentContainer.AddChild(filterArgumentValueLabel);
-
-                filterArgumentSlider.Connect("value_changed", this, nameof(OnNewSliderValueSelected),
-                    new Godot.Collections.Array { i, filterIndex });
-
-                filterNode.AddChild(filterArgumentContainer);
+                var filterArgumentSlider = (FilterArgumentSlider)filterArgumentSliderScene.Instance();
+                filterArgumentSlider.Initialize(numberFilterArgument);
+                filterNode.AddChild(filterArgumentSlider);
             }
             else
             {

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/dialogs/FilterArgumentSlider.cs" type="Script" id=1]
+
+[node name="NumberSliderFilterArgument" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+SliderPath = NodePath("Slider")
+LabelPath = NodePath("Label")
+
+[node name="Slider" type="HSlider" parent="."]
+margin_right = 100.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 100, 25 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 104.0
+margin_top = 13.0
+margin_right = 145.0
+margin_bottom = 27.0
+text = "VALUE"
+
+[connection signal="value_changed" from="Slider" to="." method="OnNewValueSelected"]
