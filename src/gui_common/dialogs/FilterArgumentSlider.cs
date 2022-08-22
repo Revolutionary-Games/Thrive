@@ -1,6 +1,6 @@
-using Godot;
 using System;
 using System.Globalization;
+using Godot;
 
 public class FilterArgumentSlider : HBoxContainer
 {
@@ -38,8 +38,6 @@ public class FilterArgumentSlider : HBoxContainer
 
         label = GetNode<Label>(LabelPath);
         label.Text = filterArgument.Value.ToString(CultureInfo.CurrentCulture);
-
-        slider.Connect("value_changed", this, nameof(OnNewValueSelected));
     }
 
     public override void _Process(float delta)
