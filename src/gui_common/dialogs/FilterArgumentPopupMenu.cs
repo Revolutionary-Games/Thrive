@@ -4,6 +4,7 @@ using Godot;
 public class FilterArgumentPopupMenu : CustomDropDown
 {
     private Filter.MultipleChoiceFilterArgument filterArgument = null!;
+    private string valueSnapshot = null!;
 
     /// <summary>
     ///   If redraw is needed.
@@ -40,6 +41,18 @@ public class FilterArgumentPopupMenu : CustomDropDown
             Update();
             dirty = false;
         }
+    }
+
+    public void MakeSnapshot()
+    {
+        valueSnapshot = Text;
+    }
+
+    public void RestoreLastSnapshot()
+    {
+        Text = valueSnapshot;
+        filterArgument.Value = Text;
+        dirty = true;
     }
 
     private void OnNewChoice(int choiceIndex)

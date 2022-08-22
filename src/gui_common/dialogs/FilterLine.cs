@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class FilterLine : HBoxContainer
 {
     private Filter filter = null!;
     private string defaultText = "--";
+    private string categorySnapshot = null!;
 
     private PackedScene filterArgumentPopupMenuScene =
         GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentPopupMenu.tscn");
     private PackedScene filterArgumentSliderScene =
         GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
+
+    private List<Node> arguments = new();
+
 
     /// <summary>
     ///   If redraw is needed.
@@ -84,13 +89,13 @@ public class FilterLine : HBoxContainer
                 var filterArgumentButton = (FilterArgumentPopupMenu)filterArgumentPopupMenuScene
                     .Instance();
                 filterArgumentButton.Initialize(multipleChoiceFilterArgument);
-                AddChild(filterArgumentButton);
+                AddArgument(filterArgumentButton);
             }
             else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
             {
                 var filterArgumentSlider = (FilterArgumentSlider)filterArgumentSliderScene.Instance();
                 filterArgumentSlider.Initialize(numberFilterArgument);
-                AddChild(filterArgumentSlider);
+                AddArgument(filterArgumentSlider);
             }
             else
             {
@@ -99,6 +104,13 @@ public class FilterLine : HBoxContainer
         }
 
         dirty = true;
+    }
+
+    // TODO Use a custom interface instead
+    public void AddArgument(Node argumentChild)
+    {
+        arguments.Add(argumentChild);
+        AddChild(argumentChild);
     }
 
     /// <summary>
@@ -116,6 +128,57 @@ public class FilterLine : HBoxContainer
             nodeToRemove.QueueFree();
         }
 
+        arguments.Clear();
+
         dirty = true;
+    }
+
+    private void MakeSnapshot()
+    {
+        foreach (var argument in arguments)
+        {
+            // TODO SEE FOR inherited method
+            if (argument is FilterArgumentPopupMenu argumentPopupMenu)
+            {
+                argumentPopupMenu.MakeSnapshot();
+            }
+            else if (argument is FilterArgumentSlider argumentSlider)
+            {
+                argumentSlider.MakeSnapshot();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
+
+    private void RestoreLastSnapshot()
+    {
+        // TODO CATEGORY
+        if(categorySnaphot == filter.FilterCategory)
+        {
+            foreach (var argument in arguments)
+            {
+                // TODO SEE FOR inherited method
+                if (argument is FilterArgumentPopupMenu argumentPopupMenu)
+                {
+                    argumentPopupMenu.RestoreLastSnapshot();
+                }
+                else if (argument is FilterArgumentSlider argumentSlider)
+                {
+                    argumentSlider.RestoreLastSnapshot();
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+        else
+        {
+            // TODO DEAL REDRAWING IF NOT NEEDED
+            filter.FilterCategory = categorySnapshot; 
+        }
     }
 }

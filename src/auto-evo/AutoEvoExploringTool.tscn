@@ -778,7 +778,6 @@ DialogText = "RETURN_TO_MENU_WARNING"
 rect_min_size = Vector2( 800, 0 )
 WindowTitle = "SPECIES_FILTER_WINDOW"
 DialogText = "SELECT_SPECIES_FILTER"
-ConfirmText = "APPLY"
 
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
@@ -796,4 +795,7 @@ ConfirmText = "APPLY"
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
+[connection signal="Cancelled" from="FilterWindow" to="FilterWindow" method="RestoreFilterSnapshots"]
+[connection signal="Closed" from="FilterWindow" to="FilterWindow" method="RestoreFilterSnapshots"]
 [connection signal="Confirmed" from="FilterWindow" to="." method="FlagTreeNodes"]
+[connection signal="Confirmed" from="FilterWindow" to="FilterWindow" method="MakeFilterSnapshots"]

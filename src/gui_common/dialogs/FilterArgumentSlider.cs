@@ -18,6 +18,9 @@ public class FilterArgumentSlider : HBoxContainer
     /// </summary>
     private bool dirty = true;
 
+    private float value;
+    private float valueSnapshot;
+
     private Filter.NumberFilterArgument filterArgument = null!;
 
     public void Initialize(Filter.NumberFilterArgument filterArgument)
@@ -51,8 +54,19 @@ public class FilterArgumentSlider : HBoxContainer
         }
     }
 
+    public void MakeSnapshot()
+    {
+        valueSnapshot = value;
+    }
+
+    public void RestoreLastSnapshot()
+    {
+        OnNewValueSelected(value);
+    }
+
     private void OnNewValueSelected(float value)
     {
+        this.value = value;
         label.Text = value.ToString(CultureInfo.CurrentCulture);
         filterArgument.Value = value;
         dirty = true;

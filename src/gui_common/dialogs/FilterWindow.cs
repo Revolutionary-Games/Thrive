@@ -17,6 +17,7 @@ public class FilterWindow : CustomConfirmationDialog
 
     // Nodes
     private VBoxContainer filtersContainer = null!;
+    private List<FilterLine> filterLines = new();
 
     public override void _Ready()
     {
@@ -46,6 +47,7 @@ public class FilterWindow : CustomConfirmationDialog
     public void ClearFilters()
     {
         filters.Clear();
+        filterLines.Clear();
         filtersContainer.FreeChildren(true);
     }
 
@@ -55,8 +57,25 @@ public class FilterWindow : CustomConfirmationDialog
         filterLine.Initialize(filter);
 
         filtersContainer.AddChild(filterLine);
+        filterLines.Add(filterLine);
         filters.Add(filter);
 
         dirty = true;
+    }
+
+    public void MakeFilterSnapshots()
+    {
+        foreach (var filterLine in filterLines)
+        {
+            filterLine.MakeSnapshot();
+        }
+    }
+
+    public void RestoreFiltersSnapshots()
+    {
+        foreach (var filterLine in filterLines)
+        {
+            filterLine.RestoreLastSnapshot();
+        }
     }
 }
