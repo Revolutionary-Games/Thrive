@@ -94,50 +94,6 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = true;
     }
 
-    /*private void OnNewFilterArgumentSelected(int argumentValueIndex, int argumentIndex, int filterIndex)
-    {
-        // Update GUI
-        var filterArgumentButton = GetFilterControl<CustomDropDown>(1 + argumentIndex, filterIndex);
-
-        var argumentValue = filterArgumentButton.Popup.GetItemText(argumentValueIndex);
-        filterArgumentButton.Text = argumentValue;
-
-        // Update stored values
-        // TODO Exceptions
-        filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
-
-        dirty = true;
-    }*/
-
-    /*private void OnNewSliderValueSelected(float argumentValue, int argumentIndex, int filterIndex)
-    {
-        // Update GUI
-        var filterArgumentContainer = GetFilterControl(1 + argumentIndex, filterIndex);
-
-        var filterArgumentSlider = filterArgumentContainer.GetChild<HSlider>(0);
-        var filterArgumentLabel = filterArgumentContainer.GetChild<Label>(1);
-
-        if (filterArgumentSlider == null)
-        {
-            throw new SceneTreeAttachRequired($"Number argument with index {argumentIndex} has no children" +
-                $" (expected HSlider)!");
-        }
-
-        if (filterArgumentLabel == null)
-        {
-            throw new SceneTreeAttachRequired($"Number argument with index {argumentIndex} has only one child" +
-                $" (expected Label)!");
-        }
-
-        filterArgumentLabel.Text = argumentValue.ToString(CultureInfo.CurrentCulture);
-
-        // Update stored values
-        // TODO Exceptions
-        filters[filterIndex].SetArgumentValue(argumentIndex, argumentValue);
-
-        dirty = true;
-    }*/
-
     /// <summary>
     ///   Returns the control node or group of a filter at given indices and cast it to the desired <see cref="Node"/> subtype.
     /// </summary>
@@ -156,19 +112,6 @@ public class FilterWindow : CustomConfirmationDialog
             throw new SceneTreeAttachRequired($"Filter has no node at index {controlIndex}!");
 
         return filterArgument;
-    }
-
-    /// <summary>
-    ///   Returns the argument node of a filter at given indices.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Default implementation of <see cref="GetFilterControl{T}(int, int)"/> with <see cref="Node"/> type.
-    ///   </para>
-    /// </remarks>
-    private Node GetFilterControl(int argumentIndex, int filterIndex)
-    {
-        return GetFilterControl<Node>(argumentIndex, filterIndex);
     }
 
     private void UpdateFilterArguments(int filterIndex, string filterCategory)
