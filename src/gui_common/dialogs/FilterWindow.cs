@@ -9,16 +9,12 @@ public class FilterWindow : CustomConfirmationDialog
     public NodePath FiltersContainerPath = null!;
 
     private readonly List<Filter> filters = new();
-
-    private PackedScene filterArgumentPopupMenuScene =
-        GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentPopupMenu.tscn");
-    private PackedScene filterArgumentSliderScene =
-        GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
-
     /// <summary>
     ///   If redraw is needed.
     /// </summary>
     private bool dirty;
+
+    private PackedScene filterScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterLine.tscn");
 
     // Nodes
     private VBoxContainer filtersContainer = null!;
@@ -56,7 +52,7 @@ public class FilterWindow : CustomConfirmationDialog
 
     public void SetupFilter(Filter filter, string defaultText = "--")
     {
-        if (filtersContainer == null)
+        /*if (filtersContainer == null)
             throw new SceneTreeAttachRequired();
 
         var filterContainer = new HBoxContainer();
@@ -73,14 +69,18 @@ public class FilterWindow : CustomConfirmationDialog
         filterButton.Popup.Connect("index_pressed", this, nameof(OnNewFilterCategorySelected),
             new Godot.Collections.Array { filters.Count });
 
-        filterContainer.AddChild(filterButton);
-        filtersContainer.AddChild(filterContainer);
+        filterContainer.AddChild(filterButton);*/
+
+        var filterLine = (FilterLine)filterScene.Instance();
+        filterLine.Initialize(filter);
+
+        filtersContainer.AddChild(filterLine);
         filters.Add(filter);
 
         dirty = true;
     }
 
-    private void OnNewFilterCategorySelected(int categoryIndex, int filterIndex)
+    /*private void OnNewFilterCategorySelected(int categoryIndex, int filterIndex)
     {
         var filterCategoryButton = GetFilterControl<CustomDropDown>(0, filterIndex);
 
@@ -92,12 +92,12 @@ public class FilterWindow : CustomConfirmationDialog
         UpdateFilterArguments(filterIndex, filterCategory);
 
         dirty = true;
-    }
+    }*/
 
     /// <summary>
     ///   Returns the control node or group of a filter at given indices and cast it to the desired <see cref="Node"/> subtype.
     /// </summary>
-    private T GetFilterControl<T>(int controlIndex, int filterIndex)
+    /*private T GetFilterControl<T>(int controlIndex, int filterIndex)
         where T : Node
     {
         var filterContainer = filtersContainer.GetChild(filterIndex);
@@ -112,9 +112,9 @@ public class FilterWindow : CustomConfirmationDialog
             throw new SceneTreeAttachRequired($"Filter has no node at index {controlIndex}!");
 
         return filterArgument;
-    }
+    }*/
 
-    private void UpdateFilterArguments(int filterIndex, string filterCategory)
+    /*private void UpdateFilterArguments(int filterIndex, string filterCategory)
     {
         var filter = filters[filterIndex];
 
@@ -154,9 +154,9 @@ public class FilterWindow : CustomConfirmationDialog
         }
 
         dirty = true;
-    }
+    }*/
 
-    /// <summary>
+    /*/// <summary>
     ///   Removes all arguments from a filter, but keeps the category.
     /// </summary>
     private void ClearFilterArguments(Node filterNode)
@@ -171,5 +171,5 @@ public class FilterWindow : CustomConfirmationDialog
         }
 
         dirty = true;
-    }
+    }*/
 }
