@@ -12,7 +12,6 @@ public class FilterLine : HBoxContainer
     private PackedScene filterArgumentSliderScene =
         GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
 
-
     /// <summary>
     ///   If redraw is needed.
     /// </summary>
