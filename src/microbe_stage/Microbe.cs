@@ -1093,6 +1093,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return;
 
         // Scale movement by delta time (not by framerate). We aren't Fallout 4
+        // TODO: it seems that at low framerate (below 20 or so) cells get a speed boost for some reason
         ApplyCentralImpulse(movement * delta);
     }
 

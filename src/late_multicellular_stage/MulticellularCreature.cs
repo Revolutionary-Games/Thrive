@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -12,6 +13,8 @@ using Newtonsoft.Json;
 [DeserializedCallbackTarget]
 public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked
 {
+    private static readonly Vector3 SwimUpForce = new(0, 20, 0);
+
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
 
@@ -23,6 +26,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     [JsonProperty]
     private ISpawnSystem? spawnSystem;
+
+    private MulticellularMetaballDisplayer metaballDisplayer = null!;
+
+    [JsonProperty]
+    private float targetSwimLevel;
 
     // TODO: implement
     [JsonIgnore]
@@ -90,6 +98,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+
+        metaballDisplayer = GetNode<MulticellularMetaballDisplayer>("MetaballDisplayer");
     }
 
     /// <summary>
@@ -116,6 +126,16 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         OnReproductionStatus?.Invoke(this, true);
     }
 
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+
+        // TODO: apply buoyancy (if this is underwater)
+
+        if (Translation.y < targetSwimLevel)
+            ApplyCentralImpulse(Mass * SwimUpForce * delta);
+    }
+
     public void ApplySpecies(Species species)
     {
         if (species is not LateMulticellularSpecies lateSpecies)
@@ -126,7 +146,12 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // TODO: set from species
         compounds.Capacity = 100;
 
-        // TODO: setup
+        // TODO: better mass calculation
+        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
+
+        // Setup graphics
+        // TODO: handle lateSpecies.Scale
+        metaballDisplayer.DisplayFromList(lateSpecies.BodyLayout);
     }
 
     public void SetInitialCompounds()
