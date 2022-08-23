@@ -5,6 +5,12 @@ using Godot;
 
 public class FilterLine : HBoxContainer
 {
+    [Export]
+    public NodePath CategoryButtonPath = null!;
+
+    [Export]
+    public NodePath ArgumentsContainerPath = null!;
+
     private Filter filter = null!;
     private string defaultText = "--";
     private string categorySnapshot = null!;
@@ -14,8 +20,9 @@ public class FilterLine : HBoxContainer
     private PackedScene filterArgumentSliderScene =
         GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
 
-    private List<Node> arguments = new();
-
+    private CustomDropDown categoryButton = null!;
+    private HBoxContainer argumentsContainer = null!;
+    private List<IFilterArgumentNode> arguments = new();
 
     /// <summary>
     ///   If redraw is needed.
@@ -33,7 +40,9 @@ public class FilterLine : HBoxContainer
         if (filter == null)
             throw new InvalidOperationException("Node was not initialized!");
 
-        var categoryButton = new CustomDropDown();
+        categoryButton = GetNode<CustomDropDown>(CategoryButtonPath);
+        argumentsContainer = GetNode<HBoxContainer>(ArgumentsContainerPath);
+
         categoryButton.Text = defaultText;
 
         foreach (var option in filter.FilterItemsNames)
@@ -43,8 +52,6 @@ public class FilterLine : HBoxContainer
 
         categoryButton.CreateElements();
         categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
-
-        AddChild(categoryButton);
 
         dirty = true;
     }
@@ -61,13 +68,6 @@ public class FilterLine : HBoxContainer
         }
     }
 
-    // TODO Use a custom interface instead
-    public void AddArgument(Node argumentChild)
-    {
-        arguments.Add(argumentChild);
-        AddChild(argumentChild);
-    }
-
     public void MakeSnapshot()
     {
         categorySnapshot = filter.FilterCategory;
@@ -75,42 +75,17 @@ public class FilterLine : HBoxContainer
 
         foreach (var argument in arguments)
         {
-            // TODO SEE FOR inherited method
-            if (argument is FilterArgumentPopupMenu argumentPopupMenu)
-            {
-                argumentPopupMenu.MakeSnapshot();
-            }
-            else if (argument is FilterArgumentSlider argumentSlider)
-            {
-                argumentSlider.MakeSnapshot();
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+            argument.MakeSnapshot();
         }
     }
 
     public void RestoreLastSnapshot()
     {
-        // TODO CATEGORY
         if (categorySnapshot == filter.FilterCategory)
         {
             foreach (var argument in arguments)
             {
-                // TODO SEE FOR inherited method
-                if (argument is FilterArgumentPopupMenu argumentPopupMenu)
-                {
-                    argumentPopupMenu.RestoreLastSnapshot();
-                }
-                else if (argument is FilterArgumentSlider argumentSlider)
-                {
-                    argumentSlider.RestoreLastSnapshot();
-                }
-                else
-                {
-                    throw new NotImplementedException();
-                }
+                argument.RestoreLastSnapshot();
             }
         }
         else
@@ -149,13 +124,15 @@ public class FilterLine : HBoxContainer
                 var filterArgumentButton = (FilterArgumentPopupMenu)filterArgumentPopupMenuScene
                     .Instance();
                 filterArgumentButton.Initialize(multipleChoiceFilterArgument);
-                AddArgument(filterArgumentButton);
+                arguments.Add(filterArgumentButton);
+                AddChild(filterArgumentButton);
             }
             else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
             {
                 var filterArgumentSlider = (FilterArgumentSlider)filterArgumentSliderScene.Instance();
                 filterArgumentSlider.Initialize(numberFilterArgument);
-                AddArgument(filterArgumentSlider);
+                arguments.Add(filterArgumentSlider);
+                AddChild(filterArgumentSlider);
             }
             else
             {
@@ -171,7 +148,7 @@ public class FilterLine : HBoxContainer
     /// </summary>
     private void ClearArguments()
     {
-        this.FreeChildren(true);
+        argumentsContainer.FreeChildren(true);
 
         arguments.Clear();
 

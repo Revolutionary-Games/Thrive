@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/FilterLine.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=2]
 
 [node name="FilterLine" type="HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 20.0
 script = ExtResource( 1 )
+CategoryButtonPath = NodePath("FilterCategoryButton")
+ArgumentsContainerPath = NodePath("ArgumentsContainer")
+
+[node name="FilterCategoryButton" type="MenuButton" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+script = ExtResource( 2 )
+
+[node name="ArgumentsContainer" type="HBoxContainer" parent="."]
+margin_left = 16.0
+margin_right = 16.0
+margin_bottom = 20.0

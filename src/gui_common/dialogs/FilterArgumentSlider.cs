@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Godot;
 
-public class FilterArgumentSlider : HBoxContainer
+public class FilterArgumentSlider : HBoxContainer, IFilterArgumentNode
 {
     [Export]
     public NodePath SliderPath = null!;
