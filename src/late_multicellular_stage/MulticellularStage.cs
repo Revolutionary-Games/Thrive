@@ -17,7 +17,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public MulticellularCamera NoPlayerCamera { get; private set; } = null!;
+    public MulticellularCamera PlayerCamera { get; private set; } = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -58,7 +58,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
 
-        NoPlayerCamera = world.GetNode<MulticellularCamera>("NoPlayerCamera");
+        PlayerCamera = world.GetNode<MulticellularCamera>("PlayerCamera");
 
         // These need to be created here as well for child property save load to work
         // TODO: systems
@@ -239,10 +239,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (HasPlayer)
             return;
 
-        // Player object has its own camera, so we won't use the no player camera here
-        // TODO: actually implement this
-        // NoPlayerCamera.Current = false;
-
         Player = SpawnHelpers.SpawnCreature(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
             rootOfDynamicallySpawned, SpawnHelpers.LoadMulticellularScene(), false, dummySpawner, CurrentGame!);
         Player.AddToGroup(Constants.PLAYER_GROUP);
@@ -250,6 +246,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         Player.OnDeath = OnPlayerDied;
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
+
+        PlayerCamera.FollowedNode = Player;
 
         // spawner.DespawnAll();
 
@@ -279,8 +277,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     private void OnFinishLoading()
     {
-        // Not sure if this is needed, but at least this was something to put here
-        PointCameraAtPlayer();
     }
 
     [DeserializedCallbackAllowed]
@@ -288,7 +284,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         HandlePlayerDeath();
 
-        PointCameraAtPlayer();
+        PlayerCamera.FollowedNode = null;
         Player = null;
     }
 
@@ -296,20 +292,5 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private void OnPlayerReproductionStatusChanged(MulticellularCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
-    }
-
-    private void PointCameraAtPlayer()
-    {
-        // TODO: should we instead copy the player camera position so that when the player dies it is less jarring?
-
-        if (Player != null)
-        {
-            var playerPos = Player.GlobalTransform.origin;
-            NoPlayerCamera.LookAtFromPosition(playerPos + new Vector3(10, 4, 0), playerPos, Vector3.Up);
-        }
-
-        NoPlayerCamera.Current = true;
-
-        // TODO: listener for the no player camera
     }
 }
