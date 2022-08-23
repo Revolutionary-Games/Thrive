@@ -124,8 +124,8 @@ custom_constants/separation = 0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-margin_left = 23.0
-margin_right = 38.0
+margin_left = 16.0
+margin_right = 31.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 15, 15 )
 texture = ExtResource( 1 )
@@ -133,8 +133,8 @@ expand = true
 stretch_mode = 6
 
 [node name="MP" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 38.0
-margin_right = 61.0
+margin_left = 31.0
+margin_right = 54.0
 margin_bottom = 15.0
 custom_fonts/font = ExtResource( 4 )
 text = "N_A"
@@ -143,5 +143,11 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 68.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 14, 0 )
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="OnPressed"]
