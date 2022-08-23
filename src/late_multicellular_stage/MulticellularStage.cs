@@ -70,8 +70,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     public override void StartMusic()
     {
-        // TODO: setup own music category for this
-        Jukebox.Instance.PlayCategory("EarlyMulticellularStage");
+        Jukebox.Instance.PlayCategory("LateMulticellularStage");
     }
 
     public override void OnFinishLoading(Save save)
