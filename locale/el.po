@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-19 11:38+0800\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
 "PO-Revision-Date: 2022-03-31 05:02+0000\n"
 "Last-Translator: Apostolos Paschidis <tolissius@gmail.com>\n"
 "Language-Team: Greek <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/el/>\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "MICROBE_EDITOR"
 msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -947,7 +947,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:764
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
@@ -1874,6 +1874,26 @@ msgstr ""
 
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
+msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:102
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:103
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:104
+msgid "BEHAVIOUR_FEAR"
+msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:105
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:106
+msgid "BEHAVIOUR_FOCUS"
 msgstr ""
 
 #: ../src/general/EditorBase.cs:236

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-19 11:38+0800\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
 "PO-Revision-Date: 2022-03-21 19:55+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -81,7 +81,7 @@ msgstr "Izvēlne"
 msgid "MICROBE_EDITOR"
 msgstr "Ieslēgt redaktoru"
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -1013,7 +1013,7 @@ msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšū
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:764
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -2001,6 +2001,31 @@ msgstr ""
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
 msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Uzvedība"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Uzvedība"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Uzvedība"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Uzvedība"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Uzvedība"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"

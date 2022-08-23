@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-19 11:38+0800\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -75,7 +75,7 @@ msgstr "Menü"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobeneditor"
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikrobeneditor"
 
@@ -1007,7 +1007,7 @@ msgstr "mit der Konzentration von"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:764
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1974,6 +1974,31 @@ msgstr "\"{0}\" - {1}"
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
 msgstr "Grafiken von {0}"
+
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Verhalten"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"

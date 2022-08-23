@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-19 11:38+0800\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -73,7 +73,7 @@ msgstr "Meniu"
 msgid "MICROBE_EDITOR"
 msgstr "Mikroorganizmų redaktorius"
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -930,7 +930,7 @@ msgstr "Bendra"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:764
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "Mikroorganizmo būsena"
@@ -1861,6 +1861,31 @@ msgstr ""
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
 msgstr ""
+
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Elgsena"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Elgsena"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Elgsena"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Elgsena"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Elgsena"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
