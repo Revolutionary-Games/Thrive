@@ -1,6 +1,6 @@
 using Godot;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Thriveopedia : ControlWithInput
 {
@@ -8,36 +8,41 @@ public class Thriveopedia : ControlWithInput
     public NodePath BackButtonPath = null!;
 
     [Export]
-    public NodePath HomeTabPath = null!;
+    public NodePath PageContainerPath = null!;
 
     [Export]
-    public NodePath MuseumTabPath = null!;
+    public NodePath HomePagePath = null!;
 
-    [Export]
-    public NodePath StatisticsTabPath = null!;
+    private PackedScene museumPageScene = null!;
 
-    [Export]
-    public NodePath StatisticsButtonPath = null!;
-
-    [Export]
-    public NodePath EvolutionaryTreePath = null!;
-
+    private MarginContainer pageContainer = null!;
     private Button backButton = null!;
-    private Control homeTab = null!;
-    private Control museumTab = null!;
-    private Control statisticsTab = null!;
-    private Button statisticsButton = null!;
-
-    private EvolutionaryTree evolutionaryTree = null!;
+    private ThriveopediaHomePage homePage = null!;
+    private ThriveopediaMuseumPage museumPage = null!;
 
     private GameProperties? currentGame;
 
-    private ThriveopediaTab selectedTab;
+    private ThriveopediaPage selectedPage = null!;
 
-    private Stack<ThriveopediaTab> tabHistory = new();
+    private List<ThriveopediaPage> allPages = new();
+    private Stack<ThriveopediaPage> pageHistory = new();
 
     [Signal]
     public delegate void OnThriveopediaClosed();
+
+    public ThriveopediaPage SelectedPage
+    {
+        get => selectedPage;
+        set
+        {
+            // Hide the last page and show the new page
+            selectedPage.Hide();
+            selectedPage = value;
+            selectedPage.Show();
+
+            backButton.Disabled = pageHistory.Count <= 1;
+        }
+    }
 
     public GameProperties? CurrentGame
     {
@@ -46,46 +51,28 @@ public class Thriveopedia : ControlWithInput
         {
             currentGame = value;
 
-            UpdateAvailableTabs();
-
-            if (currentGame == null)
-                return;
-
-            evolutionaryTree.Init(currentGame.GameWorld.PlayerSpecies);
+            homePage.CurrentWorldDisabled = CurrentGame == null;
         }
-    }
-
-    public ThriveopediaTab SelectedTab
-    {
-        get => selectedTab;
-        set
-        {
-            selectedTab = value;
-
-            backButton.Disabled = tabHistory.Count <= 1;
-        }
-    }
-
-    public enum ThriveopediaTab
-    {
-        Home,
-        Museum,
-        Statistics
     }
 
     public override void _Ready()
     {
         backButton = GetNode<Button>(BackButtonPath);
-        homeTab = GetNode<Control>(HomeTabPath);
-        museumTab = GetNode<Control>(MuseumTabPath);
-        statisticsTab = GetNode<Control>(StatisticsTabPath);
-        statisticsButton = GetNode<Button>(StatisticsButtonPath);
+        pageContainer = GetNode<MarginContainer>(PageContainerPath);
 
-        evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
+        homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
+        homePage.OpenPage = ChangePage;
+        allPages.Add(homePage);
 
-        tabHistory.Push(ThriveopediaTab.Home);
-        SelectedTab = ThriveopediaTab.Home;
-        UpdateAvailableTabs();
+        museumPageScene = GD.Load<PackedScene>("res://src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn");
+        museumPage = (ThriveopediaMuseumPage)museumPageScene.Instance();
+        pageContainer.AddChild(museumPage);
+        allPages.Add(museumPage);
+        museumPage.Hide();
+
+        pageHistory.Push(homePage);
+        selectedPage = homePage;
+        homePage.CurrentWorldDisabled = true;
     }
 
     /// <summary>
@@ -127,72 +114,58 @@ public class Thriveopedia : ControlWithInput
         return currentGame == null;
     }
 
-    private void UpdateAvailableTabs()
+    private void ChangePage(string pageName)
     {
-        // Don't enable game statistics if we have no game
-        statisticsButton.Disabled = CurrentGame == null;
-    }
-
-    /// <summary>
-    ///   Changes the active tab that is displayed, or returns if the tab is already active
-    ///   TODO: replace with a browser-like tab system
-    /// </summary>
-    private void ChangeTab(string newTabName, bool addToHistory)
-    {
-        // Convert from the string binding to an enum.
-        ThriveopediaTab selection = (ThriveopediaTab)Enum.Parse(typeof(ThriveopediaTab), newTabName);
-
-        // Pressing the same button that's already active, so just return
-        if (selection == SelectedTab)
-            return;
-
-        homeTab.Hide();
-        museumTab.Hide();
-        statisticsTab.Hide();
-
-        switch (selection)
-        {
-            case ThriveopediaTab.Home:
-                homeTab.Show();
-                break;
-            case ThriveopediaTab.Museum:
-                museumTab.Show();
-                break;
-            case ThriveopediaTab.Statistics:
-                statisticsTab.Show();
-                break;
-            default:
-                GD.PrintErr("Invalid tab");
-                break;
-        }
-
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (addToHistory)
-            tabHistory.Push(selection);
+        if (pageName == selectedPage.PageName)
+            return;
 
-        SelectedTab = selection;
+        var page = allPages.FirstOrDefault(p => p.PageName == pageName);
+
+        if (page == null)
+        {
+            GD.PrintErr($"No page with name {pageName} exists");
+            return;
+        }
+
+        pageHistory.Push(page);
+
+        SelectedPage = page;
+    }
+
+    private void ChangePageWithoutAddingToHistory(string pageName)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (pageName == selectedPage.PageName)
+            return;
+
+        var page = allPages.First(p => p.PageName == pageName);
+
+        if (page == null)
+        {
+            GD.PrintErr($"No page with name {pageName} exists");
+            return;
+        }
+
+        SelectedPage = page;
     }
 
     private void OnHomePressed()
     {
-        ChangeTab("Home", true);
+        ChangePage(homePage.PageName);
     }
 
     private void OnBackPressed()
     {
-        tabHistory.Pop();
-        ChangeTab(tabHistory.Peek().ToString(), false);
-    }
-
-    private void OnMuseumPressed()
-    {
-        ChangeTab("Museum", true);
+        pageHistory.Pop();
+        ChangePageWithoutAddingToHistory(pageHistory.Peek().PageName);
     }
 
     private void OnStatisticsPressed()
     {
-        ChangeTab("Statistics", true);
+        //ChangePage("Statistics");
     }
 
     private void OnClosePressed()
@@ -204,7 +177,7 @@ public class Thriveopedia : ControlWithInput
 
     private void Exit()
     {
-        tabHistory.Clear();
+        pageHistory.Clear();
 
         EmitSignal(nameof(OnThriveopediaClosed));
     }

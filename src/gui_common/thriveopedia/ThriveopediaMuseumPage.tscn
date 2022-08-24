@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs" type="Script" id=2]
+
+[node name="ThriveopediaMuseumPage" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="." index="0"]
+margin_left = 1.0
+margin_top = 287.0
+margin_right = 1179.0
+margin_bottom = 312.0
+text = "MUSEUM"
+align = 1

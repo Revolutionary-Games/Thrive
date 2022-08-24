@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaPage.cs" type="Script" id=2]
+
+[node name="ThriveopediaPage" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -100.0
+margin_bottom = -120.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
