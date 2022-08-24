@@ -154,9 +154,6 @@ public class FilterLine : HBoxContainer
     private void ClearArguments()
     {
         argumentsContainer.FreeChildren(true);
-        GD.Print("DEBUG1", argumentsContainer.GetChildren().Count);
-        GD.Print("DEBUG2", GetChildren().Count);
-
 
         arguments.Clear();
 
