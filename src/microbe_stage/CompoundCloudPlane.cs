@@ -510,8 +510,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (compound == null)
                 break;
 
-            // Skip if compound is non-useful
-            if (!storage.IsUseful(compound))
+            // Skip if compound is non-useful or an agent
+            if (!storage.IsUseful(compound) || compound.IsAgent)
                 continue;
 
             // Overestimate of how much compounds we get
@@ -534,10 +534,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
             float taken = TakeCompound(compound, localX, localY, fractionToTake * multiplier) *
                 Constants.ABSORPTION_RATIO;
-
-            // Don't add this compound to the cell's storage if not absorbable
-            if (!compound.IsAbsorbable)
-                continue;
 
             storage.AddCompound(compound, taken);
 

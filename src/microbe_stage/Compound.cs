@@ -26,9 +26,9 @@ public class Compound : IRegistryType
     public float DecayRate = 1.0f;
 
     /// <summary>
-    ///   Whether microbes moving through this cloud will automatically collect it if they have capacity
+    ///   Whether this compound is an agent, i.e. synthesized for cell-to-cell interaction
     /// </summary>
-    public bool IsAbsorbable = true;
+    public bool IsAgent;
 
     public string IconPath = null!;
 
