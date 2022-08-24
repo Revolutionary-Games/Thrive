@@ -82,7 +82,8 @@ public class DraggableScrollContainer : ScrollContainer
     {
         base._Ready();
 
-        ContentPath ??= GetChild(0).GetPath();
+        // Child 2 is the first child added by us, while child 0 and 1 are scroll bars
+        ContentPath ??= GetChild(2).GetPath();
 
         content = GetNode<Control>(ContentPath);
         tween = new Tween();
