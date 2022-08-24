@@ -11,7 +11,7 @@ public class FilterLine : HBoxContainer
     [Export]
     public NodePath ArgumentsContainerPath = null!;
 
-    private Filter filter = null!;
+    private IFilter filter = null!;
     private string defaultText = "--";
     private string categorySnapshot = null!;
 
@@ -27,7 +27,7 @@ public class FilterLine : HBoxContainer
     /// </summary>
     private bool dirty = true;
 
-    public void Initialize(Filter filter)
+    public void Initialize(IFilter filter)
     {
         this.filter = filter;
     }
@@ -126,7 +126,7 @@ public class FilterLine : HBoxContainer
 
         foreach (var filterArgument in filterItem.FilterArguments)
         {
-            if (filterArgument is Filter.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
+            if (filterArgument is FilterArgument.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
             {
                 var filterArgumentButton = (FilterArgumentPopupMenu)filterArgumentPopupMenuScene
                     .Instance();
@@ -134,7 +134,7 @@ public class FilterLine : HBoxContainer
                 arguments.Add(filterArgumentButton);
                 argumentsContainer.AddChild(filterArgumentButton);
             }
-            else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
+            else if (filterArgument is FilterArgument.NumberFilterArgument numberFilterArgument)
             {
                 var filterArgumentSlider = (FilterArgumentSlider)filterArgumentSliderScene.Instance();
                 filterArgumentSlider.Initialize(numberFilterArgument);

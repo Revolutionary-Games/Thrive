@@ -7,7 +7,7 @@ public class FilterWindow : CustomConfirmationDialog
     [Export]
     public NodePath FiltersContainerPath = null!;
 
-    private readonly List<Filter> filters = new();
+    private readonly List<IFilter> filters = new();
     /// <summary>
     ///   If redraw is needed.
     /// </summary>
@@ -40,7 +40,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = false;
     }
 
-    public void Initialize(Filter filter)
+    public void Initialize(IFilter filter)
     {
         ClearFilters();
         SetupFilter(filter);
@@ -53,7 +53,7 @@ public class FilterWindow : CustomConfirmationDialog
         filtersContainer.FreeChildren(true);
     }
 
-    public void SetupFilter(Filter filter)
+    public void SetupFilter(IFilter filter)
     {
         var filterLine = (FilterLine)filterScene.Instance();
         filterLine.Initialize(filter);

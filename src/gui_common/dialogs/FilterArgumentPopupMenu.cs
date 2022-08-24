@@ -3,7 +3,7 @@ using Godot;
 
 public class FilterArgumentPopupMenu : CustomDropDown, IFilterArgumentNode
 {
-    private Filter.MultipleChoiceFilterArgument filterArgument = null!;
+    private FilterArgument.MultipleChoiceFilterArgument filterArgument = null!;
     private string valueSnapshot = null!;
 
     /// <summary>
@@ -11,7 +11,7 @@ public class FilterArgumentPopupMenu : CustomDropDown, IFilterArgumentNode
     /// </summary>
     private bool dirty = true;
 
-    public void Initialize(Filter.MultipleChoiceFilterArgument filterArgument)
+    public void Initialize(FilterArgument.MultipleChoiceFilterArgument filterArgument)
     {
         this.filterArgument = filterArgument;
     }

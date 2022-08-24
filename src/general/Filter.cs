@@ -2,15 +2,22 @@ using System;
 using System.Collections.Generic;
 
 // TODO CONSIDER GENERIC
-public class Filter
+public sealed class Filter<T> : IFilter
 {
-    public string FilterCategory = "NONE";
+    string IFilter.FilterCategory
+    {
+        get => filterCategory;
+        set => filterCategory = value;
+    }
 
-    private Dictionary<string, FilterItem> filterItems = new Dictionary<string, FilterItem>();
+    private string filterCategory = "NONE";
+    //public string FilterCategory = "NONE";
+
+    private Dictionary<string, IFilter.IFilterItem> filterItems = new Dictionary<string, IFilter.IFilterItem>();
 
     public IEnumerable<string> FilterItemsNames => filterItems.Keys;
 
-    public Dictionary<string, FilterItem> FilterItems => filterItems;
+    Dictionary<string, IFilter.IFilterItem> IFilter.FilterItems => filterItems;
 
     public void AddFilterItem(string category, FilterItem item)
     {
@@ -22,85 +29,31 @@ public class Filter
         filterItems.Clear();
     }
 
-    public Func<Species, bool> ComputeFilterFunction()
+    public Func<T, bool> ComputeFilterFunction()
     {
-        if (!filterItems.TryGetValue(FilterCategory, out var filterItem))
-            throw new KeyNotFoundException($"No such filter category: {FilterCategory}");
+        if (!filterItems.TryGetValue(filterCategory, out var filterItem))
+            throw new KeyNotFoundException($"No such filter category: {filterCategory}");
 
-        return filterItem.ToFunction();
+        return ((FilterItem)filterItem).ToFunction();
     }
 
-    public class FilterItem
+    public sealed class FilterItem : IFilter.IFilterItem
     {
-        public readonly Func<List<FilterArgument>, Func<Species, bool>> FilterFunction;
-        public readonly List<FilterArgument> FilterArguments;
+        public readonly Func<List<FilterArgument>, Func<T, bool>> FilterFunction;
+        private readonly List<FilterArgument> filterArguments;
 
-        public FilterItem(Func<List<FilterArgument>, Func<Species, bool>> filterFunction,
+        public FilterItem(Func<List<FilterArgument>, Func<T, bool>> filterFunction,
             List<FilterArgument> filterArguments)
         {
             FilterFunction = filterFunction;
-            FilterArguments = filterArguments;
+            this.filterArguments = filterArguments;
         }
 
-        public Func<Species, bool> ToFunction()
+        List<FilterArgument> IFilter.IFilterItem.FilterArguments => filterArguments;
+
+        public Func<T, bool> ToFunction()
         {
-            return FilterFunction(FilterArguments);
-        }
-    }
-
-    /// <summary>
-    ///   Parent class for filters arguments
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Used to list arguments of different types. Not generic because dictionaries require non-generic types.
-    ///   </para>
-    /// </remarks>
-    public abstract class FilterArgument
-    {
-        /// <summary>
-        ///   Helper function to get Number from NumberFilterArgument without cast.
-        /// </summary>
-        public float GetNumberValue()
-        {
-            return (this as NumberFilterArgument)?.Value ??
-                throw new InvalidOperationException("Can't get number value from a non-numeric filter argument!");
-        }
-
-        public string GetStringValue()
-        {
-            return (this as MultipleChoiceFilterArgument)?.Value ??
-                throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
-        }
-    }
-
-    public class NumberFilterArgument : FilterArgument
-    {
-        public readonly float MinValue;
-        public readonly float MaxValue;
-
-        public float Value;
-
-        public NumberFilterArgument(float minValue, float maxValue, float defaultValue)
-        {
-            if (defaultValue < minValue || defaultValue > maxValue)
-                throw new ArgumentOutOfRangeException($"{defaultValue} is outside the range {minValue}-{maxValue}!");
-
-            MinValue = minValue;
-            MaxValue = maxValue;
-            Value = defaultValue;
-        }
-    }
-
-    public class MultipleChoiceFilterArgument : FilterArgument
-    {
-        public readonly List<string> Options;
-        public string Value;
-
-        public MultipleChoiceFilterArgument(List<string> options)
-        {
-            Options = options;
-            Value = options.Count > 0 ? options[0] : "--";
+            return FilterFunction(filterArguments);
         }
     }
 }

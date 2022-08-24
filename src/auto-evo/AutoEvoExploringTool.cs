@@ -220,7 +220,7 @@ public class AutoEvoExploringTool : NodeWithInput
     // Search window
     private FilterWindow filterWindow = null!;
     private Func<EvolutionaryTreeNode, bool> flaggingFunction = n => n.LastGeneration;
-    private Filter speciesFilter = null!;
+    private Filter<Species> speciesFilter = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -667,7 +667,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void SetupFilter()
     {
-        speciesFilter = new Filter();
+        speciesFilter = new Filter<Species>();
 
         var valueFromSpecies = new Dictionary<string, Func<Species, float>>()
         {
@@ -675,18 +675,18 @@ public class AutoEvoExploringTool : NodeWithInput
             ["FEAR"] = s => s.Behaviour.Activity,
         };
 
-        Func<List<Filter.FilterArgument>, Func<Species, bool>> valueComparisonFunction =
+        Func<List<FilterArgument>, Func<Species, bool>> valueComparisonFunction =
             l => l[1].GetStringValue() == "GREATER_THAN" ?
                 s => valueFromSpecies[l[0].GetStringValue()](s) >= l[2].GetNumberValue() :
                 s => valueFromSpecies[l[0].GetStringValue()](s) <= l[2].GetNumberValue();
 
-        var valueComparisonArguments = new List<Filter.FilterArgument>()
+        var valueComparisonArguments = new List<FilterArgument>()
             {
-                new Filter.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
-                new Filter.MultipleChoiceFilterArgument(new List<string>() { "GREATER_THAN", "SMALLER_THAN" }),
-                new Filter.NumberFilterArgument(0, 500, 100),
+                new FilterArgument.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
+                new FilterArgument.MultipleChoiceFilterArgument(new List<string>() { "GREATER_THAN", "SMALLER_THAN" }),
+                new FilterArgument.NumberFilterArgument(0, 500, 100),
             };
-        var valueComparisonFilter = new Filter.FilterItem(valueComparisonFunction, valueComparisonArguments);
+        var valueComparisonFilter = new Filter<Species>.FilterItem(valueComparisonFunction, valueComparisonArguments);
 
         speciesFilter.AddFilterItem("VALUE_COMPARISON", valueComparisonFilter);
 

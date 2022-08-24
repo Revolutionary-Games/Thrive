@@ -21,9 +21,9 @@ public class FilterArgumentSlider : HBoxContainer, IFilterArgumentNode
     private float value;
     private float valueSnapshot;
 
-    private Filter.NumberFilterArgument filterArgument = null!;
+    private FilterArgument.NumberFilterArgument filterArgument = null!;
 
-    public void Initialize(Filter.NumberFilterArgument filterArgument)
+    public void Initialize(FilterArgument.NumberFilterArgument filterArgument)
     {
         this.filterArgument = filterArgument;
     }
