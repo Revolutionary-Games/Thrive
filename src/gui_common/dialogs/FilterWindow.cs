@@ -13,7 +13,7 @@ public class FilterWindow : CustomConfirmationDialog
     /// </summary>
     private bool dirty;
 
-    private PackedScene filterScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterLine.tscn");
+    private PackedScene filterScene = null!;
 
     // Nodes
     private VBoxContainer filtersContainer = null!;
@@ -22,6 +22,8 @@ public class FilterWindow : CustomConfirmationDialog
     public override void _Ready()
     {
         base._Ready();
+
+        filterScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterLine.tscn");
 
         filtersContainer = GetNode<VBoxContainer>(FiltersContainerPath);
     }

@@ -69,14 +69,8 @@ public class Filter
 
         public string GetStringValue()
         {
-            try
-            {
-                return (this as MultipleChoiceFilterArgument)!.Value;
-            }
-            catch (NullReferenceException)
-            {
+            return (this as MultipleChoiceFilterArgument)?.Value ??
                 throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
-            }
         }
     }
 
