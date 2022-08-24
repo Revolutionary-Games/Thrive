@@ -19,7 +19,7 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
     public override bool OnInput(InputEvent @event)
     {
         // Check key or echo from key being down
-        if (@event.IsActionPressed(InputName, true))
+        if (@event.IsActionPressed(InputName, true, true))
         {
             Prime();
             if (SetKeyDown)

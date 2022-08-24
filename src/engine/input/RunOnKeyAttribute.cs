@@ -69,7 +69,7 @@ public class RunOnKeyAttribute : InputAttribute
     {
         bool result = false;
 
-        if (@event.IsActionPressed(InputName))
+        if (@event.IsActionPressed(InputName, false, true))
         {
             if (CallMethodInOnInput && !CallbackRequiresElapsedTime)
             {
@@ -84,7 +84,7 @@ public class RunOnKeyAttribute : InputAttribute
             HeldDown = true;
         }
 
-        if (@event.IsActionReleased(InputName))
+        if (@event.IsActionReleased(InputName, true))
         {
             result = true;
             HeldDown = false;
