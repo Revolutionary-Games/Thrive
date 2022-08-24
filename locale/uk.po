@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-17 21:07+0700\n"
-"PO-Revision-Date: 2022-04-09 08:33+0000\n"
-"Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
+"PO-Revision-Date: 2022-08-18 10:33+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -75,14 +75,14 @@ msgstr "Меню"
 msgid "MICROBE_EDITOR"
 msgstr "Мікробний редактор"
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Багатоклітинний редактор"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[/thrive:input][thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] та миша для переміщення. [thrive:input]g_fire_toxin[/thrive:input] стріляти [thrive:compound type=\"oxytoxy\"][/thrive:compound], якщо маєте токсинову вакуоль. [thrive:input]g_toggle_engulf[/thrive:input] для перемикання режиму поглинання. Ви можете змінювати масштаб за допомогою коліщатка миші."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] та миша для переміщення. [thrive:input]g_fire_toxin[/thrive:input] стріляти [thrive:compound type=\"oxytoxy\"][/thrive:compound], якщо маєте токсинову вакуолю. [thrive:input]g_toggle_engulf[/thrive:input] для перемикання режиму поглинання. Ви можете змінювати масштаб за допомогою коліщатка миші."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -160,7 +160,7 @@ msgstr "Будьте пильними, ваші конкурети еволюц�
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "При зв'язуванні з іншими клітинами ви створюєте клітинну колонію де клітини обмінюються сполуками, які вони продукують та поглинають. Для зв'язуваннявам треба мати органелу зв'язувальних агентів та увімкнути режим зв'зування. Об'єднання можливе лише з клітинами власного виду. Перебуваючи в колонії, ви не можете поділитись та перейтив редактор. Щоб перейти в редактор спершу покиньте колонію, далі перейдіть в редактор. Великі колонії це шлях до багатоклітинності."
+msgstr "Зв'язувальний агент дозволяє вашій клітині та іншим видам з нею будувати клітинні колонії, де клітини діляться сполуками, які вони поглинають та продукують одна з одною. Щоб перейти до зв'язувального режиму натисніть [thrive:input]g_toggle_binding[/thrive:input]. Коли ви в колонії, то ви не можите поділити клітину та перейти до редактору. Для переходу у редактор зберіть необхідну кількість сполук та натисніть[thrive:input]g_unbind_all[/thrive:input]. Великі клітинні колонії– шлях до багатоклітинності."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -189,7 +189,9 @@ msgstr ""
 "\n"
 "Ворсинки: Можна використати, щоб заколювати інші клітини насмерть\n"
 "\n"
-"Хеморецептор: Дає змогу знаходити сполуки, що на відстані"
+"Хеморецептор: Дає змогу знаходити сполуки, що на відстані\n"
+"\n"
+"Війки: збільшують швидкість обертання клітини"
 
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -978,11 +980,11 @@ msgstr "Війки"
 msgid "LYSOSOME"
 msgstr "Лізосома"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:537
+#: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
 msgstr "Завершення {0} генерацій"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:709
+#: ../src/auto-evo/AutoEvoExploringTool.cs:755
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Види[/b]\n"
@@ -996,7 +998,7 @@ msgstr ""
 "[b]Поведінка[/b]\n"
 "  {5}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:718
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Стадія[/b]\n"
@@ -1012,149 +1014,154 @@ msgstr ""
 "[b]Базовий розмір гексу[/b]\n"
 "  {4}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
 msgstr "Конфігурація"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#, fuzzy
+msgid "MAP"
+msgstr "АТФ"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Звіт"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
 msgstr "Переглядач"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Дозволити виду не мутувати"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Дозволити виду не мігрувати"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Шанси утворити новий вид для збільшення біорізноманіття з сусідньої ділянки"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr "Біорізноманіття коло ділянки– це фільна популяція"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Розкол біорізноманіття– це матації"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Низький ліміт біорізноманіття"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Максимум видів в ділянці"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Переміщення спроб на вид"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Мутації на вид"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Нове біорізноманіття збільшує видові популяції"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Захисні міграції від витісняючих видів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Захист нових клітин від витісняючих видів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr "Повернення міграцій у вимираннях"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Жорстка нішева конкуренція"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr "Види розділенні за мутаційним поргом розміру популяції"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Види розділенні за мутаційним поргом частки популяції"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Використання біорізноманіття розділенням сил"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Поточна Генерація:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 msgid "STATUS_COLON"
 msgstr "Статус:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
 msgid "READY"
 msgstr "Готово"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 msgid "FINISH_ONE_GENERATION"
 msgstr "Кінець однієї генерації"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
 msgstr "Робиться один крок"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 msgid "ABORT"
 msgstr "Перервано"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Грати з поточними налаштуваннями"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 msgid "GENERATIONS"
 msgstr "Генерації"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "SELECT_A_GENERATION"
 msgstr "Виберіть генерацію"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 msgid "SPECIES"
 msgstr "Види"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
 msgid "SELECT_A_SPECIES"
 msgstr "Обрати види"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:687
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Результати авто-ево:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:735
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 msgid "SPECIES_DETAILS"
 msgstr "Деталі видів"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1090
 #: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
@@ -1164,12 +1171,12 @@ msgstr "Деталі видів"
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:833
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Підтвердити вихід"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1955,6 +1962,31 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Малюнок від {0}"
 
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Поведінка"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Поведінка"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Поведінка"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Поведінка"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Поведінка"
+
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Очікування на авто-ево:"
@@ -1982,7 +2014,7 @@ msgstr "Закрити"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2069,19 +2101,19 @@ msgstr "Ліцензія"
 
 #: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Режим попереджень"
+msgstr "Режим попереджень GLES2"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Ви використовуєте з Thrive задопомогою GLES2. Це неперевірено та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Trive."
+msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
 
 #: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
-msgstr "Помилка завантаження модифікації"
+msgstr "Помилки завантаження модифікації"
 
 #: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
+msgstr "Виникли помилки під час завантаження декількох модифікацій. Додаткова інформація міститься у журналах."
 
 #: ../src/general/NewGameSettings.cs:299
 #: ../src/general/NewGameSettings.tscn:1130
@@ -2090,22 +2122,22 @@ msgstr "Увійти в гру з цими налаштуваннями"
 
 #: ../src/general/NewGameSettings.cs:306
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Якісь налаштування неробочі"
+msgstr "Якісь налаштування невірні"
 
 #: ../src/general/NewGameSettings.tscn:120
 #: ../src/general/NewGameSettings.tscn:360
 msgid "DIFFICULTY_PRESET"
-msgstr "Попередня складність"
+msgstr "Передустанови складності"
 
 #: ../src/general/NewGameSettings.tscn:147
 #: ../src/general/NewGameSettings.tscn:892
 msgid "LAWK_ONLY"
-msgstr "Тільки LAWK"
+msgstr "Тільки ЗАКОН"
 
 #: ../src/general/NewGameSettings.tscn:154
 #: ../src/general/NewGameSettings.tscn:899
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "(обмежує частини та властивості лише за Життям, Яким Ми Його Знаємо)"
+msgstr "(обмежує частини та властивості лише за Знаною Аналогією Конструювання Організмів Неземлян)"
 
 #: ../src/general/NewGameSettings.tscn:170
 #: ../src/general/NewGameSettings.tscn:915
@@ -2120,7 +2152,7 @@ msgstr "(початкова локація)"
 #: ../src/general/NewGameSettings.tscn:191
 #: ../src/general/NewGameSettings.tscn:936
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Деякі налаштування можуть бути вимкнені, коли вімкнений тільки LAWK"
+msgstr "Деякі налаштування можуть бути вимкнені, коли вімкнений тільки ЗАКОН"
 
 #: ../src/general/NewGameSettings.tscn:193
 #: ../src/general/NewGameSettings.tscn:194
@@ -2222,24 +2254,20 @@ msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(початок з безкоштовною глюкозною хмарою біля кожної генерації)"
 
 #: ../src/general/NewGameSettings.tscn:784
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "(швидкість з якою ШІ мутує вид)"
+msgstr "Пасивно збільшувати репродуктивний прогрес"
 
 #: ../src/general/NewGameSettings.tscn:791
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(швидкість з якою ШІ мутує вид)"
+msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
 
 #: ../src/general/NewGameSettings.tscn:803
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Нормальний"
+msgstr "Ліміт використання сполук для росту"
 
 #: ../src/general/NewGameSettings.tscn:810
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(швидкість з якою ШІ мутує вид)"
+msgstr "(Коли ввімкнено обмеження швидкісті росту, а якщо вимкнено, лише сполуки вплинуть на швидкість росту)"
 
 #: ../src/general/NewGameSettings.tscn:854
 msgid "PATCH_MAP_TYPE"
@@ -2769,7 +2797,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "вимерли в ділянці"
 
 #: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -3508,7 +3536,7 @@ msgstr "Натисніть [thrive:input]g_toggle_binding[/thrive:input] для 
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1398
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Дозволяє з'єднуватися з іншими клітинами.Це перший крок до багатоклітинності. Коли ваша клітина– частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднання."
+msgstr "Дозволяє з'єднуватися з іншими клітинами. Це перший крок до багатоклітинності. Коли ваша клітина — частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднанням."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1481
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -3642,7 +3670,7 @@ msgstr "Фізичний опір"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "CANNOT_ENGULF"
-msgstr "Неможливо поглинути"
+msgstr "Не може поглинати"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2989
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3236
@@ -3665,7 +3693,7 @@ msgstr "Ця мембрана має міцну оболонку з карбон
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr "ця мемрана має міцну стінку з кремнезію. Вона може опиратися загальним пошкодження, а особливо стійкі до фізичної шкоди. Також вимагає менше енергії для утримання форми. Однак це сильно сповільює клітину, і вона не так швидко поглинає ресурси."
+msgstr "Ця мембрана має міцну стінку з кремнезію. Вона може опиратися загальним пошкодженням, і також особливо стійка до фізичної шкоди. Вона також вимагає менше енергії для утримання форми. Однак це сильно сповільнює клітину, і вона не так швидко поглинає ресурси."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3947
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
@@ -3896,9 +3924,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Максимальне число сутностей:"
+msgstr "Деспавн усіх сутностей"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4224,7 +4251,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "Ця панель відображає числа, за якими передбачено авто-ево. Загальна енергії, яку ви може поглинути і вартість особини виду– визначають фінальну популяцію. Автоеволюція використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано хвеличину енергії, яку вид отримує від нього. Додатково загальна енергія доступна з цього джерела показується. Частка, яку види отримують базується на тому, яка величина пристосованості в порівнянні із загальною пристосованістю. Пристосованість– це величина, що показує на скільки добре вид засвоює джерело їжі."
+msgstr "Ця панель відображає числа, за якими працює передбачення Авто-ево. Загальна енергія, яку вид може поглинути, і вартість на особину цього виду визначають фінальну популяцію. Авто-ево використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано величину енергії, яку вид отримує від нього. Додатково показується загальна енергія, що доступна з цього джерела. Частка, яку види отримують з цієї загальної енергії, базується на тому, наскільки є великою пристосованість у порівнянні з загальною пристосованістю. Пристосованість — це величина, що показує наскільки добре вид засвоює це джерело їжі."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
@@ -4252,9 +4279,8 @@ msgid "INFINITE_MP"
 msgstr "Нескінчені МО"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Переміститися на цю ділянку"
+msgstr "Переміститися на будь-яку ділянку"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4434,15 +4460,15 @@ msgstr "ВИМИРАННЯ"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Як і 99% усіх видів які коли-небудь існували, ваш вид також вимер. Інші заповнять вашу нішу і процвітатимуть, але це будете не ви. Ви будете забуті, невдалий експеримент еволюції."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:228
 msgid "BIOME_LABEL"
 msgstr "Біом: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:231
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м. нижче рівня моря"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:267
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} з популяції: {1}"
 
@@ -5201,7 +5227,7 @@ msgstr "Створено на платформі:"
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
-msgstr "Завантажено"
+msgstr "Завантажити"
 
 #: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
@@ -5403,9 +5429,9 @@ msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Ви повинні зосередитися на одному-двох джерелах енергії, щоб вам не потрібно було мати всі ресурси для вироблення достатньої кількості АТФ для виживання.\n"
 "\n"
-"Також уважно подумайте, чи корисно додавати частину, бо часто не вносити жодних змін є хорошим вибором, оскільки кожна частина коштує АТФ для підтримки і вимагає більше ресурсів для поділу.\n"
+"Також уважно подумайте, чи корисно додавати частину, бо часто не вносити жодних змін є гарним вибором, оскільки кожна частина коштує АТФ для підтримки та вимагає більше ресурсів для поділу.\n"
 "\n"
-"Однією з можливих стратегій є залишатися на одному гексі цитоплазми і просто вирушати на поверхню, перш ніж отримати органели фотосинтезу."
+"Однією з можливих стратегій є залишатися на одному гексі цитоплазми та просто вирушати на поверхню, перш ніж отримати органели фотосинтезу."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
@@ -5507,24 +5533,29 @@ msgstr ""
 "Ви можете використовувати кнопку суїциду для пропуску та респавну, але пам'ятайте, що завжди є шанс на втечу!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Поглинайте об'єкти рухаючись по них в режимі поглинання. Увімкніть режим поглинання натиснувши [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"У вас достатньо [thrive:compound type=\"ammonia\"][/thrive:compound] та [thrive:compound type=\"phosphates\"][/thrive:compound], проте оскільки ви не в багатоклітинній колонії ви не можите продовжити процес розмноження.\n"
 "\n"
-"Щоб зупинити поглинання коли об'єкт поглинеться.\n"
-"\n"
-"Слідкуйте за лінією від вашої камери до найближчого об'єкта, що може поглинутись."
+"Вам необхідно покинути колонію, аби перейти до редактору у тому випадку, коли не плануєте перейти до багатоклітинності.\n"
+"Покиньте колонію для відновлення зростання натиснувши [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Завантаження раннього багатоклітинного редактору"
+msgstr ""
+"Вітаємо на ранній багатоклітинній стадії!\n"
+"\n"
+"Ви змогли довести свій вид крізь одноклітинну фазу.\n"
+"\n"
+"Геймплей наслідує основній механіці мікробної стадії. Вам ще треба рости своїм за організм, щоб розмножуватись та переходити до редактору.\n"
+"\n"
+"Проте зараз ви ще можите розробити макет колоніальної клітини в редакторі та спеціалізувати вашу клітину для різних цілей. Пам'ятайте, що члени колонії не здатні ділити між собою [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Якщо ви використовуєте розмноження брунькуванням( метод за замовчуванням) ви почнете керувати малою брунькою та потребуватимете вирощення решти клітинного макету."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Почніть процвітання"
+msgstr "Продовжити процвітання"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Невразливий до поглинання"

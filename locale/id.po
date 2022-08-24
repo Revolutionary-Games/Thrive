@@ -7,91 +7,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-17 21:07+0700\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
+"PO-Revision-Date: 2022-08-18 10:33+0000\n"
+"Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Mudah"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Sedang"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Sulit"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Pilihan"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Konsep Seni"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
-"\n"
-"Kehidupan.\n"
-"\n"
-"Mikroba-mikroba sederhana bermukim di wilayah dalam lautan. Kamu adalah leluhur universal terakhir (LUA) di planet ini.\n"
-"\n"
-"Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan spesies mikroba lain."
+msgstr "Tahapan Mikrob"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Letakkan organel"
+msgstr "Tahapan Multiseluler"
 
 #: ../simulation_parameters/common/gallery.json:81
-#, fuzzy
 msgid "GENERAL"
-msgstr "Generasi:"
+msgstr "Umum"
 
 #: ../simulation_parameters/common/gallery.json:133
-#, fuzzy
 msgid "MODELS"
-msgstr "Mode Kebal"
+msgstr "Model"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Musik"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 msgid "ALL"
-msgstr ""
+msgstr "Semua"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Memuat Editor Mikroba"
+msgstr "Editor Mikrob"
 
-#: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Memuat Editor Mikroba"
+msgstr "Editor Multiseluler"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -114,32 +100,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol [thrive:input]g_toggle_engulf[/thrive:input]. Proses ini membutuhkan [thrive:compound type=\"atp\"][/thrive:compound] dan memperlambat sel kamu. Jangan lupa tekan lagi [thrive:input]g_toggle_engulf[/thrive:input] untuk menghentikan penelanan."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Struktur Prokariotik\n"
-"\n"
-"Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
-"\n"
-"Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
-"\n"
-"Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
-"\n"
-"Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Setelah proses fagositosis selesai, setiap benda yang tertangkap oleh fagositosis akan disimpan didalam membran untuk dicerna. Benda yang tidak dapat dicerna akan selalu dibuang, maka pastikan kamu terlebih dahulu memiliki mutasi yang diperlukan untuk memproses benda tersebut. Enzim membantu proses pencernaan dan disediakan oleh lisosom; kembangkan organel ini agar pencernaan menjadi lebih efisien."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
+msgstr "Namun, lisosom eksklusif hanya untuk eukariota. Prokariota tidak memiliki organel ini dan mereka cukup tidak efisien mencerna makanan. Untuk sel-sel kecil ini tidak masalah, tetapi untuk sel-sel yang lebih besar, tidak memiliki lisosom sangatlah merugikan."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
+msgstr "Dinding sel selulosa dan kitin khususnya tidak dapat dicerna tanpa enzim yang dapat merusak dinding tersebut terlebih dahulu."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -242,9 +212,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP sebesar organel yang kamu tambahkan/lepas. Menambah dan melepas organel juga membutuhkan MP, tetapi melepas organel yang sudah ditempatkan di sesi mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu bisa melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. Kamu bisa memutar organelmu dengan cara mengklik [thrive:input]e_rotate_left[/thrive:input] dan [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:90
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili 100 juta tahun evolusi."
+msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] juta tahun evolusi."
 
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
@@ -402,7 +371,7 @@ msgstr "Nyala/matikan penelanan"
 
 #: ../simulation_parameters/common/input_options.json:48
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Tahan untuk menampilkan menu perintah"
 
 #: ../simulation_parameters/common/input_options.json:52
 #: ../src/microbe_stage/MicrobeStage.tscn:1986
@@ -460,9 +429,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Letakkan organel"
 
 #: ../simulation_parameters/common/input_options.json:114
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Hapus organel"
+msgstr "Buka menu organel"
 
 #: ../simulation_parameters/common/input_options.json:118
 msgid "PAN_CAMERA_LEFT"
@@ -490,48 +458,44 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Batal tindakan ini"
 
 #: ../simulation_parameters/common/input_options.json:142
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Letakkan organel"
-
-#: ../simulation_parameters/common/input_options.json:146
-#, fuzzy
-msgid "MOVE_ORGANELLE"
 msgstr "Hapus organel"
 
+#: ../simulation_parameters/common/input_options.json:146
+msgid "MOVE_ORGANELLE"
+msgstr "Pindah organel"
+
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Gerakan"
+msgstr "Gerakan 3D"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Gerak keatas atau lompat"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Gerak kebawah atau jongkok"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editor"
+msgstr "Editor 3D"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Tahan untuk beralih antara mode geser dan rotasi"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Beralih ke tampilan kamera depan"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Beralih ke tampilan kamera kanan"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Beralih ke tampilan kamera atas"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -565,21 +529,19 @@ msgstr "Aneka ragam"
 
 #: ../simulation_parameters/common/input_options.json:231
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Jeda"
 
 #: ../simulation_parameters/common/input_options.json:235
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Nyala/matikan penelanan"
+msgstr "Nyala/matikan panel debug"
 
 #: ../simulation_parameters/common/input_options.json:239
 msgid "TOGGLE_FPS"
 msgstr "Nyala/matikan tampilan FPS"
 
 #: ../simulation_parameters/common/input_options.json:243
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "Nyala/matikan tampilan FPS"
+msgstr "Nyala/matikan tampilan metrik"
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "QUICK_SAVE"
@@ -602,9 +564,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Nyala/matikan layar penuh"
 
 #: ../simulation_parameters/common/input_options.json:267
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "Nyala/matikan pelepasan"
+msgstr "Nyala/matikan HUD"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -648,9 +609,8 @@ msgstr "Kemolitoautotrofi Besi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Kemosintesis"
+msgstr "Termosintesis"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -709,9 +669,8 @@ msgstr "Potongan Besi Besar"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Sel Pemain"
+msgstr "Sel mata googly"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -842,17 +801,15 @@ msgstr "Suhu"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Selulosa"
+msgstr "Selulase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Kitin"
+msgstr "Kitinase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -930,9 +887,8 @@ msgstr "Plastida Pengikat Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Kemosintesis"
+msgstr "Termosintase"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1855
@@ -983,15 +939,13 @@ msgstr "Nukleus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:716
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1289
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Kemoplas"
+msgstr "Kemoreseptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "Agen Pelekat"
+msgstr "Agen Persinyalan"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:765
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2334
@@ -1010,21 +964,28 @@ msgstr "Silia"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2356
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oksitoksisom"
+msgstr "Lisosom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:537
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
-msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+msgstr "Selesaikan {0} Generasi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:709
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:755
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "Daftar Spesies"
+msgstr ""
+"[b]Spesies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generasi[/b]\n"
+"  {2}\n"
+"[b]Populasi[/b]\n"
+"  {3}\n"
+"[b]Warna[/b]\n"
+"  #{4}\n"
+"[b]Perilaku[/b]\n"
+"  {5}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:718
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1033,163 +994,168 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#, fuzzy
+msgid "MAP"
+msgstr "ATP"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Laporan"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "mengalami mutasi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "telah punah dari planet"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Poin Mutasi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Generasi:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Spesies:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
 #, fuzzy
 msgid "READY"
 msgstr "Threads:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 #, fuzzy
 msgid "ABORT"
 msgstr "Dibatalkan."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generasi:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Terpilih:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 #, fuzzy
 msgid "SPECIES"
 msgstr "Daftar Spesies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Pilih daerah untuk menampilkan rincian"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:687
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Hasil auto-evo:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:735
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Oleh Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Daftar Spesies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1090
 #: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
@@ -1199,13 +1165,13 @@ msgstr "Daftar Spesies"
 msgid "BACK"
 msgstr "Kembali"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:833
 #: ../src/general/PauseMenu.tscn:288
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "KONFIRMASI"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.cs:353
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
@@ -2016,6 +1982,31 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Seni oleh {0}"
 
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Perilaku"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Perilaku"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Perilaku"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Perilaku"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Perilaku"
+
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Menunggu auto-evo:"
@@ -2043,7 +2034,7 @@ msgstr "Tutup"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2879,7 +2870,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "telah punah dari planet"
 
 #: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -4602,15 +4593,15 @@ msgstr "KEPUNAHAN"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Seperti 99% dari segala spesies yang telah ada, spesiesmu telah mengalami kepunahan. Spesies lain akan mengisi relung-mu dan berkembang, tetapi itu bukan kamu. Kamu akan terlupakan, eksperimen gagal dalam evolusi."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:228
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:231
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m di bawah permukaan laut"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:267
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Populasi Spesies"

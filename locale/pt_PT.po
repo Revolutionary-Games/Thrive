@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-17 21:07+0700\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -21,78 +21,63 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Fácil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Difícil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Personalizadas"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Arte conceitual"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:136
 #: ../simulation_parameters/common/gallery.json:286
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
-"\n"
-"A vida.\n"
-"\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
-"\n"
-"Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
+msgstr "Fase Microbial"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:362
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Colocar organelo"
+msgstr "Fase multicelular"
 
 #: ../simulation_parameters/common/gallery.json:81
-#, fuzzy
 msgid "GENERAL"
-msgstr "Geração:"
+msgstr "Geral"
 
 #: ../simulation_parameters/common/gallery.json:133
-#, fuzzy
 msgid "MODELS"
-msgstr "Godmode"
+msgstr "Modelos"
 
 #: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
-msgstr ""
+msgstr "Música"
 
 #: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Tudo"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:327
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "A carregar o Editor de Micróbio"
+msgstr "Editor de Microrganismos"
 
-#: ../simulation_parameters/common/gallery.json:385
-#, fuzzy
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
-msgstr "A carregar o Editor de Micróbio"
+msgstr "Editor de multicelulas"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -115,22 +100,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Também podes engolfar células, bactérias, pedaços de ferro e pedaços de células menores do que tu pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isto custará [thrive:compound type=\"atp\"][/thrive:compound] adicional e abrandar-te-á. Não te esqueças de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Estruturas Procariotas\n"
-"\n"
-"Metabolossomas: Produz [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Proteínas Quimiossintetizantes: Produz metade da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que um quimioplasto produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
-"\n"
-"Tilacoides: Produz 1/3 da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] que um cloroplasto normal produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
-"\n"
-"Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Converte nitrogénio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
-"\n"
-"Citoplasma: Tem capacidade de armazenamento e realiza glicólise (Produz pequenas quatidades de [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "Quando o engolfo terminar, quaisquer objetos presos no engolfo serão mantidos dentro da membrana para serem digeridos. Objetos indigestos serão sempre expulsos, portanto, certifica-te de teres as mutações necessárias que permitam processá-los primeiro. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolui esta organela para tornar a digestão muito mais eficiente."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
@@ -1012,17 +983,17 @@ msgstr "Cílios"
 msgid "LYSOSOME"
 msgstr "Oxitoxissoma"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:537
+#: ../src/auto-evo/AutoEvoExploringTool.cs:580
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "Permite conectar com outras células. Este é o primeiro passo para a multicelularidade. Quando a tua célula pertence a uma colónia, os compostos são partilhados entre células. Não é possível entrar no editor enquanto pertenceres a uma colónia, sendo necessário desconectar-te da mesma assim que tenhas coletado compostos suficientes para dividires a tua célula."
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:709
+#: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:718
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1031,164 +1002,169 @@ msgstr ""
 "Tu regeneras saúde enquanto tiveres ATP.\n"
 "Certifica-te de que consegues glicose suficiente para produzires ATP."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#, fuzzy
+msgid "MAP"
+msgstr "ATP"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Relatório"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "tem uma mutação"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Parte da população de [u]{0}[/u] migrou para {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Extinguiram-se na região"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Pontos de Mutação"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Geração:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Anterior:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
 #, fuzzy
 msgid "READY"
 msgstr "Threads:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "Permite conectar com outras células. Este é o primeiro passo para a multicelularidade. Quando a tua célula pertence a uma colónia, os compostos são partilhados entre células. Não é possível entrar no editor enquanto pertenceres a uma colónia, sendo necessário desconectar-te da mesma assim que tenhas coletado compostos suficientes para dividires a tua célula."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 #, fuzzy
 msgid "ABORT"
 msgstr "Abortado."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Geração:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Seleciona uma opção"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 #, fuzzy
 msgid "SPECIES"
 msgstr "Lista de Espécies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Seleciona uma região para mostrar detalhes"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:687
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da auto-evo:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:735
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Da Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Lista de Espécies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1090
 #: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
@@ -1198,12 +1174,12 @@ msgstr "Lista de Espécies"
 msgid "BACK"
 msgstr "Voltar"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:833
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1997,6 +1973,31 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Arte por {0}"
 
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Comportamento"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Comportamento"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Comportamento"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Comportamento"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Comportamento"
+
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "A aguardar por auto-evo:"
@@ -2024,7 +2025,7 @@ msgstr "Fechar"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2875,7 +2876,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "Extinguiram-se na região"
 
 #: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -4582,15 +4583,15 @@ msgstr "EXTINÇÃO"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Assim como 99% de todas as espécies que já existiram, a tua espécie foi extinta. Outras irão ocupar o teu ninho e prosperar, mas não serás tu. Tu serás esquecido, uma experiência falhada na evolução."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:228
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:231
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m abaixo do nível do mar"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:267
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} com população: {1}"
 
@@ -5504,14 +5505,13 @@ msgstr ""
 "Seleciona uma região para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Este é o editor de células onde podes adicionar ou remover organelos da tua espécie gastando pontos de mutação (PM).\n"
+"Este é o editor de células onde podes adicionar ou remover organelos da tua espécie gastando pontos de mutação (PM). Cada geração terá sempre 100 PM para gastar, então não te preocupes em economizar!\n"
 "\n"
-"Também podes alterar outras propriedades da tua espécie nas outras guias do editor de células.\n"
+"O hexágono no centro do ecrã é a tua célula, que é composta por um unidade de citoplasma.\n"
 "\n"
-"Para continuar, seleciona uma organela no painel à esquerda (citoplasma é uma boa escolha). Em seguida, clica com o botão esquerdo ao lado do hexágono mostrado no meio da tela para adicionar essa organela à sua espécie."
+"Para continuar, seleciona uma parte no painel à esquerda. Em seguida, clica com o botão esquerdo ao lado do hexágono para colocá-la. Consegues rotacionar partes com [thrive:input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 #, fuzzy
