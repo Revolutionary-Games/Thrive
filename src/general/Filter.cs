@@ -63,14 +63,8 @@ public class Filter
         /// </summary>
         public float GetNumberValue()
         {
-            try
-            {
-                return (this as NumberFilterArgument)!.Value;
-            }
-            catch (NullReferenceException)
-            {
+            return (this as NumberFilterArgument)?.Value ??
                 throw new InvalidOperationException("Can't get number value from a non-numeric filter argument!");
-            }
         }
 
         public string GetStringValue()
