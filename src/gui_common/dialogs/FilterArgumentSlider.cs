@@ -18,7 +18,6 @@ public class FilterArgumentSlider : HBoxContainer, IFilterArgumentNode
     /// </summary>
     private bool dirty = true;
 
-    private float value;
     private float valueSnapshot;
 
     private FilterArgument.NumberFilterArgument filterArgument = null!;
@@ -56,7 +55,7 @@ public class FilterArgumentSlider : HBoxContainer, IFilterArgumentNode
 
     public void MakeSnapshot()
     {
-        valueSnapshot = value;
+        valueSnapshot = filterArgument.Value;
 
         GD.Print("FAS making snapshot ", valueSnapshot);
     }
@@ -70,7 +69,6 @@ public class FilterArgumentSlider : HBoxContainer, IFilterArgumentNode
 
     private void OnNewValueSelected(float value)
     {
-        this.value = value;
         label.Text = value.ToString(CultureInfo.CurrentCulture);
         filterArgument.Value = value;
         dirty = true;
