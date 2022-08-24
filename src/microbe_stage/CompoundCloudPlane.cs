@@ -535,6 +535,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             float taken = TakeCompound(compound, localX, localY, fractionToTake * multiplier) *
                 Constants.ABSORPTION_RATIO;
 
+            // Don't add this compound to the cell's storage if not absorbable
+            if (!compound.IsAbsorbable)
+                continue;
+
             storage.AddCompound(compound, taken);
 
             // Keep track of total compounds absorbed for the cell
