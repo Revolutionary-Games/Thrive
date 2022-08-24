@@ -101,6 +101,11 @@ public class FilterLine : HBoxContainer
         var categoryButton = GetChild<CustomDropDown>(0);
 
         var filterCategory = categoryButton.Popup.GetItemText(choiceIndex);
+
+        // Do nothing if no change actually happened
+        if (filterCategory == categoryButton.Text)
+            return;
+
         categoryButton.Text = filterCategory;
 
         filter.FilterCategory = filterCategory;
@@ -125,14 +130,14 @@ public class FilterLine : HBoxContainer
                     .Instance();
                 filterArgumentButton.Initialize(multipleChoiceFilterArgument);
                 arguments.Add(filterArgumentButton);
-                AddChild(filterArgumentButton);
+                argumentsContainer.AddChild(filterArgumentButton);
             }
             else if (filterArgument is Filter.NumberFilterArgument numberFilterArgument)
             {
                 var filterArgumentSlider = (FilterArgumentSlider)filterArgumentSliderScene.Instance();
                 filterArgumentSlider.Initialize(numberFilterArgument);
                 arguments.Add(filterArgumentSlider);
-                AddChild(filterArgumentSlider);
+                argumentsContainer.AddChild(filterArgumentSlider);
             }
             else
             {
@@ -149,6 +154,9 @@ public class FilterLine : HBoxContainer
     private void ClearArguments()
     {
         argumentsContainer.FreeChildren(true);
+        GD.Print("DEBUG1", argumentsContainer.GetChildren().Count);
+        GD.Print("DEBUG2", GetChildren().Count);
+
 
         arguments.Clear();
 
