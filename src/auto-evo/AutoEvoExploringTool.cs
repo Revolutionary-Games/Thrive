@@ -220,7 +220,8 @@ public class AutoEvoExploringTool : NodeWithInput
     // Search window
     private FilterWindow filterWindow = null!;
     private Func<EvolutionaryTreeNode, bool> flaggingFunction = n => n.LastGeneration;
-    private Filter<Species> speciesFilter = null!;
+    //private Filter<Species> speciesFilter = null!;
+    private Filter<Species>.FilterGroup speciesFilters = new();
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -667,7 +668,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void SetupFilter()
     {
-        speciesFilter = new Filter<Species>();
+        var speciesFilterFactory = new Filter<Species>.FilterFactory();
 
         var valueFromSpecies = new Dictionary<string, Func<Species, float>>()
         {
@@ -688,14 +689,21 @@ public class AutoEvoExploringTool : NodeWithInput
             };
         var valueComparisonFilter = new Filter<Species>.FilterItem(valueComparisonFunction, valueComparisonArguments);
 
-        speciesFilter.AddFilterItem("VALUE_COMPARISON", valueComparisonFilter);
+        speciesFilterFactory.AddFilterItemFactory("VALUE_COMPARISON", valueComparisonFilter.ToFactory());
 
-        filterWindow.Initialize(speciesFilter);
+        filterWindow.Initialize(speciesFilterFactory, speciesFilters);
     }
 
     private void FlagTreeNodes()
     {
-        var speciesFlaggingFunction = speciesFilter.ComputeFilterFunction();
+        var x = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction());
+
+        GD.Print("DEBUG", speciesFilters.TypedFilters.Count, ",", x.Count());
+
+        var speciesFlaggingFunction = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction()).Aggregate(
+            (f1, f2) => s => f1(s) && f2(s));
+
+        // (f => s => a(s) && f.ComputeFilterFunction()(s), s => true);// speciesFilter.ComputeFilterFunction();
 
         flaggingFunction = n => speciesFlaggingFunction(speciesHistoryList[n.Generation][n.SpeciesID]);
         evolutionaryTree.FlagNodes(flaggingFunction);

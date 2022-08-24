@@ -27,6 +27,8 @@ public abstract class FilterArgument
             throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
     }
 
+    public abstract FilterArgument Clone();
+
     public class NumberFilterArgument : FilterArgument
     {
         public readonly float MinValue;
@@ -43,6 +45,11 @@ public abstract class FilterArgument
             MaxValue = maxValue;
             Value = defaultValue;
         }
+
+        public override FilterArgument Clone()
+        {
+            return new NumberFilterArgument(MinValue, MaxValue, Value);
+        }
     }
 
     public class MultipleChoiceFilterArgument : FilterArgument
@@ -54,6 +61,11 @@ public abstract class FilterArgument
         {
             Options = options;
             Value = Options.Count > 0 ? Options[0] : "--";
+        }
+
+        public override FilterArgument Clone()
+        {
+            return new MultipleChoiceFilterArgument(Options);
         }
     }
 }

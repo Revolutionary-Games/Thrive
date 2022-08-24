@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -7,7 +8,9 @@ public class FilterWindow : CustomConfirmationDialog
     [Export]
     public NodePath FiltersContainerPath = null!;
 
-    private readonly List<IFilter> filters = new();
+    private IFilter.IFilterGroup filters = null!;
+    private IFilter.IFilterFactory filterFactory = null!;
+
     /// <summary>
     ///   If redraw is needed.
     /// </summary>
@@ -40,10 +43,24 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = false;
     }
 
-    public void Initialize(IFilter filter)
+    public void Initialize(IFilter.IFilterFactory filterFactory, IFilter.IFilterGroup filters)
     {
-        ClearFilters();
-        SetupFilter(filter);
+        // ClearFilters();
+        if (this.filters != null)
+            throw new InvalidOperationException("Node already initialized!");
+
+        this.filters = filters;
+
+        foreach (var filter in filters.Filters)
+        {
+            AddFilterLine(filter);
+        }
+
+        this.filterFactory = filterFactory;
+
+        // TEMP
+        AddFilterFromFactory();
+        AddFilterFromFactory();
     }
 
     public void ClearFilters()
@@ -53,14 +70,20 @@ public class FilterWindow : CustomConfirmationDialog
         filtersContainer.FreeChildren(true);
     }
 
-    public void SetupFilter(IFilter filter)
+    public void AddFilterFromFactory()
+    {
+        var filter = filterFactory.Create();
+        filters.Add(filter);
+        AddFilterLine(filter);
+    }
+
+    public void AddFilterLine(IFilter filter)
     {
         var filterLine = (FilterLine)filterScene.Instance();
         filterLine.Initialize(filter);
 
         filtersContainer.AddChild(filterLine);
         filterLines.Add(filterLine);
-        filters.Add(filter);
 
         dirty = true;
     }
