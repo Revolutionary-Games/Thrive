@@ -100,9 +100,9 @@ public class PlayerMulticellularInput : NodeWithInput
         {
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
             nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
-            "g_look_yaw_negative", RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            "g_look_pitch_negative", RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
             nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
-            "g_look_yaw_positive",
+            "g_look_pitch_positive",
         }, new[] { -1.0f, 1.0f },
         Look = RunOnAxisAttribute.LookMode.Pitch)]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = false, InvokeWithDelta = false)]
@@ -189,6 +189,7 @@ public class PlayerMulticellularInput : NodeWithInput
 
     private void SetMouseCapture(bool captured)
     {
+        return;
         // TODO: if we use controller input mouse should be Input.MouseModeEnum.Hidden
         var wanted = captured ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;
 
