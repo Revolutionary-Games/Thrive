@@ -128,6 +128,14 @@ public sealed class Filter<T> : IFilter
             TypedFilters.Add(tFilter);
         }
 
+        public void Remove(IFilter filter)
+        {
+            if (!(filter is Filter<T> tFilter))
+                throw new ArgumentException($"Filter has to apply on type {nameof(T)}");
+
+            TypedFilters.Remove(tFilter);
+        }
+
         public void Clear()
         {
             TypedFilters.Clear();

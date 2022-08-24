@@ -11,6 +11,8 @@ public class FilterLine : HBoxContainer
     [Export]
     public NodePath ArgumentsContainerPath = null!;
 
+    private FilterWindow parentWindow = null!;
+
     private IFilter filter = null!;
     private string defaultText = "--";
     private string categorySnapshot = null!;
@@ -27,8 +29,11 @@ public class FilterLine : HBoxContainer
     /// </summary>
     private bool dirty = true;
 
-    public void Initialize(IFilter filter)
+    public IFilter Filter => filter;
+
+    public void Initialize(FilterWindow parentWindow, IFilter filter)
     {
+        this.parentWindow = parentWindow;
         this.filter = filter;
     }
 
@@ -96,6 +101,11 @@ public class FilterLine : HBoxContainer
             filter.FilterCategory = categorySnapshot;
             GD.Print("Restoring category ", categorySnapshot);
         }
+    }
+
+    public void Delete()
+    {
+        parentWindow.RemoveFilterLine(this);
     }
 
     private void OnNewCategorySelected(int choiceIndex)

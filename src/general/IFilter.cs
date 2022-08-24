@@ -20,6 +20,8 @@ public interface IFilter
 
         public void Add(IFilter filter);
 
+        public void Remove(IFilter filter);
+
         public void Clear();
     }
 

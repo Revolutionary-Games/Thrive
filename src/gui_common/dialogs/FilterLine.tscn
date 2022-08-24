@@ -19,3 +19,11 @@ script = ExtResource( 2 )
 margin_left = 16.0
 margin_right = 16.0
 margin_bottom = 20.0
+
+[node name="RemoveButton" type="Button" parent="."]
+margin_left = 20.0
+margin_right = 132.0
+margin_bottom = 20.0
+text = "REMOVE_FILTER"
+
+[connection signal="pressed" from="RemoveButton" to="." method="Delete"]

@@ -79,7 +79,7 @@ public class FilterWindow : CustomConfirmationDialog
     public void AddFilterLine(IFilter filter)
     {
         var filterLine = (FilterLine)filterScene.Instance();
-        filterLine.Initialize(filter);
+        filterLine.Initialize(this, filter);
 
         filtersContainer.AddChild(filterLine);
         filterLines.Add(filterLine);
@@ -101,5 +101,14 @@ public class FilterWindow : CustomConfirmationDialog
         {
             filterLine.RestoreLastSnapshot();
         }
+    }
+
+    public void RemoveFilterLine(FilterLine filterLine)
+    {
+        filters.Remove(filterLine.Filter);
+        filtersContainer.RemoveChild(filterLine);
+
+        // IF YOU DO THAT YOU CAN NOT RESTORE SNAPSHOT!
+        filterLine.QueueFree();
     }
 }
