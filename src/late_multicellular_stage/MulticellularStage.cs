@@ -104,6 +104,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (Player != null)
         {
         }
+
+        // TODO: notify metrics
     }
 
     // TODO: different pause key as space will be for jumping
@@ -179,6 +181,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     public override void OnSuicide()
     {
         Player?.Damage(9999.0f, "suicide");
+    }
+
+    public void RotateCamera(float yawMovement, float pitchMovement)
+    {
+        GD.Print($"Yaw: {yawMovement}, Pitch: {pitchMovement}");
+        PlayerCamera.XRotation += pitchMovement;
+        PlayerCamera.YRotation += pitchMovement;
     }
 
     protected override void SetupStage()
@@ -271,6 +280,11 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     }
 
     protected override void PerformQuickSave()
+    {
+        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
+    private void SaveGame(string name)
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }

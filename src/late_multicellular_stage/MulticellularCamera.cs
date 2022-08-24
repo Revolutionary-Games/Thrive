@@ -16,6 +16,18 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     private float armLength = 8;
     private Vector3 followOffset = new(1.2f, 1.5f, 0.5f);
 
+    [JsonProperty]
+    private float xRotation;
+
+    [JsonProperty]
+    private float yRotation;
+
+    [Export]
+    public float MinXRotation { get; set; } = -(float)MathUtils.FULL_CIRCLE * 0.25f;
+
+    [Export]
+    public float MaxXRotation { get; set; } = (float)MathUtils.FULL_CIRCLE * 0.25f;
+
     [Export]
     [JsonProperty]
     public float ArmLength
@@ -60,6 +72,32 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         }
     }
 
+    /// <summary>
+    ///   The pitch angle of the camera (in radians)
+    /// </summary>
+    [JsonIgnore]
+    public float XRotation
+    {
+        get => xRotation;
+        set
+        {
+            xRotation = Mathf.Clamp(value, MinXRotation, MaxXRotation);
+        }
+    }
+
+    /// <summary>
+    ///   The yaw angle of the camera (in radians)
+    /// </summary>
+    [JsonIgnore]
+    public float YRotation
+    {
+        get => yRotation;
+        set
+        {
+            yRotation = value % (float)MathUtils.FULL_CIRCLE;
+        }
+    }
+
     [JsonIgnore]
     public bool NodeReferencesResolved { get; set; }
 
@@ -98,9 +136,11 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         // correctly
         Transform = new Transform(Quat.Identity, FollowedNode.Translation);
 
-        var rotation = Quat.Identity;
+        var right = new Vector3(1, 0, 0);
+        var up = new Vector3(0, 1, 0);
 
-        // TODO: rotation
+        var rotation = new Quat(right, XRotation); // * new Quat(up, yRotation);
+
         arm!.Transform = new Transform(rotation, Vector3.Zero);
     }
 

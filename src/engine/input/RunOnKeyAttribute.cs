@@ -13,6 +13,11 @@ using Godot;
 public class RunOnKeyAttribute : InputAttribute
 {
     /// <summary>
+    ///   When an input action starts with this, it's not a Godot action but a mouse motion we handle in a custom way
+    /// </summary>
+    public const string CAPTURED_MOUSE_AS_AXIS_PREFIX = "captured_mouse:";
+
+    /// <summary>
     ///   Priming comes to effect when an input gets pressed for less than one frame
     ///   (when the release input gets detected before OnProcess could be called)
     /// </summary>
@@ -34,7 +39,7 @@ public class RunOnKeyAttribute : InputAttribute
     public bool HeldDown { get; protected set; }
 
     /// <summary>
-    ///   The internal godot input name
+    ///   The internal godot input name. Except in some cases, <see cref="CAPTURED_MOUSE_AS_AXIS_PREFIX"/>.
     /// </summary>
     /// <example>ui_select</example>
     public string InputName { get; }

@@ -4,6 +4,7 @@
 
 [node name="MulticellularCamera" type="Spatial"]
 pause_mode = 2
+process_priority = 100
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Base rotation of the camera

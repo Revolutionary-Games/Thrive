@@ -286,6 +286,54 @@ public class Settings
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new(GetDefaultControls());
 
+    /// <summary>
+    ///   How sensitive mouse looking is in the vertical direction. As mouse movement is the number of pixels moved
+    ///   this multiplier needs to be very low compared to the controller multiplier.
+    /// </summary>
+    public SettingValue<float> VerticalMouseLookSensitivity { get; set; } = new(0.001f);
+
+    /// <summary>
+    ///   How sensitive mouse looking is in the horizontal direction
+    /// </summary>
+    public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.001f);
+
+    /// <summary>
+    ///   How sensitive controller looking is in the vertical direction
+    /// </summary>
+    public SettingValue<float> VerticalControllerLookSensitivity { get; set; } = new(1);
+
+    /// <summary>
+    ///   How sensitive controller looking is in the horizontal direction
+    /// </summary>
+    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1);
+
+    /// <summary>
+    ///   If true inverts the vertical axis inputs for mouse
+    /// </summary>
+    public SettingValue<bool> InvertVerticalMouseLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   If true inverts the horizontal axis inputs for mouse
+    /// </summary>
+    public SettingValue<bool> InvertHorizontalMouseLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   If true inverts the vertical axis inputs for controller
+    /// </summary>
+    public SettingValue<bool> InvertVerticalControllerLook { get; set; } = new(false);
+
+    // TODO: remove this as this doesn't seem useful
+    /// <summary>
+    ///   If true mouse speed in axis inputs is scaled by the window size to be a constant,
+    ///   and not have mouse look speed vary a lot depending on the size of the game window.
+    /// </summary>
+    public SettingValue<bool> MouseLookSpeedIsIndependentOfWindowSize { get; set; } = new(true);
+
+    /// <summary>
+    ///   If true inverts the horizontal axis inputs for controller
+    /// </summary>
+    public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
+
     // Settings that are edited from elsewhere than the main options menu
     public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
 

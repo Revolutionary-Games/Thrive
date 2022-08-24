@@ -43,6 +43,8 @@ public class InputManager : Node
     /// </summary>
     public static bool PerformingRebind { get; set; }
 
+    public static Vector2 WindowSizeForInputs { get; private set; }
+
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
     /// </summary>
@@ -128,6 +130,21 @@ public class InputManager : Node
         staticInstance._UnhandledInput(inputEvent);
     }
 
+    public static void OnPostLoad()
+    {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
+        staticInstance.DoPostLoad();
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        DoPostLoad();
+    }
+
     /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
@@ -173,11 +190,11 @@ public class InputManager : Node
         OnInput(false, @event);
     }
 
-    public override void _Notification(int focus)
+    public override void _Notification(int what)
     {
         // If the window goes out of focus, we don't receive the key released events
         // We reset our held down keys if the player tabs out while pressing a key
-        if (focus == MainLoop.NotificationWmFocusOut)
+        if (what == NotificationWmFocusOut)
         {
             OnFocusLost();
         }
@@ -265,14 +282,39 @@ public class InputManager : Node
         return result;
     }
 
+    /// <summary>
+    ///   Performs post load actions for inputs. For example some inputs need to listen for settings changes
+    /// </summary>
+    private void DoPostLoad()
+    {
+        GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
+        WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+
+        foreach (var attribute in attributes)
+        {
+            attribute.Key.OnPostLoad();
+        }
+    }
+
+    private void OnWindowSizeChanged()
+    {
+        WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+
+        foreach (var attribute in attributes)
+        {
+            attribute.Key.OnWindowSizeChanged();
+        }
+    }
+
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
-        // Ignore mouse motion
-        // TODO: support mouse movement input as well
-        if (@event is InputEventMouseMotion)
-            return;
+        bool isDown = false;
 
-        bool isDown = @event.IsPressed();
+        // For now let's always assume mouse motion is not a "down" action
+        if (@event is not InputEventMouseMotion)
+        {
+            isDown = @event.IsPressed();
+        }
 
         bool handled = false;
 
