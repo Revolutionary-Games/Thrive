@@ -1066,6 +1066,9 @@ public static class Constants
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
 
+    // Needed to be true by InputManager
+    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
+
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 

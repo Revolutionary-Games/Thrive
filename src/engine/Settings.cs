@@ -308,6 +308,28 @@ public class Settings
     public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1);
 
     /// <summary>
+    ///   How big the deadzones are for controller axes
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This should have <see cref="JoystickList.AxisMax"/> values in here to have one for each supported axis.
+    ///   </para>
+    /// </remarks>
+    public SettingValue<List<float>> ControllerAxisDeadzoneAxes { get; set; } = new(new List<float>
+    {
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+        0.045f,
+    });
+
+    /// <summary>
     ///   If true inverts the vertical axis inputs for mouse
     /// </summary>
     public SettingValue<bool> InvertVerticalMouseLook { get; set; } = new(false);

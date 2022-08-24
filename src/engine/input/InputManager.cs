@@ -17,6 +17,8 @@ public class InputManager : Node
     private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
 
+    private readonly Dictionary<int, float> controllerAxisDeadzones = new();
+
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
@@ -287,6 +289,10 @@ public class InputManager : Node
     /// </summary>
     private void DoPostLoad()
     {
+        LoadControllerDeadzones();
+
+        Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
+
         GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
         WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
 
@@ -313,6 +319,17 @@ public class InputManager : Node
         // For now let's always assume mouse motion is not a "down" action
         if (@event is not InputEventMouseMotion)
         {
+            if (@event is InputEventJoypadMotion joypadMotion)
+            {
+                // Apply controller axis deadzone
+                controllerAxisDeadzones.TryGetValue(joypadMotion.Axis, out float deadzone);
+
+                if (Math.Abs(joypadMotion.AxisValue) < deadzone)
+                    joypadMotion.AxisValue = 0;
+
+                // TODO: implement maximum value scaling for controller axes
+            }
+
             isDown = @event.IsPressed();
         }
 
@@ -358,6 +375,24 @@ public class InputManager : Node
         };
         timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
+    }
+
+    private void LoadControllerDeadzones()
+    {
+        var values = Settings.Instance.ControllerAxisDeadzoneAxes.Value;
+
+        if (values.Count != (int)JoystickList.AxisMax)
+        {
+            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoystickList.AxisMax,
+                " actually configured: ", values.Count);
+        }
+
+        controllerAxisDeadzones.Clear();
+
+        for (int i = 0; i < values.Count; ++i)
+        {
+            controllerAxisDeadzones[i] = values[i];
+        }
     }
 
     /// <summary>
