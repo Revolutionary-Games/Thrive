@@ -15,10 +15,8 @@ public class FilterLine : HBoxContainer
     private string defaultText = "--";
     private string categorySnapshot = null!;
 
-    private PackedScene filterArgumentPopupMenuScene =
-        GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentPopupMenu.tscn");
-    private PackedScene filterArgumentSliderScene =
-        GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
+    private PackedScene filterArgumentPopupMenuScene = null!;
+    private PackedScene filterArgumentSliderScene = null!;
 
     private CustomDropDown categoryButton = null!;
     private HBoxContainer argumentsContainer = null!;
@@ -39,6 +37,10 @@ public class FilterLine : HBoxContainer
     {
         if (filter == null)
             throw new InvalidOperationException("Node was not initialized!");
+
+        filterArgumentPopupMenuScene =
+            GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentPopupMenu.tscn");
+        filterArgumentSliderScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
 
         categoryButton = GetNode<CustomDropDown>(CategoryButtonPath);
         argumentsContainer = GetNode<HBoxContainer>(ArgumentsContainerPath);
