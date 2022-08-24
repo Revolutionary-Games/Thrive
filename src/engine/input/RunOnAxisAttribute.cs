@@ -16,6 +16,8 @@ using Godot;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class RunOnAxisAttribute : InputAttribute
 {
+    private readonly bool usesMouse;
+
     /// <summary>
     ///   All associated inputs for this axis
     /// </summary>
@@ -27,8 +29,6 @@ public class RunOnAxisAttribute : InputAttribute
     private int inputNumber;
 
     private bool useDiscreteKeyInputs;
-
-    private bool usesMouse;
 
     /// <summary>
     ///   Instantiates a new RunOnAxisAttribute.
@@ -215,7 +215,7 @@ public class RunOnAxisAttribute : InputAttribute
         {
             // Delta is multiplied to be a bit bigger number here to make the results with low delta into a more normal
             // rate
-            delta *= 60;
+            delta *= 1.5f;
         }
 
         int highestFoundPressed = int.MinValue;
@@ -223,12 +223,14 @@ public class RunOnAxisAttribute : InputAttribute
 
         foreach (var entry in inputs)
         {
-            // TODO: should we still require the input types that have the held true while active to be true in the
-            // next if?
-            entry.Input.ReadHeldOrPrimedAndResetPrimed();
-            if (entry.Data.LastDown >= highestFoundPressed)
+            var lastDown = entry.Data.LastDown;
+            var input = entry.Input;
+            if (input.ReadHeldOrPrimedAndResetPrimed() && lastDown >= highestFoundPressed)
             {
-                highestFoundPressed = entry.Data.LastDown;
+                if (!input.IsNonControllerEventOrIsStillDown())
+                    continue;
+
+                highestFoundPressed = lastDown;
                 pressedEntry = entry;
             }
         }

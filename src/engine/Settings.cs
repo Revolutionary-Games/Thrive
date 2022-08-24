@@ -305,7 +305,7 @@ public class Settings
     /// <summary>
     ///   How sensitive controller looking is in the horizontal direction
     /// </summary>
-    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1);
+    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1.2f);
 
     /// <summary>
     ///   How big the deadzones are for controller axes

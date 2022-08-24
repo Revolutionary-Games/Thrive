@@ -12,6 +12,8 @@
 /// </remarks>
 public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
 {
+    private bool usedControllerEvent;
+
     public RunOnInputWithStrengthAttribute(string inputName) : base(inputName)
     {
     }
@@ -32,7 +34,9 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
         {
             if (HeldDown)
             {
-                Strength = @event.GetActionStrength(InputName);
+                Strength = @event.GetActionStrength(InputName, true);
+
+                usedControllerEvent = @event is InputEventJoypadMotion;
             }
             else
             {
@@ -55,5 +59,18 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
     {
         base.FocusLost();
         Strength = 0;
+    }
+
+    /// <summary>
+    ///   Checks if this input is still pressed, this is a workaround with controller axes not always resulting
+    ///   in detecting a key up
+    /// </summary>
+    /// <returns>True if still pressed or this was not triggered by a controller event</returns>
+    public bool IsNonControllerEventOrIsStillDown()
+    {
+        if (!usedControllerEvent)
+            return true;
+
+        return Input.IsActionPressed(InputName, true);
     }
 }

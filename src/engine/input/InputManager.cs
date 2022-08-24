@@ -20,6 +20,11 @@ public class InputManager : Node
     private readonly Dictionary<int, float> controllerAxisDeadzones = new();
 
     /// <summary>
+    ///   Used to send just one 0 event for a controller axis that is released and goes into the deadzone
+    /// </summary>
+    private readonly Dictionary<int, bool> deadzonedControllerAxes = new();
+
+    /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
     /// <remarks>
@@ -322,12 +327,28 @@ public class InputManager : Node
             if (@event is InputEventJoypadMotion joypadMotion)
             {
                 // Apply controller axis deadzone
-                controllerAxisDeadzones.TryGetValue(joypadMotion.Axis, out float deadzone);
+                var motionAxis = joypadMotion.Axis;
+                controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
 
                 if (Math.Abs(joypadMotion.AxisValue) < deadzone)
-                    joypadMotion.AxisValue = 0;
+                {
+                    deadzonedControllerAxes.TryGetValue(motionAxis, out var deadzoned);
 
-                // TODO: implement maximum value scaling for controller axes
+                    if (deadzoned)
+                    {
+                        // Already sent out the deadzone event for this input, don't send again until it changes
+                        return;
+                    }
+
+                    joypadMotion.AxisValue = 0;
+                    deadzonedControllerAxes[motionAxis] = true;
+                }
+                else
+                {
+                    deadzonedControllerAxes[motionAxis] = false;
+                }
+
+                // TODO: implement maximum value scaling for controller axes (if needed)
             }
 
             isDown = @event.IsPressed();
