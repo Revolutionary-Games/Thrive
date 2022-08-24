@@ -317,16 +317,16 @@ public class Settings
     /// </remarks>
     public SettingValue<List<float>> ControllerAxisDeadzoneAxes { get; set; } = new(new List<float>
     {
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
-        0.045f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
+        0.2f,
     });
 
     /// <summary>
