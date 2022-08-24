@@ -16,3 +16,10 @@ margin_left = -15.0
 margin_top = -15.0
 margin_right = 25.0
 margin_bottom = 25.0
+
+[node name="AddFilterButton" type="Button" parent="VBoxContainer" index="2"]
+margin_right = 10.0
+margin_bottom = 35.0
+text = "ADD_FILTER"
+
+[connection signal="pressed" from="VBoxContainer/AddFilterButton" to="." method="AddFilterFromFactory"]
