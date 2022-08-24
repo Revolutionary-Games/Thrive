@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/gui_common/dialogs/FilterWindow.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ButtonGroup" id=1]
 resource_name = "TabsButtonGroup"
@@ -570,8 +571,8 @@ custom_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 731.0
-margin_bottom = 45.0
+margin_right = 563.0
+margin_bottom = 30.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
@@ -591,6 +592,16 @@ script = ExtResource( 12 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="FilteringLabel" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+text = "FILTERING_OPTIONS"
+
+[node name="FilteringButton" type="Button" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+text = "OPEN_FILTERING_OPTIONS"
 
 [node name="PatchMap" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 margin_top = 52.0
@@ -834,7 +845,7 @@ rect_min_size = Vector2( 400, 0 )
 WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
-[node name="FilterWindow" parent="." instance=ExtResource( 13 )]
+[node name="FilterWindow" parent="." instance=ExtResource( 18 )]
 rect_min_size = Vector2( 800, 0 )
 WindowTitle = "SPECIES_FILTER_WINDOW"
 DialogText = "SELECT_SPECIES_FILTER"
@@ -857,6 +868,5 @@ DialogText = "SELECT_SPECIES_FILTER"
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
 [connection signal="Cancelled" from="FilterWindow" to="FilterWindow" method="RestoreFiltersSnapshots"]
-[connection signal="Closed" from="FilterWindow" to="FilterWindow" method="RestoreFiltersSnapshots"]
 [connection signal="Confirmed" from="FilterWindow" to="." method="FlagTreeNodes"]
 [connection signal="Confirmed" from="FilterWindow" to="FilterWindow" method="MakeFiltersSnapshots"]
