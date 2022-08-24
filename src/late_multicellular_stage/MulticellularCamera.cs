@@ -9,12 +9,11 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
 {
     private Camera camera = null!;
     private Listener listener = null!;
+    private Spatial offsetNode = null!;
 
-    private Spatial? offsetNode;
     private SpringArm? arm;
 
     private float armLength = 8;
-    private Vector3 followOffset = new(1.2f, 1.5f, 0.5f);
 
     [JsonProperty]
     private float xRotation;
@@ -42,15 +41,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
 
     [Export]
     [JsonProperty]
-    public Vector3 FollowOffset
-    {
-        get => followOffset;
-        set
-        {
-            followOffset = value;
-            ApplyFollowOffset();
-        }
-    }
+    public Vector3 FollowOffset { get; set; } = new(1.2f, 1.5f, 0.5f);
 
     [Export]
     [JsonProperty]
@@ -108,7 +99,9 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         ResolveNodeReferences();
 
         ApplyArmLength();
-        ApplyFollowOffset();
+
+        // Apply initial position
+        _PhysicsProcess(0);
     }
 
     public void ResolveNodeReferences()
@@ -136,10 +129,15 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         // correctly
         Transform = new Transform(Quat.Identity, FollowedNode.Translation);
 
-        var right = new Vector3(1, 0, 0);
+        // Horizontal (yaw) rotation along the y axis is applied to the offset node to make things work nicer
         var up = new Vector3(0, 1, 0);
+        var yQuaternion = new Quat(up, YRotation);
+        offsetNode.Translation = yQuaternion.Xform(FollowOffset);
 
-        var rotation = new Quat(right, XRotation); // * new Quat(up, yRotation);
+        var right = new Vector3(1, 0, 0);
+
+        // Some part of Y-rotation is also applied here to make for non-janky camera turning effect
+        var rotation = yQuaternion * new Quat(right, XRotation);
 
         arm!.Transform = new Transform(rotation, Vector3.Zero);
     }
@@ -148,11 +146,5 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     {
         if (arm != null)
             arm.SpringLength = armLength;
-    }
-
-    private void ApplyFollowOffset()
-    {
-        if (offsetNode != null)
-            offsetNode.Translation = FollowOffset;
     }
 }

@@ -187,7 +187,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         GD.Print($"Yaw: {yawMovement}, Pitch: {pitchMovement}");
         PlayerCamera.XRotation += pitchMovement;
-        PlayerCamera.YRotation += pitchMovement;
+        PlayerCamera.YRotation += yawMovement;
     }
 
     protected override void SetupStage()
