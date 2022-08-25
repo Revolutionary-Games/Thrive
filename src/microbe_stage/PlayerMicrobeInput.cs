@@ -32,6 +32,7 @@ public class PlayerMicrobeInput : NodeWithInput
         autoMove = !autoMove;
     }
 
+    // TODO: when using controller movement this should be screen relative movement by default
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
