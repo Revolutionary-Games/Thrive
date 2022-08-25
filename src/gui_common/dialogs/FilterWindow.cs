@@ -57,6 +57,7 @@ public class FilterWindow : CustomConfirmationDialog
         }
 
         this.filterFactory = filterFactory;
+
         // TEMP
         AddFilterFromFactory();
         AddFilterFromFactory();

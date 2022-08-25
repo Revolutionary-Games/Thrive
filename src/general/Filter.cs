@@ -5,15 +5,15 @@ using System.Linq;
 // TODO CONSIDER GENERIC
 public sealed class Filter<T> : IFilter
 {
+    private string filterCategory = "NONE";
+
+    private Dictionary<string, IFilter.IFilterItem> filterItems = new Dictionary<string, IFilter.IFilterItem>();
+
     string IFilter.FilterCategory
     {
         get => filterCategory;
         set => filterCategory = value;
     }
-
-    private string filterCategory = "NONE";
-
-    private Dictionary<string, IFilter.IFilterItem> filterItems = new Dictionary<string, IFilter.IFilterItem>();
 
     public IEnumerable<string> FilterItemsNames => filterItems.Keys;
 
@@ -31,10 +31,7 @@ public sealed class Filter<T> : IFilter
 
     public Func<T, bool> ComputeFilterFunction()
     {
-        if (!filterItems.TryGetValue(filterCategory, out var filterItem))
-            throw new KeyNotFoundException($"No such filter category: {filterCategory}");
-
-        return ((FilterItem)filterItem).ToFunction();
+        return ((FilterItem)filterItems[filterCategory]).ToFunction();
     }
 
     public sealed class FilterItem : IFilter.IFilterItem
@@ -117,8 +114,6 @@ public sealed class Filter<T> : IFilter
         public List<Filter<T>> TypedFilters = new();
 
         public List<IFilter> Filters => TypedFilters.ConvertAll(new Converter<Filter<T>, IFilter>(f => f));
-
-
 
         public void Add(IFilter filter)
         {

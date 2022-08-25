@@ -220,7 +220,6 @@ public class AutoEvoExploringTool : NodeWithInput
     // Search window
     private FilterWindow filterWindow = null!;
     private Func<EvolutionaryTreeNode, bool> flaggingFunction = n => n.LastGeneration;
-    //private Filter<Species> speciesFilter = null!;
     private Filter<Species>.FilterGroup speciesFilters = new();
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
