@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-23 15:18+0300\n"
-"PO-Revision-Date: 2022-07-15 08:38+0000\n"
+"PO-Revision-Date: 2022-08-25 07:28+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1010,14 +1010,12 @@ msgstr ""
 "  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
-#, fuzzy
 msgid "CONFIG"
-msgstr "Configurações"
+msgstr "Configuração"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:112
-#, fuzzy
 msgid "MAP"
-msgstr "ATP"
+msgstr "Mapa"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1074,16 +1072,18 @@ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "População inicial para espécies que aumentam a biodiversidade"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#, fuzzy
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Teto de proteção de espécies recém-migradas"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#, fuzzy
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Teto de proteção de espécies criadas de outras espécies"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "Reembolsar migrações em caso de extinção"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
@@ -1118,8 +1118,9 @@ msgid "FINISH_ONE_GENERATION"
 msgstr "Completar uma geração"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:485
+#, fuzzy
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Executar um passo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 msgid "ABORT"
@@ -1960,29 +1961,24 @@ msgid "ART_BY"
 msgstr "Arte por {0}"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Comportamento"
+msgstr "Agressão"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Comportamento"
+msgstr "Oportunismo"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Comportamento"
+msgstr "Medo"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Comportamento"
+msgstr "Atividade"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Comportamento"
+msgstr "Foco"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2180,7 +2176,7 @@ msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positi
 
 #: ../src/general/NewGameSettings.tscn:267
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Nota: você pode mudar as opções relacionadas ao desempenho a qualquer momento no [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]menu de opções[/url][/color] para melhorar o desempenho do jogo"
 
 #: ../src/general/NewGameSettings.tscn:289
 msgid "DIFFICULTY"
@@ -3674,7 +3670,7 @@ msgstr "Não pode engolir"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2989
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3236
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "Resistente ao engolimento básico"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -3745,7 +3741,7 @@ msgstr "Espécies:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
 msgid "HOLD_FOR_CURSOR"
-msgstr ""
+msgstr "Aperte TODO: entrada para cursor"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
 #: ../src/microbe_stage/MicrobeStage.tscn:623
@@ -3923,9 +3919,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Gerar Inimigo"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Número máximo de entidades:"
+msgstr "Destruir todas as entidades"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4258,9 +4253,8 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
-#, fuzzy
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr "Nome da espécie…"
+msgstr "O nome da espécie é grande demais!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
@@ -4279,9 +4273,8 @@ msgid "INFINITE_MP"
 msgstr "MP Infinito"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Mover para esta região"
+msgstr "Mover para qualquer região"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -5537,24 +5530,29 @@ msgstr ""
 "Você pode pressionar o botão de suicídio para renascer, mas lembre-se: sempre há uma chance de escapar."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Engula coisas ao passar por cima deles no modo apropriado. Ative e desative esse modo ao apertar [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"Você já tem [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound] suficientes. Contudo, como você está em uma colônia não multicelular, não conseguirá reproduzir.\n"
 "\n"
-"Pare de engolir quando o objeto esteja sendo puxado.\n"
-"\n"
-"Siga a linha da sua célula para o objeto mais próximo."
+"Você deverá sair da colônia para entrar no editor, a não ser que queira tornar-se um organismo multicelular.\n"
+"Saia da colônia ao apertar [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Carregando Editor Multicelular Inicial"
+msgstr ""
+"Bem-vindo ao Estágio Multicelular Inicial!\n"
+"\n"
+"Você conseguiu guiar sua espécie pela fase unicelular.\n"
+"\n"
+"O jogo continuará tendo as mecânicas do Estágio Microbial. Ainda será necessário alimentar seu organismo para reproduzir e ir ao editor.\n"
+"\n"
+"Todavia, você poderá projetar sua colônia e especializar suas células para a realização de diferentes funções. Lembre-se de que os membros da colônia não compartilharão [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Se estiver usando o processo de reprodução gemulação (selecionado por padrão), você começará com uma parte de seu organismo e será preciso crescer o resto das células."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Começar a prosperar"
+msgstr "Continuar a prosperar"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Imune ao engolimento"
