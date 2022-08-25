@@ -99,9 +99,10 @@ public class PlayerMulticellularInput : NodeWithInput
     [RunOnAxis(new[]
         {
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
-            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
-            "g_look_pitch_negative", RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
             nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
+            "g_look_pitch_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
             "g_look_pitch_positive",
         }, new[] { -1.0f, 1.0f },
         Look = RunOnAxisAttribute.LookMode.Pitch)]
@@ -109,22 +110,6 @@ public class PlayerMulticellularInput : NodeWithInput
     public void OnLook(float yawMovement, float pitchMovement)
     {
         stage.RotateCamera(yawMovement, pitchMovement);
-
-        // TODO: implement
-        /*if (stage.Player != null)
-        {
-            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
-            {
-                stage.Player.MovementDirection = Vector3.Zero;
-                return;
-            }
-
-            var movement = new Vector3(leftRightMovement, 0, forwardMovement);
-
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
-
-            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
-        }*/
     }
 
     [RunOnKeyDown("g_fire_toxin")]
@@ -189,7 +174,6 @@ public class PlayerMulticellularInput : NodeWithInput
 
     private void SetMouseCapture(bool captured)
     {
-        return;
         // TODO: if we use controller input mouse should be Input.MouseModeEnum.Hidden
         var wanted = captured ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;
 

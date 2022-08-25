@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Handles captured mouse inputs for a single axis and direction
@@ -36,25 +37,42 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
 
         var relative = mouseMotion.Relative;
 
-        if (axis == CapturedMouseAxis.Left && relative.x < 0)
+        switch (axis)
         {
-            Strength = -relative.x;
-            HeldDown = true;
-        }
-        else if (axis == CapturedMouseAxis.Right && relative.x > 0)
-        {
-            Strength = relative.x;
-            HeldDown = true;
-        }
-        else if (axis == CapturedMouseAxis.Up && relative.y < 0)
-        {
-            Strength = -relative.y;
-            HeldDown = true;
-        }
-        else if (axis == CapturedMouseAxis.Down && relative.y > 0)
-        {
-            Strength = relative.y;
-            HeldDown = true;
+            case CapturedMouseAxis.Left:
+                if (relative.x < 0)
+                {
+                    Strength = -relative.x;
+                    HeldDown = true;
+                }
+
+                break;
+            case CapturedMouseAxis.Right:
+                if (relative.x > 0)
+                {
+                    Strength = relative.x;
+                    HeldDown = true;
+                }
+
+                break;
+            case CapturedMouseAxis.Up:
+                if (relative.y < 0)
+                {
+                    Strength = -relative.y;
+                    HeldDown = true;
+                }
+
+                break;
+            case CapturedMouseAxis.Down:
+                if (relative.y > 0)
+                {
+                    Strength = relative.y;
+                    HeldDown = true;
+                }
+
+                break;
+            default:
+                throw new InvalidOperationException("unhandled mouse axis");
         }
 
         return false;
