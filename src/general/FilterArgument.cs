@@ -37,6 +37,7 @@ public abstract class FilterArgument
 
         public NumberFilterArgument(float minValue, float maxValue, float defaultValue)
         {
+            // The arguments are expected to be defined by users, so we check there are sensible to spot typos and such
             if (defaultValue < minValue || defaultValue > maxValue)
                 throw new ArgumentOutOfRangeException($"{defaultValue} is outside the range {minValue}-{maxValue}!");
 
