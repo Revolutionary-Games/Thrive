@@ -1052,11 +1052,11 @@ msgstr "Chance to create a new species to increase biodiversity from a nearby pa
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Biodiversity increasing species from nearby patch is given free population"
+msgstr "Biodiversity-increasing species from nearby patch is given free population"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biodiversity increasing species is mutated on creation"
+msgstr "Biodiversity-increasing species is mutated on creation"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -1076,7 +1076,7 @@ msgstr "Mutation attempts per species"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Initial population for biodiversity increasing species"
+msgstr "Initial population for biodiversity-increasing species"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
@@ -1104,7 +1104,7 @@ msgstr "Minimum population fraction of a species to allow split by mutations"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Biodiversity increasing species creation steals population from existing species"
+msgstr "Biodiversity-increasing species creation steals population from existing species"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 msgid "CURRENT_GENERATION_COLON"
@@ -5534,7 +5534,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"You are full on [thrive:compound type=\"ammonia\"][/thrive:compound] and [thrive:compound type=\"phosphates\"][/thrive:compound], however as you are in a non-multicellular colony, you don't make reproduction progress.\n"
+"You are full on [thrive:compound type=\"ammonia\"][/thrive:compound] and [thrive:compound type=\"phosphates\"][/thrive:compound]. However, as you are in a non-multicellular colony, you don't make reproduction progress.\n"
 "\n"
 "You need to leave the colony to get to the editor unless you plan to become multicellular.\n"
 "Exit the colony to resume your growth by pressing [thrive:input]g_unbind_all[/thrive:input]."
