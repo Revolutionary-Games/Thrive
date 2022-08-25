@@ -69,7 +69,8 @@ public class RunOnKeyAttribute : InputAttribute
     {
         bool result = false;
 
-        if (@event.IsActionPressed(InputName, false, true))
+        // Exact match is not used as doing things like holding down shift makes all inputs no longer work
+        if (@event.IsActionPressed(InputName, false, false))
         {
             if (CallMethodInOnInput && !CallbackRequiresElapsedTime)
             {
@@ -84,7 +85,7 @@ public class RunOnKeyAttribute : InputAttribute
             HeldDown = true;
         }
 
-        if (@event.IsActionReleased(InputName, true))
+        if (@event.IsActionReleased(InputName, false))
         {
             result = true;
             HeldDown = false;

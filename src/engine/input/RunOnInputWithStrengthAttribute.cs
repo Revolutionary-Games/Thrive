@@ -34,7 +34,7 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
         {
             if (HeldDown)
             {
-                Strength = @event.GetActionStrength(InputName, true);
+                Strength = @event.GetActionStrength(InputName, false);
 
                 usedControllerEvent = @event is InputEventJoypadMotion;
             }
