@@ -25,19 +25,20 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
             if (SetKeyDown)
                 HeldDown = true;
 
+            // TODO: this isn't verified to work fine with mouse or controller inputs
             Strength = @event.GetActionStrength(InputName);
 
             return CallMethod(Strength);
         }
-
-        // It's probably faster to just set this to always zero here than spend another Godot call on checking if
-        // the action was released
-        Strength = 0;
 
         return false;
     }
 
     public override void OnProcess(float delta)
     {
+        // It's probably faster to just set this to always zero here than spend another Godot call on checking if
+        // the action was released (and we do this in process to have this down for at least a bit)
+        Strength = 0;
+        HeldDown = false;
     }
 }

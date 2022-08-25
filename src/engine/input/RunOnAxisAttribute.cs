@@ -128,6 +128,7 @@ public class RunOnAxisAttribute : InputAttribute
     /// <remarks>
     ///   <para>
     ///     TODO: would be nice to not have to recreate the objects here
+    ///     TODO: this is untested for mouse and controller inputs
     ///   </para>
     /// </remarks>
     public bool UseDiscreteKeyInputs
@@ -207,7 +208,7 @@ public class RunOnAxisAttribute : InputAttribute
     /// </remarks>
     public float GetCurrentResult(float delta)
     {
-        if (!AllowLookBasedDeltaPreMultiply)
+        if (!AllowLookBasedDeltaPreMultiply || Look == LookMode.NotLooking)
         {
             delta = 1;
         }
