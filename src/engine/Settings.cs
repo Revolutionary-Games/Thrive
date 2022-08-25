@@ -290,12 +290,12 @@ public class Settings
     ///   How sensitive mouse looking is in the vertical direction. As mouse movement is the number of pixels moved
     ///   this multiplier needs to be very low compared to the controller multiplier.
     /// </summary>
-    public SettingValue<float> VerticalMouseLookSensitivity { get; set; } = new(0.001f);
+    public SettingValue<float> VerticalMouseLookSensitivity { get; set; } = new(0.003f);
 
     /// <summary>
     ///   How sensitive mouse looking is in the horizontal direction
     /// </summary>
-    public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.001f);
+    public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.003f);
 
     /// <summary>
     ///   How sensitive controller looking is in the vertical direction
@@ -305,7 +305,7 @@ public class Settings
     /// <summary>
     ///   How sensitive controller looking is in the horizontal direction
     /// </summary>
-    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1.2f);
+    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1.4f);
 
     /// <summary>
     ///   How big the deadzones are for controller axes

@@ -89,20 +89,20 @@ public class PlayerMulticellularInput : NodeWithInput
         new[]
         {
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
-            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Left),
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),
             "g_look_yaw_negative",
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
-            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Left),
             "g_look_yaw_positive",
         }, new[] { -1.0f, 1.0f },
         Look = RunOnAxisAttribute.LookMode.Yaw)]
     [RunOnAxis(new[]
         {
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
-            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
             "g_look_pitch_negative",
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
-            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
             "g_look_pitch_positive",
         }, new[] { -1.0f, 1.0f },
         Look = RunOnAxisAttribute.LookMode.Pitch)]
