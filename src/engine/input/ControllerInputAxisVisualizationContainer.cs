@@ -7,6 +7,13 @@ using Godot;
 public class ControllerInputAxisVisualizationContainer : HFlowContainer
 {
     /// <summary>
+    ///   Automatically creates even axes below odd axes to make the horizontal and vertical controller axis mappings
+    ///   show up in a more natural presentation.
+    /// </summary>
+    [Export]
+    public bool AutoCreateEvenAxes = true;
+
+    /// <summary>
     ///   If true this automatically calls <see cref="Start"/> when this becomes visible. Set to false when used in
     ///   scenes that are loaded during gameplay to save performance.
     /// </summary>
@@ -90,7 +97,12 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
 
     private void HandleController(int axis, float motionValue)
     {
-        // TODO: auto create the left / right axes by default to map better to how axes are on the controllers to make things less confusing
+        // If we axis value is odd, make sure the previous axis value exists, to make the horizontal and vertical
+        // axes work better
+        if (AutoCreateEvenAxes && axis > 0 && axis % 2 == 1)
+        {
+            GetOrCreateVisualizer(axis - 1);
+        }
 
         var axisVisualizer = GetOrCreateVisualizer(axis);
 

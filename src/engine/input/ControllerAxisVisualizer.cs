@@ -7,7 +7,7 @@ using Godot;
 ///   Visualizes controller axis states. Doesn't listen to input so needs something like
 ///   <see cref="ControllerInputAxisVisualizationContainer"/> to tell this what to show.
 /// </summary>
-public class ControllerAxisVisualizer : VBoxContainer
+public class ControllerAxisVisualizer : MarginContainer
 {
     [Export]
     public int DecimalsToDisplay = 4;
