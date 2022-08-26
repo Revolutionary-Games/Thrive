@@ -1007,6 +1007,9 @@ public static class Constants
     public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
     public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
 
+    public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
+    public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
+
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
     /// <summary>
