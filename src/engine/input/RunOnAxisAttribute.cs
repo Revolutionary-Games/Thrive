@@ -277,7 +277,8 @@ public class RunOnAxisAttribute : InputAttribute
         {
             ApplyWindowSizeScaling();
 
-            Settings.Instance.MouseLookSpeedIsIndependentOfWindowSize.OnChanged += _ => ApplyWindowSizeScaling();
+            Settings.Instance.ScaleMouseInputByWindowSize.OnChanged += _ => ApplyWindowSizeScaling();
+            Settings.Instance.InputWindowSizeIsLogicalSize.OnChanged += _ => ApplyWindowSizeScaling();
         }
 
         if (Look == LookMode.NotLooking)

@@ -298,9 +298,20 @@ public class Settings
     public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.003f);
 
     /// <summary>
+    ///   If true inverts the vertical axis inputs for mouse
+    /// </summary>
+    public SettingValue<bool> InvertVerticalMouseLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   If true inverts the horizontal axis inputs for mouse
+    /// </summary>
+    public SettingValue<bool> InvertHorizontalMouseLook { get; set; } = new(false);
+
+    /// <summary>
     ///   When true, mouse inputs going through <see cref="InputManager"/> are scaled by the current window size
     /// </summary>
-    public SettingValue<MouseInputScaling> ScaleMouseInputByWindowSize { get; set; } = new(MouseInputScaling.ScaleReverse);
+    public SettingValue<MouseInputScaling> ScaleMouseInputByWindowSize { get; set; } =
+        new(MouseInputScaling.ScaleReverse);
 
     /// <summary>
     ///   Modifies behaviour of <see cref="ScaleMouseInputByWindowSize"/> to either use the logical Godot window size
@@ -317,6 +328,16 @@ public class Settings
     ///   How sensitive controller looking is in the horizontal direction
     /// </summary>
     public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1.4f);
+
+    /// <summary>
+    ///   If true inverts the vertical axis inputs for controller
+    /// </summary>
+    public SettingValue<bool> InvertVerticalControllerLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   If true inverts the horizontal axis inputs for controller
+    /// </summary>
+    public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
 
     /// <summary>
     ///   How big the deadzones are for controller axes
@@ -339,33 +360,6 @@ public class Settings
         0.2f,
         0.2f,
     });
-
-    /// <summary>
-    ///   If true inverts the vertical axis inputs for mouse
-    /// </summary>
-    public SettingValue<bool> InvertVerticalMouseLook { get; set; } = new(false);
-
-    /// <summary>
-    ///   If true inverts the horizontal axis inputs for mouse
-    /// </summary>
-    public SettingValue<bool> InvertHorizontalMouseLook { get; set; } = new(false);
-
-    /// <summary>
-    ///   If true inverts the vertical axis inputs for controller
-    /// </summary>
-    public SettingValue<bool> InvertVerticalControllerLook { get; set; } = new(false);
-
-    // TODO: remove this as this doesn't seem useful
-    /// <summary>
-    ///   If true mouse speed in axis inputs is scaled by the window size to be a constant,
-    ///   and not have mouse look speed vary a lot depending on the size of the game window.
-    /// </summary>
-    public SettingValue<bool> MouseLookSpeedIsIndependentOfWindowSize { get; set; } = new(true);
-
-    /// <summary>
-    ///   If true inverts the horizontal axis inputs for controller
-    /// </summary>
-    public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
 
     // Settings that are edited from elsewhere than the main options menu
     public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
