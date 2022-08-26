@@ -299,7 +299,7 @@ public class InputManager : Node
         Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
 
         GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
-        WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+        UpdateWindowSizeForInputs();
 
         foreach (var attribute in attributes)
         {
@@ -309,11 +309,23 @@ public class InputManager : Node
 
     private void OnWindowSizeChanged()
     {
-        WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+        UpdateWindowSizeForInputs();
 
         foreach (var attribute in attributes)
         {
             attribute.Key.OnWindowSizeChanged();
+        }
+    }
+
+    private void UpdateWindowSizeForInputs()
+    {
+        if (Settings.Instance.InputWindowSizeIsLogicalSize.Value)
+        {
+            WindowSizeForInputs = LoadingScreen.Instance.LogicalDrawingAreaSize;
+        }
+        else
+        {
+            WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
         }
     }
 

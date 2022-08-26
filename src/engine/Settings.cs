@@ -298,6 +298,17 @@ public class Settings
     public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.003f);
 
     /// <summary>
+    ///   When true, mouse inputs going through <see cref="InputManager"/> are scaled by the current window size
+    /// </summary>
+    public SettingValue<MouseInputScaling> ScaleMouseInputByWindowSize { get; set; } = new(MouseInputScaling.ScaleReverse);
+
+    /// <summary>
+    ///   Modifies behaviour of <see cref="ScaleMouseInputByWindowSize"/> to either use the logical Godot window size
+    ///   (<see cref="LoadingScreen.LogicalDrawingAreaSize"/>) or the actual operating system window size
+    /// </summary>
+    public SettingValue<bool> InputWindowSizeIsLogicalSize { get; set; } = new(false);
+
+    /// <summary>
     ///   How sensitive controller looking is in the vertical direction
     /// </summary>
     public SettingValue<float> VerticalControllerLookSensitivity { get; set; } = new(1);

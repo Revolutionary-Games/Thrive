@@ -416,25 +416,28 @@ public class RunOnAxisAttribute : InputAttribute
         }
     }
 
-    // TODO: remove
     private void ApplyWindowSizeScaling()
     {
         float scaling = 1;
 
-        var settings = Settings.Instance;
+        // TODO: should this be moved into RunOnRelativeMouseAttribute or does this make more sense to be in this class
+        var setting = Settings.Instance.ScaleMouseInputByWindowSize.Value;
+        if (setting != MouseInputScaling.None)
+        {
+            if (Look == LookMode.Pitch)
+            {
+                scaling = Constants.BASE_VERTICAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.y;
+            }
+            else
+            {
+                // Assume yaw direction stands in also for other mouse input modes well enough
 
-        if (Look == LookMode.Pitch)
-        {
-            // InputManager.WindowSizeForInputs;
+                scaling = Constants.BASE_HORIZONTAL_RESOLUTION_FOR_INPUT / InputManager.WindowSizeForInputs.x;
+            }
         }
-        else if (Look == LookMode.Yaw)
-        {
-            // InputManager.WindowSizeForInputs;
-        }
-        else
-        {
-            throw new InvalidOperationException($"Shouldn't have gotten here with look mode: {Look}");
-        }
+
+        if (setting == MouseInputScaling.ScaleReverse)
+            scaling = 1.0f / scaling;
 
         foreach (var entry in inputs)
         {
@@ -458,7 +461,6 @@ public class RunOnAxisAttribute : InputAttribute
         /// </summary>
         private float sensitivity = 1.0f;
 
-        // TODO: remove
         /// <summary>
         ///   An extra multiplier on top of <see cref="sensitivity"/>. This is needed as mouse inputs can have window
         ///   size speed scaling.

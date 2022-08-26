@@ -1003,6 +1003,10 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
+    public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
+    public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
+
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
     /// <summary>
