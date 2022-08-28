@@ -66,7 +66,10 @@ public class ChartDataSet : ICloneable
     public void ClearPoints()
     {
         foreach (var point in dataPoints)
-            point.Free();
+        {
+            point.Detach();
+            DataPoint.RestoreDataPoint(point);
+        }
 
         dataPoints.Clear();
     }

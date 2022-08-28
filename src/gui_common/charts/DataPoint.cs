@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -13,8 +14,7 @@ using Godot;
 /// </remarks>
 public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
-    public readonly double X;
-    public readonly double Y;
+    private static readonly Stack<DataPoint> DataPointCache = new();
 
     private Texture graphMarkerCircle = null!;
     private Texture graphMarkerCross = null!;
@@ -39,6 +39,9 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         Cross,
         Skull,
     }
+
+    public double X { get; private set; }
+    public double Y { get; private set; }
 
     /// <summary>
     ///   Visual shape of this point
@@ -101,6 +104,34 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     public static bool operator !=(DataPoint? lhs, DataPoint? rhs)
     {
         return !(lhs == rhs);
+    }
+
+    public static DataPoint GetDataPoint(double x, double y, MarkerIcon iconType = MarkerIcon.Circle, float size = 7,
+        Color markerColour = default, bool draw = true, Vector2 coordinate = default)
+    {
+        if (DataPointCache.Count == 0)
+        {
+            return new DataPoint(x, y)
+                { IconType = iconType, Size = size, MarkerColour = markerColour, Draw = draw, coordinate = coordinate };
+        }
+
+        var point = DataPointCache.Pop();
+        point.X = x;
+        point.Y = y;
+        point.IconType = iconType;
+        point.Size = size;
+        point.MarkerColour = markerColour;
+        point.Draw = draw;
+        point.coordinate = coordinate;
+        point.Visible = true;
+        return point;
+    }
+
+    public static void RestoreDataPoint(DataPoint point)
+    {
+        point.tween.StopAll();
+
+        DataPointCache.Push(point);
     }
 
     public override void _Ready()
