@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-23 15:18+0300\n"
+"POT-Creation-Date: 2022-08-29 14:18+0300\n"
 "PO-Revision-Date: 2022-03-21 19:55+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -4667,6 +4667,11 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
+msgstr "Pck faila {0} lādēšana neizdevās"
+
+#: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
 msgstr "Pck faila {0} lādēšana neizdevās"
 
