@@ -5,6 +5,7 @@
     public class HeterotrophicFoodSource : FoodSource
     {
         private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
 
         private readonly MicrobeSpecies prey;
         private readonly Patch patch;
@@ -53,6 +54,7 @@
 
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
+            var mucilageScore = 0.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasPilusComponent)
@@ -67,6 +69,11 @@
                     {
                         oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                     }
+
+                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
+                    {
+                        mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                    }
                 }
             }
 
@@ -80,7 +87,7 @@
             }
 
             // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-            return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+            return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore + mucilageScore);
         }
 
         public override IFormattable GetDescription()

@@ -730,7 +730,8 @@ public class MicrobeAI
     {
         if (microbe.Hitpoints > 0 && microbe.SlimeJets.Count > 0)
         {
-            microbe.QueuedSlimeSecretionTime += random.NextFloat() * 3;
+            // Randomise the time spent ejecting slime, from 0 to 3 seconds
+            microbe.QueuedSlimeSecretionTime += 3 * random.NextFloat();
         }
     }
 
