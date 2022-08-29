@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-19 20:23+0100\n"
+"POT-Creation-Date: 2022-08-23 15:18+0300\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -75,7 +75,7 @@ msgstr "Menü"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobeneditor"
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikrobeneditor"
 
@@ -123,9 +123,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
+msgstr "Zellulose und Chitin-Zellwände können nicht ohne das nötige Enzym verdaut werden."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -490,23 +489,21 @@ msgstr "Organelle löschen"
 msgid "MOVE_ORGANELLE"
 msgstr "Organelle bewegen"
 
-#: ../simulation_parameters/common/input_options.json:159
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:155
 msgid "3D_MOVEMENT"
-msgstr "Bewegung"
+msgstr "Dreidimensionale Bewegung"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Bewegen oder springen"
 
 #: ../simulation_parameters/common/input_options.json:167
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Nach unten bewegen oder bücken/schleichen"
 
-#: ../simulation_parameters/common/input_options.json:175
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:171
 msgid "3D_EDITOR"
-msgstr "Editor"
+msgstr "Dreidimensionaler Editor"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
@@ -514,15 +511,15 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Zur Frontkamera wechseln"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Zur rechten Kameraansicht wechseln"
 
 #: ../simulation_parameters/common/input_options.json:191
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Zur Kameraansicht von oben wechseln"
 
 #: ../simulation_parameters/common/input_options.json:200
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -556,21 +553,20 @@ msgstr "Sonstiges"
 
 #: ../simulation_parameters/common/input_options.json:235
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pausieren"
 
 #: ../simulation_parameters/common/input_options.json:239
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Verschlingen umschalten"
+msgstr "Debug-Fenster umschalten"
 
 #: ../simulation_parameters/common/input_options.json:243
 msgid "TOGGLE_FPS"
 msgstr "FPS-Anzeige umschalten"
 
-#: ../simulation_parameters/common/input_options.json:247
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:243
 msgid "TOGGLE_METRICS"
-msgstr "FPS-Anzeige umschalten"
+msgstr "Metriken-Anzeige umschalten"
 
 #: ../simulation_parameters/common/input_options.json:251
 msgid "QUICK_SAVE"
@@ -642,10 +638,8 @@ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Eisen-Chemolithoautotrophie"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#: ../simulation_parameters/microbe_stage/bio_processes.json:151
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Chemo-Synthese"
+msgstr "Thermosynthese"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -706,7 +700,7 @@ msgstr "Großer Eisenbrocken"
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Spielerzelle"
+msgstr "Kulleraugenzelle"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -842,17 +836,15 @@ msgstr "Temperatur"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Zellulose"
+msgstr "Zellulase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Chitin"
+msgstr "Chitinase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -930,9 +922,8 @@ msgstr "Stickstofffixier-Plastid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Chemo-Synthese"
+msgstr "Thermosynthese"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1935
@@ -1004,197 +995,216 @@ msgstr "Biolumineszenz-Vakuole"
 #: ../simulation_parameters/microbe_stage/organelles.json:837
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1827
 msgid "THERMOPLAST"
-msgstr "Thermoplaste"
+msgstr "Thermoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:868
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
 msgid "CILIA"
 msgstr "Zilie"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:904
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2436
-#, fuzzy
+#: ../simulation_parameters/microbe_stage/organelles.json:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2356
 msgid "LYSOSOME"
-msgstr "Oxytoxisome"
+msgstr "Lysosom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:537
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
-msgstr "mit der Konzentration von"
+msgstr "{0} Generationen fertigstellen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:709
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.cs:755
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
+msgstr ""
+"[b]Spezies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Bevölkerung[/b]\n"
+"  {3}\n"
+"[b]Farbe[/b]\n"
+"  #{4}\n"
+"[b]Verhalten[/b]\n"
+"  {5}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:718
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
-"Deine Zelle stirbt, wenn die Gesundheit ausgeht.\n"
-"Du regenerierst Gesundheit, solange du ATP hast.\n"
-"Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
+"[b]Stadium[/b]\n"
+"  Mikrobe\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membran-Rigidität[/b]\n"
+"  {1}\n"
+"[b]Basisgeschwindigkeit[/b]\n"
+"  {2}\n"
+"[b]Basisrotationsgeschwindigkeit[/b]\n"
+"  {3}\n"
+"[b]Basis-Hex-Größe[/b]\n"
+"  {4}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
-#, fuzzy
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
-msgstr "Bestätigen"
+msgstr "Konfiguration"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#, fuzzy
+msgid "MAP"
+msgstr "ATP"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Bericht"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "ist mutiert"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist nach {1} migriert"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Die Chance in jedem Bereich mit wenigen Spezies (tiefer Biodiversität), eine neue Spezies zu erstellen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Bereiche mit bis zu dieser Anzahl an Spezies haben niedrige Biodiversität."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "ist im Gebiet ausgestorben"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Bewegungsversuche pro Spezies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutationspunkte"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "Minimaler Anteil an Bevölkerung, um Mutationen zu ermöglichen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Generation:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Vorige:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
 #, fuzzy
 msgid "READY"
 msgstr "Threads:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "mit der Konzentration von"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Einen Schritt ausführen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 #, fuzzy
 msgid "ABORT"
 msgstr "Abgebrochen."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "Mit diesen Einstellungen spielen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generation:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Eine Option auswählen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 #, fuzzy
 msgid "SPECIES"
 msgstr "Spezienliste"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Wähle ein Gebiet aus, um hier Details anzuzeigen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:687
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo Ergebnisse:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:735
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Von Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Spezienliste"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
 #: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1090
 #: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
@@ -1204,12 +1214,12 @@ msgstr "Spezienliste"
 msgid "BACK"
 msgstr "Zurück"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:762
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:833
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:763
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1523,7 +1533,7 @@ msgstr "Aerobe Atmung"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:76
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:89
 #, fuzzy
@@ -1532,8 +1542,26 @@ msgstr "Unbekannte Workshop-ID für diesen Mod"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
+#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
+"Zeit des Prozesses: {0} s\n"
+"Zeit des Physikprozesses: {1} s\n"
+"Entitäten: {2} Andere: {3}\n"
+"Erschienen: {4} Verschwunden: {5}\n"
+"Benutzte Nodes: {6}\n"
+"Benutzte Memory: {7}\n"
+"GPU Memory: {8}\n"
+"Erzeugte Objekte: {9}\n"
+"Draw Calls: {10} 2D: {11}\n"
+"Erzeugte Eckpunkte: {12}\n"
+"Materialänderungen: {13}\n"
+"Shader-Änderungen: {14}\n"
+"Orphaned Nodes: {15}\n"
+"Audio-Latenz: {16} ms\n"
+"Gesamtanzahl Threads: {17}\n"
+"Gesamte CPU-Zeit:\n"
+"{18}"
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -1543,7 +1571,7 @@ msgstr "FPS-Anzeige umschalten"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Debug-Fenster"
 
 #: ../src/engine/DebugOverlays.tscn:96
 #, fuzzy
@@ -1551,8 +1579,9 @@ msgid "FPS_DISPLAY"
 msgstr "Abspielen"
 
 #: ../src/engine/DebugOverlays.tscn:110
+#, fuzzy
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Erzeuge Entitäten mit Kollisionsformen"
 
 #: ../src/engine/DebugOverlays.tscn:117
 #, fuzzy
@@ -1990,6 +2019,31 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Grafiken von {0}"
 
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Verhalten"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Verhalten"
+
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Warte für auto-evo:"
@@ -2017,7 +2071,7 @@ msgstr "Schließen"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2137,12 +2191,13 @@ msgstr "Pause-Menü"
 #: ../src/general/NewGameSettings.tscn:120
 #: ../src/general/NewGameSettings.tscn:360
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Schwierigkeitsgrad"
 
 #: ../src/general/NewGameSettings.tscn:147
 #: ../src/general/NewGameSettings.tscn:892
+#, fuzzy
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Nur Leben, wie wir es kennen"
 
 #: ../src/general/NewGameSettings.tscn:154
 #: ../src/general/NewGameSettings.tscn:899
@@ -2157,7 +2212,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:170
 #: ../src/general/NewGameSettings.tscn:915
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Ursprung des Lebens"
 
 #: ../src/general/NewGameSettings.tscn:177
 #: ../src/general/NewGameSettings.tscn:922
@@ -2180,17 +2235,18 @@ msgstr "Suizid"
 #: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/NewGameSettings.tscn:939
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hydrothermalquellen"
 
 #: ../src/general/NewGameSettings.tscn:194
 #: ../src/general/NewGameSettings.tscn:939
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Warmer kleiner Teich"
 
 #: ../src/general/NewGameSettings.tscn:194
 #: ../src/general/NewGameSettings.tscn:939
+#, fuzzy
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermie (zufällig)"
 
 #: ../src/general/NewGameSettings.tscn:209
 #: ../src/general/NewGameSettings.tscn:954
@@ -2864,8 +2920,8 @@ msgstr "Spieler starb"
 msgid "EXTINCT_IN_PATCH"
 msgstr "ist im Gebiet ausgestorben"
 
-#: ../src/general/StageHUDBase.cs:688 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
+#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -4577,15 +4633,15 @@ msgstr "AUSSTERBEN"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:228
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:231
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:267
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
