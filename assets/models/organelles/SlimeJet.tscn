@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/models/organelles/SlimeJet.glb" type="PackedScene" id=1]
+
+[node name="SlimeJet" instance=ExtResource( 1 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.2, 0.2 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "SlimeJet"
+playback_speed = 0.0

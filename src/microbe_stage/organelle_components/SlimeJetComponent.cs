@@ -1,10 +1,27 @@
 ﻿using Godot;
+using System;
 
 /// <summary>
 ///   Slime-powered jet for adding bursts of speed
 /// </summary>
 public class SlimeJetComponent : ExternallyPositionedComponent
 {
+    private bool active;
+
+    private AnimationPlayer? animation;
+
+    public bool Active
+    {
+        get => active;
+        set
+        {
+            active = value;
+
+            // Play the animation if active, and vice versa
+            animation!.PlaybackSpeed = active ? 1.0f : 0.0f;
+        }
+    }
+
     public Vector3 GetDirection()
     {
         Vector3 organellePosition = Hex.AxialToCartesian(organelle!.Position);
@@ -13,6 +30,22 @@ public class SlimeJetComponent : ExternallyPositionedComponent
         if (delta == Vector3.Zero)
             delta = DefaultVisualPos;
         return delta.Normalized();
+    }
+
+    protected override void CustomAttach()
+    {
+        if (organelle?.OrganelleGraphics == null)
+            throw new InvalidOperationException("Slime jet needs parent organelle to have graphics");
+
+        animation = organelle.OrganelleAnimation;
+
+        if (animation == null)
+        {
+            GD.PrintErr("MovementComponent's organelle has no animation player set");
+            return;
+        }
+
+        animation.GetAnimation(animation.CurrentAnimation).Loop = true;
     }
 
     protected override bool NeedsUpdateAnyway()

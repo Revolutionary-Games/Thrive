@@ -708,14 +708,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             queuedToxinToEmit = null;
         }
 
-        if (queuedSecreteSlime)
-        {
-            SecreteSlime(delta);
-
-            // AI cells keep venting slime until they run out
-            if (Compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT)
-                queuedSecreteSlime = false;
-        }
+        HandleSlimeSecretion(delta);
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
         if (absorptionSkippedEarly)

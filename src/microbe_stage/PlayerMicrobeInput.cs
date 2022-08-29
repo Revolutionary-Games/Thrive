@@ -71,7 +71,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKey("g_secrete_slime")]
     public void SecreteSlime(float delta)
     {
-        stage.Player?.SecreteSlime(delta);
+        stage.Player!.QueuedSlimeSecretionTime += delta;
     }
 
     [RunOnKeyDown("g_toggle_engulf")]

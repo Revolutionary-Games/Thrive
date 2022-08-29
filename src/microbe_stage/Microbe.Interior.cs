@@ -32,7 +32,7 @@ public partial class Microbe
     private Compound? queuedToxinToEmit;
 
     [JsonProperty]
-    private bool queuedSecreteSlime;
+    public float QueuedSlimeSecretionTime;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -342,38 +342,18 @@ public partial class Microbe
     /// </summary>
     public void SecreteSlime(float delta)
     {
-        if (SlimeJets.Count < 1)
-            return;
-
-        if (slimeSecretionCooldown > 0)
-            return;
-
-        var totalSlimeSecreted = 0.0f;
-
         // Reset the jet factor before calculating to prevent accidental build up of speed
         slimeJetFactor = Vector3.Zero;
 
         // Secrete slime and gather overall force from directions determined by equipped jets
         foreach (var jet in SlimeJets)
         {
+            jet.Active = true;
+
             var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
                 -jet.GetDirection(), 2);
             slimeJetFactor += slimeSecreted * jet.GetDirection();
-            totalSlimeSecreted += slimeSecreted;
         }
-
-        // Once we hit zero, start a cooldown timer
-        if (totalSlimeSecreted < Constants.MUCILAGE_MIN_TO_VENT)
-            slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
-    }
-
-    /// <summary>
-    ///   Makes this Microbe start secreting slime on the next update. Used by the AI from a background thread.
-    ///   Only one can be queued at once
-    /// </summary>
-    public void QueueSecreteSlime()
-    {
-        queuedSecreteSlime = true;
     }
 
     /// <summary>
@@ -1577,6 +1557,37 @@ public partial class Microbe
                 }
             }
         }
+    }
+
+    private void HandleSlimeSecretion(float delta)
+    {
+        // Ignore if we have no slime jets
+        if (SlimeJets.Count < 0)
+            return;
+
+        // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty
+        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT)
+            slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
+
+        // If we've been told to secrete slime and can do it, proceed
+        if (QueuedSlimeSecretionTime > 0 && slimeSecretionCooldown <= 0)
+        {
+            // Play a sound only if we've just started, i.e. only if no jets are already active
+            if (SlimeJets.All(c => !c.Active))
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+
+            SecreteSlime(delta);
+        }
+        else
+        {
+            // Deactivate the jets if we aren't secreting slime
+            foreach (var jet in SlimeJets)
+                jet.Active = false;
+        }
+
+        QueuedSlimeSecretionTime -= delta;
+        if (QueuedSlimeSecretionTime < 0)
+            QueuedSlimeSecretionTime = 0;
     }
 
     private void UpdateDissolveEffect()
