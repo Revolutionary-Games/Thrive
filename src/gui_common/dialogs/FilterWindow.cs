@@ -21,6 +21,7 @@ public class FilterWindow : CustomConfirmationDialog
     // Nodes
     private VBoxContainer filtersContainer = null!;
     private List<FilterLine> filterLines = new();
+    private List<FilterLine> filterLinesSnapshot = null!;
 
     public override void _Ready()
     {
@@ -94,14 +95,43 @@ public class FilterWindow : CustomConfirmationDialog
         {
             filterLine.MakeSnapshot();
         }
+
+        filterLinesSnapshot = new(filterLines);
     }
 
     public void RestoreFiltersSnapshots()
     {
+        // First we clean up existing filter lines
         foreach (var filterLine in filterLines)
         {
-            filterLine.RestoreLastSnapshot();
+            if (filterLinesSnapshot.Contains(filterLine))
+            {
+                // We detach it now so we don't have to do any check afterwards and simply add everything back.
+                filterLine.Detach();
+            }
+            else
+            {
+                // We free the filter lines that will no longer be registered.
+                filterLine.QueueFree();
+            }
         }
+
+        // We set up to restore the lines from the snapshot, one at a time
+        filterLines = new();
+
+        // We clear the saved filters to refill them with the snapshot
+        filters.Clear();
+
+        foreach (var filterLine in filterLinesSnapshot)
+        {
+            filterLine.RestoreLastSnapshot();
+
+            filtersContainer.AddChild(filterLine);
+            filterLines.Add(filterLine);
+            filters.Add(filterLine.Filter);
+        }
+
+        dirty = true;
     }
 
     public void RemoveFilterLine(FilterLine filterLine)
@@ -109,7 +139,16 @@ public class FilterWindow : CustomConfirmationDialog
         filters.Remove(filterLine.Filter);
         filtersContainer.RemoveChild(filterLine);
 
-        // IF YOU DO THAT YOU CAN NOT RESTORE SNAPSHOT!
-        filterLine.QueueFree();
+        if (!filterLinesSnapshot.Contains(filterLine))
+        {
+            // If the line is not registered somewhere anymore we free it here to prevent memory leaks...
+            filterLine.QueueFree();
+        }
+        else
+        {
+            // If was registered (i.e. in a snapshot) the player might want to restore it.
+            filterLine.RestoreLastSnapshot();
+        }
+
     }
 }
