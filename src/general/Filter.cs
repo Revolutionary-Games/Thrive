@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-// TODO CONSIDER GENERIC
 public sealed class Filter<T> : IFilter
 {
     private string filterCategory = "NONE";
@@ -17,7 +16,7 @@ public sealed class Filter<T> : IFilter
 
     public IEnumerable<string> FilterItemsNames => filterItems.Keys;
 
-    Dictionary<string, IFilter.IFilterItem> IFilter.FilterItems => filterItems;
+    public Dictionary<string, IFilter.IFilterItem> FilterItems => filterItems;
 
     public void AddFilterItem(string category, FilterItem item)
     {
