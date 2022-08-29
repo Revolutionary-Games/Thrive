@@ -31,9 +31,6 @@ public partial class Microbe
     [JsonProperty]
     private Compound? queuedToxinToEmit;
 
-    [JsonProperty]
-    public float QueuedSlimeSecretionTime;
-
     /// <summary>
     ///   The organelles in this microbe
     /// </summary>
@@ -153,6 +150,9 @@ public partial class Microbe
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
+
+    [JsonProperty]
+    public float QueuedSlimeSecretionTime { get; set; }
 
     [JsonIgnore]
     public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);

@@ -1,5 +1,5 @@
-﻿using Godot;
-using System;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Slime-powered jet for adding bursts of speed
