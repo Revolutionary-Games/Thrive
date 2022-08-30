@@ -353,7 +353,7 @@ MenuPath = NodePath("../PauseMenu")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
-PatchOverlayPath = NodePath("PatchNameOverlay")
+PatchOverlayPath = NodePath("../PatchNameOverlay")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
@@ -2034,9 +2034,6 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="PatchNameOverlay" parent="MicrobeHUD" instance=ExtResource( 85 )]
-visible = false
-
 [node name="StagePrototypeConfirm" parent="MicrobeHUD" instance=ExtResource( 88 )]
 rect_min_size = Vector2( 450, 0 )
 
@@ -2047,6 +2044,9 @@ margin_right = 822.0
 margin_bottom = 540.0
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
+visible = false
+
+[node name="PatchNameOverlay" parent="." instance=ExtResource( 85 )]
 visible = false
 
 [node name="RadialPopup" parent="." instance=ExtResource( 87 )]
