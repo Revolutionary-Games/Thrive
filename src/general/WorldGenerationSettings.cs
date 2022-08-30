@@ -117,6 +117,11 @@ public class WorldGenerationSettings
     public bool EasterEggs { get; set; } = true;
 
     /// <summary>
+    ///   Whether the day/night cycle in this game is enabled
+    /// </summary>
+    public bool DayNightEnabled { get; set; }
+
+    /// <summary>
     ///   The auto-evo configuration this world uses
     /// </summary>
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
@@ -130,8 +135,9 @@ public class WorldGenerationSettings
             $", Life origin: {Origin}" +
             $", Seed: {Seed}" +
             $", Map type: {MapType}" +
-            $", Include Multicellular: {IncludeMulticellular}" +
+            $", Include multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
+            $", Day/night cycle: {DayNightEnabled}" +
             "]";
     }
 
