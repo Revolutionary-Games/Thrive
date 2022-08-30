@@ -22,8 +22,11 @@ public class SlimeJetComponent : ExternallyPositionedComponent
         {
             active = value;
 
-            // Play the animation if active, and vice versa
-            animation!.PlaybackSpeed = active ? 1.0f : 0.0f;
+            if (animation != null)
+            {
+                // Play the animation if active, and vice versa
+                animation!.PlaybackSpeed = active ? 1.0f : 0.0f;
+            }
         }
     }
 
