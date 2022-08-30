@@ -68,6 +68,7 @@ GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxCon
 GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
+DayNightCycleButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/DayNightCycle")
 ConfirmButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Confirm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -311,9 +312,8 @@ text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 213.0
 margin_right = 700.0
-margin_bottom = 813.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 700, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -1080,6 +1080,24 @@ margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
 text = "EASTER_EGGS_EXPLANATION"
 
+[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+margin_top = 110.0
+margin_right = 668.0
+margin_bottom = 155.0
+
+[node name="DayNightCycle" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4" instance=ExtResource( 4 )]
+margin_right = 300.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+text = "DAY_NIGHT_CYCLE_ENABLED"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+margin_top = 29.0
+margin_right = 668.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 269.0
 margin_right = 550.0
@@ -1161,6 +1179,7 @@ __meta__ = {
 [connection signal="pressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButtonAdvanced" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/DayNightCycle" to="." method="OnDayNightCycleToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]

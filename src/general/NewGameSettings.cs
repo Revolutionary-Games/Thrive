@@ -118,6 +118,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath EasterEggsButtonPath = null!;
 
     [Export]
+    public NodePath DayNightCycleButtonPath = null!;
+
+    [Export]
     public NodePath ConfirmButtonPath = null!;
 
     // Main controls
@@ -165,6 +168,7 @@ public class NewGameSettings : ControlWithInput
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
+    private Button dayNightCycleButton = null!;
 
     private SelectedOptionsTab selectedOptionsTab;
 
@@ -227,6 +231,7 @@ public class NewGameSettings : ControlWithInput
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
+        dayNightCycleButton = GetNode<Button>(DayNightCycleButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
@@ -449,6 +454,7 @@ public class NewGameSettings : ControlWithInput
 
         settings.IncludeMulticellular = includeMulticellularButton.Pressed;
         settings.EasterEggs = easterEggsButton.Pressed;
+        settings.DayNightEnabled = dayNightCycleButton.Pressed;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -707,6 +713,11 @@ public class NewGameSettings : ControlWithInput
     }
 
     private void OnEasterEggsToggled(bool pressed)
+    {
+        _ = pressed;
+    }
+
+    private void OnDayNightCycleToggled(bool pressed)
     {
         _ = pressed;
     }
