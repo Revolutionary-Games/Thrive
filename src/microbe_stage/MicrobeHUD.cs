@@ -249,13 +249,11 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var colony = stage!.Player!.Colony;
         if (colony == null)
         {
-            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy) ||
-                GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(mucilage);
+            return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
 
         return colony.ColonyMembers.Any(
-            c => c.Compounds.IsSpecificallySetUseful(oxytoxy) ||
-                c.Compounds.IsSpecificallySetUseful(mucilage));
+            c => c.Compounds.AreAnySpecificallySetUseful(allAgents));
     }
 
     protected override ICompoundStorage GetPlayerStorage()

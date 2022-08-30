@@ -242,7 +242,7 @@ public static class Constants
     /// <summary>
     ///  Length in seconds for slime secretion cooldown
     /// </summary>
-    public const float MUCILAGE_COOLDOWN_TIMER = 2.0f;
+    public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to

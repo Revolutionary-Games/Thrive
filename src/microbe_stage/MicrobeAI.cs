@@ -479,13 +479,16 @@ public class MicrobeAI
 
         if (DistanceFromMe(predatorLocation) < 100.0f)
         {
-            // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus
-            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
-                MoveWithRandomTurn(2.5f, 3.0f, random);
-
-            // There's also a chance to jet away if we can
-            if (RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random))
+            if (microbe.SlimeJets.Count > 0 && RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random))
+            {
+                // There's a chance to jet away if we can
                 SecreteSlime(random);
+            }
+            else if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+            {
+                // If the predator is right on top of us there's a chance to try and swing with a pilus
+                MoveWithRandomTurn(2.5f, 3.0f, random);
+            }
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -522,7 +525,10 @@ public class MicrobeAI
 
         // Predators can use slime jets as an ambush mechanism
         if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             SecreteSlime(random);
+        }
     }
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)

@@ -227,6 +227,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected float maxHP = 1.0f;
     protected float maxATP = 1.0f;
 
+    protected List<Compound> allAgents = new();
+
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
     protected ProgressBar nitrogenBar = null!;
@@ -468,6 +470,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
+
+        allAgents.Add(oxytoxy);
+        allAgents.Add(mucilage);
 
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();

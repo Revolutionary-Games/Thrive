@@ -21,7 +21,7 @@ public class Compound : IRegistryType
     public bool IsCloud;
 
     /// <summary>
-    ///   Scales the retention rate of this compound as a cloud in the environment (DO NOT set above 1!)
+    ///   Scales the retention rate of this compound as a cloud in the environment
     /// </summary>
     public float DecayRate = 1.0f;
 
@@ -105,6 +105,11 @@ public class Compound : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Volume should be > 0");
+        }
+
+        if (DecayRate > 1.0f)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Decay rate can't be > 1");
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);

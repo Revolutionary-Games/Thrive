@@ -349,10 +349,11 @@ public partial class Microbe
         foreach (var jet in SlimeJets)
         {
             jet.Active = true;
+            var direction = jet.GetDirection();
 
             var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
-                -jet.GetDirection(), 2);
-            slimeJetFactor += slimeSecreted * jet.GetDirection();
+                -direction, 2);
+            slimeJetFactor += slimeSecreted * direction;
         }
     }
 
@@ -656,8 +657,8 @@ public partial class Microbe
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         // Cells with jets aren't affected by mucilage
-        slowedBySlime = cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
-            Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT && SlimeJets.Count < 1;
+        slowedBySlime = SlimeJets.Count < 1 && cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
+            Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
@@ -1565,8 +1566,9 @@ public partial class Microbe
         if (SlimeJets.Count < 0)
             return;
 
-        // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty
-        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT)
+        // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty.
+        // Scaling by slime jet count ensures we aren't producing mucilage fast enough to beat this check.
+        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT * SlimeJets.Count)
             slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
 
         // If we've been told to secrete slime and can do it, proceed
@@ -1574,7 +1576,7 @@ public partial class Microbe
         {
             // Play a sound only if we've just started, i.e. only if no jets are already active
             if (SlimeJets.All(c => !c.Active))
-                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
 
             SecreteSlime(delta);
         }
