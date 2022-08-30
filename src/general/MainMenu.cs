@@ -364,15 +364,9 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0);
     }
 
-    private void ThriveopediaPressed()
+    private void ViewSourceCodePressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
-
-        // Show the options
-        thriveopedia.OpenFromMainMenu();
+        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
     }
 
     private void QuitPressed()
@@ -454,6 +448,17 @@ public class MainMenu : NodeWithInput
         credits.Pause();
 
         SetCurrentMenu(0, false);
+    }
+
+    private void ThriveopediaPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the options
+        thriveopedia.OpenFromMainMenu();
     }
 
     private void LicensesPressed()
