@@ -338,26 +338,6 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Tries to secrete slime if possible
-    /// </summary>
-    public void SecreteSlime(float delta)
-    {
-        // Reset the jet factor before calculating to prevent accidental build up of speed
-        slimeJetFactor = Vector3.Zero;
-
-        // Secrete slime and gather overall force from directions determined by equipped jets
-        foreach (var jet in SlimeJets)
-        {
-            jet.Active = true;
-            var direction = jet.GetDirection();
-
-            var slimeSecreted = EjectCompound(mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
-                -direction, 2);
-            slimeJetFactor += slimeSecreted * direction;
-        }
-    }
-
-    /// <summary>
     ///   Report that a pilus shape was added to this microbe. Called by PilusComponent
     /// </summary>
     public bool AddPilus(uint shapeOwner)
@@ -1578,11 +1558,13 @@ public partial class Microbe
             if (SlimeJets.All(c => !c.Active))
                 PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
 
-            SecreteSlime(delta);
+            // Activate all jets, which will constantly secrete slime until we turn them off
+            foreach (var jet in SlimeJets)
+                jet.Active = true;
         }
         else
         {
-            // Deactivate the jets if we aren't secreting slime
+            // Deactivate the jets if we aren't supposed to secrete slime
             foreach (var jet in SlimeJets)
                 jet.Active = false;
         }

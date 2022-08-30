@@ -10,6 +10,11 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
     private AnimationPlayer? animation;
 
+    private Compound mucilage = null!;
+
+    /// <summary>
+    ///   Whether this jet is currently secreting slime and animating
+    /// </summary>
     public bool Active
     {
         get => active;
@@ -20,6 +25,43 @@ public class SlimeJetComponent : ExternallyPositionedComponent
             // Play the animation if active, and vice versa
             animation!.PlaybackSpeed = active ? 1.0f : 0.0f;
         }
+    }
+
+    public override void UpdateAsync(float delta)
+    {
+        // Visual positioning code
+        base.UpdateAsync(delta);
+
+        // Movement force
+        var microbe = organelle!.ParentMicrobe!;
+
+        if (microbe.PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
+        var movement = CalculateMovementForce(microbe, delta);
+
+        if (movement != Vector3.Zero)
+            microbe.AddMovementForce(movement);
+    }
+
+    /// <summary>
+    ///   Determines the movement impulse imparted by this jet by ejecting some mucilage
+    /// </summary>
+    public Vector3 CalculateMovementForce(Microbe microbe, float delta)
+    {
+        if (!Active)
+            return Vector3.Zero;
+
+        var currentCellRotation = microbe.GlobalTransform.basis.Quat();
+        var direction = GetDirection();
+
+        // Eject mucilage at the maximum rate in a direction opposite to this organelle's rotation
+        var slimeSecreted = microbe.EjectCompound(
+            mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta, -direction, 2);
+
+        // Scale total added force by the amount ejected
+        return Constants.MUCILAGE_JET_FACTOR * slimeSecreted *
+            currentCellRotation.Xform(direction) / microbe.MassFromOrganelles;
     }
 
     public Vector3 GetDirection()
@@ -34,6 +76,8 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+
         if (organelle?.OrganelleGraphics == null)
             throw new InvalidOperationException("Slime jet needs parent organelle to have graphics");
 
