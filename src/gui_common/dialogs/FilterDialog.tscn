@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=1]
+
+[node name="FilterDialog" instance=ExtResource( 1 )]
+visible = true
+
+[node name="Label" parent="VBoxContainer" index="0"]
+visible = false
+
+[node name="FiltersContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
+margin_right = 133.0
+
+[node name="HBoxContainer" parent="VBoxContainer" index="2"]
+margin_top = 15.0
+margin_bottom = 47.0
