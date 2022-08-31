@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-23 15:18+0300\n"
+"POT-Creation-Date: 2022-08-29 14:18+0300\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -4700,6 +4700,11 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly unload method call heeft gefaald met uitzondering: {1}"
 
 #: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
+msgstr "Laden van pck bestand ({0}) gefaald"
+
+#: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
 msgstr "Laden van pck bestand ({0}) gefaald"
 

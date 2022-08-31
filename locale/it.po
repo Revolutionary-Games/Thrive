@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-25 11:02+0300\n"
+"POT-Creation-Date: 2022-08-29 14:18+0300\n"
 "PO-Revision-Date: 2022-08-02 10:51+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -4555,6 +4555,11 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: disattivazione modalità Auto Harmony fallita con un'eccezione: {1}"
 
 #: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
+msgstr "Caricamento del file pck ({0}) non riuscito"
+
+#: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
 msgstr "Caricamento del file pck ({0}) non riuscito"
 

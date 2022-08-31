@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-23 15:18+0300\n"
+"POT-Creation-Date: 2022-08-29 14:18+0300\n"
 "PO-Revision-Date: 2022-08-25 07:28+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -4546,6 +4546,11 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: chamada do método unload do assembly do mod falhou com uma exceção: {1}"
 
 #: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
+msgstr "Carregamento do arquivo pck ({0}) falhou"
+
+#: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
 msgstr "Carregamento do arquivo pck ({0}) falhou"
 
