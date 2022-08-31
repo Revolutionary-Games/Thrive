@@ -9,6 +9,7 @@ public class MicrobePartSelection : MarginContainer
     [Export]
     public ButtonGroup SelectionGroup = null!;
 
+    private Control contentContainer = null!;
     private Label? mpLabel;
     private Button? button;
     private TextureRect? iconRect;
@@ -115,6 +116,7 @@ public class MicrobePartSelection : MarginContainer
 
     public override void _Ready()
     {
+        contentContainer = GetChild<Control>(0);
         mpLabel = GetNode<Label>("VBoxContainer/HBoxContainer/MP");
         button = GetNode<Button>("VBoxContainer/Button");
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
@@ -140,19 +142,11 @@ public class MicrobePartSelection : MarginContainer
         if (nameLabel == null)
             return;
 
-        var flag = displayed || AlwaysShowLabel;
+        var showNameLabel = displayed || AlwaysShowLabel;
 
-        nameLabel.Visible = flag;
+        nameLabel.Visible = showNameLabel;
 
-        var vbox = GetChild<Control>(0);
-        if (flag)
-        {
-            vbox.AddConstantOverride("separation", 1);
-        }
-        else
-        {
-            vbox.AddConstantOverride("separation", 4);
-        }
+        contentContainer.AddConstantOverride("separation", showNameLabel ? 1 : 4);
     }
 
     private void UpdateLabels()
