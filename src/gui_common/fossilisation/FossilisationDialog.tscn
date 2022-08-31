@@ -34,7 +34,7 @@ margin_right = 364.0
 margin_bottom = 420.0
 popup_exclusive = false
 script = ExtResource( 1 )
-WindowTitle = "Fossilisation"
+WindowTitle = "FOSSILISATION"
 ExclusiveAllowCloseOnEscape = false
 NameEditPath = NodePath("VBoxContainer2/HBoxContainer2/SpeciesName")
 SpeciesPreviewPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
@@ -48,7 +48,28 @@ margin_right = 152.0
 
 [node name="Label" parent="VBoxContainer" index="0"]
 margin_right = 137.0
-margin_bottom = 67.0
+
+[node name="HBoxContainer" parent="VBoxContainer" index="1"]
+margin_right = 137.0
+
+[node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_right = 1.0
+
+[node name="CancelButton" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_left = 5.0
+margin_right = 85.0
+
+[node name="Spacer2" parent="VBoxContainer/HBoxContainer" index="2"]
+margin_left = 89.0
+margin_right = 90.0
+
+[node name="ConfirmButton" parent="VBoxContainer/HBoxContainer" index="3"]
+margin_left = 94.0
+margin_right = 131.0
+
+[node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
+margin_left = 135.0
+margin_right = 137.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." index="1"]
 margin_left = 11.0
@@ -115,7 +136,7 @@ margin_top = 75.0
 margin_right = 342.0
 margin_bottom = 119.0
 rect_min_size = Vector2( 342, 44 )
-ExtendedBbcode = "Fossilise this species to save it in the museum. You can access the museum from the Thriveopedia, or load fossilised species in the freebuild editor."
+ExtendedBbcode = "FOSSILISATION_EXPLANATION"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2" index="4"]
 margin_top = 123.0
@@ -170,13 +191,13 @@ margin_right = 342.0
 margin_bottom = 398.0
 
 [node name="Spacer" type="Control" parent="VBoxContainer2/HBoxContainer" index="0"]
-margin_right = 55.0
+margin_right = 50.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
-margin_left = 59.0
-margin_right = 139.0
+margin_left = 54.0
+margin_right = 134.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )
@@ -184,22 +205,22 @@ enabled_focus_mode = 0
 text = "CANCEL"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
-margin_left = 143.0
-margin_right = 199.0
+margin_left = 138.0
+margin_right = 188.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
-margin_left = 203.0
-margin_right = 282.0
+margin_left = 192.0
+margin_right = 287.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )
 enabled_focus_mode = 0
-text = "Fossilise"
+text = "FOSSILISE"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer2/HBoxContainer" index="4"]
-margin_left = 286.0
+margin_left = 291.0
 margin_right = 342.0
 margin_bottom = 32.0
 size_flags_horizontal = 3

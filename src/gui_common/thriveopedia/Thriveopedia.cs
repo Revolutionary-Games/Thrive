@@ -8,17 +8,18 @@ public class Thriveopedia : ControlWithInput
     public NodePath BackButtonPath = null!;
 
     [Export]
+    public NodePath ForwardButtonPath = null!;
+
+    [Export]
     public NodePath PageContainerPath = null!;
 
     [Export]
     public NodePath HomePagePath = null!;
 
-    private PackedScene museumPageScene = null!;
-
     private MarginContainer pageContainer = null!;
     private Button backButton = null!;
+    private Button forwardButton = null!;
     private ThriveopediaHomePage homePage = null!;
-    private ThriveopediaMuseumPage museumPage = null!;
 
     private GameProperties? currentGame;
 
@@ -26,6 +27,7 @@ public class Thriveopedia : ControlWithInput
 
     private List<ThriveopediaPage> allPages = new();
     private Stack<ThriveopediaPage> pageHistory = new();
+    private Stack<ThriveopediaPage> pageFuture = new();
 
     [Signal]
     public delegate void OnThriveopediaClosed();
@@ -36,11 +38,15 @@ public class Thriveopedia : ControlWithInput
         set
         {
             // Hide the last page and show the new page
-            selectedPage.Hide();
+            if (selectedPage != null)
+                selectedPage.Hide();
+
             selectedPage = value;
             selectedPage.Show();
 
+            // The home page is always the first in the history, so ignore it
             backButton.Disabled = pageHistory.Count <= 1;
+            forwardButton.Disabled = pageFuture.Count == 0;
         }
     }
 
@@ -51,28 +57,27 @@ public class Thriveopedia : ControlWithInput
         {
             currentGame = value;
 
-            homePage.CurrentWorldDisabled = CurrentGame == null;
+            foreach (var page in allPages)
+                page.CurrentGame = currentGame;
         }
     }
 
     public override void _Ready()
     {
         backButton = GetNode<Button>(BackButtonPath);
+        forwardButton = GetNode<Button>(ForwardButtonPath);
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
 
+        // Keep a special reference to the home page
         homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
         homePage.OpenPage = ChangePage;
         allPages.Add(homePage);
 
-        museumPageScene = GD.Load<PackedScene>("res://src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn");
-        museumPage = (ThriveopediaMuseumPage)museumPageScene.Instance();
-        pageContainer.AddChild(museumPage);
-        allPages.Add(museumPage);
-        museumPage.Hide();
+        AddPage("ThriveopediaCurrentWorldPage");
+        AddPage("ThriveopediaMuseumPage");
 
         pageHistory.Push(homePage);
-        selectedPage = homePage;
-        homePage.CurrentWorldDisabled = true;
+        SelectedPage = homePage;
     }
 
     /// <summary>
@@ -114,7 +119,22 @@ public class Thriveopedia : ControlWithInput
         return currentGame == null;
     }
 
+    private void AddPage(string name)
+    {
+        var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/{name}.tscn");
+        var page = (ThriveopediaPage)scene.Instance();
+        pageContainer.AddChild(page);
+        allPages.Add(page);
+        page.Hide();
+    }
+
     private void ChangePage(string pageName)
+    {
+        // By default, assume we're navigating to this page normally
+        ChangePage(pageName, true, true);
+    }
+
+    private void ChangePage(string pageName, bool addToHistory, bool clearFuture)
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -129,25 +149,11 @@ public class Thriveopedia : ControlWithInput
             return;
         }
 
-        pageHistory.Push(page);
+        if (addToHistory)
+            pageHistory.Push(page);
 
-        SelectedPage = page;
-    }
-
-    private void ChangePageWithoutAddingToHistory(string pageName)
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (pageName == selectedPage.PageName)
-            return;
-
-        var page = allPages.First(p => p.PageName == pageName);
-
-        if (page == null)
-        {
-            GD.PrintErr($"No page with name {pageName} exists");
-            return;
-        }
+        if (clearFuture)
+            pageFuture.Clear();
 
         SelectedPage = page;
     }
@@ -159,13 +165,13 @@ public class Thriveopedia : ControlWithInput
 
     private void OnBackPressed()
     {
-        pageHistory.Pop();
-        ChangePageWithoutAddingToHistory(pageHistory.Peek().PageName);
+        pageFuture.Push(pageHistory.Pop());
+        ChangePage(pageHistory.Peek().PageName, false, false);
     }
 
-    private void OnStatisticsPressed()
+    private void OnForwardPressed()
     {
-        //ChangePage("Statistics");
+        ChangePage(pageFuture.Pop().PageName, true, false);
     }
 
     private void OnClosePressed()

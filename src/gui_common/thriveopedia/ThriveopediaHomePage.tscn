@@ -5,40 +5,40 @@
 
 [node name="ThriveopediaHomePage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-CurrentWorldButtonPath = NodePath("CenterContainer/VBoxContainer/CurrentWorld")
+PageTitlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PageTitle")
+CurrentWorldButtonPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CurrentWorld")
 
-[node name="CenterContainer" type="CenterContainer" parent="." index="0"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 1179.0
-margin_bottom = 599.0
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+margin_top = 96.0
+margin_right = 1138.0
+margin_bottom = 558.0
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" index="0"]
-margin_left = 464.0
-margin_top = 257.0
-margin_right = 714.0
-margin_bottom = 341.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer" index="0"]
+margin_left = 444.0
+margin_top = 189.0
+margin_right = 694.0
+margin_bottom = 273.0
 
-[node name="CurrentWorld" type="Button" parent="CenterContainer/VBoxContainer" index="0"]
+[node name="CurrentWorld" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer" index="0"]
 margin_right = 250.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 size_flags_horizontal = 4
-text = "Current World"
+text = "CURRENT_WORLD"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Museum" type="Button" parent="CenterContainer/VBoxContainer" index="1"]
+[node name="Museum" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer" index="1"]
 margin_top = 44.0
 margin_right = 250.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 size_flags_horizontal = 4
-text = "Museum"
+text = "MUSEUM"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Museum" to="." method="OnMuseumPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CurrentWorld" to="." method="OnCurrentWorldPressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Museum" to="." method="OnMuseumPressed"]

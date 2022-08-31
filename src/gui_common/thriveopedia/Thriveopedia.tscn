@@ -13,6 +13,7 @@ margin_bottom = 720.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 BackButtonPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton")
+ForwardButtonPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton")
 PageContainerPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/MarginContainer")
 HomePagePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/MarginContainer/ThriveopediaHomePage")
 
@@ -65,7 +66,7 @@ margin_left = 78.0
 margin_right = 113.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "Home"
+hint_tooltip = "HOME"
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
@@ -110,5 +111,6 @@ margin_bottom = 35.0
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="OnClosePressed"]

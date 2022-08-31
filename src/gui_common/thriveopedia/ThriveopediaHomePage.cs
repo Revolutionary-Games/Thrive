@@ -7,30 +7,29 @@ public class ThriveopediaHomePage : ThriveopediaPage
 
     private Button currentWorldButton = null!;
 
-    private bool currentWorldDisabled = true;
-
-    public override string PageName => "Home";
-
-    public bool CurrentWorldDisabled
-    {
-        get => currentWorldDisabled;
-        set
-        {
-            currentWorldDisabled = value;
-
-            currentWorldButton.Disabled = CurrentWorldDisabled;
-        }
-    }
+    public override string PageName => "HOME_PAGE";
 
     public override void _Ready()
     {
         base._Ready();
 
         currentWorldButton = GetNode<Button>(CurrentWorldButtonPath);
+
+        UpdateCurrentWorldDetails();
+    }
+
+    public override void UpdateCurrentWorldDetails()
+    {
+        currentWorldButton.Disabled = CurrentGame == null;
+    }
+
+    private void OnCurrentWorldPressed()
+    {
+        OpenPage("CURRENT_WORLD_PAGE");
     }
 
     private void OnMuseumPressed()
     {
-        OpenPage("Museum");
+        OpenPage("MUSEUM_PAGE");
     }
 }
