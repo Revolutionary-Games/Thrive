@@ -1015,6 +1015,18 @@ public static class Constants
     public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
 
+    public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
+
+    /// <summary>
+    ///   How big fraction of extra margin is added on top of a calibrated deadzone
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN = 0.1f;
+
+    /// <summary>
+    ///   Constant value added to the calibration value to make the deadzones not as tight, especially at low values
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
+
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
     /// <summary>

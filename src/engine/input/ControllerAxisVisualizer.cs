@@ -163,18 +163,54 @@ public class ControllerAxisVisualizer : MarginContainer
         {
             horizontalAxis = axis;
             horizontalLabel.Text = TranslationServer.Translate("HORIZONTAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
-            ReadDeadzone(horizontalDeadzoneValue, horizontalAxis, Settings.Instance.ControllerAxisDeadzoneAxes);
+            ReadDeadzone(horizontalDeadzoneValue, horizontalAxis, Settings.Instance.ControllerAxisDeadzoneAxes.Value);
         }
         else if (!HasSecondAxis)
         {
             verticalAxis = axis;
             verticalLabel.Text = TranslationServer.Translate("VERTICAL_WITH_AXIS_NAME_COLON").FormatSafe(axis);
             SetVerticalAxisDisplay(true);
-            ReadDeadzone(verticalDeadzoneValue, verticalAxis, Settings.Instance.ControllerAxisDeadzoneAxes);
+            ReadDeadzone(verticalDeadzoneValue, verticalAxis, Settings.Instance.ControllerAxisDeadzoneAxes.Value);
         }
         else
         {
             throw new InvalidOperationException("This instance already has 2 axes");
+        }
+    }
+
+    public (int Axis, float Value) GetHorizontalAxisValue()
+    {
+        if (horizontalAxis == -1)
+            throw new InvalidOperationException("Axis not configured");
+
+        return (horizontalAxis, horizontalValue);
+    }
+
+    public (int Axis, float Value) GetVerticalAxisValue()
+    {
+        if (!HasSecondAxis)
+            throw new InvalidOperationException("Second axis is not configured");
+
+        return (verticalAxis, verticalValue);
+    }
+
+    /// <summary>
+    ///   Sets the used deadzone used for this visualizer
+    /// </summary>
+    /// <param name="newValue">
+    ///   A list where each index matches the id of an axis. If the values don't contain deadzone for an axis,
+    ///   then the deadzone is set to 0.
+    /// </param>
+    public void OnDeadzoneSettingsChanged(IReadOnlyList<float> newValue)
+    {
+        if (horizontalAxis != -1)
+        {
+            ReadDeadzone(horizontalDeadzoneValue, horizontalAxis, newValue);
+        }
+
+        if (HasSecondAxis)
+        {
+            ReadDeadzone(verticalDeadzoneValue, verticalAxis, newValue);
         }
     }
 
@@ -226,20 +262,7 @@ public class ControllerAxisVisualizer : MarginContainer
         verticalDeadzoneDisplayer.Visible = visible;
     }
 
-    private void OnDeadzoneSettingsChanged(List<float> newValue)
-    {
-        if (horizontalAxis != -1)
-        {
-            ReadDeadzone(horizontalDeadzoneValue, horizontalAxis, newValue);
-        }
-
-        if (HasSecondAxis)
-        {
-            ReadDeadzone(verticalDeadzoneValue, verticalAxis, newValue);
-        }
-    }
-
-    private void ReadDeadzone(Label valueLabel, int axis, List<float> axisDeadzones)
+    private void ReadDeadzone(Label valueLabel, int axis, IReadOnlyList<float> axisDeadzones)
     {
         var index = axis - (int)JoystickList.Axis0;
 

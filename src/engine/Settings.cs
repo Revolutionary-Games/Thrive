@@ -347,18 +347,18 @@ public class Settings
     ///     This should have <see cref="JoystickList.AxisMax"/> values in here to have one for each supported axis.
     ///   </para>
     /// </remarks>
-    public SettingValue<List<float>> ControllerAxisDeadzoneAxes { get; set; } = new(new List<float>
+    public SettingValue<IReadOnlyList<float>> ControllerAxisDeadzoneAxes { get; set; } = new(new[]
     {
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
-        0.2f,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
     });
 
     // Settings that are edited from elsewhere than the main options menu

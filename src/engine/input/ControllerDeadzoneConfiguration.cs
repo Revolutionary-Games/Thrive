@@ -38,7 +38,8 @@ public class ControllerDeadzoneConfiguration : CustomDialog
     {
         visualizationContainer.Start();
 
-        currentDeadzones = Settings.Instance.ControllerAxisDeadzoneAxes;
+        // As we modify the deadzones we need to make a deep copy here
+        currentDeadzones = new List<float>(Settings.Instance.ControllerAxisDeadzoneAxes.Value);
 
         // Tweak to the right number of deadzones
         while (currentDeadzones.Count > (int)JoystickList.AxisMax)
@@ -48,7 +49,9 @@ public class ControllerDeadzoneConfiguration : CustomDialog
 
         while (currentDeadzones.Count < (int)JoystickList.AxisMax)
         {
-            currentDeadzones.Add(currentDeadzones.Count > 0 ? currentDeadzones[0] : 0.2f);
+            currentDeadzones.Add(currentDeadzones.Count > 0 ?
+                currentDeadzones[0] :
+                Constants.CONTROLLER_DEFAULT_DEADZONE);
         }
 
         startButton.GrabFocus();
