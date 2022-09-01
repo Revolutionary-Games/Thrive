@@ -596,6 +596,10 @@ public class OptionsMenu : ControlWithInput
     /// </summary>
     public void ApplySettingsToControls(Settings settings)
     {
+        // TODO: all of these changes cause Godot change callbacks which in turn cause settings comparisons
+        // that is not efficient at all so instead we should set a flag here and ignore settings compare calls
+        // while it is active
+
         // Graphics
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
