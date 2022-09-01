@@ -1,16 +1,92 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/dialogs/FilterDialog.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=4]
+[ext_resource path="res://src/gui_common/FilterItems/BaseFilterItem.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=6]
 
 [node name="FilterDialog" instance=ExtResource( 1 )]
 visible = true
+script = ExtResource( 2 )
+WindowTitle = "FILTER_DIALOG"
+
+[node name="VBoxContainer" parent="." index="0"]
+rect_min_size = Vector2( 400, 0 )
 
 [node name="Label" parent="VBoxContainer" index="0"]
 visible = false
 
-[node name="FiltersContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
-margin_right = 133.0
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" index="1"]
+margin_right = 400.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 250 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" index="2"]
+margin_right = 400.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FilterItemssContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
+margin_right = 400.0
+margin_bottom = 25.0
+
+[node name="BaseFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="0" instance=ExtResource( 5 )]
+margin_right = 400.0
+margin_bottom = 25.0
+
+[node name="AddButtonContainter" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
+margin_top = 29.0
+margin_right = 400.0
+margin_bottom = 54.0
+alignment = 2
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="0"]
+margin_left = 204.0
+margin_right = 337.0
+margin_bottom = 25.0
+text = "CHOOSE_A_ITEM"
+flat = false
+script = ExtResource( 6 )
+
+[node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="1"]
+margin_left = 341.0
+margin_right = 371.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="AddButton" type="TextureButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="2"]
+margin_left = 375.0
+margin_right = 400.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+expand = true
+stretch_mode = 5
 
 [node name="HBoxContainer" parent="VBoxContainer" index="2"]
-margin_top = 15.0
-margin_bottom = 47.0
+margin_top = 265.0
+margin_right = 400.0
+margin_bottom = 297.0
+
+[node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_right = 89.0
+
+[node name="CancelButton" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_left = 93.0
+margin_right = 173.0
+
+[node name="Spacer2" parent="VBoxContainer/HBoxContainer" index="2"]
+margin_left = 177.0
+margin_right = 266.0
+
+[node name="ConfirmButton" parent="VBoxContainer/HBoxContainer" index="3"]
+margin_left = 270.0
+margin_right = 307.0
+
+[node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
+margin_left = 311.0
+margin_right = 400.0
