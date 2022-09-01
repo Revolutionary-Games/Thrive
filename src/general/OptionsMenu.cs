@@ -717,9 +717,13 @@ public class OptionsMenu : ControlWithInput
             {
                 // Current game tutorial option shouldn't be visible in freebuild mode.
                 if (!gameProperties!.FreeBuild)
+                {
                     tutorialsEnabled.Show();
+                }
                 else
+                {
                     tutorialsEnabled.Hide();
+                }
 
                 optionsMode = OptionsMode.InGame;
                 break;
