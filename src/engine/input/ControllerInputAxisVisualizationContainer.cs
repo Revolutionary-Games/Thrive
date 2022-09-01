@@ -102,6 +102,33 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
         InputManager.ForwardInput(@event);
     }
 
+    /// <summary>
+    ///   Reads all of the latest axis values that this container's axes contain
+    /// </summary>
+    /// <returns>Enumerable of axis id and value pairs</returns>
+    public IEnumerable<(int Axis, float Value)> GetAllAxisValues()
+    {
+        foreach (var pair in axisVisualizers)
+        {
+            yield return pair.Value.GetHorizontalAxisValue();
+
+            if (pair.Value.HasSecondAxis)
+                yield return pair.Value.GetVerticalAxisValue();
+        }
+    }
+
+    /// <summary>
+    ///   Override the deadzones used by the current axis visualizers contained in this
+    /// </summary>
+    /// <param name="newDeadzones">The deadzones to use instead of the ones in settings</param>
+    public void OverrideDeadzones(List<float> newDeadzones)
+    {
+        foreach (var pair in axisVisualizers)
+        {
+            pair.Value.OnDeadzoneSettingsChanged(newDeadzones);
+        }
+    }
+
     private void HandleController(int axis, float motionValue)
     {
         // If we axis value is odd, make sure the previous axis value exists, to make the horizontal and vertical
