@@ -70,10 +70,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     public float XRotation
     {
         get => xRotation;
-        set
-        {
-            xRotation = Mathf.Clamp(value, MinXRotation, MaxXRotation);
-        }
+        set => xRotation = Mathf.Clamp(value, MinXRotation, MaxXRotation);
     }
 
     /// <summary>
@@ -83,10 +80,7 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
     public float YRotation
     {
         get => yRotation;
-        set
-        {
-            yRotation = value % (float)MathUtils.FULL_CIRCLE;
-        }
+        set => yRotation = value % (float)MathUtils.FULL_CIRCLE;
     }
 
     [JsonIgnore]

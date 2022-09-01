@@ -1,5 +1,5 @@
 ﻿using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   Common helper operations for Controls
