@@ -58,7 +58,8 @@ public class RunOnAxisAttribute : InputAttribute
                 if (nextInputMouse != null)
                 {
                     throw new ArgumentException(
-                        "Mouse axis inputs need to be specified between the other inputs (before the action it applies to)");
+                        "Mouse axis inputs need to be specified between the other inputs " +
+                        "(before the action it applies to)");
                 }
 
                 nextInputMouse = (RunOnRelativeMouseAttribute.CapturedMouseAxis)Enum.Parse(
