@@ -208,6 +208,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath InputGroupListPath = null!;
 
+    [Export]
+    public NodePath DeadzoneConfigurationPopupPath = null!;
+
     // Misc tab.
     [Export]
     public NodePath MiscTabPath = null!;
@@ -344,6 +347,8 @@ public class OptionsMenu : ControlWithInput
     private Button controllerVerticalInverted = null!;
 
     private InputGroupList inputGroupList = null!;
+
+    private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
 
     // Misc tab
     private Control miscTab = null!;
@@ -487,6 +492,9 @@ public class OptionsMenu : ControlWithInput
 
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
+
+        deadzoneConfigurationPopup = GetNode<ControllerDeadzoneConfiguration>(DeadzoneConfigurationPopupPath);
+        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -1728,7 +1736,14 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TODO: implement
+        deadzoneConfigurationPopup.PopupCenteredShrink();
+    }
+
+    private void OnDeadzoneConfigurationChanged(List<float> deadzones)
+    {
+        Settings.Instance.ControllerAxisDeadzoneAxes.Value = deadzones;
+
+        UpdateResetSaveButtonState();
     }
 
     private void OnControlsChanged(InputDataList data)
