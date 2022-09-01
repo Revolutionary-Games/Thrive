@@ -777,6 +777,11 @@ public static class Constants
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
+    public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
+
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
@@ -1021,6 +1026,11 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Colour of the custom focus highlight elements. Should be the same as what it set in Thrive theme
+    /// </summary>
+    public static readonly Color CustomFocusDrawerColour = new("#00bfb6");
 
     /// <summary>
     ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
