@@ -33,6 +33,8 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
 
     private PackedScene visualizerScene = null!;
 
+    private FocusFlowDynamicChildrenHelper focusHelper = null!;
+
     private bool wasLastVisible;
 
     public override void _Ready()
@@ -40,6 +42,11 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
         visualizerScene = ResourceLoader.Load<PackedScene>("res://src/engine/input/ControllerAxisVisualizer.tscn");
 
         SetProcessInput(false);
+        this.RegisterCustomFocusDrawer();
+
+        focusHelper = new FocusFlowDynamicChildrenHelper(this,
+            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.Both,
+            FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Both);
     }
 
     public override void _Process(float delta)
@@ -133,6 +140,8 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
 
         AddChild(axisVisualizer);
         axisVisualizers.Add(axis, axisVisualizer);
+
+        focusHelper.ApplyNavigationFlow(axisVisualizers.Values);
 
         axisVisualizer.AddAxis(axis);
         return axisVisualizer;

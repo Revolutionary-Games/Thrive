@@ -64,6 +64,11 @@ public class ControllerAxisVisualizer : MarginContainer
     private float verticalValue;
     private float verticalDeadzone;
 
+    /// <summary>
+    ///   Used to render a slightly different colour to highlight focus
+    /// </summary>
+    private bool focused;
+
     public bool HasSecondAxis => verticalAxis != -1;
 
     public override void _Ready()
@@ -180,7 +185,7 @@ public class ControllerAxisVisualizer : MarginContainer
 
         var circleSize = size.y / 2;
 
-        drawerNode.DrawCircle(center, circleSize, Colors.Gray);
+        drawerNode.DrawCircle(center, circleSize, focused ? Colors.LightSlateGray : Colors.Gray);
         drawerNode.DrawArc(center, circleSize, 0, (float)MathUtils.FULL_CIRCLE, 128, Colors.Black, 1, true);
 
         var adjustedHorizontal = horizontalValue;
@@ -200,6 +205,18 @@ public class ControllerAxisVisualizer : MarginContainer
         // Vertical
         drawerNode.DrawLine(crossPosition - new Vector2(0, CrossSize), crossPosition + new Vector2(0, CrossSize),
             Colors.WhiteSmoke, CrossLineWidth);
+    }
+
+    private void OnFocused()
+    {
+        focused = true;
+        drawerNode.Update();
+    }
+
+    private void OnFocusLost()
+    {
+        focused = false;
+        drawerNode.Update();
     }
 
     private void SetVerticalAxisDisplay(bool visible)

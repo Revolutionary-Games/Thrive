@@ -8,6 +8,7 @@
 [node name="ControllerAxisVisualizer" type="MarginContainer"]
 margin_right = 273.0
 margin_bottom = 210.0
+focus_mode = 2
 theme = ExtResource( 2 )
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
@@ -159,3 +160,6 @@ text = "0.2"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
+
+[connection signal="focus_entered" from="." to="." method="OnFocused"]
+[connection signal="focus_exited" from="." to="." method="OnFocusLost"]
