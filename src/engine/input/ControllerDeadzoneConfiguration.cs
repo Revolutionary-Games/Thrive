@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -19,7 +19,7 @@ public class ControllerDeadzoneConfiguration : CustomDialog
     [Export]
     public NodePath ExplanationLabelPath = null!;
 
-    private const float SettleDownTimeStart = 3.5f;
+    private const float SettleDownTimeStart = 4.5f;
     private const float SettleDownTimeIncreaseMultiplier = 5;
 
     private ControllerInputAxisVisualizationContainer visualizationContainer = null!;
