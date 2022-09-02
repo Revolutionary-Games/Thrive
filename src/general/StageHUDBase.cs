@@ -15,7 +15,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     where TStage : Object, IStage
 {
     [Export]
-    public NodePath AnimationPlayerPath = null!;
+    public NodePath CompoundsGroupAnimationPlayerPath = null!;
+
+    [Export]
+    public NodePath EnvironmentGroupAnimationPlayerPath = null!;
 
     [Export]
     public NodePath PanelsTweenPath = null!;
@@ -208,7 +211,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
-    protected AnimationPlayer animationPlayer = null!;
+    protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
+    protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MarginContainer mouseHoverPanel = null!;
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
@@ -286,6 +290,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     ///   This is opposite of the expected value, ie. this is true when the panels are collapsed
     /// </summary>
     private bool leftPanelsActive;
+    private bool environmentPanelActive;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -408,7 +413,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<PauseMenu>(MenuPath);
-        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
+        compoundsGroupAnimationPlayer = GetNode<AnimationPlayer>(CompoundsGroupAnimationPlayerPath);
+        environmentGroupAnimationPlayer = GetNode<AnimationPlayer>(EnvironmentGroupAnimationPlayerPath);
         hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
@@ -1267,12 +1273,28 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (!leftPanelsActive)
         {
             leftPanelsActive = true;
-            animationPlayer.Play("HideLeftPanels");
+            compoundsGroupAnimationPlayer.Play("HideCompoundsPanels");
         }
         else
         {
             leftPanelsActive = false;
-            animationPlayer.Play("ShowLeftPanels");
+            compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
+        }
+    }
+
+    private void EnvironmentButtonPressed(bool wantedState)
+    {
+        if(environmentPanelActive == !wantedState)
+            return;
+        if(!environmentPanelActive)
+        {
+            environmentPanelActive = true;
+            environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");
+        }
+        else
+        {
+            environmentPanelActive = false;
+            environmentGroupAnimationPlayer.Play("ShowEnvironmentPanel");
         }
     }
 

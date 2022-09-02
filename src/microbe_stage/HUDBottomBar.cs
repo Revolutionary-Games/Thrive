@@ -2,6 +2,7 @@
 
 public class HUDBottomBar : HBoxContainer
 {
+
     [Export]
     public NodePath PauseButtonPath = null!;
 
@@ -9,14 +10,19 @@ public class HUDBottomBar : HBoxContainer
     public NodePath CompoundsButtonPath = null!;
 
     [Export]
+    public NodePath EnvironmentButtonPath = null;
+
+    [Export]
     public NodePath ProcessPanelButtonPath = null!;
 
     private PlayButton pauseButton = null!;
 
     private TextureButton? compoundsButton;
+    private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
 
     private bool compoundsPressed = true;
+    private bool environmentPressed = true;
     private bool processPanelPressed;
 
     [Signal]
@@ -30,6 +36,9 @@ public class HUDBottomBar : HBoxContainer
 
     [Signal]
     public delegate void OnCompoundsToggled(bool expanded);
+
+    [Signal]
+    public delegate void OnEnvironmentToggled(bool expanded);
 
     [Signal]
     public delegate void OnSuicidePressed();
@@ -53,6 +62,16 @@ public class HUDBottomBar : HBoxContainer
         }
     }
 
+    public bool EnvironmentPressed
+    {
+        get => environmentPressed;
+        set
+        {
+            environmentPressed = value;
+            UpdateEnvironmentButton();
+        }
+    }
+
     public bool ProcessesPressed
     {
         get => processPanelPressed;
@@ -68,9 +87,11 @@ public class HUDBottomBar : HBoxContainer
         pauseButton = GetNode<PlayButton>(PauseButtonPath);
 
         compoundsButton = GetNode<TextureButton>(CompoundsButtonPath);
+        environmentButton = GetNode<TextureButton>(EnvironmentButtonPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
         UpdateCompoundButton();
+        UpdateEnvironmentButton();
         UpdateProcessPanelButton();
     }
 
@@ -100,6 +121,13 @@ public class HUDBottomBar : HBoxContainer
         EmitSignal(nameof(OnCompoundsToggled), CompoundsPressed);
     }
 
+    private void EnvironmentButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EnvironmentPressed = !EnvironmentPressed;
+        EmitSignal(nameof(OnEnvironmentToggled), EnvironmentPressed);
+    }
+
     private void SuicideButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -123,6 +151,13 @@ public class HUDBottomBar : HBoxContainer
             return;
 
         compoundsButton.Pressed = CompoundsPressed;
+    }
+
+    private void UpdateEnvironmentButton()
+    {
+        if(environmentButton == null)
+            return;
+        environmentButton.Pressed = EnvironmentPressed;
     }
 
     private void UpdateProcessPanelButton()
