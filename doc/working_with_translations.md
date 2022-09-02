@@ -78,9 +78,10 @@ translation key like `PLAY_MUSIC`.
 
 ### Updating the localizations
 
-Once you are done adding content into the game, go into the scripts folder and
-run `update_localization.rb`. This will extract the strings from the game files,
-and also update the .po files if the template (.pot) has changed.
+Once you are done adding content into the game, go into the scripts
+folder and run `dotnet run --project Scripts -- localization`. This
+will extract the strings from the game files, and also update the .po
+files if the template (.pot) has changed.
 
 gettext automatically "guesses" some text which might be right when a new translation
 key appears in a file. This is fine as the texts are marked as needing changes (fuzzy),
@@ -199,9 +200,9 @@ supported code [in the Godot engine documentation](https://docs.godotengine.org/
 #### Add your .po file to the update script
 
 To make updating the localization easier, you should add a reference to
-the new .po file into `scripts/update_localization.rb`.
+the new .po file into `Scripts/LocalizationUpdate.cs`.
 
-Simply open the ruby script into any text editor, and edit the locale list as such:
+Simply open the C# script into any text editor, and edit the locale list as such:
 
 ```ruby
 LOCALES = %w[en fr _new-locale_].freeze
