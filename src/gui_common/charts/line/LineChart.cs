@@ -95,7 +95,7 @@ public class LineChart : VBoxContainer
     /// </remarks>
     public string? TooltipYAxisFormat;
 
-    private const string LINE_CHART_GROUP_BASE_NAME = "chartMarkers";
+    private const string TOOLTIP_GROUP_BASE_NAME = "chartDatasets";
 
     private static readonly Dictionary<string, Dictionary<string, bool>> StoredDatasetsVisibilityStatus = new();
 
@@ -301,7 +301,7 @@ public class LineChart : VBoxContainer
         // Remove tooltips correctly
         foreach (var key in dataPointToolTips.Keys)
         {
-            ToolTipManager.Instance.ClearToolTips(LINE_CHART_GROUP_BASE_NAME + ChartName + key);
+            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + ChartName + key);
         }
 
         dataPointToolTips.Clear();
@@ -397,7 +397,9 @@ public class LineChart : VBoxContainer
             var dataLine = new DataLine((LineChartData)data.Value, data.Key == defaultDataSet, isChild ? 2 : 1);
             dataLine.Connect("tree_exited", this, nameof(RemoveDataLineTooltipOnDeletion), new Array(dataLine));
 
-            dataLineTooltips.Add(dataLine, new List<ICustomToolTip>());
+            if (!dataLineTooltips.ContainsKey(dataLine))
+                dataLineTooltips.Add(dataLine, new List<ICustomToolTip>());
+
             dataLines[data.Key] = dataLine;
             drawArea.AddChild(dataLine);
 
@@ -429,7 +431,7 @@ public class LineChart : VBoxContainer
                 toolTip.Positioning = ToolTipPositioning.ControlBottomRightCorner;
 
                 point.RegisterToolTipForControl(toolTip);
-                ToolTipManager.Instance.AddToolTip(toolTip, LINE_CHART_GROUP_BASE_NAME + ChartName + data.Key);
+                ToolTipManager.Instance.AddToolTip(toolTip, TOOLTIP_GROUP_BASE_NAME + ChartName + data.Key);
 
                 var key = dataPointToolTips[data.Key];
                 key[point] = toolTip;
@@ -504,7 +506,7 @@ public class LineChart : VBoxContainer
     {
         foreach (var data in dataSets)
         {
-            ToolTipManager.Instance.ClearToolTips(LINE_CHART_GROUP_BASE_NAME + ChartName + data.Key);
+            ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + ChartName + data.Key);
         }
 
         ToolTipManager.Instance.ClearToolTips("chartLegend" + ChartName);
@@ -635,10 +637,7 @@ public class LineChart : VBoxContainer
 
     private void RemoveDataLineTooltipOnDeletion(DataLine line)
     {
-        foreach (var tooltip in dataLineTooltips[line])
-        {
-            ToolTipManager.Instance.RemoveToolTip(tooltip.ToolTipNode.Name, LINE_CHART_GROUP_BASE_NAME);
-        }
+        ToolTipManager.Instance.ClearToolTips(TOOLTIP_GROUP_BASE_NAME + line.GetInstanceId(), true);
     }
 
     /// <summary>
@@ -746,7 +745,7 @@ public class LineChart : VBoxContainer
             tooltip.DisplayDelay = 0.5f;
 
             newCollisionRect.RegisterToolTipForControl(tooltip);
-            ToolTipManager.Instance.AddToolTip(tooltip, LINE_CHART_GROUP_BASE_NAME);
+            ToolTipManager.Instance.AddToolTip(tooltip, TOOLTIP_GROUP_BASE_NAME + dataLine.GetInstanceId());
             dataLineTooltips[dataLine].Add(tooltip);
 
             dataLine.CollisionBoxes[firstPoint] = newCollisionRect;
