@@ -110,7 +110,10 @@ public partial class Microbe
     [JsonProperty]
     public int AgentVacuoleCount { get; private set; }
 
-    [JsonProperty]
+    /// <summary>
+    ///   The slime jets attached to this microbe. JsonIgnore as the components add themselves to this list each load.
+    /// </summary>
+    [JsonIgnore]
     public List<SlimeJetComponent> SlimeJets { get; private set; } = new();
 
     /// <summary>
