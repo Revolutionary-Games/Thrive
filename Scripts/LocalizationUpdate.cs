@@ -1,7 +1,10 @@
-﻿// <copyright file="LocalizationUpdate.cs" company="PlaceholderCompany">Copyright (c) PlaceholderCompany. All rights reserved.</copyright>
+﻿namespace Scripts;
 
-namespace Scripts;
+using ScriptsBase.Utilities;
 
-public class LocalizationUpdate
+public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOptions>
 {
+    public LocalizationUpdate(Program.LocalizationOptions opts) : base(opts)
+    {
+    }
 }

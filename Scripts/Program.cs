@@ -87,11 +87,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        throw new NotImplementedException();
+        var updater = new LocalizationUpdate(opts);
 
-        // var checker = new IconProcessor(opts);
-        //
-        // return checker.Run(tokenSource.Token).Result ? 0 : 1;
+        return updater.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunUpload(UploadOptions opts)
@@ -124,8 +122,7 @@ public class Program
         public override string RemoteBranch { get; set; } = "master";
     }
 
-    [Verb("localization", HelpText = "Update localization files")]
-    public class LocalizationOptions : ScriptOptionsBase
+    public class LocalizationOptions : LocalizationOptionsBase
     {
     }
 
@@ -140,6 +137,12 @@ public class Program
 
     [Verb("upload", HelpText = "Upload created devbuilds to ThriveDevCenter")]
     public class UploadOptions : ScriptOptionsBase
+    {
+    }
+
+    // TODO: move to base
+    [Verb("container", HelpText = "Tool for creating container images for this project")]
+    public class ContainerOptions : ScriptOptionsBase
     {
     }
 }

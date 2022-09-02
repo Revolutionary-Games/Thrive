@@ -423,20 +423,6 @@ consistent as possible. It is highly recommended you install
 this linter to check your code formatting before submitting a
 pull request.
 
-## NodeJS
-First install [NodeJS](https://nodejs.org/en/download/). If you are on
-Linux you should use your OS's package manager to install nodejs.
-
-After installing nodejs install the linter packages with this command:
-```sh
-npm install -g jsonlint
-```
-
-if that doesn't work run:
-```sh
-sudo npm install -g jsonlint
-```
-
 ## Jetbrains tools
 
 Jetbrains tools are now installed with dotnet. This happens
