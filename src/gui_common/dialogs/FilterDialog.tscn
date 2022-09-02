@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/dialogs/FilterDialog.cs" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=6]
 [ext_resource path="res://src/gui_common/FilterItems/MultipleChoiceFilterItem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/FilterItems/NumericFilterItem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=9]
 
 [node name="FilterDialog" instance=ExtResource( 1 )]
 visible = true
@@ -30,35 +31,55 @@ margin_right = 400.0
 margin_bottom = 150.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 10
 
 [node name="FilterItemssContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
 margin_right = 400.0
-margin_bottom = 83.0
+margin_bottom = 95.0
+custom_constants/separation = 10
 
 [node name="BaseFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="0" instance=ExtResource( 5 )]
 margin_right = 400.0
 margin_bottom = 25.0
 
 [node name="MultipleChoiceFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="1" instance=ExtResource( 7 )]
-margin_top = 29.0
+margin_top = 35.0
 margin_right = 400.0
-margin_bottom = 54.0
+margin_bottom = 60.0
+ItemNameLabelPath = null
 
 [node name="NumericFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="2" instance=ExtResource( 8 )]
-margin_top = 58.0
+margin_top = 70.0
 margin_right = 400.0
-margin_bottom = 83.0
+margin_bottom = 95.0
+ItemNameLabelPath = null
 
-[node name="AddButtonContainter" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
-margin_top = 87.0
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
+margin_top = 105.0
 margin_right = 400.0
-margin_bottom = 112.0
-alignment = 2
+margin_bottom = 109.0
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="0"]
+[node name="AddButtonContainter" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="2"]
+margin_top = 119.0
+margin_right = 400.0
+margin_bottom = 146.0
+
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="0"]
+margin_right = 103.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 9 )
+text = "CLEAR_FILTER"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="1"]
+margin_left = 107.0
+margin_right = 253.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="2"]
 margin_left = 257.0
 margin_right = 337.0
-margin_bottom = 25.0
+margin_bottom = 27.0
 text = "First Item"
 flat = false
 script = ExtResource( 6 )
@@ -66,16 +87,16 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="1"]
+[node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="3"]
 margin_left = 341.0
 margin_right = 371.0
-margin_bottom = 25.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="AddButton" type="TextureButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="2"]
+[node name="AddButton" type="TextureButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="4"]
 margin_left = 375.0
 margin_right = 400.0
-margin_bottom = 25.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 25, 25 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 3 )

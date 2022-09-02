@@ -9,6 +9,7 @@
 rect_min_size = Vector2( 300, 0 )
 theme = ExtResource( 2 )
 script = ExtResource( 4 )
+ItemNameLabelPath = NodePath("Name")
 
 [node name="Name" type="Label" parent="."]
 margin_right = 237.0
@@ -33,3 +34,5 @@ rect_min_size = Vector2( 25, 25 )
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 1 )
 expand = true
+
+[connection signal="pressed" from="DeleteButton" to="." method="OnDeleteButtonPressed"]

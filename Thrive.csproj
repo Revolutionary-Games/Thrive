@@ -125,10 +125,13 @@
     <Compile Include="src\general\AssetCategory.cs" />
     <Compile Include="src\general\AssetType.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
+    <Compile Include="src\general\Filter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\dialogs\FilterDialog.cs" />
     <Compile Include="src\gui_common\FilterItems\BaseFilterItem.cs" />
+    <Compile Include="src\gui_common\FilterItems\MultipleChoiceFilterItemFilterItem.cs" />
+    <Compile Include="src\gui_common\FilterItems\NumericFilterItem.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
