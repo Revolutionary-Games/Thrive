@@ -1223,9 +1223,6 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
 
-        if (organelle.IsSlimeJet)
-            SlimeJets.Add((SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent));
-
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;

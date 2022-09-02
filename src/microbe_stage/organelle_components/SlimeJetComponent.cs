@@ -25,7 +25,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
             if (animation != null)
             {
                 // Play the animation if active, and vice versa
-                animation!.PlaybackSpeed = active ? 1.0f : 0.0f;
+                animation.PlaybackSpeed = active ? 1.0f : 0.0f;
             }
         }
     }
@@ -92,6 +92,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
             return;
         }
 
+        // Workaround for animation not looping in Godot scene
         animation.GetAnimation(animation.CurrentAnimation).Loop = true;
 
         // Add to the microbe's slime jet list so we can activate/deactive from the microbe class
