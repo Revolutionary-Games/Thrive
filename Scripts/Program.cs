@@ -50,6 +50,9 @@ public class Program
 
         ColourConsole.WriteDebugLine("Running dotnet tests");
 
+        // TODO: we should maybe think about writing some tests runnable through dotnet
+        ColourConsole.WriteWarningLine("Thrive doesn't currently have any implemented dotnet test compatible tests");
+
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
         return ProcessRunHelpers.RunProcessAsync(new ProcessStartInfo("dotnet", "test"), tokenSource.Token, false)
