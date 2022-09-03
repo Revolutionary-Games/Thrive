@@ -8,6 +8,9 @@ public class DayNightCycle
     [JsonProperty]
     public DayNightConfiguration LightCycleConfig;
 
+    [JsonProperty]
+    public bool IsEnabled;
+
     /// <summary>
     ///   The multiplier used for calculating DayLightPercentage.
     /// </summary>
@@ -18,8 +21,10 @@ public class DayNightCycle
     [JsonIgnore]
     private float daytimeMultiplier;
 
-    public DayNightCycle()
+    public DayNightCycle(bool isEnabled)
     {
+        IsEnabled = isEnabled;
+
         LightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
         Time = LightCycleConfig.HoursPerDay / 2;
 
@@ -28,8 +33,15 @@ public class DayNightCycle
         // This converts the percentage in DaytimePercentage to the power of two needed for DayLightPercentage
         daytimeMultiplier = (float)Math.Pow(2, 1 / halfPercentage);
 
-        AverageSunlight = EvaluateAverageSunlight(0.5f + halfPercentage)
-            - EvaluateAverageSunlight(0.5f - halfPercentage);
+        if (IsEnabled)
+        {
+            AverageSunlight = EvaluateAverageSunlight(0.5f + halfPercentage)
+                - EvaluateAverageSunlight(0.5f - halfPercentage);
+        }
+        else
+        {
+            AverageSunlight = 1;
+        }
     }
 
     [JsonIgnore]
@@ -58,8 +70,11 @@ public class DayNightCycle
 
     public void Process(float delta)
     {
-        Time = (Time + (1 / LightCycleConfig.RealTimePerDay) * LightCycleConfig.HoursPerDay * delta)
-            % LightCycleConfig.HoursPerDay;
+        if (IsEnabled)
+        {
+            Time = (Time + (1 / LightCycleConfig.RealTimePerDay) * LightCycleConfig.HoursPerDay * delta)
+                % LightCycleConfig.HoursPerDay;
+        }
     }
 
     /// <summary>
