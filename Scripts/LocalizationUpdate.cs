@@ -94,7 +94,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOpt
     };
 
     /// <summary>
-    ///   List of folders relative to <see cref="BABEL_CONFIG_FILE"/> location to extract translations in
+    ///   List of folders relative to <see cref="LocaleFolder"/> location to extract translations in
     /// </summary>
     private static readonly IEnumerable<string> FoldersToExtractFrom = new List<string>
     {
@@ -164,10 +164,13 @@ public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOpt
             throw new Exception("pybabel not found");
         }
 
-        var startInfo = new ProcessStartInfo(pyBabel);
+        var startInfo = new ProcessStartInfo(pyBabel)
+        {
+            WorkingDirectory = LocaleFolder,
+        };
         startInfo.ArgumentList.Add("extract");
         startInfo.ArgumentList.Add("-F");
-        startInfo.ArgumentList.Add(Path.Join(LocaleFolder, BABEL_CONFIG_FILE));
+        startInfo.ArgumentList.Add(BABEL_CONFIG_FILE);
 
         foreach (var extractable in FunctionsAndPropertiesThatAreTranslated)
         {
@@ -176,7 +179,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOpt
         }
 
         startInfo.ArgumentList.Add("-o");
-        startInfo.ArgumentList.Add(TranslationTemplateFile);
+        startInfo.ArgumentList.Add(TranslationTemplateFileName);
 
         foreach (var folder in FoldersToExtractFrom)
         {
@@ -188,6 +191,8 @@ public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOpt
 
     protected override async Task<bool> PostProcessTranslations(CancellationToken cancellationToken)
     {
+        await base.PostProcessTranslations(cancellationToken);
+
         // Remove trailing whitespace
         ColourConsole.WriteInfoLine("Removing trailing whitespace in .po files...");
 
