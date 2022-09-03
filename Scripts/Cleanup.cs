@@ -14,7 +14,7 @@ using SharedBase.Utilities;
 /// </summary>
 public static class Cleanup
 {
-    private static readonly IEnumerable<string> FoldersToDelete = new List<string>()
+    private static readonly IEnumerable<string> FoldersToDelete = new List<string>
     {
         ".import",
         ".mono",
@@ -36,7 +36,7 @@ public static class Cleanup
             }
             catch (Exception e)
             {
-                ColourConsole.WriteError("Failed to delete folder: {e}");
+                ColourConsole.WriteError($"Failed to delete folder: {e}");
             }
 
             if (cancellationToken.IsCancellationRequested)
