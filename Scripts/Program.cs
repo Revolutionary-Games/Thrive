@@ -15,15 +15,16 @@ public class Program
 
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
-                PackageOptions,
-                UploadOptions>(args)
+                PackageOptions, UploadOptions, ContainerOptions>(args)
             .MapResult(
-                (CheckOptions opts) => RunChecks(opts),
-                (TestOptions opts) => RunTests(opts),
-                (ChangesOptions opts) => RunChangesFinding(opts),
-                (LocalizationOptions opts) => RunLocalization(opts),
-                (PackageOptions opts) => RunPackage(opts),
-                (UploadOptions opts) => RunUpload(opts),
+                (CheckOptions options) => RunChecks(options),
+                (TestOptions options) => RunTests(options),
+                (ChangesOptions options) => RunChangesFinding(options),
+                (LocalizationOptions options) => RunLocalization(options),
+                (CleanupOptions options) => RunCleanup(options),
+                (PackageOptions options) => RunPackage(options),
+                (UploadOptions options) => RunUpload(options),
+                (ContainerOptions options) => RunContainer(options),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -31,21 +32,21 @@ public class Program
         return result;
     }
 
-    private static int RunChecks(CheckOptions opts)
+    private static int RunChecks(CheckOptions options)
     {
-        CommandLineHelpers.HandleDefaultOptions(opts);
+        CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running in check mode");
-        ColourConsole.WriteDebugLine($"Manually specified checks: {string.Join(' ', opts.Checks)}");
+        ColourConsole.WriteDebugLine($"Manually specified checks: {string.Join(' ', options.Checks)}");
 
-        var checker = new CodeChecks(opts);
+        var checker = new CodeChecks(options);
 
         return checker.Run().Result;
     }
 
-    private static int RunTests(TestOptions opts)
+    private static int RunTests(TestOptions options)
     {
-        CommandLineHelpers.HandleDefaultOptions(opts);
+        CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running dotnet tests");
 
@@ -55,18 +56,18 @@ public class Program
             .Result.ExitCode;
     }
 
-    private static int RunChangesFinding(ChangesOptions opts)
+    private static int RunChangesFinding(ChangesOptions options)
     {
-        CommandLineHelpers.HandleDefaultOptions(opts);
+        CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running changes finding tool");
 
-        return OnlyChangedFileDetector.BuildListOfChangedFiles(opts).Result ? 0 : 1;
+        return OnlyChangedFileDetector.BuildListOfChangedFiles(options).Result ? 0 : 1;
     }
 
-    private static int RunPackage(PackageOptions opts)
+    private static int RunPackage(PackageOptions options)
     {
-        CommandLineHelpers.HandleDefaultOptions(opts);
+        CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running packaging tool");
 
@@ -74,27 +75,38 @@ public class Program
 
         throw new NotImplementedException();
 
-        // var checker = new IconProcessor(opts);
+        // var checker = new IconProcessor(options);
         //
         // return checker.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
-    private static int RunLocalization(LocalizationOptions opts)
+    private static int RunLocalization(LocalizationOptions options)
     {
-        CommandLineHelpers.HandleDefaultOptions(opts);
+        CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running localization update tool");
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        var updater = new LocalizationUpdate(opts);
+        var updater = new LocalizationUpdate(options);
 
         return updater.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
-    private static int RunUpload(UploadOptions opts)
+    private static int RunCleanup(CleanupOptions options)
     {
-        CommandLineHelpers.HandleDefaultOptions(opts);
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running cleanup tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        return Cleanup.Run(options, tokenSource.Token).Result ? 0 : 1;
+    }
+
+    private static int RunUpload(UploadOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
 
         ColourConsole.WriteDebugLine("Running upload tool");
 
@@ -102,7 +114,22 @@ public class Program
 
         throw new NotImplementedException();
 
-        // var checker = new IconProcessor(opts);
+        // var checker = new IconProcessor(options);
+        //
+        // return checker.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
+    private static int RunContainer(ContainerOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running container tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        throw new NotImplementedException();
+
+        // var checker = new IconProcessor(options);
         //
         // return checker.Run(tokenSource.Token).Result ? 0 : 1;
     }
@@ -126,9 +153,12 @@ public class Program
     {
     }
 
-    [Verb("cleanup", HelpText = "Cleanup Godot temporary files")]
+    [Verb("cleanup", HelpText = "Cleanup Godot temporary files. WARNING: will lose uncommitted changes")]
     public class CleanupOptions : ScriptOptionsBase
     {
+        [Option('r', "reset", Required = false, Default = true,
+            HelpText = "Run git reset --hard after cleaning folders. Set to false to keep uncommitted changes.")]
+        public bool? GitReset { get; set; }
     }
 
     public class PackageOptions : PackageOptionsBase
