@@ -23,7 +23,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         {
             "files",
             new FileChecks(true,
-                new BomChecker(BomChecker.Mode.Required, ".cs"),
+                new BomChecker(BomChecker.Mode.Required, ".cs", ".json"),
                 new CfgCheck(AssemblyInfoReader.ReadVersionFromAssemblyInfo()),
                 new DisallowedFileType(".gd", ".mo"))
         },
