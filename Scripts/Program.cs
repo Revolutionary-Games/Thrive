@@ -150,14 +150,16 @@ public class Program
 
         switch (options.Mode.ToLowerInvariant())
         {
+            case "disable":
             case "disabled":
                 wantedMode = false;
                 break;
+            case "enable":
             case "enabled":
                 wantedMode = true;
                 break;
             default:
-                ColourConsole.WriteErrorLine("Invalid mode. Valid values are 'disabled' and 'enabled'");
+                ColourConsole.WriteErrorLine("Invalid mode. Valid values are 'disable' and 'enable'");
                 return 1;
         }
 

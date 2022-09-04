@@ -108,8 +108,8 @@ public static class SteamBuild
             content = ProcessRemovingClientLine(content, verbose);
         }
 
-        // TODO: check that this doesn't add BOM
-        await File.WriteAllLinesAsync(tempFile, content, Encoding.UTF8, cancellationToken);
+        // Important to not emit the BOM here
+        await File.WriteAllLinesAsync(tempFile, content, new UTF8Encoding(false), cancellationToken);
 
         File.Move(tempFile, THRIVE_CSPROJ, true);
 
