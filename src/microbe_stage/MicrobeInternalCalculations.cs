@@ -36,6 +36,9 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
+    public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles) => organelles.Where(
+        o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
+
     public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity)
     {

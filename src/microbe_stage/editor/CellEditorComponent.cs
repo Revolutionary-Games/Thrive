@@ -949,16 +949,7 @@ public partial class CellEditorComponent :
 
     public float CalculateStorage()
     {
-        var totalStorage = 0.0f;
-        foreach (var organelle in editedMicrobeOrganelles)
-        {
-            if (organelle.Definition.Components.Storage != null)
-            {
-                totalStorage += organelle.Definition.Components.Storage.Capacity;
-            }
-        }
-
-        return totalStorage;
+        return MicrobeInternalCalculations.CalculateCapacity(editedMicrobeOrganelles);
     }
 
     public float CalculateTotalDigestionSpeed()
