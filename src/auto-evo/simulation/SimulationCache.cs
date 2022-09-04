@@ -17,6 +17,7 @@
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
         private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
         private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
+        private readonly Dictionary<MicrobeSpecies, float> cachedStorageCapacities = new();
 
         private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
             new();
@@ -25,6 +26,8 @@
         {
             this.worldSettings = worldSettings;
         }
+
+        public bool DayNightCycleEnabled => !worldSettings.DayNightEnabled;
 
         public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
         {
@@ -65,6 +68,17 @@
             cached = species.BaseHexSize;
 
             cachedBaseHexSizes.Add(species, cached);
+            return cached;
+        }
+
+        public float GetStorageCapacityForSpecies(MicrobeSpecies species)
+        {
+            if (cachedStorageCapacities.TryGetValue(species, out var cached))
+                return cached;
+
+            cached = species.StorageCapacity;
+
+            cachedStorageCapacities.Add(species, cached);
             return cached;
         }
 

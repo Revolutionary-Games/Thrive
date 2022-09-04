@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CompoundFoodSource : FoodSource
+    public class CompoundFoodSource : RandomFoodSource
     {
         private readonly Patch patch;
         private readonly Compound compound;
@@ -26,7 +26,7 @@
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound, patch, simulationCache);
+            var compoundUseScore = CompoundUseScore(microbeSpecies, compound, patch, simulationCache);
 
             var energyCost = simulationCache
                 .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)

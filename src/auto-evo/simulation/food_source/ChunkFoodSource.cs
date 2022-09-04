@@ -5,7 +5,7 @@
     using System.Linq;
     using Godot;
 
-    public class ChunkFoodSource : FoodSource
+    public class ChunkFoodSource : RandomFoodSource
     {
         private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
         private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
@@ -59,7 +59,7 @@
             // We ponder the score for each compound by its amount, leading to pondering in proportion of total
             // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
             var score = energyCompounds.Sum(c =>
-                EnergyGenerationScore(microbeSpecies, c.Key, patch, simulationCache) * c.Value);
+                CompoundUseScore(microbeSpecies, c.Key, patch, simulationCache) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 
