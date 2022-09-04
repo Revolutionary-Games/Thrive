@@ -48,7 +48,7 @@ public static class Cleanup
 
         if (options.GitReset == true)
         {
-            ColourConsole.WriteInfoLine($"Doing git reset --hard HEAD");
+            ColourConsole.WriteInfoLine("Doing git reset --hard HEAD");
 
             await GitRunHelpers.Reset("./", "HEAD", true, cancellationToken);
         }
