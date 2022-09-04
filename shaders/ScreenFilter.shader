@@ -26,4 +26,4 @@ void fragment() {
         px = px.rrbb;
     }
     COLOR = vec4(px.rgb,1.0);
-} 
+}
