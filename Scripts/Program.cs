@@ -15,7 +15,7 @@ public class Program
 
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
-                PackageOptions, UploadOptions, ContainerOptions>(args)
+                PackageOptions, UploadOptions, ContainerOptions, SteamOptions>(args)
             .MapResult(
                 (CheckOptions options) => RunChecks(options),
                 (TestOptions options) => RunTests(options),
@@ -25,6 +25,7 @@ public class Program
                 (PackageOptions options) => RunPackage(options),
                 (UploadOptions options) => RunUpload(options),
                 (ContainerOptions options) => RunContainer(options),
+                (SteamOptions options) => SetSteamOptions(options),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -137,6 +138,45 @@ public class Program
         // return checker.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
+    private static int SetSteamOptions(SteamOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running container tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        bool wantedMode;
+
+        switch (options.Mode.ToLowerInvariant())
+        {
+            case "disabled":
+                wantedMode = false;
+                break;
+            case "enabled":
+                wantedMode = true;
+                break;
+            default:
+                ColourConsole.WriteErrorLine("Invalid mode. Valid values are 'disabled' and 'enabled'");
+                return 1;
+        }
+
+        if (wantedMode == SteamBuild.IsSteamBuildEnabled(tokenSource.Token).Result)
+        {
+            ColourConsole.WriteInfoLine("Already in desired mode");
+            return 0;
+        }
+
+        if (!SteamBuild.SetBuildMode(wantedMode, true, tokenSource.Token).Result)
+        {
+            ColourConsole.WriteErrorLine("Failed to update Steam build mode");
+            return 2;
+        }
+
+        ColourConsole.WriteSuccessLine("Steam build mode changed");
+        return 0;
+    }
+
     public class CheckOptions : CheckOptionsBase
     {
     }
@@ -177,5 +217,12 @@ public class Program
     [Verb("container", HelpText = "Tool for creating container images for this project")]
     public class ContainerOptions : ScriptOptionsBase
     {
+    }
+
+    [Verb("steam", HelpText = "Control Steam build variant building")]
+    public class SteamOptions : ScriptOptionsBase
+    {
+        [Value(0, MetaName = "Mode", Required = true, HelpText = "Which mode to set Thrive to")]
+        public string Mode { get; set; } = string.Empty;
     }
 }
