@@ -3,7 +3,7 @@ repos:
     hooks:
     - id: check_formatting
       name: Run check formatting
-      entry: dotnet run --project Scripts -- check
+      entry: dotnet run --project Scripts -- check --pre-commit
       language: system
       verbose: true
       pass_filenames: false  
