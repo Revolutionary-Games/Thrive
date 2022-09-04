@@ -27,7 +27,7 @@ public class LocalizationCheck : LocalizationCheckBase
 
             if (matches)
             {
-                runData.OutputInfoWithMutex("Please verify your Babel-Thrive version meets teh requirement and " +
+                runData.OutputInfoWithMutex("Please verify your Babel-Thrive version meets the requirement and " +
                     $"rerun {LocalizationCommand}");
             }
             else
