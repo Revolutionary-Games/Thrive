@@ -337,35 +337,21 @@ public static class Constants
     /// <summary>
     ///   How much total compounds can be absorbed by organelles to grow per second
     /// </summary>
-<<<<<<< Updated upstream
-    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 1.00f;
-=======
     public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.5f;
->>>>>>> Stashed changes
 
     /// <summary>
     ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
     ///   reproduction use. Note this limit applies to all compounds combined, not to each individual compound type.
     ///   This is because it is way easier to implement that way.
     /// </summary>
-<<<<<<< Updated upstream
-    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.20f;
-=======
     public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
->>>>>>> Stashed changes
 
     /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
-<<<<<<< Updated upstream
-    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 7;
-
-    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 7;
-=======
     public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
->>>>>>> Stashed changes
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
