@@ -287,9 +287,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool compoundCompressed;
 
     /// <summary>
-    ///   This is opposite of the expected value, ie. this is true when the panels are collapsed
+    ///   These are the opposite of the expected value, ie. these are true when the panels are collapsed
     /// </summary>
-    private bool leftPanelsActive;
+    private bool compoundPanelsActive;
     private bool environmentPanelActive;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
@@ -1283,17 +1283,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private void CompoundButtonPressed(bool wantedState)
     {
-        if (leftPanelsActive == !wantedState)
+        if (compoundPanelsActive == !wantedState)
             return;
 
-        if (!leftPanelsActive)
+        if (!compoundPanelsActive)
         {
-            leftPanelsActive = true;
+            compoundPanelsActive = true;
             compoundsGroupAnimationPlayer.Play("HideCompoundsPanels");
         }
         else
         {
-            leftPanelsActive = false;
+            compoundPanelsActive = false;
             compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
         }
     }
