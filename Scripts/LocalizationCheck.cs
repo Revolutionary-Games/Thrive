@@ -33,7 +33,7 @@ public class LocalizationCheck : LocalizationCheckBase
             else
             {
                 runData.OutputErrorWithMutex("Mismatching Babel-Thrive version detected. Please update " +
-                    $"\"pip install -r docker/lint/requirements.txt --user\" and rerun {LocalizationCommand}");
+                    $"\"pip install -r docker/ci/requirements.txt --user\" and rerun {LocalizationCommand}");
             }
         }
     }

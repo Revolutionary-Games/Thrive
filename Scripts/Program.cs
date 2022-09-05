@@ -131,11 +131,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        throw new NotImplementedException();
+        var tool = new ContainerTool(options);
 
-        // var checker = new IconProcessor(options);
-        //
-        // return checker.Run(tokenSource.Token).Result ? 0 : 1;
+        return tool.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int SetSteamOptions(SteamOptions options)
@@ -215,9 +213,7 @@ public class Program
     {
     }
 
-    // TODO: move to base
-    [Verb("container", HelpText = "Tool for creating container images for this project")]
-    public class ContainerOptions : ScriptOptionsBase
+    public class ContainerOptions : ContainerOptionsBase
     {
     }
 

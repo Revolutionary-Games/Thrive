@@ -478,7 +478,7 @@ to first navigate in command prompt / terminal to the Thrive base
 folder and run the following:
 
 ```
-pip install -r docker/jsonlint/requirements.txt --user
+pip install -r docker/ci/requirements.txt --user
 ```
 
 That will make sure that you have compatible versions of the
@@ -525,7 +525,7 @@ Then install the required packages and run the localization scripts
 while in the environment:
 
 ```sh
-pip install -r docker/jsonlint/requirements.txt
+pip install -r docker/ci/requirements.txt
 dotnet run --project Scripts -- localization
 ```
 

@@ -3,7 +3,8 @@ FROM fedora:36
 RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs \
     p7zip tar unzip xz gcc make wget dotnet-sdk-6.0 && dnf clean all
 RUN git lfs install
-RUN gem install os colorize rubyzip json sha3 httparty parallel nokogiri
+COPY requirements.txt /requirements-thrive.txt
+RUN pip3 --no-cache-dir install -r /requirements-thrive.txt
 
 # Godot install
 ENV GODOT_VERSION "3.5"
