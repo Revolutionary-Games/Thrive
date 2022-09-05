@@ -1265,6 +1265,22 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hotBar.Visible = displayed;
     }
 
+    private void EnvironmentButtonPressed(bool wantedState)
+    {
+        if(environmentPanelActive == !wantedState)
+            return;
+        if(!environmentPanelActive)
+        {
+            environmentPanelActive = true;
+            environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");
+        }
+        else
+        {
+            environmentPanelActive = false;
+            environmentGroupAnimationPlayer.Play("ShowEnvironmentPanel");
+        }
+    }
+
     private void CompoundButtonPressed(bool wantedState)
     {
         if (leftPanelsActive == !wantedState)
@@ -1279,22 +1295,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         {
             leftPanelsActive = false;
             compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
-        }
-    }
-
-    private void EnvironmentButtonPressed(bool wantedState)
-    {
-        if(environmentPanelActive == !wantedState)
-            return;
-        if(!environmentPanelActive)
-        {
-            environmentPanelActive = true;
-            environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");
-        }
-        else
-        {
-            environmentPanelActive = false;
-            environmentGroupAnimationPlayer.Play("ShowEnvironmentPanel");
         }
     }
 
