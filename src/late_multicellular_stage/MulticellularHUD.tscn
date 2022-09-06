@@ -227,7 +227,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:margin_left")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -267,7 +267,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:margin_left")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -307,7 +307,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:margin_left")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -347,7 +347,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:margin_left")
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:rect_position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -635,7 +635,7 @@ alignment = 2
 
 [node name="EnvironmentGroup" type="VBoxContainer" parent="BottomLeft/LeftPanels"]
 margin_top = 6.0
-margin_right = 254.0
+margin_right = 326.0
 margin_bottom = 240.0
 
 [node name="EnvironmentPanel" type="Panel" parent="BottomLeft/LeftPanels/EnvironmentGroup"]
@@ -1082,8 +1082,10 @@ __meta__ = {
 
 [node name="CompoundsGroup" type="VBoxContainer" parent="BottomLeft/LeftPanels"]
 margin_top = 250.0
-margin_right = 254.0
+margin_right = 326.485
 margin_bottom = 567.0
+grow_horizontal = 2
+rect_min_size = Vector2( 326.485, 0 )
 
 [node name="CompoundsPanel" type="Panel" parent="BottomLeft/LeftPanels/CompoundsGroup"]
 margin_right = 254.0
