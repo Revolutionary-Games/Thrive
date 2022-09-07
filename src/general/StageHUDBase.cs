@@ -290,6 +290,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     ///   These are the opposite of the expected value, ie. these are true when the panels are collapsed
     /// </summary>
     private bool compoundPanelActive;
+
     private bool environmentPanelActive;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
