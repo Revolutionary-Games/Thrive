@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj" />
     <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj" />
   </ItemGroup>
 

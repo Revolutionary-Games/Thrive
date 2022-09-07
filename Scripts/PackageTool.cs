@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using DevCenterCommunication.Utilities;
 using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
 using ScriptsBase.Utilities;
@@ -89,8 +90,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         new("assets/misc/thrive_logo_big.png", "Thrive.png", PackagePlatform.Linux),
     };
 
-    private readonly string thriveVersion;
-    private string dehydratedVersion;
+    private string thriveVersion;
 
     private bool checkedGodot;
     private bool steamMode;
@@ -115,7 +115,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
 
         thriveVersion = AssemblyInfoReader.ReadVersionFromAssemblyInfo(true);
-        dehydratedVersion = thriveVersion;
     }
 
     protected override IReadOnlyCollection<PackagePlatform> ValidPlatforms => ThrivePlatforms;
@@ -152,7 +151,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             ColourConsole.WriteNormalLine("Making dehydrated devbuilds");
 
-            dehydratedVersion = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
+            thriveVersion = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
         }
 
         if (steamMode)
@@ -362,6 +361,22 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         return true;
     }
 
+    protected override Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
+        CancellationToken cancellationToken)
+    {
+        if (options.Dehydrated)
+        {
+            // After normal packaging, move it to the devbuilds folder for the upload script
+            CopyHelpers.MoveToFolder(folderOrArchive, Dehydration.DEVBUILDS_FOLDER);
+
+            var message = $"Converted to devbuild: {Path.GetFileName(folderOrArchive)}";
+            ColourConsole.WriteInfoLine(message);
+            AddReprintMessage(message);
+        }
+
+        return Task.FromResult(true);
+    }
+
     protected override IEnumerable<FileToPackage> GetFilesToPackage()
     {
         foreach (var fileToPackage in BaseFilesToPackage)
@@ -386,83 +401,41 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private async Task<bool> PrepareDehydratedFolder(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        Directory.CreateDirectory(Dehydration.DEVBUILDS_FOLDER);
+        Directory.CreateDirectory(Dehydration.DEHYDRATE_CACHE);
 
-        // TODO:
+        var pck = Path.Join(folder, "Thrive.pck");
 
-        /*FileUtils.mkdir_p DEVBUILDS_FOLDER
-        FileUtils.mkdir_p DEHYDRATE_CACHE
-        FileUtils.mkdir_p 'builds/temp_extracted'
+        var extractFolder = Path.Join(options.OutputFolder, "temp_extracted", Path.GetFileName(folder));
 
-        extract_folder = "builds/temp_extracted/#{target_name}"
+        var pckCache = new DehydrateCache(extractFolder);
 
-        FileUtils.mkdir_p extract_folder
+        await Dehydration.DehydrateThrivePck(pck, extractFolder, pckCache, cancellationToken);
 
-        pck = File.join(target_folder, 'Thrive.pck')
+        var normalCache = new DehydrateCache(folder);
 
-        # Start by extracting the big files to be dehydrated, but ignore
-        # a list of well compressing / often changing files
-        if runSystemSafe(pck_tool, '--action', 'extract', pck,
-                         '-o', extract_folder, '-q', '--min-size-filter',
-                         DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s,
-                         '--exclude-regex-filter', DEHYDRATE_IGNORE_FILE_TYPES) != 0
-          onError 'Failed to run extract. Do you have the right godotpcktool version?'
-        end
+        cancellationToken.ThrowIfCancellationRequested();
 
-        # And remove them from the .pck
-        if runSystemSafe(pck_tool, '--action', 'repack', File.join(target_folder, 'Thrive.pck'),
-                         '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s,
-                         '--include-override-filter', DEHYDRATE_IGNORE_FILE_TYPES, '-q') != 0
-          onError 'Failed to run repack'
-        end
+        // Dehydrate other files
+        foreach (var file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
+        {
+            // Always ignore some files despite their sizes
+            if (DehydrateIgnoreFiles.Contains(file.Replace($"{folder}/", string.Empty)))
+                continue;
 
-        pck_cache = DehydrateCache.new extract_folder
+            await Dehydration.PerformDehydrationOnFileIfNeeded(file, normalCache, cancellationToken);
+        }
 
-        # Dehydrate always all the unextracted files
-        Dir.glob(File.join(extract_folder, '*#1#*'), File::FNM_DOTMATCH) do |file|
-          raise "found file doesn't exist" unless File.exist? file
-          next if File.directory? file
+        normalCache.AddPck(pck, pckCache);
 
-          dehydrate_file file, pck_cache
-        end
+        await normalCache.WriteTo(folder, cancellationToken);
 
-        # No longer need the temp files
-        FileUtils.rm_rf extract_folder, secure: true
+        // Write meta file needed for upload
+        await Dehydration.WriteMetaFile(Path.GetFileName(folder), normalCache, thriveVersion,
+            GodotTargetFromPlatform(platform),
+            cancellationToken);
 
-        normal_cache = DehydrateCache.new target_folder
-
-        # Dehydrate other files
-        Dir.glob(File.join(target_folder, '*#1#*'), File::FNM_DOTMATCH) do |file|
-          raise "found file doesn't exist" unless File.exist? file
-          next if File.directory? file
-
-          # Always ignore some files despite their sizes
-          next if DEHYDRATE_IGNORE_FILES.include? file.sub("#{target_folder}/", '')
-
-          check_dehydrate_file file, normal_cache
-        end
-
-        normal_cache.add_pck pck, pck_cache
-
-        # Write the cache
-        File.write(File.join(target_folder, 'dehydrated.json'), normal_cache.to_json)
-
-        # Then do a normal zip after the contents have been adjusted
-        final_file = zip_package target, target_name, target_folder, target_file
-
-        # And move it to the devbuilds folder for the upload script
-        FileUtils.mv final_file, DEVBUILDS_FOLDER
-
-        # Write meta file needed for upload
-        File.write(File.join(DEVBUILDS_FOLDER, "#{File.basename(final_file)}.meta.json"),
-                   { dehydrated: { objects: normal_cache.hashes },
-                     branch: git_branch,
-                     platform: target,
-                     version: THRIVE_VERSION }.to_json)
-
-        message = "Created devbuild: #{File.join(DEVBUILDS_FOLDER, final_file)}"
-        puts message
-        @reprint_messages.append '', message*/
+        return true;
     }
 
     private void PrintSteamModeWarning()
