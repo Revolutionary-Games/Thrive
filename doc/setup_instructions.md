@@ -400,7 +400,7 @@ you are on Windows. Then you need to either add the folder where that
 executable is to your system PATH or move the executable (along the
 other Godot resources it needs) to a path that is already in PATH.
 
-### 7zip
+### 7zip and zip
 
 7zip is needed for the game release script, so if you're not packaging
 the game for release you don't need this.
@@ -414,6 +414,8 @@ installer release. After installing, add the installed folder (where
 in command prompt or powershell, it should print 7zip version info and
 command line usage.
 
+`zip` command is also needed. It is most likely already installed on
+Linux and Mac, but needs to be separately installed on Windows.
 
 Linter
 ------

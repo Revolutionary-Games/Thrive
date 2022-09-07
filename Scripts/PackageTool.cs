@@ -12,9 +12,6 @@ using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
-using SharpCompress.Writers.Zip;
-using CompressionLevel = SharpCompress.Compressors.Deflate.CompressionLevel;
-using ZipArchive = SharpCompress.Archives.Zip.ZipArchive;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
@@ -64,6 +61,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             "default_env.tres",
             "Directory.Build.props",
             "export_presets.cfg",
+            "global.json",
             "LICENSE.txt",
             "project.godot",
             "Thrive.csproj",
@@ -287,33 +285,34 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else if (platform == PackagePlatform.Mac)
         {
-            ColourConsole.WriteNormalLine("Including licenses in mac .zip");
+            ColourConsole.WriteNormalLine("Including licenses (and other common files) in mac .zip");
 
-            var original = MacZipInFolder(folder);
-            var temp = $"{original}.tmp";
-
+            var startInfo = new ProcessStartInfo("zip")
             {
-                using var archive = ZipArchive.Open(original);
+                WorkingDirectory = folder,
+            };
+            startInfo.ArgumentList.Add("-9");
+            startInfo.ArgumentList.Add("-u");
+            startInfo.ArgumentList.Add(MacZipInFolder(folder));
 
-                foreach (var file in GetFilesToPackage())
-                {
-                    archive.AddEntry(file.PackagePathAndName, File.OpenRead(file.OriginalFile), true);
-                }
-
-                if (options.SourceCode == true)
-                {
-                    archive.AddEntry(CompressedSourceName, File.OpenRead(CompressedSourceLocation), true);
-                }
-
-                await using var writer = File.OpenWrite(temp);
-                archive.SaveTo(writer, new ZipWriterOptions(SharpCompress.Common.CompressionType.Deflate)
-                {
-                    DeflateCompressionLevel = CompressionLevel.Level8,
-                });
+            foreach (var file in GetFilesToPackage())
+            {
+                startInfo.ArgumentList.Add(file.PackagePathAndName);
             }
 
-            File.Delete(original);
-            File.Move(temp, original);
+            if (options.SourceCode == true)
+            {
+                startInfo.ArgumentList.Add(CompressedSourceName);
+            }
+
+            var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Running zip update failed (exit: {result.ExitCode}): {result.FullOutput}");
+                return false;
+            }
 
             ColourConsole.WriteInfoLine("Extra files included in mac zip");
         }
