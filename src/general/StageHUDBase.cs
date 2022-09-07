@@ -1267,9 +1267,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private void EnvironmentButtonPressed(bool wantedState)
     {
-        if(environmentPanelActive == !wantedState)
+        if (environmentPanelActive == !wantedState)
             return;
-        if(!environmentPanelActive)
+
+        if (!environmentPanelActive)
         {
             environmentPanelActive = true;
             environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");

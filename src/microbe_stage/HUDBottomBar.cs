@@ -155,8 +155,9 @@ public class HUDBottomBar : HBoxContainer
 
     private void UpdateEnvironmentButton()
     {
-        if(environmentButton == null)
+        if (environmentButton == null)
             return;
+
         environmentButton.Pressed = EnvironmentPressed;
     }
 
