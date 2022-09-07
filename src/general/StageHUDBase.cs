@@ -289,7 +289,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <summary>
     ///   These are the opposite of the expected value, ie. these are true when the panels are collapsed
     /// </summary>
-    private bool compoundPanelActive;
+    private bool compoundsPanelActive;
 
     private bool environmentPanelActive;
 
@@ -1285,17 +1285,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private void CompoundButtonPressed(bool wantedState)
     {
-        if (compoundPanelActive == !wantedState)
+        if (compoundsPanelActive == !wantedState)
             return;
 
-        if (!compoundPanelActive)
+        if (!compoundsPanelActive)
         {
-            compoundPanelActive = true;
+            compoundsPanelActive = true;
             compoundsGroupAnimationPlayer.Play("HideCompoundsPanels");
         }
         else
         {
-            compoundPanelActive = false;
+            compoundsPanelActive = false;
             compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
         }
     }
