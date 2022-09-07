@@ -77,11 +77,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        throw new NotImplementedException();
+        var packager = new PackageTool(options);
 
-        // var checker = new IconProcessor(options);
-        //
-        // return checker.Run(tokenSource.Token).Result ? 0 : 1;
+        return packager.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunLocalization(LocalizationOptions options)
@@ -206,6 +204,20 @@ public class Program
 
     public class PackageOptions : PackageOptionsBase
     {
+        [Option('s', "steam", Required = false, Default = null,
+            HelpText =
+                "Use to set Thrive to either build or not build in Steam mode. If unset, preserves current mode.")]
+        public bool? Steam { get; set; }
+
+        [Option('z', "compress", Default = true,
+            HelpText = "Control whether the packages are compressed or left as folders")]
+        public bool? CompressRaw { get; set; }
+
+        [Option('d', "dehydrated", Default = false,
+            HelpText = "Make dehydrated builds by separating out big files. For use with DevBuilds")]
+        public bool Dehydrated { get; set; }
+
+        public override bool Compress => CompressRaw == true;
     }
 
     [Verb("upload", HelpText = "Upload created devbuilds to ThriveDevCenter")]

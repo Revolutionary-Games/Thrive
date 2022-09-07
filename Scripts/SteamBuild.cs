@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 
 public static class SteamBuild
@@ -114,6 +115,22 @@ public static class SteamBuild
         File.Move(tempFile, THRIVE_CSPROJ, true);
 
         return true;
+    }
+
+    public static SteamPlatform ConvertPackagePlatformToSteam(PackagePlatform platform)
+    {
+        switch (platform)
+        {
+            case PackagePlatform.Linux:
+                return SteamPlatform.Linux;
+            case PackagePlatform.Windows32:
+            case PackagePlatform.Windows:
+                return SteamPlatform.Windows;
+            case PackagePlatform.Mac:
+                throw new Exception("Steam not implemented for mac yet");
+            default:
+                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+        }
     }
 
     private static IEnumerable<string> ProcessAddingClientLine(SteamPlatform platform, IEnumerable<string> lines,
