@@ -211,9 +211,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         return $"Thrive_{thriveVersion}_{platformName}{suffix}";
     }
 
+    protected override string GetCompressedExtensionForPlatform(PackagePlatform platform)
+    {
+        if (platform == PackagePlatform.Mac)
+            return ".zip";
+
+        return base.GetCompressedExtensionForPlatform(platform);
+    }
+
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        if (options.Steam != null)
+        // TODO: mac steam support
+        if (options.Steam != null && platform != PackagePlatform.Mac)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
                     SteamBuild.ConvertPackagePlatformToSteam(platform)))
@@ -293,9 +302,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             };
             startInfo.ArgumentList.Add("-9");
             startInfo.ArgumentList.Add("-u");
-            startInfo.ArgumentList.Add(MacZipInFolder(folder));
+            startInfo.ArgumentList.Add(Path.GetFileName(MacZipInFolder(folder)));
 
-            foreach (var file in GetFilesToPackage())
+            foreach (var file in GetFilesToPackage().Where(f => f.IsForPlatform(platform)))
             {
                 startInfo.ArgumentList.Add(file.PackagePathAndName);
             }
