@@ -2,7 +2,6 @@
 
 public class HUDBottomBar : HBoxContainer
 {
-
     [Export]
     public NodePath PauseButtonPath = null!;
 
@@ -10,7 +9,7 @@ public class HUDBottomBar : HBoxContainer
     public NodePath CompoundsButtonPath = null!;
 
     [Export]
-    public NodePath EnvironmentButtonPath = null;
+    public NodePath EnvironmentButtonPath = null!;
 
     [Export]
     public NodePath ProcessPanelButtonPath = null!;
