@@ -15,7 +15,7 @@ public class Program
 
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
-                PackageOptions, UploadOptions, ContainerOptions, SteamOptions>(args)
+                PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions>(args)
             .MapResult(
                 (CheckOptions options) => RunChecks(options),
                 (TestOptions options) => RunTests(options),
@@ -26,6 +26,7 @@ public class Program
                 (UploadOptions options) => RunUpload(options),
                 (ContainerOptions options) => RunContainer(options),
                 (SteamOptions options) => SetSteamOptions(options),
+                (GodotTemplateOptions options) => RunTemplateInstall(options),
                 CommandLineHelpers.PrintCommandLineErrors);
 
         ConsoleHelpers.CleanConsoleStateForExit();
@@ -173,6 +174,17 @@ public class Program
         return 0;
     }
 
+    private static int RunTemplateInstall(GodotTemplateOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running Godot templates tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        return GodotTemplateInstaller.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
     public class CheckOptions : CheckOptionsBase
     {
     }
@@ -251,5 +263,10 @@ public class Program
     {
         [Value(0, MetaName = "Mode", Required = true, HelpText = "Which mode to set Thrive to")]
         public string Mode { get; set; } = string.Empty;
+    }
+
+    [Verb("godot-templates", HelpText = "Tool to automatically install Godot templates")]
+    public class GodotTemplateOptions : ScriptOptionsBase
+    {
     }
 }
