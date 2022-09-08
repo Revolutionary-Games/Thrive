@@ -498,7 +498,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
 
-        if (result.ExitCode != 0)
+        // Seems like Godot sometimes gives 255 for the version reading
+        if (result.ExitCode != 0 && result.ExitCode != 255)
         {
             ColourConsole.WriteErrorLine(
                 $"Running godot for version check failed (exit: {result.ExitCode}): {result.FullOutput}");
