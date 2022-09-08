@@ -441,12 +441,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         cancellationToken.ThrowIfCancellationRequested();
 
+        ColourConsole.WriteNormalLine(".pck dehydration complete, dehydrating other files");
+
         // Dehydrate other files
         foreach (var file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
         {
             // Always ignore some files despite their sizes
             if (DehydrateIgnoreFiles.Contains(file.Replace($"{folder}/", string.Empty)))
                 continue;
+
+            if (ColourConsole.DebugPrintingEnabled)
+                ColourConsole.WriteDebugLine($"Dehydrating: {file}");
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             await Dehydration.PerformDehydrationOnFileIfNeeded(file, normalCache, cancellationToken);
         }

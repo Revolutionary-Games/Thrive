@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -83,6 +84,7 @@ public class Uploader
         if (devbuildsToUpload.Count < 1 && dehydratedToUpload.Count < 1)
         {
             ColourConsole.WriteWarningLine("Nothing to upload");
+            DeleteAlreadyExisting();
             return true;
         }
 
@@ -122,6 +124,7 @@ public class Uploader
         await using var reader = File.OpenRead(metaFile);
         var meta = await JsonSerializer.DeserializeAsync<DehydratedInfo>(reader,
             new JsonSerializerOptions(), cancellationToken) ?? throw new NullDecodedJsonException();
+        meta.MetaFile = metaFile;
 
         if (!File.Exists(meta.ArchiveFile))
         {
@@ -257,6 +260,9 @@ public class Uploader
 
         foreach (var devbuildToUpload in devbuildsToUpload)
         {
+            if (devbuildToUpload.MetaFile == null)
+                throw new Exception("Meta file path not set in devbuild object");
+
             cancellationToken.ThrowIfCancellationRequested();
 
             var data = await PerformWithRetry(async cancellation =>
@@ -277,7 +283,7 @@ public class Uploader
             result.Add(new ThingToUpload(devbuildToUpload.ArchiveFile, data.UploadUrl, data.VerifyToken,
                 options.DeleteAfterUpload == true)
             {
-                ExtraDelete = devbuildToUpload.ArchiveFile + Dehydration.DEHYDRATED_META_SUFFIX,
+                ExtraDelete = devbuildToUpload.MetaFile,
             });
         }
 
@@ -338,7 +344,7 @@ public class Uploader
 
             lock (outputLock)
             {
-                ColourConsole.WriteNormalLine($"Finished uploading {upload.File}");
+                ColourConsole.WriteDebugLine($"Finished uploading {upload.File}");
             }
 
             if (upload.DeleteAfterUpload)
@@ -399,15 +405,27 @@ public class Uploader
                     ColourConsole.WriteErrorLine($"Web request failed: {e}");
                 }
 
-                if (attempts > 0)
+                if (e is HttpRequestException httpRequestException)
                 {
-                    lock (outputLock)
-                    {
-                        ColourConsole.WriteNormalLine("Sleeping and retrying the request");
-                    }
+                    // This problem doesn't get better, so we just ignore retrying
+                    if (httpRequestException.StatusCode == HttpStatusCode.Unauthorized)
+                        break;
 
-                    await Task.Delay(TimeSpan.FromSeconds(timeToWait), cancellationToken);
-                    timeToWait *= 2;
+                    // Remote side might be rebooting so we wait here a bit (or we are doing things too fast)
+                    if (httpRequestException.StatusCode is HttpStatusCode.InternalServerError
+                        or HttpStatusCode.GatewayTimeout or HttpStatusCode.BadGateway or HttpStatusCode.TooManyRequests)
+                    {
+                        if (attempts > 0)
+                        {
+                            lock (outputLock)
+                            {
+                                ColourConsole.WriteNormalLine("Sleeping and retrying the request");
+                            }
+
+                            await Task.Delay(TimeSpan.FromSeconds(timeToWait), cancellationToken);
+                            timeToWait *= 2;
+                        }
+                    }
                 }
             }
         }

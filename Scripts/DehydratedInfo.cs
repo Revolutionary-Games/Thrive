@@ -1,6 +1,7 @@
 ﻿namespace Scripts;
 
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 public class DehydratedInfo
 {
@@ -25,4 +26,10 @@ public class DehydratedInfo
 
     public string BuildZipHash { get; }
     public string ArchiveFile { get; }
+
+    /// <summary>
+    ///   A bit dirty to have this here but the upload script needs to know this info where this was loaded from
+    /// </summary>
+    [JsonIgnore]
+    public string? MetaFile { get; set; }
 }
