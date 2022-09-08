@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
 
-public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOptions>
+public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase>
 {
     private const string BABEL_CONFIG_FILE = "babelrc";
 
@@ -104,7 +105,12 @@ public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOpt
         "../src",
     };
 
-    public LocalizationUpdate(Program.LocalizationOptions opts) : base(opts)
+    // This constructor is needed for checks to be able to
+    public LocalizationUpdate(LocalizationOptionsBase opts) : base(opts)
+    {
+    }
+
+    public LocalizationUpdate(Program.LocalizationOptions opts) : this((LocalizationOptionsBase)opts)
     {
     }
 
@@ -195,7 +201,8 @@ public class LocalizationUpdate : LocalizationUpdateBase<Program.LocalizationOpt
         await base.PostProcessTranslations(cancellationToken);
 
         // Remove trailing whitespace
-        ColourConsole.WriteInfoLine("Removing trailing whitespace in .po files...");
+        if (!options.Quiet)
+            ColourConsole.WriteInfoLine("Removing trailing whitespace in .po files...");
 
         foreach (var locale in Locales)
         {

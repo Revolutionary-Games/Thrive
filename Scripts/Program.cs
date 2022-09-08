@@ -41,7 +41,12 @@ public class Program
         ColourConsole.WriteDebugLine("Running in check mode");
         ColourConsole.WriteDebugLine($"Manually specified checks: {string.Join(' ', options.Checks)}");
 
-        var checker = new CodeChecks(options);
+        var checker = new CodeChecks(options, (localizationOptions, cancellationToken) =>
+        {
+            var updater = new LocalizationUpdate(localizationOptions);
+
+            return updater.Run(cancellationToken);
+        });
 
         return checker.Run().Result;
     }

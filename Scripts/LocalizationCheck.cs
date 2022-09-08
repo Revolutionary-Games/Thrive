@@ -1,13 +1,20 @@
 ﻿namespace Scripts;
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Checks;
+using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 
 public class LocalizationCheck : LocalizationCheckBase
 {
     private const string LocalizationCommand = "\"dotnet run --project Scripts -- localization\"";
+
+    public LocalizationCheck(Func<LocalizationOptionsBase, CancellationToken, Task<bool>> runLocalizationTool) : base(
+        runLocalizationTool)
+    {
+    }
 
     public override async Task Run(CodeCheckRun runData, CancellationToken cancellationToken)
     {
@@ -27,7 +34,8 @@ public class LocalizationCheck : LocalizationCheckBase
 
             if (matches)
             {
-                runData.OutputInfoWithMutex("Please verify your Babel-Thrive version meets the requirement and " +
+                runData.OutputInfoWithMutex(
+                    "Please verify your Babel-Thrive version (and gettext tools) meets the requirement and " +
                     $"rerun {LocalizationCommand}");
             }
             else
