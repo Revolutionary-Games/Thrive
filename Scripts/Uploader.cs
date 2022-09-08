@@ -30,12 +30,15 @@ public class Uploader
 
     private readonly Uri url;
 
+    private readonly object outputLock = new();
+
     /// <summary>
     ///   Contains sha3 identifiers
     /// </summary>
     private readonly HashSet<string> dehydratedToUpload = new();
 
     private readonly List<DehydratedInfo> devbuildsToUpload = new();
+
     private readonly List<(string Archive, string Meta)> alreadyUploadedToDelete = new();
 
     public Uploader(Program.UploadOptions options, string dehydratedFolder = Dehydration.DEVBUILDS_FOLDER,
@@ -294,7 +297,7 @@ public class Uploader
 
             var fileSize = Math.Round(new FileInfo(upload.File).Length / (float)GlobalConstants.MEBIBYTE, 2);
 
-            lock (this)
+            lock (outputLock)
             {
                 ColourConsole.WriteNormalLine($"Uploading file {upload.File} with size of {fileSize} MiB");
             }
@@ -318,7 +321,7 @@ public class Uploader
 
             if (upload.DeleteAfterUpload)
             {
-                lock (this)
+                lock (outputLock)
                 {
                     ColourConsole.WriteNormalLine($"Deleting successfully uploaded file: {upload.File}");
                 }
@@ -366,14 +369,14 @@ public class Uploader
             }
             catch (Exception e)
             {
-                lock (this)
+                lock (outputLock)
                 {
                     ColourConsole.WriteErrorLine($"Web request failed: {e}");
                 }
 
                 if (attempts > 0)
                 {
-                    lock (this)
+                    lock (outputLock)
                     {
                         ColourConsole.WriteNormalLine("Sleeping and retrying the request");
                     }

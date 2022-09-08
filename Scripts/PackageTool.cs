@@ -556,7 +556,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         switch (platform)
         {
             case PackagePlatform.Linux:
-                return "";
+                return string.Empty;
             case PackagePlatform.Windows32:
             case PackagePlatform.Windows:
                 return ".exe";
