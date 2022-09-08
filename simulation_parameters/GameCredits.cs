@@ -100,7 +100,6 @@ public class GameCredits : IRegistryType
 
     public class DeveloperPerson
     {
-        [JsonProperty(PropertyName = "person")]
         public string Name { get; set; } = null!;
 
         public bool Lead { get; set; }
