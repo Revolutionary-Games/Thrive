@@ -77,8 +77,7 @@ public class Uploader
         foreach (var metaFile in Directory.EnumerateFiles(dehydratedFolder, $"*.{Dehydration.DEHYDRATED_META_SUFFIX}",
                      SearchOption.TopDirectoryOnly))
         {
-            var archiveFile = metaFile.Substring(0, metaFile.Length - Dehydration.DEHYDRATED_META_SUFFIX.Length);
-            await CheckBuildForUpload(metaFile, archiveFile, cancellationToken);
+            await CheckBuildForUpload(metaFile, cancellationToken);
         }
 
         if (devbuildsToUpload.GroupBy(d => (d.Platform, d.Version)).Any(g => g.Count() > 1))
@@ -99,11 +98,18 @@ public class Uploader
         return true;
     }
 
-    private async Task CheckBuildForUpload(string metaFile, string archiveFile, CancellationToken cancellationToken)
+    private async Task CheckBuildForUpload(string metaFile, CancellationToken cancellationToken)
     {
         await using var reader = File.OpenRead(metaFile);
         var meta = await JsonSerializer.DeserializeAsync<DehydratedInfo>(reader,
             new JsonSerializerOptions(), cancellationToken) ?? throw new NullDecodedJsonException();
+
+        if (!File.Exists(meta.ArchiveFile))
+        {
+            ColourConsole.WriteWarningLine($"Archive file doesn't exist ({meta.ArchiveFile}), deleting meta as well");
+            File.Delete(metaFile);
+            return;
+        }
 
         ColourConsole.WriteNormalLine($"Found devbuild: {meta.Version}, {meta.Platform}, {meta.Branch}");
 
@@ -123,7 +129,7 @@ public class Uploader
 
         if (!data.Upload)
         {
-            alreadyUploadedToDelete.Add((archiveFile, metaFile));
+            alreadyUploadedToDelete.Add((meta.ArchiveFile, metaFile));
             return;
         }
 
@@ -202,6 +208,8 @@ public class Uploader
 
         foreach (var chunk in dehydratedToUpload.Chunk(CommunicationConstants.MAX_DEHYDRATED_OBJECTS_PER_OFFER))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             var data = await PerformWithRetry(async cancellation =>
             {
                 var response = await client.PostAsJsonAsync("api/v1/devbuild/upload_objects",
@@ -232,6 +240,8 @@ public class Uploader
 
         foreach (var devbuildToUpload in devbuildsToUpload)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             var data = await PerformWithRetry(async cancellation =>
             {
                 var response = await client.PostAsJsonAsync("api/v1/devbuild/upload_devbuild", new DevBuildUploadRequest
@@ -292,6 +302,8 @@ public class Uploader
             await PutFile(upload.File, upload.UploadUrl, uploadClient, cancellationToken);
 
             // Tell the server about upload success
+            // We don't want to cancel this, so we'll at least run this if we are canceled (and delete it), before
+            // exiting
             await PerformWithRetry(async cancellation =>
             {
                 var response = await client.PostAsJsonAsync("api/v1/devbuild/finish", new TokenForm
@@ -302,7 +314,7 @@ public class Uploader
                 response.EnsureSuccessStatusCode();
 
                 return true;
-            }, cancellationToken);
+            }, CancellationToken.None);
 
             if (upload.DeleteAfterUpload)
             {
@@ -342,6 +354,8 @@ public class Uploader
 
         while (attempts > 0)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             --attempts;
             var task = func(cancellationToken);
 
