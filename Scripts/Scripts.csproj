@@ -13,4 +13,8 @@
     <ProjectReference Include="..\RevolutionaryGamesCommon\ScriptsBase\ScriptsBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Karambolo.PO" Version="1.8.0" />
+  </ItemGroup>
+
 </Project>
