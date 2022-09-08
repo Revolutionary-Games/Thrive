@@ -95,6 +95,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private bool checkedGodot;
     private bool steamMode;
 
+    private DehydrateCache? cacheForNextMetaToWrite;
+
     public PackageTool(Program.PackageOptions options) : base(options)
     {
         if (options.Dehydrated)
@@ -358,10 +360,17 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (!await base.Compress(platform, folder, archiveFile, cancellationToken))
             return false;
 
+        if (options.Dehydrated)
+        {
+            ColourConsole.WriteNormalLine($"Deleting folder that was packaged as a devbuild: {folder}");
+
+            Directory.Delete(folder, true);
+        }
+
         return true;
     }
 
-    protected override Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
+    protected override async Task<bool> OnPostFolderHandled(PackagePlatform platform, string folderOrArchive,
         CancellationToken cancellationToken)
     {
         if (options.Dehydrated)
@@ -369,12 +378,25 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // After normal packaging, move it to the devbuilds folder for the upload script
             CopyHelpers.MoveToFolder(folderOrArchive, Dehydration.DEVBUILDS_FOLDER);
 
+            if (cacheForNextMetaToWrite == null)
+            {
+                ColourConsole.WriteErrorLine("No existing dehydrated cache data to write to meta file");
+                return false;
+            }
+
+            // Write meta file needed for upload
+            await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
+                thriveVersion,
+                GodotTargetFromPlatform(platform), folderOrArchive, cancellationToken);
+
+            cacheForNextMetaToWrite = null;
+
             var message = $"Converted to devbuild: {Path.GetFileName(folderOrArchive)}";
             ColourConsole.WriteInfoLine(message);
             AddReprintMessage(message);
         }
 
-        return Task.FromResult(true);
+        return true;
     }
 
     protected override IEnumerable<FileToPackage> GetFilesToPackage()
@@ -401,6 +423,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private async Task<bool> PrepareDehydratedFolder(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
+        _ = platform;
+
         Directory.CreateDirectory(Dehydration.DEVBUILDS_FOLDER);
         Directory.CreateDirectory(Dehydration.DEHYDRATE_CACHE);
 
@@ -430,10 +454,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         await normalCache.WriteTo(folder, cancellationToken);
 
-        // Write meta file needed for upload
-        await Dehydration.WriteMetaFile(Path.GetFileName(folder), normalCache, thriveVersion,
-            GodotTargetFromPlatform(platform),
-            cancellationToken);
+        // Meta file is written later once we know the hash of the compressed archive. This variable stores the data
+        // until it is ready to be written
+        cacheForNextMetaToWrite = normalCache;
 
         return true;
     }

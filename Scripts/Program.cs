@@ -114,11 +114,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        throw new NotImplementedException();
+        var uploader = new Uploader(options);
 
-        // var checker = new IconProcessor(options);
-        //
-        // return checker.Run(tokenSource.Token).Result ? 0 : 1;
+        return uploader.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunContainer(ContainerOptions options)
@@ -223,6 +221,25 @@ public class Program
     [Verb("upload", HelpText = "Upload created devbuilds to ThriveDevCenter")]
     public class UploadOptions : ScriptOptionsBase
     {
+        [Option('k', "key", Required = false, Default = null, MetaValue = "KEY",
+            HelpText = "Set to a valid DevCenter key (not user token) to use non-anonymous uploading.")]
+        public string? Key { get; set; }
+
+        [Option('k', "key", Required = false, Default = Uploader.DEFAULT_DEVCENTER_URL, MetaValue = "DEVCENTER_URL",
+            HelpText = "DevCenter URL to upload to.")]
+        public string Url { get; set; } = Uploader.DEFAULT_DEVCENTER_URL;
+
+        [Option('r', "retries", Required = false, Default = 3, MetaValue = "COUNT",
+            HelpText = "How many upload retries to do to avoid spurious failures")]
+        public int Retries { get; set; }
+
+        [Option('p', "parallel", Required = false, Default = Uploader.DEFAULT_PARALLEL_UPLOADS, MetaValue = "COUNT",
+            HelpText = "How many parallel uploads to do")]
+        public int ParallelUploads { get; set; }
+
+        [Option("delete-after-upload", Default = true,
+            HelpText = "If specified dehydrated builds are deleted after upload (or server not wanting them)")]
+        public bool? DeleteAfterUpload { get; set; }
     }
 
     public class ContainerOptions : ContainerOptionsBase

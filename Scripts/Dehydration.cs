@@ -14,6 +14,7 @@ public static class Dehydration
 {
     public const string DEHYDRATE_CACHE = "builds/dehydrate_cache";
     public const string DEVBUILDS_FOLDER = "builds/devbuilds";
+    public const string DEHYDRATED_META_SUFFIX = ".meta.json";
 
     private const long DEHYDRATE_FILE_SIZE_THRESHOLD = 100000;
     private const string DEHYDRATE_IGNORE_FILE_TYPES = @"\.po,\.pot,\.txt,\.md,\.tscn,Thrive\.dll,Thrive\.pdb";
@@ -115,14 +116,16 @@ public static class Dehydration
     }
 
     public static async Task WriteMetaFile(string name, DehydrateCache cache, string thriveVersion,
-        string godotPlatform, CancellationToken cancellationToken)
+        string godotPlatform, string buildZipFile, CancellationToken cancellationToken)
     {
         var info = new DehydratedInfo(cache.Hashes(), await GetBranchCICompatible(cancellationToken), thriveVersion,
-            godotPlatform);
+            godotPlatform,
+            FileUtilities.HashToHex(await FileUtilities.CalculateSha3OfFile(buildZipFile, cancellationToken)),
+            buildZipFile);
 
-        var metaName = $"{name}.meta.json";
+        var metaName = $"{name}{DEHYDRATED_META_SUFFIX}";
 
-        await File.WriteAllTextAsync(Path.Join(Dehydration.DEVBUILDS_FOLDER, metaName), JsonSerializer.Serialize(info),
+        await File.WriteAllTextAsync(Path.Join(DEVBUILDS_FOLDER, metaName), JsonSerializer.Serialize(info),
             cancellationToken);
     }
 
