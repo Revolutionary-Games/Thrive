@@ -419,21 +419,17 @@ public static class CreditsUpdater
 
         public class DeveloperPerson
         {
-            public DeveloperPerson(string name, bool lead = false)
+            public DeveloperPerson(string person, bool lead = false)
             {
-                Name = name;
+                Person = person;
                 Lead = lead;
             }
 
-            public string Name { get; }
+            [JsonInclude]
+            public string Person { get; }
 
             [JsonInclude]
             public bool Lead { get; }
-
-            public override string ToString()
-            {
-                return Name;
-            }
         }
     }
 }
