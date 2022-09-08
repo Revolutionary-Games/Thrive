@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
@@ -368,7 +369,12 @@ public class Uploader
         {
             await using var reader = File.OpenRead(file);
 
-            var response = await client.PutAsync(fullUrl, new StreamContent(reader), cancellation);
+            var content = new StreamContent(reader);
+
+            // Needed for the launcher to work
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
+
+            var response = await client.PutAsync(fullUrl, content, cancellation);
 
             response.EnsureSuccessStatusCode();
 
