@@ -77,20 +77,17 @@ public class Uploader
 
         ColourConsole.WriteInfoLine("Starting devbuild upload");
 
-        foreach (var metaFile in Directory.EnumerateFiles(dehydratedFolder, $"*.{Dehydration.DEHYDRATED_META_SUFFIX}",
-                     SearchOption.TopDirectoryOnly))
-        {
-            await CheckBuildForUpload(metaFile, cancellationToken);
-        }
-
-        if (devbuildsToUpload.GroupBy(d => (d.Platform, d.Version)).Any(g => g.Count() > 1))
-        {
-            ColourConsole.WriteErrorLine("Duplicate devbuilds to upload have been detected");
+        if (!await FindBuildsToUpload(cancellationToken))
             return false;
+
+        if (devbuildsToUpload.Count < 1 && dehydratedToUpload.Count < 1)
+        {
+            ColourConsole.WriteWarningLine("Nothing to upload");
+            return true;
         }
 
-        ColourConsole.WriteInfoLine($"Beginning upload of {"devbuild".PrintCount(devbuildsToUpload.Count)} with"
-            + $"dehydrated {"object".PrintCount(dehydratedToUpload.Count)}");
+        ColourConsole.WriteInfoLine($"Beginning upload of {"devbuild".PrintCount(devbuildsToUpload.Count)} with "
+            + $"{"dehydrated object".PrintCount(dehydratedToUpload.Count)}");
 
         await PerformUploads(cancellationToken);
 
@@ -101,7 +98,26 @@ public class Uploader
         return true;
     }
 
-    private async Task CheckBuildForUpload(string metaFile, CancellationToken cancellationToken)
+    private async Task<bool> FindBuildsToUpload(CancellationToken cancellationToken)
+    {
+        using var client = CreateHttpClient();
+
+        foreach (var metaFile in Directory.EnumerateFiles(dehydratedFolder, $"*{Dehydration.DEHYDRATED_META_SUFFIX}",
+                     SearchOption.TopDirectoryOnly))
+        {
+            await CheckBuildForUpload(metaFile, client, cancellationToken);
+        }
+
+        if (devbuildsToUpload.GroupBy(d => (d.Platform, d.Version)).Any(g => g.Count() > 1))
+        {
+            ColourConsole.WriteErrorLine("Duplicate devbuilds to upload have been detected");
+            return false;
+        }
+
+        return true;
+    }
+
+    private async Task CheckBuildForUpload(string metaFile, HttpClient client, CancellationToken cancellationToken)
     {
         await using var reader = File.OpenRead(metaFile);
         var meta = await JsonSerializer.DeserializeAsync<DehydratedInfo>(reader,
@@ -115,8 +131,6 @@ public class Uploader
         }
 
         ColourConsole.WriteNormalLine($"Found devbuild: {meta.Version}, {meta.Platform}, {meta.Branch}");
-
-        using var client = CreateHttpClient();
 
         var data = await PerformWithRetry(async cancellation =>
         {
@@ -273,6 +287,9 @@ public class Uploader
     private async Task UploadThingsInChunks(IReadOnlyCollection<ThingToUpload> thingsToUpload,
         CancellationToken cancellationToken)
     {
+        if (thingsToUpload.Count < 1)
+            return;
+
         var tasks = new List<Task>();
 
         foreach (var toUpload in thingsToUpload.Chunk(
@@ -318,6 +335,11 @@ public class Uploader
 
                 return true;
             }, CancellationToken.None);
+
+            lock (outputLock)
+            {
+                ColourConsole.WriteNormalLine($"Finished uploading {upload.File}");
+            }
 
             if (upload.DeleteAfterUpload)
             {
@@ -369,6 +391,9 @@ public class Uploader
             }
             catch (Exception e)
             {
+                if (cancellationToken.IsCancellationRequested)
+                    break;
+
                 lock (outputLock)
                 {
                     ColourConsole.WriteErrorLine($"Web request failed: {e}");
@@ -386,6 +411,8 @@ public class Uploader
                 }
             }
         }
+
+        cancellationToken.ThrowIfCancellationRequested();
 
         throw new Exception("HTTP request ran out of retries");
     }
