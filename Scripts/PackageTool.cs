@@ -376,7 +376,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (options.Dehydrated)
         {
             // After normal packaging, move it to the devbuilds folder for the upload script
-            CopyHelpers.MoveToFolder(folderOrArchive, Dehydration.DEVBUILDS_FOLDER);
+            var target = Path.Join(Dehydration.DEVBUILDS_FOLDER, Path.GetFileName(folderOrArchive));
+            File.Move(folderOrArchive, target, true);
 
             if (cacheForNextMetaToWrite == null)
             {
@@ -387,7 +388,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // Write meta file needed for upload
             await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
                 thriveVersion,
-                GodotTargetFromPlatform(platform), folderOrArchive, cancellationToken);
+                GodotTargetFromPlatform(platform), target, cancellationToken);
 
             cacheForNextMetaToWrite = null;
 

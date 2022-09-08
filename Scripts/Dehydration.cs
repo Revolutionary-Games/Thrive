@@ -82,7 +82,7 @@ public static class Dehydration
     {
         var hash = FileUtilities.HashToHex(await FileUtilities.CalculateSha3OfFile(file, cancellationToken));
 
-        // TODO: should this use the cache here (perhaps with a special parameter as this is a bit unexpected)
+        // The base path of DehydrateCache is just for prefix removal, so that's why that is not written to here
         var target = Path.Join(DEHYDRATE_CACHE, $"{hash}.gz");
 
         // Only copy to the dehydrate cache if hash doesn't exist
@@ -90,6 +90,9 @@ public static class Dehydration
         {
             await Compression.GzipToTarget(file, target, cancellationToken);
         }
+
+        if (!File.Exists(target))
+            throw new Exception($"Failed to write target file to cache: {target}");
 
         cache.Add(file, hash);
 
