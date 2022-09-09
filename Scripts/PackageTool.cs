@@ -45,41 +45,39 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "README.txt",
     };
 
-    private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles =
-        new List<FileToPackage>
-        {
-            new("LICENSE.txt"),
-            new("gpl.txt"),
-            new("assets/LICENSE.txt", "ThriveAssetsLICENSE.txt"),
-            new("assets/README.txt", "ThriveAssetsREADME.txt"),
-            new("doc/GodotLicense.txt", "GodotLicense.txt"),
-        };
+    private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles = new List<FileToPackage>
+    {
+        new("LICENSE.txt"),
+        new("gpl.txt"),
+        new("assets/LICENSE.txt", "ThriveAssetsLICENSE.txt"),
+        new("assets/README.txt", "ThriveAssetsREADME.txt"),
+        new("doc/GodotLicense.txt", "GodotLicense.txt"),
+    };
 
-    private static readonly IReadOnlyCollection<string> SourceItemsToPackage =
-        new List<string>
-        {
-            "default_bus_layout.tres",
-            "default_env.tres",
-            "Directory.Build.props",
-            "export_presets.cfg",
-            "global.json",
-            "LICENSE.txt",
-            "project.godot",
-            "Thrive.csproj",
-            "Thrive.sln",
-            "Thrive.sln.DotSettings",
-            "doc",
-            "Properties",
-            "shaders",
-            "simulation_parameters",
-            "src",
-            "third_party/Directory.Build.props",
-            "third_party/ThirdParty.csproj",
-            "third_party/FastNoiseLite.cs",
-            "third_party/StyleCop.ruleset",
-            "README.md",
-            "RevolutionaryGamesCommon",
-        };
+    private static readonly IReadOnlyCollection<string> SourceItemsToPackage = new List<string>
+    {
+        "default_bus_layout.tres",
+        "default_env.tres",
+        "Directory.Build.props",
+        "export_presets.cfg",
+        "global.json",
+        "LICENSE.txt",
+        "project.godot",
+        "Thrive.csproj",
+        "Thrive.sln",
+        "Thrive.sln.DotSettings",
+        "doc",
+        "Properties",
+        "shaders",
+        "simulation_parameters",
+        "src",
+        "third_party/Directory.Build.props",
+        "third_party/ThirdParty.csproj",
+        "third_party/FastNoiseLite.cs",
+        "third_party/StyleCop.ruleset",
+        "README.md",
+        "RevolutionaryGamesCommon",
+    };
 
     /// <summary>
     ///   Base files (non-Steam, no license) that are copied to the exported game folders
