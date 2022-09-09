@@ -327,6 +327,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteInfoLine("Extra files included in mac zip");
         }
 
+        if (!options.Dehydrated)
+        {
+            var potentialCache = Path.Join(folder, DehydrateCache.CacheFileName);
+
+            if (File.Exists(potentialCache))
+            {
+                ColourConsole.WriteWarningLine(
+                    $"Deleting leftover dehydrate cache file in normal build: {potentialCache}");
+                File.Delete(potentialCache);
+            }
+        }
+
         return true;
     }
 
