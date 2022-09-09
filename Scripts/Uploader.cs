@@ -419,7 +419,8 @@ public class Uploader
 
                     // Remote side might be rebooting so we wait here a bit (or we are doing things too fast)
                     if (httpRequestException.StatusCode is HttpStatusCode.InternalServerError
-                        or HttpStatusCode.GatewayTimeout or HttpStatusCode.BadGateway or HttpStatusCode.TooManyRequests)
+                        or HttpStatusCode.GatewayTimeout or HttpStatusCode.BadGateway
+                        or HttpStatusCode.ServiceUnavailable or HttpStatusCode.TooManyRequests)
                     {
                         if (attempts > 0)
                         {
