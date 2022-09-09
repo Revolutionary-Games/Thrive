@@ -266,20 +266,49 @@ public class Uploader
 
             cancellationToken.ThrowIfCancellationRequested();
 
-            var data = await PerformWithRetry(async cancellation =>
+            DevBuildUploadResult data;
+            try
             {
-                var response = await client.PostAsJsonAsync("api/v1/devbuild/upload_devbuild", new DevBuildUploadRequest
+                data = await PerformWithRetry(async cancellation =>
                 {
-                    BuildHash = devbuildToUpload.Version,
-                    BuildBranch = devbuildToUpload.Branch,
-                    BuildPlatform = devbuildToUpload.Platform,
-                    BuildSize = (int)new FileInfo(devbuildToUpload.ArchiveFile).Length,
-                    BuildZipHash = devbuildToUpload.BuildZipHash,
-                    RequiredDehydratedObjects = devbuildToUpload.DehydratedObjects.ToList(),
-                }, cancellation);
+                    var response = await client.PostAsJsonAsync("api/v1/devbuild/upload_devbuild",
+                        new DevBuildUploadRequest
+                        {
+                            BuildHash = devbuildToUpload.Version,
+                            BuildBranch = devbuildToUpload.Branch,
+                            BuildPlatform = devbuildToUpload.Platform,
+                            BuildSize = (int)new FileInfo(devbuildToUpload.ArchiveFile).Length,
+                            BuildZipHash = devbuildToUpload.BuildZipHash,
+                            RequiredDehydratedObjects = devbuildToUpload.DehydratedObjects.ToList(),
+                        }, cancellation);
 
-                return await GetJsonFromResponse<DevBuildUploadResult>(response, cancellation);
-            }, cancellationToken);
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        // Give a different exception if we got an error message indicating that
+                        var content = await response.Content.ReadAsStringAsync(cancellation);
+
+                        ColourConsole.WriteNormalLine($"Unauthorized response, server said: {content}");
+
+                        if (content.Contains(CommunicationStrings.ERROR_UPLOADING_DEVBUILD_ANONYMOUSLY_OVER_EXISTING))
+                            throw new DevBuildOverwriteFailedException();
+
+                        response.EnsureSuccessStatusCode();
+                    }
+
+                    return await GetJsonFromResponse<DevBuildUploadResult>(response, cancellation);
+                }, cancellationToken);
+            }
+            catch (DevBuildOverwriteFailedException)
+            {
+                ColourConsole.WriteWarningLine(
+                    "Deleting a build that was attempted to be uploaded over a build we can't " +
+                    $"overwrite: {devbuildToUpload.MetaFile}");
+
+                File.Delete(devbuildToUpload.MetaFile);
+                File.Delete(devbuildToUpload.ArchiveFile);
+
+                continue;
+            }
 
             result.Add(new ThingToUpload(devbuildToUpload.ArchiveFile, data.UploadUrl, data.VerifyToken,
                 options.DeleteAfterUpload == true)
@@ -401,6 +430,10 @@ public class Uploader
                 var result = await task;
                 return result;
             }
+            catch (DevBuildOverwriteFailedException)
+            {
+                throw;
+            }
             catch (Exception e)
             {
                 if (cancellationToken.IsCancellationRequested)
@@ -415,7 +448,9 @@ public class Uploader
                 {
                     // This problem doesn't get better, so we just ignore retrying
                     if (httpRequestException.StatusCode == HttpStatusCode.Unauthorized)
+                    {
                         break;
+                    }
 
                     // Remote side might be rebooting so we wait here a bit (or we are doing things too fast)
                     if (httpRequestException.StatusCode is HttpStatusCode.InternalServerError
@@ -486,5 +521,9 @@ public class Uploader
 
         public bool DeleteAfterUpload { get; }
         public string? ExtraDelete { get; init; }
+    }
+
+    private class DevBuildOverwriteFailedException : Exception
+    {
     }
 }
