@@ -580,7 +580,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         await using var readme = File.CreateText(ReadmeFile);
 
-        if (steamMode)
+        if (!steamMode)
         {
             await readme.WriteLineAsync("Thrive");
             await readme.WriteLineAsync(string.Empty);
