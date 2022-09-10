@@ -180,34 +180,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override string GetFolderNameForExport(PackagePlatform platform)
     {
-        string suffix = string.Empty;
-
-        if (steamMode)
-        {
-            suffix = "_steam";
-        }
-
-        string platformName;
-
-        switch (platform)
-        {
-            case PackagePlatform.Linux:
-                platformName = "linux_x11";
-                break;
-            case PackagePlatform.Windows:
-                platformName = "windows_desktop";
-                break;
-            case PackagePlatform.Windows32:
-                platformName = "windows_desktop_(32-bit)";
-                break;
-            case PackagePlatform.Mac:
-                platformName = "mac_osx";
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-        }
-
-        return $"Thrive_{thriveVersion}_{platformName}{suffix}";
+        return ThriveProperties.GetFolderNameForPlatform(platform, thriveVersion, steamMode);
     }
 
     protected override string GetCompressedExtensionForPlatform(PackagePlatform platform)
