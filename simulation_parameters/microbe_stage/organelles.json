@@ -1,877 +1,877 @@
-{
-    "pilus": {
-        "mpCost": 30,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "pilus": {}
-        },
-        "shouldScale": false,
-        "prokaryoteChance": 0.5,
-        "chanceToCreate": 0.5,
-        "mass": 0.3,
-        "displayScene": "res://assets/models/organelles/Pilus.tscn",
-        "name": "PREDATORY_PILUS",
-        "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
-        "editorButtonGroup": "External",
-        "editorButtonOrder": 2
+﻿{
+  "pilus": {
+    "mpCost": 30,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "rusticyanin": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "iron_chemolithoautotrophy": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "enzymes": {
-            "rusticyanin": 1
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 0.5,
-        "mass": 0.08,
-        "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
-        "name": "RUSTICYANIN",
-        "productionColour": "#3293f7",
-        "consumptionColour": "#f04681",
-        "iconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 4
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "pilus": {}
     },
-    "nitrogenase": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "glycolysis": 1,
-            "nitrogenaseReaction": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 1,
-        "mass": 0.08,
-        "displayScene": "res://assets/models/organelles/Nitrogenase.tscn",
-        "name": "NITROGENASE",
-        "productionColour": "#3feb67",
-        "consumptionColour": "#ff8425",
-        "iconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 5
+    "shouldScale": false,
+    "prokaryoteChance": 0.5,
+    "chanceToCreate": 0.5,
+    "mass": 0.3,
+    "displayScene": "res://assets/models/organelles/Pilus.tscn",
+    "name": "PREDATORY_PILUS",
+    "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
+    "editorButtonGroup": "External",
+    "editorButtonOrder": 2
+  },
+  "rusticyanin": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "protoplasm": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "glycolysis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 15
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 0,
-        "mass": 0.1,
-        "displayScene": "",
-        "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
-        "name": "PROTOPLASM",
-        "editorButtonGroup": "Hidden",
-        "editorButtonOrder": 5
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "iron_chemolithoautotrophy": 1
     },
-    "chemoSynthesizingProteins": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "glycolysis": 1,
-            "bacterial_ChemoSynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 0.5,
-        "mass": 0.08,
-        "displayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-        "name": "CHEMOSYNTHESIZING_PROTEINS",
-        "productionColour": "#64f995",
-        "consumptionColour": "#ff7248",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 3
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
     },
-    "oxytoxyProteins": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "glycolysis": 1,
-            "bacterial_oxytoxySynthesis": 1
-        },
-        "components": {
-            "processor": {
-                "colourChangeFactor": 1
-            },
-            "storage": {
-                "capacity": 0.5
-            },
-            "agentVacuole": {
-                "process": "bacterial_oxytoxySynthesis",
-                "compound": "oxytoxy"
-            }
-        },
-        "prokaryoteChance": 0.5,
-        "chanceToCreate": 1,
-        "mass": 0.08,
-        "displayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
-        "name": "OXYTOXISOME",
-        "productionColour": "#834acb",
-        "consumptionColour": "#c4303d",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 6
+    "enzymes": {
+      "rusticyanin": 1
     },
-    "chromatophore": {
-        "mpCost": 50,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "glycolysis": 1,
-            "chromatophore_photosynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 0.5,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Chromatophore.tscn",
-        "name": "THYLAKOIDS",
-        "productionColour": "#40f0ac",
-        "consumptionColour": "#fbae3a",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 2
+    "prokaryoteChance": 2,
+    "chanceToCreate": 0.5,
+    "mass": 0.08,
+    "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
+    "name": "RUSTICYANIN",
+    "productionColour": "#3293f7",
+    "consumptionColour": "#f04681",
+    "iconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 4
+  },
+  "nitrogenase": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "metabolosome": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "protein_respiration": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 0.5,
-        "mass": 0.08,
-        "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
-        "name": "METABOLOSOMES",
-        "productionColour": "#26e0ff",
-        "consumptionColour": "#ff5649",
-        "iconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 1
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "glycolysis": 1,
+      "nitrogenaseReaction": 1
     },
-    "nitrogenfixingplastid": {
-        "mpCost": 50,
-        "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "nitrogenFixing": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 1,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-        "name": "NITROGEN_FIXING_PLASTID",
-        "productionColour": "#4fc9ff",
-        "consumptionColour": "#ffb74f",
-        "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 7
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
     },
-    "thermosynthase": {
-        "mpCost": 50,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "bacterial_thermosynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 0.5,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
-        "name": "THERMOSYNTHASE",
-        "productionColour": "#6a5cc6",
-        "consumptionColour": "#ad5161",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
-        "editorButtonGroup": "Protein",
-        "editorButtonOrder": 8,
-        "lawk": false
+    "prokaryoteChance": 2,
+    "chanceToCreate": 1,
+    "mass": 0.08,
+    "displayScene": "res://assets/models/organelles/Nitrogenase.tscn",
+    "name": "NITROGENASE",
+    "productionColour": "#3feb67",
+    "consumptionColour": "#ff8425",
+    "iconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 5
+  },
+  "protoplasm": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "chemoplast": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "chemoSynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 1,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
-        "name": "CHEMOPLAST",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 6
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "glycolysis": 1
     },
-    "flagellum": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "movement": {
-                "torque": 300,
-                "momentum": 50
-            }
-        },
-        "prokaryoteChance": 2,
-        "chanceToCreate": 6,
-        "mass": 0.2,
-        "displayScene": "res://assets/models/organelles/Flagellum.tscn",
-        "displaySceneModelPath": "Armature001/Skeleton/flagella",
-        "displaySceneAnimation": "AnimationPlayer",
-        "name": "FLAGELLUM",
-        "productionColour": "#ff9721",
-        "consumptionColour": "#ff9721",
-        "iconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
-        "editorButtonGroup": "External",
-        "editorButtonOrder": 1
+    "components": {
+      "storage": {
+        "capacity": 15
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
     },
-    "vacuole": {
-        "mpCost": 50,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "storage": {
-                "capacity": 8
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 3,
-        "mass": 0.3,
-        "displayScene": "res://assets/models/organelles/Vacuole.tscn",
-        "name": "VACUOLE",
-        "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 8
+    "prokaryoteChance": 2,
+    "chanceToCreate": 0,
+    "mass": 0.1,
+    "displayScene": "",
+    "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
+    "name": "PROTOPLASM",
+    "editorButtonGroup": "Hidden",
+    "editorButtonOrder": 5
+  },
+  "chemoSynthesizingProteins": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "mitochondrion": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "respiration": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 3,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
-        "name": "MITOCHONDRION",
-        "productionColour": "#26ffce",
-        "consumptionColour": "#ff2653",
-        "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 3
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "glycolysis": 1,
+      "bacterial_ChemoSynthesis": 1
     },
-    "oxytoxy": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "oxytoxySynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "agentVacuole": {
-                "process": "oxytoxySynthesis",
-                "compound": "oxytoxy"
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 1,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Oxytoxy.tscn",
-        "name": "TOXIN_VACUOLE",
-        "productionColour": "#624acb",
-        "consumptionColour": "#c4307b",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 9
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
     },
-    "bindingAgent": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "bindingAgent": {}
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 0,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
-        "name": "BINDING_AGENT",
-        "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
-        "requiresNucleus": true,
-        "unique": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 2
+    "prokaryoteChance": 2,
+    "chanceToCreate": 0.5,
+    "mass": 0.08,
+    "displayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+    "name": "CHEMOSYNTHESIZING_PROTEINS",
+    "productionColour": "#64f995",
+    "consumptionColour": "#ff7248",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 3
+  },
+  "oxytoxyProteins": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "chloroplast": {
-        "mpCost": 50,
-        "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 1
-            }
-        ],
-        "processes": {
-            "photosynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1.5
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 1,
-        "mass": 0.3,
-        "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
-        "name": "CHLOROPLAST",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 4
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "glycolysis": 1,
+      "bacterial_oxytoxySynthesis": 1
     },
-    "cytoplasm": {
-        "mpCost": 22,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "glycolysis_cytoplasm": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 1,
-        "chanceToCreate": 1,
-        "mass": 0.08,
-        "displayScene": "",
-        "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
-        "name": "CYTOPLASM",
-        "productionColour": "#1db7c5",
-        "consumptionColour": "#c51d38",
-        "iconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
-        "editorButtonGroup": "Structural",
-        "editorButtonOrder": 1
+    "components": {
+      "processor": {
+        "colourChangeFactor": 1
+      },
+      "storage": {
+        "capacity": 0.5
+      },
+      "agentVacuole": {
+        "process": "bacterial_oxytoxySynthesis",
+        "compound": "oxytoxy"
+      }
     },
-    "nucleus": {
-        "mpCost": 70,
-        "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            },
-            {
-                "r": 0,
-                "q": 1
-            },
-            {
-                "r": 1,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 1
-            },
-            {
-                "r": 1,
-                "q": -1
-            },
-            {
-                "r": 0,
-                "q": -1
-            },
-            {
-                "r": 1,
-                "q": 1
-            },
-            {
-                "r": 2,
-                "q": 0
-            },
-            {
-                "r": 2,
-                "q": -1
-            }
-        ],
-        "processes": {},
-        "components": {
-            "storage": {
-                "capacity": 4
-            },
-            "nucleus": {}
-        },
-        "shouldScale": false,
-        "prokaryoteChance": 0,
-        "chanceToCreate": 0,
-        "mass": 0.5,
-        "displayScene": "res://assets/models/organelles/Nucleus.tscn",
-        "name": "NUCLEUS",
-        "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
-        "unique": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 1
+    "prokaryoteChance": 0.5,
+    "chanceToCreate": 1,
+    "mass": 0.08,
+    "displayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
+    "name": "OXYTOXISOME",
+    "productionColour": "#834acb",
+    "consumptionColour": "#c4303d",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 6
+  },
+  "chromatophore": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "chemoreceptor": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "chemoreceptor": {}
-        },
-        "prokaryoteChance": 0.2,
-        "chanceToCreate": 0.2,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
-        "name": "CHEMORECEPTOR",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
-        "upgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn",
-        "editorButtonGroup": "External",
-        "editorButtonOrder": 3
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "glycolysis": 1,
+      "chromatophore_photosynthesis": 1
     },
-    "signalingAgent": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "signalingAgent": {}
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 0.4,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/SignalingAgent.tscn",
-        "name": "SIGNALING_AGENT",
-        "iconPath": "res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png",
-        "requiresNucleus": true,
-        "unique": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 10
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
     },
-    "bioluminescentVacuole": {
-        "mpCost": 40,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {},
-        "prokaryoteChance": 0,
-        "chanceToCreate": 0,
-        "name": "BIOLUMINESCENT_VACUOLE",
-        "iconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 11,
-        "unimplemented": true
+    "prokaryoteChance": 2,
+    "chanceToCreate": 0.5,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Chromatophore.tscn",
+    "name": "THYLAKOIDS",
+    "productionColour": "#40f0ac",
+    "consumptionColour": "#fbae3a",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 2
+  },
+  "metabolosome": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
     },
-    "thermoplast": {
-        "mpCost": 55,
-        "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            },
-            {
-                "r": -1,
-                "q": 0
-            }
-        ],
-        "processes": {
-            "thermosynthesis": 1
-        },
-        "components": {
-            "storage": {
-                "capacity": 1
-            },
-            "processor": {
-                "colourChangeFactor": 1
-            }
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 1,
-        "mass": 0.2,
-        "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
-        "name": "THERMOPLAST",
-        "productionColour": "#9168b5",
-        "consumptionColour": "#d15378",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 5,
-        "lawk": false
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "protein_respiration": 1
     },
-    "cilia": {
-        "mpCost": 40,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "cilia": {}
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 6,
-        "mass": 0.22,
-        "displayScene": "res://assets/models/organelles/Cilia.tscn",
-        "displaySceneModelPath": "Armature/Skeleton/Cube003",
-        "displaySceneAnimation": "AnimationPlayer",
-        "name": "CILIA",
-        "productionColour": "#ffae21",
-        "consumptionColour": "#ffae21",
-        "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
-        "requiresNucleus": true,
-        "editorButtonGroup": "External",
-        "editorButtonOrder": 4
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
     },
-    "lysosome": {
-        "mpCost": 45,
-        "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
-        },
-        "hexes": [
-            {
-                "r": 0,
-                "q": 0
-            }
-        ],
-        "processes": {},
-        "components": {
-            "storage": {
-                "capacity": 0.5
-            },
-            "lysosome": {}
-        },
-        "enzymes": {
-            "lipase": 1,
-            "chitinase": 0,
-            "cellulase": 0
-        },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 0.4,
-        "mass": 0.1,
-        "displayScene": "res://assets/models/organelles/Lysosome.tscn",
-        "name": "LYSOSOME",
-        "iconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
-        "upgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
-        "requiresNucleus": true,
-        "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 5
-    }
+    "prokaryoteChance": 2,
+    "chanceToCreate": 0.5,
+    "mass": 0.08,
+    "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
+    "name": "METABOLOSOMES",
+    "productionColour": "#26e0ff",
+    "consumptionColour": "#ff5649",
+    "iconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 1
+  },
+  "nitrogenfixingplastid": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "nitrogenFixing": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 1,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+    "name": "NITROGEN_FIXING_PLASTID",
+    "productionColour": "#4fc9ff",
+    "consumptionColour": "#ffb74f",
+    "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 7
+  },
+  "thermosynthase": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "bacterial_thermosynthesis": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 2,
+    "chanceToCreate": 0.5,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
+    "name": "THERMOSYNTHASE",
+    "productionColour": "#6a5cc6",
+    "consumptionColour": "#ad5161",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 8,
+    "lawk": false
+  },
+  "chemoplast": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "chemoSynthesis": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 1,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
+    "name": "CHEMOPLAST",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 6
+  },
+  "flagellum": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "movement": {
+        "torque": 300,
+        "momentum": 50
+      }
+    },
+    "prokaryoteChance": 2,
+    "chanceToCreate": 6,
+    "mass": 0.2,
+    "displayScene": "res://assets/models/organelles/Flagellum.tscn",
+    "displaySceneModelPath": "Armature001/Skeleton/flagella",
+    "displaySceneAnimation": "AnimationPlayer",
+    "name": "FLAGELLUM",
+    "productionColour": "#ff9721",
+    "consumptionColour": "#ff9721",
+    "iconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
+    "editorButtonGroup": "External",
+    "editorButtonOrder": 1
+  },
+  "vacuole": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "storage": {
+        "capacity": 8
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 3,
+    "mass": 0.3,
+    "displayScene": "res://assets/models/organelles/Vacuole.tscn",
+    "name": "VACUOLE",
+    "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 8
+  },
+  "mitochondrion": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "respiration": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 3,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
+    "name": "MITOCHONDRION",
+    "productionColour": "#26ffce",
+    "consumptionColour": "#ff2653",
+    "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 3
+  },
+  "oxytoxy": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "oxytoxySynthesis": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "agentVacuole": {
+        "process": "oxytoxySynthesis",
+        "compound": "oxytoxy"
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 1,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Oxytoxy.tscn",
+    "name": "TOXIN_VACUOLE",
+    "productionColour": "#624acb",
+    "consumptionColour": "#c4307b",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 9
+  },
+  "bindingAgent": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "bindingAgent": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
+    "name": "BINDING_AGENT",
+    "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
+    "requiresNucleus": true,
+    "unique": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 2
+  },
+  "chloroplast": {
+    "mpCost": 50,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 1
+      }
+    ],
+    "processes": {
+      "photosynthesis": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1.5
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 1,
+    "mass": 0.3,
+    "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
+    "name": "CHLOROPLAST",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 4
+  },
+  "cytoplasm": {
+    "mpCost": 22,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "glycolysis_cytoplasm": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 1,
+    "chanceToCreate": 1,
+    "mass": 0.08,
+    "displayScene": "",
+    "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
+    "name": "CYTOPLASM",
+    "productionColour": "#1db7c5",
+    "consumptionColour": "#c51d38",
+    "iconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
+    "editorButtonGroup": "Structural",
+    "editorButtonOrder": 1
+  },
+  "nucleus": {
+    "mpCost": 70,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": 0,
+        "q": 1
+      },
+      {
+        "r": 1,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 1
+      },
+      {
+        "r": 1,
+        "q": -1
+      },
+      {
+        "r": 0,
+        "q": -1
+      },
+      {
+        "r": 1,
+        "q": 1
+      },
+      {
+        "r": 2,
+        "q": 0
+      },
+      {
+        "r": 2,
+        "q": -1
+      }
+    ],
+    "processes": {},
+    "components": {
+      "storage": {
+        "capacity": 4
+      },
+      "nucleus": {}
+    },
+    "shouldScale": false,
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "mass": 0.5,
+    "displayScene": "res://assets/models/organelles/Nucleus.tscn",
+    "name": "NUCLEUS",
+    "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
+    "unique": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 1
+  },
+  "chemoreceptor": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "chemoreceptor": {}
+    },
+    "prokaryoteChance": 0.2,
+    "chanceToCreate": 0.2,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
+    "name": "CHEMORECEPTOR",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
+    "upgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn",
+    "editorButtonGroup": "External",
+    "editorButtonOrder": 3
+  },
+  "signalingAgent": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "signalingAgent": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0.4,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/SignalingAgent.tscn",
+    "name": "SIGNALING_AGENT",
+    "iconPath": "res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png",
+    "requiresNucleus": true,
+    "unique": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 10
+  },
+  "bioluminescentVacuole": {
+    "mpCost": 40,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {},
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0,
+    "name": "BIOLUMINESCENT_VACUOLE",
+    "iconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 11,
+    "unimplemented": true
+  },
+  "thermoplast": {
+    "mpCost": 55,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "thermosynthesis": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      }
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 1,
+    "mass": 0.2,
+    "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
+    "name": "THERMOPLAST",
+    "productionColour": "#9168b5",
+    "consumptionColour": "#d15378",
+    "iconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 5,
+    "lawk": false
+  },
+  "cilia": {
+    "mpCost": 40,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "cilia": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 6,
+    "mass": 0.22,
+    "displayScene": "res://assets/models/organelles/Cilia.tscn",
+    "displaySceneModelPath": "Armature/Skeleton/Cube003",
+    "displaySceneAnimation": "AnimationPlayer",
+    "name": "CILIA",
+    "productionColour": "#ffae21",
+    "consumptionColour": "#ffae21",
+    "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "External",
+    "editorButtonOrder": 4
+  },
+  "lysosome": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {},
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      },
+      "lysosome": {}
+    },
+    "enzymes": {
+      "lipase": 1,
+      "chitinase": 0,
+      "cellulase": 0
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 0.4,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/Lysosome.tscn",
+    "name": "LYSOSOME",
+    "iconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
+    "upgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 5
+  }
 }

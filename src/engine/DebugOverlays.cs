@@ -160,4 +160,9 @@ public partial class DebugOverlays : Control
     {
         performanceMetrics.Modulate = debugPanelDialog.Modulate = new Color(1, 1, 1, 1 - value);
     }
+
+    private void OnDumpSceneTreeButtonPressed()
+    {
+        DumpSceneTreeToFile(GetTree().Root);
+    }
 }
