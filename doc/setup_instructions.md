@@ -198,7 +198,7 @@ have your own repository to work with. There is an in-depth guide
 for working with forks
 [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962).
 
-Next, use `git clone` to copy your fork to your computer. If you're
+Next, use `git clone --recursive` to copy your fork to your computer. If you're
 setting up Thrive just for testing or because you want to try in
 development features you don't need to fork the project, and can clone
 the main Thrive repository.
@@ -212,6 +212,10 @@ for cloning.
 
 If you use the "download as zip" option on Github, it won't work. This
 is because that option won't properly include the Git LFS files in it.
+
+Thrive uses git submodules so to make sure those are up to date you
+need to run the following after cloning or pulling in latest changes
+if the submodules were updated: `git submodule update --init --recursive`
 
 Note: a path with spaces in it MAY NOT WORK, so to avoid issues you
 should clone to a folder like `~/projects` or `C:/projects`. Also, long
@@ -295,12 +299,13 @@ Thrive uses some external C# packages which need to be restored before
 compiling.
 
 On Linux, or if you're using Visual Studio Code, open a terminal to
-the thrive folder and run the following command: `dotnet restore` (or
-use `nuget restore` command if you use mono instead of dotnet) it
+the thrive folder and run the following command: `dotnet restore` it
 should download the missing nuget packages. You may need to rerun this
 command when new package dependencies are added to Thrive. Note: if
-you use an IDE like MonoDevelop or Rider it may automatically restore
-missing packages when compiling the game through it.
+you use an IDE like MonoDevelop or Rider it like will automatically
+restore missing packages when compiling the game through it. Also if
+you use the command line `dotnet` tool to compile the game, that will
+also automatically restore packages.
 
 
 On Windows you should use Visual Studio to restore the packages. To do
@@ -395,42 +400,7 @@ you are on Windows. Then you need to either add the folder where that
 executable is to your system PATH or move the executable (along the
 other Godot resources it needs) to a path that is already in PATH.
 
-### Ruby
-
-Ruby is needed for the scripts to package the game, and for the
-code style checks. So while it is not necessary to download this
-it is highly recommended.
-
-On Linux and mac you probably already have this, but if not, use a
-package manager to install it.
-
-On windows it is recommended to use RubyInstaller, version 2.4 or
-newer, when installing make sure to also install the MSYS option in
-order to be able to install gems and allow the ridk post-install step
-to run.
-
-After installing ruby open a terminal / command prompt and run:
-
-```sh
-gem install os colorize rubyzip json sha3 httparty parallel nokogiri
-```
-
-On Linux you might need to run the command with `sudo`. Or you can install
-them in your user directory with `--user` flag, this also applies to Mac.
-
-
-If you have trouble installing sha3 on windows: make sure you have
-ruby 2.4 or newer installed with ruby installer for windows. Then run
-`ridk install` and try all of the options. The third option at least
-should reinstall all the ruby development tools, including gmp, which
-is needed for sha3. After that your ruby native extension build tools
-should be installed and the gem installation should work.
-
-If it still doesn't work run `ridk exec pacman -S gmp-devel` and then
-run `ridk install` again.
-
-
-### 7zip
+### 7zip and zip
 
 7zip is needed for the game release script, so if you're not packaging
 the game for release you don't need this.
@@ -444,6 +414,8 @@ installer release. After installing, add the installed folder (where
 in command prompt or powershell, it should print 7zip version info and
 command line usage.
 
+`zip` command is also needed. It is most likely already installed on
+Linux and Mac, but needs to be separately installed on Windows.
 
 Linter
 ------
@@ -452,20 +424,6 @@ Thrive uses automatic formatting of source code to keep style as
 consistent as possible. It is highly recommended you install
 this linter to check your code formatting before submitting a
 pull request.
-
-## NodeJS
-First install [NodeJS](https://nodejs.org/en/download/). If you are on
-Linux you should use your OS's package manager to install nodejs.
-
-After installing nodejs install the linter packages with this command:
-```sh
-npm install -g jsonlint
-```
-
-if that doesn't work run:
-```sh
-sudo npm install -g jsonlint
-```
 
 ## Jetbrains tools
 
@@ -522,7 +480,7 @@ to first navigate in command prompt / terminal to the Thrive base
 folder and run the following:
 
 ```
-pip install -r docker/jsonlint/requirements.txt --user
+pip install -r docker/ci/requirements.txt --user
 ```
 
 That will make sure that you have compatible versions of the
@@ -569,8 +527,8 @@ Then install the required packages and run the localization scripts
 while in the environment:
 
 ```sh
-pip install -r docker/jsonlint/requirements.txt
-ruby scripts/update_localization.rb
+pip install -r docker/ci/requirements.txt
+dotnet run --project Scripts -- localization
 ```
 
 ### Poedit (optional)
@@ -597,19 +555,19 @@ is available through Homebrew.
 
 ## Running the Format Checks
 
-When you are getting ready to commit you should run `ruby
-check_formatting.rb` in order to automatically run all of the
+When you are getting ready to commit you should run `dotnet run
+--project Scripts -- check` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
 before committing.
 
 When running the script like that it can take a long time to run. See
 the pre-commit hook section for how to speed things up.
 
-Alternatively you can run the script `create_changes_list.rb` each
-time before you run the formatting check. That script will build a
-list of changed files that the formatting checks will use to skip
-checking non-changed files. But the pre-commit hook is recommended as
-it is easier to use.
+Alternatively you can run the script `dotnet run --project Scripts --
+changes` each time before you run the formatting check. That script
+will build a list of changed files that the formatting checks will use
+to skip checking non-changed files. But the pre-commit hook is
+recommended as it is easier to use.
 
 Pre-commit hook
 ---------------
@@ -638,6 +596,17 @@ emulate this by creating a file in the Thrive folder called
 files to check.
 
 ## Additional Tips
+
+### Build or script running fails
+
+First make sure your submodules are up to date:
+```sh
+git submodule update --init --recursive
+```
+
+because if they are not you will have missing or outdated files. Once
+you have done that check the other troubleshooting tips if that didn't
+help.
 
 ### Troubleshooting regarding Godot automatically breaking
 
@@ -677,12 +646,6 @@ Your locally cloned Thrive version may get messed up from time to time.
 You can find information about how to translate the game on the 
 [Working with translation page](working_with_translations.md).
 
-### Ruby running errors
-
-If you get errors like `cannot load such file -- os (LoadError)` when
-running the ruby scripts, reinstall the ruby gems mentioned earlier in
-this file.
-
 ### All files are marked as changed
 
 If you are on Windows and you see that most game files are marked as
@@ -711,9 +674,10 @@ On Windows the cache folders are somewhere in your APPDATA folders.
 
 ### Prerequisites
 
-There is a provided script `make_release.rb` which helps with bundling the
-game up for releases. This relies on `godot` (or `godot.exe`) being the name
-of the Godot editor that is the current version and it being in PATH.
+There is a provided script `dotnet run --project Scripts -- package`
+which helps with bundling the game up for releases. This relies on
+`godot` (or `godot.exe`) being the name of the Godot editor that is
+the current version and it being in PATH.
 
 To set this up basically create a new folder that you add to PATH (Windows 
 registry, `.bashrc` or `.zshrc` for Linux/Mac) and create a copy or 
@@ -737,13 +701,16 @@ path you need to include there.
 After you have installed the prerequisites and checked the game runs fine
 from the Godot editor, you can just run the export script:
 ```sh
-ruby make_release.rb
+dotnet run --project Scripts -- package
 ```
 
 Or if you want more control you can select which platforms to export to
 and skip zipping up the folder if you just want to test locally:
 ```sh
-ruby make_Release.rb -t "Windows Desktop" --no-zip
+dotnet run --project Scripts -- package --zip false "Windows Desktop"
 ```
 
-For more options run the script with the `-h` parameter to see all of them.
+For more options run the script with the `-h` parameter to see all of them:
+```sh
+dotnet run --project Scripts -- package --help
+```
