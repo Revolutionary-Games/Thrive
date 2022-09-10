@@ -265,6 +265,8 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
+    public override bool SpawnsEntities => true;
+
     public Species Species { get; }
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
@@ -322,6 +324,8 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
+    public override bool SpawnsEntities => false;
+
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
@@ -350,6 +354,8 @@ public class ChunkSpawner : Spawner
         this.chunkType = chunkType;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
+
+    public override bool SpawnsEntities => true;
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
     {

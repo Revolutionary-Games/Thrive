@@ -7,6 +7,11 @@ using Godot;
 public abstract class Spawner
 {
     /// <summary>
+    ///   Whether this spawner spawns items contributing to the entity limit
+    /// </summary>
+    public abstract bool SpawnsEntities { get; }
+
+    /// <summary>
     ///   The distance at which spawning happens
     /// </summary>
     public int SpawnRadius { get; set; }

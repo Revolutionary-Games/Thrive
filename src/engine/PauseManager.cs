@@ -26,8 +26,19 @@ public class PauseManager : Node
         {
             if (isPaused != value)
             {
-                GetTree().Paused = value;
                 isPaused = value;
+
+                var tree = GetTree();
+
+                // If the game was closed while paused from a dialog, we get the unpause signal after the node tree
+                // is no longer usable
+                if (tree == null)
+                {
+                    GD.PrintErr("PauseManager can't apply paused state as node tree doesn't exist");
+                    return;
+                }
+
+                tree.Paused = value;
             }
         }
     }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-10 20:42+0300\n"
+"POT-Creation-Date: 2022-08-31 10:22+0300\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -74,7 +74,7 @@ msgid "MUSIC"
 msgstr "Muusika"
 
 #: ../simulation_parameters/common/gallery.json:252
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 #, fuzzy
 msgid "ALL"
 msgstr "ALT"
@@ -89,7 +89,7 @@ msgstr "Menüü"
 msgid "MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
-#: ../simulation_parameters/common/gallery.json:385
+#: ../simulation_parameters/common/gallery.json:403
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
@@ -829,16 +829,16 @@ msgid "NITROGEN"
 msgstr "Lämmastik"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3985
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3984
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:628
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Päikesevalgus"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:163
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3979
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:617
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
@@ -859,47 +859,47 @@ msgstr "Kitiin"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:676
 msgid "RUSTICYANIN"
 msgstr "rustitsüaniin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2418
 msgid "NORMAL"
 msgstr "Tavaline"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2590
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
 msgid "DOUBLE"
 msgstr "Kahekordne"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2756
 msgid "CELLULOSE"
 msgstr "Tselluloos"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3003
 msgid "CHITIN"
 msgstr "Kitiin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3250
 msgid "CALCIUM_CARBONATE"
 msgstr "kaltsiumkarbonaat"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3522
 msgid "SILICA"
 msgstr "Ränidioksiid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "PREDATORY_PILUS"
 msgstr "Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:773
 msgid "NITROGENASE"
 msgstr "Lämmastik"
 
@@ -908,12 +908,12 @@ msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:160
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosünteesivad valgud"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:199
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "OXYTOXISOME"
 msgstr "Oksütoksisoom"
 
@@ -922,110 +922,110 @@ msgid "THYLAKOIDS"
 msgstr "Tülakoidid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:268
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:376
 msgid "METABOLOSOMES"
 msgstr "Metabolosoomid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1940
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Lämmastikku fikseeriv plastiid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:969
 #, fuzzy
 msgid "THERMOSYNTHASE"
 msgstr "Kemosüntees"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1855
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:414
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1097
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1094
 msgid "FLAGELLUM"
 msgstr "Vibur"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:443
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2039
 msgid "VACUOLE"
 msgstr "Vacuool"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1580
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1577
 msgid "MITOCHONDRION"
 msgstr "Mitokondrid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:516
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2137
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksiin\n"
 "Vacuool"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:547
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1396
 msgid "BINDING_AGENT"
 msgstr "Sideaine"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:589
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1662
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:623
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "CYTOPLASM"
 msgstr "Tsütoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:690
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
 msgid "NUCLEUS"
 msgstr "Tuum"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1289
 msgid "CHEMORECEPTOR"
 msgstr "Kemoretseptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:742
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
 msgid "SIGNALING_AGENT"
 msgstr "Signaaliagent"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2334
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminestseeruv vakuool"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:803
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1747
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:834
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1352
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1349
 msgid "CILIA"
 msgstr "cilia"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2356
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Oksütoksisoom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:536
+#: ../src/auto-evo/AutoEvoExploringTool.cs:580
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:708
+#: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:717
+#: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1034,179 +1034,184 @@ msgstr ""
 "Kui teil on ATP, taastate tervist.\n"
 "Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:98
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
 msgstr "Konfiguratsioon"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#, fuzzy
+msgid "MAP"
+msgstr "ATP"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "teade"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
 msgstr "Vaataja"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:162
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "on muteerunud"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:202
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:223
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:236
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:254
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Lapist välja surnud"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:272
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:290
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:308
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:329
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:376
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Põlvkond:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:427
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "eelmine:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
 #, fuzzy
 msgid "READY"
 msgstr "Teemad:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:465
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:471
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:477
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 #, fuzzy
 msgid "ABORT"
 msgstr "Katkestatud."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:483
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Põlvkond:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Valige valik"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 #, fuzzy
 msgid "SPECIES"
 msgstr "Liikide nimekiri"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:573
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Siin üksikasjade kuvamiseks valige plaaster"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:687
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulemused:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:669
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:735
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Autor Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Liikide nimekiri"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
-#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1052
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/PauseMenu.tscn:263
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:829
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "tagasi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:833
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
 msgstr "Kinnitage väljumine"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:772
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.cs:353
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -1244,9 +1249,9 @@ msgstr "alustamine"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:80
+#: ../src/auto-evo/EvolutionaryTree.cs:322
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
+#: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr "mega aastat"
 
@@ -1420,7 +1425,7 @@ msgstr "TÜHISTAGE TEGEVUS"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "JÄRGMINE"
 
@@ -1471,7 +1476,6 @@ msgstr "Asetage organell"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:148
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
@@ -1507,7 +1511,7 @@ msgstr "Valige redigeerija vahekaardil lahtri tüüp, mida siin redigeerida"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
-#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "max FPS:"
@@ -1528,35 +1532,39 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
-#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "FPS-kuva sisse- ja väljalülitamine"
 
-#: ../src/engine/DebugOverlays.tscn:86
+#: ../src/engine/DebugOverlays.tscn:85
 msgid "DEBUG_PANEL"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:96
+#: ../src/engine/DebugOverlays.tscn:95
 #, fuzzy
 msgid "FPS_DISPLAY"
 msgstr "meediamäng"
 
-#: ../src/engine/DebugOverlays.tscn:110
+#: ../src/engine/DebugOverlays.tscn:109
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:117
+#: ../src/engine/DebugOverlays.tscn:116
 #, fuzzy
 msgid "ENTITY_LABEL"
 msgstr "biome: {0}"
 
-#: ../src/engine/DebugOverlays.tscn:128
+#: ../src/engine/DebugOverlays.tscn:123
+msgid "DUMP_SCENE_TREE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:134
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Tõlkijad"
@@ -1987,6 +1995,31 @@ msgstr "\"{0}\" – {1}"
 msgid "ART_BY"
 msgstr "Kunst autorilt {0}"
 
+#: ../src/general/BehaviourDictionary.cs:102
+#, fuzzy
+msgid "BEHAVIOUR_AGGRESSION"
+msgstr "Käitumine"
+
+#: ../src/general/BehaviourDictionary.cs:103
+#, fuzzy
+msgid "BEHAVIOUR_OPPORTUNISM"
+msgstr "Käitumine"
+
+#: ../src/general/BehaviourDictionary.cs:104
+#, fuzzy
+msgid "BEHAVIOUR_FEAR"
+msgstr "Käitumine"
+
+#: ../src/general/BehaviourDictionary.cs:105
+#, fuzzy
+msgid "BEHAVIOUR_ACTIVITY"
+msgstr "Käitumine"
+
+#: ../src/general/BehaviourDictionary.cs:106
+#, fuzzy
+msgid "BEHAVIOUR_FOCUS"
+msgstr "Käitumine"
+
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Auto-evo ootel:"
@@ -2007,14 +2040,14 @@ msgid "CLOSE"
 msgstr "Sulge"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:581 ../src/general/StageHUDBase.cs:675
+#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:174
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2030,119 +2063,119 @@ msgstr "Glükoosi kontsentratsioon on drastiliselt langenud!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisse logitud kui: {0}"
 
-#: ../src/general/MainMenu.tscn:176
+#: ../src/general/MainMenu.tscn:173
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/MainMenu.tscn:179
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Uus mäng"
 
-#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Laadi mäng"
 
-#: ../src/general/MainMenu.tscn:201 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Abi"
 
-#: ../src/general/MainMenu.tscn:205 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Valikud"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Tööriistad"
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vaadake lähtekoodi"
 
-#: ../src/general/MainMenu.tscn:238
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Lisad"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Krediidid"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:236
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/MainMenu.tscn:261
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Lõpeta"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuildi redaktor"
 
-#: ../src/general/MainMenu.tscn:293
+#: ../src/general/MainMenu.tscn:290
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "käitamise olek:"
 
-#: ../src/general/MainMenu.tscn:361
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Modifikatsioonid"
 
-#: ../src/general/MainMenu.tscn:374
+#: ../src/general/MainMenu.tscn:371
 msgid "ART_GALLERY"
 msgstr "Kunstigalerii"
 
-#: ../src/general/MainMenu.tscn:386
+#: ../src/general/MainMenu.tscn:383
 msgid "LICENSES"
 msgstr "Litsentsid"
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 režiimi hoiatus"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modifikaadi laadimise vead"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ühe või mitme modifikatsiooni laadimisel ilmnesid vead. Logid võivad sisaldada lisateavet."
 
-#: ../src/general/NewGameSettings.cs:297
-#: ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/NewGameSettings.cs:299
+#: ../src/general/NewGameSettings.tscn:1132
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/NewGameSettings.cs:304
+#: ../src/general/NewGameSettings.cs:306
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pausi menüü"
 
-#: ../src/general/NewGameSettings.tscn:117
-#: ../src/general/NewGameSettings.tscn:330
+#: ../src/general/NewGameSettings.tscn:120
+#: ../src/general/NewGameSettings.tscn:361
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:144
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:148
+#: ../src/general/NewGameSettings.tscn:894
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:151
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:901
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -2151,13 +2184,13 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/NewGameSettings.tscn:167
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:171
+#: ../src/general/NewGameSettings.tscn:917
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:174
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:178
+#: ../src/general/NewGameSettings.tscn:924
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -2166,79 +2199,83 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:938
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:194
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:956
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:225
-#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:229
+#: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Peata mäng"
 
-#: ../src/general/NewGameSettings.tscn:270
+#: ../src/general/NewGameSettings.tscn:268
+msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:290
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:280
+#: ../src/general/NewGameSettings.tscn:300
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Muud"
 
-#: ../src/general/NewGameSettings.tscn:369
+#: ../src/general/NewGameSettings.tscn:400
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:414
+#: ../src/general/NewGameSettings.tscn:445
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
 "Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
 
-#: ../src/general/NewGameSettings.tscn:431
+#: ../src/general/NewGameSettings.tscn:462
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/general/NewGameSettings.tscn:476
+#: ../src/general/NewGameSettings.tscn:507
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:493
+#: ../src/general/NewGameSettings.tscn:524
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Liitpilved"
 
-#: ../src/general/NewGameSettings.tscn:538
+#: ../src/general/NewGameSettings.tscn:569
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -2246,39 +2283,39 @@ msgstr ""
 "ja püüavad saaki toksiinidega jahtida, kui nad ei suuda neid endasse neelata.\n"
 "Ettevaatlikud mikroobid ei pruugi end tükkide tõttu ohtu seada."
 
-#: ../src/general/NewGameSettings.tscn:555
+#: ../src/general/NewGameSettings.tscn:586
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:600
+#: ../src/general/NewGameSettings.tscn:631
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:617
+#: ../src/general/NewGameSettings.tscn:648
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:661
+#: ../src/general/NewGameSettings.tscn:692
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:678
+#: ../src/general/NewGameSettings.tscn:709
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulatsiooni maksumus"
 
-#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:754
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulatsiooni maksumus"
 
-#: ../src/general/NewGameSettings.tscn:735
+#: ../src/general/NewGameSettings.tscn:766
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:742
+#: ../src/general/NewGameSettings.tscn:773
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2286,65 +2323,66 @@ msgstr ""
 "ja võib olla tükkide osas palju ambitsioonikam.\n"
 "Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:785
+#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr ""
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:792
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:773
+#: ../src/general/NewGameSettings.tscn:804
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "KINNITA"
 
-#: ../src/general/NewGameSettings.tscn:780
+#: ../src/general/NewGameSettings.tscn:811
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/NewGameSettings.tscn:816
+#: ../src/general/NewGameSettings.tscn:855
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Plaastri kaart"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:862
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
 "Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
 
-#: ../src/general/NewGameSettings.tscn:838
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:839
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:1023
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1015
+#: ../src/general/NewGameSettings.tscn:1055
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
-#: ../src/general/NewGameSettings.tscn:1022
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1034
+#: ../src/general/NewGameSettings.tscn:1074
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomade suhetest, mida on aastakümneid uuritud. Nüüd, kas sa oled Didinium või Paramecium? Kiskja või saak?"
 
-#: ../src/general/NewGameSettings.tscn:1041
+#: ../src/general/NewGameSettings.tscn:1081
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2353,64 +2391,64 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/NewGameSettings.tscn:1069
+#: ../src/general/NewGameSettings.tscn:1109
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/NewGameSettings.tscn:1071
+#: ../src/general/NewGameSettings.tscn:1111
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1082
+#: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/NewGameSettings.tscn:1083
+#: ../src/general/NewGameSettings.tscn:1123
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1093
+#: ../src/general/NewGameSettings.tscn:1133
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "KINNITA"
 
-#: ../src/general/OptionsMenu.cs:652 ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.cs:657 ../src/general/OptionsMenu.tscn:314
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolutsioon:"
 
-#: ../src/general/OptionsMenu.cs:666
+#: ../src/general/OptionsMenu.cs:671
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:671
+#: ../src/general/OptionsMenu.cs:676
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:676
+#: ../src/general/OptionsMenu.cs:681
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Kuvamisvõimaluste riba"
 
-#: ../src/general/OptionsMenu.cs:685 ../src/general/OptionsMenu.tscn:493
+#: ../src/general/OptionsMenu.cs:690 ../src/general/OptionsMenu.tscn:493
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1038
+#: ../src/general/OptionsMenu.cs:1043
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Vaikimisi väljundseade"
 
-#: ../src/general/OptionsMenu.cs:1070
+#: ../src/general/OptionsMenu.cs:1075
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
-#: ../src/general/OptionsMenu.cs:1074
+#: ../src/general/OptionsMenu.cs:1079
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "See keel on veel pooleli ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1078
+#: ../src/general/OptionsMenu.cs:1083
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "See keel on {0}% valmis"
 
@@ -2442,7 +2480,7 @@ msgstr "Täisekraan"
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Mitme proovi antialiasing:"
 
-#: ../src/general/OptionsMenu.tscn:271
+#: ../src/general/OptionsMenu.tscn:271 ../src/general/OptionsMenu.tscn:1054
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(kõrgemad väärtused halvendavad jõudlust)"
 
@@ -2566,7 +2604,7 @@ msgstr "Heli väljundseade:"
 msgid "LANGUAGE"
 msgstr "Keel:"
 
-#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1370
+#: ../src/general/OptionsMenu.tscn:789 ../src/general/OptionsMenu.tscn:1378
 msgid "RESET"
 msgstr "lähtestada"
 
@@ -2614,177 +2652,177 @@ msgstr "Taustalõimede arvu käsitsi määramine"
 msgid "THREADS"
 msgstr "Teemad:"
 
-#: ../src/general/OptionsMenu.tscn:1045
+#: ../src/general/OptionsMenu.tscn:1047
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1060 ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1069 ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "KINNITA"
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1070
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Lisad"
 
-#: ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "RESET_INPUTS"
 msgstr "Lähtestage sisendid"
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Esita sissejuhatav video"
 
-#: ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:1179
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mängige uues mängus mikroobide tutvustust"
 
-#: ../src/general/OptionsMenu.tscn:1179
+#: ../src/general/OptionsMenu.tscn:1187
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automaatne salvestamine mängu ajal"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1198
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Säilitatavate automaatsete salvestamiste arv:"
 
-#: ../src/general/OptionsMenu.tscn:1218
+#: ../src/general/OptionsMenu.tscn:1226
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Säilitatavate kiirsäästude arv:"
 
-#: ../src/general/OptionsMenu.tscn:1243
+#: ../src/general/OptionsMenu.tscn:1251
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näita õpetusi (uutes mängudes)"
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näita õpetusi (praeguses mängus)"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1264
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kuva salvestamata edenemise hoiatus"
 
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1276
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Petuklahvid on lubatud"
 
-#: ../src/general/OptionsMenu.tscn:1276
+#: ../src/general/OptionsMenu.tscn:1284
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Kasutage kohandatud kasutajanime"
 
-#: ../src/general/OptionsMenu.tscn:1287
+#: ../src/general/OptionsMenu.tscn:1295
 msgid "CUSTOM_USERNAME"
 msgstr "Kohandatud kasutajanimi:"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Avage ekraanipildi kaust"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1329
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Avage logide kaust"
 
-#: ../src/general/OptionsMenu.tscn:1331
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-i silumisrežiim:"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaatselt"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Alati"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Mitte kunagi"
 
-#: ../src/general/OptionsMenu.tscn:1382 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1390 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Salvesta"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "normaalne"
 
-#: ../src/general/OptionsMenu.tscn:1410
+#: ../src/general/OptionsMenu.tscn:1418
 msgid "RESET_TO_DEFAULTS"
 msgstr "Kas lähtestada normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Kas olete kindel, et soovite lähtestada KÕIK seaded normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:1419
+#: ../src/general/OptionsMenu.tscn:1427
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Kas lähtestada sisendid normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1428
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Kas olete kindel, et soovite lähtestada sisendseaded normaalseks?"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1437
 msgid "CLOSE_OPTIONS"
 msgstr "Kas sulgeda valikud?"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Teil on salvestamata muudatusi, mis tühistatakse.\n"
 "Kas soovite jätkata?"
 
-#: ../src/general/OptionsMenu.tscn:1472
+#: ../src/general/OptionsMenu.tscn:1480
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salvestage ja jätkake"
 
-#: ../src/general/OptionsMenu.tscn:1482
+#: ../src/general/OptionsMenu.tscn:1490
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Visake ära ja jätkake"
 
-#: ../src/general/OptionsMenu.tscn:1499
+#: ../src/general/OptionsMenu.tscn:1507
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Tühista"
 
-#: ../src/general/OptionsMenu.tscn:1510 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1518 ../src/general/OptionsMenu.tscn:1526
 msgid "ERROR"
 msgstr "Viga"
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1528
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Viga: uute sätete salvestamine konfiguratsioonifaili nurjus."
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1536
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Ekraanitõmmiste kataloogi ei leitud"
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1538
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Proovige teha ekraanipilte!"
 
@@ -2818,7 +2856,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -2858,7 +2896,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "Lapist välja surnud"
 
 #: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -3223,8 +3261,9 @@ msgstr "Toores"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2062
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "ei ole kohaldatav"
 
@@ -3247,7 +3286,7 @@ msgstr "Kirjeldus on liiga pikk"
 msgid "ARTIST_COLON"
 msgstr "eelmine:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:259
 #, fuzzy
 msgid "UNTITLED"
 msgstr "biome: {0}"
@@ -3265,22 +3304,22 @@ msgstr ""
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:645
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2194
+#: ../src/gui_common/charts/line/LineChart.cs:631
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2184
 msgid "NO_DATA_TO_SHOW"
 msgstr "Kuvatavaid andmeid pole"
 
-#: ../src/gui_common/charts/line/LineChart.cs:649
+#: ../src/gui_common/charts/line/LineChart.cs:635
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Joonistamiseks on kehtetud andmed"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1112
-#: ../src/gui_common/charts/line/LineChart.cs:1204
+#: ../src/gui_common/charts/line/LineChart.cs:1102
+#: ../src/gui_common/charts/line/LineChart.cs:1194
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lubatud kuvada rohkem kui {0} andmekogumit!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1118
-#: ../src/gui_common/charts/line/LineChart.cs:1209
+#: ../src/gui_common/charts/line/LineChart.cs:1108
+#: ../src/gui_common/charts/line/LineChart.cs:1199
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lubatud kuvada vähem kui {0} andmestikku!"
 
@@ -3382,23 +3421,23 @@ msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab liikumist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2787
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3034
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3553
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2448
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2786
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3033
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3278
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3552
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Liikuvus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:194
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2552
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2890
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3137
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3382
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3656
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2719
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2889
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3136
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3381
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3655
 msgid "HEALTH"
 msgstr "Elu"
 
@@ -3438,346 +3477,346 @@ msgstr ""
 "ja võib olla tükkide osas palju ambitsioonikam.\n"
 "Reageerivad mikroobid lülituvad varem uutele sihtmärkidele."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:299
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:499
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:601
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1005
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1502
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1595
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1780
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1873
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1963
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2062
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2160
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:695
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:792
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:890
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1002
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1151
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1410
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1499
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1960
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2157
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2255
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2389
 msgid "STORAGE"
 msgstr "Varud"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:440
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:639
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:736
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1252
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1312
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1367
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1451
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1818
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1911
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2001
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2198
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2296
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2654
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3314
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:334
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:636
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:733
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:928
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1040
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1189
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1364
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1448
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1630
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1715
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1815
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1998
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2097
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2293
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3068
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3587
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatsiooni maksumus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:377
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:381
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:477
 msgid "THYLAKOID"
 msgstr "Tülakoid"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:478
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja intensiivsusega [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:482
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound] tüübiks [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound]. Muudab ka [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:579
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Kemosünteesivad valgud on väikesed valkude kogumid tsütoplasmas, mis on võimelised vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi muutma glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga. Kuna kemosünteesivad valgud suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:677
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja [thrive:compound type=\"hapnik\"][/thrive:ühend]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:778
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:876
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1095
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Kasutab [thrive:compound type=\"atp\"][/thrive:compound] lahtri liikumiskiiruse suurendamiseks."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1099
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1096
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1113
 msgid "SPEED"
 msgstr "Kiirus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1233
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Pussita sellega teisi rakke."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1234
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1293
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoretseptor võimaldab tuvastada ühendeid kaugemalt. Ühenduse tüübi ja juhtjoone värvi valimiseks muutke, kui see on asetatud."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1294
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud teavet ümbritseva kohta. Selle organelli lisamine tähendab peenhäälestatud kemoretseptsiooni arenemist. Kuna mängijale antakse nägemine isegi raku staadiumis, kujutab see nähtavast ekraanialast väljapoole suunatud joont, mis näitab läheduses olevaid ühendeid, mida mängija veel ei näinud."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1351
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Köitmisrežiimi sisse- ja väljalülitamiseks vajutage nuppu [thrive:input]g_lüliti_siduv[/thrive:input]. Sidumisrežiimis saate oma kolooniaga kinnitada teisi oma liigi rakke, liikudes nendesse. Kolooniast lahkumiseks vajutage [thrive:input]g_lahti_siduma_kõik[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1401
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1398
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1481
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Võimaldab keerukamate membraaniga seotud organellide evolutsiooni. ATP ülalpidamine maksab palju. See on pöördumatu areng."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1482
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Eukarüootsete rakkude iseloomulik tunnus. Tuum hõlmab ka endoplasmaatilist retikulumit ja golgi keha. See on prokarüootsete rakkude evolutsioon sisemembraanide süsteemi väljatöötamiseks, mis toimub teise prokarüooti enda sees assimileerimise teel. See võimaldab neil rakus toimuvaid erinevaid protsesse lahterdada või ära hoida ja vältida nende kattumist. See võimaldab nende uutel membraaniga seotud organellidel olla palju keerukamad, tõhusamad ja spetsialiseerunud kui siis, kui nad hõljuksid tsütoplasmas vabalt. See aga läheb raku palju suuremaks muutmise hinnaga ning selle ülalpidamiseks kulub palju raku energiat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1581
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1578
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1582
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1579
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1663
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja intensiivsusega [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1664
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1748
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1749
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Protsesse pole"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1859
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1856
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound] tüübiks [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1860
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1857
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1941
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1942
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2040
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Suurendab raku salvestusruumi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuool on sisemine membraanne organell, mida kasutatakse rakus säilitamiseks. Need koosnevad mitmest vesiikulist, väiksematest membraanistruktuuridest, mida kasutatakse laialdaselt säilitamiseks rakkudes ja mis on kokku sulanud. See on täidetud veega, mida kasutatakse molekulide, ensüümide, tahkete ainete ja muude ainete sisaldamiseks. Nende kuju on vedel ja võib rakkude vahel varieeruda."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2141
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2138
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2142
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2139
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2239
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2236
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Hoidke all [thrive:input]g_pack_käske[/thrive:input], et avada menüü teistele oma liigi liikmetele käskude andmiseks."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2237
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Signaalained võimaldavad rakkudel luua kemikaale, millele teised rakud võivad reageerida. Signaalkemikaale saab kasutada teiste rakkude meelitamiseks või ohu eest hoiatamiseks, et nad põgeneksid.st."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:153
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:161
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1552
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Pole veel mängus."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2357
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2358
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2372
 #, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "Ressursi neeldumiskiirus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2380
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Membraani kõige elementaarsem vorm, sellel on vähe kaitset kahjustuste eest. Samuti vajab see rohkem energiat, et mitte deformeeruda. Eeliseks on see, et see võimaldab rakul liikuda ja toitaineid kiiresti omastada."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2518
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2856
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3103
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3622
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2686
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3621
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Ressursi neeldumiskiirus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2590
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Kahekihiline membraan kaitseb paremini kahjustuste eest ja võtab vähem energiat, et mitte deformeeruda. Siiski aeglustab see raku tööd ja aeglustab ressursside neelamise kiirust."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2757
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2923
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3415
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3689
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Füüsiline vastupanu"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2958
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3205
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "CANNOT_ENGULF"
 msgstr "Ei saa neelata"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
-msgid "INVULNERABLE_TO_ENGULFMENT"
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2989
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3236
+msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tähendab, et see kaitseb paremini üldiste kahjustuste ja eriti toksiinide kahjustuste eest. Samuti kulub selle vormi säilitamiseks vähem energiat, kuid see on aeglasem ega suuda ressursse kiiresti omastada."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3724
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3170
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksiiniresistentsus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3252
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3251
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on tugev kaltsiumkarbonaadist valmistatud kest. See talub kergesti kahjustusi ja vajab vähem energiat, et mitte deformeeruda. Sellise raske kesta puuduseks on see, et rakk on palju aeglasem ja võtab aega ressursside neelamiseks."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3524
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on tugev ränidioksiidi sein. See talub hästi üldist kahju ja on väga vastupidav füüsilistele kahjustustele. Samuti nõuab see oma vormi säilitamiseks vähem energiat. Kuid see aeglustab raku tööd suure teguri võrra ja rakk neelab ressursse vähendatud kiirusega."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3948
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3947
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisage uus võtme sidumine"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3954
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3953
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "See väärtus kehtib ainult uutele mängudele, mis alustati pärast selle valiku muutmist"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3960
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3959
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Lubab valguse vilkumise efektid GUI-del (nt redaktori nupu välklamp).\n"
@@ -3785,17 +3824,17 @@ msgstr ""
 "Kui ilmneb viga, mille tõttu osad redaktori nupust kaovad,\n"
 "võite proovida selle keelata, et näha, kas probleem on kadunud."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3966
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3965
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Seda ei saa automaatselt tuvastada, kas hüperkeermestamine on lubatud või mitte.\n"
 "See mõjutab lõimede vaikearvu, kuna hüperlõime lõimed ei ole nii kiired kui tõelised protsessori tuumad."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3970
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija proovib mängust väljuda."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3992
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
@@ -3820,6 +3859,10 @@ msgstr "Ühendid:"
 msgid "SPECIES_COLON"
 msgstr "Liigid:"
 
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
+msgid "HOLD_FOR_CURSOR"
+msgstr ""
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
 #: ../src/microbe_stage/MicrobeStage.tscn:623
 msgid "ENVIRONMENT"
@@ -3843,8 +3886,8 @@ msgstr "Surve."
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
 #: ../src/microbe_stage/MicrobeStage.tscn:1085
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr "Ühendid"
@@ -4139,64 +4182,64 @@ msgstr "Vastutulelik"
 msgid "FOCUSED"
 msgstr "Keskenduv"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:168
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:155
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:275
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:280
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:262
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
 msgid "ATP_PRODUCTION"
 msgstr "ATP tootmine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:281
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP TOOTMINE LIIGA VÄHE!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:296
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:329
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:316
 msgid "OSMOREGULATION"
 msgstr "osmoregulatsioon"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:335
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
 msgid "BASE_MOVEMENT"
 msgstr "Aluse liikumine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:525
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:523
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1174
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1164
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1166
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2033
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2156
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Kogutud energia on {0} individuaalse kuluga {1}, mille tulemuseks on korrigeerimata elanikkond {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2173
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SOURCES"
 msgstr "Energiaallikad:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2179
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (fitness: {2}) kogu saadaolev energia: {3} (kogu fitness: {4})"
 
@@ -4347,7 +4390,12 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Liitsaldod"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:259
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
+#, fuzzy
+msgid "SPECIES_NAME_TOO_LONG_POPUP"
+msgstr "Liigi nimi..."
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Liigi nimi peab vastama binoomnimesüsteemile (perekond ja epiteet)!"
 
@@ -4397,8 +4445,8 @@ msgid "YEARS"
 msgstr "aastat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:638
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:672
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfääri gaasid"
@@ -4433,28 +4481,28 @@ msgstr "ajaskaala"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Välised mõjud:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Näita globaalseid sündmusi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näita kohalikke sündmusi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:500
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
 msgid "SPECIES_POPULATION"
 msgstr "Liikide populatsioon"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:538
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Füüsilised tingimused"
@@ -4466,11 +4514,6 @@ msgstr "Plaastri kaart"
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
 msgid "CELL"
 msgstr "rakk"
-
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:122
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
-msgid "N_A_MP"
-msgstr "N/A MP"
 
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:46
 msgid "FREEBUILDING"
@@ -4497,9 +4540,13 @@ msgstr "Muutma"
 msgid "EXTINCT_SPECIES"
 msgstr "Väljasurnud liigid"
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:244
+#: ../src/microbe_stage/editor/TimelineTab.cs:260
 msgid "NO_EVENTS_RECORDED"
 msgstr "Sündmusi pole salvestatud"
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
+msgid "N_A_MP"
+msgstr "N/A MP"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -4554,15 +4601,15 @@ msgstr "Väljasuremine"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Nii nagu 99% kõigist kunagi eksisteerinud liikidest, on ka teie liik välja surnud. Teised täidavad teie nišši ja arenevad hästi, kuid see pole teie. Teid unustatakse, ebaõnnestunud evolutsioonikatse."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:227
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:228
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:230
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:231
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}–{1} m allpool merepinda"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:266
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:267
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} elanikkonnaga: {1}"
 
@@ -4647,6 +4694,11 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: modi montaaži mahalaadimismeetodi kutse ebaõnnestus, välja arvatud erand: {1}"
 
 #: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
+msgstr "Pck-faili ({0}) laadimine ebaõnnestus"
+
+#: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
 msgstr "Pck-faili ({0}) laadimine ebaõnnestus"
 
@@ -4940,7 +4992,7 @@ msgstr "Teabe salvestamine ebaõnnestus erandi tõttu: {0}"
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Viga: {0}"
 
-#: ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModUploader.tscn:44 ../src/modding/ModUploader.tscn:307
 msgid "MOD_UPLOADER"
 msgstr "Modifikatsiooni üleslaadija"
 

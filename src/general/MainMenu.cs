@@ -399,6 +399,13 @@ public class MainMenu : NodeWithInput
         thriveLogo.Show();
     }
 
+    private void OnRedirectedToOptionsMenuFromNewGameSettings()
+    {
+        OnReturnFromNewGameSettings();
+        OptionsPressed();
+        options.SelectOptionsTab(OptionsMenu.OptionsTab.Performance);
+    }
+
     private void LoadGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
