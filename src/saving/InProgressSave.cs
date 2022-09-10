@@ -144,7 +144,8 @@ public class InProgressSave : IDisposable
 
             if (match.Success)
             {
-                if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture, out int found))
+                if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture,
+                    out int found))
                 {
                     continue;
                 }
@@ -284,7 +285,8 @@ public class InProgressSave : IDisposable
 
                     if (match.Success)
                     {
-                        if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture, out int found))
+                        if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture,
+                            out int found))
                         {
                             continue;
                         }
