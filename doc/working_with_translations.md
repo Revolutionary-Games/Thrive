@@ -78,9 +78,10 @@ translation key like `PLAY_MUSIC`.
 
 ### Updating the localizations
 
-Once you are done adding content into the game, go into the scripts folder and
-run `update_localization.rb`. This will extract the strings from the game files,
-and also update the .po files if the template (.pot) has changed.
+Once you are done adding content into the game, go into the scripts
+folder and run `dotnet run --project Scripts -- localization`. This
+will extract the strings from the game files, and also update the .po
+files if the template (.pot) has changed.
 
 gettext automatically "guesses" some text which might be right when a new translation
 key appears in a file. This is fine as the texts are marked as needing changes (fuzzy),
@@ -199,18 +200,42 @@ supported code [in the Godot engine documentation](https://docs.godotengine.org/
 #### Add your .po file to the update script
 
 To make updating the localization easier, you should add a reference to
-the new .po file into `scripts/update_localization.rb`.
+the new .po file into `Scripts/LocalizationUpdate.cs`.
 
-Simply open the ruby script into any text editor, and edit the locale list as such:
+Simply open the C# script into any text editor, and edit the locale
+list. To find it first look for the line:
 
-```ruby
-LOCALES = %w[en fr _new-locale_].freeze
+```c#
+   private static readonly List<string> ThriveLocales = new()
 ```
 
-For example:
+After that find where alphabetically in the list you should add the new locale.
 
-```ruby
-LOCALES = %w[en fr jp].freeze
+For example let's consider we were adding `ka` to the list of locales,
+and the locale list looked like the following at the start:
+
+```c#
+        "hu",
+        "id",
+        "ko",
+        "la",
+```
+
+Then we'd simply add:
+```c#
+        "hu",
+        "id",
+        "ka",
+        "ko",
+        "la",
+```
+
+Note that if you add something as the last item, it needs to be before
+the closing `}` and you should also put a comma `,` on the line of the
+last item, example:
+```c#
+        "zh_TW",
+    };
 ```
 
 **If you are not confident in doing it, you can always ask for a programmer to do it for you 

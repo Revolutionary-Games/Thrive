@@ -1,8 +1,8 @@
 Making Releases
 ===============
 
-The repository contains a script called `make_release.rb` which
-handles the release making process.
+The repository contains a script called `dotnet run --Scripts --
+package` which handles the release making process.
 
 As long as you have the prerequisites installed and the game runs from
 the editor, running the script should work.
