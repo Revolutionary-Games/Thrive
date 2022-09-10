@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-31 10:22+0300\n"
+"POT-Creation-Date: 2022-09-03 15:14+0300\n"
 "PO-Revision-Date: 2022-08-31 06:53+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -40,42 +40,42 @@ msgid "CONCEPT_ART"
 msgstr "איור קונספט"
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../simulation_parameters/common/gallery.json:136
-#: ../simulation_parameters/common/gallery.json:286
+#: ../simulation_parameters/common/gallery.json:141
+#: ../simulation_parameters/common/gallery.json:291
 msgid "MICROBE_STAGE"
 msgstr "שלב המיקרובי"
 
 #: ../simulation_parameters/common/gallery.json:61
-#: ../simulation_parameters/common/gallery.json:362
+#: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
 msgstr "שלב הרב-תאי"
 
-#: ../simulation_parameters/common/gallery.json:81
+#: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
 msgstr "כללי"
 
-#: ../simulation_parameters/common/gallery.json:133
+#: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
 msgstr "מודלים"
 
-#: ../simulation_parameters/common/gallery.json:249
+#: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
 msgstr "מוזיקה"
 
-#: ../simulation_parameters/common/gallery.json:252
+#: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 msgid "ALL"
 msgstr "הכל"
 
-#: ../simulation_parameters/common/gallery.json:263
+#: ../simulation_parameters/common/gallery.json:268
 msgid "MENU"
 msgstr "תפריט"
 
-#: ../simulation_parameters/common/gallery.json:327
+#: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
 msgstr "עורך המיקרובי"
 
-#: ../simulation_parameters/common/gallery.json:403
+#: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
 msgstr "עורך הרב-תאי"
 
@@ -1535,7 +1535,7 @@ msgstr "תווית ישות"
 
 #: ../src/engine/DebugOverlays.tscn:123
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "נטוש SceneTree"
 
 #: ../src/engine/DebugOverlays.tscn:134
 msgid "TRANSPARENCY"
@@ -4552,9 +4552,8 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: קריאת פריקת Harmony מוד נכשלה פרט ל: {1}"
 
 #: ../src/modding/ModLoader.cs:453
-#, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "טעינת קבצי pck ({0}) נכשלה"
+msgstr "טעינת קבצי pck ({0}) נכשלה בגלל שקובץ זה לא נמצא"
 
 #: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
