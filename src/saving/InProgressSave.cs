@@ -144,9 +144,12 @@ public class InProgressSave : IDisposable
 
             if (match.Success)
             {
-                ++totalCount;
+                if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture, out int found))
+                {
+                    continue;
+                }
 
-                int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
+                ++totalCount;
 
                 if (found > highestNumber)
                     highestNumber = found;
@@ -281,7 +284,10 @@ public class InProgressSave : IDisposable
 
                     if (match.Success)
                     {
-                        int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
+                        if (!int.TryParse(match.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture, out int found))
+                        {
+                            continue;
+                        }
 
                         if (found > number)
                             number = found;
