@@ -1628,6 +1628,7 @@ msgstr "Birden Fazla Hücre"
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:148
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -4930,6 +4931,7 @@ msgid "NO_EVENTS_RECORDED"
 msgstr "Hiçbir olay görülmedi"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:122
 msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
 
@@ -5052,7 +5054,7 @@ msgstr "{0} için mod bilgisi yüklenemedi"
 
 #: ../src/modding/ModLoader.cs:247
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr "{0}: derleme yükleme işlemi başarısız, olağandışı durum oluştu: {1}"
+msgstr "{0}: Assembly yükleme işlemi başarısız, olağandışı durum oluştu: {1}"
 
 #: ../src/modding/ModLoader.cs:262
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
@@ -5060,26 +5062,26 @@ msgstr "{0}: yüklenebilir kaynak yok"
 
 #: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr "{0}: mod derlemesi kaldırma yöntem çağrısı başarısız"
+msgstr "{0}: Assembly modu kaldırma yöntem çağrısı başarısız"
 
 #: ../src/modding/ModLoader.cs:292
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
-"{0}: mod derlemesi kaldırma yöntem çağrısı başarısız, olağandışı durum "
+"{0}: Assembly modu kaldırma yöntem çağrısı başarısız, olağandışı durum "
 "oluştu: {1}"
 
 #: ../src/modding/ModLoader.cs:373
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
-msgstr "{0}: mod derlemesinde belirtilen mod sınıfı \"{1}\" bulunamadı"
+msgstr "{0}: Assembly modunda belirtilen mod sınıfı \"{1}\" bulunamadı"
 
 #: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "{0}: mod derlemesi başlatma yöntem çağrısı başarısız"
+msgstr "{0}: Assembly modu başlatma yöntem çağrısı başarısız"
 
 #: ../src/modding/ModLoader.cs:398
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
-"{0}: mod derlemesi başlatma yöntem çağrısı başarısız, olağandışı durum "
+"{0}: Assembly modu başlatma yöntem çağrısı başarısız, olağandışı durum "
 "oluştu: {1}"
 
 #: ../src/modding/ModLoader.cs:421
@@ -5108,11 +5110,11 @@ msgstr "Geçersiz URL şeması"
 
 #: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr "Derleme belirtildiğinde, mod derleme sınıfı gereklidir"
+msgstr "Assembly belirtildiğinde, assembly modunun sınıfı gereklidir"
 
 #: ../src/modding/ModManager.cs:334
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Oto Harmony etkinleştirildiğinde, mod derlemesi gereklidir"
+msgstr "Oto Harmony etkinleştirildiğinde, Assembly modu gereklidir"
 
 #: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
@@ -5292,11 +5294,11 @@ msgstr "Mod .pck Dosyası:"
 
 #: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
-msgstr "Mod Derlemesi:"
+msgstr "Assembly Modu:"
 
 #: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr "Mod Derleme Ana Sınıfı:"
+msgstr "Assembly Modu Ana Sınıfı:"
 
 #: ../src/modding/ModManager.tscn:972
 msgid "MOD_AUTO_HARMONY"
