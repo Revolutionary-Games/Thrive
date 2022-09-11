@@ -177,7 +177,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         if (!await CheckGodotIsAvailable(cancellationToken))
             return false;
 
-        var currentBranch = await GitRunHelpers.GetCurrentBranch("./", cancellationToken);
+        // For CI we need to get the branch from a special variable
+        var currentBranch = Environment.GetEnvironmentVariable("CI_BRANCH");
+
+        if (string.IsNullOrWhiteSpace(currentBranch))
+        {
+            currentBranch = await GitRunHelpers.GetCurrentBranch("./", cancellationToken);
+        }
 
         await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, options.Dehydrated, cancellationToken);
 
