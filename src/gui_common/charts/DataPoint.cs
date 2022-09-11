@@ -106,6 +106,11 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return !(lhs == rhs);
     }
 
+    /// <summary>
+    ///   Get a visible datapoint from the cache or a new one if the cache is empty. Due to the fact that this isn't a
+    ///   constructor, all common parameters that needs to be initialized can be passed passed in as optional
+    ///   parameters.
+    /// </summary>
     public static DataPoint GetDataPoint(double x, double y, MarkerIcon iconType = MarkerIcon.Circle, float size = 7,
         Color markerColour = default, bool draw = true, Vector2 coordinate = default)
     {
@@ -127,6 +132,10 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return point;
     }
 
+    /// <summary>
+    ///   Returns a datapoint to the cache. Make sure that the point isn't used anywhere else before returning it to
+    ///   the cache.
+    /// </summary>
     public static void RestoreDataPoint(DataPoint point)
     {
         point.tween.StopAll();
