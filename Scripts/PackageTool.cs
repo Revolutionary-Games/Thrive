@@ -141,6 +141,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             steamMode = await SteamBuild.IsSteamBuildEnabled(cancellationToken);
         }
 
+        var currentCommit = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
+
         if (options.Dehydrated)
         {
             if (steamMode)
@@ -151,7 +153,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             ColourConsole.WriteNormalLine("Making dehydrated devbuilds");
 
-            thriveVersion = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
+            thriveVersion = currentCommit;
         }
 
         if (steamMode)
@@ -174,6 +176,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!await CheckGodotIsAvailable(cancellationToken))
             return false;
+
+        var currentBranch = await GitRunHelpers.GetCurrentBranch("./", cancellationToken);
+
+        await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, options.Dehydrated, cancellationToken);
 
         return true;
     }
