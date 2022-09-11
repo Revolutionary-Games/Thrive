@@ -136,8 +136,14 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     ///   Returns a datapoint to the cache. Make sure that the point isn't used anywhere else before returning it to
     ///   the cache.
     /// </summary>
-    public static void RestoreDataPoint(DataPoint point)
+    public static void ReturnDataPoint(DataPoint point)
     {
+        if (point.GetParent() != null)
+        {
+            GD.PrintErr(point.GetPath(), " still has a parent, so the recycle process fails.");
+            return;
+        }
+
         point.tween.StopAll();
 
         DataPointCache.Push(point);

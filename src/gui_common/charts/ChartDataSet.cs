@@ -68,7 +68,7 @@ public class ChartDataSet : ICloneable
         foreach (var point in dataPoints)
         {
             point.Detach();
-            DataPoint.RestoreDataPoint(point);
+            DataPoint.ReturnDataPoint(point);
         }
 
         dataPoints.Clear();
