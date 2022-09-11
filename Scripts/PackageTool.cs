@@ -389,6 +389,17 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         return true;
     }
 
+    protected override async Task<bool> OnAfterExport(CancellationToken cancellationToken)
+    {
+        if (!await base.OnAfterExport(cancellationToken))
+            return false;
+
+        // Clean up the revision file to not have it hang around unnecessarily
+        BuildInfoWriter.DeleteBuildInfo();
+
+        return true;
+    }
+
     protected override IEnumerable<FileToPackage> GetFilesToPackage()
     {
         foreach (var fileToPackage in BaseFilesToPackage)

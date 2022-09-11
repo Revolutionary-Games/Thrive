@@ -1,6 +1,7 @@
 ﻿namespace Scripts;
 
 using System;
+using System.IO;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,12 @@ public static class BuildInfoWriter
         var info = new BuildInfo(commit, branch, DateTime.UtcNow, devbuild);
 
         return JsonWriteHelper.WriteJsonWithBom(BUILD_INFO_LOCATION, info, cancellationToken);
+    }
+
+    public static void DeleteBuildInfo()
+    {
+        if (File.Exists(BUILD_INFO_LOCATION))
+            File.Delete(BUILD_INFO_LOCATION);
     }
 
     /// <summary>
