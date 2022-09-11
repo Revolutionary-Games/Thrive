@@ -140,7 +140,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     {
         if (point.GetParent() != null)
         {
-            GD.PrintErr(point.GetPath(), " still has a parent, so the recycle process fails.");
+            GD.PrintErr(point.GetPath(), " still has a parent, so returning to cache has failed.");
             return;
         }
 
