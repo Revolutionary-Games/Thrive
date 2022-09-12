@@ -722,24 +722,24 @@
   "slimeJet": {
     "mpCost": 60,
     "initialComposition": {
-        "ammonia": 1,
-        "phosphates": 1
+      "ammonia": 1,
+      "phosphates": 1
     },
     "hexes": [
-        {
-            "r": 0,
-            "q": 0
-        }
+      {
+          "r": 0,
+          "q": 0
+      }
     ],
     "processes": {
-        "mucilage_synthesis": 1
+      "mucilage_synthesis": 1
     },
     "components": {
-        "processor": {},
-        "storage": {
-            "capacity": 0.5
-        },
-        "slimeJet": {}
+      "processor": {},
+      "storage": {
+        "capacity": 0.5
+      },
+      "slimeJet": {}
     },
     "prokaryoteChance": 0.5,
     "chanceToCreate": 0.5,
@@ -752,7 +752,7 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/SlimeJetIcon.png",
     "editorButtonGroup": "External",
     "editorButtonOrder": 3
-},
+  },
   "signalingAgent": {
     "mpCost": 45,
     "initialComposition": {
