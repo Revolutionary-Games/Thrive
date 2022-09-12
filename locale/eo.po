@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-23 15:18+0300\n"
+"POT-Creation-Date: 2022-09-03 15:20+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -40,8 +40,8 @@ msgid "CONCEPT_ART"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../simulation_parameters/common/gallery.json:136
-#: ../simulation_parameters/common/gallery.json:286
+#: ../simulation_parameters/common/gallery.json:141
+#: ../simulation_parameters/common/gallery.json:291
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -54,40 +54,40 @@ msgstr ""
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../simulation_parameters/common/gallery.json:61
-#: ../simulation_parameters/common/gallery.json:362
+#: ../simulation_parameters/common/gallery.json:367
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/gallery.json:81
+#: ../simulation_parameters/common/gallery.json:86
 #, fuzzy
 msgid "GENERAL"
 msgstr "Generacio:"
 
-#: ../simulation_parameters/common/gallery.json:133
+#: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:249
+#: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:252
+#: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
 
-#: ../simulation_parameters/common/gallery.json:263
+#: ../simulation_parameters/common/gallery.json:268
 msgid "MENU"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:327
+#: ../simulation_parameters/common/gallery.json:332
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
-#: ../simulation_parameters/common/gallery.json:403
+#: ../simulation_parameters/common/gallery.json:408
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
@@ -1222,7 +1222,7 @@ msgstr "Listo de Specioj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:413
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1090
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1367 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1533,7 +1533,6 @@ msgstr "Disloku organeton"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:148
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
@@ -1569,7 +1568,7 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
-#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "Maks. FPS:"
@@ -1590,34 +1589,38 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Nekonata musbutono"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
-#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "Ŝaltu FPS-ekranon"
 
-#: ../src/engine/DebugOverlays.tscn:86
+#: ../src/engine/DebugOverlays.tscn:85
 msgid "DEBUG_PANEL"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:96
+#: ../src/engine/DebugOverlays.tscn:95
 msgid "FPS_DISPLAY"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:110
+#: ../src/engine/DebugOverlays.tscn:109
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.tscn:117
+#: ../src/engine/DebugOverlays.tscn:116
 #, fuzzy
 msgid "ENTITY_LABEL"
 msgstr "Biomo: {0}"
 
-#: ../src/engine/DebugOverlays.tscn:128
+#: ../src/engine/DebugOverlays.tscn:123
+msgid "DUMP_SCENE_TREE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:134
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Helpu Traduki La Ludon"
@@ -2227,7 +2230,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.cs:299
-#: ../src/general/NewGameSettings.tscn:1130
+#: ../src/general/NewGameSettings.tscn:1132
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -2238,225 +2241,225 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Aldonunovan funkcion por klavo"
 
 #: ../src/general/NewGameSettings.tscn:120
-#: ../src/general/NewGameSettings.tscn:360
+#: ../src/general/NewGameSettings.tscn:361
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:147
-#: ../src/general/NewGameSettings.tscn:892
+#: ../src/general/NewGameSettings.tscn:148
+#: ../src/general/NewGameSettings.tscn:894
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:899
+#: ../src/general/NewGameSettings.tscn:155
+#: ../src/general/NewGameSettings.tscn:901
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:171
+#: ../src/general/NewGameSettings.tscn:917
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:177
-#: ../src/general/NewGameSettings.tscn:922
+#: ../src/general/NewGameSettings.tscn:178
+#: ../src/general/NewGameSettings.tscn:924
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:191
-#: ../src/general/NewGameSettings.tscn:936
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:938
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/NewGameSettings.tscn:193
 #: ../src/general/NewGameSettings.tscn:194
-#: ../src/general/NewGameSettings.tscn:938
-#: ../src/general/NewGameSettings.tscn:939
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:940
+#: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:194
-#: ../src/general/NewGameSettings.tscn:939
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:194
-#: ../src/general/NewGameSettings.tscn:939
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:209
-#: ../src/general/NewGameSettings.tscn:954
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:956
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:228
-#: ../src/general/NewGameSettings.tscn:973
+#: ../src/general/NewGameSettings.tscn:229
+#: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Rekomenci"
 
-#: ../src/general/NewGameSettings.tscn:267
+#: ../src/general/NewGameSettings.tscn:268
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:289
+#: ../src/general/NewGameSettings.tscn:290
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:299
+#: ../src/general/NewGameSettings.tscn:300
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:309 ../src/general/OptionsMenu.tscn:187
+#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:187
 msgid "MISC"
 msgstr "Aliaj"
 
-#: ../src/general/NewGameSettings.tscn:399
+#: ../src/general/NewGameSettings.tscn:400
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:444
+#: ../src/general/NewGameSettings.tscn:445
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:461
+#: ../src/general/NewGameSettings.tscn:462
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutaciaj Poentoj"
 
-#: ../src/general/NewGameSettings.tscn:506
+#: ../src/general/NewGameSettings.tscn:507
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:523
+#: ../src/general/NewGameSettings.tscn:524
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Kunmetitaj nuboj"
 
-#: ../src/general/NewGameSettings.tscn:568
+#: ../src/general/NewGameSettings.tscn:569
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "Kunmetitaj nuboj"
 
-#: ../src/general/NewGameSettings.tscn:585
+#: ../src/general/NewGameSettings.tscn:586
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:630
+#: ../src/general/NewGameSettings.tscn:631
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:647
+#: ../src/general/NewGameSettings.tscn:648
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:691
+#: ../src/general/NewGameSettings.tscn:692
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:708
+#: ../src/general/NewGameSettings.tscn:709
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregada Kosto"
 
-#: ../src/general/NewGameSettings.tscn:753
+#: ../src/general/NewGameSettings.tscn:754
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregada Kosto"
 
-#: ../src/general/NewGameSettings.tscn:765
+#: ../src/general/NewGameSettings.tscn:766
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:772
+#: ../src/general/NewGameSettings.tscn:773
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:785
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:791
+#: ../src/general/NewGameSettings.tscn:792
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:803
+#: ../src/general/NewGameSettings.tscn:804
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "KONFIRMU"
 
-#: ../src/general/NewGameSettings.tscn:810
+#: ../src/general/NewGameSettings.tscn:811
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:855
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Mapo"
 
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:876
 #: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1021
+#: ../src/general/NewGameSettings.tscn:1023
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1055
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Disloku organeton"
 
-#: ../src/general/NewGameSettings.tscn:1060
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1072
+#: ../src/general/NewGameSettings.tscn:1074
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato de predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la Didinio aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
 
-#: ../src/general/NewGameSettings.tscn:1079
+#: ../src/general/NewGameSettings.tscn:1081
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/general/NewGameSettings.tscn:1107
+#: ../src/general/NewGameSettings.tscn:1109
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/NewGameSettings.tscn:1109
+#: ../src/general/NewGameSettings.tscn:1111
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1120
+#: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/general/NewGameSettings.tscn:1121
+#: ../src/general/NewGameSettings.tscn:1123
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1131
+#: ../src/general/NewGameSettings.tscn:1133
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "KONFIRMU"
@@ -3329,6 +3332,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2042
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #, fuzzy
 msgid "N_A"
 msgstr "N/A MP"
@@ -4619,11 +4623,6 @@ msgstr "Mapo"
 msgid "CELL"
 msgstr "Celulozo"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:122
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
-msgid "N_A_MP"
-msgstr "N/A MP"
-
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:46
 msgid "FREEBUILDING"
 msgstr "Libera konstruado"
@@ -4653,6 +4652,10 @@ msgstr "FORMORTADO"
 #: ../src/microbe_stage/editor/TimelineTab.cs:260
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
+msgid "N_A_MP"
+msgstr "N/A MP"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -4805,6 +4808,11 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
+msgstr "Ŝarĝo estas finita"
+
+#: ../src/modding/ModLoader.cs:461
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Ŝarĝo estas finita"

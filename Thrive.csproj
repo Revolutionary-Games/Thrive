@@ -60,6 +60,7 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
     <Compile Include="src\engine\IResource.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
@@ -360,7 +361,6 @@
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
     <Compile Include="src\microbe_stage\MembraneType.cs" />
     <Compile Include="simulation_parameters\SimulationParameters.cs" />
@@ -550,10 +550,6 @@
     <Compile Include="test\MetaballTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="StyleCop.ruleset" />
-    <None Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
@@ -582,6 +578,9 @@
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
     <Content Include="export_presets.cfg" />
+    <Content Include="global.json" />
+    <Content Include="RevolutionaryGamesCommon\stylecop.json" />
+    <Content Include="RevolutionaryGamesCommon\StyleCop.ruleset" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
     <Content Include="simulation_parameters\common\difficulty_presets.json" />
