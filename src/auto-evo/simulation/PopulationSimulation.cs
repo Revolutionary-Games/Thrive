@@ -140,7 +140,7 @@
 
         private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
             IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
-            AutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration)
         {
             foreach (var entry in patchesToSimulate)
             {
@@ -156,7 +156,7 @@
         /// </summary>
         private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
             IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
-            AutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration)
         {
             _ = random;
 

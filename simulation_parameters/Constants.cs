@@ -337,21 +337,21 @@ public static class Constants
     /// <summary>
     ///   How much total compounds can be absorbed by organelles to grow per second
     /// </summary>
-    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.85f;
+    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.5f;
 
     /// <summary>
     ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
     ///   reproduction use. Note this limit applies to all compounds combined, not to each individual compound type.
     ///   This is because it is way easier to implement that way.
     /// </summary>
-    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.30f;
+    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
 
     /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
-    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 10;
+    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
 
-    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 10;
+    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -458,6 +458,11 @@ public static class Constants
     ///   Each enzyme addition grants this fraction increase in compounds yield.
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
+
+    /// <summary>
+    ///   The maximum cap for efficiency of digestion.
+    /// </summary>
+    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 

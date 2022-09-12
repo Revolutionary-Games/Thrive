@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Globalization;
+using Godot;
 
 /// <summary>
 ///   A specialized button to display a microbe part for selection in the cell editor.
@@ -8,6 +9,7 @@ public class MicrobePartSelection : MarginContainer
     [Export]
     public ButtonGroup SelectionGroup = null!;
 
+    private Control contentContainer = null!;
     private Label? mpLabel;
     private Button? button;
     private TextureRect? iconRect;
@@ -114,7 +116,8 @@ public class MicrobePartSelection : MarginContainer
 
     public override void _Ready()
     {
-        mpLabel = GetNode<Label>("VBoxContainer/MP");
+        contentContainer = GetChild<Control>(0);
+        mpLabel = GetNode<Label>("VBoxContainer/HBoxContainer/MP");
         button = GetNode<Button>("VBoxContainer/Button");
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
@@ -136,8 +139,14 @@ public class MicrobePartSelection : MarginContainer
 
     private void OnDisplayPartNamesChanged(bool displayed)
     {
-        if (nameLabel != null)
-            nameLabel.Visible = displayed || AlwaysShowLabel;
+        if (nameLabel == null)
+            return;
+
+        var showNameLabel = displayed || AlwaysShowLabel;
+
+        nameLabel.Visible = showNameLabel;
+
+        contentContainer.AddConstantOverride("separation", showNameLabel ? 1 : 4);
     }
 
     private void UpdateLabels()
@@ -145,8 +154,7 @@ public class MicrobePartSelection : MarginContainer
         if (mpLabel == null || nameLabel == null)
             return;
 
-        mpLabel.Text = TranslationServer.Translate("MP_COST").FormatSafe(MPCost);
-
+        mpLabel.Text = MPCost.ToString(CultureInfo.CurrentCulture);
         nameLabel.Text = PartName;
 
         mpLabel.Modulate = Colors.White;
@@ -165,7 +173,6 @@ public class MicrobePartSelection : MarginContainer
             return;
 
         iconRect.Texture = PartIcon;
-
         iconRect.Modulate = Colors.White;
 
         if (Selected)

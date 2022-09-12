@@ -8,7 +8,7 @@
     /// </summary>
     public class SimulationConfiguration
     {
-        public SimulationConfiguration(AutoEvoConfiguration autoEvoConfiguration, PatchMap initialConditions,
+        public SimulationConfiguration(IAutoEvoConfiguration autoEvoConfiguration, PatchMap initialConditions,
             WorldGenerationSettings worldSettings, int steps = 1)
         {
             AutoEvoConfiguration = autoEvoConfiguration;
@@ -17,7 +17,7 @@
             StepsLeft = Math.Max(1, steps);
         }
 
-        public AutoEvoConfiguration AutoEvoConfiguration { get; }
+        public IAutoEvoConfiguration AutoEvoConfiguration { get; }
         public PatchMap OriginalMap { get; }
         public WorldGenerationSettings WorldSettings { get; }
         public int StepsLeft { get; set; }

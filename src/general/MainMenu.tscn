@@ -522,6 +522,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
+[connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
