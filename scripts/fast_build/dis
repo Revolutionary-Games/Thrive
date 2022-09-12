@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-# Toggles analysis mode off
-
-ARGV.clear
-ARGV.append "no"
-
-require_relative 'scripts/fast_build/toggle_analysis_mode'

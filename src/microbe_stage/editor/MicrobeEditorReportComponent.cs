@@ -289,11 +289,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             var snapshot = patch.History.ElementAt(i);
 
             var temperature = SimulationParameters.Instance.GetCompound("temperature");
-            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod,
-                snapshot.Biome.Compounds[temperature].Ambient)
-            {
-                MarkerColour = temperatureData.Colour,
-            });
+
+            temperatureData.AddPoint(DataPoint.GetDataPoint(snapshot.TimePeriod,
+                snapshot.Biome.Compounds[temperature].Ambient, markerColour: temperatureData.Colour));
 
             foreach (var entry in snapshot.Biome.Compounds)
             {
@@ -302,11 +300,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                 if (dataset == null)
                     continue;
 
-                var dataPoint = new DataPoint(snapshot.TimePeriod,
-                    Math.Round(patch.GetCompoundAmountInSnapshot(snapshot, entry.Key.InternalName), 3))
-                {
-                    MarkerColour = dataset.Colour,
-                };
+                var dataPoint = DataPoint.GetDataPoint(snapshot.TimePeriod,
+                    Math.Round(patch.GetCompoundAmountInSnapshot(snapshot, entry.Key.InternalName), 3));
+                dataPoint.MarkerColour = dataset.Colour;
 
                 dataset.AddPoint(dataPoint);
             }
@@ -352,12 +348,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
                     }
                 }
 
-                var dataPoint = new DataPoint(snapshot.TimePeriod, population)
-                {
-                    Size = iconSize,
-                    IconType = iconType,
-                    MarkerColour = dataset.Colour,
-                };
+                var dataPoint = DataPoint.GetDataPoint(snapshot.TimePeriod, population,
+                    iconType, iconSize, dataset.Colour);
 
                 if (extinctInPatch)
                 {
