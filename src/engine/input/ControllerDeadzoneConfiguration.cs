@@ -145,7 +145,9 @@ public class ControllerDeadzoneConfiguration : CustomDialog
 
         // Deadzones start at 0 and get increased as they are moved
         for (int i = 0; i < currentDeadzones.Count; ++i)
+        {
             currentDeadzones[i] = 0;
+        }
 
         statusLabel.Text = TranslationServer.Translate("DEADZONE_CALIBRATION_INPROGRESS");
         calibrating = true;
