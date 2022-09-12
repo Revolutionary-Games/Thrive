@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Directory = Godot.Directory;
 using File = Godot.File;
 
 /// <summary>
@@ -30,6 +31,7 @@ public class SimulationParameters : Node
     private TranslationsInfo translationsInfo = null!;
     private GameCredits gameCredits = null!;
     private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
+    private BuildInfo? buildInfo;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -106,7 +108,21 @@ public class SimulationParameters : Node
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
 
-        GD.Print("SimulationParameters loading ended");
+        // Build info is only loaded if the file is present
+        using var directory = new Directory();
+
+        if (directory.FileExists(Constants.BUILD_INFO_FILE))
+        {
+            buildInfo = LoadDirectObject<BuildInfo>(Constants.BUILD_INFO_FILE);
+        }
+
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+        if (Constants.VERBOSE_SIMULATION_PARAMETER_LOADING)
+            GD.Print("SimulationParameters loading ended");
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
 
         CheckForInvalidValues();
         ResolveValueRelationships();
@@ -322,6 +338,11 @@ public class SimulationParameters : Node
         return PatchMapNameGenerator;
     }
 
+    public BuildInfo? GetBuildInfoIfExists()
+    {
+        return buildInfo;
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
@@ -402,7 +423,15 @@ public class SimulationParameters : Node
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);
 
-        GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+        if (Constants.VERBOSE_SIMULATION_PARAMETER_LOADING)
+
+            GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
+
         return result;
     }
 
@@ -415,7 +444,14 @@ public class SimulationParameters : Node
         if (result == null)
             throw new InvalidDataException("Could not load a registry from file: " + path);
 
-        GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162
+        if (Constants.VERBOSE_SIMULATION_PARAMETER_LOADING)
+            GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162
+
         return result;
     }
 
@@ -453,6 +489,7 @@ public class SimulationParameters : Node
         autoEvoConfiguration.InternalName = AUTO_EVO_CONFIGURATION_NAME;
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);
+        buildInfo?.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()

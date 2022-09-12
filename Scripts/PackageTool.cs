@@ -141,6 +141,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             steamMode = await SteamBuild.IsSteamBuildEnabled(cancellationToken);
         }
 
+        var currentCommit = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
+
         if (options.Dehydrated)
         {
             if (steamMode)
@@ -151,7 +153,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             ColourConsole.WriteNormalLine("Making dehydrated devbuilds");
 
-            thriveVersion = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
+            thriveVersion = currentCommit;
         }
 
         if (steamMode)
@@ -174,6 +176,16 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!await CheckGodotIsAvailable(cancellationToken))
             return false;
+
+        // For CI we need to get the branch from a special variable
+        var currentBranch = Environment.GetEnvironmentVariable("CI_BRANCH");
+
+        if (string.IsNullOrWhiteSpace(currentBranch))
+        {
+            currentBranch = await GitRunHelpers.GetCurrentBranch("./", cancellationToken);
+        }
+
+        await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, options.Dehydrated, cancellationToken);
 
         return true;
     }
@@ -379,6 +391,17 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             ColourConsole.WriteInfoLine(message);
             AddReprintMessage(message);
         }
+
+        return true;
+    }
+
+    protected override async Task<bool> OnAfterExport(CancellationToken cancellationToken)
+    {
+        if (!await base.OnAfterExport(cancellationToken))
+            return false;
+
+        // Clean up the revision file to not have it hang around unnecessarily
+        BuildInfoWriter.DeleteBuildInfo();
 
         return true;
     }
