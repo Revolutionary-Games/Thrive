@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -207,6 +208,25 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
                 // TODO: change the view
             }
+
+            // TODO: remove
+            // Spawn a chunk to give the player some navigation reference
+            var mesh = new ChunkConfiguration.ChunkScene
+            {
+                ScenePath = "res://assets/models/Iron5.tscn",
+                ConvexShapePath = "res://assets/models/Iron5.shape",
+            };
+            mesh.LoadScene();
+            SpawnHelpers.SpawnChunk(new ChunkConfiguration
+                {
+                    Name = "test",
+                    Size = 10000,
+                    Radius = 10,
+                    Mass = 100,
+                    ChunkScale = 1,
+                    Meshes = new List<ChunkConfiguration.ChunkScene> { mesh },
+                }, new Vector3(3, 0, -15), rootOfDynamicallySpawned, SpawnHelpers.LoadChunkScene(),
+                random);
         }
 
         // patchManager.CurrentGame = CurrentGame;
