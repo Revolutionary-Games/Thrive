@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-12 16:01+0300\n"
+"POT-Creation-Date: 2022-09-12 16:12+0300\n"
 "PO-Revision-Date: 2022-08-31 06:53+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -499,6 +499,7 @@ msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Diğer"
 
 #: ../simulation_parameters/common/input_options.json:175
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:534
 #, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "İmleç için TODO: girdisini basılı tut"
@@ -3872,10 +3873,6 @@ msgstr "Bileşikler:"
 msgid "SPECIES_COLON"
 msgstr "Türler:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:534
-msgid "HOLD_FOR_CURSOR"
-msgstr "İmleç için TODO: girdisini basılı tut"
-
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:594
 #: ../src/microbe_stage/MicrobeStage.tscn:623
 msgid "ENVIRONMENT"
@@ -5701,6 +5698,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "İlerlemeye Devam Et"
+
+#~ msgid "HOLD_FOR_CURSOR"
+#~ msgstr "İmleç için TODO: girdisini basılı tut"
 
 #~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
 #~ msgstr "Makroskopik prototip"
