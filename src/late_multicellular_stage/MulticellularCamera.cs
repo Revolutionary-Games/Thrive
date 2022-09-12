@@ -39,6 +39,27 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         }
     }
 
+    /// <summary>
+    ///   How fast the camera zooming is for controlling <see cref="ArmLength"/>
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float ZoomSpeed { get; set; } = 1.4f;
+
+    /// <summary>
+    ///   The height at which the camera starts at
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float MinArmLength { get; set; } = 1.0f;
+
+    /// <summary>
+    ///   Min height the camera can be scrolled to
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float MaxArmLength { get; set; } = 14;
+
     [Export]
     [JsonProperty]
     public Vector3 FollowOffset { get; set; } = new(1.2f, 1.5f, 0.5f);
@@ -112,6 +133,18 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         NodeReferencesResolved = true;
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+    }
+
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
@@ -134,6 +167,16 @@ public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
         var rotation = yQuaternion * new Quat(right, XRotation);
 
         arm!.Transform = new Transform(rotation, Vector3.Zero);
+    }
+
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
+    public bool Zoom(float delta, float value)
+    {
+        if (!Current)
+            return false;
+
+        ArmLength = Mathf.Clamp(ArmLength + ZoomSpeed * value, MinArmLength, MaxArmLength);
+        return true;
     }
 
     private void ApplyArmLength()
