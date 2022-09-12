@@ -41,7 +41,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private ImageTexture texture = null!;
     private FluidSystem? fluidSystem;
 
-    [JsonProperty]
     private Vector4 decayRates;
 
     [JsonProperty]

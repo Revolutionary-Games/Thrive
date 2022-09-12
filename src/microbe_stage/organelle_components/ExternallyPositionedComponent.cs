@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Base class for organelle components that position their model on a membrane edge
@@ -13,7 +12,6 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// </summary>
     protected static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
-    [JsonProperty]
     protected PlacedOrganelle? organelle;
 
     /// <summary>

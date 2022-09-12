@@ -202,6 +202,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
+    protected readonly List<Compound> allAgents = new();
+
     protected Compound ammonia = null!;
     protected Compound atp = null!;
     protected Compound carbondioxide = null!;
@@ -226,8 +228,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     // Store these statefully for after player death
     protected float maxHP = 1.0f;
     protected float maxATP = 1.0f;
-
-    protected List<Compound> allAgents = new();
 
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;

@@ -13,6 +13,11 @@ public class SlimeJetComponent : ExternallyPositionedComponent
     private Compound mucilage = null!;
 
     /// <summary>
+    ///   The amount of slime secreted in the current process cycle
+    /// </summary>
+    private float slimeToSecrete;
+
+    /// <summary>
     ///   Whether this jet is currently secreting slime and animating
     /// </summary>
     public bool Active
@@ -35,7 +40,6 @@ public class SlimeJetComponent : ExternallyPositionedComponent
         // Visual positioning code
         base.UpdateAsync(delta);
 
-        // Movement force
         var microbe = organelle!.ParentMicrobe!;
 
         if (microbe.PhagocytosisStep != PhagocytosisPhase.None)
@@ -45,6 +49,25 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
         if (movement != Vector3.Zero)
             microbe.AddMovementForce(movement);
+    }
+
+    public override void UpdateSync()
+    {
+        base.UpdateSync();
+
+        var microbe = organelle!.ParentMicrobe!;
+
+        if (microbe.PhagocytosisStep != PhagocytosisPhase.None)
+        {
+            slimeToSecrete = 0.0f;
+            return;
+        }
+
+        var direction = GetDirection();
+
+        // Eject mucilage at the maximum rate in the opposite direction to this organelle's rotation
+        microbe.EjectCompound(mucilage, slimeToSecrete, -direction, 2);
+        slimeToSecrete = 0.0f;
     }
 
     /// <summary>
@@ -58,12 +81,13 @@ public class SlimeJetComponent : ExternallyPositionedComponent
         var currentCellRotation = microbe.GlobalTransform.basis.Quat();
         var direction = GetDirection();
 
-        // Eject mucilage at the maximum rate in a direction opposite to this organelle's rotation
-        var slimeSecreted = microbe.EjectCompound(
-            mucilage, Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta, -direction, 2);
+        // Preview the amount of mucilage we'll eject to calculate force here
+        // Don't actually eject, as this is unsafe here. See: https://github.com/Revolutionary-Games/Thrive/issues/3270
+        slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
+            microbe.Compounds.GetCompoundAmount(mucilage));
 
         // Scale total added force by the amount ejected
-        return Constants.MUCILAGE_JET_FACTOR * slimeSecreted *
+        return Constants.MUCILAGE_JET_FACTOR * slimeToSecrete *
             currentCellRotation.Xform(direction) / microbe.MassFromOrganelles;
     }
 

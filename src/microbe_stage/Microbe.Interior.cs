@@ -55,6 +55,9 @@ public partial class Microbe
     [JsonProperty]
     private float slimeSecretionCooldown;
 
+    [JsonProperty]
+    private float queuedSlimeSecretionTime;
+
     private float lastCheckedReproduction;
 
     /// <summary>
@@ -153,9 +156,6 @@ public partial class Microbe
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
-
-    [JsonProperty]
-    public float QueuedSlimeSecretionTime { get; set; }
 
     [JsonIgnore]
     public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
@@ -338,6 +338,11 @@ public partial class Microbe
     public void QueueEmitToxin(Compound toxinCompound)
     {
         queuedToxinToEmit = toxinCompound;
+    }
+
+    public void QueueSecreteSlime(float duration)
+    {
+        queuedSlimeSecretionTime += duration;
     }
 
     /// <summary>
@@ -1552,7 +1557,7 @@ public partial class Microbe
             slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
 
         // If we've been told to secrete slime and can do it, proceed
-        if (QueuedSlimeSecretionTime > 0 && slimeSecretionCooldown <= 0)
+        if (queuedSlimeSecretionTime > 0 && slimeSecretionCooldown <= 0)
         {
             // Play a sound only if we've just started, i.e. only if no jets are already active
             if (SlimeJets.All(c => !c.Active))
@@ -1569,9 +1574,9 @@ public partial class Microbe
                 jet.Active = false;
         }
 
-        QueuedSlimeSecretionTime -= delta;
-        if (QueuedSlimeSecretionTime < 0)
-            QueuedSlimeSecretionTime = 0;
+        queuedSlimeSecretionTime -= delta;
+        if (queuedSlimeSecretionTime < 0)
+            queuedSlimeSecretionTime = 0;
     }
 
     private void UpdateDissolveEffect()
