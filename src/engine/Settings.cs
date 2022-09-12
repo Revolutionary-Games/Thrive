@@ -801,7 +801,13 @@ public class Settings
 
         try
         {
-            return JsonConvert.DeserializeObject<Settings>(text);
+            var settings = JsonConvert.DeserializeObject<Settings>(text);
+
+            if (settings == null)
+                return settings;
+
+            EnsureLoadedSettingsAreValid(settings);
+            return settings;
         }
         catch
         {
@@ -812,6 +818,15 @@ public class Settings
             settings.Save();
 
             return settings;
+        }
+    }
+
+    private static void EnsureLoadedSettingsAreValid(Settings settings)
+    {
+        if (settings.MaxSpawnedEntities.Value < Constants.TINY_MAX_SPAWNED_ENTITIES)
+        {
+            GD.PrintErr($"{nameof(MaxSpawnedEntities)} is below the minimum value, resetting to normal");
+            settings.MaxSpawnedEntities.Value = Constants.NORMAL_MAX_SPAWNED_ENTITIES;
         }
     }
 
