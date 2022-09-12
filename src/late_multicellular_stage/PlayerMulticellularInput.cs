@@ -68,21 +68,35 @@ public class PlayerMulticellularInput : NodeWithInput
             autoMove = false;
         }
 
-        // TODO: implement
-        /*if (stage.Player != null)
+        if (stage.Player != null)
         {
-            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+            if (autoMove)
             {
-                stage.Player.MovementDirection = Vector3.Zero;
-                return;
+                stage.Player.MovementDirection = new Vector3(0, 0, -1);
             }
+            else
+            {
+                var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
-            var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+                // To allow slow movement with a controller
+                if (movement.Length() > 1)
+                    movement = movement.Normalized();
 
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+                stage.Player.MovementDirection = movement;
+            }
+        }
+    }
 
-            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
-        }*/
+    [RunOnKey("g_move_up")]
+    public void SwimUpOrJump(float delta)
+    {
+        stage.Player?.SwimUpOrJump(delta);
+    }
+
+    [RunOnKey("g_move_down")]
+    public void SwimDownOrCrouch(float delta)
+    {
+        stage.Player?.SwimDownOrCrouch(delta);
     }
 
     [RunOnAxis(

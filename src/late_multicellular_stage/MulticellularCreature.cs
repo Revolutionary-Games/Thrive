@@ -32,6 +32,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonProperty]
     private float targetSwimLevel;
 
+    [JsonProperty]
+    private float upDownSwimSpeed = 3;
+
     // TODO: implement
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses => new();
@@ -78,6 +81,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
 
+    /// <summary>
+    ///   The direction the creature wants to move. Doesn't need to be normalized
+    /// </summary>
+    public Vector3 MovementDirection { get; set; } = Vector3.Zero;
+
     [JsonProperty]
     public float TimeUntilNextAIUpdate { get; set; }
 
@@ -118,6 +126,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         _Ready();
     }
 
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -134,6 +147,12 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         if (Translation.y < targetSwimLevel)
             ApplyCentralImpulse(Mass * SwimUpForce * delta);
+
+        if (MovementDirection != Vector3.Zero)
+        {
+            // TODO: movement force calculation
+            ApplyCentralImpulse(Mass * MovementDirection * delta);
+        }
     }
 
     public void ApplySpecies(Species species)
@@ -251,8 +270,13 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         player.Play();*/
     }
 
-    public void OnDestroyed()
+    public void SwimUpOrJump(float delta)
     {
-        AliveMarker.Alive = false;
+        targetSwimLevel += upDownSwimSpeed * delta;
+    }
+
+    public void SwimDownOrCrouch(float delta)
+    {
+        targetSwimLevel -= upDownSwimSpeed * delta;
     }
 }

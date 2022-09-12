@@ -57,6 +57,8 @@ public class PlayerMicrobeInput : NodeWithInput
 
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
+            // TODO: change this line to only normalize when length exceeds 1 to make slowly moving with a controller
+            // work
             stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
 
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
