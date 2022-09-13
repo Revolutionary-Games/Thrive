@@ -286,8 +286,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool environmentCompressed;
     private bool compoundCompressed;
 
-    ///   The values of the two following variables are the opposite of the expected values.
-    ///   I.e. their values are true when their respective panels are collapsed.
+    // The values of the two following variables are the opposite of the expected values.
+    // I.e. their values are true when their respective panels are collapsed.
     private bool compoundsPanelActive;
 
     private bool environmentPanelActive;
