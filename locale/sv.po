@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-11 16:51+0300\n"
+"POT-Creation-Date: 2022-09-13 16:38-0400\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -382,14 +382,14 @@ msgid "ABILITIES"
 msgstr "Förmågor"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1975
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1998
+#: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr "Skjut gift"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1984
+#: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr "Växla uppslukarläge av och på"
 
@@ -398,7 +398,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Håll för att visa grupp commando menyn"
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1986
+#: ../src/microbe_stage/MicrobeStage.tscn:2082
 msgid "TOGGLE_BINDING"
 msgstr "Växla bindning av och på"
 
@@ -407,7 +407,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Växla avbindning av och på"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:1998
+#: ../src/microbe_stage/MicrobeStage.tscn:2094
 msgid "UNBIND_ALL"
 msgstr "Lösgör alla"
 
@@ -759,42 +759,42 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1201
-#: ../src/microbe_stage/MicrobeStage.tscn:1232
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1292
+#: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1253
-#: ../src/microbe_stage/MicrobeStage.tscn:1281
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1344
+#: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1333
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1396
+#: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1149
-#: ../src/microbe_stage/MicrobeStage.tscn:1183
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1240
+#: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glukos"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1487
-#: ../src/microbe_stage/MicrobeStage.tscn:1556
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1578
+#: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1357
-#: ../src/microbe_stage/MicrobeStage.tscn:1382
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1448
+#: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Järn"
@@ -2034,12 +2034,12 @@ msgid "CLOSE"
 msgstr "Stäng"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:675
+#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:681
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:234
 msgid "PERCENTAGE_VALUE"
@@ -2438,11 +2438,11 @@ msgstr "Det här språket jobbas fortfarande på ({0}% klart)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Detta språk är {0}% komplett"
 
-#: ../src/general/OptionsMenu.cs:1152
+#: ../src/general/OptionsMenu.cs:1150
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1159
+#: ../src/general/OptionsMenu.cs:1157
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Okänd mus"
@@ -2875,7 +2875,7 @@ msgstr "Självmord"
 msgid "STATISTICS"
 msgstr "Statistik"
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
@@ -2910,40 +2910,40 @@ msgstr "spelare dog"
 msgid "EXTINCT_IN_PATCH"
 msgstr "dog ut på planeten"
 
-#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:883
+#: ../src/general/StageHUDBase.cs:889
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:885
+#: ../src/general/StageHUDBase.cs:891
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:887
+#: ../src/general/StageHUDBase.cs:893
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:889
+#: ../src/general/StageHUDBase.cs:895
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:891
+#: ../src/general/StageHUDBase.cs:897
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:893
+#: ../src/general/StageHUDBase.cs:899
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1093
+#: ../src/general/StageHUDBase.cs:1099
 msgid "PLAYER_CELL"
 msgstr "spelarcell"
 
-#: ../src/general/StageHUDBase.cs:1106
+#: ../src/general/StageHUDBase.cs:1112
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Artlista"
@@ -3758,7 +3758,7 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:153
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:161
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1552
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Ej implementerat än."
 
@@ -3866,83 +3866,83 @@ msgstr ""
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:423
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:506
 #, fuzzy
 msgid "LOOKING_AT"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:449
-#: ../src/microbe_stage/MicrobeStage.tscn:481
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:532
+#: ../src/microbe_stage/MicrobeStage.tscn:564
 msgid "NOTHING_HERE"
 msgstr "Ingenting här"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:474
-#: ../src/microbe_stage/MicrobeStage.tscn:506
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:557
+#: ../src/microbe_stage/MicrobeStage.tscn:589
 msgid "COMPOUNDS_COLON"
 msgstr "Föreningar:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:514
-#: ../src/microbe_stage/MicrobeStage.tscn:546
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:597
+#: ../src/microbe_stage/MicrobeStage.tscn:629
 msgid "SPECIES_COLON"
 msgstr "Arter:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:616
 msgid "HOLD_FOR_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:593
-#: ../src/microbe_stage/MicrobeStage.tscn:623
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:680
+#: ../src/microbe_stage/MicrobeStage.tscn:711
 msgid "ENVIRONMENT"
 msgstr "Miljö"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:859
-#: ../src/microbe_stage/MicrobeStage.tscn:891
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:946
+#: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
-#: ../src/microbe_stage/MicrobeStage.tscn:947
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1002
+#: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "Ljus"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
-#: ../src/microbe_stage/MicrobeStage.tscn:1002
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1057
+#: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "Tryck"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
-#: ../src/microbe_stage/MicrobeStage.tscn:1085
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1144
+#: ../src/microbe_stage/MicrobeStage.tscn:1177
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
-#: ../src/microbe_stage/MicrobeStage.tscn:1496
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1518
+#: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "Medel"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1557
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1648
 #, fuzzy
 msgid "BECOME_AWARE"
 msgstr "Omgivning: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1659
 msgid "AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr "INVÅNARE:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2033
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2035
 msgid "MACROSCOPIC_PROTOYPE_WARNING"
 msgstr ""
 
@@ -4002,28 +4002,34 @@ msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som k
 msgid "MULTIPLE_METABALLS"
 msgstr "Placera organell"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:44
+#: ../src/microbe_stage/HUDBottomBar.tscn:48
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:59
+#: ../src/microbe_stage/HUDBottomBar.tscn:63
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:60
+#: ../src/microbe_stage/HUDBottomBar.tscn:64
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Fortsätt"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:68
-msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#, fuzzy
+msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
+msgstr "Hjälp"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:83
+#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:134
+#: ../src/microbe_stage/HUDBottomBar.tscn:152
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
@@ -4119,12 +4125,12 @@ msgid "STUFF_AT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:384
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
+#: ../src/microbe_stage/MicrobeStage.tscn:1725
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:420
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
@@ -4132,19 +4138,19 @@ msgstr ""
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:455
+#: ../src/microbe_stage/MicrobeStage.tscn:538
 msgid "AT_CURSOR"
 msgstr "Vid Muspekare:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1432
+#: ../src/microbe_stage/MicrobeStage.tscn:1524
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1621
+#: ../src/microbe_stage/MicrobeStage.tscn:1721
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1804
+#: ../src/microbe_stage/MicrobeStage.tscn:1904
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -4469,33 +4475,33 @@ msgstr ""
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:397
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:389
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:390
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:392
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:395
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 msgid "YEARS"
 msgstr "år"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:400
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:392
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:638
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:672
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfäriska Gaser"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:395
 msgid "SPECIES_LIST"
 msgstr "Artlista"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:406
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:419
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "dog ut på planeten"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:415
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:418
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "dog ut på planeten"
@@ -5242,15 +5248,15 @@ msgstr "Laddningsfel"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:207
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Sparar..."
 
-#: ../src/saving/InProgressSave.cs:242
+#: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
 msgstr "Sparande misslyckades"
 
-#: ../src/saving/InProgressSave.cs:243
+#: ../src/saving/InProgressSave.cs:247
 msgid "ERROR_SAVING"
 msgstr "Sparningsfel"
 
