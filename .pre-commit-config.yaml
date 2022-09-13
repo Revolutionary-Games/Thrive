@@ -3,7 +3,7 @@ repos:
     hooks:
     - id: check_formatting
       name: Run check formatting
-      entry: ./scripts/hooks/precommit_hook.rb
-      language: ruby
+      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour
+      language: system
       verbose: true
       pass_filenames: false  

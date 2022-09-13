@@ -1,7 +1,0 @@
-<!-- IF YOU MODIFY THIS FILE YOU MUST ALSO MODIFY scripts/fast_build xml files -->
-<Project>
-  <!-- No analyzers build (ruleset is not included to catch situations with the analysis accidentally running) -->
-  <ItemGroup>
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
-  </ItemGroup>
-</Project>

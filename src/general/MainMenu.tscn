@@ -109,6 +109,29 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="VersionNumber" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -624.0
+margin_top = -19.0
+margin_right = -4.0
+margin_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 16 )
+text = "x.y.z"
+align = 2
+valign = 2
+autowrap = true
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="MenuContainers" type="Node" parent="."]
 __meta__ = {
 "_editor_description_": "The UI for the main menu is contained here"
@@ -460,31 +483,6 @@ __meta__ = {
 
 [node name="ModManager" parent="." instance=ExtResource( 14 )]
 visible = false
-
-[node name="VersionNumber" type="Label" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -165.0
-margin_top = -19.0
-margin_right = -4.0
-margin_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = ExtResource( 16 )
-text = "x.y.z"
-align = 2
-valign = 2
-clip_text = true
-max_lines_visible = 1
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )

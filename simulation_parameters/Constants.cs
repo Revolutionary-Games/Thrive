@@ -337,21 +337,21 @@ public static class Constants
     /// <summary>
     ///   How much total compounds can be absorbed by organelles to grow per second
     /// </summary>
-    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.85f;
+    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 0.5f;
 
     /// <summary>
     ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
     ///   reproduction use. Note this limit applies to all compounds combined, not to each individual compound type.
     ///   This is because it is way easier to implement that way.
     /// </summary>
-    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.30f;
+    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
 
     /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
-    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 10;
+    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
 
-    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 10;
+    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -882,6 +882,10 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
+    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
+
+    public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
