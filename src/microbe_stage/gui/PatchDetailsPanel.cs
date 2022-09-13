@@ -157,10 +157,7 @@ public class PatchDetailsPanel : PanelContainer
     public bool MoveToPatchButtonVisible
     {
         get => moveToPatchButton.Visible;
-        set
-        {
-            moveToPatchButton.Visible = value;
-        }
+        set => moveToPatchButton.Visible = value;
     }
 
     public override void _Ready()
