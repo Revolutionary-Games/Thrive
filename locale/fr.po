@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 22:09-0400\n"
+"POT-Creation-Date: 2022-09-13 11:25-0400\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1523,8 +1523,7 @@ msgstr "Sélectionnez un type de cellule à éditer ici depuis l'onglet de l'éd
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
-#: ../src/engine/DebugOverlays.tscn:63
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "FPS max. :"
@@ -1546,8 +1545,7 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Souris inconnue"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
-#: ../src/engine/DebugOverlays.tscn:80
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
 #, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -2075,7 +2073,7 @@ msgid "CLOSE"
 msgstr "Fermer"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:682
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2920,8 +2918,7 @@ msgstr "Suicide"
 msgid "STATISTICS"
 msgstr "Statistiques"
 
-#: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Aide"
 
@@ -2956,42 +2953,42 @@ msgstr "le joueur est mort"
 msgid "EXTINCT_IN_PATCH"
 msgstr "a disparu de la planète"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:683 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:889
+#: ../src/general/StageHUDBase.cs:890
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abondance"
 
-#: ../src/general/StageHUDBase.cs:891
+#: ../src/general/StageHUDBase.cs:892
 #, fuzzy
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "en grande quantité"
 
-#: ../src/general/StageHUDBase.cs:893
+#: ../src/general/StageHUDBase.cs:894
 #, fuzzy
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "en bonne quantité"
 
-#: ../src/general/StageHUDBase.cs:895
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_SOME"
 msgstr "en moyenne quantité"
 
-#: ../src/general/StageHUDBase.cs:897
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_LITTLE"
 msgstr "en faible quantité"
 
-#: ../src/general/StageHUDBase.cs:899
+#: ../src/general/StageHUDBase.cs:900
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "en très faible quantité"
 
-#: ../src/general/StageHUDBase.cs:1099
+#: ../src/general/StageHUDBase.cs:1100
 msgid "PLAYER_CELL"
 msgstr "Cellule du joueur"
 
-#: ../src/general/StageHUDBase.cs:1112
+#: ../src/general/StageHUDBase.cs:1113
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -4074,34 +4071,34 @@ msgstr "Le chimioplaste est une structure à double membrane contenant des prot�
 msgid "MULTIPLE_METABALLS"
 msgstr "Placer organite"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:47
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:62
 msgid "PAUSE_TOOLTIP"
 msgstr "Mettre le jeu en pause"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:63
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Reprendre"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:71
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#: ../src/microbe_stage/HUDBottomBar.tscn:85
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:100
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:152
+#: ../src/microbe_stage/HUDBottomBar.tscn:151
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicide"
 
@@ -5945,6 +5942,32 @@ msgstr "Chargement de l'Éditeur de Microbes"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Commencer à Prospérer"
+
+#, fuzzy
+#~ msgid "UNCERTAIN_VERSION_WARNING"
+#~ msgstr ""
+#~ "Cette sauvegarde vient dune version postérieure de Thrive et a beaucoup de chances d'être incompatible.\n"
+#~ "Voulez-vous tout de même tenter de charger la sauvegarde?"
+
+#, fuzzy
+#~ msgid "UNKNOWN_VERSION"
+#~ msgstr "Version :"
+
+#, fuzzy
+#~ msgid "EXACT_VERSION_TOOLTIP"
+#~ msgstr "Suicide"
+
+#, fuzzy
+#~ msgid "EXACT_VERSION_COLON"
+#~ msgstr "Génération :"
+
+#, fuzzy
+#~ msgid "COMPILED_AT_COLON"
+#~ msgstr "Composés :"
+
+#, fuzzy
+#~ msgid "DEVBUILD_VERSION_INFO"
+#~ msgstr "Soutiens prioritaires"
 
 #, fuzzy
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"

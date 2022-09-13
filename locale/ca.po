@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 22:09-0400\n"
+"POT-Creation-Date: 2022-09-13 11:25-0400\n"
 "PO-Revision-Date: 2022-07-15 08:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1477,8 +1477,7 @@ msgstr "Selecciona un tipus de cèl·lula per editar aquí des de la pestanya Ed
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
-#: ../src/engine/DebugOverlays.tscn:63
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -1496,8 +1495,7 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Desconegut a Windows"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
-#: ../src/engine/DebugOverlays.tscn:80
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Temps de procès: {0} s\n"
@@ -2018,7 +2016,7 @@ msgid "CLOSE"
 msgstr "Tancar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:682
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2781,8 +2779,7 @@ msgstr "Estadístiques sobre la partida actual"
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
-#: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
@@ -2815,40 +2812,40 @@ msgstr "el jugador ha mort"
 msgid "EXTINCT_IN_PATCH"
 msgstr "s'ha extingit de l'ecosistema"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:683 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:889
+#: ../src/general/StageHUDBase.cs:890
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abundància"
 
-#: ../src/general/StageHUDBase.cs:891
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "una mica"
 
-#: ../src/general/StageHUDBase.cs:893
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "una quantitat justa"
 
-#: ../src/general/StageHUDBase.cs:895
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_SOME"
 msgstr "un xic"
 
-#: ../src/general/StageHUDBase.cs:897
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_LITTLE"
 msgstr "poc"
 
-#: ../src/general/StageHUDBase.cs:899
+#: ../src/general/StageHUDBase.cs:900
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "molt poc"
 
-#: ../src/general/StageHUDBase.cs:1099
+#: ../src/general/StageHUDBase.cs:1100
 msgid "PLAYER_CELL"
 msgstr "Cèl·lula del jugador"
 
-#: ../src/general/StageHUDBase.cs:1112
+#: ../src/general/StageHUDBase.cs:1113
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3873,33 +3870,33 @@ msgstr "Pots crear nous tipus de teixits duplicant-ne de ja existents, i donant-
 msgid "MULTIPLE_METABALLS"
 msgstr "Múltiples Metaboles"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:47
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:62
 msgid "PAUSE_TOOLTIP"
 msgstr "Pausar el joc"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:63
 msgid "RESUME_TOOLTIP"
 msgstr "Reprendre el joc"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:71
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar l'entorn i els compostos"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#: ../src/microbe_stage/HUDBottomBar.tscn:85
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar l'entorn i els compostos"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:100
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar els procesos del microbi"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:152
+#: ../src/microbe_stage/HUDBottomBar.tscn:151
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicidi"
 
@@ -5586,6 +5583,32 @@ msgstr "Carregant l'Editor Multicel·lular Primerenc"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Començar a prosperar"
+
+#, fuzzy
+#~ msgid "UNCERTAIN_VERSION_WARNING"
+#~ msgstr ""
+#~ "Aquest arxiu de guardat pertany a una versió de Thrive més nova que l'actual i, probablement, sigui incompatible.\n"
+#~ "Voleu intentar carregar l'arxiu igualment?"
+
+#, fuzzy
+#~ msgid "UNKNOWN_VERSION"
+#~ msgstr "Versió del Mod:"
+
+#, fuzzy
+#~ msgid "EXACT_VERSION_TOOLTIP"
+#~ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
+
+#, fuzzy
+#~ msgid "EXACT_VERSION_COLON"
+#~ msgstr "Versió:"
+
+#, fuzzy
+#~ msgid "COMPILED_AT_COLON"
+#~ msgstr "Compostos:"
+
+#, fuzzy
+#~ msgid "DEVBUILD_VERSION_INFO"
+#~ msgstr "Partidaris Devbuilds"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Invulnerable a l'Engoliment"

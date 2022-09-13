@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 22:09-0400\n"
+"POT-Creation-Date: 2022-09-13 11:25-0400\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1492,8 +1492,7 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
-#: ../src/engine/DebugOverlays.tscn:63
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "Max FPS:"
@@ -1514,8 +1513,7 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "O ID da Steam Workshop é desconhecido para este mod"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
-#: ../src/engine/DebugOverlays.tscn:80
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
@@ -2023,7 +2021,7 @@ msgid "CLOSE"
 msgstr "Fechar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:681
+#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:682
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2845,8 +2843,7 @@ msgstr "Suicídio"
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
-#: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
@@ -2881,40 +2878,40 @@ msgstr "jogador morreu"
 msgid "EXTINCT_IN_PATCH"
 msgstr "Extinguiram-se na região"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:683 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:235
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:889
+#: ../src/general/StageHUDBase.cs:890
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "uma abundância"
 
-#: ../src/general/StageHUDBase.cs:891
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "um bocado"
 
-#: ../src/general/StageHUDBase.cs:893
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "uma quantidade razoável"
 
-#: ../src/general/StageHUDBase.cs:895
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_SOME"
 msgstr "algum"
 
-#: ../src/general/StageHUDBase.cs:897
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_LITTLE"
 msgstr "pouco"
 
-#: ../src/general/StageHUDBase.cs:899
+#: ../src/general/StageHUDBase.cs:900
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/general/StageHUDBase.cs:1099
+#: ../src/general/StageHUDBase.cs:1100
 msgid "PLAYER_CELL"
 msgstr "Célula do jogador"
 
-#: ../src/general/StageHUDBase.cs:1112
+#: ../src/general/StageHUDBase.cs:1113
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3965,33 +3962,33 @@ msgstr "O meu mod incrível"
 msgid "MULTIPLE_METABALLS"
 msgstr "Colocar organelo"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
+#: ../src/microbe_stage/HUDBottomBar.tscn:47
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
+#: ../src/microbe_stage/HUDBottomBar.tscn:62
 msgid "PAUSE_TOOLTIP"
 msgstr "Pausa o jogo"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
+#: ../src/microbe_stage/HUDBottomBar.tscn:63
 msgid "RESUME_TOOLTIP"
 msgstr "Retomar o jogo"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#: ../src/microbe_stage/HUDBottomBar.tscn:71
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar ambiente e compostos"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#: ../src/microbe_stage/HUDBottomBar.tscn:85
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar ambiente e compostos"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
+#: ../src/microbe_stage/HUDBottomBar.tscn:100
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar processos de célula"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:152
+#: ../src/microbe_stage/HUDBottomBar.tscn:151
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicídio"
 
@@ -5714,6 +5711,32 @@ msgstr "A carregar o Editor de Micróbio"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Começar a prosperar"
+
+#, fuzzy
+#~ msgid "UNCERTAIN_VERSION_WARNING"
+#~ msgstr ""
+#~ "Este jogo guardado é de uma versão mais recente do Thrive e muito provavelmente incompatível.\n"
+#~ "Quer tentar carregar o jogo mesmo assim?"
+
+#, fuzzy
+#~ msgid "UNKNOWN_VERSION"
+#~ msgstr "Versão do Mod:"
+
+#, fuzzy
+#~ msgid "EXACT_VERSION_TOOLTIP"
+#~ msgstr "Suicídio"
+
+#, fuzzy
+#~ msgid "EXACT_VERSION_COLON"
+#~ msgstr "Versão:"
+
+#, fuzzy
+#~ msgid "COMPILED_AT_COLON"
+#~ msgstr "Compostos:"
+
+#, fuzzy
+#~ msgid "DEVBUILD_VERSION_INFO"
+#~ msgstr "Apoiadores Devbuilds"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
