@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-13 16:38-0400\n"
+"POT-Creation-Date: 2022-09-14 22:54+1000\n"
 "PO-Revision-Date: 2022-08-25 21:34+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1166,8 +1166,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Dettagli specie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
-#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:435
+#: ../src/general/MainMenu.tscn:478 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2104,19 +2104,24 @@ msgstr "Galleria"
 msgid "LICENSES"
 msgstr "Licenze"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:421
+#, fuzzy
+msgid "SUGGESTIONS"
+msgstr "Risoluzione:"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "Avvertimento Modalità GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:501
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errori di caricamento mod"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Si sono verificati degli errori nel caricamento di una o più mod. I log potrebbero contenere informazioni ulteriori."
 
@@ -5863,10 +5868,6 @@ msgstr "Continua a prosperare"
 #, fuzzy
 #~ msgid "SEMICOLON"
 #~ msgstr "Dimensione:"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Risoluzione:"
 
 #, fuzzy
 #~ msgid "AT"

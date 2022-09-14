@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-13 16:38-0400\n"
+"POT-Creation-Date: 2022-09-14 22:54+1000\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1167,8 +1167,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Zoznam druhov"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
-#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:435
+#: ../src/general/MainMenu.tscn:478 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2116,19 +2116,24 @@ msgstr "Galéria"
 msgid "LICENSES"
 msgstr "Licencie"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:421
+#, fuzzy
+msgid "SUGGESTIONS"
+msgstr "Generácia:"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "Varovanie režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:501
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyba načítania režimu"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Pri načítaní jedného alebo viac režimov došlo k chybám. Protokoly môžu obsahovať ďalšie informácie."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-13 16:38-0400\n"
+"POT-Creation-Date: 2022-09-14 22:54+1000\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1253,8 +1253,8 @@ msgid "SPECIES_DETAILS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
-#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:435
+#: ../src/general/MainMenu.tscn:478 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2196,20 +2196,24 @@ msgstr "Fan Arts"
 msgid "LICENSES"
 msgstr "Licencias"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:421
+msgid "SUGGESTIONS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:495
 #, fuzzy
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 advertencia de modo"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:501
 msgid "MOD_LOAD_ERRORS"
 msgstr "Error cargando tus mods"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Un error ha ocurrido mientras cargábamos uno o varios de tus mods. Los logs pueden que contengan información adicional del error."
 
