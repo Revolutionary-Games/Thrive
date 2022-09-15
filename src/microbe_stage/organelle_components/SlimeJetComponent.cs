@@ -116,7 +116,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
             return;
         }
 
-        // Add to the microbe's slime jet list so we can activate/deactive from the microbe class
+        // Add to the microbe's slime jet list so we can activate/deactivate from the microbe class
         organelle.ParentMicrobe!.SlimeJets.Add(this);
     }
 
