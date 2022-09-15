@@ -80,6 +80,21 @@ public abstract class InputAttribute : Attribute
     }
 
     /// <summary>
+    ///   Called after game initialization is ready. Can be used to perform post startup actions related to inputs.
+    /// </summary>
+    internal virtual void OnPostLoad()
+    {
+    }
+
+    /// <summary>
+    ///   Called when the game window size changes. Might be useful in the future for some inputs, if not this can be
+    ///   eventually removed if not needed for any input scenarios.
+    /// </summary>
+    internal virtual void OnWindowSizeChanged()
+    {
+    }
+
+    /// <summary>
     ///   Call the associated method.
     ///   Calls the method with all of the instances or once if the method is static.
     /// </summary>

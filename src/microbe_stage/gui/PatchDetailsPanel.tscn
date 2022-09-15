@@ -64,6 +64,7 @@ GlucosePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContai
 PhosphatePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/PhosphateLabel")
 IronPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/IronLabel")
 SpeciesListBoxPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
+MoveToPatchHSeparatorPath = NodePath("VBoxContainer/HSeparator")
 MoveToPatchButtonPath = NodePath("VBoxContainer/MarginContainer2/MoveToPatchButton")
 TemperatureSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/Situation")
 LightSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/Situation")

@@ -72,6 +72,7 @@
   {
     "EnvironmentId": [
       "Game",
+      "3DGame",
       "Editor"
     ],
     "GroupName": "CAMERA",
@@ -165,6 +166,18 @@
       {
         "InputName": "g_move_down",
         "Name": "MOVE_DOWN_OR_CROUCH"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "3DGame"
+    ],
+    "GroupName": "MISCELLANEOUS_3D_STAGE",
+    "Actions": [
+      {
+        "InputName": "g_free_cursor",
+        "Name": "HOLD_TO_SHOW_CURSOR"
       }
     ]
   },

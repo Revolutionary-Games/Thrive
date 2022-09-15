@@ -138,6 +138,20 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Converts a NodePath to a full path
+    /// </summary>
+    /// <param name="node">The node to use to resolve relative paths</param>
+    /// <param name="potentiallyRelativePath">The path to resolve</param>
+    /// <returns>The fully resolved path</returns>
+    public static NodePath ResolveToAbsolutePath(this Node node, NodePath potentiallyRelativePath)
+    {
+        if (potentiallyRelativePath.IsEmpty() || potentiallyRelativePath.IsAbsolute())
+            return potentiallyRelativePath;
+
+        return node.GetNode(potentiallyRelativePath).GetPath();
+    }
+
+    /// <summary>
     ///   Get the material of this scene's model.
     /// </summary>
     /// <param name="node">Node to get material from.</param>
