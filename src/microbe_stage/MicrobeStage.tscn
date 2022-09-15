@@ -681,9 +681,8 @@ __meta__ = {
 }
 
 [node name="EnvironmentGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
-margin_top = 6.0
 margin_right = 254.0
-margin_bottom = 240.0
+margin_bottom = 234.0
 
 [node name="EnvironmentPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup"]
 margin_right = 197.0
@@ -1133,9 +1132,9 @@ __meta__ = {
 }
 
 [node name="CompoundsGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
-margin_top = 250.0
+margin_top = 244.0
 margin_right = 254.0
-margin_bottom = 567.0
+margin_bottom = 587.0
 
 [node name="CompoundsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup"]
 margin_right = 254.0
@@ -1550,7 +1549,7 @@ valign = 1
 [node name="AgentsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup"]
 margin_top = 223.0
 margin_right = 254.0
-margin_bottom = 593.0
+margin_bottom = 343.0
 rect_min_size = Vector2( 254, 120 )
 rect_clip_content = true
 size_flags_horizontal = 0
