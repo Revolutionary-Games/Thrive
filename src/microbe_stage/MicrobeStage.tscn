@@ -378,7 +378,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.8, 0.8, 0.0 ]
 }
 
-[sub_resource type="StyleBoxFlat" id=40]
+[sub_resource type="StyleBoxFlat" id=43]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -390,10 +390,10 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id=41]
+[sub_resource type="StyleBoxFlat" id=44]
 bg_color = Color( 0, 0.498039, 0.4, 1 )
 
-[sub_resource type="StyleBoxFlat" id=42]
+[sub_resource type="StyleBoxFlat" id=45]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
 border_width_left = 2
 border_width_top = 2
@@ -401,7 +401,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
 
-[sub_resource type="StyleBoxTexture" id=43]
+[sub_resource type="StyleBoxTexture" id=46]
 texture = ExtResource( 62 )
 region_rect = Rect2( 0, 0, 86, 52 )
 
@@ -1664,7 +1664,7 @@ custom_fonts/font = ExtResource( 80 )
 text = "OXYTOXY_NT"
 valign = 1
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -45.0
@@ -1680,14 +1680,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
-[node name="mucilage" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="mucilage" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 margin_top = 29.0
 margin_right = 220.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 41 )
+custom_styles/fg = SubResource( 44 )
 custom_styles/bg = SubResource( 26 )
 step = 0.1
 percent_visible = false
@@ -2119,7 +2118,7 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
-custom_styles/disabled = SubResource( 39 )
+custom_styles/disabled = SubResource( 43 )
 toggle_mode = true
 ActionIcon = ExtResource( 83 )
 ActionName = "g_toggle_engulf"
