@@ -296,7 +296,7 @@ public class MicrobeAI
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
                 && chunk.PhagocytosisStep == PhagocytosisPhase.None)
             {
-                if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
+                if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key) && x.Key.Digestible))
                 {
                     if (chosenChunk == null ||
                         (chosenChunk.Translation - microbe.Translation).LengthSquared() >
@@ -701,6 +701,7 @@ public class MicrobeAI
     /// </summary>
     private bool IsVitalCompound(Compound compound)
     {
+        // TODO: looking for mucilage should be prevented
         return microbe.Compounds.IsUseful(compound) &&
             (compound == glucose || compound == iron);
     }
