@@ -777,6 +777,11 @@ public static class Constants
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
+    public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
+
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
@@ -1007,6 +1012,25 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
+    public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
+    public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
+
+    public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
+    public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
+
+    public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
+
+    /// <summary>
+    ///   How big fraction of extra margin is added on top of a calibrated deadzone
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN = 0.1f;
+
+    /// <summary>
+    ///   Constant value added to the calibration value to make the deadzones not as tight, especially at low values
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
+
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
     /// <summary>
@@ -1018,6 +1042,11 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Colour of the custom focus highlight elements. Should be the same as what it set in Thrive theme
+    /// </summary>
+    public static readonly Color CustomFocusDrawerColour = new("#00bfb6");
 
     /// <summary>
     ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
@@ -1069,6 +1098,9 @@ public static class Constants
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    // Needed to be true by InputManager
+    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823

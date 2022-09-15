@@ -100,8 +100,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [JsonIgnore]
     public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
 
-    // TODO: separate track list for this editor
-    protected override string MusicCategory => "EarlyMulticellularEditor";
+    protected override string MusicCategory => "LateMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MulticellularStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MULTICELLULAR_EDITOR");
