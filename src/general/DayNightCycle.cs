@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
@@ -10,6 +11,9 @@ public class DayNightCycle
 
     [JsonProperty]
     public bool IsEnabled;
+
+    [JsonProperty]
+    public float PercentOfDayElapsed;
 
     /// <summary>
     ///   The multiplier used for calculating DayLightPercentage.
@@ -26,17 +30,19 @@ public class DayNightCycle
         IsEnabled = isEnabled;
 
         LightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
-        Time = LightCycleConfig.HoursPerDay / 2;
+
+        // Start the game at noon
+        PercentOfDayElapsed = 0.5f;
 
         float halfPercentage = LightCycleConfig.DaytimePercentage / 2;
 
         // This converts the percentage in DaytimePercentage to the power of two needed for DayLightPercentage
-        daytimeMultiplier = (float)Math.Pow(2, 1 / halfPercentage);
+        daytimeMultiplier = Mathf.Pow(2, 1 / halfPercentage);
 
         if (IsEnabled)
         {
-            AverageSunlight = EvaluateAverageSunlight(0.5f + halfPercentage)
-                - EvaluateAverageSunlight(0.5f - halfPercentage);
+            AverageSunlight = CumulativeSunlightValue(0.5f + halfPercentage)
+                - CumulativeSunlightValue(0.5f - halfPercentage);
         }
         else
         {
@@ -48,15 +54,6 @@ public class DayNightCycle
     public float AverageSunlight { get; private set; }
 
     /// <summary>
-    ///   The current time in hours
-    /// </summary>
-    [JsonProperty]
-    public float Time { get; private set; }
-
-    [JsonIgnore]
-    public float PercentOfDayElapsed => Time / LightCycleConfig.HoursPerDay;
-
-    /// <summary>
     ///   The percentage of daylight you should get.
     ///   light = max(-(PercentOfDayElapsed - 0.5)^2 * daytimeMultiplier + 1, 0)
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
@@ -66,14 +63,13 @@ public class DayNightCycle
     /// </remarks>
     [JsonIgnore]
     public float DayLightPercentage =>
-        Math.Max(-(float)Math.Pow(PercentOfDayElapsed - 0.5, 2) * daytimeMultiplier + 1, 0);
+        Math.Max(-Mathf.Pow(PercentOfDayElapsed - 0.5f, 2) * daytimeMultiplier + 1, 0);
 
     public void Process(float delta)
     {
         if (IsEnabled)
         {
-            Time = (Time + (1 / LightCycleConfig.RealTimePerDay) * LightCycleConfig.HoursPerDay * delta)
-                % LightCycleConfig.HoursPerDay;
+            PercentOfDayElapsed = (PercentOfDayElapsed + delta / LightCycleConfig.RealTimePerDay) % 1;
         }
     }
 
@@ -84,8 +80,8 @@ public class DayNightCycle
     ///   This is based on DayLightPercentage equation so if somone wants to change it
     ///   they can do the calculus to fix this function.
     /// </remarks>
-    private float EvaluateAverageSunlight(float x)
+    private float CumulativeSunlightValue(float x)
     {
-        return (float)(-daytimeMultiplier * (Math.Pow(x, 3) / 3 - Math.Pow(x, 2) / 2 + 0.25 * x) + x);
+        return -daytimeMultiplier * (Mathf.Pow(x, 3) / 3 - Mathf.Pow(x, 2) / 2 + 0.25f * x) + x;
     }
 }

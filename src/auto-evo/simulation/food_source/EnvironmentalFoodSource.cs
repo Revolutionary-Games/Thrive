@@ -44,11 +44,11 @@
         }
 
         protected override float StorageScore(MicrobeSpecies species, Compound compound, Patch patch,
-             SimulationCache simulationCache)
+            SimulationCache simulationCache)
         {
             if (simulationCache.DayNightCycleEnabled)
             {
-                var dayNightCycleConfiguration = SimulationParameters.Instance.GetDayNightCycleConfiguration()!;
+                var dayNightCycleConfiguration = SimulationParameters.Instance.GetDayNightCycleConfiguration();
                 var nightTime = dayNightCycleConfiguration.DaytimePercentage * dayNightCycleConfiguration.HoursPerDay;
 
                 // If a species consumes a lot, it ought to store more.
@@ -71,7 +71,7 @@
 
         // TODO CACHE IT, AS FOR ENERGY GENERATION, TO AVOID MULTIPLE LOOPS.
         private float CompoundUse(MicrobeSpecies species, Compound compound, Patch patch,
-             SimulationCache simulationCache)
+            SimulationCache simulationCache)
         {
             var compoundUse = 0.0f;
 

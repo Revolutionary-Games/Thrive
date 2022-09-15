@@ -1,7 +1,5 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
-    using System;
-
     /// <summary>
     ///   A class for random-encounter based food sources.
     /// </summary>
