@@ -15,7 +15,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     where TStage : Object, IStage
 {
     [Export]
-    public NodePath AnimationPlayerPath = null!;
+    public NodePath CompoundsGroupAnimationPlayerPath = null!;
+
+    [Export]
+    public NodePath EnvironmentGroupAnimationPlayerPath = null!;
 
     [Export]
     public NodePath PanelsTweenPath = null!;
@@ -208,7 +211,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
-    protected AnimationPlayer animationPlayer = null!;
+    protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
+    protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MarginContainer mouseHoverPanel = null!;
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
@@ -282,10 +286,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool environmentCompressed;
     private bool compoundCompressed;
 
-    /// <summary>
-    ///   This is opposite of the expected value, ie. this is true when the panels are collapsed
-    /// </summary>
-    private bool leftPanelsActive;
+    // The values of the two following variables are the opposite of the expected values.
+    // I.e. their values are true when their respective panels are collapsed.
+    private bool compoundsPanelActive;
+
+    private bool environmentPanelActive;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -408,7 +413,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<PauseMenu>(MenuPath);
-        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
+        compoundsGroupAnimationPlayer = GetNode<AnimationPlayer>(CompoundsGroupAnimationPlayerPath);
+        environmentGroupAnimationPlayer = GetNode<AnimationPlayer>(EnvironmentGroupAnimationPlayerPath);
         hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
@@ -1259,20 +1265,37 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hotBar.Visible = displayed;
     }
 
-    private void CompoundButtonPressed(bool wantedState)
+    private void EnvironmentButtonPressed(bool wantedState)
     {
-        if (leftPanelsActive == !wantedState)
+        if (environmentPanelActive == !wantedState)
             return;
 
-        if (!leftPanelsActive)
+        if (!environmentPanelActive)
         {
-            leftPanelsActive = true;
-            animationPlayer.Play("HideLeftPanels");
+            environmentPanelActive = true;
+            environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");
         }
         else
         {
-            leftPanelsActive = false;
-            animationPlayer.Play("ShowLeftPanels");
+            environmentPanelActive = false;
+            environmentGroupAnimationPlayer.Play("ShowEnvironmentPanel");
+        }
+    }
+
+    private void CompoundButtonPressed(bool wantedState)
+    {
+        if (compoundsPanelActive == !wantedState)
+            return;
+
+        if (!compoundsPanelActive)
+        {
+            compoundsPanelActive = true;
+            compoundsGroupAnimationPlayer.Play("HideCompoundsPanels");
+        }
+        else
+        {
+            compoundsPanelActive = false;
+            compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
         }
     }
 
