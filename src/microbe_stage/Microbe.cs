@@ -204,6 +204,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public int DespawnRadiusSquared { get; set; }
 
     /// <summary>
+    ///   Entity weight for microbes counts all organelles with a scaling factor.
+    /// </summary>
+    [JsonIgnore]
+    public float EntityWeight => organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
+        throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+
+    /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
     ///   (Completely stops the normal functioning of the cell).
     /// </summary>
@@ -1093,6 +1100,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return;
 
         // Scale movement by delta time (not by framerate). We aren't Fallout 4
+        // TODO: it seems that at low framerate (below 20 or so) cells get a speed boost for some reason
         ApplyCentralImpulse(movement * delta);
     }
 

@@ -53,11 +53,11 @@ will make the translation system skip it.
 Always call `TranslationServer.Translate()` for strings that should be localized.
 
 Other than that, it is the same principle has for the scene files:
-once you are done, write down your strings somewhere And change them in the code into keys.
+once you are done, write down your strings somewhere and change them in the code into keys.
 
 Note that due to the way the text extraction works, only string
 literals work in the `Translate` call, using variables or string
-concatenation, won't extract things properly. For example this is the
+concatenation won't extract things properly. For example this is the
 correct usage: `TranslationServer.Translate("A_TRANSLATION_KEY");`
 
 The translation keys need to be named all uppercase with underscores
@@ -78,10 +78,11 @@ translation key like `PLAY_MUSIC`.
 
 ### Updating the localizations
 
-Once you are done adding content into the game, go into the scripts
-folder and run `dotnet run --project Scripts -- localization`. This
-will extract the strings from the game files, and also update the .po
-files if the template (.pot) has changed.
+Once you are done adding content into the game, open the Thrive folder
+in terminal / command prompt and run `dotnet run --project Scripts --
+localization`. This will extract the translation keys from the game
+files, and also update the .po files if the template (.pot) has
+changed.
 
 gettext automatically "guesses" some text which might be right when a new translation
 key appears in a file. This is fine as the texts are marked as needing changes (fuzzy),
@@ -129,6 +130,12 @@ may be some places where translatable and untranslatable content can be shown in
 place with complicated logic where the simplest solution is to pass all text through the
 translation system so that the things that need translating get translated and other strings
 just pass through.
+
+In scene files any text that has a translated version will get
+automatically translated. So for scenes it is enough to replace the
+text properties with translation keys, run the text extraction, and
+add translations for the new keys. Then Godot will automatically when
+running use the translations for that scene file.
 
 Our custom extensions to the Godot translation system consist of two classes:
 `LocalizedString` and `LocalizedStringBuilder`. `LocalizedString` is a special
