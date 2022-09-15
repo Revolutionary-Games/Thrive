@@ -104,8 +104,8 @@ public class PatchDetailsPanel : PanelContainer
     private Label phosphate = null!;
     private Label iron = null!;
     private CollapsibleList speciesListBox = null!;
-    private HSeparator moveToPatchHSeparator = null!;
-    private Button moveToPatchButton = null!;
+    private HSeparator? moveToPatchHSeparator;
+    private Button? moveToPatchButton;
 
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
@@ -233,8 +233,11 @@ public class PatchDetailsPanel : PanelContainer
 
         UpdatePatchDetails();
 
-        // Enable move to patch button if this is a valid move
-        moveToPatchButton.Disabled = !IsPatchMoveValid;
+        if (moveToPatchButton != null)
+        {
+            // Enable move to patch button if this is a valid move
+            moveToPatchButton.Disabled = !IsPatchMoveValid;
+        }
     }
 
     /// <summary>
