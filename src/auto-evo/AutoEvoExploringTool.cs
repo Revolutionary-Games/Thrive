@@ -772,8 +772,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)
     {
-        patchDetailsPanel.MoveToPatchButtonVisible = false;
-
         var selectedPatch = drawer.SelectedPatch;
 
         if (selectedPatch == null)
