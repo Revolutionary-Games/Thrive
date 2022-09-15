@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   Wrapper class for settings options containing the value and a delegate that provides a callback for
@@ -69,6 +71,21 @@ public class SettingValue<TValueType> : IAssignableSetting
         if (ReferenceEquals(value, null))
         {
             return ReferenceEquals(obj.value, null);
+        }
+
+        if (ReferenceEquals(obj.value, null))
+            return false;
+
+        if (value is IEnumerable<object> enumerable)
+        {
+            return enumerable.SequenceEqual((IEnumerable<object>)obj.Value!);
+        }
+
+        // Apparently primitive types don't get caught by the above check
+        // TODO: find a better way if possible to handle this
+        if (value is IEnumerable<float> floatList)
+        {
+            return floatList.SequenceEqual((IEnumerable<float>)obj.Value!);
         }
 
         if (!value.Equals(obj.value))

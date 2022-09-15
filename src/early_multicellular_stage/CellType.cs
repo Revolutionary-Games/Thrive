@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -49,6 +50,12 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
     public float BaseRotationSpeed { get; set; }
+
+    /// <summary>
+    ///   Total mass of all the organelles in this cell type
+    /// </summary>
+    [JsonIgnore]
+    public float TotalMass => Organelles.Sum(o => o.Definition.Mass);
 
     [JsonIgnore]
     public string FormattedName => TypeName;

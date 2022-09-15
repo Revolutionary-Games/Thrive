@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-13 16:38-0400\n"
+"POT-Creation-Date: 2022-09-15 09:29+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -364,13 +364,13 @@ msgid "ABILITIES"
 msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1998
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2011
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1984
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1997
 #: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr "Engolfar"
@@ -397,183 +397,193 @@ msgstr "Desconectar todos"
 msgid "PERFORM_UNBINDING"
 msgstr "Efetuar a desconexão"
 
-#: ../simulation_parameters/common/input_options.json:73
+#: ../simulation_parameters/common/input_options.json:74
 msgid "CAMERA"
 msgstr "Câmara"
 
-#: ../simulation_parameters/common/input_options.json:77
+#: ../simulation_parameters/common/input_options.json:78
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
-#: ../simulation_parameters/common/input_options.json:81
+#: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_IN"
 msgstr "Ampliar"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:91
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_RIGHT"
 msgstr "Rodar para a direita"
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:99
 msgid "ROTATE_LEFT"
 msgstr "Rodar para a esquerda"
 
-#: ../simulation_parameters/common/input_options.json:102
+#: ../simulation_parameters/common/input_options.json:103
 msgid "UNDO"
 msgstr "Reverter"
 
-#: ../simulation_parameters/common/input_options.json:106
+#: ../simulation_parameters/common/input_options.json:107
 msgid "REDO"
 msgstr "Refazer"
 
-#: ../simulation_parameters/common/input_options.json:110
+#: ../simulation_parameters/common/input_options.json:111
 msgid "PLACE_ORGANELLE"
 msgstr "Colocar organelo"
 
-#: ../simulation_parameters/common/input_options.json:114
+#: ../simulation_parameters/common/input_options.json:115
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Abrir o menu da organela"
 
-#: ../simulation_parameters/common/input_options.json:118
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_LEFT"
 msgstr "Mover a câmara para a esquerda"
 
-#: ../simulation_parameters/common/input_options.json:122
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Mover a câmara para a direita"
 
-#: ../simulation_parameters/common/input_options.json:126
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_UP"
 msgstr "Mover a câmara para cima"
 
-#: ../simulation_parameters/common/input_options.json:130
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_DOWN"
 msgstr "Mover a câmara para baixo"
 
-#: ../simulation_parameters/common/input_options.json:134
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_RESET"
 msgstr "Redefinir câmara"
 
-#: ../simulation_parameters/common/input_options.json:138
+#: ../simulation_parameters/common/input_options.json:139
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancelar ação em curso"
 
-#: ../simulation_parameters/common/input_options.json:142
+#: ../simulation_parameters/common/input_options.json:143
 msgid "DELETE_ORGANELLE"
 msgstr "Apagar organelo"
 
-#: ../simulation_parameters/common/input_options.json:146
+#: ../simulation_parameters/common/input_options.json:147
 msgid "MOVE_ORGANELLE"
 msgstr "Mover organelo"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:156
 #, fuzzy
 msgid "3D_MOVEMENT"
 msgstr "Movimento"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:160
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:171
+#: ../simulation_parameters/common/input_options.json:172
+#, fuzzy
+msgid "MISCELLANEOUS_3D_STAGE"
+msgstr "Diversos"
+
+#: ../simulation_parameters/common/input_options.json:176
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
+msgid "HOLD_TO_SHOW_CURSOR"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:184
 #, fuzzy
 msgid "3D_EDITOR"
 msgstr "Editor"
 
-#: ../simulation_parameters/common/input_options.json:175
+#: ../simulation_parameters/common/input_options.json:188
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:179
+#: ../simulation_parameters/common/input_options.json:192
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:183
+#: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:187
+#: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:209
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Cheats"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:213
 msgid "ENABLE_EDITOR"
 msgstr "Ativar o editor"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:217
 msgid "SPAWN_GLUCOSE"
 msgstr "Gerar glicose"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:221
 msgid "SPAWN_AMMONIA"
 msgstr "Gerar amoníaco"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:225
 msgid "SPAWN_PHOSPHATES"
 msgstr "Gerar fosfato"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:229
 msgid "CHEAT_MENU"
 msgstr "Cheat Menu"
 
-#: ../simulation_parameters/common/input_options.json:227
+#: ../simulation_parameters/common/input_options.json:240
 msgid "MISCELLANEOUS"
 msgstr "Diversos"
 
-#: ../simulation_parameters/common/input_options.json:231
+#: ../simulation_parameters/common/input_options.json:244
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:235
+#: ../simulation_parameters/common/input_options.json:248
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Engolfar"
 
-#: ../simulation_parameters/common/input_options.json:239
+#: ../simulation_parameters/common/input_options.json:252
 msgid "TOGGLE_FPS"
 msgstr "Exibir FPS"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:256
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "Exibir FPS"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:260
 msgid "QUICK_SAVE"
 msgstr "Guardar rapidamente"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:264
 msgid "QUICK_LOAD"
 msgstr "Carregar rapidamente"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:268
 msgid "TAKE_SCREENSHOT"
 msgstr "Capturar ecrã"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:272
 msgid "SHOW_HELP"
 msgstr "Mostrar ajuda"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:276
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Ecrã inteiro"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:280
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Alternar HUD"
 
@@ -741,41 +751,41 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1292
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1293
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Amoníaco"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1344
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1345
 #: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1396
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1397
 #: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfureto de Hidrogénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1240
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1241
 #: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glicose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1578
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
 #: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr "OxiToxi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1448
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1449
 #: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
@@ -1167,7 +1177,7 @@ msgstr "Lista de Espécies"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
 #: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
-#: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1331,7 +1341,7 @@ msgstr "Espalhar uniformemente a fonte de comida ambiental de {0}"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
-#: ../src/early_multicellular_stage/CellType.cs:38
+#: ../src/early_multicellular_stage/CellType.cs:39
 #, fuzzy
 msgid "STEM_CELL_NAME"
 msgstr "Username personalizado:"
@@ -1468,20 +1478,20 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estados de execução:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -1553,6 +1563,70 @@ msgstr "Tradutores"
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "A carregar"
+
+#: ../src/engine/input/ControllerAxisVisualizer.cs:165
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:47
+msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
+msgstr ""
+
+#: ../src/engine/input/ControllerAxisVisualizer.cs:171
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:108
+#, fuzzy
+msgid "VERTICAL_WITH_AXIS_NAME_COLON"
+msgstr "Velocidade:"
+
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:58
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:119
+#, fuzzy
+msgid "RAW_VALUE_COLON"
+msgstr "Velocidade:"
+
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:85
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:146
+msgid "CONTROLLER_DEADZONE_COLON"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
+#, fuzzy
+msgid "DEADZONE_CALIBRATION_INPROGRESS"
+msgstr "Este idioma está {0}% traduzido"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
+msgid "DEADZONE_CALIBRATION_IS_RESET"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
+#, fuzzy
+msgid "DEADZONE_CALIBRATION_FINISHED"
+msgstr "Validações adicionais detectaram um problema: {0}"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#, fuzzy
+msgid "DEADZONE_CONFIGURATION"
+msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#, fuzzy
+msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
+msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+msgid "START_CALIBRATION"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#, fuzzy
+msgid "RESET_DEADZONES"
+msgstr "Repor as definições por defeito?"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Aplicar"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -2226,7 +2300,7 @@ msgstr ""
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:189
+#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:203
 msgid "MISC"
 msgstr "Diversos"
 
@@ -2395,444 +2469,497 @@ msgstr ""
 msgid "CONFIRM_NORMAL"
 msgstr "CONFIRMAR"
 
-#: ../src/general/OptionsMenu.cs:669 ../src/general/OptionsMenu.tscn:316
+#: ../src/general/OptionsMenu.cs:770 ../src/general/OptionsMenu.tscn:330
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolução:"
 
-#: ../src/general/OptionsMenu.cs:683
+#: ../src/general/OptionsMenu.cs:784
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:688
+#: ../src/general/OptionsMenu.cs:789
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:693
+#: ../src/general/OptionsMenu.cs:794
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Mostrar barra de habilidades"
 
-#: ../src/general/OptionsMenu.cs:702 ../src/general/OptionsMenu.tscn:495
+#: ../src/general/OptionsMenu.cs:803 ../src/general/OptionsMenu.tscn:509
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1055
+#: ../src/general/OptionsMenu.cs:1226
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de saída padrão"
 
-#: ../src/general/OptionsMenu.cs:1087
+#: ../src/general/OptionsMenu.cs:1258
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Esta tradução está muito incompleta ({0}% feita) por favor ajude-nos com ela!"
 
-#: ../src/general/OptionsMenu.cs:1091
+#: ../src/general/OptionsMenu.cs:1262
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Esta língua é ainda um trabalho em curso ({0}% feito)"
 
-#: ../src/general/OptionsMenu.cs:1095
+#: ../src/general/OptionsMenu.cs:1266
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Este idioma está {0}% traduzido"
 
-#: ../src/general/OptionsMenu.cs:1150
+#: ../src/general/OptionsMenu.cs:1321
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 "Este jogo guardado é de uma versão mais recente do Thrive e muito provavelmente incompatível.\n"
 "Quer tentar carregar o jogo mesmo assim?"
 
-#: ../src/general/OptionsMenu.cs:1157
+#: ../src/general/OptionsMenu.cs:1328
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versão do Mod:"
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
-#: ../src/general/OptionsMenu.tscn:156
+#: ../src/general/OptionsMenu.tscn:170
 msgid "SOUND"
 msgstr "Som"
 
-#: ../src/general/OptionsMenu.tscn:167
+#: ../src/general/OptionsMenu.tscn:181
 msgid "PERFORMANCE"
 msgstr "Desempenho"
 
-#: ../src/general/OptionsMenu.tscn:178
+#: ../src/general/OptionsMenu.tscn:192
 msgid "INPUTS"
 msgstr "Teclado"
 
-#: ../src/general/OptionsMenu.tscn:237
+#: ../src/general/OptionsMenu.tscn:251
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:244
+#: ../src/general/OptionsMenu.tscn:258
 msgid "FULLSCREEN"
 msgstr "Ecrã inteiro"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:280
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:273 ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:1070
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores mais altos pioram o desempenho)"
 
-#: ../src/general/OptionsMenu.tscn:288 ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:302 ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "Desactivado"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:317
 msgid "RESOLUTION"
 msgstr "Resolução:"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:341
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:342
+#: ../src/general/OptionsMenu.tscn:356
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ilimitado"
 
-#: ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.tscn:372
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correção de cor para daltónicos:"
 
-#: ../src/general/OptionsMenu.tscn:372 ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:386 ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "Nenhum"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanóptico (Vermelho-Verde)"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanóptico (Azul-Amarelo)"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:403
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração Cromática:"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:429
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:425
+#: ../src/general/OptionsMenu.tscn:439
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "Caverna"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:469
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:496
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:523
 msgid "GUI"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:524
+#: ../src/general/OptionsMenu.tscn:538
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar barra de habilidades"
 
-#: ../src/general/OptionsMenu.tscn:532
+#: ../src/general/OptionsMenu.tscn:546
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ativar efeitos de luz da interface gráfica"
 
-#: ../src/general/OptionsMenu.tscn:539
+#: ../src/general/OptionsMenu.tscn:553
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Mostrar barra de habilidades"
 
-#: ../src/general/OptionsMenu.tscn:565
+#: ../src/general/OptionsMenu.tscn:579
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:631
-#: ../src/general/OptionsMenu.tscn:663 ../src/general/OptionsMenu.tscn:695
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:605 ../src/general/OptionsMenu.tscn:645
+#: ../src/general/OptionsMenu.tscn:677 ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:741
 msgid "MUTE"
 msgstr "Silenciar"
 
-#: ../src/general/OptionsMenu.tscn:605
+#: ../src/general/OptionsMenu.tscn:619
 msgid "MUSIC_VOLUME"
 msgstr "Volume da música"
 
-#: ../src/general/OptionsMenu.tscn:637
+#: ../src/general/OptionsMenu.tscn:651
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume Ambiente"
 
-#: ../src/general/OptionsMenu.tscn:669
+#: ../src/general/OptionsMenu.tscn:683
 msgid "SFX_VOLUME"
 msgstr "Volume de Efeitos"
 
-#: ../src/general/OptionsMenu.tscn:701
+#: ../src/general/OptionsMenu.tscn:715
 msgid "GUI_VOLUME"
 msgstr "Volume da GUI"
 
-#: ../src/general/OptionsMenu.tscn:745
+#: ../src/general/OptionsMenu.tscn:759
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de saída de áudio:"
 
-#: ../src/general/OptionsMenu.tscn:773
+#: ../src/general/OptionsMenu.tscn:787
 msgid "LANGUAGE"
 msgstr "Idioma:"
 
-#: ../src/general/OptionsMenu.tscn:791 ../src/general/OptionsMenu.tscn:1455
+#: ../src/general/OptionsMenu.tscn:805 ../src/general/OptionsMenu.tscn:1661
 msgid "RESET"
 msgstr "Repor"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:823
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajude a traduzir o jogo"
 
-#: ../src/general/OptionsMenu.tscn:835
+#: ../src/general/OptionsMenu.tscn:849
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:864
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalo mínimo da simulação de nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:857 ../src/general/OptionsMenu.tscn:899
+#: ../src/general/OptionsMenu.tscn:871 ../src/general/OptionsMenu.tscn:913
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valores mais altos melhoram o desempenho)"
 
-#: ../src/general/OptionsMenu.tscn:892
+#: ../src/general/OptionsMenu.tscn:906
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor da Resolução de Nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:947
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Utilizar auto-evo durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:967
 msgid "DETECTED_CPU_COUNT"
 msgstr "Número de threads detectados:"
 
-#: ../src/general/OptionsMenu.tscn:970
+#: ../src/general/OptionsMenu.tscn:984
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Threads atuais:"
 
-#: ../src/general/OptionsMenu.tscn:984
+#: ../src/general/OptionsMenu.tscn:998
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Presumir que o CPU funciona com hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:992
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Escolher manualmente o número de threads"
 
-#: ../src/general/OptionsMenu.tscn:1002
+#: ../src/general/OptionsMenu.tscn:1016
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:1049
+#: ../src/general/OptionsMenu.tscn:1063
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1071 ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1085 ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "CONFIRMAR"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Extras"
 
-#: ../src/general/OptionsMenu.tscn:1146
-msgid "RESET_INPUTS"
+#: ../src/general/OptionsMenu.tscn:1147
+msgid "MOUSE_LOOK_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
+msgid "BIND_AXES_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
+#, fuzzy
+msgid "HORIZONTAL_COLON"
+msgstr "Versão:"
+
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
+msgid "INVERTED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
+#, fuzzy
+msgid "VERTICAL_COLON"
+msgstr "Versão:"
+
+#: ../src/general/OptionsMenu.tscn:1211
+msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
+msgid "SCALING_NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1223
+#, fuzzy
+msgid "SCALING_ON"
+msgstr "Agente de Adesão"
+
+#: ../src/general/OptionsMenu.tscn:1223
+msgid "SCALING_ON_INVERSE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1236
+msgid "USE_VIRTUAL_WINDOW_SIZE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1253
+msgid "CONTROLLER_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1318
+msgid "CONTROLLER_DEADZONES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1352
+#, fuzzy
+msgid "RESET_KEYBINDINGS"
 msgstr "Repor Entradas"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Reproduzir o vídeo de introdução"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1400
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Jogar a Introdução ao Micróbio num Novo Jogo"
 
-#: ../src/general/OptionsMenu.tscn:1202
+#: ../src/general/OptionsMenu.tscn:1408
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardar automaticamente durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Quantidade de jogos guardados automaticamente a manter:"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1447
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Quantidade de jogos guardados rapidamente a manter:"
 
-#: ../src/general/OptionsMenu.tscn:1266
+#: ../src/general/OptionsMenu.tscn:1472
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriais (em novos jogos)"
 
-#: ../src/general/OptionsMenu.tscn:1273
+#: ../src/general/OptionsMenu.tscn:1479
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriais (no jogo atual)"
 
-#: ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1485
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Mostrar aviso de progresso não guardado"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1497
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Chaves de Cheats ativadas"
 
-#: ../src/general/OptionsMenu.tscn:1299
+#: ../src/general/OptionsMenu.tscn:1505
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use um username personalizado"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1516
 msgid "CUSTOM_USERNAME"
 msgstr "Username personalizado:"
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1542
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Abrir pasta de capturas de ecrã"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir pasta de Logs"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1560
 msgid "JSON_DEBUG_MODE"
 msgstr "Modo de debug para JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1368 ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1574 ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticamente"
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Sempre"
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nunca"
 
-#: ../src/general/OptionsMenu.tscn:1386
+#: ../src/general/OptionsMenu.tscn:1592
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Suicídio"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1594
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Versão:"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1622
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Compostos:"
 
-#: ../src/general/OptionsMenu.tscn:1467 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Gravar"
 
-#: ../src/general/OptionsMenu.tscn:1484
+#: ../src/general/OptionsMenu.tscn:1690
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Repor Definições por Defeito"
 
-#: ../src/general/OptionsMenu.tscn:1495
+#: ../src/general/OptionsMenu.tscn:1701
 msgid "RESET_TO_DEFAULTS"
 msgstr "Repor as definições por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1496
+#: ../src/general/OptionsMenu.tscn:1702
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Tem a certeza que deseja repor todas as definições por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1504
+#: ../src/general/OptionsMenu.tscn:1710
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Repor as entradas por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1505
+#: ../src/general/OptionsMenu.tscn:1711
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Tem certeza de que deseja repor as definições do teclado por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1514
+#: ../src/general/OptionsMenu.tscn:1720
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar as opções?"
 
-#: ../src/general/OptionsMenu.tscn:1534
+#: ../src/general/OptionsMenu.tscn:1740
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Existem alterações não guardadas que serão perdidas.\n"
 "Desejas continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1557
+#: ../src/general/OptionsMenu.tscn:1763
 msgid "SAVE_AND_CONTINUE"
 msgstr "Gravar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1567
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1584
+#: ../src/general/OptionsMenu.tscn:1790
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1595 ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1801 ../src/general/OptionsMenu.tscn:1809
 msgid "ERROR"
 msgstr "Erro"
 
-#: ../src/general/OptionsMenu.tscn:1605
+#: ../src/general/OptionsMenu.tscn:1811
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Erro: Falha ao gravar as novas definições no ficheiro de configuração."
 
-#: ../src/general/OptionsMenu.tscn:1613
+#: ../src/general/OptionsMenu.tscn:1819
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Nenhum diretório de captura de ecrã encontrado"
 
-#: ../src/general/OptionsMenu.tscn:1615
+#: ../src/general/OptionsMenu.tscn:1821
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Tente tirar algumas capturas de ecrã!"
 
@@ -3741,9 +3868,9 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Os agentes de adesão permitem que as células criem produtos químicos aos quais outras células podem reagir. Os sinais químicos podem ser usados para atrair outras células ou avisá-las sobre o perigo para fazê-las fugir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:161
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:158
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:166
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1656
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."
 
@@ -3854,51 +3981,47 @@ msgstr "Ativa / desativa o popup de aviso de progresso não guardado para quando
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Tempo Passado: {0:#,#} anos"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:506
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:507
 #, fuzzy
 msgid "LOOKING_AT"
 msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:532
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
 #: ../src/microbe_stage/MicrobeStage.tscn:564
 msgid "NOTHING_HERE"
 msgstr "Nada aqui"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:557
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:558
 #: ../src/microbe_stage/MicrobeStage.tscn:589
 msgid "COMPOUNDS_COLON"
 msgstr "Compostos:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:597
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:598
 #: ../src/microbe_stage/MicrobeStage.tscn:629
 msgid "SPECIES_COLON"
 msgstr "Espécies:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:616
-msgid "HOLD_FOR_CURSOR"
-msgstr ""
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:680
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:681
 #: ../src/microbe_stage/MicrobeStage.tscn:711
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:946
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:947
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1002
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1003
 #: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "Luz"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1057
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1058
 #: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1144
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1145
 #: ../src/microbe_stage/MicrobeStage.tscn:1177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -3907,38 +4030,41 @@ msgstr "Press."
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1518
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1519
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "Agentes"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1648
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1641
+#, fuzzy
+msgid "MOVE_TO_LAND"
+msgstr "Mod a Carregar:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1661
 #, fuzzy
 msgid "BECOME_AWARE"
 msgstr "Bioma: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1659
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1672
 msgid "AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1679
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1692
 #: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2033
-msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2035
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2045
 #, fuzzy
-msgid "MACROSCOPIC_PROTOYPE_WARNING"
-msgstr ""
-"Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
-"Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
-"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
+msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
+msgstr "Protanóptico (Vermelho-Verde)"
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2046
+#, fuzzy
+msgid "MOVING_TO_LAND_PROTOTYPE"
+msgstr "Protanóptico (Vermelho-Verde)"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 #, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
@@ -4156,7 +4282,7 @@ msgstr "Caverna"
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:119
 msgid "UNBIND_HELP_TEXT"
 msgstr "Modo de Desconexão"
 
@@ -5043,10 +5169,6 @@ msgstr "Inserir um ID Existente da Steam Wrokshop"
 msgid "ID_NUMBER"
 msgstr "Número de ID"
 
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Aplicar"
-
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "Título do item:"
@@ -5743,6 +5865,13 @@ msgstr "A carregar o Editor de Micróbio"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Começar a prosperar"
+
+#, fuzzy
+#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
+#~ msgstr ""
+#~ "Foi detetado que o jogo guardado selecionado é incompatível com a atual versão do Thrive.\n"
+#~ "Não existe nenhum atualizador de jogos guardados para atualizar este jogo guardado.\n"
+#~ "Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de jogos guardados não é uma prioridade alta, como tal, não existe um conversor de jogos guardados para todas as versões."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
