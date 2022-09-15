@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-13 16:38-0400\n"
+"POT-Creation-Date: 2022-09-15 09:29+0300\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: 84634E1A607A <ajax-dong@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -370,13 +370,13 @@ msgid "ABILITIES"
 msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1998
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2011
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr "发射毒素"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1984
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1997
 #: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
@@ -403,179 +403,189 @@ msgstr "取消所有连接"
 msgid "PERFORM_UNBINDING"
 msgstr "取消连接"
 
-#: ../simulation_parameters/common/input_options.json:73
+#: ../simulation_parameters/common/input_options.json:74
 msgid "CAMERA"
 msgstr "视角"
 
-#: ../simulation_parameters/common/input_options.json:77
+#: ../simulation_parameters/common/input_options.json:78
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
-#: ../simulation_parameters/common/input_options.json:81
+#: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_IN"
 msgstr "放大"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:91
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "编辑器"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_RIGHT"
 msgstr "向右转"
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:99
 msgid "ROTATE_LEFT"
 msgstr "向左转"
 
-#: ../simulation_parameters/common/input_options.json:102
+#: ../simulation_parameters/common/input_options.json:103
 msgid "UNDO"
 msgstr "撤销"
 
-#: ../simulation_parameters/common/input_options.json:106
+#: ../simulation_parameters/common/input_options.json:107
 msgid "REDO"
 msgstr "重做"
 
-#: ../simulation_parameters/common/input_options.json:110
+#: ../simulation_parameters/common/input_options.json:111
 msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
 
-#: ../simulation_parameters/common/input_options.json:114
+#: ../simulation_parameters/common/input_options.json:115
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "打开细胞器菜单"
 
-#: ../simulation_parameters/common/input_options.json:118
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_LEFT"
 msgstr "向左平移"
 
-#: ../simulation_parameters/common/input_options.json:122
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RIGHT"
 msgstr "向右平移"
 
-#: ../simulation_parameters/common/input_options.json:126
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_UP"
 msgstr "向上平移"
 
-#: ../simulation_parameters/common/input_options.json:130
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_DOWN"
 msgstr "向下平移"
 
-#: ../simulation_parameters/common/input_options.json:134
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_RESET"
 msgstr "重置视角位置"
 
-#: ../simulation_parameters/common/input_options.json:138
+#: ../simulation_parameters/common/input_options.json:139
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消当前动作"
 
-#: ../simulation_parameters/common/input_options.json:142
+#: ../simulation_parameters/common/input_options.json:143
 msgid "DELETE_ORGANELLE"
 msgstr "移除细胞器"
 
-#: ../simulation_parameters/common/input_options.json:146
+#: ../simulation_parameters/common/input_options.json:147
 msgid "MOVE_ORGANELLE"
 msgstr "移动细胞器"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:156
 msgid "3D_MOVEMENT"
 msgstr "3D移动"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:160
 msgid "MOVE_UP_OR_JUMP"
 msgstr "向上走或跳起"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "向下走或蹲下"
 
-#: ../simulation_parameters/common/input_options.json:171
+#: ../simulation_parameters/common/input_options.json:172
+#, fuzzy
+msgid "MISCELLANEOUS_3D_STAGE"
+msgstr "杂项"
+
+#: ../simulation_parameters/common/input_options.json:176
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
+msgid "HOLD_TO_SHOW_CURSOR"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:184
 msgid "3D_EDITOR"
 msgstr "3D编辑器"
 
-#: ../simulation_parameters/common/input_options.json:175
+#: ../simulation_parameters/common/input_options.json:188
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "按住以在平移与旋转模式间切换"
 
-#: ../simulation_parameters/common/input_options.json:179
+#: ../simulation_parameters/common/input_options.json:192
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切换到正视图"
 
-#: ../simulation_parameters/common/input_options.json:183
+#: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "切换到右视图"
 
-#: ../simulation_parameters/common/input_options.json:187
+#: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "切换到俯视图"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:209
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "作弊"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:213
 msgid "ENABLE_EDITOR"
 msgstr "启用编辑器"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:217
 msgid "SPAWN_GLUCOSE"
 msgstr "生成葡萄糖"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:221
 msgid "SPAWN_AMMONIA"
 msgstr "生成氨"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:225
 msgid "SPAWN_PHOSPHATES"
 msgstr "生成磷酸盐"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:229
 msgid "CHEAT_MENU"
 msgstr "作弊菜单"
 
-#: ../simulation_parameters/common/input_options.json:227
+#: ../simulation_parameters/common/input_options.json:240
 msgid "MISCELLANEOUS"
 msgstr "杂项"
 
-#: ../simulation_parameters/common/input_options.json:231
+#: ../simulation_parameters/common/input_options.json:244
 msgid "TOGGLE_PAUSE"
 msgstr "暂停"
 
-#: ../simulation_parameters/common/input_options.json:235
+#: ../simulation_parameters/common/input_options.json:248
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "控制调试菜单"
 
-#: ../simulation_parameters/common/input_options.json:239
+#: ../simulation_parameters/common/input_options.json:252
 msgid "TOGGLE_FPS"
 msgstr "切换帧数显示"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:256
 msgid "TOGGLE_METRICS"
 msgstr "切换参数显示"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:260
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:264
 msgid "QUICK_LOAD"
 msgstr "快速读档"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:268
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:272
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:276
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切换全屏"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:280
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
 
@@ -741,41 +751,41 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1292
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1293
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1344
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1345
 #: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1396
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1397
 #: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1240
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1241
 #: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1578
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
 #: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1448
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1449
 #: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
@@ -1161,7 +1171,7 @@ msgstr "物种信息"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
 #: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
-#: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1322,7 +1332,7 @@ msgstr "{0}的均匀分布的环境食物来源"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
-#: ../src/early_multicellular_stage/CellType.cs:38
+#: ../src/early_multicellular_stage/CellType.cs:39
 msgid "STEM_CELL_NAME"
 msgstr "干"
 
@@ -1444,20 +1454,20 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "载入早期多细胞编辑器中"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "当另一个行动在进行时无法进行行动"
@@ -1539,6 +1549,70 @@ msgstr "透明度"
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "载入中"
+
+#: ../src/engine/input/ControllerAxisVisualizer.cs:165
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:47
+msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
+msgstr ""
+
+#: ../src/engine/input/ControllerAxisVisualizer.cs:171
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:108
+#, fuzzy
+msgid "VERTICAL_WITH_AXIS_NAME_COLON"
+msgstr "新名称："
+
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:58
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:119
+#, fuzzy
+msgid "RAW_VALUE_COLON"
+msgstr "新名称："
+
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:85
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:146
+msgid "CONTROLLER_DEADZONE_COLON"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
+#, fuzzy
+msgid "DEADZONE_CALIBRATION_INPROGRESS"
+msgstr "此翻译已完成 {0}%"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
+msgid "DEADZONE_CALIBRATION_IS_RESET"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
+#, fuzzy
+msgid "DEADZONE_CALIBRATION_FINISHED"
+msgstr "额外验证检测到了一个问题：{0}"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#, fuzzy
+msgid "DEADZONE_CONFIGURATION"
+msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#, fuzzy
+msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
+msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+msgid "START_CALIBRATION"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#, fuzzy
+msgid "RESET_DEADZONES"
+msgstr "重置为默认值？"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "应用"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -2193,7 +2267,7 @@ msgstr "难度"
 msgid "PLANET"
 msgstr "星球"
 
-#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:189
+#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:203
 msgid "MISC"
 msgstr "杂项"
 
@@ -2326,436 +2400,489 @@ msgstr "基本"
 msgid "CONFIRM_NORMAL"
 msgstr "确认"
 
-#: ../src/general/OptionsMenu.cs:669 ../src/general/OptionsMenu.tscn:316
+#: ../src/general/OptionsMenu.cs:770 ../src/general/OptionsMenu.tscn:330
 msgid "AUTO_RESOLUTION"
 msgstr "自动（{0}x{1}）"
 
-#: ../src/general/OptionsMenu.cs:683
+#: ../src/general/OptionsMenu.cs:784
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/OptionsMenu.cs:688
+#: ../src/general/OptionsMenu.cs:789
 msgid "GLES3"
 msgstr "GLES3"
 
-#: ../src/general/OptionsMenu.cs:693
+#: ../src/general/OptionsMenu.cs:794
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "未知"
 
-#: ../src/general/OptionsMenu.cs:702 ../src/general/OptionsMenu.tscn:495
+#: ../src/general/OptionsMenu.cs:803 ../src/general/OptionsMenu.tscn:509
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0}MiB"
 
-#: ../src/general/OptionsMenu.cs:1055
+#: ../src/general/OptionsMenu.cs:1226
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
-#: ../src/general/OptionsMenu.cs:1087
+#: ../src/general/OptionsMenu.cs:1258
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
-#: ../src/general/OptionsMenu.cs:1091
+#: ../src/general/OptionsMenu.cs:1262
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此翻译仍在开发中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:1095
+#: ../src/general/OptionsMenu.cs:1266
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此翻译已完成 {0}%"
 
-#: ../src/general/OptionsMenu.cs:1150
+#: ../src/general/OptionsMenu.cs:1321
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 "这个存档是来自更新版本的Thrive的并且很可能不兼容。\n"
 "你确定要强行载入这个存档吗？"
 
-#: ../src/general/OptionsMenu.cs:1157
+#: ../src/general/OptionsMenu.cs:1328
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Mod版本："
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
 msgstr "图像"
 
-#: ../src/general/OptionsMenu.tscn:156
+#: ../src/general/OptionsMenu.tscn:170
 msgid "SOUND"
 msgstr "声音"
 
-#: ../src/general/OptionsMenu.tscn:167
+#: ../src/general/OptionsMenu.tscn:181
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../src/general/OptionsMenu.tscn:178
+#: ../src/general/OptionsMenu.tscn:192
 msgid "INPUTS"
 msgstr "输入"
 
-#: ../src/general/OptionsMenu.tscn:237
+#: ../src/general/OptionsMenu.tscn:251
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/OptionsMenu.tscn:244
+#: ../src/general/OptionsMenu.tscn:258
 msgid "FULLSCREEN"
 msgstr "全屏"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:280
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重采样抗锯齿："
 
-#: ../src/general/OptionsMenu.tscn:273 ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:1070
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（设置的太高会影响性能）"
 
-#: ../src/general/OptionsMenu.tscn:288 ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:302 ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "已禁用"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:317
 msgid "RESOLUTION"
 msgstr "分辨率："
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:341
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
-#: ../src/general/OptionsMenu.tscn:342
+#: ../src/general/OptionsMenu.tscn:356
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "不受限"
 
-#: ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.tscn:372
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:372 ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:386 ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "无"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CORRECTION_PROTANOPE"
 msgstr "红绿色盲"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:403
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:429
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
 
-#: ../src/general/OptionsMenu.tscn:425
+#: ../src/general/OptionsMenu.tscn:439
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:469
 msgid "USED_RENDERER_NAME"
 msgstr "使用的渲染器："
 
-#: ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:496
 msgid "VIDEO_MEMORY"
 msgstr "当前使用的视频内存："
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:523
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/general/OptionsMenu.tscn:524
+#: ../src/general/OptionsMenu.tscn:538
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "显示能力栏"
 
-#: ../src/general/OptionsMenu.tscn:532
+#: ../src/general/OptionsMenu.tscn:546
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
-#: ../src/general/OptionsMenu.tscn:539
+#: ../src/general/OptionsMenu.tscn:553
 msgid "DISPLAY_PART_NAMES"
 msgstr "显示细胞器名称"
 
-#: ../src/general/OptionsMenu.tscn:565
+#: ../src/general/OptionsMenu.tscn:579
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:631
-#: ../src/general/OptionsMenu.tscn:663 ../src/general/OptionsMenu.tscn:695
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:605 ../src/general/OptionsMenu.tscn:645
+#: ../src/general/OptionsMenu.tscn:677 ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:741
 msgid "MUTE"
 msgstr "静音"
 
-#: ../src/general/OptionsMenu.tscn:605
+#: ../src/general/OptionsMenu.tscn:619
 msgid "MUSIC_VOLUME"
 msgstr "音乐音量"
 
-#: ../src/general/OptionsMenu.tscn:637
+#: ../src/general/OptionsMenu.tscn:651
 msgid "AMBIANCE_VOLUME"
 msgstr "环境声效"
 
-#: ../src/general/OptionsMenu.tscn:669
+#: ../src/general/OptionsMenu.tscn:683
 msgid "SFX_VOLUME"
 msgstr "音效音量"
 
-#: ../src/general/OptionsMenu.tscn:701
+#: ../src/general/OptionsMenu.tscn:715
 msgid "GUI_VOLUME"
 msgstr "GUI音量"
 
-#: ../src/general/OptionsMenu.tscn:745
+#: ../src/general/OptionsMenu.tscn:759
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "音频输出设备："
 
-#: ../src/general/OptionsMenu.tscn:773
+#: ../src/general/OptionsMenu.tscn:787
 msgid "LANGUAGE"
 msgstr "语言："
 
-#: ../src/general/OptionsMenu.tscn:791 ../src/general/OptionsMenu.tscn:1455
+#: ../src/general/OptionsMenu.tscn:805 ../src/general/OptionsMenu.tscn:1661
 msgid "RESET"
 msgstr "重置"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:823
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "帮忙翻译这个游戏"
 
-#: ../src/general/OptionsMenu.tscn:835
+#: ../src/general/OptionsMenu.tscn:849
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:864
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
 
-#: ../src/general/OptionsMenu.tscn:857 ../src/general/OptionsMenu.tscn:899
+#: ../src/general/OptionsMenu.tscn:871 ../src/general/OptionsMenu.tscn:913
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的数值有助于提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:892
+#: ../src/general/OptionsMenu.tscn:906
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "云分辨率除数："
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:947
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在游戏中启用auto-evo"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:967
 msgid "DETECTED_CPU_COUNT"
 msgstr "检测到的CPU数量："
 
-#: ../src/general/OptionsMenu.tscn:970
+#: ../src/general/OptionsMenu.tscn:984
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "当前线程："
 
-#: ../src/general/OptionsMenu.tscn:984
+#: ../src/general/OptionsMenu.tscn:998
 msgid "ASSUME_HYPERTHREADING"
 msgstr "假设CPU已启用超线程"
 
-#: ../src/general/OptionsMenu.tscn:992
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
 
-#: ../src/general/OptionsMenu.tscn:1002
+#: ../src/general/OptionsMenu.tscn:1016
 msgid "THREADS"
 msgstr "线程："
 
-#: ../src/general/OptionsMenu.tscn:1049
+#: ../src/general/OptionsMenu.tscn:1063
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "实体数量限制："
 
-#: ../src/general/OptionsMenu.tscn:1071 ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1085 ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr "极少"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_VERY_SMALL"
 msgstr "少"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_SMALL"
 msgstr "较少"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_NORMAL"
 msgstr "一般"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_LARGE"
 msgstr "较多"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_VERY_LARGE"
 msgstr "多"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_HUGE"
 msgstr "很多"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_EXTREME"
 msgstr "极多"
 
-#: ../src/general/OptionsMenu.tscn:1146
-msgid "RESET_INPUTS"
+#: ../src/general/OptionsMenu.tscn:1147
+msgid "MOUSE_LOOK_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
+msgid "BIND_AXES_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
+#, fuzzy
+msgid "HORIZONTAL_COLON"
+msgstr "版本："
+
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
+msgid "INVERTED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
+#, fuzzy
+msgid "VERTICAL_COLON"
+msgstr "版本："
+
+#: ../src/general/OptionsMenu.tscn:1211
+msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
+msgid "SCALING_NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1223
+#, fuzzy
+msgid "SCALING_ON"
+msgstr "信号剂"
+
+#: ../src/general/OptionsMenu.tscn:1223
+msgid "SCALING_ON_INVERSE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1236
+msgid "USE_VIRTUAL_WINDOW_SIZE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1253
+msgid "CONTROLLER_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1318
+msgid "CONTROLLER_DEADZONES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1352
+#, fuzzy
+msgid "RESET_KEYBINDINGS"
 msgstr "重置输入"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放游戏开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1400
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在开始新游戏时播放微生物阶段开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1202
+#: ../src/general/OptionsMenu.tscn:1408
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1447
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1266
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "开始新游戏时显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1273
+#: ../src/general/OptionsMenu.tscn:1479
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "现有游戏中显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1485
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "显示未保存的进度警告"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1497
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "启用作弊键"
 
-#: ../src/general/OptionsMenu.tscn:1299
+#: ../src/general/OptionsMenu.tscn:1505
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1516
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1542
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "打开截图存放文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "OPEN_LOGS_FOLDER"
 msgstr "打开日志文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1560
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON调试模式："
 
-#: ../src/general/OptionsMenu.tscn:1368 ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1574 ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "自动"
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "总是"
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "从不"
 
-#: ../src/general/OptionsMenu.tscn:1386
+#: ../src/general/OptionsMenu.tscn:1592
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1594
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "版本："
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1622
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "化合物："
 
-#: ../src/general/OptionsMenu.tscn:1467 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "保存"
 
-#: ../src/general/OptionsMenu.tscn:1484
+#: ../src/general/OptionsMenu.tscn:1690
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
-#: ../src/general/OptionsMenu.tscn:1495
+#: ../src/general/OptionsMenu.tscn:1701
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1496
+#: ../src/general/OptionsMenu.tscn:1702
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:1504
+#: ../src/general/OptionsMenu.tscn:1710
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "将输入重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1505
+#: ../src/general/OptionsMenu.tscn:1711
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "你确定要把输入设置重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:1514
+#: ../src/general/OptionsMenu.tscn:1720
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
-#: ../src/general/OptionsMenu.tscn:1534
+#: ../src/general/OptionsMenu.tscn:1740
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
 "你想继续吗？"
 
-#: ../src/general/OptionsMenu.tscn:1557
+#: ../src/general/OptionsMenu.tscn:1763
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
-#: ../src/general/OptionsMenu.tscn:1567
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
-#: ../src/general/OptionsMenu.tscn:1584
+#: ../src/general/OptionsMenu.tscn:1790
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1595 ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1801 ../src/general/OptionsMenu.tscn:1809
 msgid "ERROR"
 msgstr "错误"
 
-#: ../src/general/OptionsMenu.tscn:1605
+#: ../src/general/OptionsMenu.tscn:1811
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
-#: ../src/general/OptionsMenu.tscn:1613
+#: ../src/general/OptionsMenu.tscn:1819
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
-#: ../src/general/OptionsMenu.tscn:1615
+#: ../src/general/OptionsMenu.tscn:1821
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
@@ -3649,9 +3776,9 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这些信号化学物质可以用来吸引其它细胞，或警告它们有危险，使它们逃离。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:161
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:158
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:166
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1656
 msgid "TO_BE_IMPLEMENTED"
 msgstr "仍在开发中。"
 
@@ -3758,50 +3885,46 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "通过点击、拖动和缩放移动"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:506
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:507
 msgid "LOOKING_AT"
 msgstr "看着："
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:532
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
 #: ../src/microbe_stage/MicrobeStage.tscn:564
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:557
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:558
 #: ../src/microbe_stage/MicrobeStage.tscn:589
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:597
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:598
 #: ../src/microbe_stage/MicrobeStage.tscn:629
 msgid "SPECIES_COLON"
 msgstr "物种："
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:616
-msgid "HOLD_FOR_CURSOR"
-msgstr ""
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:680
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:681
 #: ../src/microbe_stage/MicrobeStage.tscn:711
 msgid "ENVIRONMENT"
 msgstr "环境"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:946
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:947
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1002
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1003
 #: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "光强"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1057
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1058
 #: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1144
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1145
 #: ../src/microbe_stage/MicrobeStage.tscn:1177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -3810,36 +3933,52 @@ msgstr "压力"
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1518
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1519
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "物质"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1648
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1641
+#, fuzzy
+msgid "MOVE_TO_LAND"
+msgstr "将上传的Mod："
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1661
 msgid "BECOME_AWARE"
 msgstr "变得有意识"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1659
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1672
 msgid "AWAKEN"
 msgstr "唤醒"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1679
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1692
 #: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2033
-msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr "宏观原型"
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2035
-msgid "MACROSCOPIC_PROTOYPE_WARNING"
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2045
+#, fuzzy
+msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
-"祝贺你达到了多细胞阶段的宏观部分的原型！\n"
+"你已经达到了Thrive的 \"完整 \"部分的终点。\n"
+"如果你愿意，你可以继续游戏的后期阶段原型。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
 "\n"
-"由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
+"如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
+"\n"
+"如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2046
+#, fuzzy
+msgid "MOVING_TO_LAND_PROTOTYPE"
+msgstr ""
+"你已经达到了Thrive的 \"完整 \"部分的终点。\n"
+"如果你愿意，你可以继续游戏的后期阶段原型。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
+"\n"
+"如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
+"\n"
+"如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "载入多细胞编辑器中"
 
@@ -4044,7 +4183,7 @@ msgstr "{0}{1}"
 msgid "PAUSED"
 msgstr "暂停中"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:119
 msgid "UNBIND_HELP_TEXT"
 msgstr "解连接模式"
 
@@ -4914,10 +5053,6 @@ msgstr "输入已有的创意工坊编号"
 msgid "ID_NUMBER"
 msgstr "编号"
 
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "应用"
-
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "项目标题："
@@ -5595,6 +5730,15 @@ msgstr "载入早期多细胞编辑器中"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "开始游戏"
+
+#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
+#~ msgstr "宏观原型"
+
+#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
+#~ msgstr ""
+#~ "祝贺你达到了多细胞阶段的宏观部分的原型！\n"
+#~ "\n"
+#~ "由于开发的限制，我们无法在这个版本中增加3D宏观游戏的内容。不过，你可以回到编辑器中继续构建你的生物体。"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "免疫胞吞"

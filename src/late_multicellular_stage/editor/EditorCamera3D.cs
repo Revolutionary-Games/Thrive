@@ -157,9 +157,9 @@ public class EditorCamera3D : Camera
         return true;
     }
 
-    [RunOnAxisGroup(Priority = -1)]
     [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
+    [RunOnAxisGroup(Priority = -1)]
     public bool RotateOrPanCameraWithKeys(float delta, float upDown, float leftRight)
     {
         if (!Current || !Visible)
