@@ -698,8 +698,10 @@ public static class Constants
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    ///   Note that this is a raw count and not a weighted count as game instability is probably related to the number
+    ///   of deleted world child Nodes and not their complexity.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 10;
+    public const int MAX_DESPAWNS_PER_FRAME = 4;
 
     /// <summary>
     ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.

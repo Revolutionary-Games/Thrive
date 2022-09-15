@@ -427,11 +427,19 @@ public class SpawnSystem : ISpawnSystem
     private float DespawnEntities(Vector3 playerPosition)
     {
         float entitiesDeleted = 0.0f;
-        float spawnedCount = 0.0f;
+        float spawnedEntityWeight = 0.0f;
+
+        int despawnedCount = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            spawnedCount += spawned.EntityWeight;
+            var entityWeight = spawned.EntityWeight;
+            spawnedEntityWeight += entityWeight;
+
+            // Keep counting all entities to have an accurate count at the end of this loop, even if we are no longer
+            // allowed to despawn things
+            if (despawnedCount >= Constants.MAX_DESPAWNS_PER_FRAME)
+                continue;
 
             // Global position must be used here as otherwise colony members are despawned
             // TODO: check if it would be better to remove the spawned group tag from colony members (and add it back
@@ -443,11 +451,10 @@ public class SpawnSystem : ISpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSquared)
             {
-                entitiesDeleted += spawned.EntityWeight;
+                entitiesDeleted += entityWeight;
                 spawned.DestroyDetachAndQueueFree();
 
-                if (entitiesDeleted >= Constants.MAX_DESPAWNS_PER_FRAME)
-                    break;
+                ++despawnedCount;
             }
         }
 
@@ -456,7 +463,7 @@ public class SpawnSystem : ISpawnSystem
         if (debugOverlay.PerformanceMetricsVisible)
             debugOverlay.ReportDespawns(entitiesDeleted);
 
-        return spawnedCount - entitiesDeleted;
+        return spawnedEntityWeight - entitiesDeleted;
     }
 
     /// <summary>
