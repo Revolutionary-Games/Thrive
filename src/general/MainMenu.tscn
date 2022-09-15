@@ -360,6 +360,7 @@ size_flags_vertical = 0
 text = "BACK"
 
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
+visible = false
 margin_right = 1280.0
 margin_bottom = 455.0
 custom_constants/separation = 10
