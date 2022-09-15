@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2022-09-15 16:30+0300\n"
 "PO-Revision-Date: 2022-09-14 06:12+0000\n"
 "Last-Translator: Ivan Bratović <ivanbratovic4@gmail.com>\n"
-"Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
+"Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.10.3\n"
 
@@ -82,44 +84,78 @@ msgstr "Višestanični uređivač"
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
+msgstr ""
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:"
+"input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. "
+"[thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. "
+"Kotač miša koristi se za podešavanje zumiranja."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Stanica koristi [thrive:compound type=\"atp\"][/thrive:compound] kao izvor energije. Ako ga ponestane, stanica će umrijeti."
+msgstr ""
+"Stanica koristi [thrive:compound type=\"atp\"][/thrive:compound] kao izvor "
+"energije. Ako ga ponestane, stanica će umrijeti."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Za otključavanje uređivača i razmnožavanje, potrebno je ostati živ dovoljno dugo. Skupljanje [thrive:compound type=\"ammonia\"][/thrive:compound] (narančasti oblak) te [thrive:compound type=\"phosphates\"][/thrive:compound] (ljubičasti oblak) ubrzava stanični rast."
+msgstr ""
+"Za otključavanje uređivača i razmnožavanje, potrebno je ostati živ dovoljno "
+"dugo. Skupljanje [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"(narančasti oblak) te [thrive:compound type=\"phosphates\"][/thrive:"
+"compound] (ljubičasti oblak) ubrzava stanični rast."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Stanica može gutati druge stanice, bakterije te komadiće željeza i drugih stanica koji su manji od nje same korištenjem [thrive:input]g_toggle_engulf[/thrive:input]. Dok stanica guta, troši dodatni [thrive:compound type=\"atp\"][/thrive:compound] i sporije se kreće. Ponovno korištenje [thrive:input]g_toggle_engulf[/thrive:input] prekida gutanje."
+msgstr ""
+"Stanica može gutati druge stanice, bakterije te komadiće željeza i drugih "
+"stanica koji su manji od nje same korištenjem [thrive:input]g_toggle_engulf[/"
+"thrive:input]. Dok stanica guta, troši dodatni [thrive:compound type=\"atp\"]"
+"[/thrive:compound] i sporije se kreće. Ponovno korištenje [thrive:"
+"input]g_toggle_engulf[/thrive:input] prekida gutanje."
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma probava postaje učinkovitija."
+msgstr ""
+"Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se "
+"unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti "
+"izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. "
+"Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma "
+"probava postaje učinkovitija."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Međutim, lizosomi su dostupni samo eukariotima. Prokarioti nemaju takve organele te im je zbog toga probava neučinkovita. To ne predstavlja veliki problem za male stanice, ali većim je stanicama dosta veliki nedostatak."
+msgstr ""
+"Međutim, lizosomi su dostupni samo eukariotima. Prokarioti nemaju takve "
+"organele te im je zbog toga probava neučinkovita. To ne predstavlja veliki "
+"problem za male stanice, ali većim je stanicama dosta veliki nedostatak."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Celulozne i hitinske stanične stijenke se naročito ne mogu probaviti bez potrebnog enzima koji ih može razgraditi."
+msgstr ""
+"Celulozne i hitinske stanične stijenke se naročito ne mogu probaviti bez "
+"potrebnog enzima koji ih može razgraditi."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacija troši [thrive:compound type=\"atp\"][/thrive:compound]. Što je veća stanica, to treba više mitohondrija, metabolosoma ili rusticijanina treba kako bi se spriječilo trošenje [thrive:compound type=\"atp\"][/thrive:compound] dok stoji na mjestu."
+msgstr ""
+"Osmoregulacija troši [thrive:compound type=\"atp\"][/thrive:compound]. Što "
+"je veća stanica, to treba više mitohondrija, metabolosoma ili rusticijanina "
+"treba kako bi se spriječilo trošenje [thrive:compound type=\"atp\"][/thrive:"
+"compound] dok stoji na mjestu."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "U uređivaču postoji mnogo organela koji se mogu razvijati, što omogućuje širok raspon različitih stilova igre."
+msgstr ""
+"U uređivaču postoji mnogo organela koji se mogu razvijati, što omogućuje "
+"širok raspon različitih stilova igre."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -132,17 +168,27 @@ msgstr ""
 "Ljubičasti – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Smeđi – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] stvara [thrive:compound type=\"atp\"][/thrive:compound]."
+"[thrive:compound type=\"glucose\"][/thrive:compound] stvara [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] može se pretvoriti u [thrive:compound type=\"glucose\"][/thrive:compound] pomoću kemoplasta i kemosintetizirajućih proteina. [thrive:compound type=\"iron\"][/thrive:compound] se pomoću rusticijanina može pretvoriti u [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] može se "
+"pretvoriti u [thrive:compound type=\"glucose\"][/thrive:compound] pomoću "
+"kemoplasta i kemosintetizirajućih proteina. [thrive:compound type=\"iron\"][/"
+"thrive:compound] se pomoću rusticijanina može pretvoriti u [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Za razmnožavanje potrebno je podijeliti sve organele na dva dijela. Organeli trebaju [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], i vremena kako bi se podijelili."
+msgstr ""
+"Za razmnožavanje potrebno je podijeliti sve organele na dva dijela. Organeli "
+"trebaju [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:"
+"compound type=\"phosphates\"][/thrive:compound], i vremena kako bi se "
+"podijelili."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -151,37 +197,62 @@ msgstr "Ako populacija padne na nulu, vrsta će izumrijeti."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Međutim, ako preživi dvadeset generacija s 300 jedinki, smatra se da ste pobijedili u trenutnoj igri. Nakon pobjede dobivate skočni prozor i možete nastaviti igrati kako želite."
+msgstr ""
+"Međutim, ako preživi dvadeset generacija s 300 jedinki, smatra se da ste "
+"pobijedili u trenutnoj igri. Nakon pobjede dobivate skočni prozor i možete "
+"nastaviti igrati kako želite."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Budite oprezni jer se druge vrste razvijaju i natječu usporedno s Vašom vrstom. Svaki put kada uđete u uređivač i oni se razvijaju."
+msgstr ""
+"Budite oprezni jer se druge vrste razvijaju i natječu usporedno s Vašom "
+"vrstom. Svaki put kada uđete u uređivač i oni se razvijaju."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Vezujuće sredstvo omogućuje vašoj stanici i ostalima njezine vrste da izgrade staničnu koloniju u kojoj stanice međusobno dijele spojeve koje apsorbiraju i proizvode. Uđite u način vezivanja pritiskom na [thrive:input]g_toggle_binding[/thrive:input]. Dok ste u koloniji, ne možete podijeliti ćeliju i koristiti stanični uređivač. Za ulazak u uređivač skupite potrebne spojeve i napustite koloniju pritiskom na [thrive:input]g_unbind_all[/thrive:input]. Velike stanične kolonije put su prema višestaničnosti."
+msgstr ""
+"Vezujuće sredstvo omogućuje vašoj stanici i ostalima njezine vrste da "
+"izgrade staničnu koloniju u kojoj stanice međusobno dijele spojeve koje "
+"apsorbiraju i proizvode. Uđite u način vezivanja pritiskom na [thrive:"
+"input]g_toggle_binding[/thrive:input]. Dok ste u koloniji, ne možete "
+"podijeliti ćeliju i koristiti stanični uređivač. Za ulazak u uređivač "
+"skupite potrebne spojeve i napustite koloniju pritiskom na [thrive:"
+"input]g_unbind_all[/thrive:input]. Velike stanične kolonije put su prema "
+"višestaničnosti."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokariotske strukture\n"
 "\n"
-"Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine "
+"[thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound "
+"type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz "
+"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 Hex\n"
+"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/"
+"thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu "
+"i zauzimaju 1 Hex\n"
 "\n"
-"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 Hex\n"
+"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/"
+"thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:"
+"compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 Hex\n"
 "\n"
-"Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u "
+"[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound "
+"type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:"
+"compound]\n"
 "\n"
-"Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata"
+"Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] "
+"pomoću temperaturnih gradijenata"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
