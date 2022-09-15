@@ -131,7 +131,7 @@ public class PatchDetailsPanel : PanelContainer
     private Patch? targetPatch;
     private Patch? currentPatch;
 
-    private bool moveToPatchButtonVisible;
+    private bool moveToPatchButtonVisible = true;
 
     public Action<Patch>? OnMoveToPatchClicked { get; set; }
 
