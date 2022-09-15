@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-15 09:29+0300\n"
+"POT-Creation-Date: 2022-09-15 20:18+1000\n"
 "PO-Revision-Date: 2022-07-24 11:52+0000\n"
 "Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -374,13 +374,13 @@ msgid "ABILITIES"
 msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2011
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2015
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr "Выстрелить токсином"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1997
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
 #: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr "Переключить поглощение"
@@ -755,41 +755,41 @@ msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1293
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1297
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Аммиак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1345
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1349
 #: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1397
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1401
 #: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1241
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1245
 #: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1583
 #: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr "ОксиТоксин НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1449
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
 #: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
@@ -1189,8 +1189,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Список Видов"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
-#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:450
+#: ../src/general/MainMenu.tscn:493 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2184,7 +2184,7 @@ msgstr "Микробный Креативный Редактор"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "статус запуска:"
 
-#: ../src/general/MainMenu.tscn:381
+#: ../src/general/MainMenu.tscn:380
 msgid "MODS"
 msgstr "Моды"
 
@@ -2196,19 +2196,24 @@ msgstr "Галерея изображений"
 msgid "LICENSES"
 msgstr "Лицензии"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:420
+#, fuzzy
+msgid "SUGGESTIONS"
+msgstr "Разрешение:"
+
+#: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:512
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:516
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:517
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
@@ -3808,7 +3813,7 @@ msgstr "Сигнальные агенты позволяют клеткам со
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:158
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:166
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1656
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1660
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Будет реализовано."
 
@@ -3939,22 +3944,22 @@ msgstr "Виды:"
 msgid "ENVIRONMENT"
 msgstr "Окружающая среда"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:947
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:949
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1003
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1005
 #: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "Свет"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1058
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1060
 #: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1145
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
 #: ../src/microbe_stage/MicrobeStage.tscn:1177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -3963,30 +3968,30 @@ msgstr "Давл."
 msgid "COMPOUNDS"
 msgstr "Соединения"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1519
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1523
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "Химические Агенты"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1641
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Мод для загрузки:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1661
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
 msgstr "Станьте осведомлены"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1672
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1676
 msgid "AWAKEN"
 msgstr "Пробудить"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1692
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1696
 #: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2045
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
@@ -3997,7 +4002,7 @@ msgstr ""
 "\n"
 "Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2046
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -6013,10 +6018,6 @@ msgstr "Начать Процветание"
 #, fuzzy
 #~ msgid "SEMICOLON"
 #~ msgstr "Размер:"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Разрешение:"
 
 #, fuzzy
 #~ msgid "AT"

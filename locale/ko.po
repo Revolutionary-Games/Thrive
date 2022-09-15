@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-15 09:29+0300\n"
+"POT-Creation-Date: 2022-09-15 20:18+1000\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -388,13 +388,13 @@ msgid "ABILITIES"
 msgstr "능력"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2011
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2015
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr "독소 공격"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1997
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
 #: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr "삼키기 전환"
@@ -783,41 +783,41 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1293
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1297
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "암모니아"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1345
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1349
 #: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "인산염"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1397
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1401
 #: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1241
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1245
 #: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "포도당"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1583
 #: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1449
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
 #: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
@@ -1211,8 +1211,8 @@ msgid "SPECIES_DETAILS"
 msgstr "존재하는 종"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
-#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:450
+#: ../src/general/MainMenu.tscn:493 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2253,7 +2253,7 @@ msgstr "미생물 자유 편집기"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "실행 상태:"
 
-#: ../src/general/MainMenu.tscn:381
+#: ../src/general/MainMenu.tscn:380
 msgid "MODS"
 msgstr ""
 
@@ -2265,19 +2265,24 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:420
+#, fuzzy
+msgid "SUGGESTIONS"
+msgstr "해상도:"
+
+#: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 모드 경고"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:512
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:516
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:517
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3945,7 +3950,7 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:158
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:166
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1656
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1660
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
 
@@ -4079,22 +4084,22 @@ msgstr "종:"
 msgid "ENVIRONMENT"
 msgstr "환경"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:947
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:949
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr "온도."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1003
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1005
 #: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "빛"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1058
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1060
 #: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "압력."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1145
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
 #: ../src/microbe_stage/MicrobeStage.tscn:1177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -4103,35 +4108,35 @@ msgstr "압력."
 msgid "COMPOUNDS"
 msgstr "화합물"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1519
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1523
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "물질"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1641
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "해당 파편으로 이동"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1661
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 #, fuzzy
 msgid "BECOME_AWARE"
 msgstr "생태계: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1672
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1676
 msgid "AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1692
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1696
 #: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2045
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2046
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
@@ -6276,10 +6281,6 @@ msgstr "Thrive 시작"
 #, fuzzy
 #~ msgid "SEMICOLON"
 #~ msgstr "크기:"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "해상도:"
 
 #, fuzzy
 #~ msgid "AT"

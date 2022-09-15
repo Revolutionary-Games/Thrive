@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-15 09:29+0300\n"
+"POT-Creation-Date: 2022-09-15 20:18+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -314,13 +314,13 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2011
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2015
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1997
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
 #: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr ""
@@ -694,41 +694,41 @@ msgid "ATP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1293
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1297
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1345
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1349
 #: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1397
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1401
 #: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1241
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1245
 #: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1583
 #: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1449
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
 #: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
@@ -1094,8 +1094,8 @@ msgid "SPECIES_DETAILS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
-#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:450
+#: ../src/general/MainMenu.tscn:493 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2057,7 +2057,7 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:381
+#: ../src/general/MainMenu.tscn:380
 msgid "MODS"
 msgstr "Modifikacijos"
 
@@ -2069,19 +2069,24 @@ msgstr "Meno galerija"
 msgid "LICENSES"
 msgstr "Licencijos"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:420
+#, fuzzy
+msgid "SUGGESTIONS"
+msgstr "Bendra"
+
+#: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:512
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:516
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:517
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Įvyko klaida įkeliant vieną ar daugiau modifikatorių. Žurnalai gali turėti papildomos informacijos."
 
@@ -3635,7 +3640,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:158
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:166
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1656
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1660
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -3760,22 +3765,22 @@ msgstr ""
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:947
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:949
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1003
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1005
 #: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "Lengvas"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1058
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1060
 #: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "Spaud."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1145
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
 #: ../src/microbe_stage/MicrobeStage.tscn:1177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -3784,33 +3789,33 @@ msgstr "Spaud."
 msgid "COMPOUNDS"
 msgstr "Junginiai"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1519
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1523
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "Agentai"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1641
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1661
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1672
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1676
 msgid "AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1692
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1696
 #: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2045
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2046
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
