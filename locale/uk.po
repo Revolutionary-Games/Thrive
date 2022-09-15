@@ -2459,16 +2459,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ця мова на {0}% готова"
 
 #: ../src/general/OptionsMenu.cs:1321
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Це збереження з новішої версії Thrive та ймовірно несумісне.\n"
-"Ви хочете спробувати завантажити його всеодно?"
+msgstr "Це збірка налагоджувань, де інформація нижче, ймовірно, застаріла"
 
 #: ../src/general/OptionsMenu.cs:1328
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Версія моду:"
+msgstr "Невідома версія"
 
 #: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
@@ -2830,19 +2826,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ніколи"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
 #: ../src/general/OptionsMenu.tscn:1594
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Версія:"
+msgstr "Точна версія Thrive:"
 
 #: ../src/general/OptionsMenu.tscn:1622
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Сполуки:"
+msgstr "Збірка в:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3335,9 +3328,11 @@ msgid "RAW"
 msgstr "Необроблений"
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Підтримка у розробці"
+msgstr ""
+"DevBuild {0}\n"
+"у відділі {1} в {2}\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -4072,14 +4067,12 @@ msgid "RESUME_TOOLTIP"
 msgstr "Продовжити"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Показати/ приховати оточення та сполуки"
+msgstr "Показати/ приховати оточення"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Показати/ приховати оточення та сполуки"
+msgstr "Показати/ приховати сполуки"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -5778,6 +5771,12 @@ msgstr "Продовжити процвітання"
 #~ "Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
 #~ "\n"
 #~ "Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
+
+#~ msgid "RESET_INPUTS"
+#~ msgstr "Скинути зміни"
+
+#~ msgid "HOLD_FOR_CURSOR"
+#~ msgstr "Утримуйте TODO: введення для курсору"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Невразливий до поглинання"

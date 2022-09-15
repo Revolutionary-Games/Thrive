@@ -499,15 +499,13 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Aşağı doğru git ya da çömel"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Diğer"
+msgstr "Diğer 3D Evreler"
 
 #: ../simulation_parameters/common/input_options.json:180
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr "İmleç için TODO: girdisini basılı tut"
+msgstr "İmleci göstermek için [thrive:input]g_free_cursor[/thrive:input] tuşunu basılı tut"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -1579,61 +1577,56 @@ msgstr "Yükleniyor"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Yatay (Eksen: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Yeni İsim:"
+msgstr "Dikey (Eksen: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Yeni İsim:"
+msgstr "Ham:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Ölü Bölge:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Bu dil %{0} tamamlandı"
+msgstr "Ölü bölge kalibrasyon işlemi sürüyor. Lütfen oyun kumandasındaki herhangi bir butona veya çubuğa dokunma ve birkaç saniye bekle."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Ölü bölge kalibrasyonu sıfırlandı"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Ek doğrulamalar bir sorun algıladı: {0}"
+msgstr "Ölü bölge kalibrasyon işlemi tamamlandı. Yeni ölü bölgeler, aşağıda bulunan eksen değeri görüntüleyicilerinde gösterilmekte."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
+msgstr "Ölü Bölge Yapılandırması"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
+msgstr ""
+"Bu araç, oyun kumandasının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölgesi büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
+"Kalibrasyona başlamadan önce, lütfen bütün oyun kumandası çubuklarını oynat ve bırak. Ayrıca oyun kumandanda, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da bas ve onları bırak.\n"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Kalibrasyonu Başlat"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Varsayılanlara sıfırlansın mı?"
+msgstr "Ölü Bölgeleri Sıfırla"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Oyun Kumandası Eksen Görüntüleyicileri:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2462,16 +2455,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
 #: ../src/general/OptionsMenu.cs:1321
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Bu kayıt Thrive'ın yeni bir sürümüne ait ve uyumsuz olması oldukça muhtemel.\n"
-"Yine de kaydı yüklemeyi denemek ister misin?"
+msgstr "Bu bir hata ayıklama sürümü, bu yüzden aşağıdaki bilgi muhtemelen güncel değil"
 
 #: ../src/general/OptionsMenu.cs:1328
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Mod Sürümü:"
+msgstr "Bilinmeyen sürüm"
 
 #: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
@@ -2709,60 +2698,56 @@ msgstr "En büyük"
 
 #: ../src/general/OptionsMenu.tscn:1147
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Fare serbest bakış hassaslığı"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Eksenleri birbirine bağla"
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Sürüm:"
+msgstr "Yatay:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "Ters Çevrilmiş"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Sürüm:"
+msgstr "Dikey:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Fare hassaslığını pencere büyüklüğüne göre arttırma"
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Yok"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Sinyal Verici Ajan"
+msgstr "Arttırılmış"
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Tersine Arttırılmış"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Sanal pencere büyüklüğünü kullan"
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Oyun kumandası hassaslığı"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Oyun Kumandası Ölü Bölgeleri"
 
 #: ../src/general/OptionsMenu.tscn:1352
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Girişleri sıfırla"
+msgstr "Tuş atamalarını sıfırla"
 
 #: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
@@ -2833,19 +2818,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Hiçbir zaman"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
+msgstr "Thrive'ın mevcut sürümünden derlenen tam kod işlemesi"
 
 #: ../src/general/OptionsMenu.tscn:1594
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Sürüm:"
+msgstr "Tam Thrive sürümü:"
 
 #: ../src/general/OptionsMenu.tscn:1622
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Bileşikler:"
+msgstr "Derleme yeri:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -2901,7 +2883,7 @@ msgstr "Hata"
 
 #: ../src/general/OptionsMenu.tscn:1811
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Hata: Yeni ayarlar konfigürasyon dosyasına kaydedilemedi."
+msgstr "Hata: Yeni ayarlar yapılandırma dosyasına kaydedilemedi."
 
 #: ../src/general/OptionsMenu.tscn:1819
 msgid "NO_SCREENSHOT_DIRECTORY"
@@ -3338,9 +3320,11 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Geliştirme Sürümü Destekçileri"
+msgstr ""
+"Geliştirme Sürümü {0}\n"
+"{1} dalında {2} tarihinde\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -3894,7 +3878,7 @@ msgstr "Bu hücre zarı silikadan yapılmış güçlü bir duvara sahiptir. Topl
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4027
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "Yeni bir kontrol tuşu ekle"
+msgstr "Yeni bir tuş ataması ekle"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4033
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
@@ -3976,9 +3960,8 @@ msgid "AGENTS"
 msgstr "Ajanlar"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Yüklenecek Mod:"
+msgstr "Karaya Çık"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
@@ -3994,26 +3977,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Thrive'ın \"tamamlanmış\" kısmının sonuna geldin.\n"
-"Eğer istersen, oyuna dahil edilen sonraki evrelerin prototipleri ile devam edebilirsin. Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir. Bunlar, oyunun gelecekteki gidişatını ve evrelerin nasıl bağlandığına dair genel vizyonumuzu göstermek için oyunun bir parçası olarak eklenmektedir.\n"
-"\n"
-"Eğer devam eder veya devam ettikten sonra geri dönersen, prototiplerin çoğunda, bu aşamadan sonra oyunu kaydedemeyeceksin. Eğer bu evreye geri dönmek istersen, lütfen ilerlemeden önce bir kayıt oluştur.\n"
-"\n"
-"Eğer devam etmeyi seçersen, sonraki evrelerin prototip olduğunu lütfen anlayışla karşıla ve onların ne kadar eksik oldukları konusunda lütfen şikayetçi olma."
+msgstr "Karaya Çıkılsın mı?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Thrive'ın \"tamamlanmış\" kısmının sonuna geldin.\n"
-"Eğer istersen, oyuna dahil edilen sonraki evrelerin prototipleri ile devam edebilirsin. Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir. Bunlar, oyunun gelecekteki gidişatını ve evrelerin nasıl bağlandığına dair genel vizyonumuzu göstermek için oyunun bir parçası olarak eklenmektedir.\n"
+"Karaya çıkmak üzeresin. Oyunda daha fazla ilerlemek için bu gerekli. Karaya çıktığında bir daha geri dönemezsin.\n"
 "\n"
-"Eğer devam eder veya devam ettikten sonra geri dönersen, prototiplerin çoğunda, bu aşamadan sonra oyunu kaydedemeyeceksin. Eğer bu evreye geri dönmek istersen, lütfen ilerlemeden önce bir kayıt oluştur.\n"
+"Şu anki karaya geçiş, oyuna doğru düzgün ekleneceği zamankinde planlanandan, çok daha ani şekilde gerçekleşmekte.\n"
 "\n"
-"Eğer devam etmeyi seçersen, sonraki evrelerin prototip olduğunu lütfen anlayışla karşıla ve onların ne kadar eksik oldukları konusunda lütfen şikayetçi olma."
+"Planda olan, karaya çıkışı kademeli yapmak ve ani bir değişim ile yapmamak."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4075,14 +4049,12 @@ msgid "RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Ortamı ve bileşikleri göster / gizle"
+msgstr "Ortamı göster / gizle"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Ortamı ve bileşikleri göster / gizle"
+msgstr "Bileşikleri göster / gizle"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -5414,7 +5386,7 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
-msgstr "Oluşturulma tarihi:"
+msgstr "Oluşturma tarihi:"
 
 #: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
@@ -5781,6 +5753,12 @@ msgstr "İlerlemeye Devam Et"
 #~ "Tebrikler, Çok Hücreli Evresi'nin makroskopik kısmına ait prototipe ulaştın!\n"
 #~ "\n"
 #~ "Geliştirme koşullarından dolayı, bu versiyona 3D makroskopik oynanabilirlik ekleyemedik. Ama organizmanı oluşturmaya devam etmek için editöre dönebilirsin."
+
+#~ msgid "RESET_INPUTS"
+#~ msgstr "Girişleri sıfırla"
+
+#~ msgid "HOLD_FOR_CURSOR"
+#~ msgstr "İmleç için TODO: girdisini basılı tut"
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Yutulmaya Karşı Dayanıklı"
