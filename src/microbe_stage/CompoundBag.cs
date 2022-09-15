@@ -130,9 +130,9 @@ public class CompoundBag : ICompoundStorage
         return usefulCompounds.Contains(compound);
     }
 
-    public bool AreAnySpecificallySetUseful(List<Compound> compounds)
+    public bool AreAnySpecificallySetUseful(IEnumerable<Compound> compounds)
     {
-        return usefulCompounds.Intersect(compounds).Any();
+        return compounds.Any(usefulCompounds.Contains);
     }
 
     public void ClampNegativeCompoundAmounts()
