@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -178,6 +178,9 @@ bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 0, 0.498039, 0.4, 1 )
+
 [sub_resource type="Animation" id=39]
 resource_name = "HideCompoundsPanels"
 length = 0.4
@@ -218,7 +221,7 @@ tracks/2/keys = {
 "values": [ 0, -350 ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=45]
 resource_name = "ShowCompoundsPanels"
 length = 0.4
 tracks/0/type = "value"
@@ -389,21 +392,6 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-
-[sub_resource type="StyleBoxFlat" id=44]
-bg_color = Color( 0, 0.498039, 0.4, 1 )
-
-[sub_resource type="StyleBoxFlat" id=45]
-bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
-
-[sub_resource type="StyleBoxTexture" id=46]
-texture = ExtResource( 62 )
-region_rect = Rect2( 0, 0, 86, 52 )
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
@@ -1736,7 +1724,7 @@ margin_bottom = -8.0
 
 [node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideCompoundsPanels = SubResource( 39 )
-anims/ShowCompoundsPanels = SubResource( 40 )
+anims/ShowCompoundsPanels = SubResource( 45 )
 
 [node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideEnvironmentPanel = SubResource( 41 )
