@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-14 22:54+1000\n"
+"POT-Creation-Date: 2022-09-13 16:38-0400\n"
 "PO-Revision-Date: 2022-07-24 11:52+0000\n"
 "Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1179,8 +1179,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Список Видов"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:435
-#: ../src/general/MainMenu.tscn:478 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
+#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2122,24 +2122,19 @@ msgstr "Галерея изображений"
 msgid "LICENSES"
 msgstr "Лицензии"
 
-#: ../src/general/MainMenu.tscn:421
-#, fuzzy
-msgid "SUGGESTIONS"
-msgstr "Разрешение:"
-
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:496
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
@@ -5874,6 +5869,10 @@ msgstr "Начать Процветание"
 #, fuzzy
 #~ msgid "SEMICOLON"
 #~ msgstr "Размер:"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Разрешение:"
 
 #, fuzzy
 #~ msgid "AT"

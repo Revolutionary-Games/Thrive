@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-14 22:54+1000\n"
+"POT-Creation-Date: 2022-09-13 16:38-0400\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: 84634E1A607A <ajax-dong@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1159,8 +1159,8 @@ msgid "SPECIES_DETAILS"
 msgstr "物种信息"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:435
-#: ../src/general/MainMenu.tscn:478 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
+#: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2099,24 +2099,19 @@ msgstr "艺术画廊"
 msgid "LICENSES"
 msgstr "许可"
 
-#: ../src/general/MainMenu.tscn:421
-#, fuzzy
-msgid "SUGGESTIONS"
-msgstr "分辨率："
-
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:496
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 
@@ -5860,6 +5855,10 @@ msgstr "开始游戏"
 #, fuzzy
 #~ msgid "SEMICOLON"
 #~ msgstr "大小："
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "分辨率："
 
 #, fuzzy
 #~ msgid "AT"

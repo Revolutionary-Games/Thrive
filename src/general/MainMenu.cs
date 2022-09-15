@@ -443,12 +443,6 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0, false);
     }
 
-    private void SuggestionsPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen("https://suggestions.revolutionarygamesstudio.com/");
-    }
-
     private void LicensesPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
