@@ -235,12 +235,12 @@ public static class Constants
     public const float MUCILAGE_JET_FACTOR = 600.0f;
 
     /// <summary>
-    ///    Minimum stored slime needed to start secreting
+    ///   Minimum stored slime needed to start secreting
     /// </summary>
     public const float MUCILAGE_MIN_TO_VENT = 0.01f;
 
     /// <summary>
-    ///    Length in seconds for slime secretion cooldown
+    ///   Length in seconds for slime secretion cooldown
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
