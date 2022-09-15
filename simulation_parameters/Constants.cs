@@ -225,6 +225,26 @@ public static class Constants
     public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
+    ///   How much a cell's speed is slowed when travelling through slime
+    /// </summary>
+    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+
+    /// <summary>
+    ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
+    /// </summary>
+    public const float MUCILAGE_JET_FACTOR = 600.0f;
+
+    /// <summary>
+    ///   Minimum stored slime needed to start secreting
+    /// </summary>
+    public const float MUCILAGE_MIN_TO_VENT = 0.01f;
+
+    /// <summary>
+    ///   Length in seconds for slime secretion cooldown
+    /// </summary>
+    public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
+
+    /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually
     /// </summary>
@@ -658,6 +678,7 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
@@ -682,14 +703,14 @@ public static class Constants
 
     // These control how many game entities can exist at once
     // TODO: bump these back up once we resolve the performance bottleneck
-    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
-    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
-    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
-    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
-    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
-    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
-    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
-    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+    public const int TINY_MAX_SPAWNED_ENTITIES = 100;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 200;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 300;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 400;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 500;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 600;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 700;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 800;
 
     /// <summary>
     ///   Controls how fast entities are allowed to spawn
@@ -698,8 +719,15 @@ public static class Constants
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    ///   Note that this is a raw count and not a weighted count as game instability is probably related to the number
+    ///   of deleted world child Nodes and not their complexity.
     /// </summary>
     public const int MAX_DESPAWNS_PER_FRAME = 4;
+
+    /// <summary>
+    ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
+    /// </summary>
+    public const float ORGANELLE_ENTITY_WEIGHT = 0.5f;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
