@@ -37,6 +37,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "fr",
         "frm",
         "he",
+        "hr",
         "hu",
         "id",
         "ka",
