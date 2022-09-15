@@ -360,7 +360,6 @@ size_flags_vertical = 0
 text = "BACK"
 
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
-visible = false
 margin_right = 1280.0
 margin_bottom = 455.0
 custom_constants/separation = 10
@@ -408,16 +407,16 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="SuggestAFeature" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 508.0
 margin_top = 150.0
-margin_right = 765.0
+margin_right = 771.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "SUGGEST_A_FEATURE"
+text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
 "_editor_description_": ""
 }
@@ -530,7 +529,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/SuggestAFeature" to="." method="SuggestAFeaturePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
