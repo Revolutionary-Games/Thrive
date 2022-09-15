@@ -114,6 +114,13 @@ public class LoadingScreen : Control
         }
     }
 
+    /// <summary>
+    ///   The logical size of the Godot rendering area. This is needed by <see cref="InputManager"/> but as that is not
+    ///   a control, it cannot get this info by itself, so this property needs to be in some suitable autoload even if
+    ///   this doesn't fully make sense here.
+    /// </summary>
+    public Vector2 LogicalDrawingAreaSize => GetViewportRect().Size;
+
     private MainGameState CurrentlyLoadingGameState { get; set; } = MainGameState.Invalid;
 
     public override void _Ready()

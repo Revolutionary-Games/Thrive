@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
+[ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -89,7 +90,20 @@ UseManualThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContaine
 ThreadCountSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider")
 MaxSpawnedEntitiesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
-InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList")
+MouseAxisSensitivitiesBoundPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine/SameBothAxesSensitivity")
+MouseHorizontalSensitivityPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/Horizontal")
+MouseHorizontalInvertedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/HorizontalInverted")
+MouseVerticalSensitivityPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/Vertical")
+MouseVerticalInvertedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/VerticalInverted")
+MouseWindowSizeScalingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SensitivityScaleMode")
+MouseWindowSizeScalingWithLogicalSizePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VirtualWindowSize")
+ControllerAxisSensitivitiesBoundPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine/SameBothAxesSensitivity")
+ControllerHorizontalSensitivityPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/Horizontal")
+ControllerHorizontalInvertedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/HorizontalInverted")
+ControllerVerticalSensitivityPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/Vertical")
+ControllerVerticalInvertedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/VerticalInverted")
+InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
+DeadzoneConfigurationPopupPath = NodePath("ControllerDeadzoneConfiguration")
 MiscTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc")
 PlayIntroPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/Intro")
 PlayMicrobeIntroPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/MicrobeIntro")
@@ -1117,16 +1131,208 @@ size_flags_vertical = 3
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
 
-[node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 margin_right = 647.0
 margin_bottom = 509.0
+size_flags_horizontal = 3
+
+[node name="MouseFirstLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 647.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="MouseSensitivityLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine"]
+margin_right = 259.0
+margin_bottom = 25.0
+text = "MOUSE_LOOK_SENSITIVITY"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine"]
+margin_left = 263.0
+margin_right = 388.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="SameBothAxesSensitivity" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine" instance=ExtResource( 10 )]
+margin_left = 392.0
+margin_right = 647.0
+margin_bottom = 25.0
+text = "BIND_AXES_SENSITIVITY"
+
+[node name="Mouse" type="GridContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 647.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+columns = 3
+
+[node name="HorizontalLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
+margin_right = 201.0
+margin_bottom = 25.0
+text = "HORIZONTAL_COLON"
+
+[node name="Horizontal" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
+margin_left = 205.0
+margin_right = 528.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+step = 0.0
+
+[node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource( 10 )]
+margin_left = 532.0
+margin_right = 647.0
+margin_bottom = 25.0
+text = "INVERTED"
+
+[node name="VerticalLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
+margin_top = 29.0
+margin_right = 201.0
+margin_bottom = 54.0
+text = "VERTICAL_COLON"
+
+[node name="Vertical" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse"]
+margin_left = 205.0
+margin_top = 29.0
+margin_right = 528.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+step = 0.0
+
+[node name="VerticalInverted" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse" instance=ExtResource( 10 )]
+margin_left = 532.0
+margin_top = 29.0
+margin_right = 647.0
+margin_bottom = 54.0
+text = "INVERTED"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 647.0
+margin_bottom = 112.0
+text = "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 647.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+
+[node name="SensitivityScaleMode" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 25.0
+text = "SCALING_NONE"
+items = [ "SCALING_NONE", null, false, 0, null, "SCALING_ON", null, false, 1, null, "SCALING_ON_INVERSE", null, false, 2, null ]
+selected = 0
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 144.0
+margin_right = 346.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="VirtualWindowSize" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 10 )]
+margin_left = 350.0
+margin_right = 647.0
+margin_bottom = 25.0
+text = "USE_VIRTUAL_WINDOW_SIZE"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 647.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="ControllerFirstLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 647.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+
+[node name="ControllerSensitivityLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine"]
+margin_right = 255.0
+margin_bottom = 25.0
+text = "CONTROLLER_SENSITIVITY"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine"]
+margin_left = 259.0
+margin_right = 388.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="SameBothAxesSensitivity" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine" instance=ExtResource( 10 )]
+margin_left = 392.0
+margin_right = 647.0
+margin_bottom = 25.0
+text = "BIND_AXES_SENSITIVITY"
+
+[node name="Controller" type="GridContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 183.0
+margin_right = 647.0
+margin_bottom = 237.0
+size_flags_horizontal = 3
+columns = 3
+
+[node name="HorizontalLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
+margin_right = 201.0
+margin_bottom = 25.0
+text = "HORIZONTAL_COLON"
+
+[node name="Horizontal" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
+margin_left = 205.0
+margin_right = 528.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+step = 0.0
+
+[node name="HorizontalInverted" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource( 10 )]
+margin_left = 532.0
+margin_right = 647.0
+margin_bottom = 25.0
+text = "INVERTED"
+
+[node name="VerticalLabel" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
+margin_top = 29.0
+margin_right = 201.0
+margin_bottom = 54.0
+text = "VERTICAL_COLON"
+
+[node name="Vertical" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller"]
+margin_left = 205.0
+margin_top = 29.0
+margin_right = 528.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+step = 0.0
+
+[node name="VerticalInverted" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller" instance=ExtResource( 10 )]
+margin_left = 532.0
+margin_top = 29.0
+margin_right = 647.0
+margin_bottom = 54.0
+text = "INVERTED"
+
+[node name="DeadzonesButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 241.0
+margin_right = 267.0
+margin_bottom = 276.0
+size_flags_horizontal = 0
+text = "CONTROLLER_DEADZONES"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 647.0
+margin_bottom = 284.0
+
+[node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 288.0
+margin_right = 647.0
+margin_bottom = 288.0
 custom_constants/separation = 30
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-ConflictDialogPath = NodePath("../../../../../../../../ConflictDialog")
-ResetInputsDialog = NodePath("../../../../../../../../DefaultsInputsConfirm")
+ConflictDialogPath = NodePath("../../../../../../../../../ConflictDialog")
+ResetInputsDialog = NodePath("../../../../../../../../../DefaultsInputsConfirm")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer"]
 margin_top = 519.0
@@ -1140,10 +1346,10 @@ margin_bottom = 568.0
 alignment = 2
 
 [node name="ResetInputsButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer"]
-margin_left = 503.0
+margin_left = 445.0
 margin_right = 657.0
 margin_bottom = 35.0
-text = "RESET_INPUTS"
+text = "RESET_KEYBINDINGS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1614,6 +1820,8 @@ WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 
+[node name="ControllerDeadzoneConfiguration" parent="." instance=ExtResource( 12 )]
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
@@ -1651,7 +1859,20 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities" to="." method="OnMaxSpawnedEntitiesSelected"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnResetInputs"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine/SameBothAxesSensitivity" to="." method="OnMouseAxesBoundToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/Horizontal" to="." method="OnMouseHorizontalSensitivityChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/HorizontalInverted" to="." method="OnInvertedMouseHorizontalToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/Vertical" to="." method="OnMouseVerticalSensitivityChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/VerticalInverted" to="." method="OnInvertedMouseVerticalToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/SensitivityScaleMode" to="." method="OnMouseSensitivityScaleModeSelected"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/VirtualWindowSize" to="." method="OnMouseScaleLogicalWindowSizeToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ControllerFirstLine/SameBothAxesSensitivity" to="." method="OnControllerAxesBoundToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/Horizontal" to="." method="OnControllerHorizontalSensitivityChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/HorizontalInverted" to="." method="OnInvertedControllerHorizontalToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/Vertical" to="." method="OnControllerVerticalSensitivityChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controller/VerticalInverted" to="." method="OnInvertedControllerVerticalToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DeadzonesButton" to="." method="OnOpenDeadzoneConfigurationPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/AutoSave" to="." method="OnAutoSaveToggled"]
@@ -1675,4 +1896,4 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
-[connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnConflictConfirmed"]
+[connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnConflictConfirmed"]

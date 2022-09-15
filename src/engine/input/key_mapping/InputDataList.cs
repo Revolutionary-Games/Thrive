@@ -44,8 +44,17 @@ public class InputDataList : ICloneable
     /// </summary>
     internal void ApplyToGodotInputMap()
     {
+        var preservedControllerActions = new List<InputEvent>();
+
         foreach (var action in Data)
         {
+            // TODO: add support for controller input binding changing, for now leave those as is
+            foreach (InputEvent actionListItem in InputMap.GetActionList(action.Key))
+            {
+                if (actionListItem is InputEventJoypadButton or InputEventJoypadMotion or InputEventGesture)
+                    preservedControllerActions.Add(actionListItem);
+            }
+
             // Clear all old input keys
             InputMap.ActionEraseEvents(action.Key);
 
@@ -58,6 +67,13 @@ public class InputDataList : ICloneable
 
                 InputMap.ActionAddEvent(action.Key, inputEvent.ToInputEvent());
             }
+
+            foreach (var preservedAction in preservedControllerActions)
+            {
+                InputMap.ActionAddEvent(action.Key, preservedAction);
+            }
+
+            preservedControllerActions.Clear();
         }
 
         InputsRemapped?.Invoke(this, EventArgs.Empty);

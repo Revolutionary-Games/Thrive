@@ -62,6 +62,13 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
+    <Compile Include="src\engine\input\ControllerAxisVisualizer.cs" />
+    <Compile Include="src\engine\input\ControllerDeadzoneConfiguration.cs" />
+    <Compile Include="src\engine\input\ControllerInputAxisVisualizationContainer.cs" />
+    <Compile Include="src\engine\input\MouseInputScaling.cs" />
+    <Compile Include="src\engine\input\RunOnInputWithStrengthAndRepeatAttribute.cs" />
+    <Compile Include="src\engine\input\RunOnInputWithStrengthAttribute.cs" />
+    <Compile Include="src\engine\input\RunOnRelativeMouseAttribute.cs" />
     <Compile Include="src\engine\IResource.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
@@ -128,6 +135,7 @@
     <Compile Include="src\general\CustomDifficulty.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
