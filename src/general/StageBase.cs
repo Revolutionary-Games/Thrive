@@ -515,7 +515,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected virtual void GameOver()
     {
         // Player is extinct and has lost the game
-
         gameOver = true;
 
         // Just to make sure _Process doesn't run
