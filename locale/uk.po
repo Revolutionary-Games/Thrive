@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-13 16:38-0400\n"
+"POT-Creation-Date: 2022-09-15 09:29+0300\n"
 "PO-Revision-Date: 2022-08-25 21:34+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -371,13 +371,13 @@ msgid "ABILITIES"
 msgstr "Здібності"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1998
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2011
 #: ../src/microbe_stage/MicrobeStage.tscn:2071
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1984
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1997
 #: ../src/microbe_stage/MicrobeStage.tscn:2059
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
@@ -404,179 +404,190 @@ msgstr "Роз'єднати всіх"
 msgid "PERFORM_UNBINDING"
 msgstr "Виконати роз'єднання"
 
-#: ../simulation_parameters/common/input_options.json:73
+#: ../simulation_parameters/common/input_options.json:74
 msgid "CAMERA"
 msgstr "Камера"
 
-#: ../simulation_parameters/common/input_options.json:77
+#: ../simulation_parameters/common/input_options.json:78
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
-#: ../simulation_parameters/common/input_options.json:81
+#: ../simulation_parameters/common/input_options.json:82
 msgid "ZOOM_IN"
 msgstr "Приблизитись"
 
-#: ../simulation_parameters/common/input_options.json:90
+#: ../simulation_parameters/common/input_options.json:91
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Редактор"
 
-#: ../simulation_parameters/common/input_options.json:94
+#: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_RIGHT"
 msgstr "Поверніть праворуч"
 
-#: ../simulation_parameters/common/input_options.json:98
+#: ../simulation_parameters/common/input_options.json:99
 msgid "ROTATE_LEFT"
 msgstr "Повеніть ліворуч"
 
-#: ../simulation_parameters/common/input_options.json:102
+#: ../simulation_parameters/common/input_options.json:103
 msgid "UNDO"
 msgstr "Скасувати"
 
-#: ../simulation_parameters/common/input_options.json:106
+#: ../simulation_parameters/common/input_options.json:107
 msgid "REDO"
 msgstr "Повторити"
 
-#: ../simulation_parameters/common/input_options.json:110
+#: ../simulation_parameters/common/input_options.json:111
 msgid "PLACE_ORGANELLE"
 msgstr "Місце для органели"
 
-#: ../simulation_parameters/common/input_options.json:114
+#: ../simulation_parameters/common/input_options.json:115
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Відкрити меню органел"
 
-#: ../simulation_parameters/common/input_options.json:118
+#: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_LEFT"
 msgstr "Повернути панораму вліво"
 
-#: ../simulation_parameters/common/input_options.json:122
+#: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Повернути панораму вправо"
 
-#: ../simulation_parameters/common/input_options.json:126
+#: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_UP"
 msgstr "Повернути панораму вгору"
 
-#: ../simulation_parameters/common/input_options.json:130
+#: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_DOWN"
 msgstr "Повернути панораму вниз"
 
-#: ../simulation_parameters/common/input_options.json:134
+#: ../simulation_parameters/common/input_options.json:135
 msgid "PAN_CAMERA_RESET"
 msgstr "Скинути камеру"
 
-#: ../simulation_parameters/common/input_options.json:138
+#: ../simulation_parameters/common/input_options.json:139
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Скасувати поточну дію"
 
-#: ../simulation_parameters/common/input_options.json:142
+#: ../simulation_parameters/common/input_options.json:143
 msgid "DELETE_ORGANELLE"
 msgstr "Видалити органелу"
 
-#: ../simulation_parameters/common/input_options.json:146
+#: ../simulation_parameters/common/input_options.json:147
 msgid "MOVE_ORGANELLE"
 msgstr "перемістити органелу"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:156
 msgid "3D_MOVEMENT"
 msgstr "3D переміщення"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:160
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Перемістити вгору або різко підняти"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Перемістити вниз або швидко опустити"
 
-#: ../simulation_parameters/common/input_options.json:171
+#: ../simulation_parameters/common/input_options.json:172
+#, fuzzy
+msgid "MISCELLANEOUS_3D_STAGE"
+msgstr "Різне"
+
+#: ../simulation_parameters/common/input_options.json:176
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
+#, fuzzy
+msgid "HOLD_TO_SHOW_CURSOR"
+msgstr "Утримуйте TODO: введення для курсору"
+
+#: ../simulation_parameters/common/input_options.json:184
 msgid "3D_EDITOR"
 msgstr "3D редактор"
 
-#: ../simulation_parameters/common/input_options.json:175
+#: ../simulation_parameters/common/input_options.json:188
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "Утримуйте для перемикання між панорамним та обертальним режимами"
 
-#: ../simulation_parameters/common/input_options.json:179
+#: ../simulation_parameters/common/input_options.json:192
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Перемкнути на вигляд передньої камери"
 
-#: ../simulation_parameters/common/input_options.json:183
+#: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "Перемкнути на вигляд правої камери"
 
-#: ../simulation_parameters/common/input_options.json:187
+#: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Перемкнути на вигляд верхньої камери"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:209
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Чити"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:213
 msgid "ENABLE_EDITOR"
 msgstr "Увімкнути редактор"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:217
 msgid "SPAWN_GLUCOSE"
 msgstr "Спавн глюкози"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:221
 msgid "SPAWN_AMMONIA"
 msgstr "Спавн амоніаку"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:225
 msgid "SPAWN_PHOSPHATES"
 msgstr "Спавн фосфатів"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:229
 msgid "CHEAT_MENU"
 msgstr "Меню читів"
 
-#: ../simulation_parameters/common/input_options.json:227
+#: ../simulation_parameters/common/input_options.json:240
 msgid "MISCELLANEOUS"
 msgstr "Різне"
 
-#: ../simulation_parameters/common/input_options.json:231
+#: ../simulation_parameters/common/input_options.json:244
 msgid "TOGGLE_PAUSE"
 msgstr "Пауза"
 
-#: ../simulation_parameters/common/input_options.json:235
+#: ../simulation_parameters/common/input_options.json:248
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Ввімкнути панель налагоджування"
 
-#: ../simulation_parameters/common/input_options.json:239
+#: ../simulation_parameters/common/input_options.json:252
 msgid "TOGGLE_FPS"
 msgstr "Перемикання FPS дисплаю"
 
-#: ../simulation_parameters/common/input_options.json:243
+#: ../simulation_parameters/common/input_options.json:256
 msgid "TOGGLE_METRICS"
 msgstr "Увімкнути панель показників"
 
-#: ../simulation_parameters/common/input_options.json:247
+#: ../simulation_parameters/common/input_options.json:260
 msgid "QUICK_SAVE"
 msgstr "Швидке збереження"
 
-#: ../simulation_parameters/common/input_options.json:251
+#: ../simulation_parameters/common/input_options.json:264
 msgid "QUICK_LOAD"
 msgstr "Швидке завантаження"
 
-#: ../simulation_parameters/common/input_options.json:255
+#: ../simulation_parameters/common/input_options.json:268
 msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
-#: ../simulation_parameters/common/input_options.json:259
+#: ../simulation_parameters/common/input_options.json:272
 msgid "SHOW_HELP"
 msgstr "Надати допомогу"
 
-#: ../simulation_parameters/common/input_options.json:263
+#: ../simulation_parameters/common/input_options.json:276
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Змінити повноекранність"
 
-#: ../simulation_parameters/common/input_options.json:267
+#: ../simulation_parameters/common/input_options.json:280
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Перемкнути HUD"
 
@@ -742,41 +753,41 @@ msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1292
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1293
 #: ../src/microbe_stage/MicrobeStage.tscn:1324
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Аміак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1344
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1345
 #: ../src/microbe_stage/MicrobeStage.tscn:1373
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1396
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1397
 #: ../src/microbe_stage/MicrobeStage.tscn:1425
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1240
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1241
 #: ../src/microbe_stage/MicrobeStage.tscn:1275
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1578
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1579
 #: ../src/microbe_stage/MicrobeStage.tscn:1648
 msgid "OXYTOXY_NT"
 msgstr "Окситоциновий нуклеотид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1448
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1449
 #: ../src/microbe_stage/MicrobeStage.tscn:1474
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
@@ -1163,7 +1174,7 @@ msgstr "Деталі видів"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:829
 #: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:436
 #: ../src/general/MainMenu.tscn:479 ../src/general/NewGameSettings.tscn:1092
-#: ../src/general/OptionsMenu.tscn:1444 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1324,7 +1335,7 @@ msgstr "Рівномірно поширені в середовищі джера
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Хижацтво в {0}"
 
-#: ../src/early_multicellular_stage/CellType.cs:38
+#: ../src/early_multicellular_stage/CellType.cs:39
 msgid "STEM_CELL_NAME"
 msgstr "Рід"
 
@@ -1446,20 +1457,20 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Завантаження раннього багатоклітинного редактору"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус виконання:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
 #: ../src/general/EditorBase.cs:652
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:443
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Дія заблокована, поки не завершилася інша"
@@ -1541,6 +1552,70 @@ msgstr "Прозорість"
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
 msgstr "Завантаження"
+
+#: ../src/engine/input/ControllerAxisVisualizer.cs:165
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:47
+msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
+msgstr ""
+
+#: ../src/engine/input/ControllerAxisVisualizer.cs:171
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:108
+#, fuzzy
+msgid "VERTICAL_WITH_AXIS_NAME_COLON"
+msgstr "Нова назва:"
+
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:58
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:119
+#, fuzzy
+msgid "RAW_VALUE_COLON"
+msgstr "Нова назва:"
+
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:85
+#: ../src/engine/input/ControllerAxisVisualizer.tscn:146
+msgid "CONTROLLER_DEADZONE_COLON"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
+#, fuzzy
+msgid "DEADZONE_CALIBRATION_INPROGRESS"
+msgstr "Ця мова на {0}% готова"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
+msgid "DEADZONE_CALIBRATION_IS_RESET"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
+#, fuzzy
+msgid "DEADZONE_CALIBRATION_FINISHED"
+msgstr "Додаткові перевірки виявили проблему: {0}"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#, fuzzy
+msgid "DEADZONE_CONFIGURATION"
+msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#, fuzzy
+msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
+msgstr "Ця панель відображає числа, за якими працює передбачення Авто-ево. Загальна енергія, яку вид може поглинути, і вартість на особину цього виду визначають фінальну популяцію. Авто-ево використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано величину енергії, яку вид отримує від нього. Додатково показується загальна енергія, що доступна з цього джерела. Частка, яку види отримують з цієї загальної енергії, базується на тому, наскільки є великою пристосованість у порівнянні з загальною пристосованістю. Пристосованість — це величина, що показує наскільки добре вид засвоює це джерело їжі."
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+msgid "START_CALIBRATION"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#, fuzzy
+msgid "RESET_DEADZONES"
+msgstr "Скинути до замовчування?"
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+msgid "CONTROLLER_AXIS_VISUALIZERS"
+msgstr ""
+
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Застосувати"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -2190,7 +2265,7 @@ msgstr "Складність"
 msgid "PLANET"
 msgstr "Планета"
 
-#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:189
+#: ../src/general/NewGameSettings.tscn:310 ../src/general/OptionsMenu.tscn:203
 msgid "MISC"
 msgstr "Інше"
 
@@ -2323,436 +2398,489 @@ msgstr "Базовий"
 msgid "CONFIRM_NORMAL"
 msgstr "Підтвердити"
 
-#: ../src/general/OptionsMenu.cs:669 ../src/general/OptionsMenu.tscn:316
+#: ../src/general/OptionsMenu.cs:770 ../src/general/OptionsMenu.tscn:330
 msgid "AUTO_RESOLUTION"
 msgstr "Автоматично ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:683
+#: ../src/general/OptionsMenu.cs:784
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/OptionsMenu.cs:688
+#: ../src/general/OptionsMenu.cs:789
 msgid "GLES3"
 msgstr "GLES3"
 
-#: ../src/general/OptionsMenu.cs:693
+#: ../src/general/OptionsMenu.cs:794
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Невідомо"
 
-#: ../src/general/OptionsMenu.cs:702 ../src/general/OptionsMenu.tscn:495
+#: ../src/general/OptionsMenu.cs:803 ../src/general/OptionsMenu.tscn:509
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
-#: ../src/general/OptionsMenu.cs:1055
+#: ../src/general/OptionsMenu.cs:1226
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення за замовчуванням"
 
-#: ../src/general/OptionsMenu.cs:1087
+#: ../src/general/OptionsMenu.cs:1258
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця ситуацію!!!"
 
-#: ../src/general/OptionsMenu.cs:1091
+#: ../src/general/OptionsMenu.cs:1262
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Прогрес перекладу на цю мову зараз солов'їну ({0}% готово)"
 
-#: ../src/general/OptionsMenu.cs:1095
+#: ../src/general/OptionsMenu.cs:1266
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ця мова на {0}% готова"
 
-#: ../src/general/OptionsMenu.cs:1150
+#: ../src/general/OptionsMenu.cs:1321
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 "Це збереження з новішої версії Thrive та ймовірно несумісне.\n"
 "Ви хочете спробувати завантажити його всеодно?"
 
-#: ../src/general/OptionsMenu.cs:1157
+#: ../src/general/OptionsMenu.cs:1328
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Версія моду:"
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
 msgstr "Графіка"
 
-#: ../src/general/OptionsMenu.tscn:156
+#: ../src/general/OptionsMenu.tscn:170
 msgid "SOUND"
 msgstr "Звук"
 
-#: ../src/general/OptionsMenu.tscn:167
+#: ../src/general/OptionsMenu.tscn:181
 msgid "PERFORMANCE"
 msgstr "Продуктивність"
 
-#: ../src/general/OptionsMenu.tscn:178
+#: ../src/general/OptionsMenu.tscn:192
 msgid "INPUTS"
 msgstr "Керування"
 
-#: ../src/general/OptionsMenu.tscn:237
+#: ../src/general/OptionsMenu.tscn:251
 msgid "VSYNC"
 msgstr "Вертикальна синхронізація(VSync)"
 
-#: ../src/general/OptionsMenu.tscn:244
+#: ../src/general/OptionsMenu.tscn:258
 msgid "FULLSCREEN"
 msgstr "Повноекрання"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:280
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Згладжування кількох зразків:"
 
-#: ../src/general/OptionsMenu.tscn:273 ../src/general/OptionsMenu.tscn:1056
+#: ../src/general/OptionsMenu.tscn:287 ../src/general/OptionsMenu.tscn:1070
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(вищі значення погіршать продуктивність)"
 
-#: ../src/general/OptionsMenu.tscn:288 ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:302 ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "Вимкнено"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "TWO_TIMES"
 msgstr "2х"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "FOUR_TIMES"
 msgstr "4х"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "EIGHT_TIMES"
 msgstr "8х"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:303
 msgid "SIXTEEN_TIMES"
 msgstr "16х"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:317
 msgid "RESOLUTION"
 msgstr "Резолюції:"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:341
 msgid "MAX_FPS"
 msgstr "МАКСимальні кількість FPS:"
 
-#: ../src/general/OptionsMenu.tscn:342
+#: ../src/general/OptionsMenu.tscn:356
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Необмежено"
 
-#: ../src/general/OptionsMenu.tscn:358
+#: ../src/general/OptionsMenu.tscn:372
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Кольорокорекція:"
 
-#: ../src/general/OptionsMenu.tscn:372 ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:386 ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "Нічого"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CORRECTION_PROTANOPE"
 msgstr "Протаноп (червоно-зелений)"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:387
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританоп (блакитно-жовтий)"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:403
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберація:"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:429
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
 
-#: ../src/general/OptionsMenu.tscn:425
+#: ../src/general/OptionsMenu.tscn:439
 msgid "GPU_NAME"
 msgstr "ЦПУ:"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:469
 msgid "USED_RENDERER_NAME"
 msgstr "Використовуваний рендер:"
 
-#: ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:496
 msgid "VIDEO_MEMORY"
 msgstr "Поточна використовувана відеопам'ять:"
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:523
 msgid "GUI"
 msgstr "ГІК"
 
-#: ../src/general/OptionsMenu.tscn:524
+#: ../src/general/OptionsMenu.tscn:538
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Панель здібностей дисплею"
 
-#: ../src/general/OptionsMenu.tscn:532
+#: ../src/general/OptionsMenu.tscn:546
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Увімкнути світлові ефекти ГІК"
 
-#: ../src/general/OptionsMenu.tscn:539
+#: ../src/general/OptionsMenu.tscn:553
 msgid "DISPLAY_PART_NAMES"
 msgstr "Панель назв кнопок вибору"
 
-#: ../src/general/OptionsMenu.tscn:565
+#: ../src/general/OptionsMenu.tscn:579
 msgid "MASTER_VOLUME"
 msgstr "Загальна гучність"
 
-#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:631
-#: ../src/general/OptionsMenu.tscn:663 ../src/general/OptionsMenu.tscn:695
-#: ../src/general/OptionsMenu.tscn:727
+#: ../src/general/OptionsMenu.tscn:605 ../src/general/OptionsMenu.tscn:645
+#: ../src/general/OptionsMenu.tscn:677 ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:741
 msgid "MUTE"
 msgstr "Вимкнути"
 
-#: ../src/general/OptionsMenu.tscn:605
+#: ../src/general/OptionsMenu.tscn:619
 msgid "MUSIC_VOLUME"
 msgstr "Гучність музики"
 
-#: ../src/general/OptionsMenu.tscn:637
+#: ../src/general/OptionsMenu.tscn:651
 msgid "AMBIANCE_VOLUME"
 msgstr "Гучність оточення"
 
-#: ../src/general/OptionsMenu.tscn:669
+#: ../src/general/OptionsMenu.tscn:683
 msgid "SFX_VOLUME"
 msgstr "Гучність SFX"
 
-#: ../src/general/OptionsMenu.tscn:701
+#: ../src/general/OptionsMenu.tscn:715
 msgid "GUI_VOLUME"
 msgstr "Гучність ГІК"
 
-#: ../src/general/OptionsMenu.tscn:745
+#: ../src/general/OptionsMenu.tscn:759
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення аудіо:"
 
-#: ../src/general/OptionsMenu.tscn:773
+#: ../src/general/OptionsMenu.tscn:787
 msgid "LANGUAGE"
 msgstr "Мова:"
 
-#: ../src/general/OptionsMenu.tscn:791 ../src/general/OptionsMenu.tscn:1455
+#: ../src/general/OptionsMenu.tscn:805 ../src/general/OptionsMenu.tscn:1661
 msgid "RESET"
 msgstr "Скинути"
 
-#: ../src/general/OptionsMenu.tscn:809
+#: ../src/general/OptionsMenu.tscn:823
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Допомоти з перекладом гри"
 
-#: ../src/general/OptionsMenu.tscn:835
+#: ../src/general/OptionsMenu.tscn:849
 msgid "COMPOUND_CLOUDS"
 msgstr "Хмари сполук"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:864
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мінімальний інтервал симуляції хмари:"
 
-#: ../src/general/OptionsMenu.tscn:857 ../src/general/OptionsMenu.tscn:899
+#: ../src/general/OptionsMenu.tscn:871 ../src/general/OptionsMenu.tscn:913
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(вищі значення покращать продуктивність)"
 
-#: ../src/general/OptionsMenu.tscn:892
+#: ../src/general/OptionsMenu.tscn:906
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Дільник роздільної здатності хмари:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:947
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускати авто-ево під час гри"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:967
 msgid "DETECTED_CPU_COUNT"
 msgstr "Виявлено ядер ЦП:"
 
-#: ../src/general/OptionsMenu.tscn:970
+#: ../src/general/OptionsMenu.tscn:984
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Поточні потоки:"
 
-#: ../src/general/OptionsMenu.tscn:984
+#: ../src/general/OptionsMenu.tscn:998
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Вважається ЦП ввімкнув гіперчитання"
 
-#: ../src/general/OptionsMenu.tscn:992
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Встановити кількість фонових потоків вручну"
 
-#: ../src/general/OptionsMenu.tscn:1002
+#: ../src/general/OptionsMenu.tscn:1016
 msgid "THREADS"
 msgstr "Обрахунки:"
 
-#: ../src/general/OptionsMenu.tscn:1049
+#: ../src/general/OptionsMenu.tscn:1063
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальне число сутностей:"
 
-#: ../src/general/OptionsMenu.tscn:1071 ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1085 ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr "Крихітний"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_VERY_SMALL"
 msgstr "Дуже малий"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_SMALL"
 msgstr "Малий"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_NORMAL"
 msgstr "Нормальний"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_LARGE"
 msgstr "Великий"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_VERY_LARGE"
 msgstr "Дуже великий"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_HUGE"
 msgstr "Велетенський"
 
-#: ../src/general/OptionsMenu.tscn:1072
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_EXTREME"
 msgstr "Екстримальний"
 
-#: ../src/general/OptionsMenu.tscn:1146
-msgid "RESET_INPUTS"
+#: ../src/general/OptionsMenu.tscn:1147
+msgid "MOUSE_LOOK_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
+msgid "BIND_AXES_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
+#, fuzzy
+msgid "HORIZONTAL_COLON"
+msgstr "Версія:"
+
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
+#: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
+msgid "INVERTED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
+#, fuzzy
+msgid "VERTICAL_COLON"
+msgstr "Версія:"
+
+#: ../src/general/OptionsMenu.tscn:1211
+msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
+msgid "SCALING_NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1223
+#, fuzzy
+msgid "SCALING_ON"
+msgstr "Сигнальний агент"
+
+#: ../src/general/OptionsMenu.tscn:1223
+msgid "SCALING_ON_INVERSE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1236
+msgid "USE_VIRTUAL_WINDOW_SIZE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1253
+msgid "CONTROLLER_SENSITIVITY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1318
+msgid "CONTROLLER_DEADZONES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1352
+#, fuzzy
+msgid "RESET_KEYBINDINGS"
 msgstr "Скинути зміни"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Програвати інтро"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1400
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "програвати інтро з мікробом перед новою грою"
 
-#: ../src/general/OptionsMenu.tscn:1202
+#: ../src/general/OptionsMenu.tscn:1408
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автозбереження під час гри"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1419
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Кількість можливих автозбереженнь:"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1447
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Кількість можливих швидких збережень:"
 
-#: ../src/general/OptionsMenu.tscn:1266
+#: ../src/general/OptionsMenu.tscn:1472
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показати туторіали (в новій грі)"
 
-#: ../src/general/OptionsMenu.tscn:1273
+#: ../src/general/OptionsMenu.tscn:1479
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показати туторіал (в поточній грі)"
 
-#: ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1485
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Програвати попередження про незбережену гру"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1497
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Кнопки ввімкнення читів"
 
-#: ../src/general/OptionsMenu.tscn:1299
+#: ../src/general/OptionsMenu.tscn:1505
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1516
 msgid "CUSTOM_USERNAME"
 msgstr "Звичайне ім'я користувача:"
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1542
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Відкрити папку скріншотів"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Відкрити папку журналів"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1560
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим направення JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1368 ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1574 ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматично"
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Завжди"
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1575
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ніколи"
 
-#: ../src/general/OptionsMenu.tscn:1386
+#: ../src/general/OptionsMenu.tscn:1592
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1594
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Версія:"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1622
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Сполуки:"
 
-#: ../src/general/OptionsMenu.tscn:1467 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Зберегти"
 
-#: ../src/general/OptionsMenu.tscn:1484
+#: ../src/general/OptionsMenu.tscn:1690
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "За замовчуванням"
 
-#: ../src/general/OptionsMenu.tscn:1495
+#: ../src/general/OptionsMenu.tscn:1701
 msgid "RESET_TO_DEFAULTS"
 msgstr "Скинути до замовчування?"
 
-#: ../src/general/OptionsMenu.tscn:1496
+#: ../src/general/OptionsMenu.tscn:1702
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Ви точно хочете скинути УСІ налаштування до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1504
+#: ../src/general/OptionsMenu.tscn:1710
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Скинути вхідні дані до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1505
+#: ../src/general/OptionsMenu.tscn:1711
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Ви точно хочете скинути вхідні дані до замовчуваних?"
 
-#: ../src/general/OptionsMenu.tscn:1514
+#: ../src/general/OptionsMenu.tscn:1720
 msgid "CLOSE_OPTIONS"
 msgstr "Закрити налаштування?"
 
-#: ../src/general/OptionsMenu.tscn:1534
+#: ../src/general/OptionsMenu.tscn:1740
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Ви маєте незбережені дії які будуть скасовані.\n"
 "Бажаєте продовжити?"
 
-#: ../src/general/OptionsMenu.tscn:1557
+#: ../src/general/OptionsMenu.tscn:1763
 msgid "SAVE_AND_CONTINUE"
 msgstr "Зберегти й продовжити"
 
-#: ../src/general/OptionsMenu.tscn:1567
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Відмінити й продовжити"
 
-#: ../src/general/OptionsMenu.tscn:1584
+#: ../src/general/OptionsMenu.tscn:1790
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Скасувати"
 
-#: ../src/general/OptionsMenu.tscn:1595 ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1801 ../src/general/OptionsMenu.tscn:1809
 msgid "ERROR"
 msgstr "Помилка"
 
-#: ../src/general/OptionsMenu.tscn:1605
+#: ../src/general/OptionsMenu.tscn:1811
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Помилка: Невдалось зберегти нові налаштування конфігурованих файлів."
 
-#: ../src/general/OptionsMenu.tscn:1613
+#: ../src/general/OptionsMenu.tscn:1819
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Не знайдено каталог скріншотів"
 
-#: ../src/general/OptionsMenu.tscn:1615
+#: ../src/general/OptionsMenu.tscn:1821
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Спробуйте зробити декілька скріншотів!"
 
@@ -3646,9 +3774,9 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Сигнальний агент дозволяє клітинам створювати хімікати, на які можуть відреагувати інші клітини. Сигнальні хімікати можуть використовуватись привертання уваги інших клітин, чи попередити про небезпеку спонукаючи їх на втечу."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:161
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1643
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:158
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:166
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1656
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізованим."
 
@@ -3755,50 +3883,46 @@ msgstr "Вмикає / вимикає спливаюче вікно з попе�
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Клацніть, перетягуйте та маштабуйте для переміщення"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:506
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:507
 msgid "LOOKING_AT"
 msgstr "Дивиться на:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:532
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
 #: ../src/microbe_stage/MicrobeStage.tscn:564
 msgid "NOTHING_HERE"
 msgstr "Тут нічого"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:557
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:558
 #: ../src/microbe_stage/MicrobeStage.tscn:589
 msgid "COMPOUNDS_COLON"
 msgstr "Сполуки:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:597
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:598
 #: ../src/microbe_stage/MicrobeStage.tscn:629
 msgid "SPECIES_COLON"
 msgstr "Види:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:616
-msgid "HOLD_FOR_CURSOR"
-msgstr "Утримуйте TODO: введення для курсору"
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:680
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:681
 #: ../src/microbe_stage/MicrobeStage.tscn:711
 msgid "ENVIRONMENT"
 msgstr "Оточення"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:946
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:947
 #: ../src/microbe_stage/MicrobeStage.tscn:979
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1002
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1003
 #: ../src/microbe_stage/MicrobeStage.tscn:1035
 msgid "LIGHT"
 msgstr "Світло"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1057
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1058
 #: ../src/microbe_stage/MicrobeStage.tscn:1090
 msgid "PRESSURE_SHORT"
 msgstr "Тиск."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1144
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1145
 #: ../src/microbe_stage/MicrobeStage.tscn:1177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -3807,36 +3931,52 @@ msgstr "Тиск."
 msgid "COMPOUNDS"
 msgstr "Сполуки"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1518
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1519
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "AGENTS"
 msgstr "Агенти"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1648
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1641
+#, fuzzy
+msgid "MOVE_TO_LAND"
+msgstr "Мод для відвантаження:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1661
 msgid "BECOME_AWARE"
 msgstr "Стати обізнаним"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1659
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1672
 msgid "AWAKEN"
 msgstr "Пробудити"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1679
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1692
 #: ../src/microbe_stage/MicrobeStage.tscn:1756
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2033
-msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr "Макроскопічний прототип"
-
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2035
-msgid "MACROSCOPIC_PROTOYPE_WARNING"
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2045
+#, fuzzy
+msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
-"Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
+"Ви дісталися завершення \"кінцевої\" частини Thrive.\n"
+"Якщо бажаєте, то можете продовжити перейшовши до прототипів пізнішої стадії, включеними до гри. Вони можуть бути дуже неповними використовуючи графічні заповнювачі і загалом дуже грубими . Вони включені, як частина гри, для показу можливий майбутніх напрямки гри та наше загальне бачення зв'язку між етапами.\n"
 "\n"
-"Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
+"Ви не здатні зберігатися, якщо ви не продовжите або не перезапуститесь, після продовження. Якщо ви бажаєте повернутися до цього етапу, будь-ласка зробіть збереження перед продовженням гри.\n"
+"\n"
+"Якщо продовження– це ваш вибір, будь-ласка, зрозумійте пізні етапи– прототип та, будь-ласка, не скаржтесь на те, як все є недороблено."
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2046
+#, fuzzy
+msgid "MOVING_TO_LAND_PROTOTYPE"
+msgstr ""
+"Ви дісталися завершення \"кінцевої\" частини Thrive.\n"
+"Якщо бажаєте, то можете продовжити перейшовши до прототипів пізнішої стадії, включеними до гри. Вони можуть бути дуже неповними використовуючи графічні заповнювачі і загалом дуже грубими . Вони включені, як частина гри, для показу можливий майбутніх напрямки гри та наше загальне бачення зв'язку між етапами.\n"
+"\n"
+"Ви не здатні зберігатися, якщо ви не продовжите або не перезапуститесь, після продовження. Якщо ви бажаєте повернутися до цього етапу, будь-ласка зробіть збереження перед продовженням гри.\n"
+"\n"
+"Якщо продовження– це ваш вибір, будь-ласка, зрозумійте пізні етапи– прототип та, будь-ласка, не скаржтесь на те, як все є недороблено."
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Завантаження багатоклітинного редактору"
 
@@ -4041,7 +4181,7 @@ msgstr "{0} {1}"
 msgid "PAUSED"
 msgstr "ПАУЗА"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:119
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим зв'язування"
 
@@ -4909,10 +5049,6 @@ msgstr "Введіть існуючий ID майстерні"
 msgid "ID_NUMBER"
 msgstr "НомерID"
 
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Застосувати"
-
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "Назва елемента:"
@@ -5597,6 +5733,15 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "Продовжити процвітання"
+
+#~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
+#~ msgstr "Макроскопічний прототип"
+
+#~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
+#~ msgstr ""
+#~ "Вітаємо з досягненням прототипу макроскопічної секції багатоклітинного етапу.\n"
+#~ "\n"
+#~ "Через обмеження розробки нам не вдалося додати 3D макроскопічний геймплей в цьому релізі. Проте ви можете повернутися до редактору, щоб продовжити будувати свій організм."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Невразливий до поглинання"

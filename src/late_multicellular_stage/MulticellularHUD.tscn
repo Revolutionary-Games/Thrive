@@ -16,7 +16,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=15]
 [ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=20]
@@ -454,7 +454,8 @@ ExtinctionBoxScene = ExtResource( 70 )
 PatchExtinctionBoxScene = ExtResource( 16 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
-PrototypeInfoPopupPath = NodePath("PrototypeInfo")
+MoveToLandPopupPath = NodePath("MoveToLandConfirmation")
+ToLandButtonPath = NodePath("BottomRight/VBoxContainer/ToLand")
 AwareButtonPath = NodePath("BottomRight/VBoxContainer/Control/Aware")
 AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
 
@@ -613,7 +614,7 @@ margin_bottom = 42.0
 
 [node name="CursorHelpText" parent="TopLeft" instance=ExtResource( 8 )]
 rect_min_size = Vector2( 150, 0 )
-ExtendedBbcode = "HOLD_FOR_CURSOR"
+ExtendedBbcode = "HOLD_TO_SHOW_CURSOR"
 
 [node name="BottomLeft" type="Control" parent="."]
 anchor_top = 1.0
@@ -686,6 +687,7 @@ margin_top = 14.0
 margin_right = 150.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 18, 18 )
+focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 73 )
@@ -703,6 +705,7 @@ margin_top = 14.0
 margin_right = 174.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 18, 18 )
+focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 73 )
@@ -1150,6 +1153,7 @@ margin_top = 8.0
 margin_right = 210.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 18, 18 )
+focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 73 )
@@ -1167,6 +1171,7 @@ margin_top = 8.0
 margin_right = 234.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 18, 18 )
+focus_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 73 )
@@ -1628,10 +1633,22 @@ grow_vertical = 0
 custom_constants/separation = 8
 alignment = 2
 
-[node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
-margin_left = 86.0
+[node name="ToLand" type="Button" parent="BottomRight/VBoxContainer"]
+margin_left = 90.0
 margin_right = 219.0
 margin_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 7 )
+text = "MOVE_TO_LAND"
+
+[node name="Control" type="MarginContainer" parent="BottomRight/VBoxContainer"]
+margin_left = 86.0
+margin_top = 38.0
+margin_right = 219.0
+margin_bottom = 68.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
@@ -1660,9 +1677,9 @@ text = "AWAKEN"
 
 [node name="PopulationData" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
 margin_left = 88.0
-margin_top = 38.0
+margin_top = 76.0
 margin_right = 219.0
-margin_bottom = 75.0
+margin_bottom = 113.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 17 )
@@ -2028,11 +2045,9 @@ visible = false
 [node name="PatchNameOverlay" parent="." instance=ExtResource( 12 )]
 visible = false
 
-[node name="PrototypeInfo" parent="." instance=ExtResource( 17 )]
-rect_min_size = Vector2( 450, 0 )
-WindowTitle = "MACROSCOPIC_PROTOTYPE_INFO"
-HideCancelButton = true
-DialogText = "MACROSCOPIC_PROTOYPE_WARNING"
+[node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
+WindowTitle = "MOVING_TO_LAND_PROTOTYPE_TITLE"
+DialogText = "MOVING_TO_LAND_PROTOTYPE"
 
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
@@ -2040,6 +2055,12 @@ DialogText = "MACROSCOPIC_PROTOYPE_WARNING"
 [connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
+[connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
+[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
+[connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]
+[connection signal="OnProcessesPressed" from="BottomLeft/HUDBottomBar" to="." method="ProcessPanelButtonPressed"]
+[connection signal="OnSuicidePressed" from="BottomLeft/HUDBottomBar" to="." method="OnSuicide"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/ToLand" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Aware" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]

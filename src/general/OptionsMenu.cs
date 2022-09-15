@@ -170,7 +170,46 @@ public class OptionsMenu : ControlWithInput
     public NodePath InputsTabPath = null!;
 
     [Export]
+    public NodePath MouseAxisSensitivitiesBoundPath = null!;
+
+    [Export]
+    public NodePath MouseHorizontalSensitivityPath = null!;
+
+    [Export]
+    public NodePath MouseHorizontalInvertedPath = null!;
+
+    [Export]
+    public NodePath MouseVerticalSensitivityPath = null!;
+
+    [Export]
+    public NodePath MouseVerticalInvertedPath = null!;
+
+    [Export]
+    public NodePath MouseWindowSizeScalingPath = null!;
+
+    [Export]
+    public NodePath MouseWindowSizeScalingWithLogicalSizePath = null!;
+
+    [Export]
+    public NodePath ControllerAxisSensitivitiesBoundPath = null!;
+
+    [Export]
+    public NodePath ControllerHorizontalSensitivityPath = null!;
+
+    [Export]
+    public NodePath ControllerHorizontalInvertedPath = null!;
+
+    [Export]
+    public NodePath ControllerVerticalSensitivityPath = null!;
+
+    [Export]
+    public NodePath ControllerVerticalInvertedPath = null!;
+
+    [Export]
     public NodePath InputGroupListPath = null!;
+
+    [Export]
+    public NodePath DeadzoneConfigurationPopupPath = null!;
 
     // Misc tab.
     [Export]
@@ -298,7 +337,24 @@ public class OptionsMenu : ControlWithInput
 
     // Inputs tab
     private Control inputsTab = null!;
+
+    private Button mouseAxisSensitivitiesBound = null!;
+    private Slider mouseHorizontalSensitivity = null!;
+    private Button mouseHorizontalInverted = null!;
+    private Slider mouseVerticalSensitivity = null!;
+    private Button mouseVerticalInverted = null!;
+    private OptionButton mouseWindowSizeScaling = null!;
+    private Button mouseWindowSizeScalingWithLogicalSize = null!;
+
+    private Button controllerAxisSensitivitiesBound = null!;
+    private Slider controllerHorizontalSensitivity = null!;
+    private Button controllerHorizontalInverted = null!;
+    private Slider controllerVerticalSensitivity = null!;
+    private Button controllerVerticalInverted = null!;
+
     private InputGroupList inputGroupList = null!;
+
+    private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
 
     // Misc tab
     private Control miscTab = null!;
@@ -428,8 +484,25 @@ public class OptionsMenu : ControlWithInput
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
+        mouseAxisSensitivitiesBound = GetNode<Button>(MouseAxisSensitivitiesBoundPath);
+        mouseHorizontalSensitivity = GetNode<Slider>(MouseHorizontalSensitivityPath);
+        mouseHorizontalInverted = GetNode<Button>(MouseHorizontalInvertedPath);
+        mouseVerticalSensitivity = GetNode<Slider>(MouseVerticalSensitivityPath);
+        mouseVerticalInverted = GetNode<Button>(MouseVerticalInvertedPath);
+        mouseWindowSizeScaling = GetNode<OptionButton>(MouseWindowSizeScalingPath);
+        mouseWindowSizeScalingWithLogicalSize = GetNode<Button>(MouseWindowSizeScalingWithLogicalSizePath);
+
+        controllerAxisSensitivitiesBound = GetNode<Button>(ControllerAxisSensitivitiesBoundPath);
+        controllerHorizontalSensitivity = GetNode<Slider>(ControllerHorizontalSensitivityPath);
+        controllerHorizontalInverted = GetNode<Button>(ControllerHorizontalInvertedPath);
+        controllerVerticalSensitivity = GetNode<Slider>(ControllerVerticalSensitivityPath);
+        controllerVerticalInverted = GetNode<Button>(ControllerVerticalInvertedPath);
+
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
+
+        deadzoneConfigurationPopup = GetNode<ControllerDeadzoneConfiguration>(DeadzoneConfigurationPopupPath);
+        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -533,6 +606,10 @@ public class OptionsMenu : ControlWithInput
     /// </summary>
     public void ApplySettingsToControls(Settings settings)
     {
+        // TODO: all of these changes cause Godot change callbacks which in turn cause settings comparisons
+        // that is not efficient at all so instead we should set a flag here and ignore settings compare calls
+        // while it is active
+
         // Graphics
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
@@ -580,6 +657,26 @@ public class OptionsMenu : ControlWithInput
         UpdateDetectedCPUCount();
 
         // Input
+        mouseAxisSensitivitiesBound.Pressed =
+            settings.HorizontalMouseLookSensitivity.Equals(settings.VerticalMouseLookSensitivity);
+        mouseHorizontalSensitivity.Value = MouseInputSensitivityToBarValue(settings.HorizontalMouseLookSensitivity);
+        mouseHorizontalInverted.Pressed = settings.InvertHorizontalMouseLook;
+        mouseVerticalSensitivity.Editable = !mouseAxisSensitivitiesBound.Pressed;
+        mouseVerticalSensitivity.Value = MouseInputSensitivityToBarValue(settings.VerticalMouseLookSensitivity);
+        mouseVerticalInverted.Pressed = settings.InvertVerticalMouseLook;
+        mouseWindowSizeScaling.Selected = MouseInputScalingToIndex(settings.ScaleMouseInputByWindowSize);
+        mouseWindowSizeScalingWithLogicalSize.Pressed = settings.InputWindowSizeIsLogicalSize;
+
+        controllerAxisSensitivitiesBound.Pressed =
+            settings.HorizontalControllerLookSensitivity.Equals(settings.VerticalControllerLookSensitivity);
+        controllerHorizontalSensitivity.Value =
+            ControllerInputSensitivityToBarValue(settings.HorizontalControllerLookSensitivity);
+        controllerHorizontalInverted.Pressed = settings.InvertHorizontalControllerLook;
+        controllerVerticalSensitivity.Editable = !controllerAxisSensitivitiesBound.Pressed;
+        controllerVerticalSensitivity.Value =
+            ControllerInputSensitivityToBarValue(settings.VerticalControllerLookSensitivity);
+        controllerVerticalInverted.Pressed = settings.InvertVerticalControllerLook;
+
         BuildInputRebindControls();
 
         // Misc
@@ -644,9 +741,13 @@ public class OptionsMenu : ControlWithInput
             {
                 // Current game tutorial option shouldn't be visible in freebuild mode.
                 if (!gameProperties!.FreeBuild)
+                {
                     tutorialsEnabled.Show();
+                }
                 else
+                {
                     tutorialsEnabled.Hide();
+                }
 
                 optionsMode = OptionsMode.InGame;
                 break;
@@ -1019,6 +1120,76 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
+    ///   The sensitivity bars go from 0 to 100, but those aren't suitable scales for the input values so this converts
+    ///   between them
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The reason this is done is that Godot sliders really don't like having really small fractions in them
+    ///   </para>
+    /// </remarks>
+    /// <param name="value">The input sensitivity value</param>
+    /// <returns>Value in range 0-100 to be used for a slider</returns>
+    private int MouseInputSensitivityToBarValue(float value)
+    {
+        int converted = (int)(value / Constants.MOUSE_INPUT_SENSITIVITY_STEP);
+
+        return Mathf.Clamp(converted, 0, 100);
+    }
+
+    /// <summary>
+    ///   Variant of <see cref="MouseInputSensitivityToBarValue"/> for controller inputs
+    /// </summary>
+    private float MouseInputBarValueToSensitivity(float value)
+    {
+        return value * Constants.MOUSE_INPUT_SENSITIVITY_STEP;
+    }
+
+    private int ControllerInputSensitivityToBarValue(float value)
+    {
+        int converted = (int)(value / Constants.CONTROLLER_INPUT_SENSITIVITY_STEP);
+
+        return Mathf.Clamp(converted, 0, 100);
+    }
+
+    private float ControllerInputBarValueToSensitivity(float value)
+    {
+        return value * Constants.CONTROLLER_INPUT_SENSITIVITY_STEP;
+    }
+
+    private int MouseInputScalingToIndex(MouseInputScaling scaling)
+    {
+        switch (scaling)
+        {
+            case MouseInputScaling.None:
+                return 0;
+            case MouseInputScaling.Scale:
+                return 1;
+            case MouseInputScaling.ScaleReverse:
+                return 2;
+        }
+
+        GD.PrintErr("invalid MouseInputScaling value");
+        return 0;
+    }
+
+    private MouseInputScaling MouseInputScalingIndexToEnum(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return MouseInputScaling.None;
+            case 1:
+                return MouseInputScaling.Scale;
+            case 2:
+                return MouseInputScaling.ScaleReverse;
+            default:
+                GD.PrintErr("invalid MouseInputScaling index");
+                return MouseInputScaling.ScaleReverse;
+        }
+    }
+
+    /// <summary>
     ///   Returns whether current settings match their saved originals. Settings that are
     ///   inactive due to a different options menu mode will not be used in the comparison.
     /// </summary>
@@ -1257,6 +1428,8 @@ public class OptionsMenu : ControlWithInput
 
     private void InputDefaultsConfirm()
     {
+        // TODO: should this also reset the input sensitivity values? currently this only resets key bindings
+        // and the button text has been updated to reflect this
         Settings.Instance.CurrentControls.Value = Settings.GetDefaultControls();
         Settings.Instance.ApplyInputSettings();
         BuildInputRebindControls();
@@ -1499,6 +1672,120 @@ public class OptionsMenu : ControlWithInput
     }
 
     // Input Callbacks
+    private void OnMouseAxesBoundToggled(bool pressed)
+    {
+        mouseVerticalSensitivity.Editable = !pressed;
+
+        if (pressed)
+        {
+            mouseVerticalSensitivity.Value = mouseHorizontalSensitivity.Value;
+        }
+    }
+
+    private void OnMouseHorizontalSensitivityChanged(float value)
+    {
+        Settings.Instance.HorizontalMouseLookSensitivity.Value = MouseInputBarValueToSensitivity(value);
+
+        if (mouseAxisSensitivitiesBound.Pressed)
+        {
+            mouseVerticalSensitivity.Value = mouseHorizontalSensitivity.Value;
+        }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedMouseHorizontalToggled(bool pressed)
+    {
+        Settings.Instance.InvertHorizontalMouseLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseVerticalSensitivityChanged(float value)
+    {
+        Settings.Instance.VerticalMouseLookSensitivity.Value = MouseInputBarValueToSensitivity(value);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedMouseVerticalToggled(bool pressed)
+    {
+        Settings.Instance.InvertVerticalMouseLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseSensitivityScaleModeSelected(int index)
+    {
+        Settings.Instance.ScaleMouseInputByWindowSize.Value = MouseInputScalingIndexToEnum(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseScaleLogicalWindowSizeToggled(bool pressed)
+    {
+        Settings.Instance.InputWindowSizeIsLogicalSize.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnControllerAxesBoundToggled(bool pressed)
+    {
+        controllerVerticalSensitivity.Editable = !pressed;
+
+        if (pressed)
+        {
+            controllerVerticalSensitivity.Value = controllerHorizontalSensitivity.Value;
+        }
+    }
+
+    private void OnControllerHorizontalSensitivityChanged(float value)
+    {
+        Settings.Instance.HorizontalControllerLookSensitivity.Value = ControllerInputBarValueToSensitivity(value);
+
+        if (controllerAxisSensitivitiesBound.Pressed)
+        {
+            controllerVerticalSensitivity.Value = value;
+        }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedControllerHorizontalToggled(bool pressed)
+    {
+        Settings.Instance.InvertHorizontalControllerLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnControllerVerticalSensitivityChanged(float value)
+    {
+        Settings.Instance.VerticalControllerLookSensitivity.Value = ControllerInputBarValueToSensitivity(value);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedControllerVerticalToggled(bool pressed)
+    {
+        Settings.Instance.InvertVerticalControllerLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnOpenDeadzoneConfigurationPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        deadzoneConfigurationPopup.PopupCenteredShrink();
+    }
+
+    private void OnDeadzoneConfigurationChanged(List<float> deadzones)
+    {
+        Settings.Instance.ControllerAxisDeadzoneAxes.Value = deadzones;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnControlsChanged(InputDataList data)
     {
         Settings.Instance.CurrentControls.Value = data;
