@@ -71,6 +71,12 @@ public class PlayerMicrobeInput : NodeWithInput
         stage.Player?.EmitToxin();
     }
 
+    [RunOnKey("g_secrete_slime")]
+    public void SecreteSlime(float delta)
+    {
+        stage.Player?.QueueSecreteSlime(delta);
+    }
+
     [RunOnKeyDown("g_toggle_engulf")]
     public void ToggleEngulf()
     {
