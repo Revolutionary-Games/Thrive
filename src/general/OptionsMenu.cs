@@ -261,6 +261,12 @@ public class OptionsMenu : ControlWithInput
     public NodePath JSONDebugModePath = null!;
 
     [Export]
+    public NodePath CommitLabelPath = null!;
+
+    [Export]
+    public NodePath BuiltAtLabelPath = null!;
+
+    [Export]
     public NodePath UnsavedProgressWarningPath = null!;
 
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
@@ -362,6 +368,8 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
     private OptionButton jsonDebugMode = null!;
+    private Label commitLabel = null!;
+    private Label builtAtLabel = null!;
 
     private CustomCheckBox tutorialsEnabled = null!;
     private CustomCheckBox unsavedProgressWarningEnabled = null!;
@@ -509,6 +517,8 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
+        commitLabel = GetNode<Label>(CommitLabelPath);
+        builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
         unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
@@ -685,6 +695,8 @@ public class OptionsMenu : ControlWithInput
         customUsername.Editable = settings.CustomUsernameEnabled;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
+
+        UpdateShownCommit();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -1299,6 +1311,30 @@ public class OptionsMenu : ControlWithInput
 
         threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
         threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
+    }
+
+    private void UpdateShownCommit()
+    {
+        var info = SimulationParameters.Instance.GetBuildInfoIfExists();
+
+#if DEBUG
+        var prefix = TranslationServer.Translate("UNCERTAIN_VERSION_WARNING") + "\n";
+#else
+        var prefix = string.Empty;
+#endif
+
+        if (info == null)
+        {
+            commitLabel.Text = TranslationServer.Translate("UNKNOWN_VERSION");
+            builtAtLabel.Text = string.Empty;
+            return;
+        }
+
+        commitLabel.Text = prefix + info.Commit;
+
+        var time = info.BuiltAt.ToLocalTime().ToString("g", CultureInfo.CurrentCulture);
+
+        builtAtLabel.Text = time;
     }
 
     private void OnResetPressed()

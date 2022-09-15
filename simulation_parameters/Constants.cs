@@ -888,6 +888,10 @@ public static class Constants
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
+    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
+
+    public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>
