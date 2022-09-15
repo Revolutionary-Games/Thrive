@@ -59,7 +59,7 @@ public class PlayerHoverInfo : Node
         if (camera == null || cloudSystem == null)
             throw new InvalidOperationException($"{nameof(PlayerHoverInfo)} was not initialized");
 
-        cloudSystem.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds);
+        cloudSystem.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds, false);
 
         if (camera.CursorWorldPos != lastCursorWorldPos)
         {

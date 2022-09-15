@@ -429,13 +429,16 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Returns all the compounds that are available at point
     /// </summary>
-    public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result)
+    public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result, bool onlyAbsorbable)
     {
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
             var compound = Compounds[i];
             if (compound == null)
                 break;
+
+            if (!compound.IsAbsorbable && onlyAbsorbable)
+                continue;
 
             float amount = HackyAddress(Density[x, y], i);
             if (amount > 0)
@@ -509,8 +512,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (compound == null)
                 break;
 
-            // Skip if compound is non-useful or an agent
-            if (!storage.IsUseful(compound) || compound.IsAgent)
+            // Skip if compound is non-useful or disallowed to be absorbed
+            if (!compound.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
             // Overestimate of how much compounds we get

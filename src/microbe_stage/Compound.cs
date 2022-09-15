@@ -33,10 +33,15 @@ public class Compound : IRegistryType
     public string IconPath = null!;
 
     /// <summary>
-    ///   When this is true the compound is always considered to be
-    ///   useful and is not dumped.
+    ///   When this is true the compound is always considered to be useful and is not dumped.
     /// </summary>
     public bool IsAlwaysUseful;
+
+    /// <summary>
+    ///   Allows absorbing this compound from environmental clouds (also needs <see cref="IsCloud"/> to be true).
+    ///   If false microbes can't absorb clouds of this compound type.
+    /// </summary>
+    public bool IsAbsorbable = true;
 
     public bool IsEnvironmental;
 
