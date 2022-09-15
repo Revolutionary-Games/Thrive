@@ -370,9 +370,8 @@ __meta__ = {
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 100.0
 margin_right = 765.0
-margin_bottom = 140.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -384,9 +383,10 @@ __meta__ = {
 }
 
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 502.0
-margin_right = 777.0
-margin_bottom = 40.0
+margin_left = 515.0
+margin_top = 50.0
+margin_right = 765.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -395,9 +395,9 @@ text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 50.0
+margin_top = 100.0
 margin_right = 765.0
-margin_bottom = 90.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -408,11 +408,25 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 508.0
+margin_top = 150.0
+margin_right = 771.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "VISIT_SUGGESTIONS_SITE"
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 150.0
+margin_top = 200.0
 margin_right = 765.0
-margin_bottom = 190.0
+margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -426,9 +440,9 @@ __meta__ = {
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 200.0
+margin_top = 250.0
 margin_right = 765.0
-margin_bottom = 240.0
+margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -516,6 +530,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
