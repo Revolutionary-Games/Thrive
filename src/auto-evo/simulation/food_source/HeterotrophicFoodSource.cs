@@ -54,13 +54,13 @@
                 if (predatorSpeed > preySpeed)
                 {
                     // You catch more preys if you are fast, and if they are slow.
-                    // This incentizes engulfment strategies in these cases.
+                    // This incentivizes engulfment strategies in these cases.
                     catchScore += predatorSpeed / preySpeed;
                 }
 
                 // ... but you may also catch them by luck (e.g. when they run into you),
                 // and this is especially easy if you're huge.
-                // This is also used to incentize size in microbe species.
+                // This is also used to incentivize size in microbe species.
                 catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
 
                 // Allow for some degree of lucky engulfment
