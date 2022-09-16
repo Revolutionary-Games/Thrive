@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/gui_common/filter_items/BaseFilterItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/filter_items/MultipleChoiceFilterItem.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=3]
+
+[node name="MultipleChoiceFilterItem" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+ItemDropDownPath = NodePath("ItemDropDown")
+
+[node name="Name" parent="." index="0"]
+margin_right = 153.0
+
+[node name="ItemDropDown" type="MenuButton" parent="." index="1"]
+margin_left = 157.0
+margin_right = 237.0
+margin_bottom = 25.0
+text = "First Item"
+flat = false
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}

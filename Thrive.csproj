@@ -138,9 +138,9 @@
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\dialogs\FilterDialog.cs" />
-    <Compile Include="src\gui_common\FilterItems\BaseFilterItem.cs" />
-    <Compile Include="src\gui_common\FilterItems\MultipleChoiceFilterItemFilterItem.cs" />
-    <Compile Include="src\gui_common\FilterItems\NumericFilterItem.cs" />
+    <Compile Include="src\gui_common\filter_items\BaseFilterItem.cs" />
+    <Compile Include="src\gui_common\filter_items\MultipleChoiceFilterItem.cs" />
+    <Compile Include="src\gui_common\filter_items\NumericFilterItem.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />

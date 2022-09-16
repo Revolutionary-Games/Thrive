@@ -1,19 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/dialogs/FilterDialog.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=4]
-[ext_resource path="res://src/gui_common/FilterItems/BaseFilterItem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=6]
-[ext_resource path="res://src/gui_common/FilterItems/MultipleChoiceFilterItem.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/FilterItems/NumericFilterItem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui_common/filter_items/MultipleChoiceFilterItem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/filter_items/NumericFilterItem.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=9]
 
 [node name="FilterDialog" instance=ExtResource( 1 )]
 visible = true
 script = ExtResource( 2 )
 WindowTitle = "FILTER_DIALOG"
+ItemsContainerPath = NodePath("VBoxContainer/ScrollContainer/VBoxContainer/FilterItemsContainer")
 
 [node name="VBoxContainer" parent="." index="0"]
 rect_min_size = Vector2( 400, 0 )
@@ -33,36 +33,29 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="FilterItemssContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
+[node name="FilterItemsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
 margin_right = 400.0
-margin_bottom = 95.0
+margin_bottom = 60.0
 custom_constants/separation = 10
 
-[node name="BaseFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="0" instance=ExtResource( 5 )]
+[node name="MultipleChoiceFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemsContainer" index="0" instance=ExtResource( 7 )]
 margin_right = 400.0
 margin_bottom = 25.0
 
-[node name="MultipleChoiceFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="1" instance=ExtResource( 7 )]
+[node name="NumericFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemsContainer" index="1" instance=ExtResource( 8 )]
 margin_top = 35.0
 margin_right = 400.0
 margin_bottom = 60.0
-ItemNameLabelPath = null
-
-[node name="NumericFilterItem" parent="VBoxContainer/ScrollContainer/VBoxContainer/FilterItemssContainer" index="2" instance=ExtResource( 8 )]
-margin_top = 70.0
-margin_right = 400.0
-margin_bottom = 95.0
-ItemNameLabelPath = null
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
-margin_top = 105.0
+margin_top = 70.0
 margin_right = 400.0
-margin_bottom = 109.0
+margin_bottom = 74.0
 
 [node name="AddButtonContainter" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" index="2"]
-margin_top = 119.0
+margin_top = 84.0
 margin_right = 400.0
-margin_bottom = 146.0
+margin_bottom = 111.0
 
 [node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/AddButtonContainter" index="0"]
 margin_right = 103.0
