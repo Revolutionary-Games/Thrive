@@ -1548,7 +1548,7 @@ public partial class Microbe
     private void HandleSlimeSecretion(float delta)
     {
         // Ignore if we have no slime jets
-        if (SlimeJets.Count < 0)
+        if (SlimeJets.Count == 0)
             return;
 
         // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty.
