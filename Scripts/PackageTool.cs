@@ -21,6 +21,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
 
+    private const string STEAM_README_TEMPLATE = "doc/steam_license_readme.txt";
+
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
 
     private static readonly IReadOnlyList<PackagePlatform> ThrivePlatforms = new List<PackagePlatform>
@@ -47,11 +49,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private static readonly IReadOnlyCollection<FileToPackage> LicenseFiles = new List<FileToPackage>
     {
-        new("LICENSE.txt"),
-        new("gpl.txt"),
         new("assets/LICENSE.txt", "ThriveAssetsLICENSE.txt"),
         new("assets/README.txt", "ThriveAssetsREADME.txt"),
         new("doc/GodotLicense.txt", "GodotLicense.txt"),
+    };
+
+    private static readonly IReadOnlyCollection<FileToPackage> NonSteamLicenseFiles = new List<FileToPackage>
+    {
+        new("LICENSE.txt"),
+        new("gpl.txt"),
     };
 
     private static readonly IReadOnlyCollection<string> SourceItemsToPackage = new List<string>
@@ -125,6 +131,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private string ReadmeFile => Path.Join(options.OutputFolder, "README.txt");
     private string RevisionFile => Path.Join(options.OutputFolder, "revision.txt");
+    private string SteamLicenseFile => Path.Join(options.OutputFolder, "LICENSE_steam.txt");
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
@@ -420,6 +427,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             yield return fileToPackage;
         }
+
+        if (!steamMode)
+        {
+            foreach (var fileToPackage in NonSteamLicenseFiles)
+            {
+                yield return fileToPackage;
+            }
+        }
+
+        // TODO: use LicensesDisplay.LoadSteamLicenseFile to generate this
+        // if (steamMode)
+        //     yield return new FileToPackage(SteamLicenseFile, "LICENSE.txt");
     }
 
     private static string MacZipInFolder(string folder)
@@ -626,5 +645,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             await readme.WriteLineAsync("dirty, diff:");
             await readme.WriteLineAsync(diff);
         }
+
+        // TODO: use LicensesDisplay.LoadSteamLicenseFile to generate this
+        // See: https://github.com/Revolutionary-Games/Thrive/issues/3771
+        // if (steamMode)
+        // {
+        //     await using var steamLicense = File.CreateText(SteamLicenseFile);
+        //
+        //     var template = await File.ReadAllTextAsync(STEAM_README_TEMPLATE, cancellationToken);
+        //     var normalLicense = await File.ReadAllTextAsync("LICENSE.txt", cancellationToken);
+        // }
     }
 }
