@@ -18,6 +18,7 @@ public partial class Microbe
     private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
 
     private Compound atp = null!;
+    private Compound mucilage = null!;
 
     private Enzyme lipase = null!;
 
@@ -50,6 +51,12 @@ public partial class Microbe
 
     [JsonProperty]
     private float playerEngulfedDeathTimer;
+
+    [JsonProperty]
+    private float slimeSecretionCooldown;
+
+    [JsonProperty]
+    private float queuedSlimeSecretionTime;
 
     private float lastCheckedReproduction;
 
@@ -105,6 +112,12 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     public int AgentVacuoleCount { get; private set; }
+
+    /// <summary>
+    ///   The slime jets attached to this microbe. JsonIgnore as the components add themselves to this list each load.
+    /// </summary>
+    [JsonIgnore]
+    public List<SlimeJetComponent> SlimeJets { get; private set; } = new();
 
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
@@ -327,6 +340,11 @@ public partial class Microbe
         queuedToxinToEmit = toxinCompound;
     }
 
+    public void QueueSecreteSlime(float duration)
+    {
+        queuedSlimeSecretionTime += duration;
+    }
+
     /// <summary>
     ///   Report that a pilus shape was added to this microbe. Called by PilusComponent
     /// </summary>
@@ -471,11 +489,15 @@ public partial class Microbe
     /// <summary>
     ///   Throws some compound out of this Microbe, up to maxAmount
     /// </summary>
-    public float EjectCompound(Compound compound, float maxAmount)
+    /// <param name="compound">The compound type to eject</param>
+    /// <param name="maxAmount">The maximum amount to eject</param>
+    /// <param name="direction">The direction in which to eject relative to the microbe</param>
+    /// <param name="displacement">How far away from the microbe to eject</param>
+    public float EjectCompound(Compound compound, float maxAmount, Vector3 direction, float displacement = 0)
     {
         float amount = Compounds.TakeCompound(compound, maxAmount);
 
-        SpawnEjectedCompound(compound, amount);
+        SpawnEjectedCompound(compound, amount, direction, displacement);
         return amount;
     }
 
@@ -622,6 +644,10 @@ public partial class Microbe
         cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
+        // Cells with jets aren't affected by mucilage
+        slowedBySlime = SlimeJets.Count < 1 && cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
+            Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;
+
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
             var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
@@ -650,14 +676,14 @@ public partial class Microbe
             // Vent if not useful, or if overflowed the capacity
             if (!Compounds.IsUseful(type))
             {
-                amountToVent -= EjectCompound(type, amountToVent);
+                amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
             else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
             {
                 // Vent the part that went over
                 float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
 
-                amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent));
+                amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
 
             if (amountToVent <= 0)
@@ -1216,6 +1242,9 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
 
+        if (organelle.IsSlimeJet)
+            SlimeJets.Remove((SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent));
+
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
@@ -1260,20 +1289,20 @@ public partial class Microbe
     ///     the compound to the cloud system at the right position.
     ///   </para>
     /// </remarks>
-    private void SpawnEjectedCompound(Compound compound, float amount)
+    private void SpawnEjectedCompound(Compound compound, float amount, Vector3 direction, float displacement = 0)
     {
         var amountToEject = amount * Constants.MICROBE_VENT_COMPOUND_MULTIPLIER;
 
-        if (amountToEject <= 0)
+        if (amountToEject <= MathUtils.EPSILON)
             return;
 
-        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
+        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition(direction, displacement));
     }
 
     /// <summary>
     ///   Calculates a world pos for emitting compounds
     /// </summary>
-    private Vector3 CalculateNearbyWorldPosition()
+    private Vector3 CalculateNearbyWorldPosition(Vector3 direction, float displacement = 0)
     {
         // OLD CODE kept here in case we want a more accurate membrane position, also this code
         // produces an incorrect world position which needs fixing if this were to be used
@@ -1321,8 +1350,9 @@ public partial class Microbe
         if (CellTypeProperties.IsBacteria)
             distance *= 0.5f;
 
-        // The back of the microbe
-        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Back);
+        distance += displacement;
+
+        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(direction);
 
         var result = GlobalTransform.origin + (ejectionDirection * distance);
 
@@ -1444,7 +1474,7 @@ public partial class Microbe
                 var added = Compounds.AddCompound(compound, takenAdjusted);
 
                 // Eject excess
-                SpawnEjectedCompound(compound, takenAdjusted - added);
+                SpawnEjectedCompound(compound, takenAdjusted - added, Vector3.Back);
             }
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
@@ -1513,6 +1543,40 @@ public partial class Microbe
                 }
             }
         }
+    }
+
+    private void HandleSlimeSecretion(float delta)
+    {
+        // Ignore if we have no slime jets
+        if (SlimeJets.Count < 0)
+            return;
+
+        // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty.
+        // Scaling by slime jet count ensures we aren't producing mucilage fast enough to beat this check.
+        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT * SlimeJets.Count)
+            slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
+
+        // If we've been told to secrete slime and can do it, proceed
+        if (queuedSlimeSecretionTime > 0 && slimeSecretionCooldown <= 0)
+        {
+            // Play a sound only if we've just started, i.e. only if no jets are already active
+            if (SlimeJets.All(c => !c.Active))
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+
+            // Activate all jets, which will constantly secrete slime until we turn them off
+            foreach (var jet in SlimeJets)
+                jet.Active = true;
+        }
+        else
+        {
+            // Deactivate the jets if we aren't supposed to secrete slime
+            foreach (var jet in SlimeJets)
+                jet.Active = false;
+        }
+
+        queuedSlimeSecretionTime -= delta;
+        if (queuedSlimeSecretionTime < 0)
+            queuedSlimeSecretionTime = 0;
     }
 
     private void UpdateDissolveEffect()

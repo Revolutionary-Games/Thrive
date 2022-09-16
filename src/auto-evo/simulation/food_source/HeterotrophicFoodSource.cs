@@ -5,6 +5,7 @@
     public class HeterotrophicFoodSource : FoodSource
     {
         private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
 
         private readonly MicrobeSpecies prey;
         private readonly Patch patch;
@@ -41,18 +42,34 @@
 
             predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).FinalBalance;
 
-            // It's great if you can engulf this prey, but only if you can catch it
+            // Only assign engulf score if one can actually engulf
             var engulfScore = 0.0f;
             if (microbeSpeciesHexSize / preyHexSize >
                 Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
             {
-                engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
-            }
+                // Catch scores grossly accounts for how many preys you catch in a run;
+                var catchScore = 0.0f;
 
-            engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                // First, you may hunt individual preys, but only if you are fast enough...
+                if (predatorSpeed > preySpeed)
+                {
+                    // You catch more preys if you are fast, and if they are slow.
+                    // This incentivizes engulfment strategies in these cases.
+                    catchScore += predatorSpeed / preySpeed;
+                }
+
+                // ... but you may also catch them by luck (e.g. when they run into you),
+                // and this is especially easy if you're huge.
+                // This is also used to incentivize size in microbe species.
+                catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
+
+                // Allow for some degree of lucky engulfment
+                engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+            }
 
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
+            var mucilageScore = 0.0f;
             foreach (var organelle in microbeSpecies.Organelles)
             {
                 if (organelle.Definition.HasPilusComponent)
@@ -67,6 +84,11 @@
                     {
                         oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                     }
+
+                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
+                    {
+                        mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                    }
                 }
             }
 
@@ -80,7 +102,7 @@
             }
 
             // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-            return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+            return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore);
         }
 
         public override IFormattable GetDescription()

@@ -225,6 +225,26 @@ public static class Constants
     public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
+    ///   How much a cell's speed is slowed when travelling through slime
+    /// </summary>
+    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+
+    /// <summary>
+    ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
+    /// </summary>
+    public const float MUCILAGE_JET_FACTOR = 600.0f;
+
+    /// <summary>
+    ///   Minimum stored slime needed to start secreting
+    /// </summary>
+    public const float MUCILAGE_MIN_TO_VENT = 0.01f;
+
+    /// <summary>
+    ///   Length in seconds for slime secretion cooldown
+    /// </summary>
+    public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
+
+    /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually
     /// </summary>
@@ -658,6 +678,7 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
@@ -682,14 +703,14 @@ public static class Constants
 
     // These control how many game entities can exist at once
     // TODO: bump these back up once we resolve the performance bottleneck
-    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
-    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
-    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
-    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
-    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
-    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
-    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
-    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+    public const int TINY_MAX_SPAWNED_ENTITIES = 100;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 200;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 300;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 400;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 500;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 600;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 700;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 800;
 
     /// <summary>
     ///   Controls how fast entities are allowed to spawn
@@ -698,8 +719,15 @@ public static class Constants
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    ///   Note that this is a raw count and not a weighted count as game instability is probably related to the number
+    ///   of deleted world child Nodes and not their complexity.
     /// </summary>
     public const int MAX_DESPAWNS_PER_FRAME = 4;
+
+    /// <summary>
+    ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
+    /// </summary>
+    public const float ORGANELLE_ENTITY_WEIGHT = 0.5f;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
@@ -776,6 +804,11 @@ public static class Constants
     ///   Popups have a highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
+
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
+    public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
@@ -882,6 +915,10 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
+    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
+
+    public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
@@ -1003,6 +1040,25 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
+    public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
+    public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
+
+    public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
+    public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
+
+    public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
+
+    /// <summary>
+    ///   How big fraction of extra margin is added on top of a calibrated deadzone
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN = 0.1f;
+
+    /// <summary>
+    ///   Constant value added to the calibration value to make the deadzones not as tight, especially at low values
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
+
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
     /// <summary>
@@ -1014,6 +1070,11 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Colour of the custom focus highlight elements. Should be the same as what it set in Thrive theme
+    /// </summary>
+    public static readonly Color CustomFocusDrawerColour = new("#00bfb6");
 
     /// <summary>
     ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
@@ -1065,6 +1126,9 @@ public static class Constants
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    // Needed to be true by InputManager
+    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823

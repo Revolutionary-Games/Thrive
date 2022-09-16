@@ -719,6 +719,40 @@
     "editorButtonGroup": "External",
     "editorButtonOrder": 3
   },
+  "slimeJet": {
+    "mpCost": 60,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "mucilage_synthesis": 1
+    },
+    "components": {
+      "processor": {},
+      "storage": {
+        "capacity": 0.5
+      },
+      "slimeJet": {}
+    },
+    "prokaryoteChance": 0.3,
+    "chanceToCreate": 0.3,
+    "mass": 0.1,
+    "displayScene": "res://assets/models/organelles/SlimeJet.tscn",
+    "displaySceneModelPath": "Armature/Skeleton/Cube",
+    "displaySceneAnimation": "AnimationPlayer",
+    "name": "SLIME_JET",
+    "consumptionColour": "#00ffcc",
+    "iconPath": "res://assets/textures/gui/bevel/parts/SlimeJetIcon.png",
+    "editorButtonGroup": "External",
+    "editorButtonOrder": 4
+  },
   "signalingAgent": {
     "mpCost": 45,
     "initialComposition": {
@@ -837,7 +871,7 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
     "requiresNucleus": true,
     "editorButtonGroup": "External",
-    "editorButtonOrder": 4
+    "editorButtonOrder": 5
   },
   "lysosome": {
     "mpCost": 45,
