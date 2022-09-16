@@ -2081,15 +2081,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -300.0
+margin_left = -274.0
 margin_top = -69.0
-margin_right = 300.0
-rect_min_size = Vector2( 600, 69 )
+rect_min_size = Vector2( 550, 69 )
 theme = ExtResource( 72 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
-margin_right = 600.0
+margin_right = 550.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
