@@ -41,6 +41,16 @@
             return step;
         }
 
+        /// <summary>
+        ///   Creates a list of all existing save upgrade steps
+        /// </summary>
+        /// <returns>The created list</returns>
+        /// <remarks>
+        ///   <para>
+        ///     Also see <see cref="SaveHelper.KnownSaveIncompatibilityPoints"/> to see where the save version known
+        ///     incompatibilities are.
+        ///   </para>
+        /// </remarks>
         private static Dictionary<string, ISaveUpgradeStep> InitializeSaveUpgradeSteps()
         {
             // TODO: would it be useful to specify a range of versions an upgrader can upgrade to make it less error
