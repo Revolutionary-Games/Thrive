@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=15]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/ingestedmatter.png" type="Texture" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/parts/SlimeJetIcon.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=41]
@@ -170,11 +172,174 @@ bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 [sub_resource type="StyleBoxFlat" id=38]
 bg_color = Color( 0.882353, 0.498039, 0.498039, 1 )
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 0, 0.498039, 0.4, 1 )
+
+[sub_resource type="Animation" id=39]
+resource_name = "HideCompoundsPanels"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0, -350 ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "ShowCompoundsPanels"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/CompoundsGroup:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ -350, 0 ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "HideEnvironmentPanel"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0, -350 ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "ShowEnvironmentPanel"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLeft/LeftPanels/EnvironmentGroup:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 2 ),
+"update": 0,
+"values": [ -350, 0 ]
+}
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
@@ -216,83 +381,17 @@ tracks/1/keys = {
 "values": [ 0.0, 0.8, 0.8, 0.0 ]
 }
 
-[sub_resource type="Animation" id=31]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("BottomLeft/LeftPanels:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BottomLeft/LeftPanels:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 2, 1 ),
-"update": 0,
-"values": [ Vector2( 10, 14 ), Vector2( -350, 14 ) ]
-}
-
-[sub_resource type="Animation" id=32]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("BottomLeft/LeftPanels:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BottomLeft/LeftPanels:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("BottomLeft/LeftPanels:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( -2, 1 ),
-"update": 0,
-"values": [ Vector2( -350, 14 ), Vector2( 10, 14 ) ]
-}
+[sub_resource type="StyleBoxFlat" id=43]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.709804, 0.188235, 0.188235, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
@@ -342,7 +441,8 @@ script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": ""
 }
-AnimationPlayerPath = NodePath("AnimationPlayer")
+CompoundsGroupAnimationPlayerPath = NodePath("CompoundsPanelAnimationPlayer")
+EnvironmentGroupAnimationPlayerPath = NodePath("EnvironmentPanelAnimationPlayer")
 PanelsTweenPath = NodePath("BottomLeft/LeftPanels/PanelsTween")
 LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
 MouseHoverPanelPath = NodePath("MouseHoverPanel")
@@ -353,25 +453,25 @@ HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 PatchOverlayPath = NodePath("../PatchNameOverlay")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
-EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
-OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
-Co2BarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
-NitrogenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen")
-TemperaturePath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature")
-SunlightPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight")
-PressurePath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure")
-EnvironmentPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer")
-CompoundsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel")
-GlucoseBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose")
-AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia")
-PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
-HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
-IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
-EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
-EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
-CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
-CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
-CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
+EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel")
+OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
+Co2BarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
+NitrogenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen")
+TemperaturePath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature")
+SunlightPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight")
+PressurePath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure")
+EnvironmentPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer")
+CompoundsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel")
+GlucoseBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose")
+AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia")
+PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
+HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
+IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
+EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
+CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
+CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
+CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
@@ -386,15 +486,17 @@ AmmoniaInv = ExtResource( 3 )
 PhosphatesInv = ExtResource( 4 )
 HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
+SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 PausePromptPath = NodePath("PausePrompt")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/List")
 HoverPanelSeparatorPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/SpeciesSeparator")
-AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
-OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
-AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer")
+AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
+OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
+MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
+AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 ExtinctionBoxScene = ExtResource( 70 )
 PatchExtinctionBoxScene = ExtResource( 94 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
@@ -402,7 +504,7 @@ BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 MulticellularButtonPath = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 MulticellularConfirmPopupPath = NodePath("StagePrototypeConfirm")
 MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
-IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
+IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
 WinBoxScene = ExtResource( 69 )
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
@@ -578,7 +680,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnvironmentPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
+[node name="EnvironmentGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
+margin_right = 254.0
+margin_bottom = 234.0
+
+[node name="EnvironmentPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup"]
 margin_right = 197.0
 margin_bottom = 234.0
 rect_min_size = Vector2( 197, 234 )
@@ -587,7 +693,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 196.0
@@ -597,7 +703,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_right = 197.0
 margin_bottom = 52.0
 rect_min_size = Vector2( 195, 35 )
@@ -606,7 +712,7 @@ custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header"]
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 184.0
@@ -615,7 +721,7 @@ rect_min_size = Vector2( 174, 0 )
 size_flags_horizontal = 0
 custom_constants/separation = 6
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_right = 126.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
@@ -623,7 +729,7 @@ custom_fonts/font = ExtResource( 77 )
 text = "ENVIRONMENT"
 autowrap = true
 
-[node name="EnvironmentExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="EnvironmentExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 132.0
 margin_top = 14.0
 margin_right = 150.0
@@ -641,7 +747,7 @@ pressed = true
 action_mode = 0
 group = SubResource( 6 )
 
-[node name="EnvironmentCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="EnvironmentCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 156.0
 margin_top = 14.0
 margin_right = 174.0
@@ -658,7 +764,7 @@ toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
 
-[node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_top = 56.0
 margin_right = 197.0
 margin_bottom = 60.0
@@ -666,7 +772,7 @@ rect_min_size = Vector2( 197, 0 )
 size_flags_horizontal = 0
 custom_styles/separator = SubResource( 10 )
 
-[node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_top = 64.0
 margin_right = 197.0
 margin_bottom = 249.0
@@ -677,13 +783,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body"]
+[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body"]
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 197.0
 margin_bottom = 175.0
 
-[node name="Oxygen" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+[node name="Oxygen" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
 margin_right = 162.0
 margin_bottom = 25.0
@@ -693,7 +799,7 @@ custom_styles/bg = SubResource( 12 )
 step = 0.1
 percent_visible = false
 
-[node name="OxygenIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
+[node name="OxygenIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
 margin_left = -15.0
 margin_right = 10.0
 margin_bottom = 20.0
@@ -706,7 +812,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 20.0
@@ -721,7 +827,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -740,7 +846,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarbonDioxide" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+[node name="CarbonDioxide" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
 margin_top = 29.0
 margin_right = 162.0
@@ -751,7 +857,7 @@ custom_styles/bg = SubResource( 12 )
 step = 0.1
 percent_visible = false
 
-[node name="CO2Icon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
+[node name="CO2Icon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
 margin_left = -15.0
 margin_right = 10.0
 margin_bottom = 20.0
@@ -764,7 +870,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 20.0
@@ -780,7 +886,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -799,7 +905,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Nitrogen" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+[node name="Nitrogen" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
 margin_top = 58.0
 margin_right = 162.0
@@ -810,7 +916,7 @@ custom_styles/bg = SubResource( 12 )
 step = 0.1
 percent_visible = false
 
-[node name="NitrogenIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
+[node name="NitrogenIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
 margin_left = -15.0
 margin_right = 10.0
 margin_bottom = 20.0
@@ -823,7 +929,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 20.0
@@ -839,7 +945,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -858,7 +964,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Temperature" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+[node name="Temperature" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 margin_top = 87.0
@@ -866,7 +972,7 @@ margin_right = 162.0
 margin_bottom = 112.0
 rect_min_size = Vector2( 162, 25 )
 
-[node name="TemperatureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
+[node name="TemperatureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
 margin_left = -15.0
 margin_right = 10.0
 margin_bottom = 20.0
@@ -879,7 +985,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 20.0
@@ -894,7 +1000,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -914,7 +1020,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Sunlight" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+[node name="Sunlight" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 margin_top = 116.0
@@ -922,7 +1028,7 @@ margin_right = 162.0
 margin_bottom = 141.0
 rect_min_size = Vector2( 162, 25 )
 
-[node name="LightIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
+[node name="LightIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
 margin_left = -15.0
 margin_right = 10.0
 margin_bottom = 20.0
@@ -935,7 +1041,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 20.0
@@ -950,7 +1056,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -969,7 +1075,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pressure" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+[node name="Pressure" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 margin_top = 145.0
@@ -977,7 +1083,7 @@ margin_right = 162.0
 margin_bottom = 170.0
 rect_min_size = Vector2( 162, 25 )
 
-[node name="PressureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
+[node name="PressureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
 margin_left = -15.0
 margin_right = 10.0
 margin_bottom = 20.0
@@ -990,7 +1096,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 20.0
@@ -1005,7 +1111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1025,16 +1131,20 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="CompoundsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
+[node name="CompoundsGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 margin_top = 244.0
 margin_right = 254.0
-margin_bottom = 463.0
+margin_bottom = 587.0
+
+[node name="CompoundsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup"]
+margin_right = 254.0
+margin_bottom = 219.0
 rect_min_size = Vector2( 254, 219 )
 rect_clip_content = true
 size_flags_horizontal = 0
 custom_styles/panel = SubResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 253.0
@@ -1042,11 +1152,8 @@ margin_bottom = 218.0
 rect_min_size = Vector2( 252, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
 margin_right = 254.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
@@ -1054,7 +1161,7 @@ custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 239.0
@@ -1066,7 +1173,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_right = 35.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
@@ -1074,7 +1181,7 @@ size_flags_vertical = 4
 texture = ExtResource( 14 )
 expand = true
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 41.0
 margin_top = 6.0
 margin_right = 186.0
@@ -1085,7 +1192,7 @@ custom_fonts/font = ExtResource( 77 )
 text = "COMPOUNDS"
 autowrap = true
 
-[node name="CompoundExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="CompoundExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 192.0
 margin_top = 8.0
 margin_right = 210.0
@@ -1103,7 +1210,7 @@ pressed = true
 action_mode = 0
 group = SubResource( 15 )
 
-[node name="CompoundCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="CompoundCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 216.0
 margin_top = 8.0
 margin_right = 234.0
@@ -1120,7 +1227,7 @@ toggle_mode = true
 action_mode = 0
 group = SubResource( 15 )
 
-[node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
 margin_top = 44.0
 margin_right = 254.0
 margin_bottom = 48.0
@@ -1128,7 +1235,7 @@ rect_min_size = Vector2( 254, 0 )
 size_flags_horizontal = 0
 custom_styles/separator = SubResource( 10 )
 
-[node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 254.0
 margin_bottom = 247.0
@@ -1140,7 +1247,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body"]
+[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body"]
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 242.0
@@ -1151,7 +1258,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="glucose" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="glucose" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
 margin_right = 220.0
 margin_bottom = 25.0
@@ -1162,7 +1269,7 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="GlucoseIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
+[node name="GlucoseIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 margin_left = -12.0
 margin_right = 13.0
 margin_bottom = 20.0
@@ -1174,7 +1281,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 margin_left = 20.0
 margin_right = 83.0
 margin_bottom = 25.0
@@ -1183,7 +1290,7 @@ custom_fonts/font = ExtResource( 80 )
 text = "GLUCOSE"
 valign = 1
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -44.0
@@ -1195,11 +1302,8 @@ custom_fonts/font = ExtResource( 80 )
 text = "0.0 / 4"
 align = 2
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="ammonia" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="ammonia" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
 margin_top = 30.0
 margin_right = 220.0
@@ -1211,7 +1315,7 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
+[node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
 margin_left = -12.0
 margin_right = 13.0
 margin_bottom = 20.0
@@ -1223,7 +1327,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
 margin_left = 20.0
 margin_right = 81.0
 margin_bottom = 25.0
@@ -1235,7 +1339,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -44.0
@@ -1251,7 +1355,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="phosphates" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="phosphates" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
 margin_top = 60.0
 margin_right = 220.0
@@ -1263,7 +1367,7 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="PhospateIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
+[node name="PhospateIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 margin_left = -12.0
 margin_right = 13.0
 margin_bottom = 20.0
@@ -1272,7 +1376,7 @@ size_flags_horizontal = 0
 texture = ExtResource( 50 )
 expand = true
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 margin_left = 20.0
 margin_right = 95.0
 margin_bottom = 25.0
@@ -1284,7 +1388,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -44.0
@@ -1300,7 +1404,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hydrogensulfide" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="hydrogensulfide" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
 margin_top = 90.0
 margin_right = 220.0
@@ -1312,7 +1416,7 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="HydrogenSulfideIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
+[node name="HydrogenSulfideIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
 margin_left = -12.0
 margin_right = 13.0
 margin_bottom = 20.0
@@ -1324,7 +1428,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
 margin_left = 20.0
 margin_right = 141.0
 margin_bottom = 25.0
@@ -1332,11 +1436,8 @@ rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
 text = "HYDROGEN_SULFIDE"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -44.0
@@ -1352,7 +1453,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="iron" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="iron" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
 margin_top = 120.0
 margin_right = 220.0
@@ -1364,7 +1465,7 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="IronIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
+[node name="IronIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 margin_left = -12.0
 margin_right = 13.0
 margin_bottom = 20.0
@@ -1373,7 +1474,7 @@ size_flags_horizontal = 0
 texture = ExtResource( 49 )
 expand = true
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 margin_left = 20.0
 margin_right = 47.0
 margin_bottom = 25.0
@@ -1385,7 +1486,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -44.0
@@ -1401,7 +1502,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ingested" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="ingested" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 show_behind_parent = true
 margin_top = 150.0
 margin_right = 220.0
@@ -1413,7 +1514,7 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="IngestedMatterIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+[node name="IngestedMatterIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
 modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
 margin_left = -12.0
 margin_right = 13.0
@@ -1423,7 +1524,7 @@ size_flags_horizontal = 0
 texture = ExtResource( 17 )
 expand = true
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
 margin_left = 20.0
 margin_right = 47.0
 margin_bottom = 25.0
@@ -1432,7 +1533,7 @@ custom_fonts/font = ExtResource( 80 )
 text = "INGESTED_MATTER"
 valign = 1
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -44.0
@@ -1445,26 +1546,23 @@ text = "0.0 / 4"
 align = 2
 valign = 1
 
-[node name="AgentsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
-margin_top = 473.0
+[node name="AgentsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup"]
+margin_top = 223.0
 margin_right = 254.0
-margin_bottom = 567.0
-rect_min_size = Vector2( 254, 94 )
+margin_bottom = 343.0
+rect_min_size = Vector2( 254, 120 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 253.0
-margin_bottom = 93.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = 255.0
+margin_bottom = 122.0
 
-[node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
 margin_right = 254.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 230, 35 )
@@ -1472,13 +1570,13 @@ custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 244.0
 margin_bottom = 40.0
 
-[node name="Icon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_right = 35.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
@@ -1486,7 +1584,7 @@ size_flags_vertical = 4
 texture = ExtResource( 15 )
 expand = true
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 39.0
 margin_top = 6.0
 margin_right = 239.0
@@ -1496,7 +1594,7 @@ custom_fonts/font = ExtResource( 77 )
 text = "AGENTS"
 autowrap = true
 
-[node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
 margin_top = 44.0
 margin_right = 254.0
 margin_bottom = 48.0
@@ -1504,10 +1602,10 @@ rect_min_size = Vector2( 254, 0 )
 size_flags_horizontal = 0
 custom_styles/separator = SubResource( 10 )
 
-[node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 254.0
-margin_bottom = 92.0
+margin_bottom = 121.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
@@ -1516,23 +1614,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body"]
+[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body"]
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 244.0
-margin_bottom = 30.0
+margin_bottom = 59.0
 
-[node name="oxytoxy" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+[node name="oxytoxy" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
 margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 25 )
+custom_styles/fg = SubResource( 40 )
 custom_styles/bg = SubResource( 26 )
 step = 0.1
 percent_visible = false
 
-[node name="OxyToxyIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
+[node name="OxyToxyIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 anchor_left = -0.00454545
 anchor_right = -0.00454545
 margin_left = -12.0
@@ -1543,11 +1641,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 57 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
 margin_left = 18.0
 margin_right = 97.0
 margin_bottom = 25.0
@@ -1555,11 +1650,56 @@ rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
 text = "OXYTOXY_NT"
 valign = 1
+
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -45.0
+margin_right = -4.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "0.0 / 4"
+align = 2
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy"]
+[node name="mucilage" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+margin_top = 29.0
+margin_right = 220.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 44 )
+custom_styles/bg = SubResource( 26 )
+step = 0.1
+percent_visible = false
+
+[node name="MucilageIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
+anchor_left = -0.00454545
+anchor_right = -0.00454545
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
+margin_left = 18.0
+margin_right = 97.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "MUCILAGE"
+valign = 1
+
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -45.0
@@ -1580,6 +1720,14 @@ __meta__ = {
 [node name="HUDBottomBar" parent="MicrobeHUD/BottomLeft" instance=ExtResource( 16 )]
 margin_top = -43.0
 margin_bottom = -8.0
+
+[node name="CompoundsPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
+anims/HideCompoundsPanels = SubResource( 39 )
+anims/ShowCompoundsPanels = SubResource( 45 )
+
+[node name="EnvironmentPanelAnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
+anims/HideEnvironmentPanel = SubResource( 41 )
+anims/ShowEnvironmentPanel = SubResource( 42 )
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1920,10 +2068,6 @@ margin_top = 72.0
 margin_right = -872.0
 margin_bottom = -48.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
-anims/HideLeftPanels = SubResource( 31 )
-anims/ShowLeftPanels = SubResource( 32 )
-
 [node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
 margin_left = 10.0
 margin_top = 30.0
@@ -1937,15 +2081,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -300.0
+margin_left = -274.0
 margin_top = -69.0
-margin_right = 300.0
-rect_min_size = Vector2( 600, 69 )
+rect_min_size = Vector2( 550, 69 )
 theme = ExtResource( 72 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
-margin_right = 600.0
+margin_right = 550.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -1961,6 +2104,7 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
+custom_styles/disabled = SubResource( 43 )
 toggle_mode = true
 ActionIcon = ExtResource( 83 )
 ActionName = "g_toggle_engulf"
@@ -2011,6 +2155,17 @@ toggle_mode = true
 ActionIcon = ExtResource( 89 )
 ActionName = "g_pack_commands"
 
+[node name="SecreteSlime" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 277.0
+margin_right = 323.0
+margin_bottom = 51.0
+hint_tooltip = "SECRETE_SLIME"
+ActionIcon = ExtResource( 19 )
+ActionName = "g_secrete_slime"
+
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
 margin_top = 35.0
@@ -2048,11 +2203,12 @@ __meta__ = {
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="OnCompoundsToggled" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="CompoundButtonPressed"]
+[connection signal="OnEnvironmentToggled" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="EnvironmentButtonPressed"]
 [connection signal="OnHelpPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenHelp"]
 [connection signal="OnMenuPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenMenu"]
 [connection signal="OnPausePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="PauseButtonPressed"]
@@ -2068,6 +2224,7 @@ __meta__ = {
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/SecreteSlime" to="PlayerMicrobeInput" method="SecreteSlime" binds= [ 1.0 ]]
 [connection signal="Cancelled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]

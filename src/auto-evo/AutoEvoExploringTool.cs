@@ -801,6 +801,7 @@ public class AutoEvoExploringTool : NodeWithInput
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             gameProperties.EnterFreeBuild();
+            gameProperties.TutorialState.Enabled = false;
 
             // Copy our currently setup game to the editor
             editor.CurrentGame = gameProperties;

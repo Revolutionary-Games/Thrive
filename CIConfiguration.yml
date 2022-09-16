@@ -2,18 +2,18 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v19
+    image: thrive/godot-ci:v20
     cache:
       loadFrom:
-        - v3-{Branch}-build
-        - v3-master-build
-      writeTo: v3-{Branch}-build
+        - v4-{Branch}-build
+        - v4-master-build
+      writeTo: v4-{Branch}-build
       shared:
-        .git/lfs: v2-lfs
-        .import: v4-import
-        builds: v1-builds
+        .git/lfs: v3-lfs
+        .import: v5-import
+        builds: v2-builds
       system:
-        /root/.nuget: v1-nuget
+        /root/.nuget: v2-nuget
     steps:
       # This is here to reimport assets, but this build would fail due to missing nuget packages
       # if C# was compiled here
@@ -24,27 +24,27 @@ jobs:
       - run:
            command: dotnet restore Thrive.sln
       - run:
-          name: Compile with checks
-          command: ./check_formatting.rb -c compile
+          name: Build with warnings
+          command: dotnet run --project Scripts -- check compile
       - run:
           name: Create builds
-          command: ./make_release.rb --dehydrated
+          command: dotnet run --project Scripts -- package --dehydrated
       - run:
           name: Upload devbuilds
-          command: ./upload_devbuilds.rb
+          command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v19
+    image: thrive/godot-ci:v20
     cache:
       loadFrom:
-        - v1-{Branch}-jetbrains
-        - v1-master-jetbrains
-      writeTo: v1-{Branch}-jetbrains
+        - v2-{Branch}-jetbrains
+        - v2-master-jetbrains
+      writeTo: v2-{Branch}-jetbrains
       shared:
-        .git/lfs: v2-lfs
-        .import: v4-import
-        builds: v1-jetbrains-dummy-builds
+        .git/lfs: v3-lfs
+        .import: v5-import
+        builds: v2-jetbrains-dummy-builds
       system:
-        /root/.nuget: v1-nuget
+        /root/.nuget: v2-nuget
     artifacts:
       paths:
         - files_to_check.txt
@@ -72,15 +72,16 @@ jobs:
       - run:
           name: Make sure no changes to git tracked files at this point
           command: GIT_LFS_SKIP_SMUDGE=1 git reset --hard HEAD
-      # Inspect code (this only takes like 40 seconds for all files)
       - run:
-          command: ./check_formatting.rb -c inspectcode
+          name: Jetbrains inspectcode
+          command: dotnet run --project Scripts -- check inspectcode
+      - run:
+          name: Jetbrains format
+          command: dotnet run --project Scripts -- check cleanupcode
       # dupfinder is deprecated, see: https://github.com/Revolutionary-Games/Thrive/issues/2953
       # - run:
       #     command: ./check_formatting.rb -c duplicatecode
       # Cleanup, this takes a *long* time when checking a lot of files
-      - run:
-          command: ./check_formatting.rb -c cleanupcode
       - run:
           when: always
           name: Check cleanup changes
@@ -95,23 +96,25 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/lint:v12
+    image: thrive/godot-ci:v20
     cache:
       loadFrom:
-        - v1-{Branch}-format
-        - v1-master-format
-      writeTo: v1-{Branch}-format
+        - v2-{Branch}-format
+        - v2-master-format
+      writeTo: v2-{Branch}-format
       shared:
-        .git/lfs: v2-lfs
+        .git/lfs: v3-lfs
+      system:
+        /root/.nuget: v2-nuget
     artifacts:
       paths:
-        - files_to_check.txt
-        - inspect_results.xml
-        - duplicate_results.xml
         - format_diff.patch
     steps:
       - run:
-          command: ./check_formatting.rb -c files,localization
+          command: dotnet restore Scripts/Scripts.csproj
+      - run:
+          name: files localization steam-build checks
+          command: dotnet run --project Scripts -- check files localization steam-build
       - run:
           when: always
           name: Check format changes
