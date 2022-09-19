@@ -780,69 +780,73 @@ public partial class Microbe
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
 
-        bool reproductionStageComplete = true;
+        // Process the base cost first so the player can play as their designed cell (without extra organelles) for a while
+        bool reproductionStageComplete = ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds);
 
-        // Organelles that are ready to split
-        var organellesToAdd = new List<PlacedOrganelle>();
-
-        // Grow all the organelles, except the nucleus which is given compounds last
-        foreach (var organelle in organelles!.Organelles)
+        // For this stage and all others below, reproductionStageComplete tracks whether the previous reproduction
+        // stage completed, i.e. whether we should proceed with the next stage
+        if (reproductionStageComplete)
         {
-            // Check if already done
-            if (organelle.WasSplit)
-                continue;
+            // Organelles that are ready to split
+            var organellesToAdd = new List<PlacedOrganelle>();
 
-            // If we ran out of allowed compound use, stop early
-            if (remainingAllowedCompoundUse <= 0)
+            // Grow all the organelles, except the unique organelles which are given compounds last
+            foreach (var organelle in organelles!.Organelles)
             {
-                reproductionStageComplete = false;
-                break;
+                // Check if already done
+                if (organelle.WasSplit)
+                    continue;
+
+                // If we ran out of allowed compound use, stop early
+                if (remainingAllowedCompoundUse <= 0)
+                {
+                    reproductionStageComplete = false;
+                    break;
+                }
+
+                // We are in G1 phase of the cell cycle, duplicate all organelles.
+
+                // Except the unique organelles
+                if (organelle.Definition.Unique)
+                    continue;
+
+                // Give it some compounds to make it larger.
+                organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                    consumeReproductionCompoundsReverse);
+
+                if (organelle.GrowthValue >= 1.0f)
+                {
+                    // Queue this organelle for splitting after the loop.
+                    organellesToAdd.Add(organelle);
+                }
+                else
+                {
+                    // Needs more stuff
+                    reproductionStageComplete = false;
+                }
+
+                // TODO: can we quit this loop early if we still would have dozens of organelles to check but don't have
+                // any compounds left to give them (that are probably useful)?
             }
 
-            // We are in G1 phase of the cell cycle, duplicate all organelles.
-
-            // Except the unique organelles
-            if (organelle.Definition.Unique)
-                continue;
-
-            // Give it some compounds to make it larger.
-            organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
-                consumeReproductionCompoundsReverse);
-
-            if (organelle.GrowthValue >= 1.0f)
+            // Splitting the queued organelles.
+            foreach (var organelle in organellesToAdd)
             {
-                // Queue this organelle for splitting after the loop.
-                organellesToAdd.Add(organelle);
+                // Mark this organelle as done and return to its normal size.
+                organelle.ResetGrowth();
+                organelle.WasSplit = true;
+
+                // Create a second organelle.
+                var organelle2 = SplitOrganelle(organelle);
+                organelle2.WasSplit = true;
+                organelle2.IsDuplicate = true;
+                organelle2.SisterOrganelle = organelle;
             }
-            else
-            {
-                // Needs more stuff
-                reproductionStageComplete = false;
-            }
-
-            // TODO: can we quit this loop early if we still would have dozens of organelles to check but don't have
-            // any compounds left to give them (that are probably useful)?
-        }
-
-        // Splitting the queued organelles.
-        foreach (var organelle in organellesToAdd)
-        {
-            // Mark this organelle as done and return to its normal size.
-            organelle.ResetGrowth();
-            organelle.WasSplit = true;
-
-            // Create a second organelle.
-            var organelle2 = SplitOrganelle(organelle);
-            organelle2.WasSplit = true;
-            organelle2.IsDuplicate = true;
-            organelle2.SisterOrganelle = organelle;
         }
 
         if (reproductionStageComplete)
         {
-            // All organelles have split. Now give the nucleus compounds
-
-            foreach (var organelle in organelles.Organelles)
+            foreach (var organelle in organelles!.Organelles)
             {
                 // In the second phase all unique organelles are given compounds
                 // It used to be that only the nucleus was given compounds here
@@ -865,15 +869,6 @@ public partial class Microbe
                     // Nucleus (or another unique organelle) needs more compounds
                     reproductionStageComplete = false;
                 }
-            }
-        }
-
-        if (reproductionStageComplete)
-        {
-            // Nucleus (and other unique organelles) are also now ready to reproduce
-            if (!ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds))
-            {
-                reproductionStageComplete = false;
             }
         }
 
