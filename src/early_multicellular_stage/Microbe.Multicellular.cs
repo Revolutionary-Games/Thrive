@@ -131,6 +131,23 @@ public partial class Microbe
         }
     }
 
+    /// <summary>
+    ///   Perform an action for all members of this cell's colony other than this cell.
+    /// </summary>
+    public void PerformForAllColonyMembers(Action<Microbe> action)
+    {
+        if (Colony?.Master == this)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                action(cell);
+            }
+        }
+    }
+
     private void HandleMulticellularReproduction(float elapsedSinceLastUpdate)
     {
         compoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
