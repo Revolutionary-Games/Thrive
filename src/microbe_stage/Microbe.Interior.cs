@@ -901,7 +901,7 @@ public partial class Microbe
         if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
         {
             // TODO: make the current patch affect this?
-            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta;
+            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * (HexCount * 0.25f + 1f) * delta;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
