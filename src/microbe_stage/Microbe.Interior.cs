@@ -342,6 +342,17 @@ public partial class Microbe
 
     public void QueueSecreteSlime(float duration)
     {
+        if (Colony?.Master == this)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                cell.QueueSecreteSlime(duration);
+            }
+        }
+
         queuedSlimeSecretionTime += duration;
     }
 
@@ -895,13 +906,13 @@ public partial class Microbe
 
         if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta;
+            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta * 100;
         }
 
         if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
         {
             // TODO: make the current patch affect this?
-            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta;
+            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta * 100;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
