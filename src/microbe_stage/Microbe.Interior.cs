@@ -780,8 +780,9 @@ public partial class Microbe
         var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
 
-        // Process the base cost first so the player can play as their designed cell (without extra organelles) for a while
-        bool reproductionStageComplete = ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds);
+        // Process base cost first so the player can be their designed cell (without extra organelles) for a while
+        bool reproductionStageComplete =
+            ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds);
 
         // For this stage and all others below, reproductionStageComplete tracks whether the previous reproduction
         // stage completed, i.e. whether we should proceed with the next stage
