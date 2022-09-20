@@ -909,12 +909,19 @@ public partial class Microbe
         if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
         {
             remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta;
+
+            if (IsMulticellular)
+                remainingAllowedCompoundUse *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
         }
 
         if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
         {
             // TODO: make the current patch affect this?
+            // TODO: make surface area of the cell (and colony) affect this
             remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta;
+
+            if (IsMulticellular)
+                remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
