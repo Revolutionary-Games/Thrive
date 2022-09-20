@@ -901,7 +901,7 @@ public partial class Microbe
 
         if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * remainingFreeCompounds * delta;
+            remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
