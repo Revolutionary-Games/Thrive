@@ -629,6 +629,23 @@ public partial class Microbe
         return result;
     }
 
+    /// <summary>
+    ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
+    /// </summary>
+    private void PerformForOtherColonyMembersIfWeAreLeader(Action<Microbe> action)
+    {
+        if (Colony?.Master == this)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                action(cell);
+            }
+        }
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
         if (PhagocytosisStep != PhagocytosisPhase.None)
