@@ -893,15 +893,15 @@ public partial class Microbe
         float remainingAllowedCompoundUse = float.MaxValue;
         float remainingFreeCompounds = 0;
 
-        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
-        {
-            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta;
-        }
-
         if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
         {
             // TODO: make the current patch affect this?
-            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * (HexCount * 0.25f + 1f) * delta;
+            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * (HexCount * 0.02f + 1f) * delta;
+        }
+
+        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
+        {
+            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * remainingFreeCompounds * delta;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
