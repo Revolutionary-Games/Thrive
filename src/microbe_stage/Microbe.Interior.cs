@@ -261,7 +261,7 @@ public partial class Microbe
 
         agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
-        PerformForAllColonyMembers(m => m.EmitToxin(agentType));
+        PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
 
         if (AgentEmissionCooldown > 0)
             return;
@@ -333,7 +333,10 @@ public partial class Microbe
 
     public void QueueSecreteSlime(float duration)
     {
-        PerformForAllColonyMembers(m => m.QueueSecreteSlime(duration));
+        PerformForOtherColonyMembersIfWeAreLeader(m => m.QueueSecreteSlime(duration));
+
+        if (SlimeJets.Count < 1)
+            return;
 
         queuedSlimeSecretionTime += duration;
     }

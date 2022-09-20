@@ -132,9 +132,9 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Perform an action for all members of this cell's colony other than this cell.
+    ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
     /// </summary>
-    public void PerformForAllColonyMembers(Action<Microbe> action)
+    public void PerformForOtherColonyMembersIfWeAreLeader(Action<Microbe> action)
     {
         if (Colony?.Master == this)
         {
