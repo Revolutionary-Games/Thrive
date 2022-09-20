@@ -259,16 +259,9 @@ public partial class Microbe
         if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
-        if (Colony?.Master == this)
-        {
-            foreach (var cell in Colony.ColonyMembers)
-            {
-                if (cell == this)
-                    continue;
+        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
-                cell.EmitToxin(agentType);
-            }
-        }
+        PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
 
         if (AgentEmissionCooldown > 0)
             return;
@@ -276,8 +269,6 @@ public partial class Microbe
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
             return;
-
-        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
@@ -342,6 +333,11 @@ public partial class Microbe
 
     public void QueueSecreteSlime(float duration)
     {
+        PerformForOtherColonyMembersIfWeAreLeader(m => m.QueueSecreteSlime(duration));
+
+        if (SlimeJets.Count < 1)
+            return;
+
         queuedSlimeSecretionTime += duration;
     }
 
@@ -631,6 +627,23 @@ public partial class Microbe
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
+    /// </summary>
+    private void PerformForOtherColonyMembersIfWeAreLeader(Action<Microbe> action)
+    {
+        if (Colony?.Master == this)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                action(cell);
+            }
+        }
     }
 
     private void HandleCompoundAbsorbing(float delta)
