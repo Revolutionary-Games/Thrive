@@ -74,8 +74,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKey("g_secrete_slime")]
     public void SecreteSlime(float delta)
     {
-        if (stage.Player?.SlimeJets.Count > 0)
-            stage.Player.QueueSecreteSlime(delta);
+        stage.Player?.QueueSecreteSlime(delta);
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
