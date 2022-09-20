@@ -103,6 +103,8 @@ public class MicrobeAI
     private float SpeciesFocus => microbe.Species.Behaviour.Focus;
     private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
+    private bool IsSessile => SpeciesActivity < Constants.MAX_SPECIES_ACTIVITY / 10;
+
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
         // Disable most AI in a colony
@@ -227,7 +229,9 @@ public class MicrobeAI
             var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
             if (player != null)
             {
-                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
+                // Only move if we aren't sessile
+                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f &&
+                    !IsSessile)
                 {
                     MoveToLocation(player.GlobalTransform.origin);
                     return;
@@ -264,7 +268,7 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         // Otherwise just wander around and look for compounds
-        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+        if (!IsSessile)
         {
             SeekCompounds(random, data);
         }
