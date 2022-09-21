@@ -367,11 +367,19 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
 
     /// <summary>
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> and
+    ///   <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for early multicellular microbes
+    /// </summary>
+    public const float EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
+
+    /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
     /// </summary>
     public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
+
+    public const float EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
