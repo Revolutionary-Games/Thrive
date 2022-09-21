@@ -2200,7 +2200,6 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
-visible = true
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
