@@ -909,14 +909,12 @@ public partial class Microbe
             if (IsMulticellular)
                 remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
         }
-        
         if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
         {
             remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
             if (IsMulticellular)
                 remainingAllowedCompoundUse *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
         }
-        
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
     }
 
