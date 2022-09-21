@@ -357,7 +357,7 @@ public static class Constants
     /// <summary>
     ///   Multiplier on how much total compounds can be absorbed by organelles to grow per second.
     /// </summary>
-    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 2f;
+    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 2.0f;
 
     /// <summary>
     ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
