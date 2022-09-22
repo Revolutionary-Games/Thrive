@@ -355,7 +355,9 @@ public static class Constants
     public const bool ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS = false;
 
     /// <summary>
-    ///   Multiplier on how much total compounds can be absorbed by organelles to grow per second.
+    ///   Multiplier on how much total compounds can be absorbed by organelles to grow per second compared to the free
+    ///   compounds amount. Value of 2 means that having available compounds in storage can make reproduction 2x the
+    ///   speed of just using free compounds.
     /// </summary>
     public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 2.0f;
 
@@ -365,6 +367,11 @@ public static class Constants
     ///   This is because it is way easier to implement that way.
     /// </summary>
     public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
+    
+    /// <summary>
+    ///   Bonus per hex given to the compound rate
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX = 0.02f;
 
     /// <summary>
     ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> and

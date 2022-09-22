@@ -900,21 +900,32 @@ public partial class Microbe
         CalculateFreeCompoundsAndLimits(float delta)
     {
         float remainingAllowedCompoundUse = float.MaxValue;
-        float remainingFreeCompounds = 0;
 
-        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
+        var gameWorldWorldSettings = GameWorld.WorldSettings;
+
+        // Skip some computations when they are not needed
+        if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds &&
+            !gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            // TODO: make the current patch affect this?
-            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * (HexCount * 0.02f + 1.0f) * delta;
-            if (IsMulticellular)
-                remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+            return (remainingAllowedCompoundUse, 0);
         }
 
-        if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
+        // TODO: make the current patch affect this?
+        float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
+            (HexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
+
+        if (IsMulticellular)
+            remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+
+        if (gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
         {
             remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
-            if (IsMulticellular)
-                remainingAllowedCompoundUse *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+        }
+
+        // Reset the free compounds if we don't want to give free compounds. It was necessary to calculate for the above math
+        if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds)
+        {
+            remainingFreeCompounds = 0;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
