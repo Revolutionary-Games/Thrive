@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-07-24 11:52+0000\n"
-"Last-Translator: Alexander Gulyuta <guluta32@gmail.com>\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -43,16 +43,16 @@ msgstr "Набросок клетки"
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
 msgid "MICROBE_STAGE"
-msgstr "Этап Одноклеточного микроба"
+msgstr "Одноклеточная стадия"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
-msgstr "Этап Многоклеточного микроба"
+msgstr "Многоклеточная стадия"
 
 #: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
-msgstr "Основное"
+msgstr "Общее"
 
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
@@ -65,7 +65,7 @@ msgstr "Музыка"
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 msgid "ALL"
-msgstr "всё"
+msgstr "Всё"
 
 #: ../simulation_parameters/common/gallery.json:268
 msgid "MENU"
@@ -73,7 +73,7 @@ msgstr "Меню"
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
-msgstr "Редактор микроба"
+msgstr "Одноклеточный редактор"
 
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
@@ -82,17 +82,17 @@ msgstr "Многоклеточный редактор"
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мышь - для перемещения. [thrive:input]g_fire_toxin[/thrive:input] - выпускать [thrive:compound type=\"oxytoxy\"][/thrive:compound], если есть токсиновая вакуоль. [thrive:input]g_toggle_engulf[/thrive:input] - режим поглощения. Вы можете изменять масштаб с помощью колесика мыши."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мышь — для перемещения. [thrive:input]g_fire_toxin[/thrive:input] — выпускать [thrive:compound type=\"oxytoxy\"][/thrive:compound], если есть токсиновая вакуоль. [thrive:input]g_toggle_engulf[/thrive:input] — режим поглощения. Вы можете изменять масштаб с помощью колёсика мыши."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Ваша клетка использует [thrive:compound type=\"atp\"][/thrive:compound] как источник энергии, если она закончится - ваша клетка погибнет."
+msgstr "Ваша клетка использует [thrive:compound type=\"atp\"][/thrive:compound] как источник энергии, если она закончится — ваша клетка погибнет."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно собрать [thrive:compound type=\"ammonia\"][/thrive:compound] (Оранжевое Облако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (Фиолетовое Облако)."
+msgstr "Для того, чтобы воспользоваться редактором и размножиться, вам нужно собрать [thrive:compound type=\"ammonia\"][/thrive:compound] (оранжевое облако) и [thrive:compound type=\"phosphates\"][/thrive:compound] (фиолетовое облако)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -105,7 +105,7 @@ msgstr "Как только поглощение завершено, погло�
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Однако, Лизомомы есть только у эукариотов, прокариоты такой органеллы не имеют и переваривают пищу крайне неэффективно. Для маленьких клеток это нормально, но для крупных клеток отсутствие лизосом весьма фатально."
+msgstr "Однако, лизомомы есть только у эукариотов, прокариоты такой органеллы не имеют и переваривают пищу крайне неэффективно. Для маленьких клеток это нормально, но для крупных клеток отсутствие лизосом весьма фатально."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
@@ -114,7 +114,7 @@ msgstr "Целлюлозные и хитиновые стенки клетки �
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Осморегуляция стоит [thrive:compound type=\"atp\"][/thrive:compound], а это значит, что чем больше ваша клетка, тем больше вам нужно Митохондрий, Метаболосом или Рустицианина (или цитоплазмы, которая делает Гликолиз), чтобы избежать потери [thrive:compound type=\"atp\"][/thrive:compound], когда вы неподвижны."
+msgstr "Осморегуляция стоит [thrive:compound type=\"atp\"][/thrive:compound], а это значит, что чем больше ваша клетка, тем больше вам нужно митохондрий, метаболосом или рустицианина (или цитоплазмы, которая проводит гликолиз), чтобы избежать потери [thrive:compound type=\"atp\"][/thrive:compound], когда вы неподвижны."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -126,18 +126,18 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Различные облака соединений:\n"
 "\n"
-"Белый - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Желтый - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Оранжевый - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Фиолетовый - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Ржаво-коричневый - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"Белый — [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Жёлтый — [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Оранжевый — [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Фиолетовый — [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Ржаво-коричневый — [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
 "Из [thrive:compound type=\"glucose\"][/thrive:compound] делается [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] может быть превращен в [thrive:compound type=\"glucose\"][/thrive:compound] с помощью хемопластов или белков-хемосинтетиков. [thrive:compound type=\"iron\"][/thrive:compound] может преобразоваться в [thrive:compound type=\"atp\"][/thrive:compound] при помощи рустицианина."
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] может быть превращён в [thrive:compound type=\"glucose\"][/thrive:compound] с помощью хемопластов или белков-хемосинтетиков. [thrive:compound type=\"iron\"][/thrive:compound] может преобразоваться в [thrive:compound type=\"atp\"][/thrive:compound] при помощи рустицианина."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
@@ -250,11 +250,11 @@ msgstr "Вот совет: Осморегуляция тратит 1 АТФ в �
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Забавный факт, В реальной жизни у прокариот есть нечто, называемое Биокомпонентами, которые действуют как органеллы, но самом деле называются Многогранными органеллами."
+msgstr "Забавный факт: в реальной жизни у прокариот есть нечто, называемое компартментами, которые действуют как органеллы, их даже иногда называют многогранными органеллами."
 
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Забавный Факт, Метаболосома является Многогранной органеллой."
+msgstr "Забавный факт: метаболосома — многогранная органелла."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
@@ -286,7 +286,7 @@ msgstr "Те синие клетки однако."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Вот совет: Биомы - это больше, чем просто разные фоны, соединения в разных биомах, иногда, появляются с разной скоростью."
+msgstr "Вот совет: биомы — это больше, чем просто разные фоны, иногда соединения в разных биомах появляются с разной скоростью."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
@@ -302,31 +302,31 @@ msgstr "Вот совет: хорошо подготовьтесь перед д
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Забавный факт: Знаете ли вы, что на планете Земля существует более 8000 видов инфузорий?"
+msgstr "Забавный факт: вы знали, что на Земле существует более 8000 видов инфузорий?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Забавный факт: Трубачи - инфузории, способные растягивать себя и ловить добычу в подобный трубе рот, который засасывает жертву, создавая водные потоки с помощью ресничек."
+msgstr "Забавный факт: трубачи — инфузории, способные растягивать себя и ловить добычу в подобный трубе рот, который засасывает жертву, создавая водные потоки с помощью ресничек."
 
 #: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Интересный факт: Дидиниум - это инфузория, которая охотится на парамеции."
+msgstr "Интересный факт: инфузории рода Didinium охотится на инфузории туфельки."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Забавный факт: Амеба охотится и ловит добычу с помощью \"ног\", состоящих из цитоплазмы, которые называются псевдоподиями, когда-нибудь мы бы хотели добавить их в Thrive."
+msgstr "Забавный факт: амёба охотится и ловит добычу с помощью \"ног\", состоящих из цитоплазмы, которые называются псевдоподиями, когда-нибудь мы бы хотели добавить их в Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Вот совет: Опасайтесь более крупных клеток и бактерий, быть съеденным не весело, а они вас съедят."
+msgstr "Вот совет: опасайтесь более крупных клеток и бактерий, быть съеденным не весело, а они вас съедят."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Звуковая команда Thrive'а сделала много песен, которые ещё не были добавлены в игру. Вы можете послушать их, или посмотреть стримы с их написанием на его YouTube канале, Oliver Lugg."
+msgstr "Лидер команды звуковиков Thrive сделал много песен, которые ещё не были добавлены в игру. Вы можете послушать их, или посмотреть трансляции с их созданием на его YouTube канале, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Вот совет: если ваша клетка составляет 150 ячеек, вы можете поглотить большие куски железа."
+msgstr "Вот совет: если ваша клетка занимает от 150 ячеек, вы можете поглотить большие куски железа."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
@@ -342,7 +342,7 @@ msgstr "Интересный факт: Thrive создан на движке с 
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Забавный факт: Один из первых рабочих прототипов игрового процесса был создан нашим замечательным программистом - untrustedlife!"
+msgstr "Забавный факт: один из первых рабочих прототипов игрового процесса был создан нашим замечательным программистом — untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
@@ -382,7 +382,7 @@ msgstr "Выстрелить токсином"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Выделить слизь"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -622,9 +622,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синтез ОксиТоксина"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Хемосинтез"
+msgstr "Синтез слизи"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -801,7 +800,7 @@ msgstr "ОксиТоксин НТ"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Слизь"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -1014,9 +1013,8 @@ msgid "LYSOSOME"
 msgstr "Лизосома"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:580
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Симулировать {0} поколений"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 msgid "SPECIES_DETAIL_TEXT"
@@ -1151,32 +1149,28 @@ msgid "STATUS_COLON"
 msgstr "Создатель:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:448
-#, fuzzy
 msgid "READY"
-msgstr "Потоки:"
+msgstr "Готово"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:479
-#, fuzzy
 msgid "FINISH_ONE_GENERATION"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Симулировать одно поколение"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:491
-#, fuzzy
 msgid "ABORT"
-msgstr "Отменено."
+msgstr "Отмена"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:539
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "Поколение:"
+msgstr "Поколения"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 #, fuzzy
@@ -1248,9 +1242,8 @@ msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завершено. {1:n0}/{2:n0} шагов."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "В паузе"
+msgstr "На паузе."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
@@ -1599,9 +1592,8 @@ msgstr ""
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Новое Название Колонии:"
+msgstr "По вертикали (ось: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
@@ -1615,37 +1607,35 @@ msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Этот язык на {0}% завершён"
+msgstr "Идет настройка мёртвых зон. Пожалуйста, не трогайте кнопки и стики на контроллере и подождите несколько секунд"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Дополнительные проверки обнаружили проблему: {0}"
+msgstr "Настройка мёртвых зон завершена. Новые значения отображены ниже."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
+msgstr "Настройка мёртвых зон"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "На этой панели показаны числа, на основе которых работает предсказание авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его физическая форма по сравнению с общей пригодностью. Пригодность - это показатель того, насколько хорошо вид может использовать этот источник пищи."
+msgstr ""
+"Этот инструмент позволяет настроить мёртвые зоны на контроллере. Мёртвая зона обозначает насколько надо сдвинуть аналоговый стик (или аналоговую кнопку) прежде чем это движение будет засчитано как ввод.\n"
+"\n"
+"Перед началом калибрации подвигайте все стики контроллера и отпустите из, а затем нажмите и отпустите аналоговые кнопки (например курки) на контроллере."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
 msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Сбросить по умолчанию?"
+msgstr "Сбросить мёртвые зоны"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2148,11 +2138,11 @@ msgstr "Авторизован как: {0}"
 
 #: ../src/general/MainMenu.tscn:196
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Новая Игра"
+msgstr "Начать новую игру"
 
 #: ../src/general/MainMenu.tscn:199
 msgid "NEW_GAME"
-msgstr "Новая Игра"
+msgstr "Новая игра"
 
 #: ../src/general/MainMenu.tscn:210 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
@@ -2177,7 +2167,7 @@ msgstr "Инструменты"
 
 #: ../src/general/MainMenu.tscn:247
 msgid "VIEW_SOURCE_CODE"
-msgstr "Обзор Исходного Кода"
+msgstr "Открыть исходный код"
 
 #: ../src/general/MainMenu.tscn:258
 msgid "EXTRAS"
@@ -2197,12 +2187,11 @@ msgstr "Выйти"
 
 #: ../src/general/MainMenu.tscn:301
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Микробный Креативный Редактор"
+msgstr "Свободный микробный редактор"
 
 #: ../src/general/MainMenu.tscn:313
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "статус запуска:"
+msgstr "Инструмент изучения авто-эво"
 
 #: ../src/general/MainMenu.tscn:380
 msgid "MODS"
@@ -2218,7 +2207,7 @@ msgstr "Лицензии"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Предложить идею"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2230,7 +2219,7 @@ msgstr "Ты запустил Thrive через GLES2. Этот режим ещ�
 
 #: ../src/general/MainMenu.tscn:516
 msgid "MOD_LOAD_ERRORS"
-msgstr "Ошибки загрузки Модов"
+msgstr "Ошибки при загрузке модов"
 
 #: ../src/general/MainMenu.tscn:517
 msgid "MOD_LOAD_ERRORS_OCCURRED"
@@ -2304,7 +2293,7 @@ msgstr "Это значение используется для генераци
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Заметьте: вы можете изменить настройки производительности в любое время в [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]меню настроек[/url][/color] для улучшения производительности"
 
 #: ../src/general/NewGameSettings.tscn:290
 msgid "DIFFICULTY"
@@ -2336,7 +2325,7 @@ msgstr "(скорость, с которой ИИ будет мутироват�
 
 #: ../src/general/NewGameSettings.tscn:524
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Плотность облака вещества"
+msgstr "Плотность облаков веществ"
 
 #: ../src/general/NewGameSettings.tscn:569
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
@@ -2589,17 +2578,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Отображение фоновых частиц"
 
 #: ../src/general/OptionsMenu.tscn:439
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "Видеокарта:"
 
 #: ../src/general/OptionsMenu.tscn:469
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Движок отрисовки:"
 
 #: ../src/general/OptionsMenu.tscn:496
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Видеопамяти используется:"
 
 #: ../src/general/OptionsMenu.tscn:523
 msgid "GUI"
@@ -2614,9 +2602,8 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
 #: ../src/general/OptionsMenu.tscn:553
-#, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "Показать название кнопок выбора частей:"
+msgstr "Показать названия кнопок при выборе частей"
 
 #: ../src/general/OptionsMenu.tscn:579
 msgid "MASTER_VOLUME"
@@ -2658,15 +2645,15 @@ msgstr "Сбросить"
 
 #: ../src/general/OptionsMenu.tscn:823
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "Помогите Перевести Эту Игру"
+msgstr "Помогите перевести эту игру"
 
 #: ../src/general/OptionsMenu.tscn:849
 msgid "COMPOUND_CLOUDS"
-msgstr "Облака из Компонентов"
+msgstr "Облака веществ"
 
 #: ../src/general/OptionsMenu.tscn:864
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr "Мин. интервал облака симуляции:"
+msgstr "Мин. интервал симуляции облаков:"
 
 #: ../src/general/OptionsMenu.tscn:871 ../src/general/OptionsMenu.tscn:913
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -2686,11 +2673,11 @@ msgstr "Число обнаруженных ядер процессора:"
 
 #: ../src/general/OptionsMenu.tscn:984
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Текущие задачи:"
+msgstr "Число потоков:"
 
 #: ../src/general/OptionsMenu.tscn:998
 msgid "ASSUME_HYPERTHREADING"
-msgstr "Предположим, что в процессоре включена гиперпоточность"
+msgstr "Предположить, что в процессоре включена гиперпоточность"
 
 #: ../src/general/OptionsMenu.tscn:1006
 msgid "USE_MANUAL_THREAD_COUNT"
@@ -2738,43 +2725,40 @@ msgstr "Экстремальное"
 
 #: ../src/general/OptionsMenu.tscn:1147
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Чувствительность обзора мышью"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Общее значение для осей"
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Версия:"
+msgstr "По горизонтали:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "Инвертировать"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Версия:"
+msgstr "По вертикали:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Изменять чувствительность мыши в зависимости от размера окна"
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Не изменять"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Сигнальный агент"
+msgstr "Увеличивать"
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Уменьшать"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -2782,16 +2766,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Чувствительность контроллера"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Настройка мёртвых зон контроллера"
 
 #: ../src/general/OptionsMenu.tscn:1352
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Сбросить Клавиши"
+msgstr "Сбросить настройки клавиш"
 
 #: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
@@ -2839,11 +2822,11 @@ msgstr "Кастомное имя пользователя:"
 
 #: ../src/general/OptionsMenu.tscn:1542
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "Открыть Папку со Скриншотами"
+msgstr "Открыть папку со скриншотами"
 
 #: ../src/general/OptionsMenu.tscn:1550
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Открыть Папку с Логами"
+msgstr "Открыть папку с логами"
 
 #: ../src/general/OptionsMenu.tscn:1560
 msgid "JSON_DEBUG_MODE"
@@ -2862,19 +2845,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Автоматически загружать патчи для сборки модов от Harmony(Специальный мод не требуется)"
+msgstr "Код коммита, с которого была скомпилирована эта версия Thrive"
 
 #: ../src/general/OptionsMenu.tscn:1594
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Версия:"
+msgstr "Точная версия Thrive:"
 
 #: ../src/general/OptionsMenu.tscn:1622
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Соединения:"
+msgstr "Собрано в:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -2894,11 +2874,11 @@ msgstr "Вы действительно хотите сбросить ВСЕ н�
 
 #: ../src/general/OptionsMenu.tscn:1710
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Восстановить до значений по умолчанию?"
+msgstr "Сбросить настройки ввода до значений по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1711
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Вы действительно хотите сбросить настройки клавиш до значений по умолчанию?"
+msgstr "Вы действительно хотите сбросить настройки ввода до значений по умолчанию?"
 
 #: ../src/general/OptionsMenu.tscn:1720
 msgid "CLOSE_OPTIONS"
@@ -2907,8 +2887,8 @@ msgstr "Закрыть настройки?"
 #: ../src/general/OptionsMenu.tscn:1740
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
-"Вы имеете не сохранённые изменения, которые можете потерять.\n"
-"Вы хотите продолжить?"
+"У вас есть несохранённые изменения, которые будут утрачены.\n"
+"Желаете продолжить?"
 
 #: ../src/general/OptionsMenu.tscn:1763
 msgid "SAVE_AND_CONTINUE"
@@ -2956,7 +2936,7 @@ msgstr "Продолжить"
 
 #: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Сохранить игру"
+msgstr "Открыть меню сохранения и сохранить игру"
 
 #: ../src/general/PauseMenu.tscn:188
 msgid "SAVE_GAME"
@@ -2973,7 +2953,7 @@ msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Помощь"
+msgstr "Как играть в эту игру"
 
 #: ../src/general/PauseMenu.tscn:213
 msgid "HELP"
@@ -2986,7 +2966,7 @@ msgstr "Вернуться в главное меню"
 #: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
-msgstr "Вернуться в Меню"
+msgstr "Вернуться в меню"
 
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
@@ -3723,14 +3703,12 @@ msgid "SPEED"
 msgstr "Скорость"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Повышает скорость поворота клеток."
+msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"mucilage\"][/thrive:compound]. Нажмите [thrive:input]g_secrete_slime[/thrive:input] чтобы выделить накопленную [thrive:compound type=\"mucilage\"][/thrive:compound], увеличивающую скорость клетки и замедляющую хищников."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите эффективность."
+msgstr "Многие организмы производят склизкую субстанцию из полисахаридов, слизь — один из таких полисахаридов. Многие виды используют слизь для перемещения, некоторые бактерии выстреливают эти вещества под большим давлением. Эти потоки слизи действуют как реактивные двигатели, толкая клетку вперёд на невероятной скорости. Слизь также используется для защиты от хищников, обволакивая их в субстанции, в которой могут передвигаться только организмы с реактивным передвижением."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -4827,7 +4805,7 @@ msgstr "Сборка мода требуется c Harmony"
 
 #: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
-msgstr "Не Выбран Мод"
+msgstr "Ни одного мода не выбрано"
 
 #: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
@@ -4863,7 +4841,7 @@ msgstr "Обновить"
 
 #: ../src/modding/ModManager.tscn:150
 msgid "OPEN_FOLDER"
-msgstr "Открыть Папку"
+msgstr "Открыть папку"
 
 #: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
@@ -4875,15 +4853,15 @@ msgstr "←"
 
 #: ../src/modding/ModManager.tscn:193
 msgid "ENABLED_MODS"
-msgstr "Включенные Моды"
+msgstr "Включенные моды"
 
 #: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
-msgstr "Отключить Все"
+msgstr "Отключить все"
 
 #: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
-msgstr "Выбранный Мод:"
+msgstr "Выбранный мод:"
 
 #: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
 #: ../src/modding/NewModGUI.tscn:140
@@ -5509,7 +5487,7 @@ msgstr "Очистить Старые Сохранения"
 
 #: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "Открыть Папку Сохранений"
+msgstr "Открыть папку сохранений"
 
 #: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
@@ -5688,11 +5666,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"На далекой чужой планете, эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
 "\n"
 "Жизнь.\n"
 "\n"
-"Простые микробы обитают в глубоких районах океана. Вы - последний универсальный общий предок (ЛУКА) этой планеты.\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
 "\n"
 "Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
 
