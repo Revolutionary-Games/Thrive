@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-08-25 21:34+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -101,11 +101,11 @@ msgstr "С натискане на [thrive:input]g_toggle_engulf[/thrive:input] 
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Ензимите на лизозомата подобряват асимилационната ефективност на клетката."
+msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Ензимите на лизозомата подобряват хранителната ефективност на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Лизозомата е еукариотна еволюция и не може да се използва от прокариотните клетки. Увеличаването на техния размер намалява асимилационната ефективност на клетката."
+msgstr "Лизозомата е еукариотна еволюция и не може да се използва от прокариотните клетки. Увеличаването на техния размер намалява хранителната ефективност на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
@@ -188,7 +188,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Външни органели\n"
 "\n"
-"Камшиче: Придвижва клетката по-бързо, използвайки [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
+"Камшиче: Използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да увеличи скоростта на движение на клетката\n"
 "\n"
 "Пили: Пробожда другите клетки и предпазва от техните токсини\n"
 "\n"
@@ -211,7 +211,7 @@ msgstr ""
 "\n"
 "Термопласт: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти\n"
 "\n"
-"Лизозома: Съдържа асимилационни ензими. Те подобряват асимилационната ефективност на клетката\n"
+"Лизозома: Съдържа асимилационни ензими. Те подобряват хранителната ефективност на клетката\n"
 "\n"
 "Хемопласт: Създава [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound]\n"
 "\n"
@@ -382,7 +382,7 @@ msgstr "Изстрелване на токсин"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Освобождаване на слуз"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -499,14 +499,13 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Надолу или клякане"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Разни"
+msgstr "Триизмерен етап"
 
 #: ../simulation_parameters/common/input_options.json:180
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Задържане на [thrive:input]g_free_cursor[/thrive:input] за курсора"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -622,9 +621,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Окситоксиносинтеза"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Хемосинтеза"
+msgstr "Секреция"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -801,7 +799,7 @@ msgstr "Окситоксин"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Слуз"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -986,7 +984,7 @@ msgstr "Хеморецептор"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Порозома"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1015,7 +1013,7 @@ msgstr "Лизозома"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
-msgstr "Завършване на {0} поколения"
+msgstr "{0} поколения"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 msgid "SPECIES_DETAIL_TEXT"
@@ -1078,15 +1076,15 @@ msgstr "Вероятност за създаване на нови създан�
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Вероятност за създаване на нови създания от съседна зона за увеличаване на биоразнообразието"
+msgstr "Вероятност за създаване на нови създания, увеличаващи биоразнообразието, от съседна зона"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Създанията от съседна зона за увеличаване на биоразнообразието получават допълнителна популация"
+msgstr "Създанията от съседна зона, увеличаващи биоразнообразието, получават допълнителна популация"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Създанията за увеличаване на биоразнообразието претърпяват мутация при създаването си"
+msgstr "Създанията, увеличаващи биоразнообразието, претърпяват мутация при създаването си"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -1106,7 +1104,7 @@ msgstr "Брой на опитите за мутация на създаният
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Начална популация на създанията за увеличаване на биоразнообразието"
+msgstr "Начална популация на създанията, увеличаващи биоразнообразието"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
@@ -1134,7 +1132,7 @@ msgstr "Минимална част от популацията за отдел�
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Създанията за увеличаване на биоразнообразието използват популацията на техните съперници"
+msgstr "Създанията, увеличаващи биоразнообразието, използват популацията на техните съперници"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 msgid "CURRENT_GENERATION_COLON"
@@ -1150,11 +1148,11 @@ msgstr "Готова"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 msgid "FINISH_ONE_GENERATION"
-msgstr "Завършване на следващото поколение"
+msgstr "Следващо поколение"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
-msgstr "Изпълняване на следващата стъпка"
+msgstr "Следваща стъпка"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 msgid "ABORT"
@@ -1162,7 +1160,7 @@ msgstr "Прекратяване"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr "Нова игра с текущите настройки"
+msgstr "Нова игра"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 msgid "GENERATIONS"
@@ -1565,7 +1563,7 @@ msgstr "Надписи на обектите"
 
 #: ../src/engine/DebugOverlays.tscn:123
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "Прочистване на възлите"
 
 #: ../src/engine/DebugOverlays.tscn:134
 msgid "TRANSPARENCY"
@@ -1578,61 +1576,56 @@ msgstr "Зареждане"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Хоризонтална ос: {0}"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Наименование:"
+msgstr "Вертикална ос: {0}"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Наименование:"
+msgstr "Стойност:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Мъртва зона:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Този превод е завършен на {0} %"
+msgstr "Моля, не докосвайте бутоните и ръкохватките на Вашия контролер, и изчакайте няколко секунди, докато калибрирането завърши."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Калибрирането е нулирано"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Допълнителните проверки откриха проблем: {0}"
+msgstr "Калибрирането е завършено."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+msgstr "Мъртви зони на контролера"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
+msgstr ""
+"Размерът на мъртвата зона определя движението, което една ръкохватка (или аналогов бутон) трябва да измине, преди да е засечено от играта.\n"
+"Моля, преместете всички ръкохватки и натиснете всички аналогови бутони (например спусъка) на Вашия контролер, преди да започнете калибрирането."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Калибриране"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Възстановяване на настройките по подразбиране?"
+msgstr "Нулиране"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Визуализатор на осите:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2195,7 +2188,7 @@ msgstr "Лицензи"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Предложения"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2352,24 +2345,20 @@ msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(създава облак от глюкоза близо до Вашето създание след всяко отваряне на редактора)"
 
 #: ../src/general/NewGameSettings.tscn:785
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "(определя скоростта на мутация на Вашите съперници)"
+msgstr "Пасивно усвояване на хранителните вещества"
 
 #: ../src/general/NewGameSettings.tscn:792
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(определя скоростта на мутация на Вашите съперници)"
+msgstr "(клетките усвояват хранителните вещества от околната среда)"
 
 #: ../src/general/NewGameSettings.tscn:804
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Умерен"
+msgstr "Ограничаване на растежа"
 
 #: ../src/general/NewGameSettings.tscn:811
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(определя скоростта на мутация на Вашите съперници)"
+msgstr "(ограничава скоростта на растеж на клетките)"
 
 #: ../src/general/NewGameSettings.tscn:855
 msgid "PATCH_MAP_TYPE"
@@ -2465,15 +2454,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Този превод е завършен на {0} %"
 
 #: ../src/general/OptionsMenu.cs:1321
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Този запис е от по-нова версия на „Thrive“ и е несъвместим.\n"
-"Искате ли да го заредите въпреки това?"
+msgstr "Версия за отстраняване на грешки"
 
 #: ../src/general/OptionsMenu.cs:1328
 msgid "UNKNOWN_VERSION"
-msgstr "Неизвестна"
+msgstr "Неизвестна версия"
 
 #: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
@@ -2711,58 +2697,54 @@ msgstr "Екстремен"
 
 #: ../src/general/OptionsMenu.tscn:1147
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Чувствителност на мишката"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Свързване на осите"
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Версия:"
+msgstr "Хоризонтална:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "Обръщане"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Версия:"
+msgstr "Вертикална:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Мащабиране на чувствителността според размера на прозореца"
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Изключено"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Сигнализиращ агент"
+msgstr "Включено"
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Обратно"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Използване на виртуалния размер на прозореца"
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Чувствителност на контролера"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Мъртви зони"
 
 #: ../src/general/OptionsMenu.tscn:1352
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Нулиране на контролите"
 
@@ -2835,9 +2817,8 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Изключен"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Автоматично зареждане на „Harmony“ от програмната библиотека"
+msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
 #: ../src/general/OptionsMenu.tscn:1594
 msgid "EXACT_VERSION_COLON"
@@ -3341,7 +3322,7 @@ msgstr "НЦ"
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
 "Версия {0}\n"
-"клон {1} от {2}\n"
+"Клон {1} от {2}\n"
 "{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
@@ -3669,7 +3650,7 @@ msgstr "Нитрогеназата е протеин, който използв�
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Освобождава токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 msgid "OXYTOXISOME_DESC"
@@ -3696,14 +3677,12 @@ msgid "SPEED"
 msgstr "Скорост"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Увеличават скоростта на завъртане на клетките."
+msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"mucilage\"]слуз[/thrive:compound]. Освобождава съхранената [thrive:compound type=\"mucilage\"]слуз[/thrive:compound] с натискане на [thrive:input]g_secrete_slime[/thrive:input], което увеличава скоростта на клетката и забавя нейните преследвачи."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Позволява разграждането на повечето видове мембрани. Произвеждането на този ензим е възможно и без помощта на лизозомата, но добавянето му подобрява асимилационната ефективност на клетката."
+msgstr "Порозомата произвежда полизахаридни вещества, подобни на слуз. Повечето клетки използват слузта за придвижване, но някои от тях освобождават тези вещества под високо налягане след себе си. Тези слузести струи увеличават тяхната скорост и забавят преследвачите, които нямат порозоми."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3800,11 +3779,11 @@ msgstr "Вакуолата е вътрешен мембранен органел
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Освобождава токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и отделя [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на отделяне на токсините."
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2316
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
@@ -3823,7 +3802,7 @@ msgstr "В процес на разработка."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2437
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Съдържа асимилационни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват асимилационната ефективност на клетката."
+msgstr "Съдържа асимилационни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2438
 msgid "LYSOSOME_DESCRIPTION"
@@ -3831,11 +3810,11 @@ msgstr "Лизозомата е мембранен органел, съдърж�
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
 msgid "DIGESTION_SPEED"
-msgstr "Асимилационна скорост"
+msgstr "Хранителна скорост"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
 msgid "DIGESTION_EFFICIENCY"
-msgstr "Асимилационна ефективност"
+msgstr "Хранителна ефективност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2499
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3978,9 +3957,8 @@ msgid "AGENTS"
 msgstr "Химични агенти"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "За качване:"
+msgstr "Колонизиране"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
@@ -3996,26 +3974,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Достигнахте края на „завършената“ част на „Thrive“.\n"
-"Ако искате, може да продължите към следващите етапи на играта. Те все още са в процес на разбработка и са включени само за демонстрационни цели. Искаме да Ви покажем бъдещото развитие на играта и цялостната ни визия за това как са свързани етапите помежду си.\n"
-"\n"
-"Преди да продължете, запазете текущата си игра, защото създаването на запис по време на следващите етапи на играта не винаги е възможно.\n"
-"\n"
-"Моля, обърнете внимание, че следващите етапи на играта не са завършени и може да не функционират правилно."
+msgstr "Колонизиране на сушата?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Достигнахте края на „завършената“ част на „Thrive“.\n"
-"Ако искате, може да продължите към следващите етапи на играта. Те все още са в процес на разбработка и са включени само за демонстрационни цели. Искаме да Ви покажем бъдещото развитие на играта и цялостната ни визия за това как са свързани етапите помежду си.\n"
+"Вашите създания ще колонизират сушата. Това действие е необходимо, за да преминете в следващите етапи играта и е необратимо.\n"
 "\n"
-"Преди да продължете, запазете текущата си игра, защото създаването на запис по време на следващите етапи на играта не винаги е възможно.\n"
+"В тази версия на играта, това е внезапен процес.\n"
 "\n"
-"Моля, обърнете внимание, че следващите етапи на играта не са завършени и може да не функционират правилно."
+"Планът за в бъдеще е колонизирането сушата да бъде постепенно."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4401,11 +4370,11 @@ msgstr "Съхранение:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Асимилационна скорост:"
+msgstr "Хранителна скорост:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Асимилационна ефективност:"
+msgstr "Хранителна ефективност:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -4649,15 +4618,15 @@ msgstr "Цвят на линията:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
 msgid "LIPASE_DESCRIPTION"
-msgstr "Позволява разграждането на повечето видове мембрани. Произвеждането на този ензим е възможно и без помощта на лизозомата, но добавянето му подобрява асимилационната ефективност на клетката."
+msgstr "Позволява разграждането на повечето видове мембрани. Произвеждането на този ензим е възможно и без помощта на лизозомата, но добавянето му подобрява хранителната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Позволява разграждането на целулозната мембрана. Този ензим подобрява асимилационната ефективност на клетката."
+msgstr "Позволява разграждането на целулозната мембрана. Този ензим подобрява хранителната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Позволява разграждането на хитиновата мембрана. Този ензим подобрява асимилационната ефективност на клетката."
+msgstr "Позволява разграждането на хитиновата мембрана. Този ензим подобрява хранителната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
 msgid "SELECT_ENZYME"
@@ -5695,6 +5664,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "За възпроизвеждане, органелите на клетката трябва да се удвоят. Събирането на амоняк и фосфат ускорява този процес.\n"
+"\n"
 "Наблюдавайте запълването на лентите около бутона на редактора долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
@@ -5756,9 +5726,17 @@ msgstr ""
 "За разпадане на клетъчната колония, натиснете [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Зареждане на ранния многоклетъчен редактор"
+msgstr ""
+"Добре дошли в ранния многоклетъчен етап!\n"
+"\n"
+"Вашите създания процъфтяха по време на микробния етап.\n"
+"\n"
+"Играта следва основните принципи на микробния етап. Трябва да еволюирате Вашите създания и да стигнете до редактора.\n"
+"\n"
+"В този етап, може да промените местоположението на клетките в клетъчната колония и да ги специализирате в редактора. Клетките в колонията не могат да споделят [thrive:compound type=\"atp\"]АТФ[/thrive:compound] помежду си.\n"
+"\n"
+"Ако Вашите създания се възпроизвеждат чрез пъпкуване (по подразбиране), техните клетки постепенно ще се увеличават, докато достигнат максималния си размер."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
