@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-15 16:54+0300\n"
+"POT-Creation-Date: 2022-09-22 13:47+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -392,19 +392,20 @@ msgid "ABILITIES"
 msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2015
-#: ../src/microbe_stage/MicrobeStage.tscn:2120
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
+#: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "FIRE_TOXIN"
 msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/microbe_stage/MicrobeStage.tscn:2166
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
+#: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
-#: ../src/microbe_stage/MicrobeStage.tscn:2107
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
+#: ../src/microbe_stage/MicrobeStage.tscn:2106
 msgid "TOGGLE_ENGULF"
 msgstr "Укључите гутање"
 
@@ -413,7 +414,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Држи да покажеш мени команди групе"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_BINDING"
 msgstr "Укључи повезивање"
 
@@ -422,7 +423,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Укључи одвајање"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2143
+#: ../src/microbe_stage/MicrobeStage.tscn:2142
 msgid "UNBIND_ALL"
 msgstr "Одвоји све"
 
@@ -523,7 +524,6 @@ msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Остало"
 
 #: ../simulation_parameters/common/input_options.json:180
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
@@ -790,46 +790,47 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1297
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
 #: ../src/microbe_stage/MicrobeStage.tscn:1336
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:658
 msgid "AMMONIA"
 msgstr "Амонијак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1349
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1358
 #: ../src/microbe_stage/MicrobeStage.tscn:1385
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:729
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1401
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1410
 #: ../src/microbe_stage/MicrobeStage.tscn:1437
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:623
 msgid "HYDROGEN_SULFIDE"
 msgstr "Водоник Сулфид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1245
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
 #: ../src/microbe_stage/MicrobeStage.tscn:1290
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:693
 msgid "GLUCOSE"
 msgstr "Глукоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1583
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
 #: ../src/microbe_stage/MicrobeStage.tscn:1651
 msgid "OXYTOXY_NT"
 msgstr "ОксиТокси НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
 #: ../src/microbe_stage/MicrobeStage.tscn:1483
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:764
 msgid "IRON"
@@ -3967,7 +3968,7 @@ msgstr "Нитрогеназа је протеин у стању да корис
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:158
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:166
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1660
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1714
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Да се имплементира."
 
@@ -4076,47 +4077,51 @@ msgstr ""
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:507
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 #, fuzzy
 msgid "LOOKING_AT"
 msgstr "Притисните дугме поништи у уређивачу да бисте исправили грешку"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:533
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:583
 msgid "NOTHING_HERE"
 msgstr "Ништа овде"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:558
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:568
 #: ../src/microbe_stage/MicrobeStage.tscn:608
 msgid "COMPOUNDS_COLON"
 msgstr "Једињења:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:598
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:608
 #: ../src/microbe_stage/MicrobeStage.tscn:648
 msgid "SPECIES_COLON"
 msgstr "Врсте:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:681
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
+msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
 #: ../src/microbe_stage/MicrobeStage.tscn:729
 msgid "ENVIRONMENT"
 msgstr "Животна средина"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:949
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:958
 #: ../src/microbe_stage/MicrobeStage.tscn:997
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1005
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1014
 #: ../src/microbe_stage/MicrobeStage.tscn:1053
 msgid "LIGHT"
 msgstr "Светлост"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1060
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1069
 #: ../src/microbe_stage/MicrobeStage.tscn:1108
 msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1192
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
@@ -4125,35 +4130,35 @@ msgstr "Прити."
 msgid "COMPOUNDS"
 msgstr "Једињење"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1523
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1529
 #: ../src/microbe_stage/MicrobeStage.tscn:1594
 msgid "AGENTS"
 msgstr "Агенси"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Пређите у Ову Зону"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 #, fuzzy
 msgid "BECOME_AWARE"
 msgstr "Биом: {0}"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1676
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1730
 msgid "AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1696
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1750
 #: ../src/microbe_stage/MicrobeStage.tscn:1804
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
@@ -4262,7 +4267,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr "побегне од гутања"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1085
+#: ../src/microbe_stage/Microbe.Interior.cs:1112
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Производи"
