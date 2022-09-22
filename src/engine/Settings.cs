@@ -212,6 +212,7 @@ public class Settings
     /// <summary>
     ///   Sets the maximum number of entities that can exist at one time.
     /// </summary>
+    [JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]
     public SettingValue<int> MaxSpawnedEntities { get; set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
 
     // Misc Properties

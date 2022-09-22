@@ -530,6 +530,16 @@ Godot usage
 - All images used in the GUI should have mipmaps on in the import
   options.
 
+Other recommended approaches
+----------------------------
+
+- When changing the meaning of a game setting in a major way that is
+  incompatible with previous values, the updated setting should use a
+  different name when saved in JSON to avoid problems. For example:
+  `[JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]`. This way
+  the options menu doesn't need complicated adapting logic as
+  otherwise it would show misleading values to the player.
+
 Other files
 -----------
 
