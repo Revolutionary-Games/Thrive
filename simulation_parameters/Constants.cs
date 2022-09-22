@@ -367,7 +367,7 @@ public static class Constants
     ///   This is because it is way easier to implement that way.
     /// </summary>
     public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
-    
+
     /// <summary>
     ///   Bonus per hex given to the compound rate
     /// </summary>
