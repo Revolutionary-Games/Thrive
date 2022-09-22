@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:30+0300\n"
-"PO-Revision-Date: 2022-09-14 06:12+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Ivan Bratović <ivanbratovic4@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -171,9 +171,9 @@ msgstr ""
 "\n"
 "Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 Hex\n"
+"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 ćeliju\n"
 "\n"
-"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 Hex\n"
+"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 ćeliju\n"
 "\n"
 "Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
@@ -186,35 +186,67 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Vanjski organeli\n"
+"\n"
+"Bič: Brže pomiče vašu stanicu trošeći [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Pilus: Može se koristiti za probadanje drugih stanica ili za obranu od njihovih toksina\n"
+"\n"
+"Kemoreceptor: Omogućuje otkrivanje spojeva s veće udaljenosti\n"
+"\n"
+"Cilija: Povećava brzinu okretanja stanica"
 
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Organele vezane za membranu\n"
+"\n"
+"Jezgra: Zauzima 11 ćelija i omogućuje evoluciju organela vezanih za membranu, udvostručuje veličinu vaše stanice i smanjuje nastalu štetu za 50% (može se razviti samo jednom)\n"
+"\n"
+"Vezivo sredstvo: Omogućuje vezanje s drugim stanicama. Potreban za napredovanje u višestaničnu fazu.\n"
+"\n"
+"Mitohondrij: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound] i atmosferskog O2, puno učinkovitije od citoplazme\n"
+"\n"
+"Kloroplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od sunčeve svjetlosti i atmosferskog CO2\n"
+"\n"
+"Termoplast: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata\n"
+"\n"
+"Lizosom: Sadrži probavne enzime. Enzimi ubrzavaju i poboljšavaju učinkovitost probave\n"
+"\n"
+"Kemoplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"\n"
+"Plastid za fiksiranje dušika: stvara [thrive:compound type=\"ammonia\"][/thrive:compound] od [thrive:compound type=\"atp\"][/thrive:compound] i atmosferskog dušika i kisika\n"
+"\n"
+"Vakuola: Pohranjuje 8 sakupljenih spojeva\n"
+"\n"
+"Vakuole toksina: proizvode toksine (nazvane [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i omogućuju vam da ih otpustite nanoseći štetu na temelju količine dostupnog oksitoxya\n"
+"\n"
+"Signalno sredstvo: Dozvoljava stanicama da stvaraju kemijske spojeve na koje druge stanice mogu reagirati"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
+msgstr "Za svaku generaciju imate 100 mutacijskih bodova (MP) koje možete potrošiti, a svaka promjena (ili mutacija) koštat će određeni iznos tog MP-a. Dodavanje i uklanjanje organela košta MP. Međutim, uklanjanjem organela koji su postavljeni u trenutnoj mutaciji, vraća se MP za taj organel. Možete premjestiti ili potpuno ukloniti organel tako da je kliknete desnom tipkom miša i odaberete odgovarajuću radnju iz skočnog izbornika. Možete rotirati svoje organele dok ih postavljate pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
+msgstr "Prilikom svakog razmnožavanja, ući ćete u Uređivač Mikroba, gdje možete mijenjati svoju vrstu (dodavanjem, premještanjem ili uklanjanjem organela) kako biste povećali uspjeh svoje vrste. Svaki posjet uređivaču tijekom Stadija Mikroba predstavlja [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milijuna godina evolucije."
 
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Zabavna činjenica: Didinium i Paramecium školski su primjer odnosa predatora i plijena koji se proučava već desetljećima. Jesi li ti Didinium ili Paramecium? Predator ili plijen?"
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "Jedan savjet: toksini se mogu koristiti za odbacivanje drugih toksina, ako ste dovoljno brzi."
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
+msgstr "Jedan savjet: Osmoregulacija troši 1 ATP po sekundi po šesterokutnoj ćeliji koje vaša stanica ima, ali svaka prazna ćelija citoplazme također generira 5 ATP po sekundi. To znači da ako gubite ATP zbog osmoregulacije, samo dodajte nekoliko praznih ćelija citoplazme ili uklonite neke organele."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -294,7 +326,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
+msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
@@ -989,6 +1021,18 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
@@ -5365,6 +5409,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
+"Ovo je uređivač stanica u kojem možete razvijati svoju vrstu trošeći bodove mutacije (MP). U svakoj generaciji uvijek ćete imati 100 MP za potrošiti, stoga nemojte štedjeti!\n"
+"\n"
+"Šesterokutna ćelija u središtu vašeg zaslona je vaša stanica, koja se sastoji od jednog dijela citoplazme.\n"
+"\n"
+"Za nastavak, odaberite novi dio s lijeve ploče. Zatim, lijevom tipkom miša kliknite pokraj postojeće ćelije da biste ga postavili. Možete rotirati dijelove pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -5389,6 +5438,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
+"Trebali biste se usredotočiti na specijalizaciju kako biste preživjeli na jednom ili dva izvora energije. Tako vam neće trebati mnogo različitih resursa odjednom da biste se održali na životu.\n"
+"\n"
+"Također, pažljivo razmislite o tome je li dodavanje novog dijela doista korisno. Ne morate uvijek mijenjati ono što već funkcionira. Održavanje svakog dijela košta ATP i zahtijeva više resursa za reprodukciju.\n"
+"\n"
+"Jedna od mogućih strategija je zadržati jednu ćeliju citoplazme i krenuti prema površini prije nego što razvijete organele za fotosintezu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
 msgid "MICROBE_STAGE_INITIAL"
