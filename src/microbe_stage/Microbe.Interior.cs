@@ -899,25 +899,36 @@ public partial class Microbe
     private (float RemainingAllowedCompoundUse, float RemainingFreeCompounds)
         CalculateFreeCompoundsAndLimits(float delta)
     {
-        float remainingAllowedCompoundUse = float.MaxValue;
-        float remainingFreeCompounds = 0;
+        var gameWorldWorldSettings = GameWorld.WorldSettings;
 
-        if (GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
+        // Skip some computations when they are not needed
+        if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds &&
+            !gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            remainingAllowedCompoundUse = Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE * delta;
-
-            if (IsMulticellular)
-                remainingAllowedCompoundUse *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+            return (float.MaxValue, 0);
         }
 
-        if (GameWorld.WorldSettings.PassiveGainOfReproductionCompounds)
-        {
-            // TODO: make the current patch affect this?
-            // TODO: make surface area of the cell (and colony) affect this
-            remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS * delta;
+        // TODO: make the current patch affect this?
+        // TODO: make being in a colony affect this
+        float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
+            (HexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
-            if (IsMulticellular)
-                remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+        if (IsMulticellular)
+            remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+
+        float remainingAllowedCompoundUse = float.MaxValue;
+
+        if (gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
+        {
+            remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
+        }
+
+        // Reset the free compounds if we don't want to give free compounds.
+        // It was necessary to calculate for the above math to be able to use it, but we don't want it to apply when
+        // not enabled.
+        if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds)
+        {
+            remainingFreeCompounds = 0;
         }
 
         return (remainingAllowedCompoundUse, remainingFreeCompounds);
