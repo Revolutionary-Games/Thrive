@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-08-31 06:53+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -382,7 +382,7 @@ msgstr "Toksini ateşle"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Müsilaj salgıla"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -621,9 +621,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "OksiToksi Sentezi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Kemosentez"
+msgstr "Müsilaj sentezi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -800,7 +799,7 @@ msgstr "OksiToksi NT"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Müsilaj"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -985,7 +984,7 @@ msgstr "Kemoreseptör"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Balçık Fışkırtıcı"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1614,7 +1613,7 @@ msgstr "Ölü Bölge Yapılandırması"
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "Bu araç, oyun kumandasının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölgesi büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
-"Kalibrasyona başlamadan önce, lütfen bütün oyun kumandası çubuklarını oynat ve bırak. Ayrıca oyun kumandanda, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da bas ve onları bırak.\n"
+"Kalibrasyona başlamadan önce, lütfen bütün oyun kumandası çubuklarını oynat ve bırak. Ayrıca oyun kumandanda, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da bas ve onları bırak."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
@@ -2189,7 +2188,7 @@ msgstr "Lisanslar"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Bir Özellik Öner"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2275,7 +2274,7 @@ msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmal�
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr "Not: oyun performansını arttırmak için performans ile ilgili ayarları her an [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]ayarlar menüsünden[/url][/color] değiştirebilirsin"
+msgstr "Not: Oyunun performansını arttırmak için performans ile ilgili ayarları her an [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]ayarlar menüsünden[/url][/color] değiştirebilirsin"
 
 #: ../src/general/NewGameSettings.tscn:290
 msgid "DIFFICULTY"
@@ -2827,7 +2826,7 @@ msgstr "Tam Thrive sürümü:"
 
 #: ../src/general/OptionsMenu.tscn:1622
 msgid "COMPILED_AT_COLON"
-msgstr "Derleme yeri:"
+msgstr "Derlenme tarihi:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3678,14 +3677,12 @@ msgid "SPEED"
 msgstr "Hız"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Büyük hücrelerin dönme hızını arttırır."
+msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"mucilage\"]müsilaja[/thrive:compound] çevirir. Depolanan [thrive:compound type=\"mucilage\"]müsilajı[/thrive:compound] salmak için [thrive:input]g_secrete_slime[/thrive:input] butonuna bas. Müsilaj, salgılandığı hücrenin hızını arttırırken diğer yırtıcılarınkini azaltır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Lipaz, hücrenin çoğu türde hücre zarını parçalamasını sağlar. Hücren zaten lizozom olmadan da bu enzimlerin bazılarını üretir. Ancak bu türü seçerek onun etkisini arttırırsın."
+msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarında bırakır. Bu balçık fışkırtıcılar roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri iter. Balçık ayrıca yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3889,8 +3886,8 @@ msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Arayüzde ışık yanıp sönme efektlerini etkinleştirir (örn. editör butonunun yanıp sönmesi).\n"
 "\n"
-"Eğer editör butonundaki bazı parçaların kaybolması gibi hatalar deneyimlerseniz,\n"
-"bunu kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
+"Eğer editör butonundaki bazı parçaların kaybolması gibi hatalar deneyimlersen,\n"
+"bunu kapatarak problemin çözülüp çözülmediğine bakabilirsin."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4045
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
@@ -3900,7 +3897,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4050
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyarısı açılır penceresini etkinleştirir / devre dışı bırakır."
+msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyarısı veren açılır pencereyi etkinleştirir / devre dışı bırakır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4072
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
@@ -5541,9 +5538,9 @@ msgstr ""
 "\n"
 "Burada, geçmiş kuşaklardan beri neler olduğunu inceleyebilir ve sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Mevcut sekme, şu an bulunduğun arazideki değişikliklerin listesini verir. Dünyandaki olaylarla ilgili daha fazla şeyler öğrenmek için dilediğinde çeşitli araçları keşfetmeyi deneyebilirsin!\n"
+"Mevcut sekme, şu an bulunduğun arazideki değişikliklerin listesini verir. Dünyandaki olaylarla ilgili daha fazla şey öğrenmek için dilediğinde çeşitli araçları keşfetmeyi deneyebilirsin!\n"
 "\n"
-"Hazır olunca, sağ alttaki \"sonraki\" butonuna bas."
+"Hazır olunca, devam etmek için sağ alttaki \"sonraki\" butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -5552,9 +5549,9 @@ msgstr ""
 "\n"
 "Her simge yaşayabileceğin eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde ise mevcut seçili arazinin şartları tarif edilmekte.\n"
 "\n"
-"Eğer şu an bulunduğun arazinin (yeşil bir kenarlık ile vurgulanmış) yanındaki bir araziyi seçersen, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsin.\n"
+"Eğer bulunduğun araziye (yanıp sönen bir yeşil kenarlık ile vurgulanmış) bağlı bir arazi seçersen, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsin.\n"
 "\n"
-"Devam etmek için bir arazi seç."
+"Devam etmek için bir arazi seçmeyi dene."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"

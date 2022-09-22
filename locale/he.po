@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-08-31 06:53+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -382,7 +382,7 @@ msgstr "שחרר רעלנים"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "הפרש ריר"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -499,15 +499,13 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "נוע מטה או תתכופף"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "שונות"
+msgstr "שלב 3D שונות"
 
 #: ../simulation_parameters/common/input_options.json:180
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr "החזק TODO: קלט עבור סמן העכבר"
+msgstr "החזק [thrive:input]g_free_cursor[/thrive:input] עבור סמן העכבר"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -623,9 +621,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "סינתזת \"אוקסיטוקסי\""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "כימוסינתזה"
+msgstr "ייצור ריר"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -802,7 +799,7 @@ msgstr "אוקסיטוקסי נ\"ט"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "ריר"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -987,7 +984,7 @@ msgstr "כימורצפטור"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "סילון ריר"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1579,61 +1576,56 @@ msgstr "טוען"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "אופקי (ציר: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "שם חדש:"
+msgstr "אנכי (ציר: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "שם חדש:"
+msgstr "לא מעובד:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "שטח מת:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "שפה זו היינו {0}% הושלם"
+msgstr "כיול שטח מת מתבצע. אנא אל תגע בשום כפתור או במקלות הבקר והמתן מספר שניות."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "כיול שטח מת אותחל מחדש"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "דרכי אימות נוספים זיהו בעיה: {0}"
+msgstr "כיול שטח מת הסתיים, השטח המת החדש מוצגים מתחת במציגי ערכי הציר."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה לצמיתות?"
+msgstr "תצורת שטח מת"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "חלונית זו מייצגת את המספרים שהמפתח האוטומטי חוזה כמה היו. את כמות האנרגיה שהמין מסוגל לתפוס ועלות לפרט של המין, קובעות את אכלוסייה הסופית. המפתח האוטומטי משתמש במודל פשוט של המציאות כדי לחשב את ביצועי המינים על סמך כמות האנרגיה שהם מסוגלים לאסוף. עבור כל מקור מזון, מוצגת כמה אנרגיה המין מרוויח ממנו. בנוסף, מוצגת האנרגיה הכוללת הזמינה מאותו מקור. החלק שהמין מרוויח מתוך האנרגיה הכוללת מבוסס על גודל הכשירות העצמית בהשוואה לכשירות הכוללת. כשירות הוא מדד הקובע עד כמה המין מנצל את מקור המזון זה."
+msgstr ""
+"כלי זה מאפשר להגדיר את שטחים מתים של ציר הבקר. גדול שטח המת קובעים כמה צריך להזיז את מקל השליטה (או כפתור אנלוגי) לפני שתנועה זו מזוהה כקלט.\n"
+"לפני התחלת הכיול אנא הזיזו את כל מקלות הבקר ושחררו אותם, וגם לחצו ושחררו את כל הלחצנים האנלוגיים (למשל טריגרים) בבקר שלכם."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "התחל כיול"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "איפוס לברירת מחדל?"
+msgstr "אפס שטחים מתים"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "מצג ציר בקר :"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2196,7 +2188,7 @@ msgstr "רישיונות"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "הצע רעיון"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2462,16 +2454,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "שפה זו היינו {0}% הושלם"
 
 #: ../src/general/OptionsMenu.cs:1321
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"השמירה זו נוצרה בגרסאות החדשות יותר של Thrive ויכולה שלא תפקד כראוי.\n"
-"האם ברצונך להמשיך לפתוח בכל זאת?"
+msgstr "זהו בניית די-באג כאשר שהמידע מתחת ככל הנראה לא מעודכן"
 
 #: ../src/general/OptionsMenu.cs:1328
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "גרסת המוד:"
+msgstr "גרסה לא יודעה"
 
 #: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
@@ -2709,60 +2697,56 @@ msgstr "מפלצתי"
 
 #: ../src/general/OptionsMenu.tscn:1147
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "רגישות מראה עכבר"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "קשר צירים יחד"
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "גרסה:"
+msgstr "אופקי:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "הפוך"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "גרסה:"
+msgstr "אנכי:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "רגישות העכבר בקנה מידה עם גודל החלון"
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "שום דבר"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "חומר מאותת"
+msgstr "בקנה מידה"
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "בקנה מידה הפוך"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "השתמש בגודל חלון וירטואלי"
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "רגישות הבקר"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "שטחי מת של הבקר"
 
 #: ../src/general/OptionsMenu.tscn:1352
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "איפוס קלטים"
+msgstr "איפוס חיבורי מקשים"
 
 #: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
@@ -2833,19 +2817,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "לעולם לא"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחלקת מוד מסויימת)"
+msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
 
 #: ../src/general/OptionsMenu.tscn:1594
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "גרסה:"
+msgstr "גרסת Thrive מדויקת:"
 
 #: ../src/general/OptionsMenu.tscn:1622
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "תרכובות:"
+msgstr "נבנה ב:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3338,9 +3319,11 @@ msgid "RAW"
 msgstr "\"טרי\""
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "תומכי בניית תוכנה"
+msgstr ""
+"בניית תוכנה: {0}\n"
+"בסניף {1} ב{2}\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -3694,14 +3677,12 @@ msgid "SPEED"
 msgstr "מהירות"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "מגדיל את מהירות הסיבוב של תאים גדולים."
+msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"mucilage\"][/thrive:compound]. לחץ על [thrive:input]g_secrete_slime[/thrive:input] בשביל לשחרר את [thrive:compound type=\"mucilage\"][/thrive:compound] המאוחסן, מאיץ את מהירות התא ומאט טורפים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
+msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3976,9 +3957,8 @@ msgid "AGENTS"
 msgstr "חומרים"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "מוד להעלאה:"
+msgstr "עבור ליבשה"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
@@ -3994,26 +3974,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"אתה הגעת לסוף של החלק ה\"מוכן\" של Thrive.\n"
-"אם אתה רוצה, אתה יכול להמשיך לשלבי האבטיפוס המקדמים יותר הכוללים במשחק. הם יכולים להיות מאוד לא מוכנים, להשתמש בגרפיקה של מצייני מיקום ויכול בכללי להיות מאוד קשוח. אלה כלולים כחלק מהמשחק כדי להראות את הכיוון העתידי האפשרי של המשחק ואת החזון הכללי שלנו לגבי איך השלבים יתחברו.\n"
-"\n"
-"אתה לא תוכל לשמור, ברוב האבטיפוסים, אם אתה רוצה להמשיך או לחזור ברגע שתמשיך. אם אתה רוצה לחזור לשלב זה, בבקשה תשמור לפני שתתמשיך.\n"
-"\n"
-"אם אתה בחרת להמשיך, בבקשה תבין שזה שלב אבטיפוס ובבקשה על תתלונן על כמה זה לא מושלם."
+msgstr "לנוע ליבשה?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"אתה הגעת לסוף של החלק ה\"מוכן\" של Thrive.\n"
-"אם אתה רוצה, אתה יכול להמשיך לשלבי האבטיפוס המקדמים יותר הכוללים במשחק. הם יכולים להיות מאוד לא מוכנים, להשתמש בגרפיקה של מצייני מיקום ויכול בכללי להיות מאוד קשוח. אלה כלולים כחלק מהמשחק כדי להראות את הכיוון העתידי האפשרי של המשחק ואת החזון הכללי שלנו לגבי איך השלבים יתחברו.\n"
+"אתה נעת לתוך היבשה. זה נדרש בשביל להתקדם יותר מאוחר לתוך המשחק. ברגע שאתה על היבשה, לא תוכל לחזור אחורה.\n"
 "\n"
-"אתה לא תוכל לשמור, ברוב האבטיפוסים, אם אתה רוצה להמשיך או לחזור ברגע שתמשיך. אם אתה רוצה לחזור לשלב זה, בבקשה תשמור לפני שתתמשיך.\n"
+"כרגע המעבר ליבשה הרבה יותר פתאומי ממה שמתוכנן ברגע שיוסף כמו שצריך.\n"
 "\n"
-"אם אתה בחרת להמשיך, בבקשה תבין שזה שלב אבטיפוס ובבקשה על תתלונן על כמה זה לא מושלם."
+"התוכנית הוא לעשות את המעבר ליבשה בהדרגה ולא כשינוי פתאומי."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4075,14 +4046,12 @@ msgid "RESUME_TOOLTIP"
 msgstr "המשך את המשחק"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "הראה/החבא סביבה ותרכובות"
+msgstr "הראה/החבא סביבה"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "הראה/החבא סביבה ותרכובות"
+msgstr "הראה/החבא תרכובות"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-08-25 21:34+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -379,7 +379,7 @@ msgstr "Вивести токсин"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Виділення слизу"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -496,15 +496,13 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Перемістити вниз або швидко опустити"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Різне"
+msgstr "Різнобічний 3D етап"
 
 #: ../simulation_parameters/common/input_options.json:180
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr "Утримуйте TODO: введення для курсору"
+msgstr "Утримуйте [thrive:input]g_free_cursor[/thrive:input] для курсору"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -620,9 +618,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синитез окситоксину"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Хемосинтез"
+msgstr "Синтез слизу"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -799,7 +796,7 @@ msgstr "Окситоциновий нуклеотид"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Слиз"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -984,7 +981,7 @@ msgstr "Хеморецептор"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Струмінь слизу"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1576,61 +1573,56 @@ msgstr "Завантаження"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Горизонталь (Вісь: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Нова назва:"
+msgstr "Вертикаль (Вісь: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Нова назва:"
+msgstr "Вологість:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Мертва зона:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Ця мова на {0}% готова"
+msgstr "Калібрація Мертвої зони в прогресі. Будь-ласка не торкайтесь жодних кнопок чи перимикачів на вашому контролері та зачекайте кілька секунд."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Калібрування ертвої зони було скинуто"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Додаткові перевірки виявили проблему: {0}"
+msgstr "Калібрація мертвої зони в прогресі завершилась. Кілька мертвих зон відображається нижче на дисплеях значення осі."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+msgstr "Конфігурація мертвої зони"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Ця панель відображає числа, за якими працює передбачення Авто-ево. Загальна енергія, яку вид може поглинути, і вартість на особину цього виду визначають фінальну популяцію. Авто-ево використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано величину енергії, яку вид отримує від нього. Додатково показується загальна енергія, що доступна з цього джерела. Частка, яку види отримують з цієї загальної енергії, базується на тому, наскільки є великою пристосованість у порівнянні з загальною пристосованістю. Пристосованість — це величина, що показує наскільки добре вид засвоює це джерело їжі."
+msgstr ""
+"Цей інструмент дозволяє конфігурувати контролер осей мертвих зон. Розміри мертвих зон контролюють, наскільки необхідно перемістити важіль контролю(або аналогову кнопку) перед тим, як переміщення буде виявлено вхідним сигналом.\n"
+"Перед початком калібрації, будь-ласка, перемістіть всі важелі контролю навколо та пустіть їх, також натисніть чи відпусніть кожну аналогову кнопку( для прикладу тригери) на ваш контролер."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Початок калібрування"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Скинути до замовчування?"
+msgstr "Скинути Мертві зони"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Візуалізатори осі контролерів:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2193,7 +2185,7 @@ msgstr "Ліцензія"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Запропунувати функцію"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2702,60 +2694,56 @@ msgstr "Екстримальний"
 
 #: ../src/general/OptionsMenu.tscn:1147
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Чутливість вказівника миші"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Об'єднати осі разом"
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Версія:"
+msgstr "Горизонталь:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "Перевернутий"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Версія:"
+msgstr "Вертикаль:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Залежність чутливості миші від розміру вікна"
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Жоден"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Сигнальний агент"
+msgstr "Залежність"
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Зворотня залежність"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Використовувати віртуальний розмір вікна"
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Чутливість контролера"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Контролер мертвих зон"
 
 #: ../src/general/OptionsMenu.tscn:1352
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Скинути зміни"
+msgstr "Скинути сполучення клавіш"
 
 #: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
@@ -3686,14 +3674,12 @@ msgid "SPEED"
 msgstr "Швидкість"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Збільшує швидкість обертання великих клітин."
+msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"mucilage\"][/thrive:compound]. Натисніть [thrive:input]g_secrete_slime[/thrive:input] для позбавлення накопиченнь[thrive:compound type=\"mucilage\"][/thrive:compound], пришвидчуючи клітину та сповільнюючи хижаків."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Ліпаза дозволяє кдітинні руйнувати більшість типів мембран. Ваша клітина вже виробляє частину цього ферменту без лізосом, проте обравши цей тип ви підвищите ефективність."
+msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці слизові поштовхи, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3968,9 +3954,8 @@ msgid "AGENTS"
 msgstr "Агенти"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Мод для відвантаження:"
+msgstr "Перейти на сушу"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
@@ -3986,26 +3971,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Ви дісталися завершення \"кінцевої\" частини Thrive.\n"
-"Якщо бажаєте, то можете продовжити перейшовши до прототипів пізнішої стадії, включеними до гри. Вони можуть бути дуже неповними використовуючи графічні заповнювачі і загалом дуже грубими . Вони включені, як частина гри, для показу можливий майбутніх напрямки гри та наше загальне бачення зв'язку між етапами.\n"
-"\n"
-"Ви не здатні зберігатися, якщо ви не продовжите або не перезапуститесь, після продовження. Якщо ви бажаєте повернутися до цього етапу, будь-ласка зробіть збереження перед продовженням гри.\n"
-"\n"
-"Якщо продовження– це ваш вибір, будь-ласка, зрозумійте пізні етапи– прототип та, будь-ласка, не скаржтесь на те, як все є недороблено."
+msgstr "Перейти на сушу?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Ви дісталися завершення \"кінцевої\" частини Thrive.\n"
-"Якщо бажаєте, то можете продовжити перейшовши до прототипів пізнішої стадії, включеними до гри. Вони можуть бути дуже неповними використовуючи графічні заповнювачі і загалом дуже грубими . Вони включені, як частина гри, для показу можливий майбутніх напрямки гри та наше загальне бачення зв'язку між етапами.\n"
+"Ви збираєтеся вийти на суходіл. Це потрібно для переходу на наступний етап гри. Вийшовши на сушу ви не повернетесь назад.\n"
 "\n"
-"Ви не здатні зберігатися, якщо ви не продовжите або не перезапуститесь, після продовження. Якщо ви бажаєте повернутися до цього етапу, будь-ласка зробіть збереження перед продовженням гри.\n"
+"Наразі цей перехід на сушу різкіший, аніж заплановано, щоб правильно додати.\n"
 "\n"
-"Якщо продовження– це ваш вибір, будь-ласка, зрозумійте пізні етапи– прототип та, будь-ласка, не скаржтесь на те, як все є недороблено."
+"Планв в тому, щоб перехід був поступовий, а не різкий."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
