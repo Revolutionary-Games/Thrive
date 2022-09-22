@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-08-25 07:28+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -374,7 +374,7 @@ msgstr "Disparar toxina"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Expelir mucilagem"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -491,15 +491,13 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Ir para baixo ou abaixar"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Diversos"
+msgstr "Diversos: Estágio 3d"
 
 #: ../simulation_parameters/common/input_options.json:180
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr "Aperte TODO: entrada para cursor"
+msgstr "Aperte [thrive:input]g_free_cursor[/thrive:input] para o cursor"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -615,9 +613,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Síntese de Oxitoxina"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Quimiossíntese"
+msgstr "Síntese de mucilagem"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -794,7 +791,7 @@ msgstr "Oxitoxina"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Mucilagem"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -979,7 +976,7 @@ msgstr "Quimiorreceptor"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Jato de Slime"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1070,7 +1067,6 @@ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Probabilidade da criação de uma nova espécie em regiões com poucas espécies (biodiversidade baixa)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
-#, fuzzy
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Probabilidade da criação de uma nova espécie para aumentar a biodiversidade de uma região próxima"
 
@@ -1103,12 +1099,10 @@ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "População inicial para espécies que aumentam a biodiversidade"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
-#, fuzzy
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Teto de proteção de espécies recém-migradas"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
-#, fuzzy
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Teto de proteção de espécies criadas de outras espécies"
 
@@ -1122,15 +1116,15 @@ msgstr "Competição por nichos mais forte (diferenças de aptidão exageradas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "População mínima para que uma espécie se divida se há mutações boas o suficiente"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "População mínima para que uma fração de uma espécie possa dividir por mutações"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "Espécies criadas para aumentar a biodiversidade tomam parte da população de espécies existentes"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 msgid "CURRENT_GENERATION_COLON"
@@ -1575,33 +1569,30 @@ msgstr "Carregando"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Horizontal (Eixo: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Novo Nome:"
+msgstr "Vertical (Eixo: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Novo Nome:"
+msgstr "Bruto:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Zona morta:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Esta linguagem está {0}% completa"
+msgstr "A calibração da zona morta está em progresso. Não toque em nenhum botão ou analógico em seu controle e espere alguns segundos."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "A calibração da zona morta foi redefinida"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
 #, fuzzy
@@ -1609,9 +1600,8 @@ msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Validações adicionais detectaram um erro: {0}"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
+msgstr "Configuração da zona morta"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
@@ -1620,12 +1610,11 @@ msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energi
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Iniciar a calibração"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Redefinir para as configurações padrão?"
+msgstr "Redefinir as zona mortas"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2192,7 +2181,7 @@ msgstr "Licenças"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Sugerir um recurso"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2357,14 +2346,12 @@ msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
 #: ../src/general/NewGameSettings.tscn:804
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Normal"
+msgstr "Limitar o uso dos compostos de crescimento"
 
 #: ../src/general/NewGameSettings.tscn:811
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr "(quando ativado limita a velocidade do crescimento da célula, quando desativado somente os compostos disponíveis afetam a velocidade do crescimento)"
 
 #: ../src/general/NewGameSettings.tscn:855
 msgid "PATCH_MAP_TYPE"
@@ -2467,9 +2454,8 @@ msgstr ""
 "Deseja carregar o jogo mesmo assim?"
 
 #: ../src/general/OptionsMenu.cs:1328
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Versão do Mod:"
+msgstr "Versão desconhecida"
 
 #: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
@@ -2714,19 +2700,17 @@ msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Versão:"
+msgstr "Horizontal:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "Invertido"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Versão:"
+msgstr "Vertical:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
@@ -2734,7 +2718,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Nenhum"
 
 #: ../src/general/OptionsMenu.tscn:1223
 #, fuzzy
@@ -3739,7 +3723,7 @@ msgstr "Permite a evolução de mais complexas, organelas com membrana. Custa mu
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1562
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "A principal característica das células eucarióticas. O núcleo também inclui o retículo endoplasmático e o complexo de golgi. É uma evolução das células procarióticas para desenvolver um sistema de membranas internas, assimilando outros procariontes dentro deles. Isso os permite compartimentar, ou repelir os diferentes processos acontecendo dentro das células prevenindo eles de se sobrepor. Isso permite as suas novas organelas com membranas serem mais complexas, eficientes, e especializadas do que se estivessem flutuando no citoplasma. Entretanto, isso tem o custo de fazer a célula muito maior e precisando de muita da energia da célula para se manter."
+msgstr "A principal característica das células eucarióticas. O núcleo também inclui o retículo endoplasmático e o complexo de golgi. É uma evolução das células procarióticas para desenvolver um sistema de membranas internas, assimilando outros procariontes dentro deles. Isso os permite compartimentar, ou repelir os diferentes processos acontecendo dentro das células prevenindo eles de se sobrepor. Isso permite as suas novas organelas com membranas serem mais complexas, eficientes, e especializadas do que se estivessem flutuando no citoplasma. Entretanto, isso tem o custo de fazer a célula muito maior e precisar de muita da energia da célula para se manter."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1658
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
@@ -4212,7 +4196,7 @@ msgstr "Pangoninano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:855
 msgid "PATCH_NAME"
-msgstr "{0} {1}"
+msgstr "{1} {0}"
 
 #: ../src/microbe_stage/PausePrompt.tscn:23
 msgid "PAUSED"
@@ -4649,7 +4633,7 @@ msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célu
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
 msgid "CELLULASE_DESCRIPTION"
-msgstr "A celulase permite que sua célula quebre membranas de celulase. Cada adição aumenta sua eficácia."
+msgstr "A celulase permite que sua célula quebre membranas de celulose. Cada adição aumenta sua eficácia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
 msgid "CHITINASE_DESCRIPTION"
