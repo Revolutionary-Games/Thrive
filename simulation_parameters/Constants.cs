@@ -369,7 +369,7 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
 
     /// <summary>
-    ///   Bonus per hex given to the compound rate
+    ///   Bonus per hex given to the free compound rate (<see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/>)
     /// </summary>
     public const float MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX = 0.02f;
 

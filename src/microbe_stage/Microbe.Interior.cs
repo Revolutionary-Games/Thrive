@@ -899,15 +899,13 @@ public partial class Microbe
     private (float RemainingAllowedCompoundUse, float RemainingFreeCompounds)
         CalculateFreeCompoundsAndLimits(float delta)
     {
-        float remainingAllowedCompoundUse = float.MaxValue;
-
         var gameWorldWorldSettings = GameWorld.WorldSettings;
 
         // Skip some computations when they are not needed
         if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds &&
             !gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            return (remainingAllowedCompoundUse, 0);
+            return (float.MaxValue, 0);
         }
 
         // TODO: make the current patch affect this?
@@ -917,6 +915,8 @@ public partial class Microbe
 
         if (IsMulticellular)
             remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+
+        float remainingAllowedCompoundUse = float.MaxValue;
 
         if (gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
         {
