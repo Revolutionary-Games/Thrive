@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-15 16:54+0300\n"
-"PO-Revision-Date: 2022-08-02 10:51+0000\n"
+"PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -378,7 +378,7 @@ msgstr "Strzał toksyną"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Wydziel śluz"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2001
@@ -495,14 +495,13 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Przenieś się w dół lub kucnij"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Różne"
+msgstr "Różnorodny etap 3D"
 
 #: ../simulation_parameters/common/input_options.json:180
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:617
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Przytrzymaj [thrive:input]g_free_cursor[/thrive:input] dla kursora"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -618,9 +617,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Synteza OxyToxy"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Chemosynteza siarkowa"
+msgstr "Synteza śluzu"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -797,7 +795,7 @@ msgstr "OxyToksy NT"
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Śluz"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1453
@@ -982,7 +980,7 @@ msgstr "Chemoreceptor"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Jet Śluzowy"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1048,9 +1046,8 @@ msgid "CONFIG"
 msgstr "Plik Konfiguracji"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:112
-#, fuzzy
 msgid "MAP"
-msgstr "ATP"
+msgstr "Mapa"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1071,11 +1068,11 @@ msgstr "Pozwól gatunkowi nie migrować"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Szansa utworzenia nowego gatunku na obszarze z niską bioróżnorodnością"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Szansa utworzenia nowego gatunku z pobliskiego obszaru by zwiększyć bioróżnorodność"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
@@ -1087,7 +1084,7 @@ msgstr "Zwiększający bioróżnorodność gatunek mutuje na utworzeniu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:268
 msgid "MAXIMUM_SPECIES_IN_PATCH"
@@ -1103,7 +1100,7 @@ msgstr "Mutacje na gatunki"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "Wstępna populacja dla gatunku zwiększającego bioróżnorodność"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
@@ -1111,27 +1108,27 @@ msgstr "Ochrona dopiero co przeniesionych gatunków przed limitem gatunków"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Chroń nowo stworzone gatunki od czapki gatunkowej"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "Zwracaj migracje w przypadku wymarcia w docelowym obszarze"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Rygorystyczna konkurencja nisz (różnice w sprawności są przesadzone)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "Minimalna populacja dla gatunku by się rozdzielić poprzez dobrze znalezione mutacje"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:390
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "Minimalny fragment populacji gatunku by umożliwić podział poprzez mutacje"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:402
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "Utworzenie gatunku zwiększającego bioróżnorodność kradnie populację od istniejącego gatunku"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:424
 msgid "CURRENT_GENERATION_COLON"
@@ -1151,7 +1148,7 @@ msgstr "Zakończ Jedno Pokolenie"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:485
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "Uruchom Jeden Krok"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:491
 msgid "ABORT"
@@ -1159,7 +1156,7 @@ msgstr "Przerwij"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "Graj Z Obecnym Ustawieniem"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 msgid "GENERATIONS"
@@ -1575,61 +1572,56 @@ msgstr "Wczytywanie"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Poziom (Oś: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Nowe imię:"
+msgstr "Pion (Oś: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Nowe imię:"
+msgstr "Surowy:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Martwa strefa:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Ten język jest gotów w {0}%"
+msgstr "Trwa kalibracja martwej strefy. Prosimy nie dotykać żadnych przycisków bądź drążków na twoim kontrolerze i poczekać kilka sekund."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Kalibracje martwej strefy zostały zresetowane"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Dodatkowe walidacje wykryły błąd: {0}"
+msgstr "Kalibracja martwej strefy została zakończona. Nowe martwe strefy są wyświetlane poniżej na wyświetlaczach walut osi."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Usunięcia zapisu nie można cofnąć, jesteś pewien że chcesz to zrobić?"
+msgstr "Konfiguracja Martwej Strefy"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji. Całkowita energia, którą gątunek jest w stanie przyswoić, i koszt utrzymania każdego osobnika determinują ostateczną populację. Auto-ewolucja wykorzystuje uproszczony model rzeczywistości w celu obliczenia jak dobrze dany gatunek sobie poradzi. Na każde źródło pożywienia dana jest informacja ile energii gatunek z niego czerpie."
+msgstr ""
+"To narzędzie umożliwia konfigurowanie martwych stref osi kontrolera. Wielkość martwej strefy wpływa na to jak bardzo drążek (bądź analogowy przycisk) musi być poruszony nim ten ruch zostanie wykryty jako wejście.\n"
+"Przed rozpoczęciem kalibracji prosimy poruszyć drążkami dookoła a następnie je puścić, również należy nacisnąć i puścić jakiekolwiek przyciski (np. wyzwalacze) na twoim kontrolerze."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Rozpocznij Kalibrację"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Przywrócić do domyślnych?"
+msgstr "Resetuj Strefy Martwe"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Wizualizatory Osi Kontrolera:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2060,29 +2052,24 @@ msgid "ART_BY"
 msgstr "Autor: {0}"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Zachowania"
+msgstr "Agresja"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Zachowania"
+msgstr "Oportunizm"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Zachowania"
+msgstr "Lęk"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Zachowania"
+msgstr "Aktywność"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Zachowania"
+msgstr "Koncentracja"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2198,7 +2185,7 @@ msgstr "Licencje"
 
 #: ../src/general/MainMenu.tscn:420
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Zasugeruj Funkcję"
 
 #: ../src/general/MainMenu.tscn:510
 msgid "GLES2_MODE_WARNING"
@@ -2284,7 +2271,7 @@ msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą ca�
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr ""
+msgstr "Możesz zmieniać opcje wydajności kiedy chcesz w [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] by polepszyć wydajność gry"
 
 #: ../src/general/NewGameSettings.tscn:290
 msgid "DIFFICULTY"
@@ -2355,24 +2342,20 @@ msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(zacznij z darmową chmurą glukozy w pobliżu, każdego pokolenia)"
 
 #: ../src/general/NewGameSettings.tscn:785
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "(prędkość z którą gatunki SI mutują)"
+msgstr "Biernie uzyskuj postęp reprodukcji"
 
 #: ../src/general/NewGameSettings.tscn:792
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(prędkość z którą gatunki SI mutują)"
+msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
 
 #: ../src/general/NewGameSettings.tscn:804
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Normalny"
+msgstr "Limituj użycie związków wzrostu"
 
 #: ../src/general/NewGameSettings.tscn:811
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(prędkość z którą gatunki SI mutują)"
+msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
 
 #: ../src/general/NewGameSettings.tscn:855
 msgid "PATCH_MAP_TYPE"
@@ -2444,13 +2427,12 @@ msgid "GLES3"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:794
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Pokaż nazwy przycisków wyboru części"
+msgstr "Nieznany"
 
 #: ../src/general/OptionsMenu.cs:803 ../src/general/OptionsMenu.tscn:509
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1226
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2469,16 +2451,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ten język jest gotów w {0}%"
 
 #: ../src/general/OptionsMenu.cs:1321
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Ten zapis jest z nowszej wersji Thrive i prawdopodobnie niekompatybilny.\n"
-"Czy chcesz spróbować wczytać zapis mimo to?"
+msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie przestarzałe"
 
 #: ../src/general/OptionsMenu.cs:1328
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Wersja:"
+msgstr "Nieznana wersja:"
 
 #: ../src/general/OptionsMenu.tscn:159
 msgid "GRAPHICS"
@@ -2569,17 +2547,16 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Wyświetlaj cząsteczki w tle"
 
 #: ../src/general/OptionsMenu.tscn:439
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "GPU:"
 
 #: ../src/general/OptionsMenu.tscn:469
 msgid "USED_RENDERER_NAME"
-msgstr ""
+msgstr "Wykorzystany renderer:"
 
 #: ../src/general/OptionsMenu.tscn:496
 msgid "VIDEO_MEMORY"
-msgstr ""
+msgstr "Obecnie wykorzystana pamięć wideo:"
 
 #: ../src/general/OptionsMenu.tscn:523
 msgid "GUI"
@@ -2717,60 +2694,56 @@ msgstr "Ekstremalny"
 
 #: ../src/general/OptionsMenu.tscn:1147
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Czułość wyglądu myszy"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Złącz osie ze sobą"
 
 #: ../src/general/OptionsMenu.tscn:1171 ../src/general/OptionsMenu.tscn:1277
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Wersja:"
+msgstr "Poziom:"
 
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1205
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1311
 msgid "INVERTED"
-msgstr ""
+msgstr "Odwrócony"
 
 #: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1296
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Wersja:"
+msgstr "Pion:"
 
 #: ../src/general/OptionsMenu.tscn:1211
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Czułość myszy skalowana poprzez wielkość okna"
 
 #: ../src/general/OptionsMenu.tscn:1222 ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Brak"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Czynnik Komunikacyjny"
+msgstr "Skalowany"
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Skalowany odwrotnie"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Użyj wirtualnej wielkości okna"
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Czułość kontrolera"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Strefy Martwe Kontrolera"
 
 #: ../src/general/OptionsMenu.tscn:1352
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Zresetuj Wejścia"
+msgstr "Zresetuj Skróty Klawiszowe"
 
 #: ../src/general/OptionsMenu.tscn:1392
 msgid "PLAY_INTRO_VIDEO"
@@ -2841,19 +2814,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nigdy"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Powróć do widoku konfiguracji podstawowej"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
 #: ../src/general/OptionsMenu.tscn:1594
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Wersja:"
+msgstr "Dokładna Wersja Thrive:"
 
 #: ../src/general/OptionsMenu.tscn:1622
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Związki:"
+msgstr "Zbudowane w:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3346,9 +3316,11 @@ msgid "RAW"
 msgstr "RAW"
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Wspierający Devbuilderów"
+msgstr ""
+"DevBuild {0}\n"
+"na gałęzi {1} w {2}\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -3702,14 +3674,12 @@ msgid "SPEED"
 msgstr "Szybkość"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Zwiększa prędkość obrotu większych komórek."
+msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu zwiększysz wydajność."
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe jety działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używani przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3880,7 +3850,7 @@ msgstr "Nie może pochłaniać"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3316
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "Odporny na podstawowe wchłonięcie"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3084
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -3984,9 +3954,8 @@ msgid "AGENTS"
 msgstr "Czynniki"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1645
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Mod Do Udostępnienia:"
+msgstr "Przemieść Się na Ląd"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1665
 msgid "BECOME_AWARE"
@@ -4002,15 +3971,8 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2049
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Dotarłeś do końca \"ukończonej\" części Thrive.\n"
-"Jeśli chcesz, możesz przejść dalej do prototypów następnych etapów które znajdują się w grze. Mogą one być ekstremalnie niedokończone, używać tymczasowych grafik oraz być ogólnie bardzo szorstkie. Są dołączone jako część gry żeby pokazać możliwy przyszły kierunek rozwoju i naszą wizję tego, jak etapy są ze sobą połączone.\n"
-"\n"
-"Nie będziesz mógł zapisywać, w większości prototypów, jeśli kontynuujesz lub powrócisz gdy kontynuujesz. Jeśli chcesz wrócić do tego etapu, proszę zapisać grę przed przejściem dalej.\n"
-"\n"
-"Jeśli decydujesz się kontynuować, proszę zrozumieć, że następne etapy to tylko prototypy i proszę nie narzekać na to, jak bardzo są niedokończone."
+msgstr "Przenieść Się na Ląd?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2050
 #, fuzzy
