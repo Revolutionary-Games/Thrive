@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-22 13:47+0300\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -156,11 +156,11 @@ msgstr "Вы победите в этой игре, если выживете н
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Развивайтесь с умом - ваши конкуренты не дремлют. Всякий раз, когда вы пользуетесь редактором, они эволюционируют."
+msgstr "Развивайтесь с умом — ваши конкуренты не дремлют. Всякий раз, когда вы пользуетесь редактором, они эволюционируют."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Связываясь с другими клетками, вы можете построить колонию клеток, в которой клетки делятся друг с другом соединениями, которые они поглощают и производят. Чтобы иметь возможность связываться с другой клеткой, вам необходимо иметь органеллы связывающих агентов, соприкасаться с ними и перейти в режим колонии нажимая [thrive:input]g_toggle_binding[/thrive:input]. Вы можете связываться только с клетками вашего собственного вида. Находясь в колонии, вы не можете разделить свою ячейку и войти в редактор (пока). Чтобы войти в редактор, когда вы соберете достаточно соединений, вам будет нужно покинуть текущую колонию нажимая [thrive:input]g_unbind_all[/thrive:input], только потом вы сможете войти в редактор. Большие колонии клеток - путь к многоклеточному этапу(пока недоступен в игре)."
+msgstr "Связываясь с другими клетками, вы можете построить колонию клеток, в которой клетки делятся друг с другом соединениями, которые они поглощают и производят. Чтобы иметь возможность связываться с другой клеткой, вам необходимо иметь органеллы связывающих агентов, соприкасаться с ними и перейти в режим колонии нажимая [thrive:input]g_toggle_binding[/thrive:input]. Вы можете связываться только с клетками вашего собственного вида. Находясь в колонии, вы не можете разделить свою ячейку и войти в редактор (пока). Чтобы войти в редактор, когда вы соберете достаточно соединений, вам будет нужно покинуть текущую колонию нажимая [thrive:input]g_unbind_all[/thrive:input], только потом вы сможете войти в редактор. Большие колонии клеток — путь к многоклеточному этапу(пока недоступен в игре)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -219,13 +219,13 @@ msgstr ""
 "\n"
 "Вакуоль: Вмещает до 8 соединений\n"
 "\n"
-"Токсиновая вакуоль: Производит токсины (в игре - [thrive:compound type=\"oxytoxy\"][/thrive:compound]) и позволяет вам выделять их, нанося урон в зависимости от доступного количества токсина\n"
+"Токсиновая вакуоль: Производит токсины (в игре — [thrive:compound type=\"oxytoxy\"][/thrive:compound]) и позволяет вам выделять их, нанося урон в зависимости от доступного количества токсина\n"
 "\n"
 "Сигнальное вещество: Позволяет клеткам создавать химикаты, на которые реагируют другие клетки"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "В каждом поколении у вас есть 100 очков мутации (MP), которые вы можете потратить, и каждое изменение (или мутация) будет стоить определенное количество этих очков. Добавление и удаление органелл требует дополнительных затрат MP. Однако удаление органелл, которые были помещены в текущий сеанс мутации, возвращает MP для этой органеллы. Вы можете переместить или полностью удалить органеллу, щелкнув ее правой кнопкой мыши и выбрав соответствующее действие во всплывающем меню. Вы можете вращать органеллы, размещая их с помощью кнопок [thrive:input]e_rotate_left[/thrive:input] и [thrive:input]e_rotate_right[/thrive:input]."
+msgstr "В каждом поколении у вас есть 100 очков мутации (MP), которые вы можете потратить, и каждое изменение (или мутация) будет стоить определённое количество этих очков. Добавление и удаление органелл требует дополнительных затрат MP. Однако удаление органелл, которые были помещены в текущий сеанс мутации, возвращает MP для этой органеллы. Вы можете переместить или полностью удалить органеллу, щёлкнув её правой кнопкой мыши и выбрав соответствующее действие во всплывающем меню. Вы можете вращать органеллы, размещая их с помощью кнопок [thrive:input]e_rotate_left[/thrive:input] и [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -330,7 +330,7 @@ msgstr "Вот совет: если ваша клетка занимает от 
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive - это симуляция инопланетной жизни, поэтому имеет смысл, что большинство существ, которые вы найдете, будут родственны одному или двумя другим видами из-за эволюции, происходящей вокруг вас, посмотрим, сможете ли вы их идентифицировать!"
+msgstr "Thrive — это симуляция инопланетной жизни, поэтому имеет смысл, что большинство существ, которые вы найдёте, будут родственны одному или двумя другим видам из-за эволюции, происходящей вокруг вас, попробуйте их идентифицировать!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
@@ -411,7 +411,7 @@ msgstr "Отвязать всех"
 
 #: ../simulation_parameters/common/input_options.json:68
 msgid "PERFORM_UNBINDING"
-msgstr "Сделать развязку"
+msgstr "Отвязать"
 
 #: ../simulation_parameters/common/input_options.json:78
 msgid "CAMERA"
@@ -477,7 +477,7 @@ msgstr "Сбросить камеру"
 #: ../simulation_parameters/common/input_options.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
-msgstr "Отменить текущие действие"
+msgstr "Отменить текущее действие"
 
 #: ../simulation_parameters/common/input_options.json:147
 msgid "DELETE_ORGANELLE"
@@ -500,13 +500,12 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Двигаться вниз или пригнуться"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Разное"
+msgstr "Разное на трёхмерном этапе"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Зажать, чтобы показать курсор"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -532,7 +531,7 @@ msgstr "Переключить на вид спереди"
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
-msgstr "Чит-коды"
+msgstr "Читы"
 
 #: ../simulation_parameters/common/input_options.json:217
 msgid "ENABLE_EDITOR"
@@ -601,7 +600,7 @@ msgstr "Включить HUD"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
 msgid "RESPIRATION"
-msgstr "Аэробное Дыхание"
+msgstr "Аэробное дыхание"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -609,7 +608,7 @@ msgstr "Гликолиз"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Цитоплазматический Гликолиз"
+msgstr "Цитоплазматический гликолиз"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:121
@@ -640,7 +639,7 @@ msgstr "Анаэробная азотфиксация"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:131
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Железный Хемолитоавтотроф"
+msgstr "Железная хемолитоавтотрофия"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -663,7 +662,7 @@ msgstr "Эпипелагический"
 #: ../simulation_parameters/microbe_stage/biomes.json:1863
 #: ../simulation_parameters/microbe_stage/biomes.json:2029
 msgid "FLOATING_HAZARD"
-msgstr "Плавающая Опасность"
+msgstr "Плавающая опасность"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -677,7 +676,7 @@ msgstr "Плавающая Опасность"
 #: ../simulation_parameters/microbe_stage/biomes.json:1881
 #: ../simulation_parameters/microbe_stage/biomes.json:2047
 msgid "SMALL_IRON_CHUNK"
-msgstr "Маленький Железный Кусок"
+msgstr "Маленький кусок железа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
 #: ../simulation_parameters/microbe_stage/biomes.json:326
@@ -691,7 +690,7 @@ msgstr "Маленький Железный Кусок"
 #: ../simulation_parameters/microbe_stage/biomes.json:1917
 #: ../simulation_parameters/microbe_stage/biomes.json:2083
 msgid "BIG_IRON_CHUNK"
-msgstr "Большой Железный Кусок"
+msgstr "Большой кусок железа"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -741,15 +740,15 @@ msgstr "Прибрежный"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1488
 msgid "UNDERWATERCAVE"
-msgstr "Подводная Пещера"
+msgstr "Подводная пещера"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1654
 msgid "ICESHELF"
-msgstr "Шельфовый Ледник"
+msgstr "Шельфовый ледник"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1731
 msgid "ICESHARD"
-msgstr "Ледяной Осколок"
+msgstr "Ледяной осколок"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1840
 msgid "ESTUARY"
@@ -757,7 +756,7 @@ msgstr "Устье реки"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2007
 msgid "SEA_FLOOR"
-msgstr "Морское Дно"
+msgstr "Морское дно"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
@@ -818,7 +817,7 @@ msgstr "Кислород"
 #: ../simulation_parameters/microbe_stage/compounds.json:138
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:514
 msgid "CARBON_DIOXIDE"
-msgstr "Углекислый Газ"
+msgstr "Углекислый газ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:152
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:487
@@ -830,7 +829,7 @@ msgstr "Азот"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:628
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:341
 msgid "SUNLIGHT"
-msgstr "Солнечный Свет"
+msgstr "Солнечный свет"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4059
@@ -881,7 +880,7 @@ msgstr "Хитин"
 #: ../simulation_parameters/microbe_stage/membranes.json:77
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3330
 msgid "CALCIUM_CARBONATE"
-msgstr "Кальция Карбонат"
+msgstr "Карбонат кальция"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3602
@@ -891,7 +890,7 @@ msgstr "Кремнезём"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1309
 msgid "PREDATORY_PILUS"
-msgstr "Хищная Пили"
+msgstr "Хищные пили"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:93
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:773
@@ -905,7 +904,7 @@ msgstr "Протоплазма"
 #: ../simulation_parameters/microbe_stage/organelles.json:160
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Хемосинтезирующие Белки"
+msgstr "Хемосинтезирующие белки"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:199
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:871
@@ -924,7 +923,7 @@ msgstr "Метаболосомы"
 #: ../simulation_parameters/microbe_stage/organelles.json:306
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2020
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Азотфиксирующая Пластида"
+msgstr "Азотфиксирующая пластида"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
@@ -956,12 +955,12 @@ msgstr "Митохондрия"
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсиновая\n"
-"Вакуоль"
+"вакуоль"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:547
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1476
 msgid "BINDING_AGENT"
-msgstr "Связывающий Агент"
+msgstr "Связующее вещество"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:589
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1742
@@ -986,7 +985,7 @@ msgstr "Хеморецептор"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Сопло для слизи"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -996,7 +995,7 @@ msgstr "Сигнальный агент"
 #: ../simulation_parameters/microbe_stage/organelles.json:799
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2414
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr "Биолюминесцентная Вакуоль"
+msgstr "Биолюминесцентная вакуоль"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:837
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1827
@@ -1052,9 +1051,8 @@ msgid "CONFIG"
 msgstr "Конфигурация"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:112
-#, fuzzy
 msgid "MAP"
-msgstr "АТФ"
+msgstr "Карта"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1079,45 +1077,43 @@ msgstr "Шанс в каждом биоме с небольшим количес
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Шанс появления нового вида из соседнего биома для увеличения биоразнообразия"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Дополнительная популяция для видов из соседнего биома, увеличивающих биоразнообразие"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Мутировать вид, увеличивающий биоразнообразие, при создании"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Считать биомы с таким или меньшим количеством видов биомами с низким биоразнообразием"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:268
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Вымерли в биоме"
+msgstr "Максимум видов в биоме перед искусственным вымиранием"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Попыток миграции на вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:304
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Очки мутации"
+msgstr "Попыток мутации на вид"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "Начальная популяция увеличивающих биоразнообразие видов"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Защищать только что мигрировавшие популяции от ограничения на виды"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Защищать только что созданные виды от ограничения на виды"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
@@ -3757,7 +3753,7 @@ msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1659
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "Электростанция клетки. Митохондрия (множественное число: митохондрии) представляет собой двумембранную органеллу, заполненную белками и ферментами. Это прокариота, которая была ассимилирована для использования ее эукариотическим хозяином. Она способна превращать глюкозу в АТФ с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом Аэробным Дыханием. Однако для её функционирования требуется кислород, и более низкие уровни содержания кислорода в атмосфере замедлят скорость её выработки АТФ."
+msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробное дыхание[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1743
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -3765,7 +3761,7 @@ msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1744
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "Хлоропласт представляет собой двумембранную органеллу, содержащую фоточувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования ее эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения глюкозы из воды и газообразного углекислого газа в процессе, называемом Фотосинтезом. Эти пигменты также придают ей особый цвет. Скорость выработки глюкозы зависит от концентрации углекислого газа в атмсофере и интенсивности света."
+msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1828
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
@@ -3773,7 +3769,7 @@ msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1829
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Термопласт представляет собой двумембранный органоид, содержащий термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования ее эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения глюкозы из воды и газообразного углекислого газа в процессе, называемом Термосинтезом. Скорость выработки глюкозы зависит от концентрации углекислого газа в атмосфере и температуры."
+msgstr "Термопласт — двумембранная структура, содержащая термочувствительные пигменты, сложенные вместе в мембранные мешочки. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в термопласте способны использовать энергию разности температур в окружающей среде для получения [thrive:compound type=\"atp\"][/thrive:compound] из воды и газообразного углекислого газа в процессе, называемом [b]термосинтез[/b]. Скорость выработки [thrive:compound type=\"atp\"][/thrive:compound] зависит [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1846
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
@@ -3786,7 +3782,7 @@ msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1937
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "Хемопласт - это двумембранная структура из белков, способная превращать сероводород, воду и углекислый газ в глюкозу в процессе Сероводородного Хемосинтеза. Скорость производства глюкозы зависит от концентрации углекислого газа в атмосфере."
+msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
@@ -3794,7 +3790,7 @@ msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "Азотфиксирующий пластид - это белок, способный использовать газообразный азот, кислород и клеточную энергию в форме АТФ для производства аммиака, ключевого питательного вещества для роста клеток. Это процесс, называемый Аэробной Азотфиксацией."
+msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
@@ -3833,7 +3829,7 @@ msgstr "Содержит пищеварительные ферменты. Тип
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2438
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью аутофагии."
+msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
 msgid "DIGESTION_SPEED"
@@ -3988,9 +3984,8 @@ msgid "AGENTS"
 msgstr "Химические Агенты"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Мод для загрузки:"
+msgstr "Переместиться на сушу"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 msgid "BECOME_AWARE"
@@ -4006,26 +4001,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Вы достигли конца \"завершённой\" части Thrive.\n"
-"Если вы хотите, вы можете продолжить на игру следующих стадиях, которые включены в игру. Они могут быть незавершёнными, использовать заполнители текстур и быть необработанными в целом. Они включены в игру для того, чтобы показать, как, вероятно, будет развиваться игра далее и наше видение того, как стадии будут соединены.\n"
-"\n"
-"Вы не сможете сохраниться, если продолжите или возвратитесь, когда продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
-"\n"
-"Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость."
+msgstr "Переместиться на сушу?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Вы достигли конца \"завершённой\" части Thrive.\n"
-"Если вы хотите, вы можете продолжить на игру следующих стадиях, которые включены в игру. Они могут быть незавершёнными, использовать заполнители текстур и быть необработанными в целом. Они включены в игру для того, чтобы показать, как, вероятно, будет развиваться игра далее и наше видение того, как стадии будут соединены.\n"
+"Вы собираетесь выбраться на сушу. Это требуется для дальнейшего прогресса в игре. Вернуться обратно будет нельзя.\n"
 "\n"
-"Вы не сможете сохраниться, если продолжите или возвратитесь, когда продолжите. Если вы хотите вернуться на эту стадию, пожалуйста, сделайте сохранение перед этим моментом.\n"
+"Сейчас переход к суше гораздо более резкий чем планируется в будущем, когда суша будет полноценно добавлена в игру.\n"
 "\n"
-"Если вы хотите продолжить, пожалуйста, примите к сведению, что последующие стадии не завершены, и не жалуйтесь на их незавершённость."
+"План в том, чтобы сделать переход на сушу постепенным, а не резким."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4036,9 +4022,8 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Выберите тип ткани во вкладке редактора для изменения"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
-#, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "Невозможно переместить метасферу в его древо потомков"
+msgstr "Невозможно переместить метасферу в её древо потомков"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 msgid "INTERNALS"
@@ -4094,9 +4079,8 @@ msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показать/скрыть окружение и соединения"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Показать/скрыть окружение и соединения"
+msgstr "Показать/скрыть соединения"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -4153,9 +4137,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Создать Противника"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Максимальное количество сущностей:"
+msgstr "Удалить все сущности"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4210,7 +4193,7 @@ msgstr "Невозможно использовать чит Создать Пр
 
 #: ../src/microbe_stage/MicrobeStage.tscn:557
 msgid "AT_CURSOR"
-msgstr "Под Курсором:"
+msgstr "Вы смотрите на:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1533
 msgid "INGESTED_MATTER"
@@ -4218,7 +4201,7 @@ msgstr "Поглощённая материя"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1769
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Перейти к следующей стадии игры (многоклеточному). Доступно с тех пор, как вы получили достаточно большую колонию."
+msgstr "Перейти к следующему этапу игры (многоклеточному). Доступно после сбора достаточно большой колонии."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1952
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -4321,7 +4304,7 @@ msgstr "Название вида клеток"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Нельзя удалить ядро, это необратимая эволюция.\n"
-"Однако, если оно добавлено в текущей сессии, отмена и возврат всё ещё допустимы"
+"Однако, если оно добавлено в текущей сессии, отмена и возврат всё ещё допустимы."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1166
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4491,9 +4474,8 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
-#, fuzzy
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr "Название вида..."
+msgstr "Название вида слишком длинное!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
@@ -5715,7 +5697,8 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для размножения вам нужно продублировать все ваши органеллы, собрав достаточное количество аммиака и фосфатов.\n"
-"Посмотрите на индикатор в правом нижнем углу, чтобы увидеть, сколько еще вам осталось. Полностью заполненные индикаторы станут белыми."
+"\n"
+"Посмотрите на индикатор в правом нижнем углу, чтобы увидеть, сколько ещё вам осталось. Полностью заполненные индикаторы станут белыми."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -5768,19 +5751,25 @@ msgstr ""
 "Вы можете использовать кнопку суицида чтобы пропустить этот этап, но помните, что всегда есть шанс спастись!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Поглощайте объекты, двигаясь сквозь них в режиме поглощения. Режим поглощения переключается клавишей [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"У вас достаточно [thrive:compound type=\"ammonia\"][/thrive:compound] и [thrive:compound type=\"phosphates\"][/thrive:compound]. Однако, вы в составе не-многоклеточной колонии и не можете размножиться.\n"
 "\n"
-"Прекратите поглощение как только объект втянут внутрь клетки.\n"
-"\n"
-"Следуйте за идущей от вашей клетки линией к ближайшему объекту для поглощения."
+"Вам нужно покинуть колонию чтобы получить доступ к редактору, если только вы не планируете перейти к многоклеточному этапу.\n"
+"Покиньте колонию для дальнейшего роста, нажав [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Загрузка Раннего Многоклеточного Редактора"
+msgstr ""
+"Добро пожаловать в ранний многоклеточный этап!\n"
+"\n"
+"Вы успешно провели свой вид через одноклеточную фазу.\n"
+"\n"
+"Игровой процесс наследует основные механики клеточной стадии. Вам всё ещё надо наращивать свой организм для размножения и редактирования.\n"
+"\n"
+"Однако, теперь вы можете спроектировать дизайн вашей колонии клеток в редакторе и специализировать клетки под определённые роли. Учтите, что члены колонии не могут делиться [thrive:compound type=\"atp\"][/thrive:compound] друг с другом.\n"
+"\n"
+"Если вы используете размножение почкованием (метод по умолчанию), вы начинаете одной клеткой и должны отрастить все остальные."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 #, fuzzy
