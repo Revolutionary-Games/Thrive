@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-22 13:47+0300\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -505,7 +505,7 @@ msgstr "Miscel·lània Estadi 3D"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Mantingues premut per mostrar el cursor"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -621,9 +621,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Síntesi de les toxines OxyToxy"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Quimiosíntesi"
+msgstr "Síntesi de mucílag"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -801,7 +800,7 @@ msgstr "OxyToxy NT"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Mucílag"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
@@ -986,7 +985,7 @@ msgstr "Quimioreceptor"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Raig de llim"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1014,32 +1013,46 @@ msgid "LYSOSOME"
 msgstr "Lisosoma"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:580
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "amb la concentració de"
+msgstr "Acaba {0} Generacions"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
+msgstr ""
+"[b]Espècies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generació[/b]\n"
+"  {2}\n"
+"[b]Població[/b]\n"
+"  {3}\n"
+"[b]Color[/b]\n"
+"  #{4}\n"
+"[b]Comportament[/b]\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
-"Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
-"Si la teva cèl·lula es queda sense energia, es morirà.\n"
-"Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
-"Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
+"[b]Estadi[/b]\n"
+"  Microbi\n"
+"[b]Tipus de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidesa de la Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocitat Base[/b]\n"
+"  {2}\n"
+"[b]Velocitat de Rotació Base[/b]\n"
+"  {3}\n"
+"[b]Mida d'Hexàgon Base[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
-msgstr ""
+msgstr "Configuració"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:112
-#, fuzzy
 msgid "MAP"
-msgstr "ATP"
+msgstr "Mapa"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1047,9 +1060,8 @@ msgid "REPORT"
 msgstr "Informe"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:128
-#, fuzzy
 msgid "VIEWER"
-msgstr "Visor de la Galeria"
+msgstr "Visor"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 #, fuzzy
