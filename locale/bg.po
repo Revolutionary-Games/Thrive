@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-22 13:47+0300\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -505,7 +505,7 @@ msgstr "Триизмерен етап"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr "Задържане на [thrive:input]g_free_cursor[/thrive:input] за курсора"
+msgstr "Показване на курсора чрез задържане"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -2351,7 +2351,7 @@ msgstr "Пасивно усвояване на хранителните веще
 
 #: ../src/general/NewGameSettings.tscn:792
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(клетките усвояват хранителните вещества от околната среда)"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 #: ../src/general/NewGameSettings.tscn:804
 msgid "LIMIT_GROWTH_RATE"
@@ -2359,7 +2359,7 @@ msgstr "Ограничаване на растежа"
 
 #: ../src/general/NewGameSettings.tscn:811
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(ограничава скоростта на растеж на клетките)"
+msgstr "(ограничава скоростта на растеж на създанията)"
 
 #: ../src/general/NewGameSettings.tscn:855
 msgid "PATCH_MAP_TYPE"
@@ -2735,7 +2735,7 @@ msgstr "Обратно"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr "Използване на виртуалния размер на прозореца"
+msgstr "Използване на виртуалния размер"
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
@@ -3924,9 +3924,8 @@ msgid "SPECIES_COLON"
 msgstr "Има създания:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr "Задържане на [thrive:input]g_free_cursor[/thrive:input] за курсора"
+msgstr "Задръжте [thrive:input]g_free_cursor[/thrive:input] за показване на курсора"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
 #: ../src/microbe_stage/MicrobeStage.tscn:729
