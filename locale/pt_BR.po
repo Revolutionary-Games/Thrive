@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-22 13:47+0300\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -497,7 +497,7 @@ msgstr "Diversos: Estágio 3d"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr "Aperte [thrive:input]g_free_cursor[/thrive:input] para o cursor"
+msgstr "Aperte para mostrar o cursor"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -1598,16 +1598,17 @@ msgstr "A calibração da zona morta foi redefinida"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Validações adicionais detectaram um erro: {0}"
+msgstr "A calibração das zonas mortas foi concluída. Elas estão sendo mostradas abaixo."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Configuração da zona morta"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+msgstr ""
+"Essa ferramenta permite configurar as zonas mortas do controle. As zonas mortas controlam quanto uma alavanca, ou um botão analógico, precisa ser movimentada antes que seja detectado como entrada.\n"
+"Antes de começar a calibração, movimente todas as alavancas analógicas e solte-as, e aperte e solte todos os botões analógicos no seu controle."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
@@ -1619,7 +1620,7 @@ msgstr "Redefinir as zona mortas"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Visualizador dos eixos do controle:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2448,11 +2449,8 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Esta linguagem está {0}% completa"
 
 #: ../src/general/OptionsMenu.cs:1321
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Este jogo salvo é de uma versão mais nova de Thrive e é provavelmente incompatível.\n"
-"Deseja carregar o jogo mesmo assim?"
+msgstr "Esta é uma build de depuração e a informação abaixo pode estar desatualizada"
 
 #: ../src/general/OptionsMenu.cs:1328
 msgid "UNKNOWN_VERSION"
@@ -2693,8 +2691,9 @@ msgid "LIMIT_EXTREME"
 msgstr "Extremo"
 
 #: ../src/general/OptionsMenu.tscn:1147
+#, fuzzy
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Sensibilidade do mouse"
 
 #: ../src/general/OptionsMenu.tscn:1159 ../src/general/OptionsMenu.tscn:1265
 msgid "BIND_AXES_SENSITIVITY"
@@ -2722,9 +2721,8 @@ msgid "SCALING_NONE"
 msgstr "Nenhum"
 
 #: ../src/general/OptionsMenu.tscn:1223
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Agente de Sinalização"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_ON_INVERSE"
@@ -2736,7 +2734,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1253
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Sensibilidade do controle"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "CONTROLLER_DEADZONES"
@@ -2816,19 +2814,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nunca"
 
 #: ../src/general/OptionsMenu.tscn:1592
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso especificar a classe do mod)"
+msgstr "Esta é a commit na qual essa versão de Thrive foi compilada"
 
 #: ../src/general/OptionsMenu.tscn:1594
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Versão:"
+msgstr "Versão exata de Thrive:"
 
 #: ../src/general/OptionsMenu.tscn:1622
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Compostos:"
+msgstr "Compilado em:"
 
 #: ../src/general/OptionsMenu.tscn:1673 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3677,14 +3672,12 @@ msgid "SPEED"
 msgstr "Velocidade"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Aumenta a velocidade de rotação das células maiores."
+msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célula já produz um pouco dessa enzima sem o lisossomo, mas ao selecionar essa opção você aumentará sua eficácia."
+msgstr "Muitos organismos produzem substâncias polissacarídeas semelhante à slimes, e a mucilagem é uma dessas. Enquanto que várias espécies as utilizam para a locomoção, alguns tipos de bactérias ejetam essas substâncias a alta pressão. Esses jatos se comportam como motores de foguetes, impulsionando as células a uma velocidade impressonante. O slime também é usado para evitar predadores, prendendo-os nessa substância na qual só organismos que possuem a organela podem navegar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3964,9 +3957,8 @@ msgid "AGENTS"
 msgstr "Agentes"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Mod a Carregar:"
+msgstr "Migrar para a terra"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 msgid "BECOME_AWARE"
@@ -3982,26 +3974,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Você terminou a parte “completa” de Thrive.\n"
-"Se quiser, você pode jogar os protótipos dos estágios seguintes que estão incluídos no jogo. Eles podem estar incompletos e usar gráficos temporários. Os protótipos estão incluídos para mostrar como será o possível futuro do jogo, e como os estágios estarão conectados.\n"
-"\n"
-"Não será possível salvar o jogo na maioria dos protótipos, ou sair deles caso prosseguir. Se quiser voltar, salve o jogo antes de continuar.\n"
-"\n"
-"Ao continuar, entenda que os estágios seguintes são protótipos e não reclame se estiverem incompletos."
+msgstr "Migrar para a terra?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Você terminou a parte “completa” de Thrive.\n"
-"Se quiser, você pode jogar os protótipos dos estágios seguintes que estão incluídos no jogo. Eles podem estar incompletos e usar gráficos temporários. Os protótipos estão incluídos para mostrar como será o possível futuro do jogo, e como os estágios estarão conectados.\n"
+"Você está prestes a migrar para a terra firme. Isto é necessário para avançar no jogo. Assim que você ir para a superfície você não poderá mais voltar.\n"
 "\n"
-"Não será possível salvar o jogo na maioria dos protótipos, ou sair deles caso prosseguir. Se quiser voltar, salve o jogo antes de continuar.\n"
+"Atualmente, a transição para a próxima parte é mais abrupta do que foi planejado.\n"
 "\n"
-"Ao continuar, entenda que os estágios seguintes são protótipos e não reclame se estiverem incompletos."
+"O plano é que a mudança seja gradual e não abrupta."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4063,14 +4046,12 @@ msgid "RESUME_TOOLTIP"
 msgstr "Retomar o jogo"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Mostrar/esconder ambiente e compostos"
+msgstr "Mostrar/esconder ambiente"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Mostrar/esconder ambiente e compostos"
+msgstr "Mostrar/esconder compostos"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -4753,9 +4734,8 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: chamada do método unload do assembly do mod falhou com uma exceção: {1}"
 
 #: ../src/modding/ModLoader.cs:453
-#, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "Carregamento do arquivo pck ({0}) falhou"
+msgstr "Carregamento do arquivo pck ({0}) falhou, pois o arquivo não existe"
 
 #: ../src/modding/ModLoader.cs:461
 msgid "PCK_LOAD_FAILED"
