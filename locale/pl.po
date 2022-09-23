@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-22 13:47+0300\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -3984,12 +3984,9 @@ msgstr "Przenieść Się na Ląd?"
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Dotarłeś do końca \"ukończonej\" części Thrive.\n"
-"Jeśli chcesz, możesz przejść dalej do prototypów następnych etapów które znajdują się w grze. Mogą one być ekstremalnie niedokończone, używać tymczasowych grafik oraz być ogólnie bardzo szorstkie. Są dołączone jako część gry żeby pokazać możliwy przyszły kierunek rozwoju i naszą wizję tego, jak etapy są ze sobą połączone.\n"
+"Masz zamiar wyjść na ląd. Jest to wymagane dla dalszego postępu twojego gatunku. Gdy wyjdziesz na ląd, nie będziesz w stanie wrócić.\n"
 "\n"
-"Nie będziesz mógł zapisywać, w większości prototypów, jeśli kontynuujesz lub powrócisz gdy kontynuujesz. Jeśli chcesz wrócić do tego etapu, proszę zapisać grę przed przejściem dalej.\n"
-"\n"
-"Jeśli decydujesz się kontynuować, proszę zrozumieć, że następne etapy to tylko prototypy i proszę nie narzekać na to, jak bardzo są niedokończone."
+"Obecnie to przejście na ląd jest znacznie bardziej nagłe niż planowane"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4051,14 +4048,12 @@ msgid "RESUME_TOOLTIP"
 msgstr "Wznów"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Pokaż / ukryj otoczenie i związki"
+msgstr "Pokaż / ukryj otoczenie"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Pokaż / ukryj otoczenie i związki"
+msgstr "Pokaż / ukryj związki"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -4115,9 +4110,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Przywołaj Przeciwnika"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Maksymalna ilość bytów:"
+msgstr "Usuń Wszystkie Byty"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4305,9 +4299,8 @@ msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
-#, fuzzy
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr "{0} energia: {1} (dopasowanie: {2}) całkowita dostępna energia: {3} (całkowite dopasowanie: {4})"
+msgstr "{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita sprawność: {4})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
@@ -4453,9 +4446,8 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balans Związków"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
-#, fuzzy
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr "Nazwa gatunku..."
+msgstr "Nazwa gatunku jest za długa!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
@@ -4474,9 +4466,8 @@ msgid "INFINITE_MP"
 msgstr "Nieskończone Punkty Mutacji"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Przenieś się do Tego Obszaru"
+msgstr "Przenieś się do Jakiegokolwiek Obszaru"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -5493,7 +5484,7 @@ msgstr "Twoje konto Steam obecnie ograniczenia do udostępniania plików. Prosim
 
 #: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Twoje konto Steam jest zbanowane od uploadowania kontentu"
 
 #: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
@@ -5706,36 +5697,35 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"Twoja komórka ma limitowaną pojemność dla obiektów które mogą być wchłonięte jednocześnie. Ten limit jest bazowany na wielkości; mniejsze komórki mają mniej pojemności.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+"Gdy pełna, komórka nie może pochłaniać więcej rzeczy. By kontynuować wchłanianie, poczekaj aż jeden lub więcej wchłoniętych obiektów zostało w pełni strawionych."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+"Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
+"\n"
+"Podążaj za linią z twojej komórki do pobliskiego wchłanialnego obiektu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"Twoja komórka została wchłonięta i jest trawiona. Postęp jest pokazany na twoim pasku zdrowia. Twoja komórka będzie martwa gdy ten proces się zakończy bądź maksymalny limit czasu osiągnięty.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+"Możesz się zabić by pominąć i odrodzić się, lecz pamiętaj, zawsze jest szansa ucieczki!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"Jesteś pełen [thrive:compound type=\"ammonia\"][/thrive:compound] oraz [thrive:compound type=\"phosphates\"][/thrive:compound]. Jednakże, jako iż jesteś w niewielokomórkowej kolonii, nie zachodzi u ciebie postęp rozmnażania.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz 'odwiąż wszystkie'."
+"Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz przejścia do wielokomórkowości.\n"
+"Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
@@ -5743,9 +5733,8 @@ msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Zacznij żyć"
+msgstr "Kontynuuj Rozkwitanie"
 
 #~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
 #~ msgstr "Prototyp makroskopijności"
