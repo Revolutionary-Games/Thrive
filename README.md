@@ -4,7 +4,7 @@ Thrive
 This is the code repository for Thrive. For more information, visit
 [Revolutionary Games' Website](https://revolutionarygamesstudio.com/).
 
-### Build Status ### [Build Status](https://dev.revolutionarygamesstudio.com/ci/1)
+### [Build Status](https://dev.revolutionarygamesstudio.com/ci/1)
 ### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg)](https://www.patreon.com/thrivegame)
 
 [![Thrive on Steam](https://img.shields.io/badge/-Thrive%20on%20Steam-blue)](https://store.steampowered.com/app/1779200/Thrive/) [![Thrive on Itch.io](https://img.shields.io/badge/-Thrive%20on%20Itch.io-orange)](https://revolutionarygames.itch.io/thrive)
