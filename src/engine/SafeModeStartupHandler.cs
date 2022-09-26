@@ -82,6 +82,8 @@ public static class SafeModeStartupHandler
     {
         // There's no check for wroteInfoFile as we assume this is always called before ReportBeforeVideoPlaying is
         // potentially called
+        if (startupSucceeded)
+            return;
 
         CurrentStartup.ModsEnabled = true;
 
@@ -93,7 +95,7 @@ public static class SafeModeStartupHandler
 
     public static void ReportBeforeVideoPlaying()
     {
-        if (wroteInfoFile)
+        if (wroteInfoFile || startupSucceeded)
             return;
 
         CurrentStartup.VideosEnabled = true;
