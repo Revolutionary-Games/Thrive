@@ -3,7 +3,7 @@
     "name": "RESPIRATION",
     "inputs": {
       "oxygen": 1,
-      "glucose": 0.18
+      "glucose": 0.16
     },
     "outputs": {
       "atp": 87
@@ -21,7 +21,7 @@
   "glycolysis_cytoplasm": {
     "name": "CYTOPLASM_GLYCOLYSIS",
     "inputs": {
-      "glucose": 0.011
+      "glucose": 0.009
     },
     "outputs": {
       "atp": 3
@@ -57,21 +57,30 @@
       "oxytoxy": 0.15
     }
   },
+  "mucilage_synthesis": {
+    "name": "MUCILAGE_SYNTHESIS",
+    "inputs": {
+      "glucose": 0.002
+    },
+    "outputs": {
+      "mucilage": 0.2
+    }
+  },
   "chemoSynthesis": {
     "name": "CHEMO_SYNTHESIS",
     "inputs": {
       "carbondioxide": 0.09,
-      "hydrogensulfide": 0.14
+      "hydrogensulfide": 0.12
     },
     "outputs": {
-      "glucose": 0.09
+      "glucose": 0.1
     }
   },
   "bacterial_ChemoSynthesis": {
     "name": "CHEMO_SYNTHESIS",
     "inputs": {
       "carbondioxide": 0.09,
-      "hydrogensulfide": 0.07
+      "hydrogensulfide": 0.06
     },
     "outputs": {
       "glucose": 0.04
@@ -102,7 +111,7 @@
     "name": "RESPIRATION",
     "inputs": {
       "oxygen": 1,
-      "glucose": 0.12
+      "glucose": 0.1
     },
     "outputs": {
       "atp": 38

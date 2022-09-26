@@ -307,7 +307,7 @@ public abstract class Species : ICloneable
         // species.PlayerSpecies = PlayerSpecies;
     }
 
-    private Dictionary<Compound, float> CalculateBaseReproductionCost()
+    protected virtual Dictionary<Compound, float> CalculateBaseReproductionCost()
     {
         var result = new Dictionary<Compound, float>();
 

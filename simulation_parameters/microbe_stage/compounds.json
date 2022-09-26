@@ -77,7 +77,7 @@
     "name": "OXYTOXY_NT",
     "volume": 1,
     "isCloud": false,
-    "isAlwaysUseful": true,
+    "isAgent": true,
     "isEnvironmental": false,
     "canBeDistributed": true,
     "digestible": true,
@@ -87,6 +87,23 @@
       "b": 0.078
     },
     "iconPath": "res://assets/textures/gui/bevel/oxytoxy.png"
+  },
+  "mucilage": {
+    "name": "MUCILAGE",
+    "volume": 1,
+    "isCloud": true,
+    "isAbsorbable": false,
+    "decayRate": 0.99,
+    "isAgent": true,
+    "isEnvironmental": false,
+    "canBeDistributed": true,
+    "digestible": false,
+    "colour": {
+      "r": 0,
+      "g": 1,
+      "b": 0.8
+    },
+    "iconPath": "res://assets/textures/gui/bevel/mucilage.png"
   },
   "iron": {
     "name": "IRON",

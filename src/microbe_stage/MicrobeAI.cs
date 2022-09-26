@@ -103,6 +103,8 @@ public class MicrobeAI
     private float SpeciesFocus => microbe.Species.Behaviour.Focus;
     private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
+    private bool IsSessile => SpeciesActivity < Constants.MAX_SPECIES_ACTIVITY / 10;
+
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
         // Disable most AI in a colony
@@ -227,7 +229,9 @@ public class MicrobeAI
             var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
             if (player != null)
             {
-                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
+                // Only move if we aren't sessile
+                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f &&
+                    !IsSessile)
                 {
                     MoveToLocation(player.GlobalTransform.origin);
                     return;
@@ -264,7 +268,7 @@ public class MicrobeAI
         microbe.State = Microbe.MicrobeState.Normal;
 
         // Otherwise just wander around and look for compounds
-        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+        if (!IsSessile)
         {
             SeekCompounds(random, data);
         }
@@ -296,7 +300,7 @@ public class MicrobeAI
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
                 && chunk.PhagocytosisStep == PhagocytosisPhase.None)
             {
-                if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
+                if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key) && x.Key.Digestible))
                 {
                     if (chosenChunk == null ||
                         (chosenChunk.Translation - microbe.Translation).LengthSquared() >
@@ -477,11 +481,18 @@ public class MicrobeAI
 
         microbe.LookAtPoint = targetPosition;
 
-        // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
-        if (DistanceFromMe(predatorLocation) < 100.0f &&
-            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+        if (DistanceFromMe(predatorLocation) < 100.0f)
         {
-            MoveWithRandomTurn(2.5f, 3.0f, random);
+            if (microbe.SlimeJets.Count > 0 && RollCheck(SpeciesFear, Constants.MAX_SPECIES_FEAR, random))
+            {
+                // There's a chance to jet away if we can
+                SecreteSlime(random);
+            }
+            else if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+            {
+                // If the predator is right on top of us there's a chance to try and swing with a pilus
+                MoveWithRandomTurn(2.5f, 3.0f, random);
+            }
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -514,6 +525,13 @@ public class MicrobeAI
         else
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
+
+        // Predators can use slime jets as an ambush mechanism
+        if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            SecreteSlime(random);
         }
     }
 
@@ -687,6 +705,7 @@ public class MicrobeAI
     /// </summary>
     private bool IsVitalCompound(Compound compound)
     {
+        // TODO: looking for mucilage should be prevented
         return microbe.Compounds.IsUseful(compound) &&
             (compound == glucose || compound == iron);
     }
@@ -715,6 +734,15 @@ public class MicrobeAI
                 microbe.LookAtPoint = target;
                 microbe.QueueEmitToxin(oxytoxy);
             }
+        }
+    }
+
+    private void SecreteSlime(Random random)
+    {
+        if (microbe.Hitpoints > 0 && microbe.SlimeJets.Count > 0)
+        {
+            // Randomise the time spent ejecting slime, from 0 to 3 seconds
+            microbe.QueueSecreteSlime(3 * random.NextFloat());
         }
     }
 

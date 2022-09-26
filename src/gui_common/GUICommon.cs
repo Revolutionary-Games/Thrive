@@ -240,6 +240,24 @@ public class GUICommon : NodeWithInput
         return element;
     }
 
+    /// <summary>
+    ///   This method exists because Godot signals always need an object so this is here as it makes some sense for
+    ///   <see cref="ControlHelpers"/> to rely on this class
+    /// </summary>
+    /// <param name="target">The target control that should forward focus</param>
+    internal void ProxyFocusForward(Control target)
+    {
+        target.ForwardFocusToNext();
+    }
+
+    /// <summary>
+    ///   Proxies requests to
+    /// </summary>
+    internal void ProxyDrawFocus(Control target)
+    {
+        target.DrawCustomFocusBorderIfFocused();
+    }
+
     private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)
     {
         _ = obj;

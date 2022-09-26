@@ -634,7 +634,7 @@ public class CreditsScroll : Container
             Text = text,
             RectMinSize = new Vector2(RectSize.x * LicenseTextWidthFraction, 0),
             RectPosition = new Vector2(Mathf.Round(RectSize.x * (1.0f - LicenseTextWidthFraction)), 0),
-            Align = Label.AlignEnum.Fill,
+            Align = Label.AlignEnum.Left,
             Autowrap = true,
         });
 

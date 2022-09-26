@@ -15,7 +15,7 @@ public class GodotTemplateInstaller
 {
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
-        var targetPath = GetTemplateInstallPath();
+        var targetPath = ThriveProperties.GetGodotTemplateInstallPath(GodotVersion.GODOT_VERSION_FULL);
 
         var downloadUrl =
             $"https://downloads.tuxfamily.org/godotengine/{GodotVersion.GODOT_VERSION}/mono/Godot_v" +
@@ -113,14 +113,5 @@ public class GodotTemplateInstaller
         {
             ColourConsole.WriteWarningLine("No items in zip matched prefix. Template install is likely incorrect!");
         }
-    }
-
-    private static string GetTemplateInstallPath()
-    {
-        if (!OperatingSystem.IsLinux())
-            throw new NotImplementedException("Currently only implemented for Linux");
-
-        return Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            $".local/share/godot/templates/{GodotVersion.GODOT_VERSION_FULL}");
     }
 }
