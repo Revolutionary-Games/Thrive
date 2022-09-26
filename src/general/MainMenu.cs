@@ -370,7 +370,7 @@ public class MainMenu : NodeWithInput
 
     private void QuitPressed()
     {
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
     }
 
     private void OptionsPressed()
