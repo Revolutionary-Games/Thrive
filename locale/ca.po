@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-22 13:47+0300\n"
+"POT-Creation-Date: 2022-09-26 15:29+0300\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1208,8 +1208,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Espècies presents"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:450
-#: ../src/general/MainMenu.tscn:493 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:361 ../src/general/MainMenu.tscn:451
+#: ../src/general/MainMenu.tscn:494 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2122,7 +2122,7 @@ msgid "CLOSE"
 msgstr "Tancar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:593 ../src/general/StageHUDBase.cs:698
+#: ../src/general/NewGameSettings.cs:594 ../src/general/StageHUDBase.cs:698
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2141,97 +2141,111 @@ msgstr "{0} concentrations han disminuït per {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Les concentracions de Glucosa han disminuït dràsticament!"
 
-#: ../src/general/MainMenu.cs:244
+#: ../src/general/MainMenu.cs:282
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
-#: ../src/general/MainMenu.tscn:196
+#: ../src/general/MainMenu.tscn:197
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Començar un nou joc"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:200
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
-#: ../src/general/MainMenu.tscn:210 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:211 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Carregar arxius de guardat previs"
 
-#: ../src/general/MainMenu.tscn:213 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:214 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
-#: ../src/general/MainMenu.tscn:221 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:222 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Canviar la configuració"
 
-#: ../src/general/MainMenu.tscn:225 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Opcions"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:237
 msgid "TOOLS"
 msgstr "Eines"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:248
 msgid "VIEW_SOURCE_CODE"
 msgstr "Veure Codi Font"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:259
 msgid "EXTRAS"
 msgstr "Extres"
 
-#: ../src/general/MainMenu.tscn:269
+#: ../src/general/MainMenu.tscn:270
 msgid "CREDITS"
 msgstr "Crèdits"
 
-#: ../src/general/MainMenu.tscn:277 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:278 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Sortir del joc"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:282
 msgid "QUIT"
 msgstr "Sortir"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:302
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
-#: ../src/general/MainMenu.tscn:313
+#: ../src/general/MainMenu.tscn:314
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "estat d'execució:"
 
-#: ../src/general/MainMenu.tscn:380
+#: ../src/general/MainMenu.tscn:381
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:394
+#: ../src/general/MainMenu.tscn:395
 msgid "ART_GALLERY"
 msgstr "Galeria d'art"
 
-#: ../src/general/MainMenu.tscn:406
+#: ../src/general/MainMenu.tscn:407
 msgid "LICENSES"
 msgstr "Llicències"
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:421
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:510
+#: ../src/general/MainMenu.tscn:511
 msgid "GLES2_MODE_WARNING"
 msgstr "Mode d'Alerta GLES2"
 
-#: ../src/general/MainMenu.tscn:512
+#: ../src/general/MainMenu.tscn:513
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:517
+#, fuzzy
+msgid "SAFE_MODE_TITLE"
+msgstr "Eliminar Dades Locals"
+
+#: ../src/general/MainMenu.tscn:519
+#, fuzzy
+msgid "SAFE_MODE_EXPLANATION"
+msgstr ""
+"Els microbis temorosos fugiran a més distància\n"
+"i en general fugiran de qualsevol depredador.\n"
+"Els microbis valents no se senten intimidats per depredadors propers\n"
+"i és més probable que contraataquin si són agredits."
+
+#: ../src/general/MainMenu.tscn:523
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors en Carregar el Mod"
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:524
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Hi han hagut errors en carregar un o més mods. Els logs poden tenir més informació."
 
@@ -4760,52 +4774,52 @@ msgstr "HAS ACONSEGUIT PROSPERAR!"
 msgid "WIN_TEXT"
 msgstr "Enhorabona, has guanyat en la versió actual del joc! Si ho vols, un cop aquesta finestreta es tanqui, pots continuar jugant i fent evolucionar la teva espècie, o bé començar una nova partida en un nou món."
 
-#: ../src/modding/ModLoader.cs:225 ../src/modding/ModLoader.cs:273
+#: ../src/modding/ModLoader.cs:235 ../src/modding/ModLoader.cs:283
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "No es pot carregar la informació del mod per {0}"
 
-#: ../src/modding/ModLoader.cs:247
+#: ../src/modding/ModLoader.cs:257
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: la càrrega de l'ensamblatge ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:262
+#: ../src/modding/ModLoader.cs:272
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: no té recursos que es puguin carregar"
 
-#: ../src/modding/ModLoader.cs:286
+#: ../src/modding/ModLoader.cs:296
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: el mètode de descàrrega de l'ensamblatge del mod ha fallat"
 
-#: ../src/modding/ModLoader.cs:292
+#: ../src/modding/ModLoader.cs:302
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: el mètode de descàrrega d'ensamblatge del mod ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:373
+#: ../src/modding/ModLoader.cs:383
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: classe de mod especificada \"{1}\" no s'ha trobat a l'ensamblatge del mod"
 
-#: ../src/modding/ModLoader.cs:384
+#: ../src/modding/ModLoader.cs:394
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mètode d'inicialització d'ensamblatge del mod ha fallat"
 
-#: ../src/modding/ModLoader.cs:398
+#: ../src/modding/ModLoader.cs:408
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: el mètode d'inicialització d'ensamblatge del mod ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:421
+#: ../src/modding/ModLoader.cs:431
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}: la càrrega del mod Harmony ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:442
+#: ../src/modding/ModLoader.cs:452
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: la descàrrega del mod Harmony ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:453
+#: ../src/modding/ModLoader.cs:463
 #, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "La càrrega de l'arxiu ({0}) ha fallat"
 
-#: ../src/modding/ModLoader.cs:461
+#: ../src/modding/ModLoader.cs:471
 msgid "PCK_LOAD_FAILED"
 msgstr "La càrrega de l'arxiu ({0}) ha fallat"
 

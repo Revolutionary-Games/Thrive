@@ -191,6 +191,16 @@ public class ModLoader : Node
         if (newMods.Count < 1)
             return;
 
+        if (!SafeModeStartupHandler.AreModsAllowed())
+        {
+            GD.PrintErr("Mod loading is disabled due to safe mode startup");
+            SafeModeStartupHandler.ModLoadingSkipped = true;
+            return;
+        }
+
+        UnhandledExceptionLogger.ReportModsEnabled();
+        SafeModeStartupHandler.ReportModLoadingStart();
+
         foreach (var load in newMods.Except(loadedMods).ToList())
         {
             GD.Print("Loading mod: ", load);

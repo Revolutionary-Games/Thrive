@@ -74,6 +74,7 @@ CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
+SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
@@ -510,6 +511,12 @@ popup_exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
+
+[node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
+rect_min_size = Vector2( 550, 350 )
+WindowTitle = "SAFE_MODE_TITLE"
+HideCancelButton = true
+DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
 rect_min_size = Vector2( 400, 350 )
