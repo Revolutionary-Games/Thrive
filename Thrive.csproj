@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="simulation_parameters\BuildInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
     <Compile Include="simulation_parameters\EnzymeLoader.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
@@ -60,6 +61,14 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
+    <Compile Include="src\engine\input\ControllerAxisVisualizer.cs" />
+    <Compile Include="src\engine\input\ControllerDeadzoneConfiguration.cs" />
+    <Compile Include="src\engine\input\ControllerInputAxisVisualizationContainer.cs" />
+    <Compile Include="src\engine\input\MouseInputScaling.cs" />
+    <Compile Include="src\engine\input\RunOnInputWithStrengthAndRepeatAttribute.cs" />
+    <Compile Include="src\engine\input\RunOnInputWithStrengthAttribute.cs" />
+    <Compile Include="src\engine\input\RunOnRelativeMouseAttribute.cs" />
     <Compile Include="src\engine\IResource.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
@@ -126,6 +135,7 @@
     <Compile Include="src\general\CustomDifficulty.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\gui_common\thriveopedia\Thriveopedia.cs" />
     <Compile Include="src\gui_common\thriveopedia\ThriveopediaPage.cs" />
@@ -329,6 +339,7 @@
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
@@ -366,7 +377,6 @@
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
     <Compile Include="src\microbe_stage\MembraneType.cs" />
     <Compile Include="simulation_parameters\SimulationParameters.cs" />
@@ -556,10 +566,6 @@
     <Compile Include="test\MetaballTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="StyleCop.ruleset" />
-    <None Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
@@ -588,6 +594,9 @@
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
     <Content Include="export_presets.cfg" />
+    <Content Include="global.json" />
+    <Content Include="RevolutionaryGamesCommon\stylecop.json" />
+    <Content Include="RevolutionaryGamesCommon\StyleCop.ruleset" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
     <Content Include="simulation_parameters\common\difficulty_presets.json" />

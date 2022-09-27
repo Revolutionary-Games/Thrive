@@ -41,6 +41,16 @@
             return step;
         }
 
+        /// <summary>
+        ///   Creates a list of all existing save upgrade steps
+        /// </summary>
+        /// <returns>The created list</returns>
+        /// <remarks>
+        ///   <para>
+        ///     Also see <see cref="SaveHelper.KnownSaveIncompatibilityPoints"/> to see where the save version known
+        ///     incompatibilities are.
+        ///   </para>
+        /// </remarks>
         private static Dictionary<string, ISaveUpgradeStep> InitializeSaveUpgradeSteps()
         {
             // TODO: would it be useful to specify a range of versions an upgrader can upgrade to make it less error
@@ -62,6 +72,8 @@
                 { "0.5.8.0-rc1", new UpgradeJustVersionNumber("0.5.8.0") },
                 { "0.5.8.0", new UpgradeJustVersionNumber("0.5.8.1-alpha") },
                 { "0.5.8.1-alpha", new UpgradeJustVersionNumber("0.5.8.1") },
+                { "0.5.9.0", new UpgradeJustVersionNumber("0.5.10.0-rc1") },
+                { "0.5.10.0-rc1", new UpgradeJustVersionNumber("0.5.10.0") },
             };
         }
     }

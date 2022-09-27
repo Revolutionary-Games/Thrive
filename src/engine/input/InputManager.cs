@@ -17,6 +17,13 @@ public class InputManager : Node
     private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
 
+    private readonly Dictionary<int, float> controllerAxisDeadzones = new();
+
+    /// <summary>
+    ///   Used to send just one 0 event for a controller axis that is released and goes into the deadzone
+    /// </summary>
+    private readonly Dictionary<int, bool> deadzonedControllerAxes = new();
+
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
@@ -42,6 +49,8 @@ public class InputManager : Node
     ///   Set to true when a rebinding is being performed, used to discard input
     /// </summary>
     public static bool PerformingRebind { get; set; }
+
+    public static Vector2 WindowSizeForInputs { get; private set; }
 
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
@@ -128,6 +137,21 @@ public class InputManager : Node
         staticInstance._UnhandledInput(inputEvent);
     }
 
+    public static void OnPostLoad()
+    {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
+        staticInstance.DoPostLoad();
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        DoPostLoad();
+    }
+
     /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
@@ -173,11 +197,11 @@ public class InputManager : Node
         OnInput(false, @event);
     }
 
-    public override void _Notification(int focus)
+    public override void _Notification(int what)
     {
         // If the window goes out of focus, we don't receive the key released events
         // We reset our held down keys if the player tabs out while pressing a key
-        if (focus == MainLoop.NotificationWmFocusOut)
+        if (what == NotificationWmFocusOut)
         {
             OnFocusLost();
         }
@@ -265,14 +289,82 @@ public class InputManager : Node
         return result;
     }
 
+    /// <summary>
+    ///   Performs post load actions for inputs. For example some inputs need to listen for settings changes
+    /// </summary>
+    private void DoPostLoad()
+    {
+        LoadControllerDeadzones();
+
+        Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
+
+        GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
+        UpdateWindowSizeForInputs();
+
+        foreach (var attribute in attributes)
+        {
+            attribute.Key.OnPostLoad();
+        }
+    }
+
+    private void OnWindowSizeChanged()
+    {
+        UpdateWindowSizeForInputs();
+
+        foreach (var attribute in attributes)
+        {
+            attribute.Key.OnWindowSizeChanged();
+        }
+    }
+
+    private void UpdateWindowSizeForInputs()
+    {
+        if (Settings.Instance.InputWindowSizeIsLogicalSize.Value)
+        {
+            WindowSizeForInputs = LoadingScreen.Instance.LogicalDrawingAreaSize;
+        }
+        else
+        {
+            WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+        }
+    }
+
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
-        // Ignore mouse motion
-        // TODO: support mouse movement input as well
-        if (@event is InputEventMouseMotion)
-            return;
+        bool isDown = false;
 
-        bool isDown = @event.IsPressed();
+        // For now let's always assume mouse motion is not a "down" action
+        if (@event is not InputEventMouseMotion)
+        {
+            if (@event is InputEventJoypadMotion joypadMotion)
+            {
+                // Apply controller axis deadzone
+                var motionAxis = joypadMotion.Axis;
+                controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
+
+                if (Math.Abs(joypadMotion.AxisValue) < deadzone)
+                {
+                    deadzonedControllerAxes.TryGetValue(motionAxis, out var deadzoned);
+
+                    if (deadzoned)
+                    {
+                        // Already sent out the deadzone event for this input, don't send again until it changes
+                        return;
+                    }
+
+                    joypadMotion.AxisValue = 0;
+                    deadzonedControllerAxes[motionAxis] = true;
+                }
+                else
+                {
+                    deadzonedControllerAxes[motionAxis] = false;
+                }
+
+                // TODO: implement maximum value scaling for controller axes (if needed)
+            }
+
+            isDown = @event.IsPressed();
+        }
 
         bool handled = false;
 
@@ -316,6 +408,24 @@ public class InputManager : Node
         };
         timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
+    }
+
+    private void LoadControllerDeadzones()
+    {
+        var values = Settings.Instance.ControllerAxisDeadzoneAxes.Value;
+
+        if (values.Count != (int)JoystickList.AxisMax)
+        {
+            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoystickList.AxisMax,
+                " actually configured: ", values.Count);
+        }
+
+        controllerAxisDeadzones.Clear();
+
+        for (int i = 0; i < values.Count; ++i)
+        {
+            controllerAxisDeadzones[i] = values[i];
+        }
     }
 
     /// <summary>

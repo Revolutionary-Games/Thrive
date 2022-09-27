@@ -16,7 +16,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     where TStage : Object, IStage
 {
     [Export]
-    public NodePath AnimationPlayerPath = null!;
+    public NodePath CompoundsGroupAnimationPlayerPath = null!;
+
+    [Export]
+    public NodePath EnvironmentGroupAnimationPlayerPath = null!;
 
     [Export]
     public NodePath PanelsTweenPath = null!;
@@ -148,6 +151,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath EngulfHotkeyPath = null!;
 
     [Export]
+    public NodePath SecreteSlimeHotkeyPath = null!;
+
+    [Export]
     public NodePath SignallingAgentsHotkeyPath = null!;
 
     [Export]
@@ -170,6 +176,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     [Export]
     public NodePath OxytoxyBarPath = null!;
+
+    [Export]
+    public NodePath MucilageBarPath = null!;
 
     [Export]
     public NodePath AgentsPanelBarContainerPath = null!;
@@ -206,6 +215,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
+    protected readonly List<Compound> allAgents = new();
+
     protected Compound ammonia = null!;
     protected Compound atp = null!;
     protected Compound carbondioxide = null!;
@@ -215,14 +226,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound nitrogen = null!;
     protected Compound oxygen = null!;
     protected Compound oxytoxy = null!;
+    protected Compound mucilage = null!;
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
-    protected AnimationPlayer animationPlayer = null!;
+    protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
+    protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MarginContainer mouseHoverPanel = null!;
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
+    protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
@@ -292,10 +306,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool environmentCompressed;
     private bool compoundCompressed;
 
-    /// <summary>
-    ///   This is opposite of the expected value, ie. this is true when the panels are collapsed
-    /// </summary>
-    private bool leftPanelsActive;
+    // The values of the two following variables are the opposite of the expected values.
+    // I.e. their values are true when their respective panels are collapsed.
+    private bool compoundsPanelActive;
+
+    private bool environmentPanelActive;
 
     private VBoxContainer hoveredCompoundsContainer = null!;
     private HSeparator hoveredCellsSeparator = null!;
@@ -305,6 +320,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private ActionButton fireToxinHotkey = null!;
     private Control agentsPanel = null!;
     private ProgressBar oxytoxyBar = null!;
+    private ProgressBar mucilageBar = null!;
     private CustomDialog? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
 
@@ -412,6 +428,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         compoundsPanelCompressButton = GetNode<Button>(CompoundsPanelCompressButtonPath);
 
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
+        mucilageBar = GetNode<ProgressBar>(MucilageBarPath);
         atpBar = GetNode<TextureProgress>(AtpBarPath);
         healthBar = GetNode<TextureProgress>(HealthBarPath);
         ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
@@ -421,7 +438,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<PauseMenu>(MenuPath);
-        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
+        compoundsGroupAnimationPlayer = GetNode<AnimationPlayer>(CompoundsGroupAnimationPlayerPath);
+        environmentGroupAnimationPlayer = GetNode<AnimationPlayer>(EnvironmentGroupAnimationPlayerPath);
         hoveredCompoundsContainer = GetNode<VBoxContainer>(HoveredCompoundsContainerPath);
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
@@ -439,6 +457,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
 
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
+        secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
@@ -466,12 +485,16 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
         oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
 
         fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
+
+        allAgents.Add(oxytoxy);
+        allAgents.Add(mucilage);
 
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();
@@ -972,6 +995,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
+
+        mucilageBar.MaxValue = compounds.GetCapacityForCompound(mucilage);
+        GUICommon.SmoothlyUpdateBar(mucilageBar, compounds.GetCompoundAmount(mucilage), delta);
+        mucilageBar.GetNode<Label>("Value").Text = mucilageBar.Value + " / " + mucilageBar.MaxValue;
     }
 
     protected void UpdateReproductionProgress()
@@ -1063,9 +1090,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
         var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
+        var agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");
 
         environmentPanelVBoxContainer.RectSize = new Vector2(environmentPanelVBoxContainer.RectMinSize.x, 0);
         compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
+        agentsPanelVBoxContainer.RectSize = new Vector2(agentsPanelVBoxContainer.RectMinSize.x, 0);
 
         // Multiply interpolation value with delta time to make it not be affected by framerate
         var environmentPanelSize = environmentPanel.RectMinSize.LinearInterpolate(
@@ -1074,8 +1103,12 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         var compoundsPanelSize = compoundsPanel.RectMinSize.LinearInterpolate(
             new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
 
+        var agentsPanelSize = agentsPanel.RectMinSize.LinearInterpolate(
+            new Vector2(agentsPanel.RectMinSize.x, agentsPanelVBoxContainer.RectSize.y), 5 * delta);
+
         environmentPanel.RectMinSize = environmentPanelSize;
         compoundsPanel.RectMinSize = compoundsPanelSize;
+        agentsPanel.RectMinSize = agentsPanelSize;
     }
 
     /// <summary>
@@ -1182,14 +1215,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract void UpdateAbilitiesHotBar();
 
-    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showingSignaling, bool engulfOn)
+    protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
+        bool showingSignaling, bool engulfOn)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
+        secreteSlimeHotkey.Visible = showSlime;
         signallingAgentsHotkey.Visible = showingSignaling;
 
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
+        secreteSlimeHotkey.Pressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
         signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
     }
 
@@ -1305,20 +1341,37 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hotBar.Visible = displayed;
     }
 
-    private void CompoundButtonPressed(bool wantedState)
+    private void EnvironmentButtonPressed(bool wantedState)
     {
-        if (leftPanelsActive == !wantedState)
+        if (environmentPanelActive == !wantedState)
             return;
 
-        if (!leftPanelsActive)
+        if (!environmentPanelActive)
         {
-            leftPanelsActive = true;
-            animationPlayer.Play("HideLeftPanels");
+            environmentPanelActive = true;
+            environmentGroupAnimationPlayer.Play("HideEnvironmentPanel");
         }
         else
         {
-            leftPanelsActive = false;
-            animationPlayer.Play("ShowLeftPanels");
+            environmentPanelActive = false;
+            environmentGroupAnimationPlayer.Play("ShowEnvironmentPanel");
+        }
+    }
+
+    private void CompoundButtonPressed(bool wantedState)
+    {
+        if (compoundsPanelActive == !wantedState)
+            return;
+
+        if (!compoundsPanelActive)
+        {
+            compoundsPanelActive = true;
+            compoundsGroupAnimationPlayer.Play("HideCompoundsPanels");
+        }
+        else
+        {
+            compoundsPanelActive = false;
+            compoundsGroupAnimationPlayer.Play("ShowCompoundsPanels");
         }
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
@@ -85,6 +84,7 @@ anchor_bottom = 1.0
 expand = true
 stretch_mode = 7
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_description_": "Randomizeable background"
 }
 
@@ -104,6 +104,29 @@ custom_fonts/font = ExtResource( 16 )
 text = "Logged in as: name"
 align = 2
 max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VersionNumber" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -624.0
+margin_top = -19.0
+margin_right = -4.0
+margin_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 16 )
+text = "x.y.z"
+align = 2
+valign = 2
+autowrap = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -400,11 +423,25 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 508.0
+margin_top = 200.0
+margin_right = 771.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "VISIT_SUGGESTIONS_SITE"
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 200.0
+margin_top = 250.0
 margin_right = 765.0
-margin_bottom = 240.0
+margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -418,9 +455,6 @@ visible = false
 visible = false
 
 [node name="NewGameSettings" parent="." instance=ExtResource( 18 )]
-visible = false
-
-[node name="Thriveopedia" parent="." instance=ExtResource( 13 )]
 visible = false
 
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
@@ -463,31 +497,6 @@ __meta__ = {
 [node name="ModManager" parent="." instance=ExtResource( 14 )]
 visible = false
 
-[node name="VersionNumber" type="Label" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -165.0
-margin_top = -19.0
-margin_right = -4.0
-margin_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = ExtResource( 16 )
-text = "x.y.z"
-align = 2
-valign = 2
-clip_text = true
-max_lines_visible = 1
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
 
@@ -521,12 +530,12 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
 [connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
-[connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
