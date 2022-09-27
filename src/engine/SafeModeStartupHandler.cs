@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Godot;
@@ -147,6 +148,10 @@ public static class SafeModeStartupHandler
 
     private static void SaveCurrentStartupInfo()
     {
+        // When using a debugger, we don't want to do safe mode start ups
+        if (Debugger.IsAttached)
+            return;
+
         // Ensure previous info is loaded before we write a fresh file
         _ = PreviousFailedStartup.Value;
 
