@@ -24,6 +24,8 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     private RichTextLabel planetDetails = null!;
     private RichTextLabel miscDetails = null!;
 
+    private bool ready;
+
     public override string PageName => "CURRENT_WORLD_PAGE";
 
     public override string TranslatedPageName => TranslationServer.Translate("CURRENT_WORLD_PAGE");
@@ -37,16 +39,19 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
         difficultyDetails = GetNode<RichTextLabel>(DifficultyDetailsPath);
         planetDetails = GetNode<RichTextLabel>(PlanetDetailsPath);
         miscDetails = GetNode<RichTextLabel>(MiscDetailsPath);
+        ready = true;
 
         UpdateCurrentWorldDetails();
     }
 
     public override void UpdateCurrentWorldDetails()
     {
+        if (!ready)
+            return;
+
         disabledLabel.Visible = CurrentGame == null;
         worldContent.Visible = CurrentGame != null;
 
-        // This page should never be visible if opened outside an active game, so ignore this case
         if (CurrentGame == null)
             return;
 

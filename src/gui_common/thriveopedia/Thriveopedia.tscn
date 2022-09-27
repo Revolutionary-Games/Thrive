@@ -83,12 +83,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PageTree" type="Tree" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 300.0
+margin_right = 240.0
 margin_bottom = 600.0
-rect_min_size = Vector2( 300, 300 )
+rect_min_size = Vector2( 240, 300 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 304.0
+margin_left = 244.0
 margin_right = 1180.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -97,7 +97,7 @@ size_flags_vertical = 3
 [node name="ThriveopediaHomePage" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 876.0
+margin_right = 936.0
 margin_bottom = 600.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]

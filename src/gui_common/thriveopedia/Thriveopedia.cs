@@ -61,7 +61,7 @@ public class Thriveopedia : ControlWithInput
         {
             currentGame = value;
 
-            foreach (var page in allPages)
+            foreach (var page in allPages.ToList())
                 page.CurrentGame = currentGame;
         }
     }
@@ -86,7 +86,6 @@ public class Thriveopedia : ControlWithInput
 
         AddPage("ThriveopediaCurrentWorldPage");
         AddPage("ThriveopediaMuseumPage");
-        AddPage("ThriveopediaEvolutionaryTreePage");
 
         pageHistory.Push(homePage);
         SelectedPage = homePage;
@@ -140,6 +139,7 @@ public class Thriveopedia : ControlWithInput
     {
         var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/{name}.tscn");
         var page = (ThriveopediaPage)scene.Instance();
+        page.CurrentGame = CurrentGame;
         page.OpenPage = ChangePage;
         page.AddPageAsChild = AddPage;
         pageContainer.AddChild(page);

@@ -16,17 +16,17 @@ PlanetDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VB
 MiscDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3/MiscDetails")
 
 [node name="DisabledLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
-margin_top = 96.0
+margin_top = 91.0
 margin_right = 1138.0
-margin_bottom = 113.0
+margin_bottom = 108.0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "DISABLED_PAGE_WARNING"
 
 [node name="WorldContent" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
-margin_top = 123.0
+margin_top = 118.0
 margin_right = 1138.0
-margin_bottom = 184.0
+margin_bottom = 179.0
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent" index="0"]
 margin_right = 1138.0

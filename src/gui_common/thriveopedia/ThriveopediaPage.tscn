@@ -2,14 +2,14 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaPage.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Big.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="ThriveopediaPage" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -100.0
+margin_right = -344.0
 margin_bottom = -120.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -18,7 +18,7 @@ PageTitlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxCo
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 1179.0
+margin_right = 935.0
 margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -28,13 +28,13 @@ custom_constants/margin_bottom = 15
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 1163.0
+margin_right = 919.0
 margin_bottom = 583.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer"]
-margin_right = 1148.0
+margin_right = 904.0
 margin_bottom = 568.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -42,7 +42,7 @@ custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer"]
-margin_right = 1138.0
+margin_right = 894.0
 margin_bottom = 558.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,15 +52,15 @@ __meta__ = {
 }
 
 [node name="PageTitle" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 1138.0
-margin_bottom = 66.0
+margin_right = 894.0
+margin_bottom = 31.0
 custom_fonts/font = ExtResource( 3 )
 text = "PAGE_TITLE"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 76.0
-margin_right = 1138.0
-margin_bottom = 81.0
+margin_top = 41.0
+margin_right = 894.0
+margin_bottom = 46.0
 rect_min_size = Vector2( 0, 5 )
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )

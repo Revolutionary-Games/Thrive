@@ -7,6 +7,8 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private EvolutionaryTree evolutionaryTree = null!;
 
+    private bool ready;
+
     public override string PageName => "EVOLUTIONARY_TREE_PAGE";
 
     public override string TranslatedPageName => TranslationServer.Translate("EVOLUTIONARY_TREE_PAGE");
@@ -16,13 +18,16 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         base._Ready();
 
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
+        ready = true;
+
+        UpdateCurrentWorldDetails();
     }
 
     public override void UpdateCurrentWorldDetails()
     {
-        if (CurrentGame == null)
+        if (CurrentGame == null || !ready)
             return;
-
+            
         evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
     }
 }
