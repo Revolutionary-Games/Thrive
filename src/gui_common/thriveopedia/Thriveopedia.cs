@@ -73,14 +73,20 @@ public class Thriveopedia : ControlWithInput
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
         pageTree = GetNode<Tree>(PageTreePath);
 
+        // Create and hide a blank root to avoid home being used as the root
+        pageTree.CreateItem();
+        pageTree.HideRoot = true;
+
         // Keep a special reference to the home page
         homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
         homePage.OpenPage = ChangePage;
+        homePage.AddPageAsChild = AddPage;
         allPages.Add(homePage);
-        AddPageToTree(homePage);
+        AddPageToTree(homePage, null);
 
         AddPage("ThriveopediaCurrentWorldPage");
         AddPage("ThriveopediaMuseumPage");
+        AddPage("ThriveopediaEvolutionaryTreePage");
 
         pageHistory.Push(homePage);
         SelectedPage = homePage;
@@ -125,21 +131,37 @@ public class Thriveopedia : ControlWithInput
         return currentGame == null;
     }
 
-    private void AddPage(string name)
+    private ThriveopediaPage GetPage(string? name)
+    {
+        return allPages.FirstOrDefault(p => p.PageName == name);
+    }
+
+    private void AddPage(string name, string? parentName = null)
     {
         var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/{name}.tscn");
         var page = (ThriveopediaPage)scene.Instance();
+        page.OpenPage = ChangePage;
+        page.AddPageAsChild = AddPage;
         pageContainer.AddChild(page);
         allPages.Add(page);
         page.Hide();
 
-        AddPageToTree(page);
+        AddPageToTree(page, parentName);
     }
-    
-    private void AddPageToTree(ThriveopediaPage page, ThriveopediaPage? parent = null)
+
+    private void AddPageToTree(ThriveopediaPage page, string? parentName)
     {
-        var pageInTree = pageTree.CreateItem(parent);
-        pageInTree.SetText(0, page.PageName);
+        var parent = GetPage(parentName);
+        var pageInTree = pageTree.CreateItem(parent?.PageTreeItem);
+        page.PageTreeItem = pageInTree;
+        pageInTree.SetMeta("name", page.PageName);
+        pageInTree.SetText(0, page.TranslatedPageName);
+    }
+
+    private void OnPageSelectedFromPageTree()
+    {
+        var name = (string)pageTree.GetSelected().GetMeta("name");
+        ChangePage(name);
     }
 
     private void ChangePage(string pageName)
@@ -155,7 +177,7 @@ public class Thriveopedia : ControlWithInput
         if (pageName == selectedPage.PageName)
             return;
 
-        var page = allPages.FirstOrDefault(p => p.PageName == pageName);
+        var page = GetPage(pageName);
 
         if (page == null)
         {

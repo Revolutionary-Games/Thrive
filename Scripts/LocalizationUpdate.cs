@@ -228,7 +228,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
             if (!changed)
                 break;
 
-            await File.WriteAllLinesAsync(target, trimmed, Encoding.UTF8, cancellationToken);
+            await File.WriteAllLinesAsync(target, trimmed, Encoding.Default, cancellationToken);
             ColourConsole.WriteWarningLine($"Removed trailing whitespace in {target}");
         }
 

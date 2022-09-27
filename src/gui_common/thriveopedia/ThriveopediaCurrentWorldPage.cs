@@ -4,6 +4,12 @@ using System.Globalization;
 public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 {
     [Export]
+    public NodePath DisabledLabelPath = null!;
+
+    [Export]
+    public NodePath WorldContentPath = null!;
+
+    [Export]
     public NodePath DifficultyDetailsPath = null!;
 
     [Export]
@@ -12,35 +18,39 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     [Export]
     public NodePath MiscDetailsPath = null!;
 
-    [Export]
-    public NodePath EvolutionaryTreePath = null!;
-
+    private Label disabledLabel = null!;
+    private VBoxContainer worldContent = null!;
     private RichTextLabel difficultyDetails = null!;
     private RichTextLabel planetDetails = null!;
     private RichTextLabel miscDetails = null!;
-    private EvolutionaryTree evolutionaryTree = null!;
-
-    private GameProperties currentGame = null!;
 
     public override string PageName => "CURRENT_WORLD_PAGE";
+
+    public override string TranslatedPageName => TranslationServer.Translate("CURRENT_WORLD_PAGE");
 
     public override void _Ready()
     {
         base._Ready();
 
+        disabledLabel = GetNode<Label>(DisabledLabelPath);
+        worldContent = GetNode<VBoxContainer>(WorldContentPath);
         difficultyDetails = GetNode<RichTextLabel>(DifficultyDetailsPath);
         planetDetails = GetNode<RichTextLabel>(PlanetDetailsPath);
         miscDetails = GetNode<RichTextLabel>(MiscDetailsPath);
-        evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
 
         UpdateCurrentWorldDetails();
     }
 
     public override void UpdateCurrentWorldDetails()
     {
+        disabledLabel.Visible = CurrentGame == null;
+        worldContent.Visible = CurrentGame != null;
+
         // This page should never be visible if opened outside an active game, so ignore this case
         if (CurrentGame == null)
             return;
+
+        AddPageAsChild("ThriveopediaEvolutionaryTreePage", PageName);
 
         var settings = CurrentGame.GameWorld.WorldSettings;
 
@@ -56,9 +66,5 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 
         miscDetails.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MISC_DETAILS_STRING"),
             settings.IncludeMulticellular, settings.EasterEggs);
-
-        // TODO: split evolutionary tree to a separate page to fix scrolling issues
-
-        evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
     }
 }

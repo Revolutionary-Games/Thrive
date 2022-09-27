@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 21:47+0100\n"
+"POT-Creation-Date: 2022-09-27 23:27+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -554,7 +554,7 @@ msgid "CHEAT_MENU"
 msgstr "Допълнителни кодове"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:95
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:102
 msgid "MISCELLANEOUS"
 msgstr "Разни"
 
@@ -1188,12 +1188,12 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:736
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:161
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:53
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:773
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:198
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:90
 msgid "SPECIES_DETAILS"
 msgstr "Подробности"
 
@@ -2092,7 +2092,7 @@ msgstr "ГОТОВО"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:116
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:118
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2284,12 +2284,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Важно: Ако имате проблеми с производителността на играта, натиснете [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]тук[/url][/color]"
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:39
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:46
 msgid "DIFFICULTY"
 msgstr "Трудност"
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:67
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:74
 msgid "PLANET"
 msgstr "Планета"
 
@@ -3477,35 +3477,52 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Мудно"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:49
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:50
 msgid "<"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:60
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:62
 msgid ">"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:70
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:72
 #, fuzzy
 msgid "HOME"
 msgstr "Клавиш „Home“"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:54
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:29
+#, fuzzy
+msgid "CURRENT_WORLD_PAGE"
+msgstr "Текущи разработчици"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:59
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:61
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Ниво на трудност"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:54
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:82
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:64
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:89
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Подробности"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:57
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:110
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:67
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:117
 msgid "MISC_DETAILS_STRING"
 msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:24
+#, fuzzy
+msgid "DISABLED_PAGE_WARNING"
+msgstr ""
+"Вашите промени не са запазени и ще бъдат отхвърлени.\n"
+"Искате ли да продължите?"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:12
+#, fuzzy
+msgid "EVOLUTIONARY_TREE_PAGE"
+msgstr "Еволюционно дърво"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:12
 #, fuzzy
@@ -3520,6 +3537,11 @@ msgstr "Текущи разработчици"
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:41
 msgid "MUSEUM"
 msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:7
+#, fuzzy
+msgid "MUSEUM_PAGE"
+msgstr "Клавиш „Homepage“"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPage.tscn:58
 #, fuzzy

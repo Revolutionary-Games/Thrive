@@ -12,7 +12,11 @@ public abstract class ThriveopediaPage : PanelContainer
 
     public abstract string TranslatedPageName { get; }
 
+    public Action<string, string> AddPageAsChild = null!;
+
     public Action<string> OpenPage = null!;
+
+    public TreeItem? PageTreeItem;
 
     public GameProperties? CurrentGame
     {
@@ -32,7 +36,7 @@ public abstract class ThriveopediaPage : PanelContainer
         base._Ready();
 
         pageTitle = GetNode<Label>(PageTitlePath);
-        pageTitle.Text = TranslationServer.Translate(PageName);
+        pageTitle.Text = TranslatedPageName;
     }
 
     public abstract void UpdateCurrentWorldDetails();

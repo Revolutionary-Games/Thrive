@@ -45,6 +45,7 @@ margin_bottom = 35.0
 margin_right = 35.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
+focus_mode = 0
 disabled = true
 text = "<"
 __meta__ = {
@@ -56,6 +57,7 @@ margin_left = 39.0
 margin_right = 74.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
+focus_mode = 0
 disabled = true
 text = ">"
 __meta__ = {
@@ -127,4 +129,5 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]
+[connection signal="cell_selected" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/PageTree" to="." method="OnPageSelectedFromPageTree"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="OnClosePressed"]
