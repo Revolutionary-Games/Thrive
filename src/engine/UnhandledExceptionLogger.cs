@@ -27,7 +27,8 @@ public static class UnhandledExceptionLogger
         if (modsEnabled)
         {
             builder.Append(
-                "\n\nPlease provide us with this log after making sure that a loaded mod didn't cause this, thank you.\n");
+                "\n\nPlease provide us with this log after making sure that a loaded mod didn't cause this, " +
+                "thank you.\n");
             builder.Append("If this problem was caused by a mod, please send your report instead to the mod author.\n");
         }
         else
