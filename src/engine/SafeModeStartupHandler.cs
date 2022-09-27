@@ -148,14 +148,17 @@ public static class SafeModeStartupHandler
 
     private static void SaveCurrentStartupInfo()
     {
-        // When using a debugger, we don't want to do safe mode start ups
-        if (Debugger.IsAttached)
-            return;
-
         // Ensure previous info is loaded before we write a fresh file
         _ = PreviousFailedStartup.Value;
 
         wroteInfoFile = true;
+
+        // When using a debugger, we don't want to do safe mode start ups
+        if (Debugger.IsAttached)
+        {
+            GD.Print("Not writing startup info as debugger is attached");
+            return;
+        }
 
         using var file = new File();
         if (file.Open(Constants.STARTUP_ATTEMPT_INFO_FILE, File.ModeFlags.Write) != Error.Ok)
