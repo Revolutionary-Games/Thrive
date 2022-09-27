@@ -14,11 +14,15 @@ public class Thriveopedia : ControlWithInput
     public NodePath PageContainerPath = null!;
 
     [Export]
+    public NodePath PageTreePath = null!;
+
+    [Export]
     public NodePath HomePagePath = null!;
 
     private MarginContainer pageContainer = null!;
     private Button backButton = null!;
     private Button forwardButton = null!;
+    private Tree pageTree = null!;
     private ThriveopediaHomePage homePage = null!;
 
     private GameProperties? currentGame;
@@ -67,11 +71,13 @@ public class Thriveopedia : ControlWithInput
         backButton = GetNode<Button>(BackButtonPath);
         forwardButton = GetNode<Button>(ForwardButtonPath);
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
+        pageTree = GetNode<Tree>(PageTreePath);
 
         // Keep a special reference to the home page
         homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
         homePage.OpenPage = ChangePage;
         allPages.Add(homePage);
+        AddPageToTree(homePage);
 
         AddPage("ThriveopediaCurrentWorldPage");
         AddPage("ThriveopediaMuseumPage");
@@ -126,6 +132,14 @@ public class Thriveopedia : ControlWithInput
         pageContainer.AddChild(page);
         allPages.Add(page);
         page.Hide();
+
+        AddPageToTree(page);
+    }
+    
+    private void AddPageToTree(ThriveopediaPage page, ThriveopediaPage? parent = null)
+    {
+        var pageInTree = pageTree.CreateItem(parent);
+        pageInTree.SetText(0, page.PageName);
     }
 
     private void ChangePage(string pageName)

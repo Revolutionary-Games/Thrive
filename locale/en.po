@@ -1,4 +1,4 @@
-﻿# Translations template for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 20:36+0100\n"
+"POT-Creation-Date: 2022-09-27 21:47+0100\n"
 "PO-Revision-Date: 2022-09-22 13:48+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1198,8 +1198,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Species Details"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:449
-#: ../src/general/MainMenu.tscn:492 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:361 ../src/general/MainMenu.tscn:450
+#: ../src/general/MainMenu.tscn:496 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2092,7 +2092,7 @@ msgstr "CONFIRM"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:102
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:116
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2124,92 +2124,92 @@ msgstr "Glucose concentrations have drastically dropped!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
-#: ../src/general/MainMenu.tscn:196
+#: ../src/general/MainMenu.tscn:197
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start a new game"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:200
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:210 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:211 ../src/general/PauseMenu.tscn:197
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Load previously saved games"
 
-#: ../src/general/MainMenu.tscn:213 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:214 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:221 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:222 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
-#: ../src/general/MainMenu.tscn:225 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:237
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:248
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:259
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:269
+#: ../src/general/MainMenu.tscn:270
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:277 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:278 ../src/general/PauseMenu.tscn:237
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:282
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:302
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:313
+#: ../src/general/MainMenu.tscn:314
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Exploring Tool"
 
-#: ../src/general/MainMenu.tscn:395
+#: ../src/general/MainMenu.tscn:396
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:409
+#: ../src/general/MainMenu.tscn:410
 msgid "ART_GALLERY"
 msgstr "Art Gallery"
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:422
 msgid "LICENSES"
 msgstr "Licenses"
 
-#: ../src/general/MainMenu.tscn:435
+#: ../src/general/MainMenu.tscn:436
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
 
-#: ../src/general/MainMenu.tscn:509
+#: ../src/general/MainMenu.tscn:513
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
-#: ../src/general/MainMenu.tscn:511
+#: ../src/general/MainMenu.tscn:515
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "You are running Thrive with GLES2. This is severely untested and is likely to cause issues. Try to update your video drivers and/or force AMD or Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:515
+#: ../src/general/MainMenu.tscn:519
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Loading Errors"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:520
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
@@ -3470,22 +3470,23 @@ msgstr "Fossilise this species to save it in the museum. You can access the muse
 msgid "FOSSILISE"
 msgstr "Fossilise"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:48
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:49
 msgid "<"
 msgstr "<"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:59
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:60
 msgid ">"
 msgstr ">"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:69
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:70
 msgid "HOME"
 msgstr "Home"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:54
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Difficulty preset: {0}\n"
+msgstr ""
+"Difficulty preset: {0}\n"
 "Mutation cost multiplier: {1}\n"
 "AI mutation rate: {2}\n"
 "Compound cloud density: {3}\n"
@@ -3499,7 +3500,8 @@ msgstr "Difficulty preset: {0}\n"
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:54
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:82
 msgid "PLANET_DETAILS_STRING"
-msgstr "Patch map type: {0}\n"
+msgstr ""
+"Patch map type: {0}\n"
 "LAWK only: {1}\n"
 "Life origin: {2}\n"
 "Planet random seed: {3}"
@@ -3507,8 +3509,13 @@ msgstr "Patch map type: {0}\n"
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:57
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:110
 msgid "MISC_DETAILS_STRING"
-msgstr "Include later stage prototypes: {0}\n"
+msgstr ""
+"Include later stage prototypes: {0}\n"
 "Include Easter eggs: {1}"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:12
+msgid "HOME_PAGE"
+msgstr "Home"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:29
 msgid "CURRENT_WORLD"

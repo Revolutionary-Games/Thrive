@@ -9,6 +9,8 @@ public class ThriveopediaHomePage : ThriveopediaPage
 
     public override string PageName => "HOME_PAGE";
 
+    public override string TranslatedPageName => TranslationServer.Translate("HOME_PAGE");
+
     public override void _Ready()
     {
         base._Ready();

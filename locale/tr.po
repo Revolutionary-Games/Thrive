@@ -1,4 +1,4 @@
-﻿# Translations template for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 20:36+0100\n"
+"POT-Creation-Date: 2022-09-27 21:47+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1198,8 +1198,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Tür Detayları"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:449
-#: ../src/general/MainMenu.tscn:492 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:361 ../src/general/MainMenu.tscn:450
+#: ../src/general/MainMenu.tscn:496 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2092,7 +2092,7 @@ msgstr "ONAYLA"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:102
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:116
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2124,92 +2124,92 @@ msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
-#: ../src/general/MainMenu.tscn:196
+#: ../src/general/MainMenu.tscn:197
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Yeni bir oyun başlat"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:200
 msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
-#: ../src/general/MainMenu.tscn:210 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:211 ../src/general/PauseMenu.tscn:197
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Daha önce kaydedilmiş oyunları yükle"
 
-#: ../src/general/MainMenu.tscn:213 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:214 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
-#: ../src/general/MainMenu.tscn:221 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:222 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Ayarlarını değiştir"
 
-#: ../src/general/MainMenu.tscn:225 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Ayarlar"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:237
 msgid "TOOLS"
 msgstr "Araçlar"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:248
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:259
 msgid "EXTRAS"
 msgstr "Ekstralar"
 
-#: ../src/general/MainMenu.tscn:269
+#: ../src/general/MainMenu.tscn:270
 msgid "CREDITS"
 msgstr "Jenerik"
 
-#: ../src/general/MainMenu.tscn:277 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:278 ../src/general/PauseMenu.tscn:237
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Oyundan çık"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:282
 msgid "QUIT"
 msgstr "Çıkış"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:302
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrop Editörü Serbest Modu"
 
-#: ../src/general/MainMenu.tscn:313
+#: ../src/general/MainMenu.tscn:314
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Oto-Evrim Keşif Aracı"
 
-#: ../src/general/MainMenu.tscn:395
+#: ../src/general/MainMenu.tscn:396
 msgid "MODS"
 msgstr "Modlar"
 
-#: ../src/general/MainMenu.tscn:409
+#: ../src/general/MainMenu.tscn:410
 msgid "ART_GALLERY"
 msgstr "Resim Galerisi"
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:422
 msgid "LICENSES"
 msgstr "Lisanslar"
 
-#: ../src/general/MainMenu.tscn:435
+#: ../src/general/MainMenu.tscn:436
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Bir Özellik Öner"
 
-#: ../src/general/MainMenu.tscn:509
+#: ../src/general/MainMenu.tscn:513
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mod Uyarısı"
 
-#: ../src/general/MainMenu.tscn:511
+#: ../src/general/MainMenu.tscn:515
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Thrive'ı GLES2 ile çalıştırmaktasın. Bu mod ciddi derecede test edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya zorla."
 
-#: ../src/general/MainMenu.tscn:515
+#: ../src/general/MainMenu.tscn:519
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Yükleme Hataları"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:520
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi içerebilir."
 
@@ -3477,15 +3477,15 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Durağan"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:48
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:49
 msgid "<"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:59
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:60
 msgid ">"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:69
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:70
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -3506,6 +3506,11 @@ msgstr "Log Klasörünü Aç"
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:110
 msgid "MISC_DETAILS_STRING"
 msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:12
+#, fuzzy
+msgid "HOME_PAGE"
+msgstr "Homepage"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:29
 #, fuzzy

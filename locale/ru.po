@@ -1,4 +1,4 @@
-﻿# Translations template for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 20:36+0100\n"
+"POT-Creation-Date: 2022-09-27 21:47+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1205,8 +1205,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Список Видов"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:360 ../src/general/MainMenu.tscn:449
-#: ../src/general/MainMenu.tscn:492 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:361 ../src/general/MainMenu.tscn:450
+#: ../src/general/MainMenu.tscn:496 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1650 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2107,7 +2107,7 @@ msgstr "ПОДТВЕРДИТЬ"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:102
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:116
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2139,92 +2139,92 @@ msgstr "Концентрация глюкозы резко упала!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
-#: ../src/general/MainMenu.tscn:196
+#: ../src/general/MainMenu.tscn:197
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать новую игру"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:200
 msgid "NEW_GAME"
 msgstr "Новая игра"
 
-#: ../src/general/MainMenu.tscn:210 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:211 ../src/general/PauseMenu.tscn:197
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
-#: ../src/general/MainMenu.tscn:213 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:214 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
-#: ../src/general/MainMenu.tscn:221 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:222 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
-#: ../src/general/MainMenu.tscn:225 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:237
 msgid "TOOLS"
 msgstr "Инструменты"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:248
 msgid "VIEW_SOURCE_CODE"
 msgstr "Открыть исходный код"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:259
 msgid "EXTRAS"
 msgstr "Дополнительное"
 
-#: ../src/general/MainMenu.tscn:269
+#: ../src/general/MainMenu.tscn:270
 msgid "CREDITS"
 msgstr "Титры"
 
-#: ../src/general/MainMenu.tscn:277 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:278 ../src/general/PauseMenu.tscn:237
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Выйти из игры"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:282
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:302
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Свободный микробный редактор"
 
-#: ../src/general/MainMenu.tscn:313
+#: ../src/general/MainMenu.tscn:314
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения авто-эво"
 
-#: ../src/general/MainMenu.tscn:395
+#: ../src/general/MainMenu.tscn:396
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:409
+#: ../src/general/MainMenu.tscn:410
 msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:422
 msgid "LICENSES"
 msgstr "Лицензии"
 
-#: ../src/general/MainMenu.tscn:435
+#: ../src/general/MainMenu.tscn:436
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложить идею"
 
-#: ../src/general/MainMenu.tscn:509
+#: ../src/general/MainMenu.tscn:513
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:511
+#: ../src/general/MainMenu.tscn:515
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/MainMenu.tscn:515
+#: ../src/general/MainMenu.tscn:519
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки при загрузке модов"
 
-#: ../src/general/MainMenu.tscn:516
+#: ../src/general/MainMenu.tscn:520
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
@@ -3499,15 +3499,15 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Оседлый"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:48
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:49
 msgid "<"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:59
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:60
 msgid ">"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:69
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:70
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -3528,6 +3528,11 @@ msgstr "Открыть Папку с Логами"
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:110
 msgid "MISC_DETAILS_STRING"
 msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:12
+#, fuzzy
+msgid "HOME_PAGE"
+msgstr "Домашняя страница"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:29
 #, fuzzy
