@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
@@ -75,6 +76,8 @@ LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
+ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
+PermanentlyDismissModsNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning/VBoxContainer/CheckBox")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
@@ -512,6 +515,47 @@ WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
+[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 13 )]
+WindowTitle = "NO_MODS_ENABLED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModsInstalledButNothingEnabledWarning"]
+margin_right = 500.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 550, 0 )
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+text = "MODS_INSTALLED_BUT_NOT_ENABLED"
+autowrap = true
+
+[node name="Spacer" type="Control" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_top = 104.0
+margin_right = 500.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 0, 5 )
+mouse_filter = 2
+
+[node name="CheckBox" type="CheckBox" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_top = 113.0
+margin_right = 500.0
+margin_bottom = 137.0
+pressed = true
+text = "DO_NOT_SHOW_AGAIN"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+size_flags_horizontal = 6
+text = "OK"
+
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
 rect_min_size = Vector2( 550, 350 )
 WindowTitle = "SAFE_MODE_TITLE"
@@ -548,3 +592,5 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
+[connection signal="Closed" from="ModsInstalledButNothingEnabledWarning" to="." method="OnNoEnabledModsNoticeClosed"]
+[connection signal="pressed" from="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer/Button" to="ModsInstalledButNothingEnabledWarning" method="OnCloseButtonPressed"]

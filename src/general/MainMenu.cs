@@ -47,6 +47,12 @@ public class MainMenu : NodeWithInput
     public NodePath SafeModeWarningPath = null!;
 
     [Export]
+    public NodePath ModsInstalledButNotEnabledWarningPath = null!;
+
+    [Export]
+    public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
@@ -59,6 +65,8 @@ public class MainMenu : NodeWithInput
     public TextureRect Background = null!;
 
     public bool IsReturningToMenu;
+
+    private const string NO_MODS_ACTIVE_NOTICE = "modsExistButNoneEnabled";
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -80,6 +88,9 @@ public class MainMenu : NodeWithInput
     private ErrorDialog modLoadFailures = null!;
 
     private CustomDialog safeModeWarning = null!;
+
+    private CustomDialog modsInstalledButNotEnabledWarning = null!;
+    private CheckBox permanentlyDismissModsNotEnabledWarning = null!;
 
     private bool introVideoPassed;
 
@@ -132,6 +143,7 @@ public class MainMenu : NodeWithInput
                 if (timerForStartupSuccess <= 0)
                 {
                     CheckStartupSuccess();
+                    WarnAboutNoEnabledMods();
                 }
             }
         }
@@ -234,6 +246,9 @@ public class MainMenu : NodeWithInput
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
+
+        modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
+        permanentlyDismissModsNotEnabledWarning = GetNode<CheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
 
         // Set initial menu
         SwitchMenu();
@@ -341,6 +356,16 @@ public class MainMenu : NodeWithInput
         }
 
         SafeModeStartupHandler.ReportGameStartSuccessful();
+    }
+
+    private void WarnAboutNoEnabledMods()
+    {
+        if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods() &&
+            !Settings.Instance.IsNoticePermanentlyDismissed(NO_MODS_ACTIVE_NOTICE))
+        {
+            GD.Print("Player has installed mods but no enabled ones, giving a heads up");
+            modsInstalledButNotEnabledWarning.PopupCenteredShrink();
+        }
     }
 
     private void NewGamePressed()
@@ -539,5 +564,11 @@ public class MainMenu : NodeWithInput
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
+    }
+
+    private void OnNoEnabledModsNoticeClosed()
+    {
+        if (permanentlyDismissModsNotEnabledWarning.Pressed)
+            Settings.Instance.PermanentlyDismissNotice(NO_MODS_ACTIVE_NOTICE);
     }
 }

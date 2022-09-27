@@ -365,6 +365,8 @@ public class Settings
     // Settings that are edited from elsewhere than the main options menu
     public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
 
+    public SettingValue<HashSet<string>> PermanentlyDismissedNotices { get; set; } = new(new HashSet<string>());
+
     // Computed properties from other settings
 
     [JsonIgnore]
@@ -493,6 +495,24 @@ public class Settings
         }
 
         return null;
+    }
+
+    public bool IsNoticePermanentlyDismissed(string noticeKey)
+    {
+        return PermanentlyDismissedNotices.Value.Contains(noticeKey);
+    }
+
+    public bool PermanentlyDismissNotice(string noticeKey)
+    {
+        if (!PermanentlyDismissedNotices.Value.Add(noticeKey))
+            return false;
+
+        // We need to save the fact that a new notice is now permanently dismissed in case the player doesn't touch
+        // any settings (which would warrant saving the settings elsewhere)
+        if (!Save())
+            GD.PrintErr("Failed to save settings to mark notice as permanently dismissed: ", noticeKey);
+
+        return true;
     }
 
     public override bool Equals(object? obj)
