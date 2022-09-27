@@ -361,7 +361,7 @@ public class MainMenu : NodeWithInput
     private void WarnAboutNoEnabledMods()
     {
         if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods() &&
-            !Settings.Instance.IsNoticePermanentlyDismissed(NO_MODS_ACTIVE_NOTICE))
+            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.NoModsActiveButInstalled))
         {
             GD.Print("Player has installed mods but no enabled ones, giving a heads up");
             modsInstalledButNotEnabledWarning.PopupCenteredShrink();
@@ -569,6 +569,6 @@ public class MainMenu : NodeWithInput
     private void OnNoEnabledModsNoticeClosed()
     {
         if (permanentlyDismissModsNotEnabledWarning.Pressed)
-            Settings.Instance.PermanentlyDismissNotice(NO_MODS_ACTIVE_NOTICE);
+            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.NoModsActiveButInstalled);
     }
 }
