@@ -9,16 +9,13 @@
 
 [node name="ThriveopediaCurrentWorldPage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-DisabledLabelPath = NodePath("")
-WorldContentPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent")
 DifficultyDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer/DifficultyDetails")
 PlanetDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2/PlanetDetails")
 MiscDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3/MiscDetails")
 
-[node name="WorldContent" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
-margin_top = 56.0
+[node name="WorldContent" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 margin_right = 894.0
-margin_bottom = 117.0
+margin_bottom = 61.0
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent" index="0"]
 margin_right = 894.0

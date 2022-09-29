@@ -19,9 +19,9 @@ public class Thriveopedia : ControlWithInput
     [Export]
     public NodePath HomePagePath = null!;
 
+    private TextureButton backButton = null!;
+    private TextureButton forwardButton = null!;
     private MarginContainer pageContainer = null!;
-    private Button backButton = null!;
-    private Button forwardButton = null!;
     private Tree pageTree = null!;
     private ThriveopediaHomePage homePage = null!;
 
@@ -59,11 +59,15 @@ public class Thriveopedia : ControlWithInput
         get => currentGame;
         set
         {
+            if (value == currentGame)
+                return;
+
             currentGame = value;
 
             if (currentGame != null)
             {
                 AddPage("CurrentWorld");
+                AddPage("PatchMap", "CurrentWorld");
                 AddPage("EvolutionaryTree", "CurrentWorld");
             }
 
@@ -74,8 +78,8 @@ public class Thriveopedia : ControlWithInput
 
     public override void _Ready()
     {
-        backButton = GetNode<Button>(BackButtonPath);
-        forwardButton = GetNode<Button>(ForwardButtonPath);
+        backButton = GetNode<TextureButton>(BackButtonPath);
+        forwardButton = GetNode<TextureButton>(ForwardButtonPath);
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
         pageTree = GetNode<Tree>(PageTreePath);
 
@@ -146,6 +150,10 @@ public class Thriveopedia : ControlWithInput
 
     private void AddPage(string name, string? parentName = null)
     {
+        // Avoid adding duplicate pages
+        if (allPages.Any(p => p.PageName == name))
+            return;
+
         var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
         page.Init(this);
@@ -162,7 +170,9 @@ public class Thriveopedia : ControlWithInput
         var pageInTree = pageTree.CreateItem(parent?.PageTreeItem);
         page.PageTreeItem = pageInTree;
         pageInTree.SetMeta("name", page.PageName);
-        pageInTree.SetText(0, page.TranslatedPageName);
+
+        // Godot doesn't appear to have a left margin for text in items, so add some manual padding
+        pageInTree.SetText(0, "  " + page.TranslatedPageName);
     }
 
     private void OnPageSelectedFromPageTree()
@@ -193,6 +203,11 @@ public class Thriveopedia : ControlWithInput
             pageFuture.Clear();
 
         SelectedPage = page;
+    }
+
+    private void OnCollapseTreePressed()
+    {
+        pageTree.Visible = !pageTree.Visible;
     }
 
     private void OnHomePressed()

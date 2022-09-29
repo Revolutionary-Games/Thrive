@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/thriveopedia/Thriveopedia.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -6,6 +6,14 @@
 [ext_resource path="res://assets/textures/gui/bevel/homeButton.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/homeButtonActive.png" type="Texture" id=5]
 [ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaHomePage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture" id=14]
 
 [node name="Thriveopedia" type="Control"]
 margin_right = 1280.0
@@ -41,32 +49,42 @@ __meta__ = {
 margin_right = 1180.0
 margin_bottom = 35.0
 
-[node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 35.0
+[node name="CollapseTreeButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 240.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-focus_mode = 0
-disabled = true
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_min_size = Vector2( 240, 0 )
+text = "NAVIGATION"
+clip_text = true
 
-[node name="ForwardButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 39.0
-margin_right = 74.0
+[node name="BackButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 244.0
+margin_right = 279.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 focus_mode = 0
 disabled = true
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 8 )
+expand = true
+
+[node name="ForwardButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 283.0
+margin_right = 318.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+focus_mode = 0
+disabled = true
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 9 )
+expand = true
 
 [node name="HomeButton" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 78.0
-margin_right = 113.0
+margin_left = 322.0
+margin_right = 357.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "HOME"
@@ -126,6 +144,7 @@ margin_right = 1180.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/CollapseTreeButton" to="." method="OnCollapseTreePressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]

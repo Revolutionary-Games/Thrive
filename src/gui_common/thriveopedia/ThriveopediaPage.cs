@@ -1,15 +1,15 @@
 ﻿using Godot;
-using System;
 
 public abstract class ThriveopediaPage : PanelContainer
 {
     [Export]
-    public NodePath PageTitlePath = null!;
+    public bool DisplayBackground = true;
+
+    private PanelContainer backgroundPanel = null!;
 
     private GameProperties? currentGame = null!;
 
     public abstract string PageName { get; }
-
     public abstract string TranslatedPageName { get; }
 
     public Thriveopedia ThriveopediaMain = null!;
@@ -27,14 +27,14 @@ public abstract class ThriveopediaPage : PanelContainer
         }
     }
 
-    private Label pageTitle = null!;
-
     public override void _Ready()
     {
         base._Ready();
 
-        pageTitle = GetNode<Label>(PageTitlePath);
-        pageTitle.Text = TranslatedPageName;
+        backgroundPanel = GetNode<PanelContainer>(".");
+
+        if (!DisplayBackground)
+            backgroundPanel.AddStyleboxOverride("panel", new StyleBoxEmpty());
     }
 
     public void Init(Thriveopedia thriveopedia)

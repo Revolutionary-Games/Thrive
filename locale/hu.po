@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 23:27+0100\n"
+"POT-Creation-Date: 2022-09-29 22:18+0100\n"
 "PO-Revision-Date: 2022-08-25 07:28+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -543,7 +543,7 @@ msgid "CHEAT_MENU"
 msgstr "Csalások menü"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:102
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:92
 msgid "MISCELLANEOUS"
 msgstr "Egyéb"
 
@@ -1195,13 +1195,13 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo eredmények:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:736
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:53
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:56
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "A Revolutionary Games Studio-tól"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:773
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:90
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:93
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Fajlista"
@@ -1434,7 +1434,7 @@ msgstr "AKCIÓ VISSZAVONÁSA"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:158
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "KÖVETKEZŐ"
@@ -2114,7 +2114,7 @@ msgstr "ELFOGAD"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:118
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:137
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2307,12 +2307,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:46
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:36
 msgid "DIFFICULTY"
 msgstr "Nehézség"
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:74
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:64
 msgid "PLANET"
 msgstr "Bolygó"
 
@@ -3526,76 +3526,81 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Rögzült"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:50
-msgid "<"
-msgstr ""
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:57
+#, fuzzy
+msgid "NAVIGATION"
+msgstr "Adományok"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:62
-msgid ">"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:72
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:91
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:29
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Jelenlegi fejlesztők"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:59
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:61
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:41
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:51
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Előre beállított nehézség"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:64
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:89
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:46
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:79
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Mappa megnyitása"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:67
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:117
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:107
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:24
-#, fuzzy
-msgid "DISABLED_PAGE_WARNING"
-msgstr ""
-"Mentetlen változtatásaid vannak, melyek el fognak veszni.\n"
-"Biztos, hogy folytatod?"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:12
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:11
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_PAGE"
 msgstr "A Revolutionary Games Studio-tól"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:12
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Homepage"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:29
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:27
 #, fuzzy
 msgid "CURRENT_WORLD"
 msgstr "Jelenlegi fejlesztők"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:41
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:7
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:6
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Homepage"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPage.tscn:58
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24
 #, fuzzy
-msgid "PAGE_TITLE"
-msgstr "Sejtfolyamatok"
+msgid "PATCH_MAP_PAGE"
+msgstr "Patch térkép típusa"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:94
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:85
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:130
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
+#, fuzzy
+msgid "SEED_LABEL"
+msgstr "Biom: {0}"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:76
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:121
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Jelenlegi akció visszavonása"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4662,18 +4667,6 @@ msgstr "Végtelen MP"
 #, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Átvándorlás ebbe a patch-be"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-#, fuzzy
-msgid "FIND_CURRENT_PATCH"
-msgstr "Jelenlegi akció visszavonása"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-#, fuzzy
-msgid "SEED_LABEL"
-msgstr "Biom: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -5948,6 +5941,16 @@ msgstr "Többsejtes szerkesztő betöltése"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "A túlélés kezdése"
+
+#, fuzzy
+#~ msgid "PAGE_TITLE"
+#~ msgstr "Sejtfolyamatok"
+
+#, fuzzy
+#~ msgid "DISABLED_PAGE_WARNING"
+#~ msgstr ""
+#~ "Mentetlen változtatásaid vannak, melyek el fognak veszni.\n"
+#~ "Biztos, hogy folytatod?"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Jelenlegi statisztikák a játékról"

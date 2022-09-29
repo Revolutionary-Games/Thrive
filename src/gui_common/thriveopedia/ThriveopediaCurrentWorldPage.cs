@@ -17,7 +17,6 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     private RichTextLabel miscDetails = null!;
 
     public override string PageName => "CurrentWorld";
-
     public override string TranslatedPageName => TranslationServer.Translate("CURRENT_WORLD_PAGE");
 
     public override void _Ready()
