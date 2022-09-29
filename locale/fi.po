@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 14:52+0300\n"
+"POT-Creation-Date: 2022-09-29 13:44+0300\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: Juuso Vahala <juuso.raimosamuli@gmail.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1237,7 +1237,7 @@ msgstr "Lista lajeista"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
 #: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:454
 #: ../src/general/MainMenu.tscn:497 ../src/general/NewGameSettings.tscn:1092
-#: ../src/general/OptionsMenu.tscn:1692 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -2757,7 +2757,7 @@ msgstr "Äänen ulostulolaite:"
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.tscn:806 ../src/general/OptionsMenu.tscn:1703
+#: ../src/general/OptionsMenu.tscn:806 ../src/general/OptionsMenu.tscn:1697
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
@@ -2954,7 +2954,7 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1578
+#: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -2967,103 +2967,103 @@ msgstr ""
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Nopeus:"
 
-#: ../src/general/OptionsMenu.tscn:1593
+#: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-virheenkäsittelymoodi:"
 
-#: ../src/general/OptionsMenu.tscn:1617 ../src/general/OptionsMenu.tscn:1618
+#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1618
+#: ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Aina"
 
-#: ../src/general/OptionsMenu.tscn:1618
+#: ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ei koskaan"
 
-#: ../src/general/OptionsMenu.tscn:1634
+#: ../src/general/OptionsMenu.tscn:1628
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:1636
+#: ../src/general/OptionsMenu.tscn:1630
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1664
+#: ../src/general/OptionsMenu.tscn:1658
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Yhdisteet:"
 
-#: ../src/general/OptionsMenu.tscn:1715 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1709 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:1732
+#: ../src/general/OptionsMenu.tscn:1726
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1737
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1744
+#: ../src/general/OptionsMenu.tscn:1738
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1752
+#: ../src/general/OptionsMenu.tscn:1746
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1753
+#: ../src/general/OptionsMenu.tscn:1747
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1756
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
-#: ../src/general/OptionsMenu.tscn:1782
+#: ../src/general/OptionsMenu.tscn:1776
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/general/OptionsMenu.tscn:1805
+#: ../src/general/OptionsMenu.tscn:1799
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1809
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Peruuta"
 
-#: ../src/general/OptionsMenu.tscn:1843 ../src/general/OptionsMenu.tscn:1851
+#: ../src/general/OptionsMenu.tscn:1837 ../src/general/OptionsMenu.tscn:1845
 msgid "ERROR"
 msgstr "Virhe"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1847
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
-#: ../src/general/OptionsMenu.tscn:1861
+#: ../src/general/OptionsMenu.tscn:1855
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Avaa Näyttökuva kansio"
 
-#: ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-27 14:52+0300\n"
+"POT-Creation-Date: 2022-09-29 13:44+0300\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -193,6 +193,8 @@ msgstr ""
 "Пили: Пробожда другите клетки и предпазва от техните токсини\n"
 "\n"
 "Хеморецептор: Осигурява напътствия за откриването на химичните съединения\n"
+"\n"
+"Порозома: Произвежда [thrive:compound type=\"mucilage\"]слуз[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], която увеличава скоростта на клетката\n"
 "\n"
 "Реснички: Увеличават скоростта на завъртане на клетките"
 
@@ -1195,7 +1197,7 @@ msgstr "Подробности"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
 #: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:454
 #: ../src/general/MainMenu.tscn:497 ../src/general/NewGameSettings.tscn:1092
-#: ../src/general/OptionsMenu.tscn:1692 ../src/general/PauseMenu.tscn:263
+#: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -2646,7 +2648,7 @@ msgstr "Изходно устройство:"
 msgid "LANGUAGE"
 msgstr "Език:"
 
-#: ../src/general/OptionsMenu.tscn:806 ../src/general/OptionsMenu.tscn:1703
+#: ../src/general/OptionsMenu.tscn:806 ../src/general/OptionsMenu.tscn:1697
 msgid "RESET"
 msgstr "Нулиране"
 
@@ -2835,7 +2837,7 @@ msgstr "Местоположение на снимките"
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Местоположение на дневниците"
 
-#: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1578
+#: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -2848,99 +2850,99 @@ msgstr ""
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Хранителна скорост:"
 
-#: ../src/general/OptionsMenu.tscn:1593
+#: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим за отстраняване на грешки:"
 
-#: ../src/general/OptionsMenu.tscn:1617 ../src/general/OptionsMenu.tscn:1618
+#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматичен"
 
-#: ../src/general/OptionsMenu.tscn:1618
+#: ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Включен"
 
-#: ../src/general/OptionsMenu.tscn:1618
+#: ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Изключен"
 
-#: ../src/general/OptionsMenu.tscn:1634
+#: ../src/general/OptionsMenu.tscn:1628
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Това е кодовото наименование на текущата версия на „Thrive“"
 
-#: ../src/general/OptionsMenu.tscn:1636
+#: ../src/general/OptionsMenu.tscn:1630
 msgid "EXACT_VERSION_COLON"
 msgstr "Версия на „Thrive“:"
 
-#: ../src/general/OptionsMenu.tscn:1664
+#: ../src/general/OptionsMenu.tscn:1658
 msgid "COMPILED_AT_COLON"
 msgstr "Създадена на:"
 
-#: ../src/general/OptionsMenu.tscn:1715 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1709 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Запазване"
 
-#: ../src/general/OptionsMenu.tscn:1732
+#: ../src/general/OptionsMenu.tscn:1726
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По подразбиране"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1737
 msgid "RESET_TO_DEFAULTS"
 msgstr "Възстановяване на настройките по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:1744
+#: ../src/general/OptionsMenu.tscn:1738
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите настройките по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:1752
+#: ../src/general/OptionsMenu.tscn:1746
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Възстановяване на контролите по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:1753
+#: ../src/general/OptionsMenu.tscn:1747
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Сигурни ли сте, че искате да възстановите контролите по подразбиране?"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1756
 msgid "CLOSE_OPTIONS"
 msgstr "Затваряне настройките?"
 
-#: ../src/general/OptionsMenu.tscn:1782
+#: ../src/general/OptionsMenu.tscn:1776
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вашите промени не са запазени и ще бъдат отхвърлени.\n"
 "Искате ли да продължите?"
 
-#: ../src/general/OptionsMenu.tscn:1805
+#: ../src/general/OptionsMenu.tscn:1799
 msgid "SAVE_AND_CONTINUE"
 msgstr "Запазване на промените"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1809
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отхвърляне и продължаване"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Отказ"
 
-#: ../src/general/OptionsMenu.tscn:1843 ../src/general/OptionsMenu.tscn:1851
+#: ../src/general/OptionsMenu.tscn:1837 ../src/general/OptionsMenu.tscn:1845
 msgid "ERROR"
 msgstr "Грешка"
 
-#: ../src/general/OptionsMenu.tscn:1853
+#: ../src/general/OptionsMenu.tscn:1847
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Грешка: Неуспешно запазване на промените в конфигурационния файл."
 
-#: ../src/general/OptionsMenu.tscn:1861
+#: ../src/general/OptionsMenu.tscn:1855
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папката със снимки не съществува"
 
-#: ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Трябва да направите няколко снимки!"
 
