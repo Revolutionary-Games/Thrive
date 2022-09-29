@@ -21,6 +21,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
 
+    private bool initialised;
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
     public override string PageName => "EvolutionaryTree";
@@ -43,8 +44,12 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         if (CurrentGame == null)
             return;
             
-        evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
-        InitFirstGeneration();
+        if (!initialised)
+        {
+            evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
+            InitFirstGeneration();
+            initialised = true;
+        }
     }
 
     private void InitFirstGeneration()
