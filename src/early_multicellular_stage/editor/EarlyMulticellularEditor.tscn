@@ -75,12 +75,12 @@ align = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource( 2 )]
 theme = ExtResource( 1 )
-IsEditorPauseMenu = true
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
+[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]
