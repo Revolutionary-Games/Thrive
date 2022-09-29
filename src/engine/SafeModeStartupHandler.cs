@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 using Godot;
 using Newtonsoft.Json;
-using Directory = Godot.Directory;
-using File = Godot.File;
 
 /// <summary>
 ///   Handles starting the game with features disabled if there have been failed startup attempts
@@ -120,15 +116,11 @@ public static class SafeModeStartupHandler
             return null;
         }
 
-        var serializer = new JsonSerializer();
-
         try
         {
-            using var fileStream = new GodotFileStream(file);
-            using var reader = new StreamReader(fileStream, Encoding.UTF8);
-            using var jsonReader = new JsonTextReader(reader);
+            var data = file.GetAsText();
 
-            var previous = serializer.Deserialize<StartupAttemptInfo>(jsonReader);
+            var previous = JsonConvert.DeserializeObject<StartupAttemptInfo>(data);
 
             if (previous == null)
                 return null;
@@ -167,12 +159,7 @@ public static class SafeModeStartupHandler
             return;
         }
 
-        var serializer = new JsonSerializer();
-
-        using var fileStream = new GodotFileStream(file);
-        using var writer = new StreamWriter(fileStream, Encoding.UTF8);
-
-        serializer.Serialize(writer, CurrentStartup);
+        file.StoreString(JsonConvert.SerializeObject(CurrentStartup));
     }
 
     private static void DeleteCurrentStartupInfoFile()
