@@ -22,6 +22,8 @@ public class ModLoader : Node
 
     private readonly List<string> modErrors = new();
 
+    private readonly Lazy<bool> hasAvailableMods = new(() => LoadFirstInstalledModInfo() != null);
+
     private List<FullModDetails>? workshopMods;
 
     private bool initialLoad = true;
@@ -191,6 +193,16 @@ public class ModLoader : Node
         if (newMods.Count < 1)
             return;
 
+        if (!SafeModeStartupHandler.AreModsAllowed())
+        {
+            GD.PrintErr("Mod loading is disabled due to safe mode startup");
+            SafeModeStartupHandler.ModLoadingSkipped = true;
+            return;
+        }
+
+        UnhandledExceptionLogger.ReportModsEnabled();
+        SafeModeStartupHandler.ReportModLoadingStart();
+
         foreach (var load in newMods.Except(loadedMods).ToList())
         {
             GD.Print("Loading mod: ", load);
@@ -213,6 +225,71 @@ public class ModLoader : Node
         modErrors.Clear();
 
         return result;
+    }
+
+    public bool HasEnabledMods()
+    {
+        return loadedMods.Count > 0;
+    }
+
+    public bool HasAvailableMods()
+    {
+        return hasAvailableMods.Value;
+    }
+
+    private static ModInfo? LoadFirstInstalledModInfo()
+    {
+        using var currentDirectory = new Directory();
+
+        foreach (var location in Constants.ModLocations)
+        {
+            if (!currentDirectory.DirExists(location))
+                continue;
+
+            if (currentDirectory.Open(location) != Error.Ok)
+            {
+                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
+                continue;
+            }
+
+            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
+            {
+                GD.PrintErr("Failed to begin directory listing");
+                continue;
+            }
+
+            while (true)
+            {
+                var item = currentDirectory.GetNext();
+
+                if (string.IsNullOrEmpty(item))
+                    break;
+
+                if (!currentDirectory.DirExists(item))
+                    continue;
+
+                var modsFolder = Path.Combine(location, item);
+
+                if (currentDirectory.FileExists(Path.Combine(item, Constants.MOD_INFO_FILE_NAME)))
+                {
+                    var info = ModManager.LoadModInfo(modsFolder);
+
+                    if (info == null)
+                    {
+                        GD.PrintErr("Failed to load mod info from: ", modsFolder);
+                        continue;
+                    }
+
+                    currentDirectory.ListDirEnd();
+                    return info;
+                }
+            }
+
+            currentDirectory.ListDirEnd();
+        }
+
+        // No mods installed
+        return null;
     }
 
     private void LoadMod(string name)

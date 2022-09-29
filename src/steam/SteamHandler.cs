@@ -231,7 +231,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
         steamClient?.ShutdownRequested();
 
         GD.Print("Shutdown through Steam requested, closing the game");
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
     }
 
     public void WorkshopItemCreated(int result, ulong fileId, bool acceptTermsOfService)
