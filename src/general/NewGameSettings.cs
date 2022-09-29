@@ -453,7 +453,8 @@ public class NewGameSettings : ControlWithInput
 
         var transitions = new List<ITransition>();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
+        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
+            SafeModeStartupHandler.AreVideosAllowed())
         {
             transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
             transitions.Add(TransitionManager.Instance.CreateCutscene(

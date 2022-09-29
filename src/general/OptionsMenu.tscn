@@ -119,6 +119,7 @@ DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorDialog")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CustomUsernameEnabled")
 CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/CustomUsername")
+DismissedNoticeCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/DismissedCount")
 JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug")
 CommitLabelPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Commit")
 BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/BuiltAt")
@@ -1370,7 +1371,7 @@ margin_bottom = 583.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer"]
 margin_right = 657.0
-margin_bottom = 609.0
+margin_bottom = 655.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -1378,7 +1379,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer"]
 margin_right = 647.0
-margin_bottom = 599.0
+margin_bottom = 645.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -1409,7 +1410,7 @@ text = "AUTOSAVE_DURING_THE_GAME"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 105.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 136.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -1420,14 +1421,14 @@ text = "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 330.0
-margin_right = 447.0
+margin_right = 437.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 451.0
-margin_right = 651.0
+margin_left = 441.0
+margin_right = 641.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -1437,7 +1438,7 @@ value = 1.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 146.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 177.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -1448,14 +1449,14 @@ text = "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 336.0
-margin_right = 447.0
+margin_right = 437.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 451.0
-margin_right = 651.0
+margin_left = 441.0
+margin_right = 641.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -1480,13 +1481,13 @@ text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 
 [node name="UnsavedProgressWarning" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 257.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 282.0
 text = "SHOW_UNSAVED_PROGRESS_WARNING"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 292.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 296.0
 
 [node name="Cheats" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
@@ -1506,7 +1507,7 @@ text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 376.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 407.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -1517,42 +1518,78 @@ text = "CUSTOM_USERNAME"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 207.0
-margin_right = 347.0
+margin_right = 337.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="CustomUsername" type="LineEdit" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 351.0
-margin_right = 651.0
+margin_left = 341.0
+margin_right = 641.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 300, 0 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 417.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 452.0
 size_flags_horizontal = 3
 
 [node name="ScreenshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 323.0
+margin_right = 318.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_SCREENSHOT_FOLDER"
 
 [node name="LogButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-margin_left = 327.0
-margin_right = 651.0
+margin_left = 322.0
+margin_right = 641.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_LOGS_FOLDER"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 462.0
-margin_right = 651.0
-margin_bottom = 487.0
+margin_right = 641.0
+margin_bottom = 497.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+margin_top = 5.0
+margin_right = 273.0
+margin_bottom = 30.0
+hint_tooltip = "DISMISSED_POPUPS_EXPLANATION"
+mouse_filter = 0
+text = "DISMISSED_POPUPS_COLON"
+
+[node name="DismissedCount" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 284.0
+margin_top = 5.0
+margin_right = 284.0
+margin_bottom = 30.0
+hint_tooltip = "DISMISSED_POPUPS_EXPLANATION"
+mouse_filter = 0
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 288.0
+margin_right = 360.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[node name="ResetDismissed" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 364.0
+margin_right = 641.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+action_mode = 0
+text = "RESET_DISMISSED_POPUPS"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 507.0
+margin_right = 641.0
+margin_bottom = 532.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 margin_right = 197.0
@@ -1561,14 +1598,14 @@ text = "JSON_DEBUG_MODE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 margin_left = 201.0
-margin_right = 430.0
+margin_right = 420.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="JSONDebug" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 434.0
-margin_right = 651.0
+margin_left = 424.0
+margin_right = 641.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 0 )
 text = "JSON_DEBUG_MODE_AUTO"
@@ -1576,19 +1613,18 @@ items = [ "JSON_DEBUG_MODE_AUTO", null, false, 0, null, "JSON_DEBUG_MODE_ALWAYS"
 selected = 0
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 497.0
-margin_right = 651.0
-margin_bottom = 501.0
+margin_top = 542.0
+margin_right = 641.0
+margin_bottom = 546.0
 
 [node name="HBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 511.0
-margin_right = 651.0
-margin_bottom = 564.0
+margin_top = 556.0
+margin_right = 641.0
+margin_bottom = 610.0
 
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
-margin_top = 14.0
-margin_right = 234.0
-margin_bottom = 39.0
+margin_right = 641.0
+margin_bottom = 25.0
 hint_tooltip = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 text = "EXACT_VERSION_COLON"
@@ -1597,9 +1633,9 @@ __meta__ = {
 }
 
 [node name="Commit" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
-margin_left = 238.0
-margin_right = 651.0
-margin_bottom = 53.0
+margin_top = 29.0
+margin_right = 641.0
+margin_bottom = 54.0
 hint_tooltip = "EXACT_VERSION_TOOLTIP"
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1611,9 +1647,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 574.0
-margin_right = 651.0
-margin_bottom = 599.0
+margin_top = 620.0
+margin_right = 641.0
+margin_bottom = 645.0
 
 [node name="BuiltTimeInfo" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 209.0
@@ -1626,7 +1662,7 @@ __meta__ = {
 
 [node name="BuiltAt" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_left = 213.0
-margin_right = 651.0
+margin_right = 641.0
 margin_bottom = 25.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1886,6 +1922,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]

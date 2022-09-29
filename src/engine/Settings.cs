@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
 using Saving;
@@ -265,6 +266,12 @@ public class Settings
     public SettingValue<string?> CustomUsername { get; set; } = new(null);
 
     /// <summary>
+    ///   List of notices that have been permanently dismissed (well at least until manually reset)
+    /// </summary>
+    public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; set; } =
+        new(new HashSet<DismissibleNotice>());
+
+    /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
     public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
@@ -363,7 +370,7 @@ public class Settings
     });
 
     // Settings that are edited from elsewhere than the main options menu
-    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
+    public SettingValue<IReadOnlyList<string>> EnabledMods { get; set; } = new(new List<string>());
 
     // Computed properties from other settings
 
@@ -495,6 +502,26 @@ public class Settings
         return null;
     }
 
+    public bool IsNoticePermanentlyDismissed(DismissibleNotice notice)
+    {
+        return PermanentlyDismissedNotices.Value.Contains(notice);
+    }
+
+    public bool PermanentlyDismissNotice(DismissibleNotice notice)
+    {
+        if (PermanentlyDismissedNotices.Value.Contains(notice))
+            return false;
+
+        PermanentlyDismissedNotices.Value = PermanentlyDismissedNotices.Value.Append(notice).ToHashSet();
+
+        // We need to save the fact that a new notice is now permanently dismissed in case the player doesn't touch
+        // any settings (which would warrant saving the settings elsewhere)
+        if (!Save())
+            GD.PrintErr("Failed to save settings to mark notice as permanently dismissed: ", notice);
+
+        return true;
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj == null)
@@ -515,7 +542,7 @@ public class Settings
         // Compare all properties in the two objects for equality.
         var type = GetType();
 
-        foreach (var property in type.GetProperties())
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
         {
             // Returns if any of the properties don't match.
             object thisValue = property.GetValue(this);
@@ -536,7 +563,7 @@ public class Settings
 
         var type = GetType();
 
-        foreach (var property in type.GetProperties())
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             hashCode ^= property.GetHashCode();
 
         return hashCode;
@@ -879,7 +906,8 @@ public class Settings
     {
         var type = GetType();
 
-        foreach (var property in type.GetProperties())
+        foreach (var property in type.GetProperties(
+                     BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public))
         {
             if (!property.CanWrite)
                 continue;
