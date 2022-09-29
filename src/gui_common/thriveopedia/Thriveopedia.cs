@@ -61,6 +61,12 @@ public class Thriveopedia : ControlWithInput
         {
             currentGame = value;
 
+            if (currentGame != null)
+            {
+                AddPage("CurrentWorld");
+                AddPage("EvolutionaryTree", "CurrentWorld");
+            }
+
             foreach (var page in allPages.ToList())
                 page.CurrentGame = currentGame;
         }
@@ -79,13 +85,10 @@ public class Thriveopedia : ControlWithInput
 
         // Keep a special reference to the home page
         homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
-        homePage.OpenPage = ChangePage;
-        homePage.AddPageAsChild = AddPage;
         allPages.Add(homePage);
         AddPageToTree(homePage, null);
 
-        AddPage("ThriveopediaCurrentWorldPage");
-        AddPage("ThriveopediaMuseumPage");
+        AddPage("Museum");
 
         pageHistory.Push(homePage);
         SelectedPage = homePage;
@@ -130,6 +133,12 @@ public class Thriveopedia : ControlWithInput
         return currentGame == null;
     }
 
+    public void ChangePage(string pageName)
+    {
+        // By default, assume we're navigating to this page normally
+        ChangePage(pageName, true, true);
+    }
+
     private ThriveopediaPage GetPage(string? name)
     {
         return allPages.FirstOrDefault(p => p.PageName == name);
@@ -137,11 +146,9 @@ public class Thriveopedia : ControlWithInput
 
     private void AddPage(string name, string? parentName = null)
     {
-        var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/{name}.tscn");
+        var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
-        page.CurrentGame = CurrentGame;
-        page.OpenPage = ChangePage;
-        page.AddPageAsChild = AddPage;
+        page.Init(this);
         pageContainer.AddChild(page);
         allPages.Add(page);
         page.Hide();
@@ -149,7 +156,7 @@ public class Thriveopedia : ControlWithInput
         AddPageToTree(page, parentName);
     }
 
-    private void AddPageToTree(ThriveopediaPage page, string? parentName)
+    private void AddPageToTree(ThriveopediaPage page, string? parentName = null)
     {
         var parent = GetPage(parentName);
         var pageInTree = pageTree.CreateItem(parent?.PageTreeItem);
@@ -162,12 +169,6 @@ public class Thriveopedia : ControlWithInput
     {
         var name = (string)pageTree.GetSelected().GetMeta("name");
         ChangePage(name);
-    }
-
-    private void ChangePage(string pageName)
-    {
-        // By default, assume we're navigating to this page normally
-        ChangePage(pageName, true, true);
     }
 
     private void ChangePage(string pageName, bool addToHistory, bool clearFuture)

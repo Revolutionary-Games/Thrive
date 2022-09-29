@@ -9,7 +9,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private bool ready;
 
-    public override string PageName => "EVOLUTIONARY_TREE_PAGE";
+    public override string PageName => "EvolutionaryTree";
 
     public override string TranslatedPageName => TranslationServer.Translate("EVOLUTIONARY_TREE_PAGE");
 

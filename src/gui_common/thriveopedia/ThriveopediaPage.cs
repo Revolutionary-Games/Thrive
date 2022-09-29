@@ -12,9 +12,7 @@ public abstract class ThriveopediaPage : PanelContainer
 
     public abstract string TranslatedPageName { get; }
 
-    public Action<string, string> AddPageAsChild = null!;
-
-    public Action<string> OpenPage = null!;
+    public Thriveopedia ThriveopediaMain = null!;
 
     public TreeItem? PageTreeItem;
 
@@ -37,6 +35,11 @@ public abstract class ThriveopediaPage : PanelContainer
 
         pageTitle = GetNode<Label>(PageTitlePath);
         pageTitle.Text = TranslatedPageName;
+    }
+
+    public void Init(Thriveopedia thriveopedia)
+    {
+        ThriveopediaMain = thriveopedia;
     }
 
     public abstract void UpdateCurrentWorldDetails();

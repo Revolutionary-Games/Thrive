@@ -7,7 +7,7 @@ public class ThriveopediaHomePage : ThriveopediaPage
 
     private Button currentWorldButton = null!;
 
-    public override string PageName => "HOME_PAGE";
+    public override string PageName => "Home";
 
     public override string TranslatedPageName => TranslationServer.Translate("HOME_PAGE");
 
@@ -27,11 +27,11 @@ public class ThriveopediaHomePage : ThriveopediaPage
 
     private void OnCurrentWorldPressed()
     {
-        OpenPage("CURRENT_WORLD_PAGE");
+        ThriveopediaMain.ChangePage("CurrentWorld");
     }
 
     private void OnMuseumPressed()
     {
-        OpenPage("MUSEUM_PAGE");
+        ThriveopediaMain.ChangePage("Museum");
     }
 }

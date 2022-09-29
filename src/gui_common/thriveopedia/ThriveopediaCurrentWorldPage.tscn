@@ -9,45 +9,37 @@
 
 [node name="ThriveopediaCurrentWorldPage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-DisabledLabelPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/DisabledLabel")
+DisabledLabelPath = NodePath("")
 WorldContentPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent")
 DifficultyDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer/DifficultyDetails")
 PlanetDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2/PlanetDetails")
 MiscDetailsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3/MiscDetails")
 
-[node name="DisabledLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
-margin_top = 91.0
-margin_right = 1138.0
-margin_bottom = 108.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-custom_fonts/font = ExtResource( 5 )
-text = "DISABLED_PAGE_WARNING"
-
-[node name="WorldContent" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
-margin_top = 118.0
-margin_right = 1138.0
-margin_bottom = 179.0
+[node name="WorldContent" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+margin_top = 56.0
+margin_right = 894.0
+margin_bottom = 117.0
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent" index="0"]
-margin_right = 1138.0
+margin_right = 894.0
 margin_bottom = 61.0
 columns = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer" index="0"]
-margin_right = 377.0
+margin_right = 296.0
 margin_bottom = 61.0
 rect_pivot_offset = Vector2( -301, 190 )
 size_flags_horizontal = 3
 
 [node name="DifficultyTitle" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer" index="0"]
-margin_right = 377.0
+margin_right = 296.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 4 )
 text = "DIFFICULTY"
 
 [node name="VSeparator3" type="VSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer" index="1"]
 margin_top = 29.0
-margin_right = 377.0
+margin_right = 296.0
 margin_bottom = 39.0
 rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
@@ -55,27 +47,27 @@ custom_styles/separator = SubResource( 1 )
 
 [node name="DifficultyDetails" type="RichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer" index="2"]
 margin_top = 43.0
-margin_right = 377.0
+margin_right = 296.0
 margin_bottom = 61.0
 custom_fonts/normal_font = ExtResource( 5 )
 text = "DIFFICULTY_DETAILS_STRING"
 fit_content_height = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer" index="1"]
-margin_left = 381.0
-margin_right = 758.0
+margin_left = 300.0
+margin_right = 595.0
 margin_bottom = 61.0
 size_flags_horizontal = 3
 
 [node name="PlanetTitle" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2" index="0"]
-margin_right = 377.0
+margin_right = 295.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 4 )
 text = "PLANET"
 
 [node name="VSeparator3" type="VSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2" index="1"]
 margin_top = 29.0
-margin_right = 377.0
+margin_right = 295.0
 margin_bottom = 39.0
 rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
@@ -83,27 +75,27 @@ custom_styles/separator = SubResource( 1 )
 
 [node name="PlanetDetails" type="RichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer2" index="2"]
 margin_top = 43.0
-margin_right = 377.0
+margin_right = 295.0
 margin_bottom = 61.0
 custom_fonts/normal_font = ExtResource( 5 )
 text = "PLANET_DETAILS_STRING"
 fit_content_height = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer" index="2"]
-margin_left = 762.0
-margin_right = 1138.0
+margin_left = 599.0
+margin_right = 894.0
 margin_bottom = 61.0
 size_flags_horizontal = 3
 
 [node name="MiscTitle" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3" index="0"]
-margin_right = 376.0
+margin_right = 295.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 4 )
 text = "MISCELLANEOUS"
 
 [node name="VSeparator3" type="VSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3" index="1"]
 margin_top = 29.0
-margin_right = 376.0
+margin_right = 295.0
 margin_bottom = 39.0
 rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
@@ -111,7 +103,7 @@ custom_styles/separator = SubResource( 1 )
 
 [node name="MiscDetails" type="RichTextLabel" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/WorldContent/GridContainer/VBoxContainer3" index="2"]
 margin_top = 43.0
-margin_right = 376.0
+margin_right = 295.0
 margin_bottom = 61.0
 custom_fonts/normal_font = ExtResource( 5 )
 text = "MISC_DETAILS_STRING"
