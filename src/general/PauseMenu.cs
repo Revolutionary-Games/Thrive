@@ -426,7 +426,7 @@ public class PauseMenu : CustomDialog
 
     private void Quit()
     {
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
     }
 
     private void OpenThriveopediaPressed()
