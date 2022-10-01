@@ -434,6 +434,16 @@ public class ModLoader : Node
         return result;
     }
 
+    public bool HasEnabledMods()
+    {
+        return loadedMods.Count > 0;
+    }
+
+    public bool HasAvailableMods()
+    {
+        return hasAvailableMods.Value;
+    }
+
     private static Dictionary<string, FullModDetails> ModArrayToModDictioanry(FullModDetails[] modArray)
     {
         var returnValue = new Dictionary<string, FullModDetails>();
@@ -445,16 +455,6 @@ public class ModLoader : Node
         }
 
         return returnValue;
-    }
-
-    public bool HasEnabledMods()
-    {
-        return loadedMods.Count > 0;
-    }
-
-    public bool HasAvailableMods()
-    {
-        return hasAvailableMods.Value;
     }
 
     private static ModInfo? LoadFirstInstalledModInfo()
@@ -765,8 +765,9 @@ public class ModLoader : Node
         if (!FileHelpers.Exists(path))
         {
             GD.PrintErr(".pck loading failed due to the .pck file not existing: ", path);
-            modErrors.Add(TranslationServer.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")
-                .FormatSafe(Path.GetFileName(path)));
+            var tempMod = new FullModDetails(Path.GetFileName(path));
+            modErrors.Add((tempMod, TranslationServer.Translate("PCK_LOAD_FAILED_DOES_NOT_EXIST")
+                .FormatSafe(Path.GetFileName(path))));
             return;
         }
 

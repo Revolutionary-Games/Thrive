@@ -628,57 +628,6 @@ public class ModManager : Control
         return true;
     }
 
-    private void UpdateTabTitles()
-    {
-        // The tab title has to be set here as they are normally set by node name in TabContainer
-        // Which means they won't be translated at all
-        modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER_TAB"));
-        modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS_TAB"));
-    }
-
-    /// <summary>
-    ///   Loads info for valid mods
-    /// </summary>
-    /// <returns>The valid mod names and their info</returns>
-    private static List<FullModDetails> LoadValidMods()
-    {
-        var mods = FindModFolders();
-        var result = new List<FullModDetails> { Capacity = mods.Count };
-
-        foreach (var modFolder in mods)
-        {
-            var info = LoadModInfo(modFolder);
-
-            if (info == null)
-            {
-                GD.PrintErr("Can't read mod info from folder: ", modFolder);
-                continue;
-            }
-
-            var name = Path.GetFileName(modFolder);
-
-            if (info.InternalName != name)
-            {
-                GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
-                    ")");
-                continue;
-            }
-
-            result.Add(new FullModDetails(name, modFolder, info));
-        }
-
-        var previousLength = result.Count;
-
-        result = result.Distinct().ToList();
-
-        if (result.Count != previousLength)
-        {
-            GD.PrintErr("Multiple mods detected with the same name, only one of them is usable");
-        }
-
-        return result;
-    }
-
     /// <summary>
     ///   Finds existing mod folders
     /// </summary>
@@ -729,6 +678,58 @@ public class ModManager : Control
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Loads info for valid mods
+    /// </summary>
+    /// <returns>The valid mod names and their info</returns>
+    private static List<FullModDetails> LoadValidMods()
+    {
+        var mods = FindModFolders();
+        var result = new List<FullModDetails> { Capacity = mods.Count };
+
+        foreach (var modFolder in mods)
+        {
+            var info = LoadModInfo(modFolder);
+
+            if (info == null)
+            {
+                GD.PrintErr("Can't read mod info from folder: ", modFolder);
+                continue;
+            }
+
+            var name = Path.GetFileName(modFolder);
+
+            if (info.InternalName != name)
+            {
+                GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
+                    ")");
+                continue;
+            }
+
+            result.Add(new FullModDetails(name, modFolder, info)
+            { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
+        }
+
+        var previousLength = result.Count;
+
+        result = result.Distinct().ToList();
+
+        if (result.Count != previousLength)
+        {
+            GD.PrintErr("Multiple mods detected with the same name, only one of them is usable");
+        }
+
+        return result;
+    }
+
+    private void UpdateTabTitles()
+    {
+        // The tab title has to be set here as they are normally set by node name in TabContainer
+        // Which means they won't be translated at all
+        modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER_TAB"));
+        modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS_TAB"));
     }
 
     /// <summary>
@@ -990,102 +991,6 @@ public class ModManager : Control
         }
 
         return returnValue;
-    }
-
-    /// <summary>
-    ///   Loads info for valid mods
-    /// </summary>
-    /// <returns>The valid mod names and their info</returns>
-    private static List<FullModDetails> LoadValidMods()
-    {
-        var mods = FindModFolders();
-        var result = new List<FullModDetails> { Capacity = mods.Count };
-
-        foreach (var modFolder in mods)
-        {
-            var info = LoadModInfo(modFolder);
-
-            if (info == null)
-            {
-                GD.PrintErr("Can't read mod info from folder: ", modFolder);
-                continue;
-            }
-
-            var name = Path.GetFileName(modFolder);
-
-            if (info.InternalName != name)
-            {
-                GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
-                    ")");
-                continue;
-            }
-
-            result.Add(new FullModDetails(name, modFolder, info)
-                { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
-        }
-
-        var previousLength = result.Count;
-
-        result = result.Distinct().ToList();
-
-        if (result.Count != previousLength)
-        {
-            GD.PrintErr("Multiple mods detected with the same name, only one of them is usable");
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    ///   Finds existing mod folders
-    /// </summary>
-    /// <returns>List of mod folders that contain mod files</returns>
-    private List<string> FindModFolders()
-    {
-        var result = new List<string>();
-
-        using var currentDirectory = new Directory();
-
-        foreach (var location in Constants.ModLocations)
-        {
-            if (!currentDirectory.DirExists(location))
-                continue;
-
-            if (currentDirectory.Open(location) != Error.Ok)
-            {
-                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
-                continue;
-            }
-
-            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
-            {
-                GD.PrintErr("Failed to begin directory listing");
-                continue;
-            }
-
-            while (true)
-            {
-                var item = currentDirectory.GetNext();
-
-                if (string.IsNullOrEmpty(item))
-                    break;
-
-                if (currentDirectory.DirExists(item))
-                {
-                    var modsFolder = Path.Combine(location, item);
-
-                    if (currentDirectory.FileExists(Path.Combine(item, Constants.MOD_INFO_FILE_NAME)))
-                    {
-                        // Found a mod folder
-                        result.Add(modsFolder);
-                    }
-                }
-            }
-
-            currentDirectory.ListDirEnd();
-        }
-
-        return result;
     }
 
     /// <summary>
