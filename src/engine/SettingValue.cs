@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -86,6 +87,28 @@ public class SettingValue<TValueType> : IAssignableSetting
         if (value is IEnumerable<float> floatList)
         {
             return floatList.SequenceEqual((IEnumerable<float>)obj.Value!);
+        }
+
+        // Fallback for handling any types of enumerable types not caught above
+        // Really needed to work with any enum type. Funnily enough strings are enumerable so we need to avoid those
+        // here
+        if (value is not string && value is IEnumerable genericEnumerable)
+        {
+            var enumerator1 = genericEnumerable.GetEnumerator();
+            var enumerator2 = ((IEnumerable)obj.Value!).GetEnumerator();
+
+            while (enumerator1.MoveNext())
+            {
+                if (!enumerator2.MoveNext())
+                    return false;
+
+                if (!Equals(enumerator1.Current, enumerator2.Current))
+                    return false;
+            }
+
+            // Second enumerator should be at the end as well now
+            if (enumerator2.MoveNext())
+                return false;
         }
 
         if (!value.Equals(obj.value))

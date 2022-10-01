@@ -258,6 +258,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath CustomUsernamePath = null!;
 
     [Export]
+    public NodePath DismissedNoticeCountPath = null!;
+
+    [Export]
     public NodePath JSONDebugModePath = null!;
 
     [Export]
@@ -367,6 +370,7 @@ public class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves = null!;
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
+    private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
     private Label commitLabel = null!;
     private Label builtAtLabel = null!;
@@ -516,6 +520,7 @@ public class OptionsMenu : ControlWithInput
         tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
+        dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
         commitLabel = GetNode<Label>(CommitLabelPath);
         builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
@@ -696,6 +701,7 @@ public class OptionsMenu : ControlWithInput
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
 
+        UpdateDismissedNoticeCount();
         UpdateShownCommit();
     }
 
@@ -1311,6 +1317,11 @@ public class OptionsMenu : ControlWithInput
 
         threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
         threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
+    }
+
+    private void UpdateDismissedNoticeCount()
+    {
+        dismissedNoticeCount.Text = Settings.Instance.PermanentlyDismissedNotices.Value.Count.ToString();
     }
 
     private void UpdateShownCommit()
@@ -1960,5 +1971,14 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         FolderHelpers.OpenFolder(Constants.LOGS_FOLDER);
+    }
+
+    private void OnResetDismissedPopups()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Settings.Instance.PermanentlyDismissedNotices.Value = new HashSet<DismissibleNotice>();
+
+        UpdateResetSaveButtonState();
+        UpdateDismissedNoticeCount();
     }
 }

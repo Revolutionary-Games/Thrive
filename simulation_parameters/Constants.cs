@@ -921,6 +921,8 @@ public static class Constants
 
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
+    public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
+
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
@@ -967,6 +969,11 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+
+    /// <summary>
+    ///   How long the main menu needs to be ready before game startup is considered successful
+    /// </summary>
+    public const float MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS = 1.25f;
 
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
