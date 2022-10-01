@@ -92,5 +92,6 @@ margin_right = 934.0
 margin_bottom = 598.0
 MoveToPatchButtonVisible = false
 
+[connection signal="visibility_changed" from="." to="." method="RebuildMap"]
 [connection signal="OnCurrentPatchCentered" from="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="pressed" from="HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]

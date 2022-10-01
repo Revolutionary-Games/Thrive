@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using AutoEvo;
 
 /// <summary>
 ///   Base common class with shared editor functionality. Note that most editor functionality is done by
@@ -790,6 +791,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
         run.ApplyAllResultsAndEffects(FreeBuilding);
+
+        CurrentGame.GameWorld.AddCurrentGenerationToHistory();
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();

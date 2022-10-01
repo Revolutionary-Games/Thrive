@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-01 16:47+0100\n"
+"POT-Creation-Date: 2022-10-01 21:31+0100\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1019,14 +1019,14 @@ msgstr "met concentratie van"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:86
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:112
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:96
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:122
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1187,13 +1187,13 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo resultaten:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:736
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:61
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:63
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Door Revolutionary Games Studio"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:773
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:98
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:119
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Soortenlijst"
@@ -1253,7 +1253,7 @@ msgstr "Startend"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:322
+#: ../src/auto-evo/EvolutionaryTree.cs:333
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -1528,7 +1528,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "loopstatus:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
-#: ../src/general/EditorBase.cs:652
+#: ../src/general/EditorBase.cs:653
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -2113,7 +2113,7 @@ msgstr "Gedrag"
 msgid "BEHAVIOUR_FOCUS"
 msgstr "Gedrag"
 
-#: ../src/general/EditorBase.cs:236
+#: ../src/general/EditorBase.cs:237
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten voor auto-evo:"
 
@@ -2125,7 +2125,7 @@ msgstr "BEVESTIGEN"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:136
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:141
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -3635,12 +3635,12 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Zittend"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:56
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:61
 #, fuzzy
 msgid "NAVIGATION"
 msgstr "Donaties"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:90
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:95
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
@@ -3667,10 +3667,14 @@ msgstr "Open Logs Folder"
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:28
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_PAGE"
 msgstr "Door Revolutionary Games Studio"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:82
+msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
 #, fuzzy
@@ -3696,7 +3700,7 @@ msgstr "Homepage(toets)"
 msgid "PATCH_MAP_PAGE"
 msgstr "Kaart met plekken"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:94
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:101
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:87
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:130
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217

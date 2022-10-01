@@ -167,6 +167,17 @@ public class EvolutionaryTree : Control
         dirty = true;
     }
 
+    public void Clear()
+    {
+        speciesOrigin.Clear();
+        speciesNames.Clear();
+        generationTimes.Clear();
+        speciesNodes.Clear();
+
+        foreach (Node child in tree.GetChildren())
+            child.DetachAndQueueFree();
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);

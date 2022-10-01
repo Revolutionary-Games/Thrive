@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using AutoEvo;
 
 /// <summary>
 ///   All data regarding the game world of a thrive playthrough
@@ -42,6 +43,9 @@ public class GameWorld : ISaveLoadable
     ///   </para>
     /// </remarks>
     private AutoEvoRun? autoEvo;
+
+    [JsonProperty]
+    public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
     /// <summary>
     ///   Creates a new world
@@ -149,6 +153,18 @@ public class GameWorld : ISaveLoadable
             SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
 
         species.OnEdited();
+    }
+
+    public void AddCurrentGenerationToHistory()
+    {
+        var generation = PlayerSpecies.Generation - 1;
+        GenerationHistory.Add(generation, new GenerationRecord()
+        {
+            Generation = generation,
+            TimeElapsed = TotalPassedTime,
+            AutoEvoResult = GetAutoEvoRun().Results!,
+            AllSpecies = worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone())
+        });
     }
 
     /// <summary>

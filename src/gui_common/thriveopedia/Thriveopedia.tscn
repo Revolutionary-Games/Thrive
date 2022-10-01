@@ -26,6 +26,11 @@ PageContainerPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBox
 PageTreePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/PageTree")
 HomePagePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
+[node name="Overlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.823529 )
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 1280.0
 margin_bottom = 720.0

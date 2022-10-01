@@ -42,23 +42,22 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         };
     }
 
-    public void Init()
-    {
-        playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
-            throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
-
-        UpdatePlayerPatch(playerPatchOnEntry);
-
-        UpdateSeedLabel();
-    }
-
     public override void UpdateCurrentWorldDetails()
     {
         if (CurrentGame == null)
             return;
-            
-        mapDrawer.Map = CurrentGame.GameWorld.Map;
-        Init();
+
+        SetGameForMap();
+        UpdateSeedLabel();
+    }
+
+    public void RebuildMap()
+    {
+        if (!Visible)
+            return;
+
+        // TODO update the player patch if they move patch in the editor
+        SetGameForMap();
     }
 
     protected virtual void UpdateShownPatchDetails()
@@ -80,6 +79,14 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
+    }
+
+    private void SetGameForMap()
+    {
+        mapDrawer.Map = CurrentGame!.GameWorld.Map;
+        playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
+            throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
+        UpdatePlayerPatch(playerPatchOnEntry);
     }
 
 

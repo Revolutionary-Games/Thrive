@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=2]
@@ -8,10 +8,12 @@
 [ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs" type="Script" id=8]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=9]
 
 [node name="ThriveopediaEvolutionaryTreePage" instance=ExtResource( 6 )]
 script = ExtResource( 8 )
 DisplayBackground = false
+DisabledInFreebuildPath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild")
 EvolutionaryTreePath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 SpeciesDetailsLabelPath = NodePath("Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 SpeciesPreviewPath = NodePath("Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
@@ -60,7 +62,26 @@ margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
 text = "EVOLUTIONARY_TREE"
 
-[node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" instance=ExtResource( 4 )]
+[node name="DisabledInFreebuild" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+visible = false
+margin_top = 24.0
+margin_right = 540.0
+margin_bottom = 65.0
+
+[node name="Control" type="Control" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild" index="0"]
+margin_right = 540.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="DisabledInFreebuildLabel" type="Label" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild" index="1"]
+margin_top = 24.0
+margin_right = 540.0
+margin_bottom = 41.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 9 )
+text = "DISABLED_IN_FREEBUILD_LABEL"
+
+[node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="2" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 24.0
@@ -144,4 +165,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_active = false
 
+[connection signal="visibility_changed" from="." to="." method="RebuildTree"]
 [connection signal="SpeciesSelected" from="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
