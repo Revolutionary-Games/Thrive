@@ -805,9 +805,7 @@ public partial class Microbe
         }
 
         // Give bonus glucose at third the amount of our compounds bag capacity
-        compoundsToRelease.TryGetValue(glucose, out float existingGlucose);
-        compoundsToRelease[glucose] = existingGlucose + Compounds.Capacity /
-            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_DENOMINATOR;
+        CalculateBonusDigestibleGlucose(compoundsToRelease);
 
         // Queues either 1 corpse chunk or a factor of the hexes
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);

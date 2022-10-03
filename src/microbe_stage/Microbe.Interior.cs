@@ -609,11 +609,7 @@ public partial class Microbe
             }
         }
 
-        // Give bonus glucose at third the amount of our compounds bag capacity
-        result.TryGetValue(glucose, out float existingGlucose);
-        result[glucose] = existingGlucose + Compounds.Capacity /
-            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_DENOMINATOR;
-
+        CalculateBonusDigestibleGlucose(result);
         return result;
     }
 
@@ -1519,6 +1515,13 @@ public partial class Microbe
                 }
             }
         }
+    }
+
+    private void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result)
+    {
+        result.TryGetValue(glucose, out float existingGlucose);
+        result[glucose] = existingGlucose + Compounds.Capacity *
+            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 
     private void UpdateDissolveEffect()
