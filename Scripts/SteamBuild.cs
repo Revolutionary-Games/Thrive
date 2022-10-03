@@ -6,8 +6,8 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ScriptsBase.Models;
 using ScriptsBase.Utilities;
+using SharedBase.Models;
 
 public static class SteamBuild
 {

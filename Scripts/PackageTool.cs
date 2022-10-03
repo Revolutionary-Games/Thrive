@@ -12,6 +12,7 @@ using DevCenterCommunication.Utilities;
 using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
 using ScriptsBase.Utilities;
+using SharedBase.Models;
 using SharedBase.Utilities;
 
 public class PackageTool : PackageToolBase<Program.PackageOptions>
