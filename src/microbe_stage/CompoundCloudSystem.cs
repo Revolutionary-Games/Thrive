@@ -211,13 +211,13 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Returns the total amount of all compounds at position
     /// </summary>
-    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result)
+    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
     {
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
-                cloud.GetCompoundsAt(x, y, result);
+                cloud.GetCompoundsAt(x, y, result, onlyAbsorbable);
             }
         }
     }

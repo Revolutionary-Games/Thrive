@@ -16,7 +16,7 @@ HUDRootPath = NodePath("MulticellularHUD")
 
 [node name="World" type="Node" parent="."]
 
-[node name="NoPlayerCamera" parent="World" instance=ExtResource( 2 )]
+[node name="PlayerCamera" parent="World" instance=ExtResource( 2 )]
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 

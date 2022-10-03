@@ -664,7 +664,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     protected void ExitPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
     }
 
     protected IEditorComponent? GetActiveEditorComponent()

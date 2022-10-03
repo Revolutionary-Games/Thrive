@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 /// <summary>
 ///   Handles input for the (late) multicellular stage
@@ -6,6 +7,7 @@
 public class PlayerMulticellularInput : NodeWithInput
 {
     private bool autoMove;
+    private bool mouseUnCapturePressed;
 
     private MulticellularStage stage = null!;
 
@@ -13,12 +15,43 @@ public class PlayerMulticellularInput : NodeWithInput
     {
         // Not the cleanest that the parent has to be MulticellularStage type...
         stage = (MulticellularStage)GetParent();
+
+        PauseMode = PauseModeEnum.Process;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Release our mouse capture, _Process shouldn't get called again after this exited the tree
+        SetMouseCapture(false);
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // Handle the GUI mouse capture
+        SetMouseCapture(!mouseUnCapturePressed && !PauseManager.Instance.Paused);
     }
 
     [RunOnKeyDown("g_hold_forward")]
     public void ToggleAutoMove()
     {
         autoMove = !autoMove;
+    }
+
+    [RunOnKeyDown("g_free_cursor")]
+    public bool StartShowingCursor()
+    {
+        mouseUnCapturePressed = true;
+        return false;
+    }
+
+    [RunOnKeyUp("g_free_cursor")]
+    public void StopShowingCursor()
+    {
+        mouseUnCapturePressed = false;
     }
 
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
@@ -35,21 +68,62 @@ public class PlayerMulticellularInput : NodeWithInput
             autoMove = false;
         }
 
-        // TODO: implement
-        /*if (stage.Player != null)
+        if (stage.Player != null)
         {
-            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+            if (autoMove)
             {
-                stage.Player.MovementDirection = Vector3.Zero;
-                return;
+                stage.Player.MovementDirection = new Vector3(0, 0, -1);
             }
+            else
+            {
+                var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
-            var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+                // To allow slow movement with a controller
+                if (movement.Length() > 1)
+                    movement = movement.Normalized();
 
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+                stage.Player.MovementDirection = movement;
+            }
+        }
+    }
 
-            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
-        }*/
+    [RunOnKey("g_move_up")]
+    public void SwimUpOrJump(float delta)
+    {
+        stage.Player?.SwimUpOrJump(delta);
+    }
+
+    [RunOnKey("g_move_down")]
+    public void SwimDownOrCrouch(float delta)
+    {
+        stage.Player?.SwimDownOrCrouch(delta);
+    }
+
+    [RunOnAxis(
+        new[]
+        {
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),
+            "g_look_yaw_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Left),
+            "g_look_yaw_positive",
+        }, new[] { -1.0f, 1.0f },
+        Look = RunOnAxisAttribute.LookMode.Yaw)]
+    [RunOnAxis(new[]
+        {
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Down),
+            "g_look_pitch_negative",
+            RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
+            nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Up),
+            "g_look_pitch_positive",
+        }, new[] { -1.0f, 1.0f },
+        Look = RunOnAxisAttribute.LookMode.Pitch)]
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = false, InvokeWithDelta = false)]
+    public void OnLook(float yawMovement, float pitchMovement)
+    {
+        stage.RotateCamera(yawMovement, pitchMovement);
     }
 
     [RunOnKeyDown("g_fire_toxin")]
@@ -110,5 +184,14 @@ public class PlayerMulticellularInput : NodeWithInput
         {
             stage.HUD.ShowReproductionDialog();
         }
+    }
+
+    private void SetMouseCapture(bool captured)
+    {
+        // TODO: if we use controller input mouse should be Input.MouseModeEnum.Hidden
+        var wanted = captured ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;
+
+        if (Input.MouseMode != wanted)
+            Input.MouseMode = wanted;
     }
 }

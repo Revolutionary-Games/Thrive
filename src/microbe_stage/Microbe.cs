@@ -64,6 +64,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private float movementSoundCooldownTimer;
 
+    /// <summary>
+    ///   Whether this microbe is currently being slowed by environmental slime
+    /// </summary>
+    private bool slowedBySlime;
+
     [JsonProperty]
     private int renderPriority = 18;
 
@@ -204,6 +209,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public int DespawnRadiusSquared { get; set; }
 
     /// <summary>
+    ///   Entity weight for microbes counts all organelles with a scaling factor.
+    /// </summary>
+    [JsonIgnore]
+    public float EntityWeight => organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
+        throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+
+    /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
     ///   (Completely stops the normal functioning of the cell).
     /// </summary>
@@ -336,6 +348,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
@@ -623,6 +636,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
 
+        slimeSecretionCooldown -= delta;
+        if (slimeSecretionCooldown < 0)
+            slimeSecretionCooldown = 0;
+
         lastCheckedATPDamage += delta;
 
         if (!Membrane.Dirty)
@@ -693,6 +710,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             EmitToxin(queuedToxinToEmit);
             queuedToxinToEmit = null;
         }
+
+        HandleSlimeSecretion(delta);
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
         if (absorptionSkippedEarly)
@@ -1080,6 +1099,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             force *= 0.5f;
         }
 
+        if (slowedBySlime)
+            force /= Constants.MUCILAGE_IMPEDE_FACTOR;
+
         if (IsPlayerMicrobe && CheatManager.Speed > 1)
             force *= Mass * CheatManager.Speed;
 
@@ -1094,6 +1116,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return;
 
         // Scale movement by delta time (not by framerate). We aren't Fallout 4
+        // TODO: it seems that at low framerate (below 20 or so) cells get a speed boost for some reason
         ApplyCentralImpulse(movement * delta);
     }
 

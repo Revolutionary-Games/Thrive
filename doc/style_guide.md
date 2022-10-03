@@ -82,15 +82,10 @@ Code style rules
   fail.
 
 - Due to StyleCop not having rules for everything, there are
-  additional rules implemented by `check_formatting.rb` which you
-  should run before committing to make sure there are no issues in
-  your code.
-
-- For faster rebuilding have a look at the scripts in
-  scripts/fast_build. With the `toggle_analysis_mode.rb` script it is
-  possible to turn off the analysis so that small tweaks to the game
-  are faster to test. Next time you run the formatting script the
-  checks should get turned back on.
+  additional rules implemented by a custom script (`dotnet run
+  --project Scripts check`) which you should run before committing to
+  make sure there are no issues in your code. This script can be
+  enabled to run automatically with pre-commit.
 
 - All classes and their public and protected members should be
   documented by XML comments. If the function's purpose is clear from
@@ -534,6 +529,16 @@ Godot usage
 
 - All images used in the GUI should have mipmaps on in the import
   options.
+
+Other recommended approaches
+----------------------------
+
+- When changing the meaning of a game setting in a major way that is
+  incompatible with previous values, the updated setting should use a
+  different name when saved in JSON to avoid problems. For example:
+  `[JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]`. This way
+  the options menu doesn't need complicated adapting logic as
+  otherwise it would show misleading values to the player.
 
 Other files
 -----------

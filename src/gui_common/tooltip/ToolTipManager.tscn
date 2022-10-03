@@ -1097,16 +1097,16 @@ Description = "FLAGELLUM_DESCRIPTION"
 MutationPointCost = 55
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/flagellum" index="0"]
-margin_bottom = 240.0
+margin_bottom = 287.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer" index="0"]
 margin_bottom = 271.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="4"]
-margin_bottom = 158.0
+margin_bottom = 200.0
 
 [node name="speed" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -1144,7 +1144,7 @@ expand = true
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -1155,15 +1155,15 @@ ModifierIcon = ExtResource( 12 )
 
 [node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_top = 1.0
-margin_right = 16.0
+margin_right = 27.0
 margin_bottom = 18.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "+0.5"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 20.0
-margin_right = 73.0
+margin_left = 31.0
+margin_right = 84.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Storage"
@@ -1172,8 +1172,8 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 77.0
-margin_right = 97.0
+margin_left = 88.0
+margin_right = 108.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
@@ -1182,7 +1182,7 @@ expand = true
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -1217,12 +1217,92 @@ mouse_filter = 2
 expand = true
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="5"]
-margin_top = 173.0
-margin_bottom = 177.0
+margin_top = 215.0
+margin_bottom = 219.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="6"]
-margin_top = 192.0
-margin_bottom = 209.0
+margin_top = 234.0
+margin_bottom = 256.0
+
+[node name="slimeJet" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+DisplayName = "SLIME_JET"
+ProcessesDescription = "SLIME_JET_PROCESSES_DESCRIPTION"
+Description = "SLIME_JET_DESCRIPTION"
+MutationPointCost = 60
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer" index="0"]
+margin_bottom = 223.0
+
+[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 21 )
+DisplayName = "STORAGE"
+ModifierValue = "+0.5"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
+
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_top = 1.0
+margin_right = 27.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+0.5"
+
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 31.0
+margin_right = 84.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Storage"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 88.0
+margin_right = 108.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 12 )
+expand = true
+
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList" index="1"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 20.0
+margin_right = 167.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Osmoregulation Cost"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 171.0
+margin_right = 191.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -4003,6 +4083,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/organelleSelection/oxytoxyProteins"]
 [editable path="GroupHolder/organelleSelection/thermosynthase"]
 [editable path="GroupHolder/organelleSelection/flagellum"]
+[editable path="GroupHolder/organelleSelection/slimeJet"]
 [editable path="GroupHolder/organelleSelection/pilus"]
 [editable path="GroupHolder/organelleSelection/chemoreceptor"]
 [editable path="GroupHolder/organelleSelection/cilia"]
