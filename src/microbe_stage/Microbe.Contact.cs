@@ -804,7 +804,6 @@ public partial class Microbe
             }
         }
 
-        // Give bonus glucose at third the amount of our compounds bag capacity
         CalculateBonusDigestibleGlucose(compoundsToRelease);
 
         // Queues either 1 corpse chunk or a factor of the hexes
