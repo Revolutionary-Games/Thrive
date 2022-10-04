@@ -14,7 +14,7 @@ public class MuseumCard : Button
     private SpeciesPreview speciesPreview = null!;
 
     [Signal]
-    public delegate void OnSpeciesSelected(Species species);
+    public delegate void OnSpeciesSelected(MuseumCard card);
 
     public override void _Ready()
     {
