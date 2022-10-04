@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-01 21:31+0100\n"
+"POT-Creation-Date: 2022-10-04 22:57+0100\n"
 "PO-Revision-Date: 2022-07-26 10:07+0000\n"
 "Last-Translator: Jonas Lindberg <eksno@pm.me>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -961,13 +961,15 @@ msgstr "Generelt"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:112
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:122
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "Mikrobestadiet"
@@ -1123,7 +1125,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
 #: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:500 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:501 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1133,6 +1135,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:166
 msgid "CONFIRM_EXIT"
 msgstr ""
 
@@ -1988,10 +1991,10 @@ msgid "CONFIRM_CAPITAL"
 msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:141
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2096,46 +2099,46 @@ msgstr ""
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:518
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:522
+#: ../src/general/MainMenu.tscn:523
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:534
+#: ../src/general/MainMenu.tscn:535
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:549
+#: ../src/general/MainMenu.tscn:550
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:561
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:564
+#: ../src/general/MainMenu.tscn:565
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:567
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:571
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:572
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3278,15 +3281,15 @@ msgstr ""
 msgid "UNTITLED"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
 msgid "GALLERY_VIEWER"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:64
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr ""
@@ -3373,12 +3376,12 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:61
-msgid "NAVIGATION"
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:87
+msgid "HOME"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:95
-msgid "HOME"
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+msgid "NAVIGATION"
 msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
@@ -3421,8 +3424,20 @@ msgstr ""
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:6
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
 msgid "MUSEUM_PAGE"
+msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:148
+msgid "OPEN_IN_FREEBUILD"
+msgstr ""
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:156
+msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24

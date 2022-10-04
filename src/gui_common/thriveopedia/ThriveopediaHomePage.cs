@@ -23,14 +23,4 @@ public class ThriveopediaHomePage : ThriveopediaPage
     {
         currentWorldButton.Disabled = CurrentGame == null;
     }
-
-    private void OnCurrentWorldPressed()
-    {
-        ThriveopediaMain.ChangePage("CurrentWorld");
-    }
-
-    private void OnMuseumPressed()
-    {
-        ThriveopediaMain.ChangePage("Museum");
-    }
 }

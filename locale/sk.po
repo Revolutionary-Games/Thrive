@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-01 21:31+0100\n"
+"POT-Creation-Date: 2022-10-04 22:57+0100\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1027,14 +1027,16 @@ msgstr "Generácia:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:112
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:122
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "[b][u]{0}[/u][/b] vyhynul!"
@@ -1206,7 +1208,7 @@ msgstr "Zoznam druhov"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
 #: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:500 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:501 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1216,6 +1218,7 @@ msgstr "Späť"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:166
 msgid "CONFIRM_EXIT"
 msgstr "Potvrdiť ukončenie"
 
@@ -2113,10 +2116,10 @@ msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIŤ"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:141
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2222,49 +2225,49 @@ msgstr "Licencie"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:518
 msgid "GLES2_MODE_WARNING"
 msgstr "Varovanie režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:520
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
-#: ../src/general/MainMenu.tscn:522
+#: ../src/general/MainMenu.tscn:523
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Vypnuté"
 
-#: ../src/general/MainMenu.tscn:534
+#: ../src/general/MainMenu.tscn:535
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:549
+#: ../src/general/MainMenu.tscn:550
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:561
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:564
+#: ../src/general/MainMenu.tscn:565
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstrániť lokálne údaje"
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:567
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "(začiatočná poloha)"
 
-#: ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:571
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyba načítania režimu"
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:572
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Pri načítaní jedného alebo viac režimov došlo k chybám. Protokoly môžu obsahovať ďalšie informácie."
 
@@ -3447,15 +3450,15 @@ msgstr "Autor:"
 msgid "UNTITLED"
 msgstr "Bez názvu"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
 msgid "GALLERY_VIEWER"
 msgstr "Zobrazovač galérie"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:64
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrovať položky podľa kategórie:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Prezentácia"
@@ -3543,15 +3546,15 @@ msgstr "(začiatočná poloha)"
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:61
-#, fuzzy
-msgid "NAVIGATION"
-msgstr "Príspevky"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:95
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:87
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
+
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+#, fuzzy
+msgid "NAVIGATION"
+msgstr "Príspevky"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
 #, fuzzy
@@ -3597,10 +3600,24 @@ msgstr "Súčasní vývojári"
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:6
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Domovská stránka"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr "Voľná stavba"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:148
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD"
+msgstr "Voľná stavba"
+
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:156
+msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24
 #, fuzzy
@@ -5793,6 +5810,14 @@ msgstr "Načítanie skorého editora mnohobunkovcov"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Začať prosperovať"
+
+#, fuzzy
+#~ msgid "LEAVE_GAME"
+#~ msgstr "Uložiť hru"
+
+#, fuzzy
+#~ msgid "LEAVE_GAME_CONFIRMATION"
+#~ msgstr "Vyber možnosť"
 
 #, fuzzy
 #~ msgid "PAGE_TITLE"

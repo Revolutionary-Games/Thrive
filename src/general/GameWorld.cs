@@ -51,10 +51,20 @@ public class GameWorld : ISaveLoadable
     ///   Creates a new world
     /// </summary>
     /// <param name="settings">Settings to generate the world with</param>
-    public GameWorld(WorldGenerationSettings settings) : this()
+    public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
     {
         WorldSettings = settings;
-        PlayerSpecies = CreatePlayerSpecies();
+
+        if (startingSpecies == null)
+        {
+            PlayerSpecies = CreatePlayerSpecies();
+        }
+        else
+        {
+            startingSpecies.BecomePlayerSpecies();
+            startingSpecies.OnEdited();
+            PlayerSpecies = startingSpecies;
+        }
 
         if (!PlayerSpecies.PlayerSpecies)
             throw new Exception("PlayerSpecies flag for being player species is not set");

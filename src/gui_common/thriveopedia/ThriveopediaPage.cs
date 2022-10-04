@@ -12,8 +12,6 @@ public abstract class ThriveopediaPage : PanelContainer
     public abstract string PageName { get; }
     public abstract string TranslatedPageName { get; }
 
-    public Thriveopedia ThriveopediaMain = null!;
-
     public TreeItem? PageTreeItem;
 
     public GameProperties? CurrentGame
@@ -35,11 +33,6 @@ public abstract class ThriveopediaPage : PanelContainer
 
         if (!DisplayBackground)
             backgroundPanel.AddStyleboxOverride("panel", new StyleBoxEmpty());
-    }
-
-    public void Init(Thriveopedia thriveopedia)
-    {
-        ThriveopediaMain = thriveopedia;
     }
 
     public abstract void UpdateCurrentWorldDetails();

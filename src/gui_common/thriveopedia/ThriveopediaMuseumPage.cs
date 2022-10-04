@@ -7,6 +7,12 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public NodePath CardContainerPath = null!;
 
     [Export]
+    public NodePath WelcomeLabelPath = null!;
+
+    [Export]
+    public NodePath SpeciesPreviewContainerPath = null!;
+
+    [Export]
     public NodePath SpeciesPreviewPath = null!;
 
     [Export]
@@ -15,24 +21,36 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
 
+    [Export]
+    public NodePath LeaveGameConfirmationDialogPath = null!;
+
     private GridContainer cardContainer = null!;
+    private Label welcomeLabel = null!;
+    private VBoxContainer speciesPreviewContainer = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
+    private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
 
     private bool hasBecomeVisibleAtLeastOnce;
 
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("MUSEUM_PAGE");
 
+    [Signal]
+    public delegate void OnSwitchToFreebuild(Species species);
+
     public override void _Ready()
     {
         base._Ready();
 
         cardContainer = GetNode<GridContainer>(CardContainerPath);
+        welcomeLabel = GetNode<Label>(WelcomeLabelPath);
+        speciesPreviewContainer = GetNode<VBoxContainer>(SpeciesPreviewContainerPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
+        leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
     }
 
     public override void _Notification(int what)
@@ -57,6 +75,12 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void UpdateSpeciesPreview(MuseumCard card)
     {
+        if (!speciesPreviewContainer.Visible)
+        {
+            welcomeLabel.Visible = false;
+            speciesPreviewContainer.Visible = true;
+        }
+
         var species = card.SavedSpecies;
         speciesPreview.PreviewSpecies = species;
 
@@ -90,5 +114,37 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
                 break;
             }
         }
+    }
+
+    private void OnOpenInFreebuildPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (speciesPreview.PreviewSpecies == null)
+            return;
+
+        if (CurrentGame != null)
+        {
+            leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_IN_FREEBUILD_WARNING");
+            leaveGameConfirmationDialog.PopupCenteredShrink();
+            return;
+        }
+
+        TransitionToFreebuild();
+    }
+
+    private void TransitionToFreebuild()
+    {
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
+        {
+            // Instantiate a new editor scene
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+            // Start freebuild game with the selected species
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true, (Species)speciesPreview.PreviewSpecies!.Clone());
+
+            // Switch to the editor scene
+            SceneManager.Instance.SwitchToScene(editor);
+        }, false);
     }
 }

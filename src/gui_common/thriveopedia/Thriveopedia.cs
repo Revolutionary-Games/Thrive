@@ -156,7 +156,6 @@ public class Thriveopedia : ControlWithInput
 
         var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
-        page.Init(this);
         pageContainer.AddChild(page);
         allPages.Add(page);
         page.Hide();
