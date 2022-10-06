@@ -50,8 +50,9 @@ public class CompoundBag : ICompoundStorage
 
     public float GetCompoundAmount(Compound compound)
     {
-        Compounds.TryGetValue(compound, out var amount);
-
+        if (!Compounds.TryGetValue(compound, out var amount))
+            return 0.0f;
+        
         return amount;
     }
 
