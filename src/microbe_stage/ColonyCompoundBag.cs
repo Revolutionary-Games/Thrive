@@ -33,7 +33,11 @@ public class ColonyCompoundBag : ICompoundStorage
             if (!compound.Key.CanBeDistributed)
                 continue;
 
-            var ratio = compound.Value / GetCapacityForCompound(compound.Key);
+            var capacityForCompound = GetCapacityForCompound(compound.Key);
+            if (capacityForCompound == 0)
+                continue;
+
+            var ratio = compound.Value / capacityForCompound;
 
             foreach (var bag in bags)
             {
