@@ -804,6 +804,8 @@ public partial class Microbe
             }
         }
 
+        CalculateBonusDigestibleGlucose(compoundsToRelease);
+
         // Queues either 1 corpse chunk or a factor of the hexes
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-09-23 11:38+0000\n"
+"PO-Revision-Date: 2022-10-06 13:39+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -2202,17 +2202,19 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
 #: ../src/general/MainMenu.tscn:519
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Изключено"
+msgstr "Няма включени модификации"
 
 #: ../src/general/MainMenu.tscn:531
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"Налични са инсталирани модификации, които не са включени.\n"
+"\n"
+"Модификациите трябва да бъдат включени след тяхната инсталация, за да се използват от играта."
 
 #: ../src/general/MainMenu.tscn:546
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "Не предупреждавай за това отново"
 
 #: ../src/general/MainMenu.tscn:557
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2222,18 +2224,20 @@ msgid "OK"
 msgstr "ОК"
 
 #: ../src/general/MainMenu.tscn:561
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Премахване на локалните данни"
+msgstr "Играта е стартирана в безопасен режим"
 
 #: ../src/general/MainMenu.tscn:563
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Плашливите микроби отстъпват при опасност\n"
-"и са склонни да избягат, когато са нападнати.\n"
-"Безрасъдните микроби не отстъпват при опасност\n"
-"и са склонни да се защитят, когато са нападнати."
+"„Thrive“ е в безопасен режим поради предишно неуспешно стартиране.\n"
+"\n"
+"Това вероятно е причинено от модификация или от видеоклиповете. Като предпазна мярка, те може да са изключени. Това ще бъде в сила, докато играта не бъде рестартирана.\n"
+"\n"
+"Преди да рестартирате играта, моля, изключете всички модификации, които може да са проблемни или несъвместими с тази версия на „Thrive“ (може да прочетете дневниците от предишните стартирания, за да проверите коя модификация създава проблеми).\n"
+"За проблеми, свързани с видеоклиповете, моля, изберете опцията в стартиращата програма, за принудително изключване на видеоклиповете.\n"
+"\n"
+"Ако проблемът продължи, ще трябва да рестартирате и да причините срив на играта няколко пъти, за да се върнете в безопасен режим."
 
 #: ../src/general/MainMenu.tscn:567
 msgid "MOD_LOAD_ERRORS"
@@ -2838,21 +2842,18 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Местоположение на дневниците"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Вглъбените микроби не променят намеренията си\n"
-"и са склонни да постигнат целта си.\n"
-"Бдителните микроби бързо променят намеренията си."
+"Показва броя на отхвърлените предупреждения.\n"
+"Ако желаете да ги възстановите, натиснете бутона „Нулиране на отхвърлените предупреждения“."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Хранителна скорост:"
+msgstr "Отхвърлени предупреждения:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Нулиране на отхвърлените предупреждения"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
