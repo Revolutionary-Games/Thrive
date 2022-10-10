@@ -165,8 +165,12 @@ public class FossilisationDialog : CustomDialog
 
     private void OnFossilisePressed()
     {
-        // TODO save this species
-        GD.Print(SelectedSpecies.FormattedName);
+        GD.Print("Saving species " + SelectedSpecies.FormattedName);
+
+        // TODO check for name conflicts
+
+        var savedSpecies = new FossilisedSpecies { Name = SelectedSpecies.FormattedName, Species = SelectedSpecies };
+        savedSpecies.SaveToFile();
 
         Hide();
     }

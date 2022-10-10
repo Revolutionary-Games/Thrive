@@ -59,9 +59,10 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         if (what == NotificationVisibilityChanged && Visible && !hasBecomeVisibleAtLeastOnce)
         {
-            for (int i = 0; i < 10; i++)
+            foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
             {
                 var card = (MuseumCard)GD.Load<PackedScene>($"res://src/gui_common/fossilisation/MuseumCard.tscn").Instance();
+                card.SavedSpecies = (MicrobeSpecies)FossilisedSpecies.LoadFromFile(speciesName);
                 card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
                 cardContainer.AddChild(card);
             }

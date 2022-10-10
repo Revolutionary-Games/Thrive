@@ -909,6 +909,7 @@ public static class Constants
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
+    public const string FOSSILISED_SPECIES_FOLDER = "user://species";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 

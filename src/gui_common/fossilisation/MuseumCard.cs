@@ -8,7 +8,7 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
-    public MicrobeSpecies SavedSpecies = null!;
+    public MicrobeSpecies? SavedSpecies = null!;
 
     private Label speciesNameLabel = null!;
     private SpeciesPreview speciesPreview = null!;
@@ -22,11 +22,6 @@ public class MuseumCard : Button
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
-
-        SavedSpecies = new MicrobeSpecies(1, "Primum", "Testum");
-        GameWorld.SetInitialSpeciesProperties(SavedSpecies);
-        SavedSpecies.Organelles.Add(new OrganelleTemplate(
-            SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(1, 0), 0));
 
         UpdateSpeciesPreview();
     }
