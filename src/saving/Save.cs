@@ -235,32 +235,10 @@ public class Save
 
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(saveInfo);
 
-        string? tempScreenshot = null;
-
-        if (screenshot != null)
-        {
-            // TODO: if in the future Godot allows converting images to in-memory PNGs that should be used here
-            tempScreenshot = Path.Combine(Constants.SAVE_FOLDER, "tmp.png");
-            if (screenshot.SavePng(tempScreenshot) != Error.Ok)
-            {
-                GD.PrintErr("Failed to save screenshot for inclusion in save");
-                tempScreenshot = null;
-            }
-        }
-
-        try
-        {
-            WriteDataToSaveFile(target, justInfo, saveContent, tempScreenshot);
-        }
-        finally
-        {
-            // Remove the temp file
-            if (tempScreenshot != null)
-                FileHelpers.DeleteFile(tempScreenshot);
-        }
+        WriteDataToSaveFile(target, justInfo, saveContent, screenshot);
     }
 
-    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string? tempScreenshot)
+    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, Image? screenshot)
     {
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
@@ -274,23 +252,9 @@ public class Save
 
         OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
 
-        if (tempScreenshot != null)
+        if (screenshot != null)
         {
-            byte[]? data = null;
-
-            using (var reader = new File())
-            {
-                reader.Open(tempScreenshot, File.ModeFlags.Read);
-
-                if (!reader.IsOpen())
-                {
-                    GD.PrintErr("Failed to open temp screenshot for writing to save");
-                }
-                else
-                {
-                    data = reader.GetBuffer((int)reader.GetLen());
-                }
-            }
+            byte[]? data = screenshot.SavePngToBuffer();
 
             if (data?.Length > 0)
                 OutputEntry(tar, SAVE_SCREENSHOT, data);
