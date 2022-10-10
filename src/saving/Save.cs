@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Directory = Godot.Directory;
 using File = Godot.File;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   A class representing a single saved game
