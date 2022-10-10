@@ -253,9 +253,9 @@ public class Save
 
         if (screenshot != null)
         {
-            byte[]? data = screenshot.SavePngToBuffer();
+            byte[] data = screenshot.SavePngToBuffer();
 
-            if (data?.Length > 0)
+            if (data.Length > 0)
                 OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
