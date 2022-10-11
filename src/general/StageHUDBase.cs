@@ -741,9 +741,12 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
         foreach (var microbe in microbes)
         {
+            if (microbe.Species is not MicrobeSpecies)
+                continue;
+
             var button = FossilisationButtonScene.Instance<FossilisationButton>();
             button.AttachedMicrobe = microbe;
-            button.OnFossilisationDialogOpened = ShowFossilisationDialog;
+            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this, nameof(ShowFossilisationDialog));
             fossilisationButtonLayer.AddChild(button);
         }
     }
@@ -756,9 +759,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
-    public void ShowFossilisationDialog(Species species)
+    public void ShowFossilisationDialog(FossilisationButton button)
     {
-        fossilisationDialog.SelectedSpecies = species;
+        fossilisationDialog.SelectedSpecies = button.AttachedMicrobe.Species;
         fossilisationDialog.Show();
     }
 

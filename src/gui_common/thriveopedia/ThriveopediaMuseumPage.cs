@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Godot;
 
 public class ThriveopediaMuseumPage : ThriveopediaPage
@@ -37,9 +38,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("MUSEUM_PAGE");
 
-    [Signal]
-    public delegate void OnSwitchToFreebuild(Species species);
-
     public override void _Ready()
     {
         base._Ready();
@@ -62,7 +60,15 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
             {
                 var card = (MuseumCard)GD.Load<PackedScene>($"res://src/gui_common/fossilisation/MuseumCard.tscn").Instance();
-                card.SavedSpecies = (MicrobeSpecies)FossilisedSpecies.LoadFromFile(speciesName);
+
+                var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
+
+                if (savedSpecies is not MicrobeSpecies)
+                {
+                    throw new NotImplementedException("Loading non-microbe species is not yet implemented");
+                }
+
+                card.SavedSpecies = (MicrobeSpecies)FossilisedSpecies.LoadSpeciesFromFile(speciesName);
                 card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
                 cardContainer.AddChild(card);
             }

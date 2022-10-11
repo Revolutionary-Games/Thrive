@@ -136,7 +136,15 @@ public class FossilisationDialog : CustomDialog
     private void UpdateSpeciesPreview()
     {
         speciesPreview.PreviewSpecies = SelectedSpecies;
-        hexesPreview.PreviewSpecies = (MicrobeSpecies)SelectedSpecies;
+
+        switch (SelectedSpecies)
+        {
+            case MicrobeSpecies microbeSpecies:
+            {
+                hexesPreview.PreviewSpecies = microbeSpecies;
+                break;
+            }
+        }
     }
 
     private void UpdateSpeciesDetails()

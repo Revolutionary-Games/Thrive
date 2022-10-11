@@ -1,11 +1,11 @@
 ﻿using Godot;
-using System;
 
 public class FossilisationButton : TextureButton
 {
     public Microbe AttachedMicrobe = null!;
 
-    public Action<Species> OnFossilisationDialogOpened = null!;
+    [Signal]
+    public delegate void OnFossilisationDialogOpened(FossilisationButton button);
 
     public void UpdatePosition()
     {        
@@ -14,6 +14,7 @@ public class FossilisationButton : TextureButton
 
     private void OnPressed()
     {
-        OnFossilisationDialogOpened.Invoke(AttachedMicrobe.Species);
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(nameof(OnFossilisationDialogOpened), this);
     }
 }

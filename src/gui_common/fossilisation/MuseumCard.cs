@@ -8,7 +8,7 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
-    public MicrobeSpecies? SavedSpecies = null!;
+    public Species SavedSpecies = null!;
 
     private Label speciesNameLabel = null!;
     private SpeciesPreview speciesPreview = null!;

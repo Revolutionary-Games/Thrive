@@ -6,7 +6,6 @@ using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Directory = Godot.Directory;
 using File = Godot.File;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +13,17 @@ using System.Linq;
 public class FossilisedSpecies
 {
     public const string SAVE_SAVE_JSON = "save.json";
+    public const string SAVE_INFO_JSON = "info.json";
 
     /// <summary>
     ///   Name of this saved species on disk
     /// </summary>
     public string Name { get; set; } = "invalid";
+
+    /// <summary>
+    ///   General information about this saved species
+    /// </summary>
+    public FossilisedSpeciesInformation Info { get; set; } = new();
 
     public Species Species { get; set; } = null!;
 
@@ -41,8 +46,8 @@ public class FossilisedSpecies
                 if (string.IsNullOrEmpty(filename))
                     break;
 
-                // if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
-                //     continue;
+                if (!filename.EndsWith(Constants.FOSSIL_EXTENSION, StringComparison.Ordinal))
+                    continue;
 
                 // Skip folders
                 if (!directory.FileExists(filename))
@@ -63,25 +68,38 @@ public class FossilisedSpecies
 
     public void SaveToFile()
     {
-        WriteRawSaveDataToFile(Species, Species.StringCode, Name);
+        if (Species is not MicrobeSpecies)
+        {
+            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+        }
+
+        var speciesInfo = new FossilisedSpeciesInformation()
+        {
+            Type = FossilisedSpeciesInformation.SpeciesType.Microbe,
+        };
+
+        WriteRawSaveDataToFile(speciesInfo, Species.StringCode, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
     }
 
-    public static Species? LoadFromFile(string saveName, Action? readFinished = null)
+    public static Species LoadSpeciesFromFile(string saveName)
     {
         var target = System.IO.Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
+        var (_, species) = LoadFromFile(target);
 
-        return LoadFromFile(target, true, readFinished);
+        return species;
     }
 
-    private static void WriteRawSaveDataToFile(Species speciesInfo, string saveContent, string saveName)
+    private static void WriteRawSaveDataToFile(FossilisedSpeciesInformation speciesInfo, string saveContent, string saveName)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.FOSSILISED_SPECIES_FOLDER);
         var target = System.IO.Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
 
-        WriteDataToSaveFile(target, saveContent);
+        var justInfo = ThriveJsonConverter.Instance.SerializeObject(speciesInfo);
+
+        WriteDataToSaveFile(target, justInfo, saveContent);
     }
 
-    private static void WriteDataToSaveFile(string target, string serialized)
+    private static void WriteDataToSaveFile(string target, string justInfo, string serialized)
     {
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
@@ -93,6 +111,7 @@ public class FossilisedSpecies
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
+        OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
         OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
@@ -113,7 +132,7 @@ public class FossilisedSpecies
         archive.CloseEntry();
     }
 
-    private static Species? LoadFromFile(string file, bool save, Action? readFinished)
+    private static (FossilisedSpeciesInformation, Species) LoadFromFile(string file)
     {
         using (var directory = new Directory())
         {
@@ -121,29 +140,38 @@ public class FossilisedSpecies
                 throw new ArgumentException("save with the given name doesn't exist");
         }
 
-        var saveStr = LoadDataFromFile(file);
-
-        readFinished?.Invoke();
-
-        Species? saveResult = null;
-
-        if (save)
+        var (infoStr, saveStr) = LoadDataFromFile(file);
+            
+        if (string.IsNullOrEmpty(infoStr))
         {
-            if (string.IsNullOrEmpty(saveStr))
-            {
-                throw new IOException("couldn't find save content in save file");
-            }
-
-            // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(saveStr!) ??
-                throw new JsonException("Save data is null");
+            throw new IOException("couldn't find info content in save");
         }
 
-        return saveResult;
+        if (string.IsNullOrEmpty(saveStr))
+        {
+            throw new IOException("couldn't find save content in save file");
+        }
+
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
+            throw new JsonException("SaveInformation is null");
+        Species? speciesResult = null;
+
+        switch (infoResult.Type)
+        {
+            case FossilisedSpeciesInformation.SpeciesType.Microbe:
+                speciesResult = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(saveStr!) ??
+                    throw new JsonException("Save data is null");
+                break;
+            default:
+                throw new NotImplementedException("Unable to load non-microbe species");
+        }
+
+        return (infoResult, speciesResult);
     }
 
-    private static string? LoadDataFromFile(string file)
+    private static (string?, string?) LoadDataFromFile(string file)
     {
+        string? infoStr = null;
         string? saveStr = null;
 
         using var reader = new File();
@@ -162,7 +190,11 @@ public class FossilisedSpecies
             if (tarEntry.IsDirectory)
                 continue;
 
-            if (tarEntry.Name == SAVE_SAVE_JSON)
+            if (tarEntry.Name == SAVE_INFO_JSON)
+            {
+                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+            }
+            else if (tarEntry.Name == SAVE_SAVE_JSON)
             {
                 saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
             }
@@ -172,7 +204,18 @@ public class FossilisedSpecies
             }
         }
 
-        return saveStr;
+        return (infoStr, saveStr);
+    }
+
+    private static FossilisedSpeciesInformation ParseSaveInfo(string? infoStr)
+    {
+        if (string.IsNullOrEmpty(infoStr))
+        {
+            throw new IOException("couldn't find info content in save");
+        }
+
+        return ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
+            throw new JsonException("SaveInformation is null");
     }
 
     private static string ReadStringEntry(TarInputStream tar, int length)
