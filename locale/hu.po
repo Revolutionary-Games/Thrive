@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 21:43+0100\n"
+"POT-Creation-Date: 2022-10-12 22:16+0100\n"
 "PO-Revision-Date: 2022-08-25 07:28+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1012,7 +1012,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 msgid "SPECIES_DETAIL_TEXT"
@@ -1029,7 +1029,7 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -1223,6 +1223,7 @@ msgstr "Vissza"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:166
 msgid "CONFIRM_EXIT"
 msgstr "Kilépés elfogadása"
@@ -2120,7 +2121,7 @@ msgstr "ELFOGAD"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:157
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2990,7 +2991,7 @@ msgstr "Elvet és folytatás"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:205
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Mégse"
@@ -3577,22 +3578,27 @@ msgstr "Tutorial"
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:118
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:123
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "A faj nevének be kell tartania a kettős nevezéktan rendszerét (Generikus és Specifikus)!"
+
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:185
+#, fuzzy
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
 #: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
 #, fuzzy
 msgid "FOSSILISATION"
 msgstr "populáció:"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:102
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Faj neve..."
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:139
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -3601,20 +3607,15 @@ msgstr ""
 "A békés sejtek nem kergetnek más prédákat,\n"
 "és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:220
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Rögzült"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:87
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:89
 #, fuzzy
 msgid "HOME"
 msgstr "Home"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
-#, fuzzy
-msgid "NAVIGATION"
-msgstr "Adományok"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
 #, fuzzy
@@ -6036,6 +6037,10 @@ msgstr "Többsejtes szerkesztő betöltése"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "A túlélés kezdése"
+
+#, fuzzy
+#~ msgid "NAVIGATION"
+#~ msgstr "Adományok"
 
 #, fuzzy
 #~ msgid "CURRENT_WORLD"

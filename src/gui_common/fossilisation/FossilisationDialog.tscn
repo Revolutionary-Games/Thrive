@@ -41,6 +41,7 @@ SpeciesPreviewPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VB
 HexPreviewPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 FossiliseButtonPath = NodePath("VBoxContainer2/HBoxContainer/FossiliseButton")
 SpeciesDetailsLabelPath = NodePath("VBoxContainer2/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
+OverwriteNameConfirmationDialogPath = NodePath("OverwriteNameConfirmation")
 
 [node name="VBoxContainer" parent="." index="0"]
 visible = false
@@ -225,6 +226,14 @@ margin_right = 342.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
+[node name="OverwriteNameConfirmation" parent="." index="2" instance=ExtResource( 4 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 935.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 391, 0 )
+WindowTitle = "CONFIRM_EXIT"
+
 [connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnControlMouseEntered"]
 [connection signal="mouse_exited" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnControlMouseExited"]
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
@@ -232,3 +241,4 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer2/RandomizeButton" to="." method="OnRandomizeNamePressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/FossiliseButton" to="." method="OnFossilisePressed"]
+[connection signal="Confirmed" from="OverwriteNameConfirmation" to="." method="FossiliseSpecies"]

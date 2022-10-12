@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 21:43+0100\n"
+"POT-Creation-Date: 2022-10-12 22:16+0100\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1020,7 +1020,7 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Finis {0} Générations"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 msgid "SPECIES_DETAIL_TEXT"
@@ -1037,7 +1037,7 @@ msgstr ""
 "   {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -1228,6 +1228,7 @@ msgstr "Revenir"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:166
 #, fuzzy
 msgid "CONFIRM_EXIT"
@@ -2172,7 +2173,7 @@ msgstr "ACCEPTER"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:157
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -3113,7 +3114,7 @@ msgstr "Annuler et continuer"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:205
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Annuler"
@@ -3729,22 +3730,27 @@ msgstr "Tutoriel"
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:118
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:123
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Le nom d'espèce doit respecter la nomenclature binomiale (genre et épithète) !"
+
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:185
+#, fuzzy
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr "Supprimer cette sauvegarde est définitif, êtes-vous sûr de vouloir la supprimer définitivement ?"
 
 #: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
 #, fuzzy
 msgid "FOSSILISATION"
 msgstr "population :"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:102
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l’espèce..."
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:139
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
 #, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
@@ -3753,20 +3759,15 @@ msgstr ""
 "Les microbes pacifiques ne poursuivront pas les autres cellules si elles se tiennent à distance\n"
 "et utiliseront moins de toxines contre les prédateurs."
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:220
+#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
 #, fuzzy
 msgid "FOSSILISE"
 msgstr "Sessile"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:87
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:89
 #, fuzzy
 msgid "HOME"
 msgstr "Menu principal"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
-#, fuzzy
-msgid "NAVIGATION"
-msgstr "Dons"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
 #, fuzzy
@@ -6334,6 +6335,10 @@ msgstr "Chargement de l'Éditeur de Microbes"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Commencer à Prospérer"
+
+#, fuzzy
+#~ msgid "NAVIGATION"
+#~ msgstr "Dons"
 
 #, fuzzy
 #~ msgid "CURRENT_WORLD"

@@ -19,6 +19,9 @@ public class FossilisationDialog : CustomDialog
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
 
+    [Export]
+    public NodePath OverwriteNameConfirmationDialogPath = null!;
+
     public Species SelectedSpecies
     {
         get => selectedSpecies;
@@ -37,6 +40,7 @@ public class FossilisationDialog : CustomDialog
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private Button fossiliseButton = null!;
+    private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
 
     private Species selectedSpecies = null!;
 
@@ -55,6 +59,7 @@ public class FossilisationDialog : CustomDialog
         hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         fossiliseButton = GetNode<Button>(FossiliseButtonPath);
+        overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
     }
 
     public void SetNewName(string name)
@@ -175,8 +180,18 @@ public class FossilisationDialog : CustomDialog
     {
         GD.Print("Saving species " + SelectedSpecies.FormattedName);
 
-        // TODO check for name conflicts
+        if (FossilisedSpecies.CreateListOfSaves().Any(s => s == SelectedSpecies.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT))
+        {
+            overwriteNameConfirmationDialog.DialogText = TranslationServer.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
+            overwriteNameConfirmationDialog.PopupCenteredShrink();
+            return;
+        }
 
+        FossiliseSpecies();
+    }
+
+    private void FossiliseSpecies()
+    {
         var savedSpecies = new FossilisedSpecies { Name = SelectedSpecies.FormattedName, Species = SelectedSpecies };
         savedSpecies.SaveToFile();
 
