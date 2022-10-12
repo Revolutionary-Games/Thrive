@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 22:57+0100\n"
+"POT-Creation-Date: 2022-10-12 20:47+0100\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -32,6 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -1050,17 +1051,17 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "濃度為"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -2151,7 +2152,7 @@ msgstr "確認"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2367,16 +2368,19 @@ msgstr "自殺"
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:37
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:40
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
@@ -2517,10 +2521,12 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:877
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:49
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:52
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
@@ -3158,35 +3164,35 @@ msgstr "從這個區域滅絕了"
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:952
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "充裕"
 
-#: ../src/general/StageHUDBase.cs:954
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "不少"
 
-#: ../src/general/StageHUDBase.cs:956
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "相當數量"
 
-#: ../src/general/StageHUDBase.cs:958
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr "中等"
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr "少"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/general/StageHUDBase.cs:1172
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "玩家細胞"
 
-#: ../src/general/StageHUDBase.cs:1185
+#: ../src/general/StageHUDBase.cs:1188
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3201,6 +3207,29 @@ msgstr "{0} 百萬"
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} 千"
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "TRUE"
+msgstr ""
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "FALSE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+msgid "DIFFICULTY_DETAILS_STRING"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+msgid "PLANET_DETAILS_STRING"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+msgid "MISC_DETAILS_STRING"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -3664,7 +3693,7 @@ msgstr "沉着"
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
 #, fuzzy
 msgid "NAVIGATION"
 msgstr "捐助"
@@ -3673,21 +3702,6 @@ msgstr "捐助"
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "當前開發人員"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:41
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
-msgid "DIFFICULTY_DETAILS_STRING"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:46
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
-msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
 #, fuzzy
@@ -3712,12 +3726,12 @@ msgstr "當前開發人員"
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "主頁"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "自由編輯器"
@@ -5515,6 +5529,28 @@ msgstr ""
 msgid "CREATE"
 msgstr "創建"
 
+#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#, fuzzy
+msgid "MICROBE"
+msgstr ""
+"在一個遙遠的外星星球上，漫長的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
+"\n"
+"生命。\n"
+"\n"
+"簡單的微生物居住在海洋的深層區域。你是這個星球上最後的宇宙共同祖先（LUCA）。\n"
+"\n"
+"為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "放置細胞器"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "放置細胞器"
+
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -6165,10 +6201,6 @@ msgstr "開始遊戲"
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "沒有運行。"
-
-#, fuzzy
-#~ msgid "MULTICELLULAR"
-#~ msgstr "放置細胞器"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "遠古熱泉"

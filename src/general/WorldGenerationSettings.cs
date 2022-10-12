@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -32,14 +34,22 @@ public class WorldGenerationSettings
 
     public enum LifeOrigin
     {
+        [Description("LIFE_ORIGIN_VENTS")]
         Vent,
+
+        [Description("LIFE_ORIGIN_POND")]
         Pond,
+
+        [Description("LIFE_ORIGIN_PANSPERMIA")]
         Panspermia,
     }
 
     public enum PatchMapType
     {
+        [Description("PATCH_MAP_TYPE_PROCEDURAL")]
         Procedural,
+
+        [Description("PATCH_MAP_TYPE_CLASSIC")]
         Classic,
     }
 
@@ -123,5 +133,40 @@ public class WorldGenerationSettings
             $", Include Multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
             "]";
+    }
+
+    public string GetTranslatedDifficultyString()
+    {
+        string translatedDifficulty = Difficulty is DifficultyPreset difficulty
+            ? difficulty.Name
+            : TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
+
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("DIFFICULTY_DETAILS_STRING"),
+            translatedDifficulty,
+            MPMultiplier,
+            AIMutationMultiplier,
+            CompoundDensity,
+            PlayerDeathPopulationPenalty,
+            GlucoseDecay,
+            OsmoregulationMultiplier,
+            TranslationHelper.TranslateBool(FreeGlucoseCloud),
+            TranslationHelper.TranslateBool(PassiveGainOfReproductionCompounds),
+            TranslationHelper.TranslateBool(LimitReproductionCompoundUseSpeed));
+    }
+
+    public string GetTranslatedPlanetString()
+    {
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
+            TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>()?.Description),
+            TranslationHelper.TranslateBool(LAWK),
+            TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>()?.Description),
+            Seed);
+    }
+
+    public string GetTranslatedMiscString()
+    {
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MISC_DETAILS_STRING"),
+            TranslationHelper.TranslateBool(IncludeMulticellular),
+            TranslationHelper.TranslateBool(EasterEggs));
     }
 }

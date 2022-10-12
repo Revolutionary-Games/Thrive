@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 22:57+0100\n"
+"POT-Creation-Date: 2022-10-12 20:47+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -32,6 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Сложно"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Пользовательский"
 
@@ -1018,9 +1019,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Симулировать {0} поколений"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Виды[/b]\n"
@@ -1035,9 +1036,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Этап[/b]\n"
@@ -2112,7 +2113,7 @@ msgstr "ПОДТВЕРДИТЬ"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2310,16 +2311,19 @@ msgstr "Некоторые варианты могут быть недоступ
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:37
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гидротермальные источники"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:40
 msgid "LIFE_ORIGIN_POND"
 msgstr "Небольшое теплое озеро"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Панспермия (случайно)"
 
@@ -2437,10 +2441,12 @@ msgstr "(генерировать карту биомов процедурно �
 
 #: ../src/general/NewGameSettings.tscn:877
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:49
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Процедурная"
 
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:52
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Классическая"
 
@@ -3050,35 +3056,35 @@ msgstr "Вымерли в биоме"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:952
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "изобилие"
 
-#: ../src/general/StageHUDBase.cs:954
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "немного"
 
-#: ../src/general/StageHUDBase.cs:956
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "изрядное количество"
 
-#: ../src/general/StageHUDBase.cs:958
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr "некоторое количество"
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "очень мало"
 
-#: ../src/general/StageHUDBase.cs:1172
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "Клетка Игрока"
 
-#: ../src/general/StageHUDBase.cs:1185
+#: ../src/general/StageHUDBase.cs:1188
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3093,6 +3099,31 @@ msgstr "{0} Млн"
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} Тыс"
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "TRUE"
+msgstr ""
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "FALSE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#, fuzzy
+msgid "DIFFICULTY_DETAILS_STRING"
+msgstr "Шаблон сложности"
+
+#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#, fuzzy
+msgid "PLANET_DETAILS_STRING"
+msgstr "Открыть Папку с Логами"
+
+#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+msgid "MISC_DETAILS_STRING"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -3554,7 +3585,7 @@ msgstr "Оседлый"
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
 #, fuzzy
 msgid "NAVIGATION"
 msgstr "Пожертвования"
@@ -3563,23 +3594,6 @@ msgstr "Пожертвования"
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Текущие Разработчики"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:41
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
-msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Шаблон сложности"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:46
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
-msgid "PLANET_DETAILS_STRING"
-msgstr "Открыть Папку с Логами"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
-msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
 #, fuzzy
@@ -3604,12 +3618,12 @@ msgstr "Текущие Разработчики"
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Домашняя страница"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "Свободное Строительство"
@@ -5362,6 +5376,21 @@ msgstr "Использовать автозагрузку Harmony"
 msgid "CREATE"
 msgstr "Создать"
 
+#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#, fuzzy
+msgid "MICROBE"
+msgstr "Одноклеточная стадия"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "Этап Многоклеточного микроба"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "Этап Многоклеточного микроба"
+
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5992,10 +6021,6 @@ msgstr "Начать Процветание"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Не запущен."
-
-#, fuzzy
-#~ msgid "MULTICELLULAR"
-#~ msgstr "Этап Многоклеточного микроба"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Пангонские Гидротермальные Вулканы"

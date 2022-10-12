@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 22:57+0100\n"
+"POT-Creation-Date: 2022-10-12 20:47+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -32,6 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Difícil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Personalitzat"
 
@@ -1018,9 +1019,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Acaba {0} Generacions"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Espècies[/b]\n"
@@ -1035,9 +1036,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estadi[/b]\n"
@@ -2124,7 +2125,7 @@ msgstr "CONFIRMAR"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2323,16 +2324,19 @@ msgstr "Algunes opcions poden ser desactivades si només LAWK està activat"
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:37
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Fumaroles hidrotermals"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:40
 msgid "LIFE_ORIGIN_POND"
 msgstr "Petit, càlid toll"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspèrmia (aleatori)"
 
@@ -2450,10 +2454,12 @@ msgstr "(generar un mapa d'ecosistemes proceduralment o utilitzar el mapa clàss
 
 #: ../src/general/NewGameSettings.tscn:877
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:49
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedural"
 
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:52
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Clàssic"
 
@@ -3071,35 +3077,35 @@ msgstr "s'ha extingit de l'ecosistema"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:952
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abundància"
 
-#: ../src/general/StageHUDBase.cs:954
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "una mica"
 
-#: ../src/general/StageHUDBase.cs:956
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "una quantitat justa"
 
-#: ../src/general/StageHUDBase.cs:958
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr "un xic"
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr "poc"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "molt poc"
 
-#: ../src/general/StageHUDBase.cs:1172
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "Cèl·lula del jugador"
 
-#: ../src/general/StageHUDBase.cs:1185
+#: ../src/general/StageHUDBase.cs:1188
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3114,6 +3120,31 @@ msgstr "{0} M"
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "TRUE"
+msgstr ""
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "FALSE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#, fuzzy
+msgid "DIFFICULTY_DETAILS_STRING"
+msgstr "Dificultat predeterminada"
+
+#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#, fuzzy
+msgid "PLANET_DETAILS_STRING"
+msgstr "Obrir Carpeta"
+
+#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+msgid "MISC_DETAILS_STRING"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -3575,7 +3606,7 @@ msgstr "Sèssil"
 msgid "HOME"
 msgstr "Menú principal"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
 #, fuzzy
 msgid "NAVIGATION"
 msgstr "Donacions"
@@ -3584,23 +3615,6 @@ msgstr "Donacions"
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Desenvolupadors Actuals"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:41
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
-msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Dificultat predeterminada"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:46
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
-msgid "PLANET_DETAILS_STRING"
-msgstr "Obrir Carpeta"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
-msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
 #, fuzzy
@@ -3625,12 +3639,12 @@ msgstr "Desenvolupadors Actuals"
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Pàgina principal"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "Construcció lliure"
@@ -5397,6 +5411,21 @@ msgstr "Utilitzar Càrrega Auto Harmony"
 msgid "CREATE"
 msgstr "Crear"
 
+#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#, fuzzy
+msgid "MICROBE"
+msgstr "Estadi de Microbi"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "Multicel·lular"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "Multicel·lular"
+
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -6019,9 +6048,6 @@ msgstr "Començar a prosperar"
 
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "No està en marxa."
-
-#~ msgid "MULTICELLULAR"
-#~ msgstr "Multicel·lular"
 
 #, fuzzy
 #~ msgid "EXTREME"

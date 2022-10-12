@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 22:57+0100\n"
+"POT-Creation-Date: 2022-10-12 20:47+0100\n"
 "PO-Revision-Date: 2022-09-27 21:14+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -32,6 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Hard"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Custom"
 
@@ -1020,9 +1021,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Finish {0} Generations"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Species[/b]\n"
@@ -1037,9 +1038,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stage[/b]\n"
@@ -2099,7 +2100,7 @@ msgstr "CONFIRM"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2301,16 +2302,19 @@ msgstr "Some options may be disabled if LAWK only is enabled"
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:37
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermal vents"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:40
 msgid "LIFE_ORIGIN_POND"
 msgstr "Warm little pond"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
 
@@ -2424,10 +2428,12 @@ msgstr "(generate a patch map procedurally or use the classic layout)"
 
 #: ../src/general/NewGameSettings.tscn:877
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:49
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedural"
 
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:52
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Classic"
 
@@ -3029,35 +3035,35 @@ msgstr "extinct in patch"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:952
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
-#: ../src/general/StageHUDBase.cs:954
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
-#: ../src/general/StageHUDBase.cs:956
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
-#: ../src/general/StageHUDBase.cs:958
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr "some"
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
-#: ../src/general/StageHUDBase.cs:1172
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
-#: ../src/general/StageHUDBase.cs:1185
+#: ../src/general/StageHUDBase.cs:1188
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3072,6 +3078,45 @@ msgstr "{0} M"
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "TRUE"
+msgstr "True"
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "FALSE"
+msgstr "False"
+
+#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+msgid "DIFFICULTY_DETAILS_STRING"
+msgstr ""
+"Difficulty preset: {0}\n"
+"Mutation cost multiplier: {1}\n"
+"AI mutation rate: {2}\n"
+"Compound cloud density: {3}\n"
+"Player death population penalty: {4}\n"
+"Environmental glucose retention: {5}\n"
+"Osmoregulation cost multiplier: {6}\n"
+"Free glucose cloud when leaving editor: {7}\n"
+"Passively gain reproduction progress: {8}\n"
+"Limit growth compound usage: {9}"
+
+#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+msgid "PLANET_DETAILS_STRING"
+msgstr ""
+"Patch map type: {0}\n"
+"LAWK only: {1}\n"
+"Life origin: {2}\n"
+"Planet random seed: {3}"
+
+#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+msgid "MISC_DETAILS_STRING"
+msgstr ""
+"Include later stage prototypes: {0}\n"
+"Include Easter eggs: {1}"
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -3527,44 +3572,13 @@ msgstr "Fossilise"
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
 msgid "NAVIGATION"
 msgstr "Navigation"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Current World"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:41
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
-msgid "DIFFICULTY_DETAILS_STRING"
-msgstr ""
-"Difficulty preset: {0}\n"
-"Mutation cost multiplier: {1}\n"
-"AI mutation rate: {2}\n"
-"Compound cloud density: {3}\n"
-"Player death population penalty: {4}\n"
-"Environmental glucose retention: {5}\n"
-"Osmoregulation cost multiplier: {6}\n"
-"Free glucose cloud when leaving editor: {7}\n"
-"Passively gain reproduction progress: {8}\n"
-"Limit growth compound usage: {9}"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:46
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
-msgid "PLANET_DETAILS_STRING"
-msgstr ""
-"Patch map type: {0}\n"
-"LAWK only: {1}\n"
-"Life origin: {2}\n"
-"Planet random seed: {3}"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
-msgstr ""
-"Include later stage prototypes: {0}\n"
-"Include Easter eggs: {1}"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
 msgid "EVOLUTIONARY_TREE_PAGE"
@@ -3586,11 +3600,11 @@ msgstr "Current World"
 msgid "MUSEUM"
 msgstr "Museum"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
 msgid "MUSEUM_PAGE"
 msgstr "Museum"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:135
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr ""
 "Are you sure you want to start a new game?\n"
@@ -3602,7 +3616,8 @@ msgstr "Open in Freebuild"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:156
 msgid "MUSEUM_WELCOME_TEXT"
-msgstr "Welcome to the museum! Here you can admire the many species you've fossilised across all your playthroughs. You can even play as a species by opening it in the freebuild editor.\n"
+msgstr ""
+"Welcome to the museum! Here you can admire the many species you've fossilised across all your playthroughs. You can even play as a species by opening it in the freebuild editor.\n"
 "\n"
 "To fossilise a species in-game, press the pause button. Then select a microbe on screen to fossilise its species."
 
@@ -5339,6 +5354,18 @@ msgstr "Use Auto Harmony Loading"
 msgid "CREATE"
 msgstr "Create"
 
+#: ../src/saving/FossilisedSpeciesInformation.cs:8
+msgid "MICROBE"
+msgstr "Microbe"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
+msgid "EARLY_MULTICELLULAR"
+msgstr "Multicellular"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
+msgid "LATE_MULTICELLULAR"
+msgstr "Late Multicellular"
+
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5977,9 +6004,6 @@ msgstr "Continue Thriving"
 
 #~ msgid "PREVIEW"
 #~ msgstr "Preview"
-
-#~ msgid "MULTICELLULAR"
-#~ msgstr "Multicellular"
 
 #~ msgid "TINY"
 #~ msgstr "Tiny"

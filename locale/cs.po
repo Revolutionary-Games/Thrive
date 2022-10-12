@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 22:57+0100\n"
+"POT-Creation-Date: 2022-10-12 20:47+0100\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Severin Aurelian Koloman August Ludvig Girtelschmid <severingirtelschmid@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -32,6 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Obtížná"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
+#: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Vlastní"
 
@@ -1007,9 +1008,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Dokončení {0} Generací"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:144
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:152
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:101
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Živočich[/b]\n"
@@ -1024,9 +1025,9 @@ msgstr ""
 "{5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:153
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:161
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:111
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Období[/b]\n"
@@ -2094,7 +2095,7 @@ msgstr "POTVRDIT"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:145
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:152
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
@@ -2292,16 +2293,19 @@ msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:940
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:37
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermální průduch"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:40
 msgid "LIFE_ORIGIN_POND"
 msgstr "Malé teplé jezírko"
 
 #: ../src/general/NewGameSettings.tscn:195
 #: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermie (náhodné)"
 
@@ -2415,10 +2419,12 @@ msgstr "(vygeneruje mapu prostředí buď procedurálně nebo použitím klasick
 
 #: ../src/general/NewGameSettings.tscn:877
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:49
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedurální"
 
 #: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/WorldGenerationSettings.cs:52
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Klasické"
 
@@ -3034,35 +3040,35 @@ msgstr "vyhynulý v tomto prostředí"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:952
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/general/StageHUDBase.cs:954
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/general/StageHUDBase.cs:956
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/general/StageHUDBase.cs:958
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
-#: ../src/general/StageHUDBase.cs:1172
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "Hráčská buňka"
 
-#: ../src/general/StageHUDBase.cs:1185
+#: ../src/general/StageHUDBase.cs:1188
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3077,6 +3083,31 @@ msgstr "{0} M"
 #: ../src/general/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
 msgstr "{0} k"
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "TRUE"
+msgstr ""
+
+#: ../src/general/TranslationHelper.cs:83
+msgid "FALSE"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#, fuzzy
+msgid "DIFFICULTY_DETAILS_STRING"
+msgstr "Přednastavení obtížnosti"
+
+#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#, fuzzy
+msgid "PLANET_DETAILS_STRING"
+msgstr "Otevřít složku záznamů"
+
+#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+msgid "MISC_DETAILS_STRING"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -3538,7 +3569,7 @@ msgstr "Přisedlost"
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:132
+#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:139
 #, fuzzy
 msgid "NAVIGATION"
 msgstr "Příspěvky"
@@ -3547,23 +3578,6 @@ msgstr "Příspěvky"
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Současní vývojáři"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:41
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
-msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Přednastavení obtížnosti"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:46
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
-msgid "PLANET_DETAILS_STRING"
-msgstr "Otevřít složku záznamů"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:49
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
-msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
 #, fuzzy
@@ -3588,12 +3602,12 @@ msgstr "Současní vývojáři"
 msgid "MUSEUM"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Domovská stránka"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "Volné stavění"
@@ -5358,6 +5372,21 @@ msgstr "Použít Auto Harmony Loading"
 msgid "CREATE"
 msgstr "Vytvořit"
 
+#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#, fuzzy
+msgid "MICROBE"
+msgstr "Mikrobiální Období"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "Umístit organelu"
+
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "Umístit organelu"
+
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5984,10 +6013,6 @@ msgstr "Začít prosperovat"
 #, fuzzy
 #~ msgid "NOT_RUNNING_DOT"
 #~ msgstr "Neběží."
-
-#, fuzzy
-#~ msgid "MULTICELLULAR"
-#~ msgstr "Umístit organelu"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoniánské hydrotermální průduchy"

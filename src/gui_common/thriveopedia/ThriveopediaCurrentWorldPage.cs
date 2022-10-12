@@ -36,17 +36,8 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 
         var settings = CurrentGame.GameWorld.WorldSettings;
 
-        // TODO: translate some of these values
-
-        difficultyDetails.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("DIFFICULTY_DETAILS_STRING"),
-            settings.Difficulty, settings.MPMultiplier, settings.AIMutationMultiplier, settings.CompoundDensity,
-            settings.PlayerDeathPopulationPenalty, settings.GlucoseDecay, settings.OsmoregulationMultiplier, settings.FreeGlucoseCloud,
-            settings.PassiveGainOfReproductionCompounds, settings.LimitReproductionCompoundUseSpeed);
-
-        planetDetails.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
-            settings.MapType, settings.LAWK, settings.Origin, settings.Seed);
-
-        miscDetails.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MISC_DETAILS_STRING"),
-            settings.IncludeMulticellular, settings.EasterEggs);
+        difficultyDetails.Text = settings.GetTranslatedDifficultyString();
+        planetDetails.Text = settings.GetTranslatedPlanetString();
+        miscDetails.Text = settings.GetTranslatedMiscString();
     }
 }
