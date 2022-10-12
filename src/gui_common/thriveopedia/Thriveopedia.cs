@@ -14,6 +14,12 @@ public class Thriveopedia : ControlWithInput
     public NodePath PageContainerPath = null!;
 
     [Export]
+    public NodePath PageTreeContainerPath = null!;
+
+    [Export]
+    public NodePath PageTreeSeparatorPath = null!;
+
+    [Export]
     public NodePath PageTreePath = null!;
 
     [Export]
@@ -22,6 +28,8 @@ public class Thriveopedia : ControlWithInput
     private TextureButton backButton = null!;
     private TextureButton forwardButton = null!;
     private MarginContainer pageContainer = null!;
+    private PanelContainer pageTreeContainer = null!;
+    private Control pageTreeSeparator = null!;
     private Tree pageTree = null!;
     private ThriveopediaHomePage homePage = null!;
 
@@ -81,6 +89,8 @@ public class Thriveopedia : ControlWithInput
         backButton = GetNode<TextureButton>(BackButtonPath);
         forwardButton = GetNode<TextureButton>(ForwardButtonPath);
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
+        pageTreeContainer = GetNode<PanelContainer>(PageTreeContainerPath);
+        pageTreeSeparator = GetNode<Control>(PageTreeSeparatorPath);
         pageTree = GetNode<Tree>(PageTreePath);
 
         // Create and hide a blank root to avoid home being used as the root
@@ -206,7 +216,8 @@ public class Thriveopedia : ControlWithInput
 
     private void OnCollapseTreePressed()
     {
-        pageTree.Visible = !pageTree.Visible;
+        pageTreeContainer.Visible = !pageTreeContainer.Visible;
+        pageTreeSeparator.Visible = !pageTreeSeparator.Visible;
     }
 
     private void OnHomePressed()

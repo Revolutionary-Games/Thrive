@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 20:47+0100\n"
+"POT-Creation-Date: 2022-10-12 21:43+0100\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Severin Aurelian Koloman August Ludvig Girtelschmid <severingirtelschmid@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -3588,18 +3588,17 @@ msgstr "Evoluční strom"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Domovská stránka"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:27
-#, fuzzy
-msgid "CURRENT_WORLD"
-msgstr "Současní vývojáři"
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "MUSEUM"
+msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
@@ -5964,6 +5963,10 @@ msgstr "Načítání editoru mikrobů"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Začít prosperovat"
+
+#, fuzzy
+#~ msgid "CURRENT_WORLD"
+#~ msgstr "Současní vývojáři"
 
 #, fuzzy
 #~ msgid "LEAVE_GAME"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 20:47+0100\n"
+"POT-Creation-Date: 2022-10-12 21:43+0100\n"
 "PO-Revision-Date: 2022-09-27 21:14+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -3588,17 +3588,26 @@ msgstr "Evolutionary Tree"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr "Not yet displayed in freebuild mode or in saves from versions before 0.6.0"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
 msgid "HOME_PAGE"
 msgstr "Home"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:27
-msgid "CURRENT_WORLD"
-msgstr "Current World"
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr "Welcome to the Thriveopedia"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "MUSEUM"
-msgstr "Museum"
+msgid "THRIVEOPEDIA_HOME_INFO"
+msgstr ""
+"The Thriveopedia is the central library and information store for Thrive content. Here you'll find the answers to any question you might have about the game, your current world, or the Thrive development project.\n"
+"\n"
+"For the moment, the Thriveopedia is relatively bare, but you can still explore several pages using the page tree and navigation buttons. Note that pages relating to a specific game in progress will only be shown when the Thriveopedia is opened via the in-game pause menu.\n"
+"\n"
+"You can find more information about the game at the locations below.\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Official Website[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Development Wiki[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Community Wiki[/url][/color]"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
 msgid "MUSEUM_PAGE"
@@ -5946,6 +5955,12 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "Continue Thriving"
+
+#~ msgid "CURRENT_WORLD"
+#~ msgstr "Current World"
+
+#~ msgid "MUSEUM"
+#~ msgstr "Museum"
 
 #~ msgid "LEAVE_GAME"
 #~ msgstr "Leave Current Game"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 20:47+0100\n"
+"POT-Creation-Date: 2022-10-12 21:43+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -3582,18 +3582,17 @@ msgstr "עץ אבולוציוני"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "מקש דף הבית"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:27
-#, fuzzy
-msgid "CURRENT_WORLD"
-msgstr "מפתחים נוכחים"
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "MUSEUM"
+msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
@@ -5944,6 +5943,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
+
+#, fuzzy
+#~ msgid "CURRENT_WORLD"
+#~ msgstr "מפתחים נוכחים"
 
 #, fuzzy
 #~ msgid "LEAVE_GAME"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 20:47+0100\n"
+"POT-Creation-Date: 2022-10-12 21:43+0100\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -3782,18 +3782,17 @@ msgstr "Par Revolutionary Game Studio"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Page d'accueil"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:27
-#, fuzzy
-msgid "CURRENT_WORLD"
-msgstr "Développeurs actuels"
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "MUSEUM"
+msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
@@ -6335,6 +6334,10 @@ msgstr "Chargement de l'Éditeur de Microbes"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Commencer à Prospérer"
+
+#, fuzzy
+#~ msgid "CURRENT_WORLD"
+#~ msgstr "Développeurs actuels"
 
 #, fuzzy
 #~ msgid "LEAVE_GAME"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 20:47+0100\n"
+"POT-Creation-Date: 2022-10-12 21:43+0100\n"
 "PO-Revision-Date: 2022-08-25 21:34+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -3605,18 +3605,17 @@ msgstr "Albero evolutivo"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:11
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Homepage"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:27
-#, fuzzy
-msgid "CURRENT_WORLD"
-msgstr "Sviluppatori attuali"
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "MUSEUM"
+msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:39
@@ -5972,6 +5971,10 @@ msgstr "Caricamento dell'Editor Multicellulare Iniziale"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "Continua a prosperare"
+
+#, fuzzy
+#~ msgid "CURRENT_WORLD"
+#~ msgstr "Sviluppatori attuali"
 
 #, fuzzy
 #~ msgid "LEAVE_GAME"

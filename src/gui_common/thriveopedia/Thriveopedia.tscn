@@ -23,7 +23,9 @@ script = ExtResource( 1 )
 BackButtonPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton")
 ForwardButtonPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton")
 PageContainerPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer")
-PageTreePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/PageTree")
+PageTreeContainerPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2")
+PageTreeSeparatorPath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/Control")
+PageTreePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/HBoxContainer/PageTree")
 HomePagePath = NodePath("CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
 [node name="Overlay" type="ColorRect" parent="."]
@@ -98,24 +100,28 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer2" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 222.0
+margin_right = 202.0
 margin_bottom = 600.0
 
-[node name="PageTree" type="Tree" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 221.0
+margin_right = 201.0
 margin_bottom = 599.0
-rect_min_size = Vector2( 220, 300 )
+
+[node name="PageTree" type="Tree" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 598.0
+rect_min_size = Vector2( 200, 300 )
 
 [node name="Control" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 226.0
-margin_right = 231.0
+margin_left = 206.0
+margin_right = 211.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 5, 0 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 235.0
+margin_left = 215.0
 margin_right = 1180.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -124,7 +130,7 @@ size_flags_vertical = 3
 [node name="ThriveopediaHomePage" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 945.0
+margin_right = 965.0
 margin_bottom = 600.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
@@ -133,13 +139,12 @@ margin_right = 1180.0
 margin_bottom = 680.0
 
 [node name="CollapseTreeButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 240.0
+margin_right = 35.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 240, 0 )
-text = "NAVIGATION"
+rect_min_size = Vector2( 35, 35 )
 
 [node name="Control" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 244.0
+margin_left = 39.0
 margin_right = 536.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
@@ -156,19 +161,19 @@ __meta__ = {
 
 [node name="Control2" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 644.0
-margin_right = 936.0
+margin_right = 1141.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 
 [node name="Control3" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 940.0
+margin_left = 1145.0
 margin_right = 1180.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 240, 0 )
+rect_min_size = Vector2( 35, 0 )
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]
-[connection signal="cell_selected" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/PageTree" to="." method="OnPageSelectedFromPageTree"]
+[connection signal="cell_selected" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/HBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/CollapseTreeButton" to="." method="OnCollapseTreePressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="OnClosePressed"]
