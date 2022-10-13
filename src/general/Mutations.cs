@@ -110,7 +110,7 @@ public class Mutations
         }
 
         // preserve Alpha on mutation.
-        mutated.Colour = new(colour.r, colour.g, colour.b, mutated.Colour.a);
+        mutated.Colour = new Color(colour.r, colour.g, colour.b, mutated.Colour.a);
 
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
             random.Next(-25, 26) / 100.0f, 1), -1);
