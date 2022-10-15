@@ -500,14 +500,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (!IsForPreviewOnly)
         {
             SetupRequiredBaseReproductionCompounds();
-            FinishSpeciesSetup();
-
-        } else {
-
-            FinishSpeciesSetupPreview();
-            
         }
 
+        FinishSpeciesSetup();
     }
 
     /// <summary>
@@ -1033,18 +1028,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         SetupMicrobeHitpoints();
-    }
-
-    private void FinishSpeciesSetupPreview()
-    {
-        if (CellTypeProperties.Organelles.Count < 1)
-            throw new ArgumentException("Species with no organelles is not valid");
-
-        SetScaleFromSpecies();
-
-        ResetOrganelleLayout();
-
-        SetMembraneFromSpeciesGUI();
     }
 
     private void SetScaleFromSpecies()

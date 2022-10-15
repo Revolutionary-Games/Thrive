@@ -986,14 +986,6 @@ public partial class Microbe
         }
     }
 
-    private void SetMembraneFromSpeciesGUI()
-    {
-        Membrane.Type = CellTypeProperties.MembraneType;
-        var cellColour = CellTypeProperties.Colour;
-        Membrane.Tint = new Color(cellColour.r, cellColour.g, cellColour.b, 1);
-        Membrane.Dirty = true;
-    }
-
     private void CheckEngulfShape()
     {
         /*
