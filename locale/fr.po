@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-10-15 10:29+0000\n"
-"Last-Translator: Ebi Sadeghi <gfmc_gorged@aleeas.com>\n"
+"PO-Revision-Date: 2022-10-17 19:00+0000\n"
+"Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1216,34 +1216,31 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
-msgstr "Abandonné"
+msgstr "Abandonné."
 
 #: ../src/auto-evo/AutoEvoRun.cs:127
 msgid "FINISHED_DOT"
 msgstr "Terminé."
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "Abandon."
+msgstr "Non commencé."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% terminé. {1:n0}/{2:n0} étapes."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "EN PAUSE"
+msgstr "Mis en pause."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
 msgstr "Démarrage"
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "{0} changement de population de {1} en raison de : {2}"
+msgstr "{0} changement de population de {1} en {2} en raison de : {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:322
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
@@ -1252,9 +1249,8 @@ msgid "MEGA_YEARS"
 msgstr "Ma"
 
 #: ../src/auto-evo/RunResults.cs:600
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "population :"
+msgstr "population :"
 
 #: ../src/auto-evo/RunResults.cs:609
 msgid "WENT_EXTINCT_IN"
