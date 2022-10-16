@@ -123,6 +123,21 @@ public class EarlyMulticellularSpecies : Species
         return result;
     }
 
+    protected override Dictionary<Compound, float> CalculateBaseReproductionCost()
+    {
+        var baseReproductionCost = base.CalculateBaseReproductionCost();
+
+        // Apply the multiplier to the costs for being multicellular
+        var result = new Dictionary<Compound, float>();
+
+        foreach (var entry in baseReproductionCost)
+        {
+            result[entry.Key] = entry.Value * Constants.EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
+        }
+
+        return result;
+    }
+
     private void SetInitialCompoundsForDefault()
     {
         InitialCompounds.Clear();

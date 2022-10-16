@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Combines multiple RunOnAxisAttributes to be able to distinguish between axes
+///   Combines multiple <see cref="RunOnAxisAttribute"/>s to be able to distinguish between axes
 ///   Can only be applied once.
 /// </summary>
 /// <example>
-///   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
-///   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-///   [RunOnAxisGroup]
-///   public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
+///   <code>
+///     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+///     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
+///     [RunOnAxisGroup]
+///     public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
+///   </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Method)]
 public class RunOnAxisGroupAttribute : InputAttribute
@@ -34,6 +36,11 @@ public class RunOnAxisGroupAttribute : InputAttribute
     /// </summary>
     public bool InvokeAlsoWithNoInput { get; set; }
 
+    /// <summary>
+    ///   If false then the delta is not passed to the called method
+    /// </summary>
+    public bool InvokeWithDelta { get; set; } = true;
+
     public override bool OnInput(InputEvent @event)
     {
         var wasUsed = false;
@@ -50,21 +57,30 @@ public class RunOnAxisGroupAttribute : InputAttribute
     public override void OnProcess(float delta)
     {
         // Read new axis values
-        // TODO: could this run only if OnInput used something?
+        // TODO: could this run only if OnInput used something? (currently wouldn't work for mouse look)
         int axisCount = axes.Count;
 
-        int wantedLength = axisCount + 1;
+        int parameterOffset = 0;
+
+        int wantedLength = axisCount;
+
+        if (InvokeWithDelta)
+        {
+            ++parameterOffset;
+            ++wantedLength;
+        }
+
         if (callParameters?.Length != wantedLength)
             callParameters = new object[wantedLength];
 
         for (int i = 0; i < axisCount; ++i)
         {
-            var value = axes[i].CurrentResult;
+            var value = axes[i].GetCurrentResult(delta);
             currentAxisValues[i] = value;
 
             // This is applied here for more performance as InvokeAlsoWithNoInput seems very common, and assigning
             // two variables in a single loop is hopefully really optimized in the runtime
-            callParameters[i + 1] = value;
+            callParameters[i + parameterOffset] = value;
         }
 
         // Skip process if all axes have default values, and invoke also with no input is not set
@@ -87,7 +103,8 @@ public class RunOnAxisGroupAttribute : InputAttribute
                 return;
         }
 
-        callParameters[0] = delta;
+        if (InvokeWithDelta)
+            callParameters[0] = delta;
 
         CallMethod(callParameters);
     }
@@ -95,6 +112,26 @@ public class RunOnAxisGroupAttribute : InputAttribute
     public override void FocusLost()
     {
         axes.ForEach(p => p.FocusLost());
+    }
+
+    internal override void OnPostLoad()
+    {
+        base.OnPostLoad();
+
+        foreach (var axisAttribute in axes)
+        {
+            axisAttribute.OnPostLoad();
+        }
+    }
+
+    internal override void OnWindowSizeChanged()
+    {
+        base.OnWindowSizeChanged();
+
+        foreach (var axisAttribute in axes)
+        {
+            axisAttribute.OnWindowSizeChanged();
+        }
     }
 
     internal void AddAxis(RunOnAxisAttribute axis)

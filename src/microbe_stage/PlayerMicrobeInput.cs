@@ -32,6 +32,7 @@ public class PlayerMicrobeInput : NodeWithInput
         autoMove = !autoMove;
     }
 
+    // TODO: when using controller movement this should be screen relative movement by default
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
     [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
@@ -56,6 +57,8 @@ public class PlayerMicrobeInput : NodeWithInput
 
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
+            // TODO: change this line to only normalize when length exceeds 1 to make slowly moving with a controller
+            // work
             stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
 
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
@@ -66,6 +69,12 @@ public class PlayerMicrobeInput : NodeWithInput
     public void EmitToxin()
     {
         stage.Player?.EmitToxin();
+    }
+
+    [RunOnKey("g_secrete_slime")]
+    public void SecreteSlime(float delta)
+    {
+        stage.Player?.QueueSecreteSlime(delta);
     }
 
     [RunOnKeyDown("g_toggle_engulf")]

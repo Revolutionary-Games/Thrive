@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
 using Saving;
@@ -212,6 +213,7 @@ public class Settings
     /// <summary>
     ///   Sets the maximum number of entities that can exist at one time.
     /// </summary>
+    [JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]
     public SettingValue<int> MaxSpawnedEntities { get; set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
 
     // Misc Properties
@@ -264,6 +266,12 @@ public class Settings
     public SettingValue<string?> CustomUsername { get; set; } = new(null);
 
     /// <summary>
+    ///   List of notices that have been permanently dismissed (well at least until manually reset)
+    /// </summary>
+    public SettingValue<IReadOnlyCollection<DismissibleNotice>> PermanentlyDismissedNotices { get; set; } =
+        new(new HashSet<DismissibleNotice>());
+
+    /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
     public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
@@ -286,8 +294,83 @@ public class Settings
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new(GetDefaultControls());
 
+    /// <summary>
+    ///   How sensitive mouse looking is in the vertical direction. As mouse movement is the number of pixels moved
+    ///   this multiplier needs to be very low compared to the controller multiplier.
+    /// </summary>
+    public SettingValue<float> VerticalMouseLookSensitivity { get; set; } = new(0.003f);
+
+    /// <summary>
+    ///   How sensitive mouse looking is in the horizontal direction
+    /// </summary>
+    public SettingValue<float> HorizontalMouseLookSensitivity { get; set; } = new(0.003f);
+
+    /// <summary>
+    ///   If true inverts the vertical axis inputs for mouse
+    /// </summary>
+    public SettingValue<bool> InvertVerticalMouseLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   If true inverts the horizontal axis inputs for mouse
+    /// </summary>
+    public SettingValue<bool> InvertHorizontalMouseLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   When true, mouse inputs going through <see cref="InputManager"/> are scaled by the current window size
+    /// </summary>
+    public SettingValue<MouseInputScaling> ScaleMouseInputByWindowSize { get; set; } =
+        new(MouseInputScaling.ScaleReverse);
+
+    /// <summary>
+    ///   Modifies behaviour of <see cref="ScaleMouseInputByWindowSize"/> to either use the logical Godot window size
+    ///   (<see cref="LoadingScreen.LogicalDrawingAreaSize"/>) or the actual operating system window size
+    /// </summary>
+    public SettingValue<bool> InputWindowSizeIsLogicalSize { get; set; } = new(false);
+
+    /// <summary>
+    ///   How sensitive controller looking is in the vertical direction
+    /// </summary>
+    public SettingValue<float> VerticalControllerLookSensitivity { get; set; } = new(1);
+
+    /// <summary>
+    ///   How sensitive controller looking is in the horizontal direction
+    /// </summary>
+    public SettingValue<float> HorizontalControllerLookSensitivity { get; set; } = new(1.4f);
+
+    /// <summary>
+    ///   If true inverts the vertical axis inputs for controller
+    /// </summary>
+    public SettingValue<bool> InvertVerticalControllerLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   If true inverts the horizontal axis inputs for controller
+    /// </summary>
+    public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
+
+    /// <summary>
+    ///   How big the deadzones are for controller axes
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This should have <see cref="JoystickList.AxisMax"/> values in here to have one for each supported axis.
+    ///   </para>
+    /// </remarks>
+    public SettingValue<IReadOnlyList<float>> ControllerAxisDeadzoneAxes { get; set; } = new(new[]
+    {
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+        Constants.CONTROLLER_DEFAULT_DEADZONE,
+    });
+
     // Settings that are edited from elsewhere than the main options menu
-    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
+    public SettingValue<IReadOnlyList<string>> EnabledMods { get; set; } = new(new List<string>());
 
     // Computed properties from other settings
 
@@ -419,6 +502,26 @@ public class Settings
         return null;
     }
 
+    public bool IsNoticePermanentlyDismissed(DismissibleNotice notice)
+    {
+        return PermanentlyDismissedNotices.Value.Contains(notice);
+    }
+
+    public bool PermanentlyDismissNotice(DismissibleNotice notice)
+    {
+        if (PermanentlyDismissedNotices.Value.Contains(notice))
+            return false;
+
+        PermanentlyDismissedNotices.Value = PermanentlyDismissedNotices.Value.Append(notice).ToHashSet();
+
+        // We need to save the fact that a new notice is now permanently dismissed in case the player doesn't touch
+        // any settings (which would warrant saving the settings elsewhere)
+        if (!Save())
+            GD.PrintErr("Failed to save settings to mark notice as permanently dismissed: ", notice);
+
+        return true;
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj == null)
@@ -439,7 +542,7 @@ public class Settings
         // Compare all properties in the two objects for equality.
         var type = GetType();
 
-        foreach (var property in type.GetProperties())
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
         {
             // Returns if any of the properties don't match.
             object thisValue = property.GetValue(this);
@@ -460,7 +563,7 @@ public class Settings
 
         var type = GetType();
 
-        foreach (var property in type.GetProperties())
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
             hashCode ^= property.GetHashCode();
 
         return hashCode;
@@ -726,7 +829,13 @@ public class Settings
 
         try
         {
-            return JsonConvert.DeserializeObject<Settings>(text);
+            var settings = JsonConvert.DeserializeObject<Settings>(text);
+
+            if (settings == null)
+                return settings;
+
+            EnsureLoadedSettingsAreValid(settings);
+            return settings;
         }
         catch
         {
@@ -737,6 +846,15 @@ public class Settings
             settings.Save();
 
             return settings;
+        }
+    }
+
+    private static void EnsureLoadedSettingsAreValid(Settings settings)
+    {
+        if (settings.MaxSpawnedEntities.Value < Constants.TINY_MAX_SPAWNED_ENTITIES)
+        {
+            GD.PrintErr($"{nameof(MaxSpawnedEntities)} is below the minimum value, resetting to normal");
+            settings.MaxSpawnedEntities.Value = Constants.NORMAL_MAX_SPAWNED_ENTITIES;
         }
     }
 
@@ -788,7 +906,8 @@ public class Settings
     {
         var type = GetType();
 
-        foreach (var property in type.GetProperties())
+        foreach (var property in type.GetProperties(
+                     BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public))
         {
             if (!property.CanWrite)
                 continue;
