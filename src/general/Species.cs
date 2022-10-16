@@ -46,9 +46,9 @@ public abstract class Species : ICloneable
 
     public Color Colour { get; set; } = new(1, 1, 1);
 
-    public Color ColourGUI 
+    public Color ColourGUI
     {
-        get => new Color(Colour.r, Colour.g, Colour.b, 1);
+        get => new(Colour.r, Colour.g, Colour.b, 1);
     }
 
     /// <summary>
