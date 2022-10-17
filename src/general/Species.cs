@@ -46,8 +46,8 @@ public abstract class Species : ICloneable
 
     public Color Colour { get; set; } = new(1, 1, 1);
     /// <summary>
-    /// Get the color value for GUI Components affected by a Species colour.
-    /// To add additional guards like a full alpha value.
+    ///   Get the color value for GUI Components affected by a Species colour.
+    ///   To add additional guards like a full alpha value.
     /// </summary>
     public Color GUIColour
     {
