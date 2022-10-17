@@ -45,6 +45,7 @@ public abstract class Species : ICloneable
     public string Epithet { get; set; }
 
     public Color Colour { get; set; } = new(1, 1, 1);
+    
     /// <summary>
     ///   Get the color value for GUI Components affected by a Species colour.
     ///   To add additional guards like a fully opaque alpha value.
