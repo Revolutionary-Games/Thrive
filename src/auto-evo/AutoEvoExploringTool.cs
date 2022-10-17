@@ -669,11 +669,12 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         var speciesFilterFactory = new Filter<Species>.FilterFactory();
 
-        var valueFromSpecies = new Dictionary<string, Func<Species, float>>()
+        var valueFromSpecies = new Dictionary<string, Func<Species, float>>();
+
+        foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))
         {
-            ["ACTIVITY"] = s => s.Behaviour.Activity,
-            ["FEAR"] = s => s.Behaviour.Activity,
-        };
+            valueFromSpecies.Add(behaviourKey.ToString(), s => s.Behaviour[behaviourKey]);
+        }
 
         Func<List<FilterArgument>, Func<Species, bool>> valueComparisonFunction =
             l => l[1].GetStringValue() == "GREATER_THAN" ?
