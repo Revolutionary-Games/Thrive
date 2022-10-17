@@ -48,12 +48,12 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Get the color value for GUI Components affected by a Species colour. To add additional guards like a full alpha value.
     /// </summary>
-    public Color GUIColour 
-    { 
-        get 
+    public Color GUIColour
+    {
+        get
         {
             var colour = Colour;
-            return new(colour.r, colour.g, colour.b, 1);
+            return new Color(colour.r, colour.g, colour.b, 1);
         }
     }
 
