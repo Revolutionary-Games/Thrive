@@ -45,8 +45,17 @@ public abstract class Species : ICloneable
     public string Epithet { get; set; }
 
     public Color Colour { get; set; } = new(1, 1, 1);
-
-    public Color ColourGUI => new(Colour.r, Colour.g, Colour.b, 1);
+    /// <summary>
+    ///   Get the color value for GUI Components affected by a Species colour. To add additional guards like a full alpha value.
+    /// </summary>
+    public Color GUIColour 
+    { 
+        get 
+        {
+            var colour = Colour;
+            return new(colour.r, colour.g, colour.b, 1);
+        }
+    }
 
     /// <summary>
     ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect

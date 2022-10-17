@@ -273,7 +273,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
             foreach (var entry in snapshot.SpeciesInPatch)
             {
-                var dataset = new LineChartData { Colour = entry.Key.ColourGUI };
+                var dataset = new LineChartData { Colour = entry.Key.GUIColour };
                 speciesPopulationChart.AddDataSet(entry.Key.FormattedName, dataset);
             }
         }
