@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 [UseThriveSerializer]
@@ -29,27 +30,37 @@ public class ColonyCompoundBag : ICompoundStorage
 
         while (compounds.MoveNext())
         {
-            var compound = compounds.Current;
-            if (!compound.Key.CanBeDistributed)
+            var currentPair = compounds.Current;
+            Compound compound = currentPair.Key;
+
+            if (!compound.CanBeDistributed || IsNoneUseful(compound))
                 continue;
 
-            var capacityForCompound = GetCapacityForCompound(compound.Key);
-            if (capacityForCompound == 0)
-                continue;
+            float compoundAmount = currentPair.Value;
+            float compoundCapacity = GetCapacityForCompound(compound);
+            float ratio = compoundAmount / compoundCapacity;
 
-            var ratio = compound.Value / capacityForCompound;
+            // Redundancy, can be removed if no more NaN isues occur
+            if (compoundCapacity == 0)
+            {
+                GD.PrintErr("Compound ", compound.Name, " is set to useful but has a compoundCapacity of zero");
+                GD.PrintErr("This will result in compound being NaN,  issue #3827, pr #3201");
+            }
 
             foreach (var bag in bags)
             {
-                var amount = ratio * bag.GetCapacityForCompound(compound.Key);
-                var surplus = bag.GetCompoundAmount(compound.Key) - amount;
+                if (!bag.IsUseful(compound))
+                    continue;
+
+                float expectedAmount = ratio * bag.GetCapacityForCompound(compound);
+                float surplus = bag.GetCompoundAmount(compound) - expectedAmount;
                 if (surplus > 0)
                 {
-                    bag.TakeCompound(compound.Key, surplus);
+                    bag.TakeCompound(compound, surplus);
                 }
                 else
                 {
-                    bag.AddCompound(compound.Key, -surplus);
+                    bag.AddCompound(compound, -surplus);
                 }
             }
         }
@@ -123,5 +134,10 @@ public class ColonyCompoundBag : ICompoundStorage
     private IEnumerable<CompoundBag> GetCompoundBags()
     {
         return Colony.ColonyMembers.Select(p => p.Compounds);
+    }
+
+    private bool IsNoneUseful(Compound compound)
+    {
+        return !GetCompoundBags().Any(p => p.IsUseful(compound));
     }
 }
