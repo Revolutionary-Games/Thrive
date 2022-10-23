@@ -220,6 +220,10 @@ public class Thriveopedia : ControlWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         pageTreeContainer.Visible = !pageTreeContainer.Visible;
+        foreach (var page in allPages.Keys)
+        {
+            page.OnNavigationPanelSizeChanged(pageTreeContainer.Visible);
+        }
     }
 
     private void OnHomePressed()

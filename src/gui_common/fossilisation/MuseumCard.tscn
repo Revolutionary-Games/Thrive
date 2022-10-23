@@ -30,9 +30,10 @@ corner_radius_top_right = 3
 [node name="MuseumCard" type="Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1090.0
+margin_right = -1110.0
 margin_bottom = -538.0
-rect_min_size = Vector2( 172, 182 )
+rect_min_size = Vector2( 170, 182 )
+size_flags_horizontal = 3
 custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 27 )
 custom_styles/normal = SubResource( 29 )
@@ -54,19 +55,19 @@ custom_constants/margin_bottom = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 188.0
+margin_right = 168.0
 margin_bottom = 180.0
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 186.0
+margin_right = 166.0
 margin_bottom = 24.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
-margin_right = 186.0
+margin_right = 166.0
 margin_bottom = 21.0
 mouse_filter = 2
 custom_constants/margin_right = 2
@@ -77,7 +78,7 @@ custom_constants/margin_bottom = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 184.0
+margin_right = 164.0
 margin_bottom = 19.0
 mouse_filter = 1
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -91,19 +92,19 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 186.0
+margin_right = 166.0
 margin_bottom = 178.0
 mouse_filter = 2
 size_flags_vertical = 3
 custom_constants/margin_bottom = 5
 
 [node name="PreviewMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
-margin_right = 186.0
+margin_right = 166.0
 margin_bottom = 149.0
 mouse_filter = 2
 
 [node name="SpeciesPreview" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" instance=ExtResource( 3 )]
-margin_right = 186.0
+margin_right = 166.0
 margin_bottom = 149.0
 mouse_filter = 2
 script = ExtResource( 5 )

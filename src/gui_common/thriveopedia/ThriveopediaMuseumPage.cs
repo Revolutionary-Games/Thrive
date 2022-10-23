@@ -82,6 +82,11 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     {
     }
 
+    public override void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+        cardContainer.Columns = collapsed ? 3 : 4;
+    }
+
     private void UpdateSpeciesPreview(MuseumCard card)
     {
         if (!speciesPreviewContainer.Visible)

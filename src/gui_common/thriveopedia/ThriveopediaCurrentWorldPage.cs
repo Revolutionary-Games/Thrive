@@ -40,4 +40,8 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
         planetDetails.Text = settings.GetTranslatedPlanetString();
         miscDetails.Text = settings.GetTranslatedMiscString();
     }
+
+    public override void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+    }
 }

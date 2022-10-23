@@ -51,6 +51,10 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         UpdateSeedLabel();
     }
 
+    public override void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+    }
+
     public void RebuildMap()
     {
         if (!Visible)

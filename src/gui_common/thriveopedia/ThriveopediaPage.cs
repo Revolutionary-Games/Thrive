@@ -34,4 +34,6 @@ public abstract class ThriveopediaPage : PanelContainer
     }
 
     public abstract void UpdateCurrentWorldDetails();
+
+    public abstract void OnNavigationPanelSizeChanged(bool collapsed);
 }

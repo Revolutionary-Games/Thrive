@@ -13,4 +13,8 @@ public class ThriveopediaHomePage : ThriveopediaPage
     public override void UpdateCurrentWorldDetails()
     {
     }
+
+    public override void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+    }
 }

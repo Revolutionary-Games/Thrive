@@ -50,6 +50,10 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         RebuildTree();
     }
 
+    public override void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+    }
+
     public void RebuildTree()
     {
         if (!Visible)
