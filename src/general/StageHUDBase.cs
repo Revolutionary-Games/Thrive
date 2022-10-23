@@ -747,6 +747,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             var button = FossilisationButtonScene.Instance<FossilisationButton>();
             button.AttachedMicrobe = microbe;
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this, nameof(ShowFossilisationDialog));
+
+            var alreadyFossilised = FossilisedSpecies.CreateListOfSaves().Contains(microbe.Species.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT);
+            button.AlreadyFossilised = alreadyFossilised;
+            button.HintTooltip = alreadyFossilised ? TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") : TranslationServer.Translate("FOSSILISATION_HINT");
+
             fossilisationButtonLayer.AddChild(button);
         }
     }

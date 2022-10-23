@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -33,8 +34,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
 
-    private bool hasBecomeVisibleAtLeastOnce;
-
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("MUSEUM_PAGE");
 
@@ -55,8 +54,12 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     {
         base._Notification(what);
 
-        if (what == NotificationVisibilityChanged && Visible && !hasBecomeVisibleAtLeastOnce)
+        if (what == NotificationVisibilityChanged && Visible)
         {
+            // For now, rebuild the card list entirely each time we open the page. Could well be optimised.
+            foreach (Node card in cardContainer.GetChildren())
+                card.DetachAndQueueFree();
+
             foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
             {
                 var card = (MuseumCard)GD.Load<PackedScene>($"res://src/gui_common/fossilisation/MuseumCard.tscn").Instance();
@@ -72,7 +75,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
                 card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
                 cardContainer.AddChild(card);
             }
-            hasBecomeVisibleAtLeastOnce = true;
         }
     }
 
@@ -90,6 +92,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         var species = card.SavedSpecies;
         speciesPreview.PreviewSpecies = species;
+
+        // Deselect all other cards to prevent highlights hanging around.
+        foreach (MuseumCard otherCard in cardContainer.GetChildren())
+        {
+            if (otherCard != card)
+                otherCard.Pressed = false;
+        }
 
         if (species is MicrobeSpecies microbeSpecies)
         {

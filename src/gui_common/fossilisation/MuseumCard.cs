@@ -37,4 +37,16 @@ public class MuseumCard : Button
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnSpeciesSelected), this);
     }
+
+    private void OnMouseEnter()
+    {
+        GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.Gray, 0.5f);
+        GUICommon.Instance.Tween.Start();
+    }
+
+    private void OnMouseExit()
+    {
+        GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
+        GUICommon.Instance.Tween.Start();
+    }
 }
