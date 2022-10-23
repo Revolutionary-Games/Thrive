@@ -12,8 +12,6 @@ public abstract class ThriveopediaPage : PanelContainer
     public abstract string PageName { get; }
     public abstract string TranslatedPageName { get; }
 
-    public TreeItem? PageTreeItem;
-
     public GameProperties? CurrentGame
     {
         get => currentGame;

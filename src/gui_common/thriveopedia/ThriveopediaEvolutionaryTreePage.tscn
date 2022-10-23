@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=2]
 [ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=3]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=4]
@@ -32,10 +31,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 20
+custom_constants/separation = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="Viewer/HBoxContainer" index="0"]
-margin_right = 562.0
+margin_right = 567.0
 margin_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -43,7 +42,7 @@ size_flags_vertical = 3
 [node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/PanelContainer" index="0"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 561.0
+margin_right = 566.0
 margin_bottom = 597.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -53,16 +52,10 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 550.0
+margin_right = 555.0
 margin_bottom = 586.0
 
-[node name="Label" type="Label" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
-margin_right = 540.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 1 )
-text = "EVOLUTIONARY_TREE"
-
-[node name="DisabledInFreebuild" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="DisabledInFreebuild" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 visible = false
 margin_top = 24.0
 margin_right = 540.0
@@ -81,11 +74,10 @@ custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = ExtResource( 9 )
 text = "DISABLED_IN_FREEBUILD_LABEL"
 
-[node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="2" instance=ExtResource( 4 )]
+[node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 24.0
-margin_right = 540.0
+margin_right = 545.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -112,14 +104,7 @@ margin_top = 10.0
 margin_right = 340.0
 margin_bottom = 586.0
 
-[node name="Label" type="Label" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer" index="0"]
-margin_right = 330.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 1 )
-text = "SPECIES_DETAILS"
-
-[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer" index="1"]
-margin_top = 24.0
+[node name="MarginContainer" type="MarginContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer" index="0"]
 margin_right = 330.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
@@ -133,11 +118,11 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 320.0
-margin_bottom = 542.0
+margin_bottom = 566.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
 margin_right = 310.0
-margin_bottom = 532.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -160,7 +145,7 @@ script = ExtResource( 3 )
 [node name="SpeciesInfoLabel" parent="Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 7 )]
 margin_top = 204.0
 margin_right = 310.0
-margin_bottom = 532.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_active = false

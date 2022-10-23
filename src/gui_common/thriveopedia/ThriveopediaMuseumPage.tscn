@@ -12,8 +12,8 @@
 [node name="ThriveopediaMuseumPage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 DisplayBackground = false
-CardContainerPath = NodePath("HBoxContainer/SpeciesDetailPanel2/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer")
-WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/WelcomeLabel")
+CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer")
+WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/WelcomeLabelContainer")
 SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer")
 SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
 HexesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
@@ -25,16 +25,17 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 935.0
 margin_bottom = 599.0
+custom_constants/separation = 15
 
-[node name="SpeciesDetailPanel2" type="PanelContainer" parent="HBoxContainer" index="0"]
-margin_right = 578.0
+[node name="SpeciesListPanel" type="PanelContainer" parent="HBoxContainer" index="0"]
+margin_right = 567.0
 margin_bottom = 598.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailPanel2" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesListPanel" index="0"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 577.0
+margin_right = 566.0
 margin_bottom = 597.0
 rect_min_size = Vector2( 350, 0 )
 custom_constants/margin_right = 10
@@ -42,14 +43,14 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailPanel2/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 566.0
+margin_right = 555.0
 margin_bottom = 586.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailPanel2/MarginContainer/VBoxContainer" index="0"]
-margin_right = 556.0
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer" index="0"]
+margin_right = 545.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -58,15 +59,15 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/SpeciesDetailPanel2/MarginContainer/VBoxContainer/MarginContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 546.0
+margin_right = 535.0
 margin_bottom = 566.0
 scroll_horizontal_enabled = false
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/SpeciesDetailPanel2/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
-margin_right = 536.0
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
+margin_right = 525.0
 margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -147,11 +148,18 @@ margin_right = 330.0
 margin_bottom = 576.0
 text = "OPEN_IN_FREEBUILD"
 
-[node name="WelcomeLabel" type="Label" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer" index="1"]
+[node name="WelcomeLabelContainer" type="CenterContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer" index="1"]
 margin_left = 10.0
-margin_top = 289.0
+margin_top = 10.0
 margin_right = 340.0
-margin_bottom = 306.0
+margin_bottom = 586.0
+
+[node name="WelcomeLabel" type="Label" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/WelcomeLabelContainer" index="0"]
+margin_left = 40.0
+margin_top = 279.0
+margin_right = 290.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 3 )
 text = "MUSEUM_WELCOME_TEXT"
 align = 1

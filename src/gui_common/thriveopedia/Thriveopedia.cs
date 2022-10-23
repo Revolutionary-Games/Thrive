@@ -17,7 +17,7 @@ public class Thriveopedia : ControlWithInput
     public NodePath PageTreeContainerPath = null!;
 
     [Export]
-    public NodePath PageTreeSeparatorPath = null!;
+    public NodePath PageTitlePath = null!;
 
     [Export]
     public NodePath PageTreePath = null!;
@@ -29,7 +29,7 @@ public class Thriveopedia : ControlWithInput
     private TextureButton forwardButton = null!;
     private MarginContainer pageContainer = null!;
     private PanelContainer pageTreeContainer = null!;
-    private Control pageTreeSeparator = null!;
+    private Label pageTitle = null!;
     private Tree pageTree = null!;
     private ThriveopediaHomePage homePage = null!;
 
@@ -37,7 +37,7 @@ public class Thriveopedia : ControlWithInput
 
     private ThriveopediaPage selectedPage = null!;
 
-    private List<ThriveopediaPage> allPages = new();
+    private Dictionary<ThriveopediaPage, TreeItem> allPages = new();
     private Stack<ThriveopediaPage> pageHistory = new();
     private Stack<ThriveopediaPage> pageFuture = new();
 
@@ -59,6 +59,8 @@ public class Thriveopedia : ControlWithInput
             // The home page is always the first in the history, so ignore it
             backButton.Disabled = pageHistory.Count <= 1;
             forwardButton.Disabled = pageFuture.Count == 0;
+
+            pageTitle.Text = SelectedPage.TranslatedPageName;
         }
     }
 
@@ -79,7 +81,7 @@ public class Thriveopedia : ControlWithInput
                 AddPage("EvolutionaryTree", "CurrentWorld");
             }
 
-            foreach (var page in allPages.ToList())
+            foreach (var page in allPages.Keys)
                 page.CurrentGame = currentGame;
         }
     }
@@ -90,7 +92,7 @@ public class Thriveopedia : ControlWithInput
         forwardButton = GetNode<TextureButton>(ForwardButtonPath);
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
         pageTreeContainer = GetNode<PanelContainer>(PageTreeContainerPath);
-        pageTreeSeparator = GetNode<Control>(PageTreeSeparatorPath);
+        pageTitle = GetNode<Label>(PageTitlePath);
         pageTree = GetNode<Tree>(PageTreePath);
 
         // Create and hide a blank root to avoid home being used as the root
@@ -99,8 +101,7 @@ public class Thriveopedia : ControlWithInput
 
         // Keep a special reference to the home page
         homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
-        allPages.Add(homePage);
-        AddPageToTree(homePage, null);
+        allPages.Add(homePage, CreateTreeItem(homePage, null));
 
         AddPage("Museum");
 
@@ -153,35 +154,34 @@ public class Thriveopedia : ControlWithInput
         ChangePage(pageName, true, true);
     }
 
-    private ThriveopediaPage GetPage(string? name)
+    private ThriveopediaPage? GetPage(string? name)
     {
-        return allPages.FirstOrDefault(p => p.PageName == name);
+        return allPages.Keys.FirstOrDefault(p => p.PageName == name);
     }
 
     private void AddPage(string name, string? parentName = null)
     {
         // Avoid adding duplicate pages
-        if (allPages.Any(p => p.PageName == name))
+        if (allPages.Keys.Any(p => p.PageName == name))
             return;
 
         var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
         pageContainer.AddChild(page);
-        allPages.Add(page);
+        allPages.Add(page, CreateTreeItem(page, parentName));
         page.Hide();
-
-        AddPageToTree(page, parentName);
     }
 
-    private void AddPageToTree(ThriveopediaPage page, string? parentName = null)
+    private TreeItem CreateTreeItem(ThriveopediaPage page, string? parentName = null)
     {
         var parent = GetPage(parentName);
-        var pageInTree = pageTree.CreateItem(parent?.PageTreeItem);
-        page.PageTreeItem = pageInTree;
+        var pageInTree = pageTree.CreateItem(parent != null ? allPages[parent] : null);
         pageInTree.SetMeta("name", page.PageName);
 
         // Godot doesn't appear to have a left margin for text in items, so add some manual padding
         pageInTree.SetText(0, "  " + page.TranslatedPageName);
+
+        return pageInTree;
     }
 
     private void OnPageSelectedFromPageTree()
@@ -212,12 +212,14 @@ public class Thriveopedia : ControlWithInput
             pageFuture.Clear();
 
         SelectedPage = page;
+        allPages[SelectedPage].Select(0);
     }
 
     private void OnCollapseTreePressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         pageTreeContainer.Visible = !pageTreeContainer.Visible;
-        pageTreeSeparator.Visible = !pageTreeSeparator.Visible;
     }
 
     private void OnHomePressed()

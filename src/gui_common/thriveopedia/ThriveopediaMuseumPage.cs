@@ -26,7 +26,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public NodePath LeaveGameConfirmationDialogPath = null!;
 
     private GridContainer cardContainer = null!;
-    private Label welcomeLabel = null!;
+    private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
@@ -43,7 +43,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         base._Ready();
 
         cardContainer = GetNode<GridContainer>(CardContainerPath);
-        welcomeLabel = GetNode<Label>(WelcomeLabelPath);
+        welcomeLabel = GetNode<Control>(WelcomeLabelPath);
         speciesPreviewContainer = GetNode<VBoxContainer>(SpeciesPreviewContainerPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
