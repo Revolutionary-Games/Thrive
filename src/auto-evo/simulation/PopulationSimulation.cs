@@ -131,7 +131,7 @@
 
                     // All species even ones not in a patch need to have their population numbers added
                     // as the simulation expects to be able to get the populations
-                    currentResult.NewPopulationInPatches[patch.ID] = currentPopulation;
+                    currentResult.NewPopulationInPatches[patch] = currentPopulation;
                 }
             }
 

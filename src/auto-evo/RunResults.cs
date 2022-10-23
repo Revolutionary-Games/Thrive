@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using Godot;
     using Newtonsoft.Json;
@@ -1085,7 +1086,8 @@
         }
 
         [JsonObject(IsReference = true)]
-        [UseThriveSerializer]
+        [JSONAlwaysDynamicType]
+        [UseThriveConverter]
         public class SpeciesResult
         {
             [JsonProperty]
@@ -1100,8 +1102,14 @@
             ///     Does not consider migrations nor split-offs.
             ///   </para>
             /// </remarks>
-            [JsonProperty]
+            [JsonIgnore]
             public Dictionary<Patch, long> NewPopulationInPatches = new();
+
+            /// <summary>
+            ///   List of patches this species has spread to. Stored as a list in JSON to avoid serialization errors.
+            /// </summary>
+            [JsonProperty]
+            private List<KeyValuePair<Patch, long>> newPopulationInPatches => NewPopulationInPatches.ToList();
 
             /// <summary>
             ///   null means no changes
@@ -1151,6 +1159,7 @@
             public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
+                NewPopulationInPatches ??= newPopulationInPatches.ToDictionary(p => p.Key, p => p.Value);
             }
 
             public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)
