@@ -18,6 +18,7 @@ public partial class Microbe
     private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
 
     private Compound atp = null!;
+    private Compound glucose = null!;
     private Compound mucilage = null!;
 
     private Enzyme lipase = null!;
@@ -626,6 +627,7 @@ public partial class Microbe
             }
         }
 
+        CalculateBonusDigestibleGlucose(result);
         return result;
     }
 
@@ -1570,6 +1572,13 @@ public partial class Microbe
                 }
             }
         }
+    }
+
+    private void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result)
+    {
+        result.TryGetValue(glucose, out float existingGlucose);
+        result[glucose] = existingGlucose + Compounds.Capacity *
+            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 
     private void HandleSlimeSecretion(float delta)

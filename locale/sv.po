@@ -7,34 +7,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 22:16+0100\n"
-"PO-Revision-Date: 2022-04-12 16:14+0000\n"
-"Last-Translator: swedneck <github@swedneck.xyz>\n"
+"POT-Creation-Date: 2022-10-23 13:50+0100\n"
+"PO-Revision-Date: 2022-10-03 11:25+0000\n"
+"Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Lätt"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Svår"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 #: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Anpassat"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -43,50 +43,42 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+msgstr "Mikrob Stadiet"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Placera organell"
+msgstr "Flercelligt Stadie"
 
 #: ../simulation_parameters/common/gallery.json:86
-#, fuzzy
 msgid "GENERAL"
-msgstr "generation:"
+msgstr "Allmän"
 
 #: ../simulation_parameters/common/gallery.json:138
-#, fuzzy
 msgid "MODELS"
-msgstr "Gudläge"
+msgstr "Modeller"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
-msgstr ""
+msgstr "Musik"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
-#, fuzzy
 msgid "ALL"
-msgstr "ALT"
+msgstr "Allt"
 
 #: ../simulation_parameters/common/gallery.json:268
-#, fuzzy
 msgid "MENU"
 msgstr "Meny"
 
 #: ../simulation_parameters/common/gallery.json:332
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Laddar mikrobredigerare"
+msgstr "Mikrobredigerare"
 
 #: ../simulation_parameters/common/gallery.json:408
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Laddar mikrobredigerare"
+msgstr "Flercellig Redigerare"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -109,32 +101,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka på G en andra gång för att stänga av uppslukarläge."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Prokaryota strukturer\n"
-"\n"
-"Metabolosomer: Producerar ATP från glukos\n"
-"\n"
-"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
-"\n"
-"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
-"\n"
-"Rusticyanin: Omvandlar järn till ATP\n"
-"\n"
-"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
-"\n"
-"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+msgstr "När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till att du har de nödvändiga mutationerna för att kunna bearbeta dem först. Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna organell för att göra matsmältningen mycket mer effektiv."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+msgstr "Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte sådana organeller och smälter sin mat tämligen ineffektivt. För små celler är det här okej, men för större celler är det en stor nackdel att inte ha några lysosomer."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+msgstr "Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det nödvändiga enzymet som kan bryta ned dem först."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -391,8 +367,9 @@ msgstr "Skjut gift"
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2177
+#, fuzzy
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Utsöndra mucilage"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
@@ -497,47 +474,44 @@ msgid "MOVE_ORGANELLE"
 msgstr "Flytta organell"
 
 #: ../simulation_parameters/common/input_options.json:160
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Rörelse"
+msgstr "Tredimensionell rörelse"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Rörelse uppåt eller hoppa"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Rörelse neråt eller ducka"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Blandat"
+msgstr "Diverse 3D-stadie"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Håll för att visa muspekaren"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Cellredigerare"
+msgstr "Tredimensionell redigerare"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Håll nere för att växla mellan panorerings- och roteringsläge"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Växla till frontkamera"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Växla till höger kameravy"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Växla till kameravy uppifrån"
 
 #: ../simulation_parameters/common/input_options.json:213
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -572,21 +546,19 @@ msgstr "Blandat"
 
 #: ../simulation_parameters/common/input_options.json:248
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pausa"
 
 #: ../simulation_parameters/common/input_options.json:252
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Växla uppslukarläge av och på"
+msgstr "Växla debug-panel på och av"
 
 #: ../simulation_parameters/common/input_options.json:256
 msgid "TOGGLE_FPS"
 msgstr "Växla FPS display"
 
 #: ../simulation_parameters/common/input_options.json:260
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "Växla FPS display"
+msgstr "Växla mätvärdesvisning av och på"
 
 #: ../simulation_parameters/common/input_options.json:264
 msgid "QUICK_SAVE"
@@ -636,9 +608,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxySyntes"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Kemosyntes"
+msgstr "Mucilagesyntes"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -659,9 +630,8 @@ msgstr "Järnkemolitoautotrofi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Kemosyntes"
+msgstr "Termosyntes"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -720,9 +690,8 @@ msgstr "Stor järnbit"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "spelarcell"
+msgstr "\"Googly eye\" cell"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -818,7 +787,7 @@ msgstr "OxyToxy"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1711
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Mucilage"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
@@ -859,17 +828,15 @@ msgstr "Temperatur"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipas"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Cellulosa"
+msgstr "Cellulas"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Kitin"
+msgstr "Kitinas"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -947,9 +914,8 @@ msgstr "Kväve-Fixande Plastid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Kemosyntes"
+msgstr "Termosyntes"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1935
@@ -1006,7 +972,7 @@ msgstr "Kemoreceptor"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Slemmstråle"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1030,39 +996,56 @@ msgstr "Flimmerhår"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2436
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oxytoxisom"
+msgstr "Lysosom"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:580
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "med concentration av"
+msgstr "Slutför {0} Generationer"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:123
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:108
-#, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
-msgstr "Artlista"
+msgstr ""
+"[b]Arter[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Population[/b]\n"
+"  {3}\n"
+"[b]Färg[/b]\n"
+"  #{4}\n"
+"[b]Beteende[/b]\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
 #: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:133
 #: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:118
-#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
-msgstr "[u]{0}[/u] har gått utdöd!"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
-msgstr ""
+msgstr "Konfiguration"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:112
-#, fuzzy
 msgid "MAP"
-msgstr "ATP"
+msgstr "Karta"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1070,26 +1053,25 @@ msgid "REPORT"
 msgstr "Rapportera"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:128
+#, fuzzy
 msgid "VIEWER"
-msgstr ""
+msgstr "Visare eller åskådare, beroende på situation"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:176
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "har muterat"
+msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:183
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
+msgstr "Tillåt arter att inte migrera (om ingen bra migration hittas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:196
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Sannolikhet i varje område med få arter (låg biodiversitet) att skapa en ny art"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:216
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Sannolikhet att en ny art skapas för att höja biodiversiteten från ett närliggande område"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
@@ -1097,45 +1079,43 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:237
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Biodiversitetsökande art muteras när den skapas"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:250
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:268
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "dog ut på planeten"
+msgstr "Maximalt antal arter i ett område innan tvingade utdöenden"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:286
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "Rörelseförsök per art"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:304
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "Mutationspoäng"
+msgstr "Mutationsförsök per art"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "Ursprunglig population för biodiversitetsökande art"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Skydda nyligen migrerade populationer från artgränsen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:343
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "Skydda nyligen skapade arter från artgränsen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "Ta tillbaka migrationer i händelse av utrotning i målområdet"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:357
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Sträng nischkonkurrens (skillnader i fitness är överdrivna)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:370
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
@@ -2140,7 +2120,7 @@ msgid "CLOSE"
 msgstr "Stäng"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:594 ../src/general/StageHUDBase.cs:718
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2290,13 +2270,13 @@ msgstr "Mod Inladdningsfel"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
 
-#: ../src/general/NewGameSettings.cs:299
+#: ../src/general/NewGameSettings.cs:302
 #: ../src/general/NewGameSettings.tscn:1132
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/NewGameSettings.cs:306
+#: ../src/general/NewGameSettings.cs:309
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Hjälp"
@@ -4407,15 +4387,15 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:906
+#: ../src/microbe_stage/Microbe.Contact.cs:908
 msgid "DEATH"
 msgstr "död"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1159
+#: ../src/microbe_stage/Microbe.Contact.cs:1161
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1112
+#: ../src/microbe_stage/Microbe.Interior.cs:1114
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"

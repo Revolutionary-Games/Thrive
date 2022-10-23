@@ -7,113 +7,115 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 22:16+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2022-10-23 13:50+0100\n"
+"PO-Revision-Date: 2022-10-17 19:00+0000\n"
+"Last-Translator: Alexia Diana Cojocaru <alexia.d.cojocaru@gmail.com>\n"
+"Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Ușor"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Greu"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 #: ../src/general/WorldGenerationSettings.cs:142
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Personalizat"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Desen de concept"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
 msgid "MICROBE_STAGE"
-msgstr ""
+msgstr "Etapa Microbilor"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
-msgstr ""
+msgstr "Etapa Multicelulară"
 
 #: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
-msgstr ""
+msgstr "General"
 
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
-msgstr ""
+msgstr "Modeluri"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
-msgstr ""
+msgstr "Muzică"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
 msgid "ALL"
-msgstr ""
+msgstr "Toate"
 
 #: ../simulation_parameters/common/gallery.json:268
 msgid "MENU"
-msgstr ""
+msgstr "Meniu"
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
-msgstr ""
+msgstr "Editorul de microbi"
 
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
-msgstr ""
+msgstr "Editorul multicelular"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] and mouse to move. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă ai o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Poți să zoomezi mai oproape și mai departe cu roata mausului."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
+msgstr "Celula ta folosește [thrive:compound type=\"atp\"][/thrive:compound] ca sursă de energie, dacă rămâne fără va muri."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
+msgstr "Pentru a debloca editorul trebuie să stați în viață destul de lung pentru a reproduce. Consumând [thrive:compound type=\"ammonia\"][/thrive:compound] (norii portocalii) și [thrive:compound type=\"phosphates\"][/thrive:compound] (norii mov) va accelera procesul."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
+msgstr "Poți și să înghiți celule, bacterii, bucăți de fier și bucăți de celule care sunt mai mici decât tine prin apăsarea butonului [thrive:input]g_toggle_engulf[/thrive:input]. Când sunteți în modul de înghițit veți folosii mai mult [thrive:compound type=\"atp\"][/thrive:compound] și o să încetiniți. Nu uitați să apăsați [thrive:input]g_toggle_engulf[/thrive:input] încă o dată că să opriți modul de înghițit."
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
+msgstr "Lucrurile care le-ați înghițit vor rămâne în membrană pentru a fi digerate. Lucruri indigerabile vor fi expulzate, așa că trebuie să aveți grijă că aveți mutațiile necesare pentru a le putea digera. Enzimele făcute de lizozom te vor ajuta cu digestia; evoluează această organită pentru a face digestia mai eficientă."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
+msgstr "Dar lyzozomii sunt exclusivi pentru eucariote. Procariotele n-au aceste organite, și își digeră mâncarea mai puțin eficient. Asta nu e o problemă pentru celule mici, dar pentru celule mai mari, nu a avea lizozomi e foarte dezavantajos."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
+msgstr "Membrane din celuloză sau chitină nu pot fi digerate fără enzimele care le pot descompune."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
+msgstr "Osmoreglarea costă [thrive:compound type=\"atp\"][/thrive:compound], așa că cu cât mai mare e celula ta, cu cât mai multe mitocondrii, metabolozomi, sau ruginină (sau citoplamă, care face glicoliză) îți trebuie ca să nu pierzi [thrive:compound type=\"atp\"][/thrive:compound] când sunteți staționar."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -702,7 +704,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
-msgstr ""
+msgstr "ATF"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
@@ -1999,7 +2001,7 @@ msgid "CLOSE"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:594 ../src/general/StageHUDBase.cs:718
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2138,12 +2140,12 @@ msgstr ""
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:299
+#: ../src/general/NewGameSettings.cs:302
 #: ../src/general/NewGameSettings.tscn:1132
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:306
+#: ../src/general/NewGameSettings.cs:309
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -4074,15 +4076,15 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:906
+#: ../src/microbe_stage/Microbe.Contact.cs:908
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1159
+#: ../src/microbe_stage/Microbe.Contact.cs:1161
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1112
+#: ../src/microbe_stage/Microbe.Interior.cs:1114
 msgid "REPRODUCED"
 msgstr ""
 

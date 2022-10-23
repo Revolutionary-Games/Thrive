@@ -262,6 +262,9 @@ public class NewGameSettings : ControlWithInput
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
+
+        // Make sure non-lawk options are disabled if lawk is set to true on start-up
+        UpdateLifeOriginOptions(lawkButton.Pressed);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]

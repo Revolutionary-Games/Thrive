@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 22:16+0100\n"
-"PO-Revision-Date: 2022-09-22 10:31+0000\n"
+"POT-Creation-Date: 2022-10-23 13:50+0100\n"
+"PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -168,6 +168,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Прокаріотичні структури\n"
 "\n"
+"Цитоплазма: Має місце для заповнення і проводить гліколіз ( Продукує малу кількість [thrive:compound type=\"atp\"][/thrive:compound])\n"
+"\n"
 "Метаболосоми: Продукують [thrive:compound type=\"atp\"][/thrive:compound] з [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
 "Хемосинтезуючі білки: Продукують частину [thrive:compound type=\"glucose\"][/thrive:compound] із [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] як хемопласти, але проводить гліколіз і використовує 1 Гекс(шестикутник)\n"
@@ -179,7 +181,9 @@ msgstr ""
 "\n"
 "Нітрогеназа: Трансформує атмосферний азот та [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] анаеробним диханням\n"
 "\n"
-"Цитоплазма: Має місце для заповнення і проводить гліколіз ( Продукує малу кількість [thrive:compound type=\"atp\"][/thrive:compound])"
+"Окситоксисома: Перетворює [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Термосинтаза: Продукує [thrive:compound type=\"atp\"][/thrive:compound] використовуючи температурні градієнти"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -191,6 +195,8 @@ msgstr ""
 "Ворсинки: Можна використати, щоб заколювати інші клітини насмерть\n"
 "\n"
 "Хеморецептор: Дає змогу знаходити сполуки, що на відстані\n"
+"\n"
+"Струмінь слизу: дозволяє випорскувати [thrive:compound type=\"mucilage\"][/thrive:compound] (продукується з [thrive:compound type=\"glucose\"][/thrive:compound]) прискорюючи вашу клітину\n"
 "\n"
 "Війки: збільшують швидкість обертання клітини"
 
@@ -984,7 +990,7 @@ msgstr "Хеморецептор"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr "Струмінь слизу"
+msgstr "Поросома"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -2105,7 +2111,7 @@ msgid "CLOSE"
 msgstr "Закрити"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:594 ../src/general/StageHUDBase.cs:718
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2210,17 +2216,19 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ви граєте у Thrive за допомогою GLES2. Це не є перевіреним та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Thrive."
 
 #: ../src/general/MainMenu.tscn:523
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Вимкнено"
+msgstr "Жоден мод не ввімкнений"
 
 #: ../src/general/MainMenu.tscn:535
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"Встановлений мод виявлено, але увімкнених модів нема.\n"
+"\n"
+"Мод потрібно ввімкнути після встановлення. Відвідайте менеджер моду, використовуючи кнопку модів у меню додаткових функцій."
 
 #: ../src/general/MainMenu.tscn:550
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "Більше не нагадувати про це"
 
 #: ../src/general/MainMenu.tscn:561
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2230,18 +2238,20 @@ msgid "OK"
 msgstr "Добре"
 
 #: ../src/general/MainMenu.tscn:565
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Вилучіть локальні дані"
+msgstr "Thrive запущено в безпечному режимі"
 
 #: ../src/general/MainMenu.tscn:567
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Боязкі мікроби будуть триматися на відстані\n"
-"та взагалі частіше тікатимуть від хижаків.\n"
-"Хоробрі мікроби не бояться близьких хижаків,\n"
-"та ймовірно атакуватимуть у відповідь."
+"Thrive запущена у безпечному режимі, бо попередній запуск не вдався.\n"
+"\n"
+"Це може бути спричиненим модом чи відеопрогравачем. Для запобігання такого можливо увімкнене завантаження моду та/ або відтворення відео може бути вимкненим. Це діятиме, доки Thrive не перезапуститься.\n"
+"\n"
+"Перед запуском вимкніть будь-які можливі проблематичні чи несумісні моди, що не сумісні із данною версією Thrive (ви можете прочитати журнали попередніх запусків, аби побачити чи імовірною причиною є модифікація).\n"
+"Для проблем відео програвачів використайте опцію запуску, щоб примусово вимкнути відео.\n"
+"\n"
+"Якщо вам невдасться вирішити проблему, котра запуску, вам доведеться перезавантажити та вимкнути Thrive кілька разів, для повернення у безпечний режим."
 
 #: ../src/general/MainMenu.tscn:571
 msgid "MOD_LOAD_ERRORS"
@@ -2251,12 +2261,12 @@ msgstr "Помилки завантаження модифікації"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникли помилки під час завантаження декількох модифікацій. Додаткова інформація міститься у журналах."
 
-#: ../src/general/NewGameSettings.cs:299
+#: ../src/general/NewGameSettings.cs:302
 #: ../src/general/NewGameSettings.tscn:1132
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Увійти в гру з цими налаштуваннями"
 
-#: ../src/general/NewGameSettings.cs:306
+#: ../src/general/NewGameSettings.cs:309
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Якісь налаштування невірні"
 
@@ -2853,21 +2863,18 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Відкрити папку журналів"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Зосереджені мікроби будуть шукати брили на більшій відстані\n"
-"та можуть бути вимогливішими щодо брил.\n"
-"Розсіяні мікроби швидче відволікатимуться на нові цілі."
+"Це показує як багато спливаючих вікон закрито користувачем остаточно.\n"
+"Якщо деякі спливаючі вікна закриті, та вони вам потрібні, тоді можна використати кнопку поблизу, щоб знову відновити спливаючі вікна."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Швидкість травлення:"
+msgstr "Закриті спливаючі вікна:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Скинути закриття вікон"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
@@ -3876,7 +3883,7 @@ msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці слизові поштовхи, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
+msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці ядерні пории, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -4267,15 +4274,15 @@ msgstr "вдале очищення"
 msgid "SUCCESSFUL_KILL"
 msgstr "вдале очищення"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:906
+#: ../src/microbe_stage/Microbe.Contact.cs:908
 msgid "DEATH"
 msgstr "Смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1159
+#: ../src/microbe_stage/Microbe.Contact.cs:1161
 msgid "ESCAPE_ENGULFING"
 msgstr "уникнення поглинання"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1112
+#: ../src/microbe_stage/Microbe.Interior.cs:1114
 msgid "REPRODUCED"
 msgstr "розмножено"
 

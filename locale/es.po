@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-12 22:16+0100\n"
-"PO-Revision-Date: 2022-03-29 16:22+0000\n"
-"Last-Translator: Jessy Amelie Nishimura Lara <jessy8nishimura@gmail.com>\n"
+"POT-Creation-Date: 2022-10-23 13:50+0100\n"
+"PO-Revision-Date: 2022-10-14 05:59+0000\n"
+"Last-Translator: Fernando Fuentes Moreno <ferfuenmore@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -102,7 +102,7 @@ msgstr "También puedes engullir células, bacterias, pedazos de hierro y pedazo
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Luego de engullir  un objeto, el mismo se sera digerido dentro de la membrana, aquellos objetos que no pueden ser digeridos serán expulsados, asegúrate de tener las mutaciones necesarias para poder procesarlos. Las enzimas creadas por el lisosoma ayudan en la digestion."
+msgstr "Luego de engullir un objeto, el mismo se sera digerido dentro de la membrana, aquellos objetos que no pueden ser digeridos serán expulsados, asegúrate de tener las mutaciones necesarias para poder procesarlos. Las enzimas creadas por el lisosoma ayudan en la digestion."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
@@ -161,7 +161,7 @@ msgstr "Ten cuidado porque tus competidores evolucionan a la vez que tu célula.
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una colonia comparten entre sí todos los compuestos que absorben y producen. Para poder ligarte con otras células necesitas adquirir el orgánulo \"agente ligante\", activar el modo ligante y acercarte a otra célula. Por ahora solo puedes ligarte con otras células de tu misma especie. Mientras formas parte de una colonia, no podrás dividir tu célula para entrar al editor (por ahora). Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia para poder entrar al editor. Grandes colonias celulares son el camino hacia la multicelularidad (aún no disponible en el juego)."
+msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una colonia comparten entre sí todos los compuestos que absorben y producen. Para poder ligarte con otras células necesitas adquirir el orgánulo \"agente ligante\", activar el modo ligante aprentando  [thrive:input]g_toggle_binding[/thrive:input]  y acercarte a otra célula. Por ahora solo puedes ligarte con otras células de tu misma especie. Mientras formas parte de una colonia, no podrás dividir tu célula para entrar al editor (por ahora). Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia para poder entrar al editor apretando [thrive:input]g_unbind_all[/thrive:input]. Grandes colonias celulares son el camino hacia la multicelularidad (aún no disponible en el juego)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -372,7 +372,7 @@ msgstr "Lanzar toxinas"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2177
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Secretar mucílago"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
@@ -489,13 +489,12 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Moverse hacia Abajo o Agacharse"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "Diverso"
+msgstr "Estadio 3D diverso"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "Mantén pulsado para mostrar el cursor"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -612,9 +611,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "Síntesis de OxiToxi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "Quimiosíntesis"
+msgstr "Síntesis de mucílago"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -695,9 +693,8 @@ msgstr "Fragmento de hierro grande"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Célula del jugador"
+msgstr "Célula con ojos saltones"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -793,7 +790,7 @@ msgstr "OxiToxi NT"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1711
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Mucílago"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
@@ -978,7 +975,7 @@ msgstr "Quimioreceptor"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "Jet de Slime"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -1060,7 +1057,7 @@ msgstr "Reporte"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:128
 msgid "VIEWER"
-msgstr ""
+msgstr "Visualizador"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:176
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
@@ -1333,7 +1330,7 @@ msgstr "Parte de la población de [u]{0}[/u] ha inmigrado desde {1}"
 
 #: ../src/auto-evo/RunResults.cs:972
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[u]{0}[/u] surgió de [u]{1}[/u] como una especie nueva para llenar un nicho ecológico"
+msgstr "[b][u]{0}[/u][/b] se separó de [b][u]{1}[/u][/b] como una nueva especie para llenar un nicho"
 
 #: ../src/auto-evo/RunResults.cs:978
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
@@ -1580,61 +1577,56 @@ msgstr "Cargando"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Horizontal (Axis: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Nuevo Nombre:"
+msgstr "Vertical (Axis:{0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Nuevo Nombre:"
+msgstr "Valor bruto:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Zona muerta:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Este lenguaje está traducido en un {0}%"
+msgstr "Calibración de zona muerta en progreso. Por favor no toque ningún botón o palanca en su contról y aguarde por unos segundos."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Las calibraciones de la zona muerta han sido reiniciadas"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Se ha detectado un problema en las validaciones adicionales: {0}"
+msgstr "Calibración de zona muerta terminada. La nueva zona muerta está siendo mostrada en los exhibidores de los valores de axis."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Eliminar esta partida es irreversible. ¿Estás seguro de querer eliminarla permanentemente?"
+msgstr "Configuración de zona muerta"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Este panel muestra los números con los que auto-evo trabaja. El total de energía que una especie puede capturar y el costo por individuo de la especie determina la población final. Auto-evo usa un modelo simplificado de la realidad para calcular el desempeño de las diferentes especies de acuerdo con la energía que pueden recolectar. Por cada fuente de alimento, se muestra la cantidad de energia que se obtiene. Adicionalmente, se muestra el total de energía disponible de esa fuente. La fracción que obtiene la especie del total disponible se basa en su Aptitud y la Aptitud final. La Aptitud, es una métrica de que tan bien utiliza la especie una fuente de alimento."
+msgstr ""
+"Esta herramienta permite la configuración de la zona muerta del contról. El tamaño de la zona muerta controla cuanto una palanca (o botón análogo) necesita moverse antes de que ese movimiento se registre como un input.\n"
+"Antes de comenzar la calibración por favor mueva todas las palancas y sueltelas, y además aprete y libere cualquier botón análogo en su contról."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Iniciar calibración"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "¿Volver a los ajustes predeterminados?"
+msgstr "Redefinir zona muerta"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Visualizador del axis del contról:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2104,7 +2096,7 @@ msgid "CLOSE"
 msgstr "Cerrar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:594 ../src/general/StageHUDBase.cs:718
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2198,7 +2190,7 @@ msgstr "Licencias"
 
 #: ../src/general/MainMenu.tscn:440
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Sugerir una característica"
 
 #: ../src/general/MainMenu.tscn:518
 msgid "GLES2_MODE_WARNING"
@@ -2209,17 +2201,19 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
 #: ../src/general/MainMenu.tscn:523
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Desactivado"
+msgstr "No hay mods habilitados"
 
 #: ../src/general/MainMenu.tscn:535
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"Se ha detectado la instalación de mods, pero no hay mods habilitados.\n"
+"\n"
+"Los mods deben ser habilitados después de instalarlos. Visite el mod manager utilizando el botón \"mods\" en el menú de extras."
 
 #: ../src/general/MainMenu.tscn:550
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "No mostrar nuevamente"
 
 #: ../src/general/MainMenu.tscn:561
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2229,18 +2223,19 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/general/MainMenu.tscn:565
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Eliminar datos locales"
+msgstr "Thrive iniciado en modo seguro"
 
 #: ../src/general/MainMenu.tscn:567
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Los microbios temerosos huirán a mayores distancias\n"
-"y es más probable que huyan de los depredadores en general.\n"
-"Los Microbios valientes no se dejan intimidar por los depredadores cercanos\n"
-"y lo más probable es que contra ataquen."
+"Thrive se ha iniciado en modo seguro debido a una falla previa en el inicio.\n"
+"\n"
+"Esto probablemente haya sido causado por un mod o la tarjeta gráfica. Como precaución, se han desabilitado los mods cargados. Esto seguirá haciendo efecto hasta que Thrive sea reiniciado.\n"
+"\n"
+"Antes de reiniciar por favor inhabilite cualquier mod que pueda estar causando o no problemas con esta versión de Thrive (puede leer los logs anteriores para ver si un mod fue el causante del error).\n"
+"\n"
+"Si no arregla el problema causando errores, ustede debera reiniciar y crashear Thrive multiples veces para volver al modo seguro."
 
 #: ../src/general/MainMenu.tscn:571
 msgid "MOD_LOAD_ERRORS"
@@ -2250,12 +2245,12 @@ msgstr "Errores de carga de mod"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Se produjeron errores al cargar uno o más mods. Los registros pueden contener información adicional."
 
-#: ../src/general/NewGameSettings.cs:299
+#: ../src/general/NewGameSettings.cs:302
 #: ../src/general/NewGameSettings.tscn:1132
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Entrar al juego con esta configuración"
 
-#: ../src/general/NewGameSettings.cs:306
+#: ../src/general/NewGameSettings.cs:309
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Ciertas opciones son invalidas"
 
@@ -2426,7 +2421,7 @@ msgstr "Generación Procesal"
 #: ../src/general/NewGameSettings.tscn:878
 #: ../src/general/WorldGenerationSettings.cs:52
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Clásica"
+msgstr "Clásico"
 
 #: ../src/general/NewGameSettings.tscn:1023
 msgid "PLANET_GENERATION_TEASER"
@@ -2505,16 +2500,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Este lenguaje está traducido en un {0}%"
 
 #: ../src/general/OptionsMenu.cs:1332
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Esta partida guardada es de una versión más nueva de Thrive, y muy probablemente incompatible.\n"
-"¿Deseas intentar cargarla igualmente?"
+msgstr "Esta es una versión de prueba por lo que la información mostada debajo puede no estar a la actualizada"
 
 #: ../src/general/OptionsMenu.cs:1339
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Versión:"
+msgstr "Versión desconocida"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -2752,60 +2743,56 @@ msgstr "Extremo"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Sensibilidad del ratón"
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Unir axis"
 
 #: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Versión:"
+msgstr "Horizontal:"
 
 #: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
 #: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
 msgid "INVERTED"
-msgstr ""
+msgstr "Invertido"
 
 #: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Versión:"
+msgstr "Vertical:"
 
 #: ../src/general/OptionsMenu.tscn:1212
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Sensibilidad del ratón por escala de ventana"
 
 #: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Ninguno"
 
 #: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Agente señalizador"
+msgstr "Escalado"
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Escalado inversamente"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Utilizar tamaño de ventana virtual"
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Sensibilidad del contról"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Zona muerta del contról"
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Restablecer entradas"
+msgstr "Reiniciar teclas asociadas"
 
 #: ../src/general/OptionsMenu.tscn:1393
 msgid "PLAY_INTRO_VIDEO"
@@ -2860,21 +2847,18 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir carpeta de registros"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Los microbios centrados buscarán recursos o presas más lejanas\n"
-"y es posible codicien más los fragmentos de recursos.\n"
-"Los microbios reactivos cambiarán de objetivo después de un tiempo."
+"Esto muestra cuantos popups han sido permanentemente deshabilitados por el usuario.\n"
+"Si alguno de los popups que necesita están deshabilitados, el botón junto a este puede ser utilizado para mostrar todos los popups nuevamente."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Velocidad de Digestion:"
+msgstr "Popups deshabilitadps:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Reiniciar ventanas emergentes"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
@@ -2893,19 +2877,16 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nunca"
 
 #: ../src/general/OptionsMenu.tscn:1628
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Automáticamente carga parches de Harmony desde Assembly (no requiere especificar la clase del mod)"
+msgstr "Esta es la commit exacta desde la cual esta versión de Thrive fue compilada"
 
 #: ../src/general/OptionsMenu.tscn:1630
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Versión:"
+msgstr "Versión exacta de Thrive:"
 
 #: ../src/general/OptionsMenu.tscn:1658
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Compuestos:"
+msgstr "Compilado en:"
 
 #: ../src/general/OptionsMenu.tscn:1709 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3341,7 +3322,7 @@ msgstr "Desarrolladores"
 
 #: ../src/gui_common/PlaybackControls.tscn:107
 msgid "STOP"
-msgstr "Parar"
+msgstr "Detener"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -3423,9 +3404,11 @@ msgid "RAW"
 msgstr "Bruto"
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Colaboradores de desarrollo"
+msgstr ""
+"DevBuild {0}\n"
+"on branch {1} at {2}\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -3454,7 +3437,7 @@ msgstr "Artista:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:259
 msgid "UNTITLED"
-msgstr "Sin Título"
+msgstr "Sin título"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
 msgid "GALLERY_VIEWER"
@@ -3880,14 +3863,12 @@ msgid "SPEED"
 msgstr "Velocidad"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Aumenta la velocidad de rotación de células grandes."
+msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Aprete [thrive:input]g_secrete_slime[/thrive:input] para liberar el [thrive:compound type=\"mucilage\"][/thrive:compound] guardado, aumentando la velocidad de esta célula y haciendo más lentos a los depredadores."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "La lipasa permite que la célula disuelva varios tipos de membranas. Tu célula ya produce algunas de las enzimas necesarias, pero el Lisosoma hace que este proceso sea mas efectivo."
+msgstr "Muchos organismos producen sustacias polisacáridas similares a un slime, y el mucílago es una de ellas. Mientras muchas species utilizan slime para moverse, ciertos tipos de bacterias liberan estas sustacias a altas velocidades al moverse. Estos \"jets de slime\" actúan como motores de cohete, empujando a las células con mucha velocidad. El slime también es utilizado para inmovilizar depredadores, ya que estos son atrapados en una sustacia que sólo puede ser navegada por organismos con \"jets de slime\"."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -4109,9 +4090,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Clickea, arrastra, y haz zoon para moverte"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+msgstr "Mirando a:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:595
@@ -4130,7 +4110,7 @@ msgstr "Especies:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "Mantener [thrive:input]g_free_cursor[/thrive:input] para mostrar el cursor"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
 #: ../src/microbe_stage/MicrobeStage.tscn:741
@@ -4167,14 +4147,12 @@ msgid "AGENTS"
 msgstr "Agentes"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Mod por cargar:"
+msgstr "Moverse a tierra"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Bioma: {0}"
+msgstr "Volverse sentiente"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1730
 msgid "AWAKEN"
@@ -4186,26 +4164,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓN:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"Has llegado al final del contenido completado actualmente en Thrive.\n"
-"Si lo deseas, puedes continuar a la siguiente etapa que contiene prototipos. Los mismos pueden estar incompletos, usar gráficos temporarios, entre otros aspectos no finalizados. Los mismos son incluidos para demostrar la vision en general del juego y posibles desarrollos a futuro y como todas las etapas del juego están conectadas.\n"
-"\n"
-"Si deseas continuar jugando tu etapa actual, guarda tu partida ahora. No podrás volver atrás una vez que avances a la siguiente etapa.\n"
-"\n"
-"Si continuas, por favor entiende que las siguientes etapas son solo prototipos, por favor no te quejes de lo incompleto que pueden estar."
+msgstr "Ir a tierra?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Has llegado al final del contenido completado actualmente en Thrive.\n"
-"Si lo deseas, puedes continuar a la siguiente etapa que contiene prototipos. Los mismos pueden estar incompletos, usar gráficos temporarios, entre otros aspectos no finalizados. Los mismos son incluidos para demostrar la vision en general del juego y posibles desarrollos a futuro y como todas las etapas del juego están conectadas.\n"
+"Estás a punto de moverte a tierra. Esto es necesario para avanzar en un futuro en el juego. Una vez que estés en tierra ya no vas a poder volver.\n"
 "\n"
-"Si deseas continuar jugando tu etapa actual, guarda tu partida ahora. No podrás volver atrás una vez que avances a la siguiente etapa.\n"
+"Actualmente esta transición a tierra es mucho más abrupta de lo que está planeado una vez esta sea propiamente añadida.\n"
 "\n"
-"Si continuas, por favor entiende que las siguientes etapas son solo prototipos, por favor no te quejes de lo incompleto que pueden estar."
+"El plan es que el movimiento a tierra sea gradual y no un cambio abrupto."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4290,15 +4259,15 @@ msgstr "Búsqueda de recursos exitosa"
 msgid "SUCCESSFUL_KILL"
 msgstr "Caza exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:906
+#: ../src/microbe_stage/Microbe.Contact.cs:908
 msgid "DEATH"
 msgstr "muerte"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1159
+#: ../src/microbe_stage/Microbe.Contact.cs:1161
 msgid "ESCAPE_ENGULFING"
 msgstr "Engullición evadida"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1112
+#: ../src/microbe_stage/Microbe.Interior.cs:1114
 msgid "REPRODUCED"
 msgstr "reproducido"
 
@@ -5492,9 +5461,8 @@ msgstr "El jugador se extinguió"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Estas jugando las ultimas etapas desarrolladas incluidas en el juego en este momento.\n"
-"Las mismas puede que estén incompletas, usen arte temporaria, tengan poco detalle,\n"
-"y no sean posible jugarlas. Por esa razon no es posible guardarlas.\n"
-"Ciertas partes del prototipo permiten guardar."
+"Las mismas pueden estar incompletas, utilizar gráficos poco detallados, no estar pulidas y no ser demasiado jugables. Por eso guardar actualmente no es posible.\n"
+"Algunas partes de los prototipos pueden permitir guardado."
 
 #: ../src/saving/SaveHelper.cs:533
 msgid "SAVING_SUCCEEDED"
@@ -5590,9 +5558,7 @@ msgstr "Guardado de la actualización del archivo fallido"
 
 #: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Actualizando el archivo de guardado especificado debido al siguiente error:\n"
-"{0}"
+msgstr "Actualizando el archivo de guardado especificado debido al siguiente error:"
 
 #: ../src/saving/SaveList.tscn:127
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
@@ -5767,32 +5733,29 @@ msgstr ""
 "Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Editor de Microbio.\n"
-"Aquí puedes ver lo que ha ocurrido desde el principio del juego o desde la última vez que entraste al editor y hacer cambios a tu especie.\n"
+"Este es el mapa de las regiones.\n"
 "\n"
-"En esta pestaña puedes ver un reporte de cuáles especies existen, dónde se encuentran, y las poblaciones que tienen. También puedes ver cambios en el ambiente en la parte superior.\n"
+"Cada ícono representa un bioma único que puede habitar, el panel en la derecha describe las condiciones del bioma seleccionado actualmente.\n"
 "\n"
-"Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
+"Si seleccionas un bioma conectado al que actualmente ocupas, el cuál está señalado con un borde verde parpadeando, puede apretar el botón \"Moverme a este bioma\" para migrar allí.\n"
+"\n"
+"Intenta seleccionar un bioma para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Editor de Microbio.\n"
-"Aquí puedes ver lo que ha ocurrido desde el principio del juego o desde la última vez que entraste al editor y hacer cambios a tu especie.\n"
+"Este es el editor celular, donde vas a poder evolucionar tu especie gastanto punto de mutación (PM). Cada generación tendrás siempre 100 PM para gastar así que no te molestes en guardarlos!\n"
 "\n"
-"En esta pestaña puedes ver un reporte de cuáles especies existen, dónde se encuentran, y las poblaciones que tienen. También puedes ver cambios en el ambiente en la parte superior.\n"
+"El hexágono en el centro de tu pantalla es tu célula, la cuál está compuesta por una única parte de citoplasma.\n"
 "\n"
-"Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
+"Para continuar, selecciona una parte del panel de la izquierda. Luego apreta click izquierdo al lado del hexágono para ubicarla. Puedes rotar partes con [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Quitar orgánulos cuesta PM, ya que es una mutación. Remover los que han sido colocados en la sesión de mutación actual no tendrán coste.\n"
+"Quitar orgánulos también cuesta PM ya que es una mutación, salvo que hayan sido ubicados en la actual sesión de edición.\n"
 "\n"
 "Haz click derecho en un orgánulo para que aparezca el menú desplegable y selecciona la opción de eliminar para quitarlo.\n"
 "\n"
@@ -5801,7 +5764,6 @@ msgstr ""
 "Presiona el botón de deshacer para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Al seleccionar los orgánulos a añadir, presta atención a sus descripciones para saber que procesos realizan y que compuestos producen.\n"
@@ -5813,7 +5775,6 @@ msgstr ""
 "Presiona el botón de rehacer para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Eso es lo básico del editor. Puedes ver las otras pestañas del editor para tener incluso más opciones.\n"
@@ -5829,7 +5790,6 @@ msgid "GOT_IT"
 msgstr "Entendido"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Este panel muestra una predicción de la futura población. Estos números provienen de la simulación de población de auto-evo.\n"
@@ -5841,7 +5801,6 @@ msgstr ""
 "Puedes ver información más detallada de la predicción clicando en el icono del signo de interrogación del panel."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Deberías enfocarte en una o dos fuentes de energía, de ésta forma no necesitarás tener todos los recursos para general suficiente ATP para sobrevivir.\n"
@@ -5862,7 +5821,6 @@ msgstr ""
 "Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
-#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutoriales"
 
@@ -5893,14 +5851,12 @@ msgstr ""
 "Asegúrate de conseguir suficiente glucosa para producir ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Para que tu célula se reproduzca necesita duplicar todos sus orgánulos reuniendo la suficiente cantidad de amoníaco y fosfatos.\n"
 "Observa el indicador en la parte inferior derecha para ver cuánto más necesitas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Has reunido suficientes recursos para que tu célula se divida.\n"
@@ -5910,15 +5866,13 @@ msgstr ""
 "Para entrar en el editor pulsa el botón parpadeante del editor en la parte inferior derecha."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrado en el modo de desvinculación. En este modo puedes hacer clic sobre los miembros de la colonia para desvincularlos.\n"
 "\n"
-"Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
+"Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar la tecla  [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si sigues teniendo problemas con las mecánicas del juego, consulta el menú de ayuda. Puedes abrirlo con el botón del signo de interrogación en la parte inferior izquierda.\n"
@@ -5926,51 +5880,58 @@ msgstr ""
 "Un consejo más: puedes alejar la vista con la rueda del ratón."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutorial"
+msgstr "Ver ahora"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Has entrado en el modo de desvinculación. En este modo puedes hacer clic sobre los miembros de la colonia para desvincularlos.\n"
+"Tu célula tiene una capacidad limitada para los objetos que puede engullir en una sola vez. Este límite es relativo a tu tamaño; células más pequeñas tienen menos capacidad.\n"
 "\n"
-"Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
+"\n"
+"\n"
+"Cuando está llena, una célula no puede engullir más cosas. Para continuar engullendo, espera a que uno o más objetos previamente engullidos sean completamente digeridos."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Has entrado en el modo de desvinculación. En este modo puedes hacer clic sobre los miembros de la colonia para desvincularlos.\n"
+"Engulle objetos pasando por encima de ellos en el modo engullir. Active ese modo presionando[thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
+"Pare de engullir una vez el objeto esté siendo atraído.\n"
+"\n"
+"Siga la línea desde tu célula hacia el objeto más cercano."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Has entrado en el modo de desvinculación. En este modo puedes hacer clic sobre los miembros de la colonia para desvincularlos.\n"
+"Su célula ha sido engullida y se encuentra siendo digerida. El progreso está  mostrado en su barra de vida. Su célula estará muerta una vez esta se acabe o se alcance un límite máximo de tiempo.\n"
 "\n"
-"Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
+"Puede utilizar el botón de suicidio para saltarse el proceso y renacer, ¡pero recuerda que siempre hay una chance de que puedas escapar!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Has entrado en el modo de desvinculación. En este modo puedes hacer clic sobre los miembros de la colonia para desvincularlos.\n"
+"Tienes suficientes [thrive:compound type=\"ammonia\"][/thrive:compound] and [thrive:compound type=\"phosphates\"][/thrive:compound]. No obstante, al ser parte de una colonia no multicelular, eres incapaz de progresar hacia la reproducción.\n"
 "\n"
-"Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
+"Debes dejar la colonia para utilizar el editor salvo que planees volverte multicelular.\n"
+"Deja la colonia para continuar tu crecimiento apretando [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Cargando Editor de Microbio"
+msgstr ""
+"¡Bienvenido al estadio multicelular inicial!\n"
+"\n"
+"Conseguiste guiar a tu especie a través de la fase unicelular.\n"
+"\n"
+"El juego continúa con las mecánicas básicas del estadio microbio. Aún necesitas seguir alimentando a tu organismo para reproducirte y entrar en el editor.\n"
+"\n"
+"Sin embargo, ahora puedes diseñar tu colonia celular en el editor y especializar tus células en varios roles. Ten en mente que los miembros de tu colonia no pueden compartir [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Si estás utilizando la reproducción por gemación (el método predeterminado), comenzaras controlando una pequeña yema y deberás crecer el resto de tus células."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Empezar a prosperar"
+msgstr "Continuar prosperando"
 
 #, fuzzy
 #~ msgid "NAVIGATION"
