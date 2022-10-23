@@ -33,7 +33,7 @@ public class ColonyCompoundBag : ICompoundStorage
             var currentPair = compounds.Current;
             Compound compound = currentPair.Key;
 
-            if (!compound.CanBeDistributed || IsNoneUseful(compound))
+            if (!compound.CanBeDistributed || !IsUsefulInAnyCompoundBag(compound))
                 continue;
 
             float compoundAmount = currentPair.Value;
@@ -136,8 +136,8 @@ public class ColonyCompoundBag : ICompoundStorage
         return Colony.ColonyMembers.Select(p => p.Compounds);
     }
 
-    private bool IsNoneUseful(Compound compound)
+    private bool IsUsefulInAnyCompoundBag(Compound compound)
     {
-        return !GetCompoundBags().Any(p => p.IsUseful(compound));
+        return GetCompoundBags().Any(p => p.IsUseful(compound));
     }
 }
