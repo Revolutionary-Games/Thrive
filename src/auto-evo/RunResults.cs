@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Godot;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   Container for results before they are applied.
@@ -15,6 +16,8 @@
     ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
     ///   </para>
     /// </remarks>
+    [JsonObject(IsReference = true)]
+    [UseThriveSerializer]
     public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
     {
         /// <summary>
@@ -28,6 +31,7 @@
         ///     this is one.
         ///   </para>
         /// </remarks>
+        [JsonProperty]
         private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
         public enum NewSpeciesType
@@ -1080,8 +1084,11 @@
             return totalPopulation;
         }
 
+        [JsonObject(IsReference = true)]
+        [UseThriveSerializer]
         public class SpeciesResult
         {
+            [JsonProperty]
             public Species Species;
 
             /// <summary>
@@ -1093,45 +1100,54 @@
             ///     Does not consider migrations nor split-offs.
             ///   </para>
             /// </remarks>
+            [JsonProperty]
             public Dictionary<Patch, long> NewPopulationInPatches = new();
 
             /// <summary>
             ///   null means no changes
             /// </summary>
+            [JsonProperty]
             public Species? MutatedProperties;
 
             /// <summary>
             ///   List of patches this species has spread to
             /// </summary>
+            [JsonProperty]
             public List<SpeciesMigration> SpreadToPatches = new();
 
             /// <summary>
             ///   If not null, this is a new species that was created
             /// </summary>
+            [JsonProperty]
             public NewSpeciesType? NewlyCreated;
 
             /// <summary>
             ///   If set, the specified species split off from this species taking all the population listed in
             ///   <see cref="SplitOffPatches"/>
             /// </summary>
+            [JsonProperty]
             public Species? SplitOff;
 
             /// <summary>
             ///   Patches that moved to the split off population
             /// </summary>
+            [JsonProperty]
             public List<Patch>? SplitOffPatches;
 
             /// <summary>
             ///   Info on which species this split from. Not used for anything other than informational display
             /// </summary>
+            [JsonProperty]
             public Species? SplitFrom;
 
             /// <summary>
             ///   If <see cref="SimulationConfiguration.CollectEnergyInformation"/> is set this collects energy
             ///   source and consumption info for this species per-patch where this was simulated
             /// </summary>
+            [JsonProperty]
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
+            [JsonConstructor]
             public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
@@ -1159,17 +1175,30 @@
         /// </summary>
         public class SpeciesPatchEnergyResults
         {
+            [JsonProperty]
             public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
 
+            [JsonProperty]
             public long UnadjustedPopulation;
+
+            [JsonProperty]
             public float TotalEnergyGathered;
+
+            [JsonProperty]
             public float IndividualCost;
 
             public class NicheInfo
             {
+                [JsonProperty]
                 public float CurrentSpeciesFitness;
+
+                [JsonProperty]
                 public float CurrentSpeciesEnergy;
+
+                [JsonProperty]
                 public float TotalFitness;
+
+                [JsonProperty]
                 public float TotalAvailableEnergy;
             }
         }
