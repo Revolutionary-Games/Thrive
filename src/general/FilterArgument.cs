@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   Parent class for filters arguments
@@ -23,6 +24,12 @@ public abstract class FilterArgument
     public string GetStringValue()
     {
         return (this as MultipleChoiceFilterArgument)?.Value ??
+            throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
+    }
+
+    public Func<float, float, bool> GetComparison()
+    {
+        return (this as ComparisonFilterArgument)?.GetComparison() ??
             throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
     }
 
@@ -57,15 +64,74 @@ public abstract class FilterArgument
         public readonly List<string> Options;
         public string Value;
 
-        public MultipleChoiceFilterArgument(List<string> options)
+        public MultipleChoiceFilterArgument(List<string> options, string value)
         {
+            if (!options.Contains(value))
+            {
+                throw new ArgumentOutOfRangeException("Value " + value + " not in passed options list!");
+            }
+
             Options = options;
-            Value = Options.Count > 0 ? Options[0] : "--";
+            Value = value;
+        }
+
+        public MultipleChoiceFilterArgument(List<string> options) :
+            this(options, options.Count > 0 ? options[0] : "--") { }
+
+        public override FilterArgument Clone()
+        {
+            return new MultipleChoiceFilterArgument(Options, Value);
+        }
+    }
+
+    public class ComparisonFilterArgument : MultipleChoiceFilterArgument
+    {
+        private static Dictionary<string, Comparators> comparatorsTable = new()
+        {
+            { "EQUALS", Comparators.Equals },
+            { "GREATER_THAN", Comparators.GreaterThan },
+            { "LESS_THAN", Comparators.LessThan },
+            { "STRICT_GREATER_THAN", Comparators.StrictGreaterThan },
+            { "STRICT_LESSER_THAN", Comparators.StrictLesserThan },
+        };
+
+        public ComparisonFilterArgument(string comparator) : base(comparatorsTable.Keys.ToList(), comparator) { }
+
+        public ComparisonFilterArgument() : base(comparatorsTable.Keys.ToList()) { }
+
+        public enum Comparators
+        {
+            Equals,
+            GreaterThan,
+            LessThan,
+            StrictGreaterThan,
+            StrictLesserThan,
+        }
+
+        public List<string> ComparatorsNames => comparatorsTable.Keys.ToList();
+
+        public new Func<float, float, bool> GetComparison()
+        {
+            switch (comparatorsTable[Value])
+            {
+                case Comparators.Equals:
+                    return (f1, f2) => f1 == f2;
+                case Comparators.GreaterThan:
+                    return (f1, f2) => f1 >= f2;
+                case Comparators.LessThan:
+                    return (f1, f2) => f1 <= f2;
+                case Comparators.StrictGreaterThan:
+                    return (f1, f2) => f1 > f2;
+                case Comparators.StrictLesserThan:
+                    return (f1, f2) => f1 <= f2;
+            }
+
+            throw new InvalidOperationException();
         }
 
         public override FilterArgument Clone()
         {
-            return new MultipleChoiceFilterArgument(Options);
+            return new ComparisonFilterArgument(Value);
         }
     }
 }

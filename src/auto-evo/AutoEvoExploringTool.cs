@@ -677,14 +677,14 @@ public class AutoEvoExploringTool : NodeWithInput
         }
 
         Func<List<FilterArgument>, Func<Species, bool>> valueComparisonFunction =
-            l => l[1].GetStringValue() == "GREATER_THAN" ?
-                s => valueFromSpecies[l[0].GetStringValue()](s) >= l[2].GetNumberValue() :
-                s => valueFromSpecies[l[0].GetStringValue()](s) <= l[2].GetNumberValue();
+            l => s => l[1].GetComparison().Invoke(
+                valueFromSpecies[l[0].GetStringValue()](s),
+                l[2].GetNumberValue());
 
         var valueComparisonArguments = new List<FilterArgument>()
             {
                 new FilterArgument.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
-                new FilterArgument.MultipleChoiceFilterArgument(new List<string>() { "GREATER_THAN", "SMALLER_THAN" }),
+                new FilterArgument.ComparisonFilterArgument(),
                 new FilterArgument.NumberFilterArgument(0, 500, 100),
             };
         var valueComparisonFilter = new Filter<Species>.FilterItem(valueComparisonFunction, valueComparisonArguments);
