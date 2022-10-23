@@ -27,9 +27,9 @@ public abstract class FilterArgument
             throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
     }
 
-    public Func<float, float, bool> GetComparison()
+    public bool Compare(float first, float second)
     {
-        return (this as ComparisonFilterArgument)?.GetComparison() ??
+        return (this as ComparisonFilterArgument)?.GetComparison().Invoke(first, second) ??
             throw new InvalidOperationException("Can't get string value from a non-string filter argument!");
     }
 
@@ -110,7 +110,7 @@ public abstract class FilterArgument
 
         public List<string> ComparatorsNames => comparatorsTable.Keys.ToList();
 
-        public new Func<float, float, bool> GetComparison()
+        public Func<float, float, bool> GetComparison()
         {
             switch (comparatorsTable[Value])
             {

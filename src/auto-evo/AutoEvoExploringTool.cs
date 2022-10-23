@@ -677,7 +677,7 @@ public class AutoEvoExploringTool : NodeWithInput
         }
 
         Func<List<FilterArgument>, Func<Species, bool>> valueComparisonFunction =
-            l => s => l[1].GetComparison().Invoke(
+            l => s => l[1].Compare(
                 valueFromSpecies[l[0].GetStringValue()](s),
                 l[2].GetNumberValue());
 
