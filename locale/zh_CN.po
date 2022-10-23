@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-09-23 11:38+0000\n"
-"Last-Translator: 84634E1A607A <ajax-dong@outlook.com>\n"
+"PO-Revision-Date: 2022-10-14 05:59+0000\n"
+"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -193,6 +193,8 @@ msgstr ""
 "菌毛：可以用来捅其它细胞或防护毒素\n"
 "\n"
 "化学感受器：允许从更远的地方探测化合物\n"
+"\n"
+"黏液喷嘴: 允许喷射 [thrive:compound type=\"mucilage\"][/thrive:compound] (由 [thrive:compound type=\"glucose\"][/thrive:compound]转化而来) 以增加你的细胞的速度\n"
 "\n"
 "纤毛：增加细胞转动速度"
 
@@ -379,7 +381,7 @@ msgstr "发射毒素"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "喷射黏液"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
@@ -618,9 +620,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "氧化毒素合成"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "化学合成"
+msgstr "黏液合成"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -798,7 +799,7 @@ msgstr "氧化毒素"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "MUCILAGE"
-msgstr ""
+msgstr "黏液"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
@@ -981,7 +982,7 @@ msgstr "化学感受器"
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "SLIME_JET"
-msgstr ""
+msgstr "黏液喷嘴"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2315
@@ -2196,17 +2197,19 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
 #: ../src/general/MainMenu.tscn:519
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "已禁用"
+msgstr "模组已禁用"
 
 #: ../src/general/MainMenu.tscn:531
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"检测到安装的模组，但没有启用的模组。\n"
+"\n"
+"模组在安装后需要被启用。在“额外内容”中使用模组按钮访问模组管理器。"
 
 #: ../src/general/MainMenu.tscn:546
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "不再提醒这项内容"
 
 #: ../src/general/MainMenu.tscn:557
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2728,7 +2731,7 @@ msgstr "极多"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "鼠标灵敏度"
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
 msgid "BIND_AXES_SENSITIVITY"
@@ -2749,7 +2752,7 @@ msgstr "垂直："
 
 #: ../src/general/OptionsMenu.tscn:1212
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "由窗口大小决定鼠标灵敏度"
 
 #: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
@@ -3721,14 +3724,12 @@ msgid "SPEED"
 msgstr "速度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
-#, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "增加大体型细胞的转向速度。"
+msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thrive:compound type=\"mucilage\"][/thrive:compound]. 点击 [thrive:input]g_secrete_slime[/thrive:input] 以喷射储存的 [thrive:compound type=\"mucilage\"][/thrive:compound], 增加该细胞的速度并减慢被困在黏液里的捕食者的速度."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体你的细胞也能产生一些这种酶，但通过选择这种类型，你将增加其有效性。"
+msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其中的一种。许多物种将黏液用于移动，而特定种类的细菌将这些物质以高压发射出去。这些黏液喷嘴如同火箭引擎一般以难以置信的速度推动细胞前进。黏液也可以用来阻挡捕食者，将它们困在一种只有拥有这些喷嘴的生物才能自由移动的物质中。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3899,7 +3900,7 @@ msgstr "无法进入吞噬模式"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3316
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "不会被没有对应酶的细胞吞噬并消化"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3084
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -4007,9 +4008,8 @@ msgid "AGENTS"
 msgstr "物质"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "将上传的Mod："
+msgstr "成为陆地生物："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 msgid "BECOME_AWARE"
@@ -4025,26 +4025,17 @@ msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr ""
-"你已经达到了Thrive的 \"完整 \"部分的终点。\n"
-"如果你愿意，你可以继续游戏的后期阶段原型。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
-"\n"
-"如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
-"\n"
-"如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
+msgstr "成为陆地生物？"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"你已经达到了Thrive的 \"完整 \"部分的终点。\n"
-"如果你愿意，你可以继续游戏的后期阶段原型。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
+"你即将登陆并成为陆地生物。这允许你在游戏中进展到后续阶段中。一旦你登上陆地你便再也无法回到海洋里生存。\n"
 "\n"
-"如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
+"目前游戏中由海洋到陆地的转变比计划中要加入的内容唐突许多。\n"
 "\n"
-"如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
+"我们计划将生物生存环境向陆地的转变做成循序渐进的，而非突然的。"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -5778,22 +5769,29 @@ msgstr ""
 "你可以使用自杀按钮跳过并重生，但请记住，你总是有机会逃脱的！"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
+"你已经收集了足够多的 [thrive:compound type=\"ammonia\"][/thrive:compound] 和 [thrive:compound type=\"phosphates\"][/thrive:compound]. 然而，由于你现在所在的细胞群落并非是一个多细胞生物，你现在无法进行繁殖。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
+"你需要离开这个细胞群落才能繁殖并进入细胞编辑器，除非你决定成为多细胞生物。\n"
+"按下 [thrive:input]g_unbind_all[/thrive:input] 以离开这个细胞群落从而继续繁殖。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "载入早期多细胞编辑器中"
+msgstr ""
+"欢迎来到早期多细胞生物阶段!\n"
+"\n"
+"你已经成功带领你的物种度过了单细胞生物阶段.\n"
+"\n"
+"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
+"\n"
+"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "开始游戏"
+msgstr "继续游戏"
 
 #~ msgid "MACROSCOPIC_PROTOTYPE_INFO"
 #~ msgstr "宏观原型"

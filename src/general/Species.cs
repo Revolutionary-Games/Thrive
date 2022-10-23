@@ -47,6 +47,20 @@ public abstract class Species : ICloneable
     public Color Colour { get; set; } = new(1, 1, 1);
 
     /// <summary>
+    ///   The colour value for GUI Components that want to show this species' colour.
+    ///   This value has additional constraints compared to plain Colour,
+    ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
+    /// </summary>
+    public Color GUIColour
+    {
+        get
+        {
+            var colour = Colour;
+            return new Color(colour.r, colour.g, colour.b, 1);
+        }
+    }
+
+    /// <summary>
     ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
     ///   that old species that should no longer be in use, are not used. Once this has been set to true, don't set
     ///   this back to false.
