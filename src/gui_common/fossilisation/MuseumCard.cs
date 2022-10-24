@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Card displaying a fossilised species in the Thriveopedia museum.
+/// </summary>
 public class MuseumCard : Button
 {
     [Export]
@@ -8,6 +11,9 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
+    /// <summary>
+    ///   The fossilised species associated with this card.
+    /// </summary>
     public Species SavedSpecies = null!;
 
     private Label speciesNameLabel = null!;

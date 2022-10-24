@@ -1,5 +1,8 @@
 ﻿using Godot;
 
+/// <summary>
+///   Thriveopedia page displaying information about the current game in progress.
+/// </summary>
 public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 {
     [Export]
@@ -35,6 +38,7 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 
         var settings = CurrentGame.GameWorld.WorldSettings;
 
+        // For now, just display the world generation settings associated with this game
         difficultyDetails.Text = settings.GetTranslatedDifficultyString();
         planetDetails.Text = settings.GetTranslatedPlanetString();
         miscDetails.Text = settings.GetTranslatedMiscString();

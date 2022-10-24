@@ -1,6 +1,14 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   Thriveopedia page displaying the patch map for the current game.
+/// </summary>
+/// <remarks>
+///   <para>
+///     Note a lot of this functionality is duplicated from PatchMapEditorComponent.
+///   </para>
+/// </remarks>
 public class ThriveopediaPatchMapPage : ThriveopediaPage
 {
     [Export]

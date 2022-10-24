@@ -2,6 +2,9 @@
 using System.Text.RegularExpressions;
 using Godot;
 
+/// <summary>
+///   Dialog for fossilising (saving) a given species.
+/// </summary>
 public class FossilisationDialog : CustomDialog
 {
     [Export]
@@ -29,6 +32,9 @@ public class FossilisationDialog : CustomDialog
     private Button fossiliseButton = null!;
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
 
+    /// <summary>
+    ///   The species currently open in the dialog.
+    /// </summary>
     private Species selectedSpecies = null!;
 
     /// <summary>
@@ -37,6 +43,9 @@ public class FossilisationDialog : CustomDialog
     /// </summary>
     private bool controlsHoveredOver;
 
+    /// <summary>
+    ///   The species currently open in the dialog.
+    /// </summary>
     public Species SelectedSpecies
     {
         get => selectedSpecies;
@@ -62,11 +71,15 @@ public class FossilisationDialog : CustomDialog
         overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
     }
 
+    /// <summary>
+    ///   Updates the name of the species to be fossilised.
+    /// </summary>
+    /// <param name="name">The species' new name</param>
     public void SetNewName(string name)
     {
         speciesNameEdit.Text = name;
 
-        // Callback is manually called because the function isn't called automatically here
+        // Call the callback manually because the function isn't called automatically here
         OnNameTextChanged(name);
     }
 
@@ -196,6 +209,9 @@ public class FossilisationDialog : CustomDialog
         FossiliseSpecies();
     }
 
+    /// <summary>
+    ///   Creates a new file containing the currently selected species and closes the dialog.
+    /// </summary>
     private void FossiliseSpecies()
     {
         var savedSpecies = new FossilisedSpecies { Name = SelectedSpecies.FormattedName, Species = SelectedSpecies };

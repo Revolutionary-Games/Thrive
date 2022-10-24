@@ -436,6 +436,7 @@ public class MainMenu : NodeWithInput
 
     private void ViewSourceCodePressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
         OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
     }
 
@@ -527,7 +528,7 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        // Show the options
+        // Show the Thriveopedia
         thriveopedia.OpenFromMainMenu();
     }
 

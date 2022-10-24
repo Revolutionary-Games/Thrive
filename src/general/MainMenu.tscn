@@ -384,7 +384,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "THRIVEOPEDIA"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
@@ -408,6 +408,7 @@ margin_top = 100.0
 margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -434,6 +435,7 @@ margin_top = 200.0
 margin_right = 771.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -470,7 +472,6 @@ margin_top = 28.0
 margin_bottom = 628.0
 
 [node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
-visible = false
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false

@@ -11,23 +11,33 @@ using Directory = Godot.Directory;
 using File = Godot.File;
 using Path = System.IO.Path;
 
+/// <summary>
+///    A species saved by the user. Contains helper methods for saving/loading species on the disk.
+/// </summary>
 public class FossilisedSpecies
 {
     public const string SAVE_SAVE_JSON = "save.json";
     public const string SAVE_INFO_JSON = "info.json";
 
     /// <summary>
-    ///   Name of this saved species on disk
+    ///   Name of this saved species on disk.
     /// </summary>
     public string Name { get; set; } = "invalid";
 
     /// <summary>
-    ///   General information about this saved species
+    ///   General information about this saved species.
     /// </summary>
     public FossilisedSpeciesInformation Info { get; set; } = new();
 
+    /// <summary>
+    ///   The species to be saved/loaded.
+    /// </summary>
     public Species Species { get; set; } = null!;
 
+    /// <summary>
+    ///   Creates a list of existing fossilised species names to prevent unintended overwrites.
+    /// </summary>
+    /// <returns>A list of names of .thrivefossil files in the user's home directory</returns>
     public static List<string> CreateListOfSaves()
     {
         var result = new List<string>();
@@ -67,6 +77,11 @@ public class FossilisedSpecies
         return result;
     }
 
+    /// <summary>
+    ///   Loads a fossilised species by its filename.
+    /// </summary>
+    /// <param name="saveName">The name of the .thrivefossil file (including extension)</param>
+    /// <returns>The species saved in the provided file</returns>
     public static Species LoadSpeciesFromFile(string saveName)
     {
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
@@ -75,6 +90,9 @@ public class FossilisedSpecies
         return species;
     }
 
+    /// <summary>
+    ///   Saves this species to disk.
+    /// </summary>
     public void SaveToFile()
     {
         if (Species is not MicrobeSpecies)
@@ -82,6 +100,7 @@ public class FossilisedSpecies
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
 
+        // For now, save everything as a microbe to aid deserialization
         var speciesInfo = new FossilisedSpeciesInformation
         {
             Type = FossilisedSpeciesInformation.SpeciesType.Microbe,
@@ -157,6 +176,7 @@ public class FossilisedSpecies
         var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
             throw new JsonException("SaveInformation is null");
 
+        // Use the info file to deserialize the species to the correct type
         Species? speciesResult;
         switch (infoResult.Type)
         {
@@ -207,17 +227,6 @@ public class FossilisedSpecies
         }
 
         return (infoStr, saveStr);
-    }
-
-    private static FossilisedSpeciesInformation ParseSaveInfo(string? infoStr)
-    {
-        if (string.IsNullOrEmpty(infoStr))
-        {
-            throw new IOException("couldn't find info content in save");
-        }
-
-        return ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
-            throw new JsonException("SaveInformation is null");
     }
 
     private static string ReadStringEntry(TarInputStream tar, int length)

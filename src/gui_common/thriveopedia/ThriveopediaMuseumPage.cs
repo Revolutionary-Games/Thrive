@@ -2,6 +2,9 @@
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Thriveopedia page displaying fossilised (saved) organisms.
+/// </summary>
 public class ThriveopediaMuseumPage : ThriveopediaPage
 {
     [Export]
@@ -55,7 +58,9 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         if (what == NotificationVisibilityChanged && Visible)
         {
-            // For now, rebuild the card list entirely each time we open the page. Could well be optimised.
+            // For now, rebuild the card list entirely each time we open the page. Very unoptimised, but it keeps
+            // the museum up to date with the player's new fossilisations in a game. A possible next step would be
+            // to rebuild only when the Thriveopedia as a whole is opened.
             foreach (Node card in cardContainer.GetChildren())
                 card.DetachAndQueueFree();
 
@@ -84,6 +89,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     public override void OnNavigationPanelSizeChanged(bool collapsed)
     {
+        // Change the number of columns to reflect the space the museum takes up
         cardContainer.Columns = collapsed ? 3 : 4;
     }
 
@@ -144,6 +150,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         if (speciesPreview.PreviewSpecies == null)
             return;
 
+        // If we're opening from a game in progress, warn the player
         if (CurrentGame != null)
         {
             leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_IN_FREEBUILD_WARNING");

@@ -2,6 +2,14 @@
 using System.Linq;
 using Godot;
 
+/// <summary>
+///    Thriveopedia page displaying an evolutionary tree of all species in the current game.
+/// </summary>
+/// <remarks>
+///   <para>
+///     Note a lot of this functionality is duplicated from AutoEvoExploringTool.
+///   </para>
+/// </remarks>
 public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 {
     [Export]
@@ -54,6 +62,10 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     {
     }
 
+    /// <summary>
+    ///   Clear and then rebuild the evolutionary tree each time we open the page. This way, we ensure the tree is
+    ///   always up to date.
+    /// </summary>
     public void RebuildTree()
     {
         if (!Visible)
@@ -78,6 +90,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
             evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
             InitFirstGeneration();
 
+            // A possible next step would be to rebuild only when the Thriveopedia as a whole is opened.
             foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
             {
                 var record = generation.Value;

@@ -135,6 +135,9 @@ public class WorldGenerationSettings
             "]";
     }
 
+    /// <summary>
+    ///   Generates a formatted string containing translated difficulty details.
+    /// </summary>
     public string GetTranslatedDifficultyString()
     {
         string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
@@ -154,6 +157,9 @@ public class WorldGenerationSettings
             TranslationHelper.TranslateBool(LimitReproductionCompoundUseSpeed));
     }
 
+    /// <summary>
+    ///   Generates a formatted string containing translated planet details.
+    /// </summary>
     public string GetTranslatedPlanetString()
     {
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
@@ -163,6 +169,9 @@ public class WorldGenerationSettings
             Seed);
     }
 
+    /// <summary>
+    ///   Generates a formatted string containing translated miscellaneous details.
+    /// </summary>
     public string GetTranslatedMiscString()
     {
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MISC_DETAILS_STRING"),

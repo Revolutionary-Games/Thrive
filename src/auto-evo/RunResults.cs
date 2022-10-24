@@ -1148,6 +1148,9 @@
             [JsonProperty]
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
+            /// <summary>
+            ///   Whether this result has already been created. Used for JSON serialization.
+            /// </summary>
             [JsonProperty]
             private bool initialised;
 

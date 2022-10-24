@@ -166,6 +166,9 @@ public class GameWorld : ISaveLoadable
         species.OnEdited();
     }
 
+    /// <summary>
+    ///   Adds data for the current generation to a list of generation records.
+    /// </summary>
     public void AddCurrentGenerationToHistory()
     {
         var generation = PlayerSpecies.Generation - 1;

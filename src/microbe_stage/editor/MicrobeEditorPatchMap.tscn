@@ -62,6 +62,9 @@ custom_constants/margin_right = 10
 custom_constants/margin_top = 45
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 55
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
 margin_left = 10.0
@@ -95,6 +98,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 896.0
 margin_bottom = 608.0
+ShowScrollbars = false
 ContentPath = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource( 18 )]

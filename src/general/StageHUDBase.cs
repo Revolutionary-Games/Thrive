@@ -736,6 +736,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         // TODO: pressure?
     }
 
+    /// <summary>
+    ///   Creates and displays a fossilisation button above each on-screen microbe.
+    /// </summary>
     public void ShowFossilisationButtons()
     {
         var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
@@ -749,6 +752,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
+            // Display a faded button with a different hint if the species has been fossilised.
             var alreadyFossilised = FossilisedSpecies.CreateListOfSaves().Contains(
                 microbe.Species.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT);
             button.AlreadyFossilised = alreadyFossilised;
@@ -760,6 +764,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
+    /// <summary>
+    ///   Destroys all fossilisation buttons on screen.
+    /// </summary>
     public void HideFossilisationButtons()
     {
         foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
@@ -768,6 +775,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
+    /// <summary>
+    ///   Opens the dialog to a fossilise the species selected with a given fossilisation button.
+    /// </summary>
+    /// <param name="button">The button attached to the microbe to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
         fossilisationDialog.SelectedSpecies = button.AttachedMicrobe.Species;

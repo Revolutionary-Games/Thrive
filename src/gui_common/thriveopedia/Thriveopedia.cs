@@ -2,6 +2,10 @@
 using System.Linq;
 using Godot;
 
+/// <summary>
+///   Central store of game information for the player. Acts like a browser. Can be opened in-game and from the main
+///   menu. Some pages relating to a game in progress are only available in-game.
+/// </summary>
 public class Thriveopedia : ControlWithInput
 {
     [Export]
@@ -31,19 +35,43 @@ public class Thriveopedia : ControlWithInput
     private PanelContainer pageTreeContainer = null!;
     private Label pageTitle = null!;
     private Tree pageTree = null!;
+
+    /// <summary>
+    ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
+    /// </summary>
     private ThriveopediaHomePage homePage = null!;
 
+    /// <summary>
+    ///   Details for the game currently in progress. Null if opened from the main menu.
+    /// </summary>
     private GameProperties? currentGame;
 
+    /// <summary>
+    ///   The currently open Thriveopedia page.
+    /// </summary>
     private ThriveopediaPage? selectedPage;
 
+    /// <summary>
+    ///   All Thriveopedia pages and their associated items in the page tree.
+    /// </summary>
     private Dictionary<ThriveopediaPage, TreeItem> allPages = new();
+
+    /// <summary>
+    ///   Page history for backwards navigation.
+    /// </summary>
     private Stack<ThriveopediaPage> pageHistory = new();
+
+    /// <summary>
+    ///   Page future for forwards navigation (if the player has already gone backwards).
+    /// </summary>
     private Stack<ThriveopediaPage> pageFuture = new();
 
     [Signal]
     public delegate void OnThriveopediaClosed();
 
+    /// <summary>
+    ///   The currently open Thriveopeida page. Defaults to the home page if none has been set.
+    /// </summary>
     public ThriveopediaPage SelectedPage
     {
         get => selectedPage ?? homePage;
@@ -64,16 +92,22 @@ public class Thriveopedia : ControlWithInput
         }
     }
 
+    /// <summary>
+    ///   Details for the game currently in progress. Null if opened from the main menu. When set, initialises all
+    ///   pages requiring an active game.
+    /// </summary>
     public GameProperties? CurrentGame
     {
         get => currentGame;
         set
         {
+            // We only want to initialise these pages once per game
             if (value == currentGame)
                 return;
 
             currentGame = value;
 
+            // Add all pages associated with a game in progress
             if (currentGame != null)
             {
                 AddPage("CurrentWorld");
@@ -81,6 +115,7 @@ public class Thriveopedia : ControlWithInput
                 AddPage("EvolutionaryTree", "CurrentWorld");
             }
 
+            // Notify all pages of the new game properties
             foreach (var page in allPages.Keys)
                 page.CurrentGame = currentGame;
         }
@@ -103,6 +138,7 @@ public class Thriveopedia : ControlWithInput
         homePage = GetNode<ThriveopediaHomePage>(HomePagePath);
         allPages.Add(homePage, CreateTreeItem(homePage, null));
 
+        // Add all pages not associated with a game in progress
         AddPage("Museum");
 
         pageHistory.Push(homePage);
@@ -110,7 +146,7 @@ public class Thriveopedia : ControlWithInput
     }
 
     /// <summary>
-    ///   Opens the Thriveopedia from the main menu
+    ///   Opens the Thriveopedia from the main menu.
     /// </summary>
     public void OpenFromMainMenu()
     {
@@ -122,7 +158,7 @@ public class Thriveopedia : ControlWithInput
     }
 
     /// <summary>
-    ///   Opens the Thriveopedia from a particular game
+    ///   Opens the Thriveopedia from a particular game.
     /// </summary>
     public void OpenInGame(GameProperties game)
     {
@@ -148,23 +184,38 @@ public class Thriveopedia : ControlWithInput
         return currentGame == null;
     }
 
+    /// <summary>
+    ///   Opens an existing Thriveopedia page and adds it to the page history.
+    /// </summary>
+    /// <param name="pageName">The name of the page</param>
     public void ChangePage(string pageName)
     {
         // By default, assume we're navigating to this page normally
         ChangePage(pageName, true, true);
     }
 
+    /// <summary>
+    ///   Gets an existing page by name, or null if no page exists with that name.
+    /// </summary>
+    /// <param name="name">The name of the desired page</param>
+    /// <returns></returns>
     private ThriveopediaPage? GetPage(string? name)
     {
         return allPages.Keys.FirstOrDefault(p => p.PageName == name);
     }
 
+    /// <summary>
+    ///   Adds a page to the Thriveopedia
+    /// </summary>
+    /// <param name="name">The name of the page</param>
+    /// <param name="parentName">The name of the page's parent if applicable</param>
     private void AddPage(string name, string? parentName = null)
     {
         // Avoid adding duplicate pages
         if (allPages.Keys.Any(p => p.PageName == name))
             return;
 
+        // For now, load by direct reference to the Godot scene. Could be generalised in future.
         var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
         pageContainer.AddChild(page);
@@ -172,10 +223,18 @@ public class Thriveopedia : ControlWithInput
         page.Hide();
     }
 
+    /// <summary>
+    ///   Creates an item in the page tree associated with a page.
+    /// </summary>
+    /// <param name="page">The page the item will link to</param>
+    /// <param name="parentName">The name of the page's parent if applicable</param>
+    /// <returns></returns>
     private TreeItem CreateTreeItem(ThriveopediaPage page, string? parentName = null)
     {
         var parent = GetPage(parentName);
         var pageInTree = pageTree.CreateItem(parent != null ? allPages[parent] : null);
+
+        // Set the name of the tree item so we can reference it later
         pageInTree.SetMeta("name", page.PageName);
 
         // Godot doesn't appear to have a left margin for text in items, so add some manual padding
@@ -184,9 +243,13 @@ public class Thriveopedia : ControlWithInput
         return pageInTree;
     }
 
+    /// <summary>
+    ///   Selects an item in the page tree without initiating an item selected signal.
+    /// </summary>
+    /// <param name="page">The page to select</param>
     private void SelectInTreeWithoutEvent(ThriveopediaPage page)
     {
-        // Block signals during selection to prevent running code twice
+        // Block signals during selection to prevent running code twice, then reattach them
         pageTree.SetBlockSignals(true);
         allPages[page].Select(0);
         pageTree.SetBlockSignals(false);
@@ -198,6 +261,12 @@ public class Thriveopedia : ControlWithInput
         ChangePage(name);
     }
 
+    /// <summary>
+    ///    Opens an existing Thriveopedia page, optionally adding it to the page history.
+    /// </summary>
+    /// <param name="pageName">The name of the page</param>
+    /// <param name="addToHistory">Whether this page should be added to the history</param>
+    /// <param name="clearFuture">Whether this operation should clear the page future</param>
     private void ChangePage(string pageName, bool addToHistory, bool clearFuture)
     {
         GUICommon.Instance.PlayButtonPressSound();

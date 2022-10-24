@@ -791,6 +791,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
         run.ApplyAllResultsAndEffects(FreeBuilding);
 
+        // Add the current generation to history before resetting Auto-Evo
         CurrentGame.GameWorld.AddCurrentGenerationToHistory();
 
         // Clear the run to make the cell stage start a new run when we go back there
