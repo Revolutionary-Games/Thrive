@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -62,7 +61,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
             foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
             {
-                var card = (MuseumCard)GD.Load<PackedScene>($"res://src/gui_common/fossilisation/MuseumCard.tscn").Instance();
+                var card = (MuseumCard)GD.Load<PackedScene>(
+                    "res://src/gui_common/fossilisation/MuseumCard.tscn").Instance();
 
                 var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
 
@@ -162,7 +162,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             // Start freebuild game with the selected species
-            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true, (Species)speciesPreview.PreviewSpecies!.Clone());
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(
+                new WorldGenerationSettings(), true, (Species)speciesPreview.PreviewSpecies!.Clone());
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

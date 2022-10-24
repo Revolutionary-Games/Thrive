@@ -1,6 +1,5 @@
-
+﻿using System;
 using Godot;
-using System;
 
 public class ThriveopediaPatchMapPage : ThriveopediaPage
 {
@@ -13,12 +12,10 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     [Export]
     public NodePath SeedLabelPath = null!;
 
+    protected Patch playerPatchOnEntry = null!;
     private PatchMapDrawer mapDrawer = null!;
     private PatchDetailsPanel detailsPanel = null!;
     private Label seedLabel = null!;
-
-    
-    protected Patch playerPatchOnEntry = null!;
 
     public override string PageName => "PatchMap";
     public override string TranslatedPageName => TranslationServer.Translate("PATCH_MAP_PAGE");
@@ -92,7 +89,6 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
             throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
         UpdatePlayerPatch(playerPatchOnEntry);
     }
-
 
     private void OnFindCurrentPatchPressed()
     {

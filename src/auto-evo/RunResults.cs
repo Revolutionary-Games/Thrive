@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using Godot;
     using Newtonsoft.Json;
@@ -1103,13 +1102,7 @@
             ///   </para>
             /// </remarks>
             [JsonIgnore]
-            public Dictionary<Patch, long> NewPopulationInPatches = new();
-
-            /// <summary>
-            ///   List of patches this species has spread to. Stored as a list in JSON to avoid serialization errors.
-            /// </summary>
-            [JsonProperty]
-            private List<KeyValuePair<Patch, long>> newPopulationInPatches => NewPopulationInPatches.ToList();
+            public Dictionary<Patch, long> NewPopulationInPatches;
 
             /// <summary>
             ///   null means no changes
@@ -1155,12 +1148,24 @@
             [JsonProperty]
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
+            [JsonProperty]
+            private bool initialised;
+
             [JsonConstructor]
             public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
-                NewPopulationInPatches ??= newPopulationInPatches.ToDictionary(p => p.Key, p => p.Value);
+                NewPopulationInPatches = initialised ?
+                    NewPopulations.ToDictionary(p => p.Key, p => p.Value) :
+                    new Dictionary<Patch, long>();
+                initialised = true;
             }
+
+            /// <summary>
+            ///   List of patches this species has spread to. Stored as a list in JSON to avoid serialization errors.
+            /// </summary>
+            [JsonProperty]
+            private List<KeyValuePair<Patch, long>> NewPopulations => NewPopulationInPatches.ToList();
 
             public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)
             {

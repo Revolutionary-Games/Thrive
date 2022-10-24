@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using AutoEvo;
 
 /// <summary>
 ///   Base common class with shared editor functionality. Note that most editor functionality is done by

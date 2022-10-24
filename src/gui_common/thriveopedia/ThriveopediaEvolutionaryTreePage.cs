@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -19,12 +19,12 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     [Export]
     public NodePath HexPreviewPath = null!;
 
+    private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
     private VBoxContainer disabledInFreebuild = null!;
     private EvolutionaryTree evolutionaryTree = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
-    private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
     public override string PageName => "EvolutionaryTree";
     public override string TranslatedPageName => TranslationServer.Translate("EVOLUTIONARY_TREE_PAGE");
@@ -74,14 +74,15 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         {
             evolutionaryTree.Clear();
             speciesHistoryList.Clear();
-            
+
             evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
             InitFirstGeneration();
 
             foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
             {
                 var record = generation.Value;
-                evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(record.AutoEvoResult, record.Generation, record.TimeElapsed);
+                evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
+                    record.AutoEvoResult, record.Generation, record.TimeElapsed);
                 speciesHistoryList.Add(record.AllSpecies);
             }
         }

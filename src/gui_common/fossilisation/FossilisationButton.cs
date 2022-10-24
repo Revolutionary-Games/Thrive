@@ -5,9 +5,13 @@ public class FossilisationButton : TextureButton
     [Export]
     public Texture AlreadyFossilisedTexture = null!;
 
+    public Microbe AttachedMicrobe = null!;
+
     private bool alreadyFossilised;
 
-    public Microbe AttachedMicrobe = null!;
+    [Signal]
+    public delegate void OnFossilisationDialogOpened(FossilisationButton button);
+
     public bool AlreadyFossilised
     {
         get => alreadyFossilised;
@@ -20,11 +24,8 @@ public class FossilisationButton : TextureButton
         }
     }
 
-    [Signal]
-    public delegate void OnFossilisationDialogOpened(FossilisationButton button);
-
     public void UpdatePosition()
-    {        
+    {
         RectGlobalPosition = GetViewport().GetCamera().UnprojectPosition(AttachedMicrobe.GlobalTransform.origin);
     }
 

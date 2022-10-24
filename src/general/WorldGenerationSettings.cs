@@ -137,9 +137,9 @@ public class WorldGenerationSettings
 
     public string GetTranslatedDifficultyString()
     {
-        string translatedDifficulty = Difficulty is DifficultyPreset difficulty
-            ? difficulty.Name
-            : TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
+        string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
+            difficulty.Name :
+            TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
 
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("DIFFICULTY_DETAILS_STRING"),
             translatedDifficulty,

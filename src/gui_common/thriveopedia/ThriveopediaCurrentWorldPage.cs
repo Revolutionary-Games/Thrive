@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System.Globalization;
 
 public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 {

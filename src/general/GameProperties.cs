@@ -58,7 +58,8 @@ public class GameProperties
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
-    public static GameProperties StartNewMicrobeGame(WorldGenerationSettings settings, bool freebuild = false, Species? startingSpecies = null)
+    public static GameProperties StartNewMicrobeGame(WorldGenerationSettings settings, bool freebuild = false,
+        Species? startingSpecies = null)
     {
         var game = new GameProperties(settings, startingSpecies);
 

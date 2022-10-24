@@ -1,6 +1,6 @@
-using Godot;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 public class Thriveopedia : ControlWithInput
 {
@@ -35,7 +35,7 @@ public class Thriveopedia : ControlWithInput
 
     private GameProperties? currentGame;
 
-    private ThriveopediaPage selectedPage = null!;
+    private ThriveopediaPage? selectedPage;
 
     private Dictionary<ThriveopediaPage, TreeItem> allPages = new();
     private Stack<ThriveopediaPage> pageHistory = new();
@@ -46,12 +46,11 @@ public class Thriveopedia : ControlWithInput
 
     public ThriveopediaPage SelectedPage
     {
-        get => selectedPage;
+        get => selectedPage ?? homePage;
         set
         {
             // Hide the last page and show the new page
-            if (selectedPage != null)
-                selectedPage.Hide();
+            selectedPage?.Hide();
 
             selectedPage = value;
             selectedPage.Show();
@@ -194,7 +193,7 @@ public class Thriveopedia : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (pageName == selectedPage.PageName)
+        if (pageName == SelectedPage.PageName)
             return;
 
         var page = GetPage(pageName);

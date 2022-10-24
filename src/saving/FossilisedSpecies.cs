@@ -1,14 +1,15 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
+using Newtonsoft.Json;
 using Directory = Godot.Directory;
 using File = Godot.File;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
+using Path = System.IO.Path;
 
 public class FossilisedSpecies
 {
@@ -61,9 +62,17 @@ public class FossilisedSpecies
 
         using var file = new File();
         result = result.OrderBy(item =>
-            file.GetModifiedTime(System.IO.Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
+            file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
 
         return result;
+    }
+
+    public static Species LoadSpeciesFromFile(string saveName)
+    {
+        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
+        var (_, species) = LoadFromFile(target);
+
+        return species;
     }
 
     public void SaveToFile()
@@ -73,7 +82,7 @@ public class FossilisedSpecies
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
 
-        var speciesInfo = new FossilisedSpeciesInformation()
+        var speciesInfo = new FossilisedSpeciesInformation
         {
             Type = FossilisedSpeciesInformation.SpeciesType.Microbe,
         };
@@ -81,18 +90,11 @@ public class FossilisedSpecies
         WriteRawSaveDataToFile(speciesInfo, Species.StringCode, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
     }
 
-    public static Species LoadSpeciesFromFile(string saveName)
-    {
-        var target = System.IO.Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
-        var (_, species) = LoadFromFile(target);
-
-        return species;
-    }
-
-    private static void WriteRawSaveDataToFile(FossilisedSpeciesInformation speciesInfo, string saveContent, string saveName)
+    private static void WriteRawSaveDataToFile(FossilisedSpeciesInformation speciesInfo, string saveContent,
+        string saveName)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.FOSSILISED_SPECIES_FOLDER);
-        var target = System.IO.Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
+        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
 
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(speciesInfo);
 
@@ -132,7 +134,7 @@ public class FossilisedSpecies
         archive.CloseEntry();
     }
 
-    private static (FossilisedSpeciesInformation, Species) LoadFromFile(string file)
+    private static (FossilisedSpeciesInformation Info, Species Species) LoadFromFile(string file)
     {
         using (var directory = new Directory())
         {
@@ -141,7 +143,7 @@ public class FossilisedSpecies
         }
 
         var (infoStr, saveStr) = LoadDataFromFile(file);
-            
+
         if (string.IsNullOrEmpty(infoStr))
         {
             throw new IOException("couldn't find info content in save");
@@ -154,8 +156,8 @@ public class FossilisedSpecies
 
         var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
             throw new JsonException("SaveInformation is null");
-        Species? speciesResult = null;
 
+        Species? speciesResult;
         switch (infoResult.Type)
         {
             case FossilisedSpeciesInformation.SpeciesType.Microbe:
@@ -169,7 +171,7 @@ public class FossilisedSpecies
         return (infoResult, speciesResult);
     }
 
-    private static (string?, string?) LoadDataFromFile(string file)
+    private static (string? Info, string? Save) LoadDataFromFile(string file)
     {
         string? infoStr = null;
         string? saveStr = null;

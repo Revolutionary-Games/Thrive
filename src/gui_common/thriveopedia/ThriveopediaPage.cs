@@ -7,7 +7,7 @@ public abstract class ThriveopediaPage : PanelContainer
 
     private PanelContainer backgroundPanel = null!;
 
-    private GameProperties? currentGame = null!;
+    private GameProperties? currentGame;
 
     public abstract string PageName { get; }
     public abstract string TranslatedPageName { get; }

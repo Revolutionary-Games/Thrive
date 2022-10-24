@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
-using AutoEvo;
 
 /// <summary>
 ///   All data regarding the game world of a thrive playthrough
@@ -20,6 +20,9 @@ public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
+
+    [JsonProperty]
+    public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
     [JsonProperty]
     private uint speciesIdCounter;
@@ -44,13 +47,11 @@ public class GameWorld : ISaveLoadable
     /// </remarks>
     private AutoEvoRun? autoEvo;
 
-    [JsonProperty]
-    public Dictionary<int, GenerationRecord> GenerationHistory = new();
-
     /// <summary>
     ///   Creates a new world
     /// </summary>
     /// <param name="settings">Settings to generate the world with</param>
+    /// <param name="startingSpecies">Starting species for the player</param>
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
     {
         WorldSettings = settings;
@@ -168,12 +169,12 @@ public class GameWorld : ISaveLoadable
     public void AddCurrentGenerationToHistory()
     {
         var generation = PlayerSpecies.Generation - 1;
-        GenerationHistory.Add(generation, new GenerationRecord()
+        GenerationHistory.Add(generation, new GenerationRecord
         {
             Generation = generation,
             TimeElapsed = TotalPassedTime,
             AutoEvoResult = GetAutoEvoRun().Results!,
-            AllSpecies = worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone())
+            AllSpecies = worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone()),
         });
     }
 

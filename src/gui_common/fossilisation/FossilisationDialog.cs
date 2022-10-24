@@ -1,6 +1,6 @@
-﻿using Godot;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
+using Godot;
 
 public class FossilisationDialog : CustomDialog
 {
@@ -22,19 +22,6 @@ public class FossilisationDialog : CustomDialog
     [Export]
     public NodePath OverwriteNameConfirmationDialogPath = null!;
 
-    public Species SelectedSpecies
-    {
-        get => selectedSpecies;
-        set
-        {
-            selectedSpecies = (Species)value.Clone();
-
-            SetNewName(selectedSpecies.FormattedName);
-            UpdateSpeciesPreview();
-            UpdateSpeciesDetails();
-        }
-    }
-
     private LineEdit speciesNameEdit = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
@@ -49,6 +36,19 @@ public class FossilisationDialog : CustomDialog
     ///   outside the name editing controls, for detecting when the name needs to be validated.
     /// </summary>
     private bool controlsHoveredOver;
+
+    public Species SelectedSpecies
+    {
+        get => selectedSpecies;
+        set
+        {
+            selectedSpecies = (Species)value.Clone();
+
+            SetNewName(selectedSpecies.FormattedName);
+            UpdateSpeciesPreview();
+            UpdateSpeciesDetails();
+        }
+    }
 
     public override void _Ready()
     {
@@ -155,7 +155,11 @@ public class FossilisationDialog : CustomDialog
     private void UpdateSpeciesDetails()
     {
         speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            SelectedSpecies.FormattedNameBbCode, SelectedSpecies.ID, SelectedSpecies.Generation, SelectedSpecies.Population, SelectedSpecies.Colour.ToHtml(),
+            SelectedSpecies.FormattedNameBbCode,
+            SelectedSpecies.ID,
+            SelectedSpecies.Generation,
+            SelectedSpecies.Population,
+            SelectedSpecies.Colour.ToHtml(),
             string.Join("\n  ", SelectedSpecies.Behaviour.Select(b => b.Key + ": " + b.Value)));
 
         switch (SelectedSpecies)
@@ -180,9 +184,11 @@ public class FossilisationDialog : CustomDialog
     {
         GD.Print("Saving species " + SelectedSpecies.FormattedName);
 
-        if (FossilisedSpecies.CreateListOfSaves().Any(s => s == SelectedSpecies.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT))
+        if (FossilisedSpecies.CreateListOfSaves()
+            .Any(s => s == SelectedSpecies.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT))
         {
-            overwriteNameConfirmationDialog.DialogText = TranslationServer.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
+            overwriteNameConfirmationDialog.DialogText =
+                TranslationServer.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
             overwriteNameConfirmationDialog.PopupCenteredShrink();
             return;
         }
