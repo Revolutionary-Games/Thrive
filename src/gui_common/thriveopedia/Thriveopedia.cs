@@ -60,6 +60,7 @@ public class Thriveopedia : ControlWithInput
             forwardButton.Disabled = pageFuture.Count == 0;
 
             pageTitle.Text = SelectedPage.TranslatedPageName;
+            SelectInTreeWithoutEvent(selectedPage);
         }
     }
 
@@ -183,6 +184,14 @@ public class Thriveopedia : ControlWithInput
         return pageInTree;
     }
 
+    private void SelectInTreeWithoutEvent(ThriveopediaPage page)
+    {
+        // Block signals during selection to prevent running code twice
+        pageTree.SetBlockSignals(true);
+        allPages[page].Select(0);
+        pageTree.SetBlockSignals(false);
+    }
+
     private void OnPageSelectedFromPageTree()
     {
         var name = (string)pageTree.GetSelected().GetMeta("name");
@@ -211,7 +220,6 @@ public class Thriveopedia : ControlWithInput
             pageFuture.Clear();
 
         SelectedPage = page;
-        allPages[SelectedPage].Select(0);
     }
 
     private void OnCollapseTreePressed()
@@ -250,7 +258,11 @@ public class Thriveopedia : ControlWithInput
 
     private void Exit()
     {
+        // Reset to the home page for the next session
         pageHistory.Clear();
+        pageFuture.Clear();
+        pageHistory.Push(homePage);
+        SelectedPage = homePage;
 
         EmitSignal(nameof(OnThriveopediaClosed));
     }
