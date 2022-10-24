@@ -147,7 +147,7 @@ public class WorldGenerationSettings
             AIMutationMultiplier,
             CompoundDensity,
             PlayerDeathPopulationPenalty,
-            GlucoseDecay,
+            TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
             TranslationHelper.TranslateBool(FreeGlucoseCloud),
             TranslationHelper.TranslateBool(PassiveGainOfReproductionCompounds),
