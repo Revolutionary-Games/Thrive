@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-24 19:27+0100\n"
+"POT-Creation-Date: 2022-10-25 01:03+0100\n"
 "PO-Revision-Date: 2022-10-19 19:00+0000\n"
 "Last-Translator: Severin Aurelian Koloman August Ludvig Girtelschmid <severingirtelschmid@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -32,7 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Obtížná"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:142
+#: ../src/general/WorldGenerationSettings.cs:145
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Vlastní"
 
@@ -1007,9 +1007,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Dokončení {0} Generací"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:127
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:122
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Živočich[/b]\n"
@@ -1024,9 +1024,9 @@ msgstr ""
 "{5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:137
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:132
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Období[/b]\n"
@@ -1189,8 +1189,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Podrobnosti druhu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:501 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1246,91 +1246,91 @@ msgstr "Populace {0} se změnila o {1} za {2} z důvodu: {3}"
 msgid "MEGA_YEARS"
 msgstr "Myry"
 
-#: ../src/auto-evo/RunResults.cs:605
+#: ../src/auto-evo/RunResults.cs:604
 msgid "POPULATION_COLON"
 msgstr "populace:"
 
-#: ../src/auto-evo/RunResults.cs:614
+#: ../src/auto-evo/RunResults.cs:613
 msgid "WENT_EXTINCT_IN"
 msgstr "vyhynul v {0}"
 
-#: ../src/auto-evo/RunResults.cs:620
+#: ../src/auto-evo/RunResults.cs:619
 msgid "PREVIOUS_COLON"
 msgstr "předchozí:"
 
-#: ../src/auto-evo/RunResults.cs:638
+#: ../src/auto-evo/RunResults.cs:637
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "oddělen od {0}"
 
-#: ../src/auto-evo/RunResults.cs:651
+#: ../src/auto-evo/RunResults.cs:650
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "vznikl, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:654
+#: ../src/auto-evo/RunResults.cs:653
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "vznikly v důsledku rozdílných selekčních tlaků"
 
-#: ../src/auto-evo/RunResults.cs:671
+#: ../src/auto-evo/RunResults.cs:670
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populace se v některých oblastech oddělila a vytvořila nové druhy {0}:"
 
-#: ../src/auto-evo/RunResults.cs:687
+#: ../src/auto-evo/RunResults.cs:686
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "zmutoval se"
 
-#: ../src/auto-evo/RunResults.cs:692
+#: ../src/auto-evo/RunResults.cs:691
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genový kód:"
 
-#: ../src/auto-evo/RunResults.cs:703
+#: ../src/auto-evo/RunResults.cs:702
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozšířen do prostředí:"
 
-#: ../src/auto-evo/RunResults.cs:711
+#: ../src/auto-evo/RunResults.cs:710
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} posláním: {1} populace z prostředí: {2}"
 
-#: ../src/auto-evo/RunResults.cs:730
+#: ../src/auto-evo/RunResults.cs:729
 msgid "POPULATION_IN_PATCHES"
 msgstr "populace v prostředích:"
 
-#: ../src/auto-evo/RunResults.cs:845
+#: ../src/auto-evo/RunResults.cs:844
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "vyhynul na této planetě"
 
-#: ../src/auto-evo/RunResults.cs:899
+#: ../src/auto-evo/RunResults.cs:898
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
-#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] populace se zvýšila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:915 ../src/auto-evo/RunResults.cs:937
+#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] populace se snížila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:923
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizel z tohoto prostředí"
 
-#: ../src/auto-evo/RunResults.cs:947
+#: ../src/auto-evo/RunResults.cs:946
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do tohoto prostředí z {1}"
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:951
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala z {2} do {1}"
 
-#: ../src/auto-evo/RunResults.cs:958
+#: ../src/auto-evo/RunResults.cs:957
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
 
-#: ../src/auto-evo/RunResults.cs:977
+#: ../src/auto-evo/RunResults.cs:976
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:983
+#: ../src/auto-evo/RunResults.cs:982
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
@@ -1415,7 +1415,7 @@ msgstr "ZRUŠIT AKCI"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:158
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "DALŠÍ"
@@ -1488,7 +1488,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status spuštění:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
-#: ../src/general/EditorBase.cs:653
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -2081,7 +2081,7 @@ msgstr "Chování"
 msgid "BEHAVIOUR_FOCUS"
 msgstr "Chování"
 
-#: ../src/general/EditorBase.cs:237
+#: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čekání na automatickou evoluci:"
 
@@ -2090,7 +2090,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIT"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
@@ -2103,6 +2103,7 @@ msgstr "Zavřít"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
+#: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2182,56 +2183,60 @@ msgstr "Editor mikrobů"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj Průzkumu Auto-Evo"
 
+#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+msgid "THRIVEOPEDIA"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:400
 msgid "MODS"
 msgstr "Mody"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:415
 msgid "ART_GALLERY"
 msgstr "Galerie"
 
-#: ../src/general/MainMenu.tscn:426
+#: ../src/general/MainMenu.tscn:427
 msgid "LICENSES"
 msgstr "Licence"
 
-#: ../src/general/MainMenu.tscn:440
+#: ../src/general/MainMenu.tscn:442
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:518
+#: ../src/general/MainMenu.tscn:519
 msgid "GLES2_MODE_WARNING"
 msgstr "Varování režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
-#: ../src/general/MainMenu.tscn:523
+#: ../src/general/MainMenu.tscn:524
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Vypnuto"
 
-#: ../src/general/MainMenu.tscn:535
+#: ../src/general/MainMenu.tscn:536
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:550
+#: ../src/general/MainMenu.tscn:551
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:561
+#: ../src/general/MainMenu.tscn:562
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:566
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstranit místní data"
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:568
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2240,11 +2245,11 @@ msgstr ""
 "Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
 "a spíše zaútočí zpět."
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:572
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyby načítání módu"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:573
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Při načítání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
 
@@ -2996,10 +3001,6 @@ msgstr "Uložit hru"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:206
-msgid "THRIVEOPEDIA"
-msgstr ""
-
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
@@ -3038,44 +3039,44 @@ msgstr "vyhynulý v tomto prostředí"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:753
+#: ../src/general/StageHUDBase.cs:760
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:753
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:14
+#: ../src/general/StageHUDBase.cs:761
+#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:975
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:977
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/general/StageHUDBase.cs:964
+#: ../src/general/StageHUDBase.cs:979
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/general/StageHUDBase.cs:966
+#: ../src/general/StageHUDBase.cs:981
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/general/StageHUDBase.cs:968
+#: ../src/general/StageHUDBase.cs:983
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:985
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
-#: ../src/general/StageHUDBase.cs:1180
+#: ../src/general/StageHUDBase.cs:1195
 msgid "PLAYER_CELL"
 msgstr "Hráčská buňka"
 
-#: ../src/general/StageHUDBase.cs:1193
+#: ../src/general/StageHUDBase.cs:1208
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3099,19 +3100,19 @@ msgstr ""
 msgid "FALSE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Přednastavení obtížnosti"
 
-#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Otevřít složku záznamů"
 
-#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
@@ -3463,15 +3464,15 @@ msgstr "Umělec:"
 msgid "UNTITLED"
 msgstr "Bez názvu"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr "Prohlížeč galerie"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:64
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filtrovat věci podle kategorie:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Prezentace"
@@ -3538,12 +3539,12 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr "Tutoriál"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:123
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Název druhu musí odpovídat binomickému systému pojmenování (rod a epiteton)!"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:185
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
@@ -3597,12 +3598,12 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Proces buňky"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Současní vývojáři"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_PAGE"
 msgstr "Evoluční strom"
@@ -3611,7 +3612,7 @@ msgstr "Evoluční strom"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Domovská stránka"
@@ -3628,12 +3629,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Domovská stránka"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:149
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "Volné stavění"
@@ -3647,20 +3648,20 @@ msgstr "Volné stavění"
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
 #, fuzzy
 msgid "PATCH_MAP_PAGE"
 msgstr "Typ mapy prostředí"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:105
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:130
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 msgid "SEED_LABEL"
 msgstr "Seed planety: {0}"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:121
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Nalézt nynější prostředí"
@@ -5398,17 +5399,17 @@ msgstr "Použít Auto Harmony Loading"
 msgid "CREATE"
 msgstr "Vytvořit"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
 #, fuzzy
 msgid "MICROBE"
 msgstr "Mikrobiální Období"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Umístit organelu"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#: ../src/saving/FossilisedSpeciesInformation.cs:17
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Umístit organelu"

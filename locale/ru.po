@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-24 19:27+0100\n"
+"POT-Creation-Date: 2022-10-25 01:03+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -32,7 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Сложно"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:142
+#: ../src/general/WorldGenerationSettings.cs:145
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Пользовательский"
 
@@ -1019,9 +1019,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Симулировать {0} поколений"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:127
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:122
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Виды[/b]\n"
@@ -1036,9 +1036,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:137
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:132
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Этап[/b]\n"
@@ -1208,8 +1208,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Список Видов"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:501 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1266,91 +1266,91 @@ msgstr "Популяция {0} изменена на {1} к {2}, по причи
 msgid "MEGA_YEARS"
 msgstr "Миллион Лет"
 
-#: ../src/auto-evo/RunResults.cs:605
+#: ../src/auto-evo/RunResults.cs:604
 msgid "POPULATION_COLON"
 msgstr "популяция:"
 
-#: ../src/auto-evo/RunResults.cs:614
+#: ../src/auto-evo/RunResults.cs:613
 msgid "WENT_EXTINCT_IN"
 msgstr "вымерли в {0}"
 
-#: ../src/auto-evo/RunResults.cs:620
+#: ../src/auto-evo/RunResults.cs:619
 msgid "PREVIOUS_COLON"
 msgstr "предыдущий:"
 
-#: ../src/auto-evo/RunResults.cs:638
+#: ../src/auto-evo/RunResults.cs:637
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "Отделившихся от {0}"
 
-#: ../src/auto-evo/RunResults.cs:651
+#: ../src/auto-evo/RunResults.cs:650
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "возникли, чтобы заполнить нишу"
 
-#: ../src/auto-evo/RunResults.cs:654
+#: ../src/auto-evo/RunResults.cs:653
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "возникли в связи с различным давлением отбора"
 
-#: ../src/auto-evo/RunResults.cs:671
+#: ../src/auto-evo/RunResults.cs:670
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "популяция в некоторых биомах разделилась, образовав новые виды {0}:"
 
-#: ../src/auto-evo/RunResults.cs:687
+#: ../src/auto-evo/RunResults.cs:686
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "мутировал"
 
-#: ../src/auto-evo/RunResults.cs:692
+#: ../src/auto-evo/RunResults.cs:691
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генетический код:"
 
-#: ../src/auto-evo/RunResults.cs:703
+#: ../src/auto-evo/RunResults.cs:702
 msgid "SPREAD_TO_PATCHES"
 msgstr "распространяется в биомы:"
 
-#: ../src/auto-evo/RunResults.cs:711
+#: ../src/auto-evo/RunResults.cs:710
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} отправив: {1} популяции из биома: {2}"
 
-#: ../src/auto-evo/RunResults.cs:730
+#: ../src/auto-evo/RunResults.cs:729
 msgid "POPULATION_IN_PATCHES"
 msgstr "Популяция в биомах:"
 
-#: ../src/auto-evo/RunResults.cs:845
+#: ../src/auto-evo/RunResults.cs:844
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "вымерли с планеты"
 
-#: ../src/auto-evo/RunResults.cs:899
+#: ../src/auto-evo/RunResults.cs:898
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "Вид [b][u]{0}[/u][/b] вымер!"
 
-#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Популяция вида [b][u]{0}[/u][/b] увеличилась до {1}"
 
-#: ../src/auto-evo/RunResults.cs:915 ../src/auto-evo/RunResults.cs:937
+#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Популяция вида [b][u]{0}[/u][/b] уменьшилась до {1}"
 
-#: ../src/auto-evo/RunResults.cs:923
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "Вид [b][u]{0}[/u][/b] исчез из этого биома"
 
-#: ../src/auto-evo/RunResults.cs:947
+#: ../src/auto-evo/RunResults.cs:946
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в этот биом из {1}"
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:951
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1} из {2}"
 
-#: ../src/auto-evo/RunResults.cs:958
+#: ../src/auto-evo/RunResults.cs:957
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Часть популяции вида [b][u]{0}[/u][/b] мигрировала в {1}"
 
-#: ../src/auto-evo/RunResults.cs:977
+#: ../src/auto-evo/RunResults.cs:976
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид, чтобы заполнить нишу"
 
-#: ../src/auto-evo/RunResults.cs:983
+#: ../src/auto-evo/RunResults.cs:982
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид в связи с различными условиями отбора"
 
@@ -1435,7 +1435,7 @@ msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:158
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
@@ -1508,7 +1508,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
-#: ../src/general/EditorBase.cs:653
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -2100,7 +2100,7 @@ msgstr "Поведение"
 msgid "BEHAVIOUR_FOCUS"
 msgstr "Поведение"
 
-#: ../src/general/EditorBase.cs:237
+#: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
@@ -2109,7 +2109,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ПОДТВЕРДИТЬ"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
@@ -2122,6 +2122,7 @@ msgstr "Закрыть"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
+#: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2201,56 +2202,60 @@ msgstr "Свободный микробный редактор"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения авто-эво"
 
+#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+msgid "THRIVEOPEDIA"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:400
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:415
 msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
-#: ../src/general/MainMenu.tscn:426
+#: ../src/general/MainMenu.tscn:427
 msgid "LICENSES"
 msgstr "Лицензии"
 
-#: ../src/general/MainMenu.tscn:440
+#: ../src/general/MainMenu.tscn:442
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложить идею"
 
-#: ../src/general/MainMenu.tscn:518
+#: ../src/general/MainMenu.tscn:519
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/MainMenu.tscn:523
+#: ../src/general/MainMenu.tscn:524
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Отключено"
 
-#: ../src/general/MainMenu.tscn:535
+#: ../src/general/MainMenu.tscn:536
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:550
+#: ../src/general/MainMenu.tscn:551
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:561
+#: ../src/general/MainMenu.tscn:562
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:566
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Удаление Локальных Данных"
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:568
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2259,11 +2264,11 @@ msgstr ""
 "Храбрые микроорганизмы не будут напуганы хищниками поблизости\n"
 "и более склонны атаковать в ответ."
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:572
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки при загрузке модов"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:573
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
@@ -3013,10 +3018,6 @@ msgstr "Сохранить игру"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:206
-msgid "THRIVEOPEDIA"
-msgstr ""
-
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Как играть в эту игру"
@@ -3055,44 +3056,44 @@ msgstr "Вымерли в биоме"
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:753
+#: ../src/general/StageHUDBase.cs:760
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:753
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:14
+#: ../src/general/StageHUDBase.cs:761
+#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:975
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "изобилие"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:977
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "немного"
 
-#: ../src/general/StageHUDBase.cs:964
+#: ../src/general/StageHUDBase.cs:979
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "изрядное количество"
 
-#: ../src/general/StageHUDBase.cs:966
+#: ../src/general/StageHUDBase.cs:981
 msgid "CATEGORY_SOME"
 msgstr "некоторое количество"
 
-#: ../src/general/StageHUDBase.cs:968
+#: ../src/general/StageHUDBase.cs:983
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:985
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "очень мало"
 
-#: ../src/general/StageHUDBase.cs:1180
+#: ../src/general/StageHUDBase.cs:1195
 msgid "PLAYER_CELL"
 msgstr "Клетка Игрока"
 
-#: ../src/general/StageHUDBase.cs:1193
+#: ../src/general/StageHUDBase.cs:1208
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3116,19 +3117,19 @@ msgstr ""
 msgid "FALSE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Шаблон сложности"
 
-#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Открыть Папку с Логами"
 
-#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
@@ -3480,15 +3481,15 @@ msgstr "Создатель:"
 msgid "UNTITLED"
 msgstr "Без Имени"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr "Просмотр Галереи"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:64
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Фильтровать предметы по категориям:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Слайд-шоу"
@@ -3555,12 +3556,12 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr "Руководство"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:123
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Название вида должно соответствовать биномиальной системе наименования (Род и Эпитет)!"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:185
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
@@ -3614,12 +3615,12 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Клеточные Процессы"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Текущие Разработчики"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_PAGE"
 msgstr "Автор: Revolutionary Games Studio"
@@ -3628,7 +3629,7 @@ msgstr "Автор: Revolutionary Games Studio"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Домашняя страница"
@@ -3645,12 +3646,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Домашняя страница"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:149
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "Свободное Строительство"
@@ -3664,20 +3665,20 @@ msgstr "Свободное Строительство"
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
 #, fuzzy
 msgid "PATCH_MAP_PAGE"
 msgstr "Тип карты биомов"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:105
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:130
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 msgid "SEED_LABEL"
 msgstr "Сид планеты: {0}"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:121
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "Найти текущий биом"
@@ -5403,17 +5404,17 @@ msgstr "Использовать автозагрузку Harmony"
 msgid "CREATE"
 msgstr "Создать"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
 #, fuzzy
 msgid "MICROBE"
 msgstr "Одноклеточная стадия"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Этап Многоклеточного микроба"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#: ../src/saving/FossilisedSpeciesInformation.cs:17
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Этап Многоклеточного микроба"

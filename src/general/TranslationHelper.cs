@@ -80,7 +80,7 @@ public static class TranslationHelper
 
     public static string TranslateBool(bool value)
     {
-        return TranslationServer.Translate(value ? "TRUE" : "FALSE");
+        return value ? TranslationServer.Translate("TRUE") : TranslationServer.Translate("FALSE");
     }
 
     private static string GetTranslatedText(Type type, object instance, object[] attributes)

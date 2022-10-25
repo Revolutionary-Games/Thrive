@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-24 19:27+0100\n"
+"POT-Creation-Date: 2022-10-25 01:03+0100\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -32,7 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:142
+#: ../src/general/WorldGenerationSettings.cs:145
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -1051,17 +1051,17 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "濃度為"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:127
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:122
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:137
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:132
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1233,8 +1233,8 @@ msgid "SPECIES_DETAILS"
 msgstr "物種列表"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:501 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1294,95 +1294,95 @@ msgstr "原{0}人口變動了{1}從{2}之中，原因：{3}"
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#: ../src/auto-evo/RunResults.cs:605
+#: ../src/auto-evo/RunResults.cs:604
 #, fuzzy
 msgid "POPULATION_COLON"
 msgstr "總人口："
 
-#: ../src/auto-evo/RunResults.cs:614
+#: ../src/auto-evo/RunResults.cs:613
 msgid "WENT_EXTINCT_IN"
 msgstr "在 {0} 中滅絕"
 
-#: ../src/auto-evo/RunResults.cs:620
+#: ../src/auto-evo/RunResults.cs:619
 #, fuzzy
 msgid "PREVIOUS_COLON"
 msgstr "物種："
 
-#: ../src/auto-evo/RunResults.cs:638
+#: ../src/auto-evo/RunResults.cs:637
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "从{0}分裂出来的"
 
-#: ../src/auto-evo/RunResults.cs:651
+#: ../src/auto-evo/RunResults.cs:650
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "出現來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:654
+#: ../src/auto-evo/RunResults.cs:653
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "由於不同的演化壓力而出現"
 
-#: ../src/auto-evo/RunResults.cs:671
+#: ../src/auto-evo/RunResults.cs:670
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "在一些地區的種群分支成了新的物種{0}："
 
-#: ../src/auto-evo/RunResults.cs:687
+#: ../src/auto-evo/RunResults.cs:686
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "發生突變"
 
-#: ../src/auto-evo/RunResults.cs:692
+#: ../src/auto-evo/RunResults.cs:691
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "基因密碼："
 
-#: ../src/auto-evo/RunResults.cs:703
+#: ../src/auto-evo/RunResults.cs:702
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "傳播到的區域："
 
-#: ../src/auto-evo/RunResults.cs:711
+#: ../src/auto-evo/RunResults.cs:710
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "由區域{2}派出{1}個生物擴散到：{0}"
 
-#: ../src/auto-evo/RunResults.cs:730
+#: ../src/auto-evo/RunResults.cs:729
 msgid "POPULATION_IN_PATCHES"
 msgstr "該區域人口:"
 
-#: ../src/auto-evo/RunResults.cs:845
+#: ../src/auto-evo/RunResults.cs:844
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "從這個星球上滅絕了"
 
-#: ../src/auto-evo/RunResults.cs:899
+#: ../src/auto-evo/RunResults.cs:898
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] 已經滅絕了！"
 
-#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] 人口已經增加到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:915 ../src/auto-evo/RunResults.cs:937
+#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] 人口已经減少到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:923
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] 已經從這個區域消失"
 
-#: ../src/auto-evo/RunResults.cs:947
+#: ../src/auto-evo/RunResults.cs:946
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分 [u]{0}[/u] 人口已從 {1} 遷移到此補丁"
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:951
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] 人口的一部分已從 {2} 遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:958
+#: ../src/auto-evo/RunResults.cs:957
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:977
+#: ../src/auto-evo/RunResults.cs:976
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] 從 [u]{1}[/u] 中分離出來，作為一個新物種來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:983
+#: ../src/auto-evo/RunResults.cs:982
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] 由於不同的演化壓力，從 [u]{1}[/u] 作為一個新物種分離出來"
 
@@ -1475,7 +1475,7 @@ msgstr "取消"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:158
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
@@ -1556,7 +1556,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
-#: ../src/general/EditorBase.cs:653
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -2139,7 +2139,7 @@ msgstr "行為"
 msgid "BEHAVIOUR_FOCUS"
 msgstr "行為"
 
-#: ../src/general/EditorBase.cs:237
+#: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo："
 
@@ -2148,7 +2148,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "確認"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
@@ -2161,6 +2161,7 @@ msgstr "關閉"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
+#: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2245,56 +2246,60 @@ msgstr "微生物階段自由編輯器"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "運行狀態："
 
+#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+msgid "THRIVEOPEDIA"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:400
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:415
 msgid "ART_GALLERY"
 msgstr "藝術畫廊"
 
-#: ../src/general/MainMenu.tscn:426
+#: ../src/general/MainMenu.tscn:427
 msgid "LICENSES"
 msgstr "許可"
 
-#: ../src/general/MainMenu.tscn:440
+#: ../src/general/MainMenu.tscn:442
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:518
+#: ../src/general/MainMenu.tscn:519
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
-#: ../src/general/MainMenu.tscn:523
+#: ../src/general/MainMenu.tscn:524
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "已禁用"
 
-#: ../src/general/MainMenu.tscn:535
+#: ../src/general/MainMenu.tscn:536
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:550
+#: ../src/general/MainMenu.tscn:551
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:561
+#: ../src/general/MainMenu.tscn:562
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "確認"
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:566
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "移除本地數據"
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:568
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2303,11 +2308,11 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:572
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加載錯誤"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:573
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
 
@@ -3119,10 +3124,6 @@ msgstr "保存遊戲"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:206
-msgid "THRIVEOPEDIA"
-msgstr ""
-
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "幫助"
@@ -3163,44 +3164,44 @@ msgstr "從這個區域滅絕了"
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:753
+#: ../src/general/StageHUDBase.cs:760
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:753
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:14
+#: ../src/general/StageHUDBase.cs:761
+#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:975
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "充裕"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:977
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "不少"
 
-#: ../src/general/StageHUDBase.cs:964
+#: ../src/general/StageHUDBase.cs:979
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "相當數量"
 
-#: ../src/general/StageHUDBase.cs:966
+#: ../src/general/StageHUDBase.cs:981
 msgid "CATEGORY_SOME"
 msgstr "中等"
 
-#: ../src/general/StageHUDBase.cs:968
+#: ../src/general/StageHUDBase.cs:983
 msgid "CATEGORY_LITTLE"
 msgstr "少"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:985
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/general/StageHUDBase.cs:1180
+#: ../src/general/StageHUDBase.cs:1195
 msgid "PLAYER_CELL"
 msgstr "玩家細胞"
 
-#: ../src/general/StageHUDBase.cs:1193
+#: ../src/general/StageHUDBase.cs:1208
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3224,17 +3225,17 @@ msgstr ""
 msgid "FALSE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
@@ -3592,15 +3593,15 @@ msgstr "物種："
 msgid "UNTITLED"
 msgstr "生物群系：{0}"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:64
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr ""
@@ -3663,12 +3664,12 @@ msgstr "紅綠色盲"
 msgid "TUTORIAL"
 msgstr "教學"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:123
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "物種名稱必須符合雙名法命名系統（屬和表名）!"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:185
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
@@ -3722,12 +3723,12 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "细胞處理"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "當前開發人員"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_PAGE"
 msgstr "由Revolutionary Games Studio製作"
@@ -3736,7 +3737,7 @@ msgstr "由Revolutionary Games Studio製作"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "主頁"
@@ -3753,12 +3754,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "主頁"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:149
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "自由編輯器"
@@ -3772,21 +3773,21 @@ msgstr "自由編輯器"
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
 #, fuzzy
 msgid "PATCH_MAP_PAGE"
 msgstr "區域地圖"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:105
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:130
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "生物群系：{0}"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:121
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
@@ -5556,7 +5557,7 @@ msgstr ""
 msgid "CREATE"
 msgstr "創建"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
 #, fuzzy
 msgid "MICROBE"
 msgstr ""
@@ -5568,12 +5569,12 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "放置細胞器"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#: ../src/saving/FossilisedSpeciesInformation.cs:17
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "放置細胞器"

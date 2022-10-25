@@ -198,7 +198,7 @@ public class Thriveopedia : ControlWithInput
     ///   Gets an existing page by name, or null if no page exists with that name.
     /// </summary>
     /// <param name="name">The name of the desired page</param>
-    /// <returns></returns>
+    /// <returns>The Thriveopedia page with the given name</returns>
     private ThriveopediaPage? GetPage(string? name)
     {
         return allPages.Keys.FirstOrDefault(p => p.PageName == name);
@@ -228,7 +228,7 @@ public class Thriveopedia : ControlWithInput
     /// </summary>
     /// <param name="page">The page the item will link to</param>
     /// <param name="parentName">The name of the page's parent if applicable</param>
-    /// <returns></returns>
+    /// <returns>An item in the page tree which links to the given page</returns>
     private TreeItem CreateTreeItem(ThriveopediaPage page, string? parentName = null)
     {
         var parent = GetPage(parentName);

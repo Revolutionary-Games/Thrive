@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-24 19:27+0100\n"
+"POT-Creation-Date: 2022-10-25 01:03+0100\n"
 "PO-Revision-Date: 2022-10-20 06:42+0000\n"
 "Last-Translator: Gundrabur Weißhaupt <gundrabur@web.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -32,7 +32,7 @@ msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Schwer"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:142
+#: ../src/general/WorldGenerationSettings.cs:145
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Benutzerdefiniert"
 
@@ -1009,9 +1009,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Generationen fertigstellen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:157
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:127
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:122
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Spezies[/b]\n"
@@ -1026,9 +1026,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:166
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:137
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:132
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stadium[/b]\n"
@@ -1194,8 +1194,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Details zu Art"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:501 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1254,91 +1254,91 @@ msgstr "{0} Population verändert um {1}, weil: {2}"
 msgid "MEGA_YEARS"
 msgstr "Mya"
 
-#: ../src/auto-evo/RunResults.cs:605
+#: ../src/auto-evo/RunResults.cs:604
 msgid "POPULATION_COLON"
 msgstr "Gesamtbevölkerung:"
 
-#: ../src/auto-evo/RunResults.cs:614
+#: ../src/auto-evo/RunResults.cs:613
 msgid "WENT_EXTINCT_IN"
 msgstr "wurde in {0} ausgelöscht"
 
-#: ../src/auto-evo/RunResults.cs:620
+#: ../src/auto-evo/RunResults.cs:619
 msgid "PREVIOUS_COLON"
 msgstr "Vorige:"
 
-#: ../src/auto-evo/RunResults.cs:638
+#: ../src/auto-evo/RunResults.cs:637
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "von {0} abgespalten"
 
-#: ../src/auto-evo/RunResults.cs:651
+#: ../src/auto-evo/RunResults.cs:650
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "tauchte auf, um eine Nische zu füllen"
 
-#: ../src/auto-evo/RunResults.cs:654
+#: ../src/auto-evo/RunResults.cs:653
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "durch unterschiedlichen Selektionsdruck aufgetaucht"
 
-#: ../src/auto-evo/RunResults.cs:671
+#: ../src/auto-evo/RunResults.cs:670
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "die Population in einigen Gebieten spaltete sich ab und bildete eine neue Spezies {0}:"
 
-#: ../src/auto-evo/RunResults.cs:687
+#: ../src/auto-evo/RunResults.cs:686
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ist mutiert"
 
-#: ../src/auto-evo/RunResults.cs:692
+#: ../src/auto-evo/RunResults.cs:691
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "Gencode:"
 
-#: ../src/auto-evo/RunResults.cs:703
+#: ../src/auto-evo/RunResults.cs:702
 msgid "SPREAD_TO_PATCHES"
 msgstr "Ausbreitung auf Gebiete:"
 
-#: ../src/auto-evo/RunResults.cs:711
+#: ../src/auto-evo/RunResults.cs:710
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 
-#: ../src/auto-evo/RunResults.cs:730
+#: ../src/auto-evo/RunResults.cs:729
 msgid "POPULATION_IN_PATCHES"
 msgstr "Bevölkerung in Gebieten:"
 
-#: ../src/auto-evo/RunResults.cs:845
+#: ../src/auto-evo/RunResults.cs:844
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "wurde ausgelöscht"
 
-#: ../src/auto-evo/RunResults.cs:899
+#: ../src/auto-evo/RunResults.cs:898
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] ist ausgestorben!"
 
-#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:931
+#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Die Bevölkerung von [u]{0}[/u] hat sich auf {1} gesteigert"
 
-#: ../src/auto-evo/RunResults.cs:915 ../src/auto-evo/RunResults.cs:937
+#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Die Bevölkerung von [u]{0}[/u] hat sich auf {1} verringert"
 
-#: ../src/auto-evo/RunResults.cs:923
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] ist aus diesem Gebiet verschwunden"
 
-#: ../src/auto-evo/RunResults.cs:947
+#: ../src/auto-evo/RunResults.cs:946
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist von {1} in dieses Gebiet eingewandert"
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:951
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist von {1} in {2} migriert"
 
-#: ../src/auto-evo/RunResults.cs:958
+#: ../src/auto-evo/RunResults.cs:957
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist nach {1} migriert"
 
-#: ../src/auto-evo/RunResults.cs:977
+#: ../src/auto-evo/RunResults.cs:976
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab, um eine Nische zu füllen"
 
-#: ../src/auto-evo/RunResults.cs:983
+#: ../src/auto-evo/RunResults.cs:982
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab aufgrund dem unterschiedlichen Selektionsdrucks"
 
@@ -1423,7 +1423,7 @@ msgstr "AKTION ABBRECHEN"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:158
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
 msgid "NEXT_CAPITAL"
 msgstr "NÄCHSTE"
@@ -1498,7 +1498,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:392
-#: ../src/general/EditorBase.cs:653
+#: ../src/general/EditorBase.cs:652
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:442
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 #, fuzzy
@@ -2103,7 +2103,7 @@ msgstr "Verhalten"
 msgid "BEHAVIOUR_FOCUS"
 msgstr "Verhalten"
 
-#: ../src/general/EditorBase.cs:237
+#: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Warte für auto-evo:"
 
@@ -2112,7 +2112,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "BESTÄTIGEN"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:115
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
@@ -2125,6 +2125,7 @@ msgstr "Schließen"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
+#: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2209,59 +2210,63 @@ msgstr "Mikroben-Sandboxeditor"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Laufstatus:"
 
+#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+msgid "THRIVEOPEDIA"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:400
 msgid "MODS"
 msgstr "Modifikationen"
 
-#: ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:415
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
 
-#: ../src/general/MainMenu.tscn:426
+#: ../src/general/MainMenu.tscn:427
 msgid "LICENSES"
 msgstr "Lizenzen"
 
-#: ../src/general/MainMenu.tscn:440
+#: ../src/general/MainMenu.tscn:442
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Schlage eine Funktion vor"
 
-#: ../src/general/MainMenu.tscn:518
+#: ../src/general/MainMenu.tscn:519
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-Modus-Warnung"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:521
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
 
-#: ../src/general/MainMenu.tscn:523
+#: ../src/general/MainMenu.tscn:524
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Deaktiviert"
 
-#: ../src/general/MainMenu.tscn:535
+#: ../src/general/MainMenu.tscn:536
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Installierte Mods wurden erkannt, aber es sind keine Mods aktiviert.\n"
 "\n"
 "Mods müssen nach der Installation aktiviert werden. Besuchen Sie den Mod-Manager über die Schaltfläche \"Mods\" im Menü \"Extras\"."
 
-#: ../src/general/MainMenu.tscn:550
+#: ../src/general/MainMenu.tscn:551
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Diese Warnung nicht mehr anzeigen"
 
-#: ../src/general/MainMenu.tscn:561
+#: ../src/general/MainMenu.tscn:562
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:566
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Lokale Daten entfernen"
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:568
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2270,11 +2275,11 @@ msgstr ""
 "Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
 "und werden eher zurückschlagen."
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:572
 msgid "MOD_LOAD_ERRORS"
 msgstr "Fehler beim Laden der Mods"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:573
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ein Fehler trat beim Laden einer oder mehreren Modifikationen auf. Das Fehlerprotokoll enthält eventuell weitere informationen."
 
@@ -3089,10 +3094,6 @@ msgstr "Spiel speichern"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:206
-msgid "THRIVEOPEDIA"
-msgstr ""
-
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hilfe"
@@ -3133,44 +3134,44 @@ msgstr "ist im Gebiet ausgestorben"
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:753
+#: ../src/general/StageHUDBase.cs:760
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:753
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:14
+#: ../src/general/StageHUDBase.cs:761
+#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:960
+#: ../src/general/StageHUDBase.cs:975
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "eine Fülle"
 
-#: ../src/general/StageHUDBase.cs:962
+#: ../src/general/StageHUDBase.cs:977
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "ziemlich viel"
 
-#: ../src/general/StageHUDBase.cs:964
+#: ../src/general/StageHUDBase.cs:979
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "ein gutes Stück"
 
-#: ../src/general/StageHUDBase.cs:966
+#: ../src/general/StageHUDBase.cs:981
 msgid "CATEGORY_SOME"
 msgstr "etwas"
 
-#: ../src/general/StageHUDBase.cs:968
+#: ../src/general/StageHUDBase.cs:983
 msgid "CATEGORY_LITTLE"
 msgstr "wenig"
 
-#: ../src/general/StageHUDBase.cs:970
+#: ../src/general/StageHUDBase.cs:985
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "sehr wenig"
 
-#: ../src/general/StageHUDBase.cs:1180
+#: ../src/general/StageHUDBase.cs:1195
 msgid "PLAYER_CELL"
 msgstr "Spielerzelle"
 
-#: ../src/general/StageHUDBase.cs:1193
+#: ../src/general/StageHUDBase.cs:1208
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3194,19 +3195,19 @@ msgstr ""
 msgid "FALSE"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:144
+#: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Schwierigkeitsgrad"
 
-#: ../src/general/WorldGenerationSettings.cs:159
+#: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Logverzeichnis öffnen"
 
-#: ../src/general/WorldGenerationSettings.cs:168
+#: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
@@ -3563,15 +3564,15 @@ msgstr "Vorige:"
 msgid "UNTITLED"
 msgstr "Biom: {0}"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:20
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:64
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr ""
@@ -3634,12 +3635,12 @@ msgstr "Rotblindheit (Rot-Grün)"
 msgid "TUTORIAL"
 msgstr "Anleitung"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:123
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Der Name der Art muss dem binomischen Benennungssystem entsprechen (Genus und Epitheton)!"
 
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:185
+#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
@@ -3693,12 +3694,12 @@ msgstr "Pos1"
 msgid "PAGE_TITLE"
 msgstr "Zellprozesse"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:20
+#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
 #, fuzzy
 msgid "CURRENT_WORLD_PAGE"
 msgstr "Aktuelle Entwickler(innen)"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:30
+#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_PAGE"
 msgstr "Von Revolutionary Games Studio"
@@ -3707,7 +3708,7 @@ msgstr "Von Revolutionary Games Studio"
 msgid "DISABLED_IN_FREEBUILD_LABEL"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:6
+#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
 #, fuzzy
 msgid "HOME_PAGE"
 msgstr "Startseite"
@@ -3724,12 +3725,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:38
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
 #, fuzzy
 msgid "MUSEUM_PAGE"
 msgstr "Startseite"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:149
+#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD_WARNING"
 msgstr "Sandboxmodus"
@@ -3743,21 +3744,21 @@ msgstr "Sandboxmodus"
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:24
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
 #, fuzzy
 msgid "PATCH_MAP_PAGE"
 msgstr "Gebietskarte"
 
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:105
+#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:130
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Biom: {0}"
 
 #: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:121
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
@@ -5521,17 +5522,17 @@ msgstr ""
 msgid "CREATE"
 msgstr "Erstellen"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:8
+#: ../src/saving/FossilisedSpeciesInformation.cs:11
 #, fuzzy
 msgid "MICROBE"
 msgstr "Mikroben Stadium"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
+#: ../src/saving/FossilisedSpeciesInformation.cs:14
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
+#: ../src/saving/FossilisedSpeciesInformation.cs:17
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
