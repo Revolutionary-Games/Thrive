@@ -268,6 +268,10 @@ msgstr ""
 "\n"
 "Chemoreceptor: Umożliwia wykrywanie związków z większej odległości\n"
 "\n"
+"Szlamowy Dopalacz: Umożliwia wydzielanie [thrive:compound type=\"mucilage\"]"
+"[/thrive:compound] (produkowanego z [thrive:compound type=\"glucose\"][/"
+"thrive:compound]) aby przyspieszyć twoją komórkę\n"
+"\n"
 "Rzęski: Zwiększają prędkość obracania się komórek"
 
 #: ../simulation_parameters/common/help_texts.json:82
@@ -287,6 +291,12 @@ msgstr ""
 "\n"
 "Chloroplast: Wytwarza [thrive:compound type=\"glucose\"][/thrive:compound] "
 "wykorzystując światło słoneczne i atmosferyczny CO₂\n"
+"\n"
+"Termoplast: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] "
+"używając różnic temperatury\n"
+"\n"
+"Lizosom: Zawiera enzymy trawienne. Enzymy przyspieszają oraz poprawiają "
+"wydajność trawienia\n"
 "\n"
 "Chemoplast: Wytwarza na drodze chemosyntezy [thrive:compound "
 "type=\"glucose\"][/thrive:compound] zużywając [thrive:compound "
@@ -1169,7 +1179,7 @@ msgstr ""
 "[b]Kolor[/b]\n"
 "  #{4}\n"
 "[b]Zachowanie[/b]\n"
-"  {5}\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -2401,13 +2411,8 @@ msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
 #: ../src/general/MainMenu.tscn:563
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Płochliwe mikroby będą uciekać na znaczne odległości\n"
-"oraz będą unikać drapieżników ogółem.\n"
-"Odważne mikroby nie będą zastraszone obecnością drapieżników\n"
-"i nie zawahają się kontratakować."
 
 #: ../src/general/MainMenu.tscn:567
 msgid "MOD_LOAD_ERRORS"
@@ -2687,7 +2692,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:1339
 msgid "UNKNOWN_VERSION"
-msgstr "Nieznana wersja:"
+msgstr "Nieznana wersja"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -3029,13 +3034,8 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie "
-"odległości\n"
-"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
-"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
 
 #: ../src/general/OptionsMenu.tscn:1565
 msgid "DISMISSED_POPUPS_COLON"
@@ -3943,9 +3943,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"Rusticyjanina to białko mogące użyć gazowego dwutlenku węgla i tlenu do "
-"utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, "
-"nazywany Oddychaniem Żelaza, uwalnia energię którą komórka może zebrać."
+"Rusticyjanina to białko mogące użyć gazowego [thrive:compound "
+"type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"]"
+"[/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do "
+"innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą "
+"komórka może zebrać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -3957,11 +3959,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:775
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
-"formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu komórki. "
-"Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Jako iż nitrogenaza "
-"jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza "
-"glikolizę."
+"Nitrogenaza to białko mogące użyć gazowego [thrive:compound "
+"type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:"
+"compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound "
+"type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu "
+"komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako "
+"iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn "
+"przeprowadza [b]glycolysis[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -3989,9 +3993,11 @@ msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
 "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój "
 "kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, "
-"następnie rozwinąć i przetworzyć ADP na ATP w kontakcie z niższą temperaturą "
-"w procesie zwanym termosyntezą. Szybkość Jego produkcji ATP wzrasta z "
-"temperaturą."
+"następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/"
+"thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym "
+"[b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/"
+"thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:"
+"compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1095
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
