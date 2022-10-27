@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-10-17 19:00+0000\n"
-"Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
+"PO-Revision-Date: 2022-10-27 07:22+0000\n"
+"Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1278,9 +1278,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "La population s'est scindée pour fonder la nouvelle espèce {0} dans certaines zones :"
 
 #: ../src/auto-evo/RunResults.cs:682
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "a une mutation"
+msgstr "a muté"
 
 #: ../src/auto-evo/RunResults.cs:687
 msgid "RUN_RESULT_GENE_CODE"
@@ -1474,21 +1473,18 @@ msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Créer une Nouvelle Sauvegarde"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:572
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Le chimioplaste est une structure à double membrane contenant des protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la concentration en dioxyde de carbone."
+msgstr "Vous pouvez créer de nouveaux types de cellules en en dupliquant et en changeant leur nom. Les types de cellules peuvent être modifiés pour les spécialiser afin de leur attribuer des rôles. Quand un type de cellule est modifié, toutes les cellules de ce type déjà placées sont mises à jour."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:586
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:706
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Vitesse :"
+msgstr "Nouveau nom :"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:593
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:713
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Nouvelle partie"
+msgstr "Nouveau nom"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
 #, fuzzy
@@ -1507,7 +1503,7 @@ msgstr "{0} MP"
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
 #, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Chargement de l'Éditeur de Microbes"
+msgstr "Chargement de l'éditeur d'organismes multicellulaires basiques"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
@@ -1538,7 +1534,7 @@ msgstr "Sélectionnez un type de cellule à éditer ici depuis l'onglet de l'éd
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
-msgstr "FPS max. :"
+msgstr "FPS : {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
@@ -1586,14 +1582,13 @@ msgid "METRICS"
 msgstr "Afficher/cacher les FPS"
 
 #: ../src/engine/DebugOverlays.tscn:85
-#, fuzzy
 msgid "DEBUG_PANEL"
-msgstr "Panneau débugger"
+msgstr "Débogueur"
 
 #: ../src/engine/DebugOverlays.tscn:95
 #, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "Lire média"
+msgstr "Afficher les FPS"
 
 #: ../src/engine/DebugOverlays.tscn:109
 #, fuzzy
@@ -1603,16 +1598,15 @@ msgstr "Créer des entités avec les formes de collision"
 #: ../src/engine/DebugOverlays.tscn:116
 #, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Terrain : {0}"
+msgstr "Étiquette de l'entité"
 
 #: ../src/engine/DebugOverlays.tscn:123
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:134
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Traducteurs"
+msgstr "Transparence"
 
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
@@ -1627,13 +1621,13 @@ msgstr ""
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
 #, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Vitesse :"
+msgstr "Vertical (Axe : {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
 #, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Vitesse :"
+msgstr "Brut :"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
@@ -1643,7 +1637,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Aidez-nous à traduire le jeu (complet à {0}%)"
+msgstr "La calibration de la deadzone(?) est en cours. Veuillez ne pas presser de touche ou cliquer et attendez quelques secondes."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
@@ -1652,12 +1646,12 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Des validations supplémentaires ont détectés un problème: {0}"
+msgstr "La calibration de la deadzone(?) est terminée. Les nouvelles deadzones(?) sont affichées ci-dessous sur l'axe."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Supprimer cette sauvegarde est définitif, êtes-vous sûr de vouloir la supprimer définitivement ?"
+msgstr "Configuration de la deadzone(?)"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
@@ -1671,7 +1665,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 #, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Restaurer par défaut ?"
+msgstr "Restaurer les deadzones(?)"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2105,29 +2099,26 @@ msgid "ART_BY"
 msgstr "Œuvre de {0}"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Comportement"
+msgstr "Aggressivité"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Comportement"
+msgstr "Opportunisme"
 
 #: ../src/general/BehaviourDictionary.cs:104
 #, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Comportement"
+msgstr "Peur"
 
 #: ../src/general/BehaviourDictionary.cs:105
 #, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Comportement"
+msgstr "Activité"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Comportement"
+msgstr "Persévérance"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2174,9 +2165,8 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
 
 #: ../src/general/MainMenu.tscn:200
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Menu de pause"
+msgstr "Commencer une nouvelle partie"
 
 #: ../src/general/MainMenu.tscn:203
 msgid "NEW_GAME"
@@ -2185,7 +2175,7 @@ msgstr "Nouvelle partie"
 #: ../src/general/MainMenu.tscn:214 ../src/general/PauseMenu.tscn:195
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Menu de pause"
+msgstr "Charger les sauvegardes précédentes"
 
 #: ../src/general/MainMenu.tscn:217 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -2193,9 +2183,8 @@ msgid "LOAD_GAME"
 msgstr "Charger une partie"
 
 #: ../src/general/MainMenu.tscn:225 ../src/general/PauseMenu.tscn:220
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Aide"
+msgstr "Modifier les paramètres"
 
 #: ../src/general/MainMenu.tscn:229 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
@@ -2218,9 +2207,8 @@ msgid "CREDITS"
 msgstr "Crédits"
 
 #: ../src/general/MainMenu.tscn:281 ../src/general/PauseMenu.tscn:236
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Suicide"
+msgstr "Quitter le jeu"
 
 #: ../src/general/MainMenu.tscn:285
 msgid "QUIT"
@@ -2261,9 +2249,8 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
 
 #: ../src/general/MainMenu.tscn:519
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Désactivé"
+msgstr "Pas de mods activés"
 
 #: ../src/general/MainMenu.tscn:531
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -2283,7 +2270,7 @@ msgstr "OK"
 #: ../src/general/MainMenu.tscn:561
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Supprimer les données locales"
+msgstr "Thrive a démarré en mode sûr"
 
 #: ../src/general/MainMenu.tscn:563
 #, fuzzy
