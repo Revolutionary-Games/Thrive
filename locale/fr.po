@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-10-27 07:22+0000\n"
-"Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
+"PO-Revision-Date: 2022-10-27 09:39+0000\n"
+"Last-Translator: Shigasaa <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1615,7 +1615,7 @@ msgstr "Chargement"
 #: ../src/engine/input/ControllerAxisVisualizer.cs:165
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
-msgstr ""
+msgstr "Horizontal (Axe : {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
@@ -1637,7 +1637,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "La calibration de la deadzone(?) est en cours. Veuillez ne pas presser de touche ou cliquer et attendez quelques secondes."
+msgstr "La calibration de la deadzone est en cours. Veuillez ne pas presser de touche ou cliquer et attendez quelques secondes."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
@@ -1646,12 +1646,12 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "La calibration de la deadzone(?) est terminée. Les nouvelles deadzones(?) sont affichées ci-dessous sur l'axe."
+msgstr "La calibration de la deadzone est terminée. Les nouvelles deadzones sont affichées ci-dessous sur l'axe."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Configuration de la deadzone(?)"
+msgstr "Configuration de la deadzone"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
@@ -1660,12 +1660,12 @@ msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédicti
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Démarrer le calibrage"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 #, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Restaurer les deadzones(?)"
+msgstr "Restaurer les deadzones"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2238,7 +2238,7 @@ msgstr "Licences"
 
 #: ../src/general/MainMenu.tscn:424
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "Proposer une fonctionnalité"
 
 #: ../src/general/MainMenu.tscn:514
 msgid "GLES2_MODE_WARNING"
@@ -2255,10 +2255,13 @@ msgstr "Pas de mods activés"
 #: ../src/general/MainMenu.tscn:531
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"Des mods installés ont été détectés, mais aucun mod n'a été activé.\n"
+"\n"
+"Les mods doivent être activés après l'installation. Visitez le gestionnaire de mods en utilisant le bouton mods dans le menu extras."
 
 #: ../src/general/MainMenu.tscn:546
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "Ne plus me prévenir"
 
 #: ../src/general/MainMenu.tscn:557
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2276,20 +2279,24 @@ msgstr "Thrive a démarré en mode sûr"
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Les microbes craintifs fuiront aussi loin qu'ils le peuvent\n"
-"et éviteront la plupart des prédateurs.\n"
-"Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
-"et seront plus enclins à riposter."
+"Thrive a démarré en mode sûr à cause d'une précédente erreur de lancement.\n"
+"\n"
+"Cela a pu être causé par un mod ou par le lecteur vidéo. Par prudence, le chargement des mods activés a pu être ignoré / le lecteur vidéo a pu être désactivé. Ce sera en appliqué jusqu’à ce que Thrive redémarre.\n"
+"\n"
+"Avant de redémarrer, veuillez désactiver tous les mods qui peuvent être problématiques ou incompatible avec cette version de Thrive (Vous pouvez lire les logs des précédents démarrages pour voir si un mod est en responsable).\n"
+"Pour des problèmes de lecteur vidéo, veuillez utiliser les options du launcher pour forcer la désactivation des vidéos.\n"
+"\n"
+"Si vous ne résolvez pas le problème à l'origine de l'échec du démarrage, vous devrez redémarrer et planter Thrive plusieurs fois pour revenir au mode sûr."
 
 #: ../src/general/MainMenu.tscn:567
 #, fuzzy
 msgid "MOD_LOAD_ERRORS"
-msgstr "Erreurs liées au Chargement de Mods"
+msgstr "Erreurs liées au chargement de mods"
 
 #: ../src/general/MainMenu.tscn:568
 #, fuzzy
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les registres de jeu pourraient contenir des informations supplémentaires."
+msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
 
 #: ../src/general/NewGameSettings.cs:299
 #: ../src/general/NewGameSettings.tscn:1132
@@ -2300,7 +2307,7 @@ msgstr "Menu de pause"
 #: ../src/general/NewGameSettings.cs:306
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Menu de pause"
+msgstr "Certains paramètres sont invalides"
 
 #: ../src/general/NewGameSettings.tscn:120
 #: ../src/general/NewGameSettings.tscn:361
@@ -2333,11 +2340,7 @@ msgstr "Origine de la vie"
 #: ../src/general/NewGameSettings.tscn:924
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Les microbes craintifs fuiront aussi loin qu'ils le peuvent\n"
-"et éviteront la plupart des prédateurs.\n"
-"Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
-"et seront plus enclins à riposter."
+msgstr "(emplacement de départ)"
 
 #: ../src/general/NewGameSettings.tscn:192
 #: ../src/general/NewGameSettings.tscn:938
@@ -2373,9 +2376,8 @@ msgstr "Graine planétaire aléatoire"
 
 #: ../src/general/NewGameSettings.tscn:229
 #: ../src/general/NewGameSettings.tscn:975
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Mettre le jeu en pause"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
@@ -2399,11 +2401,8 @@ msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Multiplicateur de coût de mutation"
 
 #: ../src/general/NewGameSettings.tscn:445
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Les microbes motiles déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobile en l'attente d'un changement dans leur environnement."
+msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
 
 #: ../src/general/NewGameSettings.tscn:462
 #, fuzzy
@@ -2418,15 +2417,12 @@ msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédicti
 #: ../src/general/NewGameSettings.tscn:524
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Nuages de composés"
+msgstr "Densité des nuages composites"
 
 #: ../src/general/NewGameSettings.tscn:569
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Les microbes opportunistes se battront pour les débris flottants\n"
-"et essaieront d'éliminer avec leurs toxines les proies qu'ils ne peuvent pas absorber.\n"
-"Les microbes prudents éviteront de risquer leur vie pour accéder à ces débris."
+msgstr "(densité des nuages composites dans l'environnement)"
 
 #: ../src/general/NewGameSettings.tscn:586
 #, fuzzy
@@ -2497,11 +2493,8 @@ msgid "PATCH_MAP_TYPE"
 msgstr "Carte de Parcelles"
 
 #: ../src/general/NewGameSettings.tscn:862
-#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr ""
-"Les microbes motiles déambuleront en l'absence de cible.\n"
-"Les microbes sessiles seront immobile en l'attente d'un changement dans leur environnement."
+msgstr "(générer un carte de parcelles procéduralement ou utiliser la disposition par défaut)"
 
 #: ../src/general/NewGameSettings.tscn:877
 #: ../src/general/NewGameSettings.tscn:878
@@ -2529,7 +2522,7 @@ msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les ét
 #: ../src/general/NewGameSettings.tscn:1074
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Anecdote : les Didiniums et les Paramécies sont des cas d'école de la relation proie/prédateur qui a été étudiée pendant des décennies. Et vous, êtes-vous un Didinium, ou un Paramécie ? Un prédateur, ou bien une proie ?"
+msgstr "Inclure les Easter eggs"
 
 #: ../src/general/NewGameSettings.tscn:1081
 #, fuzzy
@@ -2543,7 +2536,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:1109
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Menu de pause"
+msgstr "Ouvrir la vue de configuration avancée"
 
 #: ../src/general/NewGameSettings.tscn:1111
 #, fuzzy
@@ -2560,9 +2553,8 @@ msgid "BASIC_VIEW"
 msgstr "Basique"
 
 #: ../src/general/NewGameSettings.tscn:1133
-#, fuzzy
 msgid "CONFIRM_NORMAL"
-msgstr "ACCEPTER"
+msgstr "Accepter"
 
 #: ../src/general/OptionsMenu.cs:776 ../src/general/OptionsMenu.tscn:331
 #, fuzzy
@@ -2578,9 +2570,8 @@ msgid "GLES3"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:800
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Afficher la barre des capacités"
+msgstr "Inconnu"
 
 #: ../src/general/OptionsMenu.cs:809 ../src/general/OptionsMenu.tscn:510
 msgid "VIDEO_MEMORY_MIB"
@@ -2606,13 +2597,12 @@ msgstr "Aidez-nous à traduire le jeu (complet à {0}%)"
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
-"Cette sauvegarde vient dune version postérieure de Thrive et a beaucoup de chances d'être incompatible.\n"
+"Cette sauvegarde vient d'une version postérieure de Thrive et a beaucoup de chances d'être incompatible.\n"
 "Voulez-vous tout de même tenter de charger la sauvegarde?"
 
 #: ../src/general/OptionsMenu.cs:1339
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Version :"
+msgstr "Version inconnue"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -2717,8 +2707,9 @@ msgid "VIDEO_MEMORY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:524
+#, fuzzy
 msgid "GUI"
-msgstr ""
+msgstr "Interface utilisateur"
 
 #: ../src/general/OptionsMenu.tscn:539
 msgid "DISPLAY_ABILITIES_BAR"
@@ -2837,7 +2828,7 @@ msgstr "Petit"
 #: ../src/general/OptionsMenu.tscn:1087
 #, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "ACCEPTER"
+msgstr "Normal"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_LARGE"
@@ -2854,38 +2845,43 @@ msgstr "Énorme"
 #: ../src/general/OptionsMenu.tscn:1087
 #, fuzzy
 msgid "LIMIT_EXTREME"
-msgstr "Extras"
+msgstr "Extrême"
 
 #: ../src/general/OptionsMenu.tscn:1148
+#, fuzzy
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Sensibilité de la souris"
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
+#, fuzzy
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Lier les axes ensemble"
 
 #: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
 #, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Génération :"
+msgstr "Horizontal :"
 
 #: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
 #: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
+#, fuzzy
 msgid "INVERTED"
-msgstr ""
+msgstr "Inversé"
 
 #: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
 #, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Génération :"
+msgstr "Vertical :"
 
 #: ../src/general/OptionsMenu.tscn:1212
+#, fuzzy
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Mise à l'échelle de la sensibilité de la souris en fonction de la taille de la fenêtre"
 
 #: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#, fuzzy
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Aucun"
 
 #: ../src/general/OptionsMenu.tscn:1224
 #, fuzzy
@@ -2902,7 +2898,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Sensibilité du contrôleur"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
@@ -2911,16 +2907,15 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1353
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Réinitialiser les entrées"
+msgstr "Réinitialiser les raccourcis clavier"
 
 #: ../src/general/OptionsMenu.tscn:1393
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Jouer la vidéo d'intro"
 
 #: ../src/general/OptionsMenu.tscn:1401
-#, fuzzy
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "Jouer la vidéo d'introduction à chaque nouvelle partie"
+msgstr "Jouer l'introduction à chaque nouvelle partie"
 
 #: ../src/general/OptionsMenu.tscn:1409
 msgid "AUTOSAVE_DURING_THE_GAME"
@@ -2935,7 +2930,6 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes rapide à conserver :"
 
 #: ../src/general/OptionsMenu.tscn:1473
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Afficher les tutoriels (dans les nouvelles parties)"
 
@@ -2978,13 +2972,13 @@ msgstr ""
 "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Vitesse :"
+msgstr "Popups désactivées :"
 
 #: ../src/general/OptionsMenu.tscn:1587
+#, fuzzy
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Réinitialiser les popups désactivées"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
@@ -3008,9 +3002,8 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Suicide"
 
 #: ../src/general/OptionsMenu.tscn:1630
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Génération :"
+msgstr "Version exacte de Thrive :"
 
 #: ../src/general/OptionsMenu.tscn:1658
 #, fuzzy
@@ -3078,7 +3071,6 @@ msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Pas de dossier de captures d'écrans trouvé"
 
 #: ../src/general/OptionsMenu.tscn:1857
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Essayez de prendre une capture d'écran !"
 
@@ -3089,7 +3081,6 @@ msgstr ""
 "Vous perdrez toute progression non sauvegardée."
 
 #: ../src/general/PauseMenu.tscn:179
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Reprendre"
 
@@ -3098,9 +3089,8 @@ msgid "RESUME"
 msgstr "Reprendre"
 
 #: ../src/general/PauseMenu.tscn:187
-#, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Menu de pause"
+msgstr "Ouvrir le menu de sauvegarde pour sauvegarder la partie"
 
 #: ../src/general/PauseMenu.tscn:188
 msgid "SAVE_GAME"
@@ -3125,9 +3115,8 @@ msgid "HELP"
 msgstr "Aide"
 
 #: ../src/general/PauseMenu.tscn:228
-#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "Retour au menu"
+msgstr "Retour au menu principal"
 
 #: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
@@ -3147,9 +3136,8 @@ msgid "PLAYER_DIED"
 msgstr "le joueur est mort"
 
 #: ../src/general/StageBase.cs:523
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
-msgstr "a disparu de la planète"
+msgstr "a disparu de la parcelle"
 
 #: ../src/general/StageHUDBase.cs:699 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:258
@@ -3161,14 +3149,13 @@ msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abondance"
 
 #: ../src/general/StageHUDBase.cs:908
-#, fuzzy
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr "en grande quantité"
+msgstr "en certaine quantité"
 
 #: ../src/general/StageHUDBase.cs:910
 #, fuzzy
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr "en bonne quantité"
+msgstr "une quantité raisonnable"
 
 #: ../src/general/StageHUDBase.cs:912
 msgid "CATEGORY_SOME"
@@ -3255,7 +3242,7 @@ msgstr "Responsable des Relations Publiques"
 #: ../src/gui_common/CreditsScroll.cs:254
 #, fuzzy
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr "Responsables des Relations Publiques"
+msgstr "Responsables des relations publiques"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
@@ -3368,7 +3355,6 @@ msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Requêtes de Correctifs / Programmation"
 
 #: ../src/gui_common/CreditsScroll.cs:504
-#, fuzzy
 msgid "VIP_PATRONS"
 msgstr "Soutiens VIP"
 
@@ -3445,7 +3431,7 @@ msgstr "Développeurs"
 #: ../src/gui_common/PlaybackControls.tscn:107
 #, fuzzy
 msgid "STOP"
-msgstr "Arrete"
+msgstr "Arrêter"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -3460,7 +3446,7 @@ msgstr "La sauvegarde a une version différente"
 #: ../src/gui_common/RadialMenu.cs:63
 #, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Sélectionnez une Option"
+msgstr "Choisir une option"
 
 #: ../src/gui_common/TweakedColourPicker.cs:387
 #, fuzzy
@@ -3524,10 +3510,9 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr "HSV"
+msgstr "TSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
-#, fuzzy
 msgid "RAW"
 msgstr "Brut"
 
@@ -3546,24 +3531,20 @@ msgid "N_A"
 msgstr "Aucun"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
-#, fuzzy
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Double-cliquer pour voir en plein écran"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
-#, fuzzy
 msgid "TITLE_COLON"
-msgstr "Taille :"
+msgstr "Titre :"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
 msgstr "Description :"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "Espèces :"
+msgstr "Artiste :"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:259
 #, fuzzy
@@ -3576,13 +3557,11 @@ msgid "GALLERY_VIEWER"
 msgstr "Visionneur de la galerie"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
-#, fuzzy
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr "Filtrer les objets par catégories:"
+msgstr "Filtrer les objets par catégories :"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
-#, fuzzy
 msgid "SLIDESHOW"
 msgstr "Diaporama"
 
@@ -3632,12 +3611,17 @@ msgstr "Les licences s'appliquant aux différentes parties de Thrive sont affich
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 #, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr "Continuer vers les prototypes de phases?"
+msgstr "Continuer vers les phases en prototype?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanopie (Rouge-Vert)"
+msgstr ""
+"Vous avez atteint la fin de la partie \"complète\" de Thrive\n"
+"Si vous voulez, vous pouvez vers les phases en prototype qui sont inclues dans le jeu. Elles peuvent être très incomplètes, utiliser des graphismes de remplacement, et être très brut en général. Elles sont incluses dans le jeu pour montrer la direction potentielle du jeu et notre vision globale de la façon dont les étapes sont connectées.\n"
+"\n"
+"Dans la plupart des prototypes, vous ne pourrez pas sauvegarder si vous poursuivez ou revenez une fois que vous aurez continué. Si vous souhaitez revenir à cette étape, veuillez effectuer une sauvegarde maintenant avant de continuer.\n"
+"\n"
+"Si vous décidez de poursuivre, sachez que les étapes ultérieures sont des prototypes et ne vous plaignez pas de leur caractère incomplet."
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
@@ -3645,7 +3629,6 @@ msgstr "Protanopie (Rouge-Vert)"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
-#, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriel"
 
@@ -3666,9 +3649,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Terminer l'édition et retourner à l'environnement"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:90
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Activer l'éditeur"
+msgstr "Aller au prochain onglet de l'éditeur"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "CHANGE_THE_SYMMETRY"
@@ -3749,10 +3731,9 @@ msgstr ""
 "Les microbes sessiles seront immobile en l'attente d'un changement dans leur environnement."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:265
-#, fuzzy
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Les microbes monomaniaques rechercheront des débris ou des proies sur de plus grandes distances\n"
+"Les microbes persévérants rechercheront des débris ou des proies sur de plus grandes distances\n"
 "et pourront se montrer bien plus ambitieux face à des débris disputés.\n"
 "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
 
@@ -3877,7 +3858,7 @@ msgstr "Un métabolosome responsable de la production d'une forme primitive de l
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
+msgstr "Produit de l'[thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnel à la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 #, fuzzy
@@ -3899,7 +3880,7 @@ msgstr "Vitesse"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stocké, augmentant la vitesse de la cellule et ralentissant les prédateurs."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 #, fuzzy
@@ -3909,7 +3890,7 @@ msgstr "L'intérieur visqueux d'une cellule. Le cytoplasme est une mixture basiq
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 #, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Planter les autres cellules avec ça."
+msgstr "Peut être utiliser pour attaquer les autres cellules ou pour défendre contre leurs toxines."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1311
 msgid "PREDATORY_PILUS_DESCRIPTION"
@@ -3918,22 +3899,22 @@ msgstr "Planter les autres cellules avec ça."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1370
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Le chimiorécepteur permet de détecter le composants de plus loin. Modifier une fois place pour choisir le composant détecté et la couleur de la ligne de guidage"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1371
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Le chimioplaste est une structure à double membrane contenant des protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la concentration en dioxyde de carbone."
+msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est comme ça que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1430
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Augmente la vitesse de rotation des grandes cellules."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1431
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "L'intérieur visqueux d'une cellule. Le cytoplasme est une mixture basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui rempli l'intérieur de la cellule. Une des fonctions qu'elle réalise est la glycolyse, la conversion du glucose en énergie ATP. Pour les cellules qui manquent d'organites pour avoir un métabolisme plus avancé, c'est ce sur quoi elles dépendent en énergie. C'est aussi utilisé pour stocker des molécules dans la cellules et augmenter sa taille."
+msgstr "Les cils sont similaires aux flagelles mais au lieu de fournir une force de poussée directionnelle, ils fournissent une force de rotation pour aider les cellules à tourner."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1477
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -4013,14 +3994,13 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2316
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Maintenez [thrive:input]g_pack_commands[/thrive:input] afin d'ouvrir un menu pour transmettre des commandes aux autres membres de votre espèce."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2317
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:158
