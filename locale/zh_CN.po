@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-10-14 05:59+0000\n"
+"PO-Revision-Date: 2022-10-17 19:00+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2219,18 +2219,20 @@ msgid "OK"
 msgstr "好的"
 
 #: ../src/general/MainMenu.tscn:561
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "删除本地数据"
+msgstr "Thrive在安全模式下启动"
 
 #: ../src/general/MainMenu.tscn:563
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"胆小型微生物会逃到更远的地方，\n"
-"并且总体上更有可能逃离掠食者。\n"
-"勇敢型微生物则不会被靠近的掠食者吓到\n"
-"而且更有可能反击。"
+"由于先前的启动错误，Thrive已在安全模式下启动。\n"
+"\n"
+"这很可能是由模组或是视频播放器引起的。 作为预防措施, 激活的模组加载可能被跳过，视频播放也可能被禁止。以上将持续生效直到Thrive被重新启动。\n"
+"\n"
+"在重启游戏之前请先禁用任何可能导致问题或是不与目前游戏版本兼容的模组 (你可以通过阅读先前的启动日志来确定哪个模组可能是罪魁祸首)。\n"
+"对于与视频播放器相关的问题请使用启动器的选项来强制禁用视频。\n"
+"\n"
+"如果你未能修复导致启动错误的问题，你在未来几次启动中将会崩溃数次并最后再次返回安全模式。"
 
 #: ../src/general/MainMenu.tscn:567
 msgid "MOD_LOAD_ERRORS"
@@ -2756,16 +2758,15 @@ msgstr "由窗口大小决定鼠标灵敏度"
 
 #: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "无"
 
 #: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "信号剂"
+msgstr "成正比"
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "成反比"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -2837,21 +2838,18 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "打开日志文件夹"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"专注型微生物会在更远的距离里追击猎物或物质块\n"
-"并且对物质块更有渴求。\n"
-"应变型微生物将更快的转向新的目标。"
+"这显示了多少弹出窗口已被永久禁用。\n"
+"如果有一些你想要看到的弹出窗口被禁用了，旁边的那个按钮可以使所有被禁用的弹出窗口再次出现。"
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "消化速度："
+msgstr "被禁用的弹出窗口："
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "重置被禁用的弹出窗口"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
