@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-29 13:44+0300\n"
-"PO-Revision-Date: 2022-10-14 05:59+0000\n"
+"PO-Revision-Date: 2022-10-27 07:22+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -194,6 +194,8 @@ msgstr ""
 "\n"
 "Chemoreceptor: Umożliwia wykrywanie związków z większej odległości\n"
 "\n"
+"Szlamowy Dopalacz: Umożliwia wydzielanie [thrive:compound type=\"mucilage\"][/thrive:compound] (produkowanego z [thrive:compound type=\"glucose\"][/thrive:compound]) aby przyspieszyć twoją komórkę\n"
+"\n"
 "Rzęski: Zwiększają prędkość obracania się komórek"
 
 #: ../simulation_parameters/common/help_texts.json:82
@@ -208,6 +210,10 @@ msgstr ""
 "Mitochondrium: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound] i atmosferycznego O₂ o wiele wydajniej niż cytozol\n"
 "\n"
 "Chloroplast: Wytwarza [thrive:compound type=\"glucose\"][/thrive:compound] wykorzystując światło słoneczne i atmosferyczny CO₂\n"
+"\n"
+"Termoplast: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając różnic temperatury\n"
+"\n"
+"Lizosom: Zawiera enzymy trawienne. Enzymy przyspieszają oraz poprawiają wydajność trawienia\n"
 "\n"
 "Chemoplast: Wytwarza na drodze chemosyntezy [thrive:compound type=\"glucose\"][/thrive:compound] zużywając [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
@@ -266,7 +272,7 @@ msgstr "Porada, bakterie mogą być silniejsze niż się wydają - mogą wygląd
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Porada, Możesz doprowadzić inne gatunki do wymarcia polując na nie. Jeśli nie będziesz wystarczająco ostrożny, inne gatunki też mogą to robić."
+msgstr "A tak swoją drogą, jeśli będziesz nieostrożny, możesz doprowadzić inne gatunki do wymarcia. Inne gatunki również mogą to robić."
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -1024,7 +1030,7 @@ msgstr ""
 "[b]Kolor[/b]\n"
 "  #{4}\n"
 "[b]Zachowanie[/b]\n"
-"  {5}\n"
+"  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -1828,9 +1834,8 @@ msgid "BASSDOWN"
 msgstr "Zmniejsz Basy"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
-#, fuzzy
 msgid "TREBLEUP"
-msgstr "Zwiększ głośność tonów wysokich"
+msgstr "Zgłośnij Sopran"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
@@ -2197,17 +2202,19 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
 
 #: ../src/general/MainMenu.tscn:519
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Wył"
+msgstr "Brak Włączonych Modów"
 
 #: ../src/general/MainMenu.tscn:531
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"Zainstalowane mody zostały wykryte, ale żaden mod nie jest włączony.\n"
+"\n"
+"Mody muszą zostać włączone po instalacji. Odwiedź zarządzanie modami pod przyciskiem mods w menu dodatków."
 
 #: ../src/general/MainMenu.tscn:546
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "Nie ostrzegaj przed tym ponownie"
 
 #: ../src/general/MainMenu.tscn:557
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2217,18 +2224,12 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/general/MainMenu.tscn:561
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Usuń Dane Lokalne"
+msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
 #: ../src/general/MainMenu.tscn:563
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Płochliwe mikroby będą uciekać na znaczne odległości\n"
-"oraz będą unikać drapieżników ogółem.\n"
-"Odważne mikroby nie będą zastraszone obecnością drapieżników\n"
-"i nie zawahają się kontratakować."
 
 #: ../src/general/MainMenu.tscn:567
 msgid "MOD_LOAD_ERRORS"
@@ -2491,7 +2492,7 @@ msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie 
 
 #: ../src/general/OptionsMenu.cs:1339
 msgid "UNKNOWN_VERSION"
-msgstr "Nieznana wersja:"
+msgstr "Nieznana wersja"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -2833,17 +2834,12 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
-"oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
-"Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Szybkość Trawienia:"
+msgstr "Ukryte pop-up'y:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
@@ -3681,7 +3677,7 @@ msgstr "Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticyjanina to białko mogące użyć gazowego dwutlenku węgla i tlenu do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany Oddychaniem Żelaza, uwalnia energię którą komórka może zebrać."
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -3689,7 +3685,7 @@ msgstr "Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:775
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu komórki. Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza glikolizę."
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -3705,7 +3701,7 @@ msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gr
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na ATP w kontakcie z niższą temperaturą w procesie zwanym termosyntezą. Szybkość Jego produkcji ATP wzrasta z temperaturą."
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1095
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -4231,7 +4227,7 @@ msgstr "Panoński"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:855
 msgid "PATCH_NAME"
-msgstr "{0} {1}"
+msgstr "{0}: {1}"
 
 #: ../src/microbe_stage/PausePrompt.tscn:23
 msgid "PAUSED"
@@ -4783,9 +4779,8 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: wyładowywanie Harmonii moda zawiodło z powodu wyjątku: {1}"
 
 #: ../src/modding/ModLoader.cs:530
-#, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "Wczytywanie pliku pck ({0}) się nie powiodło"
+msgstr "Wczytywanie pliku pck ({0}) nie powiodło się, ponieważ ten plik nie istnieje"
 
 #: ../src/modding/ModLoader.cs:538
 msgid "PCK_LOAD_FAILED"
@@ -5164,7 +5159,7 @@ msgstr "Mój Wspaniały Mod"
 
 #: ../src/modding/NewModGUI.cs:238
 msgid "INVALID_URL_FORMAT"
-msgstr ""
+msgstr "Niepoprawny format URL"
 
 #: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRED"
@@ -5379,7 +5374,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
-msgstr ""
+msgstr "Wczytać niepoprawny zapis?"
 
 #: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -5774,9 +5769,17 @@ msgstr ""
 "Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
+msgstr ""
+"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
+"\n"
+"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
+"\n"
+"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
+"\n"
+"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
