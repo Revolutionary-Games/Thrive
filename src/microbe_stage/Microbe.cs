@@ -725,6 +725,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         HandleReproduction(delta);
 
+        HandleInvulnerabilityDecay(delta);
+
         // Handles engulfing related stuff as well as modifies the movement factor.
         // This needs to be done before Update is called on organelles as movement organelles will use MovementFactor.
         HandleEngulfing(delta);

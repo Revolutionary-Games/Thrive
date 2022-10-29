@@ -511,7 +511,12 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 3.0f;
+    public const float PILUS_BASE_DAMAGE = 20.0f;
+
+    /// <summary>
+    ///   How much time (in seconds) a pilus applies invulnerability upon damage.
+    /// </summary>
+    public const float PILUS_INVULNERABLE_TIME = 0.25f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex

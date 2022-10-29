@@ -76,6 +76,12 @@ public partial class Microbe
     [JsonProperty]
     private int flashPriority;
 
+    /// <summary>
+    ///   This determines how much time is left (in seconds) until this cell can take damage again after becoming
+    ///   invulnerable due to a damage source. This was added to balance pili but might extend to more sources.
+    /// </summary>
+    private float invulnerabilityDuration;
+
     private PackedScene cellBurstEffectScene = null!;
 
     [JsonProperty]
@@ -270,6 +276,14 @@ public partial class Microbe
     }
 
     /// <summary>
+    ///   Give this microbe a specified amount of invulnerability time. Overrides previous value.
+    /// </summary>
+    public void MakeInvulnerable(float duration)
+    {
+        invulnerabilityDuration = duration;
+    }
+
+    /// <summary>
     ///   Flashes the membrane a specific colour for duration. A new
     ///   flash is not started if currently flashing and priority is lower than the current flash priority.
     /// </summary>
@@ -337,8 +351,18 @@ public partial class Microbe
         }
         else if (source == "pilus")
         {
+            if (invulnerabilityDuration > 0)
+            {
+                GD.Print($"Invuln! {amount}");
+                return;
+            }
+
             // Play the pilus sound
             PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
+
+            // Give immunity to prevent massive damage at some angles
+            // https://github.com/Revolutionary-Games/Thrive/issues/3267
+            MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
 
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
@@ -995,6 +1019,17 @@ public partial class Microbe
             pseudopodRangeSphereShape.Radius = wantedRadius;
         }
         */
+    }
+
+    /// <summary>
+    ///   Decrease the remaining invulnerability time
+    /// </summary>
+    private void HandleInvulnerabilityDecay(float delta)
+    {
+        if (invulnerabilityDuration > 0)
+        {
+            invulnerabilityDuration -= delta;
+        }
     }
 
     /// <summary>
