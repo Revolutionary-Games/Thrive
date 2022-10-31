@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 01:03+0100\n"
+"POT-Creation-Date: 2022-10-31 19:32+0000\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -543,7 +543,7 @@ msgid "CHEAT_MENU"
 msgstr "Cheat Menu"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:91
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Overig"
 
@@ -1008,17 +1008,17 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Eindig een specifiek aantal gesimuleerde soort generaties"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "Soorten:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "[b][u]{0}[/u][/b] is uitgestorven!"
@@ -1189,8 +1189,8 @@ msgstr "Terug"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:177
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Bevestig Stoppen"
 
@@ -2087,10 +2087,9 @@ msgstr "BEVESTIGEN"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
-#: ../src/modding/ModManager.tscn:992
+#: ../src/modding/ModManager.tscn:992 ../src/thriveopedia/Thriveopedia.tscn:163
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Sluiten"
@@ -2318,12 +2317,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:35
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Moeilijkheidsgraad"
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:63
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeet"
 
@@ -2969,8 +2968,8 @@ msgstr "Annuleren en doorgaan"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:206
 msgid "CANCEL"
 msgstr "Annuleer"
 
@@ -3061,7 +3060,7 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/general/StageHUDBase.cs:761
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
@@ -3119,18 +3118,18 @@ msgid "FALSE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:147
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Vooraf ingestelde moelijkheidsgraad"
 
 #: ../src/general/WorldGenerationSettings.cs:165
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 
@@ -3546,126 +3545,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr ""
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
-#, fuzzy
-msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Kies een generatie"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
-msgid "FOSSILISATION"
-msgstr "populatie:"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Soortnaam..."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
-msgid "FOSSILISATION_EXPLANATION"
-msgstr "(startlocatie)"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
-msgid "FOSSILISE"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
-msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Opties"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:103
-#, fuzzy
-msgid "PAGE_BACK"
-msgstr "Terug"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:117
-#, fuzzy
-msgid "PAGE_FORWARD"
-msgstr "Voorwaarts"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:131
-#, fuzzy
-msgid "HOME"
-msgstr "Home"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
-msgid "PAGE_TITLE"
-msgstr "Celprocessen"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
-msgid "CURRENT_WORLD_PAGE"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
-#, fuzzy
-msgid "EVOLUTIONARY_TREE_PAGE"
-msgstr "Stamboom"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
-#, fuzzy
-msgid "HOME_PAGE"
-msgstr "Home-pagina"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
-msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "THRIVEOPEDIA_HOME_INFO"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:46
-msgid "THE_DISTURBANCE"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
-#, fuzzy
-msgid "MUSEUM_PAGE"
-msgstr "Home-pagina"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
-msgid "OPEN_IN_FREEBUILD_WARNING"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:152
-msgid "OPEN_IN_FREEBUILD"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:167
-msgid "MUSEUM_WELCOME_TEXT"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
-msgid "PATCH_MAP_PAGE"
-msgstr "Kaart met plekken"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-msgid "SEED_LABEL"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-#, fuzzy
-msgid "FIND_CURRENT_PATCH"
-msgstr "Annuleer huidige actie"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4712,6 +4591,16 @@ msgstr ""
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Soortnaam..."
 
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+msgid "INVALID_SPECIES_NAME_POPUP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:103
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Soortnaam..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
@@ -4724,6 +4613,20 @@ msgstr ""
 #, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "stierf uit op de planeet"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Annuleer huidige actie"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
+msgid "SEED_LABEL"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -5457,21 +5360,6 @@ msgstr ""
 msgid "CREATE"
 msgstr ""
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
-#, fuzzy
-msgid "MICROBE"
-msgstr "Microbieel Stage"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Meercellige Stage"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:17
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Meercellige Stage"
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5844,6 +5732,117 @@ msgstr ""
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
+
+#: ../src/thriveopedia/Thriveopedia.tscn:74
+#, fuzzy
+msgid "TOGGLE_NAVIGATION_TREE"
+msgstr "Opties"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:103
+#, fuzzy
+msgid "PAGE_BACK"
+msgstr "Terug"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:117
+#, fuzzy
+msgid "PAGE_FORWARD"
+msgstr "Voorwaarts"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:131
+#, fuzzy
+msgid "HOME"
+msgstr "Home"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:149
+#, fuzzy
+msgid "PAGE_TITLE"
+msgstr "Celprocessen"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+#, fuzzy
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr "Kies een generatie"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
+#, fuzzy
+msgid "FOSSILISATION"
+msgstr "populatie:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
+#, fuzzy
+msgid "FOSSILISATION_EXPLANATION"
+msgstr "(startlocatie)"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
+msgid "FOSSILISE"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "MICROBE"
+msgstr "Microbieel Stage"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "Meercellige Stage"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "Meercellige Stage"
+
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
+msgid "CURRENT_WORLD_PAGE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
+#, fuzzy
+msgid "EVOLUTIONARY_TREE_PAGE"
+msgstr "Stamboom"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
+msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#, fuzzy
+msgid "HOME_PAGE"
+msgstr "Home-pagina"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+msgid "THRIVEOPEDIA_HOME_INFO"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+msgid "THE_DISTURBANCE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+#, fuzzy
+msgid "MUSEUM_PAGE"
+msgstr "Home-pagina"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+msgid "OPEN_IN_FREEBUILD"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
+msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
+#, fuzzy
+msgid "PATCH_MAP_PAGE"
+msgstr "Kaart met plekken"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"

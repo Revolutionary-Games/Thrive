@@ -67,7 +67,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
             {
                 var card = (MuseumCard)GD.Load<PackedScene>(
-                    "res://src/gui_common/fossilisation/MuseumCard.tscn").Instance();
+                    "res://src/thriveopedia/fossilisation/MuseumCard.tscn").Instance();
 
                 var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
 

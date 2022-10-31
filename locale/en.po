@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-29 13:44+0300\n"
+"POT-Creation-Date: 2022-10-31 19:32+0000\n"
 "PO-Revision-Date: 2022-10-21 09:48+0000\n"
 "Last-Translator: Oliveriver <oliveriver1@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -557,7 +557,7 @@ msgid "CHEAT_MENU"
 msgstr "Cheat menu"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:91
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Miscellaneous"
 
@@ -1021,9 +1021,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Finish {0} Generations"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Species[/b]\n"
@@ -1038,9 +1038,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stage[/b]\n"
@@ -1214,8 +1214,8 @@ msgstr "Back"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:177
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Confirm Exit"
 
@@ -2099,10 +2099,9 @@ msgstr "CONFIRM"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
-#: ../src/modding/ModManager.tscn:992
+#: ../src/modding/ModManager.tscn:992 ../src/thriveopedia/Thriveopedia.tscn:163
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Close"
@@ -2337,12 +2336,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Note: you can change performance related options at any time in the [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] to improve game performance"
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:35
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Difficulty"
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:63
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planet"
 
@@ -2950,8 +2949,8 @@ msgstr "Discard and continue"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:206
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -3040,7 +3039,7 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossilise this species (already fossilised)"
 
 #: ../src/general/StageHUDBase.cs:761
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Fossilise this species"
 
@@ -3097,7 +3096,7 @@ msgid "FALSE"
 msgstr "False"
 
 #: ../src/general/WorldGenerationSettings.cs:147
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 "Difficulty preset: {0}\n"
@@ -3112,7 +3111,7 @@ msgstr ""
 "Limit growth compound usage: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:165
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Patch map type: {0}\n"
@@ -3121,7 +3120,7 @@ msgstr ""
 "Planet random seed: {3}"
 
 #: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 "Include later stage prototypes: {0}\n"
@@ -3550,132 +3549,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr "Tutorial"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "Species name must conform to binomial naming system (genus and epithet)!"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
-msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr ""
-"A fossilised species with this name already exists.\n"
-"Are you sure you want to overwrite it?"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
-msgid "FOSSILISATION"
-msgstr "Fossilisation"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Species name..."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
-msgid "FOSSILISATION_EXPLANATION"
-msgstr "Fossilise this species to save it in the museum. You can access the museum from the Thriveopedia, or load fossilised species in the freebuild editor."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
-msgid "FOSSILISE"
-msgstr "Fossilise"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:74
-msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Toggle navigation tree"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:103
-msgid "PAGE_BACK"
-msgstr "Back"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:117
-msgid "PAGE_FORWARD"
-msgstr "Forward"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:131
-msgid "HOME"
-msgstr "Home"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:149
-msgid "PAGE_TITLE"
-msgstr "Page Title"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
-msgid "CURRENT_WORLD_PAGE"
-msgstr "Current World"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
-msgid "EVOLUTIONARY_TREE_PAGE"
-msgstr "Evolutionary Tree"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
-msgstr ""
-"Not yet displayed in freebuild mode or in saves started in versions earlier than 0.6.0.\n"
-"\n"
-"If neither of these apply, an error has occurred. Please notify the dev team and supply game logs."
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
-msgid "HOME_PAGE"
-msgstr "Home"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
-msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr "Welcome to the Thriveopedia"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "THRIVEOPEDIA_HOME_INFO"
-msgstr ""
-"The Thriveopedia is the central library and information store for Thrive content. Here you'll find the answers to any question you might have about the game, your current world, or the Thrive development project.\n"
-"\n"
-"For the moment, the Thriveopedia is relatively bare, but you can still explore several pages using the page tree and navigation buttons. Note that pages relating to a specific game in progress will only be shown when the Thriveopedia is opened via the in-game pause menu.\n"
-"\n"
-"You can find more information about the game at the locations below.\n"
-"\n"
-"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Official Website[/url][/color]\n"
-"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Development Wiki[/url][/color]\n"
-"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Community Wiki[/url][/color]"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:46
-msgid "THE_DISTURBANCE"
-msgstr "The Disturbance"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
-msgid "MUSEUM_PAGE"
-msgstr "Museum"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
-msgid "OPEN_IN_FREEBUILD_WARNING"
-msgstr ""
-"Are you sure you want to start a new game?\n"
-"You will lose any unsaved progress."
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:152
-msgid "OPEN_IN_FREEBUILD"
-msgstr "Open in Freebuild"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:167
-msgid "MUSEUM_WELCOME_TEXT"
-msgstr ""
-"Welcome to the museum! Here you can admire the many species you've fossilised across all your playthroughs. You can even play as a species by opening it in the freebuild editor.\n"
-"\n"
-"To fossilise a species in-game, press the pause button. Then select a microbe on screen to fossilise its species."
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
-msgid "PATCH_MAP_PAGE"
-msgstr "Patch Map"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-msgid "SEED_LABEL"
-msgstr "Planet seed: {0}"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-msgid "FIND_CURRENT_PATCH"
-msgstr "Find Current Patch"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4693,6 +4566,16 @@ msgstr "Compound Balances"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Species name is too long!"
 
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+msgid "INVALID_SPECIES_NAME_POPUP"
+msgstr "Species name must conform to binomial naming system (genus and epithet)!"
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:103
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Species name..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
@@ -4704,6 +4587,19 @@ msgstr "Infinite MP"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Move to Any Patch"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
+msgid "FIND_CURRENT_PATCH"
+msgstr "Find Current Patch"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
+msgid "SEED_LABEL"
+msgstr "Planet seed: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -5393,18 +5289,6 @@ msgstr "Use Auto Harmony Loading"
 msgid "CREATE"
 msgstr "Create"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
-msgid "MICROBE"
-msgstr "Microbe"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicellular"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:17
-msgid "LATE_MULTICELLULAR"
-msgstr "Late Multicellular"
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5774,6 +5658,121 @@ msgstr "Steam failed to acquire UGC lock"
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unknown Steam error happened"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:74
+msgid "TOGGLE_NAVIGATION_TREE"
+msgstr "Toggle navigation tree"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:103
+msgid "PAGE_BACK"
+msgstr "Back"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:117
+msgid "PAGE_FORWARD"
+msgstr "Forward"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:131
+msgid "HOME"
+msgstr "Home"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:149
+msgid "PAGE_TITLE"
+msgstr "Page Title"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr ""
+"A fossilised species with this name already exists.\n"
+"Are you sure you want to overwrite it?"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
+msgid "FOSSILISATION"
+msgstr "Fossilisation"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
+msgid "FOSSILISATION_EXPLANATION"
+msgstr "Fossilise this species to save it in the museum. You can access the museum from the Thriveopedia, or load fossilised species in the freebuild editor."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
+msgid "FOSSILISE"
+msgstr "Fossilise"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+msgid "MICROBE"
+msgstr "Microbe"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+msgid "EARLY_MULTICELLULAR"
+msgstr "Multicellular"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+msgid "LATE_MULTICELLULAR"
+msgstr "Late Multicellular"
+
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
+msgid "CURRENT_WORLD_PAGE"
+msgstr "Current World"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
+msgid "EVOLUTIONARY_TREE_PAGE"
+msgstr "Evolutionary Tree"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
+msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgstr ""
+"Not yet displayed in freebuild mode or in saves started in versions earlier than 0.6.0.\n"
+"\n"
+"If neither of these apply, an error has occurred. Please notify the dev team and supply game logs."
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+msgid "HOME_PAGE"
+msgstr "Home"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr "Welcome to the Thriveopedia"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+msgid "THRIVEOPEDIA_HOME_INFO"
+msgstr ""
+"The Thriveopedia is the central library and information store for Thrive content. Here you'll find the answers to any question you might have about the game, your current world, or the Thrive development project.\n"
+"\n"
+"For the moment, the Thriveopedia is relatively bare, but you can still explore several pages using the page tree and navigation buttons. Note that pages relating to a specific game in progress will only be shown when the Thriveopedia is opened via the in-game pause menu.\n"
+"\n"
+"You can find more information about the game at the locations below.\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Official Website[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Development Wiki[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Community Wiki[/url][/color]"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+msgid "THE_DISTURBANCE"
+msgstr "The Disturbance"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+msgid "MUSEUM_PAGE"
+msgstr "Museum"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr ""
+"Are you sure you want to start a new game?\n"
+"You will lose any unsaved progress."
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+msgid "OPEN_IN_FREEBUILD"
+msgstr "Open in Freebuild"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
+msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
+"Welcome to the museum! Here you can admire the many species you've fossilised across all your playthroughs. You can even play as a species by opening it in the freebuild editor.\n"
+"\n"
+"To fossilise a species in-game, press the pause button. Then select a microbe on screen to fossilise its species."
+
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
+msgid "PATCH_MAP_PAGE"
+msgstr "Patch Map"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"

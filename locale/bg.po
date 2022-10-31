@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-29 13:44+0300\n"
+"POT-Creation-Date: 2022-10-31 19:32+0000\n"
 "PO-Revision-Date: 2022-10-24 16:00+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -557,7 +557,7 @@ msgid "CHEAT_MENU"
 msgstr "Допълнителни кодове"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:91
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Разни"
 
@@ -1021,9 +1021,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "{0} поколения"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Създания[/b]\n"
@@ -1038,9 +1038,9 @@ msgstr ""
 "  {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Етап[/b]\n"
@@ -1214,8 +1214,8 @@ msgstr "Назад"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:177
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
@@ -2099,10 +2099,9 @@ msgstr "ГОТОВО"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
-#: ../src/modding/ModManager.tscn:992
+#: ../src/modding/ModManager.tscn:992 ../src/thriveopedia/Thriveopedia.tscn:163
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -2337,12 +2336,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Важно: Ако имате проблеми с производителността на играта, натиснете [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]тук[/url][/color]"
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:35
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Трудност"
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:63
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Планета"
 
@@ -2950,8 +2949,8 @@ msgstr "Отхвърляне и продължаване"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:206
 msgid "CANCEL"
 msgstr "Отказ"
 
@@ -3040,7 +3039,7 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/general/StageHUDBase.cs:761
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
@@ -3097,19 +3096,19 @@ msgid "FALSE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:147
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Ниво на трудност"
 
 #: ../src/general/WorldGenerationSettings.cs:165
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Подробности"
 
 #: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 
@@ -3536,133 +3535,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr "Упътване"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "Наименованието трябва да отговаря на бинарната номенклатура (родово название и видов епитет)!"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
-#, fuzzy
-msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
-msgid "FOSSILISATION"
-msgstr "популация:"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Наименование..."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
-msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Агресивните микроби преследват плячката си на големи разстояния\n"
-"и са склонни да се защитят, когато са нападнати.\n"
-"Пасивните микроби не преследват пляката си на големи разстояния\n"
-"и са склонни да избягат, когато са нападнати."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
-#, fuzzy
-msgid "FOSSILISE"
-msgstr "Мудно"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
-msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Дарения"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:103
-#, fuzzy
-msgid "PAGE_BACK"
-msgstr "Клавиш „Back“"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:117
-#, fuzzy
-msgid "PAGE_FORWARD"
-msgstr "Клавиш „Forward“"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:131
-#, fuzzy
-msgid "HOME"
-msgstr "Клавиш „Home“"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
-msgid "PAGE_TITLE"
-msgstr "Клетъчни процеси"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
-#, fuzzy
-msgid "CURRENT_WORLD_PAGE"
-msgstr "Текущи разработчици"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
-#, fuzzy
-msgid "EVOLUTIONARY_TREE_PAGE"
-msgstr "Еволюционно дърво"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
-#, fuzzy
-msgid "HOME_PAGE"
-msgstr "Клавиш „Homepage“"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
-msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "THRIVEOPEDIA_HOME_INFO"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:46
-msgid "THE_DISTURBANCE"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
-#, fuzzy
-msgid "MUSEUM_PAGE"
-msgstr "Клавиш „Homepage“"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
-#, fuzzy
-msgid "OPEN_IN_FREEBUILD_WARNING"
-msgstr "Неограничени"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
-msgid "OPEN_IN_FREEBUILD"
-msgstr "Неограничени"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:167
-msgid "MUSEUM_WELCOME_TEXT"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
-msgid "PATCH_MAP_PAGE"
-msgstr "Карта на зоните"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-msgid "SEED_LABEL"
-msgstr "Идентификатор: {0}"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-msgid "FIND_CURRENT_PATCH"
-msgstr "Текущо местообитание"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4680,6 +4552,16 @@ msgstr "Баланс на химичните съединения"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Наименованието е твърде дълго!"
 
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+msgid "INVALID_SPECIES_NAME_POPUP"
+msgstr "Наименованието трябва да отговаря на бинарната номенклатура (родово название и видов епитет)!"
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:103
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Наименование..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
@@ -4691,6 +4573,19 @@ msgstr "Неограничени МТ"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Преселение"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
+msgid "FIND_CURRENT_PATCH"
+msgstr "Текущо местообитание"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
+msgid "SEED_LABEL"
+msgstr "Идентификатор: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -5380,21 +5275,6 @@ msgstr "Използване на „Harmony“"
 msgid "CREATE"
 msgstr "Създаване"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
-#, fuzzy
-msgid "MICROBE"
-msgstr "Микробен етап"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Многоклетъчни"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:17
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Многоклетъчни"
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5764,6 +5644,125 @@ msgstr "„Steam“ не успя да придобие заключването
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:74
+#, fuzzy
+msgid "TOGGLE_NAVIGATION_TREE"
+msgstr "Дарения"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:103
+#, fuzzy
+msgid "PAGE_BACK"
+msgstr "Клавиш „Back“"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:117
+#, fuzzy
+msgid "PAGE_FORWARD"
+msgstr "Клавиш „Forward“"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:131
+#, fuzzy
+msgid "HOME"
+msgstr "Клавиш „Home“"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:149
+#, fuzzy
+msgid "PAGE_TITLE"
+msgstr "Клетъчни процеси"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+#, fuzzy
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
+#, fuzzy
+msgid "FOSSILISATION"
+msgstr "популация:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
+#, fuzzy
+msgid "FOSSILISATION_EXPLANATION"
+msgstr ""
+"Агресивните микроби преследват плячката си на големи разстояния\n"
+"и са склонни да се защитят, когато са нападнати.\n"
+"Пасивните микроби не преследват пляката си на големи разстояния\n"
+"и са склонни да избягат, когато са нападнати."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
+#, fuzzy
+msgid "FOSSILISE"
+msgstr "Мудно"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "MICROBE"
+msgstr "Микробен етап"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "Многоклетъчни"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "Многоклетъчни"
+
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
+#, fuzzy
+msgid "CURRENT_WORLD_PAGE"
+msgstr "Текущи разработчици"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
+#, fuzzy
+msgid "EVOLUTIONARY_TREE_PAGE"
+msgstr "Еволюционно дърво"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
+msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#, fuzzy
+msgid "HOME_PAGE"
+msgstr "Клавиш „Homepage“"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+msgid "THRIVEOPEDIA_HOME_INFO"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+msgid "THE_DISTURBANCE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+#, fuzzy
+msgid "MUSEUM_PAGE"
+msgstr "Клавиш „Homepage“"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr "Неограничени"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD"
+msgstr "Неограничени"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
+msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
+#, fuzzy
+msgid "PATCH_MAP_PAGE"
+msgstr "Карта на зоните"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 01:03+0100\n"
+"POT-Creation-Date: 2022-10-31 19:32+0000\n"
 "PO-Revision-Date: 2022-10-17 19:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -555,7 +555,7 @@ msgid "CHEAT_MENU"
 msgstr "תפריט קודים"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:91
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "שונות"
 
@@ -1019,9 +1019,9 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "סיים {0} דורות"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]מינים[/b]\n"
@@ -1036,9 +1036,9 @@ msgstr ""
 " {5}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]שלב[/b]\n"
@@ -1212,8 +1212,8 @@ msgstr "חזור"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:177
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "אשר יציאה"
 
@@ -2097,10 +2097,9 @@ msgstr "אשר"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
-#: ../src/modding/ModManager.tscn:992
+#: ../src/modding/ModManager.tscn:992 ../src/thriveopedia/Thriveopedia.tscn:163
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "סגור"
@@ -2332,12 +2331,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "הערה: אתה יכול לשנות אפשריות שקושרות לביצועים בכל זמן נתון ב[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]אפשרויות[/url][/color] על מנת לשפר ביצועי המשחק"
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:35
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "קושי"
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:63
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "כוכב לכת"
 
@@ -2948,8 +2947,8 @@ msgstr "מחק והמשך"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:206
 msgid "CANCEL"
 msgstr "ביטול"
 
@@ -3038,7 +3037,7 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/general/StageHUDBase.cs:761
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
@@ -3095,19 +3094,19 @@ msgid "FALSE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:147
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "קושי מוגדר מראש"
 
 #: ../src/general/WorldGenerationSettings.cs:165
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "פתח תקיית קבצי לוג"
 
 #: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 
@@ -3534,133 +3533,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL"
 msgstr "מדריך"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "שם המין חייב להתאים למערכת השמות הבינומית (סוג וכינוי)!"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
-#, fuzzy
-msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה לצמיתות?"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
-msgid "FOSSILISATION"
-msgstr "אוכלוסיה:"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "שם המין..."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
-msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
-"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
-"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
-"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
-#, fuzzy
-msgid "FOSSILISE"
-msgstr "נייח"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
-msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "תרומות"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:103
-#, fuzzy
-msgid "PAGE_BACK"
-msgstr "מקש חזור"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:117
-#, fuzzy
-msgid "PAGE_FORWARD"
-msgstr "מקש קדימה"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:131
-#, fuzzy
-msgid "HOME"
-msgstr "מקש Home"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
-msgid "PAGE_TITLE"
-msgstr "תהליכי התא"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
-#, fuzzy
-msgid "CURRENT_WORLD_PAGE"
-msgstr "מפתחים נוכחים"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
-#, fuzzy
-msgid "EVOLUTIONARY_TREE_PAGE"
-msgstr "עץ אבולוציוני"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
-#, fuzzy
-msgid "HOME_PAGE"
-msgstr "מקש דף הבית"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
-msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "THRIVEOPEDIA_HOME_INFO"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:46
-msgid "THE_DISTURBANCE"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
-#, fuzzy
-msgid "MUSEUM_PAGE"
-msgstr "מקש דף הבית"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
-#, fuzzy
-msgid "OPEN_IN_FREEBUILD_WARNING"
-msgstr "ארגז חול"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
-msgid "OPEN_IN_FREEBUILD"
-msgstr "ארגז חול"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:167
-msgid "MUSEUM_WELCOME_TEXT"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
-msgid "PATCH_MAP_PAGE"
-msgstr "סוג מפת אזורים"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-msgid "SEED_LABEL"
-msgstr "זרע אקראי של כוכב לכת: {0}"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-msgid "FIND_CURRENT_PATCH"
-msgstr "מצא את האזור הנוכחי"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4678,6 +4550,16 @@ msgstr "מאזן תרכובות"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "שם המין ארוך מדי!"
 
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+msgid "INVALID_SPECIES_NAME_POPUP"
+msgstr "שם המין חייב להתאים למערכת השמות הבינומית (סוג וכינוי)!"
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:103
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "שם המין..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
@@ -4689,6 +4571,19 @@ msgstr "אינסוף נקמ\"ו"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "לזוז לכל אזור"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
+msgid "FIND_CURRENT_PATCH"
+msgstr "מצא את האזור הנוכחי"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
+msgid "SEED_LABEL"
+msgstr "זרע אקראי של כוכב לכת: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -5378,21 +5273,6 @@ msgstr "השתמש במעלה אוטו-Harmony"
 msgid "CREATE"
 msgstr "ליצור"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
-#, fuzzy
-msgid "MICROBE"
-msgstr "שלב המיקרובי"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "רב תאים"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:17
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "רב תאים"
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5762,6 +5642,125 @@ msgstr "Steam נכשל בלהשיג UGC lock"
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "שגיאת Steam לא ידועה קרתה"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:74
+#, fuzzy
+msgid "TOGGLE_NAVIGATION_TREE"
+msgstr "תרומות"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:103
+#, fuzzy
+msgid "PAGE_BACK"
+msgstr "מקש חזור"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:117
+#, fuzzy
+msgid "PAGE_FORWARD"
+msgstr "מקש קדימה"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:131
+#, fuzzy
+msgid "HOME"
+msgstr "מקש Home"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:149
+#, fuzzy
+msgid "PAGE_TITLE"
+msgstr "תהליכי התא"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+#, fuzzy
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה לצמיתות?"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
+#, fuzzy
+msgid "FOSSILISATION"
+msgstr "אוכלוסיה:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
+#, fuzzy
+msgid "FOSSILISATION_EXPLANATION"
+msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
+#, fuzzy
+msgid "FOSSILISE"
+msgstr "נייח"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "MICROBE"
+msgstr "שלב המיקרובי"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "רב תאים"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "רב תאים"
+
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
+#, fuzzy
+msgid "CURRENT_WORLD_PAGE"
+msgstr "מפתחים נוכחים"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
+#, fuzzy
+msgid "EVOLUTIONARY_TREE_PAGE"
+msgstr "עץ אבולוציוני"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
+msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#, fuzzy
+msgid "HOME_PAGE"
+msgstr "מקש דף הבית"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+msgid "THRIVEOPEDIA_HOME_INFO"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+msgid "THE_DISTURBANCE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+#, fuzzy
+msgid "MUSEUM_PAGE"
+msgstr "מקש דף הבית"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr "ארגז חול"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD"
+msgstr "ארגז חול"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
+msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
+#, fuzzy
+msgid "PATCH_MAP_PAGE"
+msgstr "סוג מפת אזורים"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"

@@ -4,9 +4,9 @@
 [ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=3]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs" type="Script" id=8]
+[ext_resource path="res://src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs" type="Script" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=9]
 
 [node name="ThriveopediaEvolutionaryTreePage" instance=ExtResource( 6 )]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 01:03+0100\n"
+"POT-Creation-Date: 2022-10-31 19:32+0000\n"
 "PO-Revision-Date: 2022-10-14 05:59+0000\n"
 "Last-Translator: TomDev03 <tomascsilvapro@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -548,7 +548,7 @@ msgid "CHEAT_MENU"
 msgstr "Cheat Menu"
 
 #: ../simulation_parameters/common/input_options.json:244
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:91
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Diversos"
 
@@ -1021,17 +1021,17 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Completou {0} Gerações"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:170
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:183
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estágio[/b]\n"
@@ -1219,8 +1219,8 @@ msgstr "Voltar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:235
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:177
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
@@ -2119,10 +2119,9 @@ msgstr "CONFIRMAR"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:163
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
-#: ../src/modding/ModManager.tscn:992
+#: ../src/modding/ModManager.tscn:992 ../src/thriveopedia/Thriveopedia.tscn:163
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Fechar"
@@ -2362,12 +2361,12 @@ msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:290
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:35
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:300
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:63
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr ""
 
@@ -3019,8 +3018,8 @@ msgstr "Descartar e continuar"
 
 #: ../src/general/OptionsMenu.tscn:1826
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:206
 #: ../src/modding/NewModGUI.tscn:472
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:206
 msgid "CANCEL"
 msgstr "Cancelar"
 
@@ -3113,7 +3112,7 @@ msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
 #: ../src/general/StageHUDBase.cs:761
-#: ../src/gui_common/fossilisation/FossilisationButton.tscn:15
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
@@ -3170,19 +3169,19 @@ msgid "FALSE"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:147
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:50
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 #, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr "Personalizadas"
 
 #: ../src/general/WorldGenerationSettings.cs:165
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:78
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Abrir pasta de Logs"
 
 #: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.tscn:106
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "MISC_DETAILS_STRING"
 msgstr ""
 
@@ -3608,135 +3607,6 @@ msgstr "Protanóptico (Vermelho-Verde)"
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:136
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "O nome da espécie deve estar de acordo com o sistema de nomenclatura binomial (gênero e epíteto)!"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.cs:204
-#, fuzzy
-msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
-msgid "FOSSILISATION"
-msgstr "população:"
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:103
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Nome da espécie..."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
-msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Micróbios agressivos perseguirão presas em distâncias maiores\n"
-"e são mais propensos a lutar contra predadores quando atacados.\n"
-"Micróbios pacíficos não se envolvem com os outros em distâncias maiores\n"
-"e são menos propensos a usar toxinas contra predadores."
-
-#: ../src/gui_common/fossilisation/FossilisationDialog.tscn:221
-#, fuzzy
-msgid "FOSSILISE"
-msgstr "Séssil"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
-msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Doações"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:103
-#, fuzzy
-msgid "PAGE_BACK"
-msgstr "Voltar"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:117
-#, fuzzy
-msgid "PAGE_FORWARD"
-msgstr "Avançar"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:131
-#, fuzzy
-msgid "HOME"
-msgstr "Home"
-
-#: ../src/gui_common/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
-msgid "PAGE_TITLE"
-msgstr "Processos de Célula"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaCurrentWorldPage.cs:22
-#, fuzzy
-msgid "CURRENT_WORLD_PAGE"
-msgstr "Desenvolvedores Actuais"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.cs:38
-#, fuzzy
-msgid "EVOLUTIONARY_TREE_PAGE"
-msgstr "Da Revolutionary Games Studio"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.cs:9
-#, fuzzy
-msgid "HOME_PAGE"
-msgstr "Homepage"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:21
-msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:39
-msgid "THRIVEOPEDIA_HOME_INFO"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaHomePage.tscn:46
-msgid "THE_DISTURBANCE"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:40
-#, fuzzy
-msgid "MUSEUM_PAGE"
-msgstr "Homepage"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.cs:156
-#, fuzzy
-msgid "OPEN_IN_FREEBUILD_WARNING"
-msgstr "Modo livre"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
-msgid "OPEN_IN_FREEBUILD"
-msgstr "Modo livre"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaMuseumPage.tscn:167
-msgid "MUSEUM_WELCOME_TEXT"
-msgstr ""
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
-msgid "PATCH_MAP_PAGE"
-msgstr "Mapa de Regiões"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.cs:109
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:88
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-#, fuzzy
-msgid "SEED_LABEL"
-msgstr "Bioma: {0}"
-
-#: ../src/gui_common/thriveopedia/ThriveopediaPatchMapPage.tscn:79
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
-#, fuzzy
-msgid "FIND_CURRENT_PATCH"
-msgstr "Caminho do ícone do mod inválido"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4787,6 +4657,16 @@ msgstr "Equilíbrio de Compostos"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Nome da espécie..."
 
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+msgid "INVALID_SPECIES_NAME_POPUP"
+msgstr "O nome da espécie deve estar de acordo com o sistema de nomenclatura binomial (gênero e epíteto)!"
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:103
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Nome da espécie..."
+
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
@@ -4799,6 +4679,21 @@ msgstr "PM infinito"
 #, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Mover para esta região"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Caminho do ícone do mod inválido"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
+#, fuzzy
+msgid "SEED_LABEL"
+msgstr "Bioma: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -5503,21 +5398,6 @@ msgstr ""
 msgid "CREATE"
 msgstr "Criar"
 
-#: ../src/saving/FossilisedSpeciesInformation.cs:11
-#, fuzzy
-msgid "MICROBE"
-msgstr "Fase Microbial"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:14
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Colocar organelo"
-
-#: ../src/saving/FossilisedSpeciesInformation.cs:17
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Colocar organelo"
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:102
 #: ../src/saving/InProgressLoad.cs:151
 msgid "LOADING_GAME"
@@ -5890,6 +5770,125 @@ msgstr "O Steam falhou ao adquirir o bloqueio UGC"
 #: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ocorreu um erro desconhecido da Steam"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:74
+#, fuzzy
+msgid "TOGGLE_NAVIGATION_TREE"
+msgstr "Doações"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:103
+#, fuzzy
+msgid "PAGE_BACK"
+msgstr "Voltar"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:117
+#, fuzzy
+msgid "PAGE_FORWARD"
+msgstr "Avançar"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:131
+#, fuzzy
+msgid "HOME"
+msgstr "Home"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:149
+#, fuzzy
+msgid "PAGE_TITLE"
+msgstr "Processos de Célula"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+#, fuzzy
+msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
+msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
+#, fuzzy
+msgid "FOSSILISATION"
+msgstr "população:"
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
+#, fuzzy
+msgid "FOSSILISATION_EXPLANATION"
+msgstr ""
+"Micróbios agressivos perseguirão presas em distâncias maiores\n"
+"e são mais propensos a lutar contra predadores quando atacados.\n"
+"Micróbios pacíficos não se envolvem com os outros em distâncias maiores\n"
+"e são menos propensos a usar toxinas contra predadores."
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
+#, fuzzy
+msgid "FOSSILISE"
+msgstr "Séssil"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#, fuzzy
+msgid "MICROBE"
+msgstr "Fase Microbial"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#, fuzzy
+msgid "EARLY_MULTICELLULAR"
+msgstr "Colocar organelo"
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#, fuzzy
+msgid "LATE_MULTICELLULAR"
+msgstr "Colocar organelo"
+
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
+#, fuzzy
+msgid "CURRENT_WORLD_PAGE"
+msgstr "Desenvolvedores Actuais"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
+#, fuzzy
+msgid "EVOLUTIONARY_TREE_PAGE"
+msgstr "Da Revolutionary Games Studio"
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
+msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#, fuzzy
+msgid "HOME_PAGE"
+msgstr "Homepage"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+msgid "WELCOME_TO_THRIVEOPEDIA"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+msgid "THRIVEOPEDIA_HOME_INFO"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+msgid "THE_DISTURBANCE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+#, fuzzy
+msgid "MUSEUM_PAGE"
+msgstr "Homepage"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD_WARNING"
+msgstr "Modo livre"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#, fuzzy
+msgid "OPEN_IN_FREEBUILD"
+msgstr "Modo livre"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
+msgid "MUSEUM_WELCOME_TEXT"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
+#, fuzzy
+msgid "PATCH_MAP_PAGE"
+msgstr "Mapa de Regiões"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 #, fuzzy

@@ -216,7 +216,7 @@ public class Thriveopedia : ControlWithInput
             return;
 
         // For now, load by direct reference to the Godot scene. Could be generalised in future.
-        var scene = GD.Load<PackedScene>($"res://src/gui_common/thriveopedia/Thriveopedia{name}Page.tscn");
+        var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
         pageContainer.AddChild(page);
         allPages.Add(page, CreateTreeItem(page, parentName));

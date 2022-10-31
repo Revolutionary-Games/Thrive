@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://src/gui_common/thriveopedia/Thriveopedia.cs" type="Script" id=1]
+[ext_resource path="res://src/thriveopedia/Thriveopedia.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/homeButtonHover.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/homeButton.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/homeButtonActive.png" type="Texture" id=5]
-[ext_resource path="res://src/gui_common/thriveopedia/ThriveopediaHomePage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/thriveopedia/pages/ThriveopediaHomePage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture" id=9]
