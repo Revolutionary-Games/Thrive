@@ -172,13 +172,11 @@ public class GameWorld : ISaveLoadable
     public void AddCurrentGenerationToHistory()
     {
         var generation = PlayerSpecies.Generation - 1;
-        GenerationHistory.Add(generation, new GenerationRecord
-        {
-            Generation = generation,
-            TimeElapsed = TotalPassedTime,
-            AutoEvoResult = GetAutoEvoRun().Results!,
-            AllSpecies = worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone()),
-        });
+        GenerationHistory.Add(generation, new GenerationRecord(
+            generation,
+            TotalPassedTime,
+            GetAutoEvoRun().Results!,
+            worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone())));
     }
 
     /// <summary>
