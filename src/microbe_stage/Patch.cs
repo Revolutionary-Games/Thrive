@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -9,6 +10,8 @@ using Nito.Collections;
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
 [JsonObject(IsReference = true)]
+[TypeConverter(typeof(ThriveTypeConverter))]
+[UseThriveConverter]
 [UseThriveSerializer]
 public class Patch
 {

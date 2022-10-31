@@ -10,6 +10,16 @@
     [UseThriveSerializer]
     public class GenerationRecord
     {
+        [JsonConstructor]
+        public GenerationRecord(int generation, double timeElapsed, RunResults autoEvoResult,
+            Dictionary<uint, Species> allSpecies)
+        {
+            Generation = generation;
+            TimeElapsed = timeElapsed;
+            AutoEvoResult = autoEvoResult;
+            AllSpecies = allSpecies;
+        }
+
         /// <summary>
         ///   Player generation in the game (starting at zero).
         /// </summary>
@@ -33,15 +43,5 @@
         /// </summary>
         [JsonProperty]
         public Dictionary<uint, Species> AllSpecies { get; private set; }
-
-        [JsonConstructor]
-        public GenerationRecord(int generation, double timeElapsed, RunResults autoEvoResult,
-            Dictionary<uint, Species> allSpecies)
-        {
-            Generation = generation;
-            TimeElapsed = timeElapsed;
-            AutoEvoResult = autoEvoResult;
-            AllSpecies = allSpecies;
-        }
     }
 }

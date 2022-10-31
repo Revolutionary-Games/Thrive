@@ -1101,8 +1101,8 @@
             ///     Does not consider migrations nor split-offs.
             ///   </para>
             /// </remarks>
-            [JsonIgnore]
-            public Dictionary<Patch, long> NewPopulationInPatches;
+            [JsonProperty]
+            public Dictionary<Patch, long> NewPopulationInPatches = new();
 
             /// <summary>
             ///   null means no changes
@@ -1148,27 +1148,10 @@
             [JsonProperty]
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
-            /// <summary>
-            ///   Whether this result has already been created. Used for JSON serialization.
-            /// </summary>
-            [JsonProperty]
-            private bool initialised;
-
-            [JsonConstructor]
             public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
-                NewPopulationInPatches = initialised ?
-                    NewPopulations.ToDictionary(p => p.Key, p => p.Value) :
-                    new Dictionary<Patch, long>();
-                initialised = true;
             }
-
-            /// <summary>
-            ///   List of patches this species has spread to. Stored as a list in JSON to avoid serialization errors.
-            /// </summary>
-            [JsonProperty]
-            private List<KeyValuePair<Patch, long>> NewPopulations => NewPopulationInPatches.ToList();
 
             public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)
             {
