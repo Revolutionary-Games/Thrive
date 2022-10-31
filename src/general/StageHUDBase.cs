@@ -769,10 +769,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// </summary>
     public void HideFossilisationButtons()
     {
-        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
-        {
-            button.DetachAndQueueFree();
-        }
+        fossilisationButtonLayer.QueueFreeChildren();
     }
 
     /// <summary>

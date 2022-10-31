@@ -61,8 +61,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             // For now, rebuild the card list entirely each time we open the page. Very unoptimised, but it keeps
             // the museum up to date with the player's new fossilisations in a game. A possible next step would be
             // to rebuild only when the Thriveopedia as a whole is opened.
-            foreach (Node card in cardContainer.GetChildren())
-                card.DetachAndQueueFree();
+            cardContainer.QueueFreeChildren();
 
             foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
             {

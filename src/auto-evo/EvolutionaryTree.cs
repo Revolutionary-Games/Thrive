@@ -174,8 +174,7 @@ public class EvolutionaryTree : Control
         generationTimes.Clear();
         speciesNodes.Clear();
 
-        foreach (Node child in tree.GetChildren())
-            child.DetachAndQueueFree();
+        tree.QueueFreeChildren();
     }
 
     public override void _Process(float delta)
