@@ -11,6 +11,7 @@ using Nito.Collections;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
+[JSONAlwaysDynamicType]
 [UseThriveConverter]
 [UseThriveSerializer]
 public class Patch
