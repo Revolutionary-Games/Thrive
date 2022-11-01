@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -83,12 +84,7 @@ public class Thriveopedia : ControlWithInput
             selectedPage = value;
             selectedPage.Show();
 
-            // The home page is always the first in the history, so ignore it
-            backButton.Disabled = pageHistory.Count <= 1;
-            forwardButton.Disabled = pageFuture.Count == 0;
-
-            pageTitle.Text = SelectedPage.TranslatedPageName;
-            SelectInTreeWithoutEvent(selectedPage);
+            UpdateNavigationWithSelectedPage();
         }
     }
 
@@ -195,13 +191,31 @@ public class Thriveopedia : ControlWithInput
     }
 
     /// <summary>
+    ///   Updates navigation elements in the Thriveopedia UI to reflect a newly selected page.
+    /// </summary>
+    private void UpdateNavigationWithSelectedPage()
+    {
+        // The home page is always the first in the history, so ignore it
+        backButton.Disabled = pageHistory.Count <= 1;
+        forwardButton.Disabled = pageFuture.Count == 0;
+
+        pageTitle.Text = SelectedPage.TranslatedPageName;
+        SelectInTreeWithoutEvent(SelectedPage);
+    }
+
+    /// <summary>
     ///   Gets an existing page by name, or null if no page exists with that name.
     /// </summary>
     /// <param name="name">The name of the desired page</param>
     /// <returns>The Thriveopedia page with the given name</returns>
-    private ThriveopediaPage? GetPage(string? name)
+    private ThriveopediaPage GetPage(string name)
     {
-        return allPages.Keys.FirstOrDefault(p => p.PageName == name);
+        var page = allPages.Keys.FirstOrDefault(p => p.PageName == name);
+
+        if (page == null)
+            throw new InvalidOperationException($"No page with name {name} found");
+
+        return page;
     }
 
     /// <summary>
@@ -213,7 +227,7 @@ public class Thriveopedia : ControlWithInput
     {
         // Avoid adding duplicate pages
         if (allPages.Keys.Any(p => p.PageName == name))
-            return;
+            throw new InvalidOperationException($"Attempted to add duplicate page with name {name}");
 
         // For now, load by direct reference to the Godot scene. Could be generalised in future.
         var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
@@ -231,8 +245,7 @@ public class Thriveopedia : ControlWithInput
     /// <returns>An item in the page tree which links to the given page</returns>
     private TreeItem CreateTreeItem(ThriveopediaPage page, string? parentName = null)
     {
-        var parent = GetPage(parentName);
-        var pageInTree = pageTree.CreateItem(parent != null ? allPages[parent] : null);
+        var pageInTree = pageTree.CreateItem(parentName != null ? allPages[GetPage(parentName)] : null);
 
         // Set the name of the tree item so we can reference it later
         pageInTree.SetMeta("name", page.PageName);
@@ -275,12 +288,6 @@ public class Thriveopedia : ControlWithInput
             return;
 
         var page = GetPage(pageName);
-
-        if (page == null)
-        {
-            GD.PrintErr($"No page with name {pageName} exists");
-            return;
-        }
 
         if (addToHistory)
             pageHistory.Push(page);
@@ -327,12 +334,6 @@ public class Thriveopedia : ControlWithInput
 
     private void Exit()
     {
-        // Reset to the home page for the next session
-        pageHistory.Clear();
-        pageFuture.Clear();
-        pageHistory.Push(homePage);
-        SelectedPage = homePage;
-
         EmitSignal(nameof(OnThriveopediaClosed));
     }
 }

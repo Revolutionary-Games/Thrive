@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-31 19:32+0000\n"
+"POT-Creation-Date: 2022-11-01 23:18+0000\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -1062,16 +1062,16 @@ msgstr "농도"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "존재하는 종"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:159
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:139
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -1258,7 +1258,7 @@ msgid "CONFIRM_EXIT"
 msgstr "확인"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:835
-#: ../src/general/PauseMenu.cs:365
+#: ../src/general/PauseMenu.cs:380
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "메뉴로 돌아가기"
@@ -1296,7 +1296,7 @@ msgstr "시작"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:333
+#: ../src/auto-evo/EvolutionaryTree.cs:332
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -2199,10 +2199,10 @@ msgid "CLOSE"
 msgstr "닫기"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:717
 #: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
-#: ../src/microbe_stage/MicrobeHUD.cs:203
+#: ../src/microbe_stage/MicrobeHUD.cs:228
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
@@ -3117,7 +3117,7 @@ msgstr "스크린샷 폴더 열기"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "스크린샷 촬영"
 
-#: ../src/general/PauseMenu.cs:384
+#: ../src/general/PauseMenu.cs:399
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 모드 경고"
@@ -3144,7 +3144,7 @@ msgstr "저장"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -3180,49 +3180,40 @@ msgstr "플레이어 사망함"
 msgid "EXTINCT_IN_PATCH"
 msgstr "세부 사항을 표시할 파편을 선택하십시오"
 
-#: ../src/general/StageHUDBase.cs:719 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:258
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:760
-msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
-
-#: ../src/general/StageHUDBase.cs:761
-#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
-msgid "FOSSILISATION_HINT"
-msgstr ""
-
-#: ../src/general/StageHUDBase.cs:975
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:977
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:979
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:981
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:983
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:985
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1195
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "플레이어 세포"
 
-#: ../src/general/StageHUDBase.cs:1208
+#: ../src/general/StageHUDBase.cs:1188
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "존재하는 종"
@@ -3239,12 +3230,13 @@ msgstr "{0} 백만"
 msgid "KILO_ABBREVIATION"
 msgstr "{0} 천"
 
-#: ../src/general/TranslationHelper.cs:83
-msgid "TRUE"
-msgstr ""
+#: ../src/general/TranslationHelper.cs:84
+#, fuzzy
+msgid "FEATURE_ENABLED"
+msgstr "치트 키 활성화"
 
-#: ../src/general/TranslationHelper.cs:83
-msgid "FALSE"
+#: ../src/general/TranslationHelper.cs:85
+msgid "FEATURE_DISABLED"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -3260,7 +3252,7 @@ msgstr "로그 폴더 열기"
 
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
+msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
@@ -4067,8 +4059,8 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:158
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:166
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:162
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:170
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1714
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
@@ -4347,7 +4339,13 @@ msgstr "새로운 키 배치 추가"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:152
+#: ../src/microbe_stage/HUDBottomBar.tscn:114
+#: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:57
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
+msgid "STATISTICS"
+msgstr "상태"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:151
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -4438,20 +4436,29 @@ msgstr ""
 "{0}에서 충돌이 있습니다.\n"
 "{1}에서 입력을 제거하시겠습니까?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:197
+#: ../src/microbe_stage/MicrobeHUD.cs:185
+msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:186
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
+msgid "FOSSILISATION_HINT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:222
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:296
+#: ../src/microbe_stage/MicrobeHUD.cs:321
 msgid "STUFF_AT"
 msgstr "{0:F1}, {1:F1}에 위치함:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:388
+#: ../src/microbe_stage/MicrobeHUD.cs:413
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:424
+#: ../src/microbe_stage/MicrobeHUD.cs:449
 #: ../src/microbe_stage/MicrobeStage.tscn:1796
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -4868,10 +4875,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
-msgid "STATISTICS"
-msgstr "상태"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:500
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
@@ -5966,7 +5969,7 @@ msgstr ""
 msgid "PAGE_TITLE"
 msgstr "세포 진행률"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:203
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
@@ -6008,20 +6011,20 @@ msgid "LATE_MULTICELLULAR"
 msgstr "세포 기관 배치"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
-msgid "CURRENT_WORLD_PAGE"
+msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
-msgid "EVOLUTIONARY_TREE_PAGE"
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
+msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 #, fuzzy
-msgid "HOME_PAGE"
+msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "생태계: {0}"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
@@ -6036,14 +6039,14 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
 #, fuzzy
-msgid "MUSEUM_PAGE"
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "생태계: {0}"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:157
 #, fuzzy
-msgid "OPEN_IN_FREEBUILD_WARNING"
+msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "자유 구성"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
@@ -6057,7 +6060,7 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 #, fuzzy
-msgid "PATCH_MAP_PAGE"
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "파편 지도"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41

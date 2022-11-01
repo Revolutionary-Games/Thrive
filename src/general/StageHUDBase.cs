@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -282,6 +281,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected Control winExtinctBoxHolder = null!;
 
+    protected Control fossilisationButtonLayer = null!;
+    protected FossilisationDialog fossilisationDialog = null!;
+
     /// <summary>
     ///   Access to the stage to retrieve information for display as well as call some player initiated actions.
     /// </summary>
@@ -326,9 +328,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private Array compoundBars = null!;
     private ProcessPanel processPanel = null!;
-
-    private Control fossilisationButtonLayer = null!;
-    private FossilisationDialog fossilisationDialog = null!;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
@@ -737,32 +736,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     }
 
     /// <summary>
-    ///   Creates and displays a fossilisation button above each on-screen microbe.
+    ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
-    public void ShowFossilisationButtons()
-    {
-        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
-        foreach (var microbe in microbes)
-        {
-            if (microbe.Species is not MicrobeSpecies)
-                continue;
-
-            var button = FossilisationButtonScene.Instance<FossilisationButton>();
-            button.AttachedMicrobe = microbe;
-            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
-                nameof(ShowFossilisationDialog));
-
-            // Display a faded button with a different hint if the species has been fossilised.
-            var alreadyFossilised = FossilisedSpecies.CreateListOfSaves().Contains(
-                microbe.Species.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT);
-            button.AlreadyFossilised = alreadyFossilised;
-            button.HintTooltip = alreadyFossilised ?
-                TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
-                TranslationServer.Translate("FOSSILISATION_HINT");
-
-            fossilisationButtonLayer.AddChild(button);
-        }
-    }
+    public abstract void ShowFossilisationButtons();
 
     /// <summary>
     ///   Destroys all fossilisation buttons on screen.
@@ -775,11 +751,18 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <summary>
     ///   Opens the dialog to a fossilise the species selected with a given fossilisation button.
     /// </summary>
-    /// <param name="button">The button attached to the microbe to fossilise</param>
+    /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        fossilisationDialog.SelectedSpecies = button.AttachedMicrobe.Species;
-        fossilisationDialog.Show();
+        if (button.AttachedOrganism is Microbe microbe)
+        {
+            fossilisationDialog.SelectedSpecies = microbe.Species;
+            fossilisationDialog.Show();
+        }
+        else
+        {
+            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+        }
     }
 
     /// <summary>
@@ -1425,6 +1408,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         menu.OpenToHelp();
     }
 
+    private void StatisticsButtonPressed()
+    {
+        menu.OpenToStatistics();
+    }
+
     private void OnEditorButtonMouseEnter()
     {
         if (editorButton.Disabled)
@@ -1459,6 +1447,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private void UpdateFossilisationButtons()
     {
+        if (!fossilisationButtonLayer.Visible)
+            return;
+
         foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
         {
             button.UpdatePosition();

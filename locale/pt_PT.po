@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-31 19:32+0000\n"
+"POT-Creation-Date: 2022-11-01 23:18+0000\n"
 "PO-Revision-Date: 2022-10-14 05:59+0000\n"
 "Last-Translator: TomDev03 <tomascsilvapro@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1022,16 +1022,16 @@ msgstr "Completou {0} Gerações"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:755
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:141
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:765
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:151
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:138
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:159
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:139
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estágio[/b]\n"
@@ -1225,7 +1225,7 @@ msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:835
-#: ../src/general/PauseMenu.cs:365
+#: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Tens a certeza de que desejas sair para o menu principal?\n"
@@ -1261,7 +1261,7 @@ msgstr "A iniciar"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "A população de {0} alterou-se por {1} devido a: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:333
+#: ../src/auto-evo/EvolutionaryTree.cs:332
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -2127,10 +2127,10 @@ msgid "CLOSE"
 msgstr "Fechar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:718
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:717
 #: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
-#: ../src/microbe_stage/MicrobeHUD.cs:203
+#: ../src/microbe_stage/MicrobeHUD.cs:228
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
@@ -3039,7 +3039,7 @@ msgstr "Nenhum diretório de captura de ecrã encontrado"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Tente tirar algumas capturas de ecrã!"
 
-#: ../src/general/PauseMenu.cs:384
+#: ../src/general/PauseMenu.cs:399
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Tens a certeza de que desejas sair do jogo?\n"
@@ -3067,7 +3067,7 @@ msgstr "Gravar Jogo"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
@@ -3102,49 +3102,40 @@ msgstr "jogador morreu"
 msgid "EXTINCT_IN_PATCH"
 msgstr "Extinguiram-se na região"
 
-#: ../src/general/StageHUDBase.cs:719 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:258
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:760
-msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
-
-#: ../src/general/StageHUDBase.cs:761
-#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
-msgid "FOSSILISATION_HINT"
-msgstr ""
-
-#: ../src/general/StageHUDBase.cs:975
+#: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "uma abundância"
 
-#: ../src/general/StageHUDBase.cs:977
+#: ../src/general/StageHUDBase.cs:957
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "um bocado"
 
-#: ../src/general/StageHUDBase.cs:979
+#: ../src/general/StageHUDBase.cs:959
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "uma quantidade razoável"
 
-#: ../src/general/StageHUDBase.cs:981
+#: ../src/general/StageHUDBase.cs:961
 msgid "CATEGORY_SOME"
 msgstr "algum"
 
-#: ../src/general/StageHUDBase.cs:983
+#: ../src/general/StageHUDBase.cs:963
 msgid "CATEGORY_LITTLE"
 msgstr "pouco"
 
-#: ../src/general/StageHUDBase.cs:985
+#: ../src/general/StageHUDBase.cs:965
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/general/StageHUDBase.cs:1195
+#: ../src/general/StageHUDBase.cs:1175
 msgid "PLAYER_CELL"
 msgstr "Célula do jogador"
 
-#: ../src/general/StageHUDBase.cs:1208
+#: ../src/general/StageHUDBase.cs:1188
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3160,13 +3151,15 @@ msgstr "{0} M"
 msgid "KILO_ABBREVIATION"
 msgstr "{0} m"
 
-#: ../src/general/TranslationHelper.cs:83
-msgid "TRUE"
-msgstr ""
+#: ../src/general/TranslationHelper.cs:84
+#, fuzzy
+msgid "FEATURE_ENABLED"
+msgstr "Chaves de Cheats ativadas"
 
-#: ../src/general/TranslationHelper.cs:83
-msgid "FALSE"
-msgstr ""
+#: ../src/general/TranslationHelper.cs:85
+#, fuzzy
+msgid "FEATURE_DISABLED"
+msgstr "Desactivado"
 
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3182,7 +3175,7 @@ msgstr "Abrir pasta de Logs"
 
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
-msgid "MISC_DETAILS_STRING"
+msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
@@ -3978,8 +3971,8 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Os agentes de adesão permitem que as células criem produtos químicos aos quais outras células podem reagir. Os sinais químicos podem ser usados para atrair outras células ou avisá-las sobre o perigo para fazê-las fugir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:158
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:166
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:162
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:170
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1714
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."
@@ -4260,7 +4253,13 @@ msgstr "Mostrar / ocultar ambiente e compostos"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar processos de célula"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:152
+#: ../src/microbe_stage/HUDBottomBar.tscn:114
+#: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:57
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
+msgid "STATISTICS"
+msgstr "Estatísticas"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:151
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicídio"
 
@@ -4343,20 +4342,29 @@ msgstr "Tornar-se Agressivo"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Sinal a Emitir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:197
+#: ../src/microbe_stage/MicrobeHUD.cs:185
+msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:186
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
+msgid "FOSSILISATION_HINT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:222
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:296
+#: ../src/microbe_stage/MicrobeHUD.cs:321
 msgid "STUFF_AT"
 msgstr "Coisas em {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:388
+#: ../src/microbe_stage/MicrobeHUD.cs:413
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:424
+#: ../src/microbe_stage/MicrobeHUD.cs:449
 #: ../src/microbe_stage/MicrobeStage.tscn:1796
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -4763,10 +4771,6 @@ msgstr "Mostrar eventos locais"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
-msgid "STATISTICS"
-msgstr "Estatísticas"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:500
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
@@ -5796,7 +5800,7 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Processos de Célula"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:204
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:203
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
@@ -5837,21 +5841,21 @@ msgstr "Colocar organelo"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 #, fuzzy
-msgid "CURRENT_WORLD_PAGE"
+msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr "Desenvolvedores Actuais"
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:38
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
 #, fuzzy
-msgid "EVOLUTIONARY_TREE_PAGE"
+msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Da Revolutionary Games Studio"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "DISABLED_IN_FREEBUILD_LABEL"
+msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 #, fuzzy
-msgid "HOME_PAGE"
+msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
 msgstr "Homepage"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
@@ -5866,14 +5870,14 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:40
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
 #, fuzzy
-msgid "MUSEUM_PAGE"
+msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Homepage"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:156
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:157
 #, fuzzy
-msgid "OPEN_IN_FREEBUILD_WARNING"
+msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "Modo livre"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
@@ -5887,7 +5891,7 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 #, fuzzy
-msgid "PATCH_MAP_PAGE"
+msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr "Mapa de Regiões"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41

@@ -2231,6 +2231,7 @@ __meta__ = {
 [connection signal="OnMenuPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenMenu"]
 [connection signal="OnPausePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
+[connection signal="OnStatisticsPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="StatisticsButtonPressed"]
 [connection signal="OnSuicidePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/VBoxContainer/Control/Multicellular" to="MicrobeHUD" method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/VBoxContainer/Control/Macroscopic" to="MicrobeHUD" method="OnBecomeMacroscopicPressed"]

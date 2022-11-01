@@ -45,6 +45,9 @@ public class HUDBottomBar : HBoxContainer
     [Signal]
     public delegate void OnHelpPressed();
 
+    [Signal]
+    public delegate void OnStatisticsPressed();
+
     public bool Paused
     {
         get => pauseButton.Paused;
@@ -137,6 +140,12 @@ public class HUDBottomBar : HBoxContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnHelpPressed));
+    }
+
+    private void StatisticsButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(nameof(OnStatisticsPressed));
     }
 
     private void PausePressed(bool paused)

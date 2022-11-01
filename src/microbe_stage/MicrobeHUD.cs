@@ -164,6 +164,31 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
+    public override void ShowFossilisationButtons()
+    {
+        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+        var fossils = FossilisedSpecies.CreateListOfFossils(false);
+        foreach (var microbe in microbes)
+        {
+            if (microbe.Species is not MicrobeSpecies)
+                continue;
+
+            var button = FossilisationButtonScene.Instance<FossilisationButton>();
+            button.AttachedOrganism = microbe;
+            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
+                nameof(ShowFossilisationDialog));
+
+            // Display a faded button with a different hint if the species has been fossilised.
+            var alreadyFossilised = FossilisedSpecies.IsSpeciesAlreadyFossilised(microbe.Species.FormattedName, fossils);
+            button.AlreadyFossilised = alreadyFossilised;
+            button.HintTooltip = alreadyFossilised ?
+                TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
+                TranslationServer.Translate("FOSSILISATION_HINT");
+
+            fossilisationButtonLayer.AddChild(button);
+        }
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);

@@ -6,8 +6,6 @@
     /// <summary>
     ///   Record of Auto-Evo results and species data for a given generation.
     /// </summary>
-    [JsonObject(IsReference = true)]
-    [UseThriveSerializer]
     public class GenerationRecord
     {
         [JsonConstructor]
@@ -16,7 +14,7 @@
         {
             Generation = generation;
             TimeElapsed = timeElapsed;
-            AutoEvoResult = autoEvoResult;
+            AutoEvoResults = autoEvoResult;
             AllSpecies = allSpecies;
         }
 
@@ -36,10 +34,10 @@
         ///   Auto-Evo results for this generation.
         /// </summary>
         [JsonProperty]
-        public RunResults AutoEvoResult { get; private set; }
+        public RunResults AutoEvoResults { get; private set; }
 
         /// <summary>
-        ///   All species data for this generation. Species are stored by value to preserve their state at this time.
+        ///   All species data for this generation. Species are cloned to preserve their state at this time.
         /// </summary>
         [JsonProperty]
         public Dictionary<uint, Species> AllSpecies { get; private set; }

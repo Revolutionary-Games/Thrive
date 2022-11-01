@@ -78,9 +78,11 @@ public static class TranslationHelper
         }
     }
 
-    public static string TranslateBool(bool value)
+    public static string TranslateFeatureFlag(bool enabled)
     {
-        return value ? TranslationServer.Translate("TRUE") : TranslationServer.Translate("FALSE");
+        return enabled ?
+            TranslationServer.Translate("FEATURE_ENABLED") :
+            TranslationServer.Translate("FEATURE_DISABLED");
     }
 
     private static string GetTranslatedText(Type type, object instance, object[] attributes)

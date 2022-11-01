@@ -152,9 +152,9 @@ public class WorldGenerationSettings
             PlayerDeathPopulationPenalty,
             TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
             OsmoregulationMultiplier,
-            TranslationHelper.TranslateBool(FreeGlucoseCloud),
-            TranslationHelper.TranslateBool(PassiveGainOfReproductionCompounds),
-            TranslationHelper.TranslateBool(LimitReproductionCompoundUseSpeed));
+            TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
+            TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
+            TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
     }
 
     /// <summary>
@@ -163,9 +163,9 @@ public class WorldGenerationSettings
     public string GetTranslatedPlanetString()
     {
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
-            TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>()?.Description),
-            TranslationHelper.TranslateBool(LAWK),
-            TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>()?.Description),
+            TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>().Description),
+            TranslationHelper.TranslateFeatureFlag(LAWK),
+            TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
             Seed);
     }
 
@@ -174,8 +174,8 @@ public class WorldGenerationSettings
     /// </summary>
     public string GetTranslatedMiscString()
     {
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MISC_DETAILS_STRING"),
-            TranslationHelper.TranslateBool(IncludeMulticellular),
-            TranslationHelper.TranslateBool(EasterEggs));
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("WORLD_MISC_DETAILS_STRING"),
+            TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
+            TranslationHelper.TranslateFeatureFlag(EasterEggs));
     }
 }

@@ -16,29 +16,43 @@ using Path = System.IO.Path;
 /// </summary>
 public class FossilisedSpecies
 {
-    public const string SAVE_SAVE_JSON = "save.json";
+    public const string SAVE_FOSSIL_JSON = "fossil.json";
     public const string SAVE_INFO_JSON = "info.json";
-
-    /// <summary>
-    ///   Name of this saved species on disk.
-    /// </summary>
-    public string Name { get; set; } = "invalid";
 
     /// <summary>
     ///   General information about this saved species.
     /// </summary>
-    public FossilisedSpeciesInformation Info { get; set; } = new();
+    private FossilisedSpeciesInformation info;
 
     /// <summary>
     ///   The species to be saved/loaded.
     /// </summary>
-    public Species Species { get; set; } = null!;
+    private Species species;
+
+    /// <summary>
+    ///   Name of this saved species on disk.
+    /// </summary>
+    private string name;
+
+    /// <summary>
+    ///   A species saved by the user.
+    /// </summary>
+    /// <param name="info">Details about the species to save</param>
+    /// <param name="species">The species to fossilise</param>
+    /// <param name="name">The name of the species to use as the file name</param>
+    public FossilisedSpecies(FossilisedSpeciesInformation info, Species species, string name)
+    {
+        this.info = info;
+        this.species = species;
+        this.name = name;
+    }
 
     /// <summary>
     ///   Creates a list of existing fossilised species names to prevent unintended overwrites.
     /// </summary>
-    /// <returns>A list of names of .thrivefossil files in the user's home directory</returns>
-    public static List<string> CreateListOfSaves()
+    /// <returns>A list of names of .thrivefossil files in the user's fossils directory</returns>
+    /// <param name="orderByDate">Whether the returned list is ordered by date modified</param>
+    public static List<string> CreateListOfFossils(bool orderByDate)
     {
         var result = new List<string>();
 
@@ -71,20 +85,36 @@ public class FossilisedSpecies
         }
 
         using var file = new File();
-        result = result.OrderBy(item =>
-            file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
+
+        if (orderByDate)
+        {
+            result = result.OrderBy(item =>
+                file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
+        }
 
         return result;
     }
 
     /// <summary>
+    ///   Checks whether a species with the same name already exists.
+    /// </summary>
+    /// <param name="species">The species to check</param>
+    /// <param name="existingFossilNames">A cached list of fossils if appropriate</param>
+    /// <returns>True if a species with this name has already been fossilised and false otherwise</returns>
+    public static bool IsSpeciesAlreadyFossilised(string name, List<string>? existingFossilNames = null)
+    {
+        existingFossilNames ??= CreateListOfFossils(false);
+        return existingFossilNames.Any(n => n == name + Constants.FOSSIL_EXTENSION_WITH_DOT);
+    }
+
+    /// <summary>
     ///   Loads a fossilised species by its filename.
     /// </summary>
-    /// <param name="saveName">The name of the .thrivefossil file (including extension)</param>
+    /// <param name="fossilName">The name of the .thrivefossil file (including extension)</param>
     /// <returns>The species saved in the provided file</returns>
-    public static Species LoadSpeciesFromFile(string saveName)
+    public static Species LoadSpeciesFromFile(string fossilName)
     {
-        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
+        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
         var (_, species) = LoadFromFile(target);
 
         return species;
@@ -93,34 +123,28 @@ public class FossilisedSpecies
     /// <summary>
     ///   Saves this species to disk.
     /// </summary>
-    public void SaveToFile()
+    public void FossiliseToFile()
     {
-        if (Species is not MicrobeSpecies)
+        if (species is not MicrobeSpecies)
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
 
-        // For now, save everything as a microbe to aid deserialization
-        var speciesInfo = new FossilisedSpeciesInformation
-        {
-            Type = FossilisedSpeciesInformation.SpeciesType.Microbe,
-        };
-
-        WriteRawSaveDataToFile(speciesInfo, Species.StringCode, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        WriteRawFossilDataToFile(info, species.StringCode, name + Constants.FOSSIL_EXTENSION_WITH_DOT);
     }
 
-    private static void WriteRawSaveDataToFile(FossilisedSpeciesInformation speciesInfo, string saveContent,
-        string saveName)
+    private static void WriteRawFossilDataToFile(FossilisedSpeciesInformation speciesInfo, string fossilContent,
+        string fossilName)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.FOSSILISED_SPECIES_FOLDER);
-        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, saveName);
+        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
 
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(speciesInfo);
 
-        WriteDataToSaveFile(target, justInfo, saveContent);
+        WriteDataToFossilFile(target, justInfo, fossilContent);
     }
 
-    private static void WriteDataToSaveFile(string target, string justInfo, string serialized)
+    private static void WriteDataToFossilFile(string target, string justInfo, string serialized)
     {
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
@@ -133,7 +157,7 @@ public class FossilisedSpecies
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
         OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
-        OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+        OutputEntry(tar, SAVE_FOSSIL_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
     private static void OutputEntry(TarOutputStream archive, string name, byte[] data)
@@ -158,31 +182,31 @@ public class FossilisedSpecies
         using (var directory = new Directory())
         {
             if (!directory.FileExists(file))
-                throw new ArgumentException("save with the given name doesn't exist");
+                throw new ArgumentException("fossil with the given name doesn't exist");
         }
 
-        var (infoStr, saveStr) = LoadDataFromFile(file);
+        var (infoStr, fossilStr) = LoadDataFromFile(file);
 
         if (string.IsNullOrEmpty(infoStr))
         {
-            throw new IOException("couldn't find info content in save");
+            throw new IOException("couldn't find info content in fossil");
         }
 
-        if (string.IsNullOrEmpty(saveStr))
+        if (string.IsNullOrEmpty(fossilStr))
         {
-            throw new IOException("couldn't find save content in save file");
+            throw new IOException("couldn't find fossil content in fossil file");
         }
 
         var infoResult = ThriveJsonConverter.Instance.DeserializeObject<FossilisedSpeciesInformation>(infoStr!) ??
-            throw new JsonException("SaveInformation is null");
+            throw new JsonException("FossilisedSpeciesInformation is null");
 
         // Use the info file to deserialize the species to the correct type
         Species? speciesResult;
         switch (infoResult.Type)
         {
             case FossilisedSpeciesInformation.SpeciesType.Microbe:
-                speciesResult = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(saveStr!) ??
-                    throw new JsonException("Save data is null");
+                speciesResult = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(fossilStr!) ??
+                    throw new JsonException("Fossil data is null");
                 break;
             default:
                 throw new NotImplementedException("Unable to load non-microbe species");
@@ -191,10 +215,10 @@ public class FossilisedSpecies
         return (infoResult, speciesResult);
     }
 
-    private static (string? Info, string? Save) LoadDataFromFile(string file)
+    private static (string? Info, string? Fossil) LoadDataFromFile(string file)
     {
         string? infoStr = null;
-        string? saveStr = null;
+        string? fossilStr = null;
 
         using var reader = new File();
         reader.Open(file, File.ModeFlags.Read);
@@ -216,17 +240,17 @@ public class FossilisedSpecies
             {
                 infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
             }
-            else if (tarEntry.Name == SAVE_SAVE_JSON)
+            else if (tarEntry.Name == SAVE_FOSSIL_JSON)
             {
-                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                fossilStr = ReadStringEntry(tar, (int)tarEntry.Size);
             }
             else
             {
-                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+                GD.PrintErr("Unknown file in fossil: ", tarEntry.Name);
             }
         }
 
-        return (infoStr, saveStr);
+        return (infoStr, fossilStr);
     }
 
     private static string ReadStringEntry(TarInputStream tar, int length)

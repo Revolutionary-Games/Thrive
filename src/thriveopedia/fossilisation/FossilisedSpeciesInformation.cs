@@ -6,6 +6,15 @@ using System.ComponentModel;
 /// </summary>
 public class FossilisedSpeciesInformation
 {
+    /// <summary>
+    ///   Details for a fossilised species saved on disk.
+    /// </summary>
+    /// <param name="type">The type of this species (e.g. microbe)</param>
+    public FossilisedSpeciesInformation(SpeciesType type)
+    {
+        Type = type;
+    }
+
     public enum SpeciesType
     {
         [Description("MICROBE")]
@@ -34,7 +43,7 @@ public class FossilisedSpeciesInformation
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     /// <summary>
-    ///   ID for this fossilised species.h
+    ///   ID for this fossilised species.
     /// </summary>
     public Guid ID { get; set; } = Guid.NewGuid();
 

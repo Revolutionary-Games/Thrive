@@ -35,9 +35,10 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    private PackedScene museumCardScene = null!;
 
     public override string PageName => "Museum";
-    public override string TranslatedPageName => TranslationServer.Translate("MUSEUM_PAGE");
+    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
 
     public override void _Ready()
     {
@@ -50,6 +51,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
+
+        museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
 
     public override void _Notification(int what)
@@ -63,10 +66,9 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             // to rebuild only when the Thriveopedia as a whole is opened.
             cardContainer.QueueFreeChildren();
 
-            foreach (var speciesName in FossilisedSpecies.CreateListOfSaves())
+            foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
             {
-                var card = (MuseumCard)GD.Load<PackedScene>(
-                    "res://src/thriveopedia/fossilisation/MuseumCard.tscn").Instance();
+                var card = (MuseumCard)museumCardScene.Instance();
 
                 var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
 
@@ -100,15 +102,22 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             speciesPreviewContainer.Visible = true;
         }
 
-        var species = card.SavedSpecies;
-        speciesPreview.PreviewSpecies = species;
-
         // Deselect all other cards to prevent highlights hanging around.
         foreach (MuseumCard otherCard in cardContainer.GetChildren())
         {
             if (otherCard != card)
                 otherCard.Pressed = false;
         }
+
+        var species = card.SavedSpecies;
+
+        if (species == null)
+        {
+            GD.PrintErr("Attempted to load a null species");
+            return;
+        }
+
+        speciesPreview.PreviewSpecies = species;
 
         if (species is MicrobeSpecies microbeSpecies)
         {
@@ -152,15 +161,15 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         // If we're opening from a game in progress, warn the player
         if (CurrentGame != null)
         {
-            leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_IN_FREEBUILD_WARNING");
+            leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_FOSSIL_IN_FREEBUILD_WARNING");
             leaveGameConfirmationDialog.PopupCenteredShrink();
             return;
         }
 
-        TransitionToFreebuild();
+        TransitionToFreebuild(speciesPreview.PreviewSpecies);
     }
 
-    private void TransitionToFreebuild()
+    private void TransitionToFreebuild(Species startingSpecies)
     {
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
@@ -169,7 +178,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
             // Start freebuild game with the selected species
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(
-                new WorldGenerationSettings(), true, (Species)speciesPreview.PreviewSpecies!.Clone());
+                new WorldGenerationSettings(), true, (Species)startingSpecies.Clone());
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

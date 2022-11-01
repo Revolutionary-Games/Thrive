@@ -287,6 +287,15 @@ public class PauseMenu : CustomDialog
         helpScreen.RandomizeEasterEgg();
     }
 
+    public void ShowThriveopedia(string pageName)
+    {
+        if (ActiveMenu == ActiveMenuType.Thriveopedia)
+            return;
+
+        ActiveMenu = ActiveMenuType.Thriveopedia;
+        thriveopedia.ChangePage(pageName);
+    }
+
     public void Open()
     {
         if (Visible)
@@ -310,6 +319,12 @@ public class PauseMenu : CustomDialog
     {
         Open();
         ShowHelpScreen();
+    }
+
+    public void OpenToStatistics()
+    {
+        Open();
+        ShowThriveopedia("CurrentWorld");
     }
 
     public void SetNewSaveName(string name)

@@ -11,15 +11,13 @@ public abstract class ThriveopediaPage : PanelContainer
     [Export]
     public bool DisplayBackground = true;
 
-    private PanelContainer backgroundPanel = null!;
-
     /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu.
     /// </summary>
     private GameProperties? currentGame;
 
     /// <summary>
-    ///   The internal name of this page.
+    ///   The internal name of this page. Must be PascalCase to open the Godot scene correctly.
     /// </summary>
     public abstract string PageName { get; }
 
@@ -47,11 +45,9 @@ public abstract class ThriveopediaPage : PanelContainer
     {
         base._Ready();
 
-        backgroundPanel = GetNode<PanelContainer>(".");
-
         // If we're not displaying the background, show a blank panel instead
         if (!DisplayBackground)
-            backgroundPanel.AddStyleboxOverride("panel", new StyleBoxEmpty());
+            AddStyleboxOverride("panel", new StyleBoxEmpty());
     }
 
     /// <summary>

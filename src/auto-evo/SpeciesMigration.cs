@@ -6,8 +6,6 @@
     /// <summary>
     ///   Data for a Species migration between two patches
     /// </summary>
-    [JsonObject(IsReference = true)]
-    [UseThriveSerializer]
     public class SpeciesMigration
     {
         [JsonProperty]

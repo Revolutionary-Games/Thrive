@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -28,20 +29,23 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     public NodePath HexPreviewPath = null!;
 
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
-    private VBoxContainer disabledInFreebuild = null!;
+
+    private VBoxContainer disabledWarning = null!;
     private EvolutionaryTree evolutionaryTree = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
 
     public override string PageName => "EvolutionaryTree";
-    public override string TranslatedPageName => TranslationServer.Translate("EVOLUTIONARY_TREE_PAGE");
+
+    public override string TranslatedPageName =>
+        TranslationServer.Translate("THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE");
 
     public override void _Ready()
     {
         base._Ready();
 
-        disabledInFreebuild = GetNode<VBoxContainer>(DisabledInFreebuildPath);
+        disabledWarning = GetNode<VBoxContainer>(DisabledInFreebuildPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
@@ -71,17 +75,20 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         if (!Visible)
             return;
 
-        // TODO fix the tree for freebuild?
-        if (CurrentGame!.FreeBuild)
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is null");
+
+        // TODO: fix the tree for freebuild?
+        if (CurrentGame.FreeBuild)
         {
             evolutionaryTree.Visible = false;
-            disabledInFreebuild.Visible = true;
+            disabledWarning.Visible = true;
             return;
         }
 
         // Building the tree relies on the existence of a full history of generations stored in the current game. Since
         // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
-        // TODO avoid an ugly try/catch block by actually checking the original save version?
+        // TODO: avoid an ugly try/catch block by actually checking the original save version?
         try
         {
             evolutionaryTree.Clear();
@@ -95,20 +102,21 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
             {
                 var record = generation.Value;
                 evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
-                    record.AutoEvoResult, record.Generation, record.TimeElapsed);
+                    record.AutoEvoResults, record.Generation, record.TimeElapsed);
                 speciesHistoryList.Add(record.AllSpecies);
             }
         }
-        catch (KeyNotFoundException)
+        catch (KeyNotFoundException e)
         {
+            GD.PrintErr($"Evolutionary tree failed to build with error {e}");
             evolutionaryTree.Visible = false;
-            disabledInFreebuild.Visible = true;
+            disabledWarning.Visible = true;
         }
     }
 
     private void InitFirstGeneration()
     {
-        // TODO fix this so it shows player species progression rather than current state
+        // TODO: fix this so it shows player species progression rather than current state
         speciesHistoryList.Add(new Dictionary<uint, Species>
         {
             { CurrentGame!.GameWorld.PlayerSpecies.ID, CurrentGame.GameWorld.PlayerSpecies },

@@ -38,6 +38,11 @@ public class FossilisationDialog : CustomDialog
     private Species selectedSpecies = null!;
 
     /// <summary>
+    ///   Name of the fossilised species. Separate to the species itself as the player can change it in the dialog.
+    /// </summary>
+    private string speciesName = null!;
+
+    /// <summary>
     ///   True when one of our (name related) Controls is hovered. This needs to be known to know if a click happened
     ///   outside the name editing controls, for detecting when the name needs to be validated.
     /// </summary>
@@ -51,7 +56,7 @@ public class FossilisationDialog : CustomDialog
         get => selectedSpecies;
         set
         {
-            selectedSpecies = (Species)value.Clone();
+            selectedSpecies = value;
 
             SetNewName(selectedSpecies.FormattedName);
             UpdateSpeciesPreview();
@@ -90,7 +95,7 @@ public class FossilisationDialog : CustomDialog
             GUICommon.MarkInputAsValid(speciesNameEdit);
             fossiliseButton.Disabled = false;
 
-            SelectedSpecies.UpdateNameIfValid(speciesNameEdit.Text);
+            speciesName = speciesNameEdit.Text;
         }
         else
         {
@@ -197,8 +202,7 @@ public class FossilisationDialog : CustomDialog
     {
         GD.Print("Saving species " + SelectedSpecies.FormattedName);
 
-        if (FossilisedSpecies.CreateListOfSaves()
-            .Any(s => s == SelectedSpecies.FormattedName + Constants.FOSSIL_EXTENSION_WITH_DOT))
+        if (FossilisedSpecies.IsSpeciesAlreadyFossilised(speciesName))
         {
             overwriteNameConfirmationDialog.DialogText =
                 TranslationServer.Translate("OVERWRITE_SPECIES_NAME_CONFIRMATION");
@@ -214,8 +218,16 @@ public class FossilisationDialog : CustomDialog
     /// </summary>
     private void FossiliseSpecies()
     {
-        var savedSpecies = new FossilisedSpecies { Name = SelectedSpecies.FormattedName, Species = SelectedSpecies };
-        savedSpecies.SaveToFile();
+        // Clone the species in case the player added a new name, as we don't want to rename the species in-game
+        var species = (Species)selectedSpecies.Clone();
+        species.UpdateNameIfValid(speciesName);
+
+        // For now, save everything as a microbe to aid deserialization
+        var savedSpecies = new FossilisedSpecies(
+            new FossilisedSpeciesInformation(FossilisedSpeciesInformation.SpeciesType.Microbe),
+            species,
+            speciesName);
+        savedSpecies.FossiliseToFile();
 
         Hide();
     }

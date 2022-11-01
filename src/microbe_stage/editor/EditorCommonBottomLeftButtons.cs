@@ -17,6 +17,9 @@ public class EditorCommonBottomLeftButtons : MarginContainer
     [Signal]
     public delegate void OnOpenHelp();
 
+    [Signal]
+    public delegate void OnOpenStatistics();
+
     public override void _Ready()
     {
         base._Ready();
@@ -38,5 +41,11 @@ public class EditorCommonBottomLeftButtons : MarginContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnOpenHelp));
+    }
+
+    private void OnStatisticsButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(nameof(OnOpenStatistics));
     }
 }

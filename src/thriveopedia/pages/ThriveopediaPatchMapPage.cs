@@ -26,7 +26,7 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     private Label seedLabel = null!;
 
     public override string PageName => "PatchMap";
-    public override string TranslatedPageName => TranslationServer.Translate("PATCH_MAP_PAGE");
+    public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
 
     public Action<Patch>? OnSelectedPatchChanged { get; set; }
 

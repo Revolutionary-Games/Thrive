@@ -11,16 +11,26 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
-    /// <summary>
-    ///   The fossilised species associated with this card.
-    /// </summary>
-    public Species SavedSpecies = null!;
-
     private Label speciesNameLabel = null!;
     private SpeciesPreview speciesPreview = null!;
 
+    private Species? savedSpecies;
+
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
+
+    /// <summary>
+    ///   The fossilised species associated with this card.
+    /// </summary>
+    public Species? SavedSpecies
+    {
+        get => savedSpecies;
+        set
+        {
+            savedSpecies = value;
+            UpdateSpeciesPreview();
+        }
+    }
 
     public override void _Ready()
     {
@@ -34,8 +44,11 @@ public class MuseumCard : Button
 
     private void UpdateSpeciesPreview()
     {
-        speciesPreview.PreviewSpecies = SavedSpecies;
-        speciesNameLabel.Text = SavedSpecies.FormattedName;
+        if (speciesPreview != null && SavedSpecies != null)
+        {
+            speciesPreview.PreviewSpecies = SavedSpecies;
+            speciesNameLabel.Text = SavedSpecies.FormattedName;
+        }
     }
 
     private void OnPressed()

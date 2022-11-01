@@ -9,9 +9,9 @@ public class FossilisationButton : TextureButton
     public Texture AlreadyFossilisedTexture = null!;
 
     /// <summary>
-    ///   The microbe this button is attached to.
+    ///   The organism this button is attached to.
     /// </summary>
-    public Microbe AttachedMicrobe = null!;
+    public Spatial AttachedOrganism = null!;
 
     /// <summary>
     ///   Whether this species has already been fossilised.
@@ -50,7 +50,10 @@ public class FossilisationButton : TextureButton
     /// </summary>
     public void UpdatePosition()
     {
-        RectGlobalPosition = camera.UnprojectPosition(AttachedMicrobe.GlobalTransform.origin);
+        if (camera is not { Current: true })
+            camera = GetViewport().GetCamera();
+
+        RectGlobalPosition = camera.UnprojectPosition(AttachedOrganism.GlobalTransform.origin);
     }
 
     private void OnPressed()
