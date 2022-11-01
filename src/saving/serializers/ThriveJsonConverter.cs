@@ -25,6 +25,7 @@ public class ThriveJsonConverter : IDisposable
 
     private readonly JsonConverter[] thriveConverters;
     private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
+    private readonly DynamicDeserializeObjectConverter dynamicObjectDeserializeConverter;
 
     private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
@@ -63,7 +64,8 @@ public class ThriveJsonConverter : IDisposable
             new DefaultThriveJSONConverter(context),
         };
 
-        thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };
+        dynamicObjectDeserializeConverter = new DynamicDeserializeObjectConverter(context);
+        thriveConvertersDynamicDeserialize = new List<JsonConverter> { dynamicObjectDeserializeConverter };
         thriveConvertersDynamicDeserialize.AddRange(thriveConverters);
     }
 
@@ -96,6 +98,14 @@ public class ThriveJsonConverter : IDisposable
     ///   logic works! That means this is only usable for basic types. Other types must have an interface or other
     ///   base type and be used through <see cref="DeserializeObject{T}"/>.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Even though this uses only basic deserialization this uses the <see cref="BaseThriveConverter"/> through
+    ///     <see cref="DynamicDeserializeObjectConverter"/> for the base object of the deserialized string. So some
+    ///     of our custom logic works, but for example <see cref="Node"/> deserialization won't use the specialized
+    ///     Node logic.
+    ///   </para>
+    /// </remarks>
     /// <param name="json">JSON text to parse</param>
     /// <returns>The created object</returns>
     /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
@@ -105,6 +115,7 @@ public class ThriveJsonConverter : IDisposable
         {
             // enable hack conversion
             settings.Converters = thriveConvertersDynamicDeserialize;
+            dynamicObjectDeserializeConverter.ResetConversionCounter();
 
             try
             {
