@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Thriveoepdia page displaying welcome information and links to websites.
+///   Thriveopedia page displaying welcome information and links to websites.
 /// </summary>
 public class ThriveopediaHomePage : ThriveopediaPage
 {

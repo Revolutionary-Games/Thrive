@@ -70,7 +70,7 @@ public class Thriveopedia : ControlWithInput
     public delegate void OnThriveopediaClosed();
 
     /// <summary>
-    ///   The currently open Thriveopeida page. Defaults to the home page if none has been set.
+    ///   The currently open Thriveopedia page. Defaults to the home page if none has been set.
     /// </summary>
     public ThriveopediaPage SelectedPage
     {
