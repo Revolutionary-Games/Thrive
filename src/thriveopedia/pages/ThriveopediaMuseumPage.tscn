@@ -177,4 +177,4 @@ rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
 
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
-[connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="TransitionToFreebuild"]
+[connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]

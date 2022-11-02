@@ -16,6 +16,8 @@ public class MuseumCard : Button
 
     private Species? savedSpecies;
 
+    private bool ready;
+
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
 
@@ -38,13 +40,14 @@ public class MuseumCard : Button
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
+        ready = true;
 
         UpdateSpeciesPreview();
     }
 
     private void UpdateSpeciesPreview()
     {
-        if (speciesPreview != null && SavedSpecies != null)
+        if (SavedSpecies != null && ready)
         {
             speciesPreview.PreviewSpecies = SavedSpecies;
             speciesNameLabel.Text = SavedSpecies.FormattedName;

@@ -78,7 +78,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game is null");
 
-        // TODO: fix the tree for freebuild?
+        // TODO: fix the tree for freebuild
         if (CurrentGame.FreeBuild)
         {
             evolutionaryTree.Visible = false;

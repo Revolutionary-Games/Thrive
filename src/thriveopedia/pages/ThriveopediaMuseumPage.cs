@@ -169,6 +169,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         TransitionToFreebuild(speciesPreview.PreviewSpecies);
     }
 
+    private void OnOpenInFreebuildConfirmPressed()
+    {
+        if (speciesPreview.PreviewSpecies == null)
+            return;
+
+        TransitionToFreebuild(speciesPreview.PreviewSpecies);
+    }
+
     private void TransitionToFreebuild(Species startingSpecies)
     {
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>

@@ -179,7 +179,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 nameof(ShowFossilisationDialog));
 
             // Display a faded button with a different hint if the species has been fossilised.
-            var alreadyFossilised = FossilisedSpecies.IsSpeciesAlreadyFossilised(microbe.Species.FormattedName, fossils);
+            var alreadyFossilised =
+                FossilisedSpecies.IsSpeciesAlreadyFossilised(microbe.Species.FormattedName, fossils);
             button.AlreadyFossilised = alreadyFossilised;
             button.HintTooltip = alreadyFossilised ?
                 TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :

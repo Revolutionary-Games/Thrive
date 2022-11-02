@@ -98,7 +98,7 @@ public class FossilisedSpecies
     /// <summary>
     ///   Checks whether a species with the same name already exists.
     /// </summary>
-    /// <param name="species">The species to check</param>
+    /// <param name="name">The species name to check</param>
     /// <param name="existingFossilNames">A cached list of fossils if appropriate</param>
     /// <returns>True if a species with this name has already been fossilised and false otherwise</returns>
     public static bool IsSpeciesAlreadyFossilised(string name, List<string>? existingFossilNames = null)
