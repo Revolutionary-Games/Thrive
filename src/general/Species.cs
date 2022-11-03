@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
@@ -272,6 +273,17 @@ public abstract class Species : ICloneable
     public override string ToString()
     {
         return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
+    }
+
+    public virtual string GetDetailString()
+    {
+        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
+            FormattedNameBbCode,
+            ID,
+            Generation,
+            Population,
+            Colour.ToHtml(),
+            string.Join("\n  ", Behaviour.Select(b => b.Key + ": " + b.Value)));
     }
 
     /// <summary>

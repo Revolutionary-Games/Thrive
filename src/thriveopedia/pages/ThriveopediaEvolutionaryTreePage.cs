@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -146,21 +145,6 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private void UpdateSpeciesDetail(Species species)
     {
-        speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
-            string.Join("\n  ", species.Behaviour.Select(b =>
-                BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
-
-        switch (species)
-        {
-            case MicrobeSpecies microbeSpecies:
-            {
-                speciesDetailsLabel.ExtendedBbcode += "\n" +
-                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
-                        microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
-                break;
-            }
-        }
+        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
     }
 }

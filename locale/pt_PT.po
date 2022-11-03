@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 23:18+0000\n"
+"POT-Creation-Date: 2022-11-03 23:12+0000\n"
 "PO-Revision-Date: 2022-10-14 05:59+0000\n"
 "Last-Translator: TomDev03 <tomascsilvapro@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1019,33 +1019,6 @@ msgstr "Oxitoxissoma"
 #: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
 msgstr "Completou {0} Gerações"
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:149
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
-#, fuzzy
-msgid "SPECIES_DETAIL_TEXT"
-msgstr "{0} (x{1})"
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:159
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:139
-msgid "MICROBE_SPECIES_DETAIL_TEXT"
-msgstr ""
-"[b]Estágio[/b]\n"
-"  Micróbio \n"
-"[b]Tipo de Membrana[/b]\n"
-"  {0}\n"
-"[b]Rigidez da Membrana[/b]\n"
-"  {1}\n"
-"[b]Velocidade Base[/b]\n"
-"  {2}\n"
-"[b]Velocidade de Rotação Base[/b]\n"
-"  {3}\n"
-"[b]Tamanho Base em Hexágonos[/b]\n"
-"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
@@ -2130,7 +2103,7 @@ msgstr "Fechar"
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:717
 #: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
-#: ../src/microbe_stage/MicrobeHUD.cs:228
+#: ../src/microbe_stage/MicrobeHUD.cs:229
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
@@ -3088,6 +3061,11 @@ msgstr "Voltar ao Menu"
 #: ../src/general/PauseMenu.tscn:238
 msgid "EXIT"
 msgstr "Sair"
+
+#: ../src/general/Species.cs:280
+#, fuzzy
+msgid "SPECIES_DETAIL_TEXT"
+msgstr "{0} (x{1})"
 
 #: ../src/general/StageBase.cs:404
 msgid "PLAYER_REPRODUCED"
@@ -4342,32 +4320,48 @@ msgstr "Tornar-se Agressivo"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Sinal a Emitir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:185
+#: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:186
+#: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:222
+#: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:321
+#: ../src/microbe_stage/MicrobeHUD.cs:322
 msgid "STUFF_AT"
 msgstr "Coisas em {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:413
+#: ../src/microbe_stage/MicrobeHUD.cs:414
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:449
+#: ../src/microbe_stage/MicrobeHUD.cs:450
 #: ../src/microbe_stage/MicrobeStage.tscn:1796
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
+
+#: ../src/microbe_stage/MicrobeSpecies.cs:178
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Estágio[/b]\n"
+"  Micróbio \n"
+"[b]Tipo de Membrana[/b]\n"
+"  {0}\n"
+"[b]Rigidez da Membrana[/b]\n"
+"  {1}\n"
+"[b]Velocidade Base[/b]\n"
+"  {2}\n"
+"[b]Velocidade de Rotação Base[/b]\n"
+"  {3}\n"
+"[b]Tamanho Base em Hexágonos[/b]\n"
+"  {4}"
 
 #: ../src/microbe_stage/MicrobeStage.cs:687
 #, fuzzy
@@ -4666,7 +4660,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Nome da espécie..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "O nome da espécie deve estar de acordo com o sistema de nomenclatura binomial (gênero e epíteto)!"
 
@@ -5800,7 +5794,7 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Processos de Célula"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:203
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
@@ -5824,17 +5818,17 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Séssil"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
 msgstr "Fase Microbial"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Colocar organelo"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Colocar organelo"
@@ -5875,7 +5869,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Homepage"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:157
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
 #, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "Modo livre"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 23:18+0000\n"
+"POT-Creation-Date: 2022-11-03 23:12+0000\n"
 "PO-Revision-Date: 2022-10-20 06:42+0000\n"
 "Last-Translator: Gundrabur Weißhaupt <gundrabur@web.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1007,42 +1007,6 @@ msgstr "Lysosom"
 #: ../src/auto-evo/AutoEvoExploringTool.cs:580
 msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Generationen fertigstellen"
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:149
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
-msgid "SPECIES_DETAIL_TEXT"
-msgstr ""
-"[b]Spezies[/b]\n"
-"  {0}:{1}\n"
-"[b]Generation[/b]\n"
-"  {2}\n"
-"[b]Bevölkerung[/b]\n"
-"  {3}\n"
-"[b]Farbe[/b]\n"
-"  #{4}\n"
-"[b]Verhalten[/b]\n"
-"  {5}"
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:159
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:139
-msgid "MICROBE_SPECIES_DETAIL_TEXT"
-msgstr ""
-"[b]Stadium[/b]\n"
-"  Mikrobe\n"
-"[b]Membrantyp[/b]\n"
-"  {0}\n"
-"[b]Membransteifigkeit[/b]\n"
-"  {1}\n"
-"[b]Basisgeschwindigkeit[/b]\n"
-"  {2}\n"
-"[b]Basisrotationsgeschwindigkeit[/b]\n"
-"  {3}\n"
-"[b]Basis-Hex-Größe[/b]\n"
-"  {4}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
@@ -2126,7 +2090,7 @@ msgstr "Schließen"
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:717
 #: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
-#: ../src/microbe_stage/MicrobeHUD.cs:228
+#: ../src/microbe_stage/MicrobeHUD.cs:229
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
@@ -3114,6 +3078,20 @@ msgstr "Zurück zum Hauptmenü"
 #: ../src/general/PauseMenu.tscn:238
 msgid "EXIT"
 msgstr "Verlassen"
+
+#: ../src/general/Species.cs:280
+msgid "SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Spezies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generation[/b]\n"
+"  {2}\n"
+"[b]Bevölkerung[/b]\n"
+"  {3}\n"
+"[b]Farbe[/b]\n"
+"  #{4}\n"
+"[b]Verhalten[/b]\n"
+"  {5}"
 
 #: ../src/general/StageBase.cs:404
 msgid "PLAYER_REPRODUCED"
@@ -4364,32 +4342,48 @@ msgstr "Werde aggressiv"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signal zum aussenden"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:185
+#: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:186
+#: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:222
+#: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:321
+#: ../src/microbe_stage/MicrobeHUD.cs:322
 msgid "STUFF_AT"
 msgstr "Sachen bei {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:413
+#: ../src/microbe_stage/MicrobeHUD.cs:414
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:449
+#: ../src/microbe_stage/MicrobeHUD.cs:450
 #: ../src/microbe_stage/MicrobeStage.tscn:1796
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
+
+#: ../src/microbe_stage/MicrobeSpecies.cs:178
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"[b]Stadium[/b]\n"
+"  Mikrobe\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membransteifigkeit[/b]\n"
+"  {1}\n"
+"[b]Basisgeschwindigkeit[/b]\n"
+"  {2}\n"
+"[b]Basisrotationsgeschwindigkeit[/b]\n"
+"  {3}\n"
+"[b]Basis-Hex-Größe[/b]\n"
+"  {4}"
 
 #: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
@@ -4686,7 +4680,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Speziesname..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Der Name der Art muss dem binomischen Benennungssystem entsprechen (Genus und Epitheton)!"
 
@@ -5819,7 +5813,7 @@ msgstr "Pos1"
 msgid "PAGE_TITLE"
 msgstr "Zellprozesse"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:203
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
@@ -5843,17 +5837,17 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Sessil"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
 msgstr "Mikroben Stadium"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
@@ -5894,7 +5888,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Startseite"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:157
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
 #, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "Sandboxmodus"

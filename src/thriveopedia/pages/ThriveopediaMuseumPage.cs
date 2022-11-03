@@ -74,10 +74,10 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
                 if (savedSpecies is not MicrobeSpecies)
                 {
-                    throw new NotImplementedException("Loading non-microbe species is not yet implemented");
+                    GD.PrintErr("Loading non-microbe species is not yet implemented");
                 }
 
-                card.SavedSpecies = (MicrobeSpecies)FossilisedSpecies.LoadSpeciesFromFile(speciesName);
+                card.SavedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
                 card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
                 cardContainer.AddChild(card);
             }
@@ -133,22 +133,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void UpdateSpeciesDetail(Species species)
     {
-        speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
-            string.Join("\n  ", species.Behaviour.Select(b =>
-                BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
-
-        switch (species)
-        {
-            case MicrobeSpecies microbeSpecies:
-            {
-                speciesDetailsLabel.ExtendedBbcode += "\n" +
-                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
-                        microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
-                break;
-            }
-        }
+        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
     }
 
     private void OnOpenInFreebuildPressed()

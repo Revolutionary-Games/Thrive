@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 23:18+0000\n"
+"POT-Creation-Date: 2022-11-03 23:12+0000\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -963,21 +963,6 @@ msgstr ""
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "عام"
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:755
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:170
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:149
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
-msgid "SPECIES_DETAIL_TEXT"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:765
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:183
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:159
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:139
-#, fuzzy
-msgid "MICROBE_SPECIES_DETAIL_TEXT"
-msgstr "فترة الميكروبات"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:104
 msgid "CONFIG"
@@ -2009,7 +1994,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:717
 #: ../src/general/WorldGenerationSettings.cs:153
 #: ../src/gui_common/CompoundAmount.cs:175
-#: ../src/microbe_stage/MicrobeHUD.cs:228
+#: ../src/microbe_stage/MicrobeHUD.cs:229
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
@@ -2897,6 +2882,10 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:238
 msgid "EXIT"
+msgstr ""
+
+#: ../src/general/Species.cs:280
+msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
 #: ../src/general/StageBase.cs:404
@@ -4067,32 +4056,37 @@ msgstr ""
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:185
+#: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:186
+#: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:222
+#: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:321
+#: ../src/microbe_stage/MicrobeHUD.cs:322
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:413
+#: ../src/microbe_stage/MicrobeHUD.cs:414
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:449
+#: ../src/microbe_stage/MicrobeHUD.cs:450
 #: ../src/microbe_stage/MicrobeStage.tscn:1796
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
+
+#: ../src/microbe_stage/MicrobeSpecies.cs:178
+#, fuzzy
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr "فترة الميكروبات"
 
 #: ../src/microbe_stage/MicrobeStage.cs:687
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
@@ -4377,7 +4371,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:136
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -5456,7 +5450,7 @@ msgstr ""
 msgid "PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:203
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
@@ -5472,17 +5466,17 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:11
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
 msgstr "فترة الميكروبات"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:14
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
 #, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "فترة الكائنات متعددة الخلايا"
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:17
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
 #, fuzzy
 msgid "LATE_MULTICELLULAR"
 msgstr "فترة الكائنات متعددة الخلايا"
@@ -5519,7 +5513,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:157
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 

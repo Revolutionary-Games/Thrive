@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 
@@ -173,25 +172,7 @@ public class FossilisationDialog : CustomDialog
 
     private void UpdateSpeciesDetails()
     {
-        speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            SelectedSpecies.FormattedNameBbCode,
-            SelectedSpecies.ID,
-            SelectedSpecies.Generation,
-            SelectedSpecies.Population,
-            SelectedSpecies.Colour.ToHtml(),
-            string.Join("\n  ", SelectedSpecies.Behaviour.Select(b => b.Key + ": " + b.Value)));
-
-        switch (SelectedSpecies)
-        {
-            case MicrobeSpecies microbeSpecies:
-            {
-                speciesDetailsLabel.ExtendedBbcode += "\n" +
-                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
-                        microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
-                break;
-            }
-        }
+        speciesDetailsLabel.ExtendedBbcode = SelectedSpecies.GetDetailString();
     }
 
     private void OnCancelPressed()

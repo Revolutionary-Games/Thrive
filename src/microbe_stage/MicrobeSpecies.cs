@@ -172,6 +172,17 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         return result;
     }
 
+    public override string GetDetailString()
+    {
+        return base.GetDetailString() + "\n" +
+            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
+                MembraneType.Name,
+                MembraneRigidity,
+                BaseSpeed,
+                BaseRotationSpeed,
+                BaseHexSize);
+    }
+
     public override int GetVisualHashCode()
     {
         var hash = base.GetVisualHashCode();
