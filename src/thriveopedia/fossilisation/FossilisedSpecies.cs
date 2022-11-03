@@ -20,21 +20,6 @@ public class FossilisedSpecies
     public const string SAVE_INFO_JSON = "info.json";
 
     /// <summary>
-    ///   General information about this saved species.
-    /// </summary>
-    private FossilisedSpeciesInformation info;
-
-    /// <summary>
-    ///   The species to be saved/loaded.
-    /// </summary>
-    private Species species;
-
-    /// <summary>
-    ///   Name of this saved species on disk.
-    /// </summary>
-    private string name;
-
-    /// <summary>
     ///   A species saved by the user.
     /// </summary>
     /// <param name="info">Details about the species to save</param>
@@ -42,10 +27,25 @@ public class FossilisedSpecies
     /// <param name="name">The name of the species to use as the file name</param>
     public FossilisedSpecies(FossilisedSpeciesInformation info, Species species, string name)
     {
-        this.info = info;
-        this.species = species;
-        this.name = name;
+        Info = info;
+        Species = species;
+        Name = name;
     }
+
+    /// <summary>
+    ///   General information about this saved species.
+    /// </summary>
+    public FossilisedSpeciesInformation Info { get; private set; }
+
+    /// <summary>
+    ///   The species to be saved/loaded.
+    /// </summary>
+    public Species Species { get; private set; }
+
+    /// <summary>
+    ///   Name of this saved species on disk.
+    /// </summary>
+    public string Name { get; private set; }
 
     /// <summary>
     ///   Creates a list of existing fossilised species names to prevent unintended overwrites.
@@ -84,10 +84,9 @@ public class FossilisedSpecies
             directory.ListDirEnd();
         }
 
-        using var file = new File();
-
         if (orderByDate)
         {
+            using var file = new File();
             result = result.OrderBy(item =>
                 file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
         }
@@ -104,7 +103,8 @@ public class FossilisedSpecies
     public static bool IsSpeciesAlreadyFossilised(string name, List<string>? existingFossilNames = null)
     {
         existingFossilNames ??= CreateListOfFossils(false);
-        return existingFossilNames.Any(n => n == name + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        var fileName = name + Constants.FOSSIL_EXTENSION_WITH_DOT;
+        return existingFossilNames.Any(n => n == fileName);
     }
 
     /// <summary>
@@ -125,12 +125,12 @@ public class FossilisedSpecies
     /// </summary>
     public void FossiliseToFile()
     {
-        if (species is not MicrobeSpecies)
+        if (Species is not MicrobeSpecies)
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
 
-        WriteRawFossilDataToFile(info, species.StringCode, name + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        WriteRawFossilDataToFile(Info, Species.StringCode, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
     }
 
     private static void WriteRawFossilDataToFile(FossilisedSpeciesInformation speciesInfo, string fossilContent,

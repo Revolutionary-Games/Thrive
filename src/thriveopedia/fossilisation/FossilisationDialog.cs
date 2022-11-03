@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 
@@ -222,13 +223,20 @@ public class FossilisationDialog : CustomDialog
         var species = (Species)selectedSpecies.Clone();
         species.UpdateNameIfValid(speciesName);
 
-        // For now, save everything as a microbe to aid deserialization
-        var savedSpecies = new FossilisedSpecies(
-            new FossilisedSpeciesInformation(FossilisedSpeciesInformation.SpeciesType.Microbe),
-            species,
-            speciesName);
-        savedSpecies.FossiliseToFile();
+        FossilisedSpecies savedSpecies;
+        switch (species)
+        {
+            case MicrobeSpecies microbeSpecies:
+                savedSpecies = new FossilisedSpecies(
+                    new FossilisedSpeciesInformation(FossilisedSpeciesInformation.SpeciesType.Microbe),
+                    microbeSpecies,
+                    speciesName);
+                break;
+            default:
+                throw new InvalidOperationException($"Unable to fossilise type {species.GetType()}");
+        }
 
+        savedSpecies.FossiliseToFile();
         Hide();
     }
 

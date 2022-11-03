@@ -11,12 +11,10 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
-    private Label speciesNameLabel = null!;
-    private SpeciesPreview speciesPreview = null!;
+    private Label? speciesNameLabel;
+    private SpeciesPreview? speciesPreview;
 
     private Species? savedSpecies;
-
-    private bool ready;
 
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
@@ -40,18 +38,17 @@ public class MuseumCard : Button
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
-        ready = true;
 
         UpdateSpeciesPreview();
     }
 
     private void UpdateSpeciesPreview()
     {
-        if (SavedSpecies != null && ready)
-        {
-            speciesPreview.PreviewSpecies = SavedSpecies;
-            speciesNameLabel.Text = SavedSpecies.FormattedName;
-        }
+        if (SavedSpecies == null || speciesPreview == null || speciesNameLabel == null)
+            return;
+
+        speciesPreview.PreviewSpecies = SavedSpecies;
+        speciesNameLabel.Text = SavedSpecies.FormattedName;
     }
 
     private void OnPressed()
