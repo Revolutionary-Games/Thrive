@@ -234,8 +234,6 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
 
-[connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnControlMouseEntered"]
-[connection signal="mouse_exited" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnControlMouseExited"]
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer2/RandomizeButton" to="." method="OnRandomizeNamePressed"]

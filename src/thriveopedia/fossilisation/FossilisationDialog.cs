@@ -43,12 +43,6 @@ public class FossilisationDialog : CustomDialog
     private string speciesName = null!;
 
     /// <summary>
-    ///   True when one of our (name related) Controls is hovered. This needs to be known to know if a click happened
-    ///   outside the name editing controls, for detecting when the name needs to be validated.
-    /// </summary>
-    private bool controlsHoveredOver;
-
-    /// <summary>
     ///   The species currently open in the dialog.
     /// </summary>
     public Species SelectedSpecies
@@ -102,17 +96,6 @@ public class FossilisationDialog : CustomDialog
             GUICommon.MarkInputAsInvalid(speciesNameEdit);
             fossiliseButton.Disabled = true;
         }
-    }
-
-    public void OnClickedOffName()
-    {
-        var focused = GetFocusOwner();
-
-        // Ignore if the species name line edit wasn't focused or if one of our controls is hovered
-        if (focused != speciesNameEdit || controlsHoveredOver)
-            return;
-
-        PerformValidation(speciesNameEdit.Text);
     }
 
     private void OnNameTextChanged(string newText)
@@ -219,15 +202,5 @@ public class FossilisationDialog : CustomDialog
 
         savedSpecies.FossiliseToFile();
         Hide();
-    }
-
-    private void OnControlMouseEntered()
-    {
-        controlsHoveredOver = true;
-    }
-
-    private void OnControlMouseExited()
-    {
-        controlsHoveredOver = false;
     }
 }
