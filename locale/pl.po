@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 23:18+0000\n"
-"PO-Revision-Date: 2022-10-27 07:22+0000\n"
+"POT-Creation-Date: 2022-09-29 13:44+0300\n"
+"PO-Revision-Date: 2022-10-28 14:00+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -3629,7 +3629,7 @@ msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzaj
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest glikoliza - beztlenowa redukcja glukozy w wyniku której wydziela się energia w formie ATP. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywana jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:296
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:399
@@ -3694,7 +3694,7 @@ msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielają
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:378
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią utleniać glukozę wydzielając ATP o wiele wydajniej niż cytozol w procesie zwanym Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, więc niższe stężenia tlenu w środowisku spowalniają ich produkcję ATP. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza glikolizę."
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:477
 msgid "THYLAKOID"
@@ -4007,7 +4007,6 @@ msgid "SPECIES_COLON"
 msgstr "Gatunek:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Przytrzymaj [thrive:input]g_free_cursor[/thrive:input] dla kursora"
 
