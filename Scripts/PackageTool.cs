@@ -32,6 +32,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         PackagePlatform.Windows,
         PackagePlatform.Windows32,
         PackagePlatform.Mac,
+        PackagePlatform.Web,
     };
 
     /// <summary>
@@ -581,6 +582,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return "Windows Desktop (32-bit)";
             case PackagePlatform.Mac:
                 return "Mac OSX";
+            case PackagePlatform.Web:
+                return "Web";
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }
@@ -597,6 +600,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 return ".exe";
             case PackagePlatform.Mac:
                 return ".zip";
+            case PackagePlatform.Web:
+                return ".html";
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }
