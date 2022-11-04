@@ -968,6 +968,7 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
 
     public const string FOSSIL_EXTENSION = "thrivefossil";
     public const string FOSSIL_EXTENSION_WITH_DOT = "." + FOSSIL_EXTENSION;

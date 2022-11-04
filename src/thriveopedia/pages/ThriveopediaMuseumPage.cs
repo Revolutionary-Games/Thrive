@@ -63,12 +63,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
             var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
 
-            if (savedSpecies is not MicrobeSpecies)
-            {
-                GD.PrintErr("Loading non-microbe species is not yet implemented");
-            }
-
-            card.SavedSpecies = savedSpecies;
+            card.SavedSpecies = savedSpecies.Species;
+            card.FossilPreviewImage = savedSpecies.PreviewImage;
             card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
             cardContainer.AddChild(card);
         }
@@ -138,6 +134,12 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         {
             leaveGameConfirmationDialog.DialogText = TranslationServer.Translate("OPEN_FOSSIL_IN_FREEBUILD_WARNING");
             leaveGameConfirmationDialog.PopupCenteredShrink();
+            return;
+        }
+
+        if (speciesPreview.PreviewSpecies is not MicrobeSpecies)
+        {
+            GD.PrintErr("Loading non-microbe species is not yet implemented");
             return;
         }
 

@@ -12,9 +12,10 @@ public class MuseumCard : Button
     public NodePath SpeciesPreviewPath = null!;
 
     private Label? speciesNameLabel;
-    private SpeciesPreview? speciesPreview;
+    private TextureRect? speciesPreview;
 
     private Species? savedSpecies;
+    private Image? fossilPreviewImage;
 
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
@@ -28,7 +29,23 @@ public class MuseumCard : Button
         set
         {
             savedSpecies = value;
-            UpdateSpeciesPreview();
+            UpdateSpeciesName();
+        }
+    }
+
+    /// <summary>
+    ///   If the fossil file had a preview image, that is set here and is used used to preview the species
+    /// </summary>
+    public Image? FossilPreviewImage
+    {
+        get => fossilPreviewImage;
+        set
+        {
+            if (value == fossilPreviewImage)
+                return;
+
+            fossilPreviewImage = value;
+            UpdatePreviewImage();
         }
     }
 
@@ -36,19 +53,37 @@ public class MuseumCard : Button
     {
         base._Ready();
 
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
+        speciesPreview = GetNode<TextureRect>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
 
-        UpdateSpeciesPreview();
+        UpdateSpeciesName();
+        UpdatePreviewImage();
     }
 
-    private void UpdateSpeciesPreview()
+    private void UpdateSpeciesName()
     {
-        if (SavedSpecies == null || speciesPreview == null || speciesNameLabel == null)
+        if (SavedSpecies == null || speciesNameLabel == null)
             return;
 
-        speciesPreview.PreviewSpecies = SavedSpecies;
         speciesNameLabel.Text = SavedSpecies.FormattedName;
+    }
+
+    private void UpdatePreviewImage()
+    {
+        if (speciesPreview == null)
+            return;
+
+        if (FossilPreviewImage != null)
+        {
+            var imageTexture = new ImageTexture();
+
+            // Could add filter and mipmap flags here if the preview images look too bad at small sizes, but that
+            // would presumably make this take more time, so maybe then this shouldn't be done in a blocking way here
+            // and instead using ResourceManager
+            imageTexture.CreateFromImage(FossilPreviewImage);
+
+            speciesPreview.Texture = imageTexture;
+        }
     }
 
     private void OnPressed()

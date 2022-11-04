@@ -158,7 +158,7 @@ public class Save
 
         if (screenshotData != null)
         {
-            save.Screenshot = ImageFromBuffer(screenshotData);
+            save.Screenshot = TarHelper.ImageFromBuffer(screenshotData);
         }
 
         return save;
@@ -249,17 +249,17 @@ public class Save
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
-        OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
 
         if (screenshot != null)
         {
             byte[] data = screenshot.SavePngToBuffer();
 
             if (data.Length > 0)
-                OutputEntry(tar, SAVE_SCREENSHOT, data);
+                TarHelper.OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
-        OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
@@ -299,7 +299,7 @@ public class Save
         if (screenshot)
         {
             if (screenshotData != null)
-                imageResult = ImageFromBuffer(screenshotData);
+                imageResult = TarHelper.ImageFromBuffer(screenshotData);
 
             // Not a critical error that screenshot is missing even if it was requested
         }
@@ -316,18 +316,6 @@ public class Save
 
         return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
             throw new JsonException("SaveInformation is null");
-    }
-
-    private static Image ImageFromBuffer(byte[] buffer)
-    {
-        var result = new Image();
-
-        if (buffer.Length > 0)
-        {
-            result.LoadPngFromBuffer(buffer);
-        }
-
-        return result;
     }
 
     private static (string? InfoStr, string? SaveStr, byte[]? Screenshot) LoadDataFromFile(string file, bool info,
@@ -375,7 +363,7 @@ public class Save
                 if (!info)
                     continue;
 
-                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SAVE_JSON)
@@ -383,7 +371,7 @@ public class Save
                 if (!save)
                     continue;
 
-                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                saveStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SCREENSHOT)
@@ -391,7 +379,7 @@ public class Save
                 if (!screenshot)
                     continue;
 
-                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                screenshotData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
                 --itemsToRead;
             }
             else
@@ -405,46 +393,5 @@ public class Save
         }
 
         return (infoStr, saveStr, screenshotData);
-    }
-
-    private static void OutputEntry(TarOutputStream archive, string name, byte[] data)
-    {
-        var entry = TarEntry.CreateTarEntry(name);
-
-        entry.TarHeader.Mode = Convert.ToInt32("0664", 8);
-
-        // TODO: could fill in more of the properties
-
-        entry.Size = data.Length;
-
-        archive.PutNextEntry(entry);
-
-        archive.Write(data, 0, data.Length);
-
-        archive.CloseEntry();
-    }
-
-    private static string ReadStringEntry(TarInputStream tar, int length)
-    {
-        // Pre-allocate storage
-        var buffer = new byte[length];
-        {
-            using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
-        }
-
-        return Encoding.UTF8.GetString(buffer);
-    }
-
-    private static byte[] ReadBytesEntry(TarInputStream tar, int length)
-    {
-        // Pre-allocate storage
-        var buffer = new byte[length];
-        {
-            using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
-        }
-
-        return buffer;
     }
 }

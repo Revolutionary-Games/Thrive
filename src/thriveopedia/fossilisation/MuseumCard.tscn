@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/misc/icon.png" type="Texture" id=2]
 [ext_resource path="res://src/thriveopedia/fossilisation/MuseumCard.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
@@ -41,7 +40,7 @@ toggle_mode = true
 action_mode = 0
 script = ExtResource( 4 )
 SpeciesNameLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
-SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/SpeciesPreview")
+SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/PreviewImage")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -103,11 +102,14 @@ margin_right = 166.0
 margin_bottom = 149.0
 mouse_filter = 2
 
-[node name="SpeciesPreview" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" instance=ExtResource( 3 )]
+[node name="PreviewImage" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin"]
 margin_right = 166.0
 margin_bottom = 149.0
 mouse_filter = 2
-script = ExtResource( 5 )
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

@@ -42,6 +42,8 @@ public class FossilisationDialog : CustomDialog
     /// </summary>
     private string speciesName = null!;
 
+    private bool saveQueued;
+
     /// <summary>
     ///   The species currently open in the dialog.
     /// </summary>
@@ -68,6 +70,21 @@ public class FossilisationDialog : CustomDialog
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         fossiliseButton = GetNode<Button>(FossiliseButtonPath);
         overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
+
+        // For saving a preview image of the species we need this preview object to keep hold of the raw rendered image
+        speciesPreview.KeepPlainImageInMemory = true;
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (!Visible)
+            return;
+
+        // Trigger queued save if we didn't have the species image yet
+        if (saveQueued)
+            FossiliseSpecies();
     }
 
     /// <summary>
@@ -183,6 +200,26 @@ public class FossilisationDialog : CustomDialog
     /// </summary>
     private void FossiliseSpecies()
     {
+        // We can't save before the species image is generated
+        var previewImage = speciesPreview.GetFinishedImageIfReady();
+
+        if (previewImage == null)
+        {
+            saveQueued = true;
+            return;
+        }
+
+        saveQueued = false;
+
+        // Resize the preview image if it is too large
+        if (previewImage.GetHeight() > Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT ||
+            previewImage.GetWidth() > 2 * Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT)
+        {
+            float aspectRatio = previewImage.GetWidth() / (float)previewImage.GetHeight();
+            previewImage.Resize((int)(Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT * aspectRatio),
+                Constants.FOSSILISED_PREVIEW_IMAGE_HEIGHT);
+        }
+
         // Clone the species in case the player added a new name, as we don't want to rename the species in-game
         var species = (Species)selectedSpecies.Clone();
         species.UpdateNameIfValid(speciesName);
@@ -199,6 +236,8 @@ public class FossilisationDialog : CustomDialog
             default:
                 throw new InvalidOperationException($"Unable to fossilise type {species.GetType()}");
         }
+
+        savedSpecies.PreviewImage = previewImage;
 
         savedSpecies.FossiliseToFile();
         Hide();

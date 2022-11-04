@@ -18,6 +18,7 @@ public class FossilisedSpecies
 {
     public const string SAVE_FOSSIL_JSON = "fossil.json";
     public const string SAVE_INFO_JSON = "info.json";
+    public const string SAVE_PREVIEW_IMAGE = "preview.png";
 
     /// <summary>
     ///   A species saved by the user.
@@ -46,6 +47,12 @@ public class FossilisedSpecies
     ///   Name of this saved species on disk.
     /// </summary>
     public string Name { get; private set; }
+
+    /// <summary>
+    ///   Preview image of this fossil
+    /// </summary>
+    [JsonIgnore]
+    public Image? PreviewImage { get; set; }
 
     /// <summary>
     ///   Creates a list of existing fossilised species names to prevent unintended overwrites.
@@ -112,12 +119,15 @@ public class FossilisedSpecies
     /// </summary>
     /// <param name="fossilName">The name of the .thrivefossil file (including extension)</param>
     /// <returns>The species saved in the provided file</returns>
-    public static Species LoadSpeciesFromFile(string fossilName)
+    public static FossilisedSpecies LoadSpeciesFromFile(string fossilName)
     {
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
-        var (_, species) = LoadFromFile(target);
+        var (fossilisedInfo, species, previewImage) = LoadFromFile(target);
 
-        return species;
+        return new FossilisedSpecies(fossilisedInfo, species, Path.GetFileNameWithoutExtension(fossilName))
+        {
+            PreviewImage = previewImage,
+        };
     }
 
     /// <summary>
@@ -132,21 +142,21 @@ public class FossilisedSpecies
 
         var serializedContent = ThriveJsonConverter.Instance.SerializeObject(Species);
 
-        WriteRawFossilDataToFile(Info, serializedContent, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        WriteRawFossilDataToFile(Info, serializedContent, Name + Constants.FOSSIL_EXTENSION_WITH_DOT, PreviewImage);
     }
 
     private static void WriteRawFossilDataToFile(FossilisedSpeciesInformation speciesInfo, string fossilContent,
-        string fossilName)
+        string fossilName, Image? previewImage)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.FOSSILISED_SPECIES_FOLDER);
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
 
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(speciesInfo);
 
-        WriteDataToFossilFile(target, justInfo, fossilContent);
+        WriteDataToFossilFile(target, justInfo, fossilContent, previewImage);
     }
 
-    private static void WriteDataToFossilFile(string target, string justInfo, string serialized)
+    private static void WriteDataToFossilFile(string target, string justInfo, string serialized, Image? previewImage)
     {
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
@@ -158,28 +168,19 @@ public class FossilisedSpecies
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
-        OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
-        OutputEntry(tar, SAVE_FOSSIL_JSON, Encoding.UTF8.GetBytes(serialized));
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+        TarHelper.OutputEntry(tar, SAVE_FOSSIL_JSON, Encoding.UTF8.GetBytes(serialized));
+
+        if (previewImage != null)
+        {
+            byte[] data = previewImage.SavePngToBuffer();
+
+            if (data.Length > 0)
+                TarHelper.OutputEntry(tar, SAVE_PREVIEW_IMAGE, data);
+        }
     }
 
-    private static void OutputEntry(TarOutputStream archive, string name, byte[] data)
-    {
-        var entry = TarEntry.CreateTarEntry(name);
-
-        entry.TarHeader.Mode = Convert.ToInt32("0664", 8);
-
-        // TODO: could fill in more of the properties
-
-        entry.Size = data.Length;
-
-        archive.PutNextEntry(entry);
-
-        archive.Write(data, 0, data.Length);
-
-        archive.CloseEntry();
-    }
-
-    private static (FossilisedSpeciesInformation Info, Species Species) LoadFromFile(string file)
+    private static (FossilisedSpeciesInformation Info, Species Species, Image? PreviewImage) LoadFromFile(string file)
     {
         using (var directory = new Directory())
         {
@@ -187,7 +188,7 @@ public class FossilisedSpecies
                 throw new ArgumentException("fossil with the given name doesn't exist");
         }
 
-        var (infoStr, fossilStr) = LoadDataFromFile(file);
+        var (infoStr, fossilStr, previewImageData) = LoadDataFromFile(file);
 
         if (string.IsNullOrEmpty(infoStr))
         {
@@ -203,24 +204,24 @@ public class FossilisedSpecies
             throw new JsonException("FossilisedSpeciesInformation is null");
 
         // Use the info file to deserialize the species to the correct type
-        Species? speciesResult;
-        switch (infoResult.Type)
+        var speciesResult = ThriveJsonConverter.Instance.DeserializeObject<Species>(fossilStr!) ??
+            throw new JsonException("Fossil data is null");
+
+        Image? previewImage = null;
+
+        if (previewImageData != null)
         {
-            case FossilisedSpeciesInformation.SpeciesType.Microbe:
-                speciesResult = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(fossilStr!) ??
-                    throw new JsonException("Fossil data is null");
-                break;
-            default:
-                throw new NotImplementedException("Unable to load non-microbe species");
+            previewImage = TarHelper.ImageFromBuffer(previewImageData);
         }
 
-        return (infoResult, speciesResult);
+        return (infoResult, speciesResult, previewImage);
     }
 
-    private static (string? Info, string? Fossil) LoadDataFromFile(string file)
+    private static (string? Info, string? Fossil, byte[]? PreviewImageData) LoadDataFromFile(string file)
     {
         string? infoStr = null;
         string? fossilStr = null;
+        byte[]? previewImageData = null;
 
         using var reader = new File();
         reader.Open(file, File.ModeFlags.Read);
@@ -240,11 +241,15 @@ public class FossilisedSpecies
 
             if (tarEntry.Name == SAVE_INFO_JSON)
             {
-                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
             }
             else if (tarEntry.Name == SAVE_FOSSIL_JSON)
             {
-                fossilStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                fossilStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
+            }
+            else if (tarEntry.Name == SAVE_PREVIEW_IMAGE)
+            {
+                previewImageData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
             }
             else
             {
@@ -252,18 +257,6 @@ public class FossilisedSpecies
             }
         }
 
-        return (infoStr, fossilStr);
-    }
-
-    private static string ReadStringEntry(TarInputStream tar, int length)
-    {
-        // Pre-allocate storage
-        var buffer = new byte[length];
-        {
-            using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
-        }
-
-        return Encoding.UTF8.GetString(buffer);
+        return (infoStr, fossilStr, previewImageData);
     }
 }
