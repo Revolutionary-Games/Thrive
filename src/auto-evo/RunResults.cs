@@ -1084,8 +1084,6 @@
             return totalPopulation;
         }
 
-        [JsonObject(IsReference = true)]
-        [JSONAlwaysDynamicType]
         [UseThriveConverter]
         public class SpeciesResult
         {
