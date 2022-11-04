@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Thriveopedia page displaying fossilised (saved) organisms.
