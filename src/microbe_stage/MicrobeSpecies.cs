@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
+[UseThriveSerializer]
 public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 {
     [JsonConstructor]

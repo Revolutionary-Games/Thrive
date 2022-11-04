@@ -130,7 +130,9 @@ public class FossilisedSpecies
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
 
-        WriteRawFossilDataToFile(Info, Species.StringCode, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
+        var serializedContent = ThriveJsonConverter.Instance.SerializeObject(Species);
+
+        WriteRawFossilDataToFile(Info, serializedContent, Name + Constants.FOSSIL_EXTENSION_WITH_DOT);
     }
 
     private static void WriteRawFossilDataToFile(FossilisedSpeciesInformation speciesInfo, string fossilContent,

@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
+[UseThriveSerializer]
 public abstract class Species : ICloneable
 {
     /// <summary>
