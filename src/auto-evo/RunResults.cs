@@ -1084,7 +1084,7 @@
             return totalPopulation;
         }
 
-        [UseThriveConverter]
+        [UseThriveSerializer]
         public class SpeciesResult
         {
             [JsonProperty]
