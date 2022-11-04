@@ -31,6 +31,10 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
         UpdateCurrentWorldDetails();
     }
 
+    public override void OnThriveopediaOpened()
+    {
+    }
+
     public override void UpdateCurrentWorldDetails()
     {
         if (CurrentGame == null)

@@ -151,5 +151,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_active = false
 
-[connection signal="visibility_changed" from="." to="." method="RebuildTree"]
 [connection signal="SpeciesSelected" from="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]

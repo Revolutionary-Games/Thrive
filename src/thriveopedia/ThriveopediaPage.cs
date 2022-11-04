@@ -51,6 +51,11 @@ public abstract class ThriveopediaPage : PanelContainer
     }
 
     /// <summary>
+    ///   Performs intensive page-specific logic to rebuild views when the Thriveopedia is opened.
+    /// </summary>
+    public abstract void OnThriveopediaOpened();
+
+    /// <summary>
     ///   Runs any page-specific logic relating to a newly set game in progress.
     /// </summary>
     public abstract void UpdateCurrentWorldDetails();

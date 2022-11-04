@@ -55,32 +55,24 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
 
-    public override void _Notification(int what)
+    public override void OnThriveopediaOpened()
     {
-        base._Notification(what);
+        cardContainer.QueueFreeChildren();
 
-        if (what == NotificationVisibilityChanged && Visible)
+        foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
-            // For now, rebuild the card list entirely each time we open the page. Very unoptimised, but it keeps
-            // the museum up to date with the player's new fossilisations in a game. A possible next step would be
-            // to rebuild only when the Thriveopedia as a whole is opened.
-            cardContainer.QueueFreeChildren();
+            var card = (MuseumCard)museumCardScene.Instance();
 
-            foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
+            var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
+
+            if (savedSpecies is not MicrobeSpecies)
             {
-                var card = (MuseumCard)museumCardScene.Instance();
-
-                var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
-
-                if (savedSpecies is not MicrobeSpecies)
-                {
-                    GD.PrintErr("Loading non-microbe species is not yet implemented");
-                }
-
-                card.SavedSpecies = savedSpecies;
-                card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
-                cardContainer.AddChild(card);
+                GD.PrintErr("Loading non-microbe species is not yet implemented");
             }
+
+            card.SavedSpecies = savedSpecies;
+            card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
+            cardContainer.AddChild(card);
         }
     }
 

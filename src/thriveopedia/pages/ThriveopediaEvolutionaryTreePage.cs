@@ -53,6 +53,14 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         UpdateCurrentWorldDetails();
     }
 
+    public override void OnThriveopediaOpened()
+    {
+        if (CurrentGame == null)
+            return;
+
+        RebuildTree();
+    }
+
     public override void UpdateCurrentWorldDetails()
     {
         if (CurrentGame == null)
@@ -71,9 +79,6 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     /// </summary>
     public void RebuildTree()
     {
-        if (!Visible)
-            return;
-
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game is null");
 

@@ -47,6 +47,15 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         };
     }
 
+    public override void OnThriveopediaOpened()
+    {
+        if (CurrentGame == null)
+            return;
+
+        // TODO: update the player patch if they move patch in the editor
+        SetGameForMap();
+    }
+
     public override void UpdateCurrentWorldDetails()
     {
         if (CurrentGame == null)
@@ -58,15 +67,6 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     public override void OnNavigationPanelSizeChanged(bool collapsed)
     {
-    }
-
-    public void RebuildMap()
-    {
-        if (!Visible)
-            return;
-
-        // TODO update the player patch if they move patch in the editor
-        SetGameForMap();
     }
 
     protected virtual void UpdateShownPatchDetails()

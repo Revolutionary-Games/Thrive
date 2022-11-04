@@ -141,6 +141,17 @@ public class Thriveopedia : ControlWithInput
         SelectedPage = homePage;
     }
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationVisibilityChanged && Visible)
+        {
+            foreach (var page in allPages.Keys)
+                page.OnThriveopediaOpened();
+        }
+    }
+
     /// <summary>
     ///   Opens the Thriveopedia from the main menu.
     /// </summary>
