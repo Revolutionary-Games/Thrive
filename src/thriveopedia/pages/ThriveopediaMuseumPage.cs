@@ -77,7 +77,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
                     GD.PrintErr("Loading non-microbe species is not yet implemented");
                 }
 
-                card.SavedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
+                card.SavedSpecies = savedSpecies;
                 card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
                 cardContainer.AddChild(card);
             }
