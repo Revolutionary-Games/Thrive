@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-03 23:12+0000\n"
+"POT-Creation-Date: 2022-11-04 21:15+0000\n"
 "PO-Revision-Date: 2022-03-21 19:55+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -1212,7 +1212,6 @@ msgstr "Atpakaļ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Apstiprināt Izeju"
@@ -3098,7 +3097,7 @@ msgstr "Atgriezties izvēlnē"
 msgid "EXIT"
 msgstr "Iziet"
 
-#: ../src/general/Species.cs:280
+#: ../src/general/Species.cs:281
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
@@ -4350,7 +4349,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:178
+#: ../src/microbe_stage/MicrobeSpecies.cs:179
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4660,7 +4659,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Sugas nosaukums..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -5782,7 +5781,7 @@ msgstr "Mājas"
 msgid "PAGE_TITLE"
 msgstr "Šūnas procesi"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Atlasīts:"
@@ -5805,6 +5804,10 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+msgid "CONFIRM_FOSSILISATION_OVERWRITE"
+msgstr ""
+
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
@@ -5824,7 +5827,7 @@ msgstr "Novietot organoīdu"
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
@@ -5849,12 +5852,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Mājaslapa"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 

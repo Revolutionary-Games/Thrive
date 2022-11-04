@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-03 23:12+0000\n"
+"POT-Creation-Date: 2022-11-04 21:15+0000\n"
 "PO-Revision-Date: 2022-10-20 06:42+0000\n"
 "Last-Translator: Gundrabur Weißhaupt <gundrabur@web.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1169,7 +1169,6 @@ msgstr "Zurück"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
@@ -3079,7 +3078,7 @@ msgstr "Zurück zum Hauptmenü"
 msgid "EXIT"
 msgstr "Verlassen"
 
-#: ../src/general/Species.cs:280
+#: ../src/general/Species.cs:281
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Spezies[/b]\n"
@@ -4369,7 +4368,7 @@ msgstr "Multizellulär werden ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:178
+#: ../src/microbe_stage/MicrobeSpecies.cs:179
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stadium[/b]\n"
@@ -4680,7 +4679,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Speziesname..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Der Name der Art muss dem binomischen Benennungssystem entsprechen (Genus und Epitheton)!"
 
@@ -5813,7 +5812,7 @@ msgstr "Pos1"
 msgid "PAGE_TITLE"
 msgstr "Zellprozesse"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
@@ -5837,6 +5836,10 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Sessil"
 
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+msgid "CONFIRM_FOSSILISATION_OVERWRITE"
+msgstr ""
+
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
@@ -5857,7 +5860,7 @@ msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, soba
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr "Aktuelle Entwickler(innen)"
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
 #, fuzzy
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Von Revolutionary Games Studio"
@@ -5883,12 +5886,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Startseite"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "Sandboxmodus"

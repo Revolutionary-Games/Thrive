@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-03 23:12+0000\n"
+"POT-Creation-Date: 2022-11-04 21:15+0000\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1277,7 +1277,6 @@ msgstr "Pa' atras"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr ""
@@ -3098,7 +3097,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/Species.cs:280
+#: ../src/general/Species.cs:281
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -4322,7 +4321,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:178
+#: ../src/microbe_stage/MicrobeSpecies.cs:179
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4624,7 +4623,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -5718,7 +5717,7 @@ msgstr "tecla \"Home\""
 msgid "PAGE_TITLE"
 msgstr "\" {0} \" - {1}"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "población:"
@@ -5733,6 +5732,10 @@ msgstr ""
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
 msgid "FOSSILISE"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
@@ -5754,7 +5757,7 @@ msgstr "Poner organela"
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
@@ -5779,12 +5782,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "tecla \"Homepage\""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 

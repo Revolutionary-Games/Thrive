@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-03 23:12+0000\n"
+"POT-Creation-Date: 2022-11-04 21:15+0000\n"
 "PO-Revision-Date: 2022-10-24 16:00+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1173,7 +1173,6 @@ msgstr "返回"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
@@ -2977,7 +2976,7 @@ msgstr "返回主菜单"
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/Species.cs:280
+#: ../src/general/Species.cs:281
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]物种[/b]\n"
@@ -4244,7 +4243,7 @@ msgstr "成为多细胞（{0}/{1}）"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:178
+#: ../src/microbe_stage/MicrobeSpecies.cs:179
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]阶段[/b]\n"
@@ -4551,7 +4550,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "物种名过长！"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "物种名称必须符合双名法命名系统（属和表名）!"
 
@@ -5664,7 +5663,7 @@ msgstr "键盘Home键"
 msgid "PAGE_TITLE"
 msgstr "细胞生理过程"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "删除此存档将无法撤消，确定要永久删除吗？"
@@ -5688,6 +5687,10 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "沉着"
 
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+msgid "CONFIRM_FOSSILISATION_OVERWRITE"
+msgstr ""
+
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
@@ -5708,7 +5711,7 @@ msgstr "多细胞阶段"
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr "当前开发人员"
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
 #, fuzzy
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "演化树"
@@ -5734,12 +5737,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "主页"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "自由编辑器"

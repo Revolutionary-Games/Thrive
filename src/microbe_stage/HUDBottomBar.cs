@@ -144,7 +144,7 @@ public class HUDBottomBar : HBoxContainer
 
     private void StatisticsButtonPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        // No need to play a sound as changing Thriveopedia page does it anyway
         EmitSignal(nameof(OnStatisticsPressed));
     }
 

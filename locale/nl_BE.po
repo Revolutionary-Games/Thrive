@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-03 23:12+0000\n"
+"POT-Creation-Date: 2022-11-04 21:15+0000\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1191,7 +1191,6 @@ msgstr "Terug"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:177
 msgid "CONFIRM_EXIT"
 msgstr "Bevestig Stoppen"
@@ -3103,7 +3102,7 @@ msgstr "Ga terug naar het menu"
 msgid "EXIT"
 msgstr "Verlaten"
 
-#: ../src/general/Species.cs:280
+#: ../src/general/Species.cs:281
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
@@ -4393,7 +4392,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:178
+#: ../src/microbe_stage/MicrobeSpecies.cs:179
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4700,7 +4699,7 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Soortnaam..."
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:142
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Soortnaam moet voldoen aan het binominale naamgevingssysteem (Genus en Epithet)!"
 
@@ -5854,7 +5853,7 @@ msgstr "Home"
 msgid "PAGE_TITLE"
 msgstr "Celprocessen"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:191
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
@@ -5878,6 +5877,10 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr "Zittend"
 
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
+msgid "CONFIRM_FOSSILISATION_OVERWRITE"
+msgstr ""
+
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
@@ -5898,7 +5901,7 @@ msgstr "Organel plaatsen"
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr "Huidige Ontwikkelaars"
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:42
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
 #, fuzzy
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Door Revolutionary Games Studio"
@@ -5924,12 +5927,12 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 #, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Homepage(toets)"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:149
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 #, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr "Vrij bouwen"

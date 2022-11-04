@@ -196,29 +196,29 @@ margin_right = 50.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
+[node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
 margin_left = 54.0
-margin_right = 134.0
-margin_bottom = 32.0
-focus_mode = 0
-custom_fonts/font = ExtResource( 8 )
-enabled_focus_mode = 0
-text = "CANCEL"
-
-[node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
-margin_left = 138.0
-margin_right = 188.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-
-[node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
-margin_left = 192.0
-margin_right = 287.0
+margin_right = 149.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )
 enabled_focus_mode = 0
 text = "FOSSILISE"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
+margin_left = 153.0
+margin_right = 203.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
+margin_left = 207.0
+margin_right = 287.0
+margin_bottom = 32.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 8 )
+enabled_focus_mode = 0
+text = "CANCEL"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer2/HBoxContainer" index="4"]
 margin_left = 291.0
@@ -231,12 +231,12 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 935.0
 margin_bottom = 599.0
-rect_min_size = Vector2( 391, 0 )
-WindowTitle = "CONFIRM_EXIT"
+rect_min_size = Vector2( 440, 0 )
+WindowTitle = "CONFIRM_FOSSILISATION_OVERWRITE"
 
 [connection signal="text_changed" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer2/HBoxContainer2/SpeciesName" to="." method="OnNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer2/RandomizeButton" to="." method="OnRandomizeNamePressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/FossiliseButton" to="." method="OnFossilisePressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
 [connection signal="Confirmed" from="OverwriteNameConfirmation" to="." method="FossiliseSpecies"]

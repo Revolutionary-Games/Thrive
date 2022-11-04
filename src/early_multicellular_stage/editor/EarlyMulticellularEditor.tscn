@@ -80,7 +80,7 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnOpenStatistics" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
+[connection signal="OnOpenStatistics" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
 [connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
