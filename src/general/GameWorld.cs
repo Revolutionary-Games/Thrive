@@ -77,6 +77,14 @@ public class GameWorld : ISaveLoadable
 
         // Apply initial populations
         Map.UpdateGlobalPopulations();
+
+        var playerSpeciesClone = (Species)PlayerSpecies.Clone();
+        GenerationHistory.Add(0, new GenerationRecord(
+            0,
+            0,
+            new() {{playerSpeciesClone, new(playerSpeciesClone)}},
+            new() {{PlayerSpecies.ID, playerSpeciesClone}}
+        ));
     }
 
     /// <summary>

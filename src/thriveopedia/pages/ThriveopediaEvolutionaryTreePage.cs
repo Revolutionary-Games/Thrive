@@ -98,15 +98,27 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
             evolutionaryTree.Clear();
             speciesHistoryList.Clear();
 
-            evolutionaryTree.Init(CurrentGame.GameWorld.PlayerSpecies);
-            InitFirstGeneration();
-
-            // A possible next step would be to rebuild only when the Thriveopedia as a whole is opened.
             foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
             {
                 var record = generation.Value;
+
+                if (record.Generation == 0)
+                {
+                    var playerSpeciesID = CurrentGame!.GameWorld.PlayerSpecies.ID;
+                    var playerSpecies = record.AllSpecies[playerSpeciesID];
+                    evolutionaryTree.Init(playerSpecies, CurrentGame.GameWorld.PlayerSpecies.FormattedName);
+                    speciesHistoryList.Add(new Dictionary<uint, Species>
+                    {
+                        { playerSpeciesID, playerSpecies },
+                    });
+                    continue;
+                }
+
                 evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
-                    record.AutoEvoResults, record.Generation, record.TimeElapsed);
+                    record.AutoEvoResults,
+                    record.Generation,
+                    record.TimeElapsed,
+                    CurrentGame.GameWorld.PlayerSpecies.ID);
                 speciesHistoryList.Add(record.AllSpecies);
             }
         }
@@ -116,15 +128,6 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
             evolutionaryTree.Visible = false;
             disabledWarning.Visible = true;
         }
-    }
-
-    private void InitFirstGeneration()
-    {
-        // TODO: fix this so it shows player species progression rather than current state
-        speciesHistoryList.Add(new Dictionary<uint, Species>
-        {
-            { CurrentGame!.GameWorld.PlayerSpecies.ID, CurrentGame.GameWorld.PlayerSpecies },
-        });
     }
 
     private void UpdateSpeciesPreview(Species species)
