@@ -67,6 +67,11 @@ public class PauseManager : Node
         }
     }
 
+    public bool HasLock(string pauseLockName)
+    {
+        return activeLocks.Contains(pauseLockName);
+    }
+
     /// <summary>
     ///   Force clears all locks. Should *only* be called in the main menu, where this is just an extra safety measure
     ///   against requiring the player to restart the game entirely if they get a pause state stuck issue

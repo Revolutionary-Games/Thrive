@@ -156,6 +156,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void TransitionToFreebuild(Species startingSpecies)
     {
+        // Unpause to make sure Auto-Evo doesn't freeze
+        if (PauseManager.Instance.HasLock(nameof(IStageHUD)))
+        {
+            GD.Print("Removing stage pause lock");
+            PauseManager.Instance.Resume(nameof(IStageHUD));
+        }
+
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
             // Instantiate a new editor scene
