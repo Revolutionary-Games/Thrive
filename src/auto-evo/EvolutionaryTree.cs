@@ -340,8 +340,12 @@ public class EvolutionaryTree : Control
             timeline.DrawLine(new Vector2(x, TIMELINE_AXIS_Y), new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
-                + TranslationServer.Translate("MEGA_YEARS");
+            var localizedText = string.Empty;
+            if (generationTimes.TryGetValue(i, out var generationTime))
+            {
+                localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime) + " "
+                    + TranslationServer.Translate("MEGA_YEARS");
+            }
 
             var size = latoSmallRegular.GetStringSize(localizedText);
 
