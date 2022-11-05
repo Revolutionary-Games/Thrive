@@ -70,6 +70,9 @@ public class Thriveopedia : ControlWithInput
     [Signal]
     public delegate void OnThriveopediaClosed();
 
+    [Signal]
+    public delegate void OnSceneChanged();
+
     /// <summary>
     ///   The currently open Thriveopedia page. Defaults to the home page if none has been set.
     /// </summary>
@@ -243,6 +246,7 @@ public class Thriveopedia : ControlWithInput
         // For now, load by direct reference to the Godot scene. Could be generalised in future.
         var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
         var page = (ThriveopediaPage)scene.Instance();
+        page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
         pageContainer.AddChild(page);
         allPages.Add(page, CreateTreeItem(page, parentName));
         page.Hide();
@@ -334,6 +338,11 @@ public class Thriveopedia : ControlWithInput
     private void OnForwardPressed()
     {
         ChangePage(pageFuture.Pop().PageName, true, false);
+    }
+
+    private void HandleSceneChanged()
+    {
+        EmitSignal(nameof(OnSceneChanged));
     }
 
     private void OnClosePressed()

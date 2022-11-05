@@ -41,6 +41,9 @@ public abstract class ThriveopediaPage : PanelContainer
         }
     }
 
+    [Signal]
+    public delegate void OnSceneChanged();
+
     public override void _Ready()
     {
         base._Ready();

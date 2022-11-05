@@ -484,6 +484,16 @@ public class PauseMenu : CustomDialog
         ActiveMenu = ActiveMenuType.Primary;
     }
 
+    private void OnSceneChangedFromThriveopedia()
+    {
+        // Unpause to make sure Auto-Evo doesn't freeze when transitioning
+        if (PauseManager.Instance.HasLock(nameof(IStageHUD)))
+        {
+            GD.Print("Removing stage pause lock");
+            PauseManager.Instance.Resume(nameof(IStageHUD));
+        }
+    }
+
     private void OnOptionsClosed()
     {
         ActiveMenu = ActiveMenuType.Primary;

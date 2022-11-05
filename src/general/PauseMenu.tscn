@@ -130,7 +130,6 @@ tracks/2/keys = {
 
 [node name="PauseMenu" type="Popup"]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -311,5 +310,6 @@ anims/RESET = SubResource( 3 )
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
+[connection signal="OnSceneChanged" from="Thriveopedia" to="." method="OnSceneChangedFromThriveopedia"]
 [connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnThriveopediaClosed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="ConfirmExit"]
