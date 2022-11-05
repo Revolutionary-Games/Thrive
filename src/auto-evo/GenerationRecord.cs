@@ -65,7 +65,6 @@
             else
             {
                 GD.PrintErr($"Unable to find species with ID {species.ID} in existing species");
-                return;
             }
         }
     }

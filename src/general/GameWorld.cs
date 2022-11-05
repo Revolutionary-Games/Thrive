@@ -78,13 +78,13 @@ public class GameWorld : ISaveLoadable
         // Apply initial populations
         Map.UpdateGlobalPopulations();
 
+        // Create the initial generation by adding only the player species
         var playerSpeciesClone = (Species)PlayerSpecies.Clone();
         GenerationHistory.Add(0, new GenerationRecord(
             0,
             0,
-            new() {{playerSpeciesClone, new(playerSpeciesClone)}},
-            new() {{PlayerSpecies.ID, playerSpeciesClone}}
-        ));
+            new Dictionary<Species, RunResults.SpeciesResult> { { playerSpeciesClone, new(playerSpeciesClone) } },
+            new Dictionary<uint, Species> { { PlayerSpecies.ID, playerSpeciesClone } }));
     }
 
     /// <summary>
