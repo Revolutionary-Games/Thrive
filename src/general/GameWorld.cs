@@ -175,7 +175,7 @@ public class GameWorld : ISaveLoadable
         GenerationHistory.Add(generation, new GenerationRecord(
             generation,
             TotalPassedTime,
-            GetAutoEvoRun().Results!,
+            GetAutoEvoRun().Results!.Clone(),
             worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone())));
     }
 

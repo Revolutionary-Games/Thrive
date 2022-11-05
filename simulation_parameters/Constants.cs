@@ -683,11 +683,11 @@ public static class Constants
     /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
-    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 1000;
 
     // Auto evo population algorithm tweak variables
     // TODO: move all of these into auto-evo_parameters.json
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 10000;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
@@ -1138,11 +1138,6 @@ public static class Constants
 #pragma warning disable CA1823 // unused fields
 
     // ReSharper disable UnreachableCode HeuristicUnreachableCode
-    private const uint MinimumMovePopIsHigherThanMinimumViable =
-        (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
-            AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
-            0 :
-            -42;
 
     private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
         (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;

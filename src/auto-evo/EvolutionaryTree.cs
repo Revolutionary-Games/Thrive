@@ -193,24 +193,27 @@ public class EvolutionaryTree : Control
         }
     }
 
-    public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation, double time)
+    public void UpdateEvolutionaryTreeWithRunResults(
+        Dictionary<Species, RunResults.SpeciesResult> results,
+        int generation,
+        double time)
     {
         foreach (var speciesResultPair in results.OrderBy(r => r.Value.Species.ID))
         {
             var species = speciesResultPair.Key;
             var result = speciesResultPair.Value;
 
-            if (result.Species.Population <= 0)
+            if (species.Population <= 0)
             {
                 if (result.SplitFrom == null)
                 {
-                    SetupTreeNode((Species)species.Clone(),
+                    SetupTreeNode(species,
                         speciesNodes[species.ID].Last(), generation - 1, true);
                 }
             }
             else if (result.SplitFrom != null)
             {
-                SetupTreeNode((Species)species.Clone(),
+                SetupTreeNode(species,
                     speciesNodes[result.SplitFrom.ID].Last(), generation);
 
                 speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
@@ -218,7 +221,7 @@ public class EvolutionaryTree : Control
             }
             else if (result.MutatedProperties != null)
             {
-                SetupTreeNode((Species)result.MutatedProperties.Clone(),
+                SetupTreeNode(result.MutatedProperties,
                     speciesNodes[species.ID].Last(), generation);
             }
 
@@ -248,7 +251,15 @@ public class EvolutionaryTree : Control
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
         if (!speciesNodes.ContainsKey(species.ID))
+        {
             speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
+        }
+        else if (speciesNodes[species.ID].Any(n => n.Position == node.Position))
+        {
+            var existingNode = speciesNodes[species.ID].Where(n => n.Position == node.Position).First();
+            speciesNodes[species.ID].Remove(existingNode);
+            existingNode.DetachAndQueueFree();
+        }
 
         speciesNodes[species.ID].Add(node);
         tree.AddChild(node);

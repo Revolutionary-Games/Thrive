@@ -633,7 +633,7 @@ public class AutoEvoExploringTool : NodeWithInput
         autoEvoRun.ApplyAllResultsAndEffects(true);
 
         // Add run results, this must be called after results are applied to generate unique species ID
-        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, ++currentGeneration,
+        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results.Clone(), ++currentGeneration,
             gameProperties.GameWorld.TotalPassedTime);
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));

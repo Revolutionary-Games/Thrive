@@ -47,6 +47,16 @@
             SplitDueToMutation,
         }
 
+        /// <summary>
+        ///   Per-species results, with all species cloned to avoid erroneous references to present species state
+        ///   (e.g. when we want the past population but a species has since gone extinct).
+        /// </summary>
+        /// <returns>The per-species results with species cloned</returns>
+        public Dictionary<Species, SpeciesResult> Clone()
+        {
+            return results.ToDictionary(r => (Species)r.Key.Clone(), r => r.Value.Clone());
+        }
+
         public void AddMutationResultForSpecies(Species species, Species? mutated)
         {
             MakeSureResultExistsForSpecies(species);
@@ -1165,6 +1175,25 @@
 
                 EnergyResults.Add(patch, result);
                 return result;
+            }
+
+            /// <summary>
+            ///   Results with all species references cloned to preserve their contemporary state.
+            /// </summary>
+            /// <returns>Cloned results for this species</returns>
+            public SpeciesResult Clone()
+            {
+                return new SpeciesResult((Species)Species.Clone())
+                {
+                    NewPopulationInPatches = NewPopulationInPatches,
+                    MutatedProperties = (Species?)MutatedProperties?.Clone(),
+                    SpreadToPatches = SpreadToPatches,
+                    NewlyCreated = NewlyCreated,
+                    SplitOff = (Species?)SplitOff?.Clone(),
+                    SplitOffPatches = SplitOffPatches,
+                    SplitFrom = (Species?)SplitFrom?.Clone(),
+                    EnergyResults = EnergyResults,
+                };
             }
         }
 
