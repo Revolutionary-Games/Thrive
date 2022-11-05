@@ -10,8 +10,7 @@
     public class GenerationRecord
     {
         [JsonConstructor]
-        public GenerationRecord(
-            int generation,
+        public GenerationRecord(int generation,
             double timeElapsed,
             Dictionary<Species, RunResults.SpeciesResult> autoEvoResults,
             Dictionary<uint, Species> allSpecies)

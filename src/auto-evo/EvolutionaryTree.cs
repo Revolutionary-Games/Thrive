@@ -194,7 +194,7 @@ public class EvolutionaryTree : Control
     }
 
     public void UpdateEvolutionaryTreeWithRunResults(
-        Dictionary<Species, RunResults.SpeciesResult> results,
+        System.Collections.Generic.Dictionary<Species, RunResults.SpeciesResult> results,
         int generation,
         double time)
     {
