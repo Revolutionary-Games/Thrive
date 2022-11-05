@@ -52,7 +52,7 @@
         ///   (e.g. when we want the past population but a species has since gone extinct).
         /// </summary>
         /// <returns>The per-species results with species cloned</returns>
-        public Dictionary<Species, SpeciesResult> Clone()
+        public Dictionary<Species, SpeciesResult> CloneSpeciesResults()
         {
             return results.ToDictionary(r => (Species)r.Key.Clone(), r => r.Value.Clone());
         }
@@ -1181,6 +1181,11 @@
             ///   Results with all species references cloned to preserve their contemporary state.
             /// </summary>
             /// <returns>Cloned results for this species</returns>
+            /// <remarks>
+            ///   <para>
+            ///     This doesn't clone everything, only species, and should not be used as a full clone method.
+            ///   </para>
+            /// </remarks>
             public SpeciesResult Clone()
             {
                 return new SpeciesResult((Species)Species.Clone())

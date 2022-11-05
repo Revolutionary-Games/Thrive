@@ -6,7 +6,6 @@
     /// <summary>
     ///   Record of Auto-Evo results and species data for a given generation.
     /// </summary>
-    [UseThriveSerializer]
     public class GenerationRecord
     {
         [JsonConstructor]
