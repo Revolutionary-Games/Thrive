@@ -256,6 +256,7 @@ public class EvolutionaryTree : Control
         }
         else if (speciesNodes[species.ID].Any(n => n.Position == node.Position))
         {
+            // Remove the existing node in this position so we can replace it (e.g. with an extinct node)
             var existingNode = speciesNodes[species.ID].Where(n => n.Position == node.Position).First();
             speciesNodes[species.ID].Remove(existingNode);
             existingNode.DetachAndQueueFree();
