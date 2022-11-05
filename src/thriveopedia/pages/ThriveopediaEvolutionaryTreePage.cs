@@ -85,20 +85,26 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         // TODO: fix the tree for freebuild
         if (CurrentGame.FreeBuild)
         {
-            evolutionaryTree.Visible = false;
-            disabledWarning.Visible = true;
+            OnTreeFailedToBuild("Tree opened in freebuild mode");
             return;
         }
 
         // Building the tree relies on the existence of a full history of generations stored in the current game. Since
         // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
         // TODO: avoid an ugly try/catch block by actually checking the original save version?
+        var generationHistory = CurrentGame.GameWorld.GenerationHistory;
+        if (generationHistory.Count < 1)
+        {
+            OnTreeFailedToBuild("Generation history is empty");
+            return;
+        }
+
         try
         {
             evolutionaryTree.Clear();
             speciesHistoryList.Clear();
 
-            foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
+            foreach (var generation in generationHistory)
             {
                 var record = generation.Value;
 
@@ -124,10 +130,15 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         }
         catch (KeyNotFoundException e)
         {
-            GD.PrintErr($"Evolutionary tree failed to build with error {e}");
-            evolutionaryTree.Visible = false;
-            disabledWarning.Visible = true;
+            OnTreeFailedToBuild(e.ToString());
         }
+    }
+
+    private void OnTreeFailedToBuild(string error)
+    {
+        GD.PrintErr($"Evolutionary tree failed to build with error: {error}");
+        evolutionaryTree.Visible = false;
+        disabledWarning.Visible = true;
     }
 
     private void UpdateSpeciesPreview(Species species)

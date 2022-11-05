@@ -1,6 +1,8 @@
 ﻿namespace AutoEvo
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -44,5 +46,27 @@
         /// </summary>
         [JsonProperty]
         public Dictionary<uint, Species> AllSpecies { get; private set; }
+
+        /// <summary>
+        ///   Replaces species data for a given species in this generation. Primarily used for updating data for the
+        ///   player species once the player has left the editor.
+        /// </summary>
+        /// <param name="species">Updated species</param>
+        public void UpdateSpeciesData(Species species)
+        {
+            if (AllSpecies.ContainsKey(species.ID) && AutoEvoResults.Any(r => r.Key.ID == species.ID))
+            {
+                var speciesClone = (Species)species.Clone();
+                AllSpecies[species.ID] = speciesClone;
+                AutoEvoResults = AutoEvoResults.ToDictionary(
+                    r => r.Key.ID == species.ID ? speciesClone : r.Key,
+                    r => r.Key.ID == species.ID ? r.Value.Clone(species) : r.Value);
+            }
+            else
+            {
+                GD.PrintErr($"Unable to find species with ID {species.ID} in existing species");
+                return;
+            }
+        }
     }
 }

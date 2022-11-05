@@ -285,6 +285,9 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         if (CurrentGame == null)
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
+        // Update the generation history with the newly edited player species
+        GameWorld.GenerationHistory.Last().Value.UpdateSpeciesData(GameWorld.PlayerSpecies);
+
         // Now the editor increases the generation so we don't do that here anymore
 
         // Make sure player is spawned
