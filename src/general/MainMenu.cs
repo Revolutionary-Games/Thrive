@@ -53,6 +53,12 @@ public class MainMenu : NodeWithInput
     public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
 
     [Export]
+    public NodePath SocialMediaContainerPath = null!;
+
+    [Export]
+    public NodePath WebsiteButtonsContainerPath = null!;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
@@ -81,12 +87,10 @@ public class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
-
-    private Control socialContainer = null!;
-    private VBoxContainer extraSites = null!;
-    private bool extraSitesShown;
-
     private Label storeLoggedInDisplay = null!;
+
+    private Control socialMediaContainer = null!;
+    private VBoxContainer websiteButtonsContainer = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
@@ -168,6 +172,11 @@ public class MainMenu : NodeWithInput
         if (MenuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
 
+        // Hide the website button container whenever anything else is pressed, and only display the social media icons
+        // if a menu is visible
+        websiteButtonsContainer.Visible = false;
+        socialMediaContainer.Visible = index != uint.MaxValue;
+
         // Allow disabling all the menus for going to the options menu
         if (index > MenuArray.Count - 1 && index != uint.MaxValue)
         {
@@ -230,8 +239,8 @@ public class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
-        socialContainer = GetNode<Control>("SocialMedia");
-        extraSites = GetNode<Node>("MenuContainers").GetNode<Control>("Menus").GetNode<VBoxContainer>("CommunitySites");
+        socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
+        websiteButtonsContainer = GetNode<VBoxContainer>(WebsiteButtonsContainerPath);
 
         MenuArray?.Clear();
 
@@ -456,9 +465,6 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        // Hide Social Icons
-        socialContainer.Visible = false;
-
         // Show the options
         options.OpenFromMainMenu();
     }
@@ -466,7 +472,6 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromOptions()
     {
         options.Visible = false;
-        socialContainer.Visible = true;
         SetCurrentMenu(0, false);
     }
 
@@ -510,9 +515,6 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        // Hide Social Icons
-        socialContainer.Visible = false;
-
         // Show the credits view
         credits.Restart();
         creditsContainer.Visible = true;
@@ -522,9 +524,6 @@ public class MainMenu : NodeWithInput
     {
         creditsContainer.Visible = false;
         credits.Pause();
-
-        // Show Social Icons
-        socialContainer.Visible = true;
 
         SetCurrentMenu(0, false);
     }
@@ -558,9 +557,6 @@ public class MainMenu : NodeWithInput
         // Hide all the other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        // Hide Social Icons
-        socialContainer.Visible = false;
-
         // Show the mods view
         modManager.Visible = true;
     }
@@ -568,8 +564,6 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromMods()
     {
         modManager.Visible = false;
-
-        socialContainer.Visible = true;
 
         SetCurrentMenu(0, false);
     }
@@ -588,79 +582,14 @@ public class MainMenu : NodeWithInput
         Jukebox.Instance.PlayCategory("Menu");
     }
 
-    private void OnDiscordPressed()
+    private void OnWebsitesButtonPressed()
     {
-        OS.ShellOpen("https://discordapp.com/invite/ECR9E8x");
+        websiteButtonsContainer.Visible = !websiteButtonsContainer.Visible;
     }
 
-    private void OnRedditPressed()
+    private void OnSocialMediaButtonPressed(string url)
     {
-        OS.ShellOpen("https://www.reddit.com/r/thrive/");
-    }
-
-    private void OnTwitterPressed()
-    {
-        OS.ShellOpen("https://twitter.com/Thrive_Game");
-    }
-
-    private void OnCommunityPressed()
-    {
-        OS.ShellOpen("https://community.revolutionarygamesstudio.com");
-    }
-
-    private void OnFacebookPressed()
-    {
-        OS.ShellOpen("https://www.facebook.com/Thrive-182887991751358/");
-    }
-
-    private void OnYouTubePressed()
-    {
-        OS.ShellOpen("https://www.youtube.com/c/RevolutionaryGames");
-    }
-
-    private void OnGithubPressed()
-    {
-        OS.ShellOpen("https://github.com/Revolutionary-Games/Thrive");
-    }
-
-    private void OnPatreonPressed()
-    {
-        OS.ShellOpen("https://www.patreon.com/brand");
-    }
-
-    private void OnSteamPressed()
-    {
-        OS.ShellOpen("https://steamcommunity.com/groups/ThriveGame");
-    }
-
-    private void OnThrivePressed()
-    {
-        // Toggle the extra menu shown or hidden.
-        if (!extraSitesShown)
-        {
-            extraSites.Visible = true;
-            extraSitesShown = true;
-        }
-        else
-        {
-            extraSites.Visible = false;
-            extraSitesShown = false;
-        }
-    }
-
-    private void OnDeveloperPressed()
-    {
-        OS.ShellOpen("https://forum.revolutionarygamesstudio.com");
-    }
-
-    private void OnWikiPressed()
-    {
-        OS.ShellOpen("https://wiki.revolutionarygamesstudio.com/wiki/Main_Page");
-    }
-
-    private void OnItchPressed()
-    {
-        OS.ShellOpen("https://revolutionarygames.itch.io/thrive");
+        OS.ShellOpen(url);
     }
 
     private void OnNoEnabledModsNoticeClosed()

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-05 14:54+0000\n"
+"POT-Creation-Date: 2022-11-05 17:01+0000\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: Juuso Vahala <juuso.raimosamuli@gmail.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1235,8 +1235,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Lista lajeista"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:463
-#: ../src/general/MainMenu.tscn:543 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:396 ../src/general/MainMenu.tscn:486
+#: ../src/general/MainMenu.tscn:741 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2132,7 +2132,7 @@ msgstr "Odotetaan auto-evoa:"
 msgid "CONFIRM_CAPITAL"
 msgstr "VAHVISTA"
 
-#: ../src/general/HelpScreen.tscn:107
+#: ../src/general/HelpScreen.tscn:104
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -2163,135 +2163,220 @@ msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoosin pitoisuudet ovat tippuneet rajusti!"
 
-#: ../src/general/MainMenu.cs:297
+#: ../src/general/MainMenu.cs:306
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
 
-#: ../src/general/MainMenu.tscn:210
+#: ../src/general/MainMenu.tscn:232
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:235
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
 
-#: ../src/general/MainMenu.tscn:224 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:246 ../src/general/PauseMenu.tscn:195
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/MainMenu.tscn:227 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Lataa Peli"
 
-#: ../src/general/MainMenu.tscn:235 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:220
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/MainMenu.tscn:239 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:261 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Asetukset"
 
-#: ../src/general/MainMenu.tscn:250
+#: ../src/general/MainMenu.tscn:272
 msgid "TOOLS"
 msgstr "Työkalut"
 
-#: ../src/general/MainMenu.tscn:261
+#: ../src/general/MainMenu.tscn:283
 msgid "VIEW_SOURCE_CODE"
 msgstr "Katsele lähdekoodia"
 
-#: ../src/general/MainMenu.tscn:272
+#: ../src/general/MainMenu.tscn:294
 msgid "EXTRAS"
 msgstr "Ekstrat"
 
-#: ../src/general/MainMenu.tscn:283
+#: ../src/general/MainMenu.tscn:305
 msgid "CREDITS"
 msgstr "Tekijät"
 
-#: ../src/general/MainMenu.tscn:291 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:236
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/MainMenu.tscn:295
+#: ../src/general/MainMenu.tscn:317
 msgid "QUIT"
 msgstr "Lopeta"
 
-#: ../src/general/MainMenu.tscn:314
+#: ../src/general/MainMenu.tscn:337
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrobien vapaa rakentelu"
 
-#: ../src/general/MainMenu.tscn:326
+#: ../src/general/MainMenu.tscn:349
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "suorituksen status:"
 
-#: ../src/general/MainMenu.tscn:393
+#: ../src/general/MainMenu.tscn:416
 msgid "MODS"
 msgstr "Modit"
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:430
 msgid "ART_GALLERY"
 msgstr "Taidegalleria"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:442
 msgid "LICENSES"
 msgstr "Lisenssit"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:456
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:480
-msgid "GAME_WIKI"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:490
-msgid "COMMUNITY_SITE"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:517
 #, fuzzy
-msgid "DEVELOPER_SITE"
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "Kuole"
+
+#: ../src/general/MainMenu.tscn:520
+msgid "OFFICIAL_WEBSITE"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:530
+#, fuzzy
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
+#: ../src/general/MainMenu.tscn:533
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:543
+#, fuzzy
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
+#: ../src/general/MainMenu.tscn:546
+#, fuzzy
+msgid "DEVELOPMENT_FORUM"
+msgstr "Kehitystä tukee Revolutionary Games Studio ry"
+
+#: ../src/general/MainMenu.tscn:556
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Kuole"
+
+#: ../src/general/MainMenu.tscn:559
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "Wikimme"
+
+#: ../src/general/MainMenu.tscn:569
+#, fuzzy
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Help"
+
+#: ../src/general/MainMenu.tscn:572
+#, fuzzy
+msgid "DEVELOPMENT_WIKI"
 msgstr "Kehittäjät"
 
-#: ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:595
+#, fuzzy
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Tehnyt Revolutionary Games Studio"
+
+#: ../src/general/MainMenu.tscn:606
+#, fuzzy
+msgid "STEAM_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#: ../src/general/MainMenu.tscn:617
+#, fuzzy
+msgid "ITCH_TOOLTIP"
+msgstr "Kuole"
+
+#: ../src/general/MainMenu.tscn:628
+#, fuzzy
+msgid "PATREON_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#: ../src/general/MainMenu.tscn:639
+#, fuzzy
+msgid "GITHUB_TOOLTIP"
+msgstr "Kuole"
+
+#: ../src/general/MainMenu.tscn:650
+#, fuzzy
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#: ../src/general/MainMenu.tscn:661
+#, fuzzy
+msgid "REDDIT_TOOLTIP"
+msgstr "Jatka"
+
+#: ../src/general/MainMenu.tscn:672
+#, fuzzy
+msgid "DISCORD_TOOLTIP"
+msgstr "Lisää uusi syöte"
+
+#: ../src/general/MainMenu.tscn:683
+#, fuzzy
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#: ../src/general/MainMenu.tscn:694
+#, fuzzy
+msgid "TWITTER_TOOLTIP"
+msgstr "Help"
+
+#: ../src/general/MainMenu.tscn:758
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-moodi Varoitus"
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:760
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:763
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Ei käytössä"
 
-#: ../src/general/MainMenu.tscn:577
+#: ../src/general/MainMenu.tscn:775
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:592
+#: ../src/general/MainMenu.tscn:790
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:603
+#: ../src/general/MainMenu.tscn:801
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:607
+#: ../src/general/MainMenu.tscn:805
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Poista Paikallinen Data"
 
-#: ../src/general/MainMenu.tscn:609
+#: ../src/general/MainMenu.tscn:807
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2300,11 +2385,11 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:811
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modien latausvirheet"
 
-#: ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:812
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-05 14:54+0000\n"
+"POT-Creation-Date: 2022-11-05 17:01+0000\n"
 "PO-Revision-Date: 2021-01-03 09:13+0000\n"
 "Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
 "Language-Team: Latin <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/la/>\n"
@@ -1150,8 +1150,8 @@ msgid "SPECIES_DETAILS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:463
-#: ../src/general/MainMenu.tscn:543 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:396 ../src/general/MainMenu.tscn:486
+#: ../src/general/MainMenu.tscn:741 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2015,7 +2015,7 @@ msgstr ""
 msgid "CONFIRM_CAPITAL"
 msgstr ""
 
-#: ../src/general/HelpScreen.tscn:107
+#: ../src/general/HelpScreen.tscn:104
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -2046,135 +2046,203 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:297
+#: ../src/general/MainMenu.cs:306
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:210
+#: ../src/general/MainMenu.tscn:232
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:235
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:224 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:246 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:227 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:235 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:239 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:261 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:250
+#: ../src/general/MainMenu.tscn:272
 msgid "TOOLS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:261
+#: ../src/general/MainMenu.tscn:283
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:272
+#: ../src/general/MainMenu.tscn:294
 msgid "EXTRAS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:283
+#: ../src/general/MainMenu.tscn:305
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:291 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:295
+#: ../src/general/MainMenu.tscn:317
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:314
+#: ../src/general/MainMenu.tscn:337
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:326
+#: ../src/general/MainMenu.tscn:349
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:393
+#: ../src/general/MainMenu.tscn:416
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:430
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:442
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:456
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:480
-msgid "GAME_WIKI"
+#: ../src/general/MainMenu.tscn:517
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:490
-msgid "COMMUNITY_SITE"
+#: ../src/general/MainMenu.tscn:520
+msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:500
-msgid "DEVELOPER_SITE"
+#: ../src/general/MainMenu.tscn:530
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:533
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:543
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:546
+msgid "DEVELOPMENT_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:556
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:559
+msgid "COMMUNITY_WIKI"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:569
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:572
+msgid "DEVELOPMENT_WIKI"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:595
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:606
+msgid "STEAM_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:617
+msgid "ITCH_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:628
+msgid "PATREON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:639
+msgid "GITHUB_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:650
+msgid "YOUTUBE_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:661
+msgid "REDDIT_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:672
+msgid "DISCORD_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:683
+msgid "FACEBOOK_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:694
+msgid "TWITTER_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:758
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:760
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:763
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:577
+#: ../src/general/MainMenu.tscn:775
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:592
+#: ../src/general/MainMenu.tscn:790
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:603
+#: ../src/general/MainMenu.tscn:801
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:607
+#: ../src/general/MainMenu.tscn:805
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:609
+#: ../src/general/MainMenu.tscn:807
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:811
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:812
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 

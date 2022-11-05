@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-05 14:54+0000\n"
+"POT-Creation-Date: 2022-11-05 17:01+0000\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1192,8 +1192,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Soortenlijst"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:463
-#: ../src/general/MainMenu.tscn:543 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:396 ../src/general/MainMenu.tscn:486
+#: ../src/general/MainMenu.tscn:741 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2114,7 +2114,7 @@ msgstr "Wachten voor auto-evo:"
 msgid "CONFIRM_CAPITAL"
 msgstr "BEVESTIGEN"
 
-#: ../src/general/HelpScreen.tscn:107
+#: ../src/general/HelpScreen.tscn:104
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -2145,135 +2145,220 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:297
+#: ../src/general/MainMenu.cs:306
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
 
-#: ../src/general/MainMenu.tscn:210
+#: ../src/general/MainMenu.tscn:232
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:235
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
-#: ../src/general/MainMenu.tscn:224 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:246 ../src/general/PauseMenu.tscn:195
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
 
-#: ../src/general/MainMenu.tscn:227 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
-#: ../src/general/MainMenu.tscn:235 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:220
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/MainMenu.tscn:239 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:261 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:250
+#: ../src/general/MainMenu.tscn:272
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
-#: ../src/general/MainMenu.tscn:261
+#: ../src/general/MainMenu.tscn:283
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
 
-#: ../src/general/MainMenu.tscn:272
+#: ../src/general/MainMenu.tscn:294
 msgid "EXTRAS"
 msgstr "Extra's"
 
-#: ../src/general/MainMenu.tscn:283
+#: ../src/general/MainMenu.tscn:305
 msgid "CREDITS"
 msgstr "Dank"
 
-#: ../src/general/MainMenu.tscn:291 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:236
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
 
-#: ../src/general/MainMenu.tscn:295
+#: ../src/general/MainMenu.tscn:317
 msgid "QUIT"
 msgstr "Stoppen"
 
-#: ../src/general/MainMenu.tscn:314
+#: ../src/general/MainMenu.tscn:337
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
-#: ../src/general/MainMenu.tscn:326
+#: ../src/general/MainMenu.tscn:349
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "loopstatus:"
 
-#: ../src/general/MainMenu.tscn:393
+#: ../src/general/MainMenu.tscn:416
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:407
+#: ../src/general/MainMenu.tscn:430
 msgid "ART_GALLERY"
 msgstr "Kunst galerij"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:442
 msgid "LICENSES"
 msgstr "Licenties"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:456
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:480
-msgid "GAME_WIKI"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:490
-msgid "COMMUNITY_SITE"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:517
 #, fuzzy
-msgid "DEVELOPER_SITE"
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:520
+msgid "OFFICIAL_WEBSITE"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:530
+#, fuzzy
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/general/MainMenu.tscn:533
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:543
+#, fuzzy
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/general/MainMenu.tscn:546
+#, fuzzy
+msgid "DEVELOPMENT_FORUM"
+msgstr "Ontwikkeling ondersteund door Revolutionary Games Studio ry"
+
+#: ../src/general/MainMenu.tscn:556
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:559
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "onze Wiki"
+
+#: ../src/general/MainMenu.tscn:569
+#, fuzzy
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Help"
+
+#: ../src/general/MainMenu.tscn:572
+#, fuzzy
+msgid "DEVELOPMENT_WIKI"
 msgstr "Ontwikkelaars"
 
-#: ../src/general/MainMenu.tscn:560
+#: ../src/general/MainMenu.tscn:595
+#, fuzzy
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Door Revolutionary Games Studio"
+
+#: ../src/general/MainMenu.tscn:606
+#, fuzzy
+msgid "STEAM_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:617
+#, fuzzy
+msgid "ITCH_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:628
+#, fuzzy
+msgid "PATREON_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:639
+#, fuzzy
+msgid "GITHUB_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:650
+#, fuzzy
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:661
+#, fuzzy
+msgid "REDDIT_TOOLTIP"
+msgstr "Hervat het spel"
+
+#: ../src/general/MainMenu.tscn:672
+#, fuzzy
+msgid "DISCORD_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/general/MainMenu.tscn:683
+#, fuzzy
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:694
+#, fuzzy
+msgid "TWITTER_TOOLTIP"
+msgstr "Help"
+
+#: ../src/general/MainMenu.tscn:758
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:760
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
-#: ../src/general/MainMenu.tscn:565
+#: ../src/general/MainMenu.tscn:763
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Uitgeschakeld"
 
-#: ../src/general/MainMenu.tscn:577
+#: ../src/general/MainMenu.tscn:775
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:592
+#: ../src/general/MainMenu.tscn:790
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:603
+#: ../src/general/MainMenu.tscn:801
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:607
+#: ../src/general/MainMenu.tscn:805
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Verwijder lokale Data"
 
-#: ../src/general/MainMenu.tscn:609
+#: ../src/general/MainMenu.tscn:807
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2282,11 +2367,11 @@ msgstr ""
 "Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
 "en zullen waarschijnlijk terug aanvallen."
 
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:811
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:812
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er zijn fouten opgetreden bij het laden van 1 of meer mods. Logs kunnen meer informatie bevatten."
 
