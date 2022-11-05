@@ -16,6 +16,9 @@ public abstract class ThriveopediaPage : PanelContainer
     /// </summary>
     private GameProperties? currentGame;
 
+    [Signal]
+    public delegate void OnSceneChanged();
+
     /// <summary>
     ///   The internal name of this page. Must be PascalCase to open the Godot scene correctly.
     /// </summary>
@@ -40,9 +43,6 @@ public abstract class ThriveopediaPage : PanelContainer
             UpdateCurrentWorldDetails();
         }
     }
-
-    [Signal]
-    public delegate void OnSceneChanged();
 
     public override void _Ready()
     {
