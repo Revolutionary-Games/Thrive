@@ -170,7 +170,46 @@ public class OptionsMenu : ControlWithInput
     public NodePath InputsTabPath = null!;
 
     [Export]
+    public NodePath MouseAxisSensitivitiesBoundPath = null!;
+
+    [Export]
+    public NodePath MouseHorizontalSensitivityPath = null!;
+
+    [Export]
+    public NodePath MouseHorizontalInvertedPath = null!;
+
+    [Export]
+    public NodePath MouseVerticalSensitivityPath = null!;
+
+    [Export]
+    public NodePath MouseVerticalInvertedPath = null!;
+
+    [Export]
+    public NodePath MouseWindowSizeScalingPath = null!;
+
+    [Export]
+    public NodePath MouseWindowSizeScalingWithLogicalSizePath = null!;
+
+    [Export]
+    public NodePath ControllerAxisSensitivitiesBoundPath = null!;
+
+    [Export]
+    public NodePath ControllerHorizontalSensitivityPath = null!;
+
+    [Export]
+    public NodePath ControllerHorizontalInvertedPath = null!;
+
+    [Export]
+    public NodePath ControllerVerticalSensitivityPath = null!;
+
+    [Export]
+    public NodePath ControllerVerticalInvertedPath = null!;
+
+    [Export]
     public NodePath InputGroupListPath = null!;
+
+    [Export]
+    public NodePath DeadzoneConfigurationPopupPath = null!;
 
     // Misc tab.
     [Export]
@@ -219,7 +258,16 @@ public class OptionsMenu : ControlWithInput
     public NodePath CustomUsernamePath = null!;
 
     [Export]
+    public NodePath DismissedNoticeCountPath = null!;
+
+    [Export]
     public NodePath JSONDebugModePath = null!;
+
+    [Export]
+    public NodePath CommitLabelPath = null!;
+
+    [Export]
+    public NodePath BuiltAtLabelPath = null!;
 
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
@@ -292,7 +340,24 @@ public class OptionsMenu : ControlWithInput
 
     // Inputs tab
     private Control inputsTab = null!;
+
+    private Button mouseAxisSensitivitiesBound = null!;
+    private Slider mouseHorizontalSensitivity = null!;
+    private Button mouseHorizontalInverted = null!;
+    private Slider mouseVerticalSensitivity = null!;
+    private Button mouseVerticalInverted = null!;
+    private OptionButton mouseWindowSizeScaling = null!;
+    private Button mouseWindowSizeScalingWithLogicalSize = null!;
+
+    private Button controllerAxisSensitivitiesBound = null!;
+    private Slider controllerHorizontalSensitivity = null!;
+    private Button controllerHorizontalInverted = null!;
+    private Slider controllerVerticalSensitivity = null!;
+    private Button controllerVerticalInverted = null!;
+
     private InputGroupList inputGroupList = null!;
+
+    private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
 
     // Misc tab
     private Control miscTab = null!;
@@ -305,7 +370,10 @@ public class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves = null!;
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
+    private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
+    private Label commitLabel = null!;
+    private Label builtAtLabel = null!;
 
     private CustomCheckBox tutorialsEnabled = null!;
     private CustomCheckBox unsavedProgressWarningEnabled = null!;
@@ -319,7 +387,7 @@ public class OptionsMenu : ControlWithInput
     // Misc
 
     private OptionsMode optionsMode;
-    private SelectedOptionsTab selectedOptionsTab;
+    private OptionsTab selectedOptionsTab;
 
     /// <summary>
     ///   Copy of the settings object that should match what is saved to the configuration file,
@@ -342,7 +410,7 @@ public class OptionsMenu : ControlWithInput
         InGame,
     }
 
-    private enum SelectedOptionsTab
+    public enum OptionsTab
     {
         Graphics,
         Sound,
@@ -420,8 +488,25 @@ public class OptionsMenu : ControlWithInput
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
+        mouseAxisSensitivitiesBound = GetNode<Button>(MouseAxisSensitivitiesBoundPath);
+        mouseHorizontalSensitivity = GetNode<Slider>(MouseHorizontalSensitivityPath);
+        mouseHorizontalInverted = GetNode<Button>(MouseHorizontalInvertedPath);
+        mouseVerticalSensitivity = GetNode<Slider>(MouseVerticalSensitivityPath);
+        mouseVerticalInverted = GetNode<Button>(MouseVerticalInvertedPath);
+        mouseWindowSizeScaling = GetNode<OptionButton>(MouseWindowSizeScalingPath);
+        mouseWindowSizeScalingWithLogicalSize = GetNode<Button>(MouseWindowSizeScalingWithLogicalSizePath);
+
+        controllerAxisSensitivitiesBound = GetNode<Button>(ControllerAxisSensitivitiesBoundPath);
+        controllerHorizontalSensitivity = GetNode<Slider>(ControllerHorizontalSensitivityPath);
+        controllerHorizontalInverted = GetNode<Button>(ControllerHorizontalInvertedPath);
+        controllerVerticalSensitivity = GetNode<Slider>(ControllerVerticalSensitivityPath);
+        controllerVerticalInverted = GetNode<Button>(ControllerVerticalInvertedPath);
+
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
+
+        deadzoneConfigurationPopup = GetNode<ControllerDeadzoneConfiguration>(DeadzoneConfigurationPopupPath);
+        deadzoneConfigurationPopup.OnDeadzonesConfirmed += OnDeadzoneConfigurationChanged;
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -435,7 +520,10 @@ public class OptionsMenu : ControlWithInput
         tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
+        dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
+        commitLabel = GetNode<Label>(CommitLabelPath);
+        builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
         unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
@@ -443,7 +531,7 @@ public class OptionsMenu : ControlWithInput
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
 
-        selectedOptionsTab = SelectedOptionsTab.Graphics;
+        selectedOptionsTab = OptionsTab.Graphics;
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
@@ -523,6 +611,10 @@ public class OptionsMenu : ControlWithInput
     /// </summary>
     public void ApplySettingsToControls(Settings settings)
     {
+        // TODO: all of these changes cause Godot change callbacks which in turn cause settings comparisons
+        // that is not efficient at all so instead we should set a flag here and ignore settings compare calls
+        // while it is active
+
         // Graphics
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
@@ -539,15 +631,15 @@ public class OptionsMenu : ControlWithInput
         DisplayGpuInfo();
 
         // Sound
-        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
+        masterVolume.Value = ConvertDbToSoundBar(settings.VolumeMaster);
         masterMuted.Pressed = settings.VolumeMasterMuted;
-        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
+        musicVolume.Value = ConvertDbToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
-        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceVolume.Value = ConvertDbToSoundBar(settings.VolumeAmbiance);
         ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
-        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxVolume.Value = ConvertDbToSoundBar(settings.VolumeSFX);
         sfxMuted.Pressed = settings.VolumeSFXMuted;
-        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiVolume.Value = ConvertDbToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
         UpdateSelectedAudioOutputDevice(settings);
@@ -570,6 +662,26 @@ public class OptionsMenu : ControlWithInput
         UpdateDetectedCPUCount();
 
         // Input
+        mouseAxisSensitivitiesBound.Pressed =
+            settings.HorizontalMouseLookSensitivity.Equals(settings.VerticalMouseLookSensitivity);
+        mouseHorizontalSensitivity.Value = MouseInputSensitivityToBarValue(settings.HorizontalMouseLookSensitivity);
+        mouseHorizontalInverted.Pressed = settings.InvertHorizontalMouseLook;
+        mouseVerticalSensitivity.Editable = !mouseAxisSensitivitiesBound.Pressed;
+        mouseVerticalSensitivity.Value = MouseInputSensitivityToBarValue(settings.VerticalMouseLookSensitivity);
+        mouseVerticalInverted.Pressed = settings.InvertVerticalMouseLook;
+        mouseWindowSizeScaling.Selected = MouseInputScalingToIndex(settings.ScaleMouseInputByWindowSize);
+        mouseWindowSizeScalingWithLogicalSize.Pressed = settings.InputWindowSizeIsLogicalSize;
+
+        controllerAxisSensitivitiesBound.Pressed =
+            settings.HorizontalControllerLookSensitivity.Equals(settings.VerticalControllerLookSensitivity);
+        controllerHorizontalSensitivity.Value =
+            ControllerInputSensitivityToBarValue(settings.HorizontalControllerLookSensitivity);
+        controllerHorizontalInverted.Pressed = settings.InvertHorizontalControllerLook;
+        controllerVerticalSensitivity.Editable = !controllerAxisSensitivitiesBound.Pressed;
+        controllerVerticalSensitivity.Value =
+            ControllerInputSensitivityToBarValue(settings.VerticalControllerLookSensitivity);
+        controllerVerticalInverted.Pressed = settings.InvertVerticalControllerLook;
+
         BuildInputRebindControls();
 
         // Misc
@@ -588,6 +700,9 @@ public class OptionsMenu : ControlWithInput
         customUsername.Editable = settings.CustomUsernameEnabled;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
+
+        UpdateDismissedNoticeCount();
+        UpdateShownCommit();
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -612,6 +727,11 @@ public class OptionsMenu : ControlWithInput
         return true;
     }
 
+    public void SelectOptionsTab(OptionsTab tab)
+    {
+        ChangeSettingsTab(tab.ToString());
+    }
+
     private void SwitchMode(OptionsMode mode)
     {
         switch (mode)
@@ -627,9 +747,13 @@ public class OptionsMenu : ControlWithInput
             {
                 // Current game tutorial option shouldn't be visible in freebuild mode.
                 if (!gameProperties!.FreeBuild)
+                {
                     tutorialsEnabled.Show();
+                }
                 else
+                {
                     tutorialsEnabled.Hide();
+                }
 
                 optionsMode = OptionsMode.InGame;
                 break;
@@ -692,7 +816,7 @@ public class OptionsMenu : ControlWithInput
     private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
+        OptionsTab selection = (OptionsTab)Enum.Parse(typeof(OptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)
@@ -706,23 +830,23 @@ public class OptionsMenu : ControlWithInput
 
         switch (selection)
         {
-            case SelectedOptionsTab.Graphics:
+            case OptionsTab.Graphics:
                 graphicsTab.Show();
                 graphicsButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Sound:
+            case OptionsTab.Sound:
                 soundTab.Show();
                 soundButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Performance:
+            case OptionsTab.Performance:
                 performanceTab.Show();
                 performanceButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Inputs:
+            case OptionsTab.Inputs:
                 inputsTab.Show();
                 inputsButton.Pressed = true;
                 break;
-            case SelectedOptionsTab.Miscellaneous:
+            case OptionsTab.Miscellaneous:
                 miscTab.Show();
                 miscButton.Pressed = true;
                 break;
@@ -736,14 +860,14 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    ///   Converts the slider value (0-100) to a DB adjustment for a sound channel
+    ///   Converts the slider value (0-100) to a dB adjustment for a sound channel
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
         return GD.Linear2Db(value / 100.0f);
     }
 
-    private float ConvertDBToSoundBar(float value)
+    private float ConvertDbToSoundBar(float value)
     {
         return GD.Db2Linear(value) * 100.0f;
     }
@@ -1002,6 +1126,76 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
+    ///   The sensitivity bars go from 0 to 100, but those aren't suitable scales for the input values so this converts
+    ///   between them
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The reason this is done is that Godot sliders really don't like having really small fractions in them
+    ///   </para>
+    /// </remarks>
+    /// <param name="value">The input sensitivity value</param>
+    /// <returns>Value in range 0-100 to be used for a slider</returns>
+    private int MouseInputSensitivityToBarValue(float value)
+    {
+        int converted = (int)(value / Constants.MOUSE_INPUT_SENSITIVITY_STEP);
+
+        return Mathf.Clamp(converted, 0, 100);
+    }
+
+    /// <summary>
+    ///   Variant of <see cref="MouseInputSensitivityToBarValue"/> for controller inputs
+    /// </summary>
+    private float MouseInputBarValueToSensitivity(float value)
+    {
+        return value * Constants.MOUSE_INPUT_SENSITIVITY_STEP;
+    }
+
+    private int ControllerInputSensitivityToBarValue(float value)
+    {
+        int converted = (int)(value / Constants.CONTROLLER_INPUT_SENSITIVITY_STEP);
+
+        return Mathf.Clamp(converted, 0, 100);
+    }
+
+    private float ControllerInputBarValueToSensitivity(float value)
+    {
+        return value * Constants.CONTROLLER_INPUT_SENSITIVITY_STEP;
+    }
+
+    private int MouseInputScalingToIndex(MouseInputScaling scaling)
+    {
+        switch (scaling)
+        {
+            case MouseInputScaling.None:
+                return 0;
+            case MouseInputScaling.Scale:
+                return 1;
+            case MouseInputScaling.ScaleReverse:
+                return 2;
+        }
+
+        GD.PrintErr("invalid MouseInputScaling value");
+        return 0;
+    }
+
+    private MouseInputScaling MouseInputScalingIndexToEnum(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return MouseInputScaling.None;
+            case 1:
+                return MouseInputScaling.Scale;
+            case 2:
+                return MouseInputScaling.ScaleReverse;
+            default:
+                GD.PrintErr("invalid MouseInputScaling index");
+                return MouseInputScaling.ScaleReverse;
+        }
+    }
+
+    /// <summary>
     ///   Returns whether current settings match their saved originals. Settings that are
     ///   inactive due to a different options menu mode will not be used in the comparison.
     /// </summary>
@@ -1125,6 +1319,35 @@ public class OptionsMenu : ControlWithInput
         threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
     }
 
+    private void UpdateDismissedNoticeCount()
+    {
+        dismissedNoticeCount.Text = Settings.Instance.PermanentlyDismissedNotices.Value.Count.ToString();
+    }
+
+    private void UpdateShownCommit()
+    {
+        var info = SimulationParameters.Instance.GetBuildInfoIfExists();
+
+#if DEBUG
+        var prefix = TranslationServer.Translate("UNCERTAIN_VERSION_WARNING") + "\n";
+#else
+        var prefix = string.Empty;
+#endif
+
+        if (info == null)
+        {
+            commitLabel.Text = TranslationServer.Translate("UNKNOWN_VERSION");
+            builtAtLabel.Text = string.Empty;
+            return;
+        }
+
+        commitLabel.Text = prefix + info.Commit;
+
+        var time = info.BuiltAt.ToLocalTime().ToString("g", CultureInfo.CurrentCulture);
+
+        builtAtLabel.Text = time;
+    }
+
     private void OnResetPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -1216,6 +1439,8 @@ public class OptionsMenu : ControlWithInput
 
     private void InputDefaultsConfirm()
     {
+        // TODO: should this also reset the input sensitivity values? currently this only resets key bindings
+        // and the button text has been updated to reflect this
         Settings.Instance.CurrentControls.Value = Settings.GetDefaultControls();
         Settings.Instance.ApplyInputSettings();
         BuildInputRebindControls();
@@ -1458,6 +1683,120 @@ public class OptionsMenu : ControlWithInput
     }
 
     // Input Callbacks
+    private void OnMouseAxesBoundToggled(bool pressed)
+    {
+        mouseVerticalSensitivity.Editable = !pressed;
+
+        if (pressed)
+        {
+            mouseVerticalSensitivity.Value = mouseHorizontalSensitivity.Value;
+        }
+    }
+
+    private void OnMouseHorizontalSensitivityChanged(float value)
+    {
+        Settings.Instance.HorizontalMouseLookSensitivity.Value = MouseInputBarValueToSensitivity(value);
+
+        if (mouseAxisSensitivitiesBound.Pressed)
+        {
+            mouseVerticalSensitivity.Value = mouseHorizontalSensitivity.Value;
+        }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedMouseHorizontalToggled(bool pressed)
+    {
+        Settings.Instance.InvertHorizontalMouseLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseVerticalSensitivityChanged(float value)
+    {
+        Settings.Instance.VerticalMouseLookSensitivity.Value = MouseInputBarValueToSensitivity(value);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedMouseVerticalToggled(bool pressed)
+    {
+        Settings.Instance.InvertVerticalMouseLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseSensitivityScaleModeSelected(int index)
+    {
+        Settings.Instance.ScaleMouseInputByWindowSize.Value = MouseInputScalingIndexToEnum(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMouseScaleLogicalWindowSizeToggled(bool pressed)
+    {
+        Settings.Instance.InputWindowSizeIsLogicalSize.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnControllerAxesBoundToggled(bool pressed)
+    {
+        controllerVerticalSensitivity.Editable = !pressed;
+
+        if (pressed)
+        {
+            controllerVerticalSensitivity.Value = controllerHorizontalSensitivity.Value;
+        }
+    }
+
+    private void OnControllerHorizontalSensitivityChanged(float value)
+    {
+        Settings.Instance.HorizontalControllerLookSensitivity.Value = ControllerInputBarValueToSensitivity(value);
+
+        if (controllerAxisSensitivitiesBound.Pressed)
+        {
+            controllerVerticalSensitivity.Value = value;
+        }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedControllerHorizontalToggled(bool pressed)
+    {
+        Settings.Instance.InvertHorizontalControllerLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnControllerVerticalSensitivityChanged(float value)
+    {
+        Settings.Instance.VerticalControllerLookSensitivity.Value = ControllerInputBarValueToSensitivity(value);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnInvertedControllerVerticalToggled(bool pressed)
+    {
+        Settings.Instance.InvertVerticalControllerLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnOpenDeadzoneConfigurationPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        deadzoneConfigurationPopup.PopupCenteredShrink();
+    }
+
+    private void OnDeadzoneConfigurationChanged(List<float> deadzones)
+    {
+        Settings.Instance.ControllerAxisDeadzoneAxes.Value = deadzones;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnControlsChanged(InputDataList data)
     {
         Settings.Instance.CurrentControls.Value = data;
@@ -1632,5 +1971,14 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         FolderHelpers.OpenFolder(Constants.LOGS_FOLDER);
+    }
+
+    private void OnResetDismissedPopups()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Settings.Instance.PermanentlyDismissedNotices.Value = new HashSet<DismissibleNotice>();
+
+        UpdateResetSaveButtonState();
+        UpdateDismissedNoticeCount();
     }
 }

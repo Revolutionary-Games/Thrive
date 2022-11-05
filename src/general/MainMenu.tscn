@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/textures/gui/social_media/patreon.png" type="Texture" id=26]
 [ext_resource path="res://assets/textures/gui/social_media/community.png" type="Texture" id=27]
 [ext_resource path="res://assets/textures/gui/social_media/itch.png" type="Texture" id=29]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=30]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -84,6 +85,9 @@ CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
+SafeModeWarningPath = NodePath("SafeModeWarningDialog")
+ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
+PermanentlyDismissModsNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning/VBoxContainer/CheckBox")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
@@ -114,6 +118,29 @@ custom_fonts/font = ExtResource( 16 )
 text = "Logged in as: name"
 align = 2
 max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VersionNumber" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -624.0
+margin_top = -19.0
+margin_right = -4.0
+margin_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 16 )
+text = "x.y.z"
+align = 2
+valign = 2
+autowrap = true
 script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -356,9 +383,8 @@ __meta__ = {
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 100.0
 margin_right = 765.0
-margin_bottom = 140.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -370,9 +396,10 @@ __meta__ = {
 }
 
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 502.0
-margin_right = 777.0
-margin_bottom = 40.0
+margin_left = 515.0
+margin_top = 50.0
+margin_right = 765.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -381,9 +408,9 @@ text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 50.0
+margin_top = 100.0
 margin_right = 765.0
-margin_bottom = 90.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -394,11 +421,25 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 508.0
+margin_top = 150.0
+margin_right = 771.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "VISIT_SUGGESTIONS_SITE"
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 150.0
+margin_top = 200.0
 margin_right = 765.0
-margin_bottom = 190.0
+margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -412,9 +453,9 @@ __meta__ = {
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 515.0
-margin_top = 200.0
+margin_top = 250.0
 margin_right = 765.0
-margin_bottom = 240.0
+margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -436,7 +477,7 @@ rect_min_size = Vector2( 180, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "GAME WIKI"
+text = "GAME_WIKI"
 
 [node name="CommunitySite" type="Button" parent="MenuContainers/Menus/CommunitySites"]
 margin_top = 50.0
@@ -446,7 +487,7 @@ rect_min_size = Vector2( 180, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "COMMUNITY SITE"
+text = "COMMUNITY_SITE"
 
 [node name="DeveloperSite" type="Button" parent="MenuContainers/Menus/CommunitySites"]
 margin_top = 100.0
@@ -456,7 +497,7 @@ rect_min_size = Vector2( 180, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "DEVELOPER SITE"
+text = "DEVELOPER_SITE"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -507,31 +548,6 @@ __meta__ = {
 [node name="ModManager" parent="." instance=ExtResource( 14 )]
 visible = false
 
-[node name="VersionNumber" type="Label" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -165.0
-margin_top = -19.0
-margin_right = -4.0
-margin_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = ExtResource( 16 )
-text = "x.y.z"
-align = 2
-valign = 2
-clip_text = true
-max_lines_visible = 1
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
 
@@ -544,6 +560,53 @@ popup_exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
+
+[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 30 )]
+WindowTitle = "NO_MODS_ENABLED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModsInstalledButNothingEnabledWarning"]
+margin_right = 500.0
+margin_bottom = 192.0
+rect_min_size = Vector2( 550, 0 )
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+text = "MODS_INSTALLED_BUT_NOT_ENABLED"
+autowrap = true
+
+[node name="Spacer" type="Control" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_top = 104.0
+margin_right = 500.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 0, 5 )
+mouse_filter = 2
+
+[node name="CheckBox" type="CheckBox" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_top = 113.0
+margin_right = 500.0
+margin_bottom = 137.0
+pressed = true
+text = "DO_NOT_SHOW_AGAIN"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+size_flags_horizontal = 6
+text = "OK"
+
+[node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
+rect_min_size = Vector2( 550, 370 )
+WindowTitle = "SAFE_MODE_TITLE"
+HideCancelButton = true
+DialogText = "SAFE_MODE_EXPLANATION"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
 rect_min_size = Vector2( 400, 350 )
@@ -658,6 +721,7 @@ stretch_mode = 5
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/CommunitySites/GameWiki" to="." method="OnWikiPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/CommunitySites/CommunitySite" to="." method="OnCommunityPressed"]
@@ -665,6 +729,7 @@ stretch_mode = 5
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
+[connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
@@ -682,3 +747,5 @@ stretch_mode = 5
 [connection signal="pressed" from="SocialMedia/GithubButton" to="." method="OnGithubPressed"]
 [connection signal="pressed" from="SocialMedia/PatreonButton" to="." method="OnPatreonPressed"]
 [connection signal="pressed" from="SocialMedia/SteamButton" to="." method="OnSteamPressed"]
+[connection signal="Closed" from="ModsInstalledButNothingEnabledWarning" to="." method="OnNoEnabledModsNoticeClosed"]
+[connection signal="pressed" from="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer/Button" to="ModsInstalledButNothingEnabledWarning" method="OnCloseButtonPressed"]

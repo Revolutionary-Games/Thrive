@@ -49,7 +49,7 @@ public class SpawnSystem : ISpawnSystem
     /// <summary>
     ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
     /// </summary>
-    private int estimateEntityCount;
+    private float estimateEntityCount;
 
     /// <summary>
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
@@ -110,14 +110,14 @@ public class SpawnSystem : ISpawnSystem
     public void DespawnAll()
     {
         ClearSpawnQueue();
-        int despawned = 0;
+        float despawned = 0.0f;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
             if (!spawned.EntityNode.IsQueuedForDeletion())
             {
+                despawned += spawned.EntityWeight;
                 spawned.DestroyDetachAndQueueFree();
-                ++despawned;
             }
         }
 
@@ -157,7 +157,7 @@ public class SpawnSystem : ISpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+        float spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
         HandleQueuedSpawns(ref spawnsLeftThisFrame, playerPosition);
@@ -177,7 +177,7 @@ public class SpawnSystem : ISpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, ref spawnsLeftThisFrame, estimateEntityCount);
+            SpawnAllTypes(playerPosition, ref spawnsLeftThisFrame);
         }
         else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
         {
@@ -194,7 +194,7 @@ public class SpawnSystem : ISpawnSystem
 
         // Update entity count estimate to keep this about up to date, this will be corrected within a few seconds
         // with the next spawn cycle to be exactly correct
-        ++estimateEntityCount;
+        estimateEntityCount += entity.EntityWeight;
     }
 
     public bool IsUnderEntityLimitForReproducing()
@@ -203,9 +203,9 @@ public class SpawnSystem : ISpawnSystem
             Constants.REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER;
     }
 
-    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame, Vector3 playerPosition)
+    private void HandleQueuedSpawns(ref float spawnsLeftThisFrame, Vector3 playerPosition)
     {
-        int spawned = 0;
+        float spawned = 0.0f;
 
         // Spawn from the queue
         while (spawnsLeftThisFrame > 0 && queuedSpawns.Count > 0)
@@ -215,7 +215,7 @@ public class SpawnSystem : ISpawnSystem
 
             bool finished = false;
 
-            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
+            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities.Value &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
@@ -239,9 +239,10 @@ public class SpawnSystem : ISpawnSystem
                 // Next was spawned
                 ProcessSpawnedEntity(enumerator.Current, spawn.SpawnType);
 
-                ++estimateEntityCount;
-                --spawnsLeftThisFrame;
-                ++spawned;
+                var weight = enumerator.Current.EntityWeight;
+                estimateEntityCount += weight;
+                spawnsLeftThisFrame -= weight;
+                spawned += weight;
             }
 
             if (finished)
@@ -266,12 +267,8 @@ public class SpawnSystem : ISpawnSystem
         }
     }
 
-    private void SpawnEntities(Vector3 playerPosition, ref int spawnsLeftThisFrame, int existing)
+    private void SpawnAllTypes(Vector3 playerPosition, ref float spawnsLeftThisFrame)
     {
-        // If there are already too many entities, don't spawn more
-        if (existing >= Settings.Instance.MaxSpawnedEntities)
-            return;
-
         var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x /
             Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
@@ -316,12 +313,15 @@ public class SpawnSystem : ISpawnSystem
     ///   X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" /> units
     /// </param>
     /// <param name="spawnsLeftThisFrame">How many spawns are still allowed this frame</param>
-    private void SpawnInSector(Int2 sector, ref int spawnsLeftThisFrame)
+    private void SpawnInSector(Int2 sector, ref float spawnsLeftThisFrame)
     {
-        int spawns = 0;
+        float spawns = 0.0f;
 
         foreach (var spawnType in spawnTypes)
         {
+            if (SpawnsBlocked(spawnType))
+                continue;
+
             var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.y * Constants.SPAWN_SECTOR_SIZE);
 
@@ -339,14 +339,14 @@ public class SpawnSystem : ISpawnSystem
             debugOverlay.ReportSpawns(spawns);
     }
 
-    private void SpawnMicrobesAroundPlayer(Vector3 playerLocation, ref int spawnsLeftThisFrame)
+    private void SpawnMicrobesAroundPlayer(Vector3 playerLocation, ref float spawnsLeftThisFrame)
     {
         var angle = random.NextFloat() * 2 * Mathf.Pi;
 
-        int spawns = 0;
+        float spawns = 0.0f;
         foreach (var spawnType in spawnTypes)
         {
-            if (spawnType is MicrobeSpawner)
+            if (!SpawnsBlocked(spawnType) && spawnType is MicrobeSpawner)
             {
                 spawns += SpawnWithSpawner(spawnType,
                     playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
@@ -361,54 +361,60 @@ public class SpawnSystem : ISpawnSystem
     }
 
     /// <summary>
-    ///   Does a single spawn with a spawner
+    ///   Checks whether we're currently blocked from spawning this type
     /// </summary>
-    private int SpawnWithSpawner(Spawner spawnType, Vector3 location, ref int spawnsLeftThisFrame)
+    private bool SpawnsBlocked(Spawner spawnType)
     {
-        var spawns = 0;
+        return spawnType.SpawnsEntities && estimateEntityCount >= Settings.Instance.MaxSpawnedEntities.Value;
+    }
+
+    /// <summary>
+    ///   Does a single spawn with a spawner. Does NOT check we're under the entity limit.
+    /// </summary>
+    private float SpawnWithSpawner(Spawner spawnType, Vector3 location, ref float spawnsLeftThisFrame)
+    {
+        float spawns = 0.0f;
 
         if (random.NextFloat() > spawnType.Density)
         {
             return spawns;
         }
 
-        if (spawnType is CompoundCloudSpawner || estimateEntityCount < Settings.Instance.MaxSpawnedEntities)
+        var enumerable = spawnType.Spawn(worldRoot, location, this);
+
+        if (enumerable == null)
+            return spawns;
+
+        bool finished = false;
+
+        var spawner = enumerable.GetEnumerator();
+
+        while (spawnsLeftThisFrame > 0)
         {
-            var enumerable = spawnType.Spawn(worldRoot, location, this);
-
-            if (enumerable == null)
-                return spawns;
-
-            bool finished = false;
-
-            var spawner = enumerable.GetEnumerator();
-
-            while (spawnsLeftThisFrame > 0)
+            if (!spawner.MoveNext())
             {
-                if (!spawner.MoveNext())
-                {
-                    finished = true;
-                    break;
-                }
-
-                if (spawner.Current == null)
-                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
-
-                ProcessSpawnedEntity(spawner.Current, spawnType);
-                ++spawns;
-                ++estimateEntityCount;
-                --spawnsLeftThisFrame;
+                finished = true;
+                break;
             }
 
-            if (!finished)
-            {
-                // Store the remaining items in the enumerator for later
-                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
-            }
-            else
-            {
-                spawner.Dispose();
-            }
+            if (spawner.Current == null)
+                throw new NullReferenceException("spawn enumerator is not allowed to return null");
+
+            ProcessSpawnedEntity(spawner.Current, spawnType);
+            var weight = spawner.Current.EntityWeight;
+            spawns += weight;
+            estimateEntityCount += weight;
+            spawnsLeftThisFrame -= weight;
+        }
+
+        if (!finished)
+        {
+            // Store the remaining items in the enumerator for later
+            queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
+        }
+        else
+        {
+            spawner.Dispose();
         }
 
         return spawns;
@@ -418,14 +424,22 @@ public class SpawnSystem : ISpawnSystem
     ///   Despawns entities that are far away from the player
     /// </summary>
     /// <returns>The number of alive entities, used to limit the total</returns>
-    private int DespawnEntities(Vector3 playerPosition)
+    private float DespawnEntities(Vector3 playerPosition)
     {
-        int entitiesDeleted = 0;
-        int spawnedCount = 0;
+        float entitiesDeleted = 0.0f;
+        float spawnedEntityWeight = 0.0f;
+
+        int despawnedCount = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            ++spawnedCount;
+            var entityWeight = spawned.EntityWeight;
+            spawnedEntityWeight += entityWeight;
+
+            // Keep counting all entities to have an accurate count at the end of this loop, even if we are no longer
+            // allowed to despawn things
+            if (despawnedCount >= Constants.MAX_DESPAWNS_PER_FRAME)
+                continue;
 
             // Global position must be used here as otherwise colony members are despawned
             // TODO: check if it would be better to remove the spawned group tag from colony members (and add it back
@@ -437,11 +451,10 @@ public class SpawnSystem : ISpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSquared)
             {
-                ++entitiesDeleted;
+                entitiesDeleted += entityWeight;
                 spawned.DestroyDetachAndQueueFree();
 
-                if (entitiesDeleted >= Constants.MAX_DESPAWNS_PER_FRAME)
-                    break;
+                ++despawnedCount;
             }
         }
 
@@ -450,7 +463,7 @@ public class SpawnSystem : ISpawnSystem
         if (debugOverlay.PerformanceMetricsVisible)
             debugOverlay.ReportDespawns(entitiesDeleted);
 
-        return spawnedCount - entitiesDeleted;
+        return spawnedEntityWeight - entitiesDeleted;
     }
 
     /// <summary>

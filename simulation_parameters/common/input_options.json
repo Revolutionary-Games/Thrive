@@ -1,271 +1,288 @@
-[
-    {
-        "EnvironmentId": [
-            "Game",
-            "3DGame"
-        ],
-        "GroupName": "MOVEMENT",
-        "Actions": [
-            {
-                "InputName": "g_move_left",
-                "Name": "MOVE_LEFT"
-            },
-            {
-                "InputName": "g_move_right",
-                "Name": "MOVE_RIGHT"
-            },
-            {
-                "InputName": "g_move_forward",
-                "Name": "MOVE_FORWARD"
-            },
-            {
-                "InputName": "g_move_backwards",
-                "Name": "MOVE_BACKWARDS"
-            },
-            {
-                "InputName": "g_hold_forward",
-                "Name": "AUTO_MOVE_FORWARDS"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "Game",
-            "3DGame"
-        ],
-        "GroupName": "ABILITIES",
-        "Actions": [
-            {
-                "InputName": "g_fire_toxin",
-                "Name": "FIRE_TOXIN"
-            },
-            {
-                "InputName": "g_toggle_engulf",
-                "Name": "TOGGLE_ENGULF"
-            },
-            {
-                "InputName": "g_pack_commands",
-                "Name": "HOLD_PACK_COMMANDS_MENU"
-            },
-            {
-                "InputName": "g_toggle_binding",
-                "Name": "TOGGLE_BINDING"
-            },
-            {
-                "InputName": "g_toggle_unbinding",
-                "Name": "TOGGLE_UNBINDING"
-            },
-            {
-                "InputName": "g_unbind_all",
-                "Name": "UNBIND_ALL"
-            },
-            {
-                "InputName": "g_perform_unbinding",
-                "Name": "PERFORM_UNBINDING"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "Game",
-            "Editor"
-        ],
-        "GroupName": "CAMERA",
-        "Actions": [
-            {
-                "InputName": "g_zoom_out",
-                "Name": "ZOOM_OUT"
-            },
-            {
-                "InputName": "g_zoom_in",
-                "Name": "ZOOM_IN"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "Editor",
-            "3DEditor"
-        ],
-        "GroupName": "EDITOR",
-        "Actions": [
-            {
-                "InputName": "e_rotate_right",
-                "Name": "ROTATE_RIGHT"
-            },
-            {
-                "InputName": "e_rotate_left",
-                "Name": "ROTATE_LEFT"
-            },
-            {
-                "InputName": "e_undo",
-                "Name": "UNDO"
-            },
-            {
-                "InputName": "e_redo",
-                "Name": "REDO"
-            },
-            {
-                "InputName": "e_primary",
-                "Name": "PLACE_ORGANELLE"
-            },
-            {
-                "InputName": "e_secondary",
-                "Name": "OPEN_ORGANELLE_MENU"
-            },
-            {
-                "InputName": "e_pan_left",
-                "Name": "PAN_CAMERA_LEFT"
-            },
-            {
-                "InputName": "e_pan_right",
-                "Name": "PAN_CAMERA_RIGHT"
-            },
-            {
-                "InputName": "e_pan_up",
-                "Name": "PAN_CAMERA_UP"
-            },
-            {
-                "InputName": "e_pan_down",
-                "Name": "PAN_CAMERA_DOWN"
-            },
-            {
-                "InputName": "e_reset_camera",
-                "Name": "PAN_CAMERA_RESET"
-            },
-            {
-                "InputName": "e_cancel_current_action",
-                "Name": "CANCEL_CURRENT_ACTION"
-            },
-            {
-                "InputName": "e_delete",
-                "Name": "DELETE_ORGANELLE"
-            },
-            {
-                "InputName": "e_move",
-                "Name": "MOVE_ORGANELLE"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "3DGame",
-            "3DEditor"
-        ],
-        "GroupName": "3D_MOVEMENT",
-        "Actions": [
-            {
-                "InputName": "g_move_up",
-                "Name": "MOVE_UP_OR_JUMP"
-            },
-            {
-                "InputName": "g_move_down",
-                "Name": "MOVE_DOWN_OR_CROUCH"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "3DEditor"
-        ],
-        "GroupName": "3D_EDITOR",
-        "Actions": [
-            {
-                "InputName": "e_pan_mode",
-                "Name": "HOLD_FOR_PAN_OR_ROTATE_MODE"
-            },
-            {
-                "InputName": "e_camera_front",
-                "Name": "SWITCH_TO_FRONT_CAMERA"
-            },
-            {
-                "InputName": "e_camera_right",
-                "Name": "SWITCH_TO_RIGHT_CAMERA"
-            },
-            {
-                "InputName": "e_camera_top",
-                "Name": "SWITCH_TO_TOP_CAMERA"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "Game",
-            "3DGame"
-        ],
-        "GroupName": "CHEATS",
-        "Actions": [
-            {
-                "InputName": "g_cheat_editor",
-                "Name": "ENABLE_EDITOR"
-            },
-            {
-                "InputName": "g_cheat_glucose",
-                "Name": "SPAWN_GLUCOSE"
-            },
-            {
-                "InputName": "g_cheat_ammonia",
-                "Name": "SPAWN_AMMONIA"
-            },
-            {
-                "InputName": "g_cheat_phosphates",
-                "Name": "SPAWN_PHOSPHATES"
-            },
-            {
-                "InputName": "g_cheat_menu",
-                "Name": "CHEAT_MENU"
-            }
-        ]
-    },
-    {
-        "EnvironmentId": [
-            "Game",
-            "Editor",
-            "3DGame",
-            "3DEditor"
-        ],
-        "GroupName": "MISCELLANEOUS",
-        "Actions": [
-            {
-                "InputName": "g_pause",
-                "Name": "TOGGLE_PAUSE"
-            },
-            {
-                "InputName": "toggle_debug_panel",
-                "Name": "TOGGLE_DEBUG_PANEL"
-            },
-            {
-                "InputName": "toggle_FPS",
-                "Name": "TOGGLE_FPS"
-            },
-            {
-                "InputName": "toggle_metrics",
-                "Name": "TOGGLE_METRICS"
-            },
-            {
-                "InputName": "g_quick_save",
-                "Name": "QUICK_SAVE"
-            },
-            {
-                "InputName": "quick_load",
-                "Name": "QUICK_LOAD"
-            },
-            {
-                "InputName": "screenshot",
-                "Name": "TAKE_SCREENSHOT"
-            },
-            {
-                "InputName": "help",
-                "Name": "SHOW_HELP"
-            },
-            {
-                "InputName": "toggle_fullscreen",
-                "Name": "TOGGLE_FULLSCREEN"
-            },
-            {
-                "InputName": "g_toggle_gui",
-                "Name": "TOGGLE_HUD_HIDE"
-            }
-        ]
-    }
+﻿[
+  {
+    "EnvironmentId": [
+      "Game",
+      "3DGame"
+    ],
+    "GroupName": "MOVEMENT",
+    "Actions": [
+      {
+        "InputName": "g_move_left",
+        "Name": "MOVE_LEFT"
+      },
+      {
+        "InputName": "g_move_right",
+        "Name": "MOVE_RIGHT"
+      },
+      {
+        "InputName": "g_move_forward",
+        "Name": "MOVE_FORWARD"
+      },
+      {
+        "InputName": "g_move_backwards",
+        "Name": "MOVE_BACKWARDS"
+      },
+      {
+        "InputName": "g_hold_forward",
+        "Name": "AUTO_MOVE_FORWARDS"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Game",
+      "3DGame"
+    ],
+    "GroupName": "ABILITIES",
+    "Actions": [
+      {
+        "InputName": "g_fire_toxin",
+        "Name": "FIRE_TOXIN"
+      },
+      {
+        "InputName": "g_secrete_slime",
+        "Name": "SECRETE_SLIME"
+      },
+      {
+        "InputName": "g_toggle_engulf",
+        "Name": "TOGGLE_ENGULF"
+      },
+      {
+        "InputName": "g_pack_commands",
+        "Name": "HOLD_PACK_COMMANDS_MENU"
+      },
+      {
+        "InputName": "g_toggle_binding",
+        "Name": "TOGGLE_BINDING"
+      },
+      {
+        "InputName": "g_toggle_unbinding",
+        "Name": "TOGGLE_UNBINDING"
+      },
+      {
+        "InputName": "g_unbind_all",
+        "Name": "UNBIND_ALL"
+      },
+      {
+        "InputName": "g_perform_unbinding",
+        "Name": "PERFORM_UNBINDING"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Game",
+      "3DGame",
+      "Editor"
+    ],
+    "GroupName": "CAMERA",
+    "Actions": [
+      {
+        "InputName": "g_zoom_out",
+        "Name": "ZOOM_OUT"
+      },
+      {
+        "InputName": "g_zoom_in",
+        "Name": "ZOOM_IN"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Editor",
+      "3DEditor"
+    ],
+    "GroupName": "EDITOR",
+    "Actions": [
+      {
+        "InputName": "e_rotate_right",
+        "Name": "ROTATE_RIGHT"
+      },
+      {
+        "InputName": "e_rotate_left",
+        "Name": "ROTATE_LEFT"
+      },
+      {
+        "InputName": "e_undo",
+        "Name": "UNDO"
+      },
+      {
+        "InputName": "e_redo",
+        "Name": "REDO"
+      },
+      {
+        "InputName": "e_primary",
+        "Name": "PLACE_ORGANELLE"
+      },
+      {
+        "InputName": "e_secondary",
+        "Name": "OPEN_ORGANELLE_MENU"
+      },
+      {
+        "InputName": "e_pan_left",
+        "Name": "PAN_CAMERA_LEFT"
+      },
+      {
+        "InputName": "e_pan_right",
+        "Name": "PAN_CAMERA_RIGHT"
+      },
+      {
+        "InputName": "e_pan_up",
+        "Name": "PAN_CAMERA_UP"
+      },
+      {
+        "InputName": "e_pan_down",
+        "Name": "PAN_CAMERA_DOWN"
+      },
+      {
+        "InputName": "e_reset_camera",
+        "Name": "PAN_CAMERA_RESET"
+      },
+      {
+        "InputName": "e_cancel_current_action",
+        "Name": "CANCEL_CURRENT_ACTION"
+      },
+      {
+        "InputName": "e_delete",
+        "Name": "DELETE_ORGANELLE"
+      },
+      {
+        "InputName": "e_move",
+        "Name": "MOVE_ORGANELLE"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "3DGame",
+      "3DEditor"
+    ],
+    "GroupName": "3D_MOVEMENT",
+    "Actions": [
+      {
+        "InputName": "g_move_up",
+        "Name": "MOVE_UP_OR_JUMP"
+      },
+      {
+        "InputName": "g_move_down",
+        "Name": "MOVE_DOWN_OR_CROUCH"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "3DGame"
+    ],
+    "GroupName": "MISCELLANEOUS_3D_STAGE",
+    "Actions": [
+      {
+        "InputName": "g_free_cursor",
+        "Name": "HOLD_TO_SHOW_CURSOR"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "3DEditor"
+    ],
+    "GroupName": "3D_EDITOR",
+    "Actions": [
+      {
+        "InputName": "e_pan_mode",
+        "Name": "HOLD_FOR_PAN_OR_ROTATE_MODE"
+      },
+      {
+        "InputName": "e_camera_front",
+        "Name": "SWITCH_TO_FRONT_CAMERA"
+      },
+      {
+        "InputName": "e_camera_right",
+        "Name": "SWITCH_TO_RIGHT_CAMERA"
+      },
+      {
+        "InputName": "e_camera_top",
+        "Name": "SWITCH_TO_TOP_CAMERA"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Game",
+      "3DGame"
+    ],
+    "GroupName": "CHEATS",
+    "Actions": [
+      {
+        "InputName": "g_cheat_editor",
+        "Name": "ENABLE_EDITOR"
+      },
+      {
+        "InputName": "g_cheat_glucose",
+        "Name": "SPAWN_GLUCOSE"
+      },
+      {
+        "InputName": "g_cheat_ammonia",
+        "Name": "SPAWN_AMMONIA"
+      },
+      {
+        "InputName": "g_cheat_phosphates",
+        "Name": "SPAWN_PHOSPHATES"
+      },
+      {
+        "InputName": "g_cheat_menu",
+        "Name": "CHEAT_MENU"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
+      "Game",
+      "Editor",
+      "3DGame",
+      "3DEditor"
+    ],
+    "GroupName": "MISCELLANEOUS",
+    "Actions": [
+      {
+        "InputName": "g_pause",
+        "Name": "TOGGLE_PAUSE"
+      },
+      {
+        "InputName": "toggle_debug_panel",
+        "Name": "TOGGLE_DEBUG_PANEL"
+      },
+      {
+        "InputName": "toggle_FPS",
+        "Name": "TOGGLE_FPS"
+      },
+      {
+        "InputName": "toggle_metrics",
+        "Name": "TOGGLE_METRICS"
+      },
+      {
+        "InputName": "g_quick_save",
+        "Name": "QUICK_SAVE"
+      },
+      {
+        "InputName": "quick_load",
+        "Name": "QUICK_LOAD"
+      },
+      {
+        "InputName": "screenshot",
+        "Name": "TAKE_SCREENSHOT"
+      },
+      {
+        "InputName": "help",
+        "Name": "SHOW_HELP"
+      },
+      {
+        "InputName": "toggle_fullscreen",
+        "Name": "TOGGLE_FULLSCREEN"
+      },
+      {
+        "InputName": "g_toggle_gui",
+        "Name": "TOGGLE_HUD_HIDE"
+      }
+    ]
+  }
 ]

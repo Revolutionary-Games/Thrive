@@ -44,6 +44,15 @@ public class MainMenu : NodeWithInput
     public NodePath ModLoadFailuresPath = null!;
 
     [Export]
+    public NodePath SafeModeWarningPath = null!;
+
+    [Export]
+    public NodePath ModsInstalledButNotEnabledWarningPath = null!;
+
+    [Export]
+    public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
@@ -56,6 +65,8 @@ public class MainMenu : NodeWithInput
     public TextureRect Background = null!;
 
     public bool IsReturningToMenu;
+
+    private const string NO_MODS_ACTIVE_NOTICE = "modsExistButNoneEnabled";
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -80,6 +91,15 @@ public class MainMenu : NodeWithInput
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
 
+    private CustomDialog safeModeWarning = null!;
+
+    private CustomDialog modsInstalledButNotEnabledWarning = null!;
+    private CheckBox permanentlyDismissModsNotEnabledWarning = null!;
+
+    private bool introVideoPassed;
+
+    private float timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
+
     public static void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
@@ -94,10 +114,12 @@ public class MainMenu : NodeWithInput
         RunMenuSetup();
 
         // Start intro video
-        if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu)
+        if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
+            SafeModeStartupHandler.AreVideosAllowed())
         {
+            SafeModeStartupHandler.ReportBeforeVideoPlaying();
             TransitionManager.Instance.AddSequence(
-                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f), OnIntroEnded);
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
         }
         else
         {
@@ -108,6 +130,27 @@ public class MainMenu : NodeWithInput
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // Do startup success only after the intro video is played or skipped (and this is the first time in this run
+        // that we are in the menu)
+        if (introVideoPassed && !IsReturningToMenu)
+        {
+            if (timerForStartupSuccess > 0)
+            {
+                timerForStartupSuccess -= delta;
+
+                if (timerForStartupSuccess <= 0)
+                {
+                    CheckStartupSuccess();
+                    WarnAboutNoEnabledMods();
+                }
+            }
+        }
     }
 
     public void StartMusic()
@@ -208,6 +251,10 @@ public class MainMenu : NodeWithInput
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
+        safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
+
+        modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
+        permanentlyDismissModsNotEnabledWarning = GetNode<CheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
 
         // Set initial menu
         SwitchMenu();
@@ -302,6 +349,29 @@ public class MainMenu : NodeWithInput
 
         // Start music after the video
         StartMusic();
+
+        introVideoPassed = true;
+    }
+
+    private void CheckStartupSuccess()
+    {
+        if (SafeModeStartupHandler.StartedInSafeMode())
+        {
+            GD.Print("We started in safe mode");
+            safeModeWarning.PopupCenteredShrink();
+        }
+
+        SafeModeStartupHandler.ReportGameStartSuccessful();
+    }
+
+    private void WarnAboutNoEnabledMods()
+    {
+        if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods() &&
+            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.NoModsActiveButInstalled))
+        {
+            GD.Print("Player has installed mods but no enabled ones, giving a heads up");
+            modsInstalledButNotEnabledWarning.PopupCenteredShrink();
+        }
     }
 
     private void NewGamePressed()
@@ -376,7 +446,7 @@ public class MainMenu : NodeWithInput
 
     private void QuitPressed()
     {
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
     }
 
     private void OptionsPressed()
@@ -407,6 +477,13 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();
+    }
+
+    private void OnRedirectedToOptionsMenuFromNewGameSettings()
+    {
+        OnReturnFromNewGameSettings();
+        OptionsPressed();
+        options.SelectOptionsTab(OptionsMenu.OptionsTab.Performance);
     }
 
     private void LoadGamePressed()
@@ -450,6 +527,12 @@ public class MainMenu : NodeWithInput
         socialContainer.Visible = true;
 
         SetCurrentMenu(0, false);
+    }
+
+    private void VisitSuggestionsSitePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        OS.ShellOpen("https://suggestions.revolutionarygamesstudio.com/");
     }
 
     private void LicensesPressed()
@@ -578,5 +661,11 @@ public class MainMenu : NodeWithInput
     private void OnItchPressed()
     {
         OS.ShellOpen("https://revolutionarygames.itch.io/thrive");
+    }
+
+    private void OnNoEnabledModsNoticeClosed()
+    {
+        if (permanentlyDismissModsNotEnabledWarning.Pressed)
+            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.NoModsActiveButInstalled);
     }
 }

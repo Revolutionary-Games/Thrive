@@ -8,6 +8,8 @@ public class SceneManager : Node
 {
     private static SceneManager? instance;
 
+    private bool alreadyQuit;
+
     private Node internalRootNode = null!;
 
     private SceneManager()
@@ -48,14 +50,13 @@ public class SceneManager : Node
 
         internalRootNode.AddChild(newSceneRoot);
         GetTree().CurrentScene = newSceneRoot;
+        ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
 
         if (!keepOldRoot)
         {
             oldRoot?.QueueFree();
             return null;
         }
-
-        ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
 
         return oldRoot;
     }
@@ -142,5 +143,18 @@ public class SceneManager : Node
         }
 
         return LoadScene(sceneLoaded!.ScenePath);
+    }
+
+    /// <summary>
+    ///   Use this method when closing the game. This is needed to do the necessary actions when quitting.
+    /// </summary>
+    public void QuitThrive()
+    {
+        if (!alreadyQuit)
+            GD.Print("User requested program exit, Thrive will close shortly");
+
+        GetTree().Quit();
+
+        alreadyQuit = true;
     }
 }

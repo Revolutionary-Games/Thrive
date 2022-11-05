@@ -22,6 +22,9 @@ public class AutoEvoExploringTool : NodeWithInput
     public NodePath SpeciesSelectPanelPath = null!;
 
     [Export]
+    public NodePath MapPath = null!;
+
+    [Export]
     public NodePath ReportPath = null!;
 
     [Export]
@@ -109,6 +112,14 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath PlayWithCurrentSettingPath = null!;
 
+    // Map paths
+
+    [Export]
+    public NodePath PatchMapDrawerPath = null!;
+
+    [Export]
+    public NodePath PatchDetailsPanelPath = null!;
+
     // Report paths
 
     [Export]
@@ -143,6 +154,8 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
+    private readonly List<Dictionary<int, PatchSnapshot>> patchHistoryList = new();
+
     /// <summary>
     ///   This list stores all auto-evo results.
     /// </summary>
@@ -152,6 +165,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private Control configTab = null!;
     private Control historyReportSplit = null!;
     private Control speciesSelectPanel = null!;
+    private Control mapTab = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
 
@@ -188,6 +202,10 @@ public class AutoEvoExploringTool : NodeWithInput
     // Report controls
     private CustomRichTextLabel autoEvoResultsLabel = null!;
     private CustomDropDown historyListMenu = null!;
+
+    // Map controls
+    private PatchMapDrawer patchMapDrawer = null!;
+    private PatchDetailsPanel patchDetailsPanel = null!;
 
     // Viewer controls
     private SpeciesPreview speciesPreview = null!;
@@ -228,6 +246,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private enum TabIndex
     {
         Config,
+        Map,
         Report,
         Viewer,
     }
@@ -250,6 +269,7 @@ public class AutoEvoExploringTool : NodeWithInput
         configTab = GetNode<Control>(ConfigEditorPath);
         historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
         speciesSelectPanel = GetNode<Control>(SpeciesSelectPanelPath);
+        mapTab = GetNode<Control>(MapPath);
         reportTab = GetNode<Control>(ReportPath);
         viewerTab = GetNode<Control>(ViewerPath);
 
@@ -285,6 +305,9 @@ public class AutoEvoExploringTool : NodeWithInput
         abortButton = GetNode<Button>(AbortButtonPath);
         playWithCurrentSettingButton = GetNode<Button>(PlayWithCurrentSettingPath);
 
+        patchMapDrawer = GetNode<PatchMapDrawer>(PatchMapDrawerPath);
+        patchDetailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
+
         autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
         historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
 
@@ -297,7 +320,7 @@ public class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
         // Init game
-        autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+        autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration.Clone();
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
             { AutoEvoConfiguration = autoEvoConfiguration });
 
@@ -306,6 +329,11 @@ public class AutoEvoExploringTool : NodeWithInput
         evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
 
         InitConfigControls();
+
+        patchMapDrawer.Map = gameProperties.GameWorld.Map;
+        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+
+        patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
         // Init button translation
         OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
@@ -403,6 +431,8 @@ public class AutoEvoExploringTool : NodeWithInput
         {
             { gameProperties.GameWorld.PlayerSpecies.ID, gameProperties.GameWorld.PlayerSpecies },
         });
+        patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+            pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
         historyListMenu.AddItem("0", false, Colors.White);
         historyListMenu.CreateElements();
         HistoryListMenuIndexChanged(0);
@@ -472,9 +502,21 @@ public class AutoEvoExploringTool : NodeWithInput
                 break;
             }
 
+            case TabIndex.Map:
+            {
+                configTab.Visible = false;
+                reportTab.Visible = false;
+                viewerTab.Visible = false;
+                speciesSelectPanel.Visible = false;
+                historyReportSplit.Visible = true;
+                mapTab.Visible = true;
+                break;
+            }
+
             case TabIndex.Report:
             {
                 configTab.Visible = false;
+                mapTab.Visible = false;
                 viewerTab.Visible = false;
                 speciesSelectPanel.Visible = false;
                 historyReportSplit.Visible = true;
@@ -485,6 +527,7 @@ public class AutoEvoExploringTool : NodeWithInput
             case TabIndex.Viewer:
             {
                 reportTab.Visible = false;
+                mapTab.Visible = false;
                 configTab.Visible = false;
                 speciesSelectPanel.Visible = true;
                 historyReportSplit.Visible = true;
@@ -594,6 +637,8 @@ public class AutoEvoExploringTool : NodeWithInput
             gameProperties.GameWorld.TotalPassedTime);
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+        patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+            pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 
         // Add checkbox to history container
         historyListMenu.AddItem(currentGeneration.ToString(), false, Colors.White);
@@ -648,6 +693,7 @@ public class AutoEvoExploringTool : NodeWithInput
         generationDisplayed = index;
         UpdateAutoEvoReport();
         UpdateSpeciesList();
+        UpdatePatchDetailPanel(patchMapDrawer);
     }
 
     private void UpdateAutoEvoReport()
@@ -708,7 +754,8 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
             species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
-            string.Join("\n  ", species.Behaviour.Select(b => b.Key + ": " + b.Value)));
+            string.Join("\n  ", species.Behaviour.Select(b =>
+                BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
 
         switch (species)
         {
@@ -721,6 +768,24 @@ public class AutoEvoExploringTool : NodeWithInput
                 break;
             }
         }
+    }
+
+    private void UpdatePatchDetailPanel(PatchMapDrawer drawer)
+    {
+        var selectedPatch = drawer.SelectedPatch;
+
+        if (selectedPatch == null)
+            return;
+
+        // Get current snapshot
+        var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
+            patchHistoryList[generationDisplayed][selectedPatch.ID])
+        {
+            TimePeriod = selectedPatch.TimePeriod,
+            Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+        };
+
+        patchDetailsPanel.SelectedPatch = patch;
     }
 
     private void PlayWithCurrentSettingPressed()
@@ -736,6 +801,7 @@ public class AutoEvoExploringTool : NodeWithInput
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             gameProperties.EnterFreeBuild();
+            gameProperties.TutorialState.Enabled = false;
 
             // Copy our currently setup game to the editor
             editor.CurrentGame = gameProperties;

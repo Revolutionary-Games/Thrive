@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using Godot;
 
@@ -59,6 +60,9 @@ public class PatchDetailsPanel : PanelContainer
     public NodePath SpeciesListBoxPath = null!;
 
     [Export]
+    public NodePath MoveToPatchHSeparatorPath = null!;
+
+    [Export]
     public NodePath MoveToPatchButtonPath = null!;
 
     [Export]
@@ -100,7 +104,8 @@ public class PatchDetailsPanel : PanelContainer
     private Label phosphate = null!;
     private Label iron = null!;
     private CollapsibleList speciesListBox = null!;
-    private Button moveToPatchButton = null!;
+    private HSeparator? moveToPatchHSeparator;
+    private Button? moveToPatchButton;
 
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
@@ -125,6 +130,8 @@ public class PatchDetailsPanel : PanelContainer
 
     private Patch? targetPatch;
     private Patch? currentPatch;
+
+    private bool moveToPatchButtonVisible = true;
 
     public Action<Patch>? OnMoveToPatchClicked { get; set; }
 
@@ -153,6 +160,17 @@ public class PatchDetailsPanel : PanelContainer
 
     public bool IsPatchMoveValid { get; set; }
 
+    [Export]
+    public bool MoveToPatchButtonVisible
+    {
+        get => moveToPatchButtonVisible;
+        set
+        {
+            moveToPatchButtonVisible = value;
+            UpdateMoveToPatchButton();
+        }
+    }
+
     public override void _Ready()
     {
         nothingSelected = GetNode<Control>(NothingSelectedPath);
@@ -173,6 +191,7 @@ public class PatchDetailsPanel : PanelContainer
         phosphate = GetNode<Label>(PhosphatePath);
         iron = GetNode<Label>(IronPath);
         speciesListBox = GetNode<CollapsibleList>(SpeciesListBoxPath);
+        moveToPatchHSeparator = GetNode<HSeparator>(MoveToPatchHSeparatorPath);
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
 
         temperatureSituation = GetNode<TextureRect>(TemperatureSituationPath);
@@ -195,6 +214,8 @@ public class PatchDetailsPanel : PanelContainer
 
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+
+        UpdateMoveToPatchButton();
     }
 
     public void UpdateShownPatchDetails()
@@ -212,8 +233,11 @@ public class PatchDetailsPanel : PanelContainer
 
         UpdatePatchDetails();
 
-        // Enable move to patch button if this is a valid move
-        moveToPatchButton.Disabled = !IsPatchMoveValid;
+        if (moveToPatchButton != null)
+        {
+            // Enable move to patch button if this is a valid move
+            moveToPatchButton.Disabled = !IsPatchMoveValid;
+        }
     }
 
     /// <summary>
@@ -261,7 +285,7 @@ public class PatchDetailsPanel : PanelContainer
         var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
         var speciesList = new StringBuilder(100);
 
-        foreach (var species in SelectedPatch.SpeciesInPatch.Keys)
+        foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
             speciesList.AppendLine(TranslationServer.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));
@@ -270,6 +294,19 @@ public class PatchDetailsPanel : PanelContainer
         label.ExtendedBbcode = speciesList.ToString();
 
         UpdateConditionDifferencesBetweenPatches();
+    }
+
+    private void UpdateMoveToPatchButton()
+    {
+        if (moveToPatchButton != null)
+        {
+            moveToPatchButton.Visible = MoveToPatchButtonVisible;
+        }
+
+        if (moveToPatchHSeparator != null)
+        {
+            moveToPatchHSeparator.Visible = MoveToPatchButtonVisible;
+        }
     }
 
     private float GetCompoundAmount(Patch patch, string compoundName)
