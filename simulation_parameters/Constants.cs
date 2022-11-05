@@ -1138,7 +1138,7 @@ public static class Constants
 #pragma warning disable CA1823 // unused fields
 
     // ReSharper disable UnreachableCode HeuristicUnreachableCode
-        private const uint MinimumMovePopIsHigherThanMinimumViable =
+    private const uint MinimumMovePopIsHigherThanMinimumViable =
         (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
             AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
             0 :
