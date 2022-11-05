@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Custom label with word wrap which dynamically expands to fill space.
@@ -18,7 +18,7 @@ public class CustomExpandingLabel : Label
     public CustomExpandingLabel(string text)
     {
         Text = text;
-        Align = Label.AlignEnum.Center;
+        Align = AlignEnum.Center;
         SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
     }
 
