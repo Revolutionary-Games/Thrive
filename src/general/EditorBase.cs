@@ -792,7 +792,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         run.ApplyAllResultsAndEffects(FreeBuilding);
 
         // Add the current generation to history before resetting Auto-Evo
-        CurrentGame.GameWorld.AddCurrentGenerationToHistory();
+        if (!CurrentGame.FreeBuild)
+            CurrentGame.GameWorld.AddCurrentGenerationToHistory();
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
