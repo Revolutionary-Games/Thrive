@@ -45,12 +45,13 @@
 
         /// <summary>
         ///   Per-species results. Species are cloned if they've changed to retain contemporary data and set to null if
-        ///   they haven't to reduce save file size.
+        ///   they haven't to reduce save file size. This method should not yet be called in freebuild mode as results
+        ///   may contain species with duplicate IDs due to many generations running atonce.
         /// </summary>
         /// <returns>The per-species results with changed species cloned and unchanged species set to null</returns>
-        public Dictionary<uint, SpeciesRecord> GetSpeciesRecords()
+        public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
         {
-            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecord(
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
                 HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null,
                 r.Key.Population,
                 r.Value.MutatedProperties?.ID,

@@ -10,7 +10,7 @@
     public class GenerationRecord
     {
         [JsonConstructor]
-        public GenerationRecord(double timeElapsed, Dictionary<uint, SpeciesRecord> allSpeciesData)
+        public GenerationRecord(double timeElapsed, Dictionary<uint, SpeciesRecordLite> allSpeciesData)
         {
             TimeElapsed = timeElapsed;
             AllSpeciesData = allSpeciesData;
@@ -26,7 +26,7 @@
         ///   Data for all species this generation, along with population and mutation data.
         /// </summary>
         [JsonProperty]
-        public Dictionary<uint, SpeciesRecord> AllSpeciesData { get; private set; }
+        public Dictionary<uint, SpeciesRecordLite> AllSpeciesData { get; private set; }
 
         /// <summary>
         ///   Replaces a null species record with the latest non-null record from a previous generation. Used to fill
