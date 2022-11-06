@@ -194,46 +194,46 @@ public class EvolutionaryTree : Control
     }
 
     public void UpdateEvolutionaryTreeWithRunResults(
-        System.Collections.Generic.Dictionary<Species, RunResults.SpeciesResult> results,
+        System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records,
         int generation,
         double time,
         uint playerSpeciesID)
     {
-        foreach (var speciesResultPair in results.OrderBy(r => r.Value.Species.ID))
+        foreach (var speciesRecordPair in records.OrderBy(r => r.Key))
         {
-            var species = speciesResultPair.Key;
-            var result = speciesResultPair.Value;
+            var speciesID = speciesRecordPair.Key;
+            var record = speciesRecordPair.Value;
 
-            if (species.Population <= 0)
+            if (record.Population <= 0)
             {
-                if (result.SplitFrom == null)
+                if (record.SplitFromID == null)
                 {
-                    SetupTreeNode(species,
-                        speciesNodes[species.ID].Last(), generation - 1, true);
+                    SetupTreeNode(record.Species,
+                        speciesNodes[speciesID].Last(), generation - 1, true);
                 }
             }
-            else if (result.SplitFrom != null)
+            else if (record.SplitFromID != null)
             {
-                SetupTreeNode(species,
-                    speciesNodes[result.SplitFrom.ID].Last(), generation);
+                var splitFromID = (uint)record.SplitFromID;
+                SetupTreeNode(record.Species, speciesNodes[splitFromID].Last(), generation);
 
-                speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
-                speciesNames.Add(species.ID, species.FormattedName);
+                speciesOrigin.Add(speciesID, (splitFromID, generation));
+                speciesNames.Add(speciesID, record.Species.FormattedName);
             }
-            else if (result.MutatedProperties != null)
+            else if (record.MutatedPropertiesID != null)
             {
-                SetupTreeNode(result.MutatedProperties,
-                    speciesNodes[species.ID].Last(), generation);
+                SetupTreeNode(record.Species,
+                    speciesNodes[speciesID].Last(), generation);
             }
-            else if (species.ID == playerSpeciesID)
+            else if (speciesID == playerSpeciesID)
             {
                 // Always add nodes for the player species
-                SetupTreeNode(species,
-                    speciesNodes[species.ID].Last(), generation);
+                SetupTreeNode(record.Species,
+                    speciesNodes[speciesID].Last(), generation);
             }
 
-            if (species.ID > maxSpeciesId)
-                maxSpeciesId = species.ID;
+            if (speciesID > maxSpeciesId)
+                maxSpeciesId = speciesID;
         }
 
         latestGeneration = generation;
@@ -261,7 +261,7 @@ public class EvolutionaryTree : Control
         {
             speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
         }
-        else if (speciesNodes[species.ID].Any(n => n.Position == node.Position))
+        else if (speciesNodes[species.ID].Any(n => (n.Position - node.Position).Length() < MathUtils.EPSILON))
         {
             // Remove the existing node in this position so we can replace it (e.g. with an extinct node)
             var existingNode = speciesNodes[species.ID].Where(n => n.Position == node.Position).First();

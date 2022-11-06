@@ -634,7 +634,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         // Add run results, this must be called after results are applied to generate unique species ID
         evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
-            results.CloneSpeciesResults(),
+            results.GetFullSpeciesRecords(),
             ++currentGeneration,
             gameProperties.GameWorld.TotalPassedTime,
             gameProperties.GameWorld.PlayerSpecies.ID);

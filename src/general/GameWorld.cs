@@ -79,12 +79,10 @@ public class GameWorld : ISaveLoadable
         Map.UpdateGlobalPopulations();
 
         // Create the initial generation by adding only the player species
-        var playerSpeciesClone = (Species)PlayerSpecies.Clone();
+        var initialSpeciesRecord = new SpeciesRecord((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
         GenerationHistory.Add(0, new GenerationRecord(
             0,
-            0,
-            new Dictionary<Species, RunResults.SpeciesResult> { { playerSpeciesClone, new(playerSpeciesClone) } },
-            new Dictionary<uint, Species> { { PlayerSpecies.ID, playerSpeciesClone } }));
+            new Dictionary<uint, SpeciesRecord> { { PlayerSpecies.ID, initialSpeciesRecord } }));
     }
 
     /// <summary>
@@ -181,10 +179,8 @@ public class GameWorld : ISaveLoadable
     {
         var generation = PlayerSpecies.Generation - 1;
         GenerationHistory.Add(generation, new GenerationRecord(
-            generation,
             TotalPassedTime,
-            GetAutoEvoRun().Results!.CloneSpeciesResults(),
-            worldSpecies.ToDictionary(entry => entry.Key, entry => (Species)entry.Value.Clone())));
+            GetAutoEvoRun().Results!.GetSpeciesRecords()));
     }
 
     /// <summary>

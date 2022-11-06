@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using AutoEvo;
 using Godot;
 
 /// <summary>
@@ -108,24 +110,36 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
             {
                 var record = generation.Value;
 
-                if (record.Generation == 0)
+                if (generation.Key == 0)
                 {
                     var playerSpeciesID = CurrentGame!.GameWorld.PlayerSpecies.ID;
-                    var playerSpecies = record.AllSpecies[playerSpeciesID];
-                    evolutionaryTree.Init(playerSpecies, CurrentGame.GameWorld.PlayerSpecies.FormattedName);
+                    var playerSpeciesData = record.AllSpeciesData[playerSpeciesID];
+
+                    // Player species data should never be null for any generation
+                    evolutionaryTree.Init(
+                        playerSpeciesData.Species!,
+                        CurrentGame.GameWorld.PlayerSpecies.FormattedName);
                     speciesHistoryList.Add(new Dictionary<uint, Species>
                     {
-                        { playerSpeciesID, playerSpecies },
+                        { playerSpeciesID, playerSpeciesData.Species! },
                     });
                     continue;
                 }
 
+                // Recover all omitted species data for this generation so we can fill the tree
+                var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
+                    s => s.Key,
+                    s => GenerationRecord.GetFullSpeciesRecord(
+                        s.Key,
+                        generation.Key,
+                        generationHistory));
+
                 evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
-                    record.AutoEvoResults,
-                    record.Generation,
+                    updatedSpeciesData,
+                    generation.Key,
                     record.TimeElapsed,
                     CurrentGame.GameWorld.PlayerSpecies.ID);
-                speciesHistoryList.Add(record.AllSpecies);
+                speciesHistoryList.Add(updatedSpeciesData.ToDictionary(s => s.Key, s => s.Value.Species));
             }
         }
         catch (KeyNotFoundException e)

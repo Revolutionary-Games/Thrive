@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using Godot;
-    using Newtonsoft.Json;
 
     /// <summary>
     ///   Container for results before they are applied.
@@ -16,8 +15,6 @@
     ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
     ///   </para>
     /// </remarks>
-    [JsonObject(IsReference = true)]
-    [UseThriveSerializer]
     public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
     {
         /// <summary>
@@ -31,7 +28,6 @@
         ///     this is one.
         ///   </para>
         /// </remarks>
-        [JsonProperty]
         private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
         public enum NewSpeciesType
@@ -48,13 +44,30 @@
         }
 
         /// <summary>
-        ///   Per-species results, with all species cloned to avoid erroneous references to present species state
-        ///   (e.g. when we want the past population but a species has since gone extinct).
+        ///   Per-species results. Species are cloned if they've changed to retain contemporary data and set to null if
+        ///   they haven't to reduce save file size.
         /// </summary>
-        /// <returns>The per-species results with species cloned</returns>
-        public Dictionary<Species, SpeciesResult> CloneSpeciesResults()
+        /// <returns>The per-species results with changed species cloned and unchanged species set to null</returns>
+        public Dictionary<uint, SpeciesRecord> GetSpeciesRecords()
         {
-            return results.ToDictionary(r => (Species)r.Key.Clone(), r => r.Value.Clone());
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecord(
+                HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null,
+                r.Key.Population,
+                r.Value.MutatedProperties?.ID,
+                r.Value.SplitFrom?.ID));
+        }
+
+        /// <summary>
+        ///   Per-species results with all species data. All species are cloned.
+        /// </summary>
+        /// <returns>The per-species results with all species cloned</returns>
+        public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
+        {
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordFull(
+                (Species)r.Key.Clone(),
+                r.Key.Population,
+                r.Value.MutatedProperties?.ID,
+                r.Value.SplitFrom?.ID));
         }
 
         public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -1094,10 +1107,13 @@
             return totalPopulation;
         }
 
-        [UseThriveSerializer]
+        private bool HasSpeciesChanged(SpeciesResult result)
+        {
+            return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
+        }
+
         public class SpeciesResult
         {
-            [JsonProperty]
             public Species Species;
 
             /// <summary>
@@ -1109,51 +1125,43 @@
             ///     Does not consider migrations nor split-offs.
             ///   </para>
             /// </remarks>
-            [JsonProperty]
             public Dictionary<Patch, long> NewPopulationInPatches = new();
 
             /// <summary>
             ///   null means no changes
             /// </summary>
-            [JsonProperty]
             public Species? MutatedProperties;
 
             /// <summary>
             ///   List of patches this species has spread to
             /// </summary>
-            [JsonProperty]
             public List<SpeciesMigration> SpreadToPatches = new();
 
             /// <summary>
             ///   If not null, this is a new species that was created
             /// </summary>
-            [JsonProperty]
             public NewSpeciesType? NewlyCreated;
 
             /// <summary>
             ///   If set, the specified species split off from this species taking all the population listed in
             ///   <see cref="SplitOffPatches"/>
             /// </summary>
-            [JsonProperty]
             public Species? SplitOff;
 
             /// <summary>
             ///   Patches that moved to the split off population
             /// </summary>
-            [JsonProperty]
             public List<Patch>? SplitOffPatches;
 
             /// <summary>
             ///   Info on which species this split from. Not used for anything other than informational display
             /// </summary>
-            [JsonProperty]
             public Species? SplitFrom;
 
             /// <summary>
             ///   If <see cref="SimulationConfiguration.CollectEnergyInformation"/> is set this collects energy
             ///   source and consumption info for this species per-patch where this was simulated
             /// </summary>
-            [JsonProperty]
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
             public SpeciesResult(Species species)
@@ -1176,32 +1184,6 @@
                 EnergyResults.Add(patch, result);
                 return result;
             }
-
-            /// <summary>
-            ///   Results with all species references cloned to preserve their contemporary state.
-            /// </summary>
-            /// <returns>Cloned results for this species</returns>
-            /// <remarks>
-            ///   <para>
-            ///     This doesn't clone everything, only species, and should not be used as a full clone method.
-            ///   </para>
-            /// </remarks>
-            /// <param name="updatedSpecies">Updated species to use as the species associated with this result</param>
-            public SpeciesResult Clone(Species? updatedSpecies = null)
-            {
-                updatedSpecies ??= Species;
-                return new SpeciesResult((Species)updatedSpecies.Clone())
-                {
-                    NewPopulationInPatches = NewPopulationInPatches,
-                    MutatedProperties = (Species?)MutatedProperties?.Clone(),
-                    SpreadToPatches = SpreadToPatches,
-                    NewlyCreated = NewlyCreated,
-                    SplitOff = (Species?)SplitOff?.Clone(),
-                    SplitOffPatches = SplitOffPatches,
-                    SplitFrom = (Species?)SplitFrom?.Clone(),
-                    EnergyResults = EnergyResults,
-                };
-            }
         }
 
         /// <summary>
@@ -1209,30 +1191,22 @@
         /// </summary>
         public class SpeciesPatchEnergyResults
         {
-            [JsonProperty]
             public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
 
-            [JsonProperty]
             public long UnadjustedPopulation;
 
-            [JsonProperty]
             public float TotalEnergyGathered;
 
-            [JsonProperty]
             public float IndividualCost;
 
             public class NicheInfo
             {
-                [JsonProperty]
                 public float CurrentSpeciesFitness;
 
-                [JsonProperty]
                 public float CurrentSpeciesEnergy;
 
-                [JsonProperty]
                 public float TotalFitness;
 
-                [JsonProperty]
                 public float TotalAvailableEnergy;
             }
         }
