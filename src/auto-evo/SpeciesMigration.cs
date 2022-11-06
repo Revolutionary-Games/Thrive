@@ -8,9 +8,7 @@
     public class SpeciesMigration
     {
         public Patch From;
-
         public Patch To;
-
         public long Population;
 
         public SpeciesMigration(Patch from, Patch to, long population)

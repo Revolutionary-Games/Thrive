@@ -486,12 +486,8 @@ public class PauseMenu : CustomDialog
 
     private void OnSceneChangedFromThriveopedia()
     {
-        // Unpause to make sure Auto-Evo doesn't freeze when transitioning
-        if (PauseManager.Instance.HasLock(nameof(IStageHUD)))
-        {
-            GD.Print("Removing stage pause lock");
-            PauseManager.Instance.Resume(nameof(IStageHUD));
-        }
+        // Remove all pause locks before changing to the new game
+        PauseManager.Instance.ForceClear();
     }
 
     private void OnOptionsClosed()

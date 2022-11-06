@@ -73,8 +73,9 @@ public class PauseManager : Node
     }
 
     /// <summary>
-    ///   Force clears all locks. Should *only* be called in the main menu, where this is just an extra safety measure
-    ///   against requiring the player to restart the game entirely if they get a pause state stuck issue
+    ///   Force clears all locks. Should be called in the main menu or when switching directly from one in-progress
+    ///   game to another. This is an extra safety measure against requiring the player to restart the game entirely
+    ///   if they get a pause state stuck issue.
     /// </summary>
     public void ForceClear()
     {
