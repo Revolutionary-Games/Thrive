@@ -486,6 +486,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         }
     }
 
+    public override void OnLightLevelChanged(float lightLevel)
+    {
+    }
+
     protected abstract MetaballLayout<TMetaball> CreateLayout();
     protected abstract IMetaballDisplayer<TMetaball> CreateMetaballDisplayer();
 

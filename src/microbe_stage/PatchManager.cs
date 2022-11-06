@@ -97,7 +97,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
-        currentPatch.UpdateBiomeConditions(lightCycle);
+        UpdateAllPatchLightLevels(currentPatch);
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
@@ -116,8 +116,6 @@ public class PatchManager : IChildPropertiesLoadCallback
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
 
-        compoundCloudSystem.SetBrightnessModifier(currentPatch.BiomeTemplate.CompoundCloudBrightness);
-
         return patchIsChanged;
     }
 
@@ -125,10 +123,20 @@ public class PatchManager : IChildPropertiesLoadCallback
     {
         if (previousPatch != null)
         {
-            previousPatch.UpdateBiomeConditions(lightCycle);
-
             // Update environment for process system
             processSystem.SetBiome(previousPatch.Biome);
+        }
+    }
+
+    public void UpdateAllPatchLightLevels(Patch currentPatch)
+    {
+        var brightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
+        var multiplier = lightCycle.DayLightPercentage;
+        compoundCloudSystem.SetBrightnessModifier(brightness - (brightness - 1.0f) * multiplier);
+
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateBiomeConditions(lightCycle);
         }
     }
 

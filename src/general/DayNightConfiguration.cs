@@ -12,12 +12,6 @@ public class DayNightConfiguration : IRegistryType
     public float HoursPerDay { get; private set; }
 
     /// <summary>
-    ///   This is how long it takes to complete a full day in realtime seconds
-    /// </summary>
-    [JsonProperty]
-    public float RealTimePerDay { get; private set; }
-
-    /// <summary>
     ///   This is the percentage of the day that has sunlight
     /// </summary>
     [JsonProperty]

@@ -79,6 +79,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     private int? mutationPointsCache;
 
+    private float lightLevel = 1.0f;
+
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
     ///   a one more level of parent nodes so that different editor components can have their things visible at
@@ -135,6 +137,21 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public bool IsLoadedFromSave { get; set; }
 
     public bool NodeReferencesResolved { get; private set; }
+
+    [JsonProperty]
+    public float LightLevel
+    {
+        get => lightLevel;
+        set
+        {
+            lightLevel = value;
+
+            foreach (var editorComponent in GetAllEditorComponents())
+            {
+                editorComponent.OnLightLevelChanged(lightLevel);
+            }
+        }
+    }
 
     [JsonProperty]
     public bool Ready

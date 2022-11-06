@@ -107,6 +107,16 @@ public class WorldGenerationSettings
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
 
     /// <summary>
+    ///   Whether the day/night cycle in this game is enabled
+    /// </summary>
+    public bool DayNightCycleEnabled { get; set; }
+
+    /// <summary>
+    ///   Real-time length of a full day on the planet in seconds
+    /// </summary>
+    public int DayLength { get; set; } = 180;
+
+    /// <summary>
     ///  Whether the player can enter the Multicellular Stage in this game
     /// </summary>
     public bool IncludeMulticellular { get; set; } = true;
@@ -115,11 +125,6 @@ public class WorldGenerationSettings
     ///  Whether Easter eggs are enabled in this game
     /// </summary>
     public bool EasterEggs { get; set; } = true;
-
-    /// <summary>
-    ///   Whether the day/night cycle in this game is enabled
-    /// </summary>
-    public bool DayNightEnabled { get; set; }
 
     /// <summary>
     ///   The auto-evo configuration this world uses
@@ -135,9 +140,10 @@ public class WorldGenerationSettings
             $", Life origin: {Origin}" +
             $", Seed: {Seed}" +
             $", Map type: {MapType}" +
+            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
+            $", Day length: {DayLength}" +
             $", Include multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
-            $", Day/night cycle: {DayNightEnabled}" +
             "]";
     }
 
@@ -172,6 +178,8 @@ public class WorldGenerationSettings
             TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>().Description),
             TranslationHelper.TranslateFeatureFlag(LAWK),
             TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
+            TranslationHelper.TranslateFeatureFlag(DayNightCycleEnabled),
+            DayLength,
             Seed);
     }
 

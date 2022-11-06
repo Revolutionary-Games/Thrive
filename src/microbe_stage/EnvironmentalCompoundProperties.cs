@@ -5,6 +5,7 @@ public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompound
     public float Amount;
     public float Density;
     public float Ambient;
+    public float Maximum;
 
     public static bool operator ==(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
     {

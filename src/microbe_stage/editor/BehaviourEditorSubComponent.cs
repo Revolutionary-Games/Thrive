@@ -123,6 +123,10 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
             UpdateBehaviourSlider(pair.Key, pair.Value);
     }
 
+    public override void OnLightLevelChanged(float lightLevel)
+    {
+    }
+
     internal void UpdateBehaviourSlider(BehaviouralValueType type, float value)
     {
         switch (type)

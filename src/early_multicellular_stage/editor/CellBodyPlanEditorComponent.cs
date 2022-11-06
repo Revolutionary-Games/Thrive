@@ -444,6 +444,11 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    public override void OnLightLevelChanged(float lightLevel)
+    {
+        camera!.LightLevel = lightLevel;
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
