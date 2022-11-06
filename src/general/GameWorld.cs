@@ -64,6 +64,11 @@ public class GameWorld : ISaveLoadable
         {
             startingSpecies.BecomePlayerSpecies();
             startingSpecies.OnEdited();
+
+            // Need to update the species ID in case it was different in a previous game
+            startingSpecies.OnBecomePartOfWorld(++speciesIdCounter);
+            worldSpecies[startingSpecies.ID] = startingSpecies;
+
             PlayerSpecies = startingSpecies;
         }
 
