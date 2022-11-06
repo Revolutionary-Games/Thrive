@@ -33,6 +33,9 @@ public class PatchDetailsPanel : PanelContainer
     public NodePath LightPath = null!;
 
     [Export]
+    public NodePath LightMaxPath = null!;
+
+    [Export]
     public NodePath OxygenPath = null!;
 
     [Export]
@@ -95,6 +98,7 @@ public class PatchDetailsPanel : PanelContainer
     private Label temperatureLabel = null!;
     private Label pressure = null!;
     private Label light = null!;
+    private Label lightMax = null!;
     private Label oxygen = null!;
     private Label nitrogen = null!;
     private Label co2 = null!;
@@ -182,6 +186,7 @@ public class PatchDetailsPanel : PanelContainer
         temperatureLabel = GetNode<Label>(TemperaturePath);
         pressure = GetNode<Label>(PressurePath);
         light = GetNode<Label>(LightPath);
+        lightMax = GetNode<Label>(LightMaxPath);
         oxygen = GetNode<Label>(OxygenPath);
         nitrogen = GetNode<Label>(NitrogenPath);
         co2 = GetNode<Label>(CO2Path);
@@ -262,9 +267,12 @@ public class PatchDetailsPanel : PanelContainer
         temperatureLabel.Text =
             unitFormat.FormatSafe(SelectedPatch.Biome.Compounds[temperature].Ambient, temperature.Unit);
         pressure.Text = unitFormat.FormatSafe(20, "bar");
-        light.Text =
-            unitFormat.FormatSafe(
-                percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName)), "lx");
+
+        light.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName))), "lx");
+        var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, true);
+        lightMax.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx") + " at noon";
+        lightMax.Visible = maxLightLevel >= 1;
+
         oxygen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
         nitrogen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName));
         co2.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName));
@@ -309,9 +317,9 @@ public class PatchDetailsPanel : PanelContainer
         }
     }
 
-    private float GetCompoundAmount(Patch patch, string compoundName)
+    private float GetCompoundAmount(Patch patch, string compoundName, bool maximum = false)
     {
-        return patch.GetCompoundAmount(compoundName);
+        return patch.GetCompoundAmount(compoundName, maximum);
     }
 
     /// <remarks>

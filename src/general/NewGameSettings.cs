@@ -106,6 +106,18 @@ public class NewGameSettings : ControlWithInput
     public NodePath LAWKAdvancedButtonPath = null!;
 
     [Export]
+    public NodePath DayNightCycleButtonPath = null!;
+
+    [Export]
+    public NodePath DayLengthContainerPath = null!;
+
+    [Export]
+    public NodePath DayLengthPath = null!;
+
+    [Export]
+    public NodePath DayLengthReadoutPath = null!;
+
+    [Export]
     public NodePath GameSeedPath = null!;
 
     [Export]
@@ -116,9 +128,6 @@ public class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath EasterEggsButtonPath = null!;
-
-    [Export]
-    public NodePath DayNightCycleButtonPath = null!;
 
     [Export]
     public NodePath ConfirmButtonPath = null!;
@@ -162,13 +171,16 @@ public class NewGameSettings : ControlWithInput
     private OptionButton lifeOriginButtonAdvanced = null!;
     private Button lawkButton = null!;
     private Button lawkAdvancedButton = null!;
+    private Button dayNightCycleButton = null!;
+    private HSlider dayLength = null!;
+    private LineEdit dayLengthReadout = null!;
+    private VBoxContainer dayLengthContainer = null!;
     private LineEdit gameSeed = null!;
     private LineEdit gameSeedAdvanced = null!;
 
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
-    private Button dayNightCycleButton = null!;
 
     private SelectedOptionsTab selectedOptionsTab;
 
@@ -227,11 +239,14 @@ public class NewGameSettings : ControlWithInput
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
         lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
+        dayNightCycleButton = GetNode<Button>(DayNightCycleButtonPath);
+        dayLengthContainer = GetNode<VBoxContainer>(DayLengthContainerPath);
+        dayLength = GetNode<HSlider>(DayLengthPath);
+        dayLengthReadout = GetNode<LineEdit>(DayLengthReadoutPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
-        dayNightCycleButton = GetNode<Button>(DayNightCycleButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
         mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
@@ -446,15 +461,15 @@ public class NewGameSettings : ControlWithInput
             settings.Difficulty = difficulty;
         }
 
+        settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.Pressed;
+        settings.DayNightCycleEnabled = dayNightCycleButton.Pressed;
+        settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
-
-        settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
 
         settings.IncludeMulticellular = includeMulticellularButton.Pressed;
         settings.EasterEggs = easterEggsButton.Pressed;
-        settings.DayNightEnabled = dayNightCycleButton.Pressed;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -668,6 +683,19 @@ public class NewGameSettings : ControlWithInput
         UpdateLifeOriginOptions(pressed);
     }
 
+    private void OnDayNightCycleToggled(bool pressed)
+    {
+        dayLengthContainer.Modulate = pressed ? Colors.White : new Color(1.0f, 1.0f, 1.0f, 0.5f);
+        dayLength.Editable = pressed;
+        dayLength.Scrollable = pressed;
+    }
+
+    private void OnDayLengthChanged(double length)
+    {
+        length = Math.Round(length, 1);
+        dayLengthReadout.Text = TranslationServer.Translate("VALUE_WITH_UNIT").FormatSafe(length, "s");
+    }
+
     private void UpdateLifeOriginOptions(bool lawk)
     {
         // If we've switched to LAWK only, disable panspermia
@@ -713,11 +741,6 @@ public class NewGameSettings : ControlWithInput
     }
 
     private void OnEasterEggsToggled(bool pressed)
-    {
-        _ = pressed;
-    }
-
-    private void OnDayNightCycleToggled(bool pressed)
     {
         _ = pressed;
     }

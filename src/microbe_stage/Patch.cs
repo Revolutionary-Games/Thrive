@@ -314,13 +314,14 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
-    public float GetCompoundAmount(string compoundName)
+    public float GetCompoundAmount(string compoundName, bool maximum = false)
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
         switch (compoundName)
         {
             case "sunlight":
+                return (maximum ? Biome.Compounds[compound].Maximum : Biome.Compounds[compound].Ambient) * 100;
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":

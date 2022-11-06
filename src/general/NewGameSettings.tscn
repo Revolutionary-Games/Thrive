@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/NewGameSettings.cs" type="Script" id=2]
@@ -11,8 +11,6 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/concept_art/planet_generation.jpg" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Big.tres" type="DynamicFont" id=12]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -66,11 +64,14 @@ LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
 LAWKAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced")
+DayNightCycleButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2/DayNightCycleEnabled")
+DayLengthContainerPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4")
+DayLengthPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/DayLength")
+DayLengthReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/DayLengthReadout")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
 GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
-DayNightCycleButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/DayNightCycle")
 ConfirmButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Confirm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -314,9 +315,8 @@ text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 269.0
 margin_right = 700.0
-margin_bottom = 869.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 700, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -947,10 +947,94 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 margin_top = 165.0
 margin_right = 668.0
-margin_bottom = 196.0
+margin_bottom = 210.0
+
+[node name="DayNightCycleEnabled" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
+margin_right = 300.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+text = "DAY_NIGHT_CYCLE_ENABLED"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
+margin_top = 29.0
+margin_right = 668.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_top = 220.0
+margin_right = 668.0
+margin_bottom = 271.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4"]
+margin_right = 668.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer"]
+margin_top = 3.0
+margin_right = 250.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+text = "DAY_LENGTH"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer"]
+margin_left = 254.0
+margin_right = 457.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 6 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer"]
+margin_left = 461.0
+margin_right = 668.0
+margin_bottom = 31.0
+
+[node name="DayLength" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 60.0
+max_value = 300.0
+step = 30.0
+value = 180.0
+rounded = true
+editable = false
+scrollable = false
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer"]
+margin_left = 144.0
+margin_right = 147.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 6 )
+
+[node name="DayLengthReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer"]
+margin_left = 151.0
+margin_right = 207.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+text = "180 s"
+editable = false
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4"]
+margin_top = 35.0
+margin_right = 668.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "DAY_LENGTH_EXPLANATION"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
+margin_top = 281.0
+margin_right = 668.0
+margin_bottom = 312.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
@@ -1001,26 +1085,29 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 206.0
+margin_top = 322.0
 margin_right = 668.0
-margin_bottom = 556.0
-rect_min_size = Vector2( 0, 350 )
+margin_bottom = 568.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/CenterContainer"]
 modulate = Color( 1, 1, 1, 0.4 )
 margin_left = 34.0
+margin_top = 23.0
 margin_right = 634.0
-margin_bottom = 350.0
-rect_min_size = Vector2( 600, 350 )
+margin_bottom = 223.0
+rect_min_size = Vector2( 600, 200 )
+size_flags_vertical = 3
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 6
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/CenterContainer"]
 margin_left = 88.0
-margin_top = 154.0
+margin_top = 102.0
 margin_right = 580.0
-margin_bottom = 195.0
+margin_bottom = 143.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 9 )
 text = "PLANET_GENERATION_TEASER"
@@ -1082,42 +1169,6 @@ margin_right = 668.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
 text = "EASTER_EGGS_EXPLANATION"
-
-[node name="LabelContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
-margin_top = 110.0
-margin_right = 668.0
-margin_bottom = 165.0
-
-[node name="ExperimentalLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/LabelContainer"]
-margin_right = 668.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 12 )
-text = "EXPERIMENTAL_LABEL"
-
-[node name="ExperimentalWarning" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/LabelContainer"]
-margin_top = 35.0
-margin_right = 668.0
-margin_bottom = 55.0
-custom_fonts/font = ExtResource( 13 )
-text = "EXPERIMENTAL_WARNING"
-
-[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
-margin_top = 175.0
-margin_right = 668.0
-margin_bottom = 220.0
-
-[node name="DayNightCycle" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4" instance=ExtResource( 4 )]
-margin_right = 300.0
-margin_bottom = 25.0
-size_flags_horizontal = 0
-text = "DAY_NIGHT_CYCLE_ENABLED"
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
-margin_top = 29.0
-margin_right = 668.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 3 )
-text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 269.0
@@ -1196,11 +1247,12 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType" to="." method="OnMapTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2/DayNightCycleEnabled" to="." method="OnDayNightCycleToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/DayLength" to="." method="OnDayLengthChanged"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced" to="." method="OnGameSeedChangedFromAdvanced"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButtonAdvanced" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/DayNightCycle" to="." method="OnDayNightCycleToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]

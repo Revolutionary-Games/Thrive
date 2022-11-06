@@ -12,6 +12,12 @@ public class DayNightCycle
     [JsonProperty]
     public bool IsEnabled;
 
+    /// <summary>
+    ///   This is how long it takes to complete a full day in realtime seconds
+    /// </summary>
+    [JsonProperty]
+    public int RealTimePerDay;
+
     [JsonProperty]
     public float PercentOfDayElapsed;
 
@@ -25,9 +31,10 @@ public class DayNightCycle
     [JsonIgnore]
     private float daytimeMultiplier;
 
-    public DayNightCycle(bool isEnabled)
+    public DayNightCycle(bool isEnabled, int dayLength)
     {
         IsEnabled = isEnabled;
+        RealTimePerDay = dayLength;
 
         LightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
 
@@ -69,7 +76,7 @@ public class DayNightCycle
     {
         if (IsEnabled)
         {
-            PercentOfDayElapsed = (PercentOfDayElapsed + delta / LightCycleConfig.RealTimePerDay) % 1;
+            PercentOfDayElapsed = (PercentOfDayElapsed + delta / RealTimePerDay) % 1;
         }
     }
 

@@ -204,7 +204,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         base._Ready();
 
         if (!IsLoadedFromSave)
-            lightCycle = new DayNightCycle(GameWorld.WorldSettings.DayNightEnabled);
+            lightCycle = new DayNightCycle(GameWorld.WorldSettings.DayNightCycleEnabled, GameWorld.WorldSettings.DayLength);
     }
 
     public override void _Process(float delta)

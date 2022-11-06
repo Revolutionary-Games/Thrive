@@ -27,7 +27,7 @@ public class ProcessSystem
     ///   given the active biome data.
     /// </summary>
     public static Dictionary<string, OrganelleEfficiency> ComputeOrganelleProcessEfficiencies(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, float lightLevel)
     {
         var result = new Dictionary<string, OrganelleEfficiency>();
 
@@ -37,7 +37,7 @@ public class ProcessSystem
 
             foreach (var process in organelle.RunnableProcesses)
             {
-                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome));
+                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome, lightLevel));
             }
 
             result[organelle.InternalName] = info;
@@ -50,13 +50,13 @@ public class ProcessSystem
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies,
+        BiomeConditions biome, float lightLevel, MembraneType membrane, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies,
+        return ComputeEnergyBalance(organellesList, biome, lightLevel, membrane, maximumMovementDirection, isPlayerSpecies,
             worldSettings);
     }
 
@@ -73,7 +73,7 @@ public class ProcessSystem
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        BiomeConditions biome, float lightLevel, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool isPlayerSpecies, WorldGenerationSettings worldSettings)
     {
         var result = new EnergyBalanceInfo();
@@ -88,7 +88,7 @@ public class ProcessSystem
         {
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
-                var processData = CalculateProcessMaximumSpeed(process, biome);
+                var processData = CalculateProcessMaximumSpeed(process, biome, lightLevel);
 
                 if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
@@ -163,7 +163,7 @@ public class ProcessSystem
     ///   Computes the compound balances for given organelle list in a patch
     /// </summary>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, float lightLevel)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -179,7 +179,7 @@ public class ProcessSystem
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, lightLevel);
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -199,9 +199,9 @@ public class ProcessSystem
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, float lightLevel)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, lightLevel);
     }
 
     /// <summary>
@@ -209,7 +209,7 @@ public class ProcessSystem
     ///   based on the environmental compounds.
     /// </summary>
     public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        BiomeConditions biome)
+        BiomeConditions biome, float lightLevel)
     {
         var result = new ProcessSpeedInformation(process.Process);
 
@@ -224,7 +224,7 @@ public class ProcessSystem
 
             // Environmental compound that can limit the rate
 
-            var availableInEnvironment = GetAmbientInBiome(input.Key, biome);
+            var availableInEnvironment = input.Key == Sunlight ? lightLevel : GetAmbientInBiome(input.Key, biome);
 
             var availableRate = input.Key == Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
