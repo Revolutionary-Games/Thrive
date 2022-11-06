@@ -13,9 +13,9 @@
 ///     This custom class fixes the bug by only enabling word wrap once the label becomes visible.
 ///   </para>
 /// </remarks>
-public class CustomExpandingLabel : Label
+public class CustomExpandingWordWrappedLabel : Label
 {
-    public CustomExpandingLabel(string text)
+    public CustomExpandingWordWrappedLabel(string text)
     {
         Text = text;
         Align = AlignEnum.Center;

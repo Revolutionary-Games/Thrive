@@ -560,7 +560,7 @@ public class CreditsScroll : Container
 
         foreach (var columnText in splitTexts)
         {
-            var label = new CustomExpandingLabel(columnText.ToString());
+            var label = new CustomExpandingWordWrappedLabel(columnText.ToString());
 
             if (overrideFont != null)
                 label.AddFontOverride("font", overrideFont);
