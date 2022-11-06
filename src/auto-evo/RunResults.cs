@@ -1186,9 +1186,11 @@
             ///     This doesn't clone everything, only species, and should not be used as a full clone method.
             ///   </para>
             /// </remarks>
-            public SpeciesResult Clone()
+            /// <param name="updatedSpecies">Updated species to use as the species associated with this result</param>
+            public SpeciesResult Clone(Species? updatedSpecies = null)
             {
-                return new SpeciesResult((Species)Species.Clone())
+                updatedSpecies ??= Species;
+                return new SpeciesResult((Species)updatedSpecies.Clone())
                 {
                     NewPopulationInPatches = NewPopulationInPatches,
                     MutatedProperties = (Species?)MutatedProperties?.Clone(),

@@ -326,7 +326,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         InitFirstGeneration();
 
-        evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
+        evolutionaryTree.Init((Species)gameProperties.GameWorld.PlayerSpecies.Clone());
 
         InitConfigControls();
 
@@ -429,7 +429,7 @@ public class AutoEvoExploringTool : NodeWithInput
         runResultsList.Add(new LocalizedStringBuilder());
         speciesHistoryList.Add(new Dictionary<uint, Species>
         {
-            { gameProperties.GameWorld.PlayerSpecies.ID, gameProperties.GameWorld.PlayerSpecies },
+            { gameProperties.GameWorld.PlayerSpecies.ID, (Species)gameProperties.GameWorld.PlayerSpecies.Clone() },
         });
         patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
             pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
@@ -633,8 +633,11 @@ public class AutoEvoExploringTool : NodeWithInput
         autoEvoRun.ApplyAllResultsAndEffects(true);
 
         // Add run results, this must be called after results are applied to generate unique species ID
-        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results.CloneSpeciesResults(), ++currentGeneration,
-            gameProperties.GameWorld.TotalPassedTime);
+        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
+            results.CloneSpeciesResults(),
+            ++currentGeneration,
+            gameProperties.GameWorld.TotalPassedTime,
+            gameProperties.GameWorld.PlayerSpecies.ID);
         speciesHistoryList.Add(
             gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
         patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
