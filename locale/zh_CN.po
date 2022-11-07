@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-05 17:01+0000\n"
+"POT-Creation-Date: 2022-11-07 09:53+0200\n"
 "PO-Revision-Date: 2022-10-24 16:00+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1190,8 +1190,8 @@ msgid "SPECIES_DETAILS"
 msgstr "物种信息"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:396 ../src/general/MainMenu.tscn:486
-#: ../src/general/MainMenu.tscn:741 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:398 ../src/general/MainMenu.tscn:488
+#: ../src/general/MainMenu.tscn:758 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2080,7 +2080,7 @@ msgstr "等待auto-evo中："
 msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
-#: ../src/general/HelpScreen.tscn:104
+#: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -2111,216 +2111,216 @@ msgstr "{0}的浓度已减少了{1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖的浓度大幅度降低了！"
 
-#: ../src/general/MainMenu.cs:306
+#: ../src/general/MainMenu.cs:322
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
-#: ../src/general/MainMenu.tscn:232
+#: ../src/general/MainMenu.tscn:234
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "开始新游戏"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:237
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:246 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:248 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "载入之前保存的游戏"
 
-#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:251 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:259 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变你的设置"
 
-#: ../src/general/MainMenu.tscn:261 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:263 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "选项"
 
-#: ../src/general/MainMenu.tscn:272
+#: ../src/general/MainMenu.tscn:274
 msgid "TOOLS"
 msgstr "工具"
 
-#: ../src/general/MainMenu.tscn:283
+#: ../src/general/MainMenu.tscn:285
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:296
 msgid "EXTRAS"
 msgstr "额外内容"
 
-#: ../src/general/MainMenu.tscn:305
+#: ../src/general/MainMenu.tscn:307
 msgid "CREDITS"
 msgstr "制作人名单"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "退出游戏"
 
-#: ../src/general/MainMenu.tscn:317
+#: ../src/general/MainMenu.tscn:319
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:337
+#: ../src/general/MainMenu.tscn:339
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:351
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo探索工具"
 
-#: ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:418
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:430
+#: ../src/general/MainMenu.tscn:432
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:444
 msgid "LICENSES"
 msgstr "许可"
 
-#: ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:589
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:520
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "自杀"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:523
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:533
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
 
-#: ../src/general/MainMenu.tscn:533
+#: ../src/general/MainMenu.tscn:536
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:543
+#: ../src/general/MainMenu.tscn:546
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
 
-#: ../src/general/MainMenu.tscn:546
+#: ../src/general/MainMenu.tscn:549
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "由Revolutionary Games Studio ry支持的开发"
 
-#: ../src/general/MainMenu.tscn:556
-#, fuzzy
-msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "退出游戏"
-
 #: ../src/general/MainMenu.tscn:559
-#, fuzzy
-msgid "COMMUNITY_WIKI"
-msgstr "我们的Wiki"
-
-#: ../src/general/MainMenu.tscn:569
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "帮助菜单"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:562
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "开发者"
 
-#: ../src/general/MainMenu.tscn:595
+#: ../src/general/MainMenu.tscn:572
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "退出游戏"
+
+#: ../src/general/MainMenu.tscn:575
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "我们的Wiki"
+
+#: ../src/general/MainMenu.tscn:612
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "由Revolutionary Games Studio制作"
 
-#: ../src/general/MainMenu.tscn:606
+#: ../src/general/MainMenu.tscn:623
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "暂停游戏"
 
-#: ../src/general/MainMenu.tscn:617
+#: ../src/general/MainMenu.tscn:634
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "退出游戏"
 
-#: ../src/general/MainMenu.tscn:628
+#: ../src/general/MainMenu.tscn:645
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "暂停游戏"
 
-#: ../src/general/MainMenu.tscn:639
+#: ../src/general/MainMenu.tscn:656
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "退出游戏"
 
-#: ../src/general/MainMenu.tscn:650
+#: ../src/general/MainMenu.tscn:667
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "暂停游戏"
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:678
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "返回游戏"
 
-#: ../src/general/MainMenu.tscn:672
+#: ../src/general/MainMenu.tscn:689
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "时间经过了{0:#,#}年"
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:700
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "暂停游戏"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "时间经过了{0:#,#}年"
 
-#: ../src/general/MainMenu.tscn:758
+#: ../src/general/MainMenu.tscn:775
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:760
+#: ../src/general/MainMenu.tscn:777
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/MainMenu.tscn:763
+#: ../src/general/MainMenu.tscn:780
 msgid "NO_MODS_ENABLED"
 msgstr "模组已禁用"
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:792
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "检测到安装的模组，但没有启用的模组。\n"
 "\n"
 "模组在安装后需要被启用。在“额外内容”中使用模组按钮访问模组管理器。"
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:807
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "不再提醒这项内容"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:818
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "好的"
 
-#: ../src/general/MainMenu.tscn:805
+#: ../src/general/MainMenu.tscn:822
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
-#: ../src/general/MainMenu.tscn:807
+#: ../src/general/MainMenu.tscn:824
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "由于先前的启动错误，Thrive已在安全模式下启动。\n"
@@ -2332,11 +2332,11 @@ msgstr ""
 "\n"
 "如果你未能修复导致启动错误的问题，你在未来几次启动中将会崩溃数次并最后再次返回安全模式。"
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:828
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:829
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 

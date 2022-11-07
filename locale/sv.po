@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-05 17:01+0000\n"
+"POT-Creation-Date: 2022-11-07 09:53+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1190,8 +1190,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Artlista"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:396 ../src/general/MainMenu.tscn:486
-#: ../src/general/MainMenu.tscn:741 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:398 ../src/general/MainMenu.tscn:488
+#: ../src/general/MainMenu.tscn:758 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2095,7 +2095,7 @@ msgstr "Väntar på auto-evo:"
 msgid "CONFIRM_CAPITAL"
 msgstr "BEKRÄFTA"
 
-#: ../src/general/HelpScreen.tscn:104
+#: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -2126,218 +2126,218 @@ msgstr "{0} koncentrationer har minskat med {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 
-#: ../src/general/MainMenu.cs:306
+#: ../src/general/MainMenu.cs:322
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
 
-#: ../src/general/MainMenu.tscn:232
+#: ../src/general/MainMenu.tscn:234
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:237
 msgid "NEW_GAME"
 msgstr "Nytt spel"
 
-#: ../src/general/MainMenu.tscn:246 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:248 ../src/general/PauseMenu.tscn:195
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:251 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Ladda Spel"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:259 ../src/general/PauseMenu.tscn:220
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:261 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:263 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Inställningar"
 
-#: ../src/general/MainMenu.tscn:272
+#: ../src/general/MainMenu.tscn:274
 msgid "TOOLS"
 msgstr "Verktyg"
 
-#: ../src/general/MainMenu.tscn:283
+#: ../src/general/MainMenu.tscn:285
 msgid "VIEW_SOURCE_CODE"
 msgstr "Visa Källkod"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:296
 msgid "EXTRAS"
 msgstr "Extra"
 
-#: ../src/general/MainMenu.tscn:305
+#: ../src/general/MainMenu.tscn:307
 msgid "CREDITS"
 msgstr "Eftertext"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:236
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:317
+#: ../src/general/MainMenu.tscn:319
 msgid "QUIT"
 msgstr "Lämna"
 
-#: ../src/general/MainMenu.tscn:337
+#: ../src/general/MainMenu.tscn:339
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:351
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "status:"
 
-#: ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:418
 msgid "MODS"
 msgstr "Mod"
 
-#: ../src/general/MainMenu.tscn:430
+#: ../src/general/MainMenu.tscn:432
 msgid "ART_GALLERY"
 msgstr "Konst Galleri"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:444
 msgid "LICENSES"
 msgstr "Licenser"
 
-#: ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:589
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:520
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:523
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:533
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:533
+#: ../src/general/MainMenu.tscn:536
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:543
+#: ../src/general/MainMenu.tscn:546
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:546
+#: ../src/general/MainMenu.tscn:549
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Utvecklingen stöds av Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:556
-#, fuzzy
-msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Självmord"
-
 #: ../src/general/MainMenu.tscn:559
-msgid "COMMUNITY_WIKI"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:569
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:562
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Utvecklare"
 
-#: ../src/general/MainMenu.tscn:595
+#: ../src/general/MainMenu.tscn:572
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Självmord"
+
+#: ../src/general/MainMenu.tscn:575
+msgid "COMMUNITY_WIKI"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:612
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Av Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:606
+#: ../src/general/MainMenu.tscn:623
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Fortsätt"
 
-#: ../src/general/MainMenu.tscn:617
+#: ../src/general/MainMenu.tscn:634
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:628
+#: ../src/general/MainMenu.tscn:645
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:639
+#: ../src/general/MainMenu.tscn:656
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:650
+#: ../src/general/MainMenu.tscn:667
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Fortsätt"
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:678
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Fortsätt"
 
-#: ../src/general/MainMenu.tscn:672
+#: ../src/general/MainMenu.tscn:689
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:700
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:758
+#: ../src/general/MainMenu.tscn:775
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Läges Varning"
 
-#: ../src/general/MainMenu.tscn:760
+#: ../src/general/MainMenu.tscn:777
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
-#: ../src/general/MainMenu.tscn:763
+#: ../src/general/MainMenu.tscn:780
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Avstängt"
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:792
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:807
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:818
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:805
+#: ../src/general/MainMenu.tscn:822
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:807
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2346,11 +2346,11 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:828
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Inladdningsfel"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:829
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
 

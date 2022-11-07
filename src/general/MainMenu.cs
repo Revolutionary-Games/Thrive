@@ -59,6 +59,12 @@ public class MainMenu : NodeWithInput
     public NodePath WebsiteButtonsContainerPath = null!;
 
     [Export]
+    public NodePath ItchButtonPath = null!;
+
+    [Export]
+    public NodePath PatreonButtonPath = null!;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
@@ -87,10 +93,14 @@ public class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
+
     private Label storeLoggedInDisplay = null!;
 
     private Control socialMediaContainer = null!;
     private VBoxContainer websiteButtonsContainer = null!;
+
+    private TextureButton itchButton = null!;
+    private TextureButton patreonButton = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
@@ -242,6 +252,9 @@ public class MainMenu : NodeWithInput
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
         websiteButtonsContainer = GetNode<VBoxContainer>(WebsiteButtonsContainerPath);
 
+        itchButton = GetNode<TextureButton>(ItchButtonPath);
+        patreonButton = GetNode<TextureButton>(PatreonButtonPath);
+
         MenuArray?.Clear();
 
         // Get all of menu items
@@ -274,7 +287,7 @@ public class MainMenu : NodeWithInput
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
 
-        UpdateStoreNameLabel();
+        UpdateStoreVersionStatus();
     }
 
     /// <summary>
@@ -294,17 +307,24 @@ public class MainMenu : NodeWithInput
         Background.Texture = backgroundImage;
     }
 
-    private void UpdateStoreNameLabel()
+    private void UpdateStoreVersionStatus()
     {
         if (!SteamHandler.Instance.IsLoaded)
         {
             storeLoggedInDisplay.Visible = false;
+
+            itchButton.Visible = true;
+            patreonButton.Visible = true;
         }
         else
         {
             storeLoggedInDisplay.Visible = true;
             storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
                 .FormatSafe(SteamHandler.Instance.DisplayName);
+
+            // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
+            itchButton.Visible = false;
+            patreonButton.Visible = false;
         }
     }
 
@@ -564,7 +584,6 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromMods()
     {
         modManager.Visible = false;
-
         SetCurrentMenu(0, false);
     }
 
@@ -589,6 +608,7 @@ public class MainMenu : NodeWithInput
 
     private void OnSocialMediaButtonPressed(string url)
     {
+        GD.Print($"Opening social link: {url}");
         OS.ShellOpen(url);
     }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-05 17:01+0000\n"
+"POT-Creation-Date: 2022-11-07 09:53+0200\n"
 "PO-Revision-Date: 2022-10-24 16:00+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1195,8 +1195,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Подробности"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:396 ../src/general/MainMenu.tscn:486
-#: ../src/general/MainMenu.tscn:741 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:398 ../src/general/MainMenu.tscn:488
+#: ../src/general/MainMenu.tscn:758 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2085,7 +2085,7 @@ msgstr "Изчакване на автоматичната еволюция:"
 msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
-#: ../src/general/HelpScreen.tscn:104
+#: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -2116,216 +2116,216 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрацията на глюкоза се понижи драстично!"
 
-#: ../src/general/MainMenu.cs:306
+#: ../src/general/MainMenu.cs:322
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
 
-#: ../src/general/MainMenu.tscn:232
+#: ../src/general/MainMenu.tscn:234
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Започване на нова игра"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:237
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:246 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:248 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Зареждане на запазените игри"
 
-#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:251 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:259 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на настройките"
 
-#: ../src/general/MainMenu.tscn:261 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:263 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:272
+#: ../src/general/MainMenu.tscn:274
 msgid "TOOLS"
 msgstr "Инструменти"
 
-#: ../src/general/MainMenu.tscn:283
+#: ../src/general/MainMenu.tscn:285
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
 
-#: ../src/general/MainMenu.tscn:294
+#: ../src/general/MainMenu.tscn:296
 msgid "EXTRAS"
 msgstr "Екстри"
 
-#: ../src/general/MainMenu.tscn:305
+#: ../src/general/MainMenu.tscn:307
 msgid "CREDITS"
 msgstr "Екип"
 
-#: ../src/general/MainMenu.tscn:313 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Излизане от играта"
 
-#: ../src/general/MainMenu.tscn:317
+#: ../src/general/MainMenu.tscn:319
 msgid "QUIT"
 msgstr "Изход"
 
-#: ../src/general/MainMenu.tscn:337
+#: ../src/general/MainMenu.tscn:339
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:351
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
-#: ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:418
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:430
+#: ../src/general/MainMenu.tscn:432
 msgid "ART_GALLERY"
 msgstr "Галерия"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:444
 msgid "LICENSES"
 msgstr "Лицензи"
 
-#: ../src/general/MainMenu.tscn:456
+#: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:589
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложения"
 
-#: ../src/general/MainMenu.tscn:517
+#: ../src/general/MainMenu.tscn:520
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Извършване на самоубийство"
 
-#: ../src/general/MainMenu.tscn:520
+#: ../src/general/MainMenu.tscn:523
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:533
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
-#: ../src/general/MainMenu.tscn:533
+#: ../src/general/MainMenu.tscn:536
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:543
+#: ../src/general/MainMenu.tscn:546
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
-#: ../src/general/MainMenu.tscn:546
+#: ../src/general/MainMenu.tscn:549
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Разработката се поддържа от „Revolutionary Games Studio“ ry"
 
-#: ../src/general/MainMenu.tscn:556
-#, fuzzy
-msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Излизане от играта"
-
 #: ../src/general/MainMenu.tscn:559
-#, fuzzy
-msgid "COMMUNITY_WIKI"
-msgstr "нашата Уикипедия"
-
-#: ../src/general/MainMenu.tscn:569
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:562
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Разработчици"
 
-#: ../src/general/MainMenu.tscn:595
+#: ../src/general/MainMenu.tscn:572
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Излизане от играта"
+
+#: ../src/general/MainMenu.tscn:575
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "нашата Уикипедия"
+
+#: ../src/general/MainMenu.tscn:612
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "От „Revolutionary Games Studio“"
 
-#: ../src/general/MainMenu.tscn:606
+#: ../src/general/MainMenu.tscn:623
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Прекъсване на играта"
 
-#: ../src/general/MainMenu.tscn:617
+#: ../src/general/MainMenu.tscn:634
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Излизане от играта"
 
-#: ../src/general/MainMenu.tscn:628
+#: ../src/general/MainMenu.tscn:645
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Прекъсване на играта"
 
-#: ../src/general/MainMenu.tscn:639
+#: ../src/general/MainMenu.tscn:656
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Излизане от играта"
 
-#: ../src/general/MainMenu.tscn:650
+#: ../src/general/MainMenu.tscn:667
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Прекъсване на играта"
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:678
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Продължаване на играта"
 
-#: ../src/general/MainMenu.tscn:672
+#: ../src/general/MainMenu.tscn:689
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Изминало време: {0:#,#} години"
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:700
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Прекъсване на играта"
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Изминало време: {0:#,#} години"
 
-#: ../src/general/MainMenu.tscn:758
+#: ../src/general/MainMenu.tscn:775
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за GLES2"
 
-#: ../src/general/MainMenu.tscn:760
+#: ../src/general/MainMenu.tscn:777
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
-#: ../src/general/MainMenu.tscn:763
+#: ../src/general/MainMenu.tscn:780
 msgid "NO_MODS_ENABLED"
 msgstr "Няма включени модификации"
 
-#: ../src/general/MainMenu.tscn:775
+#: ../src/general/MainMenu.tscn:792
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Налични са инсталирани модификации, които не са включени.\n"
 "\n"
 "Модификациите трябва да бъдат включени след тяхната инсталация, за да се използват от играта."
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:807
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Не предупреждавай за това отново"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:818
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/general/MainMenu.tscn:805
+#: ../src/general/MainMenu.tscn:822
 msgid "SAFE_MODE_TITLE"
 msgstr "Играта е стартирана в безопасен режим"
 
-#: ../src/general/MainMenu.tscn:807
+#: ../src/general/MainMenu.tscn:824
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "„Thrive“ е в безопасен режим поради предишно неуспешно стартиране.\n"
@@ -2337,11 +2337,11 @@ msgstr ""
 "\n"
 "Ако проблемът продължи, ще трябва да рестартирате и да причините срив на играта няколко пъти, за да се върнете в безопасен режим."
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:828
 msgid "MOD_LOAD_ERRORS"
 msgstr "Грешка по време на зареждането на модификацията"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:829
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 

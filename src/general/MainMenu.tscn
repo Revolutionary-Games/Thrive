@@ -110,6 +110,8 @@ ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabled
 PermanentlyDismissModsNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning/VBoxContainer/CheckBox")
 SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
 WebsiteButtonsContainerPath = NodePath("MenuContainers/SocialMedia/WebsiteButtons")
+ItchButtonPath = NodePath("MenuContainers/SocialMedia/Icons/ItchButton")
+PatreonButtonPath = NodePath("MenuContainers/SocialMedia/Icons/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
@@ -549,6 +551,19 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 200.0
+margin_right = 250.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "DEVELOPMENT_WIKI"
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="CommunityWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
 margin_top = 150.0
 margin_right = 250.0
@@ -562,15 +577,16 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 200.0
-margin_right = 250.0
-margin_bottom = 240.0
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_left = 508.0
+margin_top = 150.0
+margin_right = 771.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 mouse_filter = 1
 size_flags_horizontal = 4
-text = "DEVELOPMENT_WIKI"
+size_flags_vertical = 0
+text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
 "_editor_description_": ""
 }
@@ -831,8 +847,9 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://thrive.fandom.com/wiki/Thrive_Wiki" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://wiki.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://thrive.fandom.com/wiki/Thrive_Wiki" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/Icons/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/Icons/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://store.steampowered.com/app/1779200/Thrive/" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/Icons/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygames.itch.io/thrive" ]]
