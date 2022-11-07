@@ -1232,7 +1232,7 @@ Description = "SLIME_JET_DESCRIPTION"
 MutationPointCost = 60
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer" index="0"]
-margin_bottom = 223.0
+margin_bottom = 247.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 40.0
@@ -3946,6 +3946,12 @@ visible = false
 DisplayDelay = 0.0
 Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
+
+[node name="protoplasm" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
 
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
 margin_right = 40.0

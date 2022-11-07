@@ -22,13 +22,9 @@ public static class EnumHelper
     /// </summary>
     /// <typeparam name="T">The Attribute type to be fetched</typeparam>
     /// <returns>Returns one Attribute of Type T</returns>
-    public static T? GetAttribute<T>(this Enum e)
+    public static T GetAttribute<T>(this Enum e)
         where T : Attribute
     {
-        var attrs = GetAttributes<T>(e).ToArray();
-        if (attrs.Length == 0)
-            return null;
-
-        return attrs[0];
+        return GetAttributes<T>(e).First();
     }
 }

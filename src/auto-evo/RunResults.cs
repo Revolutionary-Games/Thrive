@@ -43,6 +43,28 @@
             SplitDueToMutation,
         }
 
+        /// <summary>
+        ///   Per-species results. Species are cloned if they've changed to retain contemporary data and set to null if
+        ///   they haven't to reduce save file size.
+        /// </summary>
+        /// <returns>The per-species results with changed species cloned and unchanged species set to null</returns>
+        public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
+        {
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
+                HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
+                r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+        }
+
+        /// <summary>
+        ///   Per-species results with all species data. All species are cloned.
+        /// </summary>
+        /// <returns>The per-species results with all species cloned</returns>
+        public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
+        {
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordFull(
+                (Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+        }
+
         public void AddMutationResultForSpecies(Species species, Species? mutated)
         {
             MakeSureResultExistsForSpecies(species);
@@ -1080,6 +1102,11 @@
             return totalPopulation;
         }
 
+        private bool HasSpeciesChanged(SpeciesResult result)
+        {
+            return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
+        }
+
         public class SpeciesResult
         {
             public Species Species;
@@ -1162,14 +1189,19 @@
             public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
 
             public long UnadjustedPopulation;
+
             public float TotalEnergyGathered;
+
             public float IndividualCost;
 
             public class NicheInfo
             {
                 public float CurrentSpeciesFitness;
+
                 public float CurrentSpeciesEnergy;
+
                 public float TotalFitness;
+
                 public float TotalAvailableEnergy;
             }
         }

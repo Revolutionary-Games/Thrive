@@ -85,6 +85,7 @@ public class MainMenu : NodeWithInput
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
+    private Thriveopedia thriveopedia = null!;
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
 
@@ -271,6 +272,7 @@ public class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
@@ -511,6 +513,12 @@ public class MainMenu : NodeWithInput
         options.SelectOptionsTab(OptionsMenu.OptionsTab.Performance);
     }
 
+    private void OnReturnFromThriveopedia()
+    {
+        thriveopedia.Visible = false;
+        SetCurrentMenu(0, false);
+    }
+
     private void LoadGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -546,6 +554,17 @@ public class MainMenu : NodeWithInput
         credits.Pause();
 
         SetCurrentMenu(0, false);
+    }
+
+    private void ThriveopediaPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the Thriveopedia
+        thriveopedia.OpenFromMainMenu();
     }
 
     private void VisitSuggestionsSitePressed()

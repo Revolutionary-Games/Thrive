@@ -194,6 +194,15 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
+    [Export]
+    public NodePath FossilisationButtonLayerPath = null!;
+
+    [Export]
+    public PackedScene FossilisationButtonScene = null!;
+
+    [Export]
+    public NodePath FossilisationDialogPath = null!;
+
     // Inspections and cleanup disagree here
     // ReSharper disable RedundantNameQualifier
     protected readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
@@ -271,6 +280,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected HUDBottomBar bottomLeftBar = null!;
 
     protected Control winExtinctBoxHolder = null!;
+
+    protected Control fossilisationButtonLayer = null!;
+    protected FossilisationDialog fossilisationDialog = null!;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as well as call some player initiated actions.
@@ -477,6 +489,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         temperature = SimulationParameters.Instance.GetCompound("temperature");
 
+        fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
+        fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
+
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
 
@@ -515,6 +530,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         UpdatePopulation();
         UpdateProcessPanel();
         UpdatePanelSizing(delta);
+
+        UpdateFossilisationButtons();
     }
 
     public void PauseButtonPressed(bool buttonState)
@@ -533,6 +550,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (paused)
         {
             pausePrompt.Show();
+            ShowFossilisationButtons();
 
             // Pause the game
             PauseManager.Instance.AddPause(nameof(IStageHUD));
@@ -540,6 +558,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         else
         {
             pausePrompt.Hide();
+            HideFossilisationButtons();
 
             // Unpause the game
             PauseManager.Instance.Resume(nameof(IStageHUD));
@@ -714,6 +733,36 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
 
         // TODO: pressure?
+    }
+
+    /// <summary>
+    ///   Creates and displays a fossilisation button above each on-screen organism.
+    /// </summary>
+    public abstract void ShowFossilisationButtons();
+
+    /// <summary>
+    ///   Destroys all fossilisation buttons on screen.
+    /// </summary>
+    public void HideFossilisationButtons()
+    {
+        fossilisationButtonLayer.QueueFreeChildren();
+    }
+
+    /// <summary>
+    ///   Opens the dialog to a fossilise the species selected with a given fossilisation button.
+    /// </summary>
+    /// <param name="button">The button attached to the organism to fossilise</param>
+    public void ShowFossilisationDialog(FossilisationButton button)
+    {
+        if (button.AttachedOrganism is Microbe microbe)
+        {
+            fossilisationDialog.SelectedSpecies = microbe.Species;
+            fossilisationDialog.Show();
+        }
+        else
+        {
+            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
+        }
     }
 
     /// <summary>
@@ -1359,6 +1408,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         menu.OpenToHelp();
     }
 
+    private void StatisticsButtonPressed()
+    {
+        menu.OpenToStatistics();
+    }
+
     private void OnEditorButtonMouseEnter()
     {
         if (editorButton.Disabled)
@@ -1388,6 +1442,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         else
         {
             pauseInfo.Visible = false;
+        }
+    }
+
+    private void UpdateFossilisationButtons()
+    {
+        if (!fossilisationButtonLayer.Visible)
+            return;
+
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        {
+            button.UpdatePosition();
         }
     }
 }
