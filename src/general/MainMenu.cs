@@ -54,6 +54,18 @@ public class MainMenu : NodeWithInput
     public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
 
     [Export]
+    public NodePath SocialMediaContainerPath = null!;
+
+    [Export]
+    public NodePath WebsiteButtonsContainerPath = null!;
+
+    [Export]
+    public NodePath ItchButtonPath = null!;
+
+    [Export]
+    public NodePath PatreonButtonPath = null!;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
@@ -74,6 +86,7 @@ public class MainMenu : NodeWithInput
     private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
+    private Thriveopedia thriveopedia = null!;
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
 
@@ -84,6 +97,12 @@ public class MainMenu : NodeWithInput
     private Button autoEvoExploringButton = null!;
 
     private Label storeLoggedInDisplay = null!;
+
+    private Control socialMediaContainer = null!;
+    private VBoxContainer websiteButtonsContainer = null!;
+
+    private TextureButton itchButton = null!;
+    private TextureButton patreonButton = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
@@ -116,7 +135,7 @@ public class MainMenu : NodeWithInput
         {
             SafeModeStartupHandler.ReportBeforeVideoPlaying();
             TransitionManager.Instance.AddSequence(
-                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f), OnIntroEnded);
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
         }
         else
         {
@@ -164,6 +183,11 @@ public class MainMenu : NodeWithInput
     {
         if (MenuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
+
+        // Hide the website button container whenever anything else is pressed, and only display the social media icons
+        // if a menu is visible
+        websiteButtonsContainer.Visible = false;
+        socialMediaContainer.Visible = index != uint.MaxValue;
 
         // Allow disabling all the menus for going to the options menu
         if (index > MenuArray.Count - 1 && index != uint.MaxValue)
@@ -227,6 +251,11 @@ public class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
+        socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
+        websiteButtonsContainer = GetNode<VBoxContainer>(WebsiteButtonsContainerPath);
+
+        itchButton = GetNode<TextureButton>(ItchButtonPath);
+        patreonButton = GetNode<TextureButton>(PatreonButtonPath);
 
         MenuArray?.Clear();
 
@@ -244,6 +273,7 @@ public class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        thriveopedia = GetNode<Thriveopedia>("Thriveopedia");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
@@ -260,7 +290,7 @@ public class MainMenu : NodeWithInput
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
 
-        UpdateStoreNameLabel();
+        UpdateStoreVersionStatus();
     }
 
     /// <summary>
@@ -280,17 +310,24 @@ public class MainMenu : NodeWithInput
         Background.Texture = backgroundImage;
     }
 
-    private void UpdateStoreNameLabel()
+    private void UpdateStoreVersionStatus()
     {
         if (!SteamHandler.Instance.IsLoaded)
         {
             storeLoggedInDisplay.Visible = false;
+
+            itchButton.Visible = true;
+            patreonButton.Visible = true;
         }
         else
         {
             storeLoggedInDisplay.Visible = true;
             storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
                 .FormatSafe(SteamHandler.Instance.DisplayName);
+
+            // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
+            itchButton.Visible = false;
+            patreonButton.Visible = false;
         }
     }
 
@@ -477,6 +514,12 @@ public class MainMenu : NodeWithInput
         options.SelectOptionsTab(OptionsMenu.OptionsTab.Performance);
     }
 
+    private void OnReturnFromThriveopedia()
+    {
+        thriveopedia.Visible = false;
+        SetCurrentMenu(0, false);
+    }
+
     private void LoadGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -512,6 +555,17 @@ public class MainMenu : NodeWithInput
         credits.Pause();
 
         SetCurrentMenu(0, false);
+    }
+
+    private void ThriveopediaPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the Thriveopedia
+        thriveopedia.OpenFromMainMenu();
     }
 
     private void VisitSuggestionsSitePressed()
@@ -565,6 +619,17 @@ public class MainMenu : NodeWithInput
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
+    }
+
+    private void OnWebsitesButtonPressed()
+    {
+        websiteButtonsContainer.Visible = !websiteButtonsContainer.Visible;
+    }
+
+    private void OnSocialMediaButtonPressed(string url)
+    {
+        GD.Print($"Opening social link: {url}");
+        OS.ShellOpen(url);
     }
 
     private void OnNoEnabledModsNoticeClosed()

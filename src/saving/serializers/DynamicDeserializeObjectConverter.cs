@@ -5,6 +5,8 @@
 /// </summary>
 public class DynamicDeserializeObjectConverter : BaseThriveConverter
 {
+    private readonly Type baseObjectType = typeof(object);
+
     private bool canConvertObject = true;
 
     public DynamicDeserializeObjectConverter(ISaveContext context) : base(context)
@@ -13,12 +15,20 @@ public class DynamicDeserializeObjectConverter : BaseThriveConverter
 
     public override bool CanConvert(Type objectType)
     {
-        if (objectType == typeof(object) && canConvertObject)
+        if (objectType != baseObjectType)
+            return false;
+
+        if (canConvertObject)
         {
             canConvertObject = false;
             return true;
         }
 
         return false;
+    }
+
+    public void ResetConversionCounter()
+    {
+        canConvertObject = true;
     }
 }

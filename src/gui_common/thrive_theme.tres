@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=73 format=2]
+[gd_resource type="Theme" load_steps=75 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/radioB.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/radioAhover.png" type="Texture" id=26]
 [ext_resource path="res://assets/textures/gui/bevel/radioBhover.png" type="Texture" id=27]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=28]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -374,14 +375,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=45]
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.0784314, 0.960784, 0.803922, 1 )
-border_blend = true
+[sub_resource type="StyleBoxEmpty" id=47]
+
+[sub_resource type="StyleBoxEmpty" id=48]
 
 [sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.0666667, 1, 0.835294, 1 )
@@ -696,7 +692,7 @@ PanelContainer/styles/panel = SubResource( 27 )
 PopupDialog/styles/panel = null
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_accel = Color( 1, 1, 1, 1 )
-PopupMenu/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
 PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
 PopupMenu/constants/hseparation = 2
 PopupMenu/constants/vseparation = 4
@@ -835,20 +831,20 @@ Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
 Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
 Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
 Tree/colors/font_color = Color( 1, 1, 1, 1 )
-Tree/colors/font_color_selected = Color( 0, 0, 0, 1 )
-Tree/colors/guide_color = Color( 0, 0, 0, 1 )
-Tree/colors/relationship_line_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color_selected = Color( 1, 1, 1, 1 )
+Tree/colors/guide_color = Color( 1, 1, 1, 1 )
+Tree/colors/relationship_line_color = Color( 1, 1, 1, 0.25098 )
 Tree/colors/selection_color = Color( 0, 0, 0, 1 )
 Tree/colors/title_button_color = Color( 0, 0, 0, 1 )
 Tree/constants/button_margin = 4
-Tree/constants/draw_guides = 1
-Tree/constants/draw_relationship_lines = 0
-Tree/constants/hseparation = 4
-Tree/constants/item_margin = 12
-Tree/constants/scroll_border = 4
+Tree/constants/draw_guides = 0
+Tree/constants/draw_relationship_lines = 1
+Tree/constants/hseparation = 10
+Tree/constants/item_margin = 14
+Tree/constants/scroll_border = 0
 Tree/constants/scroll_speed = 12
-Tree/constants/vseparation = 4
-Tree/fonts/font = ExtResource( 8 )
+Tree/constants/vseparation = 6
+Tree/fonts/font = ExtResource( 28 )
 Tree/fonts/title_button_font = ExtResource( 8 )
 Tree/icons/arrow = null
 Tree/icons/arrow_collapsed = null
@@ -856,8 +852,8 @@ Tree/icons/checked = null
 Tree/icons/select_arrow = null
 Tree/icons/unchecked = null
 Tree/icons/updown = null
-Tree/styles/bg = SubResource( 45 )
-Tree/styles/bg_focus = null
+Tree/styles/bg = SubResource( 47 )
+Tree/styles/bg_focus = SubResource( 48 )
 Tree/styles/button_pressed = null
 Tree/styles/cursor = null
 Tree/styles/cursor_unfocused = null

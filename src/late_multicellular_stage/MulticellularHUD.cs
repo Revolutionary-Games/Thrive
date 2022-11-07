@@ -67,6 +67,10 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         }
     }
 
+    public override void ShowFossilisationButtons()
+    {
+    }
+
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
     {
         // TODO: player hitpoints

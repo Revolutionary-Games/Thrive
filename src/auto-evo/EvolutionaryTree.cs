@@ -156,15 +156,25 @@ public class EvolutionaryTree : Control
         latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
-    public void Init(Species luca)
+    public void Init(Species luca, string? updatedLUCAName = null)
     {
         SetupTreeNode(luca, null, 0);
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
-        speciesNames.Add(luca.ID, luca.FormattedName);
+        speciesNames.Add(luca.ID, updatedLUCAName ?? luca.FormattedName);
         generationTimes.Add(0, 0);
 
         dirty = true;
+    }
+
+    public void Clear()
+    {
+        speciesOrigin.Clear();
+        speciesNames.Clear();
+        generationTimes.Clear();
+        speciesNodes.Clear();
+
+        tree.QueueFreeChildren();
     }
 
     public override void _Process(float delta)
@@ -183,37 +193,45 @@ public class EvolutionaryTree : Control
         }
     }
 
-    public void UpdateEvolutionaryTreeWithRunResults(RunResults results, int generation, double time)
+    public void UpdateEvolutionaryTreeWithRunResults(
+        System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation, double time,
+        uint playerSpeciesID)
     {
-        foreach (var speciesResultPair in results.OrderBy(r => r.Value.Species.ID))
+        foreach (var speciesRecordPair in records.OrderBy(r => r.Key))
         {
-            var species = speciesResultPair.Key;
-            var result = speciesResultPair.Value;
+            var speciesID = speciesRecordPair.Key;
+            var record = speciesRecordPair.Value;
 
-            if (result.Species.Population <= 0)
+            if (record.Population <= 0)
             {
-                if (result.SplitFrom == null)
+                if (record.SplitFromID == null)
                 {
-                    SetupTreeNode((Species)species.Clone(),
-                        speciesNodes[species.ID].Last(), generation - 1, true);
+                    SetupTreeNode(record.Species,
+                        speciesNodes[speciesID].Last(), generation - 1, true);
                 }
             }
-            else if (result.SplitFrom != null)
+            else if (record.SplitFromID != null)
             {
-                SetupTreeNode((Species)species.Clone(),
-                    speciesNodes[result.SplitFrom.ID].Last(), generation);
+                var splitFromID = (uint)record.SplitFromID;
+                SetupTreeNode(record.Species, speciesNodes[splitFromID].Last(), generation);
 
-                speciesOrigin.Add(species.ID, (result.SplitFrom.ID, generation));
-                speciesNames.Add(species.ID, species.FormattedName);
+                speciesOrigin.Add(speciesID, (splitFromID, generation));
+                speciesNames.Add(speciesID, record.Species.FormattedName);
             }
-            else if (result.MutatedProperties != null)
+            else if (record.MutatedPropertiesID != null)
             {
-                SetupTreeNode((Species)result.MutatedProperties.Clone(),
-                    speciesNodes[species.ID].Last(), generation);
+                SetupTreeNode(record.Species,
+                    speciesNodes[speciesID].Last(), generation);
+            }
+            else if (speciesID == playerSpeciesID)
+            {
+                // Always add nodes for the player species
+                SetupTreeNode(record.Species,
+                    speciesNodes[speciesID].Last(), generation);
             }
 
-            if (species.ID > maxSpeciesId)
-                maxSpeciesId = species.ID;
+            if (speciesID > maxSpeciesId)
+                maxSpeciesId = speciesID;
         }
 
         latestGeneration = generation;
@@ -238,7 +256,16 @@ public class EvolutionaryTree : Control
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
         if (!speciesNodes.ContainsKey(species.ID))
+        {
             speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
+        }
+        else if (speciesNodes[species.ID].Any(n => (n.Position - node.Position).Length() < MathUtils.EPSILON))
+        {
+            // Remove the existing node in this position so we can replace it (e.g. with an extinct node)
+            var existingNode = speciesNodes[species.ID].Where(n => n.Position == node.Position).First();
+            speciesNodes[species.ID].Remove(existingNode);
+            existingNode.DetachAndQueueFree();
+        }
 
         speciesNodes[species.ID].Add(node);
         tree.AddChild(node);
@@ -318,8 +345,12 @@ public class EvolutionaryTree : Control
             timeline.DrawLine(new Vector2(x, TIMELINE_AXIS_Y), new Vector2(x, TIMELINE_AXIS_Y + TIMELINE_MARK_LENGTH),
                 Colors.Cyan, TIMELINE_LINE_THICKNESS);
 
-            var localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTimes[i]) + " "
-                + TranslationServer.Translate("MEGA_YEARS");
+            var localizedText = string.Empty;
+            if (generationTimes.TryGetValue(i, out var generationTime))
+            {
+                localizedText = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", generationTime) + " "
+                    + TranslationServer.Translate("MEGA_YEARS");
+            }
 
             var size = latoSmallRegular.GetStringSize(localizedText);
 

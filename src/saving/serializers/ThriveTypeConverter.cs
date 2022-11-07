@@ -6,6 +6,13 @@ using System.Linq;
 /// <summary>
 ///   Converts dictionary keys to / from json
 /// </summary>
+/// <remarks>
+///   <para>
+///     Please see the caveats mentioned on <see cref="ThriveJsonConverter.DeserializeObjectDynamic"/> about what this
+///     can and can't convert properly. For an example type that uses this, see <see cref="Species"/> and
+///     <see cref="Patch"/> which contains a dictionary of species.
+///   </para>
+/// </remarks>
 public class ThriveTypeConverter : TypeConverter
 {
     private static readonly Type StringType = typeof(string);

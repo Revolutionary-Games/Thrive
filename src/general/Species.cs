@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
@@ -13,6 +14,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
+[UseThriveSerializer]
 public abstract class Species : ICloneable
 {
     /// <summary>
@@ -45,6 +47,20 @@ public abstract class Species : ICloneable
     public string Epithet { get; set; }
 
     public Color Colour { get; set; } = new(1, 1, 1);
+
+    /// <summary>
+    ///   The colour value for GUI Components that want to show this species' colour.
+    ///   This value has additional constraints compared to plain Colour,
+    ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
+    /// </summary>
+    public Color GUIColour
+    {
+        get
+        {
+            var colour = Colour;
+            return new Color(colour.r, colour.g, colour.b, 1);
+        }
+    }
 
     /// <summary>
     ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
@@ -258,6 +274,17 @@ public abstract class Species : ICloneable
     public override string ToString()
     {
         return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
+    }
+
+    public virtual string GetDetailString()
+    {
+        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
+            FormattedNameBbCode,
+            ID,
+            Generation,
+            Population,
+            Colour.ToHtml(),
+            string.Join("\n  ", Behaviour.Select(b => b.Key + ": " + b.Value)));
     }
 
     /// <summary>

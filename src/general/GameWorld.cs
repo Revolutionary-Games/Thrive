@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -19,6 +20,9 @@ public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
+
+    [JsonProperty]
+    public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
     [JsonProperty]
     private uint speciesIdCounter;
@@ -47,10 +51,26 @@ public class GameWorld : ISaveLoadable
     ///   Creates a new world
     /// </summary>
     /// <param name="settings">Settings to generate the world with</param>
-    public GameWorld(WorldGenerationSettings settings) : this()
+    /// <param name="startingSpecies">Starting species for the player</param>
+    public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
     {
         WorldSettings = settings;
-        PlayerSpecies = CreatePlayerSpecies();
+
+        if (startingSpecies == null)
+        {
+            PlayerSpecies = CreatePlayerSpecies();
+        }
+        else
+        {
+            startingSpecies.BecomePlayerSpecies();
+            startingSpecies.OnEdited();
+
+            // Need to update the species ID in case it was different in a previous game
+            startingSpecies.OnBecomePartOfWorld(++speciesIdCounter);
+            worldSpecies[startingSpecies.ID] = startingSpecies;
+
+            PlayerSpecies = startingSpecies;
+        }
 
         if (!PlayerSpecies.PlayerSpecies)
             throw new Exception("PlayerSpecies flag for being player species is not set");
@@ -62,6 +82,12 @@ public class GameWorld : ISaveLoadable
 
         // Apply initial populations
         Map.UpdateGlobalPopulations();
+
+        // Create the initial generation by adding only the player species
+        var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
+        GenerationHistory.Add(0, new GenerationRecord(
+            0,
+            new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
     }
 
     /// <summary>
@@ -149,6 +175,23 @@ public class GameWorld : ISaveLoadable
             SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
 
         species.OnEdited();
+    }
+
+    /// <summary>
+    ///   Adds data for the current generation to a list of generation records.
+    /// </summary>
+    public void AddCurrentGenerationToHistory()
+    {
+        if (autoEvo?.Results == null)
+        {
+            GD.PrintErr("Auto-evo run not finished for adding to generation history");
+            return;
+        }
+
+        var generation = PlayerSpecies.Generation - 1;
+        GenerationHistory.Add(generation, new GenerationRecord(
+            TotalPassedTime,
+            autoEvo.Results.GetSpeciesRecords()));
     }
 
     /// <summary>
