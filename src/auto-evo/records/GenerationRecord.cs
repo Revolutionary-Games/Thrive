@@ -17,7 +17,7 @@
         }
 
         /// <summary>
-        ///   Total in-game time elapsed since its beginning.
+        ///   Total in-game time elapsed since the world's beginning.
         /// </summary>
         [JsonProperty]
         public double TimeElapsed { get; private set; }
@@ -36,8 +36,7 @@
         /// <param name="currentGeneration">The generation of the species we want to update</param>
         /// <param name="generationHistory">Full generation history for the game</param>
         /// <returns>Species record with full species data</returns>
-        public static SpeciesRecordFull GetFullSpeciesRecord(uint speciesID,
-            int currentGeneration,
+        public static SpeciesRecordFull GetFullSpeciesRecord(uint speciesID, int currentGeneration,
             Dictionary<int, GenerationRecord> generationHistory)
         {
             var speciesRecord = generationHistory[currentGeneration].AllSpeciesData[speciesID];
@@ -71,9 +70,10 @@
         /// <param name="species">Updated species</param>
         public void UpdateSpeciesData(Species species)
         {
-            if (AllSpeciesData.ContainsKey(species.ID))
+            if (AllSpeciesData.TryGetValue(species.ID, out var existing))
             {
-                AllSpeciesData[species.ID].Species = (Species)species.Clone();
+                AllSpeciesData[species.ID] = new SpeciesRecordLite((Species)species.Clone(), existing.Population,
+                    existing.MutatedPropertiesID, existing.SplitFromID);
             }
             else
             {

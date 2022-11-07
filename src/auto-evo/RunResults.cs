@@ -51,10 +51,8 @@
         public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
         {
             return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
-                HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null,
-                r.Key.Population,
-                r.Value.MutatedProperties?.ID,
-                r.Value.SplitFrom?.ID));
+                HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
+                r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
         }
 
         /// <summary>
@@ -64,10 +62,7 @@
         public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
         {
             return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordFull(
-                (Species)r.Key.Clone(),
-                r.Key.Population,
-                r.Value.MutatedProperties?.ID,
-                r.Value.SplitFrom?.ID));
+                (Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
         }
 
         public void AddMutationResultForSpecies(Species species, Species? mutated)

@@ -9,18 +9,13 @@
     public class SpeciesRecordLite : SpeciesRecord
     {
         [JsonConstructor]
-        public SpeciesRecordLite(Species? species,
-            long population,
-            uint? mutatedPropertiesID = null,
-            uint? splitFromID = null)
+        public SpeciesRecordLite(Species? species, long population, uint? mutatedPropertiesID = null,
+            uint? splitFromID = null) : base(population, mutatedPropertiesID, splitFromID)
         {
             if (species == null && (mutatedPropertiesID != null || splitFromID != null))
                 throw new InvalidOperationException("Species which newly mutated or split off must have species data");
 
             Species = species;
-            Population = population;
-            MutatedPropertiesID = mutatedPropertiesID;
-            SplitFromID = splitFromID;
         }
 
         /// <summary>
@@ -28,6 +23,6 @@
         ///   history.
         /// </summary>
         [JsonProperty]
-        public Species? Species { get; set; }
+        public Species? Species { get; private set; }
     }
 }

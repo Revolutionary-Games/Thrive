@@ -6,20 +6,15 @@
     /// </summary>
     public class SpeciesRecordFull : SpeciesRecord
     {
-        public SpeciesRecordFull(Species species,
-            long population,
-            uint? mutatedPropertiesID = null,
-            uint? splitFromID = null)
+        public SpeciesRecordFull(Species species, long population, uint? mutatedPropertiesID = null,
+            uint? splitFromID = null) : base(population, mutatedPropertiesID, splitFromID)
         {
             Species = species;
-            Population = population;
-            MutatedPropertiesID = mutatedPropertiesID;
-            SplitFromID = splitFromID;
         }
 
         /// <summary>
         ///   Full species data for this species.
         /// </summary>
-        public Species Species { get; set; }
+        public Species Species { get; }
     }
 }

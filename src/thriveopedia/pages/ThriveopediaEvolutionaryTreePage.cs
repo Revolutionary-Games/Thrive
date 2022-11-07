@@ -129,16 +129,10 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
                 // Recover all omitted species data for this generation so we can fill the tree
                 var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
                     s => s.Key,
-                    s => GenerationRecord.GetFullSpeciesRecord(
-                        s.Key,
-                        generation.Key,
-                        generationHistory));
+                    s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, generationHistory));
 
-                evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
-                    updatedSpeciesData,
-                    generation.Key,
-                    record.TimeElapsed,
-                    CurrentGame.GameWorld.PlayerSpecies.ID);
+                evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(updatedSpeciesData, generation.Key,
+                    record.TimeElapsed, CurrentGame.GameWorld.PlayerSpecies.ID);
                 speciesHistoryList.Add(updatedSpeciesData.ToDictionary(s => s.Key, s => s.Value.Species));
             }
         }

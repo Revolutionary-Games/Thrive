@@ -6,7 +6,7 @@
 public abstract class ThriveopediaPage : PanelContainer
 {
     /// <summary>
-    /// Whether this page should display the default panel background.
+    ///   Whether this page should display the default panel background.
     /// </summary>
     [Export]
     public bool DisplayBackground = true;

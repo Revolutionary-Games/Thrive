@@ -285,8 +285,13 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         if (CurrentGame == null)
             throw new InvalidOperationException("Returning to stage from editor without a game setup");
 
-        // Update the generation history with the newly edited player species
-        GameWorld.GenerationHistory.Last().Value.UpdateSpeciesData(GameWorld.PlayerSpecies);
+        // Update the generation history with the newly edited player species, but only if the history has been
+        // generated (this is not the case in older saves)
+        if (GameWorld.GenerationHistory.Count > 0)
+        {
+            var lastGeneration = GameWorld.GenerationHistory.Keys.Max();
+            GameWorld.GenerationHistory[lastGeneration].UpdateSpeciesData(GameWorld.PlayerSpecies);
+        }
 
         // Now the editor increases the generation so we don't do that here anymore
 

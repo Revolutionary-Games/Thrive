@@ -182,10 +182,16 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void AddCurrentGenerationToHistory()
     {
+        if (autoEvo?.Results == null)
+        {
+            GD.PrintErr("Auto-evo run not finished for adding to generation history");
+            return;
+        }
+
         var generation = PlayerSpecies.Generation - 1;
         GenerationHistory.Add(generation, new GenerationRecord(
             TotalPassedTime,
-            GetAutoEvoRun().Results!.GetSpeciesRecords()));
+            autoEvo.Results.GetSpeciesRecords()));
     }
 
     /// <summary>

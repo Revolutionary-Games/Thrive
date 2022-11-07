@@ -156,12 +156,12 @@ public class EvolutionaryTree : Control
         latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
-    public void Init(Species luca, string? updatedName = null)
+    public void Init(Species luca, string? updatedLUCAName = null)
     {
         SetupTreeNode(luca, null, 0);
 
         speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
-        speciesNames.Add(luca.ID, updatedName ?? luca.FormattedName);
+        speciesNames.Add(luca.ID, updatedLUCAName ?? luca.FormattedName);
         generationTimes.Add(0, 0);
 
         dirty = true;
@@ -194,9 +194,7 @@ public class EvolutionaryTree : Control
     }
 
     public void UpdateEvolutionaryTreeWithRunResults(
-        System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records,
-        int generation,
-        double time,
+        System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation, double time,
         uint playerSpeciesID)
     {
         foreach (var speciesRecordPair in records.OrderBy(r => r.Key))

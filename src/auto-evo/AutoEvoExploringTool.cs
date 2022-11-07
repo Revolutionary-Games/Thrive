@@ -624,23 +624,22 @@ public class AutoEvoExploringTool : NodeWithInput
     private void ApplyAutoEvoRun()
     {
         var results = autoEvoRun!.Results!;
+        var gameWorld = gameProperties.GameWorld;
 
         // Make summary, this must be called before results are applied so that summary is correct
-        runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
+        runResultsList.Add(results.MakeSummary(gameWorld.Map, true));
 
         // Apply the results
-        gameProperties.GameWorld.OnTimePassed(1);
+        gameWorld.OnTimePassed(1);
         autoEvoRun.ApplyAllResultsAndEffects(true);
 
         // Add run results, this must be called after results are applied to generate unique species ID
         evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
             results.GetFullSpeciesRecords(),
-            ++currentGeneration,
-            gameProperties.GameWorld.TotalPassedTime,
-            gameProperties.GameWorld.PlayerSpecies.ID);
+            ++currentGeneration, gameWorld.TotalPassedTime, gameWorld.PlayerSpecies.ID);
         speciesHistoryList.Add(
-            gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
-        patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+            gameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+        patchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(pair => pair.Key,
             pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 
         // Add checkbox to history container
