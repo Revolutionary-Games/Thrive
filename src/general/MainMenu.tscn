@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,13 +12,43 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/textures/gui/social_media/discord.png" type="Texture" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/textures/gui/social_media/youtubeHover.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/social_media/youtube.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/social_media/youtubeActive.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/gui/social_media/facebook.png" type="Texture" id=22]
+[ext_resource path="res://assets/textures/gui/social_media/reddit.png" type="Texture" id=23]
+[ext_resource path="res://assets/textures/gui/social_media/github.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/social_media/steam.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/gui/social_media/facebookActive.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/social_media/twitterActive.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/social_media/redditActive.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/gui/social_media/twitter.png" type="Texture" id=29]
+[ext_resource path="res://assets/textures/gui/social_media/steamActive.png" type="Texture" id=30]
+[ext_resource path="res://assets/textures/gui/social_media/redditHover.png" type="Texture" id=31]
+[ext_resource path="res://assets/textures/gui/social_media/steamHover.png" type="Texture" id=32]
+[ext_resource path="res://assets/textures/gui/social_media/twitterHover.png" type="Texture" id=33]
+[ext_resource path="res://assets/textures/gui/social_media/itchActive.png" type="Texture" id=34]
+[ext_resource path="res://assets/textures/gui/social_media/itchHover.png" type="Texture" id=35]
+[ext_resource path="res://assets/textures/gui/social_media/itch.png" type="Texture" id=36]
+[ext_resource path="res://assets/textures/gui/social_media/githubActive.png" type="Texture" id=37]
+[ext_resource path="res://assets/textures/gui/social_media/githubHover.png" type="Texture" id=38]
+[ext_resource path="res://assets/textures/gui/social_media/discordActive.png" type="Texture" id=39]
+[ext_resource path="res://assets/textures/gui/social_media/discordHover.png" type="Texture" id=40]
+[ext_resource path="res://assets/textures/gui/social_media/facebookHover.png" type="Texture" id=41]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=42]
+[ext_resource path="res://assets/textures/gui/social_media/patreon.png" type="Texture" id=43]
+[ext_resource path="res://assets/textures/gui/social_media/patreonActive.png" type="Texture" id=44]
+[ext_resource path="res://assets/textures/gui/social_media/patreonHover.png" type="Texture" id=45]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGames.png" type="Texture" id=46]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" type="Texture" id=47]
+[ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" type="Texture" id=48]
+[ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=49]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -79,6 +109,10 @@ ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
 PermanentlyDismissModsNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning/VBoxContainer/CheckBox")
+SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
+WebsiteButtonsContainerPath = NodePath("MenuContainers/SocialMedia/WebsiteButtons")
+ItchButtonPath = NodePath("MenuContainers/SocialMedia/Icons/ItchButton")
+PatreonButtonPath = NodePath("MenuContainers/SocialMedia/Icons/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
@@ -455,6 +489,233 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
+[node name="SocialMedia" type="VBoxContainer" parent="MenuContainers"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = -450.0
+margin_right = 415.0
+margin_bottom = -25.0
+theme = ExtResource( 1 )
+alignment = 2
+
+[node name="WebsiteButtons" type="VBoxContainer" parent="MenuContainers/SocialMedia"]
+visible = false
+margin_top = 137.0
+margin_right = 390.0
+margin_bottom = 377.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/SocialMedia/WebsiteButtons"]
+margin_right = 390.0
+margin_bottom = 240.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 240.0
+custom_constants/separation = 10
+
+[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "OFFICIAL_WEBSITE"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CommunityForumButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "COMMUNITY_FORUM"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "DEVELOPMENT_FORUM"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 200.0
+margin_right = 250.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "DEVELOPMENT_WIKI"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CommunityWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "COMMUNITY_WIKI"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_left = 508.0
+margin_top = 150.0
+margin_right = 771.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "VISIT_SUGGESTIONS_SITE"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Control" type="Control" parent="MenuContainers/SocialMedia"]
+margin_top = 381.0
+margin_right = 390.0
+margin_bottom = 391.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Icons" type="HBoxContainer" parent="MenuContainers/SocialMedia"]
+margin_top = 395.0
+margin_right = 390.0
+margin_bottom = 425.0
+rect_min_size = Vector2( 100, 30 )
+theme = ExtResource( 1 )
+custom_constants/separation = 10
+
+[node name="RevolutionaryGamesButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+texture_normal = ExtResource( 46 )
+texture_pressed = ExtResource( 47 )
+texture_hover = ExtResource( 48 )
+expand = true
+
+[node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 40.0
+margin_right = 70.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "STEAM_TOOLTIP"
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 32 )
+expand = true
+
+[node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 80.0
+margin_right = 110.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "ITCH_TOOLTIP"
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 35 )
+expand = true
+
+[node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 120.0
+margin_right = 150.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "PATREON_TOOLTIP"
+texture_normal = ExtResource( 43 )
+texture_pressed = ExtResource( 44 )
+texture_hover = ExtResource( 45 )
+expand = true
+
+[node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 160.0
+margin_right = 190.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "GITHUB_TOOLTIP"
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 37 )
+texture_hover = ExtResource( 38 )
+expand = true
+
+[node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 200.0
+margin_right = 230.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "YOUTUBE_TOOLTIP"
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 21 )
+texture_hover = ExtResource( 19 )
+expand = true
+
+[node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 240.0
+margin_right = 270.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "REDDIT_TOOLTIP"
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 28 )
+texture_hover = ExtResource( 31 )
+expand = true
+
+[node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 280.0
+margin_right = 310.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "DISCORD_TOOLTIP"
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 39 )
+texture_hover = ExtResource( 40 )
+expand = true
+
+[node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 320.0
+margin_right = 350.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "FACEBOOK_TOOLTIP"
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 26 )
+texture_hover = ExtResource( 41 )
+expand = true
+
+[node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
+margin_left = 360.0
+margin_right = 390.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+hint_tooltip = "TWITTER_TOOLTIP"
+texture_normal = ExtResource( 29 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 33 )
+expand = true
+
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
 
@@ -464,7 +725,7 @@ visible = false
 [node name="NewGameSettings" parent="." instance=ExtResource( 18 )]
 visible = false
 
-[node name="Thriveopedia" parent="." instance=ExtResource( 19 )]
+[node name="Thriveopedia" parent="." instance=ExtResource( 49 )]
 visible = false
 
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
@@ -520,7 +781,7 @@ WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
 
-[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 13 )]
+[node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource( 42 )]
 WindowTitle = "NO_MODS_ENABLED"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModsInstalledButNothingEnabledWarning"]
@@ -589,6 +850,22 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://wiki.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://thrive.fandom.com/wiki/Thrive_Wiki" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://store.steampowered.com/app/1779200/Thrive/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygames.itch.io/thrive" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/PatreonButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.patreon.com/thrivegame" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/GitHubButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://github.com/Revolutionary-Games/Thrive" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/YouTubeButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.youtube.com/c/RevolutionaryGames" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/RedditButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.reddit.com/r/thrive/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://discordapp.com/invite/ECR9E8x" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.facebook.com/Thrive-182887991751358/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://twitter.com/Thrive_Game" ]]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]

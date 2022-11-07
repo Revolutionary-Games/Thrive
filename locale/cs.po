@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-04 21:15+0000\n"
+"POT-Creation-Date: 2022-11-07 15:56+0200\n"
 "PO-Revision-Date: 2022-10-19 19:00+0000\n"
 "Last-Translator: Severin Aurelian Koloman August Ludvig Girtelschmid <severingirtelschmid@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1153,8 +1153,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Podrobnosti druhu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
-#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:399 ../src/general/MainMenu.tscn:490
+#: ../src/general/MainMenu.tscn:763 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1203,97 +1203,97 @@ msgstr "Začínání"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populace {0} se změnila o {1} za {2} z důvodu: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:332
+#: ../src/auto-evo/EvolutionaryTree.cs:352
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr "Myry"
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
 msgstr "populace:"
 
-#: ../src/auto-evo/RunResults.cs:613
+#: ../src/auto-evo/RunResults.cs:631
 msgid "WENT_EXTINCT_IN"
 msgstr "vyhynul v {0}"
 
-#: ../src/auto-evo/RunResults.cs:619
+#: ../src/auto-evo/RunResults.cs:637
 msgid "PREVIOUS_COLON"
 msgstr "předchozí:"
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "oddělen od {0}"
 
-#: ../src/auto-evo/RunResults.cs:650
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "vznikl, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:671
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "vznikly v důsledku rozdílných selekčních tlaků"
 
-#: ../src/auto-evo/RunResults.cs:670
+#: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populace se v některých oblastech oddělila a vytvořila nové druhy {0}:"
 
-#: ../src/auto-evo/RunResults.cs:686
+#: ../src/auto-evo/RunResults.cs:704
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "zmutoval se"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genový kód:"
 
-#: ../src/auto-evo/RunResults.cs:702
+#: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozšířen do prostředí:"
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} posláním: {1} populace z prostředí: {2}"
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:747
 msgid "POPULATION_IN_PATCHES"
 msgstr "populace v prostředích:"
 
-#: ../src/auto-evo/RunResults.cs:844
+#: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "vyhynul na této planetě"
 
-#: ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] vyhynul!"
 
-#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
+#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] populace se zvýšila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] populace se snížila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] zmizel z tohoto prostředí"
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do tohoto prostředí z {1}"
 
-#: ../src/auto-evo/RunResults.cs:951
+#: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala z {2} do {1}"
 
-#: ../src/auto-evo/RunResults.cs:957
+#: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala do {1}"
 
-#: ../src/auto-evo/RunResults.cs:976
+#: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:982
+#: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
@@ -2084,121 +2084,219 @@ msgstr "{0} koncentrace se snížily o {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Koncentrace glukózy drasticky klesla!"
 
-#: ../src/general/MainMenu.cs:293
+#: ../src/general/MainMenu.cs:324
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
 
-#: ../src/general/MainMenu.tscn:201
+#: ../src/general/MainMenu.tscn:235
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začít novou hru"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:238
 msgid "NEW_GAME"
 msgstr "Nová hra"
 
-#: ../src/general/MainMenu.tscn:215 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:197
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Načíst předešlé uložené hry"
 
-#: ../src/general/MainMenu.tscn:218 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:252 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Nahrát hru"
 
-#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Změna nastavení"
 
-#: ../src/general/MainMenu.tscn:230 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:264 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Nastavení"
 
-#: ../src/general/MainMenu.tscn:241
+#: ../src/general/MainMenu.tscn:275
 msgid "TOOLS"
 msgstr "Nástroje"
 
-#: ../src/general/MainMenu.tscn:252
+#: ../src/general/MainMenu.tscn:286
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zdrojový kód"
 
-#: ../src/general/MainMenu.tscn:263
+#: ../src/general/MainMenu.tscn:297
 msgid "EXTRAS"
 msgstr "Ostatní"
 
-#: ../src/general/MainMenu.tscn:274
+#: ../src/general/MainMenu.tscn:308
 msgid "CREDITS"
 msgstr "Poděkování"
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:237
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Opustit hru"
 
-#: ../src/general/MainMenu.tscn:286
+#: ../src/general/MainMenu.tscn:320
 msgid "QUIT"
 msgstr "Ukončit"
 
-#: ../src/general/MainMenu.tscn:306
+#: ../src/general/MainMenu.tscn:340
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:352
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj Průzkumu Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:400
+#: ../src/general/MainMenu.tscn:434
 msgid "MODS"
 msgstr "Mody"
 
-#: ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:449
 msgid "ART_GALLERY"
 msgstr "Galerie"
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:461
 msgid "LICENSES"
 msgstr "Licence"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:476 ../src/general/MainMenu.tscn:591
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:522
+#, fuzzy
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "Spáchat sebevraždu"
+
+#: ../src/general/MainMenu.tscn:525
+msgid "OFFICIAL_WEBSITE"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:535
+#, fuzzy
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Vstupte do editoru a upravte svůj druh"
+
+#: ../src/general/MainMenu.tscn:538
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:548
+#, fuzzy
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "Vstupte do editoru a upravte svůj druh"
+
+#: ../src/general/MainMenu.tscn:551
+#, fuzzy
+msgid "DEVELOPMENT_FORUM"
+msgstr "Vývoj podpořen týmem Revolutionary Games Studio"
+
+#: ../src/general/MainMenu.tscn:561
+#, fuzzy
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Nápověda"
+
+#: ../src/general/MainMenu.tscn:564
+#, fuzzy
+msgid "DEVELOPMENT_WIKI"
+msgstr "Vývojáři"
+
+#: ../src/general/MainMenu.tscn:574
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Opustit hru"
+
+#: ../src/general/MainMenu.tscn:577
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "naše Wiki"
+
+#: ../src/general/MainMenu.tscn:614
+#, fuzzy
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Vytvořeno týmem Revolutionary Games Studio"
+
+#: ../src/general/MainMenu.tscn:625
+#, fuzzy
+msgid "STEAM_TOOLTIP"
+msgstr "Pozastavit hru"
+
+#: ../src/general/MainMenu.tscn:636
+#, fuzzy
+msgid "ITCH_TOOLTIP"
+msgstr "Opustit hru"
+
+#: ../src/general/MainMenu.tscn:647
+#, fuzzy
+msgid "PATREON_TOOLTIP"
+msgstr "Pozastavit hru"
+
+#: ../src/general/MainMenu.tscn:658
+#, fuzzy
+msgid "GITHUB_TOOLTIP"
+msgstr "Opustit hru"
+
+#: ../src/general/MainMenu.tscn:669
+#, fuzzy
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Pozastavit hru"
+
+#: ../src/general/MainMenu.tscn:680
+#, fuzzy
+msgid "REDDIT_TOOLTIP"
+msgstr "Pokračovat"
+
+#: ../src/general/MainMenu.tscn:691
+#, fuzzy
+msgid "DISCORD_TOOLTIP"
+msgstr "Uplynutý čas: {0:#,#} let"
+
+#: ../src/general/MainMenu.tscn:702
+#, fuzzy
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Pozastavit hru"
+
+#: ../src/general/MainMenu.tscn:713
+#, fuzzy
+msgid "TWITTER_TOOLTIP"
+msgstr "Uplynutý čas: {0:#,#} let"
+
+#: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
 msgstr "Varování režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:782
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
-#: ../src/general/MainMenu.tscn:524
+#: ../src/general/MainMenu.tscn:785
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Vypnuto"
 
-#: ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:812
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:823
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:827
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstranit místní data"
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:829
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2207,11 +2305,11 @@ msgstr ""
 "Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
 "a spíše zaútočí zpět."
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:833
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyby načítání módu"
 
-#: ../src/general/MainMenu.tscn:573
+#: ../src/general/MainMenu.tscn:834
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Při načítání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
 
@@ -2998,15 +3096,15 @@ msgstr ""
 "[b]Chování[/b]\n"
 "{5}"
 
-#: ../src/general/StageBase.cs:404
+#: ../src/general/StageBase.cs:412
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/general/StageBase.cs:460
+#: ../src/general/StageBase.cs:468
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
-#: ../src/general/StageBase.cs:523
+#: ../src/general/StageBase.cs:531
 msgid "EXTINCT_IN_PATCH"
 msgstr "vyhynulý v tomto prostředí"
 
@@ -5662,9 +5760,8 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nastala neznámá chyba služby Steam"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Příspěvky"
+msgstr ""
 
 #: ../src/thriveopedia/Thriveopedia.tscn:103
 #, fuzzy
@@ -5684,7 +5781,7 @@ msgstr "Home"
 #: ../src/thriveopedia/Thriveopedia.tscn:149
 #, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Proces buňky"
+msgstr "Odstranit místní data"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
@@ -5730,23 +5827,21 @@ msgid "LATE_MULTICELLULAR"
 msgstr "Umístit organelu"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
-#, fuzzy
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr "Současní vývojáři"
-
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
-#, fuzzy
-msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr "Evoluční strom"
-
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
+msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
 #, fuzzy
+msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
+msgstr "Evoluční strom"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr "Domovská stránka"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
@@ -5761,14 +5856,12 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
-#, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr "Domovská stránka"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
-#, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
-msgstr "Volné stavění"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
 #, fuzzy
@@ -5780,9 +5873,8 @@ msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr "Typ mapy prostředí"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
@@ -5991,24 +6083,6 @@ msgstr "Načítání editoru mikrobů"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Začít prosperovat"
-
-#, fuzzy
-#~ msgid "CURRENT_WORLD"
-#~ msgstr "Současní vývojáři"
-
-#, fuzzy
-#~ msgid "LEAVE_GAME"
-#~ msgstr "Uložit hru"
-
-#, fuzzy
-#~ msgid "LEAVE_GAME_CONFIRMATION"
-#~ msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
-
-#, fuzzy
-#~ msgid "DISABLED_PAGE_WARNING"
-#~ msgstr ""
-#~ "Máš neuložené změny, které budou zahozeny.\n"
-#~ "Mám pokračovat?"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Obohacující statistiky o nynější hře"

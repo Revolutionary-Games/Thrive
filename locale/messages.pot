@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-04 21:15+0000\n"
+"POT-Creation-Date: 2022-11-07 15:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.1\n"
+"Generated-By: Babel 2.10.3\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
@@ -1103,8 +1103,8 @@ msgid "SPECIES_DETAILS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
-#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:399 ../src/general/MainMenu.tscn:490
+#: ../src/general/MainMenu.tscn:763 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1151,97 +1151,97 @@ msgstr ""
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
-#: ../src/auto-evo/EvolutionaryTree.cs:332
+#: ../src/auto-evo/EvolutionaryTree.cs:352
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:613
+#: ../src/auto-evo/RunResults.cs:631
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:619
+#: ../src/auto-evo/RunResults.cs:637
 msgid "PREVIOUS_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:650
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:671
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:670
+#: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:686
+#: ../src/auto-evo/RunResults.cs:704
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:702
+#: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:747
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:844
+#: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
+#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:951
+#: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:957
+#: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:976
+#: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:982
+#: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -2001,127 +2001,207 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:293
+#: ../src/general/MainMenu.cs:324
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:201
+#: ../src/general/MainMenu.tscn:235
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:238
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:215 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:197
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:218 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:252 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:230 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:264 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:241
+#: ../src/general/MainMenu.tscn:275
 msgid "TOOLS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:252
+#: ../src/general/MainMenu.tscn:286
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:263
+#: ../src/general/MainMenu.tscn:297
 msgid "EXTRAS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:274
+#: ../src/general/MainMenu.tscn:308
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:237
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:286
+#: ../src/general/MainMenu.tscn:320
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:306
+#: ../src/general/MainMenu.tscn:340
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:352
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:400
+#: ../src/general/MainMenu.tscn:434
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:449
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:461
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:476 ../src/general/MainMenu.tscn:591
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:519
-msgid "GLES2_MODE_WARNING"
+#: ../src/general/MainMenu.tscn:522
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:521
-msgid "GLES2_MODE_WARNING_TEXT"
+#: ../src/general/MainMenu.tscn:525
+msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:524
-msgid "NO_MODS_ENABLED"
+#: ../src/general/MainMenu.tscn:535
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:536
-msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+#: ../src/general/MainMenu.tscn:538
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:548
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:551
+msgid "DEVELOPMENT_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:561
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:564
+msgid "DEVELOPMENT_WIKI"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:574
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:577
+msgid "COMMUNITY_WIKI"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:614
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:625
+msgid "STEAM_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:636
+msgid "ITCH_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:647
+msgid "PATREON_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:658
+msgid "GITHUB_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:669
+msgid "YOUTUBE_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:680
+msgid "REDDIT_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:691
+msgid "DISCORD_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:702
+msgid "FACEBOOK_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:713
+msgid "TWITTER_TOOLTIP"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:780
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:782
+msgid "GLES2_MODE_WARNING_TEXT"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:785
+msgid "NO_MODS_ENABLED"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:797
+msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:812
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:823
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:827
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:829
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:833
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:573
+#: ../src/general/MainMenu.tscn:834
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -2878,15 +2958,15 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/general/StageBase.cs:404
+#: ../src/general/StageBase.cs:412
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/general/StageBase.cs:460
+#: ../src/general/StageBase.cs:468
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/general/StageBase.cs:523
+#: ../src/general/StageBase.cs:531
 msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
@@ -5473,7 +5553,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 

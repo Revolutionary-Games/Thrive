@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-04 21:15+0000\n"
+"POT-Creation-Date: 2022-11-07 15:56+0200\n"
 "PO-Revision-Date: 2022-10-21 09:48+0000\n"
 "Last-Translator: Oliveriver <oliveriver1@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1167,8 +1167,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Species Details"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
-#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:399 ../src/general/MainMenu.tscn:490
+#: ../src/general/MainMenu.tscn:763 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1217,97 +1217,97 @@ msgstr "Starting"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:332
+#: ../src/auto-evo/EvolutionaryTree.cs:352
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
 msgstr "population:"
 
-#: ../src/auto-evo/RunResults.cs:613
+#: ../src/auto-evo/RunResults.cs:631
 msgid "WENT_EXTINCT_IN"
 msgstr "went extinct in {0}"
 
-#: ../src/auto-evo/RunResults.cs:619
+#: ../src/auto-evo/RunResults.cs:637
 msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "split off from {0}"
 
-#: ../src/auto-evo/RunResults.cs:650
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "emerged to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:671
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "emerged due to differing selection pressures"
 
-#: ../src/auto-evo/RunResults.cs:670
+#: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "population in some patches split off to form new species {0}:"
 
-#: ../src/auto-evo/RunResults.cs:686
+#: ../src/auto-evo/RunResults.cs:704
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has mutated"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gene code:"
 
-#: ../src/auto-evo/RunResults.cs:702
+#: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} by sending: {1} population from patch: {2}"
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:747
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/auto-evo/RunResults.cs:844
+#: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
-#: ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] has gone extinct!"
 
-#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
+#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] population has increased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] population has decreased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] has disappeared from this patch"
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated into this patch from {1}"
 
-#: ../src/auto-evo/RunResults.cs:951
+#: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1} from {2}"
 
-#: ../src/auto-evo/RunResults.cs:957
+#: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1}"
 
-#: ../src/auto-evo/RunResults.cs:976
+#: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:982
+#: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
 
@@ -2090,122 +2090,202 @@ msgstr "{0} concentrations have decreased by {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucose concentrations have drastically dropped!"
 
-#: ../src/general/MainMenu.cs:293
+#: ../src/general/MainMenu.cs:324
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
-#: ../src/general/MainMenu.tscn:201
+#: ../src/general/MainMenu.tscn:235
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start a new game"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:238
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:215 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:197
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Load previously saved games"
 
-#: ../src/general/MainMenu.tscn:218 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:252 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
-#: ../src/general/MainMenu.tscn:230 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:264 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:241
+#: ../src/general/MainMenu.tscn:275
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/general/MainMenu.tscn:252
+#: ../src/general/MainMenu.tscn:286
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"
 
-#: ../src/general/MainMenu.tscn:263
+#: ../src/general/MainMenu.tscn:297
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:274
+#: ../src/general/MainMenu.tscn:308
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:237
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
 
-#: ../src/general/MainMenu.tscn:286
+#: ../src/general/MainMenu.tscn:320
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/general/MainMenu.tscn:306
+#: ../src/general/MainMenu.tscn:340
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:352
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Exploring Tool"
 
-#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
-#: ../src/general/MainMenu.tscn:400
+#: ../src/general/MainMenu.tscn:434
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:449
 msgid "ART_GALLERY"
 msgstr "Art Gallery"
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:461
 msgid "LICENSES"
 msgstr "Licenses"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:476 ../src/general/MainMenu.tscn:591
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:522
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "Visit the official Revolutionary Games website"
+
+#: ../src/general/MainMenu.tscn:525
+msgid "OFFICIAL_WEBSITE"
+msgstr "Offical Website"
+
+#: ../src/general/MainMenu.tscn:535
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Join the Thrive community on our community forum"
+
+#: ../src/general/MainMenu.tscn:538
+msgid "COMMUNITY_FORUM"
+msgstr "Community Forum"
+
+#: ../src/general/MainMenu.tscn:548
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "View development updates on our development forum"
+
+#: ../src/general/MainMenu.tscn:551
+msgid "DEVELOPMENT_FORUM"
+msgstr "Development Forum"
+
+#: ../src/general/MainMenu.tscn:561
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Visit our developer wiki"
+
+#: ../src/general/MainMenu.tscn:564
+msgid "DEVELOPMENT_WIKI"
+msgstr "Development Wiki"
+
+#: ../src/general/MainMenu.tscn:574
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Visit our community wiki"
+
+#: ../src/general/MainMenu.tscn:577
+msgid "COMMUNITY_WIKI"
+msgstr "Community Wiki"
+
+#: ../src/general/MainMenu.tscn:614
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Visit official Revolutionary Games sites"
+
+#: ../src/general/MainMenu.tscn:625
+msgid "STEAM_TOOLTIP"
+msgstr "Visit our Steam page"
+
+#: ../src/general/MainMenu.tscn:636
+msgid "ITCH_TOOLTIP"
+msgstr "Visit our Itch.io page"
+
+#: ../src/general/MainMenu.tscn:647
+msgid "PATREON_TOOLTIP"
+msgstr "Visit our Patreon page"
+
+#: ../src/general/MainMenu.tscn:658
+msgid "GITHUB_TOOLTIP"
+msgstr "Visit our GitHub repository"
+
+#: ../src/general/MainMenu.tscn:669
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Visit our YouTube channel"
+
+#: ../src/general/MainMenu.tscn:680
+msgid "REDDIT_TOOLTIP"
+msgstr "Visit our subreddit"
+
+#: ../src/general/MainMenu.tscn:691
+msgid "DISCORD_TOOLTIP"
+msgstr "Join our community Discord server"
+
+#: ../src/general/MainMenu.tscn:702
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Visit our Facebook page"
+
+#: ../src/general/MainMenu.tscn:713
+msgid "TWITTER_TOOLTIP"
+msgstr "Visit our Twitter feed"
+
+#: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:782
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "You are running Thrive with GLES2. This is severely untested and is likely to cause issues. Try to update your video drivers and/or force AMD or Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:524
+#: ../src/general/MainMenu.tscn:785
 msgid "NO_MODS_ENABLED"
 msgstr "No Mods Enabled"
 
-#: ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Installed mods have been detected, but there are no enabled mods.\n"
 "\n"
 "Mods need to be enabled after installing. Visit the mod manager using the mods button in the extras menu."
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:812
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Do not warn about this again"
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:823
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:827
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Started In Safe Mode"
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:829
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive has started in safe mode due to a previous start failure.\n"
@@ -2217,11 +2297,11 @@ msgstr ""
 "\n"
 "If you don't fix the issue causing the start failure you will need to restart and crash Thrive multiple times to get back to safe mode."
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:833
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Loading Errors"
 
-#: ../src/general/MainMenu.tscn:573
+#: ../src/general/MainMenu.tscn:834
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
@@ -2994,15 +3074,15 @@ msgstr ""
 "[b]Behaviour[/b]\n"
 "  {5}"
 
-#: ../src/general/StageBase.cs:404
+#: ../src/general/StageBase.cs:412
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/general/StageBase.cs:460
+#: ../src/general/StageBase.cs:468
 msgid "PLAYER_DIED"
 msgstr "player died"
 
-#: ../src/general/StageBase.cs:523
+#: ../src/general/StageBase.cs:531
 msgid "EXTINCT_IN_PATCH"
 msgstr "extinct in patch"
 
@@ -5712,7 +5792,7 @@ msgstr "Late Multicellular"
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr "Current World"
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolutionary Tree"
 
@@ -5986,6 +6066,9 @@ msgstr "Continue Thriving"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"
+
+#~ msgid "GAME_WIKI"
+#~ msgstr "Development Wiki"
 
 #~ msgid "HOLD_FOR_CURSOR"
 #~ msgstr "Hold for cursor"

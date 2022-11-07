@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-04 21:15+0000\n"
+"POT-Creation-Date: 2022-11-07 15:56+0200\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1180,8 +1180,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Soortenlijst"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
-#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:399 ../src/general/MainMenu.tscn:490
+#: ../src/general/MainMenu.tscn:763 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1235,105 +1235,105 @@ msgstr "Startend"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:332
+#: ../src/auto-evo/EvolutionaryTree.cs:352
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr "myr"
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:622
 #, fuzzy
 msgid "POPULATION_COLON"
 msgstr "Totale populatie:"
 
-#: ../src/auto-evo/RunResults.cs:613
+#: ../src/auto-evo/RunResults.cs:631
 msgid "WENT_EXTINCT_IN"
 msgstr "stierf uit in {0}"
 
-#: ../src/auto-evo/RunResults.cs:619
+#: ../src/auto-evo/RunResults.cs:637
 #, fuzzy
 msgid "PREVIOUS_COLON"
 msgstr "Soorten:"
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "splits van {0}"
 
-#: ../src/auto-evo/RunResults.cs:650
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "Ontstaan om een niche te vullen"
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:671
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "ontstaan door verschillende selectiedruk"
 
-#: ../src/auto-evo/RunResults.cs:670
+#: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "Populatie in sommige gebieden afgesplitst om nieuwe soorten te vormen {0}:"
 
-#: ../src/auto-evo/RunResults.cs:686
+#: ../src/auto-evo/RunResults.cs:704
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "heeft een mutatie"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen code:"
 
-#: ../src/auto-evo/RunResults.cs:702
+#: ../src/auto-evo/RunResults.cs:720
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "verspreid naar gebieden:"
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} door het versturen van: {1} bevolking van gebied: {2}"
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:747
 #, fuzzy
 msgid "POPULATION_IN_PATCHES"
 msgstr "{0} ({1})"
 
-#: ../src/auto-evo/RunResults.cs:844
+#: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "stierf uit op de planeet"
 
-#: ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
+#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Soortenpopulatie"
 
-#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Soortenpopulatie"
 
-#: ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:951
+#: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:957
+#: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:976
+#: ../src/auto-evo/RunResults.cs:994
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Ontstaan om een niche te vullen"
 
-#: ../src/auto-evo/RunResults.cs:982
+#: ../src/auto-evo/RunResults.cs:1000
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "ontstaan door verschillende selectiedruk"
@@ -2135,126 +2135,224 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:293
+#: ../src/general/MainMenu.cs:324
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
 
-#: ../src/general/MainMenu.tscn:201
+#: ../src/general/MainMenu.tscn:235
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:238
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
-#: ../src/general/MainMenu.tscn:215 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:197
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
 
-#: ../src/general/MainMenu.tscn:218 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:252 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
-#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:221
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/MainMenu.tscn:230 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:264 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:241
+#: ../src/general/MainMenu.tscn:275
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
-#: ../src/general/MainMenu.tscn:252
+#: ../src/general/MainMenu.tscn:286
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
 
-#: ../src/general/MainMenu.tscn:263
+#: ../src/general/MainMenu.tscn:297
 msgid "EXTRAS"
 msgstr "Extra's"
 
-#: ../src/general/MainMenu.tscn:274
+#: ../src/general/MainMenu.tscn:308
 msgid "CREDITS"
 msgstr "Dank"
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:237
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
 
-#: ../src/general/MainMenu.tscn:286
+#: ../src/general/MainMenu.tscn:320
 msgid "QUIT"
 msgstr "Stoppen"
 
-#: ../src/general/MainMenu.tscn:306
+#: ../src/general/MainMenu.tscn:340
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:352
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "loopstatus:"
 
-#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:400
+#: ../src/general/MainMenu.tscn:434
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:449
 msgid "ART_GALLERY"
 msgstr "Kunst galerij"
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:461
 msgid "LICENSES"
 msgstr "Licenties"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:476 ../src/general/MainMenu.tscn:591
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:522
+#, fuzzy
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:525
+msgid "OFFICIAL_WEBSITE"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:535
+#, fuzzy
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/general/MainMenu.tscn:538
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:548
+#, fuzzy
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/general/MainMenu.tscn:551
+#, fuzzy
+msgid "DEVELOPMENT_FORUM"
+msgstr "Ontwikkeling ondersteund door Revolutionary Games Studio ry"
+
+#: ../src/general/MainMenu.tscn:561
+#, fuzzy
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Help"
+
+#: ../src/general/MainMenu.tscn:564
+#, fuzzy
+msgid "DEVELOPMENT_WIKI"
+msgstr "Ontwikkelaars"
+
+#: ../src/general/MainMenu.tscn:574
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:577
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "onze Wiki"
+
+#: ../src/general/MainMenu.tscn:614
+#, fuzzy
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Door Revolutionary Games Studio"
+
+#: ../src/general/MainMenu.tscn:625
+#, fuzzy
+msgid "STEAM_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:636
+#, fuzzy
+msgid "ITCH_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:647
+#, fuzzy
+msgid "PATREON_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:658
+#, fuzzy
+msgid "GITHUB_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/MainMenu.tscn:669
+#, fuzzy
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:680
+#, fuzzy
+msgid "REDDIT_TOOLTIP"
+msgstr "Hervat het spel"
+
+#: ../src/general/MainMenu.tscn:691
+#, fuzzy
+msgid "DISCORD_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/general/MainMenu.tscn:702
+#, fuzzy
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/MainMenu.tscn:713
+#, fuzzy
+msgid "TWITTER_TOOLTIP"
+msgstr "Help"
+
+#: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:782
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
-#: ../src/general/MainMenu.tscn:524
+#: ../src/general/MainMenu.tscn:785
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Uitgeschakeld"
 
-#: ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:812
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:823
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:827
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Verwijder lokale Data"
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:829
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2263,11 +2361,11 @@ msgstr ""
 "Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
 "en zullen waarschijnlijk terug aanvallen."
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:833
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/general/MainMenu.tscn:573
+#: ../src/general/MainMenu.tscn:834
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er zijn fouten opgetreden bij het laden van 1 of meer mods. Logs kunnen meer informatie bevatten."
 
@@ -3107,15 +3205,15 @@ msgstr "Verlaten"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/general/StageBase.cs:404
+#: ../src/general/StageBase.cs:412
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/general/StageBase.cs:460
+#: ../src/general/StageBase.cs:468
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
-#: ../src/general/StageBase.cs:523
+#: ../src/general/StageBase.cs:531
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "stierf uit op de planeet"
@@ -5829,9 +5927,8 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Er is een onbekende Steam-fout opgetreden"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Donaties"
+msgstr ""
 
 #: ../src/thriveopedia/Thriveopedia.tscn:103
 #, fuzzy
@@ -5851,7 +5948,7 @@ msgstr "Home"
 #: ../src/thriveopedia/Thriveopedia.tscn:149
 #, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Celprocessen"
+msgstr "Verwijder lokale Data"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
@@ -5897,23 +5994,21 @@ msgid "LATE_MULTICELLULAR"
 msgstr "Organel plaatsen"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
-#, fuzzy
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr "Huidige Ontwikkelaars"
-
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
-#, fuzzy
-msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr "Door Revolutionary Games Studio"
-
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
+msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
 #, fuzzy
+msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
+msgstr "Door Revolutionary Games Studio"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr "Homepage(toets)"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
@@ -5928,14 +6023,12 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
-#, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr "Homepage(toets)"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
-#, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
-msgstr "Vrij bouwen"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
 #, fuzzy
@@ -5947,9 +6040,8 @@ msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr "Kaart met plekken"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 #, fuzzy
@@ -6167,24 +6259,6 @@ msgstr "Microbe editor laden"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Begin met Thriving"
-
-#, fuzzy
-#~ msgid "CURRENT_WORLD"
-#~ msgstr "Huidige Ontwikkelaars"
-
-#, fuzzy
-#~ msgid "LEAVE_GAME"
-#~ msgstr "Spel Opslaan"
-
-#, fuzzy
-#~ msgid "LEAVE_GAME_CONFIRMATION"
-#~ msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
-
-#, fuzzy
-#~ msgid "DISABLED_PAGE_WARNING"
-#~ msgstr ""
-#~ "Je hebt niet-opgeslagen wijzigingen die worden verwijderd.\n"
-#~ "Wens je verder te gaan?"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

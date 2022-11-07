@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-04 21:15+0000\n"
+"POT-Creation-Date: 2022-11-07 15:56+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1216,8 +1216,8 @@ msgid "SPECIES_DETAILS"
 msgstr "Liikide nimekiri"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:456
-#: ../src/general/MainMenu.tscn:502 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:399 ../src/general/MainMenu.tscn:490
+#: ../src/general/MainMenu.tscn:763 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1269,97 +1269,97 @@ msgstr "alustamine"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:332
+#: ../src/auto-evo/EvolutionaryTree.cs:352
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
 msgstr "mega aastat"
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
 msgstr "elanikkond:"
 
-#: ../src/auto-evo/RunResults.cs:613
+#: ../src/auto-evo/RunResults.cs:631
 msgid "WENT_EXTINCT_IN"
 msgstr "suri välja {0}"
 
-#: ../src/auto-evo/RunResults.cs:619
+#: ../src/auto-evo/RunResults.cs:637
 msgid "PREVIOUS_COLON"
 msgstr "eelmine:"
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "eraldatud kasutajast {0}"
 
-#: ../src/auto-evo/RunResults.cs:650
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "tekkis nišši täitma"
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:671
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "tekkis erineva valikusurve tõttu"
 
-#: ../src/auto-evo/RunResults.cs:670
+#: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populatsioon mõnel laigul jagunes uuteks liikideks {0}:"
 
-#: ../src/auto-evo/RunResults.cs:686
+#: ../src/auto-evo/RunResults.cs:704
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on muteerunud"
 
-#: ../src/auto-evo/RunResults.cs:691
+#: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "geenikood:"
 
-#: ../src/auto-evo/RunResults.cs:702
+#: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr "levinud plaastritele:"
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} saates: {1} elanikkond paigast: {2}"
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:747
 msgid "POPULATION_IN_PATCHES"
 msgstr "populatsioon laikudena:"
 
-#: ../src/auto-evo/RunResults.cs:844
+#: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "suri planeedilt välja"
 
-#: ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] on välja surnud!"
 
-#: ../src/auto-evo/RunResults.cs:908 ../src/auto-evo/RunResults.cs:930
+#: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] elanikkond on kasvanud väärtuseni {1}"
 
-#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:936
+#: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] elanikkond on vähenenud väärtusele {1}"
 
-#: ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] on sellelt paigalt kadunud"
 
-#: ../src/auto-evo/RunResults.cs:946
+#: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Osa [u]{0}[/u] elanikkonnast on sellesse plaastrisse rännanud asukohast {1}"
 
-#: ../src/auto-evo/RunResults.cs:951
+#: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohast {2} asukohta {1}"
 
-#: ../src/auto-evo/RunResults.cs:957
+#: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Osa elanikkonnast [u]{0}[/u] on rännanud asukohta {1}"
 
-#: ../src/auto-evo/RunResults.cs:976
+#: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] eraldus niši täitmiseks uue liigina [u]{1}[/u]-st"
 
-#: ../src/auto-evo/RunResults.cs:982
+#: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] eraldus erineva valikusurve tõttu uuest liigist [u]{1}[/u]"
 
@@ -2144,126 +2144,224 @@ msgstr "{0} kontsentratsioon on vähenenud {1} võrra"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glükoosi kontsentratsioon on drastiliselt langenud!"
 
-#: ../src/general/MainMenu.cs:293
+#: ../src/general/MainMenu.cs:324
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisse logitud kui: {0}"
 
-#: ../src/general/MainMenu.tscn:201
+#: ../src/general/MainMenu.tscn:235
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:238
 msgid "NEW_GAME"
 msgstr "Uus mäng"
 
-#: ../src/general/MainMenu.tscn:215 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:249 ../src/general/PauseMenu.tscn:197
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/general/MainMenu.tscn:218 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:252 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Laadi mäng"
 
-#: ../src/general/MainMenu.tscn:226 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:221
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Abi"
 
-#: ../src/general/MainMenu.tscn:230 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:264 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "Valikud"
 
-#: ../src/general/MainMenu.tscn:241
+#: ../src/general/MainMenu.tscn:275
 msgid "TOOLS"
 msgstr "Tööriistad"
 
-#: ../src/general/MainMenu.tscn:252
+#: ../src/general/MainMenu.tscn:286
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vaadake lähtekoodi"
 
-#: ../src/general/MainMenu.tscn:263
+#: ../src/general/MainMenu.tscn:297
 msgid "EXTRAS"
 msgstr "Lisad"
 
-#: ../src/general/MainMenu.tscn:274
+#: ../src/general/MainMenu.tscn:308
 msgid "CREDITS"
 msgstr "Krediidid"
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:237
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/MainMenu.tscn:286
+#: ../src/general/MainMenu.tscn:320
 msgid "QUIT"
 msgstr "Lõpeta"
 
-#: ../src/general/MainMenu.tscn:306
+#: ../src/general/MainMenu.tscn:340
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuildi redaktor"
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:352
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "käitamise olek:"
 
-#: ../src/general/MainMenu.tscn:385 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:400
+#: ../src/general/MainMenu.tscn:434
 msgid "MODS"
 msgstr "Modifikatsioonid"
 
-#: ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:449
 msgid "ART_GALLERY"
 msgstr "Kunstigalerii"
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:461
 msgid "LICENSES"
 msgstr "Litsentsid"
 
-#: ../src/general/MainMenu.tscn:442
+#: ../src/general/MainMenu.tscn:476 ../src/general/MainMenu.tscn:591
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:519
+#: ../src/general/MainMenu.tscn:522
+#, fuzzy
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "vabasurm"
+
+#: ../src/general/MainMenu.tscn:525
+msgid "OFFICIAL_WEBSITE"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:535
+#, fuzzy
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Lisage uus võtme sidumine"
+
+#: ../src/general/MainMenu.tscn:538
+msgid "COMMUNITY_FORUM"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:548
+#, fuzzy
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "Lisage uus võtme sidumine"
+
+#: ../src/general/MainMenu.tscn:551
+#, fuzzy
+msgid "DEVELOPMENT_FORUM"
+msgstr "Arendust toetab Revolutionary Games Studio ry"
+
+#: ../src/general/MainMenu.tscn:561
+#, fuzzy
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Abi"
+
+#: ../src/general/MainMenu.tscn:564
+#, fuzzy
+msgid "DEVELOPMENT_WIKI"
+msgstr "Arendajad"
+
+#: ../src/general/MainMenu.tscn:574
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "vabasurm"
+
+#: ../src/general/MainMenu.tscn:577
+#, fuzzy
+msgid "COMMUNITY_WIKI"
+msgstr "meie Viki"
+
+#: ../src/general/MainMenu.tscn:614
+#, fuzzy
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Autor Revolutionary Games Studio"
+
+#: ../src/general/MainMenu.tscn:625
+#, fuzzy
+msgid "STEAM_TOOLTIP"
+msgstr "Peata mäng"
+
+#: ../src/general/MainMenu.tscn:636
+#, fuzzy
+msgid "ITCH_TOOLTIP"
+msgstr "vabasurm"
+
+#: ../src/general/MainMenu.tscn:647
+#, fuzzy
+msgid "PATREON_TOOLTIP"
+msgstr "Peata mäng"
+
+#: ../src/general/MainMenu.tscn:658
+#, fuzzy
+msgid "GITHUB_TOOLTIP"
+msgstr "vabasurm"
+
+#: ../src/general/MainMenu.tscn:669
+#, fuzzy
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Peata mäng"
+
+#: ../src/general/MainMenu.tscn:680
+#, fuzzy
+msgid "REDDIT_TOOLTIP"
+msgstr "Jätkake mängu"
+
+#: ../src/general/MainMenu.tscn:691
+#, fuzzy
+msgid "DISCORD_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#: ../src/general/MainMenu.tscn:702
+#, fuzzy
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Peata mäng"
+
+#: ../src/general/MainMenu.tscn:713
+#, fuzzy
+msgid "TWITTER_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 režiimi hoiatus"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:782
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kasutate GLES2-ga Thrive'i. See on tõsiselt testimata ja põhjustab tõenäoliselt probleeme. Proovige värskendada oma videodraivereid ja/või sundida Thrive'i käitamiseks kasutama AMD või Nvidia graafikat."
 
-#: ../src/general/MainMenu.tscn:524
+#: ../src/general/MainMenu.tscn:785
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "töövõimetu"
 
-#: ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:812
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:562
+#: ../src/general/MainMenu.tscn:823
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "Okei"
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:827
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Eemaldage kohalikud andmed"
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:829
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2272,11 +2370,11 @@ msgstr ""
 "Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
 "ja tõenäoliselt ründab tagasi."
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:833
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modifikaadi laadimise vead"
 
-#: ../src/general/MainMenu.tscn:573
+#: ../src/general/MainMenu.tscn:834
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ühe või mitme modifikatsiooni laadimisel ilmnesid vead. Logid võivad sisaldada lisateavet."
 
@@ -3113,15 +3211,15 @@ msgstr "Välju"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/general/StageBase.cs:404
+#: ../src/general/StageBase.cs:412
 msgid "PLAYER_REPRODUCED"
 msgstr "mängija reprodutseeritud"
 
-#: ../src/general/StageBase.cs:460
+#: ../src/general/StageBase.cs:468
 msgid "PLAYER_DIED"
 msgstr "mängija suri"
 
-#: ../src/general/StageBase.cs:523
+#: ../src/general/StageBase.cs:531
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "Lapist välja surnud"
@@ -5817,9 +5915,8 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ilmnes tundmatu Steami viga"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:74
-#, fuzzy
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr "Annetused"
+msgstr ""
 
 #: ../src/thriveopedia/Thriveopedia.tscn:103
 #, fuzzy
@@ -5839,7 +5936,7 @@ msgstr "Kodu"
 #: ../src/thriveopedia/Thriveopedia.tscn:149
 #, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Rakuprotsessid"
+msgstr "Eemaldage kohalikud andmed"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
@@ -5895,23 +5992,21 @@ msgid "LATE_MULTICELLULAR"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
-#, fuzzy
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr "Praegused arendajad"
-
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:41
-#, fuzzy
-msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr "Autor Revolutionary Games Studio"
-
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
+msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
 #, fuzzy
+msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
+msgstr "Autor Revolutionary Games Studio"
+
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr "Koduleht"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
@@ -5926,14 +6021,12 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
-#, fuzzy
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr "Koduleht"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
-#, fuzzy
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
-msgstr "Vabaehitus"
+msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
 #, fuzzy
@@ -5945,9 +6038,8 @@ msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
-#, fuzzy
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr "Plaastri kaart"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
@@ -6152,24 +6244,6 @@ msgstr "Mikroobide redaktori laadimine"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Alustage õitsemist"
-
-#, fuzzy
-#~ msgid "CURRENT_WORLD"
-#~ msgstr "Praegused arendajad"
-
-#, fuzzy
-#~ msgid "LEAVE_GAME"
-#~ msgstr "Salvesta mäng"
-
-#, fuzzy
-#~ msgid "LEAVE_GAME_CONFIRMATION"
-#~ msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
-
-#, fuzzy
-#~ msgid "DISABLED_PAGE_WARNING"
-#~ msgstr ""
-#~ "Teil on salvestamata muudatusi, mis tühistatakse.\n"
-#~ "Kas soovite jätkata?"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

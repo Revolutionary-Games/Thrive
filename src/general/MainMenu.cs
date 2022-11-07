@@ -53,6 +53,18 @@ public class MainMenu : NodeWithInput
     public NodePath PermanentlyDismissModsNotEnabledWarningPath = null!;
 
     [Export]
+    public NodePath SocialMediaContainerPath = null!;
+
+    [Export]
+    public NodePath WebsiteButtonsContainerPath = null!;
+
+    [Export]
+    public NodePath ItchButtonPath = null!;
+
+    [Export]
+    public NodePath PatreonButtonPath = null!;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
@@ -84,6 +96,12 @@ public class MainMenu : NodeWithInput
     private Button autoEvoExploringButton = null!;
 
     private Label storeLoggedInDisplay = null!;
+
+    private Control socialMediaContainer = null!;
+    private VBoxContainer websiteButtonsContainer = null!;
+
+    private TextureButton itchButton = null!;
+    private TextureButton patreonButton = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
@@ -165,6 +183,11 @@ public class MainMenu : NodeWithInput
         if (MenuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
 
+        // Hide the website button container whenever anything else is pressed, and only display the social media icons
+        // if a menu is visible
+        websiteButtonsContainer.Visible = false;
+        socialMediaContainer.Visible = index != uint.MaxValue;
+
         // Allow disabling all the menus for going to the options menu
         if (index > MenuArray.Count - 1 && index != uint.MaxValue)
         {
@@ -227,6 +250,11 @@ public class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
+        socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
+        websiteButtonsContainer = GetNode<VBoxContainer>(WebsiteButtonsContainerPath);
+
+        itchButton = GetNode<TextureButton>(ItchButtonPath);
+        patreonButton = GetNode<TextureButton>(PatreonButtonPath);
 
         MenuArray?.Clear();
 
@@ -261,7 +289,7 @@ public class MainMenu : NodeWithInput
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
 
-        UpdateStoreNameLabel();
+        UpdateStoreVersionStatus();
     }
 
     /// <summary>
@@ -281,17 +309,24 @@ public class MainMenu : NodeWithInput
         Background.Texture = backgroundImage;
     }
 
-    private void UpdateStoreNameLabel()
+    private void UpdateStoreVersionStatus()
     {
         if (!SteamHandler.Instance.IsLoaded)
         {
             storeLoggedInDisplay.Visible = false;
+
+            itchButton.Visible = true;
+            patreonButton.Visible = true;
         }
         else
         {
             storeLoggedInDisplay.Visible = true;
             storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
                 .FormatSafe(SteamHandler.Instance.DisplayName);
+
+            // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
+            itchButton.Visible = false;
+            patreonButton.Visible = false;
         }
     }
 
@@ -583,6 +618,17 @@ public class MainMenu : NodeWithInput
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
+    }
+
+    private void OnWebsitesButtonPressed()
+    {
+        websiteButtonsContainer.Visible = !websiteButtonsContainer.Visible;
+    }
+
+    private void OnSocialMediaButtonPressed(string url)
+    {
+        GD.Print($"Opening social link: {url}");
+        OS.ShellOpen(url);
     }
 
     private void OnNoEnabledModsNoticeClosed()
