@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-29 13:44+0300\n"
+"POT-Creation-Date: 2022-11-07 09:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1114,8 +1114,8 @@ msgid "SPECIES_DETAILS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:454
-#: ../src/general/MainMenu.tscn:497 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:398 ../src/general/MainMenu.tscn:488
+#: ../src/general/MainMenu.tscn:758 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1997,7 +1997,7 @@ msgid "CLOSE"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:594 ../src/general/StageHUDBase.cs:698
+#: ../src/general/NewGameSettings.cs:597 ../src/general/StageHUDBase.cs:698
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:203
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:161
@@ -2016,133 +2016,230 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Gliukozės koncentracija smarkiai sumažėjo!"
 
-#: ../src/general/MainMenu.cs:291
+#: ../src/general/MainMenu.cs:322
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prisijungęs kaip: {0}"
 
-#: ../src/general/MainMenu.tscn:200
+#: ../src/general/MainMenu.tscn:234
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pradėti naują žaidimą"
 
-#: ../src/general/MainMenu.tscn:203
+#: ../src/general/MainMenu.tscn:237
 msgid "NEW_GAME"
 msgstr "Naujas žaidimas"
 
-#: ../src/general/MainMenu.tscn:214 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:248 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Įkelti anksčiau išsaugotus žaidimus"
 
-#: ../src/general/MainMenu.tscn:217 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:251 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Įkelti žaidimą"
 
-#: ../src/general/MainMenu.tscn:225 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:259 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Pakeisti nustatymus"
 
-#: ../src/general/MainMenu.tscn:229 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:263 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
 msgstr "Nustatymai"
 
-#: ../src/general/MainMenu.tscn:240
+#: ../src/general/MainMenu.tscn:274
 msgid "TOOLS"
 msgstr "Įrankiai"
 
-#: ../src/general/MainMenu.tscn:251
+#: ../src/general/MainMenu.tscn:285
 msgid "VIEW_SOURCE_CODE"
 msgstr "Peržiūrėti išeities kodą"
 
-#: ../src/general/MainMenu.tscn:262
+#: ../src/general/MainMenu.tscn:296
 msgid "EXTRAS"
 msgstr "Priedai"
 
-#: ../src/general/MainMenu.tscn:273
+#: ../src/general/MainMenu.tscn:307
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:281 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Baigti žaidimą"
 
-#: ../src/general/MainMenu.tscn:285
+#: ../src/general/MainMenu.tscn:319
 msgid "QUIT"
 msgstr "Išeiti"
 
-#: ../src/general/MainMenu.tscn:305
+#: ../src/general/MainMenu.tscn:339
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:317
+#: ../src/general/MainMenu.tscn:351
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:418
 msgid "MODS"
 msgstr "Modifikacijos"
 
-#: ../src/general/MainMenu.tscn:398
+#: ../src/general/MainMenu.tscn:432
 msgid "ART_GALLERY"
 msgstr "Meno galerija"
 
-#: ../src/general/MainMenu.tscn:410
+#: ../src/general/MainMenu.tscn:444
 msgid "LICENSES"
 msgstr "Licencijos"
 
-#: ../src/general/MainMenu.tscn:424
+#: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:589
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:514
-msgid "GLES2_MODE_WARNING"
+#: ../src/general/MainMenu.tscn:520
+#, fuzzy
+msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+msgstr "Įkelti anksčiau išsaugotus žaidimus"
+
+#: ../src/general/MainMenu.tscn:523
+msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:516
-msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
+#: ../src/general/MainMenu.tscn:533
+#, fuzzy
+msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+msgstr "Baigti žaidimą"
 
-#: ../src/general/MainMenu.tscn:519
-msgid "NO_MODS_ENABLED"
-msgstr ""
-
-#: ../src/general/MainMenu.tscn:531
-msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+#: ../src/general/MainMenu.tscn:536
+msgid "COMMUNITY_FORUM"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:546
+#, fuzzy
+msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+msgstr "Pakeisti nustatymus"
+
+#: ../src/general/MainMenu.tscn:549
+#, fuzzy
+msgid "DEVELOPMENT_FORUM"
+msgstr "Kūrėjai"
+
+#: ../src/general/MainMenu.tscn:559
+#, fuzzy
+msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+msgstr "Pakeisti nustatymus"
+
+#: ../src/general/MainMenu.tscn:562
+#, fuzzy
+msgid "DEVELOPMENT_WIKI"
+msgstr "Kūrėjai"
+
+#: ../src/general/MainMenu.tscn:572
+#, fuzzy
+msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#: ../src/general/MainMenu.tscn:575
+msgid "COMMUNITY_WIKI"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:612
+#, fuzzy
+msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+msgstr "Įkelti anksčiau išsaugotus žaidimus"
+
+#: ../src/general/MainMenu.tscn:623
+#, fuzzy
+msgid "STEAM_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#: ../src/general/MainMenu.tscn:634
+#, fuzzy
+msgid "ITCH_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#: ../src/general/MainMenu.tscn:645
+#, fuzzy
+msgid "PATREON_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#: ../src/general/MainMenu.tscn:656
+#, fuzzy
+msgid "GITHUB_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#: ../src/general/MainMenu.tscn:667
+#, fuzzy
+msgid "YOUTUBE_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#: ../src/general/MainMenu.tscn:678
+#, fuzzy
+msgid "REDDIT_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#: ../src/general/MainMenu.tscn:689
+#, fuzzy
+msgid "DISCORD_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
+#: ../src/general/MainMenu.tscn:700
+#, fuzzy
+msgid "FACEBOOK_TOOLTIP"
+msgstr "Baigti žaidimą"
+
+#: ../src/general/MainMenu.tscn:711
+#, fuzzy
+msgid "TWITTER_TOOLTIP"
+msgstr "Pakeisti nustatymus"
+
+#: ../src/general/MainMenu.tscn:775
+msgid "GLES2_MODE_WARNING"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:777
+msgid "GLES2_MODE_WARNING_TEXT"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:780
+msgid "NO_MODS_ENABLED"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:792
+msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:807
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:557
+#: ../src/general/MainMenu.tscn:818
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "Gerai"
 
-#: ../src/general/MainMenu.tscn:561
+#: ../src/general/MainMenu.tscn:822
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:563
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "(pradžios vieta)"
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:828
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:568
+#: ../src/general/MainMenu.tscn:829
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Įvyko klaida įkeliant vieną ar daugiau modifikatorių. Žurnalai gali turėti papildomos informacijos."
 
-#: ../src/general/NewGameSettings.cs:299
+#: ../src/general/NewGameSettings.cs:302
 #: ../src/general/NewGameSettings.tscn:1132
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pradėti žaidimą tokiais nustatymais"
 
-#: ../src/general/NewGameSettings.cs:306
+#: ../src/general/NewGameSettings.cs:309
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Kai kurie nustatymai yra neteisingi"
 
@@ -3971,15 +4068,15 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:906
+#: ../src/microbe_stage/Microbe.Contact.cs:908
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1159
+#: ../src/microbe_stage/Microbe.Contact.cs:1161
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1112
+#: ../src/microbe_stage/Microbe.Interior.cs:1114
 msgid "REPRODUCED"
 msgstr ""
 
