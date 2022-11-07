@@ -17,6 +17,6 @@
 
     protected override ImageTask SetupImageTask()
     {
-        return new ImageTask(new CellHexesPhotoBuilder { Species = microbeSpecies });
+        return new ImageTask(new CellHexesPhotoBuilder { Species = microbeSpecies }, KeepPlainImageInMemory);
     }
 }

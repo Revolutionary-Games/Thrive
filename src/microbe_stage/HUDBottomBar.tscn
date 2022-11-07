@@ -107,13 +107,12 @@ texture_hover = ExtResource( 14 )
 expand = true
 
 [node name="StatisticsButton" type="TextureButton" parent="."]
-modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
 margin_left = 200.0
 margin_right = 235.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
+hint_tooltip = "STATISTICS"
 focus_mode = 0
-disabled = true
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 24 )
 texture_hover = ExtResource( 18 )
@@ -168,5 +167,6 @@ custom_styles/separator = SubResource( 27 )
 [connection signal="pressed" from="EnvironmentButton" to="." method="EnvironmentButtonPressed"]
 [connection signal="pressed" from="CompoundsButton" to="." method="CompoundsButtonPressed"]
 [connection signal="pressed" from="ChemicalButton" to="." method="ProcessButtonPressed"]
+[connection signal="pressed" from="StatisticsButton" to="." method="StatisticsButtonPressed"]
 [connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]
 [connection signal="pressed" from="SuicideButton" to="." method="SuicideButtonPressed"]

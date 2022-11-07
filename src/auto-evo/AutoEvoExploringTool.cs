@@ -326,7 +326,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         InitFirstGeneration();
 
-        evolutionaryTree.Init(gameProperties.GameWorld.PlayerSpecies);
+        evolutionaryTree.Init((Species)gameProperties.GameWorld.PlayerSpecies.Clone());
 
         InitConfigControls();
 
@@ -429,7 +429,7 @@ public class AutoEvoExploringTool : NodeWithInput
         runResultsList.Add(new LocalizedStringBuilder());
         speciesHistoryList.Add(new Dictionary<uint, Species>
         {
-            { gameProperties.GameWorld.PlayerSpecies.ID, gameProperties.GameWorld.PlayerSpecies },
+            { gameProperties.GameWorld.PlayerSpecies.ID, (Species)gameProperties.GameWorld.PlayerSpecies.Clone() },
         });
         patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
             pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
@@ -624,20 +624,22 @@ public class AutoEvoExploringTool : NodeWithInput
     private void ApplyAutoEvoRun()
     {
         var results = autoEvoRun!.Results!;
+        var gameWorld = gameProperties.GameWorld;
 
         // Make summary, this must be called before results are applied so that summary is correct
-        runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
+        runResultsList.Add(results.MakeSummary(gameWorld.Map, true));
 
         // Apply the results
-        gameProperties.GameWorld.OnTimePassed(1);
+        gameWorld.OnTimePassed(1);
         autoEvoRun.ApplyAllResultsAndEffects(true);
 
         // Add run results, this must be called after results are applied to generate unique species ID
-        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(results, ++currentGeneration,
-            gameProperties.GameWorld.TotalPassedTime);
+        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
+            results.GetFullSpeciesRecords(),
+            ++currentGeneration, gameWorld.TotalPassedTime, gameWorld.PlayerSpecies.ID);
         speciesHistoryList.Add(
-            gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
-        patchHistoryList.Add(gameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+            gameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+        patchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(pair => pair.Key,
             pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 
         // Add checkbox to history container
@@ -752,22 +754,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesDetail(Species species)
     {
-        speciesDetailsLabel.ExtendedBbcode = TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            species.FormattedNameBbCode, species.ID, species.Generation, species.Population, species.Colour.ToHtml(),
-            string.Join("\n  ", species.Behaviour.Select(b =>
-                BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
-
-        switch (species)
-        {
-            case MicrobeSpecies microbeSpecies:
-            {
-                speciesDetailsLabel.ExtendedBbcode += "\n" +
-                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                        microbeSpecies.MembraneType.Name, microbeSpecies.MembraneRigidity,
-                        microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed, microbeSpecies.BaseHexSize);
-                break;
-            }
-        }
+        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
     }
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)

@@ -911,6 +911,7 @@ public static class Constants
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
+    public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
@@ -967,6 +968,10 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
+
+    public const string FOSSIL_EXTENSION = "thrivefossil";
+    public const string FOSSIL_EXTENSION_WITH_DOT = "." + FOSSIL_EXTENSION;
 
     /// <summary>
     ///   How long the main menu needs to be ready before game startup is considered successful

@@ -209,7 +209,7 @@ public class PhotoStudio : Viewport
                 texture.CreateFromImage(renderedImage,
                     (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Mipmaps);
 
-                currentTask!.OnFinished(texture);
+                currentTask!.OnFinished(texture, renderedImage);
                 currentTask = null;
 
                 currentTaskStep = Step.NoTask;
