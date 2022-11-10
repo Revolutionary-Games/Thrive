@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-07 15:56+0200\n"
-"PO-Revision-Date: 2022-10-30 17:00+0000\n"
+"PO-Revision-Date: 2022-11-10 00:00+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -2163,102 +2163,85 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Sugerir um recurso"
 
 #: ../src/general/MainMenu.tscn:522
-#, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr "Suicídio"
+msgstr "Visite o site oficial do Revolutionary Games"
 
 #: ../src/general/MainMenu.tscn:525
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Site oficial"
 
 #: ../src/general/MainMenu.tscn:535
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Abre o editor e modifica a sua espécie"
+msgstr "Junte-se à comunidade em nosso fórum comunitário (em inglês)"
 
 #: ../src/general/MainMenu.tscn:538
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Fórum comunitário"
 
 #: ../src/general/MainMenu.tscn:548
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Abre o editor e modifica a sua espécie"
+msgstr "Veja as novidades da criação do jogo em nosso fórum de desenvolvimento (em inglês)"
 
 #: ../src/general/MainMenu.tscn:551
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "Desenvolvimento Financiado por Revolutionary Games Studio ry"
+msgstr "Fórum de desenvolvimento"
 
 #: ../src/general/MainMenu.tscn:561
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "Ajuda"
+msgstr "Visite a nossa wiki de desenvolvimento (em inglês)"
 
 #: ../src/general/MainMenu.tscn:564
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "Desenvolvedores"
+msgstr "Wiki de desenvolvimento"
 
 #: ../src/general/MainMenu.tscn:574
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Sai do jogo"
+msgstr "Visite a nossa wiki comunitária"
 
 #: ../src/general/MainMenu.tscn:577
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "nossa Wiki"
+msgstr "Wiki comunitária"
 
 #: ../src/general/MainMenu.tscn:614
-#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr "Por Revolutionary Games Studio"
+msgstr "Visite os sites oficiais do Revolutionary Games"
 
 #: ../src/general/MainMenu.tscn:625
-#, fuzzy
 msgid "STEAM_TOOLTIP"
-msgstr "Pausar o jogo"
+msgstr "Visite a nossa página na Steam"
 
 #: ../src/general/MainMenu.tscn:636
-#, fuzzy
 msgid "ITCH_TOOLTIP"
-msgstr "Sai do jogo"
+msgstr "Visite a nossa página na Itch.io"
 
 #: ../src/general/MainMenu.tscn:647
-#, fuzzy
 msgid "PATREON_TOOLTIP"
-msgstr "Pausar o jogo"
+msgstr "Visite a nossa página no Patreon"
 
 #: ../src/general/MainMenu.tscn:658
-#, fuzzy
 msgid "GITHUB_TOOLTIP"
-msgstr "Sai do jogo"
+msgstr "Visite o nosso repositório no GitHub"
 
 #: ../src/general/MainMenu.tscn:669
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Pausar o jogo"
+msgstr "Visite o nosso canal no YouTube"
 
 #: ../src/general/MainMenu.tscn:680
-#, fuzzy
 msgid "REDDIT_TOOLTIP"
-msgstr "Retomar o jogo"
+msgstr "Visite o nosso subreddit"
 
 #: ../src/general/MainMenu.tscn:691
-#, fuzzy
 msgid "DISCORD_TOOLTIP"
-msgstr "Tempo Passado: {0:#,#} anos"
+msgstr "Junte-se ao servidor Discord da comunidade"
 
 #: ../src/general/MainMenu.tscn:702
-#, fuzzy
 msgid "FACEBOOK_TOOLTIP"
-msgstr "Pausar o jogo"
+msgstr "Visite a nossa página no Facebook"
 
 #: ../src/general/MainMenu.tscn:713
-#, fuzzy
 msgid "TWITTER_TOOLTIP"
-msgstr "Tempo Passado: {0:#,#} anos"
+msgstr "Visite a nossa conta no Twitter"
 
 #: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
@@ -2269,13 +2252,15 @@ msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Você está usando Thrive usando GLES2, que não é testado e pode causar problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD ou Nvidia."
 
 #: ../src/general/MainMenu.tscn:785
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Desativado"
+msgstr "Nenhum mod ativado"
 
 #: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
+"Foram detectados mods instalados, mas nenhum está ativado.\n"
+"\n"
+"Os mods precisam ser ativados após a instalação. Visite o gerenciador de mods pelo menu de extras."
 
 #: ../src/general/MainMenu.tscn:812
 msgid "DO_NOT_SHOW_AGAIN"
@@ -3047,7 +3032,7 @@ msgstr "Salvar Jogo"
 
 #: ../src/general/PauseMenu.tscn:205
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr ""
+msgstr "Abrir a Thriveopedia"
 
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
@@ -3146,12 +3131,10 @@ msgid "KILO_ABBREVIATION"
 msgstr "{0} K"
 
 #: ../src/general/TranslationHelper.cs:84
-#, fuzzy
 msgid "FEATURE_ENABLED"
-msgstr "Cheats ativados"
+msgstr "Ativado"
 
 #: ../src/general/TranslationHelper.cs:85
-#, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Desativado"
 
@@ -4311,12 +4294,12 @@ msgstr "Sinal a Emitir"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Fossilizar essa espécie (já fossilizada)"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "Fossilizar essa espécie"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
@@ -5748,105 +5731,110 @@ msgstr "Avançar"
 #: ../src/thriveopedia/Thriveopedia.tscn:131
 #, fuzzy
 msgid "HOME"
-msgstr "Home"
+msgstr "Página inicial"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Excluir Dados Locais"
+msgstr "Título da página"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
-#, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
+msgstr ""
+"Já existe uma espécie fossilizada com esse nome.\n"
+"Tem certeza que quer sobrescrevê-la?"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "população:"
+msgstr "Fossilização"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Micróbios agressivos perseguirão sua presa por mais tempo\n"
-"e são mais propensos a lutar com predadores quando atacados.\n"
-"Entretanto, os micróbios mais pacíficos não vão perseguir outros por tanto tempo\n"
-"e são menos inclinados a usar toxinas contra predadores."
+msgstr "Fossilize essa espécie para salvá-la no museu. Você pode acessar o museu pela Thriveopedia ou pode carregar a espécie fossilizada por meio do editor livre."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
-#, fuzzy
 msgid "FOSSILISE"
-msgstr "Séssil"
+msgstr "Fossilizar"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Sobrescrever"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
-#, fuzzy
 msgid "MICROBE"
-msgstr "Estágio Microbial"
+msgstr "Micróbio"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
-#, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Multicelular"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-#, fuzzy
 msgid "LATE_MULTICELLULAR"
-msgstr "Multicelular"
+msgstr "Multicelular avançado"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Mundo atual"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Árvore evolucionária"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
-msgstr "Árvore evolucionária"
+msgstr ""
+"A árvore é desativada no modo livre ou em jogos salvos em versões mais antigas que 0.6.0.\n"
+"\n"
+"Se nenhuma das situações acima se aplicam a você, um erro deve ter ocorrido. Relate o erro à equipe de desenvolvimento e forneça os logs do jogo."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Página inicial"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Bem-vindo à Thriveopedia"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
+"A Thriveopedia é o centro de informações de Thrive. Aqui você encontrará respostas para qualquer pergunta que possa ter sobre o jogo, seu mundo atual e o projeto.\n"
+"\n"
+"Atualmente, a Thriveopedia está relativamente vazia, mas você pode explorar algumas páginas usando a barra lateral e os botões de navegação. Veja que as páginas relacionadas a um jogo específico só serão mostradas quando a Thriveopedia é aberta por meio do menu de pausa.\n"
+"\n"
+"É possível encontrar mais informações sobre o jogo por meio das ligações abaixo:\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Site oficial[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Wiki de desenvolvimento[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Wiki comunitária[/url][/color]"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
-msgstr ""
+msgstr "O Disturbance"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Museu"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"Tem certeza que você quer começar um novo jogo com a espécie selecionada?\n"
+"Você perderá qualquer progresso não salvo."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "OPEN_IN_FREEBUILD"
-msgstr "Modo livre"
+msgstr "Abrir no editor livre"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"Bem-vindo ao museu! Aqui você pode admirar as espécies que você fossilizou durante os seus jogos. Você pode até jogar como uma delas ao carregá-la no editor livre.\n"
+"\n"
+"Para fossilizar uma espécie dentro de um jogo, selecione um micróbio após pausar o jogo."
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr ""
+msgstr "Mapa de regiões"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
