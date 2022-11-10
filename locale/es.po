@@ -1263,31 +1263,31 @@ msgstr "se extinguió del planeta"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "¡[u]{0}[/u] se ha extinguido!"
+msgstr "¡[b][u]{0}[/u][/b] se ha extinguido!"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "La población de [u]{0}[/u] ha incrementado a {1}"
+msgstr "La población de [b][u]{0}[/u][/b] ha incrementado a {1}"
 
 #: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "La población de [u]{0}[/u] ha decrecido a {1}"
+msgstr "La población de [b][u]{0}[/u][/b] ha decrecido a {1}"
 
 #: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[u]{0}[/u] ha desaparecido de este bioma"
+msgstr "[b][u]{0}[/u][/b] ha desaparecido de este bioma"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "Parte de la población de [u]{0}[/u] ha inmigrado a este bioma desde {1}"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado a este bioma desde {1}"
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Parte de la población de [u]{0}[/u] ha migrado desde{1} hasta {2}"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha migrado desde{1} hasta {2}"
 
 #: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Parte de la población de [u]{0}[/u] ha inmigrado desde {1}"
+msgstr "Parte de la población de [b][u]{0}[/u][/b] ha inmigrado desde {1}"
 
 #: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
@@ -1295,7 +1295,7 @@ msgstr "[b][u]{0}[/u][/b] se separó de [b][u]{1}[/u][/b] como una nueva especie
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u] surgió desde [u]{1}[/u] como una nueva especie debido a presiones evolutivas diferentes"
+msgstr "[b][u]{0}[/u][/b] surgió desde [b][u]{1}[/u][/b] como una nueva especie debido a presiones evolutivas diferentes"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:83
 msgid "NOT_FOUND_CHUNK"
@@ -6374,3 +6374,14 @@ msgstr "Continuar prosperando"
 
 #~ msgid "PLASTID"
 #~ msgstr "Plástido"
+
+#, fuzzy
+#~ msgid "MULTICELLULAR"
+#~ msgstr "Colocar orgánulos"
+
+#~ msgid "POPULATION"
+#~ msgstr "población:"
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Abrir carpeta de registros"
