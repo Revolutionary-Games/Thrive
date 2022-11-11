@@ -414,7 +414,7 @@ public class EvolutionaryTree : Control
     {
         // TreeSize may be less than RectSize, so the later Min and Max is not merged into Clamp.
         // Note that dragOffset's x and y should both be negative.
-        var start = RectSize / sizeFactor - TreeSize;
+        var start = tree.RectSize / sizeFactor - TreeSize;
 
         float x = dragOffset.x;
         x = Math.Max(x, start.x);
