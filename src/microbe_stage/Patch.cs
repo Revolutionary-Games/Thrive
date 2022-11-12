@@ -411,7 +411,7 @@ public class Patch
     public void UpdateBiomeConditions(DayNightCycle lightCycle)
     {
         var sunlight = Biome.Compounds[Sunlight];
-        sunlight.Ambient = BiomeTemplate.Conditions.Compounds[Sunlight].Ambient * lightCycle.DayLightPercentage;
+        sunlight.Ambient = Biome.Compounds[Sunlight].Maximum * lightCycle.DayLightPercentage;
         Biome.Compounds[Sunlight] = sunlight;
     }
 
