@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CompoundFoodSource : RandomFoodSource
+    public class CompoundFoodSource : RandomEncounterFoodSource
     {
         private readonly Patch patch;
         private readonly Compound compound;

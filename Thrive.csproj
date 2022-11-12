@@ -38,7 +38,7 @@
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
-    <Compile Include="src\auto-evo\simulation\food_source\RandomFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\RandomEncounterFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
@@ -149,6 +149,8 @@
     <Compile Include="src\general\BehaviouralValueType.cs" />
     <Compile Include="src\general\BehaviourDictionary.cs" />
     <Compile Include="src\general\ColorUtils.cs" />
+    <Compile Include="src\general\CompoundAmountType.cs" />
+    <Compile Include="src\general\DaylightProperties.cs" />
     <Compile Include="src\general\DayNightCycle.cs" />
     <Compile Include="src\general\DayNightConfiguration.cs" />
     <Compile Include="src\general\EditorComponentBase.cs" />

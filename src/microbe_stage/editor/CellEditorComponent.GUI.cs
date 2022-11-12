@@ -62,7 +62,7 @@ public partial class CellEditorComponent
         UpdateAutoEvoPredictionTranslations();
         UpdateAutoEvoPredictionDetailsText();
 
-        CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
+        CalculateOrganelleEffectivenessInPatch();
         UpdatePatchDependentBalanceData();
 
         UpdateMicrobePartSelections();
@@ -428,6 +428,9 @@ public partial class CellEditorComponent
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
         UpdateStorage(CalculateStorage());
+
+        // Set the editor light level and associated GUI elements to daytime
+        SetLightLevelOption("Day");
     }
 
     private class ATPComparer : IComparer<string>

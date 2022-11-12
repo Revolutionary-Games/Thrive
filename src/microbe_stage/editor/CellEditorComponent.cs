@@ -236,6 +236,9 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    [JsonProperty]
+    private LightLevelOption selectedLightLevelOption = LightLevelOption.Day;
+
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
@@ -266,6 +269,9 @@ public partial class CellEditorComponent :
 
     [JsonProperty]
     private float rigidity;
+
+    [JsonProperty]
+    private BiomeConditions editorPatchConditions = null!;
 
     /// <summary>
     ///   To not have to recreate this object for each place / remove this is a cached clone of editedSpecies to which
@@ -301,6 +307,13 @@ public partial class CellEditorComponent :
         Structure,
         Membrane,
         Behaviour,
+    }
+
+    public enum LightLevelOption
+    {
+        Day,
+        Night,
+        Average,
     }
 
     /// <summary>
@@ -498,6 +511,8 @@ public partial class CellEditorComponent :
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
+        SetPatchConditions(Editor.CurrentPatch);
+
         if (fresh)
         {
             editedMicrobeOrganelles = newLayout;
@@ -526,7 +541,7 @@ public partial class CellEditorComponent :
         }
 
         // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
+        CalculateOrganelleEffectivenessInPatch();
 
         UpdateCancelButtonVisibility();
 
@@ -558,7 +573,8 @@ public partial class CellEditorComponent :
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
 
-        topPanel.Visible = Editor.CurrentPatch.Biome.Compounds[SimulationParameters.Instance.GetCompound("sunlight")].Maximum > 0;
+        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
+            Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
     }
 
     public override void ResolveNodeReferences()
@@ -809,29 +825,40 @@ public partial class CellEditorComponent :
         return true;
     }
 
+    public void SetPatchConditions(Patch patch)
+    {
+        editorPatchConditions = (BiomeConditions)patch.Biome.Clone();
+
+        // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
+        // daytime light levels
+        if (Editor.Ready)
+            SetLightLevelOption("Day");
+    }
+
     public void UpdatePatchDependentBalanceData()
     {
         // Skip if not opened in the multicellular editor
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
-        topPanel.Visible = Editor.CurrentPatch.Biome.Compounds[SimulationParameters.Instance.GetCompound("sunlight")].Maximum > 0;
+        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
+            Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
 
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
+            editedMicrobeOrganelles.Organelles, Membrane, editorPatchConditions);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, editorPatchConditions);
     }
 
     /// <summary>
     ///   Calculates the effectiveness of organelles in the current or given patch
     /// </summary>
-    public void CalculateOrganelleEffectivenessInPatch(Patch patch)
+    public void CalculateOrganelleEffectivenessInPatch()
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome, Editor.LightLevel);
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, editorPatchConditions);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -991,8 +1018,27 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float lightLevel)
     {
-        camera!.LightLevel = lightLevel;
-        CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
+        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
+
+        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
+        {
+            // Normalise by maximum light level in the patch
+            camera!.LightLevel =
+                lightLevel * 100.0f / Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            camera!.LightLevel = 1.0f;
+        }
+
+        editorPatchConditions.Sunlight!.Current = Editor.LightLevel;
+
+        // Need to set average to be the same as ambient so Auto-Evo updates correctly
+        editorPatchConditions.Sunlight.Average = Editor.LightLevel;
+
+        CalculateOrganelleEffectivenessInPatch();
         UpdatePatchDependentBalanceData();
     }
 
@@ -1383,19 +1429,20 @@ public partial class CellEditorComponent :
     ///   Calculates the energy balance for a cell with the given organelles
     /// </summary>
     private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
-        MembraneType membrane, Patch? patch = null)
+        MembraneType membrane, BiomeConditions? biome = null)
     {
-        patch ??= Editor.CurrentPatch;
+        biome ??= editorPatchConditions;
 
-        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, Editor.LightLevel, membrane, true,
+        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
             Editor.CurrentGame.GameWorld.WorldSettings));
     }
 
-    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
+    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions? biome = null)
     {
-        patch ??= Editor.CurrentPatch;
+        biome ??= editorPatchConditions;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles, patch.Biome, Editor.LightLevel);
+        var result = ProcessSystem.ComputeCompoundBalance(organelles, biome);
 
         UpdateCompoundBalances(result);
     }
@@ -1991,31 +2038,45 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void OnDayButtonPressed()
+    private void SetLightLevelOption(string option)
     {
-        dayButton.Pressed = true;
-        nightButton.Pressed = false;
-        averageLightButton.Pressed = false;
+        var selection = (LightLevelOption)Enum.Parse(typeof(LightLevelOption), option);
 
-        Editor.LightLevel = Editor.CurrentPatch.Biome.Compounds[SimulationParameters.Instance.GetCompound("sunlight")].Maximum;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        selectedLightLevelOption = selection;
+        ApplyLightLevelOption();
     }
 
-    private void OnNightButtonPressed()
+    private void ApplyLightLevelOption()
     {
-        dayButton.Pressed = false;
-        nightButton.Pressed = true;
-        averageLightButton.Pressed = false;
+        // Show selected
+        switch (selectedLightLevelOption)
+        {
+            case LightLevelOption.Day:
+            {
+                dayButton.Pressed = true;
+                Editor.LightLevel = Editor.CurrentPatch.Biome.Sunlight!.Maximum;
+                break;
+            }
 
-        Editor.LightLevel = 0.0f;
-    }
+            case LightLevelOption.Night:
+            {
+                nightButton.Pressed = true;
+                Editor.LightLevel = Editor.CurrentPatch.Biome.Sunlight!.Minimum;
+                break;
+            }
 
-    private void OnAverageLightButtonPressed()
-    {
-        dayButton.Pressed = false;
-        nightButton.Pressed = false;
-        averageLightButton.Pressed = true;
+            case LightLevelOption.Average:
+            {
+                averageLightButton.Pressed = true;
+                Editor.LightLevel = Editor.CurrentPatch.Biome.Sunlight!.Average;
+                break;
+            }
 
-        Editor.LightLevel = 0.5f;
+            default:
+                throw new Exception("Invalid light level option");
+        }
     }
 
     private void SetSelectionMenuTab(string tab)

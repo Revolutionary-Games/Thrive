@@ -48,6 +48,12 @@ public class MicrobeStage : StageBase<Microbe>
     private bool wonOnce;
 
     [JsonProperty]
+    private float maxLightLevel;
+
+    [JsonProperty]
+    private float templateMaxLightLevel;
+
+    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
@@ -144,7 +150,7 @@ public class MicrobeStage : StageBase<Microbe>
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame, lightCycle);
+            worldLight, CurrentGame, lightCycle!);
     }
 
     public override void OnFinishTransitioning()
@@ -645,6 +651,8 @@ public class MicrobeStage : StageBase<Microbe>
         }
 
         UpdateBackground();
+        maxLightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
     }
 
     private void UpdateBackground()
@@ -654,18 +662,22 @@ public class MicrobeStage : StageBase<Microbe>
     }
 
     /// <summary>
-    ///     Updates the background lighting and does various post-effects
+    ///   Updates the background lighting and does various post-effects
     /// </summary>
     private void UpdateDayLightEffects()
     {
-        BiomeType biome = GameWorld.Map.CurrentPatch!.BiomeType;
-
-        if (biome is BiomeType.Tidepool or BiomeType.Estuary or BiomeType.IceShelf or BiomeType.Epipelagic
-            or BiomeType.Coastal)
+        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
-            // this needs to be refactored for efficiency but, it works for now
-            Camera.LightLevel = (GameWorld.Map.CurrentPatch!.GetCompoundAmount(
-                "sunlight") / 100) * lightCycle.DayLightPercentage;
+            // This might need to be refactored for efficiency but, it works for now
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle!.DayLightPercentage;
+
+            // Normalise by maximum light level in the patch
+            Camera.LightLevel = lightLevel / maxLightLevel;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            Camera.LightLevel = 1.0f;
         }
     }
 

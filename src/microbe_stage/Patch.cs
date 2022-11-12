@@ -43,6 +43,8 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
+
+        Biome.CreateSunlight(Biome.Compounds[Sunlight].Ambient);
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -58,6 +60,8 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
+
+        Biome.CreateSunlight(Biome.Compounds[Sunlight].Ambient);
     }
 
     [JsonProperty]
@@ -314,14 +318,14 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
-    public float GetCompoundAmount(string compoundName, bool maximum = false)
+    public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Ambient)
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 
         switch (compoundName)
         {
             case "sunlight":
-                return (maximum ? Biome.Compounds[compound].Maximum : Biome.Compounds[compound].Ambient) * 100;
+                return GetSunlightAmount(amountType);
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
@@ -341,6 +345,7 @@ public class Patch
         switch (compoundName)
         {
             case "sunlight":
+                return GetSunlightAmount(CompoundAmountType.Average);
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
@@ -408,11 +413,14 @@ public class Patch
         // TODO: can we do something about the game log here?
     }
 
-    public void UpdateBiomeConditions(DayNightCycle lightCycle)
+    public void UpdateAverageSunlight(DayNightCycle lightCycle)
     {
-        var sunlight = Biome.Compounds[Sunlight];
-        sunlight.Ambient = Biome.Compounds[Sunlight].Maximum * lightCycle.DayLightPercentage;
-        Biome.Compounds[Sunlight] = sunlight;
+        Biome.Sunlight!.Average = Biome.Sunlight.Maximum * lightCycle.AverageSunlight;
+    }
+
+    public void UpdateAmbientSunlight(DayNightCycle lightCycle)
+    {
+        Biome.Sunlight!.Current = Biome.Sunlight.Maximum * lightCycle.DayLightPercentage;
     }
 
     /// <summary>
@@ -433,6 +441,21 @@ public class Patch
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
+    }
+
+    private float GetSunlightAmount(CompoundAmountType option)
+    {
+        switch (option)
+        {
+            case CompoundAmountType.Maximum:
+                return Biome.Sunlight!.Maximum * 100;
+            case CompoundAmountType.Average:
+                return Biome.Sunlight!.Average * 100;
+            case CompoundAmountType.Template:
+                return BiomeTemplate.Conditions.Compounds[Sunlight].Ambient * 100;
+            default:
+                return Biome.Sunlight!.Current * 100;
+        }
     }
 }
 

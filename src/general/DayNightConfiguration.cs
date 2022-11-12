@@ -1,18 +1,21 @@
 ﻿using Newtonsoft.Json;
 
 /// <summary>
-///   Definition for the day night cycle
+///   Definition for the day night cycle.
 /// </summary>
-/// <remarks> Values for the DayNightCycle, as given in day_night_cycle.json </remarks>
+/// <remarks>Values for the DayNightCycle, as given in day_night_cycle.json</remarks>
 public class DayNightConfiguration : IRegistryType
 {
     public string InternalName { get; set; } = null!;
 
+    /// <summary>
+    ///   Number of in-game hours per in-game day.
+    /// </summary>
     [JsonProperty]
     public float HoursPerDay { get; private set; }
 
     /// <summary>
-    ///   This is the percentage of the day that has sunlight
+    ///   Percentage of the in-game day which has sunlight.
     /// </summary>
     [JsonProperty]
     public float DaytimePercentage { get; private set; }

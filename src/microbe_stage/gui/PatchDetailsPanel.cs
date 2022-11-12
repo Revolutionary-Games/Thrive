@@ -262,18 +262,19 @@ public class PatchDetailsPanel : PanelContainer
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
         var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
 
-        var lightLevelLable = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON");
-
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
         temperatureLabel.Text =
             unitFormat.FormatSafe(SelectedPatch.Biome.Compounds[temperature].Ambient, temperature.Unit);
         pressure.Text = unitFormat.FormatSafe(20, "bar");
 
-        light.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName))), "lx");
-        var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, true);
-        lightMax.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx") + " " + lightLevelLable;
-        lightMax.Visible = maxLightLevel >= 1;
+        var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, CompoundAmountType.Maximum);
+        light.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(
+            GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName))), "lx");
+        lightMax.Text = string.Format(
+            TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON"),
+            unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
+        lightMax.Visible = maxLightLevel > 0;
 
         oxygen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
         nitrogen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName));
@@ -319,9 +320,10 @@ public class PatchDetailsPanel : PanelContainer
         }
     }
 
-    private float GetCompoundAmount(Patch patch, string compoundName, bool maximum = false)
+    private float GetCompoundAmount(Patch patch, string compoundName,
+        CompoundAmountType amountType = CompoundAmountType.Ambient)
     {
-        return patch.GetCompoundAmount(compoundName, maximum);
+        return patch.GetCompoundAmount(compoundName, amountType);
     }
 
     /// <remarks>
@@ -350,13 +352,13 @@ public class PatchDetailsPanel : PanelContainer
             temperatureSituation.Texture = null;
         }
 
-        nextCompound = SelectedPatch.Biome.Compounds[sunlightCompound].Ambient;
+        nextCompound = SelectedPatch.Biome.Sunlight!.Current;
 
-        if (nextCompound > CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
+        if (nextCompound > CurrentPatch.Biome.Sunlight!.Current)
         {
             lightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
+        else if (nextCompound < CurrentPatch.Biome.Sunlight.Current)
         {
             lightSituation.Texture = decreaseIcon;
         }

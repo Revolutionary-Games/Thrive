@@ -2,10 +2,16 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Controller for variation in sunlight during an in-game day for the current game.
+/// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
 public class DayNightCycle
 {
+    /// <summary>
+    ///   Configuration details for the day/night cycle.
+    /// </summary>
     [JsonProperty]
     public DayNightConfiguration LightCycleConfig;
 
@@ -13,48 +19,45 @@ public class DayNightCycle
     public bool IsEnabled;
 
     /// <summary>
-    ///   This is how long it takes to complete a full day in realtime seconds
+    ///   Number of real-time seconds per in-game day.
     /// </summary>
     [JsonProperty]
     public int RealTimePerDay;
 
+    /// <summary>
+    ///   Current position in the day/night cycle, expressed as a percentage of the day elapsed so far.
+    /// </summary>
     [JsonProperty]
     public float PercentOfDayElapsed;
 
     /// <summary>
-    ///   The multiplier used for calculating DayLightPercentage.
+    ///   Multiplier used for calculating DayLightPercentage.
     /// </summary>
     /// <remarks>
-    ///   This exists as it only needs to be calculated once and
-    ///   the calculation for it is confusing.
+    ///   This exists as it only needs to be calculated once and the calculation for it is confusing.
     /// </remarks>
     [JsonIgnore]
     private float daytimeMultiplier;
 
-    public DayNightCycle(bool isEnabled, int dayLength)
+    /// <summary>
+    ///   Controller for variation in sunlight during an in-game day for the current game.
+    /// </summary>
+    /// <param name="isEnabled">Whether the day/night cycle is enabled for this game</param>
+    /// <param name="realTimePerDay">Player configured length in real-time seconds of an in-game day</param>
+    public DayNightCycle(bool isEnabled, int realTimePerDay)
     {
         IsEnabled = isEnabled;
-        RealTimePerDay = dayLength;
+        RealTimePerDay = realTimePerDay;
 
         LightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
 
         // Start the game at noon
         PercentOfDayElapsed = 0.5f;
 
-        float halfPercentage = LightCycleConfig.DaytimePercentage / 2;
-
         // This converts the percentage in DaytimePercentage to the power of two needed for DayLightPercentage
-        daytimeMultiplier = Mathf.Pow(2, 1 / halfPercentage);
+        daytimeMultiplier = Mathf.Pow(2, 2 / LightCycleConfig.DaytimePercentage);
 
-        if (IsEnabled)
-        {
-            AverageSunlight = CumulativeSunlightValue(0.5f + halfPercentage)
-                - CumulativeSunlightValue(0.5f - halfPercentage);
-        }
-        else
-        {
-            AverageSunlight = 1;
-        }
+        AverageSunlight = IsEnabled ? CalculateAverageSunlight() : 1.0f;
     }
 
     [JsonIgnore]
@@ -65,12 +68,8 @@ public class DayNightCycle
     ///   light = max(-(PercentOfDayElapsed - 0.5)^2 * daytimeMultiplier + 1, 0)
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
     /// </summary>
-    /// <remarks>
-    ///   If this equation is changed EvaluateAverageSunlight needs to be updated.
-    /// </remarks>
     [JsonIgnore]
-    public float DayLightPercentage =>
-        Math.Max(-Mathf.Pow(PercentOfDayElapsed - 0.5f, 2) * daytimeMultiplier + 1, 0);
+    public float DayLightPercentage => IsEnabled ? CalculatePointwiseSunlight(PercentOfDayElapsed) : 1.0f;
 
     public void Process(float delta)
     {
@@ -81,14 +80,42 @@ public class DayNightCycle
     }
 
     /// <summary>
-    ///   Evaluates the DayLightPercentage Antiderivative to calculate AverageSunlight.
+    ///   Calculates sunlight value (on a scale from 0 to 1) at a given point during the day.
     /// </summary>
     /// <remarks>
-    ///   This is based on DayLightPercentage equation so if somone wants to change it
-    ///   they can do the calculus to fix this function.
+    ///   If this equation is changed, <see cref="IntegratePointwiseSunlight"/> must also be updated.
     /// </remarks>
-    private float CumulativeSunlightValue(float x)
+    /// <param name="x">Percentage of the day completed</param>
+    private float CalculatePointwiseSunlight(float x)
     {
-        return -daytimeMultiplier * (Mathf.Pow(x, 3) / 3 - Mathf.Pow(x, 2) / 2 + 0.25f * x) + x;
+        return Math.Max(1 - daytimeMultiplier * Mathf.Pow(x - 0.5f, 2), 0);
+    }
+
+    /// <summary>
+    ///   Calculates average sunlight over the course of a day. A relatively expensive operation so should be used
+    ///   sparingly.
+    /// </summary>
+    private float CalculateAverageSunlight()
+    {
+        // Average is the integral across the interval divided by length of the interval. Since the interval is
+        // [0, 1] and hence has length 1, we just return the integral. The current function is only non-zero in the
+        // interval [0.5 - 1 / squareRoot(daytimeMultiplier), 0.5 + 1 / squareRoot(daytimeMultiplier)], so we can
+        // reduce to only integrating over this interval.
+        var daytimeMultiplierRootReciprocal = 1.0f / Mathf.Sqrt(daytimeMultiplier);
+        var start = 0.5f - daytimeMultiplierRootReciprocal;
+        var end = 0.5f + daytimeMultiplierRootReciprocal;
+        return IntegratePointwiseSunlight(end) - IntegratePointwiseSunlight(start);
+    }
+
+    /// <summary>
+    ///   Calculates the antiderivative of the sunlight function at a given point.
+    /// </summary>
+    /// <remarks>
+    ///   Based on <see cref="CalculatePointwiseSunlight"/>, so must be updated if that is updated.
+    /// </remarks>
+    /// <param name="x">Percentage of the day completed</param>
+    private float IntegratePointwiseSunlight(float x)
+    {
+        return x - daytimeMultiplier * (Mathf.Pow(x, 3) / 3 - Mathf.Pow(x, 2) / 2 + 0.25f * x);
     }
 }

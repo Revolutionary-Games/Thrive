@@ -27,6 +27,9 @@ public class PatchManager : IChildPropertiesLoadCallback
     [JsonProperty]
     private Patch? previousPatch;
 
+    [JsonProperty]
+    private float compoundCloudBrightness;
+
     /// <summary>
     ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
     /// </summary>
@@ -97,6 +100,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
+        UpdateAllPatchAverageLightLevels();
         UpdateAllPatchLightLevels(currentPatch);
 
         // Update environment for process system
@@ -115,6 +119,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
+        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
 
         return patchIsChanged;
     }
@@ -128,15 +133,28 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    public void UpdateAllPatchLightLevels(Patch currentPatch)
+    public void UpdateAllPatchAverageLightLevels()
     {
-        var brightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
-        var multiplier = lightCycle.DayLightPercentage;
-        compoundCloudSystem.SetBrightnessModifier(brightness - (brightness - 1.0f) * multiplier);
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
 
         foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
         {
-            patch.UpdateBiomeConditions(lightCycle);
+            patch.UpdateAverageSunlight(lightCycle);
+        }
+    }
+
+    public void UpdateAllPatchLightLevels(Patch currentPatch)
+    {
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
+
+        var multiplier = lightCycle.DayLightPercentage;
+        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
+
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateAmbientSunlight(lightCycle);
         }
     }
 

@@ -5,7 +5,7 @@
     using System.Linq;
     using Godot;
 
-    public class ChunkFoodSource : RandomFoodSource
+    public class ChunkFoodSource : RandomEncounterFoodSource
     {
         private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
         private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");

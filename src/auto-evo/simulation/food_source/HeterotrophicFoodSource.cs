@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class HeterotrophicFoodSource : RandomFoodSource
+    public class HeterotrophicFoodSource : RandomEncounterFoodSource
     {
         private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
