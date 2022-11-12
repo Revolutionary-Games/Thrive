@@ -2314,38 +2314,44 @@ msgstr "Enter the game with these settings"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Some settings are invalid"
 
-#: ../src/general/NewGameSettings.tscn:123
+#: ../src/general/NewGameSettings.cs:696 ../src/general/StageHUDBase.cs:718
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+msgid "VALUE_WITH_UNIT"
+msgstr "{0} {1}"
+
+#: ../src/general/NewGameSettings.tscn:124
 #: ../src/general/NewGameSettings.tscn:364
 msgid "DIFFICULTY_PRESET"
 msgstr "Difficulty preset"
 
-#: ../src/general/NewGameSettings.tscn:151
+#: ../src/general/NewGameSettings.tscn:152
 #: ../src/general/NewGameSettings.tscn:897
 msgid "LAWK_ONLY"
 msgstr "LAWK only"
 
-#: ../src/general/NewGameSettings.tscn:158
+#: ../src/general/NewGameSettings.tscn:159
 #: ../src/general/NewGameSettings.tscn:904
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restricts parts and abilities to only Life As We Know it)"
 
-#: ../src/general/NewGameSettings.tscn:174
+#: ../src/general/NewGameSettings.tscn:175
 #: ../src/general/NewGameSettings.tscn:920
 msgid "LIFE_ORIGIN"
 msgstr "Life origin"
 
-#: ../src/general/NewGameSettings.tscn:181
+#: ../src/general/NewGameSettings.tscn:182
 #: ../src/general/NewGameSettings.tscn:927
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(starting location)"
 
-#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:196
 #: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Some options may be disabled if LAWK only is enabled"
 
-#: ../src/general/NewGameSettings.tscn:197
 #: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
 #: ../src/general/NewGameSettings.tscn:944
 msgid "LIFE_ORIGIN_VENTS"
@@ -2363,17 +2369,17 @@ msgstr "Warm little pond"
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
 
-#: ../src/general/NewGameSettings.tscn:213
-#: ../src/general/NewGameSettings.tscn:959
+#: ../src/general/NewGameSettings.tscn:214
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planet random seed"
 
-#: ../src/general/NewGameSettings.tscn:232
-#: ../src/general/NewGameSettings.tscn:978
+#: ../src/general/NewGameSettings.tscn:233
+#: ../src/general/NewGameSettings.tscn:1062
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "The value used for generating the world, which must be a positive integer"
 
-#: ../src/general/NewGameSettings.tscn:271
+#: ../src/general/NewGameSettings.tscn:272
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr "Note: you can change performance related options at any time in the [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] to improve game performance"
 
@@ -2482,35 +2488,45 @@ msgstr "Procedural"
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Classic"
 
-#: ../src/general/NewGameSettings.tscn:1026
+#: ../src/general/NewGameSettings.tscn:959
+msgid "DAY_NIGHT_CYCLE_ENABLED"
+msgstr "Enable day/night cycle"
+
+#: ../src/general/NewGameSettings.tscn:966
+msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
+msgstr "(this changes the light values of a patch over time)"
+
+#: ../src/general/NewGameSettings.tscn:984
+msgid "DAY_LENGTH"
+msgstr "Day Length"
+
+#: ../src/general/NewGameSettings.tscn:1024
+msgid "180 s"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:1032
+msgid "DAY_LENGTH_EXPLANATION"
+msgstr "(this changes how long a full in-game day takes)"
+
+#: ../src/general/NewGameSettings.tscn:1113
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Planet generation coming soon!"
 
-#: ../src/general/NewGameSettings.tscn:1058
+#: ../src/general/NewGameSettings.tscn:1145
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Include later stage prototypes"
 
-#: ../src/general/NewGameSettings.tscn:1065
+#: ../src/general/NewGameSettings.tscn:1152
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(some features may be unavailable once you reach the next stages)"
 
-#: ../src/general/NewGameSettings.tscn:1077
+#: ../src/general/NewGameSettings.tscn:1164
 msgid "EASTER_EGGS"
 msgstr "Include Easter eggs"
 
-#: ../src/general/NewGameSettings.tscn:1084
+#: ../src/general/NewGameSettings.tscn:1171
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(randomly spawned secrets in the game)"
-
-#: ../src/general/NewGameSettings.tscn:1089
-msgid "EXPERMENTAL_LABEL"
-msgstr "Expermental Settings"
-
-#: ../src/general/NewGameSettings.tscn:1102
-msgid "EXPERIMENTAL_WARNING"
-msgstr ""
-"These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
-"Use at your own risk."
 
 #: ../src/general/NewGameSettings.tscn:1107
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2524,19 +2540,19 @@ msgstr "(This changes the light values of a patch over time)"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Open the advanced setup view"
 
-#: ../src/general/NewGameSettings.tscn:1150
+#: ../src/general/NewGameSettings.tscn:1201
 msgid "ADVANCED_VIEW"
 msgstr "Advanced"
 
-#: ../src/general/NewGameSettings.tscn:1161
+#: ../src/general/NewGameSettings.tscn:1212
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Return to the basic setup view"
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1213
 msgid "BASIC_VIEW"
 msgstr "Basic"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1223
 msgid "CONFIRM_NORMAL"
 msgstr "Confirm"
 
@@ -4874,7 +4890,11 @@ msgstr "Biome: {0}"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:290
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:265
+msgid "LIGHT_LEVEL_LABEL_AT_NOON"
+msgstr "at noon"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:390
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -6082,6 +6102,14 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "Continue Thriving"
+
+#~ msgid "EXPERIMENTAL_LABEL"
+#~ msgstr "Experimental Settings"
+
+#~ msgid "EXPERIMENTAL_WARNING"
+#~ msgstr ""
+#~ "These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
+#~ "Use at your own risk."
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"

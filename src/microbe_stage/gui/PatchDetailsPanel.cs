@@ -262,6 +262,8 @@ public class PatchDetailsPanel : PanelContainer
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
         var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
 
+        var lightLevelLable = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON");
+
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
         temperatureLabel.Text =
@@ -270,7 +272,7 @@ public class PatchDetailsPanel : PanelContainer
 
         light.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName))), "lx");
         var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, true);
-        lightMax.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx") + " at noon";
+        lightMax.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx") + " " + lightLevelLable;
         lightMax.Visible = maxLightLevel >= 1;
 
         oxygen.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
