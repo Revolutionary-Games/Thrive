@@ -446,7 +446,11 @@ public partial class CellBodyPlanEditorComponent :
 
     public override void OnLightLevelChanged(float lightLevel)
     {
-        camera!.LightLevel = lightLevel;
+        // Normalise by maximum light level in the patch
+        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        camera!.LightLevel = maxLightLevel > 0.0f ?
+            lightLevel * 100.0f / Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) :
+            1.0f;
     }
 
     protected CellType CellTypeFromName(string name)

@@ -3,7 +3,7 @@
     /// <summary>
     ///   A class for random-encounter based food sources.
     /// </summary>
-    public abstract class RandomFoodSource : FoodSource
+    public abstract class RandomEncounterFoodSource : FoodSource
     {
         protected override float StorageScore(MicrobeSpecies species, Compound compound, Patch patch,
             SimulationCache simulationCache)

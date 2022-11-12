@@ -962,6 +962,7 @@ text = "DAY_NIGHT_CYCLE_ENABLED"
 margin_top = 29.0
 margin_right = 668.0
 margin_bottom = 45.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 
@@ -1021,7 +1022,7 @@ margin_left = 151.0
 margin_right = 207.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 20, 0 )
-text = "180 s"
+text = "180"
 editable = false
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer4"]

@@ -26,7 +26,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected Control hudRoot = null!;
 
     [JsonProperty]
-    protected DayNightCycle lightCycle = null!;
+    protected DayNightCycle? lightCycle;
 
     [JsonProperty]
     protected Random random = new();
@@ -203,15 +203,20 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     {
         base._Ready();
 
-        if (!IsLoadedFromSave)
-            lightCycle = new DayNightCycle(GameWorld.WorldSettings.DayNightCycleEnabled, GameWorld.WorldSettings.DayLength);
+        // Need to check for null light cycle in case this is loaded from an old save
+        if (!IsLoadedFromSave || lightCycle == null)
+        {
+            lightCycle = new DayNightCycle(
+                GameWorld.WorldSettings.DayNightCycleEnabled,
+                GameWorld.WorldSettings.DayLength);
+        }
     }
 
     public override void _Process(float delta)
     {
         base._Process(delta);
 
-        lightCycle.Process(delta);
+        lightCycle!.Process(delta);
 
         if (gameOver)
         {

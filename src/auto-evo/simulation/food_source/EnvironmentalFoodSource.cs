@@ -15,7 +15,9 @@
 
             this.patch = patch;
             this.compound = compound;
-            totalEnvironmentalEnergySource = patch.Biome.Compounds[this.compound].Ambient * foodCapacityMultiplier;
+            totalEnvironmentalEnergySource = compound.InternalName == "sunlight" ?
+                patch.Biome.Sunlight!.Average * foodCapacityMultiplier :
+                patch.Biome.Compounds[this.compound].Ambient * foodCapacityMultiplier;
         }
 
         public override float FitnessScore(Species species, SimulationCache simulationCache)

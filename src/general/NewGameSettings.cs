@@ -693,7 +693,7 @@ public class NewGameSettings : ControlWithInput
     private void OnDayLengthChanged(double length)
     {
         length = Math.Round(length, 1);
-        dayLengthReadout.Text = TranslationServer.Translate("VALUE_WITH_UNIT").FormatSafe(length, "s");
+        dayLengthReadout.Text = length.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateLifeOriginOptions(bool lawk)

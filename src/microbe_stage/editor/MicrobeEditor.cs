@@ -86,7 +86,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
+        cellEditorTab.SetPatchConditions(patch);
+        cellEditorTab.CalculateOrganelleEffectivenessInPatch();
         cellEditorTab.UpdatePatchDependentBalanceData();
 
         reportTab.UpdatePatchDetails(patch);

@@ -27,7 +27,7 @@
             this.worldSettings = worldSettings;
         }
 
-        public bool DayNightCycleEnabled => !worldSettings.DayNightCycleEnabled;
+        public bool DayNightCycleEnabled => worldSettings.DayNightCycleEnabled;
 
         public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
         {
@@ -38,8 +38,7 @@
                 return cached;
             }
 
-            // COMPUTE ACTUAL AVERAGE LIGHT LEVEL HERE!!!
-            cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, 1.0f, species.MembraneType,
+            cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
                 species.PlayerSpecies, worldSettings);
 
             cachedEnergyBalances.Add(key, cached);
@@ -92,8 +91,7 @@
                 return cached;
             }
 
-            // CALCULATE ACTUAL AVERAGE LIGHT LEVEL HERE
-            cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions, 1.0f);
+            cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions);
 
             cachedProcessSpeeds.Add(key, cached);
             return cached;

@@ -1323,7 +1323,7 @@ msgstr "{0} consumption"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
 
-#: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
+#: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:40
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Uniformly spread environmental food source of {0}"
 
@@ -1452,15 +1452,15 @@ msgstr "{0} MP"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Loading Early Multicellular Editor"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
-msgid "AUTO_EVO_FAILED"
-msgstr "Auto-evo failed to run"
-
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:231
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+msgid "AUTO_EVO_FAILED"
+msgstr "Auto-evo failed to run"
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:232
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:256
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -2314,12 +2314,6 @@ msgstr "Enter the game with these settings"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Some settings are invalid"
 
-#: ../src/general/NewGameSettings.cs:696 ../src/general/StageHUDBase.cs:718
-#: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
-msgid "VALUE_WITH_UNIT"
-msgstr "{0} {1}"
-
 #: ../src/general/NewGameSettings.tscn:124
 #: ../src/general/NewGameSettings.tscn:364
 msgid "DIFFICULTY_PRESET"
@@ -2370,12 +2364,12 @@ msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
 
 #: ../src/general/NewGameSettings.tscn:214
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planet random seed"
 
 #: ../src/general/NewGameSettings.tscn:233
-#: ../src/general/NewGameSettings.tscn:1062
+#: ../src/general/NewGameSettings.tscn:1063
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "The value used for generating the world, which must be a positive integer"
 
@@ -2492,39 +2486,35 @@ msgstr "Classic"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Enable day/night cycle"
 
-#: ../src/general/NewGameSettings.tscn:966
+#: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(this changes the light values of a patch over time)"
+msgstr "(WARNING: photosynthesis becomes much less viable)"
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:985
 msgid "DAY_LENGTH"
 msgstr "Day Length"
 
-#: ../src/general/NewGameSettings.tscn:1024
-msgid "180 s"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:1033
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(this changes how long a full in-game day takes)"
+msgstr "(length in real-time seconds for an in-game day)"
 
-#: ../src/general/NewGameSettings.tscn:1113
+#: ../src/general/NewGameSettings.tscn:1114
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Planet generation coming soon!"
 
-#: ../src/general/NewGameSettings.tscn:1145
+#: ../src/general/NewGameSettings.tscn:1146
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Include later stage prototypes"
 
-#: ../src/general/NewGameSettings.tscn:1152
+#: ../src/general/NewGameSettings.tscn:1153
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(some features may be unavailable once you reach the next stages)"
 
-#: ../src/general/NewGameSettings.tscn:1164
+#: ../src/general/NewGameSettings.tscn:1165
 msgid "EASTER_EGGS"
 msgstr "Include Easter eggs"
 
-#: ../src/general/NewGameSettings.tscn:1171
+#: ../src/general/NewGameSettings.tscn:1172
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(randomly spawned secrets in the game)"
 
@@ -2540,19 +2530,19 @@ msgstr "(This changes the light values of a patch over time)"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Open the advanced setup view"
 
-#: ../src/general/NewGameSettings.tscn:1201
+#: ../src/general/NewGameSettings.tscn:1202
 msgid "ADVANCED_VIEW"
 msgstr "Advanced"
 
-#: ../src/general/NewGameSettings.tscn:1212
+#: ../src/general/NewGameSettings.tscn:1213
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Return to the basic setup view"
 
-#: ../src/general/NewGameSettings.tscn:1213
+#: ../src/general/NewGameSettings.tscn:1214
 msgid "BASIC_VIEW"
 msgstr "Basic"
 
-#: ../src/general/NewGameSettings.tscn:1223
+#: ../src/general/NewGameSettings.tscn:1224
 msgid "CONFIRM_NORMAL"
 msgstr "Confirm"
 
@@ -4533,6 +4523,18 @@ msgstr "Energy Sources:"
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:325
+msgid "DAY"
+msgstr "Day"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:346
+msgid "NIGHT"
+msgstr "Night"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:367
+msgid "AVERAGE"
+msgstr "Average"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
 msgstr "Membrane"
@@ -4890,9 +4892,9 @@ msgstr "Biome: {0}"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:265
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr "at noon"
+msgstr "{0} at noon"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:390
 msgid "SPECIES_WITH_POPULATION"
@@ -4909,6 +4911,10 @@ msgstr "CURRENT LOCATION"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:314
 msgid "PRESSURE"
 msgstr "Pressure"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
+msgid "LIGHT_MAX"
+msgstr "Light max"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:843
 msgid "SPECIES_PRESENT"

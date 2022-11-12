@@ -10,6 +10,8 @@ public class BiomeConditions : ICloneable, ISaveLoadable
     public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds = null!;
     public Dictionary<string, ChunkConfiguration> Chunks = null!;
 
+    public DaylightProperties? Sunlight;
+
     public void Check(string name)
     {
         if (Compounds == null)
@@ -47,8 +49,6 @@ public class BiomeConditions : ICloneable, ISaveLoadable
 
     public void Resolve(SimulationParameters parameters)
     {
-        _ = parameters;
-
         LoadChunkScenes();
     }
 
@@ -58,6 +58,8 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         {
             Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
+            Sunlight = new DaylightProperties(
+                Sunlight?.Maximum ?? 0.0f, Sunlight?.Current ?? 0.0f, Sunlight?.Average ?? 0.0f),
         };
 
         foreach (var entry in Compounds)
@@ -76,6 +78,11 @@ public class BiomeConditions : ICloneable, ISaveLoadable
     public void FinishLoading(ISaveContext? context)
     {
         LoadChunkScenes();
+    }
+
+    public void CreateSunlight(float ambient)
+    {
+        Sunlight = new DaylightProperties(ambient, ambient, ambient);
     }
 
     private void LoadChunkScenes()

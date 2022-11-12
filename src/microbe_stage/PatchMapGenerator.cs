@@ -403,9 +403,11 @@ public static class PatchMapGenerator
                 // Build seafloor light, using 0m -> 1, 200m -> 0.01, floor to 0.01
                 var sunlightProperty = seafloor.Biome.Compounds[sunlightCompound];
                 var sunlightAmount = (int)(Mathf.Pow(0.977237220956f, seafloor.Depth[1]) * 100) / 100.0f;
-                sunlightProperty.Maximum = sunlightAmount;
                 sunlightProperty.Ambient = sunlightAmount;
+
+                // Need to initialise both to account for loading from saves
                 seafloor.Biome.Compounds[sunlightCompound] = sunlightProperty;
+                seafloor.Biome.CreateSunlight(sunlightAmount);
 
                 // Build vents and cave position
                 if (vents != null || cave != null)

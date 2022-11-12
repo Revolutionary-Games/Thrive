@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -94,11 +94,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="ButtonGroup" id=13]
+[sub_resource type="ButtonGroup" id=38]
 
 [sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 429, 1 )
+
+[sub_resource type="ButtonGroup" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
@@ -319,8 +321,8 @@ custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 13 )
-text = "Day"
+group = SubResource( 38 )
+text = "DAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -340,8 +342,8 @@ custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 13 )
-text = "Night"
+group = SubResource( 38 )
+text = "NIGHT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -361,8 +363,8 @@ custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 13 )
-text = "Average"
+group = SubResource( 38 )
+text = "AVERAGE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -734,10 +736,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 276.0
-margin_top = 301.0
-margin_right = 592.0
-margin_bottom = 891.0
+margin_left = 284.0
+margin_top = 309.0
+margin_right = 600.0
+margin_bottom = 899.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1321,9 +1323,9 @@ text = "CLOSE"
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnDayButtonPressed"]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnNightButtonPressed"]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnAverageLightButtonPressed"]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="SetLightLevelOption" binds= [ "Day" ]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="SetLightLevelOption" binds= [ "Night" ]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="SetLightLevelOption" binds= [ "Average" ]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane" to="." method="SetSelectionMenuTab" binds= [ "Membrane" ]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]

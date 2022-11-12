@@ -138,7 +138,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonProperty]
+    [JsonIgnore]
     public float LightLevel
     {
         get => lightLevel;
