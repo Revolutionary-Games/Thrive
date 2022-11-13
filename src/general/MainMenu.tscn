@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -49,6 +49,11 @@
 [ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesActive.png" type="Texture" id=47]
 [ext_resource path="res://assets/textures/gui/social_media/revolutionaryGamesHover.png" type="Texture" id=48]
 [ext_resource path="res://src/thriveopedia/Thriveopedia.tscn" type="PackedScene" id=49]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=50]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=51]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=52]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=53]
+[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=54]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -110,9 +115,10 @@ SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
 PermanentlyDismissModsNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning/VBoxContainer/CheckBox")
 SocialMediaContainerPath = NodePath("MenuContainers/SocialMedia")
-WebsiteButtonsContainerPath = NodePath("MenuContainers/SocialMedia/WebsiteButtons")
-ItchButtonPath = NodePath("MenuContainers/SocialMedia/Icons/ItchButton")
-PatreonButtonPath = NodePath("MenuContainers/SocialMedia/Icons/PatreonButton")
+WebsiteButtonsContainerPath = NodePath("MenuContainers/WebsiteButtons")
+RevGamesButtonPath = NodePath("MenuContainers/SocialMedia/RevolutionaryGamesButton")
+ItchButtonPath = NodePath("MenuContainers/SocialMedia/ItchButton")
+PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
@@ -489,227 +495,211 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
-[node name="SocialMedia" type="VBoxContainer" parent="MenuContainers"]
+[node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 25.0
-margin_top = -450.0
-margin_right = 415.0
-margin_bottom = -25.0
-theme = ExtResource( 1 )
-alignment = 2
-
-[node name="WebsiteButtons" type="VBoxContainer" parent="MenuContainers/SocialMedia"]
-visible = false
-margin_top = 137.0
-margin_right = 390.0
-margin_bottom = 377.0
+margin_left = 7.0
+margin_top = -261.0
+margin_right = 175.0
+margin_bottom = -36.0
 rect_min_size = Vector2( 0, 80 )
+theme = ExtResource( 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/SocialMedia/WebsiteButtons"]
-margin_right = 390.0
-margin_bottom = 240.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainers/WebsiteButtons"]
+margin_left = 5.0
+margin_top = 10.0
+margin_right = 163.0
+margin_bottom = 210.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer"]
-margin_right = 250.0
-margin_bottom = 240.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
+margin_right = 158.0
+margin_bottom = 200.0
 custom_constants/separation = 10
 
-[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_right = 250.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
+[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_right = 158.0
+margin_bottom = 25.0
 hint_tooltip = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 50 )
 text = "OFFICIAL_WEBSITE"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="CommunityForumButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 50.0
-margin_right = 250.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
+[node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 35.0
+margin_right = 158.0
+margin_bottom = 60.0
 hint_tooltip = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 50 )
 text = "COMMUNITY_FORUM"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 100.0
-margin_right = 250.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
+[node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 158.0
+margin_bottom = 95.0
 hint_tooltip = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 50 )
 text = "DEVELOPMENT_FORUM"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 200.0
-margin_right = 250.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
+[node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 105.0
+margin_right = 158.0
+margin_bottom = 130.0
 hint_tooltip = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 50 )
 text = "DEVELOPMENT_WIKI"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="CommunityWikiButton" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 150.0
-margin_right = 250.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
+[node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 158.0
+margin_bottom = 165.0
 hint_tooltip = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 mouse_filter = 1
-size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 50 )
 text = "COMMUNITY_WIKI"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_left = 508.0
-margin_top = 150.0
-margin_right = 771.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 175.0
+margin_right = 158.0
+margin_bottom = 200.0
 mouse_filter = 1
-size_flags_horizontal = 4
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 50 )
 text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Control" type="Control" parent="MenuContainers/SocialMedia"]
-margin_top = 381.0
-margin_right = 390.0
-margin_bottom = 391.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="Icons" type="HBoxContainer" parent="MenuContainers/SocialMedia"]
-margin_top = 395.0
-margin_right = 390.0
-margin_bottom = 425.0
-rect_min_size = Vector2( 100, 30 )
+[node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -31.0
+margin_right = 395.0
+margin_bottom = -6.0
 theme = ExtResource( 1 )
 custom_constants/separation = 10
 
-[node name="RevolutionaryGamesButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_right = 30.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="RevolutionaryGamesButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 texture_normal = ExtResource( 46 )
 texture_pressed = ExtResource( 47 )
 texture_hover = ExtResource( 48 )
 expand = true
 
-[node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 40.0
-margin_right = 70.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 35.0
+margin_right = 60.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "STEAM_TOOLTIP"
 texture_normal = ExtResource( 25 )
 texture_pressed = ExtResource( 30 )
 texture_hover = ExtResource( 32 )
 expand = true
 
-[node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 80.0
-margin_right = 110.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 70.0
+margin_right = 95.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "ITCH_TOOLTIP"
 texture_normal = ExtResource( 36 )
 texture_pressed = ExtResource( 34 )
 texture_hover = ExtResource( 35 )
 expand = true
 
-[node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 120.0
-margin_right = 150.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 105.0
+margin_right = 130.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "PATREON_TOOLTIP"
 texture_normal = ExtResource( 43 )
 texture_pressed = ExtResource( 44 )
 texture_hover = ExtResource( 45 )
 expand = true
 
-[node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 160.0
-margin_right = 190.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 140.0
+margin_right = 165.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "GITHUB_TOOLTIP"
 texture_normal = ExtResource( 24 )
 texture_pressed = ExtResource( 37 )
 texture_hover = ExtResource( 38 )
 expand = true
 
-[node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 200.0
-margin_right = 230.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 175.0
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "YOUTUBE_TOOLTIP"
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 21 )
 texture_hover = ExtResource( 19 )
 expand = true
 
-[node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 240.0
-margin_right = 270.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 210.0
+margin_right = 235.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "REDDIT_TOOLTIP"
 texture_normal = ExtResource( 23 )
 texture_pressed = ExtResource( 28 )
 texture_hover = ExtResource( 31 )
 expand = true
 
-[node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 280.0
-margin_right = 310.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 245.0
+margin_right = 270.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "DISCORD_TOOLTIP"
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 39 )
 texture_hover = ExtResource( 40 )
 expand = true
 
-[node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 320.0
-margin_right = 350.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 280.0
+margin_right = 305.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "FACEBOOK_TOOLTIP"
 texture_normal = ExtResource( 22 )
 texture_pressed = ExtResource( 26 )
 texture_hover = ExtResource( 41 )
 expand = true
 
-[node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia/Icons"]
-margin_left = 360.0
-margin_right = 390.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+[node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
+margin_left = 315.0
+margin_right = 340.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "TWITTER_TOOLTIP"
 texture_normal = ExtResource( 29 )
 texture_pressed = ExtResource( 27 )
@@ -791,35 +781,40 @@ rect_min_size = Vector2( 550, 0 )
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
-margin_right = 500.0
+margin_right = 550.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = ExtResource( 52 )
 text = "MODS_INSTALLED_BUT_NOT_ENABLED"
 autowrap = true
 
 [node name="Spacer" type="Control" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
 margin_top = 104.0
-margin_right = 500.0
+margin_right = 550.0
 margin_bottom = 109.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
 
-[node name="CheckBox" type="CheckBox" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
+[node name="CheckBox" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer" instance=ExtResource( 54 )]
 margin_top = 113.0
-margin_right = 500.0
-margin_bottom = 137.0
+margin_right = 550.0
+margin_bottom = 130.0
+custom_fonts/font = ExtResource( 51 )
 pressed = true
 text = "DO_NOT_SHOW_AGAIN"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 134.0
+margin_right = 550.0
+margin_bottom = 166.0
 size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer"]
-margin_right = 10.0
-margin_bottom = 35.0
+margin_left = 256.0
+margin_right = 293.0
+margin_bottom = 32.0
 size_flags_horizontal = 6
+custom_fonts/font = ExtResource( 53 )
 text = "OK"
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource( 4 )]
@@ -850,22 +845,23 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygamesstudio.com/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://wiki.revolutionarygamesstudio.com/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://thrive.fandom.com/wiki/Thrive_Wiki" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/WebsiteButtons/HBoxContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://store.steampowered.com/app/1779200/Thrive/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygames.itch.io/thrive" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/PatreonButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.patreon.com/thrivegame" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/GitHubButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://github.com/Revolutionary-Games/Thrive" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/YouTubeButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.youtube.com/c/RevolutionaryGames" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/RedditButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.reddit.com/r/thrive/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://discordapp.com/invite/ECR9E8x" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.facebook.com/Thrive-182887991751358/" ]]
-[connection signal="pressed" from="MenuContainers/SocialMedia/Icons/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://twitter.com/Thrive_Game" ]]
+[connection signal="about_to_show" from="MenuContainers/WebsiteButtons" to="." method="OnWebsitesButtonShow"]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://wiki.revolutionarygamesstudio.com/" ]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://thrive.fandom.com/wiki/Thrive_Wiki" ]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
+[connection signal="pressed" from="MenuContainers/SocialMedia/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://store.steampowered.com/app/1779200/Thrive/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/ItchButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygames.itch.io/thrive" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/PatreonButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.patreon.com/thrivegame" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/GitHubButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://github.com/Revolutionary-Games/Thrive" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/YouTubeButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.youtube.com/c/RevolutionaryGames" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/RedditButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.reddit.com/r/thrive/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://discordapp.com/invite/ECR9E8x" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.facebook.com/Thrive-182887991751358/" ]]
+[connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://twitter.com/Thrive_Game" ]]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
