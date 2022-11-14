@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-10 17:12+0200\n"
-"PO-Revision-Date: 2022-11-13 08:28+0000\n"
+"PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -2176,7 +2176,6 @@ msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Отваряне на официалния сайт на „Revolutionary Games“"
 
 #: ../src/general/MainMenu.tscn:525
-#, fuzzy
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официален сайт"
 
@@ -5756,9 +5755,10 @@ msgid "PAGE_TITLE"
 msgstr "Заглавие на страницата"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
-#, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+msgstr ""
+"Вкаменени създания с това наименование вече съществуват.\n"
+"Сигурни ли сте, че искате да ги презапишете?"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
 msgid "FOSSILISATION"
@@ -5790,9 +5790,8 @@ msgid "EARLY_MULTICELLULAR"
 msgstr "Многоклетъчно"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-#, fuzzy
 msgid "LATE_MULTICELLULAR"
-msgstr "Многоклетъчни"
+msgstr "Късно многоклетъчно"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
