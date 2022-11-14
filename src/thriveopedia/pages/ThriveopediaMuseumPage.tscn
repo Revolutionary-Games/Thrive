@@ -12,7 +12,7 @@
 [node name="ThriveopediaMuseumPage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 DisplayBackground = false
-CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer")
+CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
 WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/WelcomeLabelContainer")
 SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer")
 SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
@@ -69,12 +69,11 @@ margin_bottom = 566.0
 size_flags_horizontal = 3
 scroll_horizontal_enabled = false
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
+[node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="2"]
 margin_right = 525.0
 margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 3
 
 [node name="SpeciesDetailPanel" type="PanelContainer" parent="HBoxContainer" index="1"]
 margin_left = 582.0
