@@ -50,14 +50,13 @@ public class SceneManager : Node
 
         internalRootNode.AddChild(newSceneRoot);
         GetTree().CurrentScene = newSceneRoot;
+        ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
 
         if (!keepOldRoot)
         {
             oldRoot?.QueueFree();
             return null;
         }
-
-        ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
 
         return oldRoot;
     }

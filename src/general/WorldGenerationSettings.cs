@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -32,14 +34,22 @@ public class WorldGenerationSettings
 
     public enum LifeOrigin
     {
+        [Description("LIFE_ORIGIN_VENTS")]
         Vent,
+
+        [Description("LIFE_ORIGIN_POND")]
         Pond,
+
+        [Description("LIFE_ORIGIN_PANSPERMIA")]
         Panspermia,
     }
 
     public enum PatchMapType
     {
+        [Description("PATCH_MAP_TYPE_PROCEDURAL")]
         Procedural,
+
+        [Description("PATCH_MAP_TYPE_CLASSIC")]
         Classic,
     }
 
@@ -123,5 +133,49 @@ public class WorldGenerationSettings
             $", Include Multicellular: {IncludeMulticellular}" +
             $", Easter eggs: {EasterEggs}" +
             "]";
+    }
+
+    /// <summary>
+    ///   Generates a formatted string containing translated difficulty details.
+    /// </summary>
+    public string GetTranslatedDifficultyString()
+    {
+        string translatedDifficulty = Difficulty is DifficultyPreset difficulty ?
+            difficulty.Name :
+            TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
+
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("DIFFICULTY_DETAILS_STRING"),
+            translatedDifficulty,
+            MPMultiplier,
+            AIMutationMultiplier,
+            CompoundDensity,
+            PlayerDeathPopulationPenalty,
+            TranslationServer.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(GlucoseDecay * 100, 1)),
+            OsmoregulationMultiplier,
+            TranslationHelper.TranslateFeatureFlag(FreeGlucoseCloud),
+            TranslationHelper.TranslateFeatureFlag(PassiveGainOfReproductionCompounds),
+            TranslationHelper.TranslateFeatureFlag(LimitReproductionCompoundUseSpeed));
+    }
+
+    /// <summary>
+    ///   Generates a formatted string containing translated planet details.
+    /// </summary>
+    public string GetTranslatedPlanetString()
+    {
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PLANET_DETAILS_STRING"),
+            TranslationServer.Translate(MapType.GetAttribute<DescriptionAttribute>().Description),
+            TranslationHelper.TranslateFeatureFlag(LAWK),
+            TranslationServer.Translate(Origin.GetAttribute<DescriptionAttribute>().Description),
+            Seed);
+    }
+
+    /// <summary>
+    ///   Generates a formatted string containing translated miscellaneous details.
+    /// </summary>
+    public string GetTranslatedMiscString()
+    {
+        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("WORLD_MISC_DETAILS_STRING"),
+            TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
+            TranslationHelper.TranslateFeatureFlag(EasterEggs));
     }
 }

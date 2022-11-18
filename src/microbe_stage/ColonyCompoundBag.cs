@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 [UseThriveSerializer]
 public class ColonyCompoundBag : ICompoundStorage
 {
+    private bool nanIssueReported;
+
     public ColonyCompoundBag(MicrobeColony colony)
     {
         Colony = colony;
@@ -25,27 +28,45 @@ public class ColonyCompoundBag : ICompoundStorage
     public void DistributeCompoundSurplus()
     {
         var bags = GetCompoundBags().ToList();
-        using var compounds = GetEnumerator();
 
-        while (compounds.MoveNext())
+        foreach (var currentPair in this)
         {
-            var compound = compounds.Current;
-            if (!compound.Key.CanBeDistributed)
+            var compound = currentPair.Key;
+
+            if (!compound.CanBeDistributed || !IsUsefulInAnyCompoundBag(compound, bags))
                 continue;
 
-            var ratio = compound.Value / GetCapacityForCompound(compound.Key);
+            var compoundAmount = currentPair.Value;
+            var compoundCapacity = GetCapacityForCompound(compound);
+
+            // This is just an error print, can be removed if no more NaN issues occur
+            // See also CompoundBag.FixNaNCompounds which fixes NaN values after they occur
+            if (compoundCapacity == 0)
+            {
+                if (!nanIssueReported)
+                {
+                    GD.PrintErr($"Compound {compound.Name} is set to useful but has a Capacity of zero, " +
+                        "https://github.com/Revolutionary-Games/Thrive/issues/3201");
+                    nanIssueReported = true;
+                }
+            }
+
+            var ratio = compoundAmount / compoundCapacity;
 
             foreach (var bag in bags)
             {
-                var amount = ratio * bag.GetCapacityForCompound(compound.Key);
-                var surplus = bag.GetCompoundAmount(compound.Key) - amount;
+                if (!bag.IsUseful(compound))
+                    continue;
+
+                var expectedAmount = ratio * bag.GetCapacityForCompound(compound);
+                var surplus = bag.GetCompoundAmount(compound) - expectedAmount;
                 if (surplus > 0)
                 {
-                    bag.TakeCompound(compound.Key, surplus);
+                    bag.TakeCompound(compound, surplus);
                 }
                 else
                 {
-                    bag.AddCompound(compound.Key, -surplus);
+                    bag.AddCompound(compound, -surplus);
                 }
             }
         }
@@ -116,8 +137,18 @@ public class ColonyCompoundBag : ICompoundStorage
             bag.ClampNegativeCompoundAmounts();
     }
 
+    private static bool IsUsefulInAnyCompoundBag(Compound compound, IEnumerable<CompoundBag> compoundBags)
+    {
+        return compoundBags.Any(p => p.IsUseful(compound));
+    }
+
     private IEnumerable<CompoundBag> GetCompoundBags()
     {
         return Colony.ColonyMembers.Select(p => p.Compounds);
+    }
+
+    private bool IsUsefulInAnyCompoundBag(Compound compound)
+    {
+        return IsUsefulInAnyCompoundBag(compound, GetCompoundBags());
     }
 }

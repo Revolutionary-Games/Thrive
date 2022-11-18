@@ -21,9 +21,17 @@ public abstract class PhotographablePreview : Control
     [Export]
     public NodePath TextureRectPath = null!;
 
+    /// <summary>
+    ///   If true then the plain <see cref="Image"/> version of the preview texture is also kept in memory
+    /// </summary>
+    [Export]
+    public bool KeepPlainImageInMemory;
+
     private TextureRect textureRect = null!;
     private ImageTask? task;
     private Texture loadingTexture = null!;
+
+    private Image? finishedImage;
 
     public override void _Ready()
     {
@@ -44,8 +52,28 @@ public abstract class PhotographablePreview : Control
         if (task?.Finished == true)
         {
             textureRect.Texture = task.FinalImage;
+
+            if (KeepPlainImageInMemory)
+            {
+                finishedImage = task.PlainImage;
+            }
+            else
+            {
+                finishedImage = null;
+            }
+
             task = null;
         }
+    }
+
+    /// <summary>
+    ///   Returns the finished plain image when ready and <see cref="KeepPlainImageInMemory"/> was true when the image
+    ///   generation started
+    /// </summary>
+    /// <returns>The image or null</returns>
+    public Image? GetFinishedImageIfReady()
+    {
+        return finishedImage;
     }
 
     protected void UpdatePreview()

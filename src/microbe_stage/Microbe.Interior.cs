@@ -538,7 +538,7 @@ public partial class Microbe
 
         foreach (var entry in totalCompounds)
         {
-            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered))
+            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered) && entry.Value != 0)
                 totalFraction += gathered / entry.Value;
         }
 
@@ -1506,10 +1506,12 @@ public partial class Microbe
                 SpawnEjectedCompound(compound, takenAdjusted - added, Vector3.Back);
             }
 
-            if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
+            var initialTotalEngulfableCompounds = engulfedObject.InitialTotalEngulfableCompounds;
+
+            if (initialTotalEngulfableCompounds.HasValue && initialTotalEngulfableCompounds.Value != 0)
             {
                 engulfable.DigestedAmount = 1 -
-                    (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds.Value);
+                    (totalAmountLeft / initialTotalEngulfableCompounds.Value);
             }
 
             if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
