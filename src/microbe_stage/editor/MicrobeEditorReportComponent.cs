@@ -208,10 +208,6 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
     }
 
-    public override void OnLightLevelChanged(float lightLevel)
-    {
-    }
-
     protected override void OnTranslationsChanged()
     {
         Editor.SendAutoEvoResultsToReportComponent();

@@ -22,11 +22,13 @@
             }
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var compoundUseScore = CompoundUseScore(microbeSpecies, compound, patch, simulationCache);
+            var compoundUseScore = CompoundUseScore(microbeSpecies, compound, patch,
+                simulationCache, worldSettings, dayNightConfiguration);
 
             var energyCost = simulationCache
                 .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)

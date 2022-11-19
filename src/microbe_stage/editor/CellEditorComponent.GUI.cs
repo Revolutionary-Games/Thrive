@@ -430,7 +430,7 @@ public partial class CellEditorComponent
         UpdateStorage(CalculateStorage());
 
         // Set the editor light level and associated GUI elements to daytime
-        SetLightLevelOption("Day");
+        SetLightLevelOption(LightLevelOption.Day.ToString());
     }
 
     private class ATPComparer : IComparer<string>

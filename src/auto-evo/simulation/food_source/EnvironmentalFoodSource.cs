@@ -20,11 +20,13 @@
                 patch.Biome.Compounds[this.compound].Ambient * foodCapacityMultiplier;
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var energyCreationScore = CompoundUseScore(microbeSpecies, compound, patch, simulationCache);
+            var energyCreationScore = CompoundUseScore(microbeSpecies, compound, patch,
+                simulationCache, worldSettings, dayNightConfiguration);
 
             var energyCost = simulationCache
                 .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)
@@ -46,15 +48,15 @@
         }
 
         protected override float StorageScore(MicrobeSpecies species, Compound compound, Patch patch,
-            SimulationCache simulationCache)
+            SimulationCache simulationCache, WorldGenerationSettings worldSettings,
+            DayNightConfiguration dayNightConfiguration)
         {
-            if (simulationCache.DayNightCycleEnabled)
+            if (worldSettings.DayNightCycleEnabled)
             {
-                var dayNightCycleConfiguration = SimulationParameters.Instance.GetDayNightCycleConfiguration();
-                var nightTime = dayNightCycleConfiguration.DaytimePercentage * dayNightCycleConfiguration.HoursPerDay;
+                var nightTime = dayNightConfiguration.DaytimeFraction * dayNightConfiguration.HoursPerDay;
 
                 // If a species consumes a lot, it ought to store more.
-                // NB: this might artificially penalize overproducers but I'm willing to accept it for now - Maxonovien
+                // NOTE: might artificially penalize overproducers but I'm willing to accept it for now - Maxonovien
                 var reserveScore = CompoundUse(species, compound, patch, simulationCache) *
                     simulationCache.GetStorageCapacityForSpecies(species);
 

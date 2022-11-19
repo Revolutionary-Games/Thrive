@@ -114,7 +114,7 @@ public class WorldGenerationSettings
     /// <summary>
     ///   Real-time length of a full day on the planet in seconds
     /// </summary>
-    public int DayLength { get; set; } = 180;
+    public int DayLength { get; set; } = Constants.DEFAULT_DAY_LENGTH;
 
     /// <summary>
     ///  Whether the player can enter the Multicellular Stage in this game

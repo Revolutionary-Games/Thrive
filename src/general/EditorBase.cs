@@ -138,7 +138,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonIgnore]
+    [JsonProperty]
     public float LightLevel
     {
         get => lightLevel;
@@ -148,7 +148,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
             foreach (var editorComponent in GetAllEditorComponents())
             {
-                editorComponent.OnLightLevelChanged(lightLevel);
+                editorComponent.OnLightLevelChanged(
+                    lightLevel, CurrentGame.GameWorld.Map.CurrentPatch!.GetCompoundAmount(
+                        "sunlight", CompoundAmountType.Maximum));
             }
         }
     }

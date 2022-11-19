@@ -9,26 +9,26 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class DayNightCycle
 {
+    [JsonProperty]
+    private bool isEnabled;
+
     /// <summary>
     ///   Configuration details for the day/night cycle.
     /// </summary>
     [JsonProperty]
-    public DayNightConfiguration LightCycleConfig;
-
-    [JsonProperty]
-    public bool IsEnabled;
+    private DayNightConfiguration lightCycleConfig;
 
     /// <summary>
     ///   Number of real-time seconds per in-game day.
     /// </summary>
     [JsonProperty]
-    public int RealTimePerDay;
+    private int realTimePerDay;
 
     /// <summary>
     ///   Current position in the day/night cycle, expressed as a percentage of the day elapsed so far.
     /// </summary>
     [JsonProperty]
-    public float PercentOfDayElapsed;
+    private float percentOfDayElapsed;
 
     /// <summary>
     ///   Multiplier used for calculating DayLightPercentage.
@@ -46,18 +46,18 @@ public class DayNightCycle
     /// <param name="realTimePerDay">Player configured length in real-time seconds of an in-game day</param>
     public DayNightCycle(bool isEnabled, int realTimePerDay)
     {
-        IsEnabled = isEnabled;
-        RealTimePerDay = realTimePerDay;
+        this.isEnabled = isEnabled;
+        this.realTimePerDay = realTimePerDay;
 
-        LightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
+        lightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
 
         // Start the game at noon
-        PercentOfDayElapsed = 0.5f;
+        percentOfDayElapsed = 0.5f;
 
         // This converts the percentage in DaytimePercentage to the power of two needed for DayLightPercentage
-        daytimeMultiplier = Mathf.Pow(2, 2 / LightCycleConfig.DaytimePercentage);
+        daytimeMultiplier = Mathf.Pow(2, 2 / lightCycleConfig.DaytimeFraction);
 
-        AverageSunlight = IsEnabled ? CalculateAverageSunlight() : 1.0f;
+        AverageSunlight = this.isEnabled ? CalculateAverageSunlight() : 1.0f;
     }
 
     [JsonIgnore]
@@ -69,13 +69,13 @@ public class DayNightCycle
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
     /// </summary>
     [JsonIgnore]
-    public float DayLightPercentage => IsEnabled ? CalculatePointwiseSunlight(PercentOfDayElapsed) : 1.0f;
+    public float DayLightPercentage => isEnabled ? CalculatePointwiseSunlight(percentOfDayElapsed) : 1.0f;
 
     public void Process(float delta)
     {
-        if (IsEnabled)
+        if (isEnabled)
         {
-            PercentOfDayElapsed = (PercentOfDayElapsed + delta / RealTimePerDay) % 1;
+            percentOfDayElapsed = (percentOfDayElapsed + delta / realTimePerDay) % 1;
         }
     }
 

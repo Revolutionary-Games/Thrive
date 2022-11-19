@@ -9,17 +9,19 @@
     public class SimulationConfiguration
     {
         public SimulationConfiguration(IAutoEvoConfiguration autoEvoConfiguration, PatchMap initialConditions,
-            WorldGenerationSettings worldSettings, int steps = 1)
+            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration, int steps = 1)
         {
             AutoEvoConfiguration = autoEvoConfiguration;
             OriginalMap = initialConditions;
             WorldSettings = worldSettings;
+            DayNightCycleConfiguration = dayNightConfiguration;
             StepsLeft = Math.Max(1, steps);
         }
 
         public IAutoEvoConfiguration AutoEvoConfiguration { get; }
         public PatchMap OriginalMap { get; }
         public WorldGenerationSettings WorldSettings { get; }
+        public DayNightConfiguration DayNightCycleConfiguration { get; }
         public int StepsLeft { get; set; }
 
         /// <summary>

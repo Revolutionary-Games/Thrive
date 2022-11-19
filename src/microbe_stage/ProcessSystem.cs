@@ -226,7 +226,7 @@ public class ProcessSystem
 
             // Use average sunlight for Auto-Evo calculations
             var availableInEnvironment = GetAmbientInBiome(input.Key, biome,
-                input.Key == Sunlight ? CompoundAmountType.Average : CompoundAmountType.Ambient);
+                input.Key == Sunlight ? CompoundAmountType.Average : CompoundAmountType.Current);
 
             var availableRate = input.Key == Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
@@ -334,11 +334,11 @@ public class ProcessSystem
         if (biome == null)
             throw new InvalidOperationException("Biome needs to be set before getting ambient compounds");
 
-        return GetAmbientInBiome(compound, biome, CompoundAmountType.Ambient);
+        return GetAmbientInBiome(compound, biome, CompoundAmountType.Current);
     }
 
     private static float GetAmbientInBiome(Compound compound, BiomeConditions biome,
-        CompoundAmountType amountType = CompoundAmountType.Ambient)
+        CompoundAmountType amountType = CompoundAmountType.Current)
     {
         if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;

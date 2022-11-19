@@ -48,5 +48,5 @@ public interface IEditorComponent
 
     public void OnMutationPointsChanged(int mutationPoints);
 
-    public void OnLightLevelChanged(float lightLevel);
+    public void OnLightLevelChanged(float lightLevel, float absoluteLux);
 }
