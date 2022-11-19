@@ -23,7 +23,8 @@
             totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 

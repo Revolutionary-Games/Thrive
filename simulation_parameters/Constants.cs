@@ -12,6 +12,12 @@ using Path = System.IO.Path;
 public static class Constants
 {
     /// <summary>
+    ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
+    ///   NewGameSettings.tscn should also be changed.
+    /// </summary>
+    public const int DEFAULT_DAY_LENGTH = 180;
+
+    /// <summary>
     ///   How long the player stays dead before respawning
     /// </summary>
     public const float PLAYER_RESPAWN_TIME = 5.0f;

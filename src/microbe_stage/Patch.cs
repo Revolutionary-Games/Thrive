@@ -318,7 +318,7 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
-    public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Ambient)
+    public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Current)
     {
         var compound = SimulationParameters.Instance.GetCompound(compoundName);
 

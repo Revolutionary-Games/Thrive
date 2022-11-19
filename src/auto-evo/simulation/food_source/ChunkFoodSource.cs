@@ -42,7 +42,8 @@
             }
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration)
         {
             if (energyCompounds == null)
                 throw new InvalidOperationException("Food source not valid for this patch");
@@ -58,8 +59,8 @@
 
             // We ponder the score for each compound by its amount, leading to pondering in proportion of total
             // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
-            var score = energyCompounds.Sum(c =>
-                CompoundUseScore(microbeSpecies, c.Key, patch, simulationCache) * c.Value);
+            var score = energyCompounds.Sum(c => CompoundUseScore(
+                microbeSpecies, c.Key, patch, simulationCache, worldSettings, dayNightConfiguration) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 

@@ -27,8 +27,6 @@
             this.worldSettings = worldSettings;
         }
 
-        public bool DayNightCycleEnabled => worldSettings.DayNightCycleEnabled;
-
         public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
         {
             var key = (species, biomeConditions);

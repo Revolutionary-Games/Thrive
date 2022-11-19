@@ -56,13 +56,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
-    [JsonIgnore]
-    public float LightLevel = 1.0f;
-
     private ShaderMaterial materialToUpdate = null!;
 
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
+
+    [JsonProperty]
+    private float lightLevel = 1.0f;
 
     [Signal]
     public delegate void OnZoomChanged(float zoom);
@@ -81,6 +81,20 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     ///   </para>
     /// </remarks>
     public bool FramerateAdjustZoomSpeed { get; set; }
+
+    /// <summary>
+    ///   Current relative light level for the camera (between 0 and 1).
+    /// </summary>
+    [JsonIgnore]
+    public float LightLevel
+    {
+        get => lightLevel;
+        set
+        {
+            lightLevel = value;
+            materialToUpdate.SetShaderParam("lightLevel", LightLevel);
+        }
+    }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -192,11 +206,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             EmitSignal(nameof(OnZoomChanged), CameraHeight);
 
         return true;
-    }
-
-    public override void _Process(float delta)
-    {
-        materialToUpdate.SetShaderParam("lightLevel", LightLevel);
     }
 
     /// <summary>

@@ -139,7 +139,9 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
 
     public abstract void OnMutationPointsChanged(int mutationPoints);
 
-    public abstract void OnLightLevelChanged(float lightLevel);
+    public virtual void OnLightLevelChanged(float lightLevel, float absoluteLux)
+    {
+    }
 
     internal void PlayInvalidActionSound()
     {

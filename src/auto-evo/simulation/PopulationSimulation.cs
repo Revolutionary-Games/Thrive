@@ -43,7 +43,7 @@
             while (parameters.StepsLeft > 0)
             {
                 RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache,
-                    parameters.AutoEvoConfiguration);
+                    parameters.AutoEvoConfiguration, parameters.WorldSettings, parameters.DayNightCycleConfiguration);
                 --parameters.StepsLeft;
             }
         }
@@ -140,14 +140,15 @@
 
         private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
             IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
-            IAutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings,
+            DayNightConfiguration dayNightConfiguration)
         {
             foreach (var entry in patchesToSimulate)
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters, entry.Value,
                     species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0),
-                    random, cache, autoEvoConfiguration);
+                    random, cache, autoEvoConfiguration, worldSettings, dayNightConfiguration);
             }
         }
 
@@ -156,7 +157,8 @@
         /// </summary>
         private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
             IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
-            IAutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings,
+            DayNightConfiguration dayNightConfiguration)
         {
             _ = random;
 
@@ -214,11 +216,13 @@
                         // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
                         // by exaggerating fitness differences
                         thisSpeciesFitness =
-                            Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache), 2.5f), 0.0f);
+                            Mathf.Max(Mathf.Pow(niche.FitnessScore(
+                                currentSpecies, cache, worldSettings, dayNightConfiguration), 2.5f), 0.0f);
                     }
                     else
                     {
-                        thisSpeciesFitness = Mathf.Max(niche.FitnessScore(currentSpecies, cache), 0.0f);
+                        thisSpeciesFitness = Mathf.Max(
+                            niche.FitnessScore(currentSpecies, cache, worldSettings, dayNightConfiguration), 0.0f);
                     }
 
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;

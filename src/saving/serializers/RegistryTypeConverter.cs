@@ -72,7 +72,8 @@ public class RegistryTypeConverter : BaseThriveConverter
         if (objectType == typeof(Enzyme))
             return Context.Simulation.GetEnzyme(name);
 
-        if (objectType == typeof(DayNightConfiguration))
+        if (typeof(DayNightConfiguration).IsAssignableFrom(objectType) &&
+            name == SimulationParameters.DAY_NIGHT_CYCLE_NAME)
             return Context.Simulation.GetDayNightCycleConfiguration();
 
         if (typeof(IDifficulty).IsAssignableFrom(objectType))
@@ -84,7 +85,8 @@ public class RegistryTypeConverter : BaseThriveConverter
             return Context.Simulation.AutoEvoConfiguration;
         }
 
-        throw new Exception("a registry type is missing from the RegistryTypeConverter's ReadJson function.");
+        throw new Exception(
+            $"a registry type is missing from the RegistryTypeConverter's {nameof(ReadJson)} function.");
     }
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)

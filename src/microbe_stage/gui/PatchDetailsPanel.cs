@@ -271,8 +271,7 @@ public class PatchDetailsPanel : PanelContainer
         var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, CompoundAmountType.Maximum);
         light.Text = unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(
             GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName))), "lx");
-        lightMax.Text = string.Format(
-            TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON"),
+        lightMax.Text = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
@@ -321,7 +320,7 @@ public class PatchDetailsPanel : PanelContainer
     }
 
     private float GetCompoundAmount(Patch patch, string compoundName,
-        CompoundAmountType amountType = CompoundAmountType.Ambient)
+        CompoundAmountType amountType = CompoundAmountType.Current)
     {
         return patch.GetCompoundAmount(compoundName, amountType);
     }
