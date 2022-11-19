@@ -17,7 +17,7 @@ using Nito.Collections;
 public class Patch
 {
     [JsonIgnore]
-    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private readonly Compound sunlight;
 
     /// <summary>
     ///   The current snapshot of this patch.
@@ -44,7 +44,9 @@ public class Patch
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
 
-        Biome.CreateSunlight(Biome.Compounds[Sunlight].Ambient);
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        Biome.CreateSunlight(Biome.Compounds[sunlight].Ambient);
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -61,7 +63,9 @@ public class Patch
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
 
-        Biome.CreateSunlight(Biome.Compounds[Sunlight].Ambient);
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        Biome.CreateSunlight(Biome.Compounds[sunlight].Ambient);
     }
 
     [JsonProperty]
@@ -443,6 +447,9 @@ public class Patch
         return $"Patch \"{Name}\"";
     }
 
+    /// <summary>
+    ///   Returns Sunlight Amount in Percentage Form
+    /// </summary>
     private float GetSunlightAmount(CompoundAmountType option)
     {
         switch (option)
@@ -452,7 +459,7 @@ public class Patch
             case CompoundAmountType.Average:
                 return Biome.Sunlight!.Average * 100;
             case CompoundAmountType.Template:
-                return BiomeTemplate.Conditions.Compounds[Sunlight].Ambient * 100;
+                return BiomeTemplate.Conditions.Compounds[sunlight].Ambient * 100;
             default:
                 return Biome.Sunlight!.Current * 100;
         }
