@@ -666,6 +666,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         HandleHitpointsRegeneration(delta);
 
+        HandleInvulnerabilityDecay(delta);
+
         HandleOsmoregulation(delta);
 
         if (!Membrane.Dirty)
@@ -724,8 +726,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         HandleFlashing(delta);
 
         HandleReproduction(delta);
-
-        HandleInvulnerabilityDecay(delta);
 
         // Handles engulfing related stuff as well as modifies the movement factor.
         // This needs to be done before Update is called on organelles as movement organelles will use MovementFactor.

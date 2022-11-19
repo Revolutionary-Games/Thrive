@@ -352,10 +352,7 @@ public partial class Microbe
         else if (source == "pilus")
         {
             if (invulnerabilityDuration > 0)
-            {
-                GD.Print($"Invuln! {amount}");
                 return;
-            }
 
             // Play the pilus sound
             PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
