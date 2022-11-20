@@ -80,6 +80,7 @@ public partial class Microbe
     ///   This determines how much time is left (in seconds) until this cell can take damage again after becoming
     ///   invulnerable due to a damage source. This was added to balance pili but might extend to more sources.
     /// </summary>
+    [JsonProperty]
     private float invulnerabilityDuration;
 
     private PackedScene cellBurstEffectScene = null!;
@@ -277,6 +278,7 @@ public partial class Microbe
 
     /// <summary>
     ///   Give this microbe a specified amount of invulnerability time. Overrides previous value.
+    ///   Currently only Pili add invulnerability frames.
     /// </summary>
     public void MakeInvulnerable(float duration)
     {
