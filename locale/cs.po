@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-10 17:12+0200\n"
-"PO-Revision-Date: 2022-10-19 19:00+0000\n"
-"Last-Translator: Severin Aurelian Koloman August Ludvig Girtelschmid <severingirtelschmid@gmail.com>\n"
+"PO-Revision-Date: 2022-11-17 16:00+0000\n"
+"Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1552,17 +1552,16 @@ msgstr "Suroví:"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr "Smrtelná zóna:"
+msgstr "Mrtvá zóna:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Kalibrace smrtelné zóny právě probíhá. Prosím nemačkejte žádné tlačítka nebo tyče na vaším kontroloru a počkejte par sekund."
+msgstr "Kalibrace mrtvé zóny právě probíhá. Prosím nedotýkejte se žádného tlačítka nebo páčky na vašem ovladači a počkejte pár sekund."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
-msgstr ""
+msgstr "Kalibrace mrtvé zóny byla vyresetována"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
 #, fuzzy
@@ -1570,23 +1569,22 @@ msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Při dodatečných validacích byl zjištěn problém: {0}"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
+msgstr "Konfigurace Mrtvého Úhlu"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
+msgstr ""
+"Tenhle nástroj umožňuje konfigurovat mrtvý úhel ovladače. Velikost mrtvého úhlu určuje jak moc se páčka (či analogové tlačítko) musí pohnout předtím než se zaznamená její pohyb.\n"
+"Před startováním kalibrace prosím pohybujte všemi páčkami na ovladači a poté je pusťte, také stiskněte každé analogové tlačítko (př. spouště) na ovladači."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Spusť Kalibraci"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Obnovit výchozí nastavení?"
+msgstr "Resetovat Mrtvý Úhel"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2020,29 +2018,24 @@ msgid "ART_BY"
 msgstr "Ilustraci vytvořil(a) {0}"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Chování"
+msgstr "Agrese"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Chování"
+msgstr "Oportunismus"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Chování"
+msgstr "Strach"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Chování"
+msgstr "Aktivita"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Chování"
+msgstr "Soustředění"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2147,7 +2140,7 @@ msgstr "Nástroj Průzkumu Auto-Evo"
 
 #: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Thriveopedie"
 
 #: ../src/general/MainMenu.tscn:434
 msgid "MODS"
@@ -2172,7 +2165,7 @@ msgstr "Spáchat sebevraždu"
 
 #: ../src/general/MainMenu.tscn:525
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Oficiální stránka"
 
 #: ../src/general/MainMenu.tscn:535
 #, fuzzy
@@ -2229,39 +2222,32 @@ msgid "ITCH_TOOLTIP"
 msgstr "Opustit hru"
 
 #: ../src/general/MainMenu.tscn:647
-#, fuzzy
 msgid "PATREON_TOOLTIP"
-msgstr "Pozastavit hru"
+msgstr "Navštivte náš Patreon"
 
 #: ../src/general/MainMenu.tscn:658
-#, fuzzy
 msgid "GITHUB_TOOLTIP"
-msgstr "Opustit hru"
+msgstr "Navštiv náš GitHub repozitář"
 
 #: ../src/general/MainMenu.tscn:669
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Pozastavit hru"
+msgstr "Navštiv náš YouTube kanál"
 
 #: ../src/general/MainMenu.tscn:680
-#, fuzzy
 msgid "REDDIT_TOOLTIP"
-msgstr "Pokračovat"
+msgstr "Navštiv náš subreddit"
 
 #: ../src/general/MainMenu.tscn:691
-#, fuzzy
 msgid "DISCORD_TOOLTIP"
-msgstr "Uplynutý čas: {0:#,#} let"
+msgstr "Připoj se na náš komunitní Discord server"
 
 #: ../src/general/MainMenu.tscn:702
-#, fuzzy
 msgid "FACEBOOK_TOOLTIP"
-msgstr "Pozastavit hru"
+msgstr "Navštiv naší Facebook stránku"
 
 #: ../src/general/MainMenu.tscn:713
-#, fuzzy
 msgid "TWITTER_TOOLTIP"
-msgstr "Uplynutý čas: {0:#,#} let"
+msgstr "Navštiv náš Twitter"
 
 #: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
@@ -3169,9 +3155,18 @@ msgstr "Vypnuto"
 
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Přednastavení obtížnosti"
+msgstr ""
+"Přednastavená obtížnost: {0}\n"
+"Násobič ceny mutace: {1}\n"
+"Rychlost mutace AI: {2}\n"
+"Hustota mraku sloučenin: {3}\n"
+"Trest za smrt hráče na populaci: {4}\n"
+"Retence glukózy v prostředí: {5}\n"
+"Násobič nákladů na osmoregulaci: {6}\n"
+"Glukózový mrak při opuštění editoru: {7}\n"
+"Pasivní příjem reprodukčního postupu: {8}\n"
+"Omezit použití růstové sloučeniny: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
@@ -4962,9 +4957,8 @@ msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: unload Harmony modu selhal s výjimkou: {1}"
 
 #: ../src/modding/ModLoader.cs:530
-#, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "Načítání souboru pck ({0}) se nezdařilo"
+msgstr "Načítání souboru pck ({0}) se nezdařilo protože soubor neexistuje"
 
 #: ../src/modding/ModLoader.cs:538
 msgid "PCK_LOAD_FAILED"
@@ -6049,14 +6043,13 @@ msgstr ""
 "Buňka, když plna, nic víc nemůže jíst. Abys mohl/a jist dál, musíš počkat až jeden nebo dvě předměty jsou úplně strávený."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Můžeš sníst předměty když se přes ně pohybuješ a jsi během toho v pohlcovacího módu. Abys zapnul pohlcovací mód zmáčkni [thrive:input]g_toggle_engulf[/thrive:input]\n"
 "\n"
 "Přestaň pohlcovat až se ten předmět vtáhne dovnitř do buňky.\n"
 "\n"
-"Jed po čáře od tvé buňky k nedaleký jedlý předměty."
+"Jeď po čáře od tvé buňky k nedalekému jedlému předmětu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 #, fuzzy
@@ -6080,9 +6073,8 @@ msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Načítání editoru mikrobů"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Začít prosperovat"
+msgstr "Pokračuj v prosperitě"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Obohacující statistiky o nynější hře"
