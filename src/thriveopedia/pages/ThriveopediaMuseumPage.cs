@@ -74,11 +74,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     {
     }
 
-    public override void OnNavigationPanelSizeChanged(bool collapsed)
-    {
-        _ = collapsed;
-    }
-
     private void UpdateSpeciesPreview(MuseumCard card)
     {
         if (!speciesPreviewContainer.Visible)
