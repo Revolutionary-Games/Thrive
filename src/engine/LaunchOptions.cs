@@ -21,6 +21,8 @@ public static class LaunchOptions
 
     public static bool LaunchingLauncherIsHidden => LaunchedThroughLauncher && LaunchingLauncherIsHiddenHolder.Value;
 
+    public static string? StoreVersionName => StoreNameHolder.Value;
+
     private static bool ReadDisableVideo()
     {
         bool value = GodotLaunchOptions.Value.Any(o => o == Constants.DISABLE_VIDEOS_LAUNCH_OPTION);

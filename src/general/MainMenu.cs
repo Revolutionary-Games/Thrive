@@ -290,6 +290,7 @@ public class MainMenu : NodeWithInput
             gles2Popup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
+        UpdateLauncherState();
     }
 
     /// <summary>
@@ -311,6 +312,16 @@ public class MainMenu : NodeWithInput
 
     private void UpdateStoreVersionStatus()
     {
+        if (!IsReturningToMenu)
+        {
+            if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
+            {
+                GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+
+                // TODO: show the thanks for buying popup
+            }
+        }
+
         if (!SteamHandler.Instance.IsLoaded)
         {
             storeLoggedInDisplay.Visible = false;
@@ -328,6 +339,20 @@ public class MainMenu : NodeWithInput
             itchButton.Visible = false;
             patreonButton.Visible = false;
         }
+    }
+
+    private void UpdateLauncherState()
+    {
+        if (!LaunchOptions.LaunchedThroughLauncher)
+        {
+            GD.Print("We are not started through the Thrive Launcher");
+            return;
+        }
+
+        GD.Print("Thrive Launcher started us, launcher hidden: ", LaunchOptions.LaunchingLauncherIsHidden);
+
+        // TODO: exit to launcher button
+        // exitToLauncherButton.Visible = LaunchOptions.LaunchingLauncherIsHidden;
     }
 
     /// <summary>
