@@ -1052,6 +1052,7 @@ public static class Constants
     public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
 
+    public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     // Min/max values for each customisable difficulty option
