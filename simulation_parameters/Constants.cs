@@ -1046,7 +1046,13 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
+    // TODO: combine to a common module with launcher as these are there as well
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
+    public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
+    public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
+    public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
+
+    public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     // Min/max values for each customisable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
