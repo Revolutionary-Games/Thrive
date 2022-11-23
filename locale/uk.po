@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-10 17:12+0200\n"
-"PO-Revision-Date: 2022-10-31 18:00+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"PO-Revision-Date: 2022-11-17 16:00+0000\n"
+"Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -176,10 +176,10 @@ msgstr ""
 "\n"
 "Тилакоїди: Продукують 1/3іх від кількості [thrive:compound type=\"glucose\"][/thrive:compound] як нормальні хлорпласти, але роводить гліколіз і використовує 1 Гекс\n"
 "\n"
-"Рустиціан: Трансформує [thrive:compound type=\"iron\"][/thrive:compound] в\n"
+"Залізоокисні білки: Трансформує [thrive:compound type=\"iron\"][/thrive:compound] в\n"
 "[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Нітрогеназа: Трансформує атмосферний азот та [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] анаеробним диханням\n"
+"Нітрогеназа: Трансформує атмосферний азот та [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] анаеробним диханням\n"
 "\n"
 "Окситоксисома: Перетворює [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
@@ -2154,7 +2154,7 @@ msgstr "Інструменти дослідження авто-ево"
 
 #: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Трайвопедія"
 
 #: ../src/general/MainMenu.tscn:434
 msgid "MODS"
@@ -2173,102 +2173,84 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Запропунувати функцію"
 
 #: ../src/general/MainMenu.tscn:522
-#, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr "Суїцид"
+msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
 #: ../src/general/MainMenu.tscn:525
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Офіційний сайт"
 
 #: ../src/general/MainMenu.tscn:535
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Увійдіть до редактору та модифікуйте свої види"
+msgstr "Приєднуйтеся до спільноти Thrive на нашому форумі спільноти"
 
 #: ../src/general/MainMenu.tscn:538
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Форум спільноти"
 
 #: ../src/general/MainMenu.tscn:548
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Увійдіть до редактору та модифікуйте свої види"
+msgstr "Поглянути оновлення розробки на нашому форумі"
 
 #: ../src/general/MainMenu.tscn:551
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "Розробницька підтримка від Revolutionary Games Studio"
+msgstr "Форум розробки"
 
 #: ../src/general/MainMenu.tscn:561
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "Допомога"
+msgstr "Відвідайте наше розробницьке wiki"
 
 #: ../src/general/MainMenu.tscn:564
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "Розробники"
+msgstr "Розробницьке wiki"
 
 #: ../src/general/MainMenu.tscn:574
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Вихід з гри"
+msgstr "Відвідайте наше wiki спільноти"
 
 #: ../src/general/MainMenu.tscn:577
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "Наша Wiki"
+msgstr "Wiki спільноти"
 
 #: ../src/general/MainMenu.tscn:614
-#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr "Виробництва Revolutionary Games Studio"
+msgstr "Відвідайте офіційний сайт Revolutionary Games"
 
 #: ../src/general/MainMenu.tscn:625
-#, fuzzy
 msgid "STEAM_TOOLTIP"
-msgstr "Пауза"
+msgstr "Відвідайте нашу сторінку у Steam"
 
 #: ../src/general/MainMenu.tscn:636
-#, fuzzy
 msgid "ITCH_TOOLTIP"
-msgstr "Вихід з гри"
+msgstr "Відвідайте"
 
 #: ../src/general/MainMenu.tscn:647
-#, fuzzy
 msgid "PATREON_TOOLTIP"
-msgstr "Пауза"
+msgstr "Відвідайте"
 
 #: ../src/general/MainMenu.tscn:658
-#, fuzzy
 msgid "GITHUB_TOOLTIP"
-msgstr "Вихід з гри"
+msgstr "Відвідайте наше сховище у GitHub"
 
 #: ../src/general/MainMenu.tscn:669
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Пауза"
+msgstr "Відвідайте наш YouTube канал"
 
 #: ../src/general/MainMenu.tscn:680
-#, fuzzy
 msgid "REDDIT_TOOLTIP"
-msgstr "Продовжити"
+msgstr "Відвідайте наш subreddit"
 
 #: ../src/general/MainMenu.tscn:691
-#, fuzzy
 msgid "DISCORD_TOOLTIP"
-msgstr "Минуло часу: {0:#,#} років"
+msgstr "Приєднуйтесь до спільноти Discord серверу"
 
 #: ../src/general/MainMenu.tscn:702
-#, fuzzy
 msgid "FACEBOOK_TOOLTIP"
-msgstr "Пауза"
+msgstr "Відвідайте на сторінку Facebook"
 
 #: ../src/general/MainMenu.tscn:713
-#, fuzzy
 msgid "TWITTER_TOOLTIP"
-msgstr "Минуло часу: {0:#,#} років"
+msgstr "Відвідайте"
 
 #: ../src/general/MainMenu.tscn:780
 msgid "GLES2_MODE_WARNING"
@@ -3056,7 +3038,7 @@ msgstr "Зберегти гру"
 
 #: ../src/general/PauseMenu.tscn:205
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr ""
+msgstr "Відкрити Трайвопедію"
 
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
@@ -3155,30 +3137,43 @@ msgid "KILO_ABBREVIATION"
 msgstr "{0} Тис"
 
 #: ../src/general/TranslationHelper.cs:84
-#, fuzzy
 msgid "FEATURE_ENABLED"
-msgstr "Кнопки ввімкнення читів"
+msgstr "Увімкнути"
 
 #: ../src/general/TranslationHelper.cs:85
-#, fuzzy
 msgid "FEATURE_DISABLED"
-msgstr "Вимкнено"
+msgstr "Вимкнути"
 
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Передустанови складності"
+msgstr ""
+"Попередня складність: {0}\n"
+"Вартість мутації в мульплеєрі: {1}\n"
+"Шкала мутацій ШІ: {2}\n"
+"Щільність хмари сполук: {3}\n"
+"Штраф за смерть гравця: {4}\n"
+"Кількість глюкози, як запам'ятали: {5}\n"
+"Вартість осморегуляції гравця: {6}\n"
+"Вільні хмари глюкози, коли покинутий редактор: {7}\n"
+"Пасивне отримання прогресу репродукції: {8}\n"
+"Ліміт використання сполук для росту: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
+"Тип мапи ділянок: {0}\n"
+"лише ЗАКОН: {1}\n"
+"Походження життя: {2}\n"
+"Випадковий сід планети: {3}"
 
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+"Включити прототип пізніших етапів: {0}\n"
+"Включити великодки: {1}"
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -4320,12 +4315,12 @@ msgstr "Сигнал для виведення"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Скам'янілість цього виду(вже скам'янілого"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "Скам'янілість цього виду"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
@@ -5742,120 +5737,122 @@ msgstr "Сталася невідома помилка Steam"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:74
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr ""
+msgstr "Перемкнути навігаційне дерево"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:103
-#, fuzzy
 msgid "PAGE_BACK"
 msgstr "Назад"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:117
-#, fuzzy
 msgid "PAGE_FORWARD"
-msgstr "вперед"
+msgstr "Вперед"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:131
-#, fuzzy
 msgid "HOME"
 msgstr "Дім"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Thrive запущено в безпечному режимі"
+msgstr "Назва сторінки"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
-#, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+msgstr ""
+"Скам'янілі види з існуючою назвою.\n"
+"Ви впевнені, що хочете переназвати його?"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "Популяція:"
+msgstr "Скам'яніння"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Агресивні мікроби переслідуватимуть зддобич на відстані\n"
-"та скоріше битимуться з нападниками.\n"
-"Мирні ж не нападуть на відстані\n"
-"і рідше використовують токсини проти хижаків."
+msgstr "Цей вид має скам'яніти для збереження в музеї. Ви можете отримати відкрити музей через Трайвопедію, або завантажити види з вільного редактору."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
-#, fuzzy
 msgid "FOSSILISE"
-msgstr "Пасивні"
+msgstr "Скам'янілість"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Підтвердити переназвання"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
-#, fuzzy
 msgid "MICROBE"
-msgstr "Мікробна стадія"
+msgstr "Мікроб"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
-#, fuzzy
 msgid "EARLY_MULTICELLULAR"
 msgstr "Багатоклітинність"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-#, fuzzy
 msgid "LATE_MULTICELLULAR"
-msgstr "Багатоклітинність"
+msgstr "Пізня Багатоклітинність"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Поточний світ"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Еволюційне древо"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
-msgstr "Еволюційне дерево"
+msgstr ""
+"Поки не відображається в вільного режиму або збереженнях до версії 0.6.0.\n"
+"\n"
+"Якщо нічого не підходить, то сталася помилка. Будь-ласка , повідомте розробницьку команду та внесіть це до журналу гри."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Дім"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Ласкаво просимо до Трайвопедії"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
+"Трайвопедія– це центральна бібліотека та інформаційний магазин контенту Thrive. Тут ви знайде відповіді на будь-яке запитання про гру, вашого поточного світу чи проєкту розробкиThrive.\n"
+"\n"
+"На цей момент Трайвопедія досить пуста , але ви можете досліджувати декілька сторінок завдяки дереву сторінок та кнопок навігації. Зверніть увагу на те, що сторінки з конкретною поточною грою відображатимуться лише, якщо Трайвопедія відкрита через меню паузи гри.\n"
+"\n"
+"Ви можете знайти більше інформації про гру в місці нижче.\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Official Website[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Development Wiki[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Community Wiki[/url][/color]"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
-msgstr ""
+msgstr "Порушення"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Музей"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"Ви впевнені, що хочете розпочати нову гру за вибраний вид?\n"
+"Ви втратите весь незбережений прогрес."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "OPEN_IN_FREEBUILD"
-msgstr "Вільне конструктуювання"
+msgstr "Відкрити у Вільному конструктуюванні"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"Вітаємо в музеї! тут ви можете милуватися багтьма видами, котрі були викопаними вами під час всього проходження. Ви можете грати за вид, відкривши його у вільному редакторі.\n"
+"\n"
+"Для скам'янілостей видів, що в грі, натиснувши кнопку. Вибраний мікроб на екрані для скам'яніння цього виду.."
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr ""
+msgstr "Мапа ділянок"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
