@@ -168,6 +168,17 @@ public class MainMenu : NodeWithInput
         }
     }
 
+    public override void _Notification(int notification)
+    {
+        base._Notification(notification);
+
+        if (notification == NotificationWmQuitRequest)
+        {
+            GD.Print("Main window close signal detected");
+            Invoke.Instance.Queue(QuitPressed);
+        }
+    }
+
     public void StartMusic()
     {
         Jukebox.Instance.PlayCategory("Menu");

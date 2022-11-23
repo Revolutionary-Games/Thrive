@@ -1053,6 +1053,7 @@ public static class Constants
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
 
     public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
+    public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     // Min/max values for each customisable difficulty option
