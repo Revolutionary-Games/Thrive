@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=1]
+[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=1]
 [ext_resource path="res://assets/models/organelles/Mitochondrion.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/textures/mitochondrion.png" type="Texture" id=3]
 [ext_resource path="res://assets/models/organelles/Chemoplast.tscn" type="PackedScene" id=4]
@@ -9,17 +9,33 @@
 [ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=7]
 [ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=8]
 [ext_resource path="res://shaders/Membrane.shader" type="Shader" id=9]
+[ext_resource path="res://assets/models/organelles/SlimeJet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/models/organelles/Rusticyanin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/textures/rusticyanin.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
+shader_param/dissolveValue = null
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
+shader_param/outlineWidth = null
+shader_param/growColor = null
 shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/jiggleAmount = 0.0005
 shader_param/texture = ExtResource( 3 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
+shader_param/dissolveValue = null
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
+shader_param/outlineWidth = null
+shader_param/growColor = null
 shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/jiggleAmount = 0.0005
 shader_param/texture = ExtResource( 5 )
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -28,10 +44,24 @@ render_priority = 1
 shader = ExtResource( 9 )
 shader_param/wigglyNess = 1.0
 shader_param/movementWigglyNess = 1.0
+shader_param/dissolveValue = null
 shader_param/healthFraction = 0.25
 shader_param/tint = Plane( 1, 1, 1, 1 )
 shader_param/albedoTexture = ExtResource( 7 )
 shader_param/damagedTexture = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
+shader_param/outlineWidth = 0.05
+shader_param/growColor = Color( 0.180392, 0.176471, 0.168627, 1 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/jiggleAmount = 0.0005
+shader_param/texture = ExtResource( 12 )
+shader_param/dissolveTexture = ExtResource( 13 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -65,3 +95,10 @@ transform = Transform( 0.952724, 0.219617, -0.209965, -0.0332861, 0.762328, 0.64
 [node name="Membrane" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, -1.75788 )
 MaterialToEdit = SubResource( 3 )
+
+[node name="SlimeJet" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -6.1659, -0.463915, -3.19489 )
+
+[node name="Rusticyanin" parent="." instance=ExtResource( 11 )]
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, -0.286165, -0.912676, -3.82358 )
+material_override = SubResource( 4 )
