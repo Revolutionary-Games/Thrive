@@ -51,5 +51,5 @@ void fragment(){
     ALBEDO = final.rgb;
     NORMAL = (CAMERA_MATRIX * (WORLD_MATRIX * vec4(normals, 0.0))).xyz;
     ALPHA = round(cutoff) * final.a;
-	DEPTH = 0.0f;
+    DEPTH = 0.0f;
 }
