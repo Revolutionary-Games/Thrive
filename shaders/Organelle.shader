@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode depth_draw_always;
 
 uniform sampler2D texture : hint_albedo;
 
