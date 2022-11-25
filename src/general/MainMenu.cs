@@ -624,7 +624,8 @@ public class MainMenu : NodeWithInput
     {
         websiteButtonsContainer.ShowModal();
 
-        // A plain PopupPanel doesn't resize automatically, we need to shrink it
+        // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
+        // so we need to manually shrink it
         websiteButtonsContainer.RectSize = Vector2.Zero;
     }
 
