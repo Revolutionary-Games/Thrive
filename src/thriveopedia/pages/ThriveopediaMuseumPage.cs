@@ -26,7 +26,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath LeaveGameConfirmationDialogPath = null!;
 
-    private GridContainer cardContainer = null!;
+    private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
     private SpeciesPreview speciesPreview = null!;
@@ -42,7 +42,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     {
         base._Ready();
 
-        cardContainer = GetNode<GridContainer>(CardContainerPath);
+        cardContainer = GetNode<HFlowContainer>(CardContainerPath);
         welcomeLabel = GetNode<Control>(WelcomeLabelPath);
         speciesPreviewContainer = GetNode<VBoxContainer>(SpeciesPreviewContainerPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
@@ -72,12 +72,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     public override void UpdateCurrentWorldDetails()
     {
-    }
-
-    public override void OnNavigationPanelSizeChanged(bool collapsed)
-    {
-        // Change the number of columns to reflect the space the museum takes up
-        cardContainer.Columns = collapsed ? 3 : 4;
     }
 
     private void UpdateSpeciesPreview(MuseumCard card)
