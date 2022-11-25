@@ -757,7 +757,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (button.AttachedOrganism is Microbe microbe)
         {
             fossilisationDialog.SelectedSpecies = microbe.Species;
-            fossilisationDialog.Show();
+            fossilisationDialog.PopupCenteredShrink();
         }
         else
         {
