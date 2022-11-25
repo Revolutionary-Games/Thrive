@@ -861,7 +861,6 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
-[connection signal="about_to_show" from="MenuContainers/WebsiteButtons" to="." method="OnWebsitesButtonShow"]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]

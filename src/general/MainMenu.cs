@@ -623,6 +623,8 @@ public class MainMenu : NodeWithInput
     private void OnWebsitesButtonPressed()
     {
         websiteButtonsContainer.ShowModal();
+
+        // A plain PopupPanel doesn't resize automatically, we need to shrink it
         websiteButtonsContainer.RectSize = Vector2.Zero;
     }
 
