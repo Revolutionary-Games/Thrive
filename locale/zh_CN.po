@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-10 17:12+0200\n"
-"PO-Revision-Date: 2022-10-24 16:00+0000\n"
+"PO-Revision-Date: 2022-11-13 08:28+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2148,7 +2148,7 @@ msgstr "Auto-Evo探索工具"
 
 #: ../src/general/MainMenu.tscn:419 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Thrive百科"
 
 #: ../src/general/MainMenu.tscn:434
 msgid "MODS"
@@ -2167,13 +2167,13 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
 
 #: ../src/general/MainMenu.tscn:522
-#, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr "自杀"
+msgstr "访问Revolutionary Games的官方网站"
 
 #: ../src/general/MainMenu.tscn:525
+#, fuzzy
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "官方网站"
 
 #: ../src/general/MainMenu.tscn:535
 #, fuzzy
@@ -2185,44 +2185,36 @@ msgid "COMMUNITY_FORUM"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:548
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "进入编辑器并修改你的物种"
+msgstr "在开发论坛上了解开发进度"
 
 #: ../src/general/MainMenu.tscn:551
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "由Revolutionary Games Studio ry支持的开发"
+msgstr "开发论坛"
 
 #: ../src/general/MainMenu.tscn:561
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "帮助菜单"
+msgstr "访问我们的开发者wiki"
 
 #: ../src/general/MainMenu.tscn:564
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "开发者"
+msgstr "开发者wiki"
 
 #: ../src/general/MainMenu.tscn:574
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "退出游戏"
+msgstr "访问我们的社区wiki"
 
 #: ../src/general/MainMenu.tscn:577
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "我们的Wiki"
+msgstr "社区wiki"
 
 #: ../src/general/MainMenu.tscn:614
-#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr "由Revolutionary Games Studio制作"
+msgstr "访问Revolutionary Games Studio网站"
 
 #: ../src/general/MainMenu.tscn:625
-#, fuzzy
 msgid "STEAM_TOOLTIP"
-msgstr "暂停游戏"
+msgstr "访问我们在Steam上的页面"
 
 #: ../src/general/MainMenu.tscn:636
 #, fuzzy
@@ -2240,9 +2232,8 @@ msgid "GITHUB_TOOLTIP"
 msgstr "退出游戏"
 
 #: ../src/general/MainMenu.tscn:669
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "暂停游戏"
+msgstr "访问我们的YouTube频道"
 
 #: ../src/general/MainMenu.tscn:680
 #, fuzzy
@@ -2255,9 +2246,8 @@ msgid "DISCORD_TOOLTIP"
 msgstr "时间经过了{0:#,#}年"
 
 #: ../src/general/MainMenu.tscn:702
-#, fuzzy
 msgid "FACEBOOK_TOOLTIP"
-msgstr "暂停游戏"
+msgstr "访问我们的Facebook页面"
 
 #: ../src/general/MainMenu.tscn:713
 #, fuzzy
@@ -3051,7 +3041,7 @@ msgstr "保存游戏"
 
 #: ../src/general/PauseMenu.tscn:205
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr ""
+msgstr "打开Thrive百科"
 
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
@@ -3161,20 +3151,34 @@ msgstr "已禁用"
 
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "难度预设"
+msgstr ""
+"难度预设: {0}\n"
+"突变成本系数: {1}\n"
+"AI突变率: {2}\n"
+"化合物云密度: {3}\n"
+"玩家死亡惩罚: {4}\n"
+"环境葡萄糖保留: {5}\n"
+"渗透调节消耗系数: {6}\n"
+"在离开编辑器时免费的葡萄糖云: {7}\n"
+"被动获得的繁殖进度: {8}\n"
+"限制繁殖化合物使用: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:165
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
-msgstr "打开文件夹"
+msgstr ""
+"地区图类型: {0}\n"
+"仅限已知生命形式: {1}\n"
+"生物起源: {2}\n"
+"世界生成种子: {3}"
 
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+"包含测试阶段: {0}\n"
+"包含彩蛋: {1}"
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -4316,12 +4320,12 @@ msgstr "要发出的信号"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "保存该物种到化石中（已保存）"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "保存该物种到化石中"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
@@ -5761,55 +5765,46 @@ msgid "PAGE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
-#, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "删除此存档将无法撤消，确定要永久删除吗？"
+msgstr ""
+"化石库中已有一个与之重名的物种。\n"
+"你确定要用这个物种覆盖它吗？"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:37
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "种群数量："
+msgstr "化石"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:140
-#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"激进型微生物会在更远的距离追捕猎物，\n"
-"并且在受到攻击时更有可能与捕食者作斗争。\n"
-"和平型微生物不会在意更远距离的其它微生物，\n"
-"并且不太可能使用毒素来对付捕食者。"
+msgstr "将该物种保存至化石中并存放到博物馆里。你可以通过Thrive百科进入博物馆，或在自由编辑器中加载这些化石中的物种。"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:221
-#, fuzzy
 msgid "FOSSILISE"
-msgstr "沉着"
+msgstr "保存至化石中"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:235
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "确认覆盖"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
-#, fuzzy
 msgid "MICROBE"
-msgstr "微生物阶段"
+msgstr "微生物"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
-#, fuzzy
 msgid "EARLY_MULTICELLULAR"
-msgstr "多细胞阶段"
+msgstr "多细胞生物"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-#, fuzzy
 msgid "LATE_MULTICELLULAR"
-msgstr "多细胞阶段"
+msgstr "后期多细胞生物"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "目前世界"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "树状演化图"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
 #, fuzzy
@@ -5818,15 +5813,24 @@ msgstr "演化树"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "主页"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "欢迎来到Thrive百科"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
+"Thrive百科是Thrive内容的首要资料库和信息存储室。在这里你可以找到你对于游戏，目前的世界亦或是Thrive的开发计划的任何问题的解答。\n"
+"\n"
+"目前Thrive百科的内容相对比较少，但你仍然可以通过使用页面树状图和导航按钮来浏览众多页面。请注意那些与一场特定的游戏相关的页面仅会在通过游戏内暂停页面打开Thrive百科时被显示。\n"
+"\n"
+"你可以在以下网页找到更多关于本游戏的信息：\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]官方网站[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]开发者wiki[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]社区wiki[/url][/color]"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
@@ -5834,24 +5838,28 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "博物馆"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:135
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"您确定想作为这个被选中的物种开始一局新的游戏吗？\n"
+"您将失去任何未保存的进度。"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "OPEN_IN_FREEBUILD"
-msgstr "自由编辑器"
+msgstr "在自由编辑器中打开"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:167
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"欢迎来到博物馆！在这里你可以欣赏许多在你游玩过程中被保存到化石中的众多物种。你甚至可以在自由编辑器中打开它们进行游戏。\n"
+"\n"
+"按下暂停键并在屏幕上选中一个微生物以以将该物种保存至化石中。"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr ""
+msgstr "地区图"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
