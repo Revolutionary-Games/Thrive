@@ -98,7 +98,7 @@ public class MainMenu : NodeWithInput
     private Label storeLoggedInDisplay = null!;
 
     private Control socialMediaContainer = null!;
-    private VBoxContainer websiteButtonsContainer = null!;
+    private PopupPanel websiteButtonsContainer = null!;
 
     private TextureButton itchButton = null!;
     private TextureButton patreonButton = null!;
@@ -109,7 +109,7 @@ public class MainMenu : NodeWithInput
     private CustomDialog safeModeWarning = null!;
 
     private CustomDialog modsInstalledButNotEnabledWarning = null!;
-    private CheckBox permanentlyDismissModsNotEnabledWarning = null!;
+    private CustomCheckBox permanentlyDismissModsNotEnabledWarning = null!;
 
     private bool introVideoPassed;
 
@@ -262,7 +262,7 @@ public class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
-        websiteButtonsContainer = GetNode<VBoxContainer>(WebsiteButtonsContainerPath);
+        websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
@@ -289,7 +289,7 @@ public class MainMenu : NodeWithInput
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
 
         modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
-        permanentlyDismissModsNotEnabledWarning = GetNode<CheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
+        permanentlyDismissModsNotEnabledWarning = GetNode<CustomCheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
 
         // Set initial menu
         SwitchMenu();
@@ -658,7 +658,11 @@ public class MainMenu : NodeWithInput
 
     private void OnWebsitesButtonPressed()
     {
-        websiteButtonsContainer.Visible = !websiteButtonsContainer.Visible;
+        websiteButtonsContainer.ShowModal();
+
+        // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
+        // so we need to manually shrink it
+        websiteButtonsContainer.RectSize = Vector2.Zero;
     }
 
     private void OnSocialMediaButtonPressed(string url)
