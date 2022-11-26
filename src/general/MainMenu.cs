@@ -38,6 +38,9 @@ public class MainMenu : NodeWithInput
     public NodePath LicensesDisplayPath = null!;
 
     [Export]
+    public NodePath PatchNotePath = null!;
+
+    [Export]
     public NodePath GLES2PopupPath = null!;
 
     [Export]
@@ -94,6 +97,8 @@ public class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
+
+    private PatchNotesDisplay patchNotesDisplay = null!;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -247,6 +252,7 @@ public class MainMenu : NodeWithInput
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
+        patchNotesDisplay = GetNode<PatchNotesDisplay>(PatchNotePath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
@@ -585,6 +591,22 @@ public class MainMenu : NodeWithInput
     }
 
     private void OnReturnFromLicenses()
+    {
+        SetCurrentMenu(2, false);
+    }
+
+    private void PatchNotesPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the licenses view
+        patchNotesDisplay.PopupCenteredShrink();
+    }
+
+    private void OnReturnFromPatchNotes()
     {
         SetCurrentMenu(2, false);
     }
