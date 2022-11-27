@@ -1453,6 +1453,7 @@ public partial class Microbe
 
             var containedCompounds = engulfable.Compounds;
             var additionalCompounds = engulfedObject.AdditionalEngulfableCompounds;
+            containedCompounds.FixNaNCompounds();
 
             var totalAmountLeft = 0.0f;
 
