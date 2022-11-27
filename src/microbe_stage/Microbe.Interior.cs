@@ -1453,6 +1453,10 @@ public partial class Microbe
 
             var containedCompounds = engulfable.Compounds;
             var additionalCompounds = engulfedObject.AdditionalEngulfableCompounds;
+
+            // Workaround to avoid NaN compounds in engulfed objects, leading to glitches like infinite compound
+            // ejection and incorrect ingested matter display
+            // https://github.com/Revolutionary-Games/Thrive/issues/3548
             containedCompounds.FixNaNCompounds();
 
             var totalAmountLeft = 0.0f;
