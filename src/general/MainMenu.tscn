@@ -98,7 +98,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 2, 0.5, 1 ),
 "update": 0,
-"values": [ 0.287, 0.45, 0.287 ]
+"values": [ 0.275, 0.45, 0.275 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("MenuContainers/Menus:anchor_bottom")
@@ -175,7 +175,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -624.0
+margin_left = -763.0
 margin_top = -19.0
 margin_right = -4.0
 margin_bottom = -4.0
@@ -202,38 +202,35 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -640.0
-margin_right = 640.0
-margin_bottom = 225.0
+margin_right = 639.0
+margin_bottom = 221.0
 __meta__ = {
 "_editor_description_": "Centering fo the Thrive logo"
 }
 
 [node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
 margin_left = 556.0
-margin_top = 28.0
+margin_top = 26.0
 margin_right = 723.0
-margin_bottom = 196.0
+margin_bottom = 194.0
 texture = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Menus" type="CenterContainer" parent="MenuContainers"]
-anchor_top = 0.287
+anchor_top = 0.275
 anchor_right = 1.0
 anchor_bottom = 0.952
-margin_top = 0.360001
-margin_right = 1.0
-margin_bottom = -0.440002
 rect_clip_content = true
 mouse_filter = 2
 theme = ExtResource( 1 )
 
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 margin_left = 515.0
-margin_top = 19.0
+margin_top = 23.0
 margin_right = 765.0
-margin_bottom = 459.0
+margin_bottom = 463.0
 custom_constants/separation = 10
 
 [node name="NewGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
@@ -333,9 +330,9 @@ text = "QUIT"
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
 margin_left = 496.0
-margin_top = 119.0
+margin_top = 123.0
 margin_right = 784.0
-margin_bottom = 359.0
+margin_bottom = 363.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -411,10 +408,10 @@ text = "BACK"
 
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
-margin_left = 509.0
-margin_top = 94.0
-margin_right = 772.0
-margin_bottom = 384.0
+margin_left = 508.0
+margin_top = 98.0
+margin_right = 771.0
+margin_bottom = 388.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
