@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Godot;
 
-// TODO: see <insert issue link>
 // [Tool]
 public class PatchNotesDisplay : CustomDialog
 {
@@ -11,7 +8,7 @@ public class PatchNotesDisplay : CustomDialog
     public NodePath TextsContainerPath = null!;
 
     //private (string Heading, Func<string> Content) patchNotes = (null!, null!);
-    private (string Heading, string Content) patchNotes = (null!, null!);
+    private (string Heading, Func<string> Content) patchNotes = (null!, null!);
 
     private bool patchNotesLoaded;
 
@@ -31,7 +28,7 @@ public class PatchNotesDisplay : CustomDialog
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
 
-        patchNotes = (string.Empty, LoadFile(Constants.PATCH_NOTES_FILE));
+        patchNotes = (string.Empty, () => LoadFile(Constants.PATCH_NOTES_FILE));
     }
 
     public override void _Process(float delta)
@@ -56,14 +53,13 @@ public class PatchNotesDisplay : CustomDialog
 
     private static string LoadFile(string file)
     {
-        using System.IO.StreamReader r = new System.IO.StreamReader(Constants.PATCH_NOTES_FILE);
-        var reader = new File();
-        if (reader.Open(file, Godot.File.ModeFlags.Read) == Error.Ok)
-        {
-            return r.ReadToEnd();
+        using var reader = new File();
 
-            // List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
+        if (reader.Open(file, File.ModeFlags.Read) == Error.Ok)
+        {
+            return reader.GetAsText();
         }
+
         GD.PrintErr("Can't load file to show in licenses: ", file);
         return "Missing file to show here!";
     }
@@ -76,7 +72,7 @@ public class PatchNotesDisplay : CustomDialog
 
         var content = new Label
         {
-            Text = patchNotes.Content,
+            Text = patchNotes.Content(),
             Align = Label.AlignEnum.Left,
             Autowrap = true,
         };
