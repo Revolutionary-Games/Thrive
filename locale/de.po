@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-10 17:12+0200\n"
-"PO-Revision-Date: 2022-11-10 00:00+0000\n"
-"Last-Translator: Allstreamer <cbredenbach@gmail.com>\n"
+"PO-Revision-Date: 2022-11-21 17:00+0000\n"
+"Last-Translator: Uwe Haertel <uwe.haertel@chello.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1544,9 +1544,8 @@ msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree ausgeben"
 
 #: ../src/engine/DebugOverlays.tscn:134
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Übersetzer"
+msgstr "Transparenz"
 
 #: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
 msgid "LOADING"
@@ -1589,9 +1588,8 @@ msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Zusätzliche Überprüfungen fanden einen Fehler: {0}"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
+msgstr "Konfiguration Todeszone"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
@@ -1603,9 +1601,8 @@ msgid "START_CALIBRATION"
 msgstr "Starte Kalibrierung"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
-#, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "Auf Standardeinstellungen zurücksetzen?"
+msgstr "Todeszonen zurücksetzen"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2039,19 +2036,17 @@ msgid "ART_BY"
 msgstr "Grafiken von {0}"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Verhalten"
+msgstr "Aggressivität"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Verhalten"
+msgstr "Opportunismus"
 
 #: ../src/general/BehaviourDictionary.cs:104
 #, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Verhalten"
+msgstr "Angst"
 
 #: ../src/general/BehaviourDictionary.cs:105
 #, fuzzy
@@ -2059,9 +2054,8 @@ msgid "BEHAVIOUR_ACTIVITY"
 msgstr "Verhalten"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Verhalten"
+msgstr "Fokus"
 
 #: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2108,9 +2102,8 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
 
 #: ../src/general/MainMenu.tscn:235
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Pause-Menü"
+msgstr "Neues Spiel starten"
 
 #: ../src/general/MainMenu.tscn:238
 msgid "NEW_GAME"
@@ -2127,9 +2120,8 @@ msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
 #: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:221
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Hilfe"
+msgstr "Einstellungen ändern"
 
 #: ../src/general/MainMenu.tscn:264 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
@@ -2152,9 +2144,8 @@ msgid "CREDITS"
 msgstr "Abspann"
 
 #: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:237
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Suizid"
+msgstr "Spiel beenden"
 
 #: ../src/general/MainMenu.tscn:320
 msgid "QUIT"
@@ -2191,9 +2182,8 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Schlage eine Funktion vor"
 
 #: ../src/general/MainMenu.tscn:522
-#, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr "Suizid"
+msgstr "Revolutionary Games website besuchen"
 
 #: ../src/general/MainMenu.tscn:525
 msgid "OFFICIAL_WEBSITE"
@@ -2214,9 +2204,8 @@ msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Eingabemethode hinzufügen"
 
 #: ../src/general/MainMenu.tscn:551
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "Entwicklung unterstützt von Revolutionary Games Studio ry"
+msgstr "Entwickler Forum"
 
 #: ../src/general/MainMenu.tscn:561
 #, fuzzy
@@ -2244,9 +2233,8 @@ msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Von Revolutionary Games Studio"
 
 #: ../src/general/MainMenu.tscn:625
-#, fuzzy
 msgid "STEAM_TOOLTIP"
-msgstr "Pausiere das Spiel"
+msgstr "Steam website besuchen"
 
 #: ../src/general/MainMenu.tscn:636
 #, fuzzy
@@ -2264,9 +2252,8 @@ msgid "GITHUB_TOOLTIP"
 msgstr "Suizid"
 
 #: ../src/general/MainMenu.tscn:669
-#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Pausiere das Spiel"
+msgstr "Besuche unseren YouTube Kanal"
 
 #: ../src/general/MainMenu.tscn:680
 #, fuzzy
@@ -2875,15 +2862,15 @@ msgstr "Maximalzahl an Entities:"
 
 #: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Winzig"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_VERY_SMALL"
-msgstr ""
+msgstr "Sehr klein"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_SMALL"
-msgstr ""
+msgstr "Klein"
 
 #: ../src/general/OptionsMenu.tscn:1087
 #, fuzzy
@@ -2892,15 +2879,15 @@ msgstr "BESTÄTIGEN"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_LARGE"
-msgstr ""
+msgstr "Gross"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_VERY_LARGE"
-msgstr ""
+msgstr "Sehr gross"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Riesig"
 
 #: ../src/general/OptionsMenu.tscn:1087
 #, fuzzy
@@ -2913,7 +2900,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Achsen verbinden"
 
 #: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
 #, fuzzy
@@ -2923,7 +2910,7 @@ msgstr "Version:"
 #: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
 #: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
 msgid "INVERTED"
-msgstr ""
+msgstr "Invertiert"
 
 #: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
 #, fuzzy
@@ -2953,7 +2940,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Empfindlichkeit controller"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
@@ -5122,9 +5109,8 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "Dies ist ein lokal installierter Mod"
 
 #: ../src/modding/ModManager.cs:913
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "Temperatur"
+msgstr "Ja"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
@@ -5893,12 +5879,10 @@ msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
 #: ../src/thriveopedia/Thriveopedia.tscn:103
-#, fuzzy
 msgid "PAGE_BACK"
 msgstr "Zurück"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:117
-#, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Vorwärts"
 
@@ -5908,9 +5892,8 @@ msgid "HOME"
 msgstr "Pos1"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:149
-#, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Lokale Daten entfernen"
+msgstr "Seitentitel"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
 #, fuzzy
