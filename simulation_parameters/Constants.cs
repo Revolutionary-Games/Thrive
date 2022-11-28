@@ -934,6 +934,7 @@ public static class Constants
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
     public const string PATCH_NOTES_FILE = "res://PatchNotes.JSON";
+    //public const string ASSETS_PATCH_NOTES_FILE = "res://assets/PatchNotes.JSON";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 

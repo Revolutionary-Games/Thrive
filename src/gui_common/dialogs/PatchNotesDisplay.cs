@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
 using Godot;
 
@@ -32,7 +31,7 @@ public class PatchNotesDisplay : CustomDialog
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
 
-        //patchNotes = ("Temporary", LoadFile(Constants.PATCH_NOTES_FILE));
+        patchNotes = ("Temporary", LoadFile(Constants.PATCH_NOTES_FILE));
     }
 
     public override void _Process(float delta)
@@ -57,19 +56,16 @@ public class PatchNotesDisplay : CustomDialog
 
     private static string LoadFile(string file)
     {
-        using (StreamReader r = new StreamReader(Constants.PATCH_NOTES_FILE))
-        {
-            string json = r.ReadToEnd();
+        using System.IO.StreamReader r = new System.IO.StreamReader(Constants.PATCH_NOTES_FILE);
+        var reader = new File();
+        //if (reader.Open(file, Godot.File.ModeFlags.Read) == Error.Ok)
+        //{
+        return r.ReadToEnd();
 
             // List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
-
-            return json;
-        }
-
-        /* TODO: Add this back somewhere
-        GD.PrintErr("Can't load file to show in patch notes: ", file);
+        //}
+        GD.PrintErr("Can't load file to show in licenses: ", file);
         return "Missing file to show here!";
-        */
     }
 
     private void LoadPatchNotesText()
