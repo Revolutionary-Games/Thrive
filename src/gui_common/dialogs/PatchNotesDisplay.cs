@@ -7,7 +7,6 @@ public class PatchNotesDisplay : CustomDialog
     [Export]
     public NodePath TextsContainerPath = null!;
 
-    //private (string Heading, Func<string> Content) patchNotes = (null!, null!);
     private (string Heading, Func<string> Content) patchNotes = (null!, null!);
 
     private bool patchNotesLoaded;
