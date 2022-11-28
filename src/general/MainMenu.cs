@@ -29,6 +29,9 @@ public class MainMenu : NodeWithInput
     public NodePath AutoEvoExploringButtonPath = null!;
 
     [Export]
+    public NodePath ExitToLauncherButtonPath = null!;
+
+    [Export]
     public NodePath CreditsContainerPath = null!;
 
     [Export]
@@ -94,6 +97,8 @@ public class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
+
+    private Button exitToLauncherButton = null!;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -255,6 +260,7 @@ public class MainMenu : NodeWithInput
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
+        exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
@@ -357,13 +363,14 @@ public class MainMenu : NodeWithInput
         if (!LaunchOptions.LaunchedThroughLauncher)
         {
             GD.Print("We are not started through the Thrive Launcher");
+            exitToLauncherButton.Visible = false;
             return;
         }
 
         GD.Print("Thrive Launcher started us, launcher hidden: ", LaunchOptions.LaunchingLauncherIsHidden);
 
-        // TODO: exit to launcher button
-        // exitToLauncherButton.Visible = LaunchOptions.LaunchingLauncherIsHidden;
+        // Exit to launcher button when the user might otherwise have trouble getting back there
+        exitToLauncherButton.Visible = LaunchOptions.LaunchingLauncherIsHidden;
     }
 
     /// <summary>
@@ -514,6 +521,17 @@ public class MainMenu : NodeWithInput
     private void QuitPressed()
     {
         SceneManager.Instance.QuitThrive();
+    }
+
+    private void QuitToLauncherPressed()
+    {
+        GD.Print("Exit to launcher pressed");
+
+        // Output a special message which the launcher should detect
+        GD.Print(Constants.REQUEST_LAUNCHER_OPEN);
+
+        // Probably unnecessary, but we exit with a delay here
+        Invoke.Instance.Queue(QuitPressed);
     }
 
     private void OptionsPressed()
