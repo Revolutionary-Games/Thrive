@@ -38,7 +38,7 @@ public class MainMenu : NodeWithInput
     public NodePath LicensesDisplayPath = null!;
 
     [Export]
-    public NodePath PatchNotePath = null!;
+    public NodePath PatchNotesPath = null!;
 
     [Export]
     public NodePath GLES2PopupPath = null!;
@@ -252,7 +252,7 @@ public class MainMenu : NodeWithInput
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
-        patchNotesDisplay = GetNode<PatchNotesDisplay>(PatchNotePath);
+        patchNotesDisplay = GetNode<PatchNotesDisplay>(PatchNotesPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);

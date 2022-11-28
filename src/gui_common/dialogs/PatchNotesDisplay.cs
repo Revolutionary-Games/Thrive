@@ -11,7 +11,8 @@ public class PatchNotesDisplay : CustomDialog
     [Export]
     public NodePath TextsContainerPath = null!;
 
-    private (string Heading, Func<string> Content) patchNotes = (null!, null!);
+    //private (string Heading, Func<string> Content) patchNotes = (null!, null!);
+    private (string Heading, string Content) patchNotes = (null!, null!);
 
     private bool patchNotesLoaded;
 
@@ -30,6 +31,8 @@ public class PatchNotesDisplay : CustomDialog
     public override void _Ready()
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
+
+        //patchNotes = ("Temporary", LoadFile(Constants.PATCH_NOTES_FILE));
     }
 
     public override void _Process(float delta)
@@ -77,7 +80,7 @@ public class PatchNotesDisplay : CustomDialog
 
         var content = new Label
         {
-            Text = patchNotes.Content(),
+            Text = patchNotes.Content,
             Align = Label.AlignEnum.Left,
             Autowrap = true,
         };
