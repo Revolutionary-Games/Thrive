@@ -350,15 +350,14 @@ public class PatchDetailsPanel : PanelContainer
             temperatureSituation.Texture = null;
         }
 
-        // TODO: should this use the biome type averages or the current values? as it seems that changing daytime
-        // in the editor doesn't update the whole PatchMap
-        nextCompound = SelectedPatch.Biome.CurrentCompoundAmounts[sunlightCompound].Ambient;
+        // We want to compare against the non-time of day adjusted light levels
+        nextCompound = SelectedPatch.Biome.Compounds[sunlightCompound].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.CurrentCompoundAmounts[sunlightCompound].Ambient)
+        if (nextCompound > CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
         {
             lightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.CurrentCompoundAmounts[sunlightCompound].Ambient)
+        else if (nextCompound < CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
         {
             lightSituation.Texture = decreaseIcon;
         }
