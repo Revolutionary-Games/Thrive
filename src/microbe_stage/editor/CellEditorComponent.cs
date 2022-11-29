@@ -272,6 +272,9 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private float rigidity;
 
+    [JsonProperty]
+    private BiomeConditions previewBiomeConditions = null!;
+
     /// <summary>
     ///   To not have to recreate this object for each place / remove this is a cached clone of editedSpecies to which
     ///   current editor changes are applied for simulating what effect they would have on the population.
@@ -828,6 +831,8 @@ public partial class CellEditorComponent :
 
     public void SetPatchConditions(Patch patch)
     {
+        previewBiomeConditions = (BiomeConditions)patch.Biome.Clone();
+
         // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
         // daytime light levels
         if (Editor.Ready)
@@ -845,9 +850,9 @@ public partial class CellEditorComponent :
 
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch.Biome);
+            editedMicrobeOrganelles.Organelles, Membrane, previewBiomeConditions);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch.Biome);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, previewBiomeConditions);
     }
 
     /// <summary>
@@ -858,7 +863,7 @@ public partial class CellEditorComponent :
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
         var result =
-            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, Editor.CurrentPatch.Biome,
+            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, previewBiomeConditions,
                 CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
@@ -1042,7 +1047,7 @@ public partial class CellEditorComponent :
             Ambient = lightLevel,
         };
 
-        Editor.CurrentPatch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
+        previewBiomeConditions.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
 
         // TODO: isn't this entirely logically wrong? See the comment in PatchManager about needing to set average
         // light levels on editor entry.
@@ -1442,7 +1447,7 @@ public partial class CellEditorComponent :
     private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
         MembraneType membrane, BiomeConditions? biome = null)
     {
-        biome ??= Editor.CurrentPatch.Biome;
+        biome ??= previewBiomeConditions;
 
         UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
             Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current));
@@ -1451,7 +1456,7 @@ public partial class CellEditorComponent :
     private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles,
         BiomeConditions? biome = null)
     {
-        biome ??= Editor.CurrentPatch.Biome;
+        biome ??= previewBiomeConditions;
 
         var result = ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
 
