@@ -602,7 +602,7 @@ public class MainMenu : NodeWithInput
         // Hide all other menus
         SetCurrentMenu(uint.MaxValue, false);
 
-        // Show the licenses view
+        // Show the patch notes view
         patchNotesDisplay.PopupCenteredShrink();
     }
 

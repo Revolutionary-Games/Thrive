@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
 [ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/dialogs/PatchNotesDisplay.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -124,6 +125,7 @@ JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/
 CommitLabelPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Commit")
 BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/BuiltAt")
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
+PatchNotesPath = NodePath("PatchNotesDisplay")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -1371,7 +1373,7 @@ margin_bottom = 583.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer"]
 margin_right = 657.0
-margin_bottom = 655.0
+margin_bottom = 705.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -1379,7 +1381,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer"]
 margin_right = 647.0
-margin_bottom = 645.0
+margin_bottom = 695.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -1565,15 +1567,15 @@ mouse_filter = 0
 text = "DISMISSED_POPUPS_COLON"
 
 [node name="DismissedCount" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-margin_left = 284.0
+margin_left = 277.0
 margin_top = 5.0
-margin_right = 284.0
+margin_right = 277.0
 margin_bottom = 30.0
 hint_tooltip = "DISMISSED_POPUPS_EXPLANATION"
 mouse_filter = 0
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-margin_left = 288.0
+margin_left = 281.0
 margin_right = 360.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
@@ -1671,6 +1673,26 @@ align = 2
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 912.0
+margin_right = 641.0
+margin_bottom = 916.0
+
+[node name="PatchNotes" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_left = 195.0
+margin_top = 655.0
+margin_right = 445.0
+margin_bottom = 695.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "PatchNotes"
+__meta__ = {
+"_editor_description_": ""
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
@@ -1858,6 +1880,10 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 
 [node name="ControllerDeadzoneConfiguration" parent="." instance=ExtResource( 12 )]
 
+[node name="PatchNotesDisplay" parent="." instance=ExtResource( 13 )]
+margin_top = 28.0
+margin_bottom = 628.0
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
@@ -1924,6 +1950,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug" to="." method="OnJSONDebugModeSelected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/PatchNotes" to="." method="PatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
