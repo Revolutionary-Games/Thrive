@@ -45,8 +45,6 @@ public class Patch
         Region = region;
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-
-        Biome.CreateSunlight(Biome.Compounds[sunlight].Ambient);
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -64,8 +62,6 @@ public class Patch
         this.currentSnapshot = currentSnapshot;
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-
-        Biome.CreateSunlight(Biome.Compounds[sunlight].Ambient);
     }
 
     [JsonProperty]
@@ -329,16 +325,28 @@ public class Patch
         switch (compoundName)
         {
             case "sunlight":
-                return GetSunlightAmount(amountType);
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return Biome.Compounds[compound].Ambient * 100;
+                return GetAmbientCompound(compound, amountType) * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:
-                return Biome.Compounds[compound].Density * Biome.Compounds[compound].Amount +
-                    GetTotalChunkCompoundAmount(compound);
+            {
+                BiomeCompoundProperties amount;
+                if (amountType == CompoundAmountType.Template)
+                {
+                    // TODO: chunk handling?
+                    amount = BiomeTemplate.Conditions.GetCompound(compound, CompoundAmountType.Biome);
+                }
+                else
+                {
+                    amount = Biome.GetCompound(compound, amountType);
+                }
+
+                // TODO: passing amountType to GetTotalChunkCompoundAmount
+                return amount.Density * amount.Amount + GetTotalChunkCompoundAmount(compound);
+            }
         }
     }
 
@@ -349,11 +357,10 @@ public class Patch
         switch (compoundName)
         {
             case "sunlight":
-                return GetSunlightAmount(CompoundAmountType.Average);
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return snapshot.Biome.Compounds[compound].Ambient * 100;
+                return GetAmbientCompound(compound, CompoundAmountType.Biome) * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:
@@ -419,12 +426,18 @@ public class Patch
 
     public void UpdateAverageSunlight(DayNightCycle lightCycle)
     {
-        Biome.Sunlight!.Average = Biome.Sunlight.Maximum * lightCycle.AverageSunlight;
+        Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
+        {
+            Ambient = Biome.MaximumCompounds[sunlight].Ambient * lightCycle.AverageSunlight,
+        };
     }
 
-    public void UpdateAmbientSunlight(DayNightCycle lightCycle)
+    public void UpdateCurrentSunlight(DayNightCycle lightCycle)
     {
-        Biome.Sunlight!.Current = Biome.Sunlight.Maximum * lightCycle.DayLightFraction;
+        Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
+        {
+            Ambient = Biome.MaximumCompounds[sunlight].Ambient * lightCycle.DayLightFraction,
+        };
     }
 
     /// <summary>
@@ -447,21 +460,23 @@ public class Patch
         return $"Patch \"{Name}\"";
     }
 
-    /// <summary>
-    ///   Returns Sunlight Amount in Percentage Form
-    /// </summary>
-    private float GetSunlightAmount(CompoundAmountType option)
+    private float GetAmbientCompound(Compound compound, CompoundAmountType option)
     {
         switch (option)
         {
+            // TODO: minimum?
+            case CompoundAmountType.Current:
+                return Biome.CurrentCompoundAmounts[compound].Ambient;
             case CompoundAmountType.Maximum:
-                return Biome.Sunlight!.Maximum * 100;
+                return Biome.MaximumCompounds[compound].Ambient;
             case CompoundAmountType.Average:
-                return Biome.Sunlight!.Average * 100;
+                return Biome.AverageCompounds[compound].Ambient;
+            case CompoundAmountType.Biome:
+                return Biome.Compounds[compound].Ambient;
             case CompoundAmountType.Template:
-                return BiomeTemplate.Conditions.Compounds[sunlight].Ambient * 100;
+                return BiomeTemplate.Conditions.Compounds[compound].Ambient;
             default:
-                return Biome.Sunlight!.Current * 100;
+                throw new ArgumentOutOfRangeException(nameof(option), option, null);
         }
     }
 }

@@ -175,6 +175,17 @@ public static class PatchMapGenerator
 
         ConnectPatchesBetweenRegions(map, random);
         map.CreateAdjacenciesFromPatchData();
+
+        if (settings.DayNightCycleEnabled)
+        {
+            // Make sure average light levels are computed already
+            var dummyLight = new DayNightCycle(settings);
+            foreach (var patch in map.Patches)
+            {
+                patch.Value.UpdateAverageSunlight(dummyLight);
+            }
+        }
+
         return map;
     }
 
@@ -349,6 +360,15 @@ public static class PatchMapGenerator
     {
         var sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
 
+        // For now minimum sunlight is always 0
+        foreach (var regionPatch in region.Patches)
+        {
+            regionPatch.Biome.MinimumCompounds[sunlightCompound] = new BiomeCompoundProperties
+            {
+                Ambient = 0,
+            };
+        }
+
         // Base vectors to simplify later calculation
         var topLeftPatchPosition = region.ScreenCoordinates + new Vector2(
             Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH,
@@ -401,13 +421,11 @@ public static class PatchMapGenerator
                 seafloor.Depth[1] = deepestSeaPatch.Depth[1] + 10;
 
                 // Build seafloor light, using 0m -> 1, 200m -> 0.01, floor to 0.01
-                var sunlightProperty = seafloor.Biome.Compounds[sunlightCompound];
+                var sunlightProperty = seafloor.Biome.ChangeableCompounds[sunlightCompound];
                 var sunlightAmount = (int)(Mathf.Pow(0.977237220956f, seafloor.Depth[1]) * 100) / 100.0f;
                 sunlightProperty.Ambient = sunlightAmount;
 
-                // Need to initialise both to account for loading from saves
-                seafloor.Biome.Compounds[sunlightCompound] = sunlightProperty;
-                seafloor.Biome.CreateSunlight(sunlightAmount);
+                seafloor.Biome.ChangeableCompounds[sunlightCompound] = sunlightProperty;
 
                 // Build vents and cave position
                 if (vents != null || cave != null)

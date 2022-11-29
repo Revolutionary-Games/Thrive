@@ -265,7 +265,7 @@ public class PatchDetailsPanel : PanelContainer
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
         temperatureLabel.Text =
-            unitFormat.FormatSafe(SelectedPatch.Biome.Compounds[temperature].Ambient, temperature.Unit);
+            unitFormat.FormatSafe(SelectedPatch.Biome.CurrentCompoundAmounts[temperature].Ambient, temperature.Unit);
         pressure.Text = unitFormat.FormatSafe(20, "bar");
 
         var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, CompoundAmountType.Maximum);
@@ -326,9 +326,8 @@ public class PatchDetailsPanel : PanelContainer
     }
 
     /// <remarks>
-    ///   TODO: this function should be cleaned up by generalizing the adding
-    ///   the increase or decrease icons in order to remove the duplicated
-    ///   logic here
+    ///   TODO: this function should be cleaned up by generalizing the adding the increase or decrease icons in order
+    ///   to remove the duplicated logic here
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches()
     {
@@ -351,13 +350,15 @@ public class PatchDetailsPanel : PanelContainer
             temperatureSituation.Texture = null;
         }
 
-        nextCompound = SelectedPatch.Biome.Sunlight!.Current;
+        // TODO: should this use the biome type averages or the current values? as it seems that changing daytime
+        // in the editor doesn't update the whole PatchMap
+        nextCompound = SelectedPatch.Biome.CurrentCompoundAmounts[sunlightCompound].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.Sunlight!.Current)
+        if (nextCompound > CurrentPatch.Biome.CurrentCompoundAmounts[sunlightCompound].Ambient)
         {
             lightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.Sunlight.Current)
+        else if (nextCompound < CurrentPatch.Biome.CurrentCompoundAmounts[sunlightCompound].Ambient)
         {
             lightSituation.Texture = decreaseIcon;
         }

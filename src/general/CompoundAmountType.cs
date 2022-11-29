@@ -24,6 +24,11 @@ public enum CompoundAmountType
     Average,
 
     /// <summary>
+    ///   Ambient compound amount given in the biome conditions for a patch. Is not affected by current game time.
+    /// </summary>
+    Biome,
+
+    /// <summary>
     ///   Ambient compound amount given in the patch template definition.
     /// </summary>
     Template,
