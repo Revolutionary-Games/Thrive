@@ -20,9 +20,8 @@ public class EditorAutoEvoRun : AutoEvoRun
         // Custom run setup for editor's use
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
-        var dayNightConfiguration = Parameters.DayNightConfiguration;
 
-        steps.Enqueue(new CalculatePopulation(configuration, worldSettings, dayNightConfiguration, map,
+        steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,
             new List<Species> { ModifiedProperties },
             new List<Species> { OriginalEditedSpecies }, true) { CanRunConcurrently = false });
 

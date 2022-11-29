@@ -16,7 +16,7 @@ public class DayNightCycle
     ///   Configuration details for the day/night cycle.
     /// </summary>
     [JsonProperty]
-    private DayNightConfiguration lightCycleConfig;
+    private WorldGenerationSettings worldSettings;
 
     /// <summary>
     ///   Number of real-time seconds per in-game day.
@@ -25,13 +25,13 @@ public class DayNightCycle
     private int realTimePerDay;
 
     /// <summary>
-    ///   Current position in the day/night cycle, expressed as a percentage of the day elapsed so far.
+    ///   Current position in the day/night cycle, expressed as a fraction of the day elapsed so far.
     /// </summary>
     [JsonProperty]
-    private float percentOfDayElapsed;
+    private float fractionOfDayElapsed;
 
     /// <summary>
-    ///   Multiplier used for calculating DayLightPercentage.
+    ///   Multiplier used for calculating DayLightFraction.
     /// </summary>
     /// <remarks>
     ///   This exists as it only needs to be calculated once and the calculation for it is confusing.
@@ -42,40 +42,42 @@ public class DayNightCycle
     /// <summary>
     ///   Controller for variation in sunlight during an in-game day for the current game.
     /// </summary>
-    /// <param name="isEnabled">Whether the day/night cycle is enabled for this game</param>
-    /// <param name="realTimePerDay">Player configured length in real-time seconds of an in-game day</param>
-    public DayNightCycle(bool isEnabled, int realTimePerDay)
+    /// <param name="worldSettings">
+    ///   The world settings to read the day time parameters from. Note that currently modifying the settings after
+    ///   creating this object doesn't work
+    /// </param>
+    public DayNightCycle(WorldGenerationSettings worldSettings)
     {
-        this.isEnabled = isEnabled;
-        this.realTimePerDay = realTimePerDay;
+        isEnabled = worldSettings.DayNightCycleEnabled;
+        realTimePerDay = worldSettings.DayLength;
 
-        lightCycleConfig = SimulationParameters.Instance.GetDayNightCycleConfiguration();
+        this.worldSettings = worldSettings;
 
         // Start the game at noon
-        percentOfDayElapsed = 0.5f;
+        fractionOfDayElapsed = 0.5f;
 
-        // This converts the percentage in DaytimePercentage to the power of two needed for DayLightPercentage
-        daytimeMultiplier = Mathf.Pow(2, 2 / lightCycleConfig.DaytimeFraction);
+        // This converts the fraction in DaytimeFraction to the power of two needed for DayLightFraction
+        daytimeMultiplier = Mathf.Pow(2, 2 / this.worldSettings.DaytimeFraction);
 
-        AverageSunlight = this.isEnabled ? CalculateAverageSunlight() : 1.0f;
+        AverageSunlight = isEnabled ? CalculateAverageSunlight() : 1.0f;
     }
 
     [JsonIgnore]
     public float AverageSunlight { get; private set; }
 
     /// <summary>
-    ///   The percentage of daylight you should get.
-    ///   light = max(-(PercentOfDayElapsed - 0.5)^2 * daytimeMultiplier + 1, 0)
+    ///   The fraction of daylight you should get.
+    ///   light = max(-(FractionOfDayElapsed - 0.5)^2 * daytimeMultiplier + 1, 0)
     ///   desmos: https://www.desmos.com/calculator/vrrk1bkac2
     /// </summary>
     [JsonIgnore]
-    public float DayLightPercentage => isEnabled ? CalculatePointwiseSunlight(percentOfDayElapsed) : 1.0f;
+    public float DayLightFraction => isEnabled ? CalculatePointwiseSunlight(fractionOfDayElapsed) : 1.0f;
 
     public void Process(float delta)
     {
         if (isEnabled)
         {
-            percentOfDayElapsed = (percentOfDayElapsed + delta / realTimePerDay) % 1;
+            fractionOfDayElapsed = (fractionOfDayElapsed + delta / realTimePerDay) % 1;
         }
     }
 
@@ -85,7 +87,7 @@ public class DayNightCycle
     /// <remarks>
     ///   If this equation is changed, <see cref="IntegratePointwiseSunlight"/> must also be updated.
     /// </remarks>
-    /// <param name="x">Percentage of the day completed</param>
+    /// <param name="x">Fraction of the day completed, between 0-1</param>
     private float CalculatePointwiseSunlight(float x)
     {
         return Math.Max(1 - daytimeMultiplier * Mathf.Pow(x - 0.5f, 2), 0);
@@ -113,7 +115,7 @@ public class DayNightCycle
     /// <remarks>
     ///   Based on <see cref="CalculatePointwiseSunlight"/>, so must be updated if that is updated.
     /// </remarks>
-    /// <param name="x">Percentage of the day completed</param>
+    /// <param name="x">Fraction of the day completed</param>
     private float IntegratePointwiseSunlight(float x)
     {
         return x - daytimeMultiplier * (Mathf.Pow(x, 3) / 3 - Mathf.Pow(x, 2) / 2 + 0.25f * x);

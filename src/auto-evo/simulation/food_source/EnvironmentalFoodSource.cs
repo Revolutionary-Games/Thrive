@@ -21,12 +21,12 @@
         }
 
         public override float FitnessScore(Species species, SimulationCache simulationCache,
-            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration)
+            WorldGenerationSettings worldSettings)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
             var energyCreationScore = CompoundUseScore(microbeSpecies, compound, patch,
-                simulationCache, worldSettings, dayNightConfiguration);
+                simulationCache, worldSettings);
 
             var energyCost = simulationCache
                 .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)
@@ -48,12 +48,11 @@
         }
 
         protected override float StorageScore(MicrobeSpecies species, Compound compound, Patch patch,
-            SimulationCache simulationCache, WorldGenerationSettings worldSettings,
-            DayNightConfiguration dayNightConfiguration)
+            SimulationCache simulationCache, WorldGenerationSettings worldSettings)
         {
             if (worldSettings.DayNightCycleEnabled)
             {
-                var nightTime = dayNightConfiguration.DaytimeFraction * dayNightConfiguration.HoursPerDay;
+                var nightTime = worldSettings.DaytimeFraction * worldSettings.HoursPerDay;
 
                 // If a species consumes a lot, it ought to store more.
                 // NOTE: might artificially penalize overproducers but I'm willing to accept it for now - Maxonovien

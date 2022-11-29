@@ -10,20 +10,17 @@
     {
         private readonly IAutoEvoConfiguration configuration;
         private readonly WorldGenerationSettings worldSettings;
-        private readonly DayNightConfiguration dayNightConfiguration;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly Random random;
         private readonly SimulationCache cache;
 
         public FindBestMigration(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
-            DayNightConfiguration dayNightConfiguration,
             PatchMap map, Species species, Random random, int migrationsToTry,
             bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
             this.configuration = configuration;
             this.worldSettings = worldSettings;
-            this.dayNightConfiguration = dayNightConfiguration;
             this.map = map;
             this.species = species;
             this.random = new Random(random.Next());
@@ -44,7 +41,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(configuration, map, worldSettings, dayNightConfiguration,
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
@@ -64,7 +61,7 @@
             if (migration == null)
                 return new AttemptResult(null, -1);
 
-            var config = new SimulationConfiguration(configuration, map, worldSettings, dayNightConfiguration,
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);

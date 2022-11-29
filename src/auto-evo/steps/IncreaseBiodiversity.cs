@@ -13,7 +13,6 @@
         private readonly PatchMap map;
         private readonly Patch patch;
         private readonly IAutoEvoConfiguration configuration;
-        private readonly DayNightConfiguration dayNightConfiguration;
         private readonly Random random;
         private readonly SimulationCache cache;
 
@@ -24,13 +23,10 @@
 
         private WorldGenerationSettings worldSettings;
 
-        public IncreaseBiodiversity(IAutoEvoConfiguration configuration,
-            WorldGenerationSettings worldSettings,
-            DayNightConfiguration dayNightConfiguration,
+        public IncreaseBiodiversity(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
             PatchMap map, Patch patch, Random random)
         {
             this.worldSettings = worldSettings;
-            this.dayNightConfiguration = dayNightConfiguration;
             this.map = map;
             this.patch = patch;
             this.configuration = configuration;
@@ -126,7 +122,7 @@
             if (splitFrom is not MicrobeSpecies fromMicrobe)
                 return null;
 
-            var config = new SimulationConfiguration(configuration, map, worldSettings, dayNightConfiguration,
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             var split = (MicrobeSpecies)fromMicrobe.Clone();

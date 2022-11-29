@@ -376,7 +376,6 @@ public class AutoEvoRun
 
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
-        var dayNightConfiguration = Parameters.DayNightConfiguration;
 
         var autoEvoConfiguration = configuration;
 
@@ -404,16 +403,14 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
-                        worldSettings, dayNightConfiguration, map, speciesEntry.Key,
+                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowSpeciesToNotMutate,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, dayNightConfiguration,
-                        map, speciesEntry.Key, random,
-                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
+                        random, autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowSpeciesToNotMigrate));
                 }
             }
@@ -440,8 +437,7 @@ public class AutoEvoRun
             if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
                 random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
             {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings, dayNightConfiguration,
-                    map, entry.Value, random));
+                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings, map, entry.Value, random));
             }
         }
 
@@ -450,8 +446,7 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(
-            autoEvoConfiguration, worldSettings, dayNightConfiguration, map) { CanRunConcurrently = false });
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map) { CanRunConcurrently = false });
 
         // Due to species splitting migrations may end up being invalid
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
