@@ -77,7 +77,7 @@
         {
             var energyCreationScore = 0.0f;
 
-            // We check generation from all the processes of the cell../
+            // We check generation from all the processes of the cell..
             foreach (var organelle in species.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)

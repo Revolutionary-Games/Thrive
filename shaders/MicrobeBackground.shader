@@ -20,31 +20,20 @@ varying vec2 UV4;
 
 vec3 LightInfluence(float amount)
 {
-    vec3 influence = vec3(amount, amount, amount);
-
     if (amount > 0.5f)
     {
         // Day
-        influence = mix(vec3(0.75f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f),
-            2.0f * amount - 1.0f);
-
-        return influence;
+        return mix(vec3(0.75f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), 2.0f * amount - 1.0f);
     }
     else if (amount > 0.25f)
     {
         // Dawn and Dusk
-        influence = mix(vec3(0.25f, 0.25f, 0.25f), vec3(0.75f, 0.5f, 0.5f),
-                    4.0f * amount - 1.0f);
-        
-        return influence;
+        return mix(vec3(0.25f, 0.25f, 0.25f), vec3(0.75f, 0.5f, 0.5f), 4.0f * amount - 1.0f);
     }
     else
     {
         // Night
-        influence = mix(vec3(0.052f, 0.05f, 0.17f), vec3(0.25f, 0.25f, 0.25f),
-                    4.0f * amount); 
-
-        return influence;
+        return mix(vec3(0.052f, 0.05f, 0.17f), vec3(0.25f, 0.25f, 0.25f), 4.0f * amount);
     }
 }
 

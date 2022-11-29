@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -13,7 +14,7 @@ using Newtonsoft.Json;
 ///     The count operation and key counting operations (as well as value counting) are expensive and should be avoided
 ///   </para>
 /// </remarks>
-public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>
+public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, IReadOnlyDictionary<TKey, TValue>
 {
     [JsonProperty]
     private readonly IDictionary<TKey, TValue> primary;
@@ -50,6 +51,12 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>
     public ICollection<TValue> Values { get; }
 
     [JsonIgnore]
+    IEnumerable<TValue> IReadOnlyDictionary<TKey, TValue>.Values => Keys.Select(k => this[k]);
+
+    [JsonIgnore]
+    IEnumerable<TKey> IReadOnlyDictionary<TKey, TValue>.Keys => Keys;
+
+    [JsonIgnore]
     public TValue this[TKey key]
     {
         get
@@ -61,7 +68,11 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>
 
             return fallback[key];
         }
-        set => primary[key] = value;
+        set
+        {
+            primary[key] = value;
+            ResetPrimaryIfMatchesFallback(key);
+        }
     }
 
     public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
@@ -92,6 +103,13 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>
     public void Add(KeyValuePair<TKey, TValue> item)
     {
         primary.Add(item);
+        ResetPrimaryIfMatchesFallback(item.Key);
+    }
+
+    public void Add(TKey key, TValue value)
+    {
+        primary.Add(key, value);
+        ResetPrimaryIfMatchesFallback(key);
     }
 
     public void Clear()
@@ -130,16 +148,27 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>
         return primary.Remove(key);
     }
 
-    public void Add(TKey key, TValue value)
-    {
-        primary.Add(key, value);
-    }
-
     public bool TryGetValue(TKey key, out TValue value)
     {
         if (primary.TryGetValue(key, out value))
             return true;
 
         return fallback.TryGetValue(key, out value);
+    }
+
+    /// <summary>
+    ///   Removes a value from primary if it is the same value as the fallback
+    /// </summary>
+    /// <param name="key">The key to check</param>
+    private void ResetPrimaryIfMatchesFallback(TKey key)
+    {
+        if (primary.TryGetValue(key, out var primaryValue) && fallback.TryGetValue(key, out var fallbackValue) &&
+            primaryValue is { })
+        {
+            if (primaryValue.Equals(fallbackValue))
+            {
+                primary.Remove(key);
+            }
+        }
     }
 }

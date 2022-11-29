@@ -211,7 +211,7 @@ public class MicrobeStage : StageBase<Microbe>
         microbeSystem.Process(delta);
 
         patchManager.UpdatePatchBiome();
-        patchManager.UpdateAllPatchLightLevels(GameWorld.Map.CurrentPatch!);
+        patchManager.UpdateAllPatchLightLevels();
 
         if (gameOver)
             return;

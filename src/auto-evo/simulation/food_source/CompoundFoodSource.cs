@@ -12,8 +12,9 @@
         {
             this.patch = patch;
             this.compound = compound;
-            if (patch.Biome.Compounds.TryGetValue(compound, out var compoundData))
+            if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
             {
+                // TODO: multiply by storing score if average different from max?
                 totalCompound = compoundData.Density * compoundData.Amount;
             }
             else

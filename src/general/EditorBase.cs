@@ -79,6 +79,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     private int? mutationPointsCache;
 
+    [JsonProperty]
     private float lightLevel = 1.0f;
 
     /// <summary>
@@ -138,7 +139,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonProperty]
+    [JsonIgnore]
     public float LightLevel
     {
         get => lightLevel;
@@ -146,12 +147,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             lightLevel = value;
 
-            foreach (var editorComponent in GetAllEditorComponents())
-            {
-                editorComponent.OnLightLevelChanged(
-                    lightLevel, CurrentGame.GameWorld.Map.CurrentPatch!.GetCompoundAmount(
-                        "sunlight", CompoundAmountType.Maximum));
-            }
+            ApplyComponentLightLevels();
         }
     }
 
@@ -622,6 +618,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             throw new Exception($"Editor setup which was just ran didn't setup {nameof(EditedBaseSpecies)}");
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
+
+        ApplyComponentLightLevels();
     }
 
     /// <summary>
@@ -837,6 +835,16 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         OnMutationPointsChanged();
 
         return mutationPointsCache.Value;
+    }
+
+    private void ApplyComponentLightLevels()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.OnLightLevelChanged(
+                lightLevel, CurrentGame.GameWorld.Map.CurrentPatch!.GetCompoundAmount(
+                    "sunlight", CompoundAmountType.Maximum));
+        }
     }
 
     /// <summary>
