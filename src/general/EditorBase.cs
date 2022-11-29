@@ -841,9 +841,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         foreach (var editorComponent in GetAllEditorComponents())
         {
-            editorComponent.OnLightLevelChanged(
-                lightLevel, CurrentGame.GameWorld.Map.CurrentPatch!.GetCompoundAmount(
-                    "sunlight", CompoundAmountType.Maximum));
+            editorComponent.OnLightLevelChanged(lightLevel);
         }
     }
 

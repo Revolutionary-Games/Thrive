@@ -444,14 +444,6 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
-    public override void OnLightLevelChanged(float lightLevel, float absoluteLux)
-    {
-        // Normalise by maximum light level in the patch
-        camera!.LightLevel = absoluteLux > 0.0f ?
-            lightLevel * 100.0f / absoluteLux :
-            1.0f;
-    }
-
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);

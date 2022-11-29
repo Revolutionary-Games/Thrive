@@ -1017,18 +1017,19 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateTotalDigestionEfficiency(editedMicrobeOrganelles);
     }
 
-    public override void OnLightLevelChanged(float lightLevel, float absoluteLux)
+    public override void OnLightLevelChanged(float lightLevel)
     {
+        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
         var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
         // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
         // reduce light level in such patches without things looking bad. So we have to check the template light level
         // is non-zero too.
-        if (absoluteLux > 0.0f && templateMaxLightLevel > 0.0f)
+        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
         {
             // Normalise by maximum light level in the patch
-            camera!.LightLevel = lightLevel * 100.0f / absoluteLux;
+            camera!.LightLevel = lightLevel * 100.0f / maxLightLevel;
         }
         else
         {
