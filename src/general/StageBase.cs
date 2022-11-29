@@ -206,9 +206,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         // Need to check for null light cycle in case this is loaded from an old save
         if (!IsLoadedFromSave || lightCycle == null)
         {
-            lightCycle = new DayNightCycle(
-                GameWorld.WorldSettings.DayNightCycleEnabled,
-                GameWorld.WorldSettings.DayLength);
+            lightCycle = new DayNightCycle(GameWorld.WorldSettings);
         }
     }
 

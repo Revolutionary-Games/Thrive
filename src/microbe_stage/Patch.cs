@@ -424,7 +424,7 @@ public class Patch
 
     public void UpdateAmbientSunlight(DayNightCycle lightCycle)
     {
-        Biome.Sunlight!.Current = Biome.Sunlight.Maximum * lightCycle.DayLightPercentage;
+        Biome.Sunlight!.Current = Biome.Sunlight.Maximum * lightCycle.DayLightFraction;
     }
 
     /// <summary>

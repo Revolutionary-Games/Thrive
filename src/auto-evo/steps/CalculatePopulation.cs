@@ -10,19 +10,16 @@
         private readonly IAutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly WorldGenerationSettings worldSettings;
-        private readonly DayNightConfiguration dayNightConfiguration;
         private readonly List<Species>? extraSpecies;
         private readonly List<Species>? excludedSpecies;
         private readonly bool collectEnergyInfo;
 
-        public CalculatePopulation(IAutoEvoConfiguration configuration,
-            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration,
+        public CalculatePopulation(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
             PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
             bool collectEnergyInfo = false)
         {
             this.configuration = configuration;
             this.worldSettings = worldSettings;
-            this.dayNightConfiguration = dayNightConfiguration;
             this.map = map;
             this.extraSpecies = extraSpecies;
             this.excludedSpecies = excludedSpecies;
@@ -36,7 +33,7 @@
         public bool RunStep(RunResults results)
         {
             // ReSharper disable RedundantArgumentDefaultValue
-            var config = new SimulationConfiguration(configuration, map, worldSettings, dayNightConfiguration, 1)
+            var config = new SimulationConfiguration(configuration, map, worldSettings)
             {
                 Results = results,
                 CollectEnergyInformation = collectEnergyInfo,

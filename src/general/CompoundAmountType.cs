@@ -1,6 +1,11 @@
 ﻿/// <summary>
-///   Options for retrieving compound amounts in a patch for complex compound types.
+///   Specifies at which point in time retrieved compounds are sampled (or if the average value should be returned)
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is used to implement compound amounts changing during a single in-game day
+///   </para>
+/// </remarks>
 public enum CompoundAmountType
 {
     /// <summary>

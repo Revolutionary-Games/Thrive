@@ -74,7 +74,9 @@ public class RegistryTypeConverter : BaseThriveConverter
 
         if (typeof(DayNightConfiguration).IsAssignableFrom(objectType) &&
             name == SimulationParameters.DAY_NIGHT_CYCLE_NAME)
+        {
             return Context.Simulation.GetDayNightCycleConfiguration();
+        }
 
         if (typeof(IDifficulty).IsAssignableFrom(objectType))
             return Context.Simulation.GetDifficultyPreset(name);

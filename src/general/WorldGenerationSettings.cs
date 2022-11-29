@@ -30,6 +30,11 @@ public class WorldGenerationSettings
     {
         // Default to normal difficulty unless otherwise specified
         Difficulty = SimulationParameters.Instance.GetDifficultyPreset("normal");
+
+        var defaultDayNight = SimulationParameters.Instance.GetDayNightCycleConfiguration();
+
+        HoursPerDay = defaultDayNight.HoursPerDay;
+        DaytimeFraction = defaultDayNight.DaytimeFraction;
     }
 
     public enum LifeOrigin
@@ -115,6 +120,12 @@ public class WorldGenerationSettings
     ///   Real-time length of a full day on the planet in seconds
     /// </summary>
     public int DayLength { get; set; } = Constants.DEFAULT_DAY_LENGTH;
+
+    /// <inheritdoc cref="DayNightConfiguration.HoursPerDay"/>
+    public float HoursPerDay { get; set; }
+
+    /// <inheritdoc cref="DayNightConfiguration.DaytimeFraction"/>
+    public float DaytimeFraction { get; set; }
 
     /// <summary>
     ///  Whether the player can enter the Multicellular Stage in this game

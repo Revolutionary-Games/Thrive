@@ -149,7 +149,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
             return;
 
-        var multiplier = lightCycle.DayLightPercentage;
+        var multiplier = lightCycle.DayLightFraction;
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
 
         foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)

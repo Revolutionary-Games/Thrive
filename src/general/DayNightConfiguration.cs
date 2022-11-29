@@ -3,7 +3,11 @@
 /// <summary>
 ///   Definition for the day night cycle.
 /// </summary>
-/// <remarks>Values for the DayNightCycle, as given in day_night_cycle.json</remarks>
+/// <remarks>
+///   <para>
+///     Values for the DayNightCycle, as given in day_night_cycle.json
+///   </para>
+/// </remarks>
 public class DayNightConfiguration : IRegistryType
 {
     public string InternalName { get; set; } = null!;

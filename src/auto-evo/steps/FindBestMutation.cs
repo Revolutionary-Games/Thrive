@@ -11,7 +11,6 @@
     {
         private readonly IAutoEvoConfiguration configuration;
         private readonly WorldGenerationSettings worldSettings;
-        private readonly DayNightConfiguration dayNightConfiguration;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly float splitThresholdFraction;
@@ -22,7 +21,6 @@
 
         public FindBestMutation(IAutoEvoConfiguration configuration,
             WorldGenerationSettings worldSettings,
-            DayNightConfiguration dayNightConfiguration,
             PatchMap map, Species species,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
@@ -30,7 +28,6 @@
         {
             this.configuration = configuration;
             this.worldSettings = worldSettings;
-            this.dayNightConfiguration = dayNightConfiguration;
             this.map = map;
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
@@ -53,7 +50,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(configuration, map, worldSettings, dayNightConfiguration,
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
@@ -69,7 +66,7 @@
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated,
                 worldSettings.AIMutationMultiplier, worldSettings.LAWK);
 
-            var config = new SimulationConfiguration(configuration, map, worldSettings, dayNightConfiguration,
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
                 Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);

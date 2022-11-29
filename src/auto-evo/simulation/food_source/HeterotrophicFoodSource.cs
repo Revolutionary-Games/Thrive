@@ -24,7 +24,7 @@
         }
 
         public override float FitnessScore(Species species, SimulationCache simulationCache,
-            WorldGenerationSettings worldSettings, DayNightConfiguration dayNightConfiguration)
+            WorldGenerationSettings worldSettings)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
