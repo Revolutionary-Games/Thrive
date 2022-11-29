@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-28 21:56+0200\n"
+"POT-Creation-Date: 2022-11-29 11:30+0200\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1213,8 +1213,8 @@ msgid "SPECIES_DETAILS"
 msgstr "物種列表"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:830
-#: ../src/general/MainMenu.tscn:410 ../src/general/MainMenu.tscn:503
-#: ../src/general/MainMenu.tscn:761 ../src/general/NewGameSettings.tscn:1092
+#: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1092
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -2158,230 +2158,238 @@ msgstr "{0} 濃度降低了 {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖濃度急劇下降！"
 
-#: ../src/general/MainMenu.cs:352
+#: ../src/general/MainMenu.cs:391
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登錄為：{0}"
 
-#: ../src/general/MainMenu.tscn:243
+#: ../src/general/MainMenu.cs:412 ../src/general/MainMenu.tscn:852
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE"
+msgstr ""
+"感謝你的遊玩！\n"
+"\n"
+"如果你喜歡這款遊戲，記得也向你的朋友們推薦下。"
+
+#: ../src/general/MainMenu.tscn:244
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
 
-#: ../src/general/MainMenu.tscn:246
+#: ../src/general/MainMenu.tscn:247
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
-#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:197
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
 
-#: ../src/general/MainMenu.tscn:259 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
-#: ../src/general/MainMenu.tscn:266 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:267 ../src/general/PauseMenu.tscn:221
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "幫助"
 
-#: ../src/general/MainMenu.tscn:270 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:271 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS"
 msgstr "選項"
 
-#: ../src/general/MainMenu.tscn:280
+#: ../src/general/MainMenu.tscn:281
 msgid "TOOLS"
 msgstr "工具"
 
-#: ../src/general/MainMenu.tscn:290
+#: ../src/general/MainMenu.tscn:291
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代碼"
 
-#: ../src/general/MainMenu.tscn:300
+#: ../src/general/MainMenu.tscn:301
 msgid "EXTRAS"
 msgstr "額外內容"
 
-#: ../src/general/MainMenu.tscn:310
+#: ../src/general/MainMenu.tscn:311
 msgid "CREDITS"
 msgstr "鳴謝"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/MainMenu.tscn:327
+#: ../src/general/MainMenu.tscn:318 ../src/general/MainMenu.tscn:328
 #: ../src/general/PauseMenu.tscn:237
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/MainMenu.tscn:320
+#: ../src/general/MainMenu.tscn:321
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E"
 
-#: ../src/general/MainMenu.tscn:331
+#: ../src/general/MainMenu.tscn:332
 msgid "QUIT"
 msgstr "離開"
 
-#: ../src/general/MainMenu.tscn:352
+#: ../src/general/MainMenu.tscn:353
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#: ../src/general/MainMenu.tscn:363
+#: ../src/general/MainMenu.tscn:364
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "運行狀態："
 
-#: ../src/general/MainMenu.tscn:432 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:433 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:448
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:462
+#: ../src/general/MainMenu.tscn:463
 msgid "ART_GALLERY"
 msgstr "藝術畫廊"
 
-#: ../src/general/MainMenu.tscn:474
+#: ../src/general/MainMenu.tscn:475
 msgid "LICENSES"
 msgstr "許可"
 
-#: ../src/general/MainMenu.tscn:489 ../src/general/MainMenu.tscn:593
+#: ../src/general/MainMenu.tscn:490 ../src/general/MainMenu.tscn:594
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:530
+#: ../src/general/MainMenu.tscn:531
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/MainMenu.tscn:533
+#: ../src/general/MainMenu.tscn:534
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:542
+#: ../src/general/MainMenu.tscn:543
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "添加新的綁定鍵位"
 
-#: ../src/general/MainMenu.tscn:545
+#: ../src/general/MainMenu.tscn:546
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:554
+#: ../src/general/MainMenu.tscn:555
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "添加新的綁定鍵位"
 
-#: ../src/general/MainMenu.tscn:557
+#: ../src/general/MainMenu.tscn:558
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "由Revolutionary Games Studio ry支持的開發"
 
-#: ../src/general/MainMenu.tscn:566
+#: ../src/general/MainMenu.tscn:567
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "幫助"
 
-#: ../src/general/MainMenu.tscn:569
+#: ../src/general/MainMenu.tscn:570
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "開發者"
 
-#: ../src/general/MainMenu.tscn:578
+#: ../src/general/MainMenu.tscn:579
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/MainMenu.tscn:581
+#: ../src/general/MainMenu.tscn:582
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "我們的Wiki"
 
-#: ../src/general/MainMenu.tscn:612
+#: ../src/general/MainMenu.tscn:613
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "由Revolutionary Games Studio製作"
 
-#: ../src/general/MainMenu.tscn:623
+#: ../src/general/MainMenu.tscn:624
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "暫停遊戲"
 
-#: ../src/general/MainMenu.tscn:634
+#: ../src/general/MainMenu.tscn:635
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/MainMenu.tscn:645
+#: ../src/general/MainMenu.tscn:646
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "暫停遊戲"
 
-#: ../src/general/MainMenu.tscn:656
+#: ../src/general/MainMenu.tscn:657
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/MainMenu.tscn:667
+#: ../src/general/MainMenu.tscn:668
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "暫停遊戲"
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:679
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "返回遊戲"
 
-#: ../src/general/MainMenu.tscn:689
+#: ../src/general/MainMenu.tscn:690
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../src/general/MainMenu.tscn:700
+#: ../src/general/MainMenu.tscn:701
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "暫停遊戲"
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:712
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
 
-#: ../src/general/MainMenu.tscn:778
+#: ../src/general/MainMenu.tscn:779
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:780
+#: ../src/general/MainMenu.tscn:781
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
-#: ../src/general/MainMenu.tscn:783
+#: ../src/general/MainMenu.tscn:784
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "已禁用"
 
-#: ../src/general/MainMenu.tscn:796
+#: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:813
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:827 ../src/general/MainMenu.tscn:881
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "確認"
 
-#: ../src/general/MainMenu.tscn:830
+#: ../src/general/MainMenu.tscn:831
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "移除本地數據"
 
-#: ../src/general/MainMenu.tscn:832
+#: ../src/general/MainMenu.tscn:833
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2390,13 +2398,22 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:837
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加載錯誤"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:838
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
+
+#: ../src/general/MainMenu.tscn:842
+#, fuzzy
+msgid "THANK_YOU_TITLE"
+msgstr "你已經茁壯繁盛了!"
+
+#: ../src/general/MainMenu.tscn:867
+msgid "DISMISS_PERMANENTLY"
+msgstr ""
 
 #: ../src/general/NewGameSettings.cs:302
 #: ../src/general/NewGameSettings.tscn:1132

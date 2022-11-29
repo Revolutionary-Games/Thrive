@@ -76,12 +76,19 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath GalleryViewerPath = null!;
 
+    [Export]
+    public NodePath ThanksDialogPath = null!;
+
+    [Export]
+    public NodePath ThanksDialogTextPath = null!;
+
+    [Export]
+    public NodePath PermanentlyDismissThanksDialogPath = null!;
+
     public Array? MenuArray;
     public TextureRect Background = null!;
 
     public bool IsReturningToMenu;
-
-    private const string NO_MODS_ACTIVE_NOTICE = "modsExistButNoneEnabled";
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -115,6 +122,10 @@ public class MainMenu : NodeWithInput
 
     private CustomDialog modsInstalledButNotEnabledWarning = null!;
     private CustomCheckBox permanentlyDismissModsNotEnabledWarning = null!;
+
+    private CustomDialog thanksDialog = null!;
+    private CustomRichTextLabel thanksDialogText = null!;
+    private CustomCheckBox permanentlyDismissThanksDialog = null!;
 
     private bool introVideoPassed;
 
@@ -297,6 +308,10 @@ public class MainMenu : NodeWithInput
         modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
         permanentlyDismissModsNotEnabledWarning = GetNode<CustomCheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
 
+        thanksDialog = GetNode<CustomDialog>(ThanksDialogPath);
+        thanksDialogText = GetNode<CustomRichTextLabel>(ThanksDialogTextPath);
+        permanentlyDismissThanksDialog = GetNode<CustomCheckBox>(PermanentlyDismissThanksDialogPath);
+
         // Set initial menu
         SwitchMenu();
 
@@ -339,6 +354,30 @@ public class MainMenu : NodeWithInput
             }
         }
 
+        bool canShowThanks = false;
+
+        // Default to the website link if we don't know a valid store name
+        string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+
+        if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
+        {
+            GD.Print("Launcher told us store name: ", LaunchOptions.StoreVersionName);
+            canShowThanks = true;
+
+            switch (LaunchOptions.StoreVersionName)
+            {
+                case "steam":
+                    // This is detected separately
+                    break;
+                case "itch":
+                    storeBuyLink = "https://revolutionarygames.itch.io/thrive";
+                    break;
+                default:
+                    GD.PrintErr("Unknown store name for link: ", LaunchOptions.StoreVersionName);
+                    break;
+            }
+        }
+
         if (!SteamHandler.Instance.IsLoaded)
         {
             storeLoggedInDisplay.Visible = false;
@@ -355,6 +394,21 @@ public class MainMenu : NodeWithInput
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
             itchButton.Visible = false;
             patreonButton.Visible = false;
+
+            canShowThanks = true;
+            storeBuyLink = "https://store.steampowered.com/app/1779200";
+        }
+
+        if (canShowThanks && !IsReturningToMenu &&
+            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying))
+        {
+            GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
+
+            // The text has a store link template, so we need to update the right links into it
+            thanksDialogText.ExtendedBbcode =
+                TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+
+            thanksDialog.PopupCenteredShrink();
         }
     }
 
@@ -693,5 +747,11 @@ public class MainMenu : NodeWithInput
     {
         if (permanentlyDismissModsNotEnabledWarning.Pressed)
             Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.NoModsActiveButInstalled);
+    }
+
+    private void OnThanksDialogClosed()
+    {
+        if (permanentlyDismissThanksDialog.Pressed)
+            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.ThanksForBuying);
     }
 }
