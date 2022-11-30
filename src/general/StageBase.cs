@@ -389,8 +389,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             {
                 OnGameStarted();
             }
-
-            lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         }
         else
         {

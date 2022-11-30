@@ -1469,7 +1469,7 @@ public partial class CellEditorComponent :
         // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
         // daytime light levels
         if (!initializing)
-            SetLightLevelOption(LightLevelOption.Day.ToString());
+            SetLightLevelOption(LightLevelOption.Day);
     }
 
     /// <summary>
@@ -2085,12 +2085,16 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void SetLightLevelOption(string option)
+    private void OnLightLevelButtonPressed(string option)
     {
-        var selection = (LightLevelOption)Enum.Parse(typeof(LightLevelOption), option);
-
         GUICommon.Instance.PlayButtonPressSound();
 
+        var selection = (LightLevelOption)Enum.Parse(typeof(LightLevelOption), option);
+        SetLightLevelOption(selection);
+    }
+
+    private void SetLightLevelOption(LightLevelOption selection)
+    {
         selectedLightLevelOption = selection;
         ApplyLightLevelOption();
     }

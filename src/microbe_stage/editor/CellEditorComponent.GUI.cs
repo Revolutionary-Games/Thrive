@@ -431,7 +431,7 @@ public partial class CellEditorComponent
 
         // Set the editor light level and associated GUI elements to daytime
         // TODO: don't reset this in loaded games
-        SetLightLevelOption(LightLevelOption.Day.ToString());
+        SetLightLevelOption(LightLevelOption.Day);
     }
 
     private class ATPComparer : IComparer<string>
