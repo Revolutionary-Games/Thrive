@@ -78,7 +78,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
         if (!Active)
             return Vector3.Zero;
 
-        var currentCellRotation = microbe.GlobalTransform.basis.Quat();
+        var currentCellRotation = microbe.GlobalTransform.basis.Quat().Normalized();
         var direction = GetDirection();
 
         // Preview the amount of mucilage we'll eject to calculate force here
