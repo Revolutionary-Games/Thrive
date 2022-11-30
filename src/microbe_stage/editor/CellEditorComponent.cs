@@ -66,6 +66,9 @@ public partial class CellEditorComponent :
     public NodePath DigestionEfficiencyLabelPath = null!;
 
     [Export]
+    public NodePath DigestionEfficiencyDetailsPath = null!;
+
+    [Export]
     public NodePath GenerationLabelPath = null!;
 
     [Export]
@@ -164,6 +167,8 @@ public partial class CellEditorComponent :
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
+
+    private TextureButton digestionEfficiencyDetails = null!;
 
     private Label generationLabel = null!;
 
@@ -569,6 +574,7 @@ public partial class CellEditorComponent :
         storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
+        digestionEfficiencyDetails = GetNode<TextureButton>(DigestionEfficiencyDetailsPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
         totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
@@ -797,6 +803,16 @@ public partial class CellEditorComponent :
         CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch);
     }
 
+    public void UpdateStats()
+    {
+        UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
+        UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
+        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+    }
+
     /// <summary>
     ///   Calculates the effectiveness of organelles in the current or given patch
     /// </summary>
@@ -966,9 +982,9 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles);
     }
 
-    public float CalculateTotalDigestionEfficiency()
+    public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
-        return MicrobeInternalCalculations.CalculateTotalDigestionEfficiency(editedMicrobeOrganelles);
+        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
     }
 
     protected override int CalculateCurrentActionCost()
@@ -1576,12 +1592,7 @@ public partial class CellEditorComponent :
     private void OnPostNewMicrobeChange()
     {
         UpdateMembraneButtons(Membrane.InternalName);
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(CalculateStorage());
-        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateStats();
         OnRigidityChanged();
         OnColourChanged();
 
@@ -1663,7 +1674,7 @@ public partial class CellEditorComponent :
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateStorage(CalculateStorage());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
 
         UpdateCellVisualization();
 
