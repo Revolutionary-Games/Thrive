@@ -553,6 +553,7 @@ public class MicrobeStage : StageBase<Microbe>
     {
         patchManager.CurrentGame = CurrentGame;
 
+        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
