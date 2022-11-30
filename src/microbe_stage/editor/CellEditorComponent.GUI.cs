@@ -62,7 +62,7 @@ public partial class CellEditorComponent
         UpdateAutoEvoPredictionTranslations();
         UpdateAutoEvoPredictionDetailsText();
 
-        CalculateOrganelleEffectivenessInPatch();
+        CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
         UpdateMicrobePartSelections();
@@ -430,6 +430,7 @@ public partial class CellEditorComponent
         UpdateStorage(CalculateStorage());
 
         // Set the editor light level and associated GUI elements to daytime
+        // TODO: don't reset this in loaded games
         SetLightLevelOption(LightLevelOption.Day.ToString());
     }
 

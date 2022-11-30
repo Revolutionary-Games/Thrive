@@ -322,7 +322,7 @@ custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 38 )
-text = "DAY"
+text = "LIGHT_LEVEL_DAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -343,7 +343,7 @@ custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 38 )
-text = "NIGHT"
+text = "LIGHT_LEVEL_NIGHT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -364,7 +364,7 @@ custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 38 )
-text = "AVERAGE"
+text = "LIGHT_LEVEL_AVERAGE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -469,6 +469,7 @@ custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 toggle_mode = true
+pressed = true
 action_mode = 0
 group = SubResource( 13 )
 text = "STRUCTURE"

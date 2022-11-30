@@ -238,6 +238,7 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    // TODO: bug this isn't loaded correctly because this is overridden on load
     [JsonProperty]
     private LightLevelOption selectedLightLevelOption = LightLevelOption.Day;
 
@@ -272,7 +273,18 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private float rigidity;
 
-    [JsonProperty]
+    /// <summary>
+    ///   Editor modified biome conditions for previewing things in the editor. This is recreated each time the current
+    ///   patch in the editor is changed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is required because the editor currently wants to be detached from the patch map current state (
+    ///     we run out of data modification layers available in BiomeConditions). This will become unnecessary once
+    ///     the patch map is synced with the other editor stage:
+    ///     https://github.com/Revolutionary-Games/Thrive/issues/3881
+    ///   </para>
+    /// </remarks>
     private BiomeConditions previewBiomeConditions = null!;
 
     /// <summary>
@@ -515,7 +527,7 @@ public partial class CellEditorComponent :
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
-        SetPatchConditions(Editor.CurrentPatch);
+        SetPatchConditions(Editor.CurrentPatch, true);
 
         if (fresh)
         {
@@ -545,7 +557,7 @@ public partial class CellEditorComponent :
         }
 
         // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInPatch();
+        CalculateOrganelleEffectivenessInCurrentPatch();
 
         UpdateCancelButtonVisibility();
 
@@ -578,7 +590,7 @@ public partial class CellEditorComponent :
         UpdateOrganelleLAWKSettings();
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
+            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
     }
 
     public override void ResolveNodeReferences()
@@ -829,14 +841,15 @@ public partial class CellEditorComponent :
         return true;
     }
 
-    public void SetPatchConditions(Patch patch)
+    /// <summary>
+    ///   Report that the current patch used in the editor has changed
+    /// </summary>
+    /// <param name="patch">The patch that is set</param>
+    public void OnCurrentPatchUpdated(Patch patch)
     {
-        previewBiomeConditions = (BiomeConditions)patch.Biome.Clone();
-
-        // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
-        // daytime light levels
-        if (Editor.Ready)
-            SetLightLevelOption(LightLevelOption.Day.ToString());
+        SetPatchConditions(patch, false);
+        CalculateOrganelleEffectivenessInCurrentPatch();
+        UpdatePatchDependentBalanceData();
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -856,9 +869,10 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Calculates the effectiveness of organelles in the current or given patch
+    ///   Calculates the effectiveness of organelles in the current patch (actually the editor biome conditions which
+    ///   may have additional modifiers applied)
     /// </summary>
-    public void CalculateOrganelleEffectivenessInPatch()
+    public void CalculateOrganelleEffectivenessInCurrentPatch()
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
@@ -1050,11 +1064,13 @@ public partial class CellEditorComponent :
         previewBiomeConditions.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
 
         // TODO: isn't this entirely logically wrong? See the comment in PatchManager about needing to set average
-        // light levels on editor entry.
+        // light levels on editor entry. This seems wrong because the average light amount is *not* the current light
+        // level, meaning that auto-evo prediction would be incorrect (if these numbers were used there, but aren't
+        // currently, see the documentation on previewBiomeConditions)
         // // Need to set average to be the same as ambient so Auto-Evo updates correctly
-        // Editor.CurrentPatch.Biome.AverageCompounds[sunlight] = lightLevelAmount;
+        // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
 
-        CalculateOrganelleEffectivenessInPatch();
+        CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
     }
 
@@ -1439,6 +1455,21 @@ public partial class CellEditorComponent :
         run.Start();
 
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
+    }
+
+    /// <summary>
+    ///   Updates the editor modifiable biome information from a patch
+    /// </summary>
+    /// <param name="patch">The new patch to grab the biome data to copy from</param>
+    /// <param name="initializing">True when this is called during editor initialization</param>
+    private void SetPatchConditions(Patch patch, bool initializing)
+    {
+        previewBiomeConditions = (BiomeConditions)patch.Biome.Clone();
+
+        // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
+        // daytime light levels
+        if (!initializing)
+            SetLightLevelOption(LightLevelOption.Day.ToString());
     }
 
     /// <summary>

@@ -25,6 +25,7 @@ public enum CompoundAmountType
 
     /// <summary>
     ///   Ambient compound amount given in the biome conditions for a patch. Is not affected by current game time.
+    ///   But may be affected by auto-evo so reflect longer term changing conditions.
     /// </summary>
     Biome,
 

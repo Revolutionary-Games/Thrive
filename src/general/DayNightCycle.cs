@@ -13,12 +13,6 @@ public class DayNightCycle
     private bool isEnabled;
 
     /// <summary>
-    ///   Configuration details for the day/night cycle.
-    /// </summary>
-    [JsonProperty]
-    private WorldGenerationSettings worldSettings;
-
-    /// <summary>
     ///   Number of real-time seconds per in-game day.
     /// </summary>
     [JsonProperty]
@@ -42,24 +36,13 @@ public class DayNightCycle
     /// <summary>
     ///   Controller for variation in sunlight during an in-game day for the current game.
     /// </summary>
-    /// <param name="worldSettings">
-    ///   The world settings to read the day time parameters from. Note that currently modifying the settings after
-    ///   creating this object doesn't work
-    /// </param>
-    public DayNightCycle(WorldGenerationSettings worldSettings)
+    public DayNightCycle()
     {
-        isEnabled = worldSettings.DayNightCycleEnabled;
-        realTimePerDay = worldSettings.DayLength;
-
-        this.worldSettings = worldSettings;
+        isEnabled = false;
+        AverageSunlight = 1.0f;
 
         // Start the game at noon
         fractionOfDayElapsed = 0.5f;
-
-        // This converts the fraction in DaytimeFraction to the power of two needed for DayLightFraction
-        daytimeMultiplier = Mathf.Pow(2, 2 / this.worldSettings.DaytimeFraction);
-
-        AverageSunlight = isEnabled ? CalculateAverageSunlight() : 1.0f;
     }
 
     [JsonIgnore]
@@ -72,6 +55,32 @@ public class DayNightCycle
     /// </summary>
     [JsonIgnore]
     public float DayLightFraction => isEnabled ? CalculatePointwiseSunlight(fractionOfDayElapsed) : 1.0f;
+
+    /// <summary>
+    ///   Applies the world settings. This needs to be called when this object is created (and not loaded from JSON)
+    /// </summary>
+    /// <param name="worldSettings">
+    ///   The settings to apply. Note that changes to the settings object won't apply before calling this method again
+    /// </param>
+    public void ApplyWorldSettings(WorldGenerationSettings worldSettings)
+    {
+        isEnabled = worldSettings.DayNightCycleEnabled;
+        realTimePerDay = worldSettings.DayLength;
+
+        CalculateDependentLightData(worldSettings);
+    }
+
+    /// <summary>
+    ///   Calculates some dependent values that are not saved, this is public to allow recomputing these after loading
+    ///   a save
+    /// </summary>
+    public void CalculateDependentLightData(WorldGenerationSettings worldSettings)
+    {
+        // This converts the fraction in DaytimeFraction to the power of two needed for DayLightFraction
+        daytimeMultiplier = Mathf.Pow(2, 2 / worldSettings.DaytimeFraction);
+
+        AverageSunlight = isEnabled ? CalculateAverageSunlight() : 1.0f;
+    }
 
     public void Process(float delta)
     {

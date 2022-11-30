@@ -47,10 +47,8 @@ public class MicrobeStage : StageBase<Microbe>
     [JsonProperty]
     private bool wonOnce;
 
-    [JsonProperty]
     private float maxLightLevel;
 
-    [JsonProperty]
     private float templateMaxLightLevel;
 
     [JsonProperty]
@@ -150,7 +148,7 @@ public class MicrobeStage : StageBase<Microbe>
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame, lightCycle!);
+            worldLight, CurrentGame, lightCycle);
     }
 
     public override void OnFinishTransitioning()
@@ -210,7 +208,9 @@ public class MicrobeStage : StageBase<Microbe>
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
 
-        patchManager.UpdatePatchBiome();
+        // TODO: only update these like 60 times a second
+        if (GameWorld.Map.CurrentPatch != null)
+            patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
         patchManager.UpdateAllPatchLightLevels();
 
         if (gameOver)
@@ -282,8 +282,10 @@ public class MicrobeStage : StageBase<Microbe>
             guidanceLine.Visible = false;
         }
 
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
         UpdateLinePlayerPosition();
+
+        // TODO: only update these like 60 times a second
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
         UpdateDayLightEffects();
     }
 
@@ -650,9 +652,11 @@ public class MicrobeStage : StageBase<Microbe>
             Player?.ClearEngulfedObjects();
         }
 
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
+
         UpdateBackground();
-        maxLightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
-        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
+
+        UpdatePatchLightLevelSettings();
     }
 
     private void UpdateBackground()
@@ -669,7 +673,7 @@ public class MicrobeStage : StageBase<Microbe>
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
             // This might need to be refactored for efficiency but, it works for now
-            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle!.DayLightFraction;
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle.DayLightFraction;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightLevel / maxLightLevel;
@@ -679,6 +683,15 @@ public class MicrobeStage : StageBase<Microbe>
             // Don't change lighting for patches without day/night effects
             Camera.LightLevel = 1.0f;
         }
+    }
+
+    private void UpdatePatchLightLevelSettings()
+    {
+        if (GameWorld.Map.CurrentPatch == null)
+            throw new InvalidOperationException("Unknown current patch");
+
+        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
     }
 
     private void SaveGame(string name)

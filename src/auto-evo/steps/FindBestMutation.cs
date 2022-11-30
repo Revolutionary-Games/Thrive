@@ -20,8 +20,7 @@
         private readonly Mutations mutations = new();
 
         public FindBestMutation(IAutoEvoConfiguration configuration,
-            WorldGenerationSettings worldSettings,
-            PatchMap map, Species species,
+            WorldGenerationSettings worldSettings, PatchMap map, Species species,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)

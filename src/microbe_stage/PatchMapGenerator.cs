@@ -179,7 +179,9 @@ public static class PatchMapGenerator
         if (settings.DayNightCycleEnabled)
         {
             // Make sure average light levels are computed already
-            var dummyLight = new DayNightCycle(settings);
+            // See the TODO comments in PatchManager
+            var dummyLight = new DayNightCycle();
+            dummyLight.ApplyWorldSettings(settings);
             foreach (var patch in map.Patches)
             {
                 patch.Value.UpdateAverageSunlight(dummyLight);

@@ -20,15 +20,13 @@ public class PatchManager : IChildPropertiesLoadCallback
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
-
-    [JsonProperty]
     private DayNightCycle lightCycle;
 
     [JsonProperty]
     private Patch? previousPatch;
 
     [JsonProperty]
-    private float compoundCloudBrightness;
+    private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
     ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
@@ -100,8 +98,9 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
+        // TODO: this is kind of logically the wrong place to make sure the averages are correct, instead whatever
+        // place can change the averages should recompute the averages instead of doing this here
         UpdateAllPatchAverageLightLevels();
-        UpdateAllPatchLightLevels();
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
@@ -121,29 +120,15 @@ public class PatchManager : IChildPropertiesLoadCallback
         UpdateLight(currentPatch.BiomeTemplate);
         compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
 
+        UpdateAllPatchLightLevels();
+
         return patchIsChanged;
     }
 
-    public void UpdatePatchBiome()
+    public void UpdatePatchBiome(Patch currentPatch)
     {
-        if (previousPatch != null)
-        {
-            // Update environment for process system
-            processSystem.SetBiome(previousPatch.Biome);
-        }
-    }
-
-    public void UpdateAllPatchAverageLightLevels()
-    {
-        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
-            return;
-
-        // TODO: does this need to also happen when entering the editor (after applying auto-evo changes in case those
-        // modify things)?
-        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
-        {
-            patch.UpdateAverageSunlight(lightCycle);
-        }
+        // Update environment for the process system
+        processSystem.SetBiome(currentPatch.Biome);
     }
 
     public void UpdateAllPatchLightLevels()
@@ -157,6 +142,19 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
         {
             patch.UpdateCurrentSunlight(lightCycle);
+        }
+    }
+
+    private void UpdateAllPatchAverageLightLevels()
+    {
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
+
+        // TODO: does this need to also happen when entering the editor (after applying auto-evo changes in case those
+        // modify things)? See comment in ApplyChangedPatchSettingsIfNeeded
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateAverageSunlight(lightCycle);
         }
     }
 

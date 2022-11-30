@@ -16,7 +16,6 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
-    [JsonIgnore]
     private readonly Compound sunlight;
 
     /// <summary>
@@ -320,9 +319,12 @@ public class Patch
 
     public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Current)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+        return GetCompoundAmount(SimulationParameters.Instance.GetCompound(compoundName), amountType);
+    }
 
-        switch (compoundName)
+    public float GetCompoundAmount(Compound compound, CompoundAmountType amountType = CompoundAmountType.Current)
+    {
+        switch (compound.InternalName)
         {
             case "sunlight":
             case "oxygen":
