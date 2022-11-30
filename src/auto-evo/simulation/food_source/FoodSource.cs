@@ -14,7 +14,7 @@
         /// </summary>
         /// <param name="microbe">The species to be evaluated.</param>
         /// <param name="simulationCache">
-        ///     Cache that should be used to reduce amount of times expensive computations are run
+        ///   Cache that should be used to reduce amount of times expensive computations are run
         /// </param>
         /// <param name="worldSettings">Player-configured settings for this game</param>
         /// <returns>

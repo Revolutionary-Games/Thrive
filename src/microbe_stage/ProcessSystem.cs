@@ -226,8 +226,6 @@ public class ProcessSystem
                 continue;
 
             // Environmental compound that can limit the rate
-
-            // Use average sunlight for Auto-Evo calculations
             var availableInEnvironment = GetAmbientInBiome(input.Key, biome, pointInTimeType);
 
             var availableRate = input.Key == Temperature ?

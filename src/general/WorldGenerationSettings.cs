@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Player configurable options for creating the game world
 /// </summary>
+[JsonObject(IsReference = true)]
 public class WorldGenerationSettings
 {
     [JsonConstructor]

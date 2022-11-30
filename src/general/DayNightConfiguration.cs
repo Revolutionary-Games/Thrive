@@ -5,7 +5,7 @@
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Values for the DayNightCycle, as given in day_night_cycle.json
+///     Values for the <see cref="DayNightCycle"/>, as given in day_night_cycle.json
 ///   </para>
 /// </remarks>
 public class DayNightConfiguration : IRegistryType

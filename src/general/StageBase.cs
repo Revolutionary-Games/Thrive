@@ -26,7 +26,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected Control hudRoot = null!;
 
     [JsonProperty]
-    protected DayNightCycle? lightCycle;
+    [AssignOnlyChildItemsOnDeserialize]
+    protected DayNightCycle lightCycle = null!;
 
     [JsonProperty]
     protected Random random = new();
@@ -196,25 +197,16 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         hudRoot = GetNode<Control>(HUDRootPath);
 
+        lightCycle = new DayNightCycle();
+
         NodeReferencesResolved = true;
-    }
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        // Need to check for null light cycle in case this is loaded from an old save
-        if (!IsLoadedFromSave || lightCycle == null)
-        {
-            lightCycle = new DayNightCycle(GameWorld.WorldSettings);
-        }
     }
 
     public override void _Process(float delta)
     {
         base._Process(delta);
 
-        lightCycle!.Process(delta);
+        lightCycle.Process(delta);
 
         if (gameOver)
         {
@@ -397,6 +389,12 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             {
                 OnGameStarted();
             }
+
+            lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
+        }
+        else
+        {
+            lightCycle.CalculateDependentLightData(GameWorld.WorldSettings);
         }
 
         GD.Print(CurrentGame!.GameWorld.WorldSettings);

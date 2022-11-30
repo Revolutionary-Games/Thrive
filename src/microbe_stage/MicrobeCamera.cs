@@ -92,6 +92,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         get => lightLevel;
         set
         {
+            if (Math.Abs(lightLevel - value) < MathUtils.EPSILON)
+                return;
+
             lightLevel = value;
 
             UpdateLightLevel();
