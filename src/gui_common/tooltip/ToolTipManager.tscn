@@ -269,6 +269,12 @@ DisplayDelay = 0.0
 Positioning = 2
 DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 
+[node name="digestionEfficiencyDetails" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+DisplayDelay = 0.0
+Positioning = 2
+HideOnMouseAction = false
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
 [node name="organelleSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
