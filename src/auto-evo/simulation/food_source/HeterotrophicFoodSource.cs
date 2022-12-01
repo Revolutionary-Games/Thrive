@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class HeterotrophicFoodSource : FoodSource
+    public class HeterotrophicFoodSource : RandomEncounterFoodSource
     {
         private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
@@ -23,7 +23,8 @@
             totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
