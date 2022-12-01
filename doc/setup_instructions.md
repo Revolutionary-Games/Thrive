@@ -87,7 +87,14 @@ On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
 installer for that from: https://dotnet.microsoft.com/en-us/download
 
-On mac you can install the latest dotnet sdk using homebrew:
+On mac you can install the dotnet sdk by downloading an installer from
+Microsoft's side. Important note for M1 mac users, you need to install
+the arm version, the x64 version doesn't work out of the box, so it is
+very much not recommended to be used.
+
+The SDK is also available through Homebrew but it will install the
+latest version (even if that's not yet officially the version used by
+Thrive). But if you want that you can install it using:
 ```sh
 brew install dotnet-sdk
 ```
