@@ -3531,7 +3531,7 @@ msgstr "НЦ"
 #: ../src/gui_common/VersionNumber.cs:38
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
-"Версия {0}\n"
+"Развойна версия {0}\n"
 "Клон {1} от {2}\n"
 "{3}"
 
@@ -5828,13 +5828,8 @@ msgid "FOSSILISATION"
 msgstr "Вкаменяване"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
-#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Агресивните микроби преследват плячката си на големи разстояния\n"
-"и са склонни да се защитят, когато са нападнати.\n"
-"Пасивните микроби не преследват пляката си на големи разстояния\n"
-"и са склонни да избягат, когато са нападнати."
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
 msgid "FOSSILISE"
@@ -5865,9 +5860,11 @@ msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Еволюционно дърво"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
-msgstr "Еволюционно дърво"
+msgstr ""
+"Този режим на игра все още не се поддържа, както и записите, които са създадени преди версия 0.6.0.\n"
+"\n"
+"Ако виждате този текст, поради друга причина, моля, докладвайте за проблема и приложете дневниците на играта към Вашия доклад."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
@@ -5880,6 +5877,15 @@ msgstr "Добре дошли в Трайвопедията"
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
+"Трайвопедията е централният източник на информация за съдържанието в „Thrive“. Тук ще намерите отговори на всички въпроси, свързани с играта, Вашият текущ свят или с проекта за разработка на „Thrive“.\n"
+"\n"
+"В момента, Трайвопедията е сравнително празна, но все пак може да прегледате някои страници, използвайки навигацията. Обърнете внимание, че страниците, свързани с конкретния запис, който се използва, ще се покажат само когато Трайвопедията е отворена през менюто в играта.\n"
+"\n"
+"За повече информация, посетете следните връзки:\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Официален сайт[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Частна Уикипедия[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Обществена Уикипедия[/url][/color]"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
@@ -5902,6 +5908,9 @@ msgstr "Отваряне в редактора"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"Добре дошли в музея! Тук може да се възхищавате на създанията, които сте вкаменили по време на Вашите игри. Може дори да играете с тях, като ги отворите в редактора.\n"
+"\n"
+"За да вкамените дадени създания, натиснете бутона за прекъсване на играта и изберете техен индивид с мишката."
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
