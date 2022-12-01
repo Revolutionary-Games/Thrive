@@ -36,6 +36,10 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         FilePathsToAlwaysIgnore.Add(new Regex(@"mono_crash\..+"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"RevolutionaryGamesCommon/"));
 
+        // Downloaded json files
+        FilePathsToAlwaysIgnore.Add(new Regex(@"patrons\.json"));
+        FilePathsToAlwaysIgnore.Add(new Regex(@"translators\.json"));
+
         // We ignore the .import files for now as checking those takes quite a bit of time
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.import$"));
     }
