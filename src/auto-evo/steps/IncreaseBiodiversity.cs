@@ -23,8 +23,8 @@
 
         private WorldGenerationSettings worldSettings;
 
-        public IncreaseBiodiversity(IAutoEvoConfiguration configuration,
-            WorldGenerationSettings worldSettings, PatchMap map, Patch patch, Random random)
+        public IncreaseBiodiversity(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
+            PatchMap map, Patch patch, Random random)
         {
             this.worldSettings = worldSettings;
             this.map = map;

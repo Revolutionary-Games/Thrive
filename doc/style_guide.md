@@ -303,6 +303,12 @@ Code style rules
   descriptive name would have. For example use "i" for "item", "c" for
   "cells" etc.
 
+- If the word "percentage" is used in a variable name, the valid range
+  of value *must be* 0-100. If instead the valid range is 0-1, then
+  the variable name *may* contain the word "fraction". Variables that
+  are not percentages may not under any circumstances have the word
+  "percentage" in their name.
+
 - Don't add a `Dispose` method to classes that don't need it.
 
 - Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`

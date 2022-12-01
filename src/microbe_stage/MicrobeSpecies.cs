@@ -74,6 +74,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         * (IsBacteria ? 0.5f : 1.0f);
 
     [JsonIgnore]
+    public float StorageCapacity => MicrobeInternalCalculations.CalculateCapacity(Organelles);
+
+    [JsonIgnore]
     public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
 
     public override void OnEdited()

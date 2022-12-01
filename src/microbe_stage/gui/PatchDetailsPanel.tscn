@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=26]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=27]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=28]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=29]
 
 [sub_resource type="StyleBoxTexture" id=32]
 texture = ExtResource( 24 )
@@ -54,7 +55,8 @@ BiomePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContaine
 DepthPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
 TemperaturePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/TemperatureLabel")
 PressurePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure/PressureLabel")
-LightPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/LightLabel")
+LightPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer/LightLabel")
+LightMaxPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/LightMaxLabel")
 OxygenPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen/OxygenLabel")
 NitrogenPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen/NitrogenLabel")
 CO2Path = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2/CO2Label")
@@ -67,7 +69,7 @@ SpeciesListBoxPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBo
 MoveToPatchHSeparatorPath = NodePath("VBoxContainer/HSeparator")
 MoveToPatchButtonPath = NodePath("VBoxContainer/MarginContainer2/MoveToPatchButton")
 TemperatureSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/Situation")
-LightSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/Situation")
+LightSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer/Situation")
 HydrogenSulfideSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/Situation")
 GlucoseSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/Situation")
 IronSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/Situation")
@@ -186,7 +188,7 @@ __meta__ = {
 [node name="PhysicalConditions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 133.0
 margin_right = 330.0
-margin_bottom = 221.0
+margin_bottom = 236.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -248,7 +250,7 @@ custom_styles/separator = SubResource( 32 )
 [node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 margin_top = 24.0
 margin_right = 330.0
-margin_bottom = 88.0
+margin_bottom = 103.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -261,7 +263,7 @@ custom_constants/margin_bottom = 5
 margin_left = 15.0
 margin_top = 5.0
 margin_right = 315.0
-margin_bottom = 59.0
+margin_bottom = 74.0
 mouse_filter = 2
 columns = 2
 
@@ -330,45 +332,63 @@ __meta__ = {
 [node name="Light" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
 margin_top = 29.0
 margin_right = 148.0
-margin_bottom = 54.0
+margin_bottom = 69.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
+margin_top = 7.0
 margin_right = 30.0
-margin_bottom = 25.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 30, 25 )
 hint_tooltip = "SUNLIGHT"
 size_flags_vertical = 4
 texture = ExtResource( 6 )
 expand = true
 
-[node name="LightLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
 margin_left = 34.0
-margin_top = 2.0
-margin_right = 69.0
-margin_bottom = 22.0
+margin_right = 85.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer"]
+margin_right = 51.0
+margin_bottom = 20.0
+
+[node name="LightLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer"]
+margin_right = 35.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 16 )
 text = "Light"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
-margin_left = 73.0
-margin_right = 85.0
+[node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer/HBoxContainer"]
+margin_left = 39.0
+margin_right = 51.0
 margin_bottom = 12.0
 rect_min_size = Vector2( 12, 12 )
 mouse_filter = 2
 size_flags_vertical = 0
 expand = true
 
+[node name="LightMaxLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_top = 24.0
+margin_right = 51.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 29 )
+text = "LIGHT_MAX"
+
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 
 [node name="AtmosphericGasses" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 231.0
+margin_top = 246.0
 margin_right = 330.0
-margin_bottom = 319.0
+margin_bottom = 334.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -530,9 +550,9 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 
 [node name="Compounds" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 329.0
+margin_top = 344.0
 margin_right = 330.0
-margin_bottom = 446.0
+margin_bottom = 461.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -789,7 +809,7 @@ expand = true
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 
 [node name="SpeciesBox" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 456.0
+margin_top = 471.0
 margin_right = 330.0
 margin_bottom = 536.0
 size_flags_vertical = 3
@@ -854,7 +874,7 @@ custom_styles/separator = SubResource( 32 )
 [node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 margin_top = 24.0
 margin_right = 330.0
-margin_bottom = 80.0
+margin_bottom = 65.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -868,13 +888,13 @@ custom_constants/margin_bottom = 5
 margin_left = 15.0
 margin_top = 5.0
 margin_right = 315.0
-margin_bottom = 51.0
+margin_bottom = 36.0
 mouse_filter = 2
 theme = SubResource( 33 )
 
 [node name="SpeciesList" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip/GridContainer" instance=ExtResource( 1 )]
 margin_right = 300.0
-margin_bottom = 46.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

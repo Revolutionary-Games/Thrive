@@ -403,16 +403,14 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
-                        worldSettings, map, speciesEntry.Key,
+                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowSpeciesToNotMutate,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
                     steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random,
-                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                        random, autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowSpeciesToNotMigrate));
                 }
             }
@@ -439,8 +437,7 @@ public class AutoEvoRun
             if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
                 random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
             {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings,
-                    map, entry.Value, random));
+                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings, map, entry.Value, random));
             }
         }
 

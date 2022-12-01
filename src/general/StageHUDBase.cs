@@ -708,11 +708,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
-        var oxygenPercentage = biome.Compounds[oxygen].Ambient * 100;
-        var co2Percentage = biome.Compounds[carbondioxide].Ambient * 100;
-        var nitrogenPercentage = biome.Compounds[nitrogen].Ambient * 100;
-        var sunlightPercentage = biome.Compounds[sunlight].Ambient * 100;
-        var averageTemperature = biome.Compounds[temperature].Ambient;
+        var oxygenPercentage = biome.CurrentCompoundAmounts[oxygen].Ambient * 100;
+        var co2Percentage = biome.CurrentCompoundAmounts[carbondioxide].Ambient * 100;
+        var nitrogenPercentage = biome.CurrentCompoundAmounts[nitrogen].Ambient * 100;
+        var sunlightPercentage = Math.Round(biome.CurrentCompoundAmounts[sunlight].Ambient * 100, 0);
+        var averageTemperature = biome.CurrentCompoundAmounts[temperature].Ambient;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
         var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
@@ -757,7 +757,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (button.AttachedOrganism is Microbe microbe)
         {
             fossilisationDialog.SelectedSpecies = microbe.Species;
-            fossilisationDialog.Show();
+            fossilisationDialog.PopupCenteredShrink();
         }
         else
         {

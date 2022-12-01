@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
@@ -7,12 +8,120 @@ using System.Collections.Generic;
 [UseThriveSerializer]
 public class BiomeConditions : ICloneable, ISaveLoadable
 {
-    public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds = null!;
+    // TODO: make this also a property / private
     public Dictionary<string, ChunkConfiguration> Chunks = null!;
+
+    [JsonProperty]
+    private Dictionary<Compound, BiomeCompoundProperties> compounds;
+
+    [JsonProperty]
+    private Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts = new();
+
+    [JsonProperty]
+    private Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts = new();
+
+    [JsonProperty]
+    private Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts = new();
+
+    [JsonProperty]
+    private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts = new();
+
+    [JsonConstructor]
+    public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds)
+    {
+        this.compounds = compounds;
+    }
+
+    public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds,
+        Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts) : this(compounds)
+    {
+        this.currentCompoundAmounts = currentCompoundAmounts;
+        this.averageCompoundAmounts = averageCompoundAmounts;
+        this.maximumCompoundAmounts = maximumCompoundAmounts;
+        this.minimumCompoundAmounts = minimumCompoundAmounts;
+    }
+
+    /// <summary>
+    ///   The compound amounts that change in realtime during gameplay
+    /// </summary>
+    [JsonIgnore]
+    public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts =>
+        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(currentCompoundAmounts, compounds);
+
+    /// <summary>
+    ///   Average compounds over an in-game day
+    /// </summary>
+    [JsonIgnore]
+    public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds =>
+        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(averageCompoundAmounts, compounds);
+
+    /// <summary>
+    ///   Maximum compounds during an in-game day
+    /// </summary>
+    [JsonIgnore]
+    public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds =>
+        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(maximumCompoundAmounts, compounds);
+
+    /// <summary>
+    ///   Minimum compounds during an in-game day
+    /// </summary>
+    [JsonIgnore]
+    public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds =>
+        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(minimumCompoundAmounts, compounds);
+
+    /// <summary>
+    ///   The normal, large timescale compound amounts
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     I couldn't come up with a better name so this is named unimaginatively like this - hhyyrylainen
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public IReadOnlyDictionary<Compound, BiomeCompoundProperties> Compounds => compounds;
+
+    /// <summary>
+    ///   Allows access to changing the compound values in the biome permanently. Should only be used by auto-evo or
+    ///   map generator.
+    /// </summary>
+    [JsonIgnore]
+    public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
+
+    public BiomeCompoundProperties GetCompound(Compound compound, CompoundAmountType amountType)
+    {
+        if (TryGetCompound(compound, amountType, out var result))
+        {
+            return result;
+        }
+
+        throw new KeyNotFoundException("Compound type not found in BiomeConditions");
+    }
+
+    public bool TryGetCompound(Compound compound, CompoundAmountType amountType, out BiomeCompoundProperties result)
+    {
+        switch (amountType)
+        {
+            case CompoundAmountType.Current:
+                return CurrentCompoundAmounts.TryGetValue(compound, out result);
+            case CompoundAmountType.Maximum:
+                return MaximumCompounds.TryGetValue(compound, out result);
+            case CompoundAmountType.Average:
+                return AverageCompounds.TryGetValue(compound, out result);
+            case CompoundAmountType.Biome:
+                return Compounds.TryGetValue(compound, out result);
+            case CompoundAmountType.Template:
+                throw new NotSupportedException("BiomeConditions doesn't have access to template");
+            default:
+                throw new ArgumentOutOfRangeException(nameof(amountType), amountType, null);
+        }
+    }
 
     public void Check(string name)
     {
-        if (Compounds == null)
+        if (compounds == null)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compounds missing");
@@ -24,7 +133,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
                 "Chunks missing");
         }
 
-        foreach (var compound in Compounds)
+        foreach (var compound in compounds)
         {
             if (compound.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
             {
@@ -47,28 +156,18 @@ public class BiomeConditions : ICloneable, ISaveLoadable
 
     public void Resolve(SimulationParameters parameters)
     {
-        _ = parameters;
-
         LoadChunkScenes();
     }
 
     public object Clone()
     {
-        var result = new BiomeConditions
+        // Shallow cloning is enough here thanks to us using value types (structs) as the dictionary values
+        var result = new BiomeConditions(compounds = compounds.CloneShallow(), currentCompoundAmounts.CloneShallow(),
+            averageCompoundAmounts.CloneShallow(), maximumCompoundAmounts.CloneShallow(),
+            minimumCompoundAmounts.CloneShallow())
         {
-            Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),
-            Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
+            Chunks = Chunks.CloneShallow(),
         };
-
-        foreach (var entry in Compounds)
-        {
-            result.Compounds.Add(entry.Key, entry.Value);
-        }
-
-        foreach (var entry in Chunks)
-        {
-            result.Chunks.Add(entry.Key, entry.Value);
-        }
 
         return result;
     }

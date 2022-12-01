@@ -124,8 +124,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
-        cellEditorTab.UpdatePatchDependentBalanceData();
+        cellEditorTab.OnCurrentPatchUpdated(patch);
 
         reportTab.UpdatePatchDetails(patch);
 
