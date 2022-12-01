@@ -12,6 +12,12 @@ using Path = System.IO.Path;
 public static class Constants
 {
     /// <summary>
+    ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
+    ///   NewGameSettings.tscn should also be changed.
+    /// </summary>
+    public const int DEFAULT_DAY_LENGTH = 180;
+
+    /// <summary>
     ///   How long the player stays dead before respawning
     /// </summary>
     public const float PLAYER_RESPAWN_TIME = 5.0f;
@@ -704,6 +710,10 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+
+    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
+    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
@@ -1046,7 +1056,15 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
+    // TODO: combine to a common module with launcher as these are there as well
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
+    public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
+    public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
+    public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
+
+    public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
+    public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
+    public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     // Min/max values for each customisable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;

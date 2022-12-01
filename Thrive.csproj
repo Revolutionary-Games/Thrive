@@ -38,6 +38,7 @@
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\RandomEncounterFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
@@ -135,7 +136,9 @@
     <Compile Include="src\general\AssetCategory.cs" />
     <Compile Include="src\general\AssetType.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
+    <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
+    <Compile Include="src\general\MultiCollection.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
@@ -148,6 +151,9 @@
     <Compile Include="src\general\BehaviouralValueType.cs" />
     <Compile Include="src\general\BehaviourDictionary.cs" />
     <Compile Include="src\general\ColorUtils.cs" />
+    <Compile Include="src\general\CompoundAmountType.cs" />
+    <Compile Include="src\general\DayNightCycle.cs" />
+    <Compile Include="src\general\DayNightConfiguration.cs" />
     <Compile Include="src\general\EditorComponentBase.cs" />
     <Compile Include="src\general\EditorComponentWithActionsBase.cs" />
     <Compile Include="src\general\EditorUserOverride.cs" />
@@ -347,7 +353,7 @@
     <Compile Include="src\microbe_stage\editor\OrganellePopupMenu.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
-    <Compile Include="src\microbe_stage\EnvironmentalCompoundProperties.cs" />
+    <Compile Include="src\microbe_stage\BiomeCompoundProperties.cs" />
     <Compile Include="src\microbe_stage\FloatingChunk.cs" />
     <Compile Include="src\microbe_stage\IProcessDisplayInfo.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
@@ -595,11 +601,11 @@
     <PackageReference Include="SharpZipLib">
       <Version>1.3.3</Version>
     </PackageReference>
-    <PackageReference Include="Nito.Collections.Deque">
-      <Version>1.1.1</Version>
-    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.2.0-beta.435</Version>
+    </PackageReference>
+    <PackageReference Include="Nito.Collections.Deque">
+      <Version>1.1.1</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>

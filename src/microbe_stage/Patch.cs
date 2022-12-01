@@ -16,6 +16,8 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
+    private readonly Compound sunlight;
+
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
@@ -40,6 +42,8 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
+
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -55,6 +59,8 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
+
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     [JsonProperty]
@@ -311,22 +317,38 @@ public class Patch
         gameplayPopulations.Clear();
     }
 
-    public float GetCompoundAmount(string compoundName)
+    public float GetCompoundAmount(string compoundName, CompoundAmountType amountType = CompoundAmountType.Current)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+        return GetCompoundAmount(SimulationParameters.Instance.GetCompound(compoundName), amountType);
+    }
 
-        switch (compoundName)
+    public float GetCompoundAmount(Compound compound, CompoundAmountType amountType = CompoundAmountType.Current)
+    {
+        switch (compound.InternalName)
         {
             case "sunlight":
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return Biome.Compounds[compound].Ambient * 100;
+                return GetAmbientCompound(compound, amountType) * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:
-                return Biome.Compounds[compound].Density * Biome.Compounds[compound].Amount +
-                    GetTotalChunkCompoundAmount(compound);
+            {
+                BiomeCompoundProperties amount;
+                if (amountType == CompoundAmountType.Template)
+                {
+                    // TODO: chunk handling?
+                    amount = BiomeTemplate.Conditions.GetCompound(compound, CompoundAmountType.Biome);
+                }
+                else
+                {
+                    amount = Biome.GetCompound(compound, amountType);
+                }
+
+                // TODO: passing amountType to GetTotalChunkCompoundAmount
+                return amount.Density * amount.Amount + GetTotalChunkCompoundAmount(compound);
+            }
         }
     }
 
@@ -340,7 +362,7 @@ public class Patch
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return snapshot.Biome.Compounds[compound].Ambient * 100;
+                return GetAmbientCompound(compound, CompoundAmountType.Biome) * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:
@@ -404,6 +426,22 @@ public class Patch
         // TODO: can we do something about the game log here?
     }
 
+    public void UpdateAverageSunlight(DayNightCycle lightCycle)
+    {
+        Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
+        {
+            Ambient = Biome.MaximumCompounds[sunlight].Ambient * lightCycle.AverageSunlight,
+        };
+    }
+
+    public void UpdateCurrentSunlight(DayNightCycle lightCycle)
+    {
+        Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
+        {
+            Ambient = Biome.MaximumCompounds[sunlight].Ambient * lightCycle.DayLightFraction,
+        };
+    }
+
     /// <summary>
     ///   Logs description of an event into the patch's history.
     /// </summary>
@@ -422,6 +460,26 @@ public class Patch
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
+    }
+
+    private float GetAmbientCompound(Compound compound, CompoundAmountType option)
+    {
+        switch (option)
+        {
+            // TODO: minimum?
+            case CompoundAmountType.Current:
+                return Biome.CurrentCompoundAmounts[compound].Ambient;
+            case CompoundAmountType.Maximum:
+                return Biome.MaximumCompounds[compound].Ambient;
+            case CompoundAmountType.Average:
+                return Biome.AverageCompounds[compound].Ambient;
+            case CompoundAmountType.Biome:
+                return Biome.Compounds[compound].Ambient;
+            case CompoundAmountType.Template:
+                return BiomeTemplate.Conditions.Compounds[compound].Ambient;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(option), option, null);
+        }
     }
 }
 

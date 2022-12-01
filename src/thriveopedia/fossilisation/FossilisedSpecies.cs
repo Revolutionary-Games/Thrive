@@ -165,7 +165,8 @@ public class FossilisedSpecies
             throw new IOException("Cannot open: " + target);
         }
 
-        using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
+        using var fileStream = new GodotFileStream(file);
+        using Stream gzoStream = new GZipOutputStream(fileStream);
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
         TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
