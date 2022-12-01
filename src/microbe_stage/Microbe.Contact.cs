@@ -357,7 +357,7 @@ public partial class Microbe
                 return;
 
             // Play the pilus sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg", 4.0f);
 
             // Give immunity to prevent massive damage at some angles
             // https://github.com/Revolutionary-Games/Thrive/issues/3267
