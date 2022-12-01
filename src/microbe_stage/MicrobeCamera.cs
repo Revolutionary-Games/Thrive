@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -56,10 +57,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
-    private ShaderMaterial materialToUpdate = null!;
+    private ShaderMaterial? materialToUpdate;
 
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
+
+    [JsonProperty]
+    private float lightLevel = 1.0f;
 
     [Signal]
     public delegate void OnZoomChanged(float zoom);
@@ -78,6 +82,24 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     ///   </para>
     /// </remarks>
     public bool FramerateAdjustZoomSpeed { get; set; }
+
+    /// <summary>
+    ///   Current relative light level for the camera (between 0 and 1).
+    /// </summary>
+    [JsonIgnore]
+    public float LightLevel
+    {
+        get => lightLevel;
+        set
+        {
+            if (Math.Abs(lightLevel - value) < MathUtils.EPSILON)
+                return;
+
+            lightLevel = value;
+
+            UpdateLightLevel();
+        }
+    }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -115,6 +137,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             ResetHeight();
 
         UpdateBackgroundVisibility();
+        UpdateLightLevel();
     }
 
     public override void _EnterTree()
@@ -236,6 +259,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         // TODO: skip duplicate background changes
 
+        if (materialToUpdate == null)
+            throw new InvalidOperationException("Camera not initialized yet");
+
         for (int i = 0; i < 4; ++i)
         {
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
@@ -308,5 +334,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         if (BackgroundParticles != null)
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+    }
+
+    private void UpdateLightLevel()
+    {
+        materialToUpdate?.SetShaderParam("lightLevel", LightLevel);
     }
 }

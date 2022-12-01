@@ -52,6 +52,8 @@ public interface IEditor : ISaveLoadedTracked
     /// </summary>
     public bool Ready { get; }
 
+    public float LightLevel { get; set; }
+
     /// <summary>
     ///   Cancels the current editor action if possible
     /// </summary>

@@ -73,4 +73,16 @@ public static class DictionaryUtils
             dictionary[key] /= divisor;
         }
     }
+
+    public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
+    {
+        var result = new Dictionary<TKey, TValue>(dictionary.Count);
+
+        foreach (var pair in dictionary)
+        {
+            result.Add(pair.Key, pair.Value);
+        }
+
+        return result;
+    }
 }

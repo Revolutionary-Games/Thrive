@@ -106,8 +106,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
-        cellEditorTab.UpdatePatchDependentBalanceData();
+        cellEditorTab.OnCurrentPatchUpdated(patch);
 
         reportTab.UpdatePatchDetails(patch);
 
