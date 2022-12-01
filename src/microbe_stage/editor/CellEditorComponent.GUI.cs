@@ -169,6 +169,11 @@ public partial class CellEditorComponent
         {
             digestionEfficiencyLabel.Format = TranslationServer.Translate("MIXED_DOT_DOT_DOT");
 
+            // Set this to a value hero to fix the up/down arrow
+            // Using sum makes the arrow almost always go up, using average makes the arrow almost always point down...
+            // digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Average() * 100;
+            digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Sum() * 100;
+
             var description = new LocalizedStringBuilder(100);
 
             bool first = true;
