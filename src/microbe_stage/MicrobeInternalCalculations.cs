@@ -201,8 +201,7 @@ public static class MicrobeInternalCalculations
     /// <summary>
     ///   Returns the efficiency of all enzymes present in the given organelles.
     /// </summary>
-    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(
-        IEnumerable<OrganelleTemplate> organelles)
+    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles)
     {
         var enzymes = new Dictionary<Enzyme, int>();
         var result = new Dictionary<Enzyme, float>();
