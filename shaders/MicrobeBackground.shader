@@ -1,6 +1,9 @@
 shader_type spatial;
 render_mode unshaded;
 
+// this is 1 by default to keep the dark BGs looking nice
+uniform float lightLevel = 1.0f;
+
 uniform vec2 repeats = vec2(1.0f, 1.0f);
 uniform sampler2D layer0 : hint_albedo;
 uniform sampler2D layer1 : hint_albedo;
@@ -14,6 +17,25 @@ const vec2 speed3 = vec2(1050.0f);
 
 varying vec2 UV3;
 varying vec2 UV4;
+
+vec3 LightInfluence(float amount)
+{
+    if (amount > 0.5f)
+    {
+        // Day
+        return mix(vec3(0.75f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), 2.0f * amount - 1.0f);
+    }
+    else if (amount > 0.25f)
+    {
+        // Dawn and Dusk
+        return mix(vec3(0.25f, 0.25f, 0.25f), vec3(0.75f, 0.5f, 0.5f), 4.0f * amount - 1.0f);
+    }
+    else
+    {
+        // Night
+        return mix(vec3(0.052f, 0.05f, 0.17f), vec3(0.25f, 0.25f, 0.25f), 4.0f * amount);
+    }
+}
 
 void vertex(){
     vec2 offset = (repeats - 1.0f) / 2.0f;
@@ -31,11 +53,12 @@ void fragment(){
     vec4 colour2 = texture(layer2, UV3);
     vec4 colour3 = texture(layer3, UV4);
 
-    ALBEDO.rgb =
-        colour0.rgb 
-        + colour1.rgb * colour1.a * 0.7f
-        + colour2.rgb * colour2.a * 0.7f
-        + colour3.rgb * colour3.a * 0.7f; 
+    vec3 mixture0 = mix(colour1.rgb, colour2.rgb * colour2.a, 1.0f);
+    vec3 mixture1 = mix(colour2.rgb, colour3.rgb * colour3.a, 1.0f);
+    vec3 mixture2 = mix(mixture0.rgb, mixture1.rgb, 0.5f);
+    vec3 composition = mix(colour0.rgb, mixture2.rgb, 0.5f);
+
+    ALBEDO.rgb = composition.rgb * LightInfluence(lightLevel);
 
     ALPHA = 1.0f;
 }

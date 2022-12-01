@@ -12,6 +12,12 @@ using Path = System.IO.Path;
 public static class Constants
 {
     /// <summary>
+    ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
+    ///   NewGameSettings.tscn should also be changed.
+    /// </summary>
+    public const int DEFAULT_DAY_LENGTH = 180;
+
+    /// <summary>
     ///   How long the player stays dead before respawning
     /// </summary>
     public const float PLAYER_RESPAWN_TIME = 5.0f;
@@ -704,6 +710,10 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+
+    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
+    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 

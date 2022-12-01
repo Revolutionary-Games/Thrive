@@ -46,7 +46,7 @@ public class GlucoseReductionEffect : IWorldEffect
         {
             var patch = targetWorld.Map.Patches[key];
 
-            if (!patch.Biome.Compounds.TryGetValue(glucose, out EnvironmentalCompoundProperties glucoseValue))
+            if (!patch.Biome.ChangeableCompounds.TryGetValue(glucose, out BiomeCompoundProperties glucoseValue))
                 return;
 
             totalAmount += glucoseValue.Amount;
@@ -61,7 +61,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 glucoseValue.Density = Math.Max(glucoseValue.Density * targetWorld.WorldSettings.GlucoseDecay,
                     Constants.GLUCOSE_MIN);
-                patch.Biome.Compounds[glucose] = glucoseValue;
+                patch.Biome.ChangeableCompounds[glucose] = glucoseValue;
 
                 var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
                     patch.GetTotalChunkCompoundAmount(glucose), 3);
@@ -73,7 +73,7 @@ public class GlucoseReductionEffect : IWorldEffect
                     "glucoseDown.png");
             }
 
-            finalTotalDensity += patch.Biome.Compounds[glucose].Density;
+            finalTotalDensity += patch.Biome.ChangeableCompounds[glucose].Density;
         }
 
         var initialTotalGlucose = Math.Round(initialTotalDensity * totalAmount + totalChunkAmount, 3);

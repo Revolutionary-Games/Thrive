@@ -20,9 +20,13 @@ public class PatchManager : IChildPropertiesLoadCallback
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
+    private DayNightCycle lightCycle;
 
     [JsonProperty]
     private Patch? previousPatch;
+
+    [JsonProperty]
+    private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
     ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
@@ -31,13 +35,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties? currentGame)
+        GameProperties? currentGame, DayNightCycle lightCycle)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
+        this.lightCycle = lightCycle;
         CurrentGame = currentGame;
     }
 
@@ -93,6 +98,10 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
+        // TODO: this is kind of logically the wrong place to make sure the averages are correct, instead whatever
+        // place can change the averages should recompute the averages instead of doing this here
+        UpdateAllPatchAverageLightLevels();
+
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
 
@@ -109,10 +118,44 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
+        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
 
-        compoundCloudSystem.SetBrightnessModifier(currentPatch.BiomeTemplate.CompoundCloudBrightness);
+        UpdateAllPatchLightLevels();
 
         return patchIsChanged;
+    }
+
+    public void UpdatePatchBiome(Patch currentPatch)
+    {
+        // Update environment for the process system
+        processSystem.SetBiome(currentPatch.Biome);
+    }
+
+    public void UpdateAllPatchLightLevels()
+    {
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
+
+        var multiplier = lightCycle.DayLightFraction;
+        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
+
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateCurrentSunlight(lightCycle);
+        }
+    }
+
+    private void UpdateAllPatchAverageLightLevels()
+    {
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
+
+        // TODO: does this need to also happen when entering the editor (after applying auto-evo changes in case those
+        // modify things)? See comment in ApplyChangedPatchSettingsIfNeeded
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateAverageSunlight(lightCycle);
+        }
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)
