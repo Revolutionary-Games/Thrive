@@ -874,16 +874,6 @@ public partial class CellEditorComponent :
         CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, previewBiomeConditions);
     }
 
-    public void UpdateStats()
-    {
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(CalculateStorage());
-        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
-    }
-
     /// <summary>
     ///   Calculates the effectiveness of organelles in the current patch (actually the editor biome conditions which
     ///   may have additional modifiers applied)
@@ -1730,6 +1720,16 @@ public partial class CellEditorComponent :
     private void OnColourChanged()
     {
         membraneColorPicker.SetColour(Colour);
+    }
+
+    private void UpdateStats()
+    {
+        UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
+        UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
+        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
     }
 
     /// <summary>

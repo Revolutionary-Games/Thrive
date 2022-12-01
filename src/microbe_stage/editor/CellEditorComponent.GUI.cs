@@ -163,7 +163,7 @@ public partial class CellEditorComponent
         {
             digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
             digestionEfficiencyLabel.Value = (float)Math.Round(efficiencies.First().Value * 100, 2);
-            digestionEfficiencyDetails.Hide();
+            digestionEfficiencyDetails.Visible = false;
         }
         else
         {
@@ -171,22 +171,31 @@ public partial class CellEditorComponent
 
             var description = new LocalizedStringBuilder(100);
 
-            var last = efficiencies.Last();
+            bool first = true;
+
             foreach (var enzyme in efficiencies)
             {
+                if (!first)
+                    description.Append("\n");
+
+                first = false;
+
                 description.Append(enzyme.Key.Name);
                 description.Append(": ");
                 description.Append(new LocalizedString("PERCENTAGE_VALUE", (float)Math.Round(enzyme.Value * 100, 2)));
-
-                if (enzyme.Key != last.Key)
-                    description.Append("\n");
             }
 
             var tooltip = ToolTipManager.Instance.GetToolTip("digestionEfficiencyDetails", "editor");
             if (tooltip != null)
+            {
                 tooltip.Description = description.ToString();
+            }
+            else
+            {
+                GD.PrintErr("Can't update digestion efficiency tooltip");
+            }
 
-            digestionEfficiencyDetails.Show();
+            digestionEfficiencyDetails.Visible = true;
         }
     }
 
