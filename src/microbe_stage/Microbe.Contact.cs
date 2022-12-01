@@ -278,7 +278,7 @@ public partial class Microbe
 
     /// <summary>
     ///   Give this microbe a specified amount of invulnerability time. Overrides previous value.
-    ///   Currently only Pili add invulnerability frames.
+    ///   NOTE: Not all damage sources apply invulnerability, check method usages.
     /// </summary>
     public void MakeInvulnerable(float duration)
     {
