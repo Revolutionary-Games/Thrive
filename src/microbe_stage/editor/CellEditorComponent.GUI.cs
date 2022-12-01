@@ -55,6 +55,7 @@ public partial class CellEditorComponent
         base.RegisterTooltips();
 
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
+        digestionEfficiencyDetails.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
     }
 
     protected override void OnTranslationsChanged()
@@ -68,7 +69,7 @@ public partial class CellEditorComponent
         UpdateMicrobePartSelections();
         UpdateMutationPointsBar();
 
-        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
     }
 
@@ -156,10 +157,51 @@ public partial class CellEditorComponent
         digestionSpeedLabel.Value = (float)Math.Round(speed, 2);
     }
 
-    private void UpdateTotalDigestionEfficiency(float efficiency)
+    private void UpdateDigestionEfficiencies(Dictionary<Enzyme, float> efficiencies)
     {
-        digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
-        digestionEfficiencyLabel.Value = (float)Math.Round(efficiency * 100, 2);
+        if (efficiencies.Count == 1)
+        {
+            digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
+            digestionEfficiencyLabel.Value = (float)Math.Round(efficiencies.First().Value * 100, 2);
+            digestionEfficiencyDetails.Visible = false;
+        }
+        else
+        {
+            digestionEfficiencyLabel.Format = TranslationServer.Translate("MIXED_DOT_DOT_DOT");
+
+            // Set this to a value hero to fix the up/down arrow
+            // Using sum makes the arrow almost always go up, using average makes the arrow almost always point down...
+            // digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Average() * 100;
+            digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Sum() * 100;
+
+            var description = new LocalizedStringBuilder(100);
+
+            bool first = true;
+
+            foreach (var enzyme in efficiencies)
+            {
+                if (!first)
+                    description.Append("\n");
+
+                first = false;
+
+                description.Append(enzyme.Key.Name);
+                description.Append(": ");
+                description.Append(new LocalizedString("PERCENTAGE_VALUE", (float)Math.Round(enzyme.Value * 100, 2)));
+            }
+
+            var tooltip = ToolTipManager.Instance.GetToolTip("digestionEfficiencyDetails", "editor");
+            if (tooltip != null)
+            {
+                tooltip.Description = description.ToString();
+            }
+            else
+            {
+                GD.PrintErr("Can't update digestion efficiency tooltip");
+            }
+
+            digestionEfficiencyDetails.Visible = true;
+        }
     }
 
     /// <summary>
