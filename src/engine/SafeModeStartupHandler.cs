@@ -105,6 +105,7 @@ public static class SafeModeStartupHandler
         startupSucceeded = true;
 
         DeleteCurrentStartupInfoFile();
+        GD.Print(Constants.STARTUP_SUCCEEDED_MESSAGE);
     }
 
     private static StartupAttemptInfo? LoadExistingStartupInfo()

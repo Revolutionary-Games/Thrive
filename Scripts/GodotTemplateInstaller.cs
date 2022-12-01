@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Utilities;
+using SharedBase.Utilities;
 
 /// <summary>
 ///   This script downloads and installs godot export templates for current version
