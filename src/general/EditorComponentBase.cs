@@ -139,6 +139,10 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
 
     public abstract void OnMutationPointsChanged(int mutationPoints);
 
+    public virtual void OnLightLevelChanged(float lightLevel)
+    {
+    }
+
     internal void PlayInvalidActionSound()
     {
         GUICommon.Instance.PlayCustomSound(unableToPerformActionSound, 0.4f);

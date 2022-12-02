@@ -26,6 +26,10 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected Control hudRoot = null!;
 
     [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    protected DayNightCycle lightCycle = null!;
+
+    [JsonProperty]
     protected Random random = new();
 
     /// <summary>
@@ -193,12 +197,16 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         hudRoot = GetNode<Control>(HUDRootPath);
 
+        lightCycle = new DayNightCycle();
+
         NodeReferencesResolved = true;
     }
 
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        lightCycle.Process(delta);
 
         if (gameOver)
         {
@@ -382,6 +390,10 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
                 OnGameStarted();
             }
         }
+        else
+        {
+            lightCycle.CalculateDependentLightData(GameWorld.WorldSettings);
+        }
 
         GD.Print(CurrentGame!.GameWorld.WorldSettings);
 
@@ -502,7 +514,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected virtual void GameOver()
     {
         // Player is extinct and has lost the game
-
         gameOver = true;
 
         // Just to make sure _Process doesn't run

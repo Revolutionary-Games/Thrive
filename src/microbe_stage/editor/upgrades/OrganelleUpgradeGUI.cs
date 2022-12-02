@@ -18,6 +18,9 @@ public class OrganelleUpgradeGUI : Control
     private ICellEditorData? storedEditor;
     private IOrganelleUpgrader? upgrader;
 
+    [Signal]
+    public delegate void Accepted();
+
     public override void _Ready()
     {
         popup = GetNode<CustomConfirmationDialog>(PopupPath);
@@ -60,6 +63,8 @@ public class OrganelleUpgradeGUI : Control
 
         GUICommon.Instance.PlayButtonPressSound();
         upgrader.ApplyChanges(storedEditor);
+
+        EmitSignal(nameof(Accepted));
     }
 
     private void OnCancel()

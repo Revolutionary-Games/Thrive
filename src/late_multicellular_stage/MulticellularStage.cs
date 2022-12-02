@@ -241,6 +241,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         // patchManager.CurrentGame = CurrentGame;
 
+        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings();
 
         SpawnPlayer();
