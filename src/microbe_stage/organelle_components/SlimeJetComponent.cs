@@ -112,7 +112,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
         if (animation == null)
         {
-            GD.PrintErr("MovementComponent's organelle has no animation player set");
+            GD.PrintErr("SlimeJetComponent's organelle has no animation player set");
             return;
         }
 
