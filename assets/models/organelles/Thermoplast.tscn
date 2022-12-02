@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=1]
+[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=1]
 [ext_resource path="res://assets/textures/Thermoplast_insideDiffuse.png" type="Texture" id=2]
 [ext_resource path="res://assets/models/organelles/Thermoplast_Particles.mesh" type="ArrayMesh" id=3]
 [ext_resource path="res://assets/models/organelles/Thermoplast_Inside.mesh" type="ArrayMesh" id=4]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/textures/Thermoplast_particlesEmission.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/Thermoplast_membraneAlbedo.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=8]
+
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
