@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/models/organelles/SlimeJet.glb" type="PackedScene" id=1]
 [ext_resource path="res://shaders/OrganelleOpaque.shader" type="Shader" id=2]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=3]
 [ext_resource path="res://assets/textures/SlimeJet.png" type="Texture" id=4]
+[ext_resource path="res://assets/models/organelles/SlimeJet.anim" type="Animation" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -26,3 +27,5 @@ skin = null
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "SlimeJet"
 playback_speed = 0.0
+anims/SlimeJet = ExtResource( 5 )
+loop = true
