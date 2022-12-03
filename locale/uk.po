@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-12-01 13:37+0200\n"
-"PO-Revision-Date: 2022-11-17 16:00+0000\n"
+"PO-Revision-Date: 2022-12-03 09:31+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -2098,12 +2098,13 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Ви увійшли як:{0}"
 
 #: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
-"Дякуємо за гру!\n"
+"Дякуємо за підтримку розробки Thrive, придбавши цю копію Thrive!\n"
 "\n"
-"Якщо сподобалась гра будь-ласка роскажи друзям про нас (та про українське озвучення та переклади)."
+"Якщо ви не купували цю копію, будь-ласка, отримайте свою копію [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1]\n"
+"\n"
+"Якщо ви б побачити лаунчер Thrive, до запуску Thrive, ви можете використати кнопку в головному меню для виходу до лаунчеру, та потім вимкніть плавний режим в меню налаштувань лаунчера."
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"
@@ -2152,9 +2153,8 @@ msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Вихід з гри"
 
 #: ../src/general/MainMenu.tscn:321
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Запуск E"
+msgstr "Вийти до лаунчера"
 
 #: ../src/general/MainMenu.tscn:332
 msgid "QUIT"
@@ -2323,13 +2323,12 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникли помилки під час завантаження декількох модифікацій. Додаткова інформація міститься у журналах."
 
 #: ../src/general/MainMenu.tscn:844
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "ВИ ПРОЦВІТАЄТЕ!"
+msgstr "Дякуємо"
 
 #: ../src/general/MainMenu.tscn:870
 msgid "DISMISS_PERMANENTLY"
-msgstr ""
+msgstr "Більше не показувати"
 
 #: ../src/general/NewGameSettings.cs:322
 #: ../src/general/NewGameSettings.tscn:1223
@@ -2511,20 +2510,19 @@ msgstr "Класично"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Перемкнути цикл дня/ночі"
 
 #: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "(УВАГА: фотосинтез стає дуже не життєобеспечквальним"
 
 #: ../src/general/NewGameSettings.tscn:985
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Тривалість дня"
 
 #: ../src/general/NewGameSettings.tscn:1033
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(рандомно заспавнені секрети в грі)"
+msgstr "(тривалість у секундах реального часу)"
 
 #: ../src/general/NewGameSettings.tscn:1114
 msgid "PLANET_GENERATION_TEASER"
@@ -3208,7 +3206,9 @@ msgstr ""
 "Тип мапи ділянок: {0}\n"
 "лише ЗАКОН: {1}\n"
 "Походження життя: {2}\n"
-"Випадковий сід планети: {3}"
+"Випадковий сід планети: {3}\n"
+"Тривалість дня: {4} секунди\n"
+"Ранломний сід планети: {5}"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -4483,9 +4483,8 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Змішаний..."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:295
@@ -4548,16 +4547,15 @@ msgstr "{0} енергії: {1} (пристосованість: {2}) загал
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:328
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "День"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
-#, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr "Колесо вправо"
+msgstr "Ніч"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Звичайний"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "MEMBRANE"
@@ -4918,7 +4916,7 @@ msgstr "{0}-{1}м. нижче рівня моря"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} опівдні"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
 msgid "SPECIES_WITH_POPULATION"
@@ -4937,9 +4935,8 @@ msgid "PRESSURE"
 msgstr "Тиск"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
-#, fuzzy
 msgid "LIGHT_MAX"
-msgstr "Світло"
+msgstr "Максимальне світло"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:863
 msgid "SPECIES_PRESENT"
