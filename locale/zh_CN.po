@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-01 13:37+0200\n"
+"POT-Creation-Date: 2022-12-03 11:40+0200\n"
 "PO-Revision-Date: 2022-11-13 08:28+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2071,7 +2071,7 @@ msgstr "关闭"
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:229
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:179
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
@@ -4282,19 +4282,19 @@ msgstr "统计数据"
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "自杀"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:720
+#: ../src/microbe_stage/Microbe.Contact.cs:743
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:727
+#: ../src/microbe_stage/Microbe.Contact.cs:750
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:908
+#: ../src/microbe_stage/Microbe.Contact.cs:931
 msgid "DEATH"
 msgstr "死亡数"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1161
+#: ../src/microbe_stage/Microbe.Contact.cs:1195
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -4492,28 +4492,28 @@ msgstr "{0}/s"
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "…"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:295
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:296
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:310
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:324
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:344
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:350
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:364
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:361
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
@@ -4521,13 +4521,13 @@ msgstr "{0}：-{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1273
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "不能删除细胞核，因为这是个不可逆的进化。\n"
 "除非是在当前世代中进化的，那样仍允许撤消或重做。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1285
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1275
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
