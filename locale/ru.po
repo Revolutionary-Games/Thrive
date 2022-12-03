@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-01 13:37+0200\n"
+"POT-Creation-Date: 2022-12-03 11:40+0200\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: Михалыч <simsanutiy@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2089,7 +2089,7 @@ msgstr "Закрыть"
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:229
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:179
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
@@ -4303,19 +4303,19 @@ msgstr "Статистика"
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Самоубийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:720
+#: ../src/microbe_stage/Microbe.Contact.cs:743
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешное ограбление"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:727
+#: ../src/microbe_stage/Microbe.Contact.cs:750
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:908
+#: ../src/microbe_stage/Microbe.Contact.cs:931
 msgid "DEATH"
 msgstr "смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1161
+#: ../src/microbe_stage/Microbe.Contact.cs:1195
 msgid "ESCAPE_ENGULFING"
 msgstr "избежали поглощение"
 
@@ -4514,28 +4514,28 @@ msgstr "{0}/сек"
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:295
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
 msgid "ATP_PRODUCTION"
 msgstr "АТФ Производство"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:296
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:310
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "СЛИШКОМ МАЛО ПРОИЗВОДСТВА АТФ!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:324
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:344
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "OSMOREGULATION"
 msgstr "Осморегуляция"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:350
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:364
 msgid "BASE_MOVEMENT"
 msgstr "Базовое Передвижение"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:361
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -4543,13 +4543,13 @@ msgstr "{0}: -{1} АТФ"
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1283
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1273
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Нельзя удалить ядро, это необратимая эволюция.\n"
 "Однако, если оно добавлено в текущей сессии, отмена и возврат всё ещё допустимы."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1285
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1275
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
 
