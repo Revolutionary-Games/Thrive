@@ -409,6 +409,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
+        hydrogenSulfideBar = GetNode<ProgressBar>(HydrogenSulfideBarPath);
         temperatureBar = GetNode<ProgressBar>(TemperaturePath);
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
@@ -418,7 +419,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         glucoseBar = GetNode<ProgressBar>(GlucoseBarPath);
         ammoniaBar = GetNode<ProgressBar>(AmmoniaBarPath);
         phosphateBar = GetNode<ProgressBar>(PhosphateBarPath);
-        hydrogenSulfideBar = GetNode<ProgressBar>(HydrogenSulfideBarPath);
         ironBar = GetNode<ProgressBar>(IronBarPath);
 
         environmentPanelExpandButton = GetNode<Button>(EnvironmentPanelExpandButtonPath);
@@ -711,6 +711,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         var oxygenPercentage = biome.CurrentCompoundAmounts[oxygen].Ambient * 100;
         var co2Percentage = biome.CurrentCompoundAmounts[carbondioxide].Ambient * 100;
         var nitrogenPercentage = biome.CurrentCompoundAmounts[nitrogen].Ambient * 100;
+        var hydrogenSulfidePercentage = biome.CurrentCompoundAmounts[hydrogensulfide].Ambient * 100;
         var sunlightPercentage = Math.Round(biome.CurrentCompoundAmounts[sunlight].Ambient * 100, 0);
         var averageTemperature = biome.CurrentCompoundAmounts[temperature].Ambient;
 
@@ -728,6 +729,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
         nitrogenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(nitrogenPercentage);
+
+        hydrogenSulfideBar.MaxValue = 100;
+        hydrogenSulfideBar.Value = hydrogenSulfidePercentage;
+        hydrogenSulfideBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(hydrogenSulfidePercentage);
 
         sunlightLabel.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(sunlightPercentage);
         temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
@@ -985,11 +990,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
         GUICommon.SmoothlyUpdateBar(phosphateBar, compounds.GetCompoundAmount(phosphates), delta);
         phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
-
-        hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
-        GUICommon.SmoothlyUpdateBar(hydrogenSulfideBar, compounds.GetCompoundAmount(hydrogensulfide), delta);
-        hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
-            hydrogenSulfideBar.MaxValue;
 
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         GUICommon.SmoothlyUpdateBar(ironBar, compounds.GetCompoundAmount(iron), delta);

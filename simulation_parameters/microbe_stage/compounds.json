@@ -46,11 +46,10 @@
   "hydrogensulfide": {
     "name": "HYDROGEN_SULFIDE",
     "volume": 1,
-    "isCloud": true,
+    "isCloud": false,
     "isAlwaysUseful": false,
-    "isEnvironmental": false,
+    "isEnvironmental": true,
     "canBeDistributed": true,
-    "digestible": true,
     "colour": {
       "r": 0.6,
       "g": 0.7,
