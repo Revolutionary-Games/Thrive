@@ -127,7 +127,7 @@ texture = ExtResource( 13 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="StyleBoxFlat" id=11]
-bg_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.04, 0.6, 0.76, 1 )
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0.196078 )
@@ -688,9 +688,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EnvironmentGroup" type="VBoxContainer" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 margin_right = 254.0
