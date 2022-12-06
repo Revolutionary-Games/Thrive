@@ -260,7 +260,7 @@ msgstr ""
 "细胞核：占用十一个六角格并允许你进化膜细胞器，使你的细胞大小翻倍的同时减少50%"
 "所受伤害。（只能被进化一次）\n"
 "\n"
-"连接器：允许和其它细胞连接在一起。\n"
+"连接器：允许和其它细胞连接在一起。提升到多细胞阶段需要此细胞器。\n"
 "\n"
 "线粒体：用[thrive:compound type=\"glucose\"][/thrive:compound]和大气中的氧气"
 "生产[thrive:compound type=\"atp\"][/thrive:compound]，比细胞质的效率高很多\n"
@@ -279,16 +279,16 @@ msgstr ""
 "毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）并"
 "释放它，根据可用的氧化毒素量造成伤害\n"
 "\n"
-"信号剂：让细胞可以生产其它细胞可以响应其的化学物质"
+"信号剂：让细胞可以生产其它细胞可以响应的化学物质"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或移"
 "除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗的变"
-"异点。你可以通过右键点击并在弹出的菜单中选择移除或移动细胞器。你还可以用"
-"[thrive:input]e_rotate_left[/thrive:input]键和[thrive:input]e_rotate_right[/"
-"thrive:input]键旋转你的细胞器。"
+"异点。你可以在某个细胞器上右键点击并在弹出的菜单中选择移除或移动它。你还可以"
+"用[thrive:input]e_rotate_left[/thrive:input]键和[thrive:"
+"input]e_rotate_right[/thrive:input]键旋转你的细胞器。"
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1364,7 +1364,7 @@ msgstr "从这个星球上灭绝了"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[u]{0}[/u] 已经灭绝了！"
+msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
@@ -2424,7 +2424,7 @@ msgstr "感谢"
 
 #: ../src/general/MainMenu.tscn:870
 msgid "DISMISS_PERMANENTLY"
-msgstr ""
+msgstr "不再显示"
 
 #: ../src/general/NewGameSettings.cs:322
 #: ../src/general/NewGameSettings.tscn:1223
@@ -2956,8 +2956,9 @@ msgstr "水平："
 
 #: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
 #: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
+#, fuzzy
 msgid "INVERTED"
-msgstr ""
+msgstr "反转"
 
 #: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
 msgid "VERTICAL_COLON"
@@ -2984,8 +2985,9 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1254
+#, fuzzy
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "控制器灵敏度"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
