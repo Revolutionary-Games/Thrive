@@ -1379,23 +1379,27 @@ msgstr "[b][u]{0}[/u][/b]已从本地区中消失"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "一部分[u]{0}[/u]种群已经从{1}移民到了这个地区"
+msgstr "一部分[b][u]{0}[/u][/b]种群已经从{1}移民到了这个地区"
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "一部分[u]{0}[/u]种群已经从{2}移民到了{1}"
+msgstr "一部分[b][u]{0}[/u][/b]种群已经从{2}移民到了{1}"
 
 #: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "一部分[u]{0}[/u]种群已经移民到了{1}"
+msgstr "一部分[b][u]{0}[/u][/b]种群已经移民到了{1}"
 
 #: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[u]{0}[/u]从[u]{1}[/u]中分裂出来，成为了一个新的物种以填补一个生态位"
+msgstr ""
+"[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种以填补一个"
+"生态位"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u]从[u]{1}[/u]中分裂出来，成为了一个新的物种，原因是演化压力"
+msgstr ""
+"[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是演"
+"化压力"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
@@ -3860,9 +3864,9 @@ msgstr ""
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满"
-"了细胞的内部。它其中一个功能是糖酵解，作用是将葡萄糖转换成ATP能量。对于缺少细"
-"胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存"
-"收集到的化合物和增加细胞的大小。"
+"了细胞的内部。它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对"
+"于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能"
+"用来储存收集到的化合物和增加细胞的大小。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:304
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:407
@@ -3932,9 +3936,9 @@ msgstr ""
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够以比在细胞质中更高的速率将葡"
-"萄糖转换成ATP，这个过程称为有氧呼吸。不管怎样，它需要氧才能运作，低水平的环境"
-"氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能"
-"进行一些糖酵解。"
+"萄糖转换成ATP，这个过程称为[b]有氧呼吸[/b]。不管怎样，它需要氧才能运作，低水"
+"平的环境氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细"
+"胞质也能进行一些[b]糖酵解[/b]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:485
 msgid "THYLAKOID"
@@ -3950,10 +3954,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的能"
-"量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它"
-"们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞"
-"质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光"
+"中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原"
+"因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮"
+"在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -3967,9 +3971,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
-"化合蛋白是细胞质中的小型蛋白质簇，能够将硫化氢，水和二氧化碳通过硫化氢化能合"
-"成转换成葡萄糖。葡萄糖产出速率与二氧化碳的浓度成正比。由于化学合成蛋白是直接"
-"悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
+"化合蛋白是细胞质中的小型蛋白质簇，能够将硫化氢，水和二氧化碳通过[b]硫化氢化能"
+"[/b]合成转换成葡萄糖。葡萄糖产出速率与二氧化碳的浓度成正比。由于化学合成蛋白"
+"是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -3983,7 +3987,7 @@ msgstr ""
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "铁硫菌蓝蛋白能够利用二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个"
-"过程被称作铁呼吸，从中产出可被细胞收集的能量。"
+"过程被称作[b]铁呼吸[/b]，从中产出可被细胞收集的能量。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -3996,8 +4000,8 @@ msgstr ""
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称"
-"作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些"
-"糖酵解。"
+"作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进"
+"行一些[b]糖酵解[/b]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -4022,7 +4026,7 @@ msgstr ""
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
 "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后"
-"在降温时展开并生成ATP。这一过程被称为热合成。其ATP生成速率与温度有关。"
+"在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -4131,8 +4135,9 @@ msgstr ""
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主"
-"同化的原核生物。能够通过有氧呼吸以比细胞质高得多的效率将葡萄糖转换成ATP。不管"
-"怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
+"同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成"
+"ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减"
+"慢。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -4145,9 +4150,9 @@ msgstr ""
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主"
-"同化的原核生物。叶绿体中的色素可以通过光合作用把水和二氧化碳转换成葡萄糖。这"
-"些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的强度成"
-"正比。"
+"同化的原核生物。叶绿体中的色素可以通过[b]光合作用[/b]把水和二氧化碳转换成葡萄"
+"糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的"
+"强度成正比。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
@@ -4159,8 +4164,8 @@ msgstr ""
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同"
-"化的原核生物。热能体中的色素可以通过热合成用温差把水和二氧化碳合成成葡萄糖。"
-"合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
+"化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡"
+"萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
@@ -4177,8 +4182,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
-"化学质体是一种双层膜结构，其中包含的蛋白质可以通过硫化氢化学合成将硫化氢，水"
-"和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
+"化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化"
+"氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
@@ -4192,7 +4197,7 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个过"
-"程被称为有氧固氮。"
+"程被称为[b]有氧固氮[/b]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
