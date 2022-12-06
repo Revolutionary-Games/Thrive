@@ -590,9 +590,8 @@ msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "向下走或蹲下"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "杂项"
+msgstr "各项3D阶段"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
@@ -1368,11 +1367,11 @@ msgstr "[b][u]{0}[/u][/b] 已经灭绝了！"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "[u]{0}[/u]的种群数量已增加到{1}"
+msgstr "[b][u]{0}[/u][/b]的种群数量已增加到{1}"
 
 #: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[u]{0}[/u]的种群数量已降低到{1}"
+msgstr "[b][u]{0}[/u][/b]的种群数量已降低到{1}"
 
 #: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
@@ -1657,7 +1656,7 @@ msgstr "原始值："
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "死区："
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
@@ -1685,7 +1684,7 @@ msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "开始校准"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 msgid "RESET_DEADZONES"
@@ -1693,7 +1692,7 @@ msgstr "重置死区"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "控制器轴可视化："
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2183,14 +2182,17 @@ msgstr "{0}的浓度已减少了{1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖的浓度大幅度降低了！"
 
-#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
-#: ../src/general/MainMenu.cs:409
-#, fuzzy
+#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
-"感谢你的游玩！\n"
+"感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
 "\n"
-"如果你喜欢这款游戏，记得也向你的朋友们推荐下。"
+"点击链接[color=#3796e1][url={0}]from here[/url][/color]购买本游戏，或者来看看"
+"我们的官网：[color=#3796e1][url=https://revolutionarygamesstudio.com/"
+"releases/][/url][/color]。\n"
+"\n"
+"如果您想在Thrive启动之前看到Thrive Launcher，您可以使用主菜单中的按钮退出到启"
+"动器，然后在启动器选项菜单中禁用无缝模式。"
 
 #: ../src/general/MainMenu.cs:414 ../src/general/MainMenu.cs:391
 msgid "STORE_LOGGED_IN_AS"
@@ -2355,9 +2357,8 @@ msgid "FACEBOOK_TOOLTIP"
 msgstr "访问我们的Facebook页面"
 
 #: ../src/general/MainMenu.tscn:712
-#, fuzzy
 msgid "TWITTER_TOOLTIP"
-msgstr "时间经过了{0:#,#}年"
+msgstr "访问我们的推特"
 
 #: ../src/general/MainMenu.tscn:779
 msgid "GLES2_MODE_WARNING"
@@ -2948,7 +2949,7 @@ msgstr "鼠标灵敏度"
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "将坐标轴绑定在一起"
 
 #: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
 msgid "HORIZONTAL_COLON"
@@ -2956,9 +2957,8 @@ msgstr "水平："
 
 #: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
 #: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
-#, fuzzy
 msgid "INVERTED"
-msgstr "反转"
+msgstr "已反转"
 
 #: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
 msgid "VERTICAL_COLON"
@@ -2982,21 +2982,19 @@ msgstr "成反比"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "使用虚拟窗口大小"
 
 #: ../src/general/OptionsMenu.tscn:1254
-#, fuzzy
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "控制器灵敏度"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "控制器死区"
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "重置输入"
+msgstr "重置按键绑定"
 
 #: ../src/general/OptionsMenu.tscn:1393
 msgid "PLAY_INTRO_VIDEO"
@@ -3281,12 +3279,10 @@ msgid "KILO_ABBREVIATION"
 msgstr "{0}*10³"
 
 #: ../src/general/TranslationHelper.cs:84
-#, fuzzy
 msgid "FEATURE_ENABLED"
-msgstr "启用作弊键"
+msgstr "已启用"
 
 #: ../src/general/TranslationHelper.cs:85
-#, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "已禁用"
 
@@ -3309,10 +3305,12 @@ msgstr ""
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
-"地区图类型: {0}\n"
-"仅限已知生命形式: {1}\n"
-"生物起源: {2}\n"
-"世界生成种子: {3}"
+"地区图类型：{0}\n"
+"仅限已知生命形式：{1}\n"
+"生命起源：{2}\n"
+"日/夜循环：{3}\n"
+"一天的长度：{4}秒\n"
+"行星随机种子：{5}"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -4380,8 +4378,9 @@ msgid "SPECIES_COLON"
 msgstr "物种："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
+#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "按住[thrive:input]g_free_cursor[/thrive:input]光标"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
 #: ../src/microbe_stage/MicrobeStage.tscn:741
@@ -4419,7 +4418,7 @@ msgstr "物质"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
 msgid "MOVE_TO_LAND"
-msgstr "成为陆地生物："
+msgstr "成为陆地生物"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 msgid "BECOME_AWARE"
@@ -4737,9 +4736,8 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "…"
+msgstr "已混合......"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
@@ -6144,9 +6142,11 @@ msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "树状演化图"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
-msgstr "演化树"
+msgstr ""
+"无法在自由构建模式或0.6.0之前的版本的存档中显示。\n"
+"\n"
+"如果不是因为以上两种原因，那就是出bug了。请通知开发团队并提供游戏日志。"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
@@ -6177,7 +6177,7 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
-msgstr ""
+msgstr "干扰"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
