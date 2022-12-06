@@ -65,9 +65,8 @@ msgid "MULTICELLULAR_STAGE"
 msgstr "放置細胞器"
 
 #: ../simulation_parameters/common/gallery.json:86
-#, fuzzy
 msgid "GENERAL"
-msgstr "世代："
+msgstr "世代"
 
 #: ../simulation_parameters/common/gallery.json:138
 #, fuzzy
@@ -223,7 +222,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "細胞分裂時你需要複製所有的細胞器；細胞器需要[thrive:compound "
 "type=\"ammonia\"][/thrive:compound]和[thrive:compound type=\"phosphates\"]，"
-"以及時間進行複製"
+"以及時間進行複製。"
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -1270,9 +1269,8 @@ msgid "STATUS_COLON"
 msgstr "物種："
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:448
-#, fuzzy
 msgid "READY"
-msgstr "線程："
+msgstr "已就緒"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:479
 #, fuzzy
@@ -1284,23 +1282,20 @@ msgid "RUN_ONE_STEP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:491
-#, fuzzy
 msgid "ABORT"
-msgstr "取消。"
+msgstr "取消"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:539
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "世代："
+msgstr "世代"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
-#, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "選取的："
+msgstr "選取一個世代"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:580
 #, fuzzy
@@ -1446,7 +1441,7 @@ msgstr "從這個星球上滅絕了"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[b][u]{0}[/u][/b]  已經滅絕了！"
+msgstr "[b][u]{0}[/u][/b]已經滅絕了！"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
@@ -1462,7 +1457,7 @@ msgstr "[b][u]{0}[/u][/b] 已經從這個區域消失"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "部分  [b][u]{0}[/u][/b] 人口已從 {1} 遷移到此"
+msgstr "部分[b][u]{0}[/u][/b]人口已從{1}遷移到此"
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
@@ -1475,8 +1470,7 @@ msgstr "[b][u]{0}[/u][/b] 人口的一部分已遷移到 {1}"
 #: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
-"[b][u]{0}[/u][/b] 從  [b][u]{1}[/u][/b] 中分離出來，作為一個新物種來填補生態"
-"位"
+"[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分離出來，作為一個新物種來填補生態位"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
@@ -1554,9 +1548,8 @@ msgstr "玩家分裂"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:545
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "繁殖"
+msgstr "繁殖："
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
@@ -1733,9 +1726,8 @@ msgstr ""
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:171
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "速度："
+msgstr "速度（軸：{0}）"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
@@ -1784,7 +1776,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 #, fuzzy
 msgid "RESET_DEADZONES"
-msgstr "重置為默認？"
+msgstr "重置為默認"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2826,11 +2818,8 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1165
-#, fuzzy
 msgid "EASTER_EGGS"
-msgstr ""
-"豆知識：櫛毛蟲和草履蟲被當做教科書級的捕食者與獵物關係研究了幾十年。現在你是"
-"櫛毛蟲還是草履蟲呢？捕食者還是獵物？"
+msgstr "包含復活節彩蛋"
 
 #: ../src/general/NewGameSettings.tscn:1172
 #, fuzzy
@@ -2865,9 +2854,8 @@ msgid "CONFIRM_NORMAL"
 msgstr "確認"
 
 #: ../src/general/OptionsMenu.cs:776 ../src/general/OptionsMenu.tscn:331
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "解像度："
+msgstr "自動（{0}x{1}）"
 
 #: ../src/general/OptionsMenu.cs:790
 msgid "GLES2"
@@ -2910,9 +2898,8 @@ msgstr ""
 "你確定要強行載入這個存檔嗎？"
 
 #: ../src/general/OptionsMenu.cs:1339
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "MOD版本："
+msgstr "未知的版本"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -3003,9 +2990,8 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:440
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "洞穴"
+msgstr "GPU："
 
 #: ../src/general/OptionsMenu.tscn:470
 msgid "USED_RENDERER_NAME"
@@ -3764,9 +3750,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "存檔版本不同"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "選取的："
+msgstr "選取一個選項"
 
 #: ../src/gui_common/TweakedColourPicker.cs:387
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -3857,9 +3842,8 @@ msgid "TITLE_COLON"
 msgstr "大小："
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
-msgstr "描述太長"
+msgstr "描述："
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 #, fuzzy
@@ -4640,9 +4624,8 @@ msgid "AGENTS"
 msgstr "劑"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "將上傳的Mod："
+msgstr "移動到陸地"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 #, fuzzy
@@ -4659,9 +4642,8 @@ msgid "POPULATION_CAPITAL"
 msgstr "人口："
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr "紅綠色盲"
+msgstr "移動去陸地？"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 #, fuzzy
@@ -5105,7 +5087,7 @@ msgstr "大小："
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:869
 #, fuzzy
 msgid "STORAGE_COLON"
-msgstr "儲存"
+msgstr "儲存："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 #, fuzzy
@@ -5113,9 +5095,8 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "速度："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "描述太長"
+msgstr "消化效率："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
 msgid "GENERATION_COLON"
@@ -5372,7 +5353,7 @@ msgstr "檢測的最小數量："
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
-msgstr "線條顏色"
+msgstr "線條顏色："
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
 #, fuzzy
@@ -6052,9 +6033,8 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "覆寫現有的存檔："
 
 #: ../src/saving/NewSaveMenu.tscn:117
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "覆寫現有的存檔："
+msgstr "覆寫現有的存檔？"
 
 #: ../src/saving/NewSaveMenu.tscn:121
 #, fuzzy
@@ -6187,9 +6167,7 @@ msgstr "存檔更新失敗"
 
 #: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"更新此存檔失敗，錯誤：\n"
-"{0}"
+msgstr "更新此存檔失敗，錯誤："
 
 #: ../src/saving/SaveList.tscn:127
 #, fuzzy
@@ -6389,9 +6367,8 @@ msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "人口："
+msgstr "變化石"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
 #, fuzzy
