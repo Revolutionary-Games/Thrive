@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-07 10:25+0200\n"
 "PO-Revision-Date: 2022-11-21 17:00+0000\n"
 "Last-Translator: Uwe Haertel <uwe.haertel@chello.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -2099,17 +2099,17 @@ msgstr "{0}konzentrationen sind um {1} gesunken"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 
-#: ../src/general/MainMenu.cs:391
-msgid "STORE_LOGGED_IN_AS"
-msgstr "Angemeldet als: {0}"
-
-#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:864
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Danke fürs spielen!\n"
 "\n"
 "Falls du das Spiel genossen hast, erzähle bitte deinen Freunden von uns."
+
+#: ../src/general/MainMenu.cs:413
+msgid "STORE_LOGGED_IN_AS"
+msgstr "Angemeldet als: {0}"
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"
@@ -2315,7 +2315,7 @@ msgstr ""
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Diese Warnung nicht mehr anzeigen"
 
-#: ../src/general/MainMenu.tscn:827 ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:827 ../src/general/MainMenu.tscn:895
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -2349,7 +2349,7 @@ msgstr "Ein Fehler trat beim Laden einer oder mehreren Modifikationen auf. Das F
 msgid "THANK_YOU_TITLE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
-#: ../src/general/MainMenu.tscn:870
+#: ../src/general/MainMenu.tscn:881
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
