@@ -1367,7 +1367,7 @@ msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritte."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
 msgid "OPERATION_PAUSED_DOT"
-msgstr "Pausiert"
+msgstr "Pausiert."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
@@ -1439,44 +1439,45 @@ msgstr "wurde ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[u]{0}[/u] ist ausgestorben!"
+msgstr "[b][u]{0}[/u][/b] ist ausgestorben!"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Die Bevölkerung von [u]{0}[/u] hat sich auf {1} gesteigert"
+msgstr "Die Bevölkerung von [b][u]{0}[/u][/b] hat sich auf {1} gesteigert"
 
 #: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Die Bevölkerung von [u]{0}[/u] hat sich auf {1} verringert"
+msgstr "Die Bevölkerung von [b][u]{0}[/u][/b] hat sich auf {1} verringert"
 
 #: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[u]{0}[/u] ist aus diesem Gebiet verschwunden"
+msgstr "[b][u]{0}[/u][/b] ist aus diesem Gebiet verschwunden"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
-"Ein Teil der [u]{0}[/u]-Bevölkerung ist von {1} in dieses Gebiet eingewandert"
+"Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist von {1} in dieses Gebiet "
+"eingewandert"
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist von {1} in {2} migriert"
+msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist von {1} in {2} migriert"
 
 #: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist nach {1} migriert"
+msgstr "Ein Teil der [b][u]{0}[/u][/b]-Bevölkerung ist nach {1} migriert"
 
 #: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
-"[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab, um eine Nische zu "
-"füllen"
+"[b][u]{0}[/u][/b] spaltet sich von [b][u]{1}[/u][/b] als neue Art ab, um "
+"eine Nische zu füllen"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
-"[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab aufgrund dem "
-"unterschiedlichen Selektionsdrucks"
+"[b][u]{0}[/u][/b] spaltet sich von [b][u]{1}[/u][/b] als neue Art ab "
+"aufgrund von unterschiedlichem Selektionsdruck"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
@@ -1747,8 +1748,9 @@ msgstr "Totzone:"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr ""
-"Deadzone Kalibrierung im Gange. Bitte drücken sie keine Tasten oder benutzen "
-"die Sticks auf ihrem Controller und warten sie ein paar Sekunden."
+"Totzonen-Kalibrierung im Gange. Bitte drücken Sie keine Tasten und lassen "
+"Sie die Sticks auf ihrem Controller in nicht-ausgelenkter Ausgangsstellung "
+"und warten ein paar Sekunden."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
@@ -2778,10 +2780,9 @@ msgstr ""
 "eine ausreichend große Zellkolonie hast."
 
 #: ../src/general/NewGameSettings.tscn:1153
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
-"(einige Funktionen können nicht mehr verfügbar sein, wenn Sie die nächsten "
+"(einige Funktionen könnten nicht mehr verfügbar sein, wenn Sie die nächsten "
 "Stufen erreichen)"
 
 #: ../src/general/NewGameSettings.tscn:1165
@@ -2867,9 +2868,8 @@ msgstr ""
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/general/OptionsMenu.cs:1339
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Modversion:"
+msgstr "Unbekannte Version"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -4018,11 +4018,12 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung "
 "aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere "
-"der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die Glykolyse, "
-"die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen Organellen "
-"fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie auf diese "
-"Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu "
-"speichern und die Zelle zu vergrössern."
+"der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die "
+"[b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/"
+"thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-"
+"Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, "
+"sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, "
+"Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:304
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:407
@@ -4704,14 +4705,12 @@ msgid "AGENTS"
 msgstr "Mittel"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "Mod zum Hochladen:"
+msgstr "Landgang"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Biom: {0}"
+msgstr "Bewußtwerdung"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1730
 msgid "AWAKEN"
@@ -4723,9 +4722,8 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2115
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr "Rotblindheit (Rot-Grün)"
+msgstr "Landgang?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 #, fuzzy
@@ -4811,9 +4809,8 @@ msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Umgebung und Substanzen ein-/ausblenden"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Umgebung und Substanzen ein-/ausblenden"
+msgstr "Substanzen ein-/ausblenden"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:101
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -5190,9 +5187,8 @@ msgid "SIZE_COLON"
 msgstr "Größe:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:869
-#, fuzzy
 msgid "STORAGE_COLON"
-msgstr "Speicher"
+msgstr "Speicherplatz:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "DIGESTION_SPEED_COLON"
@@ -5284,9 +5280,8 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Verbindungsbalance"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
-#, fuzzy
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
-msgstr "Speziesname..."
+msgstr "Artenname ist zu lang!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
@@ -6526,9 +6521,8 @@ msgstr ""
 "bist du sicher, dass du ihn dauerhaft löschen willst?"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "Population:"
+msgstr "Fossilisation"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
 #, fuzzy
@@ -6654,7 +6648,8 @@ msgstr ""
 "\n"
 "Wenn du ein Gebiet auswählst, das an das Dein gegenwärtiges Gebiet (Neongrün "
 "blinkende Umrandung) angrenzt, kannst du \"In dieses Gebiet wechseln\" "
-"auswählen, um dahin zu migrieren.\n"
+"auswählen, um dahin zu migrieren. Du kannst Dich mit jeder Zellteilung nur "
+"ein Gebiet weit bewegen.\n"
 "\n"
 "Versuche, ein Gebiet auszuwählen, um fortzufahren."
 
@@ -6710,10 +6705,10 @@ msgstr ""
 "Registerkarten des Zelleneditors findest du noch mehr Optionen.\n"
 "\n"
 "Sieh dir auch die anderen Felder unter der MP Zeile an, um zu sehen wie du "
-"deine Zelle Anpassen kannst.\n"
+"deine Zelle anpassen kannst.\n"
 "\n"
-"Um in dieser Lebensfeindlichen Welt zu überleben musst du eine Nachhaltige "
-"Energiequelle finden, da Natürliche Glucose stark abnehmen wird.\n"
+"Um in dieser lebensfeindlichen Welt zu überleben musst du eine nachhaltige "
+"Energiequelle finden, da natürliche Glucose stark abnehmen wird.\n"
 "\n"
 "Viel Glück!"
 
@@ -6740,7 +6735,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Du solltest dich auf ein oder zwei Energiequellen fokussieren, damit du "
-"nicht zu viele Stoffe benötigst um genügend ATP zum überleben zu erzeugen.\n"
+"nicht zu viele Stoffe benötigst um genügend ATP zum Überleben zu erzeugen.\n"
 "\n"
 "Außerdem solltest du auch überlegen, ob du wirklich eine neue Organelle "
 "hinzufügen solltest. Manchmal ist keine Änderung, auch eine gute Idee, da "
@@ -6807,6 +6802,7 @@ msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich zu vermehren, müssen sich alle deiner Organellen duplizieren, indem "
 "Du genügend Ammoniak und Phosphat sammelst.\n"
+"\n"
 "Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen "
 "noch benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett "
 "gefüllt sind."
@@ -6863,19 +6859,18 @@ msgstr ""
 "oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Deine Zelle wurde Verschlungen. Das heißt dass, die zelle die dich "
-"verschlungen hat, dich jetzt verdauen wird.\n"
+"Deine Zelle wurde Umschlungen. Das heißt, dass die Zelle die dich "
+"umschlungen hat, dich jetzt verdauen wird.\n"
 "\n"
-"Der Verdauungs Fortschritt wird bei deiner lebensleiste (unten rechts) als "
-"prozentsatz angezeigt. Deine Zelle wird als tot gelten sobald es 100% "
-"ereicht oder das maximale zeitlimit erreich wurde.\n"
+"Der Verdauungsfortschritt wird bei deiner Lebensleiste (unten rechts) als "
+"Prozentsatz angezeigt. Deine Zelle wird als tot gelten sobald 100% oder "
+"maximale Zeitlimit erreicht wurde.\n"
 "\n"
-"Drücke den Selbstmord Knopf um den Prozess zu überspringen und um "
-"widergeboren zu werden. Merke dir aber das es immer die chance gibt zu "
-"fliehen!"
+"Drücke den Apoptose (Suizid) Knopf um den Verdauungsprozess zu überspringen "
+"und schneller Wiedergeboren zu werden. Bedenke aber, dass immer eine Chance "
+"besteht zu entkommen!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
