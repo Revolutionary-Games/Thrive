@@ -111,7 +111,10 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
     public override void FocusLost()
     {
-        axes.ForEach(p => p.FocusLost());
+        foreach (var p in axes)
+        {
+            p.FocusLost();
+        }
     }
 
     internal override void OnPostLoad()

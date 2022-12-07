@@ -154,8 +154,11 @@ public class MicrobeColony
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
 
-        ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
-
+        foreach (var m in ColonyMembers)
+        {
+            m.OnColonyMemberAdded(microbe);
+        }
+        
         hexCountDirty = true;
     }
 
