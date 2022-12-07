@@ -1219,7 +1219,6 @@ msgstr ""
 "Bereiche mit bis zu dieser Anzahl an Spezies haben niedrige Biodiversität"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:268
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr ""
 "Maximale Anzahl an Arten in einem Bereich vor dem erzwungenen Aussterben"
@@ -1643,7 +1642,6 @@ msgstr "Laufstatus:"
 #: ../src/general/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:441
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
-#, fuzzy
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Aktion ist blockiert während eine andere im Gange ist"
 
@@ -1672,22 +1670,21 @@ msgstr "Für Windows unbekannt"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
-#, fuzzy
 msgid "METRICS_CONTENT"
 msgstr ""
 "Zeit des Prozesses: {0} s\n"
 "Zeit des Physikprozesses: {1} s\n"
 "Entitäten: {2} Andere: {3}\n"
-"Erschienen: {4} Verschwunden: {5}\n"
-"Benutzte Nodes: {6}\n"
-"Benutzte Memory: {7}\n"
-"GPU Memory: {8}\n"
+"Erzeugt: {4} Entfernt: {5}\n"
+"Benutzte Knoten: {6}\n"
+"Benutzter Speicher: {7}\n"
+"Grafikspeicher: {8}\n"
 "Erzeugte Objekte: {9}\n"
-"Draw Calls: {10} 2D: {11}\n"
+"Zeichnungsaufrufe: {10} 2D: {11}\n"
 "Erzeugte Eckpunkte: {12}\n"
 "Materialänderungen: {13}\n"
 "Shader-Änderungen: {14}\n"
-"Orphaned Nodes: {15}\n"
+"Verwaiste Knoten: {15}\n"
 "Audio-Latenz: {16} ms\n"
 "Gesamtanzahl Threads: {17}\n"
 "Gesamte CPU-Zeit:\n"
@@ -1707,9 +1704,8 @@ msgid "FPS_DISPLAY"
 msgstr "FPS Display"
 
 #: ../src/engine/DebugOverlays.tscn:109
-#, fuzzy
 msgid "COLLISION_SHAPE"
-msgstr "Erzeuge Entitäten mit Kollisionsformen"
+msgstr "Erzeuge Entitäten mit Kollisionskonturen"
 
 #: ../src/engine/DebugOverlays.tscn:116
 msgid "ENTITY_LABEL"
@@ -1759,13 +1755,14 @@ msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Totzonenkalibrierungen wurden zurückgesetzt"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Zusätzliche Überprüfungen fanden einen Fehler: {0}"
+msgstr ""
+"Totzonenkalibrierung abgeschlossen. Die neuen Totzonen werden unten "
+"dargestellt."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Konfiguration Todeszone"
+msgstr "Totzonen kalibrieren"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
@@ -1789,7 +1786,7 @@ msgstr "Starte Kalibrierung"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 msgid "RESET_DEADZONES"
-msgstr "Todeszonen zurücksetzen"
+msgstr "Totzonen zurücksetzen"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2231,9 +2228,8 @@ msgid "BEHAVIOUR_OPPORTUNISM"
 msgstr "Opportunismus"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Angst"
+msgstr "Furcht"
 
 #: ../src/general/BehaviourDictionary.cs:105
 #, fuzzy
@@ -2307,9 +2303,8 @@ msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
 #: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:197
-#, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Pause-Menü"
+msgstr "Ein zuvor gespeichertes Spiel laden"
 
 #: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:198
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -2346,9 +2341,8 @@ msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Spiel beenden"
 
 #: ../src/general/MainMenu.tscn:321
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "E Starten"
+msgstr "Beenden zum Launcher"
 
 #: ../src/general/MainMenu.tscn:332
 msgid "QUIT"
@@ -2359,12 +2353,10 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
 #: ../src/general/MainMenu.tscn:364
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "Laufstatus:"
+msgstr "Auto-Evo Exploration"
 
 #: ../src/general/MainMenu.tscn:433 ../src/general/PauseMenu.tscn:206
-#, fuzzy
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -2411,24 +2403,20 @@ msgid "DEVELOPMENT_FORUM"
 msgstr "Entwickler Forum"
 
 #: ../src/general/MainMenu.tscn:567
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "Hilfe"
+msgstr "Besuche unser Entwickler-Wiki"
 
 #: ../src/general/MainMenu.tscn:570
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "Entwickler(innen)"
+msgstr "Entwickler-Wiki"
 
 #: ../src/general/MainMenu.tscn:579
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Suizid"
+msgstr "Besuche unser Gemeinschafts-Wiki"
 
 #: ../src/general/MainMenu.tscn:582
-#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr "unser Wiki"
+msgstr "Gemeinschafts-Wiki"
 
 #: ../src/general/MainMenu.tscn:613
 #, fuzzy
@@ -2440,43 +2428,36 @@ msgid "STEAM_TOOLTIP"
 msgstr "Steam website besuchen"
 
 #: ../src/general/MainMenu.tscn:635
-#, fuzzy
 msgid "ITCH_TOOLTIP"
-msgstr "Suizid"
+msgstr "Besuche unsere Itch.io Seite"
 
 #: ../src/general/MainMenu.tscn:646
-#, fuzzy
 msgid "PATREON_TOOLTIP"
-msgstr "Pausiere das Spiel"
+msgstr "Besuche unsere Patreon Seite"
 
 #: ../src/general/MainMenu.tscn:657
-#, fuzzy
 msgid "GITHUB_TOOLTIP"
-msgstr "Suizid"
+msgstr "Besuche unser GitHub Repositorium"
 
 #: ../src/general/MainMenu.tscn:668
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Besuche unseren YouTube Kanal"
 
 #: ../src/general/MainMenu.tscn:679
-#, fuzzy
 msgid "REDDIT_TOOLTIP"
-msgstr "Spiel fortsetzen"
+msgstr "Besuche unseren Subreddit"
 
 #: ../src/general/MainMenu.tscn:690
-#, fuzzy
 msgid "DISCORD_TOOLTIP"
-msgstr "Zeit vergangen: {0:#,#} Jahre"
+msgstr "Tritt unserem Discord Server bei"
 
 #: ../src/general/MainMenu.tscn:701
-#, fuzzy
 msgid "FACEBOOK_TOOLTIP"
-msgstr "Pausiere das Spiel"
+msgstr "Besuche unsere Facebook Seite"
 
 #: ../src/general/MainMenu.tscn:712
-#, fuzzy
 msgid "TWITTER_TOOLTIP"
-msgstr "Zeit vergangen: {0:#,#} Jahre"
+msgstr "Besuche unseren Twitter Feed"
 
 #: ../src/general/MainMenu.tscn:779
 msgid "GLES2_MODE_WARNING"
@@ -2491,9 +2472,8 @@ msgstr ""
 "Ausführung von Thrive zu erzwingen."
 
 #: ../src/general/MainMenu.tscn:784
-#, fuzzy
 msgid "NO_MODS_ENABLED"
-msgstr "Deaktiviert"
+msgstr "Keine Mods aktiv"
 
 #: ../src/general/MainMenu.tscn:797
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -2549,14 +2529,12 @@ msgstr "Dies' nicht wieder anzeigen"
 
 #: ../src/general/NewGameSettings.cs:322
 #: ../src/general/NewGameSettings.tscn:1223
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Pause-Menü"
+msgstr "Mit diesen Einstellungen spielen"
 
 #: ../src/general/NewGameSettings.cs:329
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Pause-Menü"
+msgstr "Einige Einstellungen sind ungültig"
 
 #: ../src/general/NewGameSettings.tscn:124
 #: ../src/general/NewGameSettings.tscn:364
@@ -2565,19 +2543,13 @@ msgstr "Schwierigkeitsgrad"
 
 #: ../src/general/NewGameSettings.tscn:152
 #: ../src/general/NewGameSettings.tscn:897
-#, fuzzy
 msgid "LAWK_ONLY"
-msgstr "Nur Leben, wie wir es kennen"
+msgstr "Nur Kohlenstoffbasierte Lebensformen"
 
 #: ../src/general/NewGameSettings.tscn:159
 #: ../src/general/NewGameSettings.tscn:904
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Furchtsame Mikroben fliehen über größere Entfernungen\n"
-"und fliehen im Allgemeinen eher vor Angreifern.\n"
-"Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
-"und werden eher zurückschlagen."
+msgstr "(Organellen und Fähigkeiten beschränken auf Leben wie wir es kennen)"
 
 #: ../src/general/NewGameSettings.tscn:175
 #: ../src/general/NewGameSettings.tscn:920
@@ -3172,9 +3144,8 @@ msgid "THREADS"
 msgstr "Threads:"
 
 #: ../src/general/OptionsMenu.tscn:1064
-#, fuzzy
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr "Maximalzahl an Entities:"
+msgstr "Maximale Anzahl an Entitäten:"
 
 #: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_TINY"
@@ -3255,16 +3226,15 @@ msgstr "Verwende virtuelle Fenstergröße"
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CONTROLLER_SENSITIVITY"
-msgstr "Empfindlichkeit controller"
+msgstr "Controllerempfindlichkeit"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Totzonen kalibrieren"
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
-msgstr "Eingaben zurücksetzen"
+msgstr "Tastenkombinationen zurücksetzen"
 
 #: ../src/general/OptionsMenu.tscn:1393
 msgid "PLAY_INTRO_VIDEO"
@@ -5440,9 +5410,8 @@ msgstr "In dieses Gebiet wechseln"
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
-#, fuzzy
 msgid "FIND_CURRENT_PATCH"
-msgstr "Ungültiger Pfad des Mod-Icon"
+msgstr "Zum aktuellen Gebiet"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
@@ -6385,10 +6354,10 @@ msgstr ""
 "Dieser Speicherstand stammt aus einer alten Version von Thrive und ist "
 "möglicherweise inkompatibel.\n"
 "Da sich Thrive derzeit noch in einem frühen Entwicklungsstadium befindet, "
-"hat Kompatibilität keine Priorität.\n"
-"Du kannst alle Probleme melden, auf die du stoßt, aber sie haben im Moment "
+"hat Abwärtskompatibilität keine Priorität.\n"
+"Du kannst alle Probleme melden auf die du stoßt, aber sie haben im Moment "
 "nicht die höchste Priorität.\n"
-"Möchtest du trotzdem versuchen, den Spielstand zu laden?"
+"Möchtest du trotzdem versuchen den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
@@ -6607,8 +6576,8 @@ msgstr "Steam meldet einen Fehler mit doppelten Namen"
 #: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
-"Dein Steam-Account befindet sich aktuell nur auf Lesezugriff, da kürzlich "
-"Änderungen vorgenommen wurden"
+"Dein Steam-Konto befindet sich aktuell ausschließlich im Lesezugriff "
+"aufgrund kürzlicher Kontoänderung"
 
 #: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
