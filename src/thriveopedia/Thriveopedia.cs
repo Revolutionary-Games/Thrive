@@ -22,6 +22,9 @@ public class Thriveopedia : ControlWithInput
     public NodePath PageTreeContainerPath = null!;
 
     [Export]
+    public NodePath PageTreeContainerAnimPath = null!;
+
+    [Export]
     public NodePath PageTitlePath = null!;
 
     [Export]
@@ -34,8 +37,11 @@ public class Thriveopedia : ControlWithInput
     private TextureButton forwardButton = null!;
     private MarginContainer pageContainer = null!;
     private PanelContainer pageTreeContainer = null!;
+    private AnimationPlayer pageTreeContainerAnim = null!;
     private Label pageTitle = null!;
     private Tree pageTree = null!;
+
+    private bool treeCollapsed;
 
     /// <summary>
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
@@ -126,6 +132,7 @@ public class Thriveopedia : ControlWithInput
         forwardButton = GetNode<TextureButton>(ForwardButtonPath);
         pageContainer = GetNode<MarginContainer>(PageContainerPath);
         pageTreeContainer = GetNode<PanelContainer>(PageTreeContainerPath);
+        pageTreeContainerAnim = GetNode<AnimationPlayer>(PageTreeContainerAnimPath);
         pageTitle = GetNode<Label>(PageTitlePath);
         pageTree = GetNode<Tree>(PageTreePath);
 
@@ -317,7 +324,20 @@ public class Thriveopedia : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        pageTreeContainer.Visible = !pageTreeContainer.Visible;
+        treeCollapsed = !treeCollapsed;
+
+        if (treeCollapsed)
+        {
+            pageTreeContainerAnim.Play("Collapse");
+        }
+        else
+        {
+            pageTreeContainerAnim.Play("Expand");
+        }
+    }
+
+    private void OnTreeCollapseStateChanged()
+    {
         foreach (var page in allPages.Keys)
         {
             page.OnNavigationPanelSizeChanged(pageTreeContainer.Visible);

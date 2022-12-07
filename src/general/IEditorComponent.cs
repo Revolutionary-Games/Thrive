@@ -47,4 +47,6 @@ public interface IEditorComponent
     public void NotifyFreebuild(bool freeBuilding);
 
     public void OnMutationPointsChanged(int mutationPoints);
+
+    public void OnLightLevelChanged(float lightLevel);
 }

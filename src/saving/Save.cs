@@ -246,7 +246,8 @@ public class Save
             throw new IOException("Cannot open: " + target);
         }
 
-        using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
+        using var fileStream = new GodotFileStream(file);
+        using Stream gzoStream = new GZipOutputStream(fileStream);
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
         TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
@@ -260,6 +261,10 @@ public class Save
         }
 
         TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+
+        // TODO: queue a task to start a background operation next frame to check that reading the file as compressed
+        // tar file works correctly
+        // https://github.com/Revolutionary-Games/Thrive/issues/3865
     }
 
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,

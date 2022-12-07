@@ -32,6 +32,7 @@ tracks/0/keys = {
 [node name="FossilisationDialog" instance=ExtResource( 4 )]
 margin_right = 364.0
 margin_bottom = 420.0
+rect_min_size = Vector2( 364, 420 )
 popup_exclusive = false
 script = ExtResource( 1 )
 WindowTitle = "FOSSILISATION"
@@ -197,8 +198,8 @@ margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="CancelButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="1"]
-margin_left = 207.0
-margin_right = 287.0
+margin_left = 54.0
+margin_right = 134.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )
@@ -206,14 +207,14 @@ enabled_focus_mode = 0
 text = "CANCEL"
 
 [node name="Spacer2" type="Control" parent="VBoxContainer2/HBoxContainer" index="2"]
-margin_left = 153.0
-margin_right = 203.0
+margin_left = 138.0
+margin_right = 188.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="FossiliseButton" type="Button" parent="VBoxContainer2/HBoxContainer" index="3"]
-margin_left = 54.0
-margin_right = 149.0
+margin_left = 192.0
+margin_right = 287.0
 margin_bottom = 32.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 8 )

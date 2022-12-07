@@ -62,6 +62,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [node name="mainMenu" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="thriveLogoEasterEgg" parent="GroupHolder/mainMenu" instance=ExtResource( 1 )]
 visible = false
@@ -71,6 +72,7 @@ DescriptionLabelPath = NodePath("../../../GroupHolder/mainMenu/thriveLogoEasterE
 [node name="editor" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -266,6 +268,12 @@ Description = "FOCUS_EXPLANATION"
 DisplayDelay = 0.0
 Positioning = 2
 DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
+[node name="digestionEfficiencyDetails" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+DisplayDelay = 0.0
+Positioning = 2
+HideOnMouseAction = false
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="organelleSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
@@ -4027,6 +4035,7 @@ DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxyto
 [node name="options" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="addInputButton" parent="GroupHolder/options" instance=ExtResource( 1 )]
 visible = false
@@ -4059,6 +4068,7 @@ DisplayDelay = 0.5
 [node name="chartLegendPhysicalConditions" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="temperature" parent="GroupHolder/chartLegendPhysicalConditions" instance=ExtResource( 1 )]
 visible = false
@@ -4073,6 +4083,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [node name="patchMap" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 
 [node name="navigationHint" parent="GroupHolder/patchMap" instance=ExtResource( 1 )]
 Description = "PATCH_MAP_NAVIGATION_TOOLTIP"

@@ -47,6 +47,10 @@ public class MicrobeStage : StageBase<Microbe>
     [JsonProperty]
     private bool wonOnce;
 
+    private float maxLightLevel;
+
+    private float templateMaxLightLevel;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
@@ -144,7 +148,7 @@ public class MicrobeStage : StageBase<Microbe>
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame);
+            worldLight, CurrentGame, lightCycle);
     }
 
     public override void OnFinishTransitioning()
@@ -203,6 +207,11 @@ public class MicrobeStage : StageBase<Microbe>
         floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
+
+        // TODO: only update these like 60 times a second
+        if (GameWorld.Map.CurrentPatch != null)
+            patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+        patchManager.UpdateAllPatchLightLevels();
 
         if (gameOver)
             return;
@@ -274,6 +283,10 @@ public class MicrobeStage : StageBase<Microbe>
         }
 
         UpdateLinePlayerPosition();
+
+        // TODO: only update these like 60 times a second
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
+        UpdateDayLightEffects();
     }
 
     [RunOnKeyDown("g_pause")]
@@ -540,6 +553,7 @@ public class MicrobeStage : StageBase<Microbe>
     {
         patchManager.CurrentGame = CurrentGame;
 
+        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
@@ -642,12 +656,43 @@ public class MicrobeStage : StageBase<Microbe>
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
         UpdateBackground();
+
+        UpdatePatchLightLevelSettings();
     }
 
     private void UpdateBackground()
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
+    }
+
+    /// <summary>
+    ///   Updates the background lighting and does various post-effects
+    /// </summary>
+    private void UpdateDayLightEffects()
+    {
+        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
+        {
+            // This might need to be refactored for efficiency but, it works for now
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle.DayLightFraction;
+
+            // Normalise by maximum light level in the patch
+            Camera.LightLevel = lightLevel / maxLightLevel;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            Camera.LightLevel = 1.0f;
+        }
+    }
+
+    private void UpdatePatchLightLevelSettings()
+    {
+        if (GameWorld.Map.CurrentPatch == null)
+            throw new InvalidOperationException("Unknown current patch");
+
+        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
     }
 
     private void SaveGame(string name)

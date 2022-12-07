@@ -1,24 +1,24 @@
 ﻿using System;
 
-public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompoundProperties>
+public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
 {
     public float Amount;
     public float Density;
     public float Ambient;
 
-    public static bool operator ==(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
+    public static bool operator ==(BiomeCompoundProperties left, BiomeCompoundProperties right)
     {
         return left.Equals(right);
     }
 
-    public static bool operator !=(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
+    public static bool operator !=(BiomeCompoundProperties left, BiomeCompoundProperties right)
     {
         return !(left == right);
     }
 
     public override bool Equals(object obj)
     {
-        if (obj is EnvironmentalCompoundProperties other)
+        if (obj is BiomeCompoundProperties other)
         {
             return Equals(other);
         }
@@ -31,7 +31,7 @@ public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompound
         return (int)(Amount + Density + Ambient);
     }
 
-    public bool Equals(EnvironmentalCompoundProperties other)
+    public bool Equals(BiomeCompoundProperties other)
     {
         return Amount == other.Amount && Density == other.Density && Ambient == other.Ambient;
     }

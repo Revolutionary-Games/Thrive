@@ -67,5 +67,7 @@ public abstract class ThriveopediaPage : PanelContainer
     ///   Runs any page-specific logic when the page tree is collapsed/expanded.
     /// </summary>
     /// <param name="collapsed">Whether the page tree is currently collapsed</param>
-    public abstract void OnNavigationPanelSizeChanged(bool collapsed);
+    public virtual void OnNavigationPanelSizeChanged(bool collapsed)
+    {
+    }
 }

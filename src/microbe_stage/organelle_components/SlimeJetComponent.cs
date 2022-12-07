@@ -78,7 +78,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
         if (!Active)
             return Vector3.Zero;
 
-        var currentCellRotation = microbe.GlobalTransform.basis.Quat();
+        var currentCellRotation = microbe.GlobalTransform.basis.Quat().Normalized();
         var direction = GetDirection();
 
         // Preview the amount of mucilage we'll eject to calculate force here
@@ -112,7 +112,7 @@ public class SlimeJetComponent : ExternallyPositionedComponent
 
         if (animation == null)
         {
-            GD.PrintErr("MovementComponent's organelle has no animation player set");
+            GD.PrintErr("SlimeJetComponent's organelle has no animation player set");
             return;
         }
 

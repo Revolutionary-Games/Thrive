@@ -30,6 +30,9 @@ public class MainMenu : NodeWithInput
     public NodePath AutoEvoExploringButtonPath = null!;
 
     [Export]
+    public NodePath ExitToLauncherButtonPath = null!;
+
+    [Export]
     public NodePath CreditsContainerPath = null!;
 
     [Export]
@@ -74,12 +77,19 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath GalleryViewerPath = null!;
 
+    [Export]
+    public NodePath ThanksDialogPath = null!;
+
+    [Export]
+    public NodePath ThanksDialogTextPath = null!;
+
+    [Export]
+    public NodePath PermanentlyDismissThanksDialogPath = null!;
+
     public Array? MenuArray;
     public TextureRect Background = null!;
 
     public bool IsReturningToMenu;
-
-    private const string NO_MODS_ACTIVE_NOTICE = "modsExistButNoneEnabled";
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -96,10 +106,12 @@ public class MainMenu : NodeWithInput
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
 
+    private Button exitToLauncherButton = null!;
+
     private Label storeLoggedInDisplay = null!;
 
     private Control socialMediaContainer = null!;
-    private VBoxContainer websiteButtonsContainer = null!;
+    private PopupPanel websiteButtonsContainer = null!;
 
     private TextureButton itchButton = null!;
     private TextureButton patreonButton = null!;
@@ -110,7 +122,11 @@ public class MainMenu : NodeWithInput
     private CustomDialog safeModeWarning = null!;
 
     private CustomDialog modsInstalledButNotEnabledWarning = null!;
-    private CheckBox permanentlyDismissModsNotEnabledWarning = null!;
+    private CustomCheckBox permanentlyDismissModsNotEnabledWarning = null!;
+
+    private CustomDialog thanksDialog = null!;
+    private CustomRichTextLabel thanksDialogText = null!;
+    private CustomCheckBox permanentlyDismissThanksDialog = null!;
 
     private bool introVideoPassed;
 
@@ -166,6 +182,17 @@ public class MainMenu : NodeWithInput
                     WarnAboutNoEnabledMods();
                 }
             }
+        }
+    }
+
+    public override void _Notification(int notification)
+    {
+        base._Notification(notification);
+
+        if (notification == NotificationWmQuitRequest)
+        {
+            GD.Print("Main window close signal detected");
+            Invoke.Instance.Queue(QuitPressed);
         }
     }
 
@@ -245,6 +272,7 @@ public class MainMenu : NodeWithInput
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
+        exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
@@ -252,7 +280,7 @@ public class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
-        websiteButtonsContainer = GetNode<VBoxContainer>(WebsiteButtonsContainerPath);
+        websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
@@ -279,7 +307,11 @@ public class MainMenu : NodeWithInput
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
 
         modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
-        permanentlyDismissModsNotEnabledWarning = GetNode<CheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
+        permanentlyDismissModsNotEnabledWarning = GetNode<CustomCheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
+
+        thanksDialog = GetNode<CustomDialog>(ThanksDialogPath);
+        thanksDialogText = GetNode<CustomRichTextLabel>(ThanksDialogTextPath);
+        permanentlyDismissThanksDialog = GetNode<CustomCheckBox>(PermanentlyDismissThanksDialogPath);
 
         // Set initial menu
         SwitchMenu();
@@ -291,6 +323,7 @@ public class MainMenu : NodeWithInput
             gles2Popup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
+        UpdateLauncherState();
     }
 
     /// <summary>
@@ -312,6 +345,40 @@ public class MainMenu : NodeWithInput
 
     private void UpdateStoreVersionStatus()
     {
+        if (!IsReturningToMenu)
+        {
+            if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
+            {
+                GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+
+                // TODO: show the thanks for buying popup
+            }
+        }
+
+        bool canShowThanks = false;
+
+        // Default to the website link if we don't know a valid store name
+        string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+
+        if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
+        {
+            GD.Print("Launcher told us store name: ", LaunchOptions.StoreVersionName);
+            canShowThanks = true;
+
+            switch (LaunchOptions.StoreVersionName)
+            {
+                case "steam":
+                    // This is detected separately
+                    break;
+                case "itch":
+                    storeBuyLink = "https://revolutionarygames.itch.io/thrive";
+                    break;
+                default:
+                    GD.PrintErr("Unknown store name for link: ", LaunchOptions.StoreVersionName);
+                    break;
+            }
+        }
+
         if (!SteamHandler.Instance.IsLoaded)
         {
             storeLoggedInDisplay.Visible = false;
@@ -328,7 +395,37 @@ public class MainMenu : NodeWithInput
             // This is maybe unnecessary but this wasn't too difficult to add so this hiding logic is here
             itchButton.Visible = false;
             patreonButton.Visible = false;
+
+            canShowThanks = true;
+            storeBuyLink = "https://store.steampowered.com/app/1779200";
         }
+
+        if (canShowThanks && !IsReturningToMenu &&
+            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying))
+        {
+            GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
+
+            // The text has a store link template, so we need to update the right links into it
+            thanksDialogText.ExtendedBbcode =
+                TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+
+            thanksDialog.PopupCenteredShrink();
+        }
+    }
+
+    private void UpdateLauncherState()
+    {
+        if (!LaunchOptions.LaunchedThroughLauncher)
+        {
+            GD.Print("We are not started through the Thrive Launcher");
+            exitToLauncherButton.Visible = false;
+            return;
+        }
+
+        GD.Print("Thrive Launcher started us, launcher hidden: ", LaunchOptions.LaunchingLauncherIsHidden);
+
+        // Exit to launcher button when the user might otherwise have trouble getting back there
+        exitToLauncherButton.Visible = LaunchOptions.LaunchingLauncherIsHidden;
     }
 
     /// <summary>
@@ -481,6 +578,17 @@ public class MainMenu : NodeWithInput
         SceneManager.Instance.QuitThrive();
     }
 
+    private void QuitToLauncherPressed()
+    {
+        GD.Print("Exit to launcher pressed");
+
+        // Output a special message which the launcher should detect
+        GD.Print(Constants.REQUEST_LAUNCHER_OPEN);
+
+        // Probably unnecessary, but we exit with a delay here
+        Invoke.Instance.Queue(QuitPressed);
+    }
+
     private void OptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -623,7 +731,11 @@ public class MainMenu : NodeWithInput
 
     private void OnWebsitesButtonPressed()
     {
-        websiteButtonsContainer.Visible = !websiteButtonsContainer.Visible;
+        websiteButtonsContainer.ShowModal();
+
+        // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
+        // so we need to manually shrink it
+        websiteButtonsContainer.RectSize = Vector2.Zero;
     }
 
     private void OnSocialMediaButtonPressed(string url)
@@ -636,5 +748,11 @@ public class MainMenu : NodeWithInput
     {
         if (permanentlyDismissModsNotEnabledWarning.Pressed)
             Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.NoModsActiveButInstalled);
+    }
+
+    private void OnThanksDialogClosed()
+    {
+        if (permanentlyDismissThanksDialog.Pressed)
+            Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.ThanksForBuying);
     }
 }

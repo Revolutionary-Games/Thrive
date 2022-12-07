@@ -5,4 +5,5 @@
 public enum DismissibleNotice
 {
     NoModsActiveButInstalled,
+    ThanksForBuying,
 }

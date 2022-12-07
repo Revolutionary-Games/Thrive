@@ -151,7 +151,7 @@ public class SceneManager : Node
     public void QuitThrive()
     {
         if (!alreadyQuit)
-            GD.Print("User requested program exit, Thrive will close shortly");
+            GD.Print(Constants.USER_REQUESTED_QUIT);
 
         GetTree().Quit();
 

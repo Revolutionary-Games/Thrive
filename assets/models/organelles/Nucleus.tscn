@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/models/organelles/Nucleus.mesh" type="ArrayMesh" id=1]
-[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=2]
+[ext_resource path="res://shaders/OrganelleTransparent.shader" type="Shader" id=2]
 [ext_resource path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" type="Script" id=3]
 [ext_resource path="res://assets/models/organelles/Golgi.mesh" type="ArrayMesh" id=4]
 [ext_resource path="res://assets/textures/ER.png" type="Texture" id=5]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/models/organelles/ER.mesh" type="ArrayMesh" id=7]
 [ext_resource path="res://assets/textures/nucleus.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=9]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
