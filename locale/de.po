@@ -2385,18 +2385,16 @@ msgid "OFFICIAL_WEBSITE"
 msgstr "Offizielle Website"
 
 #: ../src/general/MainMenu.tscn:543
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Tritt der Thrive Gemeinschaft über unser Forum bei"
 
 #: ../src/general/MainMenu.tscn:546
 msgid "COMMUNITY_FORUM"
 msgstr "Community-Forum"
 
 #: ../src/general/MainMenu.tscn:555
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Sieh Dir Entwicklerupdates in unserem Entwicklerforum an"
 
 #: ../src/general/MainMenu.tscn:558
 msgid "DEVELOPMENT_FORUM"
@@ -2419,9 +2417,8 @@ msgid "COMMUNITY_WIKI"
 msgstr "Gemeinschafts-Wiki"
 
 #: ../src/general/MainMenu.tscn:613
-#, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr "Von Revolutionary Games Studio"
+msgstr "Besuche offizielle Revolutionary Games Seiten.."
 
 #: ../src/general/MainMenu.tscn:624
 msgid "STEAM_TOOLTIP"
@@ -2824,9 +2821,8 @@ msgid "CONFIRM_NORMAL"
 msgstr "BESTÄTIGEN"
 
 #: ../src/general/OptionsMenu.cs:776 ../src/general/OptionsMenu.tscn:331
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "Auflösung:"
+msgstr "automatisch ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:790
 msgid "GLES2"
@@ -2965,23 +2961,20 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Hintergrundpartikel anzeigen"
 
 #: ../src/general/OptionsMenu.tscn:440
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "Grafikkarte:"
 
 #: ../src/general/OptionsMenu.tscn:470
 msgid "USED_RENDERER_NAME"
 msgstr "Verwendeter Renderer:"
 
 #: ../src/general/OptionsMenu.tscn:497
-#, fuzzy
 msgid "VIDEO_MEMORY"
-msgstr "Derzeit belegter Videospeicher(VRAM):"
+msgstr "Derzeit belegter Grafikspeicher:"
 
 #: ../src/general/OptionsMenu.tscn:524
-#, fuzzy
 msgid "GUI"
-msgstr "BENUTZEROBERFLÄCHE"
+msgstr "Benutzeroberfläche"
 
 #: ../src/general/OptionsMenu.tscn:539
 msgid "DISPLAY_ABILITIES_BAR"
@@ -3095,9 +3088,8 @@ msgid "LIMIT_SMALL"
 msgstr "Klein"
 
 #: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "BESTÄTIGEN"
+msgstr "Normal"
 
 #: ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_LARGE"
@@ -3112,9 +3104,8 @@ msgid "LIMIT_HUGE"
 msgstr "Riesig"
 
 #: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
 msgid "LIMIT_EXTREME"
-msgstr "Extras"
+msgstr "Extrem"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -3125,9 +3116,8 @@ msgid "BIND_AXES_SENSITIVITY"
 msgstr "Achsen verbinden"
 
 #: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Version:"
+msgstr "Horizontal:"
 
 #: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
 #: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
@@ -3135,9 +3125,8 @@ msgid "INVERTED"
 msgstr "Invertiert"
 
 #: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
-#, fuzzy
 msgid "VERTICAL_COLON"
-msgstr "Version:"
+msgstr "Vertikal:"
 
 #: ../src/general/OptionsMenu.tscn:1212
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
@@ -3263,14 +3252,12 @@ msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Suizid"
 
 #: ../src/general/OptionsMenu.tscn:1630
-#, fuzzy
 msgid "EXACT_VERSION_COLON"
-msgstr "Version:"
+msgstr "Genaue Thrive Version:"
 
 #: ../src/general/OptionsMenu.tscn:1658
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Substanzen:"
+msgstr "Erstellt am:"
 
 #: ../src/general/OptionsMenu.tscn:1709 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
@@ -3350,7 +3337,6 @@ msgstr ""
 "Alle nicht gespeicherten Fortschritte gehen verloren."
 
 #: ../src/general/PauseMenu.tscn:181
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Spiel fortsetzen"
 
@@ -3359,9 +3345,8 @@ msgid "RESUME"
 msgstr "Fortsetzen"
 
 #: ../src/general/PauseMenu.tscn:189
-#, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Pause-Menü"
+msgstr "Speichermenü aufrufen um den gegenwärtigen Spielstand zu speichern"
 
 #: ../src/general/PauseMenu.tscn:190
 msgid "SAVE_GAME"
@@ -3415,7 +3400,6 @@ msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 
 #: ../src/general/StageBase.cs:542
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "ist im Gebiet ausgestorben"
 
@@ -3469,12 +3453,10 @@ msgid "KILO_ABBREVIATION"
 msgstr "{0} Tsd"
 
 #: ../src/general/TranslationHelper.cs:84
-#, fuzzy
 msgid "FEATURE_ENABLED"
-msgstr "Cheat-Tasten aktiviert"
+msgstr "Aktiviert"
 
 #: ../src/general/TranslationHelper.cs:85
-#, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Deaktiviert"
 
@@ -3727,7 +3709,6 @@ msgid "DEVELOPERS"
 msgstr "Entwickler(innen)"
 
 #: ../src/gui_common/PlaybackControls.tscn:107
-#, fuzzy
 msgid "STOP"
 msgstr "Stopp"
 
@@ -3830,23 +3811,20 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Doppelklicken zum Betrachten"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
-#, fuzzy
 msgid "TITLE_COLON"
-msgstr "Größe:"
+msgstr "Titel:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
-msgstr "Beschreibung ist zu lang"
+msgstr "Beschreibung:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
 msgstr "Künstler:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:259
-#, fuzzy
 msgid "UNTITLED"
-msgstr "Biom: {0}"
+msgstr "Unbenannt"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
@@ -4315,11 +4293,8 @@ msgstr ""
 "Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
-"Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound] um."
+msgstr "Erhöht die Wendigkeit von großen Zellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 #, fuzzy
@@ -4544,7 +4519,6 @@ msgstr ""
 "durch."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
-#, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit"
 
@@ -5222,14 +5196,12 @@ msgid "STORAGE_COLON"
 msgstr "Speicher"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Geschwindigkeit:"
+msgstr "Ressourcen-Absorptionsgeschwindigkeit:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Beschreibung ist zu lang"
+msgstr "Verdauungseffizienz:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
 msgid "GENERATION_COLON"
