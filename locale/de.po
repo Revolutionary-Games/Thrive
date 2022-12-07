@@ -2519,9 +2519,8 @@ msgstr ""
 "Fehlerprotokoll enthält eventuell weitere informationen."
 
 #: ../src/general/MainMenu.tscn:844
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "DU HAST DICH ENTWICKELT!"
+msgstr "Vielen Dank"
 
 #: ../src/general/MainMenu.tscn:870
 msgid "DISMISS_PERMANENTLY"
@@ -2558,13 +2557,8 @@ msgstr "Ursprung des Lebens"
 
 #: ../src/general/NewGameSettings.tscn:182
 #: ../src/general/NewGameSettings.tscn:927
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Furchtsame Mikroben fliehen über größere Entfernungen\n"
-"und fliehen im Allgemeinen eher vor Angreifern.\n"
-"Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
-"und werden eher zurückschlagen."
+msgstr "(Startgebiet)"
 
 #: ../src/general/NewGameSettings.tscn:196
 #: ../src/general/NewGameSettings.tscn:941
@@ -2589,21 +2583,20 @@ msgstr "Warmer kleiner Teich"
 #: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:49
-#, fuzzy
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermie (zufällig)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
-#, fuzzy
 msgid "PLANET_RANDOM_SEED"
-msgstr "Zufallsplanet"
+msgstr "Planetensamen Nummer (Zufallswert):"
 
 #: ../src/general/NewGameSettings.tscn:233
 #: ../src/general/NewGameSettings.tscn:1063
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Pausiere das Spiel"
+msgstr ""
+"Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze "
+"Zahl sein.)"
 
 #: ../src/general/NewGameSettings.tscn:272
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
@@ -2631,113 +2624,60 @@ msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutationskostenmultiplikator"
 
 #: ../src/general/NewGameSettings.tscn:448
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
-"Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung "
-"verändert, bevor sie handeln."
+msgstr "(Kosten für Organellen, Membranen und andere Gegenstände im Editor)"
 
 #: ../src/general/NewGameSettings.tscn:465
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutationspunkte"
+msgstr "KI Mutationsrate"
 
 #: ../src/general/NewGameSettings.tscn:510
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
-"Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. "
-"Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro "
-"Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo "
-"verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut "
-"die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für "
-"jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr "
-"gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur "
-"Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie "
-"gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness "
-"ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle "
-"verwerten kann."
+"(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
 
 #: ../src/general/NewGameSettings.tscn:527
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Verbindungswolken"
+msgstr "Wolkendichte"
 
 #: ../src/general/NewGameSettings.tscn:572
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Opportunistische Mikroben konkurrieren mit Rivalen um Brocken\n"
-"und werden versuchen, ihre Beute mit Giften zu erlegen, wenn sie sie nicht "
-"verschlingen können.\n"
-"Vorsichtige Mikroben setzen sich wegen Brocken möglicherweise nicht in "
-"Gefahr."
+msgstr "(Dichte der Ressourcen-Wolken in der Spielumgebung)"
 
 #: ../src/general/NewGameSettings.tscn:589
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Spielertod Bevölkerungsstrafe"
 
 #: ../src/general/NewGameSettings.tscn:634
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
-"Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. "
-"Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro "
-"Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo "
-"verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut "
-"die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für "
-"jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr "
-"gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur "
-"Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie "
-"gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness "
-"ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle "
-"verwerten kann."
+"(Koeffizient mit dem die Population der Spielerart bei einem Tod der "
+"gespielten Entität reduziert wird)"
 
 #: ../src/general/NewGameSettings.tscn:651
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr "Glukosespeicherung in der Umwelt"
+msgstr "Glukoseerhalt in der Umwelt"
 
 #: ../src/general/NewGameSettings.tscn:695
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
-"Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. "
-"Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro "
-"Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo "
-"verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut "
-"die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für "
-"jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr "
-"gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur "
-"Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie "
-"gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness "
-"ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle "
-"verwerten kann."
+"(Anteil an Glukose in der Umwelt, welcher jede Generation erhalten bleibt)"
 
 #: ../src/general/NewGameSettings.tscn:712
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Osmoregulierungskosten"
+msgstr "Osmoregulationskostenmultiplikator"
 
 #: ../src/general/NewGameSettings.tscn:757
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Osmoregulierungskosten"
+msgstr "(Kosten der Osmoregulation der Spielerart)"
 
 #: ../src/general/NewGameSettings.tscn:769
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Verfügbare Glukosewolke beim Verlassen des Editors"
 
 #: ../src/general/NewGameSettings.tscn:776
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder "
-"Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
+msgstr "(Starte jede Generation mit einer Gratis-Glukosewolke in der Nähe)"
 
 #: ../src/general/NewGameSettings.tscn:788
 #, fuzzy
@@ -2895,11 +2835,11 @@ msgstr "Auflösung:"
 
 #: ../src/general/OptionsMenu.cs:790
 msgid "GLES2"
-msgstr ""
+msgstr "GLES2"
 
 #: ../src/general/OptionsMenu.cs:795
 msgid "GLES3"
-msgstr ""
+msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:800
 #, fuzzy
@@ -2908,7 +2848,7 @@ msgstr "Fähigkeitenleiste anzeigen"
 
 #: ../src/general/OptionsMenu.cs:809 ../src/general/OptionsMenu.tscn:510
 msgid "VIDEO_MEMORY_MIB"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/general/OptionsMenu.cs:1232
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3304,7 +3244,7 @@ msgstr "Geschwindigkeit:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Verworfene Pop-ups zurücksetzen"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
@@ -3488,7 +3428,7 @@ msgstr "ist im Gebiet ausgestorben"
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:955
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -3893,7 +3833,7 @@ msgstr "N/V"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Doppelklicken zum Betrachten"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
@@ -3925,7 +3865,7 @@ msgstr "Nach Kategorie sortieren:"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Diashow"
 
 #: ../src/gui_common/charts/line/LineChart.cs:651
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2360
@@ -4667,7 +4607,7 @@ msgstr "Kann nicht verschlingen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3077
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr ""
+msgstr "Widersteht einfacher Verschlingung"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -4760,7 +4700,7 @@ msgstr "Arten:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr ""
+msgstr "Halte [thrive:input]g_free_cursor[/thrive:input] für Mauszeiger"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
 #: ../src/microbe_stage/MicrobeStage.tscn:741
@@ -4808,7 +4748,7 @@ msgstr "Biom: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1730
 msgid "AWAKEN"
-msgstr ""
+msgstr "Erwachen"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1750
 #: ../src/microbe_stage/MicrobeStage.tscn:1816
@@ -4976,6 +4916,7 @@ msgstr "Gegner spawnen"
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
 msgstr ""
+"[center]Zum Fortfahren [thrive:input]g_pause[/thrive:input] drücken[/center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:109
 msgid "SIGNAL_COMMAND_NONE"
@@ -5003,12 +4944,12 @@ msgstr "Signal zum aussenden"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:186
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:187
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
-msgstr ""
+msgstr "Diese Art fossilisieren"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:223
 msgid "DEVOURED"
@@ -5131,7 +5072,7 @@ msgstr "Fokussiert"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
 #, fuzzy
@@ -5628,7 +5569,7 @@ msgstr "{0}-{1}m unter dem Meeresspiegel"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} zur Mittagsstunde"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
 msgid "SPECIES_WITH_POPULATION"
@@ -5778,7 +5719,7 @@ msgstr "Ja"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Nein"
 
 #: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
@@ -6593,7 +6534,7 @@ msgstr "Unbekannter Steam-Fehler ist aufgetreten"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:197
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr ""
+msgstr "Navigationsbaum umschalten"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:226
 msgid "PAGE_BACK"
@@ -6640,7 +6581,7 @@ msgstr "Sessil"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Überschreiben bestätigen"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
@@ -6663,11 +6604,11 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Gegenwärtige Welt"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Evolutionsbaum"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
 #, fuzzy
@@ -6676,11 +6617,11 @@ msgstr "Evolutionsbaum"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Startseite"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Willkommen bei Thriveopedia"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
@@ -6688,11 +6629,11 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
-msgstr ""
+msgstr "Die Verstörung (Thrive Maskottchen)"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Museum"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
@@ -6707,10 +6648,17 @@ msgstr "Im Sandboxmodus öffnen"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"Willkommen im Museum! Hier können die vielen Arten bewundert werden die "
+"während der Spielabläufe fossilisiert wurden. Es kann sogar als eine "
+"fossilisierte Art gespielt werden indem man sie im Sandboxmodus aufruft.\n"
+"\n"
+"Um eine Art während eines Spiel zu fossilisieren muss zunächst das Spiel "
+"pausiert werden. Danach selektiert man die zu fossilisierende Art auf dem "
+"Bildschirm."
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
-msgstr ""
+msgstr "Gebietskarte"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
