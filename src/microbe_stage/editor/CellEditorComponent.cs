@@ -415,8 +415,15 @@ public partial class CellEditorComponent :
             if (previewMicrobe != null)
                 previewMicrobe.Visible = value;
 
-            placedHexes.ForEach(entry => entry.Visible = !MicrobePreviewMode);
-            placedModels.ForEach(entry => entry.Visible = !MicrobePreviewMode);
+            foreach (var entry in placedHexes)
+            {
+                entry.Visible = !MicrobePreviewMode;
+            }
+
+            foreach (var entry in placedModels)
+            {
+                entry.Visible = !MicrobePreviewMode;
+            }
         }
     }
 

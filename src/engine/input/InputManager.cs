@@ -283,7 +283,10 @@ public class InputManager : Node
             }
         }
 
-        DestroyedListeners.ForEach(p => instances.Remove(p));
+        foreach (var p in DestroyedListeners)
+        {
+            instances.Remove(p);
+        }
         DestroyedListeners.Clear();
 
         return result;
