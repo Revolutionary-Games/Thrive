@@ -192,7 +192,8 @@ public class MainMenu : NodeWithInput
                     thanksDialogText.ExtendedBbcode =
                         TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
-                    thanksDialog.PopupCenteredShrink();
+                    // This isn't strictly necessary but might make the fix to this popup more robust
+                    Invoke.Instance.Queue(() => thanksDialog.PopupCenteredShrink());
                 }
 
                 canShowThanks = false;
