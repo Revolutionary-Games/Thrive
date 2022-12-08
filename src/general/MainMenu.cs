@@ -131,6 +131,16 @@ public class MainMenu : NodeWithInput
 
     private float timerForStartupSuccess = Constants.MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS;
 
+    /// <summary>
+    ///   True when we are able to show the thanks for buying popup due to being a store version
+    /// </summary>
+    private bool canShowThanks;
+
+    /// <summary>
+    ///   The store specific page link. Defaults to the website link if we don't know a valid store name
+    /// </summary>
+    private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+
     public static void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
@@ -171,6 +181,24 @@ public class MainMenu : NodeWithInput
         // that we are in the menu)
         if (introVideoPassed && !IsReturningToMenu)
         {
+            if (canShowThanks)
+            {
+                if (!IsReturningToMenu &&
+                    !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying))
+                {
+                    GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
+
+                    // The text has a store link template, so we need to update the right links into it
+                    thanksDialogText.ExtendedBbcode =
+                        TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+
+                    // This isn't strictly necessary but might make the fix to this popup more robust
+                    Invoke.Instance.Queue(() => thanksDialog.PopupCenteredShrink());
+                }
+
+                canShowThanks = false;
+            }
+
             if (timerForStartupSuccess > 0)
             {
                 timerForStartupSuccess -= delta;
@@ -349,15 +377,10 @@ public class MainMenu : NodeWithInput
             if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
             {
                 GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
-
-                // TODO: show the thanks for buying popup
             }
         }
 
-        bool canShowThanks = false;
-
-        // Default to the website link if we don't know a valid store name
-        string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+        canShowThanks = false;
 
         if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
         {
@@ -397,18 +420,6 @@ public class MainMenu : NodeWithInput
 
             canShowThanks = true;
             storeBuyLink = "https://store.steampowered.com/app/1779200";
-        }
-
-        if (canShowThanks && !IsReturningToMenu &&
-            !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying))
-        {
-            GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
-
-            // The text has a store link template, so we need to update the right links into it
-            thanksDialogText.ExtendedBbcode =
-                TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
-
-            thanksDialog.PopupCenteredShrink();
         }
     }
 
