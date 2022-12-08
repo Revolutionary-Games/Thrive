@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-07 10:47+0200\n"
 "PO-Revision-Date: 2022-11-30 13:03+0200\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -2092,11 +2092,7 @@ msgstr "{0} concentrations have decreased by {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucose concentrations have drastically dropped!"
 
-#: ../src/general/MainMenu.cs:391
-msgid "STORE_LOGGED_IN_AS"
-msgstr "Logged in as: {0}"
-
-#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Thank you for supporting Thrive development by purchasing this copy of Thrive!\n"
@@ -2104,6 +2100,10 @@ msgstr ""
 "If you did not buy this copy, please get your own copy [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
 "\n"
 "If you would like to see the Thrive Launcher before Thrive is started, you can use the button in the main menu to exit to the launcher and then disable seamless mode in the launcher options menu."
+
+#: ../src/general/MainMenu.cs:414
+msgid "STORE_LOGGED_IN_AS"
+msgstr "Logged in as: {0}"
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"
