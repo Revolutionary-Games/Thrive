@@ -1212,7 +1212,7 @@ msgstr "A população de {0} foi alterada por {1} em {2} devido a: {3}"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
-msgstr "milhões de anos"
+msgstr "Ma"
 
 #: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
@@ -1530,7 +1530,7 @@ msgstr "Rótulo da entidade"
 
 #: ../src/engine/DebugOverlays.tscn:123
 msgid "DUMP_SCENE_TREE"
-msgstr ""
+msgstr "Despejar SceneTree"
 
 #: ../src/engine/DebugOverlays.tscn:134
 msgid "TRANSPARENCY"
@@ -1569,7 +1569,6 @@ msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "A calibração da zona morta foi redefinida"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "A calibração das zonas mortas foi concluída. Elas estão sendo mostradas abaixo."
 
@@ -1589,7 +1588,7 @@ msgstr "Iniciar a calibração"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 msgid "RESET_DEADZONES"
-msgstr "Redefinir as zona mortas"
+msgstr "Redefinir as zonas mortas"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
@@ -2084,12 +2083,13 @@ msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "As concentrações de glicose caíram drasticamente!"
 
 #: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
-"Obrigado por jogar!\n"
+"Obrigado por apoiar o desenvolvimento de Thrive ao comprar essa cópia!\n"
 "\n"
-"Se gostou, fale do jogo para seus amigos."
+"Se você não comprou o jogo, é possível obter a sua própria cópia [color=#3796e1][url={0}]aqui[/url][/color] ou em nosso [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color].\n"
+"\n"
+"Se deseja acessar o Thrive Launcher antes de começar o jogo, você pode usar o botão no menu principal para ir para o lançador e então desativar o modo integrado no menu de opções."
 
 #: ../src/general/MainMenu.cs:414
 msgid "STORE_LOGGED_IN_AS"
@@ -2142,9 +2142,8 @@ msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Sai do jogo"
 
 #: ../src/general/MainMenu.tscn:321
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Lançamento E"
+msgstr "Sair para o Lançador"
 
 #: ../src/general/MainMenu.tscn:332
 msgid "QUIT"
@@ -2160,7 +2159,7 @@ msgstr "Ferramenta de exploração da auto-evo"
 
 #: ../src/general/MainMenu.tscn:433 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Thrivepédia"
 
 #: ../src/general/MainMenu.tscn:448
 msgid "MODS"
@@ -2187,7 +2186,6 @@ msgid "OFFICIAL_WEBSITE"
 msgstr "Site oficial"
 
 #: ../src/general/MainMenu.tscn:543
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Junte-se à comunidade em nosso fórum comunitário (em inglês)"
 
@@ -2280,7 +2278,7 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:813
 msgid "DO_NOT_SHOW_AGAIN"
-msgstr ""
+msgstr "Não mostrar novamente"
 
 #: ../src/general/MainMenu.tscn:827 ../src/general/MainMenu.tscn:884
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
@@ -2290,18 +2288,20 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/general/MainMenu.tscn:831
-#, fuzzy
 msgid "SAFE_MODE_TITLE"
-msgstr "Excluir Dados Locais"
+msgstr "Thrive começou no modo seguro"
 
 #: ../src/general/MainMenu.tscn:833
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Os micróbios medrosos são mais propensos a fugir de predadores\n"
-"e percorrerão longas distâncias caso sejam intimidados.\n"
-"Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
-"e podem contra-atacar."
+"Thrive começou no modo seguro devido a um erro na inicialização do jogo.\n"
+"\n"
+"Um mod ou o reprodutor de vídeos podem ter sido a causa do erro. Como precaução, os mods e/ou o reprodutor foram desabilitados. Eles seguirão desativados até o reinício do jogo.\n"
+"\n"
+"Antes de reiniciar o jogo, desative os mods que podem ter causado o erro ou que não sejam compatíveis com essa versão de Thrive (você pode verificar se um mod foi a causa do erro nos logs).\n"
+"Se for um problema relacionado ao reprodutor de vídeos, ative a opção para desabilitar vídeos no lançador.\n"
+"\n"
+"Caso não solucionar o problema que causou o erro na inicialização, você deverá reiniciar e travar o jogo várias vezes para voltar ao modo seguro."
 
 #: ../src/general/MainMenu.tscn:837
 msgid "MOD_LOAD_ERRORS"
@@ -2312,13 +2312,12 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Houve erros ao carregar um ou mais mods. Os logs podem conter mais informações."
 
 #: ../src/general/MainMenu.tscn:844
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "VOCÊ PROSPEROU!"
+msgstr "Obrigado"
 
 #: ../src/general/MainMenu.tscn:870
 msgid "DISMISS_PERMANENTLY"
-msgstr ""
+msgstr "Não mostrar novamente"
 
 #: ../src/general/NewGameSettings.cs:322
 #: ../src/general/NewGameSettings.tscn:1223
@@ -2500,20 +2499,19 @@ msgstr "Clássico"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Ativar o ciclo dia/noite"
 
 #: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "(AVISO: a fotossíntese se tornará menos viável)"
 
 #: ../src/general/NewGameSettings.tscn:985
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Duração do dia"
 
 #: ../src/general/NewGameSettings.tscn:1033
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(incluir aleatoriamente segredos no jogo)"
+msgstr "(duração do dia no jogo em segundos)"
 
 #: ../src/general/NewGameSettings.tscn:1114
 msgid "PLANET_GENERATION_TEASER"
@@ -2834,13 +2832,12 @@ msgid "LIMIT_EXTREME"
 msgstr "Extremo"
 
 #: ../src/general/OptionsMenu.tscn:1148
-#, fuzzy
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Sensibilidade do mouse"
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Unir eixos"
 
 #: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
 msgid "HORIZONTAL_COLON"
@@ -2857,7 +2854,7 @@ msgstr "Vertical:"
 
 #: ../src/general/OptionsMenu.tscn:1212
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr ""
+msgstr "Sensibilidade do mouse pelo tamanho da janela"
 
 #: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
@@ -2865,15 +2862,15 @@ msgstr "Nenhum"
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_ON"
-msgstr ""
+msgstr "Proporcional"
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Inversamente proporcional"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Usar tamanho da janela virtual"
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CONTROLLER_SENSITIVITY"
@@ -2881,10 +2878,9 @@ msgstr "Sensibilidade do controle"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Zonas mortas do controle"
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Redefinir entradas"
 
@@ -2941,21 +2937,18 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir pasta de logs"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Os micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
-"e podem ser mais cobiçosos em relação aos pedaços.\n"
-"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+"Isso mostra quantos pop-ups foram dispensados permanentemente pelo usuário.\n"
+"Se alguns dos pop-ups que necessita foram dispensados, o botão junto a isso pode ser usado para fazer todos os pop-ups reaparecerem."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Velocidade da Digestão:"
+msgstr "Pop-ups dispensados:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr ""
+msgstr "Redefinir os pop-ups dispensados"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
@@ -3074,7 +3067,7 @@ msgstr "Salvar Jogo"
 
 #: ../src/general/PauseMenu.tscn:205
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
-msgstr "Abrir a Thriveopedia"
+msgstr "Abrir a Thrivepédia"
 
 #: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
@@ -3182,20 +3175,36 @@ msgstr "Desativado"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Dificuldade predefinida"
+msgstr ""
+"Dificuldade: {0}\n"
+"Multiplicador do custo de mutação: {1}\n"
+"Taxa de mutação da IA: {2}\n"
+"Densidade das nuvens de compostos: {3}\n"
+"Penalidade na população por morte do jogador: {4}\n"
+"Retenção da glicose ambiental: {5}\n"
+"Multiplicador do custo da osmorregulação: {6}\n"
+"Nuvem de glicose disponível ao sair do editor: {7}\n"
+"Ganhar compostos para a reprodução passivamente: {8}\n"
+"Limitar o uso dos compostos de crescimento: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:189
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
-msgstr "Abrir pasta de logs"
+msgstr ""
+"Tipo de mapa de regiões: {0}\n"
+"Somente vida baseada na realidade: {1}\n"
+"Origem da vida: {2}\n"
+"Ativar o ciclo dia/noite: {3}\n"
+"Duração do dia: {4} segundos\n"
+"Seed aleatória do planeta: {5}"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+"Incluir os protótipos de estágios posteriores: {0}\n"
+"Incluir easter eggs: {1}"
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
@@ -3513,7 +3522,10 @@ msgstr "Bruto"
 #: ../src/gui_common/VersionNumber.cs:38
 #, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Apoiadores Devbuilds"
+msgstr ""
+"DevBuild {0}\n"
+"na branch {1} em {2}\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -4055,7 +4067,7 @@ msgstr "Essa membrana tem uma casca forte feita de carbonato de cálcio. Pode re
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr "Essa membrana tem uma forte parede feita de sílica. Pode resistir bem a danos no geral e é muito resistente a danos físicos. Também precisa de menos energia para manter sua forma. No entanto, diminui a velocidade da célula drasticamente e a célula e não absorve recursos rapidamente."
+msgstr "Essa membrana tem uma forte parede feita de sílica. Pode resistir bem a danos no geral e é muito resistente a danos físicos. Também precisa de menos energia para manter sua forma. No entanto, diminui a velocidade da célula drasticamente e ela absorve recursos a um ritmo menor."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
@@ -4107,9 +4119,8 @@ msgid "SPECIES_COLON"
 msgstr "Espécies:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:627
-#, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
-msgstr "Aperte [thrive:input]g_free_cursor[/thrive:input] para o cursor"
+msgstr "Aperte [thrive:input]g_free_cursor[/thrive:input] para mostrar o cursor"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
 #: ../src/microbe_stage/MicrobeStage.tscn:741
@@ -4462,9 +4473,8 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "…"
+msgstr "Mista…"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
@@ -4525,16 +4535,15 @@ msgstr "{0} de energia: {1} (adaptação: {2}) energia total disponível: {3} (a
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:328
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Dia"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
-#, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr "Rolar para a direita"
+msgstr "Noite"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Média"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "MEMBRANE"
@@ -4594,7 +4603,7 @@ msgstr "Rotação:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:857
 msgid "HP_COLON"
-msgstr "HP:"
+msgstr "Saúde:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:863
 msgid "SIZE_COLON"
@@ -4895,7 +4904,7 @@ msgstr "{0}-{1}m sob o nível do mar"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} ao meio-dia"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
 msgid "SPECIES_WITH_POPULATION"
@@ -4914,9 +4923,8 @@ msgid "PRESSURE"
 msgstr "Pressão"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
-#, fuzzy
 msgid "LIGHT_MAX"
-msgstr "Luz"
+msgstr "Máximo de luz"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:863
 msgid "SPECIES_PRESENT"
@@ -4981,7 +4989,6 @@ msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0} carregamento de mod's Harmony falhou com uma exceção: {1}"
 
 #: ../src/modding/ModLoader.cs:519
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: chamada do método unload do assembly do mod falhou com uma exceção: {1}"
 
@@ -5008,7 +5015,7 @@ msgstr "Classe do assembly do mod é requerida quando o assembly é especificado
 #: ../src/modding/ModManager.cs:334
 #, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Classe do assembly do mod é requerida quando o assembly é especificado"
+msgstr "A montagem do mod é necessária quando o auto harmony está ativado"
 
 #: ../src/modding/ModManager.cs:660
 msgid "NO_SELECTED_MOD"
@@ -5785,20 +5792,17 @@ msgstr "Ocorreu um erro desconhecido da Steam"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:197
 msgid "TOGGLE_NAVIGATION_TREE"
-msgstr ""
+msgstr "Ativar a barra lateral"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:226
-#, fuzzy
 msgid "PAGE_BACK"
 msgstr "Voltar"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:240
-#, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Avançar"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:254
-#, fuzzy
 msgid "HOME"
 msgstr "Página inicial"
 
@@ -5818,7 +5822,7 @@ msgstr "Fossilização"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
 msgid "FOSSILISATION_EXPLANATION"
-msgstr "Fossilize essa espécie para salvá-la no museu. Você pode acessar o museu pela Thriveopedia ou pode carregar a espécie fossilizada por meio do editor livre."
+msgstr "Fossilize essa espécie para salvá-la no museu. Você pode acessar o museu pela Thrivepédia ou pode carregar a espécie fossilizada por meio do editor livre."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
 msgid "FOSSILISE"
@@ -5861,14 +5865,14 @@ msgstr "Página inicial"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr "Bem-vindo à Thriveopedia"
+msgstr "Bem-vindo à Thrivepédia"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
-"A Thriveopedia é o centro de informações de Thrive. Aqui você encontrará respostas para qualquer pergunta que possa ter sobre o jogo, seu mundo atual e o projeto.\n"
+"A Thrivepédia é o centro de informações de Thrive. Aqui você encontrará respostas para qualquer pergunta que possa ter sobre o jogo, seu mundo atual e o projeto.\n"
 "\n"
-"Atualmente, a Thriveopedia está relativamente vazia, mas você pode explorar algumas páginas usando a barra lateral e os botões de navegação. Veja que as páginas relacionadas a um jogo específico só serão mostradas quando a Thriveopedia é aberta por meio do menu de pausa.\n"
+"Atualmente, a Thrivepédia está relativamente vazia, mas você pode explorar algumas páginas usando a barra lateral e os botões de navegação. Veja que as páginas relacionadas a um jogo específico só serão mostradas quando a Thrivepédia é aberta por meio do menu de pausa.\n"
 "\n"
 "É possível encontrar mais informações sobre o jogo por meio das ligações abaixo:\n"
 "\n"
