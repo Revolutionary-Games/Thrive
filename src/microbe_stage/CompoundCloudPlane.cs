@@ -400,6 +400,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
+        if (fraction < 0.0f)
+            return 0.0f;
+
         float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         var amountToGive = amountInCloud * fraction;
 
