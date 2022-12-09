@@ -689,6 +689,8 @@ public partial class Microbe
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
             // Vent if not useful, or if overflowed the capacity
+            // The multiply by 2 is here to be more kind to cells that have just divided and make it much less likely
+            // the player often sees their cell venting away their precious compounds
             if (!Compounds.IsUseful(type))
             {
                 amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
