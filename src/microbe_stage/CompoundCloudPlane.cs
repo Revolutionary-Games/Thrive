@@ -400,6 +400,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
+        // TODO: change to throwing an error once we've fixed cells requesting negative compounds
+        // https://github.com/Revolutionary-Games/Thrive/issues/3927
+        if (fraction < 0.0f)
+            return 0.0f;
+
         float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         var amountToGive = amountInCloud * fraction;
 
