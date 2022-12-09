@@ -693,10 +693,10 @@ public partial class Microbe
             {
                 amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
-            else if (Compounds.GetCompoundAmount(type) > Compounds.Capacity)
+            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
             {
                 // Vent the part that went over
-                float toVent = Compounds.GetCompoundAmount(type) - Compounds.Capacity;
+                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
 
                 amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
