@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-07 10:47+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -2106,17 +2106,17 @@ msgstr "{0} töménysége ennyivel csökkent: {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "A glükóz koncentrációk drasztikusan csökkentek!"
 
-#: ../src/general/MainMenu.cs:391
-msgid "STORE_LOGGED_IN_AS"
-msgstr "Belépve mint: {0}"
-
-#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Köszönjük, hogy játszottál a játékkal!\n"
 "\n"
 "Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
+
+#: ../src/general/MainMenu.cs:414
+msgid "STORE_LOGGED_IN_AS"
+msgstr "Belépve mint: {0}"
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"

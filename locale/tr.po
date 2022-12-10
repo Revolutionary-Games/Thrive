@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-07 10:47+0200\n"
 "PO-Revision-Date: 2022-12-02 13:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -2092,11 +2092,7 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 
-#: ../src/general/MainMenu.cs:391
-msgid "STORE_LOGGED_IN_AS"
-msgstr "{0} olarak giriş yapıldı"
-
-#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Thrive'ın bu kopyasını satın alarak Thrive'ın gelişimine katkıda bulunduğun teşekkür ederiz.\n"
@@ -2104,6 +2100,10 @@ msgstr ""
 "Eğer bu kopyayı satın almadıysan, lütfen kendi kopyanı [color=#3796e1][url={0}]buradan[/url][/color] al veya [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]web sitemizi[/url][/color] incele.\n"
 "\n"
 "Eğer Thrive başlatılmadan önce Thrive Başlatıcı'yı görmek istersen, başlatıcıya dönmek için ana menüdeki butonu kullanabilir ve sonra başlatıcı ayarları menüsünden kesintisiz modu devre dışı bırakabilirsin."
+
+#: ../src/general/MainMenu.cs:414
+msgid "STORE_LOGGED_IN_AS"
+msgstr "{0} olarak giriş yapıldı"
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"
@@ -2346,12 +2346,12 @@ msgstr "Zorluk ön ayarı"
 #: ../src/general/NewGameSettings.tscn:152
 #: ../src/general/NewGameSettings.tscn:897
 msgid "LAWK_ONLY"
-msgstr "Sadece LAWK"
+msgstr "Sadece BH"
 
 #: ../src/general/NewGameSettings.tscn:159
 #: ../src/general/NewGameSettings.tscn:904
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "(parçaları ve yetenekleri sadece Hayatta Bildiğimiz [LAWK] ile kısıtlar)"
+msgstr "(parçaları ve yetenekleri sadece Bildiğimiz Hayat ile kısıtlar)"
 
 #: ../src/general/NewGameSettings.tscn:175
 #: ../src/general/NewGameSettings.tscn:920
@@ -2366,7 +2366,7 @@ msgstr "(başlama yeri)"
 #: ../src/general/NewGameSettings.tscn:196
 #: ../src/general/NewGameSettings.tscn:941
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Sadece LAWK etkinleştirildiğinde bazı ayarlar devre dışı kalabilir"
+msgstr "Sadece BH etkinleştirildiğinde bazı ayarlar devre dışı kalabilir"
 
 #: ../src/general/NewGameSettings.tscn:198
 #: ../src/general/NewGameSettings.tscn:199
@@ -2843,7 +2843,7 @@ msgstr "En büyük"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr "Fare serbest bakış hassaslığı"
+msgstr "Fare serbest bakış hassasiyeti"
 
 #: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
 msgid "BIND_AXES_SENSITIVITY"
@@ -2864,7 +2864,7 @@ msgstr "Dikey:"
 
 #: ../src/general/OptionsMenu.tscn:1212
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr "Fare hassaslığını pencere büyüklüğüne göre arttırma"
+msgstr "Fare hassasiyetini pencere büyüklüğüne göre arttırma"
 
 #: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
@@ -2884,7 +2884,7 @@ msgstr "Sanal pencere büyüklüğünü kullan"
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CONTROLLER_SENSITIVITY"
-msgstr "Oyun kumandası hassaslığı"
+msgstr "Oyun kumandası hassasiyeti"
 
 #: ../src/general/OptionsMenu.tscn:1319
 msgid "CONTROLLER_DEADZONES"
@@ -3187,7 +3187,7 @@ msgstr "Devre Dışı"
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
-"Zorluk önayarıt: {0}\n"
+"Zorluk önayarı: {0}\n"
 "Mutasyon maliyet çarpanı: {1}\n"
 "AI mutasyon hızı: {2}\n"
 "Bileşik bulutu sıklığı: {3}\n"
@@ -3203,7 +3203,7 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 "Arazi haritası türü: {0}\n"
-"Sadece LAWK: {1}\n"
+"Sadece BH: {1}\n"
 "Hayat kökeni: {2}\n"
 "Gece gündüz döngüsü: {3}\n"
 "Gün uzunluğu: {4} saniye\n"
@@ -6012,7 +6012,7 @@ msgstr ""
 "\n"
 "Hayat.\n"
 "\n"
-"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Sen bu gezegendeki Son Evrensel Ortak Atasın (LUCA).\n"
+"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Sen bu gezegendeki Son Evrensel Ortak Atasın (SEOA).\n"
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabildiğin her bileşiği toplaman ve diğerleriyle rekabet etmek için kuşaktan kuşağa evrimleşmen gerekiyor."
 
