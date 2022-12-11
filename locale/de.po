@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-11-21 17:00+0000\n"
 "Last-Translator: Uwe Haertel <uwe.haertel@chello.at>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -80,259 +80,6 @@ msgstr "Mikrobeneditor"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikrobeneditor"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Deine Zelle verwendet [thrive:compound type=\"atp\"][/thrive:compound] als Energiequelle. Wenn sie ausgeht, stirbst du."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Um den Editor freizuschalten und dich zu reproduzieren, müssen [thrive:compound type=\"ammonia\"][/thrive:compound] (orangene Wolke) und [thrive:compound type=\"phosphates\"][/thrive:compound] (violette Wolke) gesammelt werden."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche kleiner als du sind, zu Verschlingen, drücke [thrive:input]g_toggle_engulf[/thrive:input]. Dies kostet mehr [thrive:compound type=\"atp\"][/thrive:compound] und wird dich verlangsamen. Drücke [thrive:input]g_toggle_engulf[/thrive:input] ein zweites Mal, um den Verschlingungsmodus zu beenden."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Sobald die Umschließung abgeschlossen ist, bleibt jedes Objekt, das mit umschlossen wurde, innerhalb der Membran und wird verdaut. Unverdauliche Objekte werden wieder ausgeschieden, also stelle sicher, dass du über die notwendigen Mutationen verfügst, um sie zu verstoffwechseln. Enzyme, die durch Lysome hergestellt werden, helfen bei der Verdauung; entwickle dieses Organell um Verdauungsprozesse erheblich effizienter zu machen."
-
-#: ../simulation_parameters/common/help_texts.json:26
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Lysosomen gibt es jedoch nur bei Eukaryonten. Prokaryoten haben solche Organellen nicht und verdauen ihre Nahrung eher ineffizient. Für kleine Zellen ist das ok, aber für große ist es von erheblichem Nachteil über keine Lysosomen zu verfügen."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Zellulose und Chitin-Zellwände können nicht ohne das nötige Enzym verdaut werden."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulation kostet [thrive:compound type=\"atp\"][/thrive:compound], was bedeutet, dass je größer deine Zelle ist, desto mehr Mitochondrien, Metabolosomen oder Rusticyanin (oder Zytoplasma, welches Glukose herstellt) benötigt werden, um kein [thrive:compound type=\"atp\"][/thrive:compound] zu verlieren, selbst, wenn du still stehst."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Es gibt viele Organellen im Editor, mit denen du dich weiterentwickeln kannst und die ein breites Spektrum an verschiedenen Spielstilen ermöglichen."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Die verschiedenen Substanzen-Wolken sind:\n"
-"\n"
-"Weiß – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Gelb – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Lila – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Rostbraun – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] wird in [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt."
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann über Chemoplasten und chemosynthetisierende Proteine in [thrive:compound type=\"glucose\"][/thrive:compound] umgewandelt werden. [thrive:compound type=\"iron\"][/thrive:compound] kann mithilfe von Rusticyanin in [thrive:compound type=\"atp\"][/thrive:compound] verwandelt werden."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Um zu reproduzieren muss jede deiner Organellen in zwei geteilt werden. Organellen benötigen Ammoniak und Phosphat um sich zu teilen."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Wenn deine Population auf Null sinkt, stirbst du derzeit noch aus."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Wenn du zwanzig Generationen lang überlebst und eine Population von 300 hast, gilt das Spiel als gewonnen. Du wirst dann benachrichtigt und kannst danach nach Wunsch weiterspielen."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Sei auf der Hut, denn deine Konkurrenten entwickeln sich mit. Jedes Mal, wenn der Editor betreten wird, entwickeln sie sich auch."
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Durch die Bindung mit anderen Zellen können Sie eine Zellkolonie bilden, in der die Zellen die Substanzen, die sie aufnehmen und produzieren, miteinander teilen. Um sich mit einer anderen Zelle binden zu können, müssen Sie die Bindemittel-Organelle besitzen und sich nach dem Eintritt in den Bindungsmodus diese berühren. Sie können nur mit Zellen Ihrer eigenen Spezies binden. Während Sie sich in einer Kolonie befinden, können Sie Ihre Zelle nicht teilen und den Editor betreten (vorerst). Um den Editor zu betreten, müssen Sie die Kolonie erst verlassen, wenn Sie genug Substanzen gesammelt haben, und dann den Editor betreten. Große Zellkolonien sind der Weg zur Multizellularität (noch nicht im Spiel)."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryotische Strukturen\n"
-"\n"
-"Metabolismus: Produziert [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Chemosynthetisierende Proteine: Produziert die Hälfte der [thrive:compound type=\"glucose\"][/thrive:compound] aus [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als Chemoplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
-"\n"
-"Thylakoide: Produziert 1/3 der [thrive:compound type=\"glucose\"][/thrive:compound] wie ein normaler Chloroplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
-"\n"
-"Rusticyanin: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um\n"
-"\n"
-"Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um\n"
-"\n"
-"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch (Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Externe Organellen\n"
-"\n"
-"Geißel: erhöht deine Mobilität, verbraucht [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: kann im Nahkampf andere Zellen stechen\n"
-"\n"
-"Chemorezeptor: Ermöglicht die Erkennung von Substanzen aus größerer Entfernung"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membran-gebundene Organellen\n"
-"\n"
-"Nukleus : Nimmt 11 Felder ein und ermöglicht die Evolution von membrangebundenen Organellen. Außerdem verdoppelt er die Größe Ihrer Zelle. (Kann nur einmal entwickelt werden)\n"
-"\n"
-"Bindemittel: Ermöglicht die Bindung mit anderen Zellen\n"
-"\n"
-"Mitochondrium: Produziert [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:compound type=\"glucose\"][/thrive:compound] und atmosphärischem O2. Viel effizienter als Zytoplasma.\n"
-"\n"
-"Chloroplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] aus Sonnenlicht und atmosphärischem CO2\n"
-"\n"
-"Chemoplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] aus [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Stickstofffixier-Plastid: Stellt [thrive:compound type=\"ammonia\"][/thrive:compound] aus [thrive:compound type=\"atp\"][/thrive:compound], atmosphärischem Stickstoff und Sauerstoff her\n"
-"\n"
-"Vakuole: Lagert 8 gesammelte Substanzen\n"
-"\n"
-"Toxin-Vakuolen: Produziert Toxine (genannt [thrive:compound type=\"oxytoxy\"][/thrive:compound]) und erlaubt dir, es freizusetzen und dabei Schaden zu verursachen, der von der verfügbaren Menge an Oxytoxid abhängt"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Für jede Generation kannst du 100 Mutationspunkte (MP) ausgeben. Jede Änderung (oder Mutation) kostet einen bestimmten Betrag von MP. Das Hinzufügen und Entfernen von Organellen kostet MP, das Entfernen von Organellen, die in der aktuellen Mutationssitzung platziert wurden, erstattet jedoch MP für diese Organelle zurück. Du kannst eine Organelle entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst die Organellen beim Platzieren mit [thrive:input]e_rotate_left[/thrive:input] und [thrive:input]e_rotate_right[/thrive:input] drehen."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Jedes Mal, wenn du dich reproduzierst, gelangst du in den Mikroben-Editor, wo du Änderungen an deiner Spezies vornehmen kannst (durch Hinzufügen, Verschieben oder Entfernen von Organellen), um den Erfolg deiner Spezies zu steigern. Jeder Besuch des Editors in der Mikrobenphase repräsentiert [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millionen Jahre Evolution."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "Interessanter Fakt: Das Nasentierchen und Pantoffeltierchen sind ein Musterbeispiel für ein Raubtier-Beute-Verhältnis, das jahrzehntelang untersucht wurde. Bist du nun das Nasentierchen oder das Pantoffeltierchen? Jäger oder Gejagter?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Kleiner Tipp, Giftstoffe können andere Giftstoffe von dir wegdrücken, wenn du schnell genug bist."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Kleiner Tipp, Osmoregulierung kostet 1 ATP pro Sekunde und Feld deiner Zelle. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie ATP durch Osmoregulierung verlieren, fügen Sie einfach ein paar leere Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "Interessanter Fakt: Im echten Leben haben Prokaryoten etwas, das Zellkompartiment genannt wird, die sich wie Organellen verhalten und in der Tat polyedrische Organellen genannt werden."
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Interessanter Fakt: Das Metabolosom ist eine so genannte polyedrische Organelle."
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Kleiner Tipp, manchmal ist es am besten, einfach vor anderen Zellen davonzulaufen."
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Keiner Tipp, wenn eine Zelle etwa halb so groß ist wie deine, dann kannst du sie verschlingen."
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "Kleiner Tipp, Bakterien können stärker sein, als sie aussehen. Sie sehen vielleicht klein aus, aber einige von ihnen können sich in Sie eingraben und Sie auf diese Weise töten!"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du nicht vorsichtig genug bist. Arten können auch von anderen Arten bis zur Ausrottung gejagt werden."
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "VERRÜCKTES ZEUG!!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Nein Patrick, hydrothermische Schlote eignen sich nicht zum Schmelzen von Eisen!"
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Diese blauen Zellen jedoch..."
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe. Die Substanzen in verschiedenen Biomen erscheinen manchmal mit unterschiedlichem Tempo."
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "Auf Zack! Je mehr Flagellen du hast, desto schneller wirst du. Es kostet dich allerdings mehr ATP"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Kleiner Tipp, Du kannst Eisenbrocken oder ähnliches verschlingen."
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "Kleiner Tipp, bereite dich vor, bevor du einen Nukleus hinzufügst. Diese Dinge sind teuer, im Unterhalt und in Vorauskosten."
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Interessanter Fakt: wusstest du, dass es auf der Erde über 8000 Arten von Wimpertierchen gibt?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "Interessanter Fakt: das Trompetentierchen ist ein Wimpertierchen, das sich strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht die Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Interessanter Fakt: das Nasentierchen ist ein Wimpertierchen, das Pantoffeltierchen jagt."
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen Spaß verdaut zu werden. Und sie werden dich fressen."
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen Eisenbrocken verschlingen."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - versuche, sie zu identifizieren!"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem großartigen Programmierer, untrustedlife, gemacht!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -364,19 +111,19 @@ msgstr "Fähigkeiten"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "Gift schießen"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr "Schleim absondern"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "Verschlingen umschalten"
 
@@ -385,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Gedrückt halten, um das Rudelbefehls Menü anzuzeigen"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr "Bindungsmodus umschalten"
 
@@ -394,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Verbinden umschalten"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr "Alle Verbindungen lösen"
 
@@ -1366,7 +1113,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Knospend"
 
@@ -2067,7 +1813,7 @@ msgstr "Schließen"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2354,24 +2100,10 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Suizid"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermalquellen"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr "Warmer kleiner Teich"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Panspermie (zufällig)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
@@ -2486,15 +2218,9 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(Generiere eine Gebietskarte prozedural oder benutze die klassische Anordnung)"
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Prozedural"
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Klassisch"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2640,25 +2366,9 @@ msgstr "Multisample Anti-Aliasing:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(höhere Werte verschlechtern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "Deaktiviert"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr "2x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr "4x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr "8x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2668,25 +2378,13 @@ msgstr "Auflösung:"
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "Maximale FPS"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Farbenblindheits-Korrektur:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "Nichts"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr "Rotblindheit (Rot-Grün)"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
-msgstr "Blaublindheit (Blau-Gelb)"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2811,37 +2509,9 @@ msgstr "Threads:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximale Anzahl an Entitäten:"
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr "Winzig"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr "Sehr klein"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr "Klein"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_NORMAL"
-msgstr "Normal"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr "Gross"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr "Sehr gross"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr "Riesig"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_EXTREME"
-msgstr "Extrem"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2868,17 +2538,9 @@ msgstr "Vertikal:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Mausempfindlichkeit mit Fenstergröße skalieren"
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
 msgstr "deaktiviert"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON"
-msgstr "skaliert"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
-msgstr "invers skaliert"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -2969,17 +2631,9 @@ msgstr "Verworfene Pop-ups zurücksetzen"
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON Debug-Modus:"
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatisch"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Immer"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Niemals"
 
 #: ../src/general/OptionsMenu.tscn:1628
 #, fuzzy
@@ -3133,7 +2787,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "ist im Gebiet ausgestorben"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -3188,6 +2842,18 @@ msgstr "Aktiviert"
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
 msgstr "Deaktiviert"
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr "Warmer kleiner Teich"
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr "Panspermie (zufällig)"
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "Klassisch"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3618,9 +3284,9 @@ msgstr "Rotblindheit (Rot-Grün)"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr "Anleitung"
 
@@ -4209,7 +3875,6 @@ msgid "APPEARANCE"
 msgstr "Erscheinungsbild"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Reproduktion"
@@ -4292,7 +3957,7 @@ msgstr "Tot"
 msgid "ESCAPE_ENGULFING"
 msgstr "Verschlingung entflohen"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "Reproduziert"
 
@@ -4918,19 +4583,19 @@ msgstr "AUSSTERBEN"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} zur Mittagsstunde"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
@@ -6027,7 +5692,7 @@ msgstr ""
 "\n"
 "Eine mögliche Strategie ist es, ein einzelnes Hexagon an Cytoplasma zu bleiben um zu den Gebieten an der Oberfläche zu wandern, bevor du Organellen mit Photosynthese hinzufügst."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Auf einem weit entferntem Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderem Phänomen im Universum geführt:\n"
@@ -6038,22 +5703,22 @@ msgstr ""
 "\n"
 "Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr "Einführung anzeigen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr "Gedeihe"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle (Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern.\n"
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
@@ -6062,7 +5727,16 @@ msgstr ""
 "\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
+"Deine Zelle stirbt, wenn Ihre Gesundheit ausgeht.\n"
+"Du regenerierst Gesundheit, solange du ATP hast.\n"
+"Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
@@ -6070,14 +5744,14 @@ msgstr ""
 "Du regenerierst Gesundheit, solange du ATP hast.\n"
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich zu vermehren, müssen sich alle deiner Organellen duplizieren, indem Du genügend Ammoniak und Phosphat sammelst.\n"
 "\n"
 "Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen noch benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett gefüllt sind."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen kann.\n"
@@ -6086,25 +5760,25 @@ msgstr ""
 "\n"
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren linken Ecke klickst.\n"
 "\n"
 "Ein weiterer Tipp: Du kannst mit dem Mausrad herein- und herauszoomen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6112,7 +5786,7 @@ msgstr ""
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6120,7 +5794,7 @@ msgstr ""
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Deine Zelle wurde Umschlungen. Das heißt, dass die Zelle die dich umschlungen hat, dich jetzt verdauen wird.\n"
@@ -6129,7 +5803,7 @@ msgstr ""
 "\n"
 "Drücke den Apoptose (Suizid) Knopf um den Verdauungsprozess zu überspringen und schneller Wiedergeboren zu werden. Bedenke aber, dass immer eine Chance besteht zu entkommen!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6137,15 +5811,262 @@ msgstr ""
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Lade Mikrobeneditor"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Gedeihe"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Deine Zelle verwendet [thrive:compound type=\"atp\"][/thrive:compound] als Energiequelle. Wenn sie ausgeht, stirbst du."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Um den Editor freizuschalten und dich zu reproduzieren, müssen [thrive:compound type=\"ammonia\"][/thrive:compound] (orangene Wolke) und [thrive:compound type=\"phosphates\"][/thrive:compound] (violette Wolke) gesammelt werden."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Um andere Zellen, Bakterien, Eisenbrocken sowie Zellenbrocken, welche kleiner als du sind, zu Verschlingen, drücke [thrive:input]g_toggle_engulf[/thrive:input]. Dies kostet mehr [thrive:compound type=\"atp\"][/thrive:compound] und wird dich verlangsamen. Drücke [thrive:input]g_toggle_engulf[/thrive:input] ein zweites Mal, um den Verschlingungsmodus zu beenden."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Sobald die Umschließung abgeschlossen ist, bleibt jedes Objekt, das mit umschlossen wurde, innerhalb der Membran und wird verdaut. Unverdauliche Objekte werden wieder ausgeschieden, also stelle sicher, dass du über die notwendigen Mutationen verfügst, um sie zu verstoffwechseln. Enzyme, die durch Lysome hergestellt werden, helfen bei der Verdauung; entwickle dieses Organell um Verdauungsprozesse erheblich effizienter zu machen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Lysosomen gibt es jedoch nur bei Eukaryonten. Prokaryoten haben solche Organellen nicht und verdauen ihre Nahrung eher ineffizient. Für kleine Zellen ist das ok, aber für große ist es von erheblichem Nachteil über keine Lysosomen zu verfügen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Zellulose und Chitin-Zellwände können nicht ohne das nötige Enzym verdaut werden."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulation kostet [thrive:compound type=\"atp\"][/thrive:compound], was bedeutet, dass je größer deine Zelle ist, desto mehr Mitochondrien, Metabolosomen oder Rusticyanin (oder Zytoplasma, welches Glukose herstellt) benötigt werden, um kein [thrive:compound type=\"atp\"][/thrive:compound] zu verlieren, selbst, wenn du still stehst."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Es gibt viele Organellen im Editor, mit denen du dich weiterentwickeln kannst und die ein breites Spektrum an verschiedenen Spielstilen ermöglichen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Die verschiedenen Substanzen-Wolken sind:\n"
+#~ "\n"
+#~ "Weiß – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Gelb – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Lila – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Rostbraun – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] wird in [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann über Chemoplasten und chemosynthetisierende Proteine in [thrive:compound type=\"glucose\"][/thrive:compound] umgewandelt werden. [thrive:compound type=\"iron\"][/thrive:compound] kann mithilfe von Rusticyanin in [thrive:compound type=\"atp\"][/thrive:compound] verwandelt werden."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Um zu reproduzieren muss jede deiner Organellen in zwei geteilt werden. Organellen benötigen Ammoniak und Phosphat um sich zu teilen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Wenn deine Population auf Null sinkt, stirbst du derzeit noch aus."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Wenn du zwanzig Generationen lang überlebst und eine Population von 300 hast, gilt das Spiel als gewonnen. Du wirst dann benachrichtigt und kannst danach nach Wunsch weiterspielen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Sei auf der Hut, denn deine Konkurrenten entwickeln sich mit. Jedes Mal, wenn der Editor betreten wird, entwickeln sie sich auch."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Durch die Bindung mit anderen Zellen können Sie eine Zellkolonie bilden, in der die Zellen die Substanzen, die sie aufnehmen und produzieren, miteinander teilen. Um sich mit einer anderen Zelle binden zu können, müssen Sie die Bindemittel-Organelle besitzen und sich nach dem Eintritt in den Bindungsmodus diese berühren. Sie können nur mit Zellen Ihrer eigenen Spezies binden. Während Sie sich in einer Kolonie befinden, können Sie Ihre Zelle nicht teilen und den Editor betreten (vorerst). Um den Editor zu betreten, müssen Sie die Kolonie erst verlassen, wenn Sie genug Substanzen gesammelt haben, und dann den Editor betreten. Große Zellkolonien sind der Weg zur Multizellularität (noch nicht im Spiel)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryotische Strukturen\n"
+#~ "\n"
+#~ "Metabolismus: Produziert [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Chemosynthetisierende Proteine: Produziert die Hälfte der [thrive:compound type=\"glucose\"][/thrive:compound] aus [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als Chemoplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
+#~ "\n"
+#~ "Thylakoide: Produziert 1/3 der [thrive:compound type=\"glucose\"][/thrive:compound] wie ein normaler Chloroplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
+#~ "\n"
+#~ "Rusticyanin: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um\n"
+#~ "\n"
+#~ "Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um\n"
+#~ "\n"
+#~ "Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch (Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Externe Organellen\n"
+#~ "\n"
+#~ "Geißel: erhöht deine Mobilität, verbraucht [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: kann im Nahkampf andere Zellen stechen\n"
+#~ "\n"
+#~ "Chemorezeptor: Ermöglicht die Erkennung von Substanzen aus größerer Entfernung"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membran-gebundene Organellen\n"
+#~ "\n"
+#~ "Nukleus : Nimmt 11 Felder ein und ermöglicht die Evolution von membrangebundenen Organellen. Außerdem verdoppelt er die Größe Ihrer Zelle. (Kann nur einmal entwickelt werden)\n"
+#~ "\n"
+#~ "Bindemittel: Ermöglicht die Bindung mit anderen Zellen\n"
+#~ "\n"
+#~ "Mitochondrium: Produziert [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:compound type=\"glucose\"][/thrive:compound] und atmosphärischem O2. Viel effizienter als Zytoplasma.\n"
+#~ "\n"
+#~ "Chloroplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] aus Sonnenlicht und atmosphärischem CO2\n"
+#~ "\n"
+#~ "Chemoplast: Macht [thrive:compound type=\"glucose\"][/thrive:compound] aus [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Stickstofffixier-Plastid: Stellt [thrive:compound type=\"ammonia\"][/thrive:compound] aus [thrive:compound type=\"atp\"][/thrive:compound], atmosphärischem Stickstoff und Sauerstoff her\n"
+#~ "\n"
+#~ "Vakuole: Lagert 8 gesammelte Substanzen\n"
+#~ "\n"
+#~ "Toxin-Vakuolen: Produziert Toxine (genannt [thrive:compound type=\"oxytoxy\"][/thrive:compound]) und erlaubt dir, es freizusetzen und dabei Schaden zu verursachen, der von der verfügbaren Menge an Oxytoxid abhängt"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Für jede Generation kannst du 100 Mutationspunkte (MP) ausgeben. Jede Änderung (oder Mutation) kostet einen bestimmten Betrag von MP. Das Hinzufügen und Entfernen von Organellen kostet MP, das Entfernen von Organellen, die in der aktuellen Mutationssitzung platziert wurden, erstattet jedoch MP für diese Organelle zurück. Du kannst eine Organelle entfernen, indem du mit der rechten Maustaste darauf drückst. Du kannst die Organellen beim Platzieren mit [thrive:input]e_rotate_left[/thrive:input] und [thrive:input]e_rotate_right[/thrive:input] drehen."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Jedes Mal, wenn du dich reproduzierst, gelangst du in den Mikroben-Editor, wo du Änderungen an deiner Spezies vornehmen kannst (durch Hinzufügen, Verschieben oder Entfernen von Organellen), um den Erfolg deiner Spezies zu steigern. Jeder Besuch des Editors in der Mikrobenphase repräsentiert [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millionen Jahre Evolution."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "Interessanter Fakt: Das Nasentierchen und Pantoffeltierchen sind ein Musterbeispiel für ein Raubtier-Beute-Verhältnis, das jahrzehntelang untersucht wurde. Bist du nun das Nasentierchen oder das Pantoffeltierchen? Jäger oder Gejagter?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Kleiner Tipp, Giftstoffe können andere Giftstoffe von dir wegdrücken, wenn du schnell genug bist."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Kleiner Tipp, Osmoregulierung kostet 1 ATP pro Sekunde und Feld deiner Zelle. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie ATP durch Osmoregulierung verlieren, fügen Sie einfach ein paar leere Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "Interessanter Fakt: Im echten Leben haben Prokaryoten etwas, das Zellkompartiment genannt wird, die sich wie Organellen verhalten und in der Tat polyedrische Organellen genannt werden."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Interessanter Fakt: Das Metabolosom ist eine so genannte polyedrische Organelle."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Kleiner Tipp, manchmal ist es am besten, einfach vor anderen Zellen davonzulaufen."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "Keiner Tipp, wenn eine Zelle etwa halb so groß ist wie deine, dann kannst du sie verschlingen."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "Kleiner Tipp, Bakterien können stärker sein, als sie aussehen. Sie sehen vielleicht klein aus, aber einige von ihnen können sich in Sie eingraben und Sie auf diese Weise töten!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du nicht vorsichtig genug bist. Arten können auch von anderen Arten bis zur Ausrottung gejagt werden."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "VERRÜCKTES ZEUG!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Nein Patrick, hydrothermische Schlote eignen sich nicht zum Schmelzen von Eisen!"
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Diese blauen Zellen jedoch..."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe. Die Substanzen in verschiedenen Biomen erscheinen manchmal mit unterschiedlichem Tempo."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "Auf Zack! Je mehr Flagellen du hast, desto schneller wirst du. Es kostet dich allerdings mehr ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Kleiner Tipp, Du kannst Eisenbrocken oder ähnliches verschlingen."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "Kleiner Tipp, bereite dich vor, bevor du einen Nukleus hinzufügst. Diese Dinge sind teuer, im Unterhalt und in Vorauskosten."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Interessanter Fakt: wusstest du, dass es auf der Erde über 8000 Arten von Wimpertierchen gibt?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "Interessanter Fakt: das Trompetentierchen ist ein Wimpertierchen, das sich strecken und Beute in einem trompetenartigem Maul fangen kann. Es zieht die Beute ein, indem es mit den Zilien Wasserströmungen erzeugt."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Interessanter Fakt: das Nasentierchen ist ein Wimpertierchen, das Pantoffeltierchen jagt."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen Spaß verdaut zu werden. Und sie werden dich fressen."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen Eisenbrocken verschlingen."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - versuche, sie zu identifizieren!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem großartigen Programmierer, untrustedlife, gemacht!"
+
+#~ msgid "TWO_TIMES"
+#~ msgstr "2x"
+
+#~ msgid "FOUR_TIMES"
+#~ msgstr "4x"
+
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "8x"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "Maximale FPS"
+
+#~ msgid "CORRECTION_PROTANOPE"
+#~ msgstr "Rotblindheit (Rot-Grün)"
+
+#~ msgid "CORRECTION_TRITANOPE"
+#~ msgstr "Blaublindheit (Blau-Gelb)"
+
+#~ msgid "LIMIT_VERY_SMALL"
+#~ msgstr "Sehr klein"
+
+#~ msgid "LIMIT_SMALL"
+#~ msgstr "Klein"
+
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "Normal"
+
+#~ msgid "LIMIT_LARGE"
+#~ msgstr "Gross"
+
+#~ msgid "LIMIT_VERY_LARGE"
+#~ msgstr "Sehr gross"
+
+#~ msgid "LIMIT_HUGE"
+#~ msgstr "Riesig"
+
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "Extrem"
+
+#~ msgid "SCALING_ON"
+#~ msgstr "skaliert"
+
+#~ msgid "SCALING_ON_INVERSE"
+#~ msgstr "invers skaliert"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Immer"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Niemals"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

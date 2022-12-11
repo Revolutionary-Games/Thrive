@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -94,285 +94,6 @@ msgstr "在加載微生物編輯器"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "在加載微生物編輯器"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "您的細胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）為能量來源，如果耗盡，您將會死亡。"
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "要解鎖細胞編輯器並進行繁殖，您需要收集[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色雲）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色雲）。"
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]鍵讓你的细胞可以吞噬比你小的敵對細胞、細菌、鐵塊和細胞器。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound]，並且會讓你減慢移動。不要忘記按第二次[thrive:input]g_toggle_engulf[/thrive:input]來停止吞噬。"
-
-#: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"原核結構\n"
-"\n"
-"代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"化學合成蛋白：作為化學質體使用一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只生產半份[thrive:compound type=\"glucose\"][/thrive:compound]，但同時進行糖酵解。占用一个六角格。\n"
-"\n"
-"類囊體：產生的[thrive:compound type=\"glucose\"][/thrive:compound]量是正常葉綠體的1/3，但同時進行糖酵解。占用一个六角格。\n"
-"\n"
-"鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"氮化酶：將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"細胞質：有儲存空間，進行糖酵解（產生少量[thrive:compound type=\"atp\"][/thrive:compound]）"
-
-#: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
-
-#: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "滲透調節耗費[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷），當你的細胞越大時，你需要更多的粒線體/代謝體/鐵硫菌藍蛋白（或細胞質-可進行糖酵解）。以避免在你靜止時失去[thrive:compound type=\"atp\"][/thrive:compound]。"
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "在編輯器中，有很多的細胞器供你進化，讓你有多種不同的玩法。"
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"各种化合物云分别是：\n"
-"\n"
-"白色 - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"黄色 - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"橙色 - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"紫色 - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"鐵鏽棕 - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound]用於製造[thrive:compound type=\"atp\"][/thrive:compound](三磷酸腺苷)。"
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通過化學質體和化學合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound]可以通過鐵硫菌藍蛋白轉化為[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "細胞分裂時你需要複製所有的細胞器；細胞器需要[thrive:compound type=\"ammonia\"][/thrive:compound]和[thrive:compound type=\"phosphates\"]，以及時間進行複製。"
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "目前版本，當你的人口數降零，你的種族就會滅絕。"
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "當你成功的以最少300的人口生存20代，你就贏了這局遊戲。獲勝後會彈出一個窗口並可以繼續遊玩。"
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "保持警惕，因為你的競爭對手也在和你一起進化。每當你進入編輯器時，他們也在進化。"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "你可以通過與其他細胞連接來建立細胞群。細胞群中的所有細胞共享它們吸收和產生的化合物。要跟其他細胞連接，你需要擁有連接器細胞器並在進入連接模式後接觸你想要連接的細胞。你只能連接同物種細胞。 按[thrive:input] g_toggle_binding[/thrive:input]鍵进入连接模式。（目前）你在細胞群中無法複製並進入細胞編輯器。如果在收集了足夠多化合物後你想要進入細胞編輯器，你需要按[thrive:input]g_unbind_all[/thrive:input]鍵脫離細胞群。大的細胞群是形成多細胞生物（開發中）的基礎。"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"原核結構\n"
-"\n"
-"細胞質：有儲存空間並能進行糖酵解（產出少量的[thrive:compound type=\"atp\"][/thrive:compound]）\n"
-"\n"
-"代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"類囊體：跟正常的葉綠體比只能產出1/3的[thrive:compound type=\"glucose\"][/thrive:compound]，但其同時也能進行糖酵解。佔用一個六角格。\n"
-"\n"
-"化學合成蛋白：跟化學質體比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能產出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同時也能進行糖酵解。佔用一個六角格。\n"
-"\n"
-"鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉換成[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"固氮酶：在無氧環境下將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉換成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"毒素體：將[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
-"\n"
-"熱合成酶：利用溫度梯度產生[thrive:compound type=\"atp\"][/thrive:compound]"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"外部細胞器\n"
-"\n"
-"鞭毛：通過消耗[thrive:compound type=\"atp\"][/thrive:compound]加快你細胞的移動速度\n"
-"\n"
-"菌毛：可以用來捅其它細胞或防護毒素\n"
-"\n"
-"化學感受器：允許從更遠的地方探測化合物\n"
-"\n"
-"黏液噴嘴: 允許噴射 [thrive:compound type=\"mucilage\"][/thrive:compound] (由 [thrive:compound type=\"glucose\"][/thrive:compound]轉化而來) 以增加你的細胞的速度\n"
-"\n"
-"纖毛：增加細胞轉動速度"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"膜細胞器\n"
-"\n"
-"細胞核：佔用十一個六角格並允許你進化膜細胞器，使你的細胞大小翻倍的同時減少50%所受傷害。 （只能被進化一次）\n"
-"\n"
-"連接器：允許和其它細胞連接在一起。\n"
-"\n"
-"線粒體：用[thrive:compound type=\"glucose\"][/thrive:compound]和大氣中的氧氣生產[thrive:compound type=\"atp\"][/thrive:compound]，比細胞質的效率高很多\n"
-"\n"
-"葉綠體：用陽光和大氣中的二氧化碳生產[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
-"\n"
-"化學質體：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生產[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
-"\n"
-"固氮質體：用大氣中的氧氣，氮和[thrive:compound type=\"atp\"][/thrive:compound]生產[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
-"\n"
-"液泡：儲存8單位的化合物\n"
-"\n"
-"毒素液泡：生產毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）並釋放它，根據可用的氧化毒素量造成傷害\n"
-"\n"
-"信號劑：讓細胞可以產生特定的訊號以通知其他細胞"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "每一代，你都有100個變異點(MP)可供花費，任何變化都會花費一定量的變異點。增加或移除細胞器會花費變異點，但移除在本代放下的細胞器會返還全部的變異點。你可以通過右鍵點擊移除細胞器。你可以用[thrive:input]e_rotate_left[/thrive:input]和[thrive:input]e_rotate_right[/thrive:input]鍵旋轉你的細胞器。"
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]百萬年的進化時間。"
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "小知識：櫛毛蟲和草履蟲被當做教科書級的捕食者與獵物關係研究了幾十年。現在你是櫛毛蟲還是草履蟲呢？捕食者,還是獵物？"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "小提示：如果你反映夠快，你可以用自己的毒素把其它毒素推開。"
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "小提示：每一個六角格每秒需消耗一個ATP來進行滲透調節，而單格細胞質可以每秒產生5個ATP。這意味著如果你因為滲透調節損失ATP的話，你只要多加幾格細胞質或移除一些細胞器就行了。"
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "小知識：現實中原核生物有一種叫生物區隔（Biocompartments）的結構，作用跟細胞器的膜很相似，而且實際上也被叫做多角體細胞器（Polyhedral organelles）。"
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "小知識：代謝體其實是一種多角體細胞器。"
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "一個提示：有些時候逃跑就是最佳選擇。"
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "一個提示：如果目標細胞大概只有你一半大，你就可以吞噬它。"
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "一個提示：細菌可能比它們看上去要強。它們也許體型很小，但它們中有一些可以鑽進你並把你殺掉！"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "一點提示:您可以獵殺其他物種到滅絕，它們同時也會被其他物種獵殺到滅絕。"
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "扭來扭去！！"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "熔煉鐵礦."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "遊戲很可能會添加專門的色素組件，藍色的細胞將很罕見。"
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "一個提示：生物群系可不僅僅是背景圖不同，不同生物群系的化合物生成速度有時候是不同的。"
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "一個提示：鞭毛越多越快，但也會消耗更多的ATP"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "一個提示：你可以在吞噬模式下吞進大塊的細胞、鐵礦、或者其他。"
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "一個提示：進化細胞核前請做好準備，這東西很貴！無論是突變點還是ATP都是如此。"
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "小知識：你知道地球上有超過8000種纖毛蟲嗎？"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "小知識：喇叭蟲屬是一類纖毛蟲，它們可以把自己拉開，用纖毛產生水流把獵物吸入自己喇叭形的嘴。"
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "小知識：櫛毛蟲是一種纖毛蟲，它們會捕獵草履蟲。"
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "小知識：阿米巴變形蟲使用細胞質組成的偽足來抓捕獵物，我們希望總有一天Thrive也能做出這種效果的。"
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "一個提示：小心比你大尺度的細胞，它們會吃你喲，被吃可不有趣。"
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive的聲音團隊做了很多還沒有被加進遊戲裡的曲子。你可以在他們的YouTube頻道Oliver Lugg上聽他們的音樂，或觀看他們直播編曲。"
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "一個提示：如果你的細胞有超過150個六角格，你可以吞噬那些大型鐵塊。"
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive是對外星球生物進化的模擬，所以你遇上的大多數生物實際上都是之前遇到的生物的進化型，看看你是否能辨別出來！"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "小知識：Thrive的開發團隊經常做播客，你應該去聽聽！"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "小知識：Thrive是用開源的Godot引擎做的！"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "小知識：我們最初的可玩遊戲原型是由我們了不起的程序員，untrustedlife製作的！"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -404,19 +125,19 @@ msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "發射毒素"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "切換吞噬模式"
 
@@ -425,7 +146,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr "切換連接模式"
 
@@ -434,7 +155,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "解除鏈接模式"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr "解除所有連接"
 
@@ -1445,7 +1166,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "繁殖"
@@ -2151,7 +1871,7 @@ msgstr "關閉"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2473,23 +2193,9 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "自殺"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:214
@@ -2628,14 +2334,8 @@ msgstr ""
 "沉著型微生物將靜止不動，等待環境變化後才行動。"
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:959
@@ -2788,25 +2488,9 @@ msgstr "多重採樣抗鋸齒："
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（設置越高越影響性能）"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "已禁用"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr "2x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr "4x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr "8x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2816,25 +2500,13 @@ msgstr "解像度："
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "不受限"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "無"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr "紅綠色盲"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
-msgstr "蓝黄色盲"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2959,39 +2631,9 @@ msgstr "線程："
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_NORMAL"
-msgstr "確認"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_EXTREME"
-msgstr "額外內容"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -3020,17 +2662,8 @@ msgstr "世代："
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
-msgid "SCALING_ON"
-msgstr "結合劑"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -3125,17 +2758,9 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug模式："
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "自動"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "總是"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "從不"
 
 #: ../src/general/OptionsMenu.tscn:1628
 #, fuzzy
@@ -3286,7 +2911,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -3343,6 +2968,18 @@ msgstr "啟用作弊鍵"
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "已禁用"
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3774,9 +3411,9 @@ msgstr "紅綠色盲"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "教學"
@@ -4371,7 +4008,6 @@ msgid "APPEARANCE"
 msgstr "出現"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "ATP產出"
@@ -4455,7 +4091,7 @@ msgstr "死亡"
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "繁殖"
 
@@ -5080,19 +4716,19 @@ msgstr "滅絕"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "就像曾經存在過的所有物種中的99%一樣，你的物種已經滅絕了。其他人將繼續填補你的利基並茁壯成長，但那不會是你。你將被遺忘，成為進化過程中一個失敗的實驗。"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米處"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "物種人口"
@@ -6218,7 +5854,7 @@ msgstr ""
 "\n"
 "一個可能的策略是保持單一的六角形細胞質，在得到光合作用細胞器之前，先去表面的區域就可以了。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一個遙遠的外星星球上，漫長的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
@@ -6229,30 +5865,39 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "顯示教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr "開始遊戲"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方向。\n"
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通過在葡萄糖上移動來收集葡萄糖（白雲）。\n"
 "你的細胞需要葡萄糖，以產生能量來維持生命。\n"
 "跟隨著從你的細胞到附近葡萄糖的線。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"密切關注ATP欄旁邊的生命值（右下方）。\n"
+"如果你的細胞耗盡了生命值，它就會死亡。\n"
+"當你有ATP時，你的生命值就會再生。\n"
+"請確保收集足夠的葡萄糖來產生ATP。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "密切關注ATP欄旁邊的生命值（右下方）。\n"
@@ -6260,14 +5905,14 @@ msgstr ""
 "當你有ATP時，你的生命值就會再生。\n"
 "請確保收集足夠的葡萄糖來產生ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "為了繁殖，你需要通過收集足夠的氨和磷酸鹽來複製你所有的細胞器。\n"
 "看看右下方的指示器，看看你還需要多少。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6277,7 +5922,7 @@ msgstr ""
 "\n"
 "要進入編輯器，請按右下方閃爍的編輯器按鈕。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6285,7 +5930,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -6293,12 +5938,12 @@ msgstr ""
 "\n"
 "還有一個提示：你可以用滾輪放大你的視野。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6306,7 +5951,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6314,7 +5959,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -6322,7 +5967,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6330,15 +5975,273 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "在加載微生物編輯器"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "開始遊戲"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "您的細胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）為能量來源，如果耗盡，您將會死亡。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "要解鎖細胞編輯器並進行繁殖，您需要收集[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色雲）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色雲）。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]鍵讓你的细胞可以吞噬比你小的敵對細胞、細菌、鐵塊和細胞器。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound]，並且會讓你減慢移動。不要忘記按第二次[thrive:input]g_toggle_engulf[/thrive:input]來停止吞噬。"
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr ""
+#~ "原核結構\n"
+#~ "\n"
+#~ "代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "化學合成蛋白：作為化學質體使用一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只生產半份[thrive:compound type=\"glucose\"][/thrive:compound]，但同時進行糖酵解。占用一个六角格。\n"
+#~ "\n"
+#~ "類囊體：產生的[thrive:compound type=\"glucose\"][/thrive:compound]量是正常葉綠體的1/3，但同時進行糖酵解。占用一个六角格。\n"
+#~ "\n"
+#~ "鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "氮化酶：將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "\n"
+#~ "細胞質：有儲存空間，進行糖酵解（產生少量[thrive:compound type=\"atp\"][/thrive:compound]）"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "滲透調節耗費[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷），當你的細胞越大時，你需要更多的粒線體/代謝體/鐵硫菌藍蛋白（或細胞質-可進行糖酵解）。以避免在你靜止時失去[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "在編輯器中，有很多的細胞器供你進化，讓你有多種不同的玩法。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "各种化合物云分别是：\n"
+#~ "\n"
+#~ "白色 - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "黄色 - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "橙色 - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "紫色 - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "鐵鏽棕 - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound]用於製造[thrive:compound type=\"atp\"][/thrive:compound](三磷酸腺苷)。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通過化學質體和化學合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound]可以通過鐵硫菌藍蛋白轉化為[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "細胞分裂時你需要複製所有的細胞器；細胞器需要[thrive:compound type=\"ammonia\"][/thrive:compound]和[thrive:compound type=\"phosphates\"]，以及時間進行複製。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "目前版本，當你的人口數降零，你的種族就會滅絕。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "當你成功的以最少300的人口生存20代，你就贏了這局遊戲。獲勝後會彈出一個窗口並可以繼續遊玩。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "保持警惕，因為你的競爭對手也在和你一起進化。每當你進入編輯器時，他們也在進化。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "你可以通過與其他細胞連接來建立細胞群。細胞群中的所有細胞共享它們吸收和產生的化合物。要跟其他細胞連接，你需要擁有連接器細胞器並在進入連接模式後接觸你想要連接的細胞。你只能連接同物種細胞。 按[thrive:input] g_toggle_binding[/thrive:input]鍵进入连接模式。（目前）你在細胞群中無法複製並進入細胞編輯器。如果在收集了足夠多化合物後你想要進入細胞編輯器，你需要按[thrive:input]g_unbind_all[/thrive:input]鍵脫離細胞群。大的細胞群是形成多細胞生物（開發中）的基礎。"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "原核結構\n"
+#~ "\n"
+#~ "細胞質：有儲存空間並能進行糖酵解（產出少量的[thrive:compound type=\"atp\"][/thrive:compound]）\n"
+#~ "\n"
+#~ "代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "類囊體：跟正常的葉綠體比只能產出1/3的[thrive:compound type=\"glucose\"][/thrive:compound]，但其同時也能進行糖酵解。佔用一個六角格。\n"
+#~ "\n"
+#~ "化學合成蛋白：跟化學質體比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能產出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同時也能進行糖酵解。佔用一個六角格。\n"
+#~ "\n"
+#~ "鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉換成[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "固氮酶：在無氧環境下將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉換成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "\n"
+#~ "毒素體：將[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
+#~ "\n"
+#~ "熱合成酶：利用溫度梯度產生[thrive:compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "外部細胞器\n"
+#~ "\n"
+#~ "鞭毛：通過消耗[thrive:compound type=\"atp\"][/thrive:compound]加快你細胞的移動速度\n"
+#~ "\n"
+#~ "菌毛：可以用來捅其它細胞或防護毒素\n"
+#~ "\n"
+#~ "化學感受器：允許從更遠的地方探測化合物\n"
+#~ "\n"
+#~ "黏液噴嘴: 允許噴射 [thrive:compound type=\"mucilage\"][/thrive:compound] (由 [thrive:compound type=\"glucose\"][/thrive:compound]轉化而來) 以增加你的細胞的速度\n"
+#~ "\n"
+#~ "纖毛：增加細胞轉動速度"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "膜細胞器\n"
+#~ "\n"
+#~ "細胞核：佔用十一個六角格並允許你進化膜細胞器，使你的細胞大小翻倍的同時減少50%所受傷害。 （只能被進化一次）\n"
+#~ "\n"
+#~ "連接器：允許和其它細胞連接在一起。\n"
+#~ "\n"
+#~ "線粒體：用[thrive:compound type=\"glucose\"][/thrive:compound]和大氣中的氧氣生產[thrive:compound type=\"atp\"][/thrive:compound]，比細胞質的效率高很多\n"
+#~ "\n"
+#~ "葉綠體：用陽光和大氣中的二氧化碳生產[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "化學質體：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生產[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "固氮質體：用大氣中的氧氣，氮和[thrive:compound type=\"atp\"][/thrive:compound]生產[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "液泡：儲存8單位的化合物\n"
+#~ "\n"
+#~ "毒素液泡：生產毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）並釋放它，根據可用的氧化毒素量造成傷害\n"
+#~ "\n"
+#~ "信號劑：讓細胞可以產生特定的訊號以通知其他細胞"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "每一代，你都有100個變異點(MP)可供花費，任何變化都會花費一定量的變異點。增加或移除細胞器會花費變異點，但移除在本代放下的細胞器會返還全部的變異點。你可以通過右鍵點擊移除細胞器。你可以用[thrive:input]e_rotate_left[/thrive:input]和[thrive:input]e_rotate_right[/thrive:input]鍵旋轉你的細胞器。"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]百萬年的進化時間。"
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "小知識：櫛毛蟲和草履蟲被當做教科書級的捕食者與獵物關係研究了幾十年。現在你是櫛毛蟲還是草履蟲呢？捕食者,還是獵物？"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "小提示：如果你反映夠快，你可以用自己的毒素把其它毒素推開。"
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "小提示：每一個六角格每秒需消耗一個ATP來進行滲透調節，而單格細胞質可以每秒產生5個ATP。這意味著如果你因為滲透調節損失ATP的話，你只要多加幾格細胞質或移除一些細胞器就行了。"
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "小知識：現實中原核生物有一種叫生物區隔（Biocompartments）的結構，作用跟細胞器的膜很相似，而且實際上也被叫做多角體細胞器（Polyhedral organelles）。"
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "小知識：代謝體其實是一種多角體細胞器。"
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "一個提示：有些時候逃跑就是最佳選擇。"
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "一個提示：如果目標細胞大概只有你一半大，你就可以吞噬它。"
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "一個提示：細菌可能比它們看上去要強。它們也許體型很小，但它們中有一些可以鑽進你並把你殺掉！"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "一點提示:您可以獵殺其他物種到滅絕，它們同時也會被其他物種獵殺到滅絕。"
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "扭來扭去！！"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "熔煉鐵礦."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "遊戲很可能會添加專門的色素組件，藍色的細胞將很罕見。"
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "一個提示：生物群系可不僅僅是背景圖不同，不同生物群系的化合物生成速度有時候是不同的。"
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "一個提示：鞭毛越多越快，但也會消耗更多的ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "一個提示：你可以在吞噬模式下吞進大塊的細胞、鐵礦、或者其他。"
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "一個提示：進化細胞核前請做好準備，這東西很貴！無論是突變點還是ATP都是如此。"
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "小知識：你知道地球上有超過8000種纖毛蟲嗎？"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "小知識：喇叭蟲屬是一類纖毛蟲，它們可以把自己拉開，用纖毛產生水流把獵物吸入自己喇叭形的嘴。"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "小知識：櫛毛蟲是一種纖毛蟲，它們會捕獵草履蟲。"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "小知識：阿米巴變形蟲使用細胞質組成的偽足來抓捕獵物，我們希望總有一天Thrive也能做出這種效果的。"
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "一個提示：小心比你大尺度的細胞，它們會吃你喲，被吃可不有趣。"
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive的聲音團隊做了很多還沒有被加進遊戲裡的曲子。你可以在他們的YouTube頻道Oliver Lugg上聽他們的音樂，或觀看他們直播編曲。"
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "一個提示：如果你的細胞有超過150個六角格，你可以吞噬那些大型鐵塊。"
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive是對外星球生物進化的模擬，所以你遇上的大多數生物實際上都是之前遇到的生物的進化型，看看你是否能辨別出來！"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "小知識：Thrive的開發團隊經常做播客，你應該去聽聽！"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "小知識：Thrive是用開源的Godot引擎做的！"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "小知識：我們最初的可玩遊戲原型是由我們了不起的程序員，untrustedlife製作的！"
+
+#~ msgid "TWO_TIMES"
+#~ msgstr "2x"
+
+#~ msgid "FOUR_TIMES"
+#~ msgstr "4x"
+
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "8x"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "不受限"
+
+#~ msgid "CORRECTION_PROTANOPE"
+#~ msgstr "紅綠色盲"
+
+#~ msgid "CORRECTION_TRITANOPE"
+#~ msgstr "蓝黄色盲"
+
+#, fuzzy
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "確認"
+
+#, fuzzy
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "額外內容"
+
+#, fuzzy
+#~ msgid "SCALING_ON"
+#~ msgstr "結合劑"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "總是"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "從不"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

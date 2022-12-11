@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
-"PO-Revision-Date: 2022-11-30 13:03+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
+"PO-Revision-Date: 2022-12-11 21:45+0100\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -80,273 +80,6 @@ msgstr "Microbe Editor"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Multicellular Editor"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] and mouse to move. [thrive:input]g_fire_toxin[/thrive:input] to shoot [thrive:compound type=\"oxytoxy\"][/thrive:compound] if you have a toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] to toggle engulf mode. You can zoom in and out with the mouse wheel."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Your cell uses [thrive:compound type=\"atp\"][/thrive:compound] as its energy source, if it runs out you will die."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "To unlock the editor and reproduce you need to stay alive long enough. Gathering [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) and [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud) speeds up growth."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "You can also engulf cells, bacteria, iron chunks and cell chunks that are smaller than you by pressing [thrive:input]g_toggle_engulf[/thrive:input]. This will cost additional [thrive:compound type=\"atp\"][/thrive:compound] and will slow you down. Don't forget to press [thrive:input]g_toggle_engulf[/thrive:input] a second time to stop engulfing."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Once engulfment is finished, any objects caught in the engulfment will then be kept inside the membrane to be digested. Indigestible objects will always be expelled, so make sure you have the necessary mutations that enable processing them first. Enzymes will help with digestion and are provided by the lysosome; evolve this organelle to make digestion much more efficient."
-
-#: ../simulation_parameters/common/help_texts.json:26
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "However, lysosomes are exclusive only to eukaryotes. Prokaryotes don't have such organelles and digest their food rather inefficiently. For small cells this is fine, but for larger cells, having no lysosomes is very disadvantageous."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Cellulose and chitin cell walls in particular can't be digested without having the prerequisite enzyme that can break them down first."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which means the bigger your cell is, the more mitochondria, metabolosomes or rusticyanin (or cytoplasm, which does glycolysis) you need to avoid losing [thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "There are many organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"The various compound clouds are:\n"
-"\n"
-"White – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Yellow – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Purple – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Rust Brown – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] can be converted into [thrive:compound type=\"glucose\"][/thrive:compound] via chemoplasts and chemosynthesizing proteins. [thrive:compound type=\"iron\"][/thrive:compound] can be converted via rusticyanin into [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "To reproduce you need to divide each of your organelles into two. Organelles need [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], and time to split in half."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "If your population drops to zero, you go extinct."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "But if you survive for twenty generations with 300 population, you are considered to have won the current game. After winning you get a popup and can continue playing as you wish."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well."
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "The binding agent allows your cell and others of its species to build a cell colony where the cells share the compounds they absorb and produce with each other. Enter binding mode by pressing [thrive:input]g_toggle_binding[/thrive:input]. While in a colony, you can't divide your cell and enter the editor. To enter the editor, collect the required compounds and leave the colony by pressing [thrive:input]g_unbind_all[/thrive:input]. Large cell colonies are the way towards multicellularity."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryotic Structures\n"
-"\n"
-"Cytoplasm: Has storage space and performs glycolysis (Produces small amounts of [thrive:compound type=\"atp\"][/thrive:compound] from [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomes: Produces [thrive:compound type=\"atp\"][/thrive:compound] from [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Thylakoids: Produces 1/3rd the amount of [thrive:compound type=\"glucose\"][/thrive:compound] as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex\n"
-"\n"
-"Chemosynthisizing Proteins: Produces half of the [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] as a chemoplast, but also performs glycolysis, and takes up 1 Hex\n"
-"\n"
-"Rusticyanin: Converts [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Converts atmospheric nitrogen and [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobically\n"
-"\n"
-"Oxytoxisome: Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Thermosynthase: Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"External Organelles\n"
-"\n"
-"Flagellum: Moves your cell faster by consuming [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Can be used to stab the other cells or to defend against their toxins\n"
-"\n"
-"Chemoreceptor: Allows detecting compounds from farther away\n"
-"\n"
-"Slime Jet: Allows emitting [thrive:compound type=\"mucilage\"][/thrive:compound] (produced from [thrive:compound type=\"glucose\"][/thrive:compound]) to speed up your cell\n"
-"\n"
-"Cilia: Increases turning speed of cells"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membrane Bound Organelles\n"
-"\n"
-"Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles, doubles your cell's size and reduces the damage taken by 50% (can only be evolved once)\n"
-"\n"
-"Binding Agent: Allows binding with other cells. Required to advance to the Multicellular Stage.\n"
-"\n"
-"Mitochondrion: Produces [thrive:compound type=\"atp\"][/thrive:compound] out of [thrive:compound type=\"glucose\"][/thrive:compound] and atmospheric O2 much more efficiently than cytoplasm\n"
-"\n"
-"Chloroplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out of sunlight and atmospheric CO2\n"
-"\n"
-"Thermoplast: Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients\n"
-"\n"
-"Lysosome: Contains digestive enzymes. Enzymes speed up and improve efficiency of digestion\n"
-"\n"
-"Chemoplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Nitrogen Fixing Plastid: Makes [thrive:compound type=\"ammonia\"][/thrive:compound] from [thrive:compound type=\"atp\"][/thrive:compound] and atmospheric Nitrogen and Oxygen\n"
-"\n"
-"Vacuole: Stores 8 collected compounds\n"
-"\n"
-"Toxin Vacuoles: Produces toxins (called [thrive:compound type=\"oxytoxy\"][/thrive:compound]) and allows you to release it dealing damage based on the amount of oxytoxy available\n"
-"\n"
-"Signaling Agent: Allow cells to create chemicals that other cells can react to"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Each generation, you have 100 mutation points (MP) to spend, and each change (or mutation) will cost a certain amount of that MP. Adding and removing organelles costs MP. However, removing organelles that were placed in the current mutation session refunds MP for that organelle. You can move or completely remove an organelle by right-clicking on it and selecting the appropriate action from the pop-up menu. You can rotate your organelles while placing them with [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success. Each visit to the editor in the Microbe Stage represents [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] million years of evolution."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "Press the undo button in the editor to correct a mistake"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "Fun Fact: the Didinium and Paramecium are a textbook example of a predator-prey relationship that has been studied for decades. Now, are you the Didinium or the Paramecium? Predator or Prey?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Here's a tip, toxins can be used to knock other toxins away from you if you are quick enough."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Here's a tip, Osmoregulation costs 1 ATP per second per hex your cell has, each empty hex of cytoplasm generates 5 ATP per second as well, which means if you are losing ATP due to osmoregulation just add a couple of empty hexes of cytoplasm or remove some organelles."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "Fun Fact, In real life prokaryotes have something called Biocompartments which act like organelles, and are in fact called Polyhedral organelles."
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Fun Fact, The metabolosome is what is called a Polyhedral organelle."
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Here's a tip, sometimes it's best just to run away from other cells."
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Here's a tip, if a cell is about half your size, that's when you can engulf them."
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "Here's a tip, bacteria can be stronger than they appear, they may look small, but some of them can burrow into you and kill you that way!"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "Here's a tip, You can hunt other species to extinction if you aren't careful enough. Other species can do it as well."
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "WIGGLY THINGS!!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smeltal the meltal."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Those blue cells though."
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "Here's a tip, Biomes are more than just different backgrounds, the compounds in different biomes sometimes spawn at different rates."
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "Here's a tip, the more flagella you have, the faster you go, vroom vroom, but it also costs more ATP"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Here's a tip, you can engulf chunks, iron or otherwise."
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "Here's a tip, prepare before adding a nucleus. Those things are expensive! In upkeep and up front cost."
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Fun Fact, Did you know that there are over 8000 species of ciliate on planet earth?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey in a kind of trumpet like mouth that draws prey in by generating water currents with cilia."
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fun Fact, The Didinium is a ciliate that hunts paramecia."
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Fun Fact, The Amoeba hunts and catches prey with 'legs' made of cytoplasm called pseudopods, we want to eventually have those in Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Here's a tip, Watch out for larger cells and large bacteria, it's not fun to be digested, and they will eat you."
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive's sound team lead has made many songs that have not been added to the game yet. You can hear them, or watch streams of him composing on his YouTube channel, Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Here's a tip, if your cell is 150 hexes, you can engulf the large iron chunks."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive is meant as a simulation of an alien planet, therefore it makes sense that most creatures you find will be related to one or two other species due to evolution happening around you, see if you can identify them!"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Fun Fact, The Thrive team does podcasts every so often, you should check them out!"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Fun Fact, Thrive is made with the open source Godot engine!"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Fun Fact, One of the first playable game-play prototypes was made by our awesome programmer, untrustedlife!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -378,19 +111,19 @@ msgstr "Abilities"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr "Secrete mucilage"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
 
@@ -399,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Hold to show pack commands menu"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr "Toggle binding"
 
@@ -408,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Toggle unbinding"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr "Unbind all"
 
@@ -1380,7 +1113,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Budding"
 
@@ -2080,7 +1812,7 @@ msgstr "Close"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2369,24 +2101,10 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Some options may be disabled if LAWK only is enabled"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermal vents"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr "Warm little pond"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Panspermia (random)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
@@ -2497,15 +2215,9 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(generate a patch map procedurally or use the classic layout)"
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedural"
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Classic"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2639,25 +2351,9 @@ msgstr "Multisample anti-aliasing:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "Disabled"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr "2x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr "4x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr "8x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2667,25 +2363,13 @@ msgstr "Resolution:"
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "Unlimited"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind correction:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "None"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr "Protanope (Red-Green)"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
-msgstr "Tritanope (Blue-Yellow)"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2809,37 +2493,9 @@ msgstr "Threads:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum number of entities:"
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr "Tiny"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr "Very small"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr "Small"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_NORMAL"
-msgstr "Normal"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr "Large"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr "Very large"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr "Huge"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_EXTREME"
-msgstr "Extreme"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2866,17 +2522,9 @@ msgstr "Vertical:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Mouse sensitivity scaling by window size"
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
 msgstr "None"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON"
-msgstr "Scaled"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
-msgstr "Inversely scaled"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -2964,17 +2612,9 @@ msgstr "Reset Dismissed Popups"
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mode:"
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatically"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Always"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Never"
 
 #: ../src/general/OptionsMenu.tscn:1628
 msgid "EXACT_VERSION_TOOLTIP"
@@ -3127,7 +2767,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "extinct in patch"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -3182,6 +2822,18 @@ msgstr "Enabled"
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
 msgstr "Disabled"
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr "Warm little pond"
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr "Panspermia (random)"
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "Classic"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3634,9 +3286,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -4216,7 +3868,6 @@ msgid "APPEARANCE"
 msgstr "Appearance"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexual"
 
@@ -4292,7 +3943,7 @@ msgstr "death"
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -4905,19 +4556,19 @@ msgstr "EXTINCTION"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} at noon"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -6005,7 +5656,7 @@ msgstr ""
 "\n"
 "One possible strategy is to stay a single hex of cytoplasm and just head to the surface patches first before getting photosynthesis organelles."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "On a distant alien planet, eons of volcanic activity and meteor impacts have led to the development of a new phenomenon in the universe.\n"
@@ -6016,22 +5667,22 @@ msgstr ""
 "\n"
 "To survive in this hostile world, you will need to collect any compounds that you can find and evolve across generations to compete against the other species of microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr "Show tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thriving"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "To control your cell use the keys shown near your cell (center of screen) and the mouse to control the cell orientation.\n"
 "\n"
 "Try all of the keys for a few seconds to continue."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Collect glucose (white clouds) by moving over them.\n"
@@ -6040,7 +5691,13 @@ msgstr ""
 "\n"
 "Follow the line from your cell to nearby glucose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"During night photosynthesis is no longer viable.\n"
+"Placeholder text."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"
@@ -6048,14 +5705,14 @@ msgstr ""
 "You regenerate health while you have ATP.\n"
 "Make sure to collect enough glucose to produce ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "To reproduce, you must duplicate your organelles. This happens gradually as you survive, but you can speed things up by gathering ammonia and phosphate.\n"
 "\n"
 "The bars in the bottom right show your progress. They turn white when you’re ready to reproduce."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "You have survived long enough for your cell to reproduce.\n"
@@ -6064,32 +5721,32 @@ msgstr ""
 "\n"
 "To enter the editor, press the large flashing button in the bottom right."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "You have entered unbind mode. In this mode you can click on colony members to unbind them.\n"
 "\n"
 "To leave the colony entirely you can click on your own cell or press the [thrive:input]g_unbind_all[/thrive:input] key."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Struggling? Check the help menu. You can open it with the question mark button in the bottom left.\n"
 "\n"
 "One more tip: you can zoom out your view with the scroll wheel."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Your cell has a limited capacity for objects that can be engulfed at once. This limit is based on size; smaller cells have less capacity.\n"
 "\n"
 "When full, a cell can't engulf more things. To continue engulfing, wait until one or more ingested objects are fully digested."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Engulf objects by moving over them while in engulf mode. Toggle engulf mode by pressing [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6098,14 +5755,14 @@ msgstr ""
 "\n"
 "Follow the line from your cell to nearby engulfable object."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Your cell has been engulfed and is being digested. The progress is shown on your health bar. Your cell will be dead once it finishes or a maximum time limit is reached.\n"
 "\n"
 "You can use the suicide button to skip and respawn, but remember there's always a chance that you'll escape!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "You are full on [thrive:compound type=\"ammonia\"][/thrive:compound] and [thrive:compound type=\"phosphates\"][/thrive:compound]. However, as you are in a non-multicellular colony, you don't make reproduction progress.\n"
@@ -6113,7 +5770,7 @@ msgstr ""
 "You need to leave the colony to get to the editor unless you plan to become multicellular.\n"
 "Exit the colony to resume your growth by pressing [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Welcome to the Early Multicellular Stage!\n"
@@ -6126,9 +5783,270 @@ msgstr ""
 "\n"
 "If you are using budding reproduction (the default method), you start off controlling a small bud and need to grow the rest of your cell layout."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 msgid "CONTINUE_THRIVING"
 msgstr "Continue Thriving"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] and mouse to move. [thrive:input]g_fire_toxin[/thrive:input] to shoot [thrive:compound type=\"oxytoxy\"][/thrive:compound] if you have a toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] to toggle engulf mode. You can zoom in and out with the mouse wheel."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Your cell uses [thrive:compound type=\"atp\"][/thrive:compound] as its energy source, if it runs out you will die."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "To unlock the editor and reproduce you need to stay alive long enough. Gathering [thrive:compound type=\"ammonia\"][/thrive:compound] (orange cloud) and [thrive:compound type=\"phosphates\"][/thrive:compound] (purple cloud) speeds up growth."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "You can also engulf cells, bacteria, iron chunks and cell chunks that are smaller than you by pressing [thrive:input]g_toggle_engulf[/thrive:input]. This will cost additional [thrive:compound type=\"atp\"][/thrive:compound] and will slow you down. Don't forget to press [thrive:input]g_toggle_engulf[/thrive:input] a second time to stop engulfing."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Once engulfment is finished, any objects caught in the engulfment will then be kept inside the membrane to be digested. Indigestible objects will always be expelled, so make sure you have the necessary mutations that enable processing them first. Enzymes will help with digestion and are provided by the lysosome; evolve this organelle to make digestion much more efficient."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "However, lysosomes are exclusive only to eukaryotes. Prokaryotes don't have such organelles and digest their food rather inefficiently. For small cells this is fine, but for larger cells, having no lysosomes is very disadvantageous."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Cellulose and chitin cell walls in particular can't be digested without having the prerequisite enzyme that can break them down first."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which means the bigger your cell is, the more mitochondria, metabolosomes or rusticyanin (or cytoplasm, which does glycolysis) you need to avoid losing [thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "There are many organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "The various compound clouds are:\n"
+#~ "\n"
+#~ "White – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Yellow – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Purple – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Rust Brown – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] can be converted into [thrive:compound type=\"glucose\"][/thrive:compound] via chemoplasts and chemosynthesizing proteins. [thrive:compound type=\"iron\"][/thrive:compound] can be converted via rusticyanin into [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "To reproduce you need to divide each of your organelles into two. Organelles need [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], and time to split in half."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "If your population drops to zero, you go extinct."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "But if you survive for twenty generations with 300 population, you are considered to have won the current game. After winning you get a popup and can continue playing as you wish."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "The binding agent allows your cell and others of its species to build a cell colony where the cells share the compounds they absorb and produce with each other. Enter binding mode by pressing [thrive:input]g_toggle_binding[/thrive:input]. While in a colony, you can't divide your cell and enter the editor. To enter the editor, collect the required compounds and leave the colony by pressing [thrive:input]g_unbind_all[/thrive:input]. Large cell colonies are the way towards multicellularity."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryotic Structures\n"
+#~ "\n"
+#~ "Cytoplasm: Has storage space and performs glycolysis (Produces small amounts of [thrive:compound type=\"atp\"][/thrive:compound] from [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomes: Produces [thrive:compound type=\"atp\"][/thrive:compound] from [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Thylakoids: Produces 1/3rd the amount of [thrive:compound type=\"glucose\"][/thrive:compound] as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex\n"
+#~ "\n"
+#~ "Chemosynthisizing Proteins: Produces half of the [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] as a chemoplast, but also performs glycolysis, and takes up 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: Converts [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenase: Converts atmospheric nitrogen and [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobically\n"
+#~ "\n"
+#~ "Oxytoxisome: Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Thermosynthase: Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "External Organelles\n"
+#~ "\n"
+#~ "Flagellum: Moves your cell faster by consuming [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Can be used to stab the other cells or to defend against their toxins\n"
+#~ "\n"
+#~ "Chemoreceptor: Allows detecting compounds from farther away\n"
+#~ "\n"
+#~ "Slime Jet: Allows emitting [thrive:compound type=\"mucilage\"][/thrive:compound] (produced from [thrive:compound type=\"glucose\"][/thrive:compound]) to speed up your cell\n"
+#~ "\n"
+#~ "Cilia: Increases turning speed of cells"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membrane Bound Organelles\n"
+#~ "\n"
+#~ "Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles, doubles your cell's size and reduces the damage taken by 50% (can only be evolved once)\n"
+#~ "\n"
+#~ "Binding Agent: Allows binding with other cells. Required to advance to the Multicellular Stage.\n"
+#~ "\n"
+#~ "Mitochondrion: Produces [thrive:compound type=\"atp\"][/thrive:compound] out of [thrive:compound type=\"glucose\"][/thrive:compound] and atmospheric O2 much more efficiently than cytoplasm\n"
+#~ "\n"
+#~ "Chloroplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out of sunlight and atmospheric CO2\n"
+#~ "\n"
+#~ "Thermoplast: Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients\n"
+#~ "\n"
+#~ "Lysosome: Contains digestive enzymes. Enzymes speed up and improve efficiency of digestion\n"
+#~ "\n"
+#~ "Chemoplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogen Fixing Plastid: Makes [thrive:compound type=\"ammonia\"][/thrive:compound] from [thrive:compound type=\"atp\"][/thrive:compound] and atmospheric Nitrogen and Oxygen\n"
+#~ "\n"
+#~ "Vacuole: Stores 8 collected compounds\n"
+#~ "\n"
+#~ "Toxin Vacuoles: Produces toxins (called [thrive:compound type=\"oxytoxy\"][/thrive:compound]) and allows you to release it dealing damage based on the amount of oxytoxy available\n"
+#~ "\n"
+#~ "Signaling Agent: Allow cells to create chemicals that other cells can react to"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Each generation, you have 100 mutation points (MP) to spend, and each change (or mutation) will cost a certain amount of that MP. Adding and removing organelles costs MP. However, removing organelles that were placed in the current mutation session refunds MP for that organelle. You can move or completely remove an organelle by right-clicking on it and selecting the appropriate action from the pop-up menu. You can rotate your organelles while placing them with [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success. Each visit to the editor in the Microbe Stage represents [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] million years of evolution."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Press the undo button in the editor to correct a mistake"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "Fun Fact: the Didinium and Paramecium are a textbook example of a predator-prey relationship that has been studied for decades. Now, are you the Didinium or the Paramecium? Predator or Prey?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Here's a tip, toxins can be used to knock other toxins away from you if you are quick enough."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Here's a tip, Osmoregulation costs 1 ATP per second per hex your cell has, each empty hex of cytoplasm generates 5 ATP per second as well, which means if you are losing ATP due to osmoregulation just add a couple of empty hexes of cytoplasm or remove some organelles."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "Fun Fact, In real life prokaryotes have something called Biocompartments which act like organelles, and are in fact called Polyhedral organelles."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Fun Fact, The metabolosome is what is called a Polyhedral organelle."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Here's a tip, sometimes it's best just to run away from other cells."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "Here's a tip, if a cell is about half your size, that's when you can engulf them."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "Here's a tip, bacteria can be stronger than they appear, they may look small, but some of them can burrow into you and kill you that way!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "Here's a tip, You can hunt other species to extinction if you aren't careful enough. Other species can do it as well."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "WIGGLY THINGS!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Smeltal the meltal."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Those blue cells though."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "Here's a tip, Biomes are more than just different backgrounds, the compounds in different biomes sometimes spawn at different rates."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "Here's a tip, the more flagella you have, the faster you go, vroom vroom, but it also costs more ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Here's a tip, you can engulf chunks, iron or otherwise."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "Here's a tip, prepare before adding a nucleus. Those things are expensive! In upkeep and up front cost."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Fun Fact, Did you know that there are over 8000 species of ciliate on planet earth?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey in a kind of trumpet like mouth that draws prey in by generating water currents with cilia."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Fun Fact, The Didinium is a ciliate that hunts paramecia."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Fun Fact, The Amoeba hunts and catches prey with 'legs' made of cytoplasm called pseudopods, we want to eventually have those in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Here's a tip, Watch out for larger cells and large bacteria, it's not fun to be digested, and they will eat you."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive's sound team lead has made many songs that have not been added to the game yet. You can hear them, or watch streams of him composing on his YouTube channel, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Here's a tip, if your cell is 150 hexes, you can engulf the large iron chunks."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive is meant as a simulation of an alien planet, therefore it makes sense that most creatures you find will be related to one or two other species due to evolution happening around you, see if you can identify them!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Fun Fact, The Thrive team does podcasts every so often, you should check them out!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fun Fact, Thrive is made with the open source Godot engine!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Fun Fact, One of the first playable game-play prototypes was made by our awesome programmer, untrustedlife!"
+
+#~ msgid "TWO_TIMES"
+#~ msgstr "2x"
+
+#~ msgid "FOUR_TIMES"
+#~ msgstr "4x"
+
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "8x"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "Unlimited"
+
+#~ msgid "CORRECTION_PROTANOPE"
+#~ msgstr "Protanope (Red-Green)"
+
+#~ msgid "CORRECTION_TRITANOPE"
+#~ msgstr "Tritanope (Blue-Yellow)"
+
+#~ msgid "LIMIT_VERY_SMALL"
+#~ msgstr "Very small"
+
+#~ msgid "LIMIT_SMALL"
+#~ msgstr "Small"
+
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "Normal"
+
+#~ msgid "LIMIT_LARGE"
+#~ msgstr "Large"
+
+#~ msgid "LIMIT_VERY_LARGE"
+#~ msgstr "Very large"
+
+#~ msgid "LIMIT_HUGE"
+#~ msgstr "Huge"
+
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "Extreme"
+
+#~ msgid "SCALING_ON"
+#~ msgstr "Scaled"
+
+#~ msgid "SCALING_ON_INVERSE"
+#~ msgstr "Inversely scaled"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Always"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Never"
 
 #~ msgid "DAY"
 #~ msgstr "Day"

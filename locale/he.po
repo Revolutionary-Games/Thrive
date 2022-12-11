@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -80,271 +80,6 @@ msgstr "עורך המיקרובי"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "עורך הרב-תאי"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה באמצעות גלגל העכבר."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] כמקור אנרגיה, כשזה אזל אתה תמות."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "בשביל לפתוח את העורך ולהתרבות, אתה להשאר בחיים. אסיפת[thrive:compound type=\"ammonia\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type=\"phosphates\"][/thrive:compound] (הענן הסגול) מגביר קצב גדילה."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "אתה יכול גם לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input]. מצב זה עולה additional [thrive:compound type=\"atp\"][/thrive:compound] נוסף ויאט אותך. אל תשכח ללחוץ שנית על [thrive:input]g_toggle_engulf[/thrive:input] על מנת להפסיק את מצב הבליעה."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "ברגע שהבליעה הסתיימה, כל אובייקט שנבלע התחיל לעבור עיכול בתוך הממברנה. אובייקטים שלא ניתנים לעיכול תמיד יפלטו, כך שאתה תזדקק למוטציות שיאפשרו לעכל אותם קודם. אנזימים יעזרו עם העיכול והם מופקים בליזוזום; תפתח על מנת ליעל את תהליך העיכול."
-
-#: ../simulation_parameters/common/help_texts.json:26
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "האומנם, ליזוזום ייחודיים לאיקריוטים. לפרוקריוטים אין אברונים דומים ועיכולם אינו יעיל במיוחד. לתאים קטן זה בסדר אך בשביל תאים גדולים, ללא הליזוזום זה מאוד חסרוני."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "דופן התא שעשויים מתאית וכיטין לא יכולים להתעכל ללא האנזימים המתאימים שמסוגלים לפרק אותם קודם."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "אוסמורגולציה עולה [thrive:compound type=\"atp\"][/thrive:compound], מה שזה אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של [thrive:compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "ישנו אוסף של אברונים בעורך שאתה יכול לבחור ולפתח, מה שמאפשר סגנונות משחק שונים ומגוונים."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"העננים המורכבים השונים הם:\n"
-"\n"
-"לבן - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"צהוב - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"כתום - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"סגול - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"חום חלודה - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive:compound type=\"glucose\"][/thrive:compound] באמצעות כימופלסטים וחלבונים כימוסנתזיים. ניתן להמיר [thrive:compound type=\"iron\"][/thrive:compound] באמצעות רוסטיציאנין ל[thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "כדי להתרבות, עליכם לחלק כל אחד מהאברונים לשניים. האברונים זקוקים ל[thrive:compound type=\"ammonia\"][/thrive:compound] ,[thrive:compound type=\"phosphates\"][/thrive:compound] וזמן על מנת להתפצל לשניים."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "לעת עתה, אם כמות האוכלוסייה שלך יורדת לאפס, אתה נכחד."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "אבל אם שרדת במשך 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "שים לב שגם היריבים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם כן."
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "על ידי קשירה עם תאים אחרים, אתה יכול ליצור מושבת תאים בה התאים חולקים תרכובות שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, לתאים שלך צריכים אברון מקשר שמאפשרים להקשר לאחרים. נכנסים למצב קישור על ידי לחיצה על [thrive:input]g_toggle_binding[/thrive:input]. אתה יכול לקשר רק עם תאים מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס לעורך. בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה וכשיש לך מספיק תרכובות, על ידי לחיצה על [thrive:input]g_unbind_all[/thrive:input], תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך ליצירת רב-תאים."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"מבנים פרוקריוטיים\n"
-"\n"
-"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
-"\n"
-"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
-"\n"
-"רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן אנאירובי\n"
-"\n"
-"אוקסיטוקסיזום: הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"תרמוסינטאז: מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעמצאות שינוי טמפרטורה"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"אברונים חיצוניים\n"
-"\n"
-"שוטון: מזיז את התא שלך מהר יותר על ידי צריכת [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים\n"
-"\n"
-"כימורצפטור: מאפשר לאתר תרכובות ממרחק גדול\n"
-"\n"
-"ריסון: משפר מהירות סיבוב של התא"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"אברונים בעלי ממברנה\n"
-"\n"
-"גרעין: תופס עד 11 משושים ומאפשר התפתחות של אברונים בעלי ממברנה, ובנוסף הוא גם מכפיל את גודל התא שלך. (יכול להתפתח רק פעם אחת)\n"
-"\n"
-"מקשר: מאפשר התחברות עם תאים אחרים\n"
-"\n"
-"מיטוכונדריון: מפיק [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound] וחמצן אטמוספרי באופן יותר יעיל מציטופלזמה\n"
-"\n"
-"כלורופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מאור שמש ופחמן דו חמצני אטמוספרי\n"
-"\n"
-"תרמופלסט: מייצר [thrive:compound type=\"atp\"][/thrive:compound] באמצעות שינוי טמפרטורה\n"
-"\n"
-"ליזוזום: מכיל אנזימי עיכול\n"
-"\n"
-"כימופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מ[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"פלסטיד מקבע חנקן: מייצר [thrive:compound type=\"ammonia\"][/thrive:compound] מ[thrive:compound type=\"atp\"][/thrive:compound] ומחמצן וחנקן אטמוספרי\n"
-"\n"
-"חלולית: מאחסן 15 תרכובות שנאספו\n"
-"\n"
-"חלוליות רעלן: מייצר רעלנים (המכונים [thrive:compound type=\"oxytoxy\"][/thrive:compound])\n"
-"\n"
-"חומר מאותת: מאפשר לתאים ליצור כימיקלים שתאים אחרים מגיבים לו"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) שניתן לבזבז, ועל כל שינוי (או מוטציה) יעלה סכום מסוים מהנקמ\"ו. הוספה או הוסרה של אברונים עולים נקמ\"ו, אבל הסרה של אברונים שנוספו בסיבוב המוטציה נוכחית מחזיר את העלות של אותם אברונים. ניתן להזיז או להסיר לחלוטין אברון על ידי הלחצן הימני עליו ולבחור את הפעולה הרצויה מהרשימה נפתחת. ניתן לסובב את אברון במקשים [thrive:input]e_rotate_left[/thrive:input] ו[thrive:input]e_rotate_right[/thrive:input] בזמן שמזיזים אותם."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור בעורך בשלב המיקרובי מייצג [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] מיליון שנות אבולוציה."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "עובדה משעשעת: הדידיניום והסנדלית הם דוגמה קלאסית של יחסי טורף - נטרף שנחקר במשך עשורים. אז האם אתה דידיניום או סנדלית? הטורף או הנטרף?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "הנה טיפ: ניתן להשתמש ברעלנים בשביל להדוף רעלנים אחרים אם אתה מהיר מספיק."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "הנה טיפ: אוסמורגולציה עולה ATP 1 לשנייה על כל משושה שהתא שלך מכיל, ועל כל משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP בגלל אוסמורגולציה, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "עובדה משעשעת: במציאות, לפרוקריוטים יש משהו שנקרא ביוכומפרטמנט שמתנהג כמו אברון, שלמעשה הם נקראים אברונים פאותפולידריאליים."
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "עובדה משעשעת: מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים."
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "הנה טיפ: לפעמים עדיף פשוט לברוח מתאים אחרים."
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "הנה טיפ: אם תא בערך חצי מגודל שלך, זה מתי שאתה יכול לבלוע אתם."
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "הנה טיפ: חיידקים יכולים להיות חזקים יותר ממה שהם נראים. הם אומנם נראים קטנים, אך חלקם יכולים להתחפר תוכך ולהורגך!"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "הנה טיפ: אתה יכול לצוד מינים אחרים עד כי הכחדה אם אתה לא זהיר מספיק. מינים אחרים מסוגלים לעשות זו גם."
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "פיתולים!!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "התכה את המתכה."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "אבל התאים הכחולים האלה."
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "הנה טיפ: ביומות הן לא רק רקעים שונים, התרכובות בביומות שונות לעיתים נוצרים בקצב שונה."
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "הנה טיפ: ככל שיש לך יותר שוטונים, כך אתה זז מהר יותר, ורוום ורוום!!, אבל זה גם עולה יותר ATP"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "הנה טיפ: אתה יכול \"לבלוע\" גושי ברזל או כל דבר אחר."
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "הנה טיפ: תתכונן לפני שאתה מוסיף את הגרעין. הם יקרים! הן בעלות והן בתחזוקה."
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "עובדה משעשעת: הידעת שיש יותר מ8000 מינים של ריסניות על כדור הארץ?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "עובדה משעשעת: הסטנטור (Stentor) היא ריסנית היכולה למתוח את עצמה ולתפוס טרף במעין פה בצורת חצוצרה אשר שואב את הטרף פנימה על ידי יצירת זרמי מים עם הריסים."
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "עובדה משעשעת: הדידיניום היא ריסנית אשר צד סנדליות."
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "עובדה משעשעת: האמבה צדה ותופסת את טרפה עם 'רגליים' אשר עשויות מציטופלזמה הנקראות פסאודופודים. אנחנו רוצים להוסיף אותם לThrive."
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "הנה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע אותם או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: \"אוליבר לאוג\" (Oliver Lugg)."
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "הנה טיפ: אם גודל התא שלך הוא 150 משושים או יותר, אתה תוכל לבלוע את הגוש הברזל הגדול ביותר."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו דומים אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הֶסְכֵּתות), כדאי לבדוק אותם!"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "עובדה משעשעת: Thrive נעשתה באמצעות מנוע \"Godot\" בקוד פתוח!"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת המדהים שלנו: \"untrustedlife\"!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -376,19 +111,19 @@ msgstr "יכולות"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr "הפרש ריר"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
@@ -397,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "החזק כדי להציג את תפריט פקודות"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
@@ -406,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "בטל מצב קישור"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr "שחרר הכל"
 
@@ -1378,7 +1113,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "הנצה"
 
@@ -2078,7 +1812,7 @@ msgstr "סגור"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2365,24 +2099,10 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "חלק מהאפשרויות היו מבוטלים לשינוי אם LAWK מופעל"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "נביעות הידרותרמיות"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr "בריכה קטנה חמימה"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "פנספרמיה (אקראי)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
@@ -2493,15 +2213,9 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(מייצר מפת אזורים פרוצדורלית או השתמש בפריסה הקלאסית)"
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "פרוצדורלי"
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "קלאסי"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2636,25 +2350,9 @@ msgstr "החלקת גרפיקה:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ערכים גבוהים מדרדר ביצועים)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "כבוי"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr "2x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr "4x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr "8x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2664,25 +2362,13 @@ msgstr "רזולוציה:"
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "ללא הגבלה"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "תיקון לעיוורון צבעים:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "ריק"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr "פרוטנופ (אדום-ירוק)"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
-msgstr "טריטנופ (כחול - צהוב)"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2806,37 +2492,9 @@ msgstr "נושאים:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr "זעיר"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr "מאוד קטן"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr "קטן"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_NORMAL"
-msgstr "רגיל"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr "גדול"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr "מאוד גדול"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr "ענק"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_EXTREME"
-msgstr "מפלצתי"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2863,17 +2521,9 @@ msgstr "אנכי:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "רגישות העכבר בקנה מידה עם גודל החלון"
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
 msgstr "שום דבר"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON"
-msgstr "בקנה מידה"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
-msgstr "בקנה מידה הפוך"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -2964,17 +2614,9 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr "מצב ניפוי JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "באופן אוטומטי"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "תמיד"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "לעולם לא"
 
 #: ../src/general/OptionsMenu.tscn:1628
 msgid "EXACT_VERSION_TOOLTIP"
@@ -3127,7 +2769,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "נכחד מהאזור"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -3184,6 +2826,18 @@ msgstr "מקשי קודים מופעלים"
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "כבוי"
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr "בריכה קטנה חמימה"
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr "פנספרמיה (אקראי)"
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "קלאסי"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3620,9 +3274,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr "מדריך"
 
@@ -4202,7 +3856,6 @@ msgid "APPEARANCE"
 msgstr "הופעה"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "א-מינית"
 
@@ -4278,7 +3931,7 @@ msgstr "מוות"
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -4893,19 +4546,19 @@ msgstr "נכחד"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "כמו 99% מכל המינים שחיו אי פעם, אתה נכחדת. אחרים יחליפו וישגשגו במקומך. אבל אתה תישכח, ניסוי כושל של האבולוציה."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "ביומה: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} עם אכלוסיה: {1}"
 
@@ -5992,7 +5645,7 @@ msgstr ""
 "\n"
 "אסטרטגיה אפשרית אחת זהו להישאר משושה של ציטופלזמה אחת ורק להגיע לאזורים של פני הים המלאים באור לפני שמוסיפים אברונים שעושים פוטוסינתזה."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "על כוכב חייזרי מרוחק,לאחר עידנים של פעילות געשית ופגיעות של מטאוריטים, החלה לצוץ תופעה חדשה ביקום:\n"
@@ -6003,22 +5656,22 @@ msgstr ""
 "\n"
 "בשביל לשרוד בעולם העוין זה, אתה חייב למצוא כל תרכובת בדרך ולהתפתח בכל דור בכדי להצליח לתחרות במינים אחרים של מיקרובים."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr "הצג מדריכים"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr "התחל לשגשג"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "בשביל לשלוט בתא שלך, השתמש במקשים המוצגים סביבו (במרכז המסך) ובעכבר על מנת לשלוט בכיוון התנועה שלו.\n"
 "\n"
 "נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
@@ -6027,7 +5680,16 @@ msgstr ""
 "\n"
 "עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
+"התא שלך ימות אם יגמר לו החיים.\n"
+"ואתה מתרפא כל עוד יש לך ATP.\n"
+"הקפד לאסוף מספיק גלוקוז ליצור ATP."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
@@ -6035,14 +5697,14 @@ msgstr ""
 "ואתה מתרפא כל עוד יש לך ATP.\n"
 "הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לשרוד מספיק זמן. אסוף אמונה ופוספט על מנת להאיץ את תהליך הרבייה.\n"
 "\n"
 "תסתכל על האינדיקטור העגלגל שבצד השמאלית התחתונה בשביל לראות עד כמה התקדמת. האינדיקטור הופך ללבן מתי שהוא מוכן."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "אתה שרדת מספיק זמן בשביל לגרום לתא שלך להתרבות.\n"
@@ -6051,32 +5713,32 @@ msgstr ""
 "\n"
 "בשביל להיכנס לעורך, לחץ על הכפתור הגדול המהבהב בימין תחתון."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "מתקשה? אתה יכול לבדוק בתפריט העזרה. אתה יכול אותו בעזרת הכפתור שמסומן עליו סימן שאלה בתחתון שמאלה.\n"
 "\n"
 "טיפ נוסף: אתה יכול לעשות זום אאוט עם גלגלת העכבר שלך בשביל להרחיב את שדה הראיה שלך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "לתא שלך מוגבל עד כמה אובייקטים מסוגלים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא; תא קטן מכיל פחות מקום.\n"
 "\n"
 "כאשר שתא שלך מלא, הוא לא מסוגל לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעוכלו לחלוטין אובייקט אחד או יותר."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "לבלוע אובייקטים על ידי תנועה עליהם בזמן שמצב בליעה פועל. את מצב הבליעה מופעל על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6085,14 +5747,14 @@ msgstr ""
 "\n"
 "עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "התא שלך נבלע ומתחיל להתעכל. תהליך מוצג על מד החיים. התא שלך יוגדר כמת ברגע שהתהליך יסתיים או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
 "אתה יכול להשתמש בכפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "אתה מלא בthrive:compound type=\"ammonia\"][/thrive:compound] ו[thrive:compound type=\"phosphates\"][/thrive:compound]. אך מכיוון שאתה במושבה שאינה רב תאים, אתה לא יכול להתרבות.\n"
@@ -6100,7 +5762,7 @@ msgstr ""
 "אתה חייב לעזוב את המושבה בשביל להיכנס לעורך אלו אם אתה מתכנן להפוך לרב תאים.\n"
 "צא מהמושבה בשביל להמשיך לגדול על ידי לחיצה על [thrive:input]נתק הכל[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "ברוכים הבאים לשלב הרב תאי הקדמוני!\n"
@@ -6113,9 +5775,268 @@ msgstr ""
 "\n"
 "אם אתה משתמש בצורת רבייה מסוג הנצה (ברירת המחדל), אתה מתחיל בכך שאתה שלוט בניצן קטן ומצריך אותך לגדל את שאר פריסת המושבה שלך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה באמצעות גלגל העכבר."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] כמקור אנרגיה, כשזה אזל אתה תמות."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "בשביל לפתוח את העורך ולהתרבות, אתה להשאר בחיים. אסיפת[thrive:compound type=\"ammonia\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type=\"phosphates\"][/thrive:compound] (הענן הסגול) מגביר קצב גדילה."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "אתה יכול גם לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input]. מצב זה עולה additional [thrive:compound type=\"atp\"][/thrive:compound] נוסף ויאט אותך. אל תשכח ללחוץ שנית על [thrive:input]g_toggle_engulf[/thrive:input] על מנת להפסיק את מצב הבליעה."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "ברגע שהבליעה הסתיימה, כל אובייקט שנבלע התחיל לעבור עיכול בתוך הממברנה. אובייקטים שלא ניתנים לעיכול תמיד יפלטו, כך שאתה תזדקק למוטציות שיאפשרו לעכל אותם קודם. אנזימים יעזרו עם העיכול והם מופקים בליזוזום; תפתח על מנת ליעל את תהליך העיכול."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "האומנם, ליזוזום ייחודיים לאיקריוטים. לפרוקריוטים אין אברונים דומים ועיכולם אינו יעיל במיוחד. לתאים קטן זה בסדר אך בשביל תאים גדולים, ללא הליזוזום זה מאוד חסרוני."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "דופן התא שעשויים מתאית וכיטין לא יכולים להתעכל ללא האנזימים המתאימים שמסוגלים לפרק אותם קודם."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "אוסמורגולציה עולה [thrive:compound type=\"atp\"][/thrive:compound], מה שזה אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של [thrive:compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "ישנו אוסף של אברונים בעורך שאתה יכול לבחור ולפתח, מה שמאפשר סגנונות משחק שונים ומגוונים."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "העננים המורכבים השונים הם:\n"
+#~ "\n"
+#~ "לבן - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "צהוב - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "כתום - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "סגול - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "חום חלודה - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive:compound type=\"glucose\"][/thrive:compound] באמצעות כימופלסטים וחלבונים כימוסנתזיים. ניתן להמיר [thrive:compound type=\"iron\"][/thrive:compound] באמצעות רוסטיציאנין ל[thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "כדי להתרבות, עליכם לחלק כל אחד מהאברונים לשניים. האברונים זקוקים ל[thrive:compound type=\"ammonia\"][/thrive:compound] ,[thrive:compound type=\"phosphates\"][/thrive:compound] וזמן על מנת להתפצל לשניים."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "לעת עתה, אם כמות האוכלוסייה שלך יורדת לאפס, אתה נכחד."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "אבל אם שרדת במשך 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "שים לב שגם היריבים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם כן."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "על ידי קשירה עם תאים אחרים, אתה יכול ליצור מושבת תאים בה התאים חולקים תרכובות שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, לתאים שלך צריכים אברון מקשר שמאפשרים להקשר לאחרים. נכנסים למצב קישור על ידי לחיצה על [thrive:input]g_toggle_binding[/thrive:input]. אתה יכול לקשר רק עם תאים מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס לעורך. בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה וכשיש לך מספיק תרכובות, על ידי לחיצה על [thrive:input]g_unbind_all[/thrive:input], תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך ליצירת רב-תאים."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "מבנים פרוקריוטיים\n"
+#~ "\n"
+#~ "ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
+#~ "\n"
+#~ "חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
+#~ "\n"
+#~ "רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן אנאירובי\n"
+#~ "\n"
+#~ "אוקסיטוקסיזום: הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "תרמוסינטאז: מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעמצאות שינוי טמפרטורה"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "אברונים חיצוניים\n"
+#~ "\n"
+#~ "שוטון: מזיז את התא שלך מהר יותר על ידי צריכת [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים\n"
+#~ "\n"
+#~ "כימורצפטור: מאפשר לאתר תרכובות ממרחק גדול\n"
+#~ "\n"
+#~ "ריסון: משפר מהירות סיבוב של התא"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "אברונים בעלי ממברנה\n"
+#~ "\n"
+#~ "גרעין: תופס עד 11 משושים ומאפשר התפתחות של אברונים בעלי ממברנה, ובנוסף הוא גם מכפיל את גודל התא שלך. (יכול להתפתח רק פעם אחת)\n"
+#~ "\n"
+#~ "מקשר: מאפשר התחברות עם תאים אחרים\n"
+#~ "\n"
+#~ "מיטוכונדריון: מפיק [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound] וחמצן אטמוספרי באופן יותר יעיל מציטופלזמה\n"
+#~ "\n"
+#~ "כלורופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מאור שמש ופחמן דו חמצני אטמוספרי\n"
+#~ "\n"
+#~ "תרמופלסט: מייצר [thrive:compound type=\"atp\"][/thrive:compound] באמצעות שינוי טמפרטורה\n"
+#~ "\n"
+#~ "ליזוזום: מכיל אנזימי עיכול\n"
+#~ "\n"
+#~ "כימופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מ[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "פלסטיד מקבע חנקן: מייצר [thrive:compound type=\"ammonia\"][/thrive:compound] מ[thrive:compound type=\"atp\"][/thrive:compound] ומחמצן וחנקן אטמוספרי\n"
+#~ "\n"
+#~ "חלולית: מאחסן 15 תרכובות שנאספו\n"
+#~ "\n"
+#~ "חלוליות רעלן: מייצר רעלנים (המכונים [thrive:compound type=\"oxytoxy\"][/thrive:compound])\n"
+#~ "\n"
+#~ "חומר מאותת: מאפשר לתאים ליצור כימיקלים שתאים אחרים מגיבים לו"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) שניתן לבזבז, ועל כל שינוי (או מוטציה) יעלה סכום מסוים מהנקמ\"ו. הוספה או הוסרה של אברונים עולים נקמ\"ו, אבל הסרה של אברונים שנוספו בסיבוב המוטציה נוכחית מחזיר את העלות של אותם אברונים. ניתן להזיז או להסיר לחלוטין אברון על ידי הלחצן הימני עליו ולבחור את הפעולה הרצויה מהרשימה נפתחת. ניתן לסובב את אברון במקשים [thrive:input]e_rotate_left[/thrive:input] ו[thrive:input]e_rotate_right[/thrive:input] בזמן שמזיזים אותם."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור בעורך בשלב המיקרובי מייצג [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] מיליון שנות אבולוציה."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "עובדה משעשעת: הדידיניום והסנדלית הם דוגמה קלאסית של יחסי טורף - נטרף שנחקר במשך עשורים. אז האם אתה דידיניום או סנדלית? הטורף או הנטרף?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "הנה טיפ: ניתן להשתמש ברעלנים בשביל להדוף רעלנים אחרים אם אתה מהיר מספיק."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "הנה טיפ: אוסמורגולציה עולה ATP 1 לשנייה על כל משושה שהתא שלך מכיל, ועל כל משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP בגלל אוסמורגולציה, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "עובדה משעשעת: במציאות, לפרוקריוטים יש משהו שנקרא ביוכומפרטמנט שמתנהג כמו אברון, שלמעשה הם נקראים אברונים פאותפולידריאליים."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "עובדה משעשעת: מטבולוזום הוא מה שנקרא אברון פאותפולידריאליים."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "הנה טיפ: לפעמים עדיף פשוט לברוח מתאים אחרים."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "הנה טיפ: אם תא בערך חצי מגודל שלך, זה מתי שאתה יכול לבלוע אתם."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "הנה טיפ: חיידקים יכולים להיות חזקים יותר ממה שהם נראים. הם אומנם נראים קטנים, אך חלקם יכולים להתחפר תוכך ולהורגך!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "הנה טיפ: אתה יכול לצוד מינים אחרים עד כי הכחדה אם אתה לא זהיר מספיק. מינים אחרים מסוגלים לעשות זו גם."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "פיתולים!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "התכה את המתכה."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "אבל התאים הכחולים האלה."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "הנה טיפ: ביומות הן לא רק רקעים שונים, התרכובות בביומות שונות לעיתים נוצרים בקצב שונה."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "הנה טיפ: ככל שיש לך יותר שוטונים, כך אתה זז מהר יותר, ורוום ורוום!!, אבל זה גם עולה יותר ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "הנה טיפ: אתה יכול \"לבלוע\" גושי ברזל או כל דבר אחר."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "הנה טיפ: תתכונן לפני שאתה מוסיף את הגרעין. הם יקרים! הן בעלות והן בתחזוקה."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "עובדה משעשעת: הידעת שיש יותר מ8000 מינים של ריסניות על כדור הארץ?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "עובדה משעשעת: הסטנטור (Stentor) היא ריסנית היכולה למתוח את עצמה ולתפוס טרף במעין פה בצורת חצוצרה אשר שואב את הטרף פנימה על ידי יצירת זרמי מים עם הריסים."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "עובדה משעשעת: הדידיניום היא ריסנית אשר צד סנדליות."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "עובדה משעשעת: האמבה צדה ותופסת את טרפה עם 'רגליים' אשר עשויות מציטופלזמה הנקראות פסאודופודים. אנחנו רוצים להוסיף אותם לThrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "הנה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע אותם או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: \"אוליבר לאוג\" (Oliver Lugg)."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "הנה טיפ: אם גודל התא שלך הוא 150 משושים או יותר, אתה תוכל לבלוע את הגוש הברזל הגדול ביותר."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו דומים אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הֶסְכֵּתות), כדאי לבדוק אותם!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "עובדה משעשעת: Thrive נעשתה באמצעות מנוע \"Godot\" בקוד פתוח!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת המדהים שלנו: \"untrustedlife\"!"
+
+#~ msgid "TWO_TIMES"
+#~ msgstr "2x"
+
+#~ msgid "FOUR_TIMES"
+#~ msgstr "4x"
+
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "8x"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "ללא הגבלה"
+
+#~ msgid "CORRECTION_PROTANOPE"
+#~ msgstr "פרוטנופ (אדום-ירוק)"
+
+#~ msgid "CORRECTION_TRITANOPE"
+#~ msgstr "טריטנופ (כחול - צהוב)"
+
+#~ msgid "LIMIT_VERY_SMALL"
+#~ msgstr "מאוד קטן"
+
+#~ msgid "LIMIT_SMALL"
+#~ msgstr "קטן"
+
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "רגיל"
+
+#~ msgid "LIMIT_LARGE"
+#~ msgstr "גדול"
+
+#~ msgid "LIMIT_VERY_LARGE"
+#~ msgstr "מאוד גדול"
+
+#~ msgid "LIMIT_HUGE"
+#~ msgstr "ענק"
+
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "מפלצתי"
+
+#~ msgid "SCALING_ON"
+#~ msgstr "בקנה מידה"
+
+#~ msgid "SCALING_ON_INVERSE"
+#~ msgstr "בקנה מידה הפוך"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "תמיד"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "לעולם לא"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "עובדות מעניינות לגבי המשחק הנוכחי"

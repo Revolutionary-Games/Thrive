@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -80,259 +80,6 @@ msgstr "Sejtszerkesztő"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Többsejtes szerkesztő"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a [thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és távolodni a sejtedtől."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor elpusztul."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a [thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés befejezéséhez."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Amint a bekebelezés befejeződik, minden objektum, amit bekebeleztél, a membránon belül marad, hogy meg tudjon emésztődni. Az emészthetetlen anyagok mindig kilökődnek a sejtből, ezért győződj meg arról, hogy rendelkezel a szükséges mutációkkal, amelyek lehetővé teszik ezen anyagok emésztését. A lizoszóma által termelt enzimek segítenek az emésztésben. Fejleszd ezt a sejtszervecskét, hogy még hatékonyabbá tedd a sejted emésztését."
-
-#: ../simulation_parameters/common/help_texts.json:26
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Azonban a lizoszómák csak az eukarióták számára elérhetőek. A prokariótáknak nincsenek ilyen szerveik, és nem a leghatékonyabban emésztik meg a táplálékot. Kisebb sejteknél a lizoszóma hiánya nem befolyásol semmit, viszont a nagyobb sejteknél ez hátráltató tényező."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "A cellulóz és kitin sejtfal nem emészthető a sejt számára mindaddig, amíg nem rendelkezik a szükséges enzimmel, ami ezen anyagok lebontásához szükséges."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra (vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"A különböző vegyületfelhők lehetnek:\n"
-"\n"
-"Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
-"Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/thrive:compound]\n"
-"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:compound]\n"
-"Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
-"Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
-"\n"
-"A glükózból ATP készül."
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és kemoszintetizáló fehérjék segítségével. A vasat rusticyanin segítségével pedig ATP-vé tudod alakítani."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz halni."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, melyek egymással vegyületeket osztanak meg, amiket elnyelnek és előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a játékban)."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokarióta szerkezetek\n"
-"\n"
-"Metaboloszómák: A gülkózból ATP-t állít elő.\n"
-"\n"
-"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
-"\n"
-"Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
-"\n"
-"Rusticyanin: A vasat ATP-vé alakítja át\n"
-"\n"
-"Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
-"\n"
-"Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Külső sejtszervecskék\n"
-"\n"
-"Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
-"\n"
-"Pilus: Más sejtek megszúrására használható\n"
-"\n"
-"Kemoreceptor: Messzebbi vegyületek észlelésére képes"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Eukarióta sejtszervecskék\n"
-"\n"
-"Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted meg)\n"
-"\n"
-"Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
-"\n"
-"Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal hatékonyabban, mint egy citoplazma\n"
-"\n"
-"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) segítségével\n"
-"\n"
-"Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
-"\n"
-"Nitrifikáló színtest: Ammóniát állít elő ATP-ből, és az atmoszférából gyűjtött oxigénből és nitrogénből\n"
-"\n"
-"Sejtüreg: 8 egységnyi vegyületet tud raktározni\n"
-"\n"
-"Mérget tartalmazó sejtüreg: Mérget állít elő (Neve [thrive:compound type=\"oxytoxy\"][/thrive:compound]) és lehetővé teszi, hogy ezt a mérget kilőve megsebezz más sejteket a méreg mennyisége alapján"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod is a sejtszervecskéket, miközben lerakod őket a [thrive:input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/thrive:input] megnyomásával."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el magad elől, ha elég gyors vagy."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár sejtszervecskét."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is hívják ezeket."
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Érdekesség: a metaboloszómát hívják poliéderes sejtszervecskének."
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud megölni!"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz írtani, viszont ezt ők is megtehetik veled."
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "HULLÁMZÓ BIGYUSZOK!!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Égesd a vasat."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Na azok a kék sejtek."
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak meg."
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész (VuTuTuTu), viszont ez több ATP-t is használ"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli csillókkal áramlatot generál."
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Érdekesség: Az amőbák műlábakkal vadásznak prédáikra, amiket pseudopodia-nak neveznek. Ezt mindenképpen szeretnénk, hogy a Thrive-ban benne legyen."
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Itt egy kis tanács. Figyelj a nálad nagyobb egysejtűekre és baktériumokra. Nem olyan mókás megemésztődni."
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "A Thrive zenei csapatának vezetője (Oliver Lugg) elég sok számot csinált, amik még nem kerültek be a játékba. Meghallgathatod őket, vagy nézhetsz tőle élő adásokat, ahogy ezeket a dalokat készíti."
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Itt egy kis tanács. Ha a sejted 150 hexagon nagyságú, akkor a nagy vasdarabokat is el tudod nyelni."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e őket azonosítani."
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Érdekesség: a Thrive fejlesztőinek van egy podcast sorozata. Néha ránézhetsz, ha kedved tartja."
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Érdekesség: a Thrive a nyílt forráskódú Godot motorral készült."
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Érdekesség: a játék egyik legelső játszható prototípusát egyik kedves programozónk, untrustedlife készítette!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -364,19 +111,19 @@ msgstr "Képességek"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "Méreg lövése"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "Elnyelés be/ki"
 
@@ -385,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Tartsd lenyomva a csoport parancsok menü megjelenítéséhez"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr "Összekapcsolás be/ki"
 
@@ -394,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Szétválás be/ki"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr "Összes szétválasztása"
 
@@ -1384,7 +1131,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Bimbózás"
 
@@ -2094,7 +1840,7 @@ msgstr "Bezár"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2399,24 +2145,10 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Egyes beállítások lehet, hogy nem elérhetők, hogyha a LAWK engedélyezve van"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hidrotermális nyílások"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr "Kis meleg tavacska"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Pánspermia (véletlen)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
@@ -2532,15 +2264,9 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(procedurális patch térkép generálása, vagy a klasszikus elrendezés használata)"
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedurális"
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Klasszikus"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2680,25 +2406,9 @@ msgstr "Többszörös élsimítás:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(a nagyobb értékek ronthatják a teljesítményt)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "Kikapcsolva"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr "2x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr "4x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr "8x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2708,25 +2418,13 @@ msgstr "Felbontás:"
 msgid "MAX_FPS"
 msgstr "Maximum FPS:"
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "Végtelen"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Színvakság javító:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "Semmi"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr "Protanóp (Piros-Zöld)"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
-msgstr "Tritanóp (Kék-Citrom)"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2852,43 +2550,9 @@ msgstr "Szálak:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Entitások maximális száma:"
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_VERY_SMALL"
-msgstr "Elég kicsi"
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_SMALL"
-msgstr "Kicsi"
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_NORMAL"
-msgstr "Elfogad"
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_LARGE"
-msgstr "Nagy"
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_VERY_LARGE"
-msgstr "Nagyon nagy"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_EXTREME"
-msgstr "Extrém"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2917,17 +2581,8 @@ msgstr "Verzió:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
-msgid "SCALING_ON"
-msgstr "Jelző szövet"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -3019,17 +2674,9 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mód:"
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatikusan"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Mindig"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Soha"
 
 #: ../src/general/OptionsMenu.tscn:1628
 #, fuzzy
@@ -3186,7 +2833,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "kihalt a bolygón"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -3244,6 +2891,18 @@ msgstr "Csalások engedélyezve"
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Kikapcsolva"
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr "Kis meleg tavacska"
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr "Pánspermia (véletlen)"
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "Klasszikus"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3679,9 +3338,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -4284,7 +3943,6 @@ msgid "APPEARANCE"
 msgstr "Teljesítmény"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Reprodukció"
@@ -4368,7 +4026,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "reprodukálva"
 
@@ -5001,19 +4659,19 @@ msgstr "KIHALTÁL"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m-el a tenger alatt"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "A fajok populációi"
@@ -6099,7 +5757,7 @@ msgstr ""
 "\n"
 "A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az adott sejtszervecskét."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
@@ -6110,30 +5768,39 @@ msgstr ""
 "\n"
 "Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Tutorial-ok mutatása"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr "A túlélés kezdése"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Gyűjts glükózt úgy, hogy áthaladsz a fehér felhőkön.\n"
 "A sejtednek szüksége van glükózra, hogy energiát tudjon előállítani és túl tudjon így élni.\n"
 "Kövesd a vonalat, hogy találj egy kis glükózt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
+"A sejted meghal, ha elfogy az életereje.\n"
+"Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
+"Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
@@ -6141,14 +5808,14 @@ msgstr ""
 "Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
 "Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
 "A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6158,7 +5825,7 @@ msgstr ""
 "\n"
 "A szerkesztőbe való belépéshez kattints a villogó szerkesztő gombra a képernyő jobb alsó sarkában."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6166,7 +5833,7 @@ msgstr ""
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -6174,12 +5841,12 @@ msgstr ""
 "\n"
 "Még egy tanács: a görgő segítségével távolodhatsz a kamerával a sejtedtől."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6187,7 +5854,7 @@ msgstr ""
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6195,7 +5862,7 @@ msgstr ""
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -6203,7 +5870,7 @@ msgstr ""
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6211,15 +5878,263 @@ msgstr ""
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Többsejtes szerkesztő betöltése"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "A túlélés kezdése"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a [thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és távolodni a sejtedtől."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor elpusztul."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a [thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés befejezéséhez."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Amint a bekebelezés befejeződik, minden objektum, amit bekebeleztél, a membránon belül marad, hogy meg tudjon emésztődni. Az emészthetetlen anyagok mindig kilökődnek a sejtből, ezért győződj meg arról, hogy rendelkezel a szükséges mutációkkal, amelyek lehetővé teszik ezen anyagok emésztését. A lizoszóma által termelt enzimek segítenek az emésztésben. Fejleszd ezt a sejtszervecskét, hogy még hatékonyabbá tedd a sejted emésztését."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Azonban a lizoszómák csak az eukarióták számára elérhetőek. A prokariótáknak nincsenek ilyen szerveik, és nem a leghatékonyabban emésztik meg a táplálékot. Kisebb sejteknél a lizoszóma hiánya nem befolyásol semmit, viszont a nagyobb sejteknél ez hátráltató tényező."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "A cellulóz és kitin sejtfal nem emészthető a sejt számára mindaddig, amíg nem rendelkezik a szükséges enzimmel, ami ezen anyagok lebontásához szükséges."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra (vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "A különböző vegyületfelhők lehetnek:\n"
+#~ "\n"
+#~ "Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
+#~ "Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/thrive:compound]\n"
+#~ "Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:compound]\n"
+#~ "Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
+#~ "Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
+#~ "\n"
+#~ "A glükózból ATP készül."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és kemoszintetizáló fehérjék segítségével. A vasat rusticyanin segítségével pedig ATP-vé tudod alakítani."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz halni."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, melyek egymással vegyületeket osztanak meg, amiket elnyelnek és előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a játékban)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokarióta szerkezetek\n"
+#~ "\n"
+#~ "Metaboloszómák: A gülkózból ATP-t állít elő.\n"
+#~ "\n"
+#~ "Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
+#~ "\n"
+#~ "Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
+#~ "\n"
+#~ "Rusticyanin: A vasat ATP-vé alakítja át\n"
+#~ "\n"
+#~ "Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
+#~ "\n"
+#~ "Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Külső sejtszervecskék\n"
+#~ "\n"
+#~ "Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
+#~ "\n"
+#~ "Pilus: Más sejtek megszúrására használható\n"
+#~ "\n"
+#~ "Kemoreceptor: Messzebbi vegyületek észlelésére képes"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Eukarióta sejtszervecskék\n"
+#~ "\n"
+#~ "Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted meg)\n"
+#~ "\n"
+#~ "Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
+#~ "\n"
+#~ "Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal hatékonyabban, mint egy citoplazma\n"
+#~ "\n"
+#~ "Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) segítségével\n"
+#~ "\n"
+#~ "Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
+#~ "\n"
+#~ "Nitrifikáló színtest: Ammóniát állít elő ATP-ből, és az atmoszférából gyűjtött oxigénből és nitrogénből\n"
+#~ "\n"
+#~ "Sejtüreg: 8 egységnyi vegyületet tud raktározni\n"
+#~ "\n"
+#~ "Mérget tartalmazó sejtüreg: Mérget állít elő (Neve [thrive:compound type=\"oxytoxy\"][/thrive:compound]) és lehetővé teszi, hogy ezt a mérget kilőve megsebezz más sejteket a méreg mennyisége alapján"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod is a sejtszervecskéket, miközben lerakod őket a [thrive:input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/thrive:input] megnyomásával."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el magad elől, ha elég gyors vagy."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár sejtszervecskét."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is hívják ezeket."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Érdekesség: a metaboloszómát hívják poliéderes sejtszervecskének."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud megölni!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz írtani, viszont ezt ők is megtehetik veled."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "HULLÁMZÓ BIGYUSZOK!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Égesd a vasat."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Na azok a kék sejtek."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak meg."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész (VuTuTuTu), viszont ez több ATP-t is használ"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli csillókkal áramlatot generál."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Érdekesség: Az amőbák műlábakkal vadásznak prédáikra, amiket pseudopodia-nak neveznek. Ezt mindenképpen szeretnénk, hogy a Thrive-ban benne legyen."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Itt egy kis tanács. Figyelj a nálad nagyobb egysejtűekre és baktériumokra. Nem olyan mókás megemésztődni."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "A Thrive zenei csapatának vezetője (Oliver Lugg) elég sok számot csinált, amik még nem kerültek be a játékba. Meghallgathatod őket, vagy nézhetsz tőle élő adásokat, ahogy ezeket a dalokat készíti."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Itt egy kis tanács. Ha a sejted 150 hexagon nagyságú, akkor a nagy vasdarabokat is el tudod nyelni."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e őket azonosítani."
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Érdekesség: a Thrive fejlesztőinek van egy podcast sorozata. Néha ránézhetsz, ha kedved tartja."
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Érdekesség: a Thrive a nyílt forráskódú Godot motorral készült."
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Érdekesség: a játék egyik legelső játszható prototípusát egyik kedves programozónk, untrustedlife készítette!"
+
+#~ msgid "TWO_TIMES"
+#~ msgstr "2x"
+
+#~ msgid "FOUR_TIMES"
+#~ msgstr "4x"
+
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "8x"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "Végtelen"
+
+#~ msgid "CORRECTION_PROTANOPE"
+#~ msgstr "Protanóp (Piros-Zöld)"
+
+#~ msgid "CORRECTION_TRITANOPE"
+#~ msgstr "Tritanóp (Kék-Citrom)"
+
+#, fuzzy
+#~ msgid "LIMIT_VERY_SMALL"
+#~ msgstr "Elég kicsi"
+
+#, fuzzy
+#~ msgid "LIMIT_SMALL"
+#~ msgstr "Kicsi"
+
+#, fuzzy
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "Elfogad"
+
+#, fuzzy
+#~ msgid "LIMIT_LARGE"
+#~ msgstr "Nagy"
+
+#, fuzzy
+#~ msgid "LIMIT_VERY_LARGE"
+#~ msgstr "Nagyon nagy"
+
+#, fuzzy
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "Extrém"
+
+#, fuzzy
+#~ msgid "SCALING_ON"
+#~ msgstr "Jelző szövet"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Mindig"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Soha"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Jelenlegi statisztikák a játékról"

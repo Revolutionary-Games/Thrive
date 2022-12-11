@@ -34,6 +34,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath GlucoseTutorialPath = null!;
 
     [Export]
+    public NodePath DayNightTutorialPath = null!;
+
+    [Export]
     public NodePath StayingAlivePath = null!;
 
     [Export]
@@ -84,6 +87,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog engulfmentFullCapacity = null!;
     private CustomDialog leaveColonyTutorial = null!;
     private CustomDialog earlyMulticellularWelcome = null!;
+    private CustomDialog dayNightTutorial = null!;
 
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
@@ -368,6 +372,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool DayNightTutorialVisible
+    {
+        get => dayNightTutorial.Visible;
+        set
+        {
+            if (value == dayNightTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                dayNightTutorial.Show();
+            }
+            else
+            {
+                dayNightTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
@@ -388,6 +411,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
         leaveColonyTutorial = GetNode<CustomDialog>(LeaveColonyTutorialPath);
         earlyMulticellularWelcome = GetNode<CustomDialog>(EarlyMulticellularWelcomePath);
+        dayNightTutorial = GetNode<CustomDialog>(DayNightTutorialPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 

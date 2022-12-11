@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -80,271 +80,6 @@ msgstr "Editor de Microbi"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicel·lular"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Un cop l'Engoliment s'hagi completat, tots els objectes atrapats es retindran dins la membrane per a ser digerits. Els objectes no digeribles seran sempre expulsats, de manera que primer t'has d'assegurar que tens les mutacions adequades per a poder-los processar. Els enzims que proporcionen els Lisosomes ajudaran amb la digestió, de manera que és recomanat evolucionar aquest orgànul per tal d'aconseguir una digestió molt més eficient."
-
-#: ../simulation_parameters/common/help_texts.json:26
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "No obstant, els Lisosomes són exclusius dels organismes eucariotes. Els procariotes, en canvi, no poden tenir aquest orgànul, de manera que digereixen el menjar de manera bastant ineficient. Per cèl·lules petites no hi ha cap problema, però per cèl·lules més grans no tenir Lisosomes és un gran desavantatge."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Les parets cel·lulars de Cel·lulose i Quitina, en particular, no es poden digerir si no es compta amb un enzim especial que les pot trencar."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Els diferents núvols de compostos són:\n"
-"\n"
-"Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\" prement [thrive:input]g_toggle_binding[/thrive:input]. Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia prement [thrive:input]g_unbind_all[/thrive:input]. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Estructures Procariòtiques\n"
-"\n"
-"Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
-"\n"
-"Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
-"\n"
-"Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
-"\n"
-"Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Orgànuls externs\n"
-"\n"
-"Flagel: Fa que la teva cèl·lula sigui més ràpida consumint [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Estructura per punxar altres cèl·lules\n"
-"\n"
-"Quimioreceptor: Permet detectar compostos a distància.\n"
-"\n"
-"Cili: Augment la velocitat de gir de les cèl·lules"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Orgànuls adherits a la membrana\n"
-"\n"
-"Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un 50% (només es pot evolucionar una vegada)\n"
-"\n"
-"Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
-"\n"
-"Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 atmosfèric de manera molt més eficient que el citoplasma\n"
-"\n"
-"Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de llum solar i CO2 atmosfèric\n"
-"\n"
-"Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura\n"
-"\n"
-"Lysosome: Conté enzims digestius\n"
-"\n"
-"Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
-"\n"
-"Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
-"\n"
-"Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal en funció de la quantitat de toxines disponibles\n"
-"\n"
-"Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium i les cèl·lules Paramecium és un exemple típic i clar, que ha estat estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un depredador, o bé la presa?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies toxines per a bloquejar-ne d'altres."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon de citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas perdent ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o bé elimina alguns orgànuls."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "A mode de curiositat, al planeta Terra, els organismes procariotes tenen unes estructures anomenades Biocompartiments que actuen com orgànuls. En realitat, s'anomenen Orgànuls Polihèdrics."
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls Polihèdrics."
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Un petit consell, de vegades és millor fugir ràpidament de les altres cèl·lules."
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita que tu, la pots engolir per alimentar-te'n."
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-s'ho dues vegades!"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "Un petit consell, si caçes altres espècies i no vas amb compte, es poden extingir. També es poden extingir si són caçades per altres espècies depredadores."
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "ÉSSERS LLEFISCOSOS!!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a propòsit, que vol dir \"Fondre els metalls\"."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "No obstant, aquestes cèl·lules de color blau."
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "Un petit consell: els diferents Biomes no són tan sols diferents fons, sinó que en cadascun hi ha diferents proporcions de compostos."
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, però també més ATP consumiràs"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Un petit consell: no només et pots empassar cèl·lules, sinó també trossos de Ferro."
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un Nucli. Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "A mode de curiositat, sabies que hi ha més de 8000 espècies d'organismes ciliats al planeta Terra?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, genera corrents d'aigua que atrapen a les preses."
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran implementades al joc."
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, no és gens divertit ser engolit per una d'aquestes bestioles."
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "L'equip de so de Thrive ha composat moltes cançons, algunes de les quals encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot veure emissions en directe al canal de YouTube 'Oliver Lugg'."
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs empassar fins i tot el trossos de ferro més grans del joc."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive representa una simulació d'un planeta alienígena. Per tant, la majoria de criatures que vagis trobant, estaran emparentades i mostraran similituds amb d'altres espècies degut al procés d'evolució. Intenta identificar-les!"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert temps. Estigues amatent i no te'n perdis ni un!"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "A mode de curiositat, Thrive està essent desenvolupat amb el motor de videojoc de codi obert anomenat Godot!"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "A mode de curiositat, un dels primers prototips jugables d'aquest joc va ser desenvolupat pel nostre gran programador untrustedlife!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -376,19 +111,19 @@ msgstr "Habilitats"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "Llançar les toxines"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr "Secretar mucílag"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
@@ -397,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Mantenir clicat per mostrar el menú d'ordres de la bandada"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
@@ -406,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr "Desunir totes les cèl·lules"
 
@@ -1395,7 +1130,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmació"
 
@@ -2105,7 +1839,7 @@ msgstr "Tancar"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2410,24 +2144,10 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Algunes opcions poden ser desactivades si només LAWK està activat"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Fumaroles hidrotermals"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr "Petit, càlid toll"
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Panspèrmia (aleatori)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
@@ -2542,15 +2262,9 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(generar un mapa d'ecosistemes proceduralment o utilitzar el mapa clàssic)"
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedural"
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Clàssic"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2690,25 +2404,9 @@ msgstr "Antialiàsing Multimostres (MSAA):"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valors més alts empitjoren el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
 msgstr "Inhabilitat"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr "2x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr "4x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr "8x"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
-msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2718,25 +2416,13 @@ msgstr "Resolució:"
 msgid "MAX_FPS"
 msgstr "Màxims FPS:"
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "Il·limitat"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correcció per daltonisme:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
 msgstr "Cap"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr "Protanòpia (Vermell-Verd)"
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
-msgstr "Tritanopia (Blau-Groc)"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2861,37 +2547,9 @@ msgstr "Fils:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Màxim nombre d'entitats:"
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr "Minúscul"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr "Molt petit"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr "Petit"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_NORMAL"
-msgstr "Normal"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr "Gran"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr "Molt gran"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr "Enorme"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_EXTREME"
-msgstr "Extrem"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2920,17 +2578,8 @@ msgstr "Versió:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
-msgid "SCALING_ON"
-msgstr "Agent de Senyalització"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -3023,17 +2672,9 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr "Mode debug de JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automàticament"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Sempre"
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Mai"
 
 #: ../src/general/OptionsMenu.tscn:1628
 #, fuzzy
@@ -3189,7 +2830,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "s'ha extingit de l'ecosistema"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -3246,6 +2887,18 @@ msgstr "Trucs activats"
 #, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Inhabilitat"
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr "Petit, càlid toll"
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr "Panspèrmia (aleatori)"
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "Clàssic"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3680,9 +3333,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -4274,7 +3927,6 @@ msgid "APPEARANCE"
 msgstr "Aparença"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexual"
 
@@ -4352,7 +4004,7 @@ msgstr "mort"
 msgid "ESCAPE_ENGULFING"
 msgstr "evasió d'un intent d'engolició"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "reproducció"
 
@@ -4971,19 +4623,19 @@ msgstr "EXTINCIÓ"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Com tantes i tantes altres espècies al llarg dels eons i de les edats d'aquest planeta, els teus petits organismes s'han extingit. A partir d'ara, altres espècies ocuparan el seu nínxol en les cadenes tròfiques dels diferents biomes i, potser, evolucionaran fins a esdevenir éssers intel·ligents que navegaran conscientment cap a planetes i estrelles llunyanes. No obstant, la teva línia evolutiva s'ha tallat, ha esdevingut un experiment fallit en el llarg procés de l'evolució."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sota el nivell del mar"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} amb població: {1}"
 
@@ -6071,7 +5723,7 @@ msgstr ""
 "\n"
 "Una possible estratègia consisteix en mantenir-se com un sol hexàgon de citoplasma i simplement dirigir-te als biomes de la superfície primer abans d'aconseguir orgànuls de fotosíntesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Fa molt de temps, en un planeta molt i molt llunyà...\n"
@@ -6084,22 +5736,22 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr "Començar a prosperar"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la pantalla. Per tal de controlar-la, fes servir les tecles que es mostren al seu costat.\n"
 "\n"
 "Prova totes les tecles durant uns instants per tal de continuar."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Recol·lecta Glucosa (núvols blancs) desplaçant-t'hi per sobre.\n"
@@ -6108,7 +5760,16 @@ msgstr ""
 "\n"
 "Segueix la línia de la pantalla, des de la teva cèl·lula fins al núvol de Glucosa més proper."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
+"Si la teva cèl·lula es queda sense energia, es morirà.\n"
+"Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
+"Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
@@ -6116,13 +5777,13 @@ msgstr ""
 "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
 "Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Has recol·lectat prou recursos per què la teva cèl·lula es reprodueixi.\n"
@@ -6131,32 +5792,32 @@ msgstr ""
 "\n"
 "Per entrar a l'editor, prem el botó que parpelleja a sota i a la dreta de la pantalla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
 "\n"
 "Un altre consell: pots ampliar el camp de visió amb la rodeta del ratolí."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "La teva cèl·lula té una capacitat limitada d'objectes que es poden engolir alhora. Aquest límit està basat en la mida; cèl·lules més petites tenen menys capacitat.\n"
 "\n"
 "Quan estigui plena, una cèl·lula no pot engolir més objectes. Per seguir engolint, cal esperar fins que un o més dels objectes ingerits hagin estat totalment digerits."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Engoleix objectes movent-hi per sobre mentre estiguis en el mode d'engoliment. Activa el mode d'engoliment prement [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6165,14 +5826,14 @@ msgstr ""
 "\n"
 "Segueix la línia de la teva cèl·lula fins a l'objecte engolible proper."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "La teva cèl·lula ha estat engolida i està essent digerida. El progrés es mostra a la teva barra de salut. La teva cèl·lula morirà quan acabi o s'assoleixi un límit de temps màxim.\n"
 "\n"
 "Pots utilitzar el botó de suicidi per ometre i reaparèixer, però recorda que sempre hi haurà una oportunitat d'escapar-te!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6180,15 +5841,272 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Carregant l'Editor Multicel·lular Primerenc"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Començar a prosperar"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Un cop l'Engoliment s'hagi completat, tots els objectes atrapats es retindran dins la membrane per a ser digerits. Els objectes no digeribles seran sempre expulsats, de manera que primer t'has d'assegurar que tens les mutacions adequades per a poder-los processar. Els enzims que proporcionen els Lisosomes ajudaran amb la digestió, de manera que és recomanat evolucionar aquest orgànul per tal d'aconseguir una digestió molt més eficient."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "No obstant, els Lisosomes són exclusius dels organismes eucariotes. Els procariotes, en canvi, no poden tenir aquest orgànul, de manera que digereixen el menjar de manera bastant ineficient. Per cèl·lules petites no hi ha cap problema, però per cèl·lules més grans no tenir Lisosomes és un gran desavantatge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Les parets cel·lulars de Cel·lulose i Quitina, en particular, no es poden digerir si no es compta amb un enzim especial que les pot trencar."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Els diferents núvols de compostos són:\n"
+#~ "\n"
+#~ "Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\" prement [thrive:input]g_toggle_binding[/thrive:input]. Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia prement [thrive:input]g_unbind_all[/thrive:input]. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Estructures Procariòtiques\n"
+#~ "\n"
+#~ "Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
+#~ "\n"
+#~ "Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
+#~ "\n"
+#~ "Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
+#~ "\n"
+#~ "Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Orgànuls externs\n"
+#~ "\n"
+#~ "Flagel: Fa que la teva cèl·lula sigui més ràpida consumint [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Estructura per punxar altres cèl·lules\n"
+#~ "\n"
+#~ "Quimioreceptor: Permet detectar compostos a distància.\n"
+#~ "\n"
+#~ "Cili: Augment la velocitat de gir de les cèl·lules"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Orgànuls adherits a la membrana\n"
+#~ "\n"
+#~ "Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un 50% (només es pot evolucionar una vegada)\n"
+#~ "\n"
+#~ "Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
+#~ "\n"
+#~ "Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 atmosfèric de manera molt més eficient que el citoplasma\n"
+#~ "\n"
+#~ "Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de llum solar i CO2 atmosfèric\n"
+#~ "\n"
+#~ "Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura\n"
+#~ "\n"
+#~ "Lysosome: Conté enzims digestius\n"
+#~ "\n"
+#~ "Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
+#~ "\n"
+#~ "Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
+#~ "\n"
+#~ "Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal en funció de la quantitat de toxines disponibles\n"
+#~ "\n"
+#~ "Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium i les cèl·lules Paramecium és un exemple típic i clar, que ha estat estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un depredador, o bé la presa?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies toxines per a bloquejar-ne d'altres."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon de citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas perdent ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o bé elimina alguns orgànuls."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "A mode de curiositat, al planeta Terra, els organismes procariotes tenen unes estructures anomenades Biocompartiments que actuen com orgànuls. En realitat, s'anomenen Orgànuls Polihèdrics."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls Polihèdrics."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Un petit consell, de vegades és millor fugir ràpidament de les altres cèl·lules."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita que tu, la pots engolir per alimentar-te'n."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-s'ho dues vegades!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "Un petit consell, si caçes altres espècies i no vas amb compte, es poden extingir. També es poden extingir si són caçades per altres espècies depredadores."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "ÉSSERS LLEFISCOSOS!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a propòsit, que vol dir \"Fondre els metalls\"."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "No obstant, aquestes cèl·lules de color blau."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "Un petit consell: els diferents Biomes no són tan sols diferents fons, sinó que en cadascun hi ha diferents proporcions de compostos."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, però també més ATP consumiràs"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Un petit consell: no només et pots empassar cèl·lules, sinó també trossos de Ferro."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un Nucli. Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "A mode de curiositat, sabies que hi ha més de 8000 espècies d'organismes ciliats al planeta Terra?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, genera corrents d'aigua que atrapen a les preses."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran implementades al joc."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, no és gens divertit ser engolit per una d'aquestes bestioles."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "L'equip de so de Thrive ha composat moltes cançons, algunes de les quals encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot veure emissions en directe al canal de YouTube 'Oliver Lugg'."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs empassar fins i tot el trossos de ferro més grans del joc."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive representa una simulació d'un planeta alienígena. Per tant, la majoria de criatures que vagis trobant, estaran emparentades i mostraran similituds amb d'altres espècies degut al procés d'evolució. Intenta identificar-les!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert temps. Estigues amatent i no te'n perdis ni un!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "A mode de curiositat, Thrive està essent desenvolupat amb el motor de videojoc de codi obert anomenat Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "A mode de curiositat, un dels primers prototips jugables d'aquest joc va ser desenvolupat pel nostre gran programador untrustedlife!"
+
+#~ msgid "TWO_TIMES"
+#~ msgstr "2x"
+
+#~ msgid "FOUR_TIMES"
+#~ msgstr "4x"
+
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "8x"
+
+#~ msgid "SIXTEEN_TIMES"
+#~ msgstr "16x"
+
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "Il·limitat"
+
+#~ msgid "CORRECTION_PROTANOPE"
+#~ msgstr "Protanòpia (Vermell-Verd)"
+
+#~ msgid "CORRECTION_TRITANOPE"
+#~ msgstr "Tritanopia (Blau-Groc)"
+
+#~ msgid "LIMIT_VERY_SMALL"
+#~ msgstr "Molt petit"
+
+#~ msgid "LIMIT_SMALL"
+#~ msgstr "Petit"
+
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "Normal"
+
+#~ msgid "LIMIT_LARGE"
+#~ msgstr "Gran"
+
+#~ msgid "LIMIT_VERY_LARGE"
+#~ msgstr "Molt gran"
+
+#~ msgid "LIMIT_HUGE"
+#~ msgstr "Enorme"
+
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "Extrem"
+
+#, fuzzy
+#~ msgid "SCALING_ON"
+#~ msgstr "Agent de Senyalització"
+
+#~ msgid "JSON_DEBUG_MODE_ALWAYS"
+#~ msgstr "Sempre"
+
+#~ msgid "JSON_DEBUG_MODE_NEVER"
+#~ msgstr "Mai"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estadístiques sobre la partida actual"

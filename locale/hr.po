@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Ivan Bratović <ivanbratovic4@gmail.com>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -80,271 +80,6 @@ msgstr "Uređivač mikroba"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Višestanični uređivač"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Stanica koristi [thrive:compound type=\"atp\"][/thrive:compound] kao izvor energije. Ako ga ponestane, stanica će umrijeti."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Za otključavanje uređivača i razmnožavanje, potrebno je ostati živ dovoljno dugo. Skupljanje [thrive:compound type=\"ammonia\"][/thrive:compound] (narančasti oblak) te [thrive:compound type=\"phosphates\"][/thrive:compound] (ljubičasti oblak) ubrzava stanični rast."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Stanica može gutati druge stanice, bakterije te komadiće željeza i drugih stanica koji su manji od nje same korištenjem [thrive:input]g_toggle_engulf[/thrive:input]. Dok stanica guta, troši dodatni [thrive:compound type=\"atp\"][/thrive:compound] i sporije se kreće. Ponovno korištenje [thrive:input]g_toggle_engulf[/thrive:input] prekida gutanje."
-
-#: ../simulation_parameters/common/help_texts.json:22
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma probava postaje učinkovitija."
-
-#: ../simulation_parameters/common/help_texts.json:26
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Međutim, lizosomi su dostupni samo eukariotima. Prokarioti nemaju takve organele te im je zbog toga probava neučinkovita. To ne predstavlja veliki problem za male stanice, ali većim je stanicama dosta veliki nedostatak."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Celulozne i hitinske stanične stijenke se naročito ne mogu probaviti bez potrebnog enzima koji ih može razgraditi."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacija troši [thrive:compound type=\"atp\"][/thrive:compound]. Što je veća stanica, to treba više mitohondrija, metabolosoma ili rusticijanina treba kako bi se spriječilo trošenje [thrive:compound type=\"atp\"][/thrive:compound] dok stoji na mjestu."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "U uređivaču postoji mnogo organela koji se mogu razvijati, što omogućuje širok raspon različitih stilova igre."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Razni oblaci tvari su:\n"
-"\n"
-"Bijeli – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Žuti – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Narančasti – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Ljubičasti – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Smeđi – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] stvara [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] može se pretvoriti u [thrive:compound type=\"glucose\"][/thrive:compound] pomoću kemoplasta i kemosintetizirajućih proteina. [thrive:compound type=\"iron\"][/thrive:compound] se pomoću rusticijanina može pretvoriti u [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Za razmnožavanje potrebno je podijeliti sve organele na dva dijela. Organeli trebaju [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], i vremena kako bi se podijelili."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Ako populacija padne na nulu, vrsta će izumrijeti."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Međutim, ako preživi dvadeset generacija s 300 jedinki, smatra se da ste pobijedili u trenutnoj igri. Nakon pobjede dobivate skočni prozor i možete nastaviti igrati kako želite."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Budite oprezni jer se druge vrste razvijaju i natječu usporedno s Vašom vrstom. Svaki put kada uđete u uređivač i oni se razvijaju."
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Vezujuće sredstvo omogućuje vašoj stanici i ostalima njezine vrste da izgrade staničnu koloniju u kojoj stanice međusobno dijele spojeve koje apsorbiraju i proizvode. Uđite u način vezivanja pritiskom na [thrive:input]g_toggle_binding[/thrive:input]. Dok ste u koloniji, ne možete podijeliti ćeliju i koristiti stanični uređivač. Za ulazak u uređivač skupite potrebne spojeve i napustite koloniju pritiskom na [thrive:input]g_unbind_all[/thrive:input]. Velike stanične kolonije put su prema višestaničnosti."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokariotske strukture\n"
-"\n"
-"Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 ćeliju\n"
-"\n"
-"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 ćeliju\n"
-"\n"
-"Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Vanjski organeli\n"
-"\n"
-"Bič: Brže pomiče vašu stanicu trošeći [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Može se koristiti za probadanje drugih stanica ili za obranu od njihovih toksina\n"
-"\n"
-"Kemoreceptor: Omogućuje otkrivanje spojeva s veće udaljenosti\n"
-"\n"
-"Cilija: Povećava brzinu okretanja stanica"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Organele vezane za membranu\n"
-"\n"
-"Jezgra: Zauzima 11 ćelija i omogućuje evoluciju organela vezanih za membranu, udvostručuje veličinu vaše stanice i smanjuje nastalu štetu za 50% (može se razviti samo jednom)\n"
-"\n"
-"Vezivo sredstvo: Omogućuje vezanje s drugim stanicama. Potreban za napredovanje u višestaničnu fazu.\n"
-"\n"
-"Mitohondrij: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound] i atmosferskog O2, puno učinkovitije od citoplazme\n"
-"\n"
-"Kloroplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od sunčeve svjetlosti i atmosferskog CO2\n"
-"\n"
-"Termoplast: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata\n"
-"\n"
-"Lizosom: Sadrži probavne enzime. Enzimi ubrzavaju i poboljšavaju učinkovitost probave\n"
-"\n"
-"Kemoplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Plastid za fiksiranje dušika: stvara [thrive:compound type=\"ammonia\"][/thrive:compound] od [thrive:compound type=\"atp\"][/thrive:compound] i atmosferskog dušika i kisika\n"
-"\n"
-"Vakuola: Pohranjuje 8 sakupljenih spojeva\n"
-"\n"
-"Vakuole toksina: proizvode toksine (nazvane [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i omogućuju vam da ih otpustite nanoseći štetu na temelju količine dostupnog oksitoxya\n"
-"\n"
-"Signalno sredstvo: Dozvoljava stanicama da stvaraju kemijske spojeve na koje druge stanice mogu reagirati"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Za svaku generaciju imate 100 mutacijskih bodova (MP) koje možete potrošiti, a svaka promjena (ili mutacija) koštat će određeni iznos tog MP-a. Dodavanje i uklanjanje organela košta MP. Međutim, uklanjanjem organela koji su postavljeni u trenutnoj mutaciji, vraća se MP za taj organel. Možete premjestiti ili potpuno ukloniti organel tako da je kliknete desnom tipkom miša i odaberete odgovarajuću radnju iz skočnog izbornika. Možete rotirati svoje organele dok ih postavljate pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Prilikom svakog razmnožavanja, ući ćete u Uređivač Mikroba, gdje možete mijenjati svoju vrstu (dodavanjem, premještanjem ili uklanjanjem organela) kako biste povećali uspjeh svoje vrste. Svaki posjet uređivaču tijekom Stadija Mikroba predstavlja [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milijuna godina evolucije."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "Zabavna činjenica: Didinium i Paramecium školski su primjer odnosa predatora i plijena koji se proučava već desetljećima. Jesi li ti Didinium ili Paramecium? Predator ili plijen?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Jedan savjet: toksini se mogu koristiti za odbacivanje drugih toksina, ako ste dovoljno brzi."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Jedan savjet: Osmoregulacija troši 1 ATP po sekundi po šesterokutnoj ćeliji koje vaša stanica ima, ali svaka prazna ćelija citoplazme također generira 5 ATP po sekundi. To znači da ako gubite ATP zbog osmoregulacije, samo dodajte nekoliko praznih ćelija citoplazme ili uklonite neke organele."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -376,19 +111,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
@@ -397,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 msgid "TOGGLE_BINDING"
 msgstr ""
 
@@ -406,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -1375,7 +1110,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
@@ -2052,7 +1786,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2325,23 +2059,9 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:214
@@ -2453,14 +2173,8 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:959
@@ -2595,24 +2309,8 @@ msgstr ""
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "EIGHT_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:318
@@ -2623,24 +2321,12 @@ msgstr ""
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:357
-msgid "MAX_FPS_NO_LIMIT"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:404
@@ -2765,36 +2451,8 @@ msgstr ""
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_NORMAL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_EXTREME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1148
@@ -2822,16 +2480,8 @@ msgstr ""
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -2918,16 +2568,8 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1628
@@ -3067,7 +2709,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr ""
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -3121,6 +2763,18 @@ msgstr ""
 
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:171
@@ -3532,9 +3186,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr ""
 
@@ -4087,7 +3741,6 @@ msgid "APPEARANCE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
@@ -4161,7 +3814,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr ""
 
@@ -4764,19 +4417,19 @@ msgstr ""
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
@@ -5779,70 +5432,223 @@ msgstr ""
 "\n"
 "Jedna od mogućih strategija je zadržati jednu ćeliju citoplazme i krenuti prema površini prije nego što razvijete organele za fotosintezu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 msgid "CONTINUE_THRIVING"
 msgstr ""
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Stanica koristi [thrive:compound type=\"atp\"][/thrive:compound] kao izvor energije. Ako ga ponestane, stanica će umrijeti."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Za otključavanje uređivača i razmnožavanje, potrebno je ostati živ dovoljno dugo. Skupljanje [thrive:compound type=\"ammonia\"][/thrive:compound] (narančasti oblak) te [thrive:compound type=\"phosphates\"][/thrive:compound] (ljubičasti oblak) ubrzava stanični rast."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Stanica može gutati druge stanice, bakterije te komadiće željeza i drugih stanica koji su manji od nje same korištenjem [thrive:input]g_toggle_engulf[/thrive:input]. Dok stanica guta, troši dodatni [thrive:compound type=\"atp\"][/thrive:compound] i sporije se kreće. Ponovno korištenje [thrive:input]g_toggle_engulf[/thrive:input] prekida gutanje."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma probava postaje učinkovitija."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Međutim, lizosomi su dostupni samo eukariotima. Prokarioti nemaju takve organele te im je zbog toga probava neučinkovita. To ne predstavlja veliki problem za male stanice, ali većim je stanicama dosta veliki nedostatak."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Celulozne i hitinske stanične stijenke se naročito ne mogu probaviti bez potrebnog enzima koji ih može razgraditi."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulacija troši [thrive:compound type=\"atp\"][/thrive:compound]. Što je veća stanica, to treba više mitohondrija, metabolosoma ili rusticijanina treba kako bi se spriječilo trošenje [thrive:compound type=\"atp\"][/thrive:compound] dok stoji na mjestu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "U uređivaču postoji mnogo organela koji se mogu razvijati, što omogućuje širok raspon različitih stilova igre."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Razni oblaci tvari su:\n"
+#~ "\n"
+#~ "Bijeli – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Žuti – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Narančasti – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Ljubičasti – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Smeđi – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] stvara [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] može se pretvoriti u [thrive:compound type=\"glucose\"][/thrive:compound] pomoću kemoplasta i kemosintetizirajućih proteina. [thrive:compound type=\"iron\"][/thrive:compound] se pomoću rusticijanina može pretvoriti u [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Za razmnožavanje potrebno je podijeliti sve organele na dva dijela. Organeli trebaju [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], i vremena kako bi se podijelili."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Ako populacija padne na nulu, vrsta će izumrijeti."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Međutim, ako preživi dvadeset generacija s 300 jedinki, smatra se da ste pobijedili u trenutnoj igri. Nakon pobjede dobivate skočni prozor i možete nastaviti igrati kako želite."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Budite oprezni jer se druge vrste razvijaju i natječu usporedno s Vašom vrstom. Svaki put kada uđete u uređivač i oni se razvijaju."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Vezujuće sredstvo omogućuje vašoj stanici i ostalima njezine vrste da izgrade staničnu koloniju u kojoj stanice međusobno dijele spojeve koje apsorbiraju i proizvode. Uđite u način vezivanja pritiskom na [thrive:input]g_toggle_binding[/thrive:input]. Dok ste u koloniji, ne možete podijeliti ćeliju i koristiti stanični uređivač. Za ulazak u uređivač skupite potrebne spojeve i napustite koloniju pritiskom na [thrive:input]g_unbind_all[/thrive:input]. Velike stanične kolonije put su prema višestaničnosti."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokariotske strukture\n"
+#~ "\n"
+#~ "Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 ćeliju\n"
+#~ "\n"
+#~ "Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 ćeliju\n"
+#~ "\n"
+#~ "Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Vanjski organeli\n"
+#~ "\n"
+#~ "Bič: Brže pomiče vašu stanicu trošeći [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Može se koristiti za probadanje drugih stanica ili za obranu od njihovih toksina\n"
+#~ "\n"
+#~ "Kemoreceptor: Omogućuje otkrivanje spojeva s veće udaljenosti\n"
+#~ "\n"
+#~ "Cilija: Povećava brzinu okretanja stanica"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Organele vezane za membranu\n"
+#~ "\n"
+#~ "Jezgra: Zauzima 11 ćelija i omogućuje evoluciju organela vezanih za membranu, udvostručuje veličinu vaše stanice i smanjuje nastalu štetu za 50% (može se razviti samo jednom)\n"
+#~ "\n"
+#~ "Vezivo sredstvo: Omogućuje vezanje s drugim stanicama. Potreban za napredovanje u višestaničnu fazu.\n"
+#~ "\n"
+#~ "Mitohondrij: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound] i atmosferskog O2, puno učinkovitije od citoplazme\n"
+#~ "\n"
+#~ "Kloroplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od sunčeve svjetlosti i atmosferskog CO2\n"
+#~ "\n"
+#~ "Termoplast: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata\n"
+#~ "\n"
+#~ "Lizosom: Sadrži probavne enzime. Enzimi ubrzavaju i poboljšavaju učinkovitost probave\n"
+#~ "\n"
+#~ "Kemoplast: stvara [thrive:compound type=\"glucose\"][/thrive:compound] od [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Plastid za fiksiranje dušika: stvara [thrive:compound type=\"ammonia\"][/thrive:compound] od [thrive:compound type=\"atp\"][/thrive:compound] i atmosferskog dušika i kisika\n"
+#~ "\n"
+#~ "Vakuola: Pohranjuje 8 sakupljenih spojeva\n"
+#~ "\n"
+#~ "Vakuole toksina: proizvode toksine (nazvane [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i omogućuju vam da ih otpustite nanoseći štetu na temelju količine dostupnog oksitoxya\n"
+#~ "\n"
+#~ "Signalno sredstvo: Dozvoljava stanicama da stvaraju kemijske spojeve na koje druge stanice mogu reagirati"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Za svaku generaciju imate 100 mutacijskih bodova (MP) koje možete potrošiti, a svaka promjena (ili mutacija) koštat će određeni iznos tog MP-a. Dodavanje i uklanjanje organela košta MP. Međutim, uklanjanjem organela koji su postavljeni u trenutnoj mutaciji, vraća se MP za taj organel. Možete premjestiti ili potpuno ukloniti organel tako da je kliknete desnom tipkom miša i odaberete odgovarajuću radnju iz skočnog izbornika. Možete rotirati svoje organele dok ih postavljate pomoću [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Prilikom svakog razmnožavanja, ući ćete u Uređivač Mikroba, gdje možete mijenjati svoju vrstu (dodavanjem, premještanjem ili uklanjanjem organela) kako biste povećali uspjeh svoje vrste. Svaki posjet uređivaču tijekom Stadija Mikroba predstavlja [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milijuna godina evolucije."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "Zabavna činjenica: Didinium i Paramecium školski su primjer odnosa predatora i plijena koji se proučava već desetljećima. Jesi li ti Didinium ili Paramecium? Predator ili plijen?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Jedan savjet: toksini se mogu koristiti za odbacivanje drugih toksina, ako ste dovoljno brzi."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Jedan savjet: Osmoregulacija troši 1 ATP po sekundi po šesterokutnoj ćeliji koje vaša stanica ima, ali svaka prazna ćelija citoplazme također generira 5 ATP po sekundi. To znači da ako gubite ATP zbog osmoregulacije, samo dodajte nekoliko praznih ćelija citoplazme ili uklonite neke organele."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."

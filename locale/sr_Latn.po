@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -86,277 +86,6 @@ msgstr "Učitavanje Uređivača Mikroba"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Vaša ćelija koristi ATP kao izvor energije, ako se potroši, umrećete."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Da biste otključali uređivač i reprodukovali ćeliju, potrebno je da sakupite amonijak (narandžasti oblak) i fosfat (ljubičasti oblak)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Takođe možete da obuzmete ćelije i bakterije i komade gvožđa i delove ćelija koji su manji od vas kada pritisneš G. To će koštati dodatni ATP i usporiće vas. Ne zaboravite da pritisneš G drugi put da biste prestali da proždirete."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Prokariotske strukture\n"
-"\n"
-"Metabolosomi: Stvara ATP iz glukoze\n"
-"\n"
-"Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
-"\n"
-"Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
-"\n"
-"Rusticijanin: Pretvara gvožđe u ATP\n"
-"\n"
-"Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
-"\n"
-"Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
-
-#: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
-
-#: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacija košta ATP, što znači da što je veća vaša ćelija, to vam je potrebno više mitohondrije ili metabolosomi ili rusticijanine (ili citoplazme, koja vrši glikolizu) da biste izbegli gubitak ATP-a kada mirujete."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "U uređivaču ima mnogo organela da biste mogli da se razvijate, omogućavajući širok spektar različitih stilova igranja."
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Razni oblak jedinjenja su:\n"
-"\n"
-"Bela - glukoza\n"
-"Žuta - vodonik-sulfid\n"
-"Narandža - amonijak\n"
-"Ljubičasta - fosfat\n"
-"Rust Brovn - gvožđe\n"
-"\n"
-"Glukoza stvara ATP"
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Vodonik-sulfid se može pretvoriti u glukozu pomoću hemoplasta i hemosintetizujućih proteina. Gvožđe se može pretvoriti putem rusticianina u ATP."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Da biste se reprodukovali, potrebno je da podelite svaki od svojih organela na dva dela. Organeli trebaju amonijak i fosfat da se podele na pola."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Za sada, ako vam populacija padne na nulu, vi ste izumrli."
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Ali ako preživite dvadeset generacija sa populaciija od , smatra se da ste pobedili u trenutnoj igri, nakon pobede dobijate iskačući prozor i možete da nastavite da igrate kako želite."
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Budite oprezni jer se vaši konkurenti razvijaju zajedno sa vama. Svaki put kada uđete u urednik, oni takođe evoluiraju."
-
-#: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokariotske strukture\n"
-"\n"
-"Metabolosomi: Stvara ATP iz glukoze\n"
-"\n"
-"Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
-"\n"
-"Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
-"\n"
-"Rusticijanin: Pretvara gvožđe u ATP\n"
-"\n"
-"Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
-"\n"
-"Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Spoljne organele\n"
-"\n"
-"Bič: brže pokreće ćeliju konzumiranjem ATP-a\n"
-"\n"
-"Grabežljiva Kosa: Može se koristiti za ubadanje drugih ćelija"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membrane vezane organele\n"
-"\n"
-"Nukleus: Zauzima 11 hekse i omogućava razvoj membrana vezanih organela. Takođe udvostručuje veličinu vaše ćelije. (Može se razviti samo jednom)\n"
-"\n"
-"Mitohondrion: Stvara ATP iz glukoze i atmosferskog O2. Mnogo efikasnije od citoplazme\n"
-"\n"
-"Hloroplast: Stvara glukozu od sunčeve svetlosti i atmosferskog CO2\n"
-"\n"
-"Hemoplast: Stvara glukozu od vodonik-sulfida\n"
-"\n"
-"Plastid za fiksiranje azota: Stvara amonijak od ATP i atmosferskog azota i kiseonika\n"
-"\n"
-"Vacuole: Čuva 15 prikupljenih jedinjenja\n"
-"\n"
-"Otrovna Vacuole: Proizvode toksine (nazvane OksiToksi NT)"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Svaka generacija imaš 100 mutaciski poeni (MP), a svaka promena (ili mutacija) koštaće određenu količinu tog MP. Dodavanje i uklanjanje organela košta MP, međutim uklanjanje organela koje su postavljene u trenutnoj sesiji mutacije refundira MP za tu organelu. Organelu možete ukloniti desnim klikom na nju. Organele možete rotirati A i D."
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Svaki put kada se razmnožavate, ući ćete u uređivač mikroba, gde možete da izmenite vrstu (dodavanjem, premeštanjem ili uklanjanjem organela) da biste povećali uspeh svoje vrste. Svaka poseta uredniku na sceni mikroba predstavlja 100 miliona godina evolucije."
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
-
-#: ../simulation_parameters/common/help_texts.json:145
-#, fuzzy
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "STVARI KOJE SE MIGOLJITI!!"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Evo saveta, toksini se mogu koristiti za odbacivanje drugih toksina od vas ako ste dovoljno brzi."
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Evo saveta, osmoregulacija košta 1 ATP po sekundi po heku koju ima vaša ćelija, svaki prazan hek citoplazme takođe generiše 5 ATP u sekundi, što znači da ako gubite ATP usled osmoregulacije, samo dodajte nekoliko praznih hekes citoplazme ili uklonite neke organele ."
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "Zabavna činjenica, u stvarnom životu prokarionti imaju nešto što se naziva Biokompanije i deluju poput organela, a zapravo se nazivaju Poliedrične organele."
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Zabavna činjenica, metabolosom je ono što se naziva poliedrična organela."
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Evo saveta, ponekad je najbolje samo pobeći od drugih ćelija."
-
-#: ../simulation_parameters/common/help_texts.json:163
-#, fuzzy
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 vrsta trepavica?"
-
-#: ../simulation_parameters/common/help_texts.json:166
-#, fuzzy
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje cilijama."
-
-#: ../simulation_parameters/common/help_texts.json:169
-#, fuzzy
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "STVARI KOJE SE MIGOLJITI!!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Otopitela metela."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Te plave ćelije ipak."
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "Evo saveta, biomi su više nego samo različito poreklo, jedinjenja u različitim biomima se ponekad mrestaju različitim brzinama."
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "Evo saveta: Što više bičeva imate, brže idete, vrum vrum, ali košta i ATP više"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Evo saveta, možete [g]utati komade gvožđa."
-
-#: ../simulation_parameters/common/help_texts.json:190
-#, fuzzy
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "Evo saveta, ponekad je najbolje samo pobeći od drugih ćelija."
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 vrsta trepavica?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje cilijama."
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Zabavna činjenica je da ameba lovi i hvata plen „nogama“ napravljenim od citoplazme nazvanih pseudopodi, želimo da konačno imamo one u Thrive-u."
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Evo saveta, Pazite na veće ćelije i velike bakterije, nije zabavno da budeš probavljajen i oni će vas pojesti."
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Vođa zvučnog tima Thrive-a napravio je mnogo pesama koje još nisu dodate u igru. Možete ih čuti ili gledati kako on komponuje na svom YouTube kanalu Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Evo saveta, ako je vaša ćelija 150 hekse, možete progutati velike gvozdene komade."
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive je zamišljen kao simulacija vanzemaljske planete, stoga ima smisla da će većina stvorenja koja nađete biti povezana sa jednom ili dve druge vrste usled evolucije koja se dešava oko vas, pogledajte da li ih možete prepoznati!"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Zabavna činjenica, Thrive tim svako malo pravi podkastove, trebalo bi da ih pogledate!"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Zabavna činjenica, Thrive je napravljen sa Godot, što je otvorenog koda!"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Zabavna činjenica, Jedan od prvih prototipova za igranje napravio je naš sjajni programer, UntrustedLife!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -388,19 +117,19 @@ msgstr "Sposobnosti"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "Vatreni toksin"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "Prebacite gutanje"
 
@@ -409,7 +138,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Prebacite gutanje"
@@ -420,7 +149,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Prebacite gutanje"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -1453,7 +1182,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Proizvodi"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "Proizvodi"
@@ -2170,7 +1898,7 @@ msgstr "Zatvori"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2469,23 +2197,9 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:214
@@ -2611,14 +2325,8 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:959
@@ -2763,25 +2471,8 @@ msgstr "Multisample anti-aliasing:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(veće vrednosti pogoršavaju performanse)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-#, fuzzy
-msgid "EIGHT_TIMES"
-msgstr "Desni miš"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:318
@@ -2792,25 +2483,12 @@ msgstr "Rezolucija:"
 msgid "MAX_FPS"
 msgstr "Maksimalni FPS:"
 
-#: ../src/general/OptionsMenu.tscn:357
-#, fuzzy
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "Maksimalni FPS:"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekcija daltonista:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:404
@@ -2942,39 +2620,9 @@ msgstr ""
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_NORMAL"
-msgstr "POTVRDI"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_EXTREME"
-msgstr "Dodatne"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -3003,19 +2651,8 @@ msgstr "Generacija:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
-msgid "SCALING_ON"
-msgstr ""
-"Postoji sukob sa {0}.\n"
-"Da li želite da uklonite unos iz {1}?"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -3110,16 +2747,8 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1628
@@ -3272,7 +2901,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "POPULACIJA:"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -3328,6 +2957,18 @@ msgstr "Uključi tasteri za varanja"
 
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:171
@@ -3760,9 +3401,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL"
 msgstr ""
 
@@ -4363,7 +4004,6 @@ msgid "APPEARANCE"
 msgstr "Performanse"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Proizvodi"
@@ -4451,7 +4091,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr "pobegne od gutanja"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Proizvodi"
@@ -5086,19 +4726,19 @@ msgstr ""
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Vrste:"
@@ -6149,82 +5789,320 @@ msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr "Učitavanje Uređivača Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr "Učitavanje Uređivača Mikroba"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Učitavanje Uređivača Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 msgid "CONTINUE_THRIVING"
 msgstr ""
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Vaša ćelija koristi ATP kao izvor energije, ako se potroši, umrećete."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Da biste otključali uređivač i reprodukovali ćeliju, potrebno je da sakupite amonijak (narandžasti oblak) i fosfat (ljubičasti oblak)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Takođe možete da obuzmete ćelije i bakterije i komade gvožđa i delove ćelija koji su manji od vas kada pritisneš G. To će koštati dodatni ATP i usporiće vas. Ne zaboravite da pritisneš G drugi put da biste prestali da proždirete."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr ""
+#~ "Prokariotske strukture\n"
+#~ "\n"
+#~ "Metabolosomi: Stvara ATP iz glukoze\n"
+#~ "\n"
+#~ "Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
+#~ "\n"
+#~ "Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
+#~ "\n"
+#~ "Rusticijanin: Pretvara gvožđe u ATP\n"
+#~ "\n"
+#~ "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
+#~ "\n"
+#~ "Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulacija košta ATP, što znači da što je veća vaša ćelija, to vam je potrebno više mitohondrije ili metabolosomi ili rusticijanine (ili citoplazme, koja vrši glikolizu) da biste izbegli gubitak ATP-a kada mirujete."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "U uređivaču ima mnogo organela da biste mogli da se razvijate, omogućavajući širok spektar različitih stilova igranja."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Razni oblak jedinjenja su:\n"
+#~ "\n"
+#~ "Bela - glukoza\n"
+#~ "Žuta - vodonik-sulfid\n"
+#~ "Narandža - amonijak\n"
+#~ "Ljubičasta - fosfat\n"
+#~ "Rust Brovn - gvožđe\n"
+#~ "\n"
+#~ "Glukoza stvara ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "Vodonik-sulfid se može pretvoriti u glukozu pomoću hemoplasta i hemosintetizujućih proteina. Gvožđe se može pretvoriti putem rusticianina u ATP."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Da biste se reprodukovali, potrebno je da podelite svaki od svojih organela na dva dela. Organeli trebaju amonijak i fosfat da se podele na pola."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Za sada, ako vam populacija padne na nulu, vi ste izumrli."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Ali ako preživite dvadeset generacija sa populaciija od , smatra se da ste pobedili u trenutnoj igri, nakon pobede dobijate iskačući prozor i možete da nastavite da igrate kako želite."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Budite oprezni jer se vaši konkurenti razvijaju zajedno sa vama. Svaki put kada uđete u urednik, oni takođe evoluiraju."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokariotske strukture\n"
+#~ "\n"
+#~ "Metabolosomi: Stvara ATP iz glukoze\n"
+#~ "\n"
+#~ "Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
+#~ "\n"
+#~ "Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
+#~ "\n"
+#~ "Rusticijanin: Pretvara gvožđe u ATP\n"
+#~ "\n"
+#~ "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
+#~ "\n"
+#~ "Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Spoljne organele\n"
+#~ "\n"
+#~ "Bič: brže pokreće ćeliju konzumiranjem ATP-a\n"
+#~ "\n"
+#~ "Grabežljiva Kosa: Može se koristiti za ubadanje drugih ćelija"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membrane vezane organele\n"
+#~ "\n"
+#~ "Nukleus: Zauzima 11 hekse i omogućava razvoj membrana vezanih organela. Takođe udvostručuje veličinu vaše ćelije. (Može se razviti samo jednom)\n"
+#~ "\n"
+#~ "Mitohondrion: Stvara ATP iz glukoze i atmosferskog O2. Mnogo efikasnije od citoplazme\n"
+#~ "\n"
+#~ "Hloroplast: Stvara glukozu od sunčeve svetlosti i atmosferskog CO2\n"
+#~ "\n"
+#~ "Hemoplast: Stvara glukozu od vodonik-sulfida\n"
+#~ "\n"
+#~ "Plastid za fiksiranje azota: Stvara amonijak od ATP i atmosferskog azota i kiseonika\n"
+#~ "\n"
+#~ "Vacuole: Čuva 15 prikupljenih jedinjenja\n"
+#~ "\n"
+#~ "Otrovna Vacuole: Proizvode toksine (nazvane OksiToksi NT)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Svaka generacija imaš 100 mutaciski poeni (MP), a svaka promena (ili mutacija) koštaće određenu količinu tog MP. Dodavanje i uklanjanje organela košta MP, međutim uklanjanje organela koje su postavljene u trenutnoj sesiji mutacije refundira MP za tu organelu. Organelu možete ukloniti desnim klikom na nju. Organele možete rotirati A i D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Svaki put kada se razmnožavate, ući ćete u uređivač mikroba, gde možete da izmenite vrstu (dodavanjem, premeštanjem ili uklanjanjem organela) da biste povećali uspeh svoje vrste. Svaka poseta uredniku na sceni mikroba predstavlja 100 miliona godina evolucije."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "STVARI KOJE SE MIGOLJITI!!"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Evo saveta, toksini se mogu koristiti za odbacivanje drugih toksina od vas ako ste dovoljno brzi."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Evo saveta, osmoregulacija košta 1 ATP po sekundi po heku koju ima vaša ćelija, svaki prazan hek citoplazme takođe generiše 5 ATP u sekundi, što znači da ako gubite ATP usled osmoregulacije, samo dodajte nekoliko praznih hekes citoplazme ili uklonite neke organele ."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "Zabavna činjenica, u stvarnom životu prokarionti imaju nešto što se naziva Biokompanije i deluju poput organela, a zapravo se nazivaju Poliedrične organele."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Zabavna činjenica, metabolosom je ono što se naziva poliedrična organela."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Evo saveta, ponekad je najbolje samo pobeći od drugih ćelija."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 vrsta trepavica?"
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje cilijama."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "STVARI KOJE SE MIGOLJITI!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Otopitela metela."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Te plave ćelije ipak."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "Evo saveta, biomi su više nego samo različito poreklo, jedinjenja u različitim biomima se ponekad mrestaju različitim brzinama."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "Evo saveta: Što više bičeva imate, brže idete, vrum vrum, ali košta i ATP više"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Evo saveta, možete [g]utati komade gvožđa."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "Evo saveta, ponekad je najbolje samo pobeći od drugih ćelija."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 vrsta trepavica?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje cilijama."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Zabavna činjenica je da ameba lovi i hvata plen „nogama“ napravljenim od citoplazme nazvanih pseudopodi, želimo da konačno imamo one u Thrive-u."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Evo saveta, Pazite na veće ćelije i velike bakterije, nije zabavno da budeš probavljajen i oni će vas pojesti."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Vođa zvučnog tima Thrive-a napravio je mnogo pesama koje još nisu dodate u igru. Možete ih čuti ili gledati kako on komponuje na svom YouTube kanalu Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Evo saveta, ako je vaša ćelija 150 hekse, možete progutati velike gvozdene komade."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive je zamišljen kao simulacija vanzemaljske planete, stoga ima smisla da će većina stvorenja koja nađete biti povezana sa jednom ili dve druge vrste usled evolucije koja se dešava oko vas, pogledajte da li ih možete prepoznati!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Zabavna činjenica, Thrive tim svako malo pravi podkastove, trebalo bi da ih pogledate!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Zabavna činjenica, Thrive je napravljen sa Godot, što je otvorenog koda!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Zabavna činjenica, Jedan od prvih prototipova za igranje napravio je naš sjajni programer, UntrustedLife!"
+
+#, fuzzy
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "Desni miš"
+
+#, fuzzy
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "Maksimalni FPS:"
+
+#, fuzzy
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "POTVRDI"
+
+#, fuzzy
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "Dodatne"
+
+#, fuzzy
+#~ msgid "SCALING_ON"
+#~ msgstr ""
+#~ "Postoji sukob sa {0}.\n"
+#~ "Da li želite da uklonite unos iz {1}?"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

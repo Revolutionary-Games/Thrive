@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-11 21:41+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -85,272 +85,6 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "เซลล์ของคุณใช้ ATP เป็นแหล่งพลังงานถ้ามันหมดคุณจะตาย"
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "ในการปลดล็อกตัวแก้ไขและสร้างซ้ำคุณต้องรวบรวมแอมโมเนีย (เมฆสีส้ม) และฟอสเฟต (เมฆสีม่วง)"
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "นอกจากนี้คุณยังสามารถกินเซลล์,แบคทีเรีย,ชิ้นเหล็กและชิ้นส่วนเซลล์ที่มีขนาดเล็กกว่าคุณได้โดยการกด G ซึ่งจะทำให้เสียค่า ATP เพิ่มเติมและจะทำให้คุณทำงานช้าลง อย่าลืมกด G ครั้งที่สองเพื่อหยุดการกลืนกิน"
-
-#: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"โครงสร้างโปรคาริโอต\n"
-"\n"
-"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
-"\n"
-"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
-"\n"
-"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
-"\n"
-"Rusticyanin: แปลงเหล็กเป็น ATP\n"
-"\n"
-"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
-"\n"
-"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
-
-#: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
-
-#: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "การออสโมซิส มีค่าใช้จ่าย ATP ซึ่งหมายความว่ายิ่งเซลล์ของคุณมีขนาดใหญ่มากขึ้น ไมโตคอนเดรีย, เมตาโบโลมโซม หรือ รัสติไซยานิน (หรือไซโตพลาสซึมซึ่งทำ ไกลโคไลซิส) คุณต้องหลีกเลี่ยงการสูญเสีย ATP เมื่อคุณอยู่กับที่"
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "มี ออร์แกเนลล์ มากมายในตัวแก้ไขเพื่อให้คุณพัฒนาทำให้สามารถเล่นสไตล์ต่างๆได้หลากหลาย"
-
-#: ../simulation_parameters/common/help_texts.json:42
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"เมฆประกอบต่างๆ ได้แก่ :\n"
-"\n"
-"ขาว - กลูโคส\n"
-"สีเหลือง - ไฮโดรเจนซัลไฟด์\n"
-"ส้ม - แอมโมเนีย\n"
-"สีม่วง - ฟอสเฟต\n"
-"สนิมน้ำตาล - เหล็ก\n"
-"\n"
-"กลูโคสทำให้ ATP"
-
-#: ../simulation_parameters/common/help_texts.json:46
-#: ../simulation_parameters/common/help_texts.json:118
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "ไฮโดรเจนซัลไฟด์สามารถเปลี่ยนเป็นกลูโคสผ่านทางเคมีและโปรตีนสังเคราะห์ทางเคมี เหล็กสามารถเปลี่ยนผ่าน รัสติไซยานิน เป็น ATP"
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:121
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "ในการสืบพันธุ์คุณต้องแบ่งออร์แกเนลล์ของคุณออกเป็นสองส่วน ออร์แกเนลล์ต้องการแอมโมเนียและฟอสเฟตเพื่อแบ่งครึ่ง"
-
-#: ../simulation_parameters/common/help_texts.json:54
-#: ../simulation_parameters/common/help_texts.json:115
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "ในตอนนี้หากจำนวนประชากรของคุณลดลงเหลือศูนย์คุณจะสูญพันธุ์"
-
-#: ../simulation_parameters/common/help_texts.json:58
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "แต่ถ้าคุณอยู่รอดมาได้ถึง 20 ชั่วอายุคนโดยมีประชากร 300 คนถือว่าคุณชนะเกมปัจจุบัน หลังจากชนะคุณจะได้รับป๊อปอัปและสามารถเล่นต่อได้ตามที่คุณต้องการ"
-
-#: ../simulation_parameters/common/help_texts.json:62
-#: ../simulation_parameters/common/help_texts.json:124
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "ระวังเพราะคู่แข่งของคุณกำลังพัฒนาควบคู่ไปกับคุณ ทุกครั้งที่คุณเข้าสู่โปรแกรมแก้ไขพวกเขาก็มีวิวัฒนาการเช่นกัน"
-
-#: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"โครงสร้างโปรคาริโอต\n"
-"\n"
-"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
-"\n"
-"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
-"\n"
-"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
-"\n"
-"Rusticyanin: แปลงเหล็กเป็น ATP\n"
-"\n"
-"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
-"\n"
-"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"อวัยวะภายนอก\n"
-"\n"
-"Flagellum: ย้ายเซลล์ของคุณเร็วขึ้นโดยใช้ ATP\n"
-"\n"
-"Pilus: สามารถใช้แทงเซลล์อื่นได้"
-
-#: ../simulation_parameters/common/help_texts.json:82
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"เมมเบรน Bound Organelles\n"
-"\n"
-"นิวเคลียส: ใช้ 11 hexes และอนุญาตให้วิวัฒนาการของออร์แกเนลล์ที่มีเยื่อหุ้มเซลล์และยังเพิ่มขนาดเซลล์ของคุณเป็นสองเท่า (สามารถวิวัฒนาการได้เพียงครั้งเดียว)\n"
-"\n"
-"ไมโทคอนเดรีย: ผลิต ATP จากกลูโคสและ O2 ในชั้นบรรยากาศได้อย่างมีประสิทธิภาพมากกว่าไซโตพลาสซึม\n"
-"\n"
-"คลอโรพลาสต์: ทำให้กลูโคสไม่ถูกแสงแดดและ CO2 ในชั้นบรรยากาศ\n"
-"\n"
-"เคโมพลาสต์: ทำให้กลูโคสออกจากไฮโดรเจนซัลไฟด์\n"
-"\n"
-"พลาสติดตรึงไนโตรเจน: สร้างแอมโมเนียจาก ATP และไนโตรเจนและออกซิเจนในชั้นบรรยากาศ\n"
-"\n"
-"แวคิวโอล: เก็บรวบรวม 15 สารประกอบ\n"
-"\n"
-"สารพิษ แวคิวโอล: ผลิตสารพิษ (เรียกว่า OxyToxy NT)"
-
-#: ../simulation_parameters/common/help_texts.json:86
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "แต่ละรุ่นคุณจะมีแต้มการกลายพันธุ์ (MP) 100 แต้มเพื่อใช้จ่ายและการเปลี่ยนแปลง (หรือการกลายพันธุ์) แต่ละครั้งจะมีค่าใช้จ่ายจำนวนหนึ่งของ MP นั้น การเพิ่มและลบออร์แกเนลล์ทำให้เสียค่าใช้จ่าย MP อย่างไรก็ตามการลบออร์แกเนลล์ที่อยู่ในเซสชันการกลายพันธุ์ปัจจุบันจะคืนค่า MP สำหรับออร์แกเนลล์นั้น คุณสามารถย้ายหรือลบออร์แกเนลล์ทั้งหมดได้โดยคลิกขวาที่มันและเลือกการกระทำที่เหมาะสมจากเมนูป๊อปอัป คุณสามารถหมุนออร์แกเนลล์ของคุณในขณะที่วางด้วย A และ D"
-
-#: ../simulation_parameters/common/help_texts.json:90
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "ทุกครั้งที่คุณสืบพันธุ์คุณจะเข้าสู่ การแก้ไขจุลชีพ ซึ่งคุณสามารถทำการเปลี่ยนแปลงสายพันธุ์ของคุณ (โดยการเพิ่มย้ายหรือเอาออร์แกเนลล์ออก) เพื่อเพิ่มความสำเร็จให้กับสายพันธุ์ของคุณ การเยี่ยมชมบรรณาธิการใน Microbe Stage แต่ละครั้งแสดงถึงวิวัฒนาการ 100 ล้านปี"
-
-#: ../simulation_parameters/common/help_texts.json:131
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "LOADING_TIP"
-msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
-
-#: ../simulation_parameters/common/help_texts.json:145
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "เรื่องน่ารู้: Didinium และ Paramecium เป็นตัวอย่างตำราของความสัมพันธ์ระหว่างนักล่ากับเหยื่อที่ได้รับการศึกษามานานหลายทศวรรษ ตอนนี้คุณเป็น Didinium หรือ Paramecium หรือไม่? นักล่าหรือเหยื่อ?"
-
-#: ../simulation_parameters/common/help_texts.json:148
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "นี่คือเคล็ดลับสารพิษสามารถใช้เพื่อกำจัดสารพิษอื่น ๆ ออกไปจากคุณได้หากคุณเร็วพอ"
-
-#: ../simulation_parameters/common/help_texts.json:151
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "นี่คือเคล็ดลับ Osmoregulation มีค่าใช้จ่าย 1 ATP ต่อวินาทีต่อฐานสิบหกที่เซลล์ของคุณมีอยู่แต่ละฐานสิบหกของไซโทพลาสซึมจะสร้าง 5 ATP ต่อวินาทีเช่นกันซึ่งหมายความว่าหากคุณสูญเสีย ATP เนื่องจากการดูดซึมเพียงแค่เพิ่มไซโทพลาสซึมที่ว่างเปล่าสองสามหรือลบออก ออร์แกเนลล์บางชนิด"
-
-#: ../simulation_parameters/common/help_texts.json:154
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "สาระ: ในชีวิตจริงโปรคาริโอตมีสิ่งที่เรียกว่า Biocompartments ซึ่งทำหน้าที่เหมือนออร์แกเนลล์และในความเป็นจริงเรียกว่า Polyhedral organelles"
-
-#: ../simulation_parameters/common/help_texts.json:157
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "สาระ: เมแทบอลิซึมคือสิ่งที่เรียกว่า Polyhedral organelle"
-
-#: ../simulation_parameters/common/help_texts.json:160
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "นี่คือเคล็ดลับบางครั้งก็เป็นการดีที่สุดที่จะหนีจากเซลล์อื่น ๆ"
-
-#: ../simulation_parameters/common/help_texts.json:163
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "นี่คือเคล็ดลับหากเซลล์มีขนาดประมาณครึ่งหนึ่งของคุณนั่นคือเวลาที่คุณสามารถกลืนเข้าไปได้"
-
-#: ../simulation_parameters/common/help_texts.json:166
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "นี่คือเคล็ดลับแบคทีเรียอาจแข็งแกร่งกว่าที่ปรากฏพวกมันอาจดูเล็ก แต่บางส่วนสามารถมุดเข้ามาหาคุณและฆ่าคุณด้วยวิธีนั้น!"
-
-#: ../simulation_parameters/common/help_texts.json:169
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "นี่คือเคล็ดลับคุณสามารถล่าสัตว์ชนิดอื่นเพื่อสูญพันธุ์ได้หากคุณไม่ระมัดระวังเพียงพอ สายพันธุ์อื่นก็ทำได้เช่นกัน"
-
-#: ../simulation_parameters/common/help_texts.json:172
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "สิ่งที่น่ากลัว !!"
-
-#: ../simulation_parameters/common/help_texts.json:175
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "หลอมโลหะ."
-
-#: ../simulation_parameters/common/help_texts.json:178
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "เซลล์สีน้ำเงินเหล่านั้น"
-
-#: ../simulation_parameters/common/help_texts.json:181
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "นี่คือเคล็ดลับ Biomes เป็นมากกว่าภูมิหลังที่แตกต่างกันสารประกอบใน biomes ที่แตกต่างกันบางครั้งก็วางไข่ในอัตราที่แตกต่างกัน"
-
-#: ../simulation_parameters/common/help_texts.json:184
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "นี่คือเคล็ดลับยิ่งคุณมีแฟลกเจลลามากเท่าไหร่คุณก็ยิ่งไปได้เร็วขึ้นเท่านั้น vroom vroom แต่ก็มีค่าใช้จ่ายเพิ่มเติมเช่นกัน"
-
-#: ../simulation_parameters/common/help_texts.json:187
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "นี่คือเคล็ดลับคุณสามารถกลืนชิ้นเหล็กหรืออื่น ๆ"
-
-#: ../simulation_parameters/common/help_texts.json:190
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "นี่คือเคล็ดลับเตรียมความพร้อมก่อนเพิ่มนิวเคลียส ของพวกนั้นแพง! ในการบำรุงรักษาและค่าใช้จ่ายล่วงหน้า"
-
-#: ../simulation_parameters/common/help_texts.json:193
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "สาระ: คุณรู้หรือไม่ว่ามี ciliate มากกว่า 8000 ชนิดบนโลกใบนี้?"
-
-#: ../simulation_parameters/common/help_texts.json:196
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "สาระ: Stentor เป็น ciliate ที่สามารถยืดตัวและจับเหยื่อด้วยทรัมเป็ตเหมือนปากที่ดึงเหยื่อเข้ามาโดยสร้างกระแสน้ำด้วย cilia"
-
-#: ../simulation_parameters/common/help_texts.json:199
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "สาระ: Didinum เป็น ciliate ที่ล่าพารามีเซีย"
-
-#: ../simulation_parameters/common/help_texts.json:202
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "สาระ:อะมีบาล่าและจับเหยื่อด้วย 'ขา' ที่ทำจากไซโตพลาสซึมที่เรียกว่า pseudopods ในที่สุดเราก็ต้องการมีสิ่งเหล่านี้ในการเจริญเติบโต"
-
-#: ../simulation_parameters/common/help_texts.json:205
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "นี่คือเคล็ดลับระวังเซลล์ที่มีขนาดใหญ่ขึ้นและแบคทีเรียขนาดใหญ่มันไม่ใช่เรื่องสนุกที่จะถูกย่อยและพวกมันจะกินคุณ"
-
-#: ../simulation_parameters/common/help_texts.json:208
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "หัวหน้าทีมเสียงของ Thrive ทำเพลงหลายเพลงที่ยังไม่ได้ใส่ลงในเกม คุณสามารถฟังเพลงเหล่านี้หรือดูสตรีมที่เขาแต่งบนช่อง YouTube ของเขา Oliver Lugg"
-
-#: ../simulation_parameters/common/help_texts.json:211
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "นี่คือเคล็ดลับหากเซลล์ของคุณมีขนาด 150 เฮกซ์คุณสามารถกลืนเศษเหล็กขนาดใหญ่ได้"
-
-#: ../simulation_parameters/common/help_texts.json:214
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive หมายถึงการจำลองดาวเคราะห์ต่างดาวดังนั้นจึงสมเหตุสมผลที่สิ่งมีชีวิตส่วนใหญ่ที่คุณพบจะเกี่ยวข้องกับสิ่งมีชีวิตอื่นหนึ่งหรือสองชนิดเนื่องจากวิวัฒนาการที่เกิดขึ้นรอบตัวคุณดูว่าคุณสามารถระบุได้หรือไม่!"
-
-#: ../simulation_parameters/common/help_texts.json:217
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "สาระ: ทีม Thrive ทำพอดแคสต์ทุก ๆ ครั้งคุณควรตรวจสอบพวกเขา!"
-
-#: ../simulation_parameters/common/help_texts.json:220
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "สาระ: Thrive สร้างขึ้นด้วยเอ็นจิ้น Godot โอเพ่นซอร์ส!"
-
-#: ../simulation_parameters/common/help_texts.json:223
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "สาระ: หนึ่งในต้นแบบการเล่นเกมที่เล่นได้ตัวแรกถูกสร้างขึ้นโดยโปรแกรมเมอร์ที่น่ากลัวของเราชีวิตที่ไม่น่าไว้วางใจ!"
-
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
 msgid "MOVEMENT"
@@ -382,19 +116,19 @@ msgstr "ความสามารถ"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2131
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "FIRE_TOXIN"
 msgstr "ยิงสารพิษ"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_ENGULF"
 msgstr "สลับเขมือบ"
 
@@ -403,7 +137,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2141
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "สลับเขมือบ"
@@ -414,7 +148,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "สลับเขมือบ"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2154
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -1443,7 +1177,6 @@ msgid "REPRODUCTION_METHOD"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
@@ -2138,7 +1871,7 @@ msgstr "ปิด"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2433,23 +2166,9 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
 #: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:214
@@ -2573,14 +2292,8 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:881
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:959
@@ -2726,25 +2439,8 @@ msgstr "การลบรอยหยักหลายตัวอย่าง
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ค่าที่สูงขึ้นทำให้ประสิทธิภาพแย่ลง)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "DISABLED"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "TWO_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "FOUR_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:304
-#, fuzzy
-msgid "EIGHT_TIMES"
-msgstr "เมาส์ขวา"
-
-#: ../src/general/OptionsMenu.tscn:304
-msgid "SIXTEEN_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:318
@@ -2755,25 +2451,12 @@ msgstr "ความละเอียด:"
 msgid "MAX_FPS"
 msgstr "FPS สูงสุด:"
 
-#: ../src/general/OptionsMenu.tscn:357
-#, fuzzy
-msgid "MAX_FPS_NO_LIMIT"
-msgstr "FPS สูงสุด:"
-
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "การแก้ไขคนตาบอดสี:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:387
 msgid "NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_PROTANOPE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:388
-msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:404
@@ -2904,39 +2587,9 @@ msgstr ""
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "LIMIT_TINY"
 msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_NORMAL"
-msgstr "ปกติ"
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-msgid "LIMIT_HUGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1087
-#, fuzzy
-msgid "LIMIT_EXTREME"
-msgstr "พิเศษ"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2965,19 +2618,8 @@ msgstr "การจัดเก็บ"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1223
 msgid "SCALING_NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1224
-#, fuzzy
-msgid "SCALING_ON"
-msgstr ""
-"มีข้อขัดแย้งกับ {0}\n"
-"คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
-
-#: ../src/general/OptionsMenu.tscn:1224
-msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -3072,16 +2714,8 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1612
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1628
@@ -3233,7 +2867,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "สูญพันธุ์ไปจากโลก"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -3289,6 +2923,18 @@ msgstr "เปิดใช้งานโกงคีย์"
 
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:171
@@ -3712,9 +3358,9 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "บทช่วยสอน"
@@ -4311,7 +3957,6 @@ msgid "APPEARANCE"
 msgstr "ประสิทธิภาพ"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "ความละเอียด:"
@@ -4392,7 +4037,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5029,19 +4674,19 @@ msgstr ""
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "เครื่องชั่งที่มีความเข้มข้นของ"
@@ -6096,83 +5741,329 @@ msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นต�
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:116
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:118
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#, fuzzy
+msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "บทช่วยสอน"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "วางออร์แกเนลล์"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
 msgid "CONTINUE_THRIVING"
 msgstr ""
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "เซลล์ของคุณใช้ ATP เป็นแหล่งพลังงานถ้ามันหมดคุณจะตาย"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "ในการปลดล็อกตัวแก้ไขและสร้างซ้ำคุณต้องรวบรวมแอมโมเนีย (เมฆสีส้ม) และฟอสเฟต (เมฆสีม่วง)"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "นอกจากนี้คุณยังสามารถกินเซลล์,แบคทีเรีย,ชิ้นเหล็กและชิ้นส่วนเซลล์ที่มีขนาดเล็กกว่าคุณได้โดยการกด G ซึ่งจะทำให้เสียค่า ATP เพิ่มเติมและจะทำให้คุณทำงานช้าลง อย่าลืมกด G ครั้งที่สองเพื่อหยุดการกลืนกิน"
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr ""
+#~ "โครงสร้างโปรคาริโอต\n"
+#~ "\n"
+#~ "เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+#~ "\n"
+#~ "Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+#~ "\n"
+#~ "Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: แปลงเหล็กเป็น ATP\n"
+#~ "\n"
+#~ "Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+#~ "\n"
+#~ "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "การออสโมซิส มีค่าใช้จ่าย ATP ซึ่งหมายความว่ายิ่งเซลล์ของคุณมีขนาดใหญ่มากขึ้น ไมโตคอนเดรีย, เมตาโบโลมโซม หรือ รัสติไซยานิน (หรือไซโตพลาสซึมซึ่งทำ ไกลโคไลซิส) คุณต้องหลีกเลี่ยงการสูญเสีย ATP เมื่อคุณอยู่กับที่"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "มี ออร์แกเนลล์ มากมายในตัวแก้ไขเพื่อให้คุณพัฒนาทำให้สามารถเล่นสไตล์ต่างๆได้หลากหลาย"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "เมฆประกอบต่างๆ ได้แก่ :\n"
+#~ "\n"
+#~ "ขาว - กลูโคส\n"
+#~ "สีเหลือง - ไฮโดรเจนซัลไฟด์\n"
+#~ "ส้ม - แอมโมเนีย\n"
+#~ "สีม่วง - ฟอสเฟต\n"
+#~ "สนิมน้ำตาล - เหล็ก\n"
+#~ "\n"
+#~ "กลูโคสทำให้ ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "ไฮโดรเจนซัลไฟด์สามารถเปลี่ยนเป็นกลูโคสผ่านทางเคมีและโปรตีนสังเคราะห์ทางเคมี เหล็กสามารถเปลี่ยนผ่าน รัสติไซยานิน เป็น ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "ในการสืบพันธุ์คุณต้องแบ่งออร์แกเนลล์ของคุณออกเป็นสองส่วน ออร์แกเนลล์ต้องการแอมโมเนียและฟอสเฟตเพื่อแบ่งครึ่ง"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "ในตอนนี้หากจำนวนประชากรของคุณลดลงเหลือศูนย์คุณจะสูญพันธุ์"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "แต่ถ้าคุณอยู่รอดมาได้ถึง 20 ชั่วอายุคนโดยมีประชากร 300 คนถือว่าคุณชนะเกมปัจจุบัน หลังจากชนะคุณจะได้รับป๊อปอัปและสามารถเล่นต่อได้ตามที่คุณต้องการ"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "ระวังเพราะคู่แข่งของคุณกำลังพัฒนาควบคู่ไปกับคุณ ทุกครั้งที่คุณเข้าสู่โปรแกรมแก้ไขพวกเขาก็มีวิวัฒนาการเช่นกัน"
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "โครงสร้างโปรคาริโอต\n"
+#~ "\n"
+#~ "เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+#~ "\n"
+#~ "Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+#~ "\n"
+#~ "Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: แปลงเหล็กเป็น ATP\n"
+#~ "\n"
+#~ "Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+#~ "\n"
+#~ "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "อวัยวะภายนอก\n"
+#~ "\n"
+#~ "Flagellum: ย้ายเซลล์ของคุณเร็วขึ้นโดยใช้ ATP\n"
+#~ "\n"
+#~ "Pilus: สามารถใช้แทงเซลล์อื่นได้"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "เมมเบรน Bound Organelles\n"
+#~ "\n"
+#~ "นิวเคลียส: ใช้ 11 hexes และอนุญาตให้วิวัฒนาการของออร์แกเนลล์ที่มีเยื่อหุ้มเซลล์และยังเพิ่มขนาดเซลล์ของคุณเป็นสองเท่า (สามารถวิวัฒนาการได้เพียงครั้งเดียว)\n"
+#~ "\n"
+#~ "ไมโทคอนเดรีย: ผลิต ATP จากกลูโคสและ O2 ในชั้นบรรยากาศได้อย่างมีประสิทธิภาพมากกว่าไซโตพลาสซึม\n"
+#~ "\n"
+#~ "คลอโรพลาสต์: ทำให้กลูโคสไม่ถูกแสงแดดและ CO2 ในชั้นบรรยากาศ\n"
+#~ "\n"
+#~ "เคโมพลาสต์: ทำให้กลูโคสออกจากไฮโดรเจนซัลไฟด์\n"
+#~ "\n"
+#~ "พลาสติดตรึงไนโตรเจน: สร้างแอมโมเนียจาก ATP และไนโตรเจนและออกซิเจนในชั้นบรรยากาศ\n"
+#~ "\n"
+#~ "แวคิวโอล: เก็บรวบรวม 15 สารประกอบ\n"
+#~ "\n"
+#~ "สารพิษ แวคิวโอล: ผลิตสารพิษ (เรียกว่า OxyToxy NT)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "แต่ละรุ่นคุณจะมีแต้มการกลายพันธุ์ (MP) 100 แต้มเพื่อใช้จ่ายและการเปลี่ยนแปลง (หรือการกลายพันธุ์) แต่ละครั้งจะมีค่าใช้จ่ายจำนวนหนึ่งของ MP นั้น การเพิ่มและลบออร์แกเนลล์ทำให้เสียค่าใช้จ่าย MP อย่างไรก็ตามการลบออร์แกเนลล์ที่อยู่ในเซสชันการกลายพันธุ์ปัจจุบันจะคืนค่า MP สำหรับออร์แกเนลล์นั้น คุณสามารถย้ายหรือลบออร์แกเนลล์ทั้งหมดได้โดยคลิกขวาที่มันและเลือกการกระทำที่เหมาะสมจากเมนูป๊อปอัป คุณสามารถหมุนออร์แกเนลล์ของคุณในขณะที่วางด้วย A และ D"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "ทุกครั้งที่คุณสืบพันธุ์คุณจะเข้าสู่ การแก้ไขจุลชีพ ซึ่งคุณสามารถทำการเปลี่ยนแปลงสายพันธุ์ของคุณ (โดยการเพิ่มย้ายหรือเอาออร์แกเนลล์ออก) เพื่อเพิ่มความสำเร็จให้กับสายพันธุ์ของคุณ การเยี่ยมชมบรรณาธิการใน Microbe Stage แต่ละครั้งแสดงถึงวิวัฒนาการ 100 ล้านปี"
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "เรื่องน่ารู้: Didinium และ Paramecium เป็นตัวอย่างตำราของความสัมพันธ์ระหว่างนักล่ากับเหยื่อที่ได้รับการศึกษามานานหลายทศวรรษ ตอนนี้คุณเป็น Didinium หรือ Paramecium หรือไม่? นักล่าหรือเหยื่อ?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "นี่คือเคล็ดลับสารพิษสามารถใช้เพื่อกำจัดสารพิษอื่น ๆ ออกไปจากคุณได้หากคุณเร็วพอ"
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "นี่คือเคล็ดลับ Osmoregulation มีค่าใช้จ่าย 1 ATP ต่อวินาทีต่อฐานสิบหกที่เซลล์ของคุณมีอยู่แต่ละฐานสิบหกของไซโทพลาสซึมจะสร้าง 5 ATP ต่อวินาทีเช่นกันซึ่งหมายความว่าหากคุณสูญเสีย ATP เนื่องจากการดูดซึมเพียงแค่เพิ่มไซโทพลาสซึมที่ว่างเปล่าสองสามหรือลบออก ออร์แกเนลล์บางชนิด"
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "สาระ: ในชีวิตจริงโปรคาริโอตมีสิ่งที่เรียกว่า Biocompartments ซึ่งทำหน้าที่เหมือนออร์แกเนลล์และในความเป็นจริงเรียกว่า Polyhedral organelles"
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "สาระ: เมแทบอลิซึมคือสิ่งที่เรียกว่า Polyhedral organelle"
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "นี่คือเคล็ดลับบางครั้งก็เป็นการดีที่สุดที่จะหนีจากเซลล์อื่น ๆ"
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "นี่คือเคล็ดลับหากเซลล์มีขนาดประมาณครึ่งหนึ่งของคุณนั่นคือเวลาที่คุณสามารถกลืนเข้าไปได้"
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "นี่คือเคล็ดลับแบคทีเรียอาจแข็งแกร่งกว่าที่ปรากฏพวกมันอาจดูเล็ก แต่บางส่วนสามารถมุดเข้ามาหาคุณและฆ่าคุณด้วยวิธีนั้น!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "นี่คือเคล็ดลับคุณสามารถล่าสัตว์ชนิดอื่นเพื่อสูญพันธุ์ได้หากคุณไม่ระมัดระวังเพียงพอ สายพันธุ์อื่นก็ทำได้เช่นกัน"
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "สิ่งที่น่ากลัว !!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "หลอมโลหะ."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "เซลล์สีน้ำเงินเหล่านั้น"
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "นี่คือเคล็ดลับ Biomes เป็นมากกว่าภูมิหลังที่แตกต่างกันสารประกอบใน biomes ที่แตกต่างกันบางครั้งก็วางไข่ในอัตราที่แตกต่างกัน"
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "นี่คือเคล็ดลับยิ่งคุณมีแฟลกเจลลามากเท่าไหร่คุณก็ยิ่งไปได้เร็วขึ้นเท่านั้น vroom vroom แต่ก็มีค่าใช้จ่ายเพิ่มเติมเช่นกัน"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "นี่คือเคล็ดลับคุณสามารถกลืนชิ้นเหล็กหรืออื่น ๆ"
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "นี่คือเคล็ดลับเตรียมความพร้อมก่อนเพิ่มนิวเคลียส ของพวกนั้นแพง! ในการบำรุงรักษาและค่าใช้จ่ายล่วงหน้า"
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "สาระ: คุณรู้หรือไม่ว่ามี ciliate มากกว่า 8000 ชนิดบนโลกใบนี้?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "สาระ: Stentor เป็น ciliate ที่สามารถยืดตัวและจับเหยื่อด้วยทรัมเป็ตเหมือนปากที่ดึงเหยื่อเข้ามาโดยสร้างกระแสน้ำด้วย cilia"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "สาระ: Didinum เป็น ciliate ที่ล่าพารามีเซีย"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "สาระ:อะมีบาล่าและจับเหยื่อด้วย 'ขา' ที่ทำจากไซโตพลาสซึมที่เรียกว่า pseudopods ในที่สุดเราก็ต้องการมีสิ่งเหล่านี้ในการเจริญเติบโต"
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "นี่คือเคล็ดลับระวังเซลล์ที่มีขนาดใหญ่ขึ้นและแบคทีเรียขนาดใหญ่มันไม่ใช่เรื่องสนุกที่จะถูกย่อยและพวกมันจะกินคุณ"
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "หัวหน้าทีมเสียงของ Thrive ทำเพลงหลายเพลงที่ยังไม่ได้ใส่ลงในเกม คุณสามารถฟังเพลงเหล่านี้หรือดูสตรีมที่เขาแต่งบนช่อง YouTube ของเขา Oliver Lugg"
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "นี่คือเคล็ดลับหากเซลล์ของคุณมีขนาด 150 เฮกซ์คุณสามารถกลืนเศษเหล็กขนาดใหญ่ได้"
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive หมายถึงการจำลองดาวเคราะห์ต่างดาวดังนั้นจึงสมเหตุสมผลที่สิ่งมีชีวิตส่วนใหญ่ที่คุณพบจะเกี่ยวข้องกับสิ่งมีชีวิตอื่นหนึ่งหรือสองชนิดเนื่องจากวิวัฒนาการที่เกิดขึ้นรอบตัวคุณดูว่าคุณสามารถระบุได้หรือไม่!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "สาระ: ทีม Thrive ทำพอดแคสต์ทุก ๆ ครั้งคุณควรตรวจสอบพวกเขา!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "สาระ: Thrive สร้างขึ้นด้วยเอ็นจิ้น Godot โอเพ่นซอร์ส!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "สาระ: หนึ่งในต้นแบบการเล่นเกมที่เล่นได้ตัวแรกถูกสร้างขึ้นโดยโปรแกรมเมอร์ที่น่ากลัวของเราชีวิตที่ไม่น่าไว้วางใจ!"
+
+#, fuzzy
+#~ msgid "EIGHT_TIMES"
+#~ msgstr "เมาส์ขวา"
+
+#, fuzzy
+#~ msgid "MAX_FPS_NO_LIMIT"
+#~ msgstr "FPS สูงสุด:"
+
+#, fuzzy
+#~ msgid "LIMIT_NORMAL"
+#~ msgstr "ปกติ"
+
+#, fuzzy
+#~ msgid "LIMIT_EXTREME"
+#~ msgstr "พิเศษ"
+
+#, fuzzy
+#~ msgid "SCALING_ON"
+#~ msgstr ""
+#~ "มีข้อขัดแย้งกับ {0}\n"
+#~ "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"

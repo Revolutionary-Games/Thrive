@@ -31,6 +31,9 @@
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
             gui.GlucoseTutorialVisible = ShownCurrently;
+
+            // TEMP
+            gui.DayNightTutorialVisible = ShownCurrently;
         }
 
         public override void Hide()
