@@ -281,16 +281,14 @@ public class PatchDetailsPanel : PanelContainer
 
         // Compounds
         hydrogenSulfide.Text =
-            percentageFormat.FormatSafe(
-                Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3).ToString();
         ammonia.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3).ToString();
         glucose.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3).ToString();
         phosphate.Text =
-            percentageFormat.FormatSafe(
-                Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3));
-        iron.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, ironCompound.InternalName));
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3).ToString();
+        iron.Text = GetCompoundAmount(SelectedPatch, ironCompound.InternalName).ToString();
 
         var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
         var speciesList = new StringBuilder(100);
