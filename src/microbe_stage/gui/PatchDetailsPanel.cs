@@ -281,14 +281,19 @@ public class PatchDetailsPanel : PanelContainer
 
         // Compounds
         hydrogenSulfide.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3).ToString();
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3)
+            .ToString(System.Globalization.CultureInfo.CurrentCulture);
         ammonia.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3).ToString();
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3)
+            .ToString(System.Globalization.CultureInfo.CurrentCulture);
         glucose.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3).ToString();
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3)
+            .ToString(System.Globalization.CultureInfo.CurrentCulture);
         phosphate.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3).ToString();
-        iron.Text = GetCompoundAmount(SelectedPatch, ironCompound.InternalName).ToString();
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3)
+            .ToString(System.Globalization.CultureInfo.CurrentCulture);
+        iron.Text = GetCompoundAmount(SelectedPatch, ironCompound.InternalName)
+            .ToString(System.Globalization.CultureInfo.CurrentCulture);
 
         var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
         var speciesList = new StringBuilder(100);
