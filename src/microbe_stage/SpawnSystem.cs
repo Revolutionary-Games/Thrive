@@ -477,26 +477,6 @@ public class SpawnSystem : ISpawnSystem
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
-    /// <summary>
-    ///   Returns a random rotation (in radians)
-    ///   If weighted, it is more likely to return a rotation closer to the target rotation than not
-    /// </summary>
-    private float ComputeRandomRadianRotation(float targetRotation, bool weighted)
-    {
-        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
-
-        if (weighted)
-        {
-            targetRotation = WithNegativesToNormalRadians(targetRotation);
-            float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
-
-            if (DistanceBetweenRadians(rotation2, targetRotation) < DistanceBetweenRadians(rotation1, targetRotation))
-                return NormalToWithNegativesRadians(rotation2);
-        }
-
-        return NormalToWithNegativesRadians(rotation1);
-    }
-
     // TODO Could use to be moved to mathUtils?
     private float NormalToWithNegativesRadians(float radian)
     {
