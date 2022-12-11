@@ -122,4 +122,9 @@ public enum TutorialEventType
     ///   Player opened the auto-evo prediction details
     /// </summary>
     MicrobeEditorAutoEvoPredictionOpened,
+
+    /// <summary>
+    ///   Player enters a patch with more than 0 sunlight at noon
+    /// </summary>
+    MicrobePlayerEnterSunlightPatch,
 }
