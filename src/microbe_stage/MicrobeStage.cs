@@ -516,10 +516,17 @@ public class MicrobeStage : StageBase<Microbe>
         }
         else
         {
-            // TEMP
-            if (GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") > 1)
+            // Show day/night cycle tutorial when entering a patch with sunlight
+            if (GameWorld.WorldSettings.DayNightCycleEnabled)
             {
-                TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+                var patchSunlight = GameWorld.Map.CurrentPatch!.Biome
+                    .GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+
+                if (patchSunlight > 0.01f)
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                }
             }
         }
     }

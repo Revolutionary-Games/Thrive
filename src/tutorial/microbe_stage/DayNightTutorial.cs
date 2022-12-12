@@ -14,7 +14,7 @@
             gui.DayNightTutorialVisible = ShownCurrently;
         }
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args, 
+        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
             object sender)
         {
             switch (eventType)
