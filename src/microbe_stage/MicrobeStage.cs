@@ -514,6 +514,14 @@ public class MicrobeStage : StageBase<Microbe>
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
         }
+        else
+        {
+            // TEMP
+            if (GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") > 1)
+            {
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+            }
+        }
     }
 
     public override void OnSuicide()

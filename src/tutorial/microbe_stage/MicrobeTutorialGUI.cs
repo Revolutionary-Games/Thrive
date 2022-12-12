@@ -380,14 +380,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             if (value == dayNightTutorial.Visible)
                 return;
 
-            if (value)
-            {
-                dayNightTutorial.Show();
-            }
-            else
-            {
-                dayNightTutorial.Hide();
-            }
+            dayNightTutorial.Visible = value;
         }
     }
 

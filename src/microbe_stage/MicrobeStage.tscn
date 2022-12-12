@@ -711,9 +711,6 @@ margin_top = 1.0
 margin_right = 196.0
 margin_bottom = 233.0
 rect_min_size = Vector2( 195, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_right = 197.0
@@ -2100,6 +2097,7 @@ theme = ExtResource( 72 )
 scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
+margin_right = 550.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
