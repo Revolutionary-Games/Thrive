@@ -220,7 +220,7 @@ public class AutoEvoExploringTool : NodeWithInput
     // Search window
     private FilterWindow filterWindow = null!;
     private Func<EvolutionaryTreeNode, bool> flaggingFunction = n => n.LastGeneration;
-    private Filter<Species>.FilterGroup speciesFilters = new();
+    private Filter<Species>.FiltersConjunction speciesFilters = new();
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
 
@@ -667,7 +667,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void SetupFilter()
     {
-        var speciesFilterFactory = new Filter<Species>.FilterFactory();
+        //var speciesFilterFactory = new Filter<Species>.FilterFactory();
 
         var valueFromSpecies = new Dictionary<string, Func<Species, float>>();
 
@@ -676,20 +676,20 @@ public class AutoEvoExploringTool : NodeWithInput
             valueFromSpecies.Add(behaviourKey.ToString(), s => s.Behaviour[behaviourKey]);
         }
 
-        Func<List<FilterArgument>, Func<Species, bool>> valueComparisonFunction =
-            l => s => l[1].Compare(
-                valueFromSpecies[l[0].GetStringValue()](s),
-                l[2].GetNumberValue());
-
         var valueComparisonArguments = new List<FilterArgument>()
             {
                 new FilterArgument.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
                 new FilterArgument.ComparisonFilterArgument(),
                 new FilterArgument.NumberFilterArgument(0, 500, 100),
             };
-        var valueComparisonFilter = new Filter<Species>.FilterItem(valueComparisonFunction, valueComparisonArguments);
 
-        speciesFilterFactory.AddFilterItemFactory("VALUE_COMPARISON", valueComparisonFilter.ToFactory());
+        var speciesDataFilterItem = new Filter<Species>.FilterItem();
+        speciesDataFilterItem.AddArgumentCategoryFromEnum(
+            "BEHAVIOR_VALUE", typeof(BehaviouralValueType), s => (IDictionary<object, float>)s.Behaviour);
+
+        var speciesFilterFactory = new Filter<Species>.FilterFactory(speciesDataFilterItem.ToFactory());
+
+        //speciesFilterFactory.AddFilterItemFactory("VALUE_COMPARISON", valueComparisonFilter.ToFactory());
 
         filterWindow.Initialize(speciesFilterFactory, speciesFilters);
     }

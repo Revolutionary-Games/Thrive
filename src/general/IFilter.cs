@@ -2,9 +2,19 @@ using System.Collections.Generic;
 
 public interface IFilter
 {
+
+    /*public IFilterItem LeftItem { get; }
+    public FilterArgument HeadArgument { get; }
+    public IFilterItem RightItem { get; }*/
+    public IValueQuery LeftComparand { get; }
+    public FilterArgument HeadArgument { get; }
+    public IValueQuery RightComparand { get; }
+
     public interface IFilterItem
     {
-        public List<FilterArgument> FilterArguments { get; }
+        //public IEnumerable<FilterArgument> FilterArguments { get; }
+
+        public IEnumerable<string> PossibleCategories { get; }
     }
 
     public interface IFilterFactory
@@ -12,7 +22,7 @@ public interface IFilter
         public IFilter Create();
     }
 
-    public interface IFilterGroup
+    public interface IFilterConjunction
     {
         public List<IFilter> Filters { get; }
 
@@ -23,8 +33,8 @@ public interface IFilter
         public void Clear();
     }
 
-    public string FilterCategory { get; set; }
-    public IEnumerable<string> FilterItemsNames { get; }
+    //public string FilterCategory { get; set; }
+    //public IEnumerable<string> FilterItemsNames { get; }
 
-    public Dictionary<string, IFilterItem> FilterItems { get; }
+    //public IEnumerable<IFilterItem> FilterItems { get; }
 }

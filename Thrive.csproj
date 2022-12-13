@@ -22,6 +22,8 @@
   <ItemGroup>
     <Compile Include="src\general\FilterArgument.cs" />
     <Compile Include="src\general\IFilter.cs" />
+    <Compile Include="src\gui_common\dialogs\queries\ISnapshotable.cs" />
+    <Compile Include="src\gui_common\dialogs\queries\IValueQuery.cs" />
     <Compile Include="src\gui_common\dialogs\FilterArgumentPopupMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\BuildInfo.cs" />
@@ -141,10 +143,11 @@
     <Compile Include="src\general\CustomDifficulty.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
-    <Compile Include="src\gui_common\dialogs\FilterLine.cs" />
+    <Compile Include="src\gui_common\dialogs\queries\FilterQueryUI.cs" />
     <Compile Include="src\gui_common\dialogs\FilterWindow.cs" />
     <Compile Include="src\gui_common\dialogs\FilterArgumentSlider.cs" />
     <Compile Include="src\gui_common\dialogs\IFilterArgumentNode.cs" />
+    <Compile Include="src\gui_common\dialogs\queries\ValueQueryUI.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />

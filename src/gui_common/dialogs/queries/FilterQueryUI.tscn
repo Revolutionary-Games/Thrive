@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/dialogs/queries/FilterQueryUI.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/dialogs/queries/ValueQueryUI.tscn" type="PackedScene" id=3]
+
+[node name="FilterQuery" type="HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 2 )
+LeftValueQueryPath = NodePath("")
+HeadArgumentButtonPath = NodePath("HeadArgument")
+RightValueQueryPath = NodePath("")
+
+[node name="LeftValueQuery" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 28.0
+margin_bottom = 20.0
+
+[node name="HeadArgument" type="MenuButton" parent="."]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 20.0
+focus_mode = 2
+script = ExtResource( 1 )
+
+[node name="RightValueQuery" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 48.0
+margin_right = 76.0
+margin_bottom = 20.0
+
+[node name="RemoveButton" type="Button" parent="."]
+margin_left = 80.0
+margin_right = 192.0
+margin_bottom = 20.0
+text = "REMOVE_FILTER"
+
+[connection signal="pressed" from="RemoveButton" to="." method="Delete"]

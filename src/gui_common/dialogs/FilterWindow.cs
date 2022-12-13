@@ -8,7 +8,7 @@ public class FilterWindow : CustomConfirmationDialog
     [Export]
     public NodePath FiltersContainerPath = null!;
 
-    private IFilter.IFilterGroup filters = null!;
+    private IFilter.IFilterConjunction filters = null!;
     private IFilter.IFilterFactory filterFactory = null!;
 
     /// <summary>
@@ -20,14 +20,14 @@ public class FilterWindow : CustomConfirmationDialog
 
     // Nodes
     private VBoxContainer filtersContainer = null!;
-    private List<FilterLine> filterLines = new();
-    private List<FilterLine> filterLinesSnapshot = null!;
+    private List<FilterQueryUI> filterLines = new();
+    private List<FilterQueryUI> filterLinesSnapshot = null!;
 
     public override void _Ready()
     {
         base._Ready();
 
-        filterScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterLine.tscn");
+        filterScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/queries/FilterQueryUI.tscn");
 
         filtersContainer = GetNode<VBoxContainer>(FiltersContainerPath);
     }
@@ -44,7 +44,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = false;
     }
 
-    public void Initialize(IFilter.IFilterFactory filterFactory, IFilter.IFilterGroup filters)
+    public void Initialize(IFilter.IFilterFactory filterFactory, IFilter.IFilterConjunction filters)
     {
         // ClearFilters();
         if (this.filters != null)
@@ -80,7 +80,7 @@ public class FilterWindow : CustomConfirmationDialog
 
     public void AddFilterLine(IFilter filter)
     {
-        var filterLine = (FilterLine)filterScene.Instance();
+        var filterLine = (FilterQueryUI)filterScene.Instance();
         filterLine.Initialize(this, filter);
 
         filtersContainer.AddChild(filterLine);
@@ -134,7 +134,7 @@ public class FilterWindow : CustomConfirmationDialog
         dirty = true;
     }
 
-    public void RemoveFilterLine(FilterLine filterLine)
+    public void RemoveFilterLine(FilterQueryUI filterLine)
     {
         filters.Remove(filterLine.Filter);
         filtersContainer.RemoveChild(filterLine);

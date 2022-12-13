@@ -4,21 +4,47 @@ using System.Linq;
 
 public sealed class Filter<T> : IFilter
 {
-    private string filterCategory = "NONE";
+    //private string filterCategory = "NONE";
 
-    private Dictionary<string, IFilter.IFilterItem> filterItems = new Dictionary<string, IFilter.IFilterItem>();
+    // A filter has a structure of type: [(leftComparand) comparisonArgument (rightComparand)];
+    // e.g. BehaviorValue: Activity > Number: 100
+    private FilterItem leftComparand;
+    private FilterArgument.ComparisonFilterArgument comparisonArgument;
+    private FilterItem rightComparand;
 
-    string IFilter.FilterCategory
+    /// <summary>
+    ///   A factory object for creating filterItems from a predefined template;
+    /// </summary>
+    private FilterItem.FilterItemFactory filterItemTemplate;
+
+    IValueQuery IFilter.LeftComparand => leftComparand;
+    IValueQuery IFilter.RightComparand => rightComparand;
+
+    public Filter(FilterItem.FilterItemFactory template)
     {
-        get => filterCategory;
-        set => filterCategory = value;
+        filterItemTemplate = template;
+        leftComparand = template.Create();
+        rightComparand = template.Create();
+        comparisonArgument = new FilterArgument.ComparisonFilterArgument();
     }
 
-    public IEnumerable<string> FilterItemsNames => filterItems.Keys;
+    //public IEnumerable<string> FilterItemsNames => filterItems.Keys;
 
-    public Dictionary<string, IFilter.IFilterItem> FilterItems => filterItems;
+    public IEnumerable<IValueQuery> FilterItems => new List<IValueQuery>()
+    {
+        leftComparand,
+        new FilterItem(new Dictionary<string, Dictionary<string, Func<T, float>>>
+        {
+            { "VALUE_COMPARISON", new Dictionary<string, Func<T, float>>() },
+        }), // TODO comparison
+        rightComparand,
+    };
 
-    public void AddFilterItem(string category, FilterItem item)
+    public IValueQuery LeftItem => leftComparand;
+    public FilterArgument HeadArgument => comparisonArgument;
+    public IValueQuery RightItem => rightComparand;
+
+    /*public void AddFilterItem(string category, FilterItem item)
     {
         filterItems.Add(category, item);
     }
@@ -26,73 +52,142 @@ public sealed class Filter<T> : IFilter
     public void ClearItems()
     {
         filterItems.Clear();
-    }
+    }*/
 
     public Func<T, bool> ComputeFilterFunction()
     {
-        return ((FilterItem)filterItems[filterCategory]).ToFunction();
+        return t => comparisonArgument.Compare(leftComparand.GetValueFor(t), rightComparand.GetValueFor(t));
+        //return ((FilterItem)filterItems[filterCategory]).ToFunction();
     }
 
-    public sealed class FilterItem : IFilter.IFilterItem
+    /// <summary>
+    ///   Now, a get-value part of a filter with a category.
+    ///   E.G; BehaviourValue: Activity
+    /// </summary>
+    public sealed class FilterItem : IValueQuery
     {
-        public readonly Func<List<FilterArgument>, Func<T, bool>> FilterFunction;
-        private readonly List<FilterArgument> filterArguments;
+        public static string NumberCategory = "NUMBER";
 
-        public FilterItem(Func<List<FilterArgument>, Func<T, bool>> filterFunction,
-            List<FilterArgument> filterArguments)
+        private string currentCategory = null!;
+        private string currentProperty = null!;
+
+        // TODO FUNCTION : in filter argument or aside? => filter argument
+        private readonly Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions = new();
+
+        /// <summary>
+        ///   A dictionary that maps categories to its argument, i.e. its possible values.
+        /// </summary>
+        private Dictionary<string, FilterArgument> categorizedArgument = new();
+
+        public FilterItem()
         {
-            FilterFunction = filterFunction;
-            this.filterArguments = filterArguments;
+            currentCategory = NumberCategory;
+
+            // TODO DEAL WITH VALUES AND AVOID NUMBER-NUMBER COMPARISON
+            categorizedArgument.Add(NumberCategory, new FilterArgument.NumberFilterArgument(0, 500, 100));
         }
 
-        List<FilterArgument> IFilter.IFilterItem.FilterArguments => filterArguments;
-
-        public Func<T, bool> ToFunction()
+        public FilterItem(Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions) : base()
         {
-            return FilterFunction(filterArguments);
+            this.categorizedArgumentFunctions = categorizedArgumentFunctions;
+
+            foreach (var item in categorizedArgumentFunctions)
+            {
+                categorizedArgument.Add(item.Key, new FilterArgument.MultipleChoiceFilterArgument(item.Value.Keys.ToList()));
+            }
+        }
+
+        public IEnumerable<FilterArgument> FilterArguments => categorizedArgument.Values;
+
+        public IEnumerable<string> PossibleCategories => categorizedArgument.Keys;
+
+        public string CurrentCategory { get => currentCategory; set => currentCategory = value; }
+        public string CurrentProperty { get => currentProperty; set => currentProperty = value; }
+
+        public Dictionary<string, IEnumerable<string>> CategorizedProperties =>
+            categorizedArgumentFunctions.ToDictionary(c => c.Key, c => c.Value.Select(p => p.Key));
+
+        public void AddArgumentCategory(string name, Dictionary<string, Func<T, float>> options)
+        {
+            categorizedArgument.Add(name, new FilterArgument.MultipleChoiceFilterArgument(options.Keys.ToList()));
+            categorizedArgumentFunctions.Add(name, options);
+        }
+
+        public void AddArgumentCategoryFromEnum(
+            string name, Type enumerationType, Func<T, IDictionary<object, float>> enumerationKeyMapping)
+        {
+            var options = new Dictionary<string, Func<T, float>>();
+
+            foreach (var behaviourKey in Enum.GetValues(enumerationType))
+            {
+                options.Add(behaviourKey.ToString(), s => enumerationKeyMapping.Invoke(s)[behaviourKey]);
+            }
+
+            AddArgumentCategory(name, options);
+        }
+
+        /// <summary>
+        ///   Returns the value of the filter's field for the specified target.
+        /// </summary>
+        public float GetValueFor(T target)
+        {
+            if (CurrentCategory == NumberCategory)
+                return categorizedArgument[CurrentCategory].GetNumberValue();
+
+            //return categorizedArgumentFunctions[CurrentCategory][categorizedArgument[CurrentCategory].GetStringValue()](target);
+            return categorizedArgumentFunctions[CurrentCategory][CurrentProperty](target);
         }
 
         public FilterItemFactory ToFactory()
         {
-            return new FilterItemFactory(FilterFunction, filterArguments.Select(a => a.Clone()));
+            return new FilterItemFactory(categorizedArgumentFunctions);
         }
 
         public class FilterItemFactory
         {
-            private readonly Func<List<FilterArgument>, Func<T, bool>> filterFunction;
-            private readonly IEnumerable<FilterArgument> filterArguments;
+            private Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentWithOptions;
 
-            public FilterItemFactory(Func<List<FilterArgument>, Func<T, bool>> filterFunction, IEnumerable<FilterArgument> filterArguments)
+            public FilterItemFactory(
+                Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentWithOptions)
             {
-                this.filterFunction = filterFunction;
-                this.filterArguments = filterArguments;
+                this.categorizedArgumentWithOptions = categorizedArgumentWithOptions;
             }
 
             public FilterItem Create()
             {
                 // We use ToList here because we want filterFunction to use indexing for the user's sake.
-                return new FilterItem(filterFunction, filterArguments.Select(a => a.Clone()).ToList());
+                return new FilterItem(categorizedArgumentWithOptions);
             }
         }
     }
 
+    /// <summary>
+    ///   A template for filter, to create several filters from it.
+    /// </summary>
+    /// TODO: Rename to template
     public class FilterFactory : IFilter.IFilterFactory
     {
-        private Dictionary<string, Filter<T>.FilterItem.FilterItemFactory> filterItems = new();
+        //private Dictionary<string, Filter<T>.FilterItem.FilterItemFactory> filterItems = new();
+        private Filter<T>.FilterItem.FilterItemFactory filterItemTemplate;
+
+        public FilterFactory(Filter<T>.FilterItem.FilterItemFactory filterItemTemplate)
+        {
+            this.filterItemTemplate = filterItemTemplate;
+        }
 
         public IFilter Create()
         {
-            var filterInstance = new Filter<T>();
+            var filterInstance = new Filter<T>(filterItemTemplate);
 
-            foreach (var categorizedItem in filterItems)
+/*            foreach (var categorizedItem in filterItems)
             {
                 filterInstance.AddFilterItem(categorizedItem.Key, categorizedItem.Value.Create());
-            }
+            }*/
 
             return filterInstance;
         }
 
-        public void AddFilterItemFactory(string category, FilterItem.FilterItemFactory itemFactory)
+/*        public void AddFilterItemFactory(string category, FilterItem.FilterItemFactory itemFactory)
         {
             filterItems.Add(category, itemFactory);
         }
@@ -101,14 +196,14 @@ public sealed class Filter<T> : IFilter
         {
             AddFilterItemFactory(category, item.ToFactory());
         }
-
-        public void ClearItems()
+*/
+/*        public void ClearItems()
         {
             filterItems.Clear();
-        }
+        }*/
     }
 
-    public class FilterGroup : IFilter.IFilterGroup
+    public class FiltersConjunction : IFilter.IFilterConjunction
     {
         public List<Filter<T>> TypedFilters = new();
 

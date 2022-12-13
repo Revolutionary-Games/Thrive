@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public class FilterLine : HBoxContainer
+public class FilterQueryUI : HBoxContainer, ISnapshotable
 {
+    // TODO SET IN SCENE!
     [Export]
-    public NodePath CategoryButtonPath = null!;
+    public NodePath LeftValueQueryPath = null!;
 
     [Export]
-    public NodePath ArgumentsContainerPath = null!;
+    public NodePath HeadArgumentButtonPath = null!;
+
+    [Export]
+    public NodePath RightValueQueryPath = null!;
 
     private FilterWindow parentWindow = null!;
 
+    /// <summary>
+    ///   The filter that is implemented by the line.
+    /// </summary>
     private IFilter filter = null!;
-    private string defaultText = "--";
-    private string categorySnapshot = null!;
 
-    private PackedScene filterArgumentPopupMenuScene = null!;
-    private PackedScene filterArgumentSliderScene = null!;
-
-    private CustomDropDown categoryButton = null!;
-    private HBoxContainer argumentsContainer = null!;
-    private List<IFilterArgumentNode> arguments = new();
+    private ValueQueryUI leftValueQueryUI = null!;
+    private CustomDropDown headArgumentButton = null!;
+    private ValueQueryUI rightValueQueryUI = null!;
 
     /// <summary>
     ///   If redraw is needed.
@@ -35,6 +37,15 @@ public class FilterLine : HBoxContainer
     {
         this.parentWindow = parentWindow;
         this.filter = filter;
+
+        rightValueQueryUI = GetNode<ValueQueryUI>(RightValueQueryPath);
+        leftValueQueryUI = GetNode<ValueQueryUI>(LeftValueQueryPath);
+
+        GD.Print(leftValueQueryUI);
+        GD.Print(filter.LeftComparand);
+        // TODO CHECK THIS (NUllREFERENCE)
+        leftValueQueryUI.Initialize(filter.LeftComparand);
+        rightValueQueryUI.Initialize(filter.RightComparand);
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -43,22 +54,17 @@ public class FilterLine : HBoxContainer
         if (filter == null)
             throw new InvalidOperationException("Node was not initialized!");
 
-        filterArgumentPopupMenuScene =
-            GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentPopupMenu.tscn");
-        filterArgumentSliderScene = GD.Load<PackedScene>("res://src/gui_common/dialogs/FilterArgumentSlider.tscn");
+        headArgumentButton = GetNode<CustomDropDown>(HeadArgumentButtonPath);
+        rightValueQueryUI = GetNode<ValueQueryUI>(RightValueQueryPath);
+        leftValueQueryUI = GetNode<ValueQueryUI>(LeftValueQueryPath);
 
-        categoryButton = GetNode<CustomDropDown>(CategoryButtonPath);
-        argumentsContainer = GetNode<HBoxContainer>(ArgumentsContainerPath);
-
-        categoryButton.Text = defaultText;
-
-        foreach (var option in filter.FilterItemsNames)
+        foreach (var option in ((FilterArgument.MultipleChoiceFilterArgument)filter.HeadArgument).Options)
         {
-            categoryButton.AddItem(option, false, Colors.White);
+            headArgumentButton.AddItem(option, false, Colors.White);
         }
 
-        categoryButton.CreateElements();
-        categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
+        headArgumentButton.CreateElements();
+        //headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected))
 
         dirty = true;
     }
@@ -77,30 +83,17 @@ public class FilterLine : HBoxContainer
 
     public void MakeSnapshot()
     {
-        categorySnapshot = filter.FilterCategory;
-        GD.Print("Making category snapshot: ", categorySnapshot);
+        //categorySnapshot = filter.FilterCategory;
+        //GD.Print("Making category snapshot: ", categorySnapshot);
 
-        foreach (var argument in arguments)
-        {
-            argument.MakeSnapshot();
-        }
+        // TODO SAVE COMPARATOR
+        leftValueQueryUI.MakeSnapshot();
+        rightValueQueryUI.MakeSnapshot();
     }
 
     public void RestoreLastSnapshot()
     {
-        if (categorySnapshot == filter.FilterCategory)
-        {
-            foreach (var argument in arguments)
-            {
-                argument.RestoreLastSnapshot();
-            }
-        }
-        else
-        {
-            // TODO DEAL REDRAWING IF NOT NEEDED
-            filter.FilterCategory = categorySnapshot;
-            GD.Print("Restoring category ", categorySnapshot);
-        }
+        
     }
 
     public void Delete()
@@ -108,7 +101,7 @@ public class FilterLine : HBoxContainer
         parentWindow.RemoveFilterLine(this);
     }
 
-    private void OnNewCategorySelected(int choiceIndex)
+    /*private void OnNewCategorySelected(int choiceIndex)
     {
         var categoryButton = GetChild<CustomDropDown>(0);
 
@@ -120,14 +113,14 @@ public class FilterLine : HBoxContainer
 
         categoryButton.Text = filterCategory;
 
-        filter.FilterCategory = filterCategory;
+        //filter.FilterCategory = filterCategory;
 
-        UpdateArguments(filterCategory);
+        //UpdateArguments(filterCategory);
 
         dirty = true;
-    }
+    }*/
 
-    private void UpdateArguments(string filterCategory)
+/*    private void UpdateArguments(string filterCategory)
     {
         ClearArguments();
 
@@ -170,5 +163,5 @@ public class FilterLine : HBoxContainer
         arguments.Clear();
 
         dirty = true;
-    }
+    }*/
 }
