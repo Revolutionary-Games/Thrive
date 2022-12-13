@@ -8,9 +8,9 @@
 margin_right = 20.0
 margin_bottom = 20.0
 script = ExtResource( 2 )
-LeftValueQueryPath = NodePath("")
+LeftValueQueryPath = NodePath("LeftValueQuery")
 HeadArgumentButtonPath = NodePath("HeadArgument")
-RightValueQueryPath = NodePath("")
+RightValueQueryPath = NodePath("RightValueQuery")
 
 [node name="LeftValueQuery" parent="." instance=ExtResource( 3 )]
 anchor_right = 0.0
