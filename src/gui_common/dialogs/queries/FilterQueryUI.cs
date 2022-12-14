@@ -65,6 +65,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
         headArgumentButton.CreateElements();
         //headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected))
+        headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
 
         dirty = true;
     }
@@ -101,24 +102,18 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         parentWindow.RemoveFilterLine(this);
     }
 
-    /*private void OnNewCategorySelected(int choiceIndex)
+    private void OnNewCategorySelected(int choiceIndex)
     {
-        var categoryButton = GetChild<CustomDropDown>(0);
-
-        var filterCategory = categoryButton.Popup.GetItemText(choiceIndex);
+        var filterCategory = headArgumentButton.Popup.GetItemText(choiceIndex);
 
         // Do nothing if no change actually happened
-        if (filterCategory == categoryButton.Text)
+        if (filterCategory == headArgumentButton.Text)
             return;
 
-        categoryButton.Text = filterCategory;
-
-        //filter.FilterCategory = filterCategory;
-
-        //UpdateArguments(filterCategory);
+        headArgumentButton.Text = filterCategory;
 
         dirty = true;
-    }*/
+    }
 
 /*    private void UpdateArguments(string filterCategory)
     {
