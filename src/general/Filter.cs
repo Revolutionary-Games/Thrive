@@ -89,12 +89,19 @@ public sealed class Filter<T> : IFilter
 
         public FilterItem(Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions) : base()
         {
+            if (categorizedArgumentFunctions.Count <= 0)
+                throw new ArgumentException("Can not initialize with an empty dictionary!");
+
             this.categorizedArgumentFunctions = categorizedArgumentFunctions;
 
             foreach (var item in categorizedArgumentFunctions)
             {
                 categorizedArgument.Add(item.Key, new FilterArgument.MultipleChoiceFilterArgument(item.Value.Keys.ToList()));
             }
+
+            // TODO USE NUMBER CATEGORY WHEN AVAILABLE
+            currentCategory = categorizedArgument.First(_ => true).Key;
+            currentProperty = categorizedArgument[currentCategory].GetStringValue();
         }
 
         public IEnumerable<FilterArgument> FilterArguments => categorizedArgument.Values;

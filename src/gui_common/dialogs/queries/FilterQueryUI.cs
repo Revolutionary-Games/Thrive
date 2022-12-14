@@ -64,6 +64,8 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         }
 
         headArgumentButton.CreateElements();
+
+        headArgumentButton.Text = (string)headArgumentButton.Items[0];
         //headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected))
         headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
 

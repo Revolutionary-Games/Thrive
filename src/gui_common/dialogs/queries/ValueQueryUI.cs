@@ -75,7 +75,9 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         }
 
         categoryButton.CreateElements();
+        GD.Print("HEY3", valueQuery.CurrentCategory);
         categoryButton.Text = valueQuery.CurrentCategory;
+        propertyButton.Text = valueQuery.CurrentProperty;
 
         categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
         propertyButton.Popup.Connect("index_pressed", this, nameof(OnNewPropertySelected));
