@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-11 21:41+0100\n"
+"POT-Creation-Date: 2022-12-14 19:49+0100\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -111,19 +111,19 @@ msgstr "Kemampuan"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "FIRE_TOXIN"
 msgstr "Tembak toksin"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2176
+#: ../src/microbe_stage/MicrobeStage.tscn:2174
 msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2117
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "TOGGLE_ENGULF"
 msgstr "Nyala/matikan penelanan"
 
@@ -132,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Tahan untuk menampilkan menu perintah"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2141
+#: ../src/microbe_stage/MicrobeStage.tscn:2139
 msgid "TOGGLE_BINDING"
 msgstr "Nyala/matikan pelekatan"
 
@@ -141,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Nyala/matikan pelepasan"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2153
+#: ../src/microbe_stage/MicrobeStage.tscn:2151
 msgid "UNBIND_ALL"
 msgstr "Lepas semua"
 
@@ -503,47 +503,47 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
+#: ../src/microbe_stage/MicrobeStage.tscn:1345
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 msgid "AMMONIA"
 msgstr "Amonia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1358
-#: ../src/microbe_stage/MicrobeStage.tscn:1397
+#: ../src/microbe_stage/MicrobeStage.tscn:1394
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1410
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogen Sulfida"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
-#: ../src/microbe_stage/MicrobeStage.tscn:1302
+#: ../src/microbe_stage/MicrobeStage.tscn:1299
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 msgid "GLUCOSE"
 msgstr "Glukosa"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
-#: ../src/microbe_stage/MicrobeStage.tscn:1711
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "MUCILAGE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
-#: ../src/microbe_stage/MicrobeStage.tscn:1495
+#: ../src/microbe_stage/MicrobeStage.tscn:1492
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 msgid "IRON"
 msgstr "Besi"
@@ -3356,8 +3356,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:273
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:367
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
@@ -3859,27 +3859,27 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
-#: ../src/microbe_stage/MicrobeStage.tscn:741
+#: ../src/microbe_stage/MicrobeStage.tscn:738
 msgid "ENVIRONMENT"
 msgstr "Lingkungan"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:958
-#: ../src/microbe_stage/MicrobeStage.tscn:1009
+#: ../src/microbe_stage/MicrobeStage.tscn:1006
 msgid "TEMPERATURE_SHORT"
 msgstr "Suhu"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1014
-#: ../src/microbe_stage/MicrobeStage.tscn:1065
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
 msgid "LIGHT"
 msgstr "Cahaya"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1069
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
+#: ../src/microbe_stage/MicrobeStage.tscn:1117
 msgid "PRESSURE_SHORT"
 msgstr "Tekanan"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1204
+#: ../src/microbe_stage/MicrobeStage.tscn:1201
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
@@ -3888,7 +3888,7 @@ msgid "COMPOUNDS"
 msgstr "Senyawa"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1529
-#: ../src/microbe_stage/MicrobeStage.tscn:1606
+#: ../src/microbe_stage/MicrobeStage.tscn:1603
 msgid "AGENTS"
 msgstr "Agen"
 
@@ -3907,7 +3907,7 @@ msgid "AWAKEN"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1750
-#: ../src/microbe_stage/MicrobeStage.tscn:1816
+#: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
 
@@ -4112,12 +4112,12 @@ msgid "STUFF_AT"
 msgstr "Yang ada pada {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:414
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeStage.tscn:1782
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
-#: ../src/microbe_stage/MicrobeStage.tscn:1796
+#: ../src/microbe_stage/MicrobeStage.tscn:1793
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
@@ -4137,7 +4137,7 @@ msgstr ""
 "[b]Jumlah Hex Dasar[/b]\n"
 "  {4}"
 
-#: ../src/microbe_stage/MicrobeStage.cs:732
+#: ../src/microbe_stage/MicrobeStage.cs:747
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -4145,15 +4145,15 @@ msgstr ""
 msgid "AT_CURSOR"
 msgstr "Pada Kursor:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1545
+#: ../src/microbe_stage/MicrobeStage.tscn:1542
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1781
+#: ../src/microbe_stage/MicrobeStage.tscn:1778
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1964
+#: ../src/microbe_stage/MicrobeStage.tscn:1961
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -5891,7 +5891,7 @@ msgstr ""
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -5900,7 +5900,7 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
@@ -5908,14 +5908,14 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
 "Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5925,7 +5925,7 @@ msgstr ""
 "\n"
 "Untuk memasuki editor tekan tombol editor yang sedang berpendar di kanan bawah."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -5933,17 +5933,17 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5951,7 +5951,7 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5959,7 +5959,7 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -5967,7 +5967,7 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -5975,12 +5975,12 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Memuat Editor Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:402
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Mulai Berkembang"

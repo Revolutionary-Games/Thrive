@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-11 21:41+0100\n"
+"POT-Creation-Date: 2022-12-14 19:49+0100\n"
 "PO-Revision-Date: 2022-12-02 13:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -111,19 +111,19 @@ msgstr "Yetenekler"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "FIRE_TOXIN"
 msgstr "Toksini ateşle"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2176
+#: ../src/microbe_stage/MicrobeStage.tscn:2174
 msgid "SECRETE_SLIME"
 msgstr "Müsilaj salgıla"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2117
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "TOGGLE_ENGULF"
 msgstr "Yutma moduna geç"
 
@@ -132,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Komut takımı menüsünü göstermek için basılı tut"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2141
+#: ../src/microbe_stage/MicrobeStage.tscn:2139
 msgid "TOGGLE_BINDING"
 msgstr "Bağ kurma moduna geç"
 
@@ -141,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Bağ koparma moduna geç"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2153
+#: ../src/microbe_stage/MicrobeStage.tscn:2151
 msgid "UNBIND_ALL"
 msgstr "Hepsinin bağını kopar"
 
@@ -501,47 +501,47 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
+#: ../src/microbe_stage/MicrobeStage.tscn:1345
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 msgid "AMMONIA"
 msgstr "Amonyak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1358
-#: ../src/microbe_stage/MicrobeStage.tscn:1397
+#: ../src/microbe_stage/MicrobeStage.tscn:1394
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1410
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
-#: ../src/microbe_stage/MicrobeStage.tscn:1302
+#: ../src/microbe_stage/MicrobeStage.tscn:1299
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
-#: ../src/microbe_stage/MicrobeStage.tscn:1711
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "MUCILAGE"
 msgstr "Müsilaj"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
-#: ../src/microbe_stage/MicrobeStage.tscn:1495
+#: ../src/microbe_stage/MicrobeStage.tscn:1492
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 msgid "IRON"
 msgstr "Demir"
@@ -3287,8 +3287,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:273
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:367
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
@@ -3784,27 +3784,27 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "İmleci göstermek için [thrive:input]g_free_cursor[/thrive:input] tuşunu basılı tut"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
-#: ../src/microbe_stage/MicrobeStage.tscn:741
+#: ../src/microbe_stage/MicrobeStage.tscn:738
 msgid "ENVIRONMENT"
 msgstr "Ortam"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:958
-#: ../src/microbe_stage/MicrobeStage.tscn:1009
+#: ../src/microbe_stage/MicrobeStage.tscn:1006
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1014
-#: ../src/microbe_stage/MicrobeStage.tscn:1065
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
 msgid "LIGHT"
 msgstr "Işık"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1069
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
+#: ../src/microbe_stage/MicrobeStage.tscn:1117
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1204
+#: ../src/microbe_stage/MicrobeStage.tscn:1201
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
@@ -3813,7 +3813,7 @@ msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1529
-#: ../src/microbe_stage/MicrobeStage.tscn:1606
+#: ../src/microbe_stage/MicrobeStage.tscn:1603
 msgid "AGENTS"
 msgstr "Ajanlar"
 
@@ -3830,7 +3830,7 @@ msgid "AWAKEN"
 msgstr "Uyandır"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1750
-#: ../src/microbe_stage/MicrobeStage.tscn:1816
+#: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
@@ -4023,12 +4023,12 @@ msgid "STUFF_AT"
 msgstr "Burada bir şey var {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:414
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeStage.tscn:1782
 msgid "BECOME_MULTICELLULAR"
 msgstr "Çok Hücreli Ol ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
-#: ../src/microbe_stage/MicrobeStage.tscn:1796
+#: ../src/microbe_stage/MicrobeStage.tscn:1793
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopik Ol ({0}/{1})"
 
@@ -4048,7 +4048,7 @@ msgstr ""
 "[b]Temel Altıgen Büyüklüğü[/b]\n"
 "  {4}"
 
-#: ../src/microbe_stage/MicrobeStage.cs:732
+#: ../src/microbe_stage/MicrobeStage.cs:747
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermemekte"
 
@@ -4056,15 +4056,15 @@ msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir 
 msgid "AT_CURSOR"
 msgstr "İmleç Üzerinde:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1545
+#: ../src/microbe_stage/MicrobeStage.tscn:1542
 msgid "INGESTED_MATTER"
 msgstr "İçeri Alınmış Madde"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1781
+#: ../src/microbe_stage/MicrobeStage.tscn:1778
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre kolonin olduğunda açılır."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1964
+#: ../src/microbe_stage/MicrobeStage.tscn:1961
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Editöre gir ve türünde değişiklik yap"
 
@@ -5691,7 +5691,7 @@ msgstr ""
 "\n"
 "Yakınlardaki bir glukoz kaynağına doğru uzanan bu çizgiyi takip et."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -5700,7 +5700,7 @@ msgstr ""
 "ATP varken ise hücren iyileşir.\n"
 "ATP üretmek için yeterli glukoz topladığından emin ol."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Gözün ATP çubuğunun (sağ altta) yanındaki sağlık çubuğunda olsun.\n"
@@ -5708,14 +5708,14 @@ msgstr ""
 "ATP varken ise hücren iyileşir.\n"
 "ATP üretmek için yeterli glukoz topladığından emin ol."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Hücreni çoğaltmak için bütün organellerini ikiye katlamak zorundasın. Bu, hayatta kaldığın sürece, kademeli şekilde meydana gelir. Ama amonyak ve fosfat toplayarak bu işlemi hızlandırabilirsin.\n"
 "\n"
 "Sağ alttaki çubuklar ilerlemeni gösterir. Hücren çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hücrenin bölünmesi için yeterince uzun süre hayatta kaldın.\n"
@@ -5724,32 +5724,32 @@ msgstr ""
 "\n"
 "Editöre girmek için sağ altta yanıp sönen büyük butona bas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Zorlanıyor musun? Yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
 "\n"
 "Bir ipucu daha: Fare tekeri ile görüş alanını arttırabilirsin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Hücren, aynı anda yutulabilecek nesneler için sınırlı bir kapasiteye sahiptir. Bu sınır, hücrenin büyüklüğüne dayanır; daha küçük hücreler daha az kapasiteye sahiptir.\n"
 "\n"
 "Bir hücre dolduğunda, daha fazla şey yutamaz. Yutmaya devam etmek için içeri alınmış bir ya da daha fazla nesnenin tamamen sindirilmesini bekle."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Yutma modunda, nesnelerin üzerlerine gelerek onları yut. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas.\n"
@@ -5758,14 +5758,14 @@ msgstr ""
 "\n"
 "Yakınlardaki bir yutulabilir nesneye doğru uzanan bu çizgiyi takip et."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Hücren yutuldu ve sindirilmeye başlandı. Sindirim işlemi, sağlık çubuğunda gösterilir. Hücren, sindirim bittiğinde ya da maksimum zaman sınırı aşıldığında ölü sayılacak.\n"
 "\n"
 "Bu işlemi atlamak için intihar butonuna bas ve yeniden doğ. Ama unutma, her zaman kaçmak için bir şansın var!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Yeterli miktarda [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] topladın. Ancak çok hücreli olmayan bir koloni içinde olduğun için üremeye başlayamazsın.\n"
@@ -5773,7 +5773,7 @@ msgstr ""
 "Çok hücreli olmayı planlıyorsan, koloniden ayrılıp editöre girmen gerekir.\n"
 "Gelişimine devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrıl."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "İlk Çok Hücreli Evresi'ne hoşgeldin!\n"
@@ -5786,7 +5786,7 @@ msgstr ""
 "\n"
 "Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsan, ufak bir tomurcuğu kontrol etmeye başlarsın ve hücre düzeninin geri kalanını büyütmen gerekir."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:402
 msgid "CONTINUE_THRIVING"
 msgstr "İlerlemeye Devam Et"
 

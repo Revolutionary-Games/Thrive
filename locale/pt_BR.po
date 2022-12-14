@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-11 21:41+0100\n"
+"POT-Creation-Date: 2022-12-14 19:49+0100\n"
 "PO-Revision-Date: 2022-11-10 00:00+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -111,19 +111,19 @@ msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "FIRE_TOXIN"
 msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
-#: ../src/microbe_stage/MicrobeStage.tscn:2176
+#: ../src/microbe_stage/MicrobeStage.tscn:2174
 msgid "SECRETE_SLIME"
 msgstr "Expelir mucilagem"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
-#: ../src/microbe_stage/MicrobeStage.tscn:2117
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "TOGGLE_ENGULF"
 msgstr "Engolir"
 
@@ -132,7 +132,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Segure para mostrar o menu de comandos do pacote"
 
 #: ../simulation_parameters/common/input_options.json:56
-#: ../src/microbe_stage/MicrobeStage.tscn:2141
+#: ../src/microbe_stage/MicrobeStage.tscn:2139
 msgid "TOGGLE_BINDING"
 msgstr "Ativar modo de ligação"
 
@@ -141,7 +141,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Desativar modo de ligação"
 
 #: ../simulation_parameters/common/input_options.json:64
-#: ../src/microbe_stage/MicrobeStage.tscn:2153
+#: ../src/microbe_stage/MicrobeStage.tscn:2151
 msgid "UNBIND_ALL"
 msgstr "Desconectar todos"
 
@@ -501,47 +501,47 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
+#: ../src/microbe_stage/MicrobeStage.tscn:1345
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 msgid "AMMONIA"
 msgstr "Amônia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1358
-#: ../src/microbe_stage/MicrobeStage.tscn:1397
+#: ../src/microbe_stage/MicrobeStage.tscn:1394
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1410
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfeto de Hidrogênio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
-#: ../src/microbe_stage/MicrobeStage.tscn:1302
+#: ../src/microbe_stage/MicrobeStage.tscn:1299
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
 msgid "GLUCOSE"
 msgstr "Glicose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
 msgid "OXYTOXY_NT"
 msgstr "Oxitoxina"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
-#: ../src/microbe_stage/MicrobeStage.tscn:1711
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "MUCILAGE"
 msgstr "Mucilagem"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
-#: ../src/microbe_stage/MicrobeStage.tscn:1495
+#: ../src/microbe_stage/MicrobeStage.tscn:1492
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
 msgid "IRON"
 msgstr "Ferro"
@@ -3288,8 +3288,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:59
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:273
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:367
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3785,27 +3785,27 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Aperte [thrive:input]g_free_cursor[/thrive:input] para mostrar o cursor"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:690
-#: ../src/microbe_stage/MicrobeStage.tscn:741
+#: ../src/microbe_stage/MicrobeStage.tscn:738
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:958
-#: ../src/microbe_stage/MicrobeStage.tscn:1009
+#: ../src/microbe_stage/MicrobeStage.tscn:1006
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1014
-#: ../src/microbe_stage/MicrobeStage.tscn:1065
+#: ../src/microbe_stage/MicrobeStage.tscn:1062
 msgid "LIGHT"
 msgstr "Luz"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1069
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
+#: ../src/microbe_stage/MicrobeStage.tscn:1117
 msgid "PRESSURE_SHORT"
 msgstr "Pressão"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1204
+#: ../src/microbe_stage/MicrobeStage.tscn:1201
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
@@ -3814,7 +3814,7 @@ msgid "COMPOUNDS"
 msgstr "Compostos"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1529
-#: ../src/microbe_stage/MicrobeStage.tscn:1606
+#: ../src/microbe_stage/MicrobeStage.tscn:1603
 msgid "AGENTS"
 msgstr "Agentes"
 
@@ -3831,7 +3831,7 @@ msgid "AWAKEN"
 msgstr "Despertar"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1750
-#: ../src/microbe_stage/MicrobeStage.tscn:1816
+#: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
@@ -4024,12 +4024,12 @@ msgid "STUFF_AT"
 msgstr "Coisas em {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:414
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeStage.tscn:1782
 msgid "BECOME_MULTICELLULAR"
 msgstr "Tornar-se Multicelular ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
-#: ../src/microbe_stage/MicrobeStage.tscn:1796
+#: ../src/microbe_stage/MicrobeStage.tscn:1793
 msgid "BECOME_MACROSCOPIC"
 msgstr "Tornar-se Macroscópico ({0}/{1})"
 
@@ -4049,7 +4049,7 @@ msgstr ""
 "[b]Tamanho em hexágonos[/b]\n"
 "  {4}"
 
-#: ../src/microbe_stage/MicrobeStage.cs:732
+#: ../src/microbe_stage/MicrobeStage.cs:747
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
@@ -4057,15 +4057,15 @@ msgstr "Impossível usar comando para gerar inimigo pois essa região não cont�
 msgid "AT_CURSOR"
 msgstr "No cursor:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1545
+#: ../src/microbe_stage/MicrobeStage.tscn:1542
 msgid "INGESTED_MATTER"
 msgstr "Matéria ingerida"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1781
+#: ../src/microbe_stage/MicrobeStage.tscn:1778
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Ir para o próximo estágio do jogo (milticelular). Disponível ao ter uma colônia grande o suficiente."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1964
+#: ../src/microbe_stage/MicrobeStage.tscn:1961
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Abre o editor e modifica a sua espécie"
 
@@ -5691,7 +5691,7 @@ msgstr ""
 "\n"
 "Siga a linha da sua célula até a glicose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -5700,7 +5700,7 @@ msgstr ""
 "Você regenera saúde enquanto você tem ATP.\n"
 "Certifique-se de conseguir glicose suficiente para produzir ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Fique de olho na sua barra de saúde próximo a barra de ATP (canto inferior direito).\n"
@@ -5708,14 +5708,14 @@ msgstr ""
 "Você regenera saúde enquanto você tem ATP.\n"
 "Certifique-se de conseguir glicose suficiente para produzir ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Para reproduzir você precisa duplicar todas as suas organelas sobrevivendo por tempo suficiente. Coletar amônia e fosfato acelera o processo.\n"
 "\n"
 "Observe as barras em torno do botão no canto inferior direito para ver o progresso. Elas tornam-se brancas ao ficarem completas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Você sobreviveu tempo suficiente para que sua célula se divida.\n"
@@ -5724,32 +5724,32 @@ msgstr ""
 "\n"
 "Para entrar no editor, aperte o botão que está piscando no canto inferior direito."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-los.\n"
 "\n"
 "Para sair da colônia basta clicar em sua própria célula ou pressionar a tecla [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:275
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Se você estiver com dificuldade nas mecânicas do jogo, leia o manual de ajuda. Você pode abri-lo clicando no ponto de interrogação no canto inferior esquerdo.\n"
 "\n"
 "Dica: você pode diminuir o zoom usando a roda do mouse."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:320
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "A sua célula tem uma capacidade limitada para objetos que podem ser engolidos de uma vez. Esse limite é relativo ao seu tamanho; células menores têm menos capacidade.\n"
 "\n"
 "Quando cheio, um micróbio não pode engolir mais. É preciso esperar que pelo menos um objeto seja digerido."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Engula coisas ao passar por cima deles no modo apropriado. Ative e desative esse modo ao apertar [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -5758,14 +5758,14 @@ msgstr ""
 "\n"
 "Siga a linha da sua célula para o objeto mais próximo."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Sua célula foi fagocitada e está em processo de digestão; acima de sua barra de saúde é mostrado o progresso. Ela morrerá quando o processo estiver terminado, ou quando for atingido um limite de tempo.\n"
 "\n"
 "Você pode pressionar o botão de suicídio para renascer, mas lembre-se: sempre há uma chance de escapar."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Você já tem [thrive:compound type=\"ammonia\"][/thrive:compound] e [thrive:compound type=\"phosphates\"][/thrive:compound] suficientes. Contudo, como você está em uma colônia não multicelular, não conseguirá reproduzir.\n"
@@ -5773,7 +5773,7 @@ msgstr ""
 "Você deverá sair da colônia para entrar no editor, a não ser que queira tornar-se um organismo multicelular.\n"
 "Saia da colônia ao apertar [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:369
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Bem-vindo ao Estágio Multicelular Inicial!\n"
@@ -5786,7 +5786,7 @@ msgstr ""
 "\n"
 "Se estiver usando o processo de reprodução gemulação (selecionado por padrão), você começará com uma parte de seu organismo e será preciso crescer o resto das células."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:403
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:402
 msgid "CONTINUE_THRIVING"
 msgstr "Continuar a prosperar"
 
