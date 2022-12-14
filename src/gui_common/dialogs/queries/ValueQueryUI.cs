@@ -78,11 +78,17 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         categoryButton.Text = valueQuery.CurrentCategory;
 
         categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
+        propertyButton.Popup.Connect("index_pressed", this, nameof(OnNewPropertySelected));
     }
 
     public void OnNewCategorySelected(int choiceIndex)
     {
         OnCategoryChanged(categoryButton.Popup.GetItemText(choiceIndex));
+    }
+
+    public void OnNewPropertySelected(int choiceIndex)
+    {
+        propertyButton.Text = categoryButton.Popup.GetItemText(choiceIndex);
     }
 
     public void MakeSnapshot()
