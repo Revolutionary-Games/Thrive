@@ -76,6 +76,8 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
         categoryButton.CreateElements();
         categoryButton.Text = valueQuery.CurrentCategory;
+
+        categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
     }
 
     public void OnNewCategorySelected(int choiceIndex)
