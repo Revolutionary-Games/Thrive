@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-14 19:49+0100\n"
+"POT-Creation-Date: 2022-12-14 20:19+0100\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -79,6 +79,273 @@ msgstr "Editor de microbio"
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor multicelular"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. Pulsa [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar o desactivar el modo engullir. Puedes acercar y alejar la cámara con la rueda del ratón."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr "Tu célula usa [thrive:compound type=\"atp\"][/thrive:compound] como su fuente de energía. Si se agota, morirá."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr "Para desbloquear el editor y reproducirte necesitas conseguir [thrive:compound type=\"ammonia\"][/thrive:compound] (nubes de color naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (nubes de color púrpura)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr "También puedes engullir células, bacterias, pedazos de hierro y trozos de célula de menor tamaño que la tuya al presionar [thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de [thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. No olvides presionar [thrive:input]g_toggle_engulf[/thrive:input] de nuevo para dejar de engullir."
+
+#: ../simulation_parameters/common/help_texts.json:22
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr "Una vez la célula haya terminado de engullir, cualquier objeto engullido se quedará dentro de la membrana para ser digerido. Los objetos indigeribles siempre serán expulsados, así que asegúrate de que dispones de las mutaciones necesarias para procesarlos. El lisosoma produce enzimas, que ayudan con la digestión; puedes evolucionarlo para mejorar la eficiencia digestiva."
+
+#: ../simulation_parameters/common/help_texts.json:26
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "Sin embargo, solo las células eucariotas disponen de lisosomas. Las células procariotas no tienen acceso a este orgánulo, por lo que su digestión es considerablemente menos eficiente. Las células pequeñas no tienen por qué preocuparse; pero, para las células de mayor tamaño, carecer de un lisosoma es problemático."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "Paredes celulares de celulosa y quitina no pueden ser digeridas sin las enzima requeridas que desarman las mismas."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr "La osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], lo que significa que cuanto más grande es la célula, más mitocondrias, metabolosomas, rusticianinas (u orgánulos que puedan realizar glicólisis) necesitarás para evitar perder [thrive:compound type=\"atp\"][/thrive:compound] cuando esté inmóvil."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr "Hay varios orgánulos en el editor para que evoluciones, lo que te permite una amplia diversidad de estilos de juego."
+
+#: ../simulation_parameters/common/help_texts.json:42
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Las nubes de compuestos son:\n"
+"\n"
+"Blanca – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Amarilla – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Naranja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Marrón – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr "El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser convertido a [thrive:compound type=\"glucose\"] con quimioplastos y proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:compound] puede ser convertido en [thrive:compound type=\"atp\"][/thrive:compound] con rusticianinas."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr "Para que tu célula pueda reproducirse, necesita dividir cada uno de sus orgánulos en dos. Para ello, se necesita amoniaco y fosfato."
+
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Por ahora, si tu población cae a cero, te extinguirás."
+
+#: ../simulation_parameters/common/help_texts.json:58
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr "Pero, si sobrevives durante veinte generaciones con una población de 300, habrás ganado la partida actual. Tras la victoria, obtienes una ventana emergente y puedes seguir jugando como desees."
+
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr "Ten cuidado porque tus competidores evolucionan a la vez que tu célula. Cada vez que entras en el editor, ellos también evolucionan."
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una misma colonia comparten entre sí todos los compuestos que absorben y producen. Entra en el modo de ligación con [thrive:input]g_toggle_binding[/thrive:input] y acércate a otra célula de tu misma especie. Mientras formes parte de una colonia, no podrás reproducir tu célula para entrar al editor. Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia con [thrive:input]g_unbind_all[/thrive:input] para entrar al editor. Las grandes colonias celulares son el camino hacia la multicelularidad."
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Estructuras procarióticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y realiza la glucólisis (produce pequeñas cantidades de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilacoides: Producen un tercio de la [thrive:compound type=\"glucose\"][/thrive:compound] como cloroplastos normales, pero también realizan la glucólisis, y ocupan un solo espacio\n"
+"\n"
+"Proteínas quimiosintetizadoras: Producen la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] como quimioplastos, pero también realizan la glucólisis, y ocupan un solo espacio\n"
+"\n"
+"Rusticianina: Transforma el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenasa: Transforma el nitrógeno atmosférico y el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] de forma anaeróbica\n"
+"\n"
+"Oxitoxisoma: Transforma el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintasa: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando los gradientes térmicos"
+
+#: ../simulation_parameters/common/help_texts.json:78
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Orgánulos externos\n"
+"\n"
+"Flagelos: Dan más velocidad a tu célula, y consumen [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Pilus: Puede usarse para atacar a otras células o para defenderse de sus toxinas\n"
+"\n"
+"Quimiorreceptor: Aumenta la distancia a la cual se pueden detectar compuestos\n"
+"\n"
+"Turbina de slime: Emite [thrive:compound type=\"mucilage\"][/thrive:compound] (producido a partir de [thrive:compound type=\"glucose\"][/thrive:compound]) para acelerar a tu célula\n"
+"\n"
+"Cilios: Aumentan la velocidad de giro de la célula, haciéndola más ágil"
+
+#: ../simulation_parameters/common/help_texts.json:82
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Orgánulos con membrana\n"
+"\n"
+"Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la membrana, duplicando el tamaño de tu célula y protegiéndola del 50% de los daños (solo puede ser evolucionado una vez).\n"
+"\n"
+"Agente de ligación: Permite ligarte con otras células\n"
+"\n"
+"Mitocondria: Produce [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound y oxígeno atmosférico de forma mucho más eficiente que el citoplasma\n"
+"\n"
+"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] utilizando luz solar y CO2 atmosférico\n"
+"\n"
+"Termoplasto: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura\n"
+"\n"
+"Lisosoma: Contiene enzimas digestivas, que aceleran la digestión y mejoran su eficacia\n"
+"\n"
+"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"\n"
+"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound], nitrógeno y oxígeno\n"
+"\n"
+"Vacuola: Puede almacenar hasta 8 compuestos recolectados\n"
+"\n"
+"Vacuola de toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy\"][/thrive:compound]) y te permite liberarlas, causando daño de forma proporcional a las cantidad de oxitoxinas restantes\n"
+"\n"
+"Agente de señalización: Permite a las células sintetizar químicos a los que otras células pueden reaccionar"
+
+#: ../simulation_parameters/common/help_texts.json:86
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr "En cada generación, tienes 100 puntos de mutación (PM) para gastar, y cada cambio (o mutación) tiene un coste determinado de PM. Añadir y quitar orgánulos gasta PM, sin embargo, quitar un orgánulo que fue añadido en la misma sesión devuelve su coste de PM. Puedes mover o eliminar un orgánulo haciendo click derecho en este y seleccionando la acción apropiada. Puedes rotar orgánulos al momento de añadirlos con [thrive:input]e_rotate_left[/thrive:input] y [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:90
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando orgánulos) para incrementar tus chances de éxito. Cada visita al editor en el estadio de microbio representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millones de años de evolución."
+
+#: ../simulation_parameters/common/help_texts.json:131
+#: ../simulation_parameters/common/help_texts.json:138
+msgid "LOADING_TIP"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#: ../simulation_parameters/common/help_texts.json:145
+msgid "EASTEREGG_MESSAGE_1"
+msgstr "Dato curioso: el didinium y el paramecio son un ejemplo de una relación depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el didinium o el paramecio? ¿Depredador o presa?"
+
+#: ../simulation_parameters/common/help_texts.json:148
+msgid "EASTEREGG_MESSAGE_2"
+msgstr "Un consejo: las toxinas pueden usarse para alejar otras toxinas si eres lo suficientemente rápido."
+
+#: ../simulation_parameters/common/help_texts.json:151
+msgid "EASTEREGG_MESSAGE_3"
+msgstr "Un consejo: la osmorregulación cuesta 1 ATP por segundo por cada hexágono que tenga tu célula, cada hexágono vacío de citoplasma genera 5 ATP por segundo también, lo que significa que si estás perdiendo ATP debido a la osmoregulación solo tienes que añadir un par de hexágonos vacíos de citoplasma o eliminar algunos orgánulos."
+
+#: ../simulation_parameters/common/help_texts.json:154
+msgid "EASTEREGG_MESSAGE_4"
+msgstr "Un dato curioso: En la vida real, los procariotas tienen algo llamado biocompartimentos que actúan como orgánulos, y que de hecho se llaman orgánulos poliédricos."
+
+#: ../simulation_parameters/common/help_texts.json:157
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Dato curioso: Los metabolosomas son lo que se llama un orgánulo poliédrico."
+
+#: ../simulation_parameters/common/help_texts.json:160
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Un consejo: A veces es mejor huir de otras células."
+
+#: ../simulation_parameters/common/help_texts.json:163
+msgid "EASTEREGG_MESSAGE_7"
+msgstr "Un consejo: Si otra célula mide la mitad que tu célula, puedes engullirla."
+
+#: ../simulation_parameters/common/help_texts.json:166
+msgid "EASTEREGG_MESSAGE_8"
+msgstr "Un consejo: las bacterias pueden ser mas fuertes de lo que aparentan. Pueden ser pequeñas, pero algunas de ellas pueden enterrarse dentro de tu célula y matarla!"
+
+#: ../simulation_parameters/common/help_texts.json:169
+msgid "EASTEREGG_MESSAGE_9"
+msgstr "Un consejo: puedes cazar otras especies hasta la extinción si no eres cuidadoso. Otras especies pueden hacer lo mismo."
+
+#: ../simulation_parameters/common/help_texts.json:172
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "TENTÁCULOS!!"
+
+#: ../simulation_parameters/common/help_texts.json:175
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "¡Derrite el metal!"
+
+#: ../simulation_parameters/common/help_texts.json:178
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Fíjate en esas células azules."
+
+#: ../simulation_parameters/common/help_texts.json:181
+msgid "EASTEREGG_MESSAGE_13"
+msgstr "Un consejo: los biomas son más que solo fondos diferentes, los compuestos en éstos se generan a ratios diferentes."
+
+#: ../simulation_parameters/common/help_texts.json:184
+msgid "EASTEREGG_MESSAGE_14"
+msgstr "Un consejo: mientras más flagelos tengas, mas rápido te mueves (wooosh!). Aunque también consumes más ATP"
+
+#: ../simulation_parameters/common/help_texts.json:187
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Un consejo: puedes engullir fragmentos de hierro."
+
+#: ../simulation_parameters/common/help_texts.json:190
+msgid "EASTEREGG_MESSAGE_16"
+msgstr "Un consejo: prepárate antes de añadir un núcleo. ¡Esas cosas son caras!"
+
+#: ../simulation_parameters/common/help_texts.json:193
+msgid "EASTEREGG_MESSAGE_17"
+msgstr "Dato curioso: ¿sabías que hay mas de 8000 ciliados en el planeta Tierra?"
+
+#: ../simulation_parameters/common/help_texts.json:196
+msgid "EASTEREGG_MESSAGE_18"
+msgstr "Dato curioso: el Stentor es un ciliado que puede estirarse y atrapar presas. Lo hace con una especie de boca en forma de trompeta, misma que atrae a las presas generando corrientes en el agua con sus cilios."
+
+#: ../simulation_parameters/common/help_texts.json:199
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Dato curioso: el Didinium es un ciliado que caza paramecios."
+
+#: ../simulation_parameters/common/help_texts.json:202
+msgid "EASTEREGG_MESSAGE_20"
+msgstr "Dato curioso: la Ameba caza y atrapa presas con 'piernas' hechas de citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."
+
+#: ../simulation_parameters/common/help_texts.json:205
+msgid "EASTEREGG_MESSAGE_21"
+msgstr "Un consejo: ten cuidado con células y bacterias grandes, no es divertido que te digieran, y ellas seguro te comerán."
+
+#: ../simulation_parameters/common/help_texts.json:208
+msgid "EASTEREGG_MESSAGE_22"
+msgstr "El líder del equipo de sonido ha compuesto varias canciones que aún no han sido añadidas al juego. Puedes escucharlas o verlo componiendo en vivo, en su canal de YouTube: Oliver Lugg."
+
+#: ../simulation_parameters/common/help_texts.json:211
+msgid "EASTEREGG_MESSAGE_23"
+msgstr "Un consejo: Si tu célula ocupa 150 espacios, puedes engullir pedazos grandes de hierro."
+
+#: ../simulation_parameters/common/help_texts.json:214
+msgid "EASTEREGG_MESSAGE_24"
+msgstr "Thrive está pensado como una simulación de un planeta extraterrestre. Por eso tiene sentido que la mayoría de las criaturas que encuentres estén relacionadas a una o dos especies, debido a la evolución ocurriendo a lo largo del juego. ¿Puedes identificarlas?"
+
+#: ../simulation_parameters/common/help_texts.json:217
+msgid "EASTEREGG_MESSAGE_25"
+msgstr "Dato curioso: El equipo de Thrive hace podcasts de vez en cuando. ¡Échale un vistazo!"
+
+#: ../simulation_parameters/common/help_texts.json:220
+msgid "EASTEREGG_MESSAGE_26"
+msgstr "Dato curioso: ¡Thrive está hecho con el motor de juegos de código abierto Godot!"
+
+#: ../simulation_parameters/common/help_texts.json:223
+msgid "EASTEREGG_MESSAGE_27"
+msgstr "Dato curioso: Uno de los primeros prototipos funcionales en el juego fue hecho por nuestro genial programador, ¡Untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
@@ -1113,6 +1380,7 @@ msgid "REPRODUCTION_METHOD"
 msgstr "Reproducción:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemación"
 
@@ -2102,10 +2370,24 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Ciertas opciones serán deshabilitadas si \"Solo usar VCLC\" está activado"
 
 #: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Fuentes hidrotermales"
+
+#: ../src/general/NewGameSettings.tscn:199
+#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr "Un pequeño y calido estanque"
+
+#: ../src/general/NewGameSettings.tscn:199
+#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr "Panspermia (aleatorio)"
 
 #: ../src/general/NewGameSettings.tscn:214
 #: ../src/general/NewGameSettings.tscn:1044
@@ -2216,9 +2498,15 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(usar generación de zonas procesalmente o usar el diseño clásico)"
 
 #: ../src/general/NewGameSettings.tscn:880
+#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Generación Procesal"
+
+#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "Clásico"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -2353,9 +2641,25 @@ msgstr "MSAA:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores más altos empeoran el rendimiento)"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
 msgid "DISABLED"
 msgstr "Desactivado"
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "TWO_TIMES"
+msgstr "2x"
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "FOUR_TIMES"
+msgstr "4x"
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "EIGHT_TIMES"
+msgstr "8x"
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:318
 msgid "RESOLUTION"
@@ -2365,13 +2669,25 @@ msgstr "Resolución:"
 msgid "MAX_FPS"
 msgstr "FPS Máximos:"
 
+#: ../src/general/OptionsMenu.tscn:357
+msgid "MAX_FPS_NO_LIMIT"
+msgstr "Ilimitado"
+
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Corrección de color para daltónicos:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
 msgid "NONE"
 msgstr "Ninguna"
+
+#: ../src/general/OptionsMenu.tscn:388
+msgid "CORRECTION_PROTANOPE"
+msgstr "Protanomalía (Rojo-Verde)"
+
+#: ../src/general/OptionsMenu.tscn:388
+msgid "CORRECTION_TRITANOPE"
+msgstr "Tritanomalía (Azul-Amarillo)"
 
 #: ../src/general/OptionsMenu.tscn:404
 msgid "CHROMATIC_ABERRATION"
@@ -2495,9 +2811,37 @@ msgstr "Hilos:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Numero máximo de entidades:"
 
-#: ../src/general/OptionsMenu.tscn:1086
+#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_TINY"
 msgstr "Minusculo"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_VERY_SMALL"
+msgstr "Muy pequeño"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_SMALL"
+msgstr "Pequeño"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_NORMAL"
+msgstr "Normal"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_LARGE"
+msgstr "Grande"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_VERY_LARGE"
+msgstr "Muy grande"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_HUGE"
+msgstr "Gigante"
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_EXTREME"
+msgstr "Extremo"
 
 #: ../src/general/OptionsMenu.tscn:1148
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -2524,9 +2868,17 @@ msgstr "Vertical:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Sensibilidad del ratón por escala de ventana"
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
 msgstr "Ninguno"
+
+#: ../src/general/OptionsMenu.tscn:1224
+msgid "SCALING_ON"
+msgstr "Escalado"
+
+#: ../src/general/OptionsMenu.tscn:1224
+msgid "SCALING_ON_INVERSE"
+msgstr "Escalado inversamente"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "USE_VIRTUAL_WINDOW_SIZE"
@@ -2614,9 +2966,17 @@ msgstr "Reiniciar ventanas emergentes"
 msgid "JSON_DEBUG_MODE"
 msgstr "Modo de depuración JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1611
+#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automáticamente"
+
+#: ../src/general/OptionsMenu.tscn:1612
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr "Siempre"
+
+#: ../src/general/OptionsMenu.tscn:1612
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr "Nunca"
 
 #: ../src/general/OptionsMenu.tscn:1628
 msgid "EXACT_VERSION_TOOLTIP"
@@ -2824,18 +3184,6 @@ msgstr "Activado"
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
 msgstr "Desactivado"
-
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr "Un pequeño y calido estanque"
-
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Panspermia (aleatorio)"
-
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr "Clásico"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
@@ -3868,6 +4216,7 @@ msgid "APPEARANCE"
 msgstr "Apariencia"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexual"
 
@@ -5792,267 +6141,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:402
 msgid "CONTINUE_THRIVING"
 msgstr "Continuar prosperando"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. Pulsa [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar o desactivar el modo engullir. Puedes acercar y alejar la cámara con la rueda del ratón."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr "Tu célula usa [thrive:compound type=\"atp\"][/thrive:compound] como su fuente de energía. Si se agota, morirá."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr "Para desbloquear el editor y reproducirte necesitas conseguir [thrive:compound type=\"ammonia\"][/thrive:compound] (nubes de color naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (nubes de color púrpura)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr "También puedes engullir células, bacterias, pedazos de hierro y trozos de célula de menor tamaño que la tuya al presionar [thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de [thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. No olvides presionar [thrive:input]g_toggle_engulf[/thrive:input] de nuevo para dejar de engullir."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Una vez la célula haya terminado de engullir, cualquier objeto engullido se quedará dentro de la membrana para ser digerido. Los objetos indigeribles siempre serán expulsados, así que asegúrate de que dispones de las mutaciones necesarias para procesarlos. El lisosoma produce enzimas, que ayudan con la digestión; puedes evolucionarlo para mejorar la eficiencia digestiva."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-#~ msgstr "Sin embargo, solo las células eucariotas disponen de lisosomas. Las células procariotas no tienen acceso a este orgánulo, por lo que su digestión es considerablemente menos eficiente. Las células pequeñas no tienen por qué preocuparse; pero, para las células de mayor tamaño, carecer de un lisosoma es problemático."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-#~ msgstr "Paredes celulares de celulosa y quitina no pueden ser digeridas sin las enzima requeridas que desarman las mismas."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr "La osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], lo que significa que cuanto más grande es la célula, más mitocondrias, metabolosomas, rusticianinas (u orgánulos que puedan realizar glicólisis) necesitarás para evitar perder [thrive:compound type=\"atp\"][/thrive:compound] cuando esté inmóvil."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr "Hay varios orgánulos en el editor para que evoluciones, lo que te permite una amplia diversidad de estilos de juego."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Las nubes de compuestos son:\n"
-#~ "\n"
-#~ "Blanca – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "Amarilla – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-#~ "Naranja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-#~ "Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-#~ "Marrón – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-#~ "\n"
-#~ "La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr "El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser convertido a [thrive:compound type=\"glucose\"] con quimioplastos y proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:compound] puede ser convertido en [thrive:compound type=\"atp\"][/thrive:compound] con rusticianinas."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr "Para que tu célula pueda reproducirse, necesita dividir cada uno de sus orgánulos en dos. Para ello, se necesita amoniaco y fosfato."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr "Por ahora, si tu población cae a cero, te extinguirás."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr "Pero, si sobrevives durante veinte generaciones con una población de 300, habrás ganado la partida actual. Tras la victoria, obtienes una ventana emergente y puedes seguir jugando como desees."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr "Ten cuidado porque tus competidores evolucionan a la vez que tu célula. Cada vez que entras en el editor, ellos también evolucionan."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una misma colonia comparten entre sí todos los compuestos que absorben y producen. Entra en el modo de ligación con [thrive:input]g_toggle_binding[/thrive:input] y acércate a otra célula de tu misma especie. Mientras formes parte de una colonia, no podrás reproducir tu célula para entrar al editor. Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia con [thrive:input]g_unbind_all[/thrive:input] para entrar al editor. Las grandes colonias celulares son el camino hacia la multicelularidad."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Estructuras procarióticas\n"
-#~ "\n"
-#~ "Citoplasma: Tiene espacio de almacenamiento y realiza la glucólisis (produce pequeñas cantidades de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-#~ "\n"
-#~ "Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Tilacoides: Producen un tercio de la [thrive:compound type=\"glucose\"][/thrive:compound] como cloroplastos normales, pero también realizan la glucólisis, y ocupan un solo espacio\n"
-#~ "\n"
-#~ "Proteínas quimiosintetizadoras: Producen la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] como quimioplastos, pero también realizan la glucólisis, y ocupan un solo espacio\n"
-#~ "\n"
-#~ "Rusticianina: Transforma el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Nitrogenasa: Transforma el nitrógeno atmosférico y el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] de forma anaeróbica\n"
-#~ "\n"
-#~ "Oxitoxisoma: Transforma el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Termosintasa: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando los gradientes térmicos"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Orgánulos externos\n"
-#~ "\n"
-#~ "Flagelos: Dan más velocidad a tu célula, y consumen [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Pilus: Puede usarse para atacar a otras células o para defenderse de sus toxinas\n"
-#~ "\n"
-#~ "Quimiorreceptor: Aumenta la distancia a la cual se pueden detectar compuestos\n"
-#~ "\n"
-#~ "Turbina de slime: Emite [thrive:compound type=\"mucilage\"][/thrive:compound] (producido a partir de [thrive:compound type=\"glucose\"][/thrive:compound]) para acelerar a tu célula\n"
-#~ "\n"
-#~ "Cilios: Aumentan la velocidad de giro de la célula, haciéndola más ágil"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Orgánulos con membrana\n"
-#~ "\n"
-#~ "Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la membrana, duplicando el tamaño de tu célula y protegiéndola del 50% de los daños (solo puede ser evolucionado una vez).\n"
-#~ "\n"
-#~ "Agente de ligación: Permite ligarte con otras células\n"
-#~ "\n"
-#~ "Mitocondria: Produce [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound y oxígeno atmosférico de forma mucho más eficiente que el citoplasma\n"
-#~ "\n"
-#~ "Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] utilizando luz solar y CO2 atmosférico\n"
-#~ "\n"
-#~ "Termoplasto: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura\n"
-#~ "\n"
-#~ "Lisosoma: Contiene enzimas digestivas, que aceleran la digestión y mejoran su eficacia\n"
-#~ "\n"
-#~ "Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound], nitrógeno y oxígeno\n"
-#~ "\n"
-#~ "Vacuola: Puede almacenar hasta 8 compuestos recolectados\n"
-#~ "\n"
-#~ "Vacuola de toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy\"][/thrive:compound]) y te permite liberarlas, causando daño de forma proporcional a las cantidad de oxitoxinas restantes\n"
-#~ "\n"
-#~ "Agente de señalización: Permite a las células sintetizar químicos a los que otras células pueden reaccionar"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr "En cada generación, tienes 100 puntos de mutación (PM) para gastar, y cada cambio (o mutación) tiene un coste determinado de PM. Añadir y quitar orgánulos gasta PM, sin embargo, quitar un orgánulo que fue añadido en la misma sesión devuelve su coste de PM. Puedes mover o eliminar un orgánulo haciendo click derecho en este y seleccionando la acción apropiada. Puedes rotar orgánulos al momento de añadirlos con [thrive:input]e_rotate_left[/thrive:input] y [thrive:input]e_rotate_right[/thrive:input]."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando orgánulos) para incrementar tus chances de éxito. Cada visita al editor en el estadio de microbio representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millones de años de evolución."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
-
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr "Dato curioso: el didinium y el paramecio son un ejemplo de una relación depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el didinium o el paramecio? ¿Depredador o presa?"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr "Un consejo: las toxinas pueden usarse para alejar otras toxinas si eres lo suficientemente rápido."
-
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr "Un consejo: la osmorregulación cuesta 1 ATP por segundo por cada hexágono que tenga tu célula, cada hexágono vacío de citoplasma genera 5 ATP por segundo también, lo que significa que si estás perdiendo ATP debido a la osmoregulación solo tienes que añadir un par de hexágonos vacíos de citoplasma o eliminar algunos orgánulos."
-
-#~ msgid "EASTEREGG_MESSAGE_4"
-#~ msgstr "Un dato curioso: En la vida real, los procariotas tienen algo llamado biocompartimentos que actúan como orgánulos, y que de hecho se llaman orgánulos poliédricos."
-
-#~ msgid "EASTEREGG_MESSAGE_5"
-#~ msgstr "Dato curioso: Los metabolosomas son lo que se llama un orgánulo poliédrico."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Un consejo: A veces es mejor huir de otras células."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr "Un consejo: Si otra célula mide la mitad que tu célula, puedes engullirla."
-
-#~ msgid "EASTEREGG_MESSAGE_8"
-#~ msgstr "Un consejo: las bacterias pueden ser mas fuertes de lo que aparentan. Pueden ser pequeñas, pero algunas de ellas pueden enterrarse dentro de tu célula y matarla!"
-
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr "Un consejo: puedes cazar otras especies hasta la extinción si no eres cuidadoso. Otras especies pueden hacer lo mismo."
-
-#~ msgid "EASTEREGG_MESSAGE_10"
-#~ msgstr "TENTÁCULOS!!"
-
-#~ msgid "EASTEREGG_MESSAGE_11"
-#~ msgstr "¡Derrite el metal!"
-
-#~ msgid "EASTEREGG_MESSAGE_12"
-#~ msgstr "Fíjate en esas células azules."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr "Un consejo: los biomas son más que solo fondos diferentes, los compuestos en éstos se generan a ratios diferentes."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr "Un consejo: mientras más flagelos tengas, mas rápido te mueves (wooosh!). Aunque también consumes más ATP"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "Un consejo: puedes engullir fragmentos de hierro."
-
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr "Un consejo: prepárate antes de añadir un núcleo. ¡Esas cosas son caras!"
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr "Dato curioso: ¿sabías que hay mas de 8000 ciliados en el planeta Tierra?"
-
-#~ msgid "EASTEREGG_MESSAGE_18"
-#~ msgstr "Dato curioso: el Stentor es un ciliado que puede estirarse y atrapar presas. Lo hace con una especie de boca en forma de trompeta, misma que atrae a las presas generando corrientes en el agua con sus cilios."
-
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr "Dato curioso: el Didinium es un ciliado que caza paramecios."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Dato curioso: la Ameba caza y atrapa presas con 'piernas' hechas de citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Un consejo: ten cuidado con células y bacterias grandes, no es divertido que te digieran, y ellas seguro te comerán."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "El líder del equipo de sonido ha compuesto varias canciones que aún no han sido añadidas al juego. Puedes escucharlas o verlo componiendo en vivo, en su canal de YouTube: Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Un consejo: Si tu célula ocupa 150 espacios, puedes engullir pedazos grandes de hierro."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive está pensado como una simulación de un planeta extraterrestre. Por eso tiene sentido que la mayoría de las criaturas que encuentres estén relacionadas a una o dos especies, debido a la evolución ocurriendo a lo largo del juego. ¿Puedes identificarlas?"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Dato curioso: El equipo de Thrive hace podcasts de vez en cuando. ¡Échale un vistazo!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Dato curioso: ¡Thrive está hecho con el motor de juegos de código abierto Godot!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Dato curioso: Uno de los primeros prototipos funcionales en el juego fue hecho por nuestro genial programador, ¡Untrustedlife!"
-
-#~ msgid "TWO_TIMES"
-#~ msgstr "2x"
-
-#~ msgid "FOUR_TIMES"
-#~ msgstr "4x"
-
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "8x"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
-
-#~ msgid "MAX_FPS_NO_LIMIT"
-#~ msgstr "Ilimitado"
-
-#~ msgid "CORRECTION_PROTANOPE"
-#~ msgstr "Protanomalía (Rojo-Verde)"
-
-#~ msgid "CORRECTION_TRITANOPE"
-#~ msgstr "Tritanomalía (Azul-Amarillo)"
-
-#~ msgid "LIMIT_VERY_SMALL"
-#~ msgstr "Muy pequeño"
-
-#~ msgid "LIMIT_SMALL"
-#~ msgstr "Pequeño"
-
-#~ msgid "LIMIT_NORMAL"
-#~ msgstr "Normal"
-
-#~ msgid "LIMIT_LARGE"
-#~ msgstr "Grande"
-
-#~ msgid "LIMIT_VERY_LARGE"
-#~ msgstr "Muy grande"
-
-#~ msgid "LIMIT_HUGE"
-#~ msgstr "Gigante"
-
-#~ msgid "LIMIT_EXTREME"
-#~ msgstr "Extremo"
-
-#~ msgid "SCALING_ON"
-#~ msgstr "Escalado"
-
-#~ msgid "SCALING_ON_INVERSE"
-#~ msgstr "Escalado inversamente"
-
-#~ msgid "JSON_DEBUG_MODE_ALWAYS"
-#~ msgstr "Siempre"
-
-#~ msgid "JSON_DEBUG_MODE_NEVER"
-#~ msgstr "Nunca"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Estadísticas interesantes de la partida actual"

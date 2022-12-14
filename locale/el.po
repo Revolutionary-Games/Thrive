@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-14 19:49+0100\n"
+"POT-Creation-Date: 2022-12-14 20:19+0100\n"
 "PO-Revision-Date: 2022-03-31 05:02+0000\n"
 "Last-Translator: Apostolos Paschidis <tolissius@gmail.com>\n"
 "Language-Team: Greek <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/el/>\n"
@@ -81,6 +81,251 @@ msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξ
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr "Το κύτταρό σας χρησιμοποιεί [thrive:compound type=\"atp\"][/thrive:compound] ως πηγή ενέργειας· εάν τελειώσει, το κύτταρο πεθαίνει."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr "Για να ξεκλειδώσετε τον επεξεργαστή και να αναπαραχθείτε πρέπει να συλλέξετε [thrive:compound type=\"ammonia\"][/thrive:compound] (πορτοκαλί νέφος) και [thrive:compound type=\"phosphates\"][/thrive:compound] (μωβ νέφος)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr "Μπορείτε επίσης να απορροφήσετε κύτταρα, βακτήρια, θραύσματα σιδήρου ή άλλων κυττάρων που είναι μικρότερα από εσάς πατώντας το [thrive:input]g_toggle_engulf[/thrive:input]. Αυτό κοστίζει επιπλέον [thrive:compound type=\"atp\"][/thrive:compound] και σας επιβραδύνει. Μη ξεχνάτε να πατάτε πάλι το [thrive:input]g_toggle_engulf[/thrive:input] για να σταματάτε να απορροφάτε."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr "Υπάρχουν πολλά Οργανίδια στον επεξεργαστή για να εξελιχθείτε, επιτρέποντας ποικιλία διαφορετικών τρόπων να παίξετε."
+
+#: ../simulation_parameters/common/help_texts.json:42
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Τα διάφορα νέφη ενώσεων είναι:\n"
+"\n"
+"Λευκό - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Κίτρινο - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Πορτοκαλί - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Μωβ - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Καφέ - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"Η [thrive:compound type=\"glucose\"][/thrive:compound] παράγει [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr "Για να αναπαραχθείτε πρέπει να διαιρεθούν πρώτα τα οργανίδιά σας. Η διαίρεση των οργανιδίων απαιτεί αμμωνία και φωσφορικά."
+
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Για τώρα, εάν ο πληθυσμός τού είδους σας πέσει στο μηδέν, αφανίζεσθε."
+
+#: ../simulation_parameters/common/help_texts.json:58
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr "Εάν όμως επιβιώσετε επί είκοσι γενεές με πληθυσμό 300, θεωρείται ότι νικήσατε το τρέχον παιχνίδι. Μετά την νίκη ενημερώνεστε και μπορείτε να συνεχίσετε το παιχνίδι όπως επιθυμείτε."
+
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr "Προσέχετε, καθ' ότι οι ανταγωνιστές σας εξελίσσονται παραλλήλως. Κάθε φορά που εισέρχεστε στον επεξεργαστή, εξελίσσονται και εκείνοι."
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr "Συνδεόμενοι με άλλα κύτταρα, μπορείτε να φτιάξετε αποικία, όπου τα κύτταρα μοιράζονται τις ενώσεις που απορροφούν και παράγουν μαζί. Για να μπορέσετε να συνδεθείτε με άλλα κύτταρα, χρειάζεται να έχετε οργανίδιο σύνδεσης και να κινηθείτε προς αυτά, αφού εισέλθετε στην λειτουργία σύνδεσης. Είναι δυνατόν να συνδέεστε μόνον με κύτταρα τού ιδίου είδους. Συνδεδεμένοι σε αποικία, δεν μπορείτε να διαιρεθείτε και να εισέλθετε στον επεξεργαστή (προς το παρόν). Για να εισέλθετε στον επεξεργαστή, πρώτα αποχωρήστε από την αποικία αφού έχετε συλλέξει αρκετές ενώσεις και έπειτα εισέλθετε στον επεξεργαστή. Οι μεγάλες αποικίες κυττάρων είναι ο δρόμος προς τους πολυκύτταρους οργανισμούς (δεν διατίθενται ακόμη στο παιχνίδι)."
+
+#: ../simulation_parameters/common/help_texts.json:74
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:78
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:82
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:86
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:90
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr "Κάθε φορά που αναπαράγεσθε, εισέρχεσθε στον Επεξεργαστή Μικροβίων, όπου μπορείτε να πραγματοποιήσετε αλλαγές στο είδος σας (προσθέτοντας, μετακινώντας ή αφαιρώντας οργανίδια) για να αυξήσετε την επιτυχία τού είδους σας. Κάθε επίσκεψη στον επεξεργαστή κατά το Στάδιο Μικροβίων αντιστοιχεί σε [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]εκατομμύρια έτη εξέλιξης."
+
+#: ../simulation_parameters/common/help_texts.json:131
+#: ../simulation_parameters/common/help_texts.json:138
+msgid "LOADING_TIP"
+msgstr "Πατήστε το πλήκτρο αναίρεσης στον επεξεργαστή για να διορθώσετε σφάλματα"
+
+#: ../simulation_parameters/common/help_texts.json:145
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_1"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:148
+msgid "EASTEREGG_MESSAGE_2"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:151
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_3"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:154
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_4"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:157
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:160
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Συμβουλή: μερικές φορές είναι καλύτερο να αποφεύγετε άλλα κύτταρα."
+
+#: ../simulation_parameters/common/help_texts.json:163
+msgid "EASTEREGG_MESSAGE_7"
+msgstr "Συμβουλή: εάν ένα κύτταρο είναι περίπου το μισό από το δικό σας, τότε μπορείτε να το απορροφήσετε."
+
+#: ../simulation_parameters/common/help_texts.json:166
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_8"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:169
+msgid "EASTEREGG_MESSAGE_9"
+msgstr "Σύμβουλή: είναι δυνατόν να κυνηγήσετε άλλο είδος μέχρι αφανισμού εάν δεν προσέχετε αρκετά. Άλλα είδη μπορούν το κάνουν επίσης."
+
+#: ../simulation_parameters/common/help_texts.json:172
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:175
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:178
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:181
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_13"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:184
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_14"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:187
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:190
+msgid "EASTEREGG_MESSAGE_16"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:193
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_17"
+msgstr "Συμβουλή: εάν ένα κύτταρο είναι περίπου το μισό από το δικό σας, τότε μπορείτε να το απορροφήσετε."
+
+#: ../simulation_parameters/common/help_texts.json:196
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_18"
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
+
+#: ../simulation_parameters/common/help_texts.json:199
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Σύμβουλή: είναι δυνατόν να κυνηγήσετε άλλο είδος μέχρι αφανισμού εάν δεν προσέχετε αρκετά. Άλλα είδη μπορούν το κάνουν επίσης."
+
+#: ../simulation_parameters/common/help_texts.json:202
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_20"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:205
+msgid "EASTEREGG_MESSAGE_21"
+msgstr "Συμβουλή: προέχετε τα μεγαλύτερα κύτταρα και τα μεγάλα βακτήρια, δεν είναι ευχάριστο να σας τρώνε (και θα σας φάνε)."
+
+#: ../simulation_parameters/common/help_texts.json:208
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_22"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:211
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_23"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:214
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_24"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:217
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_25"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:220
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_26"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
+
+#: ../simulation_parameters/common/help_texts.json:223
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_27"
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
 
 #: ../simulation_parameters/common/input_options.json:7
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
@@ -1113,6 +1358,7 @@ msgid "REPRODUCTION_METHOD"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
@@ -2062,9 +2308,23 @@ msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:199
 #: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:944
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:199
+#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/WorldGenerationSettings.cs:46
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:199
+#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/WorldGenerationSettings.cs:49
+msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:214
@@ -2176,8 +2436,14 @@ msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:880
+#: ../src/general/NewGameSettings.tscn:881
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/WorldGenerationSettings.cs:58
+msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:959
@@ -2313,8 +2579,24 @@ msgstr ""
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
 msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "EIGHT_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:304
+msgid "SIXTEEN_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:318
@@ -2325,12 +2607,24 @@ msgstr ""
 msgid "MAX_FPS"
 msgstr ""
 
+#: ../src/general/OptionsMenu.tscn:357
+msgid "MAX_FPS_NO_LIMIT"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:373
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
 msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:388
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:388
+msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:404
@@ -2455,8 +2749,36 @@ msgstr ""
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1086
+#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
 msgid "LIMIT_TINY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_VERY_SMALL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_SMALL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_NORMAL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_VERY_LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_HUGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1087
+msgid "LIMIT_EXTREME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1148
@@ -2484,8 +2806,16 @@ msgstr ""
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223
+#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
 msgid "SCALING_NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1224
+msgid "SCALING_ON"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1224
+msgid "SCALING_ON_INVERSE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1237
@@ -2572,8 +2902,16 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1611
+#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
 msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1612
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1612
+msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1628
@@ -2767,18 +3105,6 @@ msgstr ""
 
 #: ../src/general/TranslationHelper.cs:85
 msgid "FEATURE_DISABLED"
-msgstr ""
-
-#: ../src/general/WorldGenerationSettings.cs:46
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/WorldGenerationSettings.cs:49
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
-
-#: ../src/general/WorldGenerationSettings.cs:58
-msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
 #: ../src/general/WorldGenerationSettings.cs:171
@@ -3745,6 +4071,7 @@ msgid "APPEARANCE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
@@ -5485,84 +5812,3 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:402
 msgid "CONTINUE_THRIVING"
 msgstr ""
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr "Το κύτταρό σας χρησιμοποιεί [thrive:compound type=\"atp\"][/thrive:compound] ως πηγή ενέργειας· εάν τελειώσει, το κύτταρο πεθαίνει."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr "Για να ξεκλειδώσετε τον επεξεργαστή και να αναπαραχθείτε πρέπει να συλλέξετε [thrive:compound type=\"ammonia\"][/thrive:compound] (πορτοκαλί νέφος) και [thrive:compound type=\"phosphates\"][/thrive:compound] (μωβ νέφος)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr "Μπορείτε επίσης να απορροφήσετε κύτταρα, βακτήρια, θραύσματα σιδήρου ή άλλων κυττάρων που είναι μικρότερα από εσάς πατώντας το [thrive:input]g_toggle_engulf[/thrive:input]. Αυτό κοστίζει επιπλέον [thrive:compound type=\"atp\"][/thrive:compound] και σας επιβραδύνει. Μη ξεχνάτε να πατάτε πάλι το [thrive:input]g_toggle_engulf[/thrive:input] για να σταματάτε να απορροφάτε."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-#~ msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-#~ msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr "Υπάρχουν πολλά Οργανίδια στον επεξεργαστή για να εξελιχθείτε, επιτρέποντας ποικιλία διαφορετικών τρόπων να παίξετε."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Τα διάφορα νέφη ενώσεων είναι:\n"
-#~ "\n"
-#~ "Λευκό - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "Κίτρινο - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-#~ "Πορτοκαλί - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-#~ "Μωβ - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-#~ "Καφέ - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Η [thrive:compound type=\"glucose\"][/thrive:compound] παράγει [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr "Για να αναπαραχθείτε πρέπει να διαιρεθούν πρώτα τα οργανίδιά σας. Η διαίρεση των οργανιδίων απαιτεί αμμωνία και φωσφορικά."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr "Για τώρα, εάν ο πληθυσμός τού είδους σας πέσει στο μηδέν, αφανίζεσθε."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr "Εάν όμως επιβιώσετε επί είκοσι γενεές με πληθυσμό 300, θεωρείται ότι νικήσατε το τρέχον παιχνίδι. Μετά την νίκη ενημερώνεστε και μπορείτε να συνεχίσετε το παιχνίδι όπως επιθυμείτε."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr "Προσέχετε, καθ' ότι οι ανταγωνιστές σας εξελίσσονται παραλλήλως. Κάθε φορά που εισέρχεστε στον επεξεργαστή, εξελίσσονται και εκείνοι."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr "Συνδεόμενοι με άλλα κύτταρα, μπορείτε να φτιάξετε αποικία, όπου τα κύτταρα μοιράζονται τις ενώσεις που απορροφούν και παράγουν μαζί. Για να μπορέσετε να συνδεθείτε με άλλα κύτταρα, χρειάζεται να έχετε οργανίδιο σύνδεσης και να κινηθείτε προς αυτά, αφού εισέλθετε στην λειτουργία σύνδεσης. Είναι δυνατόν να συνδέεστε μόνον με κύτταρα τού ιδίου είδους. Συνδεδεμένοι σε αποικία, δεν μπορείτε να διαιρεθείτε και να εισέλθετε στον επεξεργαστή (προς το παρόν). Για να εισέλθετε στον επεξεργαστή, πρώτα αποχωρήστε από την αποικία αφού έχετε συλλέξει αρκετές ενώσεις και έπειτα εισέλθετε στον επεξεργαστή. Οι μεγάλες αποικίες κυττάρων είναι ο δρόμος προς τους πολυκύτταρους οργανισμούς (δεν διατίθενται ακόμη στο παιχνίδι)."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr "Κάθε φορά που αναπαράγεσθε, εισέρχεσθε στον Επεξεργαστή Μικροβίων, όπου μπορείτε να πραγματοποιήσετε αλλαγές στο είδος σας (προσθέτοντας, μετακινώντας ή αφαιρώντας οργανίδια) για να αυξήσετε την επιτυχία τού είδους σας. Κάθε επίσκεψη στον επεξεργαστή κατά το Στάδιο Μικροβίων αντιστοιχεί σε [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]εκατομμύρια έτη εξέλιξης."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Πατήστε το πλήκτρο αναίρεσης στον επεξεργαστή για να διορθώσετε σφάλματα"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Συμβουλή: μερικές φορές είναι καλύτερο να αποφεύγετε άλλα κύτταρα."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr "Συμβουλή: εάν ένα κύτταρο είναι περίπου το μισό από το δικό σας, τότε μπορείτε να το απορροφήσετε."
-
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr "Σύμβουλή: είναι δυνατόν να κυνηγήσετε άλλο είδος μέχρι αφανισμού εάν δεν προσέχετε αρκετά. Άλλα είδη μπορούν το κάνουν επίσης."
-
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Συμβουλή: προέχετε τα μεγαλύτερα κύτταρα και τα μεγάλα βακτήρια, δεν είναι ευχάριστο να σας τρώνε (και θα σας φάνε)."
