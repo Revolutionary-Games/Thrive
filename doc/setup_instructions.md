@@ -30,7 +30,8 @@ if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
 through the [previous Godot
 versions](https://downloads.tuxfamily.org/godotengine/) to get the
-right version.
+right version. Using a different version than what is mentioned above
+will cause issues.
 
 Godot is self-contained, meaning that you just extract the downloaded
 archive and run the Godot executable in it.
