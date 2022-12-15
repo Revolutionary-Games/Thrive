@@ -56,7 +56,7 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
-    ///   The space available for a compound of type. If not useful no free space is ever reported
+    ///   The space available for a compound of given type. If not useful no free space is ever reported.
     /// </summary>
     /// <param name="compound">The compound type to check</param>
     /// <returns>The free space available</returns>
