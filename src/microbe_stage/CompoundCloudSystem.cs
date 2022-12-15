@@ -172,6 +172,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
     public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
+        if (fraction < 0.0f)
+            throw new ArgumentException("Fraction to take can't be negative");
+
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
