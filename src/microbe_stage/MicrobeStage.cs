@@ -520,8 +520,7 @@ public class MicrobeStage : StageBase<Microbe>
             if (GameWorld.WorldSettings.DayNightCycleEnabled)
             {
                 var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-                var patchSunlight = GameWorld.Map.CurrentPatch!.Biome
-                    .GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
 
                 if (patchSunlight > 0.01f)
                 {
