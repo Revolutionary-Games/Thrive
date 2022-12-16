@@ -130,6 +130,11 @@ public class FossilisedSpecies
         };
     }
 
+    public static void DeleteFossilFile(string fossilName)
+    {
+        
+    }
+
     /// <summary>
     ///   Saves this species to disk.
     /// </summary>

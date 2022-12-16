@@ -11,14 +11,22 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
+    [Export]
+    public NodePath DeleteConfirmationDialogPath = null!;
+
     private Label? speciesNameLabel;
     private TextureRect? speciesPreview;
 
     private Species? savedSpecies;
     private Image? fossilPreviewImage;
 
+    private CustomConfirmationDialog deleteConfirmationDialog = null!;
+
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
+
+    [Signal]
+    public delegate void OnSpeciesDeleted(MuseumCard card);
 
     /// <summary>
     ///   The fossilised species associated with this card.
@@ -49,12 +57,15 @@ public class MuseumCard : Button
         }
     }
 
+    public string? FossilName { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
 
         speciesPreview = GetNode<TextureRect>(SpeciesPreviewPath);
         speciesNameLabel = GetNode<Label>(SpeciesNameLabelPath);
+        deleteConfirmationDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmationDialogPath);
 
         UpdateSpeciesName();
         UpdatePreviewImage();
@@ -102,5 +113,18 @@ public class MuseumCard : Button
     {
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
         GUICommon.Instance.Tween.Start();
+    }
+
+    private void OnDeletePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        deleteConfirmationDialog.DialogText = TranslationServer.Translate("DELETE_FOSSIL_CONFIRMATION");
+        deleteConfirmationDialog.PopupCenteredShrink();
+    }
+
+    private void OnDeleteConfirmPressed()
+    {
+        EmitSignal(nameof(OnSpeciesDeleted), this);
     }
 }

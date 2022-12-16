@@ -63,9 +63,11 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
             var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
 
+            card.FossilName = savedSpecies.Name;
             card.SavedSpecies = savedSpecies.Species;
             card.FossilPreviewImage = savedSpecies.PreviewImage;
             card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));
+            card.Connect(nameof(MuseumCard.OnSpeciesDeleted), this, nameof(DeleteSpecies));
             cardContainer.AddChild(card);
         }
     }
@@ -164,5 +166,28 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private void DeleteSpecies(MuseumCard card)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var fossilName = card.FossilName;
+
+        if (fossilName == null)
+        {
+            GD.PrintErr("Attempted to delete a fossil with a null file name");
+            return;
+        }
+
+        FossilisedSpecies.DeleteFossilFile(fossilName);
+
+        // If the species we just deleted was being displayed in the sidebar
+        if(speciesPreview.PreviewSpecies == card.SavedSpecies) {
+            // Revert back to the welcome message
+            welcomeLabel.Visible = true;
+            speciesPreviewContainer.Visible = false;
+        }
+        card.DetachAndQueueFree();
     }
 }
