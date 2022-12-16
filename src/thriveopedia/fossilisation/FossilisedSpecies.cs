@@ -130,9 +130,25 @@ public class FossilisedSpecies
         };
     }
 
+    /// <summary>
+    ///   Deletes a fossilised species by its filename.
+    /// </summary>
+    /// <param name="fossilName">The name of the .thrivefossil file (including extension)</param>
     public static void DeleteFossilFile(string fossilName)
     {
-        
+        var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
+
+        using (var directory = new Directory())
+        {
+            if (!directory.FileExists(target))
+                throw new ArgumentException("Fossil with the given name doesn't exist");
+
+            if(directory.Remove(target) != Error.Ok)
+            {
+                GD.PrintErr("Cannot delete file: ", target);
+                throw new IOException("Cannot delete: " + target);
+            }
+        }
     }
 
     /// <summary>

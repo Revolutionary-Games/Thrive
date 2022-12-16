@@ -180,7 +180,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             return;
         }
 
-        FossilisedSpecies.DeleteFossilFile(fossilName);
+        FossilisedSpecies.DeleteFossilFile(fossilName + Constants.FOSSIL_EXTENSION_WITH_DOT);
 
         // If the species we just deleted was being displayed in the sidebar
         if(speciesPreview.PreviewSpecies == card.SavedSpecies) {
