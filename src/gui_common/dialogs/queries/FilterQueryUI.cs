@@ -5,7 +5,6 @@ using Godot;
 
 public class FilterQueryUI : HBoxContainer, ISnapshotable
 {
-    // TODO SET IN SCENE!
     [Export]
     public NodePath LeftValueQueryPath = null!;
 
@@ -41,9 +40,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         rightValueQueryUI = GetNode<ValueQueryUI>(RightValueQueryPath);
         leftValueQueryUI = GetNode<ValueQueryUI>(LeftValueQueryPath);
 
-        GD.Print(leftValueQueryUI);
-        GD.Print(filter.LeftComparand);
-        // TODO CHECK THIS (NUllREFERENCE)
         leftValueQueryUI.Initialize(filter.LeftComparand);
         rightValueQueryUI.Initialize(filter.RightComparand);
     }
@@ -55,8 +51,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
             throw new InvalidOperationException("Node was not initialized!");
 
         headArgumentButton = GetNode<CustomDropDown>(HeadArgumentButtonPath);
-        rightValueQueryUI = GetNode<ValueQueryUI>(RightValueQueryPath);
-        leftValueQueryUI = GetNode<ValueQueryUI>(LeftValueQueryPath);
 
         foreach (var option in ((FilterArgument.MultipleChoiceFilterArgument)filter.HeadArgument).Options)
         {
@@ -66,7 +60,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         headArgumentButton.CreateElements();
 
         headArgumentButton.Text = (string)headArgumentButton.Items[0];
-        //headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected))
         headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
 
         dirty = true;
@@ -86,9 +79,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
     public void MakeSnapshot()
     {
-        //categorySnapshot = filter.FilterCategory;
-        //GD.Print("Making category snapshot: ", categorySnapshot);
-
         // TODO SAVE COMPARATOR
         leftValueQueryUI.MakeSnapshot();
         rightValueQueryUI.MakeSnapshot();
@@ -116,49 +106,4 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
         dirty = true;
     }
-
-/*    private void UpdateArguments(string filterCategory)
-    {
-        ClearArguments();
-
-        if (!filter.FilterItems.TryGetValue(filterCategory, out var filterItem))
-            throw new KeyNotFoundException($"Invalid filter category: {filterCategory}");
-
-        foreach (var filterArgument in filterItem.FilterArguments)
-        {
-            if (filterArgument is FilterArgument.MultipleChoiceFilterArgument multipleChoiceFilterArgument)
-            {
-                var filterArgumentButton = (FilterArgumentPopupMenu)filterArgumentPopupMenuScene
-                    .Instance();
-                filterArgumentButton.Initialize(multipleChoiceFilterArgument);
-                arguments.Add(filterArgumentButton);
-                argumentsContainer.AddChild(filterArgumentButton);
-            }
-            else if (filterArgument is FilterArgument.NumberFilterArgument numberFilterArgument)
-            {
-                var filterArgumentSlider = (FilterArgumentSlider)filterArgumentSliderScene.Instance();
-                filterArgumentSlider.Initialize(numberFilterArgument);
-                arguments.Add(filterArgumentSlider);
-                argumentsContainer.AddChild(filterArgumentSlider);
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        dirty = true;
-    }
-
-    /// <summary>
-    ///   Removes all arguments from a filter, but keeps the category.
-    /// </summary>
-    private void ClearArguments()
-    {
-        argumentsContainer.FreeChildren(true);
-
-        arguments.Clear();
-
-        dirty = true;
-    }*/
 }

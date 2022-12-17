@@ -65,7 +65,6 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         if (valueQuery == null)
             throw new InvalidOperationException("Node was not initialized!");
 
-        GD.Print(CategoryButtonPath);
         categoryButton = GetNode<CustomDropDown>(CategoryButtonPath);
         propertyButton = GetNode<CustomDropDown>(PropertyButtonPath);
 
@@ -75,7 +74,6 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         }
 
         categoryButton.CreateElements();
-        GD.Print("HEY3", valueQuery.CurrentCategory);
         categoryButton.Text = valueQuery.CurrentCategory;
         propertyButton.Text = valueQuery.CurrentProperty;
 
