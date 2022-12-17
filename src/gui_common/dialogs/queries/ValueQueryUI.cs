@@ -74,7 +74,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         }
 
         categoryButton.CreateElements();
-        categoryButton.Text = valueQuery.CurrentCategory;
+        ChangeCategory(valueQuery.CurrentCategory);
         propertyButton.Text = valueQuery.CurrentProperty;
 
         categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
@@ -83,7 +83,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     public void OnNewCategorySelected(int choiceIndex)
     {
-        OnCategoryChanged(categoryButton.Popup.GetItemText(choiceIndex));
+        ChangeCategory(categoryButton.Popup.GetItemText(choiceIndex));
     }
 
     public void OnNewPropertySelected(int choiceIndex)
@@ -99,11 +99,11 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     public void RestoreLastSnapshot()
     {
-        OnCategoryChanged(valueQuery.CurrentCategory);
+        ChangeCategory(valueQuery.CurrentCategory);
         propertyButton.Text = valueQuery.CurrentProperty;
     }
 
-    private void OnCategoryChanged(string newCategory)
+    private void ChangeCategory(string newCategory)
     {
         // Do nothing if no change actually happened
         if (newCategory == categoryButton.Text)
