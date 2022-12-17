@@ -151,8 +151,6 @@ public class MuseumCard : Button
 
     private void OnDeleteConfirmPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         EmitSignal(nameof(OnSpeciesDeleted), this);
     }
 }
