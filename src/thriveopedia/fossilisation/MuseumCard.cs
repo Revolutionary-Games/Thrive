@@ -146,7 +146,6 @@ public class MuseumCard : Button
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteConfirmationDialog.DialogText = TranslationServer.Translate("DELETE_FOSSIL_CONFIRMATION");
         deleteConfirmationDialog.PopupCenteredShrink();
     }
 
