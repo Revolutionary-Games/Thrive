@@ -94,8 +94,6 @@ public class FilterWindow : CustomConfirmationDialog
 
     public void MakeFiltersSnapshots()
     {
-        GD.Print("Snapshot!");
-
         foreach (var filterLine in filterLines)
         {
             filterLine.MakeSnapshot();
