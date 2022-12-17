@@ -671,21 +671,21 @@ public class AutoEvoExploringTool : NodeWithInput
 
         var valueFromSpecies = new Dictionary<string, Func<Species, float>>();
 
-        foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))
+        /*foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))
         {
             valueFromSpecies.Add(behaviourKey.ToString(), s => s.Behaviour[behaviourKey]);
-        }
+        }*/
 
-        var valueComparisonArguments = new List<FilterArgument>()
+        /*var valueComparisonArguments = new List<FilterArgument>()
             {
                 new FilterArgument.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
                 new FilterArgument.ComparisonFilterArgument(),
                 new FilterArgument.NumberFilterArgument(0, 500, 100),
-            };
+            };*/
 
         var speciesDataFilterItem = new Filter<Species>.FilterItem();
-        speciesDataFilterItem.AddArgumentCategoryFromEnum(
-            "BEHAVIOR_VALUE", typeof(BehaviouralValueType), s => (IDictionary<object, float>)s.Behaviour);
+        speciesDataFilterItem.AddArgumentCategoryFromEnum<BehaviouralValueType>(
+            "BEHAVIOR_VALUE", s => (IDictionary<object, float>)s.Behaviour);
 
         var speciesFilterFactory = new Filter<Species>.FilterFactory(speciesDataFilterItem.ToFactory());
 
@@ -696,10 +696,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void FlagTreeNodes()
     {
-        var x = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction());
-
-        GD.Print("DEBUG", speciesFilters.TypedFilters.Count, ",", x.Count());
-
         var speciesFlaggingFunction = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction()).Aggregate(
             (f1, f2) => s => f1(s) && f2(s));
 

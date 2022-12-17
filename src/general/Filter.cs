@@ -1,3 +1,4 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,12 +121,12 @@ public sealed class Filter<T> : IFilter
             categorizedArgumentFunctions.Add(name, options);
         }
 
-        public void AddArgumentCategoryFromEnum(
-            string name, Type enumerationType, Func<T, IDictionary<object, float>> enumerationKeyMapping)
+        public void AddArgumentCategoryFromEnum<EnumerationType>(
+            string name, Func<T, IDictionary<object, float>> enumerationKeyMapping)
         {
             var options = new Dictionary<string, Func<T, float>>();
 
-            foreach (var behaviourKey in Enum.GetValues(enumerationType))
+            foreach (var behaviourKey in Enum.GetValues(typeof(EnumerationType))) //enumerationType))
             {
                 options.Add(behaviourKey.ToString(), s => enumerationKeyMapping.Invoke(s)[behaviourKey]);
             }
