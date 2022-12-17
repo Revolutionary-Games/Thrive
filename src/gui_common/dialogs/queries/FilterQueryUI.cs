@@ -25,8 +25,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
     private CustomDropDown headArgumentButton = null!;
     private ValueQueryUI rightValueQueryUI = null!;
 
-    private string headArgumentSnapshot = null!;
-
     /// <summary>
     ///   If redraw is needed.
     /// </summary>
@@ -61,8 +59,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
         headArgumentButton.CreateElements();
 
-        headArgumentButton.Text = (string)headArgumentButton.Items[0];
-        headArgumentSnapshot = (string)headArgumentButton.Items[0];
+        headArgumentButton.Text = filter.HeadArgument.Value;
         headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
 
         dirty = true;
@@ -83,14 +80,16 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
     public void MakeSnapshot()
     {
         leftValueQueryUI.MakeSnapshot();
-        headArgumentSnapshot = headArgumentButton.Text;
         rightValueQueryUI.MakeSnapshot();
+
+        // TODO CLEAN THIS LOGIC
+        filter.HeadArgument.Value = headArgumentButton.Text;
     }
 
     public void RestoreLastSnapshot()
     {
         leftValueQueryUI.RestoreLastSnapshot();
-        headArgumentButton.Text = headArgumentSnapshot;
+        headArgumentButton.Text = filter.HeadArgument.Value;
         rightValueQueryUI.RestoreLastSnapshot();
     }
 
@@ -109,9 +108,6 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
             return;
 
         headArgumentButton.Text = filterCategory;
-
-        // TODO CLEAN THIS LOGIC
-        filter.HeadArgument.Value = filterCategory;
 
         dirty = true;
     }
