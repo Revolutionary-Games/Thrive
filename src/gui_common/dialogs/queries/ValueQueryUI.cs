@@ -88,7 +88,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     public void OnNewPropertySelected(int choiceIndex)
     {
-        propertyButton.Text = categoryButton.Popup.GetItemText(choiceIndex);
+        propertyButton.Text = propertyButton.Popup.GetItemText(choiceIndex);
     }
 
     public void MakeSnapshot()
