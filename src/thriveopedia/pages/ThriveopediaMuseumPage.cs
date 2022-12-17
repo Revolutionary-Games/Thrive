@@ -183,11 +183,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         FossilisedSpecies.DeleteFossilFile(fossilName + Constants.FOSSIL_EXTENSION_WITH_DOT);
 
         // If the species we just deleted was being displayed in the sidebar
-        if(speciesPreview.PreviewSpecies == card.SavedSpecies) {
+        if (speciesPreview.PreviewSpecies == card.SavedSpecies)
+        {
             // Revert back to the welcome message
             welcomeLabel.Visible = true;
             speciesPreviewContainer.Visible = false;
         }
+
         card.DetachAndQueueFree();
     }
 }

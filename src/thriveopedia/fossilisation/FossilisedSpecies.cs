@@ -143,7 +143,7 @@ public class FossilisedSpecies
             if (!directory.FileExists(target))
                 throw new ArgumentException("Fossil with the given name doesn't exist");
 
-            if(directory.Remove(target) != Error.Ok)
+            if (directory.Remove(target) != Error.Ok)
             {
                 GD.PrintErr("Cannot delete file: ", target);
                 throw new IOException("Cannot delete: " + target);

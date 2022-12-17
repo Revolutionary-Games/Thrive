@@ -27,6 +27,8 @@ public class MuseumCard : Button
 
     private CustomConfirmationDialog deleteConfirmationDialog = null!;
 
+    private bool wasPressed;
+
     [Signal]
     public delegate void OnSpeciesSelected(MuseumCard card);
 
@@ -63,8 +65,6 @@ public class MuseumCard : Button
     }
 
     public string? FossilName { get; set; }
-
-    private bool wasPressed;
 
     public override void _Ready()
     {
@@ -108,10 +108,12 @@ public class MuseumCard : Button
     private void OnPressed()
     {
         // Make sure clicking doesn't pass through from the delete button
-        if(deleteButton?.Pressed ?? false) {
+        if (deleteButton?.Pressed ?? false)
+        {
             Pressed = wasPressed;
             return;
         }
+
         wasPressed = Pressed;
 
         GUICommon.Instance.PlayButtonPressSound();
@@ -120,7 +122,7 @@ public class MuseumCard : Button
 
     private void OnMouseEnter()
     {
-        if(deleteButton != null)
+        if (deleteButton != null)
             deleteButton.Visible = true;
 
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.Gray, 0.5f);
@@ -129,7 +131,7 @@ public class MuseumCard : Button
 
     private void OnMouseExit()
     {
-        if(deleteButton != null)
+        if (deleteButton != null)
             deleteButton.Visible = false;
 
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
