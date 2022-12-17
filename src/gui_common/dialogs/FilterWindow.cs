@@ -62,6 +62,9 @@ public class FilterWindow : CustomConfirmationDialog
         // TEMP
         AddFilterFromFactory();
         //AddFilterFromFactory();
+
+
+        MakeFiltersSnapshots();
     }
 
     public void ClearFilters()
