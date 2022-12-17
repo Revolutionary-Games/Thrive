@@ -119,15 +119,23 @@ public class FossilisedSpecies
     /// </summary>
     /// <param name="fossilName">The name of the .thrivefossil file (including extension)</param>
     /// <returns>The species saved in the provided file</returns>
-    public static FossilisedSpecies LoadSpeciesFromFile(string fossilName)
+    public static FossilisedSpecies? LoadSpeciesFromFile(string fossilName)
     {
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
-        var (fossilisedInfo, species, previewImage) = LoadFromFile(target);
-
-        return new FossilisedSpecies(fossilisedInfo, species, Path.GetFileNameWithoutExtension(fossilName))
+        try
         {
-            PreviewImage = previewImage,
-        };
+            var (fossilisedInfo, species, previewImage) = LoadFromFile(target);
+
+            return new FossilisedSpecies(fossilisedInfo, species, Path.GetFileNameWithoutExtension(fossilName))
+            {
+                PreviewImage = previewImage,
+            };
+        }
+        catch (Exception)
+        {
+            // This fossil is corrupt, so just don't bother showing it
+            return null;
+        }
     }
 
     /// <summary>
