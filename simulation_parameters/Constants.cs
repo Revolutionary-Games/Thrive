@@ -779,7 +779,7 @@ public static class Constants
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
-    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 15;
+    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
 
     /// <summary>
