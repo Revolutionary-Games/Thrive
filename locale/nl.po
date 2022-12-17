@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1323,7 +1323,7 @@ msgstr "Verbruik van {0}"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Uniform verdeelde voedselbron van {0} in de omgeving"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predatie van {0}"
 
@@ -3153,7 +3153,12 @@ msgstr "Terug naar menu"
 msgid "EXIT"
 msgstr "Sluit"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr "Soorten:"
+
+#: ../src/general/Species.cs:302
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "Soorten:"

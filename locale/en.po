@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-11-30 13:03+0200\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1328,7 +1328,7 @@ msgstr "{0} consumption"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Uniformly spread environmental food source of {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
@@ -3100,7 +3100,15 @@ msgstr "Return to Menu"
 msgid "EXIT"
 msgstr "Exit"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+msgid "SPECIES_DEBUG_TEXT"
+msgstr ""
+"[b]Debug[/b]\n"
+"  Total Energy: {0}\n"
+"  Mortalities: {1}\n"
+"  Individual Cost: {2}"
+
+#: ../src/general/Species.cs:302
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Species[/b]\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-12-03 09:31+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1329,7 +1329,7 @@ msgstr "{0} поглинуто"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Рівномірно поширені в середовищі джерала їжі {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Хижацтво в {0}"
 
@@ -3101,7 +3101,22 @@ msgstr "Повернутись до меню"
 msgid "EXIT"
 msgstr "Вихід"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr ""
+"[b]Види[/b]\n"
+"  {0}:{1}\n"
+"[b]Генерація[/b]\n"
+"  {2}\n"
+"[b]Популяція[/b]\n"
+"  {3}\n"
+"[b]Колір[/b]\n"
+"  #{4}\n"
+"[b]Поведінка[/b]\n"
+"  {5}"
+
+#: ../src/general/Species.cs:302
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Види[/b]\n"

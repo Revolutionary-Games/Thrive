@@ -637,6 +637,7 @@ public class AutoEvoRun
 
         // Update populations before recording conditions - should not affect per-patch population
         Parameters.World.Map.UpdateGlobalPopulations();
+        Parameters.World.Map.UpdateGlobalDebugInfo();
 
         // Needs to be before the remove extinct species call, so that extinct species could still be stored
         // for reference in patch history (e.g. displaying it as zero on the species population chart)

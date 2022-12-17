@@ -176,9 +176,9 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         return result;
     }
 
-    public override string GetDetailString()
+    public override string GetDetailString(bool debug = false)
     {
-        return base.GetDetailString() + "\n" +
+        return base.GetDetailString(debug) + "\n" +
             TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
                 MembraneType.Name,
                 MembraneRigidity,

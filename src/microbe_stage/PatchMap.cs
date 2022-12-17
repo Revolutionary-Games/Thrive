@@ -265,6 +265,42 @@ public class PatchMap : ISaveLoadable
     }
 
     /// <summary>
+    ///   Updates the global population numbers in Species
+    /// </summary>
+    public void UpdateGlobalDebugInfo()
+    {
+        var seenSpecies = new Dictionary<Species, Dictionary<int, float>>();
+
+        foreach (var entry in Patches)
+        {
+            foreach (var energyResults in entry.Value.SpeciesEnergyResults)
+            {
+                Species species = energyResults.Key;
+
+                if (!seenSpecies.ContainsKey(species))
+                {
+                    var speciesDebugInfo = new Dictionary<int, float>();
+                    speciesDebugInfo[0] = 0; // AutoEvoMortality
+                    speciesDebugInfo[1] = 0; // AutoEvoEnergy
+                    speciesDebugInfo[2] = 0; // IndividualCost
+
+                    seenSpecies[species] = speciesDebugInfo;
+                }
+
+                seenSpecies[species][0] += energyResults.Value.Mortalities;
+                seenSpecies[species][1] += energyResults.Value.TotalEnergyGathered;
+                seenSpecies[species][2] += energyResults.Value.IndividualCost;
+            }
+        }
+
+        // Apply the populations after calculating them
+        foreach (var entry in seenSpecies)
+        {
+            entry.Key.SetDebugInfoFromPatches(entry.Value[0], entry.Value[1], entry.Value[2]);
+        }
+    }
+
+    /// <summary>
     ///   Gets the species population in all patches.
     /// </summary>
     public long GetSpeciesGlobalSimulationPopulation(Species species)

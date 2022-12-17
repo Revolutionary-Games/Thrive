@@ -61,10 +61,6 @@
         /// </summary>
         public ISet<Patch> PatchesToRun { get; set; } = new HashSet<Patch>();
 
-        /// <summary>
-        ///   If set to true then species energy sources will be stored for display to the player
-        /// </summary>
-        public bool CollectEnergyInformation { get; set; }
 
         /// <summary>
         ///   Sets the patches to be simulated to be ones where the species is present (population > 0)

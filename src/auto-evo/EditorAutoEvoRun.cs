@@ -23,7 +23,7 @@ public class EditorAutoEvoRun : AutoEvoRun
 
         steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,
             new List<Species> { ModifiedProperties },
-            new List<Species> { OriginalEditedSpecies }, true) { CanRunConcurrently = false });
+            new List<Species> { OriginalEditedSpecies }) { CanRunConcurrently = false });
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map,
             OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);

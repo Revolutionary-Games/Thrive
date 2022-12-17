@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1442,7 +1442,7 @@ msgstr "{0} consume"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Se ha extendido uniformemente las fuentes de alimento en {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 #, fuzzy
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Depredación de {0}"
@@ -3213,7 +3213,23 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#: ../src/general/Species.cs:302
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 

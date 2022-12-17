@@ -83,6 +83,9 @@ public class GameWorld : ISaveLoadable
         // Apply initial populations
         Map.UpdateGlobalPopulations();
 
+        // Apply inital debug info
+        Map.UpdateGlobalDebugInfo();
+
         // Create the initial generation by adding only the player species
         var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
         GenerationHistory.Add(0, new GenerationRecord(

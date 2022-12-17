@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1332,7 +1332,7 @@ msgstr "{0} fogyasztás"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "{0} egyenletesen elterjedt környezeti táplálékforrása"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} ragadozása"
 
@@ -3158,7 +3158,22 @@ msgstr "Vissza a menübe"
 msgid "EXIT"
 msgstr "Kilépés"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr ""
+"[b]Fajok[/b]\n"
+"  {0}:{1}\n"
+"[b]Generáció[/b]\n"
+"  {2}\n"
+"[b]Populáció[/b]\n"
+"  {3}\n"
+"[b]Szín[/b]\n"
+"  #{4}\n"
+"[b]Viselkedés[/b]\n"
+"  {5}"
+
+#: ../src/general/Species.cs:302
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Fajok[/b]\n"

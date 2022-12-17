@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1328,7 +1328,7 @@ msgstr "Consumo de: {0}"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Fuente de alimento ambiental distribuida uniformemente de {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Depredación de {0}"
 
@@ -3102,7 +3102,22 @@ msgstr "Volver al Menú"
 msgid "EXIT"
 msgstr "Salir"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr ""
+"[b]Especies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generaciones[/b]\n"
+"  {2}\n"
+"[b]Población[/b]\n"
+"  {3}\n"
+"[b]Color[/b]\n"
+"  #{4}\n"
+"[b]Comportamiento[/b]\n"
+"  {5}"
+
+#: ../src/general/Species.cs:302
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Especies[/b]\n"

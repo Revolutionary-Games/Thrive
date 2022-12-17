@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1357,7 +1357,7 @@ msgstr "{0} spotreba"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Rovnomerne rozložený environmentálny zdroj potravy {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 #, fuzzy
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Dravosť {0}"
@@ -3171,7 +3171,12 @@ msgstr "Návrat do menu"
 msgid "EXIT"
 msgstr "Odísť"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr "{0} (x{1})"
+
+#: ../src/general/Species.cs:302
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"

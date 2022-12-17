@@ -115,6 +115,12 @@ public class Patch
     [JsonIgnore]
     public Dictionary<Species, long> SpeciesInPatch => currentSnapshot.SpeciesInPatch;
 
+    /// <summary>
+    ///   List of all species and their EnergyResults in this patch
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Species, AutoEvo.RunResults.SpeciesPatchEnergyResults> SpeciesEnergyResults => currentSnapshot.SpeciesEnergyResults;
+
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
 
@@ -231,6 +237,19 @@ public class Patch
     public bool RemoveSpecies(Species species)
     {
         return currentSnapshot.SpeciesInPatch.Remove(species);
+    }
+
+    /// <summary>
+    ///   Updates a species EnergyResults in this patch. Should only be called by auto-evo applying the results.
+    /// </summary>
+    /// <returns>True on success</returns>
+    public bool UpdateSpeciesEnergyResults(Species species, AutoEvo.RunResults.SpeciesPatchEnergyResults speciesEnergyResults)
+    {
+        if (!currentSnapshot.SpeciesInPatch.ContainsKey(species))
+            return false;
+
+        currentSnapshot.SpeciesEnergyResults[species] = speciesEnergyResults;
+        return true;
     }
 
     /// <summary>
@@ -491,6 +510,7 @@ public class PatchSnapshot : ICloneable
     public double TimePeriod;
 
     public Dictionary<Species, long> SpeciesInPatch = new();
+    public Dictionary<Species, AutoEvo.RunResults.SpeciesPatchEnergyResults> SpeciesEnergyResults = new();
     public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new();
 
     public BiomeConditions Biome;

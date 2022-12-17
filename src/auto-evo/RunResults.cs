@@ -190,7 +190,7 @@
         }
 
         public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
-            long unadjustedPopulation, float totalEnergy, float individualCost)
+            long unadjustedPopulation, float totalEnergy, float individualCost, float mortalities)
         {
             MakeSureResultExistsForSpecies(species);
 
@@ -199,6 +199,7 @@
             dataReceiver.UnadjustedPopulation = unadjustedPopulation;
             dataReceiver.TotalEnergyGathered = totalEnergy;
             dataReceiver.IndividualCost = individualCost;
+            dataReceiver.Mortalities = mortalities;
         }
 
         /// <summary>
@@ -275,6 +276,14 @@
                     // species (if the species is not in the patch the population is 0 in the results)
                     patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value);
                 }
+
+                foreach (var energyResults in entry.Value.EnergyResults)
+                {
+                    var patch = world.Map.GetPatch(energyResults.Key.ID);
+
+                    patch.UpdateSpeciesEnergyResults(entry.Key, energyResults.Value);
+                }
+
 
                 if (entry.Value.NewlyCreated != null)
                 {
@@ -1184,6 +1193,7 @@
         /// <summary>
         ///   Energy source and consumption information for a species in a patch
         /// </summary>
+        // TODO: Refactor Class to become Species Debug Info instead of EnergyResults
         public class SpeciesPatchEnergyResults
         {
             public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
@@ -1193,6 +1203,8 @@
             public float TotalEnergyGathered;
 
             public float IndividualCost;
+
+            public float Mortalities;
 
             public class NicheInfo
             {

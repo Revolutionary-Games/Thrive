@@ -627,7 +627,7 @@ public static class Constants
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
-    public const float MUTATION_DELETION_RATE = 0.05f;
+    public const float MUTATION_DELETION_RATE = 0.10f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
     // Max fear and aggression and activity
@@ -704,13 +704,13 @@ public static class Constants
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
     public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 60;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.01f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 800000;
     public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
@@ -724,6 +724,13 @@ public static class Constants
 
     public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
     public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
+
+    // Auto Evo Survivability Tweaks
+    public const float AUTO_EVO_SURVIVABILITY_SCORE_MULTIPLIER = 10;
+    public const float AUTO_EVO_PILUS_DEFENSE_SCORE = 30;
+    public const float AUTO_EVO_MUCILAGE_DEFENSE_SCORE = 80;
+    public const float AUTO_EVO_SPEED_DEFENSE_BONUS = 100;
+
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount

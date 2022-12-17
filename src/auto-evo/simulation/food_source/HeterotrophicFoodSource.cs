@@ -46,7 +46,8 @@
             // Only assign engulf score if one can actually engulf
             var engulfScore = 0.0f;
             if (microbeSpeciesHexSize / preyHexSize >
-                Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
+                Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall &&
+                prey.MembraneType.DissolverEnzyme == "lipase") // TODO: Take into account Enzymes properly
             {
                 // Catch scores grossly accounts for how many preys you catch in a run;
                 var catchScore = 0.0f;
@@ -94,13 +95,19 @@
             }
 
             // Pili are much more useful if the microbe can close to melee
-            pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            // Pili are better the faster you are as well
+            pilusScore *= predatorSpeed > preySpeed ? (predatorSpeed / preySpeed) * 100 : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
             // predators are less likely to use toxin against larger prey, unless they are opportunistic
             if (preyHexSize > microbeSpeciesHexSize)
             {
                 oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
             }
+
+            // Toxin and Pilus are worse against cells with resistances
+            // and better when they can exploit weaknesses
+            oxytoxyScore /= prey.MembraneType.ToxinResistance;
+            pilusScore /= prey.MembraneType.PhysicalResistance;
 
             // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
             return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore);

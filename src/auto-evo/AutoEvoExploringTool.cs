@@ -754,7 +754,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesDetail(Species species)
     {
-        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
+        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString(true);
     }
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)

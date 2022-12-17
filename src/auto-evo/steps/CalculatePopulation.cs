@@ -12,18 +12,15 @@
         private readonly WorldGenerationSettings worldSettings;
         private readonly List<Species>? extraSpecies;
         private readonly List<Species>? excludedSpecies;
-        private readonly bool collectEnergyInfo;
 
         public CalculatePopulation(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
-            PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
-            bool collectEnergyInfo = false)
+            PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null)
         {
             this.configuration = configuration;
             this.worldSettings = worldSettings;
             this.map = map;
             this.extraSpecies = extraSpecies;
             this.excludedSpecies = excludedSpecies;
-            this.collectEnergyInfo = collectEnergyInfo;
         }
 
         public int TotalSteps => 1;
@@ -35,8 +32,7 @@
             // ReSharper disable RedundantArgumentDefaultValue
             var config = new SimulationConfiguration(configuration, map, worldSettings)
             {
-                Results = results,
-                CollectEnergyInformation = collectEnergyInfo,
+                Results = results
             };
 
             // ReSharper restore RedundantArgumentDefaultValue

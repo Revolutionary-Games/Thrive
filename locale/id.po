@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-16 19:23-0600\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -1313,7 +1313,7 @@ msgstr "konsumsi {0}"
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Penyebaran yang merata dari sumber makanan {0}"
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:118
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predasi {0}"
 
@@ -3162,7 +3162,22 @@ msgstr "Kembali ke Menu"
 msgid "EXIT"
 msgstr "Keluar"
 
-#: ../src/general/Species.cs:281
+#: ../src/general/Species.cs:297
+#, fuzzy
+msgid "SPECIES_DEBUG_TEXT"
+msgstr ""
+"[b]Spesies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generasi[/b]\n"
+"  {2}\n"
+"[b]Populasi[/b]\n"
+"  {3}\n"
+"[b]Warna[/b]\n"
+"  #{4}\n"
+"[b]Perilaku[/b]\n"
+"  {5}"
+
+#: ../src/general/Species.cs:302
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Spesies[/b]\n"
