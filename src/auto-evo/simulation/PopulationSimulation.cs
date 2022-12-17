@@ -196,6 +196,13 @@
                 niches.Add(new HeterotrophicFoodSource(patch, currentSpecies, cache));
             }
 
+            var creatureNiche = new Dictionary<MicrobeSpecies, Dictionary<MicrobeSpecies, float>>();
+            foreach (var currentSpecies in species)
+            {
+                var a = new Dictionary<MicrobeSpecies, float>();
+                creatureNiche.Add(currentSpecies, a);
+            }
+
             foreach (var niche in niches)
             {
                 // If there isn't a source of energy here, no need for more calculations
@@ -241,6 +248,11 @@
                     if (energy <= MathUtils.EPSILON)
                         continue;
 
+                    if(niche is HeterotrophicFoodSource)
+                    {
+                        creatureNiche[(niche as HeterotrophicFoodSource)!.prey][currentSpecies] = energy;
+                    }
+
                     energyBySpecies[currentSpecies] += energy;
 
                     populations.AddTrackedEnergyForSpecies(currentSpecies, patch, niche,
@@ -254,18 +266,23 @@
                 var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
                     * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
-                float survivability = 0;
-                foreach (var predatorSpecies in species)
+                float mortalityRate = 0;
+                if(creatureNiche.ContainsKey(currentSpecies))
                 {
-                    survivability += SurvivabilityScore.Score(currentSpecies, predatorSpecies, cache, patch);
+                    var niche = creatureNiche[currentSpecies];
+                    var nicheEnergy = niche.Sum(x => x.Value);
+                    foreach (var predatorSpecies in niche.Keys)
+                    {
+                        mortalityRate += MortalityScore.Score(currentSpecies, predatorSpecies, cache, patch) * (niche[predatorSpecies] / nicheEnergy); 
+                    }
                 }
 
                 // Modify populations based on energy
                 var newPopulation = (long)((energyBySpecies[currentSpecies]
-                    / individualCost) - survivability);
+                    / individualCost) * (1 - mortalityRate));
 
                 populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
-                    energyBySpecies[currentSpecies], individualCost, survivability);
+                    energyBySpecies[currentSpecies], individualCost, mortalityRate);
 
                 // TODO: this is a hack for now to make the player experience better, try to get the same rules working
                 // for the player and AI species in the future.

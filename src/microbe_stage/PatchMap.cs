@@ -270,6 +270,7 @@ public class PatchMap : ISaveLoadable
     public void UpdateGlobalDebugInfo()
     {
         var seenSpecies = new Dictionary<Species, Dictionary<int, float>>();
+        var speciesCount = new Dictionary<Species, int>();
 
         foreach (var entry in Patches)
         {
@@ -280,23 +281,24 @@ public class PatchMap : ISaveLoadable
                 if (!seenSpecies.ContainsKey(species))
                 {
                     var speciesDebugInfo = new Dictionary<int, float>();
-                    speciesDebugInfo[0] = 0; // AutoEvoMortality
+                    speciesDebugInfo[0] = 0; // MortalityRate
                     speciesDebugInfo[1] = 0; // AutoEvoEnergy
-                    speciesDebugInfo[2] = 0; // IndividualCost
 
                     seenSpecies[species] = speciesDebugInfo;
+                    speciesCount[species] = 0;
                 }
+
+                speciesCount[species] += 1;
 
                 seenSpecies[species][0] += energyResults.Value.Mortalities;
                 seenSpecies[species][1] += energyResults.Value.TotalEnergyGathered;
-                seenSpecies[species][2] += energyResults.Value.IndividualCost;
             }
         }
 
         // Apply the populations after calculating them
         foreach (var entry in seenSpecies)
         {
-            entry.Key.SetDebugInfoFromPatches(entry.Value[0], entry.Value[1], entry.Value[2]);
+            entry.Key.SetDebugInfoFromPatches(entry.Value[0] / speciesCount[entry.Key], entry.Value[1]);
         }
     }
 

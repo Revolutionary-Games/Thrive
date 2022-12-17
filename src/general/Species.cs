@@ -91,7 +91,7 @@ public abstract class Species : ICloneable
     /// <remarks>
     ///   Changing this has no effect, this is just used for debug info.
     /// </remarks>
-    public float AutoEvoMortality { get; set; } = 0;
+    public float MortalityRate { get; set; } = 0;
 
     /// <summary>
     ///   Total Energy as determined in PopulationSimulation 
@@ -100,14 +100,6 @@ public abstract class Species : ICloneable
     ///   Changing this has no effect, this is just used for debug info.
     /// </remarks>
     public float AutoEvoEnergy { get; set; } = 0;
-
-    /// <summary>
-    ///   Energy Cost per Microbe 
-    /// </summary>
-    /// <remarks>
-    ///   Changing this has no effect, this is just used for debug info.
-    /// </remarks>
-    public float IndividualCost { get; set; } = 1;
 
     public int Generation { get; set; } = 1;
 
@@ -177,11 +169,10 @@ public abstract class Species : ICloneable
         }
     }
 
-    public void SetDebugInfoFromPatches(float autoEvoMortality, float autoEvoEnergy, float individualCost)
+    public void SetDebugInfoFromPatches(float autoEvoMortality, float autoEvoEnergy)
     {
-        AutoEvoMortality = autoEvoMortality;
+        MortalityRate = autoEvoMortality;
         AutoEvoEnergy = autoEvoEnergy;
-        IndividualCost = individualCost;
     }
 
     /// <summary>
@@ -311,8 +302,7 @@ public abstract class Species : ICloneable
     {
         String debugString = debug ? TranslationServer.Translate("SPECIES_DEBUG_TEXT").FormatSafe(
             AutoEvoEnergy,
-            AutoEvoMortality,
-            IndividualCost
+            Math.Round((1 - MortalityRate) * 100, 2)
         ) + "\n" : "";
 
         return debugString + TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
@@ -348,8 +338,7 @@ public abstract class Species : ICloneable
         species.Generation = Generation;
         species.PlayerSpecies = PlayerSpecies;
         species.AutoEvoEnergy = AutoEvoEnergy;
-        species.AutoEvoMortality = AutoEvoMortality;
-        species.IndividualCost = IndividualCost;
+        species.MortalityRate = MortalityRate;
     }
 
     /// <summary>
@@ -369,8 +358,7 @@ public abstract class Species : ICloneable
         species.Generation = Generation;
         species.ID = ID;
         species.AutoEvoEnergy = AutoEvoEnergy;
-        species.AutoEvoMortality = AutoEvoMortality;
-        species.IndividualCost = IndividualCost;
+        species.MortalityRate = MortalityRate;
 
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied

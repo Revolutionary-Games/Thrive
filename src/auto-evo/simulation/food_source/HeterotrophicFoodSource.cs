@@ -7,7 +7,7 @@
         private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
 
-        private readonly MicrobeSpecies prey;
+        public readonly MicrobeSpecies prey;
         private readonly Patch patch;
         private readonly float preyHexSize;
         private readonly float preySpeed;
