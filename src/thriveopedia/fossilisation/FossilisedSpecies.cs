@@ -131,9 +131,10 @@ public class FossilisedSpecies
                 PreviewImage = previewImage,
             };
         }
-        catch (Exception)
+        catch (Exception e)
         {
             // This fossil is corrupt, so just don't bother showing it
+            GD.PrintErr($"Error loading fossil: {e}");
             return null;
         }
     }
