@@ -138,15 +138,14 @@ public class FossilisedSpecies
     {
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
 
-        using (var directory = new Directory())
-        {
-            if (!directory.FileExists(target))
-                throw new ArgumentException("Fossil with the given name doesn't exist");
+        using var directory = new Directory();
 
-            if (directory.Remove(target) != Error.Ok)
-            {
-                throw new IOException("Cannot delete: " + target);
-            }
+        if (!directory.FileExists(target))
+            throw new ArgumentException("Fossil with the given name doesn't exist");
+
+        if (directory.Remove(target) != Error.Ok)
+        {
+            throw new IOException("Cannot delete: " + target);
         }
     }
 
