@@ -13,11 +13,11 @@
 script = ExtResource( 2 )
 DisplayBackground = false
 CardContainerPath = NodePath("HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HFlowContainer")
-WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/WelcomeLabelContainer")
-SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer")
-SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
-HexesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
-SpeciesDetailsLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
+WelcomeLabelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer")
+SpeciesPreviewContainerPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer")
+SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
+HexesPreviewPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
+SpeciesDetailsLabelPath = NodePath("HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
 FossilDirectoryWarningBoxPath = NodePath("NoDirectoryDialog")
 
@@ -90,12 +90,12 @@ size_flags_horizontal = 2
 action_mode = 0
 text = "OPEN_FOSSIL_FOLDER"
 
-[node name="SpeciesDetailPanel" type="PanelContainer" parent="HBoxContainer" index="1"]
+[node name="SpeciesDetailsPanel" type="PanelContainer" parent="HBoxContainer" index="1"]
 margin_left = 582.0
 margin_right = 934.0
 margin_bottom = 598.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailPanel" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailsPanel" index="0"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 351.0
@@ -106,14 +106,14 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer" index="0"]
 visible = false
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 340.0
 margin_bottom = 586.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer" index="0"]
 margin_right = 330.0
 margin_bottom = 537.0
 size_flags_horizontal = 3
@@ -123,35 +123,35 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 320.0
 margin_bottom = 527.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
 margin_right = 310.0
 margin_bottom = 517.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="0"]
 margin_right = 310.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 
-[node name="SpeciesPreview" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource( 7 )]
+[node name="SpeciesPreview" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource( 7 )]
 margin_right = 153.0
 margin_bottom = 200.0
 script = ExtResource( 5 )
 
-[node name="CellHexPreview" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource( 7 )]
+[node name="CellHexPreview" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource( 7 )]
 margin_left = 157.0
 margin_right = 310.0
 margin_bottom = 200.0
 script = ExtResource( 4 )
 
-[node name="SpeciesInfoLabel" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 6 )]
+[node name="SpeciesInfoLabel" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 6 )]
 margin_top = 204.0
 margin_right = 310.0
 margin_bottom = 517.0
@@ -159,19 +159,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_active = false
 
-[node name="OpenInFreebuildButton" type="Button" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer" index="1"]
+[node name="OpenInFreebuildButton" type="Button" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer" index="1"]
 margin_top = 541.0
 margin_right = 330.0
 margin_bottom = 576.0
 text = "OPEN_IN_FREEBUILD"
 
-[node name="WelcomeLabelContainer" type="CenterContainer" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer" index="1"]
+[node name="WelcomeLabelContainer" type="CenterContainer" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer" index="1"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 340.0
 margin_bottom = 586.0
 
-[node name="WelcomeLabel" type="Label" parent="HBoxContainer/SpeciesDetailPanel/MarginContainer/WelcomeLabelContainer" index="0"]
+[node name="WelcomeLabel" type="Label" parent="HBoxContainer/SpeciesDetailsPanel/MarginContainer/WelcomeLabelContainer" index="0"]
 margin_left = 40.0
 margin_top = 279.0
 margin_right = 290.0
@@ -201,5 +201,5 @@ HideCancelButton = true
 DialogText = "TRY_FOSSILISING_SOME_SPECIES"
 
 [connection signal="pressed" from="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer/FossilFolder" to="." method="OnOpenFossilFolder"]
-[connection signal="pressed" from="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
+[connection signal="pressed" from="HBoxContainer/SpeciesDetailsPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]

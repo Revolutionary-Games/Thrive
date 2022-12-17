@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -8,13 +8,11 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
-[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=10]
+[ext_resource path="res://src/gui_common/SpeciesDetailsPanel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/CustomDropDown.cs" type="Script" id=12]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=15]
 [ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=17]
 
@@ -59,11 +57,9 @@ PatchMapDrawerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBo
 PatchDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchDetailsPanel")
 HistoryListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
-SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
-HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
-SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
+SpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailsPanel")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
@@ -744,80 +740,7 @@ margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SpeciesDetailPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-margin_left = 828.0
-margin_right = 1180.0
-margin_bottom = 508.0
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 351.0
-margin_bottom = 507.0
-rect_min_size = Vector2( 350, 0 )
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 340.0
-margin_bottom = 496.0
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer"]
-margin_right = 330.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 4 )
-text = "SPECIES_DETAILS"
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 330.0
-margin_bottom = 486.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 320.0
-margin_bottom = 452.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
-margin_right = 310.0
-margin_bottom = 442.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_right = 310.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 0, 200 )
-
-[node name="SpeciesPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-margin_right = 153.0
-margin_bottom = 200.0
-script = ExtResource( 10 )
-
-[node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 157.0
-margin_right = 310.0
-margin_bottom = 200.0
-script = ExtResource( 15 )
-
-[node name="SpeciesInfoLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_top = 204.0
-margin_right = 310.0
-margin_bottom = 442.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-scroll_active = false
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer" instance=ExtResource( 9 )]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 625.0

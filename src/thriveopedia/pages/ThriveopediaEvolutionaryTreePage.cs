@@ -21,21 +21,13 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     public NodePath EvolutionaryTreePath = null!;
 
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
-
-    [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
+    public NodePath SpeciesDetailsPanelPath = null!;
 
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
     private VBoxContainer disabledWarning = null!;
     private EvolutionaryTree evolutionaryTree = null!;
-    private CustomRichTextLabel speciesDetailsLabel = null!;
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
+    private SpeciesDetailsPanel speciesDetailsPanel = null!;
 
     public override string PageName => "EvolutionaryTree";
 
@@ -48,9 +40,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
         disabledWarning = GetNode<VBoxContainer>(DisabledInFreebuildPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
+        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
 
         UpdateCurrentWorldDetails();
     }
@@ -149,29 +139,8 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
         disabledWarning.Visible = true;
     }
 
-    private void UpdateSpeciesPreview(Species species)
-    {
-        speciesPreview.PreviewSpecies = species;
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", species);
-        }
-
-        UpdateSpeciesDetail(species);
-    }
-
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
-        UpdateSpeciesPreview(speciesHistoryList[generation][id]);
-    }
-
-    private void UpdateSpeciesDetail(Species species)
-    {
-        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
+        speciesDetailsPanel.PreviewSpecies = speciesHistoryList[generation][id];
     }
 }

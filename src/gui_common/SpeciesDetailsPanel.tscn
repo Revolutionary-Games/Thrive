@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/SpeciesDetailsPanel.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=6]
+[ext_resource path="res://src/microbe_stage/CellHexesPreview.cs" type="Script" id=7]
+[ext_resource path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" type="PackedScene" id=8]
+
+[node name="SpeciesDetailsPanel" type="PanelContainer"]
+margin_left = 582.0
+margin_right = 934.0
+margin_bottom = 598.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+SpeciesDetailsLabelPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
+SpeciesPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/SpeciesPreview")
+HexPreviewPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
+FossilisationButtonPath = NodePath("MarginContainer/VBoxContainer/FossiliseButton")
+FossilisationDialogPath = NodePath("FossilisationDialog")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 351.0
+margin_bottom = 597.0
+rect_min_size = Vector2( 350, 0 )
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 340.0
+margin_bottom = 586.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 320.0
+margin_bottom = 530.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 310.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 310.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="SpeciesPreview" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_right = 153.0
+margin_bottom = 200.0
+script = ExtResource( 6 )
+
+[node name="CellHexPreview" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 157.0
+margin_right = 310.0
+margin_bottom = 200.0
+script = ExtResource( 7 )
+
+[node name="SpeciesInfoLabel" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 204.0
+margin_right = 310.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_active = false
+
+[node name="FossiliseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_left = 117.0
+margin_top = 544.0
+margin_right = 212.0
+margin_bottom = 576.0
+focus_mode = 0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+enabled_focus_mode = 0
+text = "FOSSILISE"
+
+[node name="FossilisationDialog" parent="." instance=ExtResource( 8 )]
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FossiliseButton" to="." method="OnFossilisePressed"]
