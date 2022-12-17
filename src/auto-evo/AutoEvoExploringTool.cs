@@ -683,13 +683,23 @@ public class AutoEvoExploringTool : NodeWithInput
                 new FilterArgument.NumberFilterArgument(0, 500, 100),
             };*/
 
-        var speciesDataFilterItem = new Filter<Species>.FilterItem();
-        speciesDataFilterItem.AddArgumentCategoryFromEnum<BehaviouralValueType>(
-            "BEHAVIOR_VALUE", s => (IDictionary<object, float>)s.Behaviour);
+        var speciesValueQuery = new Filter<Species>.ValueQuery();
 
-        var speciesFilterFactory = new Filter<Species>.FilterFactory(speciesDataFilterItem.ToFactory());
+        // ISSUE WITH CAST
+        /*speciesValueQuery.AddArgumentCategoryFromEnum<BehaviouralValueType>(
+            //"BEHAVIOR_VALUE", s => (IDictionary<object, float>)s.Behaviour);
+            "BEHAVIOR_VALUE", s => s.Behaviour);*/
 
-        //speciesFilterFactory.AddFilterItemFactory("VALUE_COMPARISON", valueComparisonFilter.ToFactory());
+        var behaviourOptions = new Dictionary<string, Func<Species, float>>();
+        foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))
+        {
+           behaviourOptions.Add(behaviourKey.ToString(), s => s.Behaviour[behaviourKey]);
+        }
+
+        speciesValueQuery.AddArgumentCategory("BEHAVIOR_VALUE", behaviourOptions);
+
+        var speciesFilterFactory = new Filter<Species>.FilterFactory(speciesValueQuery.ToFactory());
+
 
         filterWindow.Initialize(speciesFilterFactory, speciesFilters);
     }

@@ -9,19 +9,19 @@ public sealed class Filter<T> : IFilter
 
     // A filter has a structure of type: [(leftComparand) comparisonArgument (rightComparand)];
     // e.g. BehaviorValue: Activity > Number: 100
-    private FilterItem leftComparand;
+    private ValueQuery leftComparand;
     private FilterArgument.ComparisonFilterArgument comparisonArgument;
-    private FilterItem rightComparand;
+    private ValueQuery rightComparand;
 
     /// <summary>
     ///   A factory object for creating filterItems from a predefined template;
     /// </summary>
-    private FilterItem.FilterItemFactory filterItemTemplate;
+    private ValueQuery.FilterItemFactory filterItemTemplate;
 
     IValueQuery IFilter.LeftComparand => leftComparand;
     IValueQuery IFilter.RightComparand => rightComparand;
 
-    public Filter(FilterItem.FilterItemFactory template)
+    public Filter(ValueQuery.FilterItemFactory template)
     {
         filterItemTemplate = template;
         leftComparand = template.Create();
@@ -34,7 +34,7 @@ public sealed class Filter<T> : IFilter
     public IEnumerable<IValueQuery> FilterItems => new List<IValueQuery>()
     {
         leftComparand,
-        new FilterItem(new Dictionary<string, Dictionary<string, Func<T, float>>>
+        new ValueQuery(new Dictionary<string, Dictionary<string, Func<T, float>>>
         {
             { "VALUE_COMPARISON", new Dictionary<string, Func<T, float>>() },
         }), // TODO comparison
@@ -65,7 +65,7 @@ public sealed class Filter<T> : IFilter
     ///   Now, a get-value part of a filter with a category.
     ///   E.G; BehaviourValue: Activity
     /// </summary>
-    public sealed class FilterItem : IValueQuery
+    public sealed class ValueQuery : IValueQuery
     {
         public static string NumberCategory = "NUMBER";
 
@@ -80,7 +80,7 @@ public sealed class Filter<T> : IFilter
         /// </summary>
         private Dictionary<string, FilterArgument> categorizedArgument = new();
 
-        public FilterItem()
+        public ValueQuery()
         {
             currentCategory = NumberCategory;
 
@@ -88,7 +88,7 @@ public sealed class Filter<T> : IFilter
             categorizedArgument.Add(NumberCategory, new FilterArgument.NumberFilterArgument(0, 500, 100));
         }
 
-        public FilterItem(Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions) : base()
+        public ValueQuery(Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions) : base()
         {
             if (categorizedArgumentFunctions.Count <= 0)
                 throw new ArgumentException("Can not initialize with an empty dictionary!");
@@ -121,12 +121,14 @@ public sealed class Filter<T> : IFilter
             categorizedArgumentFunctions.Add(name, options);
         }
 
-        public void AddArgumentCategoryFromEnum<EnumerationType>(
+        // Issue with IDictionary<object, float> conversion...
+        // TODO FIX OR REMOVE
+        public void AddArgumentCategoryFromEnum<TEnumeration>(
             string name, Func<T, IDictionary<object, float>> enumerationKeyMapping)
         {
             var options = new Dictionary<string, Func<T, float>>();
 
-            foreach (var behaviourKey in Enum.GetValues(typeof(EnumerationType))) //enumerationType))
+            foreach (var behaviourKey in Enum.GetValues(typeof(TEnumeration))) //enumerationType))
             {
                 options.Add(behaviourKey.ToString(), s => enumerationKeyMapping.Invoke(s)[behaviourKey]);
             }
@@ -142,7 +144,6 @@ public sealed class Filter<T> : IFilter
             if (CurrentCategory == NumberCategory)
                 return categorizedArgument[CurrentCategory].GetNumberValue();
 
-            //return categorizedArgumentFunctions[CurrentCategory][categorizedArgument[CurrentCategory].GetStringValue()](target);
             return categorizedArgumentFunctions[CurrentCategory][CurrentProperty](target);
         }
 
@@ -161,10 +162,10 @@ public sealed class Filter<T> : IFilter
                 this.categorizedArgumentWithOptions = categorizedArgumentWithOptions;
             }
 
-            public FilterItem Create()
+            public ValueQuery Create()
             {
                 // We use ToList here because we want filterFunction to use indexing for the user's sake.
-                return new FilterItem(categorizedArgumentWithOptions);
+                return new ValueQuery(categorizedArgumentWithOptions);
             }
         }
     }
@@ -176,9 +177,9 @@ public sealed class Filter<T> : IFilter
     public class FilterFactory : IFilter.IFilterFactory
     {
         //private Dictionary<string, Filter<T>.FilterItem.FilterItemFactory> filterItems = new();
-        private Filter<T>.FilterItem.FilterItemFactory filterItemTemplate;
+        private Filter<T>.ValueQuery.FilterItemFactory filterItemTemplate;
 
-        public FilterFactory(Filter<T>.FilterItem.FilterItemFactory filterItemTemplate)
+        public FilterFactory(Filter<T>.ValueQuery.FilterItemFactory filterItemTemplate)
         {
             this.filterItemTemplate = filterItemTemplate;
         }
