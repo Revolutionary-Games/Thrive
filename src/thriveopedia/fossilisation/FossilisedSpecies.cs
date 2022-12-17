@@ -145,7 +145,6 @@ public class FossilisedSpecies
 
             if (directory.Remove(target) != Error.Ok)
             {
-                GD.PrintErr("Cannot delete file: ", target);
                 throw new IOException("Cannot delete: " + target);
             }
         }
@@ -182,7 +181,6 @@ public class FossilisedSpecies
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
         {
-            GD.PrintErr("Cannot open file for writing: ", target);
             throw new IOException("Cannot open: " + target);
         }
 
