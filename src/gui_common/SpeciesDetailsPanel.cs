@@ -47,6 +47,9 @@ public class SpeciesDetailsPanel : PanelContainer
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
     }
 
+    /// <summary>
+    ///   Updates displayed species information based on the set preview species.
+    /// </summary>
     private void UpdateSpeciesPreview()
     {
         speciesPreview.PreviewSpecies = PreviewSpecies;
