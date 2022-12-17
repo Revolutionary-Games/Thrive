@@ -170,8 +170,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     private void DeleteSpecies(MuseumCard card)
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         var fossilName = card.FossilName;
 
         if (fossilName == null)

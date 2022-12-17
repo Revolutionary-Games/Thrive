@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=2]
@@ -8,8 +8,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/trashButtonActive.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/TrashIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
-[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
@@ -139,19 +137,14 @@ texture_hover = ExtResource( 5 )
 texture_disabled = ExtResource( 7 )
 expand = true
 
-[node name="DeleteWarning" type="Popup" parent="." instance=ExtResource( 8 )]
+[node name="DeleteWarning" parent="." instance=ExtResource( 8 )]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 935.0
 margin_bottom = 599.0
 rect_min_size = Vector2( 391, 0 )
-theme = ExtResource( 9 )
-popup_exclusive = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 WindowTitle = "CONFIRM_DELETE"
+DialogText = "DELETE_FOSSIL_CONFIRMATION"
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

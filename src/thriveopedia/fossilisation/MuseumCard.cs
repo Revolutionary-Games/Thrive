@@ -122,8 +122,10 @@ public class MuseumCard : Button
 
     private void OnMouseEnter()
     {
-        if (deleteButton != null)
-            deleteButton.Visible = true;
+        if (deleteButton == null)
+            throw new SceneTreeAttachRequired();
+
+        deleteButton.Visible = true;
 
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.Gray, 0.5f);
         GUICommon.Instance.Tween.Start();
@@ -131,8 +133,10 @@ public class MuseumCard : Button
 
     private void OnMouseExit()
     {
-        if (deleteButton != null)
-            deleteButton.Visible = false;
+        if (deleteButton == null)
+            throw new SceneTreeAttachRequired();
+
+        deleteButton.Visible = false;
 
         GUICommon.Instance.Tween.InterpolateProperty(speciesPreview, "modulate", null, Colors.White, 0.5f);
         GUICommon.Instance.Tween.Start();
@@ -148,6 +152,8 @@ public class MuseumCard : Button
 
     private void OnDeleteConfirmPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnSpeciesDeleted), this);
     }
 }
