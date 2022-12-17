@@ -25,6 +25,8 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
     private CustomDropDown headArgumentButton = null!;
     private ValueQueryUI rightValueQueryUI = null!;
 
+    private string headArgumentSnapshot = null!;
+
     /// <summary>
     ///   If redraw is needed.
     /// </summary>
@@ -52,7 +54,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
         headArgumentButton = GetNode<CustomDropDown>(HeadArgumentButtonPath);
 
-        foreach (var option in ((FilterArgument.MultipleChoiceFilterArgument)filter.HeadArgument).Options)
+        foreach (var option in filter.HeadArgument.Options)
         {
             headArgumentButton.AddItem(option, false, Colors.White);
         }
@@ -60,6 +62,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         headArgumentButton.CreateElements();
 
         headArgumentButton.Text = (string)headArgumentButton.Items[0];
+        headArgumentSnapshot = (string)headArgumentButton.Items[0];
         headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
 
         dirty = true;
@@ -79,14 +82,16 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
     public void MakeSnapshot()
     {
-        // TODO SAVE COMPARATOR
         leftValueQueryUI.MakeSnapshot();
+        headArgumentSnapshot = headArgumentButton.Text;
         rightValueQueryUI.MakeSnapshot();
     }
 
     public void RestoreLastSnapshot()
     {
-        
+        leftValueQueryUI.RestoreLastSnapshot();
+        headArgumentButton.Text = headArgumentSnapshot;
+        rightValueQueryUI.RestoreLastSnapshot();
     }
 
     public void Delete()

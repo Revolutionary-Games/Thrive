@@ -95,12 +95,13 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
     {
         valueQuery.CurrentCategory = categoryButton.Text;
         valueQuery.CurrentProperty = propertyButton.Text;
+        lastUsedProperties[valueQuery.CurrentCategory] = valueQuery.CurrentProperty;
     }
 
     public void RestoreLastSnapshot()
     {
         ChangeCategory(valueQuery.CurrentCategory);
-        propertyButton.Text = valueQuery.CurrentProperty;
+        propertyButton.Text = lastUsedProperties[valueQuery.CurrentCategory];
     }
 
     private void ChangeCategory(string newCategory)
