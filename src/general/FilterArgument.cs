@@ -123,7 +123,7 @@ public abstract class FilterArgument
                 case Comparators.StrictGreaterThan:
                     return (f1, f2) => f1 > f2;
                 case Comparators.StrictLesserThan:
-                    return (f1, f2) => f1 <= f2;
+                    return (f1, f2) => f1 < f2;
             }
 
             throw new InvalidOperationException();

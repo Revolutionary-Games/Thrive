@@ -7,7 +7,7 @@ public interface IFilter
     public FilterArgument HeadArgument { get; }
     public IFilterItem RightItem { get; }*/
     public IValueQuery LeftComparand { get; }
-    public FilterArgument HeadArgument { get; }
+    public FilterArgument.ComparisonFilterArgument HeadArgument { get; }
     public IValueQuery RightComparand { get; }
 
     public interface IFilterItem

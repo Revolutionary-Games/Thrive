@@ -42,7 +42,8 @@ public sealed class Filter<T> : IFilter
     };
 
     public IValueQuery LeftItem => leftComparand;
-    public FilterArgument HeadArgument => comparisonArgument;
+    // TODO PROBABLY BETTER IF NOT SUBCLASS OF FILTER ARGUMENT?
+    public FilterArgument.ComparisonFilterArgument HeadArgument => comparisonArgument;
     public IValueQuery RightItem => rightComparand;
 
     /*public void AddFilterItem(string category, FilterItem item)

@@ -88,7 +88,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     public void OnNewPropertySelected(int choiceIndex)
     {
-        propertyButton.Text = propertyButton.Popup.GetItemText(choiceIndex);
+        ChangeProperty(propertyButton.Popup.GetItemText(choiceIndex));
     }
 
     public void MakeSnapshot()
@@ -110,6 +110,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
             return;
 
         categoryButton.Text = newCategory;
+        valueQuery.CurrentCategory = newCategory;
 
         // Update properties
         propertyButton.ClearAllItems();
@@ -122,6 +123,15 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         propertyButton.CreateElements();
 
         // Restore previous property value
-        propertyButton.Text = lastUsedProperties[newCategory];
+        ChangeProperty(lastUsedProperties[newCategory]);
+    }
+
+    private void ChangeProperty(string newProperty)
+    {
+        if (newProperty == propertyButton.Text)
+            return;
+
+        propertyButton.Text = newProperty;
+        valueQuery.CurrentProperty = newProperty;
     }
 }

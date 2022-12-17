@@ -94,6 +94,7 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
         parentWindow.RemoveFilterLine(this);
     }
 
+    // TODO RENAME AS IT NOW FALLS ONTO COMPARISON
     private void OnNewCategorySelected(int choiceIndex)
     {
         var filterCategory = headArgumentButton.Popup.GetItemText(choiceIndex);
@@ -103,6 +104,9 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
             return;
 
         headArgumentButton.Text = filterCategory;
+
+        // TODO CLEAN THIS LOGIC
+        filter.HeadArgument.Value = filterCategory;
 
         dirty = true;
     }
