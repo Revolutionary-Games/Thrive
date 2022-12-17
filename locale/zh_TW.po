@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-17 18:27+0000\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1230,7 +1230,7 @@ msgstr "返回"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:191
 msgid "CONFIRM_EXIT"
 msgstr "確認退出"
 
@@ -2151,7 +2151,7 @@ msgstr "關閉"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -3286,7 +3286,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -4455,7 +4455,7 @@ msgstr "死亡"
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "繁殖"
 
@@ -5080,19 +5080,19 @@ msgstr "滅絕"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "就像曾經存在過的所有物種中的99%一樣，你的物種已經滅絕了。其他人將繼續填補你的利基並茁壯成長，但那不會是你。你將被遺忘，成為進化過程中一個失敗的實驗。"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米處"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "物種人口"
@@ -6104,22 +6104,37 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:43
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:134
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:91
+#, fuzzy
+msgid "OPEN_FOSSIL_FOLDER"
+msgstr "打開日誌文件夾"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "自由編輯器"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:181
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:199
+#, fuzzy
+msgid "NO_FOSSIL_DIRECTORY"
+msgstr "找不到存檔目錄"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:201
+#, fuzzy
+msgid "TRY_FOSSILISING_SOME_SPECIES"
+msgstr "嘗試截一些圖吧！"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"

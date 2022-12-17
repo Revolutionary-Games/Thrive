@@ -26,6 +26,9 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath LeaveGameConfirmationDialogPath = null!;
 
+    [Export]
+    public NodePath FossilDirectoryWarningBoxPath = null!;
+
     private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
@@ -33,6 +36,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
     private PackedScene museumCardScene = null!;
 
     public override string PageName => "Museum";
@@ -49,6 +53,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
+        fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
     }
@@ -164,5 +169,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private void OnOpenFossilFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (!FolderHelpers.OpenFolder(Constants.FOSSILISED_SPECIES_FOLDER))
+            fossilDirectoryWarningBox.PopupCenteredShrink();
     }
 }

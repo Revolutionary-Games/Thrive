@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2022-12-17 18:27+0000\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Allstreamer <cbredenbach@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1165,7 +1165,7 @@ msgstr "Zurück"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:834
 #: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:191
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
 
@@ -2065,7 +2065,7 @@ msgstr "Schließen"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -3130,7 +3130,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "ist im Gebiet ausgestorben"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -4291,7 +4291,7 @@ msgstr "Tot"
 msgid "ESCAPE_ENGULFING"
 msgstr "Verschlingung entflohen"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "Reproduktion"
 
@@ -4917,19 +4917,19 @@ msgstr "AUSSTERBEN"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} zur Mittagsstunde"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
@@ -5921,26 +5921,41 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr "Die Verstörung (Thrive Maskottchen)"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:43
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:134
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Dies' startet ein neues Spiel im Sandboxmodus mit der selektierten Art.\n"
 "Ungespeicherter Fortschritt geht verloren."
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:91
+#, fuzzy
+msgid "OPEN_FOSSIL_FOLDER"
+msgstr "Logverzeichnis öffnen"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Im Sandboxmodus öffnen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:181
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Willkommen im Museum! Hier können die vielen Arten bewundert werden die während der Spielabläufe fossilisiert wurden. Es kann sogar als eine fossilisierte Art gespielt werden indem man sie im Sandboxmodus aufruft.\n"
 "\n"
 "Um eine Art während eines Spiel zu fossilisieren muss zunächst das Spiel pausiert werden. Danach selektiert man die zu fossilisierende Art auf dem Bildschirm."
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:199
+#, fuzzy
+msgid "NO_FOSSIL_DIRECTORY"
+msgstr "Kein Speicherverzeichnis gefunden"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:201
+#, fuzzy
+msgid "TRY_FOSSILISING_SOME_SPECIES"
+msgstr "Versuche ein paar Screenshots zu machen!"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"

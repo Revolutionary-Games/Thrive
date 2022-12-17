@@ -19,6 +19,7 @@ SpeciesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/
 HexesPreviewPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CellHexPreview")
 SpeciesDetailsLabelPath = NodePath("HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 LeaveGameConfirmationDialogPath = NodePath("UnsavedProgressWarning")
+FossilDirectoryWarningBoxPath = NodePath("NoDirectoryDialog")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="1"]
 margin_left = 1.0
@@ -53,7 +54,7 @@ size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer" index="0"]
 margin_right = 545.0
-margin_bottom = 576.0
+margin_bottom = 537.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -65,15 +66,29 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 535.0
-margin_bottom = 566.0
+margin_bottom = 527.0
 size_flags_horizontal = 3
 scroll_horizontal_enabled = false
 
 [node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" index="0"]
 margin_right = 525.0
-margin_bottom = 556.0
+margin_bottom = 517.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer" index="1"]
+margin_top = 541.0
+margin_right = 545.0
+margin_bottom = 576.0
+
+[node name="FossilFolder" type="Button" parent="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer" index="0"]
+margin_left = 107.0
+margin_right = 437.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 330, 0 )
+size_flags_horizontal = 2
+action_mode = 0
+text = "OPEN_FOSSIL_FOLDER"
 
 [node name="SpeciesDetailPanel" type="PanelContainer" parent="HBoxContainer" index="1"]
 margin_left = 582.0
@@ -175,5 +190,16 @@ margin_bottom = 599.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
 
+[node name="NoDirectoryDialog" parent="." index="3" instance=ExtResource( 8 )]
+margin_left = 340.0
+margin_top = 360.0
+margin_right = 940.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 600, 0 )
+WindowTitle = "NO_FOSSIL_DIRECTORY"
+HideCancelButton = true
+DialogText = "TRY_FOSSILISING_SOME_SPECIES"
+
+[connection signal="pressed" from="HBoxContainer/SpeciesListPanel/MarginContainer/VBoxContainer/CenterContainer/FossilFolder" to="." method="OnOpenFossilFolder"]
 [connection signal="pressed" from="HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/OpenInFreebuildButton" to="." method="OnOpenInFreebuildPressed"]
 [connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="OnOpenInFreebuildConfirmPressed"]
