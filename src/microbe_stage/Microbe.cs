@@ -1220,6 +1220,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             }
         }
 
+        // Recreate tracking for running processes
+        ProcessStatistics = new ProcessStatistics();
+
         processesDirty = false;
     }
 
