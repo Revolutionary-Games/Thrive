@@ -704,7 +704,7 @@ public static class Constants
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
     public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 120;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 60;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.01f;
