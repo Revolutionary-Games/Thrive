@@ -96,7 +96,7 @@
 
             // Pili are much more useful if the microbe can close to melee
             // Pili are better the faster you are as well
-            pilusScore *= predatorSpeed > preySpeed ? (predatorSpeed / preySpeed) * 100 : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+            pilusScore *= predatorSpeed > preySpeed ? (predatorSpeed / preySpeed) : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
             // predators are less likely to use toxin against larger prey, unless they are opportunistic
             if (preyHexSize > microbeSpeciesHexSize)
