@@ -190,7 +190,7 @@
         }
 
         public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
-            long unadjustedPopulation, float totalEnergy, float individualCost, float mortalities)
+            long unadjustedPopulation, float totalEnergy, float individualCost, float mortalityRate)
         {
             MakeSureResultExistsForSpecies(species);
 
@@ -199,7 +199,7 @@
             dataReceiver.UnadjustedPopulation = unadjustedPopulation;
             dataReceiver.TotalEnergyGathered = totalEnergy;
             dataReceiver.IndividualCost = individualCost;
-            dataReceiver.Mortalities = mortalities;
+            dataReceiver.MortalityRate = mortalityRate;
         }
 
         /// <summary>
@@ -1203,7 +1203,7 @@
 
             public float IndividualCost;
 
-            public float Mortalities;
+            public float MortalityRate;
 
             public class NicheInfo
             {

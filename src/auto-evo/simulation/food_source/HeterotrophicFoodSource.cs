@@ -27,24 +27,24 @@
         public override float FitnessScore(Species species, SimulationCache simulationCache,
             WorldGenerationSettings worldSettings)
         {
-            var microbeSpecies = (MicrobeSpecies)species;
+            var currentSpecies = (MicrobeSpecies)species;
 
             // No cannibalism
-            if (microbeSpecies == prey)
+            if (currentSpecies == prey)
             {
                 return 0.0f;
             }
 
-            var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+            var behaviourScore = currentSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
             // TODO: if these two methods were combined it might result in better performance with needing just
             // one dictionary lookup
-            var microbeSpeciesHexSize = simulationCache.GetBaseHexSizeForSpecies(microbeSpecies);
-            var predatorSpeed = simulationCache.GetBaseSpeedForSpecies(microbeSpecies);
+            var microbeSpeciesHexSize = simulationCache.GetBaseHexSizeForSpecies(currentSpecies);
+            var predatorSpeed = simulationCache.GetBaseSpeedForSpecies(currentSpecies);
 
-            predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).FinalBalance;
+            predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(currentSpecies, patch.Biome).FinalBalance;
 
-            var currentSpeciesOrganelleData = simulationCache.GetOrganelleData(microbeSpecies);
+            var currentSpeciesOrganelleData = simulationCache.GetOrganelleData(currentSpecies);
             int pilusCount = currentSpeciesOrganelleData.PilusCount;
             float oxytoxyCount = currentSpeciesOrganelleData.OxytoxyCount;
             float mucilageCount = currentSpeciesOrganelleData.MucilageCount;
@@ -69,7 +69,7 @@
 
             // TODO: Take into account Enzymes properly
             bool canEngulf = microbeSpeciesHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && 
-                !microbeSpecies.MembraneType.CellWall &&
+                !currentSpecies.MembraneType.CellWall &&
                 prey.MembraneType.DissolverEnzyme == "lipase";
 
             // Only assign engulf score if one can actually engulf
@@ -132,7 +132,7 @@
 
                 // predators are less likely to use toxin against larger prey, unless they are opportunistic
                 if (preyHexSize > microbeSpeciesHexSize)
-                    oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+                    oxytoxyScore *= currentSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
                 
                 // It's harder to hit fast creatures
                 if (predatorSpeed < tempPreySpeed)

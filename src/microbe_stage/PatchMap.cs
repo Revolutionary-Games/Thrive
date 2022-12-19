@@ -290,7 +290,7 @@ public class PatchMap : ISaveLoadable
 
                 speciesCount[species] += 1;
 
-                seenSpecies[species][0] += energyResults.Value.Mortalities;
+                seenSpecies[species][0] += energyResults.Value.MortalityRate;
                 seenSpecies[species][1] += energyResults.Value.TotalEnergyGathered;
             }
         }
