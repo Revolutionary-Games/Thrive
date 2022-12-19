@@ -504,6 +504,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
         Dictionary<Compound, float> totals, float delta, float rate)
     {
+        if (rate < 0)
+            throw new ArgumentException("Rate can't be negative");
+
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
@@ -524,12 +527,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
+            float freeSpace = storage.GetFreeSpaceForCompound(compound);
 
             float multiplier = 1.0f * rate;
 
             if (freeSpace < generousAmount)
             {
+                if (freeSpace < 0.0f)
+                    throw new InvalidOperationException("Free space for compounds is negative");
+
                 // Allow partial absorption to allow cells to take from high density clouds
                 multiplier = freeSpace / generousAmount;
             }

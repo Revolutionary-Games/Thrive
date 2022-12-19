@@ -284,7 +284,8 @@ public abstract class Species : ICloneable
             Generation,
             Population,
             Colour.ToHtml(),
-            string.Join("\n  ", Behaviour.Select(b => b.Key + ": " + b.Value)));
+            string.Join("\n  ",
+                Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
     }
 
     /// <summary>

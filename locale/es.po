@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-07 10:47+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -2092,17 +2092,17 @@ msgstr "Las concentraciones de {0} han descendido por un {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "¡Las concentraciones de glucosa han bajado drásticamente!"
 
-#: ../src/general/MainMenu.cs:391
-msgid "STORE_LOGGED_IN_AS"
-msgstr "Conectado como: {0}"
-
-#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "¡Gracias por jugar!\n"
 "\n"
 "Si te gustó el juego, cuéntale a tus amigos sobre nosotros."
+
+#: ../src/general/MainMenu.cs:414
+msgid "STORE_LOGGED_IN_AS"
+msgstr "Conectado como: {0}"
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"
@@ -3903,7 +3903,7 @@ msgstr "El quimioreceptor permite detectar compuestos desde más lejos. Modifíc
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción.  Así es como las células adquieren información sobre su entorno.  La adición de este orgánulo representa la evolución de una quimiorrecepción más afinada.  Como el jugador tiene visión incluso en la etapa de célula, esto se representa con una línea que apunta fuera del área visible de la pantalla y muestra los compuestos cercanos que el jugador aún no podía ver."
+msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción. Así es como las células adquieren información sobre su entorno. La adición de este orgánulo representa la evolución de una quimiorrecepción más afinada. Como el jugador tiene visión incluso en la etapa de célula, esto se representa con una línea que apunta fuera del área visible de la pantalla y muestra los compuestos cercanos que el jugador aún no podía ver."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CILIA_PROCESSES_DESCRIPTION"

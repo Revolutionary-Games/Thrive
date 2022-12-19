@@ -231,7 +231,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> Export(PackagePlatform platform, string folder,
         CancellationToken cancellationToken)
     {
-        var target = GodotTargetFromPlatform(platform);
+        var target = ThriveProperties.GodotTargetFromPlatform(platform, steamMode);
 
         ColourConsole.WriteInfoLine($"Starting export for target: {target}");
 
@@ -239,7 +239,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteNormalLine($"Exporting to folder: {folder}");
 
-        var targetFile = Path.Join(folder, "Thrive" + GodotTargetExtension(platform));
+        var targetFile = Path.Join(folder, "Thrive" + ThriveProperties.GodotTargetExtension(platform));
 
         var startInfo = new ProcessStartInfo("godot");
         startInfo.ArgumentList.Add("--no-window");
@@ -391,7 +391,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             // Write meta file needed for upload
             await Dehydration.WriteMetaFile(Path.GetFileNameWithoutExtension(folderOrArchive), cacheForNextMetaToWrite,
                 thriveVersion,
-                GodotTargetFromPlatform(platform), target, cancellationToken);
+                ThriveProperties.GodotTargetFromPlatform(platform, steamMode), target, cancellationToken);
 
             cacheForNextMetaToWrite = null;
 
@@ -554,52 +554,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         checkedGodot = true;
         return true;
-    }
-
-    private string GodotTargetFromPlatform(PackagePlatform platform)
-    {
-        if (steamMode)
-        {
-            switch (platform)
-            {
-                case PackagePlatform.Linux:
-                    return "Linux/X11_steam";
-                case PackagePlatform.Windows:
-                    return "Windows Desktop_steam";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-            }
-        }
-
-        switch (platform)
-        {
-            case PackagePlatform.Linux:
-                return "Linux/X11";
-            case PackagePlatform.Windows:
-                return "Windows Desktop";
-            case PackagePlatform.Windows32:
-                return "Windows Desktop (32-bit)";
-            case PackagePlatform.Mac:
-                return "Mac OSX";
-            default:
-                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-        }
-    }
-
-    private string GodotTargetExtension(PackagePlatform platform)
-    {
-        switch (platform)
-        {
-            case PackagePlatform.Linux:
-                return string.Empty;
-            case PackagePlatform.Windows32:
-            case PackagePlatform.Windows:
-                return ".exe";
-            case PackagePlatform.Mac:
-                return ".zip";
-            default:
-                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
-        }
     }
 
     private async Task CreateDynamicallyGeneratedFiles(CancellationToken cancellationToken)

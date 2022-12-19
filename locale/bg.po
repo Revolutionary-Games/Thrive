@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-03 11:40+0200\n"
+"POT-Creation-Date: 2022-12-07 10:47+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1216,7 +1216,7 @@ msgstr "Започната"
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "популацията на „{0}“ в {2} се промени с {1} индивида поради {3} на създанията"
+msgstr "популацията на {0} в {2} се промени с {1} индивида поради {3} на създанията"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:352
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
@@ -1238,7 +1238,7 @@ msgstr "предишна:"
 
 #: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "отделиха се от популацията на „{0}“"
+msgstr "отделиха се от популацията на {0}"
 
 #: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
@@ -1250,7 +1250,7 @@ msgstr "появиха се поради селекционен натиск"
 
 #: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "от популацията в следните зони се отделиха „{0}“:"
+msgstr "от популацията в следните зони се отделиха {0}:"
 
 #: ../src/auto-evo/RunResults.cs:704
 msgid "SPECIES_HAS_A_MUTATION"
@@ -1278,39 +1278,39 @@ msgstr "изчезнаха от планетата"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "„[b][u]{0}[/u][/b]“ изчезнаха!"
+msgstr "[b][u]{0}[/u][/b] изчезнаха!"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Популацията на „[b][u]{0}[/u][/b]“ се увеличи на {1} индивида"
+msgstr "Популацията на [b][u]{0}[/u][/b] се увеличи на {1} индивида"
 
 #: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Популацията на „[b][u]{0}[/u][/b]“ се понижи на {1} индивида"
+msgstr "Популацията на [b][u]{0}[/u][/b] се понижи на {1} индивида"
 
 #: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "„[b][u]{0}[/u][/b]“ изчезнаха от тази зона"
+msgstr "[b][u]{0}[/u][/b] изчезнаха от тази зона"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в тази зона от {1}"
+msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в тази зона от {1}"
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в {1} от {2}"
+msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в {1} от {2}"
 
 #: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Част от популацията на „[b][u]{0}[/u][/b]“ се пресели в {1}"
+msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в {1}"
 
 #: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
-msgstr "„[b][u]{0}[/u][/b]“ се отделиха от „[b][u]{1}[/u][/b]“ за да запълнят ниша"
+msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] за да запълнят ниша"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "„[b][u]{0}[/u][/b]“ се отделиха от „[b][u]{1}[/u][/b]“ поради селекционен натиск"
+msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] поради селекционен натиск"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
 msgid "NOT_FOUND_CHUNK"
@@ -1330,7 +1330,7 @@ msgstr "{0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
-msgstr "„{0}“"
+msgstr "{0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:39
 msgid "STEM_CELL_NAME"
@@ -2092,17 +2092,18 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрацията на глюкоза се понижи драстично!"
 
-#: ../src/general/MainMenu.cs:391
-msgid "STORE_LOGGED_IN_AS"
-msgstr "Влезли сте като: {0}"
-
-#: ../src/general/MainMenu.cs:409 ../src/general/MainMenu.tscn:854
-#, fuzzy
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
-"Благодарим Ви за отделеното време!\n"
+"Благодарим Ви за покупката на „Thrive“!\n"
 "\n"
-"Ще се радваме да споделите за „Thrive“ и на Вашите приятели."
+"Ако не сте закупили това копие на играта, моля, направете го [color=#3796e1][url={0}]тук[/url][/color] или разгледайте нашия [color=#3796e1][url=https ://revolutionarygamesstudio.com/releases/]уебсайт[/url][/color].\n"
+"\n"
+"Ако искате да включите стартиращата програма, преди стартирането на „Thrive“, може да натиснете бутона в главното меню на играта, за да отворите програмата и след това да изключите плавния режим от нейните настройки."
+
+#: ../src/general/MainMenu.cs:414
+msgid "STORE_LOGGED_IN_AS"
+msgstr "Влезли сте като: {0}"
 
 #: ../src/general/MainMenu.tscn:244
 msgid "NEW_GAME_BUTTON_TOOLTIP"
@@ -2151,9 +2152,8 @@ msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Излизане от играта"
 
 #: ../src/general/MainMenu.tscn:321
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Клавиш „Launch E“"
+msgstr "Отваряне на стартиращата програма"
 
 #: ../src/general/MainMenu.tscn:332
 msgid "QUIT"
@@ -2322,13 +2322,12 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
 #: ../src/general/MainMenu.tscn:844
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+msgstr "Благодарим Ви"
 
 #: ../src/general/MainMenu.tscn:870
 msgid "DISMISS_PERMANENTLY"
-msgstr ""
+msgstr "Отхвърляне на съобщението"
 
 #: ../src/general/NewGameSettings.cs:322
 #: ../src/general/NewGameSettings.tscn:1223
@@ -2510,20 +2509,19 @@ msgstr "Класическа"
 
 #: ../src/general/NewGameSettings.tscn:959
 msgid "DAY_NIGHT_CYCLE_ENABLED"
-msgstr ""
+msgstr "Денонощен цикъл"
 
 #: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "(ВНИМАНИЕ: понижава ефективността на фотосинтезата)"
 
 #: ../src/general/NewGameSettings.tscn:985
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Продължителност на деня"
 
 #: ../src/general/NewGameSettings.tscn:1033
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(на произволен принцип)"
+msgstr "(в секунди)"
 
 #: ../src/general/NewGameSettings.tscn:1114
 msgid "PLANET_GENERATION_TEASER"
@@ -2951,12 +2949,12 @@ msgstr "Местоположение на дневниците"
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Това е броят на отхвърлените предупреждения.\n"
+"Това е броят на отхвърлените съобщения.\n"
 "Ако желаете да ги възстановите, натиснете бутона „Нулиране“."
 
 #: ../src/general/OptionsMenu.tscn:1565
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Отхвърлени предупреждения:"
+msgstr "Отхвърлени съобщения:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
@@ -3207,7 +3205,9 @@ msgstr ""
 "Карта на зоните: {0}\n"
 "Земеподобен живот: {1}\n"
 "Произход на живота: {2}\n"
-"Произволен идентификатор на планетата: {3}"
+"Денонощен цикъл: {3}\n"
+"Продължителност на деня: {4} секунди\n"
+"Произволен идентификатор на планетата: {5}"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -4482,9 +4482,8 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/с"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Смесена..."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
@@ -4531,7 +4530,7 @@ msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2328
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr "Енергийни стойности в {0} на „{1}“"
+msgstr "Енергийни стойности в {0} на {1}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
 msgid "ENERGY_SUMMARY_LINE"
@@ -4547,16 +4546,15 @@ msgstr "{0}: усвоена енергийна стойност {1} със ст�
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:328
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Ден"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
-#, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr "Колелце надясно"
+msgstr "Нощ"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Средно"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
 msgid "MEMBRANE"
@@ -4917,7 +4915,7 @@ msgstr "{0}-{1} м. под морското равнище"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
-msgstr ""
+msgstr "{0} по пладне"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
 msgid "SPECIES_WITH_POPULATION"
@@ -4936,9 +4934,8 @@ msgid "PRESSURE"
 msgstr "Налягане"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
-#, fuzzy
 msgid "LIGHT_MAX"
-msgstr "Светлина"
+msgstr "Максимална светлина"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:863
 msgid "SPECIES_PRESENT"
@@ -5883,7 +5880,7 @@ msgstr "Добре дошли в Трайвопедията"
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
-"Трайвопедията е централният източник на информация за съдържанието в „Thrive“. Тук ще намерите отговори на всички въпроси, свързани с играта, Вашият текущ свят или с проекта за разработка на „Thrive“.\n"
+"Трайвопедията е централният източник на информация за съдържанието в „Thrive“. Тук ще намерите отговорите на всички въпроси, свързани с играта, Вашият текущ свят или с проекта за разработка на „Thrive“.\n"
 "\n"
 "В момента, Трайвопедията е сравнително празна, но все пак може да прегледате някои страници, използвайки навигацията. Обърнете внимание, че страниците, свързани с конкретния запис, който се използва, ще се покажат само когато Трайвопедията е отворена през менюто в играта.\n"
 "\n"
