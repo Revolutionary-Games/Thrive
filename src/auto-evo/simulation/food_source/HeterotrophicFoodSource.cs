@@ -60,7 +60,7 @@
             // TODO: Properly account for Mucilage Speed Boost
             if(mucilageCount > 0 && preyMucilageCount == 0)
             {
-                tempPreySpeed /= Constants.MUCILAGE_IMPEDE_FACTOR;
+                tempPreySpeed /= Constants.MUCILAGE_IMPEDE_FACTOR * Constants.AUTO_EVO_PREDATOR_MUCILAGE_ENSNARE_RATE;
             }
             else if(preyMucilageCount > 0 && mucilageCount == 0)
             {
@@ -105,7 +105,9 @@
             if(pilusCount > 0)
             {
                 // You can stab them...
-                pilusScore += pilusCount;
+                // Having more Pili brings diminshing returns
+                pilusScore += (Mathf.Pow(pilusCount+1, 1-Constants.AUTO_EVO_PILI_DIMINISHMENT) - 1) / 
+                    (1 - Constants.AUTO_EVO_PILI_DIMINISHMENT);
 
                 // ...But they can stab back
                 if(preyPilusCount > 0)
@@ -114,7 +116,7 @@
                 // Pili are better the faster you are
                 pilusScore *= predatorSpeed > preySpeed ? (predatorSpeed / preySpeed) : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
-                // They can fight back with toxins
+                // Prey can fight back with toxins
                 if(oxytoxyCount > 0)
                     pilusScore *= (1 - Constants.AUTO_EVO_TOXIN_PILUS_PENALTY);
 

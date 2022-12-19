@@ -59,7 +59,7 @@ namespace AutoEvo
             {
                 engulfScore += Constants.AUTO_EVO_ENGULF_MORTALITY_SCORE;
 
-                // predators that are slower than you can't catch you
+                // Predators that are slower than you can't catch you
                 if (predatorSpeed < currentSpeciesSpeed)
                     engulfScore *= Mathf.Min(Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predator.BaseHexSize, 1);
                 
@@ -76,13 +76,15 @@ namespace AutoEvo
             if(preadatorPilusCount > 0)
             {
                 // Predators can stab you...
-                pilusScore += preadatorPilusCount * Constants.AUTO_EVO_PILUS_MORTALITY_SCORE;
+                // Having more Pili brings diminshing returns
+                pilusScore += (Mathf.Pow(pilusCount+1, 1-Constants.AUTO_EVO_PILI_DIMINISHMENT) - 1) / 
+                    (1 - Constants.AUTO_EVO_PILI_DIMINISHMENT) * Constants.AUTO_EVO_PILUS_MORTALITY_SCORE;
 
                 // ...But you can stab back
                 if(pilusCount > 0)
                     pilusScore *= Mathf.Pow((1 - Constants.AUTO_EVO_PILUS_PILUS_PENALTY), pilusCount);
 
-                // predators that are slower than you can't catch you
+                // Predators that are slower than you can't catch you
                 if (predatorSpeed < currentSpeciesSpeed)
                     pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 

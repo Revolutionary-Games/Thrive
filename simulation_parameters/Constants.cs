@@ -736,12 +736,14 @@ public static class Constants
     public const float AUTO_EVO_TOXIN_ENGULF_PENALTY = 0.5f;
     public const float AUTO_EVO_TOXIN_PILUS_PENALTY = 0.1f;
     public const float AUTO_EVO_SPEED_TOXIN_PENALTY = 0.1f;
+    public const float AUTO_EVO_PILI_DIMINISHMENT = 0.3f;
 
     // - AutoEvo HeterotrophicFoodSource
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 120;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
+    public const float AUTO_EVO_PREDATOR_MUCILAGE_ENSNARE_RATE = 0.5f;
 
     // - AutoEvo MortalityScore
     public const float AUTO_EVO_ENGULF_MORTALITY_SCORE = 0.9f;
