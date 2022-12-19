@@ -289,7 +289,8 @@ public class Thriveopedia : ControlWithInput
 
     private void OnPageSelectedFromPageTree()
     {
-        var name = allPages.First(p => p.Value == pageTree.GetSelected()).Key.PageName;
+        var selected = pageTree.GetSelected();
+        var name = allPages.First(p => p.Value == selected).Key.PageName;
         ChangePage(name);
     }
 
