@@ -1193,7 +1193,6 @@
         /// <summary>
         ///   Energy source and consumption information for a species in a patch
         /// </summary>
-        // TODO: Refactor Class to become Species Debug Info instead of EnergyResults
         public class SpeciesPatchEnergyResults
         {
             public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();

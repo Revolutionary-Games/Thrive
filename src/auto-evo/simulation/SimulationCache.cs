@@ -1,5 +1,6 @@
 ﻿namespace AutoEvo
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -14,11 +15,14 @@
     public class SimulationCache
     {
         private readonly WorldGenerationSettings worldSettings;
+        private readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        private readonly Compound Mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
         private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
         private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
         private readonly Dictionary<MicrobeSpecies, float> cachedStorageCapacities = new();
         private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound), float> cachedCompoundScores = new();
+        private readonly Dictionary<MicrobeSpecies, MicrobeOrganelleData> cachedOrganelleData = new();
 
         private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
             new();
@@ -138,6 +142,59 @@
         public bool MatchesSettings(WorldGenerationSettings checkAgainst)
         {
             return worldSettings.Equals(checkAgainst);
+        }
+
+        public MicrobeOrganelleData GetOrganelleData(MicrobeSpecies species)
+        {
+            if (cachedOrganelleData.TryGetValue(species, out var cached))
+            {
+                return cached;
+            }
+
+            int pilusCount = 0;
+            float oxytoxyCount = 0.0f;
+            float mucilageCount = 0.0f;
+            foreach (var organelle in species.Organelles)
+            {
+                if (organelle.Definition.HasPilusComponent)
+                {
+                    pilusCount += 1;
+                    continue;
+                }
+
+                foreach (var process in organelle.Definition.RunnableProcesses)
+                {
+                    if (process.Process.Outputs.TryGetValue(Oxytoxy, out var oxytoxyAmount))
+                    {
+                        oxytoxyCount += oxytoxyAmount;
+                    }
+
+                    if (process.Process.Outputs.TryGetValue(Mucilage, out var mucilageAmount))
+                    {
+                        mucilageCount += mucilageAmount;
+                    }
+                }
+            }
+
+            cached = new MicrobeOrganelleData(pilusCount, oxytoxyCount, mucilageCount);
+
+            cachedOrganelleData.Add(species, cached);
+
+            return cached;
+        }
+
+        public class MicrobeOrganelleData
+        {
+            public int PilusCount = 0;
+            public float OxytoxyCount = 0.0f;
+            public float MucilageCount = 0.0f;
+
+            public MicrobeOrganelleData(int pilusCount, float oxytoxyCount, float mucilageCount)
+            {
+                PilusCount = pilusCount;
+                OxytoxyCount = oxytoxyCount;
+                MucilageCount = mucilageCount;
+            }
         }
     }
 }

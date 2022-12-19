@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo
 {
     using System;
+    using Godot;
 
     public class HeterotrophicFoodSource : RandomEncounterFoodSource
     {
@@ -43,74 +44,108 @@
 
             predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).FinalBalance;
 
+            var currentSpeciesOrganelleData = simulationCache.GetOrganelleData(microbeSpecies);
+            int pilusCount = currentSpeciesOrganelleData.PilusCount;
+            float oxytoxyCount = currentSpeciesOrganelleData.OxytoxyCount;
+            float mucilageCount = currentSpeciesOrganelleData.MucilageCount;
+
+            var tempPreySpeed = preySpeed;
+            tempPreySpeed += simulationCache.GetEnergyBalanceForSpecies(prey, patch.Biome).FinalBalance;
+
+            var preyOrganelleData = simulationCache.GetOrganelleData(prey);
+            int preyPilusCount = preyOrganelleData.PilusCount;
+            float preyOxytoxyCount = preyOrganelleData.OxytoxyCount;
+            float preyMucilageCount = preyOrganelleData.MucilageCount;
+
+            // TODO: Properly account for Mucilage Speed Boost
+            if(mucilageCount > 0 && preyMucilageCount == 0)
+            {
+                tempPreySpeed /= Constants.MUCILAGE_IMPEDE_FACTOR;
+            }
+            else if(preyMucilageCount > 0 && mucilageCount == 0)
+            {
+                predatorSpeed /= Constants.MUCILAGE_IMPEDE_FACTOR;
+            }
+
+            // TODO: Take into account Enzymes properly
+            bool canEngulf = microbeSpeciesHexSize / preyHexSize > Constants.ENGULF_SIZE_RATIO_REQ && 
+                !microbeSpecies.MembraneType.CellWall &&
+                prey.MembraneType.DissolverEnzyme == "lipase";
+
             // Only assign engulf score if one can actually engulf
             var engulfScore = 0.0f;
-            if (microbeSpeciesHexSize / preyHexSize >
-                Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall &&
-                prey.MembraneType.DissolverEnzyme == "lipase") // TODO: Take into account Enzymes properly
+            if (canEngulf)
             {
-                // Catch scores grossly accounts for how many preys you catch in a run;
-                var catchScore = 0.0f;
-
                 // First, you may hunt individual preys, but only if you are fast enough...
                 if (predatorSpeed > preySpeed)
                 {
                     // You catch more preys if you are fast, and if they are slow.
                     // This incentivizes engulfment strategies in these cases.
-                    catchScore += predatorSpeed / preySpeed;
+                    engulfScore += predatorSpeed / preySpeed;
                 }
 
                 // ... but you may also catch them by luck (e.g. when they run into you),
                 // and this is especially easy if you're huge.
                 // This is also used to incentivize size in microbe species.
-                catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
+                engulfScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
 
-                // Allow for some degree of lucky engulfment
-                engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+                // It's hard to engulf microbes with pili 
+                if(preyPilusCount > 0)
+                    engulfScore *= Mathf.Pow((1 - Constants.AUTO_EVO_PILUS_ENGULF_PENALTY), preyPilusCount);
+
+                // Engulfing a toxic microbe hurts
+                if(preyOxytoxyCount > 0)
+                    engulfScore *= (1 - Constants.AUTO_EVO_TOXIN_ENGULF_PENALTY);
+
+                engulfScore *= Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
             }
 
-            var pilusScore = 0.0f;
-            var oxytoxyScore = 0.0f;
-            var mucilageScore = 0.0f;
-            foreach (var organelle in microbeSpecies.Organelles)
+
+            float pilusScore = 0.0f;
+            if(pilusCount > 0)
             {
-                if (organelle.Definition.HasPilusComponent)
-                {
-                    pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-                    continue;
-                }
+                // You can stab them...
+                pilusScore += pilusCount;
 
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
-                    {
-                        oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
-                    }
+                // ...But they can stab back
+                if(preyPilusCount > 0)
+                    pilusScore *= Mathf.Pow((1 - Constants.AUTO_EVO_PILUS_PILUS_PENALTY), preyPilusCount);
 
-                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                    {
-                        mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
-                    }
-                }
+                // Pili are better the faster you are
+                pilusScore *= predatorSpeed > preySpeed ? (predatorSpeed / preySpeed) : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+
+                // They can fight back with toxins
+                if(oxytoxyCount > 0)
+                    pilusScore *= (1 - Constants.AUTO_EVO_TOXIN_PILUS_PENALTY);
+
+                // Pilus are worse against cells with resistances
+                // and better when they can exploit weaknesses
+                pilusScore /= prey.MembraneType.PhysicalResistance;
+
+                pilusScore *= Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
             }
 
-            // Pili are much more useful if the microbe can close to melee
-            // Pili are better the faster you are as well
-            pilusScore *= predatorSpeed > preySpeed ? (predatorSpeed / preySpeed) : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-
-            // predators are less likely to use toxin against larger prey, unless they are opportunistic
-            if (preyHexSize > microbeSpeciesHexSize)
+            float oxytoxyScore = 0.0f;
+            if(oxytoxyCount > 0)
             {
-                oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+                oxytoxyScore += oxytoxyCount;
+
+                // predators are less likely to use toxin against larger prey, unless they are opportunistic
+                if (preyHexSize > microbeSpeciesHexSize)
+                    oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+                
+                // It's harder to hit fast creatures
+                if (predatorSpeed < tempPreySpeed)
+                    oxytoxyScore *= (1 - Constants.AUTO_EVO_SPEED_TOXIN_PENALTY);
+
+                // Toxin is worse against cells with resistances
+                // and better when it can exploit weaknesses
+                oxytoxyScore /= prey.MembraneType.ToxinResistance;
+
+                oxytoxyScore *= Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
             }
 
-            // Toxin and Pilus are worse against cells with resistances
-            // and better when they can exploit weaknesses
-            oxytoxyScore /= prey.MembraneType.ToxinResistance;
-            pilusScore /= prey.MembraneType.PhysicalResistance;
-
-            // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-            return behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore);
+            return behaviourScore * (pilusScore + engulfScore + oxytoxyScore);
         }
 
         public override IFormattable GetDescription()

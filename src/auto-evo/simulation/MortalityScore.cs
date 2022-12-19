@@ -24,63 +24,28 @@ namespace AutoEvo
 
             var currentSpeciesSpeed = simulationCache.GetBaseSpeedForSpecies(currentSpecies);
             currentSpeciesSpeed += simulationCache.GetEnergyBalanceForSpecies(currentSpecies, patch.Biome).FinalBalance;
+            
+            var currentSpeciesOrganelleData = simulationCache.GetOrganelleData(currentSpecies);
+            int pilusCount = currentSpeciesOrganelleData.PilusCount;
+            float oxytoxyCount = currentSpeciesOrganelleData.OxytoxyCount;
+            float mucilageCount = currentSpeciesOrganelleData.MucilageCount;
+
+            var predatorOrganelleData = simulationCache.GetOrganelleData(predator);
+            int preadatorPilusCount = predatorOrganelleData.PilusCount;
+            float preadatorOxytoxyCount = predatorOrganelleData.OxytoxyCount;
+            float preadatorMucilageCount = predatorOrganelleData.MucilageCount;
 
             var predatorSpeed = simulationCache.GetBaseSpeedForSpecies(predator);
             predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(predator, patch.Biome).FinalBalance;
             
-            int preadatorPilusCount = 0;
-            float preadatorOxytoxyCount = 0.0f;
-            float preadatorMucilageCount = 0.0f;
-            foreach (var organelle in predator.Organelles)
-            {
-                if (organelle.Definition.HasPilusComponent)
-                {
-                    preadatorPilusCount += 1;
-                    continue;
-                }
-
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
-                    {
-                        preadatorOxytoxyCount += oxytoxyAmount;
-                    }
-
-                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                    {
-                        preadatorMucilageCount += mucilageAmount * 5;
-                    }
-                }
-            }
-
-            int pilusCount = 0;
-            float oxytoxyCount = 0.0f;
-            float mucilageCount = 0.0f;
-            foreach (var organelle in predator.Organelles)
-            {
-                if (organelle.Definition.HasPilusComponent)
-                {
-                    pilusCount += 1;
-                    continue;
-                }
-
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
-                    {
-                        oxytoxyCount += oxytoxyAmount;
-                    }
-
-                    if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                    {
-                        mucilageCount += mucilageAmount;
-                    }
-                }
-            }
-
+            // TODO: Properly account for Mucilage Speed Boost
             if(mucilageCount > 0 && preadatorMucilageCount == 0)
             {
                 predatorSpeed /= Constants.MUCILAGE_IMPEDE_FACTOR;
+            }
+            else if(preadatorMucilageCount > 0 && mucilageCount == 0)
+            {
+                currentSpeciesSpeed /= Constants.MUCILAGE_IMPEDE_FACTOR;
             }
 
             // TODO: Take into account Enzymes properly
@@ -96,9 +61,9 @@ namespace AutoEvo
 
                 // predators that are slower than you can't catch you
                 if (predatorSpeed < currentSpeciesSpeed)
-                    engulfScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                    engulfScore *= Mathf.Min(Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predator.BaseHexSize, 1);
                 
-                // It's hard to engulf cells pilus 
+                // It's hard to engulf microbes with pili 
                 if(pilusCount > 0)
                     engulfScore *= Mathf.Pow((1 - Constants.AUTO_EVO_PILUS_ENGULF_PENALTY), pilusCount);
 
@@ -114,20 +79,18 @@ namespace AutoEvo
                 pilusScore += preadatorPilusCount * Constants.AUTO_EVO_PILUS_MORTALITY_SCORE;
 
                 // ...But you can stab back
-                pilusScore -= pilusCount * Constants.AUTO_EVO_PILUS_MORTALITY_SCORE;
+                if(pilusCount > 0)
+                    pilusScore *= Mathf.Pow((1 - Constants.AUTO_EVO_PILUS_PILUS_PENALTY), pilusCount);
 
                 // predators that are slower than you can't catch you
                 if (predatorSpeed < currentSpeciesSpeed)
-                    engulfScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-
-                // Keep pilusScore positive
-                pilusScore = Mathf.Max(pilusScore, 0);
+                    pilusScore *= Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
                 // You can fight back with toxins
                 if(oxytoxyCount > 0)
                     pilusScore *= (1 - Constants.AUTO_EVO_TOXIN_PILUS_PENALTY);
 
-                // Pilus are worse against cells with resistances
+                // Pili are worse against cells with resistances
                 // and better when they can exploit weaknesses
                 pilusScore /= currentSpecies.MembraneType.PhysicalResistance;
             }
@@ -144,10 +107,10 @@ namespace AutoEvo
                 
                 // It's harder to hit fast creatures
                 if (predatorSpeed < currentSpeciesSpeed)
-                    engulfScore *= (1 - Constants.AUTO_EVO_SPEED_TOXIN_PENALTY);
+                    oxytoxyScore *= (1 - Constants.AUTO_EVO_SPEED_TOXIN_PENALTY);
 
-                // Toxin and Pilus are worse against cells with resistances
-                // and better when they can exploit weaknesses
+                // Toxin is worse against cells with resistances
+                // and better when it can exploit weaknesses
                 oxytoxyScore /= currentSpecies.MembraneType.ToxinResistance;
             }
 

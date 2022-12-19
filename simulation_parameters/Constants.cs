@@ -231,8 +231,13 @@ public static class Constants
     public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
-    ///   How much a cell's speed is slowed when travelling through slime
+    ///   How much a cell's speed is slowed when travelling through slime.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This divides speed.
+    ///   </para>
+    /// </remarks>
     public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
 
     /// <summary>
@@ -703,21 +708,8 @@ public static class Constants
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
     public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
-    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 120;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.05f;
-    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 800000;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
     public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
-    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
-    public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
-
-    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
-    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
 
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
@@ -725,14 +717,36 @@ public static class Constants
     public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
     public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
 
-    // Auto Evo Mortality Score
+    // AutoEvo EnvironmentalFoodSource
+    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
+    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+
+    // AutoEvo CompoundFoodSource
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
+
+    // AutoEvo ChunkFoodSource
+    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
+    public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
+
+    // AutoEvo Predation
+    public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.05f;
+    public const float AUTO_EVO_PILUS_ENGULF_PENALTY = 0.3f;
+    public const float AUTO_EVO_PILUS_PILUS_PENALTY = 0.2f;
+    public const float AUTO_EVO_TOXIN_ENGULF_PENALTY = 0.5f;
+    public const float AUTO_EVO_TOXIN_PILUS_PENALTY = 0.1f;
+    public const float AUTO_EVO_SPEED_TOXIN_PENALTY = 0.1f;
+
+    // - AutoEvo HeterotrophicFoodSource
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 120;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
+
+    // - AutoEvo MortalityScore
     public const float AUTO_EVO_ENGULF_MORTALITY_SCORE = 0.9f;
     public const float AUTO_EVO_PILUS_MORTALITY_SCORE = 0.4f;
     public const float AUTO_EVO_TOXIN_MORTALITY_SCORE = 0.3f;
-    public const float AUTO_EVO_PILUS_ENGULF_PENALTY = 0.3f;
-    public const float AUTO_EVO_TOXIN_ENGULF_PENALTY = 0.5f;
-    public const float AUTO_EVO_TOXIN_PILUS_PENALTY = 0.2f;
-    public const float AUTO_EVO_SPEED_TOXIN_PENALTY = 0.1f;
 
 
     /// <summary>
