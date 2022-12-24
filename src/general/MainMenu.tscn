@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -54,7 +54,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=52]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=53]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=54]
-[ext_resource path="res://src/gui_common/dialogs/PatchNotesDisplay.tscn" type="PackedScene" id=55]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -126,6 +125,7 @@ AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tool
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
+PatchNotesPath = NodePath("MenuContainers/PatchNotes")
 GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
@@ -138,7 +138,6 @@ PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
-PatchNotesPath = NodePath("PatchNotesDisplay")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -724,6 +723,17 @@ texture_pressed = ExtResource( 27 )
 texture_hover = ExtResource( 33 )
 expand = true
 
+[node name="PatchNotes" type="PopupPanel" parent="MenuContainers"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = -246.0
+margin_right = 175.0
+margin_bottom = -36.0
+rect_min_size = Vector2( 0, 80 )
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 2 )
+
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
 
@@ -846,26 +856,6 @@ rect_min_size = Vector2( 400, 350 )
 WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
-[node name="PatchNotes" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
-margin_top = 150.0
-margin_right = 765.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "PatchNotes"
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="PatchNotesDisplay" parent="." instance=ExtResource( 55 )]
-margin_top = 28.0
-margin_bottom = 628.0
-
-
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]
@@ -899,7 +889,6 @@ margin_bottom = 628.0
 [connection signal="pressed" from="MenuContainers/SocialMedia/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://discordapp.com/invite/ECR9E8x" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.facebook.com/Thrive-182887991751358/" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://twitter.com/Thrive_Game" ]]
-[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/PatchNotes" to="." method="PatchNotesPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
@@ -912,4 +901,3 @@ margin_bottom = 628.0
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
 [connection signal="Closed" from="ModsInstalledButNothingEnabledWarning" to="." method="OnNoEnabledModsNoticeClosed"]
 [connection signal="pressed" from="ModsInstalledButNothingEnabledWarning/VBoxContainer/HBoxContainer/Button" to="ModsInstalledButNothingEnabledWarning" method="OnCloseButtonPressed"]
-[connection signal="popup_hide" from="PatchNotesDisplay" to="." method="OnReturnFromPatchNotes"]

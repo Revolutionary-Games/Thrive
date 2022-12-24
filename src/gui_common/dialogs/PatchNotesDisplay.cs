@@ -59,7 +59,7 @@ public class PatchNotesDisplay : CustomDialog
             return reader.GetAsText();
         }
 
-        GD.PrintErr("Can't load file to show in licenses: ", file);
+        GD.PrintErr("Can't load file to show in patch notes: ", file);
         return "Missing file to show here!";
     }
 

@@ -98,7 +98,7 @@ public class MainMenu : NodeWithInput
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
 
-    private PatchNotesDisplay patchNotesDisplay = null!;
+    private PopupPanel patchNotes = null!;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -252,7 +252,6 @@ public class MainMenu : NodeWithInput
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
-        patchNotesDisplay = GetNode<PatchNotesDisplay>(PatchNotesPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
@@ -261,6 +260,8 @@ public class MainMenu : NodeWithInput
 
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
+
+        patchNotes = GetNode<PopupPanel>(PatchNotesPath);
 
         MenuArray?.Clear();
 
@@ -296,6 +297,15 @@ public class MainMenu : NodeWithInput
             gles2Popup.PopupCenteredShrink();
 
         UpdateStoreVersionStatus();
+
+        if (DisplayPatchNotes())
+        {
+            patchNotes.ShowModal();
+
+            // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
+            // so we need to manually shrink it
+            patchNotes.RectSize = Vector2.Zero;
+        }
     }
 
     /// <summary>
@@ -409,6 +419,39 @@ public class MainMenu : NodeWithInput
             GD.Print("Player has installed mods but no enabled ones, giving a heads up");
             modsInstalledButNotEnabledWarning.PopupCenteredShrink();
         }
+    }
+
+    private bool DisplayPatchNotes()
+    {
+        string file = $"{Constants.UserFolderAsNativePath}/previous_patches.txt";
+
+        using var rw = new File();
+
+        var flag = (rw.FileExists(file)) ? File.ModeFlags.ReadWrite : File.ModeFlags.Write;
+
+        if (rw.Open(file, flag) == Error.Ok)
+        {
+            while (rw.GetPosition() < rw.GetLen())
+            {
+                var storedVersion = rw.GetLine();
+
+                if (storedVersion == Constants.Version)
+                {
+                    rw.Close();
+                    return false;
+                }
+            }
+
+            rw.SeekEnd();
+            rw.StoreLine(Constants.Version);
+            rw.Close();
+        }
+        else
+        {
+            GD.PrintErr("Failed to load/generate version file: ", file);
+        }
+
+        return true;
     }
 
     private void NewGamePressed()
@@ -591,22 +634,6 @@ public class MainMenu : NodeWithInput
     }
 
     private void OnReturnFromLicenses()
-    {
-        SetCurrentMenu(2, false);
-    }
-
-    private void PatchNotesPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        // Hide all other menus
-        SetCurrentMenu(uint.MaxValue, false);
-
-        // Show the patch notes view
-        patchNotesDisplay.PopupCenteredShrink();
-    }
-
-    private void OnReturnFromPatchNotes()
     {
         SetCurrentMenu(2, false);
     }
