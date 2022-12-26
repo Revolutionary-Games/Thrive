@@ -669,7 +669,7 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         var valueFromSpecies = new Dictionary<string, Func<Species, float>>();
 
-        var speciesValueQuery = new Filter<Species>.ValueQuery();
+        var speciesValueQuery = new ValueQuery<Species>();
 
         var behaviourOptions = new Dictionary<string, Func<Species, float>>();
         foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))

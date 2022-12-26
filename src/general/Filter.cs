@@ -7,19 +7,19 @@ public sealed class Filter<T> : IFilter
 {
     // A filter has a structure of type: [(leftComparand) comparisonArgument (rightComparand)];
     // e.g. BehaviorValue: Activity > Number: 100
-    private ValueQuery leftComparand;
+    private ValueQuery<T> leftComparand;
     private FilterArgument.ComparisonFilterArgument comparisonArgument;
-    private ValueQuery rightComparand;
+    private ValueQuery<T> rightComparand;
 
     /// <summary>
     ///   A factory object for creating filterItems from a predefined template;
     /// </summary>
-    private ValueQuery.ValueQueryFactory filterItemTemplate;
+    private ValueQuery<T>.ValueQueryFactory filterItemTemplate;
 
     IValueQuery IFilter.LeftComparand => leftComparand;
     IValueQuery IFilter.RightComparand => rightComparand;
 
-    public Filter(ValueQuery.ValueQueryFactory template)
+    public Filter(ValueQuery<T>.ValueQueryFactory template)
     {
         filterItemTemplate = template;
         leftComparand = template.Create();
@@ -30,7 +30,7 @@ public sealed class Filter<T> : IFilter
     public IEnumerable<IValueQuery> FilterItems => new List<IValueQuery>()
     {
         leftComparand,
-        new ValueQuery(new Dictionary<string, Dictionary<string, Func<T, float>>>
+        new ValueQuery<T>(new Dictionary<string, Dictionary<string, Func<T, float>>>
         {
             { "VALUE_COMPARISON", new Dictionary<string, Func<T, float>>() },
         }), // TODO comparison
@@ -38,6 +38,7 @@ public sealed class Filter<T> : IFilter
     };
 
     public IValueQuery LeftItem => leftComparand;
+
     // TODO PROBABLY BETTER IF NOT SUBCLASS OF FILTER ARGUMENT?
     public FilterArgument.ComparisonFilterArgument HeadArgument => comparisonArgument;
     public IValueQuery RightItem => rightComparand;
@@ -48,123 +49,14 @@ public sealed class Filter<T> : IFilter
     }
 
     /// <summary>
-    ///   Now, a get-value part of a filter with a category.
-    ///   E.G; BehaviourValue: Activity
-    /// </summary>
-    public sealed class ValueQuery : IValueQuery
-    {
-        public static string NumberCategory = "NUMBER";
-
-        private string currentCategory = null!;
-        private string currentProperty = null!;
-
-        // TODO FUNCTION : in filter argument or aside? => filter argument
-        private readonly Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions = new();
-
-        /// <summary>
-        ///   A dictionary that maps categories to its argument, i.e. its possible values.
-        /// </summary>
-        private Dictionary<string, FilterArgument> categorizedArgument = new();
-
-        public ValueQuery()
-        {
-            currentCategory = NumberCategory;
-
-            // TODO DEAL WITH VALUES AND AVOID NUMBER-NUMBER COMPARISON
-            categorizedArgument.Add(NumberCategory, new FilterArgument.NumberFilterArgument(0, 500, 100));
-        }
-
-        public ValueQuery(Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions) : base()
-        {
-            if (categorizedArgumentFunctions.Count <= 0)
-                throw new ArgumentException("Can not initialize with an empty dictionary!");
-
-            this.categorizedArgumentFunctions = categorizedArgumentFunctions;
-
-            foreach (var item in categorizedArgumentFunctions)
-            {
-                categorizedArgument.Add(item.Key, new FilterArgument.MultipleChoiceFilterArgument(item.Value.Keys.ToList()));
-            }
-
-            // TODO USE NUMBER CATEGORY WHEN AVAILABLE
-            currentCategory = categorizedArgument.First(_ => true).Key;
-            currentProperty = categorizedArgument[currentCategory].GetStringValue();
-        }
-
-        public IEnumerable<FilterArgument> FilterArguments => categorizedArgument.Values;
-
-        public IEnumerable<string> PossibleCategories => categorizedArgument.Keys;
-
-        public string CurrentCategory { get => currentCategory; set => currentCategory = value; }
-        public string CurrentProperty { get => currentProperty; set => currentProperty = value; }
-
-        public Dictionary<string, IEnumerable<string>> CategorizedProperties =>
-            categorizedArgumentFunctions.ToDictionary(c => c.Key, c => c.Value.Select(p => p.Key));
-
-        public void AddArgumentCategory(string name, Dictionary<string, Func<T, float>> options)
-        {
-            categorizedArgument.Add(name, new FilterArgument.MultipleChoiceFilterArgument(options.Keys.ToList()));
-            categorizedArgumentFunctions.Add(name, options);
-        }
-
-        // Issue with IDictionary<object, float> conversion...
-        // TODO FIX OR REMOVE
-        public void AddArgumentCategoryFromEnum<TEnumeration>(
-            string name, Func<T, IDictionary<object, float>> enumerationKeyMapping)
-        {
-            var options = new Dictionary<string, Func<T, float>>();
-
-            foreach (var behaviourKey in Enum.GetValues(typeof(TEnumeration))) //enumerationType))
-            {
-                options.Add(behaviourKey.ToString(), s => enumerationKeyMapping.Invoke(s)[behaviourKey]);
-            }
-
-            AddArgumentCategory(name, options);
-        }
-
-        /// <summary>
-        ///   Returns the value of the filter's field for the specified target.
-        /// </summary>
-        public float Apply(T target)
-        {
-            if (CurrentCategory == NumberCategory)
-                return categorizedArgument[CurrentCategory].GetNumberValue();
-
-            return categorizedArgumentFunctions[CurrentCategory][CurrentProperty](target);
-        }
-
-        public ValueQueryFactory ToFactory()
-        {
-            return new ValueQueryFactory(categorizedArgumentFunctions);
-        }
-
-        public class ValueQueryFactory
-        {
-            private Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentWithOptions;
-
-            public ValueQueryFactory(
-                Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentWithOptions)
-            {
-                this.categorizedArgumentWithOptions = categorizedArgumentWithOptions;
-            }
-
-            public ValueQuery Create()
-            {
-                // We use ToList here because we want filterFunction to use indexing for the user's sake.
-                return new ValueQuery(categorizedArgumentWithOptions);
-            }
-        }
-    }
-
-    /// <summary>
     ///   A template for filter, to create several filters from it.
     /// </summary>
     /// TODO: Rename to template
     public class FilterFactory : IFilter.IFilterFactory
     {
-        private ValueQuery.ValueQueryFactory valueQueryTemplate;
+        private ValueQuery<T>.ValueQueryFactory valueQueryTemplate;
 
-        public FilterFactory(Filter<T>.ValueQuery.ValueQueryFactory filterItemTemplate)
+        public FilterFactory(ValueQuery<T>.ValueQueryFactory filterItemTemplate)
         {
             valueQueryTemplate = filterItemTemplate;
         }
