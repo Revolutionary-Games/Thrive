@@ -705,13 +705,21 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void FlagTreeNodes()
     {
-        var speciesFlaggingFunction = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction()).Aggregate(
-            (f1, f2) => s => f1(s) && f2(s));
+        // If there are no filter, do not flag anything.
+        if (speciesFilters.TypedFilters.Count == 0)
+        {
+            flaggingFunction = n => false;
+        } 
+        else
+        {
+            var speciesFlaggingFunction = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction()).Aggregate(
+                (f1, f2) => s => f1(s) && f2(s));
 
-        // (f => s => a(s) && f.ComputeFilterFunction()(s), s => true);// speciesFilter.ComputeFilterFunction();
+            flaggingFunction = n => speciesFlaggingFunction(speciesHistoryList[n.Generation][n.SpeciesID]);
+        }
 
-        flaggingFunction = n => speciesFlaggingFunction(speciesHistoryList[n.Generation][n.SpeciesID]);
         evolutionaryTree.FlagNodes(flaggingFunction);
+
     }
 
     /// <summary>
