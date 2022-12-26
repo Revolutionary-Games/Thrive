@@ -93,7 +93,7 @@ msgstr "你的细胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "为进入细胞编辑器去繁殖，你需要先获得足够久。收集足够的[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色云）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色云）可以加快生长。"
+msgstr "为进入细胞编辑器去繁殖，你需要先存活足够久。收集足够的[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色云）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色云）可以加快生长。"
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -2460,7 +2460,7 @@ msgstr "（调节玩家物种渗透调节的消耗）"
 
 #: ../src/general/NewGameSettings.tscn:769
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr "在离开编辑器时免费的葡萄糖云"
+msgstr "在离开编辑器时额外的葡萄糖云"
 
 #: ../src/general/NewGameSettings.tscn:776
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
@@ -3188,7 +3188,7 @@ msgstr ""
 "玩家死亡惩罚: {4}\n"
 "环境葡萄糖保留: {5}\n"
 "渗透调节消耗系数: {6}\n"
-"在离开编辑器时免费的葡萄糖云: {7}\n"
+"在离开编辑器时额外的葡萄糖云: {7}\n"
 "被动获得的繁殖进度: {8}\n"
 "限制繁殖化合物使用: {9}"
 
@@ -5958,7 +5958,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"在菜单中选择细胞器时，要密切注意弹出的工具提示，了解它们的作用。如果你不考虑它们的功能，零件可能反而会给你带来麻烦。\n"
+"在菜单中选择细胞器时，请务必详读并理解弹出的提示。不考虑其机能的使用可能会变得弊大于利。\n"
 "\n"
 "你右边的“ATP产出”栏表示你生产的能量与消耗的能量相比有多少。如果上面的栏比下面的短，那么你就没有产生足够的能量。\n"
 "\n"
@@ -5995,7 +5995,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "你应该专注于一种或两种能量来源，这样你就不需要拥有所有资源才能产生足够的ATP来生存。\n"
 "\n"
-"还要仔细考虑增加一个组件是否真正有益，你并不总是需要改变能运作的东西，因为每个组件都要花费ATP来维护，也需要更多的资源来繁殖。\n"
+"还要仔细考虑增加一个细胞器是否真正有益，你并不总是需要改变能运作的东西，因为每个细胞器都要花费ATP来维护，也需要更多的资源来进行复制。\n"
 "\n"
 "一个可能的策略是只带着一个六角格的细胞质，先前往表层地区再获得光合作用细胞器。"
 
