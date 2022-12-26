@@ -69,7 +69,7 @@ public sealed class ValueQuery<T> : IValueQuery
     {
         var options = new Dictionary<string, Func<T, float>>();
 
-        foreach (var behaviourKey in Enum.GetValues(typeof(TEnumeration))) //enumerationType))
+        foreach (var behaviourKey in Enum.GetValues(typeof(TEnumeration)))
         {
             options.Add(behaviourKey.ToString(), s => enumerationKeyMapping.Invoke(s)[behaviourKey]);
         }

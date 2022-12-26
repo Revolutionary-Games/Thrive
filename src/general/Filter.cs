@@ -11,21 +11,15 @@ public sealed class Filter<T> : IFilter
     private FilterArgument.ComparisonFilterArgument comparisonArgument;
     private ValueQuery<T> rightComparand;
 
-    /// <summary>
-    ///   A factory object for creating filterItems from a predefined template;
-    /// </summary>
-    private ValueQuery<T>.ValueQueryFactory filterItemTemplate;
-
-    IValueQuery IFilter.LeftComparand => leftComparand;
-    IValueQuery IFilter.RightComparand => rightComparand;
-
     public Filter(ValueQuery<T>.ValueQueryFactory template)
     {
-        filterItemTemplate = template;
         leftComparand = template.Create();
         rightComparand = template.Create();
         comparisonArgument = new FilterArgument.ComparisonFilterArgument();
     }
+
+    IValueQuery IFilter.LeftComparand => leftComparand;
+    IValueQuery IFilter.RightComparand => rightComparand;
 
     public IEnumerable<IValueQuery> FilterItems => new List<IValueQuery>()
     {

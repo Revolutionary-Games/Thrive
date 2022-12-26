@@ -700,7 +700,6 @@ public class AutoEvoExploringTool : NodeWithInput
         }
 
         evolutionaryTree.FlagNodes(flaggingFunction);
-
     }
 
     /// <summary>
