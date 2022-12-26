@@ -667,28 +667,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void SetupFilter()
     {
-        //var speciesFilterFactory = new Filter<Species>.FilterFactory();
-
         var valueFromSpecies = new Dictionary<string, Func<Species, float>>();
 
-        /*foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))
-        {
-            valueFromSpecies.Add(behaviourKey.ToString(), s => s.Behaviour[behaviourKey]);
-        }*/
-
-        /*var valueComparisonArguments = new List<FilterArgument>()
-            {
-                new FilterArgument.MultipleChoiceFilterArgument(valueFromSpecies.Keys.ToList()),
-                new FilterArgument.ComparisonFilterArgument(),
-                new FilterArgument.NumberFilterArgument(0, 500, 100),
-            };*/
-
         var speciesValueQuery = new Filter<Species>.ValueQuery();
-
-        // ISSUE WITH CAST
-        /*speciesValueQuery.AddArgumentCategoryFromEnum<BehaviouralValueType>(
-            //"BEHAVIOR_VALUE", s => (IDictionary<object, float>)s.Behaviour);
-            "BEHAVIOR_VALUE", s => s.Behaviour);*/
 
         var behaviourOptions = new Dictionary<string, Func<Species, float>>();
         foreach (BehaviouralValueType behaviourKey in Enum.GetValues(typeof(BehaviouralValueType)))

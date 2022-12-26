@@ -5,8 +5,6 @@ using System.Linq;
 
 public sealed class Filter<T> : IFilter
 {
-    //private string filterCategory = "NONE";
-
     // A filter has a structure of type: [(leftComparand) comparisonArgument (rightComparand)];
     // e.g. BehaviorValue: Activity > Number: 100
     private ValueQuery leftComparand;
@@ -29,8 +27,6 @@ public sealed class Filter<T> : IFilter
         comparisonArgument = new FilterArgument.ComparisonFilterArgument();
     }
 
-    //public IEnumerable<string> FilterItemsNames => filterItems.Keys;
-
     public IEnumerable<IValueQuery> FilterItems => new List<IValueQuery>()
     {
         leftComparand,
@@ -46,20 +42,9 @@ public sealed class Filter<T> : IFilter
     public FilterArgument.ComparisonFilterArgument HeadArgument => comparisonArgument;
     public IValueQuery RightItem => rightComparand;
 
-    /*public void AddFilterItem(string category, FilterItem item)
-    {
-        filterItems.Add(category, item);
-    }
-
-    public void ClearItems()
-    {
-        filterItems.Clear();
-    }*/
-
     public Func<T, bool> ComputeFilterFunction()
     {
         return t => comparisonArgument.Compare(leftComparand.Apply(t), rightComparand.Apply(t));
-        //return ((FilterItem)filterItems[filterCategory]).ToFunction();
     }
 
     /// <summary>
@@ -177,7 +162,7 @@ public sealed class Filter<T> : IFilter
     /// TODO: Rename to template
     public class FilterFactory : IFilter.IFilterFactory
     {
-        private Filter<T>.ValueQuery.ValueQueryFactory valueQueryTemplate;
+        private ValueQuery.ValueQueryFactory valueQueryTemplate;
 
         public FilterFactory(Filter<T>.ValueQuery.ValueQueryFactory filterItemTemplate)
         {

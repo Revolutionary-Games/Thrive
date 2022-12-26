@@ -50,9 +50,6 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
     {
         this.valueQuery = valueQuery;
 
-        /*lastSnapshotCategory = valueQuery.CategorizedProperties.Keys.First(_ => true);
-        valueQueryCurrentProperty = valueQuery.CategorizedProperties[lastSnapshotCategory].First(_ => true);*/
-
         foreach (var categorizedProperties in valueQuery.CategorizedProperties)
         {
             lastUsedProperties[categorizedProperties.Key] = categorizedProperties.Value.First(_ => true);

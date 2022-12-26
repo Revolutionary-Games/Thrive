@@ -46,7 +46,6 @@ public class FilterWindow : CustomConfirmationDialog
 
     public void Initialize(IFilter.IFilterFactory filterFactory, IFilter.IFilterConjunction filters)
     {
-        // ClearFilters();
         if (this.filters != null)
             throw new InvalidOperationException("Node already initialized!");
 
