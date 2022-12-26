@@ -690,7 +690,7 @@ public class AutoEvoExploringTool : NodeWithInput
         if (speciesFilters.TypedFilters.Count == 0)
         {
             flaggingFunction = n => false;
-        } 
+        }
         else
         {
             var speciesFlaggingFunction = speciesFilters.TypedFilters.Select(f => f.ComputeFilterFunction()).Aggregate(
