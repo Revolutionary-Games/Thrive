@@ -700,7 +700,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
         var speciesFilterFactory = new Filter<Species>.FilterFactory(speciesValueQuery.ToFactory());
 
-
         filterWindow.Initialize(speciesFilterFactory, speciesFilters);
     }
 

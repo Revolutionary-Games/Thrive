@@ -16,12 +16,12 @@ public sealed class Filter<T> : IFilter
     /// <summary>
     ///   A factory object for creating filterItems from a predefined template;
     /// </summary>
-    private ValueQuery.FilterItemFactory filterItemTemplate;
+    private ValueQuery.ValueQueryFactory filterItemTemplate;
 
     IValueQuery IFilter.LeftComparand => leftComparand;
     IValueQuery IFilter.RightComparand => rightComparand;
 
-    public Filter(ValueQuery.FilterItemFactory template)
+    public Filter(ValueQuery.ValueQueryFactory template)
     {
         filterItemTemplate = template;
         leftComparand = template.Create();
@@ -58,7 +58,7 @@ public sealed class Filter<T> : IFilter
 
     public Func<T, bool> ComputeFilterFunction()
     {
-        return t => comparisonArgument.Compare(leftComparand.GetValueFor(t), rightComparand.GetValueFor(t));
+        return t => comparisonArgument.Compare(leftComparand.Apply(t), rightComparand.Apply(t));
         //return ((FilterItem)filterItems[filterCategory]).ToFunction();
     }
 
@@ -140,7 +140,7 @@ public sealed class Filter<T> : IFilter
         /// <summary>
         ///   Returns the value of the filter's field for the specified target.
         /// </summary>
-        public float GetValueFor(T target)
+        public float Apply(T target)
         {
             if (CurrentCategory == NumberCategory)
                 return categorizedArgument[CurrentCategory].GetNumberValue();
@@ -148,16 +148,16 @@ public sealed class Filter<T> : IFilter
             return categorizedArgumentFunctions[CurrentCategory][CurrentProperty](target);
         }
 
-        public FilterItemFactory ToFactory()
+        public ValueQueryFactory ToFactory()
         {
-            return new FilterItemFactory(categorizedArgumentFunctions);
+            return new ValueQueryFactory(categorizedArgumentFunctions);
         }
 
-        public class FilterItemFactory
+        public class ValueQueryFactory
         {
             private Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentWithOptions;
 
-            public FilterItemFactory(
+            public ValueQueryFactory(
                 Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentWithOptions)
             {
                 this.categorizedArgumentWithOptions = categorizedArgumentWithOptions;
@@ -177,40 +177,19 @@ public sealed class Filter<T> : IFilter
     /// TODO: Rename to template
     public class FilterFactory : IFilter.IFilterFactory
     {
-        //private Dictionary<string, Filter<T>.FilterItem.FilterItemFactory> filterItems = new();
-        private Filter<T>.ValueQuery.FilterItemFactory filterItemTemplate;
+        private Filter<T>.ValueQuery.ValueQueryFactory valueQueryTemplate;
 
-        public FilterFactory(Filter<T>.ValueQuery.FilterItemFactory filterItemTemplate)
+        public FilterFactory(Filter<T>.ValueQuery.ValueQueryFactory filterItemTemplate)
         {
-            this.filterItemTemplate = filterItemTemplate;
+            valueQueryTemplate = filterItemTemplate;
         }
 
         public IFilter Create()
         {
-            var filterInstance = new Filter<T>(filterItemTemplate);
-
-/*            foreach (var categorizedItem in filterItems)
-            {
-                filterInstance.AddFilterItem(categorizedItem.Key, categorizedItem.Value.Create());
-            }*/
+            var filterInstance = new Filter<T>(valueQueryTemplate);
 
             return filterInstance;
         }
-
-/*        public void AddFilterItemFactory(string category, FilterItem.FilterItemFactory itemFactory)
-        {
-            filterItems.Add(category, itemFactory);
-        }
-
-        public void AddFilterItemFactory(string category, FilterItem item)
-        {
-            AddFilterItemFactory(category, item.ToFactory());
-        }
-*/
-/*        public void ClearItems()
-        {
-            filterItems.Clear();
-        }*/
     }
 
     public class FiltersConjunction : IFilter.IFilterConjunction
