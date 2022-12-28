@@ -44,6 +44,12 @@ public class MicrobeStage : StageBase<Microbe>
     [JsonProperty]
     private float elapsedSinceEntityPositionCheck;
 
+    /// <summary>
+    ///   Used to control how often light level is updated by the day/night cycle.
+    /// </summary>
+    [JsonProperty]
+    private float elapsedSinceLightLevelUpdate;
+
     [JsonProperty]
     private bool wonOnce;
 
@@ -208,10 +214,19 @@ public class MicrobeStage : StageBase<Microbe>
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
 
-        // TODO: only update these like 60 times a second
-        if (GameWorld.Map.CurrentPatch != null)
-            patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-        patchManager.UpdateAllPatchLightLevels();
+        elapsedSinceLightLevelUpdate += delta;
+        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
+        {
+            elapsedSinceLightLevelUpdate = 0;
+
+            if (GameWorld.Map.CurrentPatch != null)
+            {
+                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+                patchManager.UpdateAllPatchLightLevels();
+                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+                UpdateDayLightEffects();
+            }
+        }
 
         if (gameOver)
             return;
@@ -283,10 +298,6 @@ public class MicrobeStage : StageBase<Microbe>
         }
 
         UpdateLinePlayerPosition();
-
-        // TODO: only update these like 60 times a second
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
-        UpdateDayLightEffects();
     }
 
     [RunOnKeyDown("g_pause")]
