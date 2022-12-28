@@ -464,6 +464,7 @@ public class OrganelleDefinition : IRegistryType
         public SignalingAgentComponentFactory? SignalingAgent;
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
+        public MelanosomeComponentFactory? Melanosome;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -558,6 +559,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Lysosome.Check(name);
                 allFactories.Add(Lysosome);
+                ++count;
+            }
+
+            if (Melanosome != null)
+            {
+                Melanosome.Check(name);
+                allFactories.Add(Melanosome);
                 ++count;
             }
         }

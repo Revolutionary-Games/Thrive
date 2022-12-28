@@ -346,6 +346,29 @@
           },
           "dissolverEnzyme": "rusticyanin"
         },
+        "radioactiveChunk": {
+          "name": "RADIOACTIVE_CHUNK",
+          "meshes": [
+            {
+              "scenePath": "res://src/microbe_stage/RadioactiveChunk.tscn",
+              "convexShapePath": "res://assets/models/Iron5.shape"
+            }
+          ],
+          "density": 0.0001,
+          "dissolves": false,
+          "radius": 10,
+          "chunkScale": 1,
+          "mass": 100,
+          "size": 100,
+          "ventAmount": 0,
+          "damages": 0,
+          "deleteOnTouch": false,
+          "compounds": {
+            "radiation": {
+              "amount": 100
+            }
+          }
+        },
         "googlyEyeCell": {
           "name": "GOOGLY_EYE_CELL",
           "meshes": [

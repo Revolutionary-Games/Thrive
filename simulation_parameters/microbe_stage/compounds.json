@@ -190,5 +190,19 @@
     },
     "iconPath": "res://assets/textures/gui/bevel/Temperature.png",
     "unit": "\u00B0C"
+  },
+  "radiation": {
+    "name": "RADIATION",
+    "volume": 1,
+    "isCloud": false,
+    "isAlwaysUseful": true,
+    "isEnvironmental": true,
+    "canBeDistributed": false,
+    "colour": {
+      "r": 1,
+      "g": 0.75,
+      "b": 0
+    },
+    "iconPath": "res://assets/textures/gui/bevel/radiation.png"
   }
 }

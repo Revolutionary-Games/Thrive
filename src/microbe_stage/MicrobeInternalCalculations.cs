@@ -237,6 +237,11 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
+    public static float CalculateRadiationResistance(IEnumerable<PlacedOrganelle> organelles)
+    {
+        return Mathf.Clamp(5.0f + organelles.Where(o => o.Definition.HasComponentFactory<MelanosomeComponentFactory>()).Count() * 20.0f, 0.0f, 100.0f);
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)

@@ -910,5 +910,45 @@
     "requiresNucleus": true,
     "editorButtonGroup": "Organelle",
     "editorButtonOrder": 5
+  },
+  "melanosome": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "radiosynthesis": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 1
+      },
+      "processor": {
+        "colourChangeFactor": 1
+      },
+      "melanosome": {}
+    },
+    "prokaryoteChance": 0,
+    "chanceToCreate": 1,
+    "mass": 0.2,
+    "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
+    "name": "MELANOSOME",
+    "productionColour": "#9168b5",
+    "consumptionColour": "#d15378",
+    "iconPath": "res://assets/textures/gui/bevel/parts/Melanosome.png",
+    "requiresNucleus": true,
+    "editorButtonGroup": "Organelle",
+    "editorButtonOrder": 12
   }
 }

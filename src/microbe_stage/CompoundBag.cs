@@ -91,6 +91,11 @@ public class CompoundBag : ICompoundStorage
         return newAmount - existingAmount;
     }
 
+    public void SetCompound(Compound compound, float amount)
+    {
+        Compounds[compound] = amount;
+    }
+
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
     {
         return Compounds.GetEnumerator();

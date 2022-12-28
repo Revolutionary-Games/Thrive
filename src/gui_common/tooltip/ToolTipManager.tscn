@@ -2229,16 +2229,16 @@ MutationPointCost = 55
 RequiresNucleus = true
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/oxytoxy" index="0"]
-margin_bottom = 216.0
+margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer" index="0"]
 margin_bottom = 247.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="4"]
-margin_bottom = 134.0
+margin_bottom = 176.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2276,7 +2276,7 @@ expand = true
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
@@ -2294,7 +2294,7 @@ text = "+1"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
 margin_left = 20.0
-margin_right = 208.0
+margin_right = 207.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -2303,20 +2303,20 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 212.0
-margin_right = 232.0
+margin_left = 211.0
+margin_right = 231.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="5"]
-margin_top = 149.0
-margin_bottom = 153.0
+margin_top = 191.0
+margin_bottom = 195.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="6"]
-margin_top = 168.0
-margin_bottom = 185.0
+margin_top = 210.0
+margin_bottom = 232.0
 
 [node name="signalingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -2495,6 +2495,132 @@ margin_bottom = 243.0
 [node name="Description" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer" index="6"]
 margin_top = 258.0
 margin_bottom = 280.0
+
+[node name="melanosome" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+DisplayName = "MELANOSOME"
+ProcessesDescription = "MELANOSOME_PROCESSES_DESCRIPTION"
+Description = "MELANOSOME_DESCRIPTION"
+MutationPointCost = 45
+RequiresNucleus = true
+
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/melanosome" index="0"]
+margin_bottom = 263.0
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/melanosome/MarginContainer" index="0"]
+margin_bottom = 247.0
+
+[node name="VScrollBar2" type="VScrollBar" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ProcessesDescription" index="0"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 22.0
+step = 1.0
+page = 22.0
+
+[node name="VScrollBar3" type="VScrollBar" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ProcessesDescription" index="1"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 1.0
+
+[node name="ModifierList" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer" index="4"]
+margin_bottom = 176.0
+
+[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_right = 333.0
+margin_bottom = 20.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "STORAGE"
+ModifierValue = "+1"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
+
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 20.0
+margin_right = 90.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "STORAGE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 94.0
+margin_right = 114.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 12 )
+expand = true
+
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList" index="1"]
+margin_top = 24.0
+margin_right = 333.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 20.0
+margin_right = 207.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "OSMOREGULATION_COST"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 211.0
+margin_right = 231.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer" index="5"]
+margin_top = 191.0
+margin_bottom = 195.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer" index="6"]
+margin_top = 210.0
+margin_bottom = 232.0
+
+[node name="VScrollBar2" type="VScrollBar" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/Description" index="0"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 22.0
+step = 1.0
+page = 22.0
+
+[node name="VScrollBar3" type="VScrollBar" parent="GroupHolder/organelleSelection/melanosome/MarginContainer/VBoxContainer/Description" index="1"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 1.0
 
 [node name="membraneSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
@@ -3961,6 +4087,12 @@ DisplayDelay = 0.0
 Positioning = 1
 DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
 
+[node name="melanosome" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/Description")
+
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -4031,6 +4163,12 @@ visible = false
 DisplayDelay = 0.0
 Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
+
+[node name="melanosome" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../oxytoxy/MarginContainer/VBoxContainer/Description")
 
 [node name="options" type="Control" parent="GroupHolder"]
 margin_right = 40.0
@@ -4117,6 +4255,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/organelleSelection/signalingAgent"]
 [editable path="GroupHolder/organelleSelection/bioluminescentVacuole"]
 [editable path="GroupHolder/organelleSelection/lysosome"]
+[editable path="GroupHolder/organelleSelection/melanosome"]
 [editable path="GroupHolder/membraneSelection/single"]
 [editable path="GroupHolder/membraneSelection/double"]
 [editable path="GroupHolder/membraneSelection/cellulose"]

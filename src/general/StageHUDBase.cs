@@ -63,6 +63,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath NitrogenBarPath = null!;
 
     [Export]
+    public NodePath RadiationBarPath = null!;
+
+    [Export]
     public NodePath TemperaturePath = null!;
 
     [Export]
@@ -223,6 +226,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound hydrogensulfide = null!;
     protected Compound iron = null!;
     protected Compound nitrogen = null!;
+    protected Compound radiation = null!;
     protected Compound oxygen = null!;
     protected Compound oxytoxy = null!;
     protected Compound mucilage = null!;
@@ -245,6 +249,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
     protected ProgressBar nitrogenBar = null!;
+    protected ProgressBar radiationBar = null!;
     protected ProgressBar temperatureBar = null!;
     protected ProgressBar sunlightLabel = null!;
 
@@ -409,6 +414,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
+        radiationBar = GetNode<ProgressBar>(RadiationBarPath);
         temperatureBar = GetNode<ProgressBar>(TemperaturePath);
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
@@ -482,6 +488,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
         iron = SimulationParameters.Instance.GetCompound("iron");
         nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        radiation = SimulationParameters.Instance.GetCompound("radiation");
         oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
@@ -525,6 +532,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         UpdateATP(delta);
         UpdateHealth(delta);
+        UpdateRadiation();
         UpdateHoverInfo(delta);
 
         UpdatePopulation();
@@ -729,6 +737,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         nitrogenBar.Value = nitrogenPercentage;
         nitrogenBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(nitrogenPercentage);
 
+        radiationBar.MaxValue = 100;
+
         sunlightLabel.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(sunlightPercentage);
         temperatureBar.GetNode<Label>("Value").Text = unitFormat.FormatSafe(averageTemperature, temperature.Unit);
 
@@ -887,6 +897,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hpLabel.Text = hpText;
         hpLabel.HintTooltip = hpText;
     }
+
+    protected abstract void UpdateRadiation();
 
     protected abstract void ReadPlayerHitpoints(out float hp, out float maxHP);
 

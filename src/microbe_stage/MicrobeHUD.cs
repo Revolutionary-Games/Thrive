@@ -242,6 +242,22 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         hpLabel.HintTooltip = hpText;
     }
 
+    protected override void UpdateRadiation()
+    {
+        if (stage?.Player == null)
+            return;
+
+        var radiationPercentage = Mathf.Round(stage!.Player!.Compounds.GetCompoundAmount(radiation) * 100.0f);
+        radiationBar.Value = radiationPercentage;
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        radiationBar.GetNode<Label>("Value").Text = percentageFormat.FormatSafe(radiationPercentage);
+
+        var animation = radiationBar.GetNode<AnimationPlayer>("AnimationPlayer");
+        var warningBar = radiationBar.GetNode<TextureRect>("RadiationWarning");
+        warningBar.Visible = radiationPercentage > stage.Player.RadiationResistance;
+        animation.PlaybackSpeed = radiationPercentage / 25.0f;
+    }
+
     protected override CompoundBag? GetPlayerUsefulCompounds()
     {
         return stage!.Player?.Compounds;

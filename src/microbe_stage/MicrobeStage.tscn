@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/ingestedmatter.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/mucilage.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/parts/slimeJetAction.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/radiation.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=41]
@@ -137,6 +138,47 @@ bg_color = Color( 0.141176, 0.278431, 0.682353, 1 )
 
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.407843, 0.698039, 0.431373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 1, 0.752941, 0, 1 )
+
+[sub_resource type="Gradient" id=47]
+colors = PoolColorArray( 1, 0, 0, 0, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=48]
+gradient = SubResource( 47 )
+
+[sub_resource type="Animation" id=50]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RadiationWarning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "Radiation"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RadiationWarning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.25, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="ButtonGroup" id=15]
 
@@ -459,6 +501,7 @@ EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/Environm
 OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
 Co2BarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
 NitrogenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen")
+RadiationBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Radiation")
 TemperaturePath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature")
 SunlightPath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight")
 PressurePath = NodePath("BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure")
@@ -787,7 +830,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_top = 64.0
 margin_right = 197.0
-margin_bottom = 249.0
+margin_bottom = 278.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
 custom_constants/margin_bottom = 10
@@ -799,7 +842,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 197.0
-margin_bottom = 175.0
+margin_bottom = 204.0
 
 [node name="Oxygen" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
@@ -953,7 +996,6 @@ custom_fonts/font = ExtResource( 80 )
 text = "N₂"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
@@ -976,12 +1018,81 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Temperature" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="Radiation" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 show_behind_parent = true
 margin_top = 87.0
 margin_right = 162.0
 margin_bottom = 112.0
+rect_min_size = Vector2( 162, 25 )
+custom_styles/fg = SubResource( 46 )
+custom_styles/bg = SubResource( 12 )
+step = 0.1
+percent_visible = false
+
+[node name="RadiationWarning" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Radiation"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 162.0
+rect_min_size = Vector2( 162, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 48 )
+expand = true
+
+[node name="RadiationIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Radiation"]
+margin_left = -15.0
+margin_right = 10.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 20 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Radiation"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 49.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "RADIATION"
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Radiation"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -6.99998
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "0%"
+align = 2
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Radiation"]
+autoplay = "Radiation"
+anims/RESET = SubResource( 50 )
+anims/Radiation = SubResource( 49 )
+
+[node name="Temperature" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+margin_top = 116.0
+margin_right = 162.0
+margin_bottom = 141.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="TemperatureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
@@ -1035,9 +1146,9 @@ __meta__ = {
 [node name="Sunlight" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 116.0
+margin_top = 145.0
 margin_right = 162.0
-margin_bottom = 141.0
+margin_bottom = 170.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="LightIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
@@ -1090,9 +1201,9 @@ __meta__ = {
 [node name="Pressure" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
-margin_top = 145.0
+margin_top = 174.0
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 199.0
 rect_min_size = Vector2( 162, 25 )
 
 [node name="PressureIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
@@ -2218,6 +2329,7 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]

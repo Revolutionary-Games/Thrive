@@ -263,6 +263,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
+    [JsonProperty]
+    public float RadiationResistance => MicrobeInternalCalculations.CalculateRadiationResistance(organelles!.Organelles);
+
     /// <summary>
     ///   Process running statistics for this cell. For now only computed for the player cell
     /// </summary>
@@ -349,6 +352,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+        radiation = SimulationParameters.Instance.GetCompound("radiation");
         lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
@@ -722,6 +726,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             HandleCompoundVenting(delta);
             absorptionSkippedEarly = false;
         }
+
+        HandleRadiation(delta);
 
         HandleFlashing(delta);
 

@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/iron_bump.png" type="Texture" id=2]
+[ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=3]
+[ext_resource path="res://assets/models/Iron5.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=5]
+[ext_resource path="res://src/microbe_stage/particles/burst.tres" type="Material" id=6]
+[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/dissolveValue = 0.0
+shader_param/outlineWidth = 0.005
+shader_param/growColor = Color( 0.282353, 0.282353, 0.282353, 1 )
+shader_param/albedoTexture = ExtResource( 1 )
+shader_param/normalTexture = ExtResource( 2 )
+shader_param/dissolveTexture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 1
+albedo_color = Color( 1, 0.752941, 0, 0.0196078 )
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="QuadMesh" id=3]
+material = SubResource( 4 )
+size = Vector2( 10, 10 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+size = Vector2( 80, 80 )
+
+[node name="RadioactiveChunk" type="MeshInstance"]
+
+[node name="iron5" parent="." instance=ExtResource( 4 )]
+material_override = SubResource( 1 )
+
+[node name="Particles" type="Particles" parent="."]
+amount = 50
+lifetime = 4.0
+visibility_aabb = AABB( -10, -10, -10, 20, 20, 20 )
+process_material = ExtResource( 6 )
+draw_pass_1 = SubResource( 3 )
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+cast_shadow = 0
+generate_lightmap = false
+calculate_tangents = false
+mesh = SubResource( 5 )

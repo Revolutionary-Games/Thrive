@@ -20,6 +20,7 @@ public partial class Microbe
     private Compound atp = null!;
     private Compound glucose = null!;
     private Compound mucilage = null!;
+    private Compound radiation = null!;
 
     private Enzyme lipase = null!;
 
@@ -60,6 +61,8 @@ public partial class Microbe
     private float queuedSlimeSecretionTime;
 
     private float lastCheckedReproduction;
+
+    private float lastRadiationAudio;
 
     /// <summary>
     ///   Flips every reproduction update. Used to make compound use for reproduction distribute more evenly between
@@ -1242,6 +1245,11 @@ public partial class Microbe
 
             Damage(MaxHitpoints * Constants.NO_ATP_DAMAGE_FRACTION, "atpDamage");
         }
+
+        if (Compounds.GetCompoundAmount(radiation) > MathUtils.EPSILON)
+        {
+            Damage(MaxHitpoints * 0.005f * (Mathf.Max(Compounds.GetCompoundAmount(radiation) * 100.0f - RadiationResistance, 0.0f)), "atpDamage");
+        }
     }
 
     [DeserializedCallbackAllowed]
@@ -1622,6 +1630,34 @@ public partial class Microbe
         queuedSlimeSecretionTime -= delta;
         if (queuedSlimeSecretionTime < 0)
             queuedSlimeSecretionTime = 0;
+    }
+
+    private void HandleRadiation(float delta)
+    {
+        var radiationAmount = 0.0f;
+        var radioactiveChunks = GetParent().GetChildrenToProcess<FloatingChunk>(Constants.AI_TAG_CHUNK).Where(c => c.Compounds.GetCompoundAmount(radiation) > 0.0f);
+        foreach (var chunk in radioactiveChunks)
+        {
+            var distance = (chunk.Translation - Translation).Length();
+            if (distance > 30.0f)
+                continue;
+
+            radiationAmount += 1.0f - distance / 30.0f;
+        }
+
+        Compounds.SetCompound(radiation, radiationAmount);
+
+        if (!IsPlayerMicrobe)
+            return;
+
+        lastRadiationAudio += delta;
+
+        if (lastRadiationAudio < 0.01f)
+            return;
+
+        lastRadiationAudio = 0.0f;
+        if (new Random().NextFloat() < radiationAmount)
+            PlaySoundEffect("res://assets/sounds/soundeffects/radiation.ogg", 0.05f);
     }
 
     private void UpdateDissolveEffect()
