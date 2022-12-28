@@ -269,9 +269,6 @@ public class Thriveopedia : ControlWithInput
     {
         var pageInTree = pageTree.CreateItem(parentName != null ? allPages[GetPage(parentName)] : null);
 
-        // Set the name of the tree item so we can reference it later
-        pageInTree.SetMeta("name", page.PageName);
-
         // Godot doesn't appear to have a left margin for text in items, so add some manual padding
         pageInTree.SetText(0, "  " + page.TranslatedPageName);
 
@@ -292,7 +289,8 @@ public class Thriveopedia : ControlWithInput
 
     private void OnPageSelectedFromPageTree()
     {
-        var name = (string)pageTree.GetSelected().GetMeta("name");
+        var selected = pageTree.GetSelected();
+        var name = allPages.First(p => p.Value == selected).Key.PageName;
         ChangePage(name);
     }
 
