@@ -55,6 +55,8 @@ public class GameProperties
     /// </summary>
     public bool InPrototypes { get; private set; }
 
+    public float RadiationExposure { get; set; }
+
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>

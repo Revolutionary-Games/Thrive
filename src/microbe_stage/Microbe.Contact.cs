@@ -1284,6 +1284,8 @@ public partial class Microbe
         if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
+        CurrentGame.RadiationExposure = 0.0f;
+
         // Spawn cell death particles.
         if (!deathParticlesSpawned && DigestedAmount <= 0)
         {

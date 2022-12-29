@@ -12,6 +12,7 @@ public class ProcessSystem
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
     private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private static readonly Compound Radiation = SimulationParameters.Instance.GetCompound("radiation");
     private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
@@ -423,6 +424,11 @@ public class ProcessSystem
 
             // Processing runs on the current game time following values
             var ambient = GetAmbient(entry.Key, CompoundAmountType.Current);
+
+            if (entry.Key == Radiation)
+            {
+                ambient = bag.GetCompoundAmount(Radiation);
+            }
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
             currentProcessStatistics?.AddInputAmount(entry.Key, ambient);

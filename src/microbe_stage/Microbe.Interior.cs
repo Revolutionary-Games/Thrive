@@ -1650,6 +1650,7 @@ public partial class Microbe
         if (!IsPlayerMicrobe)
             return;
 
+        CurrentGame.RadiationExposure += radiationAmount * delta;
         lastRadiationAudio += delta;
 
         if (lastRadiationAudio < 0.01f)

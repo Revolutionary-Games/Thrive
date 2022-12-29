@@ -695,12 +695,62 @@ public partial class CellEditorComponent :
 
         newName = Editor.EditedCellProperties.FormattedName;
 
+        if (Editor.CurrentGame.RadiationExposure >= 5.0f)
+        {
+            AddRandomOrganelle();
+        }
+        Editor.CurrentGame.RadiationExposure = 0.0f;
+
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
 
         // Setup the display cell
         SetupPreviewMicrobe();
 
         UpdateArrow(false);
+    }
+
+    private void AddRandomOrganelle()
+    {
+        // Copied from the random parts mod
+        var random = new Random();
+        var hasNucleus = editedMicrobeOrganelles.Any(o => o.Definition == nucleus);
+        var rotationsToTry = Enumerable.Range(0, 6).OrderBy(_ => random.Next()).ToList();
+        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles().OrderBy(_ => random.Next()))
+        {
+            if (organelle.Unimplemented || organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
+                continue;
+
+            if (organelle == nucleus)
+                continue;
+
+            if (organelle.RequiresNucleus && !hasNucleus)
+                continue;
+
+            if (organelle.Unique && editedMicrobeOrganelles.Any(o => o.Definition == organelle))
+                continue;
+
+            for (int radius = 2; radius < 1000; ++radius)
+            {
+                for (int q = 1; q < radius; ++q)
+                {
+                    int actualQ = (q % 2 == 0 ? -1 : 1) * q / 2;
+                    for (int r = 1; r < radius; ++r)
+                    {
+                        int actualR = (r % 2 == 0 ? -1 : 1) * r / 2;
+                        foreach(var rotation in rotationsToTry)
+                        {
+                            var template = new OrganelleTemplate(organelle, new Hex(actualQ, actualR), rotation);
+
+                            if (!editedMicrobeOrganelles.CanPlaceAndIsTouching(template))
+                                continue;
+
+                            editedMicrobeOrganelles.Add(template);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public override void OnFinishEditing()
@@ -1588,7 +1638,7 @@ public partial class CellEditorComponent :
                     }
                 }
 
-                var placed = CreatePlaceActionIfPossible(organelle);
+                var placed = CreatePlaceActionIfPossible(organelle, false);
 
                 if (placed != null)
                 {
@@ -1612,7 +1662,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private CombinedEditorAction? CreatePlaceActionIfPossible(OrganelleTemplate organelle)
+    private CombinedEditorAction? CreatePlaceActionIfPossible(OrganelleTemplate organelle, bool free)
     {
         if (MicrobePreviewMode)
             return null;
@@ -1624,7 +1674,7 @@ public partial class CellEditorComponent :
             return null;
         }
 
-        return CreateAddOrganelleAction(organelle);
+        return CreateAddOrganelleAction(organelle, free);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
@@ -1637,7 +1687,7 @@ public partial class CellEditorComponent :
             notPlacingCytoplasm);
     }
 
-    private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
+    private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle, bool free)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
         // 2 - you put an organelle that requires nucleus but you don't have one
@@ -1655,7 +1705,7 @@ public partial class CellEditorComponent :
             DoOrganellePlaceAction, UndoOrganellePlaceAction,
             new OrganellePlacementActionData(organelle, organelle.Position, organelle.Orientation)
             {
-                CostMultiplier = CostMultiplier,
+                CostMultiplier = free ? 0.0f : CostMultiplier,
             });
 
         replacedCytoplasmActions.Add(action);
