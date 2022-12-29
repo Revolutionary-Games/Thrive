@@ -156,7 +156,8 @@ public class EvolutionaryTree : Control
         latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
-    public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1, string? updatedPlayerSpeciesName = null)
+    public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1,
+        string? updatedPlayerSpeciesName = null)
     {
         foreach (var species in initialSpecies)
         {

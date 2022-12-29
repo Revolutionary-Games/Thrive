@@ -238,7 +238,8 @@ public class GameWorld : ISaveLoadable
                 var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
                     WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
 
-                GenerationHistory[0].AllSpeciesData.Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
+                GenerationHistory[0].AllSpeciesData
+                    .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
 
                 entry.Value.AddSpecies(randomSpecies, population);
             }
