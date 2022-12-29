@@ -79,17 +79,10 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     ///   Clear and then rebuild the evolutionary tree each time we open the page. This way, we ensure the tree is
     ///   always up to date.
     /// </summary>
-    public void RebuildTree()
+    private void RebuildTree()
     {
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game is null");
-
-        // TODO: fix the tree for freebuild
-        if (CurrentGame.FreeBuild)
-        {
-            OnTreeFailedToBuild("Tree opened in freebuild mode");
-            return;
-        }
 
         // Building the tree relies on the existence of a full history of generations stored in the current game. Since
         // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
@@ -112,17 +105,15 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
                 if (generation.Key == 0)
                 {
-                    var playerSpeciesID = CurrentGame!.GameWorld.PlayerSpecies.ID;
-                    var playerSpeciesData = record.AllSpeciesData[playerSpeciesID];
+                    // Converted to list to avoid multiple enumerations
+                    var initialSpecies =
+                        generationHistory[0].AllSpeciesData.Select(r => r.Value.Species).WhereNotNull().ToList();
 
-                    // Player species data should never be null for any generation
-                    evolutionaryTree.Init(
-                        playerSpeciesData.Species!,
+                    evolutionaryTree.Init(initialSpecies, CurrentGame.GameWorld.PlayerSpecies.ID,
                         CurrentGame.GameWorld.PlayerSpecies.FormattedName);
-                    speciesHistoryList.Add(new Dictionary<uint, Species>
-                    {
-                        { playerSpeciesID, playerSpeciesData.Species! },
-                    });
+
+                    speciesHistoryList.Add(initialSpecies.ToDictionary(s => s.ID, s => s));
+
                     continue;
                 }
 

@@ -235,8 +235,12 @@ public class GameWorld : ISaveLoadable
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
-                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK), population);
+                var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
+
+                GenerationHistory[0].AllSpeciesData.Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
+
+                entry.Value.AddSpecies(randomSpecies, population);
             }
         }
     }

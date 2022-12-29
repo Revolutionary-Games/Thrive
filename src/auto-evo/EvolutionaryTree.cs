@@ -156,14 +156,20 @@ public class EvolutionaryTree : Control
         latoSmallRegular = (Font)GD.Load("res://src/gui_common/fonts/Lato-Regular-Small.tres");
     }
 
-    public void Init(Species luca, string? updatedLUCAName = null)
+    public void Init(IEnumerable<Species> initialSpecies, uint playerSpeciesId = 1, string? updatedPlayerSpeciesName = null)
     {
-        SetupTreeNode(luca, null, 0);
+        foreach (var species in initialSpecies)
+        {
+            SetupTreeNode(species, null, 0);
 
-        speciesOrigin.Add(luca.ID, (uint.MaxValue, 0));
-        speciesNames.Add(luca.ID, updatedLUCAName ?? luca.FormattedName);
+            speciesOrigin.Add(species.ID, (uint.MaxValue, 0));
+            speciesNames.Add(species.ID, species.FormattedName);
+        }
+
+        if (updatedPlayerSpeciesName != null)
+            speciesNames[playerSpeciesId] = updatedPlayerSpeciesName;
+
         generationTimes.Add(0, 0);
-
         dirty = true;
     }
 
@@ -245,29 +251,33 @@ public class EvolutionaryTree : Control
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,
         bool isLastGeneration = false)
     {
-        var node = treeNodeScene.Instance<EvolutionaryTreeNode>();
+        var position = new Vector2(generation * GENERATION_SEPARATION, 0);
+
+        // Make sure the next line won't end in an exception.
+        if (!speciesNodes.TryGetValue(species.ID, out var speciesNodeList))
+        {
+            speciesNodeList = new List<EvolutionaryTreeNode>();
+            speciesNodes.Add(species.ID, speciesNodeList);
+        }
+
+        // If there is already one, update it; otherwise, add a new one.
+        var existing = speciesNodeList.FirstOrDefault(n => (n.Position - position).Length() < MathUtils.EPSILON);
+        var node = existing ?? treeNodeScene.Instance<EvolutionaryTreeNode>();
+
         node.Generation = generation;
         node.SpeciesID = species.ID;
-        node.LastGeneration = false;
         node.ParentNode = parent;
-        node.Position = new Vector2(generation * GENERATION_SEPARATION, 0);
+        node.Position = position;
         node.LastGeneration = isLastGeneration;
+
+        // The remaining part only needs to be done when it is a new node.
+        if (existing != null)
+            return;
+
         node.Group = nodesGroup;
         node.Connect("pressed", this, nameof(OnTreeNodeSelected), new Array { node });
 
-        if (!speciesNodes.ContainsKey(species.ID))
-        {
-            speciesNodes.Add(species.ID, new List<EvolutionaryTreeNode>());
-        }
-        else if (speciesNodes[species.ID].Any(n => (n.Position - node.Position).Length() < MathUtils.EPSILON))
-        {
-            // Remove the existing node in this position so we can replace it (e.g. with an extinct node)
-            var existingNode = speciesNodes[species.ID].Where(n => n.Position == node.Position).First();
-            speciesNodes[species.ID].Remove(existingNode);
-            existingNode.DetachAndQueueFree();
-        }
-
-        speciesNodes[species.ID].Add(node);
+        speciesNodeList.Add(node);
         tree.AddChild(node);
     }
 
@@ -289,7 +299,11 @@ public class EvolutionaryTree : Control
     private void BuildTree()
     {
         uint index = 0;
-        BuildTree(speciesNodes.First().Key, ref index);
+
+        foreach (var root in speciesOrigin.Where(o => o.Value.ParentSpeciesID == uint.MaxValue))
+        {
+            BuildTree(root.Key, ref index);
+        }
     }
 
     private void BuildTree(uint id, ref uint index)

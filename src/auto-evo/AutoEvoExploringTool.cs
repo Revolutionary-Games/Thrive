@@ -326,7 +326,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
         InitFirstGeneration();
 
-        evolutionaryTree.Init((Species)gameProperties.GameWorld.PlayerSpecies.Clone());
+        evolutionaryTree.Init(new[] { (Species)gameProperties.GameWorld.PlayerSpecies.Clone() });
 
         InitConfigControls();
 
