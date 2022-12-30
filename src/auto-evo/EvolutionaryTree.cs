@@ -254,7 +254,6 @@ public class EvolutionaryTree : Control
     {
         var position = new Vector2(generation * GENERATION_SEPARATION, 0);
 
-        // Make sure the next line won't end in an exception.
         if (!speciesNodes.TryGetValue(species.ID, out var speciesNodeList))
         {
             speciesNodeList = new List<EvolutionaryTreeNode>();
