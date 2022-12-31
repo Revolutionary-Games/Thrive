@@ -179,6 +179,8 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath ExitConfirmationDialogPath = null!;
 
+    private readonly List<AutoEvoExploringToolWorld> worldsList = new();
+
     // Tabs
     private Control worldTab = null!;
     private Control configTab = null!;
@@ -194,7 +196,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private CustomDropDown allWorldsExportSettingsMenu = null!;
     private Button allWorldsExportButton = null!;
     private CustomDropDown worldsListMenu = null!;
-    private Button newWorldButton = null!;
+    private TextureButton newWorldButton = null!;
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
     private CustomDropDown currentWorldExportSettingsMenu = null!;
     private Button currentWorldExportButton = null!;
@@ -296,7 +298,7 @@ public class AutoEvoExploringTool : NodeWithInput
         allWorldsExportSettingsMenu = GetNode<CustomDropDown>(AllWorldsExportSettingsMenuPath);
         allWorldsExportButton = GetNode<Button>(AllWorldsExportButtonPath);
         worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
-        newWorldButton = GetNode<Button>(NewWorldButtonPath);
+        newWorldButton = GetNode<TextureButton>(NewWorldButtonPath);
         currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
         currentWorldExportSettingsMenu = GetNode<CustomDropDown>(CurrentWorldExportSettingsMenuPath);
         currentWorldExportButton = GetNode<Button>(CurrentWorldExportButtonPath);
@@ -347,16 +349,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
 
-        // Init game
-        world = new AutoEvoExploringToolWorld();
-
-        InitFirstGeneration();
-        world.GameProperties.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
-        InitConfigControls();
-
-        patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
-        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
-
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
         // Init button translation
@@ -365,9 +357,9 @@ public class AutoEvoExploringTool : NodeWithInput
         // Connect custom dropdown handler
         historyListMenu.Popup.Connect("index_pressed", this, nameof(HistoryListMenuIndexChanged));
         speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
+        worldsListMenu.Popup.Connect("index_pressed", this, nameof(WorldsListMenuIndexChanged));
 
-        // Mark ready, later on world.AutoEvoConfiguration values should only be changed through GUI
-        ready = true;
+        InitNewGame();
     }
 
     public override void _Process(float delta)
@@ -414,7 +406,16 @@ public class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
-    private void InitConfigControls()
+    private void InitNewGame()
+    {
+        worldsList.Add(new AutoEvoExploringToolWorld());
+        WorldsListMenuIndexChanged(worldsList.Count - 1);
+
+        worldsListMenu.AddItem((worldsList.Count - 1).ToString(), false, Colors.White);
+        worldsListMenu.CreateElements();
+    }
+
+    private void InitAutoEvoConfigControls()
     {
         allowSpeciesToNotMutateCheckBox.Pressed = world.AutoEvoConfiguration.AllowSpeciesToNotMutate;
         allowSpeciesToNotMigrateCheckBox.Pressed = world.AutoEvoConfiguration.AllowSpeciesToNotMigrate;
@@ -438,32 +439,6 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
             world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
         useBiodiversityForceSplitCheckBox.Pressed = world.AutoEvoConfiguration.UseBiodiversityForceSplit;
-    }
-
-    /// <summary>
-    ///   Add LUCA species (player) to the tool, because this species exists throughout the exploration
-    ///   and will not mutate or migrate.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: It will be nice to unmark LUCA as player species so that it will evolve with others.
-    ///   </para>
-    /// </remarks>
-    private void InitFirstGeneration()
-    {
-        world.RunResultsList.Add(new LocalizedStringBuilder());
-        world.SpeciesHistoryList.Add(new Dictionary<uint, Species>
-        {
-            {
-                world.GameProperties.GameWorld.PlayerSpecies.ID,
-                (Species)world.GameProperties.GameWorld.PlayerSpecies.Clone()
-            },
-        });
-        world.PatchHistoryList.Add(world.GameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
-            pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
-        historyListMenu.AddItem("0", false, Colors.White);
-        historyListMenu.CreateElements();
-        HistoryListMenuIndexChanged(0);
     }
 
     private void SetControlButtonsState(RunControlState runControlState)
@@ -727,6 +702,42 @@ public class AutoEvoExploringTool : NodeWithInput
         SetControlButtonsState(RunControlState.Ready);
     }
 
+    private void WorldsListMenuIndexChanged(int index)
+    {
+        if (world == worldsList[index])
+            return;
+
+        worldsListMenu.Text = index.ToString();
+
+        world = worldsList[index];
+
+        generationDisplayed = world.CurrentGeneration;
+        currentGenerationLabel.Text = world.CurrentGeneration.ToString();
+        runStatusLabel.Text = TranslationServer.Translate("READY");
+
+        // Rebuild history list
+        historyListMenu.ClearAllItems();
+        for (int i = 0; i <= world.CurrentGeneration; ++i)
+        {
+            historyListMenu.AddItem(i.ToString(), false, Colors.White);
+        }
+
+        historyListMenu.CreateElements();
+        HistoryListMenuIndexChanged(world.CurrentGeneration);
+
+        UpdateSpeciesList();
+        SpeciesListMenuIndexChanged(0);
+
+        patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
+        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+
+        world.GameProperties.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
+
+        ready = false;
+        InitAutoEvoConfigControls();
+        ready = true;
+    }
+
     private void HistoryListMenuIndexChanged(int index)
     {
         if (generationDisplayed == index && speciesListMenu.Popup.GetItemCount() > 0)
@@ -881,6 +892,18 @@ public class AutoEvoExploringTool : NodeWithInput
             PatchHistoryList = new List<Dictionary<int, PatchSnapshot>>();
             RunResultsList = new List<LocalizedStringBuilder>();
             CurrentGeneration = 0;
+
+            RunResultsList.Add(new LocalizedStringBuilder());
+            SpeciesHistoryList.Add(new Dictionary<uint, Species>
+            {
+                {
+                    GameProperties.GameWorld.PlayerSpecies.ID,
+                    (Species)GameProperties.GameWorld.PlayerSpecies.Clone()
+                },
+            });
+
+            PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+                pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
         }
     }
 }
