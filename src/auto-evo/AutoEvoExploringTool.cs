@@ -707,6 +707,9 @@ public class AutoEvoExploringTool : NodeWithInput
         if (world == worldsList[index])
             return;
 
+        autoEvoRun?.Abort();
+        autoEvoRun = null;
+
         worldsListMenu.Text = index.ToString();
 
         world = worldsList[index];
