@@ -25,12 +25,21 @@ resource_name = "TabsButtonGroup"
 
 [node name="AutoEvoExploringTool" type="Node"]
 script = ExtResource( 1 )
+WorldEditorPath = NodePath("GUI/VBoxContainer/HBoxContainer2/WorldEditor")
 ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
 HistoryReportSplitPath = NodePath("GUI/VBoxContainer/HistoryReportSplit")
 SpeciesSelectPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel")
 MapPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
 ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
+AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/AllWorldsStatLabel")
+AllWorldsExportSettingsMenuPath = NodePath("GUI/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AllWorldsExportSettingsMenu")
+AllWorldsExportButtonPath = NodePath("GUI/VBoxContainer/HBoxContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AllWorldsExportButton")
+WorldsListMenuPath = NodePath("GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer/MarginContainer/HBoxContainer/WorldsListMenu")
+NewWorldButtonPath = NodePath("GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton")
+CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
+CurrentWorldExportSettingsMenuPath = NodePath("GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportSettingsMenu")
+CurrentWorldExportButtonPath = NodePath("GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportButton")
 AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
 AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
 BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
@@ -236,7 +245,7 @@ margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "CURRENT_WORLD"
 
-[node name="WorldListMenu" type="MenuButton" parent="GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/HBoxContainer2/WorldEditor/PanelContainer/MarginContainer/HBoxContainer"]
 margin_left = 160.0
 margin_right = 210.0
 margin_bottom = 20.0

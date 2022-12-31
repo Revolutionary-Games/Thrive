@@ -14,6 +14,9 @@ public class AutoEvoExploringTool : NodeWithInput
     // Tab paths
 
     [Export]
+    public NodePath WorldEditorPath = null!;
+
+    [Export]
     public NodePath ConfigEditorPath = null!;
 
     [Export]
@@ -30,6 +33,32 @@ public class AutoEvoExploringTool : NodeWithInput
 
     [Export]
     public NodePath ViewerPath = null!;
+
+    // World controls paths
+
+    [Export]
+    public NodePath AllWorldsStatisticsLabelPath = null!;
+
+    [Export]
+    public NodePath AllWorldsExportSettingsMenuPath = null!;
+
+    [Export]
+    public NodePath AllWorldsExportButtonPath = null!;
+
+    [Export]
+    public NodePath WorldsListMenuPath = null!;
+
+    [Export]
+    public NodePath NewWorldButtonPath = null!;
+
+    [Export]
+    public NodePath CurrentWorldStatisticsLabelPath = null!;
+
+    [Export]
+    public NodePath CurrentWorldExportSettingsMenuPath = null!;
+
+    [Export]
+    public NodePath CurrentWorldExportButtonPath = null!;
 
     // Auto-evo parameters paths
 
@@ -151,12 +180,24 @@ public class AutoEvoExploringTool : NodeWithInput
     public NodePath ExitConfirmationDialogPath = null!;
 
     // Tabs
+    private Control worldTab = null!;
     private Control configTab = null!;
     private Control historyReportSplit = null!;
     private Control speciesSelectPanel = null!;
     private Control mapTab = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
+
+    // World controls
+
+    private CustomRichTextLabel allWorldsStatisticsLabel = null!;
+    private CustomDropDown allWorldsExportSettingsMenu = null!;
+    private Button allWorldsExportButton = null!;
+    private CustomDropDown worldsListMenu = null!;
+    private Button newWorldButton = null!;
+    private CustomRichTextLabel currentWorldStatisticsLabel = null!;
+    private CustomDropDown currentWorldExportSettingsMenu = null!;
+    private Button currentWorldExportButton = null!;
 
     // Auto-evo parameters controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
@@ -221,6 +262,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private enum TabIndex
     {
+        World,
         Config,
         Map,
         Report,
@@ -242,12 +284,22 @@ public class AutoEvoExploringTool : NodeWithInput
 
         // Retrieve all node paths
 
+        worldTab = GetNode<Control>(WorldEditorPath);
         configTab = GetNode<Control>(ConfigEditorPath);
         historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
         speciesSelectPanel = GetNode<Control>(SpeciesSelectPanelPath);
         mapTab = GetNode<Control>(MapPath);
         reportTab = GetNode<Control>(ReportPath);
         viewerTab = GetNode<Control>(ViewerPath);
+
+        allWorldsStatisticsLabel = GetNode<CustomRichTextLabel>(AllWorldsStatisticsLabelPath);
+        allWorldsExportSettingsMenu = GetNode<CustomDropDown>(AllWorldsExportSettingsMenuPath);
+        allWorldsExportButton = GetNode<Button>(AllWorldsExportButtonPath);
+        worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
+        newWorldButton = GetNode<Button>(NewWorldButtonPath);
+        currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
+        currentWorldExportSettingsMenu = GetNode<CustomDropDown>(CurrentWorldExportSettingsMenuPath);
+        currentWorldExportButton = GetNode<Button>(CurrentWorldExportButtonPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -471,8 +523,17 @@ public class AutoEvoExploringTool : NodeWithInput
 
         switch ((TabIndex)Enum.Parse(typeof(TabIndex), tab))
         {
+            case TabIndex.World:
+            {
+                configTab.Visible = false;
+                historyReportSplit.Visible = false;
+                worldTab.Visible = true;
+                break;
+            }
+
             case TabIndex.Config:
             {
+                worldTab.Visible = false;
                 historyReportSplit.Visible = false;
                 configTab.Visible = true;
                 break;
@@ -480,6 +541,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
             case TabIndex.Map:
             {
+                worldTab.Visible = false;
                 configTab.Visible = false;
                 reportTab.Visible = false;
                 viewerTab.Visible = false;
@@ -491,6 +553,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
             case TabIndex.Report:
             {
+                worldTab.Visible = false;
                 configTab.Visible = false;
                 mapTab.Visible = false;
                 viewerTab.Visible = false;
@@ -502,6 +565,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
             case TabIndex.Viewer:
             {
+                worldTab.Visible = false;
                 reportTab.Visible = false;
                 mapTab.Visible = false;
                 configTab.Visible = false;
