@@ -180,6 +180,9 @@ public class EvolutionaryTree : Control
         speciesNames.Clear();
         generationTimes.Clear();
         speciesNodes.Clear();
+        maxSpeciesId = 0;
+        latestGeneration = 0;
+        dragOffset = Vector2.Zero;
 
         tree.QueueFreeChildren();
     }
