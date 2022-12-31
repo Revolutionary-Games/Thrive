@@ -599,6 +599,38 @@ public class GameWorld : ISaveLoadable
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
     }
 
+    public void BuildEvolutionaryTree(EvolutionaryTree tree)
+    {
+        // Building the tree relies on the existence of a full history of generations stored in the current game. Since
+        // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
+        // TODO: avoid an ugly try/catch block by actually checking the original save version?
+        if (GenerationHistory.Count < 1)
+        {
+            throw new InvalidOperationException("Generation history is empty");
+        }
+
+        tree.Clear();
+
+        foreach (var generation in GenerationHistory)
+        {
+            var record = generation.Value;
+
+            if (generation.Key == 0)
+            {
+                var initialSpecies = GenerationHistory[0].AllSpeciesData.Values.Select(s => s.Species).WhereNotNull();
+                tree.Init(initialSpecies, PlayerSpecies.ID, PlayerSpecies.FormattedName);
+                continue;
+            }
+
+            // Recover all omitted species data for this generation so we can fill the tree
+            var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
+                s => s.Key,
+                s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, GenerationHistory));
+
+            tree.Update(updatedSpeciesData, generation.Key, record.TimeElapsed, PlayerSpecies.ID);
+        }
+    }
+
     private void CreateRunIfMissing()
     {
         if (autoEvo != null)

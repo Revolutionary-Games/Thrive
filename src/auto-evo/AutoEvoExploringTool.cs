@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Godot;
 
 /// <summary>
@@ -632,13 +633,14 @@ public class AutoEvoExploringTool : NodeWithInput
         // Apply the results
         gameWorld.OnTimePassed(1);
         autoEvoRun.ApplyAllResultsAndEffects(true);
+        ++gameWorld.PlayerSpecies.Generation;
+        ++currentGeneration;
 
         // Add run results, this must be called after results are applied to generate unique species ID
-        evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(
-            results.GetFullSpeciesRecords(),
-            ++currentGeneration, gameWorld.TotalPassedTime, gameWorld.PlayerSpecies.ID);
-        speciesHistoryList.Add(
-            gameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+        gameWorld.GenerationHistory.Add(gameWorld.PlayerSpecies.Generation - 1,
+            new GenerationRecord(gameWorld.TotalPassedTime, results.GetSpeciesRecords()));
+        gameWorld.BuildEvolutionaryTree(evolutionaryTree);
+        speciesHistoryList.Add(gameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
         patchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(pair => pair.Key,
             pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 

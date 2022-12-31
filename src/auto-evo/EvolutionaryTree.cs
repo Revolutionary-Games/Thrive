@@ -68,15 +68,13 @@ public class EvolutionaryTree : Control
     /// </summary>
     private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
-    // ReSharper disable RedundantNameQualifier
-    private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
+    private readonly Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
+    private readonly Dictionary<uint, string> speciesNames = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
-        speciesOrigin = new();
+    private readonly Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)> speciesOrigin = new();
 
-    private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
+    private readonly Dictionary<int, double> generationTimes = new();
 
     // ReSharper enable RedundantNameQualifier
 
@@ -200,9 +198,7 @@ public class EvolutionaryTree : Control
         }
     }
 
-    public void UpdateEvolutionaryTreeWithRunResults(
-        System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation, double time,
-        uint playerSpeciesID)
+    public void Update(Dictionary<uint, SpeciesRecordFull> records, int generation, double time, uint playerSpeciesID)
     {
         foreach (var speciesRecordPair in records.OrderBy(r => r.Key))
         {
