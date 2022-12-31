@@ -73,7 +73,8 @@ public class EvolutionaryTree : Control
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
 
-    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)> speciesOrigin = new();
+    private readonly System.Collections.Generic.Dictionary<uint, (uint ParentSpeciesID, int SplitGeneration)>
+        speciesOrigin = new();
 
     private readonly System.Collections.Generic.Dictionary<int, double> generationTimes = new();
 
@@ -199,7 +200,8 @@ public class EvolutionaryTree : Control
         }
     }
 
-    public void Update(System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation, double time, uint playerSpeciesID)
+    public void Update(System.Collections.Generic.Dictionary<uint, SpeciesRecordFull> records, int generation,
+        double time, uint playerSpeciesID)
     {
         foreach (var speciesRecordPair in records.OrderBy(r => r.Key))
         {
