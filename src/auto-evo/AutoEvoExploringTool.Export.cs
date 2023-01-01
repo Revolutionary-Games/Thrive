@@ -11,6 +11,9 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class AutoEvoExploringTool
 {
+    private static readonly List<OrganelleDefinition> Organelles =
+        SimulationParameters.Instance.GetAllOrganelles().ToList();
+
     private void ExportCurrentWorld()
     {
         if (currentWorldExportSettings == 0)
@@ -21,8 +24,7 @@ public partial class AutoEvoExploringTool
         }
 
         currentWorldExportButton.Disabled = true;
-        string basePath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER,
-            System.DateTime.Now.ToString("yy_MM_dd_hh_mm_ss"));
+        var basePath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yy_MM_dd_hh_mm_ss"));
 
         FileHelpers.MakeSureDirectoryExists(basePath);
 
@@ -36,23 +38,21 @@ public partial class AutoEvoExploringTool
             ExportCurrentWorldCurrentPatchDetails(basePath);
         }
 
+        if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.PerSpeciesDetailedHistory))
+        {
+            ExportCurrentWorldPerSpeciesDetailedHistory(basePath);
+        }
+
         currentWorldExportButton.Disabled = false;
         exportSuccessNotificationDialog.DialogText =
             TranslationServer.Translate("CURRENT_WORLD_EXPORTATION_SUCCESS").FormatSafe(basePath);
         exportSuccessNotificationDialog.PopupCenteredShrink();
     }
 
-    private void ExportCurrentWorldCurrentSpeciesDetails(string basePath)
+    private IEnumerable<string> GenerateSpeciesHeader()
     {
-        var path = Path.Combine(basePath, nameof(CurrentWorldExportSettings.CurrentPatchDetails) + ".csv");
-
-        var file = new File();
-        file.Open(path, File.ModeFlags.Write);
-
-        var organelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
-
         var header = new List<string>();
-        header.AddRange(new[] { "Name", "Population", "Color" });
+        header.AddRange(new[] { "Population", "Color" });
         header.AddRange(Enum.GetNames(typeof(BehaviouralValueType))
             .OrderBy(n => Enum.Parse(typeof(BehaviouralValueType), n)));
 
@@ -62,40 +62,80 @@ public partial class AutoEvoExploringTool
             "Organelle count",
         });
 
-        header.AddRange(organelles.Select(o => o.Name));
+        header.AddRange(Organelles.Select(o => o.Name));
+
+        header.AddRange(world.GameProperties.GameWorld.Map.Patches.Values
+            .OrderBy(p => p.ID)
+            .Select(p => p.Name.ToString()));
+
+        return header;
+    }
+
+    private IEnumerable<string> GenerateSpeciesData(uint speciesId, int generation)
+    {
+        if (!world.SpeciesHistoryList[generation].TryGetValue(speciesId, out var species))
+        {
+            var emptyData = new string[2 + Enum.GetNames(typeof(BehaviouralValueType)).Length + 7 + Organelles.Count +
+                world.PatchHistoryList[generation].Count];
+
+            emptyData[0] = "Species doesn't exist";
+
+            return emptyData;
+        }
+
+        var data = new List<string>();
+        data.AddRange(new[] { species.Population.ToString(), species.Colour.ToHtml() });
+        data.AddRange(species.Behaviour.OrderBy(p => p.Key)
+            .Select(p => p.Value.ToString(CultureInfo.InvariantCulture)));
+
+        if (species is MicrobeSpecies microbeSpecies)
+        {
+            data.AddRange(new[]
+            {
+                microbeSpecies.MembraneType.Name,
+                microbeSpecies.MembraneRigidity.ToString(CultureInfo.InvariantCulture),
+                microbeSpecies.BaseSpeed.ToString(CultureInfo.InvariantCulture),
+                microbeSpecies.BaseRotationSpeed.ToString(CultureInfo.InvariantCulture),
+                microbeSpecies.StorageCapacity.ToString(CultureInfo.InvariantCulture),
+                microbeSpecies.IsBacteria.ToString(),
+                microbeSpecies.Organelles.Count.ToString(),
+            });
+
+            data.AddRange(Organelles
+                .Select(o => microbeSpecies.Organelles.Count(ot => ot.Definition == o).ToString()));
+        }
+        else
+        {
+            data.AddRange(new string[7 + Organelles.Count]);
+        }
+
+        data.AddRange(world.PatchHistoryList[generation]
+            .OrderBy(p => p.Key)
+            .Select(p => p.Value.SpeciesInPatch.FirstOrDefault(s => s.Key.ID == speciesId).Value.ToString()));
+
+        return data;
+    }
+
+    private void ExportCurrentWorldCurrentSpeciesDetails(string basePath)
+    {
+        var path = Path.Combine(basePath, nameof(CurrentWorldExportSettings.CurrentPatchDetails) + ".csv");
+
+        var file = new File();
+        file.Open(path, File.ModeFlags.Write);
+
+        var header = new List<string> { "Name" };
+        header.AddRange(GenerateSpeciesHeader());
 
         file.StoreCsvLine(header.ToArray());
 
-        foreach (var species in world.SpeciesHistoryList[world.CurrentGeneration].Values)
+        foreach (var species in world.GameProperties.GameWorld.Species.Values)
         {
-            var data = new List<string>();
-            data.AddRange(new[] { species.FormattedName, species.Population.ToString(), species.Colour.ToHtml() });
-            data.AddRange(species.Behaviour.OrderBy(p => p.Key)
-                .Select(p => p.Value.ToString(CultureInfo.InvariantCulture)));
-
-            if (species is MicrobeSpecies microbeSpecies)
-            {
-                data.AddRange(new[]
-                {
-                    microbeSpecies.MembraneType.Name,
-                    microbeSpecies.MembraneRigidity.ToString(CultureInfo.InvariantCulture),
-                    microbeSpecies.BaseSpeed.ToString(CultureInfo.InvariantCulture),
-                    microbeSpecies.BaseRotationSpeed.ToString(CultureInfo.InvariantCulture),
-                    microbeSpecies.StorageCapacity.ToString(CultureInfo.InvariantCulture),
-                    microbeSpecies.IsBacteria.ToString(),
-                    microbeSpecies.Organelles.Count.ToString(),
-                });
-
-                data.AddRange(organelles.Select(o =>
-                    microbeSpecies.Organelles.Count(ot => ot.Definition == o).ToString()));
-            }
-            else
-            {
-                data.AddRange(new string[7 + organelles.Count]);
-            }
-
+            var data = new List<string> { species.FormattedName };
+            data.AddRange(GenerateSpeciesData(species.ID, world.CurrentGeneration));
             file.StoreCsvLine(data.ToArray());
         }
+
+        file.Close();
     }
 
     private void ExportCurrentWorldCurrentPatchDetails(string basePath)
@@ -108,8 +148,7 @@ public partial class AutoEvoExploringTool
         var header = new List<string>();
         header.AddRange(new[] { "Name", "Type" });
         header.AddRange(world.GameProperties.GameWorld.Map.Patches.First().Value.Biome.Compounds.Keys
-            .Select(c => $"Compound - {c.Name}")
-            .OrderBy(s => s));
+            .Select(c => c.Name).OrderBy(s => s));
 
         header.AddRange(world.GameProperties.GameWorld.Species.Values.Select(s => s.FormattedName)
             .OrderBy(s => s));
@@ -130,5 +169,33 @@ public partial class AutoEvoExploringTool
         }
 
         file.Close();
+    }
+
+    private void ExportCurrentWorldPerSpeciesDetailedHistory(string basePath)
+    {
+        basePath = Path.Combine(basePath, nameof(CurrentWorldExportSettings.PerSpeciesDetailedHistory));
+        FileHelpers.MakeSureDirectoryExists(basePath);
+
+        for (uint speciesId = 1; speciesId < world.SpeciesHistoryList.Last().Max(s => s.Key); ++speciesId)
+        {
+            var path = Path.Combine(basePath,
+                world.SpeciesHistoryList.First(d => d.ContainsKey(speciesId))[speciesId].FormattedName + ".csv");
+
+            var file = new File();
+            file.Open(path, File.ModeFlags.Write);
+
+            var header = new List<string> { "Generation" };
+            header.AddRange(GenerateSpeciesHeader());
+            file.StoreCsvLine(header.ToArray());
+
+            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
+            {
+                var data = new List<string> { generation.ToString() };
+                data.AddRange(GenerateSpeciesData(speciesId, generation));
+                file.StoreCsvLine(data.ToArray());
+            }
+
+            file.Close();
+        }
     }
 }

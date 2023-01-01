@@ -298,11 +298,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private enum CurrentWorldExportSettings
     {
         CurrentSpeciesDetails = 1,
-        CurrentSpeciesDistribution = 2,
-        CurrentPatchDetails = 4,
-        PerSpeciesDetailedHistory = 8,
-        PerSpeciesDistributionHistory = 16,
-        PerPatchHistory = 32,
+        CurrentPatchDetails = 2,
+        PerSpeciesDetailedHistory = 4,
+        PerPatchHistory = 8,
     }
 
     public override void _Ready()
@@ -442,14 +440,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
         {
             CurrentWorldExportSettings.CurrentSpeciesDetails =>
                 TranslationServer.Translate("CURRENT_SPECIES_DETAILS"),
-            CurrentWorldExportSettings.CurrentSpeciesDistribution =>
-                TranslationServer.Translate("CURRENT_SPECIES_DISTRIBUTION"),
             CurrentWorldExportSettings.CurrentPatchDetails =>
                 TranslationServer.Translate("CURRENT_PATCH_DETAILS"),
             CurrentWorldExportSettings.PerSpeciesDetailedHistory =>
                 TranslationServer.Translate("PER_SPECIES_DETAILED_HISTORY"),
-            CurrentWorldExportSettings.PerSpeciesDistributionHistory =>
-                TranslationServer.Translate("PER_SPECIES_DISTRIBUTION_HISTORY"),
             CurrentWorldExportSettings.PerPatchHistory =>
                 TranslationServer.Translate("PER_PATCH_HISTORY"),
             _ => throw new ArgumentException($"{settings} is not a valid {nameof(CurrentWorldExportSettings)} value."),
@@ -525,13 +519,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
         currentWorldExportSettingsMenu.AddItem(
             GetSettingsTranslation(CurrentWorldExportSettings.CurrentSpeciesDetails), true, Colors.White);
         currentWorldExportSettingsMenu.AddItem(
-            GetSettingsTranslation(CurrentWorldExportSettings.CurrentSpeciesDistribution), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(
             GetSettingsTranslation(CurrentWorldExportSettings.CurrentPatchDetails), true, Colors.White);
         currentWorldExportSettingsMenu.AddItem(
             GetSettingsTranslation(CurrentWorldExportSettings.PerSpeciesDetailedHistory), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(
-            GetSettingsTranslation(CurrentWorldExportSettings.PerSpeciesDistributionHistory), true, Colors.White);
         currentWorldExportSettingsMenu.AddItem(
             GetSettingsTranslation(CurrentWorldExportSettings.PerPatchHistory), true, Colors.White);
         currentWorldExportSettingsMenu.CreateElements();
