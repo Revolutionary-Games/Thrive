@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -25,6 +26,11 @@ public partial class AutoEvoExploringTool
 
         FileHelpers.MakeSureDirectoryExists(basePath);
 
+        if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.CurrentSpeciesDetails))
+        {
+            ExportCurrentWorldCurrentSpeciesDetails(basePath);
+        }
+
         if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.CurrentPatchDetails))
         {
             ExportCurrentWorldCurrentPatchDetails(basePath);
@@ -34,6 +40,62 @@ public partial class AutoEvoExploringTool
         exportSuccessNotificationDialog.DialogText =
             TranslationServer.Translate("CURRENT_WORLD_EXPORTATION_SUCCESS").FormatSafe(basePath);
         exportSuccessNotificationDialog.PopupCenteredShrink();
+    }
+
+    private void ExportCurrentWorldCurrentSpeciesDetails(string basePath)
+    {
+        var path = Path.Combine(basePath, nameof(CurrentWorldExportSettings.CurrentPatchDetails) + ".csv");
+
+        var file = new File();
+        file.Open(path, File.ModeFlags.Write);
+
+        var organelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
+
+        var header = new List<string>();
+        header.AddRange(new[] { "Name", "Population", "Color" });
+        header.AddRange(Enum.GetNames(typeof(BehaviouralValueType))
+            .OrderBy(n => Enum.Parse(typeof(BehaviouralValueType), n)));
+
+        header.AddRange(new[]
+        {
+            "Membrane type", "Membrane rigidity", "Base speed", "Base rotation speed", "Storage capacity", "Bacteria",
+            "Organelle count",
+        });
+
+        header.AddRange(organelles.Select(o => o.Name));
+
+        file.StoreCsvLine(header.ToArray());
+
+        foreach (var species in world.SpeciesHistoryList[world.CurrentGeneration].Values)
+        {
+            var data = new List<string>();
+            data.AddRange(new[] { species.FormattedName, species.Population.ToString(), species.Colour.ToHtml() });
+            data.AddRange(species.Behaviour.OrderBy(p => p.Key)
+                .Select(p => p.Value.ToString(CultureInfo.InvariantCulture)));
+
+            if (species is MicrobeSpecies microbeSpecies)
+            {
+                data.AddRange(new[]
+                {
+                    microbeSpecies.MembraneType.Name,
+                    microbeSpecies.MembraneRigidity.ToString(CultureInfo.InvariantCulture),
+                    microbeSpecies.BaseSpeed.ToString(CultureInfo.InvariantCulture),
+                    microbeSpecies.BaseRotationSpeed.ToString(CultureInfo.InvariantCulture),
+                    microbeSpecies.StorageCapacity.ToString(CultureInfo.InvariantCulture),
+                    microbeSpecies.IsBacteria.ToString(),
+                    microbeSpecies.Organelles.Count.ToString(),
+                });
+
+                data.AddRange(organelles.Select(o =>
+                    microbeSpecies.Organelles.Count(ot => ot.Definition == o).ToString()));
+            }
+            else
+            {
+                data.AddRange(new string[7 + organelles.Count]);
+            }
+
+            file.StoreCsvLine(data.ToArray());
+        }
     }
 
     private void ExportCurrentWorldCurrentPatchDetails(string basePath)
