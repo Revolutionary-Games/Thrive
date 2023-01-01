@@ -436,6 +436,26 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
+    private static string GetSettingsTranslation(CurrentWorldExportSettings settings)
+    {
+        return settings switch
+        {
+            CurrentWorldExportSettings.CurrentSpeciesDetails =>
+                TranslationServer.Translate("CURRENT_SPECIES_DETAILS"),
+            CurrentWorldExportSettings.CurrentSpeciesDistribution =>
+                TranslationServer.Translate("CURRENT_SPECIES_DISTRIBUTION"),
+            CurrentWorldExportSettings.CurrentPatchDetails =>
+                TranslationServer.Translate("CURRENT_PATCH_DETAILS"),
+            CurrentWorldExportSettings.PerSpeciesDetailedHistory =>
+                TranslationServer.Translate("PER_SPECIES_DETAILED_HISTORY"),
+            CurrentWorldExportSettings.PerSpeciesDistributionHistory =>
+                TranslationServer.Translate("PER_SPECIES_DISTRIBUTION_HISTORY"),
+            CurrentWorldExportSettings.PerPatchHistory =>
+                TranslationServer.Translate("PER_PATCH_HISTORY"),
+            _ => throw new ArgumentException($"{settings} is not a valid {nameof(CurrentWorldExportSettings)} value."),
+        };
+    }
+
     private void InitNewGame()
     {
         worldsList.Add(new AutoEvoExploringToolWorld());
@@ -502,12 +522,18 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private void InitCurrentWorldExportSettingsMenu()
     {
-        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("Dummy"), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(
+            GetSettingsTranslation(CurrentWorldExportSettings.CurrentSpeciesDetails), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(
+            GetSettingsTranslation(CurrentWorldExportSettings.CurrentSpeciesDistribution), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(
+            GetSettingsTranslation(CurrentWorldExportSettings.CurrentPatchDetails), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(
+            GetSettingsTranslation(CurrentWorldExportSettings.PerSpeciesDetailedHistory), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(
+            GetSettingsTranslation(CurrentWorldExportSettings.PerSpeciesDistributionHistory), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(
+            GetSettingsTranslation(CurrentWorldExportSettings.PerPatchHistory), true, Colors.White);
         currentWorldExportSettingsMenu.CreateElements();
 
         currentWorldExportSettingsMenu.Popup.HideOnCheckableItemSelection = false;
