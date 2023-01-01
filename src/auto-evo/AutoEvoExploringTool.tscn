@@ -36,7 +36,6 @@ AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorlds
 AllWorldsExportSettingsMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/HBoxContainer/AllWorldsExportSettingsMenu")
 AllWorldsExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/HBoxContainer/AllWorldsExportButton")
 WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/WorldsListMenu")
-NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton")
 CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
 CurrentWorldExportSettingsMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportSettingsMenu")
 CurrentWorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportButton")
@@ -76,6 +75,7 @@ SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/
 SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/SpeciesInfoLabel")
 EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
+ExportSuccessNotificationDialogPath = NodePath("ExportSuccessNotificationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -1038,12 +1038,18 @@ rect_min_size = Vector2( 400, 0 )
 WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
+[node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource( 11 )]
+WindowTitle = "EXPORTATION_SUCCESS"
+Movable = false
+HideCancelButton = true
+
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/WorldButton" to="." method="ChangeTab" binds= [ "World" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ "Config" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= [ "Map" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewGame"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportButton" to="." method="ExportCurrentWorld"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]

@@ -8,8 +8,9 @@ using Godot;
 ///   Auto-evo exploring tool is a scene that contains numerous tools to debug, test, and explore auto-evo.
 ///   You can change the parameters to see how auto-evo responds, get a clearer view of how species evolves,
 ///   and start a game based on the simulation results.
+///   Partial class: GUI, auto-evo, world control
 /// </summary>
-public class AutoEvoExploringTool : NodeWithInput
+public partial class AutoEvoExploringTool : NodeWithInput
 {
     // Tab paths
 
@@ -47,9 +48,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
     [Export]
     public NodePath WorldsListMenuPath = null!;
-
-    [Export]
-    public NodePath NewWorldButtonPath = null!;
 
     [Export]
     public NodePath CurrentWorldStatisticsLabelPath = null!;
@@ -175,9 +173,13 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath EvolutionaryTreePath = null!;
 
-    // Exit confirm path
+    // Dialog paths
+
     [Export]
     public NodePath ExitConfirmationDialogPath = null!;
+
+    [Export]
+    public NodePath ExportSuccessNotificationDialogPath = null!;
 
     private readonly List<AutoEvoExploringToolWorld> worldsList = new();
 
@@ -196,7 +198,6 @@ public class AutoEvoExploringTool : NodeWithInput
     private CustomDropDown allWorldsExportSettingsMenu = null!;
     private Button allWorldsExportButton = null!;
     private CustomDropDown worldsListMenu = null!;
-    private TextureButton newWorldButton = null!;
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
     private CustomDropDown currentWorldExportSettingsMenu = null!;
     private Button currentWorldExportButton = null!;
@@ -247,10 +248,15 @@ public class AutoEvoExploringTool : NodeWithInput
     private EvolutionaryTree evolutionaryTree = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
+    private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
 
     private AutoEvoExploringToolWorld world = null!;
 
     private AutoEvoRun? autoEvoRun;
+
+    private AllWorldsExportSettings allWorldsExportSettings;
+
+    private CurrentWorldExportSettings currentWorldExportSettings;
 
     /// <summary>
     ///   The generation that report and viewer tab is displaying,
@@ -278,6 +284,27 @@ public class AutoEvoExploringTool : NodeWithInput
         Paused,
     }
 
+    [Flags]
+    private enum AllWorldsExportSettings
+    {
+        A = 1,
+        B = 2,
+        C = 4,
+        D = 8,
+        E = 16,
+    }
+
+    [Flags]
+    private enum CurrentWorldExportSettings
+    {
+        CurrentSpeciesDetails = 1,
+        CurrentSpeciesDistribution = 2,
+        CurrentPatchDetails = 4,
+        PerSpeciesDetailedHistory = 8,
+        PerSpeciesDistributionHistory = 16,
+        PerPatchHistory = 32,
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -298,7 +325,6 @@ public class AutoEvoExploringTool : NodeWithInput
         allWorldsExportSettingsMenu = GetNode<CustomDropDown>(AllWorldsExportSettingsMenuPath);
         allWorldsExportButton = GetNode<Button>(AllWorldsExportButtonPath);
         worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
-        newWorldButton = GetNode<TextureButton>(NewWorldButtonPath);
         currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
         currentWorldExportSettingsMenu = GetNode<CustomDropDown>(CurrentWorldExportSettingsMenuPath);
         currentWorldExportButton = GetNode<Button>(CurrentWorldExportButtonPath);
@@ -348,6 +374,7 @@ public class AutoEvoExploringTool : NodeWithInput
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
+        exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
 
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
@@ -358,6 +385,9 @@ public class AutoEvoExploringTool : NodeWithInput
         historyListMenu.Popup.Connect("index_pressed", this, nameof(HistoryListMenuIndexChanged));
         speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
         worldsListMenu.Popup.Connect("index_pressed", this, nameof(WorldsListMenuIndexChanged));
+
+        InitAllWorldsExportSettingsMenu();
+        InitCurrentWorldExportSettingsMenu();
 
         InitNewGame();
     }
@@ -439,6 +469,65 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
             world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
         useBiodiversityForceSplitCheckBox.Pressed = world.AutoEvoConfiguration.UseBiodiversityForceSplit;
+    }
+
+    private void InitAllWorldsExportSettingsMenu()
+    {
+        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("Dummy"), true, Colors.White);
+        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        allWorldsExportSettingsMenu.CreateElements();
+
+        allWorldsExportSettingsMenu.Popup.HideOnCheckableItemSelection = false;
+        allWorldsExportSettingsMenu.Popup.Connect("index_pressed", this,
+            nameof(AllWorldsExportSettingsMenuIndexPressed));
+    }
+
+    private void AllWorldsExportSettingsMenuIndexPressed(int index)
+    {
+        var bit = (AllWorldsExportSettings)(1 << index);
+        if ((allWorldsExportSettings & bit) != 0)
+        {
+            allWorldsExportSettings &= ~bit;
+        }
+        else
+        {
+            allWorldsExportSettings |= bit;
+        }
+
+        allWorldsExportSettingsMenu.Popup.SetItemChecked(index, (allWorldsExportSettings & bit) != 0);
+    }
+
+    private void InitCurrentWorldExportSettingsMenu()
+    {
+        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("Dummy"), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        currentWorldExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
+        currentWorldExportSettingsMenu.CreateElements();
+
+        currentWorldExportSettingsMenu.Popup.HideOnCheckableItemSelection = false;
+        currentWorldExportSettingsMenu.Popup.Connect("index_pressed", this,
+            nameof(CurrentWorldExportSettingsMenuIndexPressed));
+    }
+
+    private void CurrentWorldExportSettingsMenuIndexPressed(int index)
+    {
+        var bit = (CurrentWorldExportSettings)(1 << index);
+        if ((currentWorldExportSettings & bit) != 0)
+        {
+            currentWorldExportSettings &= ~bit;
+        }
+        else
+        {
+            currentWorldExportSettings |= bit;
+        }
+
+        currentWorldExportSettingsMenu.Popup.SetItemChecked(index, (currentWorldExportSettings & bit) != 0);
     }
 
     private void SetControlButtonsState(RunControlState runControlState)
@@ -709,6 +798,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
         autoEvoRun?.Abort();
         autoEvoRun = null;
+        generationsPendingToRun = 0;
+        SetControlButtonsState(RunControlState.Ready);
+        runStatusLabel.Text = TranslationServer.Translate("READY");
 
         worldsListMenu.Text = index.ToString();
 
@@ -716,7 +808,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
         generationDisplayed = world.CurrentGeneration;
         currentGenerationLabel.Text = world.CurrentGeneration.ToString();
-        runStatusLabel.Text = TranslationServer.Translate("READY");
 
         // Rebuild history list
         historyListMenu.ClearAllItems();
@@ -886,9 +977,9 @@ public class AutoEvoExploringTool : NodeWithInput
         /// </summary>
         public int CurrentGeneration;
 
-        public AutoEvoExploringToolWorld()
+        public AutoEvoExploringToolWorld(AutoEvoConfiguration? configuration = null)
         {
-            AutoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+            AutoEvoConfiguration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration.Clone();
             GameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
                 { AutoEvoConfiguration = AutoEvoConfiguration });
             SpeciesHistoryList = new List<Dictionary<uint, Species>>();
