@@ -184,6 +184,8 @@ public static class Constants
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
+    public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
+
     /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
@@ -365,7 +367,7 @@ public static class Constants
     ///   compounds amount. Value of 2 means that having available compounds in storage can make reproduction 2x the
     ///   speed of just using free compounds.
     /// </summary>
-    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 2.0f;
+    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 2.25f;
 
     /// <summary>
     ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
@@ -710,7 +712,7 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 150000;
     public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;

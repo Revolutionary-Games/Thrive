@@ -176,8 +176,7 @@ public class MicrobeAI
         if (atpThreshold > 0.0f)
         {
             if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpThreshold
-                && microbe.Compounds.Where(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f)
-                    .Count() > 0)
+                && microbe.Compounds.Any(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f))
             {
                 SetMoveSpeed(0.0f);
                 return;

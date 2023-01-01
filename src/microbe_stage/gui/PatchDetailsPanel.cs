@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -281,16 +282,19 @@ public class PatchDetailsPanel : PanelContainer
 
         // Compounds
         hydrogenSulfide.Text =
-            percentageFormat.FormatSafe(
-                Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3)
+                .ToString(CultureInfo.CurrentCulture);
         ammonia.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3)
+                .ToString(CultureInfo.CurrentCulture);
         glucose.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3)
+                .ToString(CultureInfo.CurrentCulture);
         phosphate.Text =
-            percentageFormat.FormatSafe(
-                Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3));
-        iron.Text = percentageFormat.FormatSafe(GetCompoundAmount(SelectedPatch, ironCompound.InternalName));
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3)
+                .ToString(CultureInfo.CurrentCulture);
+        iron.Text = GetCompoundAmount(SelectedPatch, ironCompound.InternalName)
+            .ToString(CultureInfo.CurrentCulture);
 
         var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
         var speciesList = new StringBuilder(100);

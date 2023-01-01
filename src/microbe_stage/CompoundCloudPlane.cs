@@ -400,11 +400,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        // TODO: change to throwing an error once we've fixed cells requesting negative compounds
-        // https://github.com/Revolutionary-Games/Thrive/issues/3927
-        if (fraction < 0.0f)
-            return 0.0f;
-
         float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         var amountToGive = amountInCloud * fraction;
 
@@ -509,6 +504,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
         Dictionary<Compound, float> totals, float delta, float rate)
     {
+        if (rate < 0)
+            throw new ArgumentException("Rate can't be negative");
+
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
@@ -529,12 +527,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
+            float freeSpace = storage.GetFreeSpaceForCompound(compound);
 
             float multiplier = 1.0f * rate;
 
             if (freeSpace < generousAmount)
             {
+                if (freeSpace < 0.0f)
+                    throw new InvalidOperationException("Free space for compounds is negative");
+
                 // Allow partial absorption to allow cells to take from high density clouds
                 multiplier = freeSpace / generousAmount;
             }
