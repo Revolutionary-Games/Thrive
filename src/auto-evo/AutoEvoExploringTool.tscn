@@ -58,6 +58,7 @@ SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("GUI/VBoxContaine
 SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
 UseBiodiversityForceSplitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
 CurrentGenerationLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/CurrentGenerationLabel")
+TotalTimeUsedLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/TotalTimeUsedLabel")
 RunStatusLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStatusLabel")
 FinishXGenerationsSpinBoxPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerationsSpin")
 FinishXGenerationsButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerations")
@@ -637,17 +638,34 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 65.0
 margin_right = 311.0
 margin_bottom = 90.0
 custom_fonts/font = ExtResource( 6 )
-text = "STATUS_COLON"
+text = "TOTAL_TIME_USED_COLON"
 
-[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+[node name="TotalTimeUsedLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 100.0
 margin_right = 311.0
 margin_bottom = 120.0
+custom_fonts/font = ExtResource( 7 )
+text = "0:00:00:0000000"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 130.0
+margin_right = 311.0
+margin_bottom = 155.0
+custom_fonts/font = ExtResource( 6 )
+text = "STATUS_COLON"
+
+[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 165.0
+margin_right = 311.0
+margin_bottom = 185.0
 custom_fonts/font = ExtResource( 7 )
 text = "READY"
 __meta__ = {
@@ -655,9 +673,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 130.0
+margin_top = 195.0
 margin_right = 311.0
-margin_bottom = 165.0
+margin_bottom = 230.0
 
 [node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 83.0
@@ -677,27 +695,27 @@ __meta__ = {
 }
 
 [node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 175.0
+margin_top = 240.0
 margin_right = 311.0
-margin_bottom = 210.0
+margin_bottom = 275.0
 text = "FINISH_ONE_GENERATION"
 
 [node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 220.0
+margin_top = 285.0
 margin_right = 311.0
-margin_bottom = 255.0
+margin_bottom = 320.0
 text = "RUN_ONE_STEP"
 
 [node name="Abort" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 265.0
+margin_top = 330.0
 margin_right = 311.0
-margin_bottom = 300.0
+margin_bottom = 365.0
 text = "ABORT"
 
 [node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 310.0
+margin_top = 375.0
 margin_right = 311.0
-margin_bottom = 345.0
+margin_bottom = 410.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
