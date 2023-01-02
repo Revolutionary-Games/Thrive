@@ -263,8 +263,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private CurrentWorldExportSettings currentWorldExportSettings;
 
-    private TimeSpan totalTimeUsed;
-
     /// <summary>
     ///   The generation that report and viewer tab is displaying,
     ///   which equals to the selected popup item index of <see cref="historyListMenu"/>
@@ -781,8 +779,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         currentGenerationLabel.Text = world.CurrentGeneration.ToString();
 
-        totalTimeUsed += autoEvoRun.RunDuration;
-        totalTimeUsedLabel.Text = totalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
+        world.TotalTimeUsed += autoEvoRun.RunDuration;
+        totalTimeUsedLabel.Text = world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
     }
 
     /// <summary>
@@ -835,6 +833,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         generationDisplayed = world.CurrentGeneration;
         currentGenerationLabel.Text = world.CurrentGeneration.ToString();
+        totalTimeUsedLabel.Text = world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
 
         // Rebuild history list
         historyListMenu.ClearAllItems();
@@ -1004,6 +1003,11 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// </summary>
         public int CurrentGeneration;
 
+        /// <summary>
+        ///   Total used auto-evo time
+        /// </summary>
+        public TimeSpan TotalTimeUsed;
+
         public AutoEvoExploringToolWorld(AutoEvoConfiguration? configuration = null)
         {
             AutoEvoConfiguration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration.Clone();
@@ -1013,6 +1017,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             PatchHistoryList = new List<Dictionary<int, PatchSnapshot>>();
             RunResultsList = new List<LocalizedStringBuilder>();
             CurrentGeneration = 0;
+            TotalTimeUsed = TimeSpan.Zero;
 
             RunResultsList.Add(new LocalizedStringBuilder());
             SpeciesHistoryList.Add(new Dictionary<uint, Species>
