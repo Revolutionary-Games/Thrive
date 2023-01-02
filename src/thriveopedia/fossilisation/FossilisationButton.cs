@@ -9,7 +9,7 @@ public class FossilisationButton : TextureButton
     public Texture AlreadyFossilisedTexture = null!;
 
     /// <summary>
-    ///   The organism this button is attached to.
+    ///   The entity (organism) this button is attached to.
     /// </summary>
     public IEntity AttachedEntity = null!;
 
