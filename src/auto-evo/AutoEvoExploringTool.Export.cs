@@ -22,7 +22,7 @@ public partial class AutoEvoExploringTool
 
     private void ExportCurrentWorld()
     {
-        if (currentWorldExportSettings == 0)
+        if (currentWorldExportSettings == 0 || world.CurrentGeneration == 0)
         {
             exportSuccessNotificationDialog.DialogText = TranslationServer.Translate("NOTHING_TO_EXPORT");
             exportSuccessNotificationDialog.PopupCenteredShrink();
@@ -68,7 +68,8 @@ public partial class AutoEvoExploringTool
     {
         CurrentWorldSpecies.Clear();
 
-        for (uint speciesId = 1; speciesId < world.SpeciesHistoryList.Last().Max(s => s.Key); ++speciesId)
+        uint maxSpeciesId = world.SpeciesHistoryList.Last().Max(s => s.Key);
+        for (uint speciesId = 1; speciesId <= maxSpeciesId; ++speciesId)
         {
             CurrentWorldSpecies.Add(speciesId,
                 world.SpeciesHistoryList.First(d => d.ContainsKey(speciesId))[speciesId].FormattedName);
@@ -92,9 +93,8 @@ public partial class AutoEvoExploringTool
 
         currentWorldSpeciesHeader.AddRange(AllOrganelles.Select(o => o.Name));
 
-        currentWorldSpeciesHeader.AddRange(world.GameProperties.GameWorld.Map.Patches.Values
-            .OrderBy(p => p.ID)
-            .Select(p => p.Name.ToString()));
+        currentWorldSpeciesHeader.AddRange(
+            world.GameProperties.GameWorld.Map.Patches.Values.Select(p => p.Name.ToString()));
 
         return currentWorldSpeciesHeader;
     }
@@ -104,14 +104,14 @@ public partial class AutoEvoExploringTool
         if (!world.SpeciesHistoryList[generation].TryGetValue(speciesId, out var species))
         {
             var emptyData = new string[2 + Enum.GetNames(typeof(BehaviouralValueType)).Length + 7 + AllOrganelles.Count +
-                world.PatchHistoryList[generation].Count];
+                world.GameProperties.GameWorld.Map.Patches.Count];
 
             emptyData[0] = "Species doesn't exist";
 
             return emptyData;
         }
 
-        var data = new List<string> { species.Population.ToString(), species.Colour.ToHtml() };
+        var data = new List<string> { species.Population.ToString(), "#" + species.Colour.ToHtml() };
         data.AddRange(species.Behaviour.OrderBy(p => p.Key)
             .Select(p => p.Value.ToString(CultureInfo.InvariantCulture)));
 
@@ -136,9 +136,9 @@ public partial class AutoEvoExploringTool
             data.AddRange(new string[7 + AllOrganelles.Count]);
         }
 
-        data.AddRange(world.PatchHistoryList[generation]
-            .OrderBy(p => p.Key)
-            .Select(p => p.Value.SpeciesInPatch.FirstOrDefault(s => s.Key.ID == speciesId).Value.ToString()));
+        data.AddRange(world.GameProperties.GameWorld.Map.Patches.Values
+            .Select(p => p.History[world.CurrentGeneration - generation].SpeciesInPatch
+                .FirstOrDefault(s => s.Key.ID == speciesId).Value.ToString()));
 
         return data;
     }
@@ -173,7 +173,9 @@ public partial class AutoEvoExploringTool
         headerList.AddRange(GetSpeciesHeader());
         var header = headerList.ToArray();
 
-        for (uint speciesId = 1; speciesId < world.SpeciesHistoryList.Last().Max(s => s.Key); ++speciesId)
+        var maxSpeciesId = world.SpeciesHistoryList.Last().Max(s => s.Key);
+
+        for (uint speciesId = 1; speciesId <= maxSpeciesId; ++speciesId)
         {
             var path = Path.Combine(basePath, CurrentWorldSpecies[speciesId] + ".csv");
             var file = new File();
@@ -181,7 +183,7 @@ public partial class AutoEvoExploringTool
 
             file.StoreCsvLine(header);
 
-            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
+            for (int generation = 1; generation <= world.CurrentGeneration; ++generation)
             {
                 var data = new List<string> { generation.ToString() };
                 data.AddRange(GetSpeciesData(speciesId, generation));
@@ -201,7 +203,7 @@ public partial class AutoEvoExploringTool
         currentWorldPatchHeader.AddRange(world.GameProperties.GameWorld.Map.Patches.First().Value.Biome.Compounds.Keys
             .Select(c => c.Name).OrderBy(s => s));
 
-        currentWorldPatchHeader.AddRange(CurrentWorldSpecies.OrderBy(p => p.Key).Select(p => p.Value));
+        currentWorldPatchHeader.AddRange(CurrentWorldSpecies.Select(p => p.Value));
 
         return currentWorldPatchHeader;
     }
@@ -212,8 +214,8 @@ public partial class AutoEvoExploringTool
         data.AddRange(snapshot.Biome.CurrentCompoundAmounts.OrderBy(p => p.Key.Name).Select(p =>
             $"Amount = {p.Value.Amount}; Ambient = {p.Value.Ambient}; Density = {p.Value.Density}"));
 
-        data.AddRange(CurrentWorldSpecies.OrderBy(p => p.Value)
-            .Select(p => snapshot.SpeciesInPatch.FirstOrDefault(s => s.Key.ID == p.Key).Value.ToString()));
+        data.AddRange(CurrentWorldSpecies.Select(p =>
+            snapshot.SpeciesInPatch.FirstOrDefault(s => s.Key.ID == p.Key).Value.ToString()));
 
         return data;
     }
@@ -224,7 +226,7 @@ public partial class AutoEvoExploringTool
         var file = new File();
         file.Open(path, File.ModeFlags.Write);
 
-        var header = new List<string> { "name" };
+        var header = new List<string> { "Name" };
         header.AddRange(GetPatchHeader());
 
         file.StoreCsvLine(header.ToArray());
@@ -256,10 +258,12 @@ public partial class AutoEvoExploringTool
             file.Open(path, File.ModeFlags.Write);
             file.StoreCsvLine(header);
 
-            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
+            for (int generation = 1; generation <= world.CurrentGeneration; ++generation)
             {
                 var data = new List<string> { generation.ToString() };
-                data.AddRange(GetPatchData(patch.Value, world.PatchHistoryList[generation][patch.Key]));
+                data.AddRange(GetPatchData(patch.Value,
+                    world.GameProperties.GameWorld.Map.Patches[patch.Key]
+                        .History[world.CurrentGeneration - generation]));
                 file.StoreCsvLine(data.ToArray());
             }
 
