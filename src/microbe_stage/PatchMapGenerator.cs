@@ -88,10 +88,7 @@ public static class PatchMapGenerator
                 }
 
                 // If there's no tidepool, add one
-                if (tidepool == null)
-                {
-                    NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
-                }
+                tidepool ??= NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
             }
             else
             {
