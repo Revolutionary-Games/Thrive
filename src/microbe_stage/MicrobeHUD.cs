@@ -174,7 +174,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 continue;
 
             var button = FossilisationButtonScene.Instance<FossilisationButton>();
-            button.AttachedOrganism = microbe;
+            button.AttachedEntity = microbe;
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
