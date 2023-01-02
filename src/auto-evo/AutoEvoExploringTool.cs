@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -659,7 +660,7 @@ public class AutoEvoExploringTool : NodeWithInput
         currentGenerationLabel.Text = currentGeneration.ToString();
 
         totalTimeUsed += autoEvoRun.RunDuration;
-        totalTimeUsedLabel.Text = totalTimeUsed.ToString("g");
+        totalTimeUsedLabel.Text = totalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
     }
 
     /// <summary>
