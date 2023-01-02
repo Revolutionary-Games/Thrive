@@ -118,16 +118,25 @@ public class FossilisedSpecies
     ///   Loads a fossilised species by its filename.
     /// </summary>
     /// <param name="fossilName">The name of the .thrivefossil file (including extension)</param>
-    /// <returns>The species saved in the provided file</returns>
-    public static FossilisedSpecies LoadSpeciesFromFile(string fossilName)
+    /// <returns>The species saved in the provided file, or null if the file doesn't exist or is corrupt</returns>
+    public static FossilisedSpecies? LoadSpeciesFromFile(string fossilName)
     {
         var target = Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, fossilName);
-        var (fossilisedInfo, species, previewImage) = LoadFromFile(target);
-
-        return new FossilisedSpecies(fossilisedInfo, species, Path.GetFileNameWithoutExtension(fossilName))
+        try
         {
-            PreviewImage = previewImage,
-        };
+            var (fossilisedInfo, species, previewImage) = LoadFromFile(target);
+
+            return new FossilisedSpecies(fossilisedInfo, species, Path.GetFileNameWithoutExtension(fossilName))
+            {
+                PreviewImage = previewImage,
+            };
+        }
+        catch (Exception e)
+        {
+            // This fossil doesn't exist or is corrupt, so just don't bother showing it
+            GD.PrintErr($"Error loading fossil: {e}");
+            return null;
+        }
     }
 
     /// <summary>

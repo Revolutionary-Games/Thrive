@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -90,6 +91,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
     [Export]
     public NodePath CurrentGenerationLabelPath = null!;
+
+    [Export]
+    public NodePath TotalTimeUsedLabelPath = null!;
 
     [Export]
     public NodePath RunStatusLabelPath = null!;
@@ -191,6 +195,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Status controls
     private Label currentGenerationLabel = null!;
+    private Label totalTimeUsedLabel = null!;
     private Label runStatusLabel = null!;
     private SpinBox finishXGenerationsSpinBox = null!;
     private Button finishXGenerationsButton = null!;
@@ -232,6 +237,8 @@ public class AutoEvoExploringTool : NodeWithInput
     ///   The current generation auto-evo has evolved
     /// </summary>
     private int currentGeneration;
+
+    private TimeSpan totalTimeUsed;
 
     /// <summary>
     ///   The generation that report and viewer tab is displaying,
@@ -297,6 +304,7 @@ public class AutoEvoExploringTool : NodeWithInput
         useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
 
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
+        totalTimeUsedLabel = GetNode<Label>(TotalTimeUsedLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
         finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
         finishXGenerationsButton = GetNode<Button>(FinishXGenerationsButtonPath);
@@ -650,6 +658,9 @@ public class AutoEvoExploringTool : NodeWithInput
         HistoryListMenuIndexChanged(currentGeneration);
 
         currentGenerationLabel.Text = currentGeneration.ToString();
+
+        totalTimeUsed += autoEvoRun.RunDuration;
+        totalTimeUsedLabel.Text = totalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
     }
 
     /// <summary>

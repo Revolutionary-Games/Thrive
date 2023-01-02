@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-07 10:47+0200\n"
+"POT-Creation-Date: 2023-01-02 15:23+0200\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -21,63 +21,52 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "簡單"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "普通"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "困難"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 #: ../src/general/WorldGenerationSettings.cs:169
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "自定義"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "概念美術"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"在一個遙遠的外星星球上，漫長的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
-"\n"
-"生命。\n"
-"\n"
-"簡單的微生物居住在海洋的深層區域。你是這個星球上最後的宇宙共同祖先（LUCA）。\n"
-"\n"
-"為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
+msgstr "微生物階段"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "放置細胞器"
+msgstr "多細胞階段"
 
 #: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
 msgstr "世代"
 
 #: ../simulation_parameters/common/gallery.json:138
-#, fuzzy
 msgid "MODELS"
-msgstr "上帝模式"
+msgstr "模式"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
-msgstr ""
+msgstr "音樂"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "全部"
 
 #: ../simulation_parameters/common/gallery.json:268
 #, fuzzy
@@ -87,12 +76,11 @@ msgstr "菜單"
 #: ../simulation_parameters/common/gallery.json:332
 #, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "在加載微生物編輯器"
+msgstr "微生物編輯器"
 
 #: ../simulation_parameters/common/gallery.json:408
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "在加載微生物編輯器"
+msgstr "多細胞編輯器"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -115,32 +103,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]鍵讓你的细胞可以吞噬比你小的敵對細胞、細菌、鐵塊和細胞器。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound]，並且會讓你減慢移動。不要忘記按第二次[thrive:input]g_toggle_engulf[/thrive:input]來停止吞噬。"
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"原核結構\n"
-"\n"
-"代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"化學合成蛋白：作為化學質體使用一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只生產半份[thrive:compound type=\"glucose\"][/thrive:compound]，但同時進行糖酵解。占用一个六角格。\n"
-"\n"
-"類囊體：產生的[thrive:compound type=\"glucose\"][/thrive:compound]量是正常葉綠體的1/3，但同時進行糖酵解。占用一个六角格。\n"
-"\n"
-"鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"氮化酶：將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"細胞質：有儲存空間，進行糖酵解（產生少量[thrive:compound type=\"atp\"][/thrive:compound]）"
+msgstr "胞吞完成後，所有在胞吞中攝入的物體都會被儲存在細胞膜內以將其消化。無法被消化的物體都會被排出，所以請事先確保您具備能夠處理它們的突變。酶有助於消化並由溶酶體產生；進化該細胞器可以使消化更加高效。"
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+msgstr "然而，溶酶體僅存在於真核細胞中。原核細胞沒有這種細胞器，這使其消化相對低效。這對於小型細胞而言無傷大雅，但對大型細胞來說，沒有溶酶體將使它們處於極大的劣勢之中。"
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+msgstr "特別地，纖維素和幾丁質細胞壁在未經必須的酶將其降解之前無法被消化。"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -412,7 +384,7 @@ msgstr "發射毒素"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2177
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "分泌粘液"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
@@ -422,7 +394,7 @@ msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:52
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "按住以顯示群體指令菜單"
 
 #: ../simulation_parameters/common/input_options.json:56
 #: ../src/microbe_stage/MicrobeStage.tscn:2142
@@ -517,47 +489,44 @@ msgid "MOVE_ORGANELLE"
 msgstr "移動細胞器"
 
 #: ../simulation_parameters/common/input_options.json:160
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "移動"
+msgstr "3D移動"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "向上移動或起跳"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "向下移動或下蹲"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "雜項"
+msgstr "3D階段雜項"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "按住以顯示光標"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "編輯器"
+msgstr "3D編輯器"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "按住以在平移與旋轉模式間切換"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "切換至正視圖"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "切換至右視圖"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "切換至俯視圖"
 
 #: ../simulation_parameters/common/input_options.json:213
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -592,7 +561,7 @@ msgstr "雜項"
 
 #: ../simulation_parameters/common/input_options.json:248
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "暫停"
 
 #: ../simulation_parameters/common/input_options.json:252
 #, fuzzy
@@ -1055,170 +1024,175 @@ msgstr "纖毛"
 msgid "LYSOSOME"
 msgstr "毒素體"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:580
+#: ../src/auto-evo/AutoEvoExploringTool.cs:588
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "濃度為"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:104
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
 #, fuzzy
 msgid "MAP"
 msgstr "ATP"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "報告"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:128
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:177
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "發生突變"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:183
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:184
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "[u]{0}[/u] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:196
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:197
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:217
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:231
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:237
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:238
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:250
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:268
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 #, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "從這個區域滅絕了"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:286
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "突變點數"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:323
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:343
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:344
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:351
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:357
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:358
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:390
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:402
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:424
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:441
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:442
+#, fuzzy
+msgid "TOTAL_TIME_USED_COLON"
+msgstr "物種："
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "物種："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:448
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
 msgid "READY"
 msgstr "已就緒"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "濃度為"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:485
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:491
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:509
 msgid "ABORT"
 msgstr "取消"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:515
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:557
 msgid "GENERATIONS"
 msgstr "世代"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
 msgid "SELECT_A_GENERATION"
 msgstr "選取一個世代"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:580
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:598
 #, fuzzy
 msgid "SPECIES"
 msgstr "物種列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:587
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:605
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:688
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo自動模擬 結果："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:736
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:754
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "由Revolutionary Games Studio製作"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:773
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "物種列表"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:830
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:848
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1228,13 +1202,13 @@ msgstr "物種列表"
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:834
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:852
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
 msgid "CONFIRM_EXIT"
 msgstr "確認退出"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:835
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:853
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -2151,7 +2125,7 @@ msgstr "關閉"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:262
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -3286,7 +3260,7 @@ msgid "EXTINCT_IN_PATCH"
 msgstr "從這個區域滅絕了"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -4455,7 +4429,7 @@ msgstr "死亡"
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1114
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
 msgstr "繁殖"
 
@@ -4556,7 +4530,7 @@ msgstr ""
 "當你有ATP時，你的生命值就會再生。\n"
 "請確保收集足夠的葡萄糖來產生ATP。"
 
-#: ../src/microbe_stage/MicrobeStage.cs:732
+#: ../src/microbe_stage/MicrobeStage.cs:743
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
@@ -5080,19 +5054,19 @@ msgstr "滅絕"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "就像曾經存在過的所有物種中的99%一樣，你的物種已經滅絕了。其他人將繼續填補你的利基並茁壯成長，但那不會是你。你將被遺忘，成為進化過程中一個失敗的實驗。"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:256
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:259
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米處"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:274
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "物種人口"
@@ -6108,7 +6082,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
