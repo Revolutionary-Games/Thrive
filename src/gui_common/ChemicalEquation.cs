@@ -52,7 +52,7 @@ public class ChemicalEquation : VBoxContainer
             if (equationFromProcess == null && value == null)
                 return;
 
-            if (equationFromProcess?.Equals(value) == true)
+            if (value != null && equationFromProcess?.Equals(value) == true)
                 return;
 
             equationFromProcess = value;
