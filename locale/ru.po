@@ -189,13 +189,15 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Внешние органеллы\n"
 "\n"
-"Жгутик: Двигает вашу клетку быстрее потребляя [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Жгутик: ускоряет движение вашей клетки, потребляя [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Пили: Может использоваться для прокалывания других клеток или для защиты от их токсинов\n"
+"Пиль: может использоваться для нанесения ударов по другим клеткам или для защиты от их токсинов\n"
 "\n"
-"Хеморецептор: Позволяет обнаруживать соединения на большом расстоянии\n"
+"Хеморецептор: позволяет обнаруживать соединения издалека\n"
 "\n"
-"Реснички: Увеличивают скорость поворота клетки"
+"Струя слизи: позволяет выделять [thrive:compound type=\"mucilage\"][/thrive:compound] (производится из [thrive:compound type=\"glucose\"][/thrive:compound]), чтобы ускорить вашу клетку\n"
+"\n"
+"Реснички: Увеличивает скорость вращения клеток"
 
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -1094,19 +1096,19 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:358
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "Жесткая конкуренция за экологическую нишу (различия в приспособленности преувеличены)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:371
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "Минимальная популяция вида для разделения на несколько видов с хорошими мутациями"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:391
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "Минимальная доля популяции вида, допускающая разделение по мутациям"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:403
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "Создание вида для увеличения биоразнообразия забирает часть популяции существующего вида"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 #, fuzzy
@@ -1233,7 +1235,7 @@ msgstr "Популяция {0} изменена на {1} к {2}, по причи
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
-msgstr "Миллион Лет"
+msgstr "млн. лет"
 
 #: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
@@ -1584,7 +1586,7 @@ msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Идет настройка мёртвых зон. Пожалуйста, не трогайте кнопки и стики на контроллере и подождите несколько секунд"
+msgstr "Идет настройка мёртвых зон. Пожалуйста, не трогайте кнопки и стики на контроллере и подождите несколько секунд."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
 msgid "DEADZONE_CALIBRATION_IS_RESET"
@@ -1601,9 +1603,8 @@ msgstr "Настройка мёртвых зон"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Этот инструмент позволяет настроить мёртвые зоны на контроллере. Мёртвая зона обозначает насколько надо сдвинуть аналоговый стик (или аналоговую кнопку) прежде чем это движение будет засчитано как ввод.\n"
-"\n"
-"Перед началом калибрации подвигайте все стики контроллера и отпустите из, а затем нажмите и отпустите аналоговые кнопки (например курки) на контроллере."
+"Этот инструмент позволяет настроить мертвые зоны оси контроллера. Размеры мертвой зоны показывают, насколько нужно переместить стик (или аналоговую кнопку), прежде чем это движение будет обнаружено как ввод.\n"
+"Перед началом калибровки переместите все стики контроллера и отпустите их, а также нажмите и отпустите любые аналоговые кнопки (например, триггеры) на вашем контроллере."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
@@ -2111,12 +2112,13 @@ msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрация глюкозы резко упала!"
 
 #: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
-"Спасибо за игру!\n"
+"Благодарим вас за поддержку развития Thrive, купив эту копию Thrive!\n"
 "\n"
-"Если вам понравилась игра, расскажите о нас своим друзьям."
+"Если вы не покупали эту копию, получите собственную копию [color=#3796e1][url={0}]здесь[/url][/color] или зайдите на наш [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]сайт[/url][/color].\n"
+"\n"
+"Если вы хотите увидеть панель запуска Thrive перед запуском Thrive, вы можете использовать кнопку в главном меню, чтобы выйти в панель запуска, а затем отключить бесшовный режим в меню параметров программы запуска."
 
 #: ../src/general/MainMenu.cs:414
 msgid "STORE_LOGGED_IN_AS"
@@ -2289,9 +2291,8 @@ msgid "REDDIT_TOOLTIP"
 msgstr "Продолжить игру"
 
 #: ../src/general/MainMenu.tscn:690
-#, fuzzy
 msgid "DISCORD_TOOLTIP"
-msgstr "Времени прошло: {0:#,#} лет"
+msgstr "Присоединяйтесь к нашему Discord серверу"
 
 #: ../src/general/MainMenu.tscn:701
 #, fuzzy
@@ -2299,9 +2300,8 @@ msgid "FACEBOOK_TOOLTIP"
 msgstr "Приостановить игру"
 
 #: ../src/general/MainMenu.tscn:712
-#, fuzzy
 msgid "TWITTER_TOOLTIP"
-msgstr "Времени прошло: {0:#,#} лет"
+msgstr "Посетите нашу ленту в Twitter"
 
 #: ../src/general/MainMenu.tscn:779
 msgid "GLES2_MODE_WARNING"
@@ -2337,13 +2337,16 @@ msgid "SAFE_MODE_TITLE"
 msgstr "Удаление Локальных Данных"
 
 #: ../src/general/MainMenu.tscn:833
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
-"Боязливые микроорганизмы будут дальше убегать\n"
-"и более склонны к побегу от хищников в общем.\n"
-"Храбрые микроорганизмы не будут напуганы хищниками поблизости\n"
-"и более склонны атаковать в ответ."
+"Thrive запущен в безопасном режиме из-за предыдущей ошибки запуска.\n"
+"\n"
+"Вероятно, это было вызвано либо модом, либо видеоплеером. В качестве меры предосторожности загрузка включенных модов могла быть пропущена и/или воспроизведение видео может быть отключено. Это будет действовать до тех пор, пока Thrive не будет перезапущен.\n"
+"\n"
+"Перед перезапуском отключите все моды, которые могут быть проблематичными или несовместимыми с этой версией Thrive (вы можете прочитать журналы предыдущих запусков, чтобы узнать, был ли мод вероятным виновником).\n"
+"При проблемах, связанных с видеоплеером, используйте параметр запуска, чтобы принудительно отключить видео.\n"
+"\n"
+"Если вы не устраните проблему, вызывающую сбой при запуске, вам потребуется перезапустить Thrive несколько раз, чтобы вернуться в безопасный режим."
 
 #: ../src/general/MainMenu.tscn:837
 msgid "MOD_LOAD_ERRORS"
@@ -2354,9 +2357,8 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
 #: ../src/general/MainMenu.tscn:844
-#, fuzzy
 msgid "THANK_YOU_TITLE"
-msgstr "ВЫ РАСЦВЕЛИ!"
+msgstr "Спасибо"
 
 #: ../src/general/MainMenu.tscn:870
 msgid "DISMISS_PERMANENTLY"
@@ -2614,9 +2616,8 @@ msgid "GLES3"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:800
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Показать название кнопок выбора частей:"
+msgstr "Неизвестно"
 
 #: ../src/general/OptionsMenu.cs:809 ../src/general/OptionsMenu.tscn:510
 msgid "VIDEO_MEMORY_MIB"
@@ -2639,16 +2640,12 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Этот язык на {0}% завершён"
 
 #: ../src/general/OptionsMenu.cs:1332
-#, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr ""
-"Это сохранение из новых версий Thrive и скорее всего несовместимо.\n"
-"Всё равно попробовать загрузить сохранение?"
+msgstr "Это отладочная сборка, где приведенная ниже информация, вероятно, не актуальна"
 
 #: ../src/general/OptionsMenu.cs:1339
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Версия мода:"
+msgstr "Неизвестная версия"
 
 #: ../src/general/OptionsMenu.tscn:160
 msgid "GRAPHICS"
@@ -2990,12 +2987,10 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть папку с логами"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Целенаправленные микробы будут искать добычу на большем растоянии\n"
-"и будут соперничать за куски с большим рвением.\n"
-"Бдительные микробы будут быстрее переключаться на новые цели."
+"Это показывает, сколько всплывающих окон было навсегда отклонено пользователем.\n"
+"Если некоторые всплывающие окна, которые действительно нужны, будут отклонены, можно использовать кнопку рядом с этим, чтобы все отклоненные всплывающие окна снова появились."
 
 #: ../src/general/OptionsMenu.tscn:1565
 #, fuzzy
@@ -3233,15 +3228,29 @@ msgstr "Отключено"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Шаблон сложности"
+msgstr ""
+"Заданная сложность: {0}\n"
+"Множитель стоимости мутации: {1}\n"
+"Скорость мутации ИИ: {2}\n"
+"Сложная плотность облаков: {3}\n"
+"Штраф за смерть игрока: {4}\n"
+"Количество глюкозы в окружающей среде: {5}\n"
+"Множитель стоимости осморегуляции: {6}\n"
+"Бесплатное облако глюкозы при выходе из редактора: {7}\n"
+"Пассивно получить прогресс воспроизведения: {8}\n"
+"Ограничить использование соединений роста: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:189
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
-msgstr "Открыть Папку с Логами"
+msgstr ""
+"Тип карты исправления: {0}\n"
+"Только LAWK: {1}\n"
+"Происхождение жизни: {2}\n"
+"Цикл дня и ночи: {3}\n"
+"Продолжительность дня(в секундах): {4} \n"
+"Случайное начальное число планеты: {5}"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -3562,9 +3571,11 @@ msgid "RAW"
 msgstr "\"Raw\""
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Devbuild-Спонсоры"
+msgstr ""
+"DevBuild {0}\n"
+"на ветке {1} по адресу {2}\n"
+"{3}"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -3780,7 +3791,7 @@ msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compoun
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она выполняет - это преобразование глюкозы в энергию АТФ. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
+msgstr "Липкие внутренности клетки. Цитоплазма представляет собой основную смесь растворенных в воде ионов, белков и других веществ, заполняющих внутреннюю часть клетки. Одной из функций, которые он выполняет, является [b]гликолиз[/b], превращение [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Для клеток, которым не хватает органелл, чтобы иметь более продвинутый метаболизм, это то, на что они полагаются для получения энергии. Он также используется для хранения молекул в клетке и для увеличения размера клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:304
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:407
@@ -3905,7 +3916,7 @@ msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] ч
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "Жгутик (множественное число: жгутики) представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют АТФ для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик, например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
+msgstr "Жгутик представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик. Например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
 msgid "SPEED"
@@ -3965,7 +3976,7 @@ msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробное дыхание[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -4568,7 +4579,7 @@ msgstr "Энергия в {0} для {1}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
 msgid "ENERGY_SUMMARY_LINE"
-msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, что приводит к нескорректированному населению {2}"
+msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, результатом чего является нескорректированная популяция количеством в {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2339
 msgid "ENERGY_SOURCES"
@@ -5864,37 +5875,30 @@ msgid "PAGE_TITLE"
 msgstr "Удаление Локальных Данных"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
-#, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
+msgstr ""
+"Окаменелый вид с таким названием уже существует.\n"
+"Вы уверены, что хотите перезаписать его?"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
-#, fuzzy
 msgid "FOSSILISATION"
-msgstr "популяция:"
+msgstr "Окаменение"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
-#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Агрессивные микроорганизмы будут преследовать свою добычу на большее расстояние\n"
-"и более склонны бороться с хищниками, когда атакованы.\n"
-"Мирные микроорганизмы не будут нападать на других на больших дистанциях\n"
-"и менее склонны использовать токсины против хищников."
+msgstr "Окамените этот вид, чтобы сохранить его в музее. Вы можете получить доступ к музею из Thriveopedia или загрузить ископаемые виды в бесплатном редакторе."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
-#, fuzzy
 msgid "FOSSILISE"
-msgstr "Оседлый"
+msgstr "Окаменеть"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Подтвердите перезапись"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
-#, fuzzy
 msgid "MICROBE"
-msgstr "Одноклеточная стадия"
+msgstr "Стадия микроба"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
 #, fuzzy
@@ -5902,34 +5906,44 @@ msgid "EARLY_MULTICELLULAR"
 msgstr "Этап Многоклеточного микроба"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-#, fuzzy
 msgid "LATE_MULTICELLULAR"
-msgstr "Этап Многоклеточного микроба"
+msgstr "Поздний Этап Многоклеточного микроба"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Текущий Мир"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Древо Эволюции"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
-msgstr "Автор: Revolutionary Games Studio"
+msgstr ""
+"Пока не отображается в режиме бесплатной сборки или в сохранениях, запущенных в версиях до 0.6.0.\n"
+"\n"
+"Если ни один из них не применим, произошла ошибка. Пожалуйста, сообщите об этом команде разработчиков и предоставьте журналы игры."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Home"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
-msgstr ""
+msgstr "Добро пожаловать в Thriveopedia"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
+"Thriveopedia — это центральная библиотека и хранилище информации для контента Thrive. Здесь вы найдете ответы на любые вопросы об игре, вашем текущем мире или проекте разработки Thrive.\n"
+"\n"
+"На данный момент Thriveopedia пустовата, но вы все равно можете просматривать несколько страниц, используя дерево страниц и кнопки навигации. Обратите внимание, что страницы, относящиеся к конкретной текущей игре, будут отображаться только тогда, когда Thriveopedia открыта через меню паузы в игре.\n"
+"\n"
+"Вы можете найти больше информации об игре в местах ниже.\n"
+"\n"
+"[color=#3796e1][url=https://revolutionarygamesstudio.com/]Official Website[/url][/color]\n"
+"[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/wiki/Main_Page]Development Wiki[/url][/color]\n"
+"[color=#3796e1][url=https://thrive.fandom.com/wiki/Thrive_Wiki]Community Wiki[/url][/color]"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
@@ -5937,11 +5951,13 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Музей"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
+"Вы уверены, что хотите начать новую игру за выбранный вид?\n"
+"Весь несохранённый прогресс будет утерян."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 #, fuzzy
@@ -5951,6 +5967,9 @@ msgstr "Свободное Строительство"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+"Добро пожаловать в музей! Здесь вы можете полюбоваться на виды, которых вы окаменели во время всех ваших прохождений. Вы даже можете играть за вид, открыв его в режиме свободного строительства.\n"
+"\n"
+"Чтобы окаменеть вид в игре, нажмите кнопку паузы. Затем выберите микроб на экране, чтобы окаменеть его виды."
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
