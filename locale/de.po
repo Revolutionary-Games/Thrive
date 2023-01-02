@@ -79,7 +79,7 @@ msgstr "Mikrobeneditor"
 
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Mikrobeneditor"
+msgstr "Mehrzelliger Editor"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -2708,7 +2708,7 @@ msgstr "(Dichte der Ressourcen-Wolken in der Spielumgebung)"
 
 #: ../src/general/NewGameSettings.tscn:589
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "Spielertod Bevölkerungsstrafe"
+msgstr "Bevölkerungsstrafe bei Spielertod"
 
 #: ../src/general/NewGameSettings.tscn:634
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
@@ -2743,7 +2743,7 @@ msgstr "(Starte jede Generation mit einer Gratis-Glukosewolke in der Nähe)"
 
 #: ../src/general/NewGameSettings.tscn:788
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Passiv Reproduktionsfortschritt erhalten"
+msgstr "Passiven Reproduktionsfortschritt erhalten"
 
 #: ../src/general/NewGameSettings.tscn:795
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
@@ -2759,17 +2759,8 @@ msgstr "Beschränke die Nutzung von Wachstums-Substanzen"
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
-"Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. "
-"Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro "
-"Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo "
-"verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut "
-"die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für "
-"jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr "
-"gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur "
-"Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie "
-"gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness "
-"ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle "
-"verwerten kann."
+"(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt "
+"nur die verfügbaren Substanzen das Wachstum beeinflussen)"
 
 #: ../src/general/NewGameSettings.tscn:858
 msgid "PATCH_MAP_TYPE"
@@ -2798,7 +2789,7 @@ msgstr "Tag-/Nachtzyklus aktivieren"
 
 #: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(WARNUNG: Photosynthese wird viel weniger rentabel)"
+msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
 #: ../src/general/NewGameSettings.tscn:985
 msgid "DAY_LENGTH"
@@ -4682,8 +4673,7 @@ msgstr "Klicke, ziehe und zoome um dir einen Überblick zu verschaffen"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 #, fuzzy
 msgid "LOOKING_AT"
-msgstr ""
-"Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Blickrichtung:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:595
@@ -4782,13 +4772,12 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
-"Metaball kann nicht in den Baum seiner Untergeordneten verschoben werden"
+msgstr "Zelle kann nicht in den Baum der Nachfahren verschoben werden"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 #, fuzzy
 msgid "INTERNALS"
-msgstr "Extern"
+msgstr "Innere"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:373
 msgid "APPEARANCE"
@@ -4825,7 +4814,7 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
 #, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Organelle platzieren"
+msgstr "Mehrere Zellen"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:48
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
