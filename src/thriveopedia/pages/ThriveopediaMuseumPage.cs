@@ -64,10 +64,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         foreach (var speciesName in FossilisedSpecies.CreateListOfFossils(true))
         {
-            var card = (MuseumCard)museumCardScene.Instance();
-
             var savedSpecies = FossilisedSpecies.LoadSpeciesFromFile(speciesName);
 
+            // Don't add cards for corrupt fossils
+            if (savedSpecies == null)
+                continue;
+
+            var card = (MuseumCard)museumCardScene.Instance();
             card.SavedSpecies = savedSpecies.Species;
             card.FossilPreviewImage = savedSpecies.PreviewImage;
             card.Connect(nameof(MuseumCard.OnSpeciesSelected), this, nameof(UpdateSpeciesPreview));

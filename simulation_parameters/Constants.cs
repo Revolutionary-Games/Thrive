@@ -184,6 +184,8 @@ public static class Constants
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
+    public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
+
     /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
