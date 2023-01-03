@@ -5,7 +5,7 @@
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=9]
@@ -618,109 +618,117 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
-margin_left = 81.0
-margin_top = 74.0
-margin_right = 465.0
-margin_bottom = 474.0
+margin_left = 93.0
+margin_top = 80.0
+margin_right = 453.0
+margin_bottom = 468.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 384.0
-margin_bottom = 25.0
+margin_right = 360.0
+margin_bottom = 22.0
 custom_constants/separation = 10
 
 [node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer6"]
-margin_right = 252.0
-margin_bottom = 25.0
+margin_right = 227.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 6 )
 text = "CURRENT_WORLD_COLON"
 
 [node name="CurrentWorldLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer6"]
-margin_left = 262.0
-margin_top = 2.0
-margin_right = 271.0
-margin_bottom = 22.0
+margin_left = 237.0
+margin_top = 1.0
+margin_right = 360.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0"
+align = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 35.0
-margin_right = 384.0
-margin_bottom = 60.0
+margin_top = 32.0
+margin_right = 360.0
+margin_bottom = 54.0
 custom_constants/separation = 10
 
 [node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 303.0
-margin_bottom = 25.0
+margin_right = 276.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 6 )
 text = "CURRENT_GENERATION_COLON"
 
 [node name="CurrentGenerationLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 313.0
-margin_top = 2.0
-margin_right = 322.0
-margin_bottom = 22.0
+margin_left = 286.0
+margin_top = 1.0
+margin_right = 360.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0"
+align = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 70.0
-margin_right = 384.0
-margin_bottom = 95.0
+margin_top = 64.0
+margin_right = 360.0
+margin_bottom = 86.0
 custom_constants/separation = 10
 
 [node name="Label3" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 254.0
-margin_bottom = 25.0
+margin_right = 230.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 6 )
 text = "TOTAL_TIME_USED_COLON"
 
 [node name="TotalTimeUsedLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer4"]
-margin_left = 264.0
-margin_top = 2.0
-margin_right = 384.0
-margin_bottom = 22.0
+margin_left = 240.0
+margin_top = 1.0
+margin_right = 360.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "0:00:00:0000000"
+align = 2
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 105.0
-margin_right = 384.0
-margin_bottom = 130.0
+margin_top = 96.0
+margin_right = 360.0
+margin_bottom = 118.0
 custom_constants/separation = 10
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer5"]
-margin_right = 150.0
-margin_bottom = 25.0
+margin_right = 135.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 6 )
 text = "STATUS_COLON"
 
 [node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 160.0
-margin_top = 2.0
-margin_right = 212.0
-margin_bottom = 22.0
+margin_left = 145.0
+margin_top = 1.0
+margin_right = 360.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "READY"
+align = 2
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 140.0
-margin_right = 384.0
-margin_bottom = 175.0
+margin_top = 128.0
+margin_right = 360.0
+margin_bottom = 163.0
 
 [node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 80.0
@@ -732,7 +740,7 @@ align = 1
 
 [node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 84.0
-margin_right = 384.0
+margin_right = 360.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 text = "Finish 10 Generations"
@@ -741,9 +749,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 185.0
-margin_right = 384.0
-margin_bottom = 220.0
+margin_top = 173.0
+margin_right = 360.0
+margin_bottom = 208.0
 
 [node name="RunXWorldsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 80.0
@@ -755,7 +763,7 @@ align = 1
 
 [node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 84.0
-margin_right = 384.0
+margin_right = 360.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 text = "Run 10 Worlds"
@@ -764,27 +772,27 @@ __meta__ = {
 }
 
 [node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 230.0
-margin_right = 384.0
-margin_bottom = 265.0
+margin_top = 218.0
+margin_right = 360.0
+margin_bottom = 253.0
 text = "FINISH_ONE_GENERATION"
 
 [node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 275.0
-margin_right = 384.0
-margin_bottom = 310.0
+margin_top = 263.0
+margin_right = 360.0
+margin_bottom = 298.0
 text = "RUN_ONE_STEP"
 
 [node name="Abort" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 320.0
-margin_right = 384.0
-margin_bottom = 355.0
+margin_top = 308.0
+margin_right = 360.0
+margin_bottom = 343.0
 text = "ABORT"
 
 [node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 365.0
-margin_right = 384.0
-margin_bottom = 400.0
+margin_top = 353.0
+margin_right = 360.0
+margin_bottom = 388.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
