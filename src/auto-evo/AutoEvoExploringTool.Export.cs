@@ -11,7 +11,7 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class AutoEvoExploringTool
 {
-    private List<OrganelleDefinition> AllOrganelles = null!;
+    private List<OrganelleDefinition> allOrganelles = null!;
 
     private void ExportCurrentWorld()
     {
@@ -22,7 +22,7 @@ public partial class AutoEvoExploringTool
             return;
         }
 
-        AllOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
 
         currentWorldExportButton.Disabled = true;
         var basePath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
@@ -68,7 +68,7 @@ public partial class AutoEvoExploringTool
             "Organelle count",
         });
 
-        header.AddRange(AllOrganelles.Select(o => o.Name));
+        header.AddRange(allOrganelles.Select(o => o.Name));
         file.StoreCsvLine(header.ToArray());
 
         // Generate data
@@ -109,12 +109,12 @@ public partial class AutoEvoExploringTool
                         microbeSpecies.Organelles.Count.ToString(),
                     });
 
-                    data.AddRange(AllOrganelles
+                    data.AddRange(allOrganelles
                         .Select(o => microbeSpecies.Organelles.Count(ot => ot.Definition == o).ToString()));
                 }
                 else
                 {
-                    data.AddRange(new string[7 + AllOrganelles.Count]);
+                    data.AddRange(new string[7 + allOrganelles.Count]);
                 }
 
                 file.StoreCsvLine(data.ToArray());

@@ -121,6 +121,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public NodePath CurrentGenerationLabelPath = null!;
 
     [Export]
+    public NodePath CurrentWorldLabelPath = null!;
+
+    [Export]
     public NodePath TotalTimeUsedLabelPath = null!;
 
     [Export]
@@ -131,6 +134,12 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     [Export]
     public NodePath FinishXGenerationsButtonPath = null!;
+
+    [Export]
+    public NodePath RunXWorldsSpinBoxPath = null!;
+
+    [Export]
+    public NodePath RunXWorldsButtonPath = null!;
 
     [Export]
     public NodePath RunGenerationButtonPath = null!;
@@ -228,10 +237,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     // Status controls
     private Label currentGenerationLabel = null!;
+    private Label currentWorldLabel = null!;
     private Label totalTimeUsedLabel = null!;
     private Label runStatusLabel = null!;
     private SpinBox finishXGenerationsSpinBox = null!;
     private Button finishXGenerationsButton = null!;
+    private SpinBox runXWorldsSpinBox = null!;
+    private Button runXWorldsButton = null!;
     private Button finishOneGenerationButton = null!;
     private Button runOneStepButton = null!;
     private Button abortButton = null!;
@@ -270,6 +282,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private int generationDisplayed;
 
     private int generationsPendingToRun;
+
+    private int worldsPendingToRun;
 
     private bool ready;
 
@@ -355,10 +369,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
         useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
 
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
+        currentWorldLabel = GetNode<Label>(CurrentWorldLabelPath);
         totalTimeUsedLabel = GetNode<Label>(TotalTimeUsedLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
         finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
         finishXGenerationsButton = GetNode<Button>(FinishXGenerationsButtonPath);
+        runXWorldsSpinBox = GetNode<SpinBox>(RunXWorldsSpinBoxPath);
+        runXWorldsButton = GetNode<Button>(RunXWorldsButtonPath);
         finishOneGenerationButton = GetNode<Button>(RunGenerationButtonPath);
         runOneStepButton = GetNode<Button>(RunStepButtonPath);
         abortButton = GetNode<Button>(AbortButtonPath);
@@ -422,6 +439,14 @@ public partial class AutoEvoExploringTool : NodeWithInput
         {
             FinishOneGeneration();
             --generationsPendingToRun;
+        }
+
+        if (autoEvoRun == null && worldsPendingToRun > 0)
+        {
+            InitNewGame();
+            FinishOneGeneration();
+            generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
+            --worldsPendingToRun;
         }
     }
 
@@ -555,10 +580,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
             {
                 finishXGenerationsSpinBox.Editable = true;
                 finishXGenerationsButton.Disabled = false;
+                runXWorldsSpinBox.Editable = true;
+                runXWorldsButton.Disabled = false;
                 finishOneGenerationButton.Disabled = false;
                 runOneStepButton.Disabled = false;
                 playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = true;
+                worldsListMenu.Disabled = false;
                 break;
             }
 
@@ -566,10 +594,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
             {
                 finishXGenerationsSpinBox.Editable = false;
                 finishXGenerationsButton.Disabled = true;
+                runXWorldsSpinBox.Editable = false;
+                runXWorldsButton.Disabled = true;
                 finishOneGenerationButton.Disabled = true;
                 runOneStepButton.Disabled = true;
                 playWithCurrentSettingButton.Disabled = true;
                 abortButton.Disabled = false;
+                worldsListMenu.Disabled = true;
                 break;
             }
 
@@ -577,10 +608,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
             {
                 finishXGenerationsSpinBox.Editable = true;
                 finishXGenerationsButton.Disabled = false;
+                runXWorldsSpinBox.Editable = false;
+                runXWorldsButton.Disabled = true;
                 finishOneGenerationButton.Disabled = false;
                 runOneStepButton.Disabled = false;
                 playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = false;
+                worldsListMenu.Disabled = false;
                 break;
             }
         }
@@ -712,6 +746,23 @@ public partial class AutoEvoExploringTool : NodeWithInput
         FinishOneGeneration();
     }
 
+    private void OnRunXWorldsSpinBoxValueChanged(float value)
+    {
+        runXWorldsButton.Text = TranslationServer.Translate("RUN_X_WORLDS").FormatSafe(Math.Round(value));
+    }
+
+    /// <summary>
+    ///   Sequentially run X worlds, Y generations each
+    /// </summary>
+    private void OnRunXWorldsButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        worldsPendingToRun = (int)Math.Round(runXWorldsSpinBox.Value) - 1;
+        generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
+
+        FinishOneGeneration();
+    }
+
     /// <summary>
     ///   Run a new generation or finish the current generation async
     /// </summary>
@@ -807,6 +858,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             autoEvoRun.Abort();
 
         generationsPendingToRun = 0;
+        worldsPendingToRun = 0;
 
         SetControlButtonsState(RunControlState.Ready);
     }
@@ -822,7 +874,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         SetControlButtonsState(RunControlState.Ready);
         runStatusLabel.Text = TranslationServer.Translate("READY");
 
-        worldsListMenu.Text = index.ToString();
+        currentWorldLabel.Text = worldsListMenu.Text = index.ToString();
 
         world = worldsList[index];
 
