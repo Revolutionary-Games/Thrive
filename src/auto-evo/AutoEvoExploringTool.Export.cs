@@ -44,7 +44,7 @@ public partial class AutoEvoExploringTool
 
         if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.PopulationHistory))
         {
-            ExportCurrentWorldPerSpeciesDetailedHistory(basePath);
+            ExportCurrentWorldPopulationHistory(basePath);
         }
 
         currentWorldExportButton.Disabled = false;
@@ -91,7 +91,7 @@ public partial class AutoEvoExploringTool
 
         for (uint speciesId = 1; speciesId <= maxSpeciesId; ++speciesId)
         {
-            for (int generation = 1; generation <= world.CurrentGeneration; ++generation)
+            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
             {
                 if (!world.SpeciesHistoryList[generation].TryGetValue(speciesId, out var species))
                     continue;
@@ -133,7 +133,7 @@ public partial class AutoEvoExploringTool
         file.Close();
     }
 
-    private void ExportCurrentWorldPerSpeciesDetailedHistory(string path)
+    private void ExportCurrentWorldPopulationHistory(string path)
     {
         path = Path.Combine(path, nameof(CurrentWorldExportSettings.PopulationHistory) + ".csv");
         var file = new File();
@@ -144,7 +144,7 @@ public partial class AutoEvoExploringTool
 
         foreach (var patch in world.GameProperties.GameWorld.Map.Patches.Values)
         {
-            for (int generation = 1; generation <= world.CurrentGeneration; ++generation)
+            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
             {
                 var snapshot = world.PatchHistoryList[generation][patch.ID];
                 foreach (var speciesPopulation in snapshot.SpeciesInPatch)
@@ -181,15 +181,22 @@ public partial class AutoEvoExploringTool
 
         foreach (var patch in world.GameProperties.GameWorld.Map.Patches.Values)
         {
-            for (int generation = 1; generation <= world.CurrentGeneration; ++generation)
+            for (int generation = 0; generation <= world.CurrentGeneration; ++generation)
             {
                 var data = new List<string>
                     { patch.Name.ToString(), generation.ToString(), patch.BiomeType.ToString() };
 
                 var snapshot = world.PatchHistoryList[generation][patch.ID];
 
-                data.AddRange(snapshot.Biome.CurrentCompoundAmounts.OrderBy(p => p.Key.Name).Select(p =>
-                    $"Amount = {p.Value.Amount}; Ambient = {p.Value.Ambient}; Density = {p.Value.Density}"));
+                foreach (var pair in snapshot.Biome.CurrentCompoundAmounts.OrderBy(p => p.Key.Name))
+                {
+                    data.AddRange(new[]
+                    {
+                        pair.Value.Amount.ToString(CultureInfo.InvariantCulture),
+                        pair.Value.Ambient.ToString(CultureInfo.InvariantCulture),
+                        pair.Value.Density.ToString(CultureInfo.InvariantCulture),
+                    });
+                }
 
                 file.StoreCsvLine(data.ToArray());
             }
