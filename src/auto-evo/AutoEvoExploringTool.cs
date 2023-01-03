@@ -51,6 +51,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public NodePath WorldsListMenuPath = null!;
 
     [Export]
+    public NodePath NewWorldButtonPath = null!;
+
+    [Export]
     public NodePath CurrentWorldStatisticsLabelPath = null!;
 
     [Export]
@@ -211,6 +214,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private CustomDropDown allWorldsExportSettingsMenu = null!;
     private Button allWorldsExportButton = null!;
     private CustomDropDown worldsListMenu = null!;
+    private TextureButton newWorldButton = null!;
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
     private CustomDropDown currentWorldExportSettingsMenu = null!;
     private Button currentWorldExportButton = null!;
@@ -274,6 +278,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private AllWorldsExportSettings allWorldsExportSettings;
 
     private CurrentWorldExportSettings currentWorldExportSettings;
+
+    private List<OrganelleDefinition> allOrganelles = null!;
 
     /// <summary>
     ///   The generation that report and viewer tab is displaying,
@@ -341,6 +347,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         allWorldsExportSettingsMenu = GetNode<CustomDropDown>(AllWorldsExportSettingsMenuPath);
         allWorldsExportButton = GetNode<Button>(AllWorldsExportButtonPath);
         worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
+        newWorldButton = GetNode<TextureButton>(NewWorldButtonPath);
         currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
         currentWorldExportSettingsMenu = GetNode<CustomDropDown>(CurrentWorldExportSettingsMenuPath);
         currentWorldExportButton = GetNode<Button>(CurrentWorldExportButtonPath);
@@ -397,6 +404,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
 
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
+
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
 
         // Init button translation
         OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
@@ -587,6 +596,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
                 playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = true;
                 worldsListMenu.Disabled = false;
+                newWorldButton.Disabled = false;
                 break;
             }
 
@@ -601,6 +611,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
                 playWithCurrentSettingButton.Disabled = true;
                 abortButton.Disabled = false;
                 worldsListMenu.Disabled = true;
+                newWorldButton.Disabled = true;
                 break;
             }
 
@@ -615,6 +626,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
                 playWithCurrentSettingButton.Disabled = false;
                 abortButton.Disabled = false;
                 worldsListMenu.Disabled = false;
+                newWorldButton.Disabled = false;
                 break;
             }
         }
@@ -827,6 +839,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         world.TotalTimeUsed += autoEvoRun.RunDuration;
         totalTimeUsedLabel.Text = world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
+
+        UpdateCurrentWorldStatistics();
     }
 
     /// <summary>
@@ -894,6 +908,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
+        UpdateCurrentWorldStatistics();
 
         patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
         patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
@@ -1016,6 +1031,42 @@ public partial class AutoEvoExploringTool : NodeWithInput
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private void UpdateCurrentWorldStatistics()
+    {
+        var microbeSpecies = world.SpeciesHistoryList.Last().Values.Select(s => s as MicrobeSpecies).WhereNotNull()
+            .ToList();
+
+        var bbcode = $"[b]Generations:[/b]\n" +
+            $"  {world.CurrentGeneration}\n" +
+            $"[b]Total Species:[/b]\n" +
+            $"  {evolutionaryTree.CurrentWorldSpecies.Count}\n" +
+            $"[b]Species Still Alive:[/b]\n" +
+            $"  {world.SpeciesHistoryList.Last().Count}\n" +
+            $"[b]Average Species Count per Patch:[/b]\n" +
+            $"  {(float)world.SpeciesHistoryList.Last().Count / world.GameProperties.GameWorld.Map.Patches.Count}\n" +
+            $"[b]Total Population:[/b]\n" +
+            $"  {world.SpeciesHistoryList.Last().Values.Sum(s => s.Population)}\n" +
+            $"[b]Most Potential Species:[/b]\n" +
+            $"  {world.SpeciesHistoryList.Last().Values.OrderByDescending(s => s.Population).First().FormattedNameBbCode}\n" +
+            $"[b]Basic Microbe Species Data:[/b]\n" +
+            $"  Average hex size: {microbeSpecies.Average(s => s.BaseHexSize)}\n" +
+            $"[b]Generic Organelle Data:[/b]\n";
+
+        foreach (var organelle in allOrganelles)
+        {
+            float percentage = (float)microbeSpecies.Count(s => s.Organelles.Any(o => o.Definition == organelle)) /
+                world.SpeciesHistoryList.Last().Values.Count;
+
+            float average = (float)microbeSpecies.Sum(s => s.Organelles.Count(o => o.Definition == organelle)) /
+                world.SpeciesHistoryList.Last().Values.Count;
+
+            bbcode += $"  {organelle.Name}: Found in {percentage.ToString("P", CultureInfo.CurrentCulture)} species," +
+                $" averaging {average.ToString("F2", CultureInfo.CurrentCulture)} each\n";
+        }
+
+        currentWorldStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
     /// <summary>

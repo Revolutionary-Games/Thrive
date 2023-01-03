@@ -191,8 +191,11 @@ text = "ALL_WORLDS_GENERAL_STATISTICS"
 margin_top = 24.0
 margin_right = 558.0
 margin_bottom = 219.0
+focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+fit_content_height = false
+selection_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer"]
 margin_top = 223.0
@@ -312,8 +315,11 @@ text = "WORLD_GENERAL_STATISTICS"
 margin_top = 24.0
 margin_right = 558.0
 margin_bottom = 167.0
+focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+fit_content_height = false
+selection_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 171.0
@@ -1144,6 +1150,7 @@ HideCancelButton = true
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewGame"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportButton" to="." method="ExportCurrentWorld"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
@@ -1152,8 +1159,8 @@ HideCancelButton = true
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorldsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
