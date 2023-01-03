@@ -409,7 +409,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         InitAllWorldsExportSettingsMenu();
         InitCurrentWorldExportSettingsMenu();
 
-        InitNewGame();
+        InitNewWorld();
     }
 
     public override void _Process(float delta)
@@ -443,7 +443,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         if (autoEvoRun == null && worldsPendingToRun > 0)
         {
-            InitNewGame();
+            InitNewWorld();
             FinishOneGeneration();
             generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
             --worldsPendingToRun;
@@ -478,7 +478,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         };
     }
 
-    private void InitNewGame()
+    private void InitNewWorld()
     {
         worldsList.Add(new AutoEvoExploringToolWorld());
         WorldsListMenuIndexChanged(worldsList.Count - 1);
