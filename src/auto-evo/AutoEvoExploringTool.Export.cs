@@ -11,8 +11,7 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class AutoEvoExploringTool
 {
-    private static readonly List<OrganelleDefinition> AllOrganelles =
-        SimulationParameters.Instance.GetAllOrganelles().ToList();
+    private List<OrganelleDefinition> AllOrganelles = null!;
 
     private void ExportCurrentWorld()
     {
@@ -22,6 +21,8 @@ public partial class AutoEvoExploringTool
             exportSuccessNotificationDialog.PopupCenteredShrink();
             return;
         }
+
+        AllOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
 
         currentWorldExportButton.Disabled = true;
         var basePath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
