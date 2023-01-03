@@ -146,7 +146,7 @@ public partial class AutoEvoExploringTool
         {
             for (int generation = 1; generation <= world.CurrentGeneration; ++generation)
             {
-                var snapshot = patch.History[world.CurrentGeneration - generation];
+                var snapshot = world.PatchHistoryList[generation][patch.ID];
                 foreach (var speciesPopulation in snapshot.SpeciesInPatch)
                 {
                     var data = new[]
@@ -186,7 +186,7 @@ public partial class AutoEvoExploringTool
                 var data = new List<string>
                     { patch.Name.ToString(), generation.ToString(), patch.BiomeType.ToString() };
 
-                var snapshot = patch.History[world.CurrentGeneration - generation];
+                var snapshot = world.PatchHistoryList[generation][patch.ID];
 
                 data.AddRange(snapshot.Biome.CurrentCompoundAmounts.OrderBy(p => p.Key.Name).Select(p =>
                     $"Amount = {p.Value.Amount}; Ambient = {p.Value.Ambient}; Density = {p.Value.Density}"));

@@ -762,6 +762,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
         gameWorld.BuildEvolutionaryTree(evolutionaryTree);
         world.SpeciesHistoryList.Add(gameWorld.Species.ToDictionary(pair => pair.Key,
             pair => (Species)pair.Value.Clone()));
+        world.PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+            pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 
         // Add checkbox to history container
         historyListMenu.AddItem(world.CurrentGeneration.ToString(), false, Colors.White);
@@ -932,10 +934,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         // Get current snapshot
         var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
-            world.CurrentGeneration == 0 ?
-                world.GameProperties.GameWorld.Map.Patches[selectedPatch.ID].CurrentSnapshot :
-                world.GameProperties.GameWorld.Map.Patches[selectedPatch.ID]
-                    .History[Math.Min(world.CurrentGeneration - generationDisplayed, world.CurrentGeneration - 1)])
+            world.PatchHistoryList[generationDisplayed][selectedPatch.ID])
         {
             TimePeriod = selectedPatch.TimePeriod,
             Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
@@ -987,6 +986,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// </summary>
         public readonly List<Dictionary<uint, Species>> SpeciesHistoryList;
 
+        public readonly List<Dictionary<int, PatchSnapshot>> PatchHistoryList;
+
         /// <summary>
         ///   This list stores all auto-evo results.
         /// </summary>
@@ -1008,6 +1009,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             GameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
                 { AutoEvoConfiguration = AutoEvoConfiguration });
             SpeciesHistoryList = new List<Dictionary<uint, Species>>();
+            PatchHistoryList = new List<Dictionary<int, PatchSnapshot>>();
             RunResultsList = new List<LocalizedStringBuilder>();
             CurrentGeneration = 0;
             TotalTimeUsed = TimeSpan.Zero;
@@ -1020,6 +1022,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
                     (Species)GameProperties.GameWorld.PlayerSpecies.Clone()
                 },
             });
+
+            PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
+                pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
         }
     }
 }
