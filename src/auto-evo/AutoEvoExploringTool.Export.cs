@@ -14,8 +14,6 @@ public partial class AutoEvoExploringTool
     private static readonly List<OrganelleDefinition> AllOrganelles =
         SimulationParameters.Instance.GetAllOrganelles().ToList();
 
-    private static readonly Dictionary<uint, string> CurrentWorldSpecies = new();
-
     private void ExportCurrentWorld()
     {
         if (currentWorldExportSettings == 0 || world.CurrentGeneration == 0)
@@ -29,8 +27,6 @@ public partial class AutoEvoExploringTool
         var basePath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
 
         FileHelpers.MakeSureDirectoryExists(basePath);
-
-        InitWorldSpecies();
 
         if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.SpeciesHistory))
         {
@@ -53,18 +49,6 @@ public partial class AutoEvoExploringTool
         exportSuccessNotificationDialog.PopupCenteredShrink();
     }
 
-    private void InitWorldSpecies()
-    {
-        CurrentWorldSpecies.Clear();
-
-        uint maxSpeciesId = world.SpeciesHistoryList.Last().Max(s => s.Key);
-        for (uint speciesId = 1; speciesId <= maxSpeciesId; ++speciesId)
-        {
-            CurrentWorldSpecies.Add(speciesId,
-                world.SpeciesHistoryList.First(d => d.ContainsKey(speciesId))[speciesId].FormattedName);
-        }
-    }
-
     private void ExportCurrentWorldSpeciesHistory(string basePath)
     {
         var path = Path.Combine(basePath, nameof(CurrentWorldExportSettings.SpeciesHistory) + ".csv");
@@ -72,7 +56,7 @@ public partial class AutoEvoExploringTool
         file.Open(path, File.ModeFlags.Write);
 
         // Generate headers
-        var header = new List<string> { "Name", "Generation", "Population", "Color" };
+        var header = new List<string> { "Name", "Generation", "Split from", "Population", "Color" };
 
         header.AddRange(Enum.GetNames(typeof(BehaviouralValueType))
             .OrderBy(n => Enum.Parse(typeof(BehaviouralValueType), n)));
@@ -87,7 +71,7 @@ public partial class AutoEvoExploringTool
         file.StoreCsvLine(header.ToArray());
 
         // Generate data
-        var maxSpeciesId = world.SpeciesHistoryList.Last().Max(s => s.Key);
+        var maxSpeciesId = evolutionaryTree.CurrentWorldSpecies.Count;
 
         for (uint speciesId = 1; speciesId <= maxSpeciesId; ++speciesId)
         {
@@ -96,9 +80,15 @@ public partial class AutoEvoExploringTool
                 if (!world.SpeciesHistoryList[generation].TryGetValue(speciesId, out var species))
                     continue;
 
+                var splitFrom = evolutionaryTree.SpeciesOrigin[speciesId].ParentSpeciesId == uint.MaxValue ?
+                    string.Empty :
+                    evolutionaryTree.CurrentWorldSpecies[evolutionaryTree.SpeciesOrigin[speciesId].ParentSpeciesId];
+
                 var data = new List<string>
                 {
-                    CurrentWorldSpecies[speciesId], generation.ToString(), species.Population.ToString(),
+                    evolutionaryTree.CurrentWorldSpecies[speciesId], generation.ToString(),
+                    splitFrom,
+                    species.Population.ToString(),
                     "#" + species.Colour.ToHtml(),
                 };
 

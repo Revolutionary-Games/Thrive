@@ -136,6 +136,13 @@ public class EvolutionaryTree : Control
     [Signal]
     public delegate void SpeciesSelected(int generation, uint id);
 
+    /// <summary>
+    ///   Make use of tree-generated data to help exporting.
+    /// </summary>
+    public IReadOnlyDictionary<uint, string> CurrentWorldSpecies => speciesNames;
+
+    public IReadOnlyDictionary<uint, (uint ParentSpeciesId, int SplitGeneration)> SpeciesOrigin => speciesOrigin;
+
     private Vector2 TreeSize =>
         new(latestGeneration * GENERATION_SEPARATION + 200, maxSpeciesId * SPECIES_SEPARATION + 100);
 
