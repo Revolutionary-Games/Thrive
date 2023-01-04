@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-29 20:54+0800\n"
+"POT-Creation-Date: 2023-01-04 14:15+0800\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1017,162 +1017,203 @@ msgstr "Реснички"
 msgid "LYSOSOME"
 msgstr "Лизозома"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:35
+#, fuzzy
+msgid "WORLD_EXPORTATION_SUCCESS_MESSAGE"
+msgstr "{0}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:621
 msgid "FINISH_X_GENERATIONS"
 msgstr "{0} поколения"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.cs:637
+msgid "RUN_X_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:761
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+msgid "READY"
+msgstr "Готова"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:908
+#, fuzzy
+msgid "CURRENT_WORLD_STATISTICS"
+msgstr "Характеристика"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:922
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#, fuzzy
+msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Характеристика"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:960
+#, fuzzy
+msgid "ALL_WORLDS_STATISTICS"
+msgstr "Характеристика"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+msgid "WORLD"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
 msgid "CONFIG"
 msgstr "Настройки"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
 msgid "MAP"
 msgstr "Карта"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:137
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
 msgid "VIEWER"
 msgstr "Преглед"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:177
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Без мутации на създанията (ако няма подходяща мутация)"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+#, fuzzy
+msgid "ALL_WORLDS_GENERAL_STATISTICS"
+msgstr "Характеристика"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:184
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Без преселване на създанията (ако няма подходящо преселване)"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:197
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Вероятност за създаване на нови създания в зони с ниско биоразнообразие"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:217
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Вероятност за създаване на нови създания, увеличаващи биоразнообразието, от съседна зона"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:231
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Създанията от съседна зона, увеличаващи биоразнообразието, получават допълнителна популация"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:238
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Създанията, увеличаващи биоразнообразието, претърпяват мутация при създаването си"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:225
+#, fuzzy
+msgid "WORLD_GENERAL_STATISTICS"
+msgstr "Характеристика"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Максимален брой на създанията преди измиране в зоната"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
-msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "Брой на опитите за преселване на създанията"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
-msgid "MUTATIONS_PER_SPECIES"
-msgstr "Брой на опитите за мутация на създанията"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:323
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Начална популация на създанията, увеличаващи биоразнообразието"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Защитаване на новите преселени популации от максималния брой на обектите"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:344
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Защитаване на новите създания от максималния брой на обектите"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:351
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Възстановяване на преселената популация при измиране в зоната за преселване"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:358
-msgid "STRICT_NICHE_COMPETITION"
-msgstr "Стриктно съперничество (разликите между стойностите на усвояване са преувеличени)"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Минимална популация за отделяне на създанията с няколко подходящи мутации"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Минимална част от популацията за отделяне на създанията с мутации"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Създанията, увеличаващи биоразнообразието, използват популацията на техните съперници"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
-msgid "CURRENT_GENERATION_COLON"
-msgstr "Текущо поколение:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:442
 #, fuzzy
-msgid "TOTAL_TIME_USED_COLON"
+msgid "CURRENT_WORLD"
+msgstr "Текущи разработчици"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
+#, fuzzy
+msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Състояние:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
-msgid "STATUS_COLON"
-msgstr "Състояние:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
-msgid "READY"
-msgstr "Готова"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 msgid "FINISH_ONE_GENERATION"
 msgstr "Следващо поколение"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
 msgid "RUN_ONE_STEP"
 msgstr "Следваща стъпка"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:509
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
 msgstr "Прекратяване"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:515
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Нова игра"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:557
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:467
+msgid "EXPORT_ALL_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:516
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "Без мутации на създанията (ако няма подходяща мутация)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:523
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "Без преселване на създанията (ако няма подходящо преселване)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:536
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr "Вероятност за създаване на нови създания в зони с ниско биоразнообразие"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:556
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr "Вероятност за създаване на нови създания, увеличаващи биоразнообразието, от съседна зона"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:570
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr "Създанията от съседна зона, увеличаващи биоразнообразието, получават допълнителна популация"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:577
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr "Създанията, увеличаващи биоразнообразието, претърпяват мутация при създаването си"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:590
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:608
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "Максимален брой на създанията преди измиране в зоната"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:626
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr "Брой на опитите за преселване на създанията"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "Брой на опитите за мутация на създанията"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr "Начална популация на създанията, увеличаващи биоразнообразието"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:676
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr "Защитаване на новите преселени популации от максималния брой на обектите"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:683
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr "Защитаване на новите създания от максималния брой на обектите"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:690
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr "Възстановяване на преселената популация при измиране в зоната за преселване"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:697
+msgid "STRICT_NICHE_COMPETITION"
+msgstr "Стриктно съперничество (разликите между стойностите на усвояване са преувеличени)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr "Минимална популация за отделяне на създанията с няколко подходящи мутации"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:730
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr "Минимална част от популацията за отделяне на създанията с мутации"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:742
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr "Създанията, увеличаващи биоразнообразието, използват популацията на техните съперници"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:784
 msgid "GENERATIONS"
 msgstr "Поколение"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
 msgid "SELECT_A_GENERATION"
 msgstr "Избиране на поколение"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:598
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:825
 msgid "SPECIES"
 msgstr "Създания"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:605
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:832
 msgid "SELECT_A_SPECIES"
 msgstr "Избиране на създания"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:933
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:754
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:981
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюционно дърво"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1018
 msgid "SPECIES_DETAILS"
 msgstr "Подробности"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:848
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1075
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1182,18 +1223,23 @@ msgstr "Подробности"
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:852
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1079
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:853
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1080
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
 "Всички незапазени промени ще бъдат изгубени."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1083
+#, fuzzy
+msgid "EXPORTATION_SUCCESS"
+msgstr "{0}"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -1223,7 +1269,7 @@ msgstr "Започната"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "популацията на {0} в {2} се промени с {1} индивида поради {3} на създанията"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:352
+#: ../src/auto-evo/EvolutionaryTree.cs:375
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -5903,7 +5949,7 @@ msgstr "Смущението"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Музей"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да започнете нова игра с избраните създания?\n"
@@ -6134,6 +6180,16 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "Продължавайте да процъфтявате"
+
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Текущо поколение:"
+
+#, fuzzy
+#~ msgid "TOTAL_TIME_USED_COLON"
+#~ msgstr "Състояние:"
+
+#~ msgid "STATUS_COLON"
+#~ msgstr "Състояние:"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Отваряне на статистиката"

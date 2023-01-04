@@ -32,7 +32,7 @@ public partial class AutoEvoExploringTool
 
         worldExportButton.Disabled = false;
         exportSuccessNotificationDialog.DialogText =
-            TranslationServer.Translate("CURRENT_WORLD_EXPORTATION_SUCCESS").FormatSafe(exportPath);
+            TranslationServer.Translate("WORLD_EXPORTATION_SUCCESS_MESSAGE").FormatSafe(exportPath);
         exportSuccessNotificationDialog.PopupCenteredShrink();
 
         WorldsListMenuIndexChanged(previousWorld);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-29 20:54+0800\n"
+"POT-Creation-Date: 2023-01-04 14:15+0800\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1011,162 +1011,203 @@ msgstr "纤毛"
 msgid "LYSOSOME"
 msgstr "溶酶体"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:35
+#, fuzzy
+msgid "WORLD_EXPORTATION_SUCCESS_MESSAGE"
+msgstr "捕食{0}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:621
 msgid "FINISH_X_GENERATIONS"
 msgstr "完成{0}次世代"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.cs:637
+msgid "RUN_X_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:761
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+msgid "READY"
+msgstr "准备就绪"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:908
+#, fuzzy
+msgid "CURRENT_WORLD_STATISTICS"
+msgstr "生物数据"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:922
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#, fuzzy
+msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "生物数据"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:960
+#, fuzzy
+msgid "ALL_WORLDS_STATISTICS"
+msgstr "生物数据"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+msgid "WORLD"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
 msgid "CONFIG"
 msgstr "设置"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
 msgid "MAP"
 msgstr "地图"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:137
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
 msgid "VIEWER"
 msgstr "查看器"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:177
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "允许物种不变异（如果没有发现好的变异）"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+#, fuzzy
+msgid "ALL_WORLDS_GENERAL_STATISTICS"
+msgstr "生物数据"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:184
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "允许物种不迁移（如果没有发现良好的迁移情况）"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:197
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "在每个物种较少（生物多样性低）的地区中创造一个新的物种的几率"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:217
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "从临近地区创造一个新的物种来增加生物多样性的几率"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:231
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "从临近地区来的增加生物多样性的物种获得额外的种群数量"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:238
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "增加生物多样性的物种会在创造时被变异"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "将物种数量小于此的区块认为是生物多样性低"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:225
+#, fuzzy
+msgid "WORLD_GENERAL_STATISTICS"
+msgstr "生物数据"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "在启用强制灭绝之前一个地区所能容纳的最大物种数量"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
-msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "每物种迁徙尝试次数"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
-msgid "MUTATIONS_PER_SPECIES"
-msgstr "每个物种的变异尝试次数"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:323
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "增加生物多样性物种的初始种群数量"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "保护刚刚迁移的生物不受物种上限的影响"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:344
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "保护刚刚创造的物种不受物种上限的影响"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:351
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "在目标地区灭绝的情况下，退还迁移的费用"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:358
-msgid "STRICT_NICHE_COMPETITION"
-msgstr "严格的生态位竞争（适应性差异被夸大）"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "通过多个良好的突变来分裂物种所需的最小种群数量"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "允许通过突变分裂的物种的所需最小种群数量比例"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "增加生物多样性的物种在创造时从现有的物种中窃取种群数量"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
-msgid "CURRENT_GENERATION_COLON"
-msgstr "当前世代："
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:442
 #, fuzzy
-msgid "TOTAL_TIME_USED_COLON"
-msgstr "状态："
+msgid "CURRENT_WORLD"
+msgstr "当前开发人员"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
-msgid "STATUS_COLON"
-msgstr "状态："
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
+#, fuzzy
+msgid "AUTO_EVO_STATUS_COLON"
+msgstr "运行状态："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
-msgid "READY"
-msgstr "准备就绪"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 msgid "FINISH_ONE_GENERATION"
 msgstr "完成一次世代"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
 msgid "RUN_ONE_STEP"
 msgstr "运行一步"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:509
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
 msgstr "中止"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:515
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用当前设置"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:557
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:467
+msgid "EXPORT_ALL_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:516
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "允许物种不变异（如果没有发现好的变异）"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:523
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "允许物种不迁移（如果没有发现良好的迁移情况）"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:536
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr "在每个物种较少（生物多样性低）的地区中创造一个新的物种的几率"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:556
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr "从临近地区创造一个新的物种来增加生物多样性的几率"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:570
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr "从临近地区来的增加生物多样性的物种获得额外的种群数量"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:577
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr "增加生物多样性的物种会在创造时被变异"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:590
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr "将物种数量小于此的区块认为是生物多样性低"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:608
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "在启用强制灭绝之前一个地区所能容纳的最大物种数量"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:626
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr "每物种迁徙尝试次数"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "每个物种的变异尝试次数"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr "增加生物多样性物种的初始种群数量"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:676
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr "保护刚刚迁移的生物不受物种上限的影响"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:683
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr "保护刚刚创造的物种不受物种上限的影响"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:690
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr "在目标地区灭绝的情况下，退还迁移的费用"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:697
+msgid "STRICT_NICHE_COMPETITION"
+msgstr "严格的生态位竞争（适应性差异被夸大）"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr "通过多个良好的突变来分裂物种所需的最小种群数量"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:730
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr "允许通过突变分裂的物种的所需最小种群数量比例"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:742
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr "增加生物多样性的物种在创造时从现有的物种中窃取种群数量"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:784
 msgid "GENERATIONS"
 msgstr "世代"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
 msgid "SELECT_A_GENERATION"
 msgstr "选择一个世代"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:598
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:825
 msgid "SPECIES"
 msgstr "物种"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:605
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:832
 msgid "SELECT_A_SPECIES"
 msgstr "选择一个物种"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:933
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:754
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:981
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化树"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1018
 msgid "SPECIES_DETAILS"
 msgstr "物种信息"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:848
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1075
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1176,18 +1217,23 @@ msgstr "物种信息"
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:852
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1079
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:853
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1080
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "你确定要退出到主菜单吗？\n"
 "你会失去任何未保存的进度。"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1083
+#, fuzzy
+msgid "EXPORTATION_SUCCESS"
+msgstr "捕食{0}"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -1217,7 +1263,7 @@ msgstr "启动中"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0}在{2}中的种群数量变化了{1}，原因：{3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:352
+#: ../src/auto-evo/EvolutionaryTree.cs:375
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -5897,7 +5943,7 @@ msgstr "干扰"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "博物馆"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "您确定想作为这个被选中的物种开始一局新的游戏吗？\n"
@@ -6129,6 +6175,16 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
+
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "当前世代："
+
+#, fuzzy
+#~ msgid "TOTAL_TIME_USED_COLON"
+#~ msgstr "状态："
+
+#~ msgid "STATUS_COLON"
+#~ msgstr "状态："
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "关于当前游戏的统计数据"

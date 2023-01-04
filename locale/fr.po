@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-29 20:54+0800\n"
+"POT-Creation-Date: 2023-01-04 14:15+0800\n"
 "PO-Revision-Date: 2022-12-02 16:07+0000\n"
 "Last-Translator: cesco <lothindir@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1017,162 +1017,203 @@ msgstr "Cil"
 msgid "LYSOSOME"
 msgstr "Lysosome"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:35
+#, fuzzy
+msgid "WORLD_EXPORTATION_SUCCESS_MESSAGE"
+msgstr "Prédation de {0}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:621
 msgid "FINISH_X_GENERATIONS"
 msgstr "Finis {0} Générations"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.cs:637
+msgid "RUN_X_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:761
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
+msgid "READY"
+msgstr "Prêt"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:908
+#, fuzzy
+msgid "CURRENT_WORLD_STATISTICS"
+msgstr "Statistiques de l'Organisme"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:922
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#, fuzzy
+msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Statistiques de l'Organisme"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:960
+#, fuzzy
+msgid "ALL_WORLDS_STATISTICS"
+msgstr "Statistiques de l'Organisme"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+msgid "WORLD"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
 msgid "CONFIG"
 msgstr "Configuration"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
 msgid "MAP"
 msgstr "Carte"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:137
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
 msgid "VIEWER"
 msgstr "Visionneur"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:177
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:181
+#, fuzzy
+msgid "ALL_WORLDS_GENERAL_STATISTICS"
+msgstr "Statistiques de l'Organisme"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:184
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:197
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:217
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Chance de créer une nouvelle espèce pour accroître la biodiversité à partir d'un secteur voisine"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:231
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Une espèce d'un secteur proche qui augmente la biodiversité augmente en population gratuitement"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:238
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Une espèce qui augmente la biodiversité est mutée dès sa création"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Considérer que les secteurs contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:225
+#, fuzzy
+msgid "WORLD_GENERAL_STATISTICS"
+msgstr "Statistiques de l'Organisme"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Nombre maximum d'espèces dans un secteur avant des extinctions forcées"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
-msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "Tentatives de déplacement par espèce"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
-msgid "MUTATIONS_PER_SPECIES"
-msgstr "Tentatives de mutation par espèce"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:323
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Population initiale pour les espèces augmentant la biodiversité"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Protéger les populations fraîchement immigrées de la limite d'espèces"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:344
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Protéger les espèces nouvellement créées de la limite d'espèces"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:351
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Rembourser les migrations en cas d'extinction dans le secteur cible"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:358
-msgid "STRICT_NICHE_COMPETITION"
-msgstr "Stricte compétition pour les niches (les différences de valeur sélectives sont exagérées)"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Population minimale pour que les espèces divergent si plusieurs mutations favorables sont trouvées"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Proportion minimale de la population nécessaire à une divergence par mutation"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "La création d'espèces pour augmenter la biodiversité vole de la population aux espèces existantes"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
-msgid "CURRENT_GENERATION_COLON"
-msgstr "Génération actuelle :"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:442
 #, fuzzy
-msgid "TOTAL_TIME_USED_COLON"
-msgstr "Statut :"
+msgid "CURRENT_WORLD"
+msgstr "Développeurs actuels"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
-msgid "STATUS_COLON"
-msgstr "Statut :"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
+#, fuzzy
+msgid "AUTO_EVO_STATUS_COLON"
+msgstr "état de lancement :"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
-msgid "READY"
-msgstr "Prêt"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
 msgid "FINISH_ONE_GENERATION"
 msgstr "Finir une génération"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
 msgid "RUN_ONE_STEP"
 msgstr "Calculer une étape"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:509
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
 msgstr "Abandon"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:515
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jouer avec les paramètres actuels"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:557
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:467
+msgid "EXPORT_ALL_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:516
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:523
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:536
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:556
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr "Chance de créer une nouvelle espèce pour accroître la biodiversité à partir d'un secteur voisine"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:570
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr "Une espèce d'un secteur proche qui augmente la biodiversité augmente en population gratuitement"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:577
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr "Une espèce qui augmente la biodiversité est mutée dès sa création"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:590
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr "Considérer que les secteurs contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:608
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "Nombre maximum d'espèces dans un secteur avant des extinctions forcées"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:626
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr "Tentatives de déplacement par espèce"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:644
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "Tentatives de mutation par espèce"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr "Population initiale pour les espèces augmentant la biodiversité"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:676
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr "Protéger les populations fraîchement immigrées de la limite d'espèces"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:683
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr "Protéger les espèces nouvellement créées de la limite d'espèces"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:690
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr "Rembourser les migrations en cas d'extinction dans le secteur cible"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:697
+msgid "STRICT_NICHE_COMPETITION"
+msgstr "Stricte compétition pour les niches (les différences de valeur sélectives sont exagérées)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:710
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr "Population minimale pour que les espèces divergent si plusieurs mutations favorables sont trouvées"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:730
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr "Proportion minimale de la population nécessaire à une divergence par mutation"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:742
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr "La création d'espèces pour augmenter la biodiversité vole de la population aux espèces existantes"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:784
 msgid "GENERATIONS"
 msgstr "Générations"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
 msgid "SELECT_A_GENERATION"
 msgstr "Sélectionnez une génération"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:598
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:825
 msgid "SPECIES"
 msgstr "Espèces présentes"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:605
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:832
 msgid "SELECT_A_SPECIES"
 msgstr "Sélectionner une espèce"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:933
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Résultats de l'Auto-Évo :"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:754
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:981
 msgid "EVOLUTIONARY_TREE"
 msgstr "Arbre phylogénétique"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1018
 msgid "SPECIES_DETAILS"
 msgstr "Détails de l'espèce"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:848
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1075
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1182,18 +1223,23 @@ msgstr "Détails de l'espèce"
 msgid "BACK"
 msgstr "Revenir"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:852
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1079
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
 msgid "CONFIRM_EXIT"
 msgstr "Confirmer la sortie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:853
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1080
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Voulez-vous vraiment retourner au menu principal ?\n"
 "Vous perdrez toute progression non sauvegardée."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1083
+#, fuzzy
+msgid "EXPORTATION_SUCCESS"
+msgstr "Prédation de {0}"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -1223,7 +1269,7 @@ msgstr "Démarrage"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "La population de {0} a changé de {1} en {2} à cause de : {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:352
+#: ../src/auto-evo/EvolutionaryTree.cs:375
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -6054,7 +6100,7 @@ msgstr "La Perturbation"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Musée"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Êtes-vous sûr de vouloir commencer une nouvelle partie avec l'espèce sélectionnée ?\n"
@@ -6292,6 +6338,16 @@ msgstr ""
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Commencer à Prospérer"
+
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Génération actuelle :"
+
+#, fuzzy
+#~ msgid "TOTAL_TIME_USED_COLON"
+#~ msgstr "Statut :"
+
+#~ msgid "STATUS_COLON"
+#~ msgstr "Statut :"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
