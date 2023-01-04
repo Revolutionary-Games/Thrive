@@ -88,10 +88,7 @@ public static class PatchMapGenerator
                 }
 
                 // If there's no tidepool, add one
-                if (tidepool == null)
-                {
-                    NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
-                }
+                tidepool ??= NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
             }
             else
             {
@@ -114,7 +111,11 @@ public static class PatchMapGenerator
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    vents ??= NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName);
+                    // First call the function to add the vents to the region
+                    var patch = NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName);
+
+                    // Then update vents variable if null
+                    vents ??= patch;
                 }
             }
 
@@ -146,10 +147,10 @@ public static class PatchMapGenerator
         BuildPatchesInRegions(map, random);
 
         if (vents == null)
-            throw new InvalidOperationException("No vent patch created");
+            throw new InvalidOperationException($"No vent patch created for seed {settings.Seed}");
 
         if (tidepool == null)
-            throw new InvalidOperationException("No tidepool patch created");
+            throw new InvalidOperationException($"No tidepool patch created for seed {settings.Seed}");
 
         // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type
         // so this makes the same map be generated anyway
