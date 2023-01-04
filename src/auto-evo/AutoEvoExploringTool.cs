@@ -712,10 +712,6 @@ public class AutoEvoExploringTool : NodeWithInput
     {
         var speciesName = speciesListMenu.Popup.GetItemText(index);
         var species = speciesHistoryList[generationDisplayed].Values.First(p => p.FormattedName == speciesName);
-
-        if (species == speciesDetailsPanel.PreviewSpecies)
-            return;
-
         speciesDetailsPanel.PreviewSpecies = species;
     }
 

@@ -24,6 +24,8 @@ public class SpeciesDetailsPanel : PanelContainer
     private Button fossilisationButton = null!;
     private FossilisationDialog fossilisationDialog = null!;
 
+    private bool ready;
+
     private Species? previewSpecies;
 
     public Species? PreviewSpecies
@@ -31,8 +33,13 @@ public class SpeciesDetailsPanel : PanelContainer
         get => previewSpecies;
         set
         {
+            if (previewSpecies == value)
+                return;
+
             previewSpecies = value;
-            UpdateSpeciesPreview();
+
+            if (previewSpecies != null && ready)
+                UpdateSpeciesPreview();
         }
     }
 
@@ -45,6 +52,10 @@ public class SpeciesDetailsPanel : PanelContainer
         hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         fossilisationButton = GetNode<Button>(FossilisationButtonPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
+        ready = true;
+
+        if (previewSpecies != null)
+            UpdateSpeciesPreview();
     }
 
     /// <summary>
