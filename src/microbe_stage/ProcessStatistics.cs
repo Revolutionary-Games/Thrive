@@ -8,7 +8,17 @@ using Nito.Collections;
 /// </summary>
 public class ProcessStatistics
 {
-    public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
+    /// <summary>
+    ///   The processes and their associated speed statistics
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This uses <see cref="BioProcess"/> rather than <see cref="TweakedProcess"/> as the key so that equality
+    ///     comparison matches based on the process type not the process type and speed. All processables should
+    ///     combine their processes to run correctly with speed tracking.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<BioProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()
     {
@@ -26,7 +36,7 @@ public class ProcessStatistics
         }
     }
 
-    public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
+    public SingleProcessStatistics GetAndMarkUsed(BioProcess forProcess)
     {
         if (Processes.TryGetValue(forProcess, out var entry))
         {
@@ -34,7 +44,7 @@ public class ProcessStatistics
             return entry;
         }
 
-        entry = new SingleProcessStatistics(forProcess.Process);
+        entry = new SingleProcessStatistics(forProcess);
         Processes[forProcess] = entry;
         entry.Used = true;
         return entry;
@@ -52,7 +62,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   Cached statistics object to not need to recreate this each time the average statistics are computed.
     /// </summary>
-    private AverageProcessStatistics computedStatistics;
+    private readonly AverageProcessStatistics computedStatistics;
 
     private Dictionary<Compound, float>? precomputedEnvironmentInputs;
 
@@ -241,6 +251,11 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs = null;
     }
 
+    public bool Equals(IProcessDisplayInfo other)
+    {
+        return Equals((object)other);
+    }
+
     public override bool Equals(object obj)
     {
         if (ReferenceEquals(this, obj))
@@ -255,9 +270,19 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         return false;
     }
 
+    public bool Equals(SingleProcessStatistics? other)
+    {
+        if (ReferenceEquals(null, other))
+            return false;
+        if (ReferenceEquals(this, other))
+            return true;
+
+        return Process.Equals(other.Process);
+    }
+
     public override int GetHashCode()
     {
-        return 37 ^ Process.GetHashCode();
+        return 233 ^ Process.GetHashCode();
     }
 
     /// <summary>
@@ -315,6 +340,11 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
+
+    public bool Equals(IProcessDisplayInfo other)
+    {
+        return Equals((object)other);
+    }
 
     public override bool Equals(object obj)
     {

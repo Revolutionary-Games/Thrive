@@ -374,18 +374,19 @@ public class ProcessSystem
 
         processStatistics?.MarkAllUnused();
 
-        foreach (TweakedProcess process in processor.ActiveProcesses)
+        foreach (var process in processor.ActiveProcesses)
         {
             // If rate is 0 dont do it
-            // The rate specifies how fast fraction of the specified process
-            // numbers this cell can do
+            // The rate specifies how fast fraction of the specified process numbers this cell can do
             // TODO: would be nice still to report these to process statistics
             if (process.Rate <= 0.0f)
                 continue;
 
+            // TODO: reporting duplicate process types would be nice in debug mode here
+
             var processData = process.Process;
 
-            var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
+            var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
             currentProcessStatistics?.BeginFrame(delta);
 
             RunProcess(delta, processData, bag, process, currentProcessStatistics, inverseDelta);
