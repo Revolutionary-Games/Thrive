@@ -111,7 +111,10 @@ public static class PatchMapGenerator
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
+                    // First call the function to add the vents to the region
                     var patch = NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName);
+
+                    // Then update vents variable if null
                     vents ??= patch;
                 }
             }
