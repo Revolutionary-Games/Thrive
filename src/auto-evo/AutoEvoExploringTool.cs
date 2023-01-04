@@ -42,12 +42,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public NodePath AllWorldsStatisticsLabelPath = null!;
 
     [Export]
-    public NodePath AllWorldsExportSettingsMenuPath = null!;
-
-    [Export]
-    public NodePath AllWorldsExportButtonPath = null!;
-
-    [Export]
     public NodePath WorldsListMenuPath = null!;
 
     [Export]
@@ -57,10 +51,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public NodePath CurrentWorldStatisticsLabelPath = null!;
 
     [Export]
-    public NodePath CurrentWorldExportSettingsMenuPath = null!;
-
-    [Export]
-    public NodePath CurrentWorldExportButtonPath = null!;
+    public NodePath WorldExportButtonPath = null!;
 
     // Auto-evo parameters paths
 
@@ -211,13 +202,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
     // World controls
 
     private CustomRichTextLabel allWorldsStatisticsLabel = null!;
-    private CustomDropDown allWorldsExportSettingsMenu = null!;
-    private Button allWorldsExportButton = null!;
     private CustomDropDown worldsListMenu = null!;
     private TextureButton newWorldButton = null!;
     private CustomRichTextLabel currentWorldStatisticsLabel = null!;
-    private CustomDropDown currentWorldExportSettingsMenu = null!;
-    private Button currentWorldExportButton = null!;
+    private Button worldExportButton = null!;
 
     // Auto-evo parameters controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
@@ -275,10 +263,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private AutoEvoRun? autoEvoRun;
 
-    private AllWorldsExportSettings allWorldsExportSettings;
-
-    private CurrentWorldExportSettings currentWorldExportSettings;
-
     private List<OrganelleDefinition> allOrganelles = null!;
 
     /// <summary>
@@ -309,24 +293,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         Paused,
     }
 
-    [Flags]
-    private enum AllWorldsExportSettings
-    {
-        A = 1,
-        B = 2,
-        C = 4,
-        D = 8,
-        E = 16,
-    }
-
-    [Flags]
-    private enum CurrentWorldExportSettings
-    {
-        SpeciesHistory = 1,
-        PatchHistory = 2,
-        PopulationHistory = 4,
-    }
-
     public override void _Ready()
     {
         base._Ready();
@@ -344,13 +310,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
         viewerTab = GetNode<Control>(ViewerPath);
 
         allWorldsStatisticsLabel = GetNode<CustomRichTextLabel>(AllWorldsStatisticsLabelPath);
-        allWorldsExportSettingsMenu = GetNode<CustomDropDown>(AllWorldsExportSettingsMenuPath);
-        allWorldsExportButton = GetNode<Button>(AllWorldsExportButtonPath);
         worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
         newWorldButton = GetNode<TextureButton>(NewWorldButtonPath);
         currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
-        currentWorldExportSettingsMenu = GetNode<CustomDropDown>(CurrentWorldExportSettingsMenuPath);
-        currentWorldExportButton = GetNode<Button>(CurrentWorldExportButtonPath);
+        worldExportButton = GetNode<Button>(WorldExportButtonPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -415,9 +378,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
         worldsListMenu.Popup.Connect("index_pressed", this, nameof(WorldsListMenuIndexChanged));
 
-        InitAllWorldsExportSettingsMenu();
-        InitCurrentWorldExportSettingsMenu();
-
         InitNewWorld();
     }
 
@@ -473,20 +433,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
-    private static string GetSettingsTranslation(CurrentWorldExportSettings settings)
-    {
-        return settings switch
-        {
-            CurrentWorldExportSettings.SpeciesHistory =>
-                TranslationServer.Translate("SPECIES_DATA"),
-            CurrentWorldExportSettings.PatchHistory =>
-                TranslationServer.Translate("PATCH_HISTORY"),
-            CurrentWorldExportSettings.PopulationHistory =>
-                TranslationServer.Translate("POPULATION_HISTORY"),
-            _ => throw new ArgumentException($"{settings} is not a valid {nameof(CurrentWorldExportSettings)} value."),
-        };
-    }
-
     private void InitNewWorld()
     {
         worldsList.Add(new AutoEvoExploringToolWorld());
@@ -522,65 +468,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
             world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
         useBiodiversityForceSplitCheckBox.Pressed = world.AutoEvoConfiguration.UseBiodiversityForceSplit;
-    }
-
-    private void InitAllWorldsExportSettingsMenu()
-    {
-        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("Dummy"), true, Colors.White);
-        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        allWorldsExportSettingsMenu.AddItem(TranslationServer.Translate("."), true, Colors.White);
-        allWorldsExportSettingsMenu.CreateElements();
-
-        allWorldsExportSettingsMenu.Popup.HideOnCheckableItemSelection = false;
-        allWorldsExportSettingsMenu.Popup.Connect("index_pressed", this,
-            nameof(AllWorldsExportSettingsMenuIndexPressed));
-    }
-
-    private void AllWorldsExportSettingsMenuIndexPressed(int index)
-    {
-        var bit = (AllWorldsExportSettings)(1 << index);
-        if ((allWorldsExportSettings & bit) != 0)
-        {
-            allWorldsExportSettings &= ~bit;
-        }
-        else
-        {
-            allWorldsExportSettings |= bit;
-        }
-
-        allWorldsExportSettingsMenu.Popup.SetItemChecked(index, (allWorldsExportSettings & bit) != 0);
-    }
-
-    private void InitCurrentWorldExportSettingsMenu()
-    {
-        currentWorldExportSettingsMenu.AddItem(
-            GetSettingsTranslation(CurrentWorldExportSettings.SpeciesHistory), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(
-            GetSettingsTranslation(CurrentWorldExportSettings.PatchHistory), true, Colors.White);
-        currentWorldExportSettingsMenu.AddItem(
-            GetSettingsTranslation(CurrentWorldExportSettings.PopulationHistory), true, Colors.White);
-        currentWorldExportSettingsMenu.CreateElements();
-
-        currentWorldExportSettingsMenu.Popup.HideOnCheckableItemSelection = false;
-        currentWorldExportSettingsMenu.Popup.Connect("index_pressed", this,
-            nameof(CurrentWorldExportSettingsMenuIndexPressed));
-    }
-
-    private void CurrentWorldExportSettingsMenuIndexPressed(int index)
-    {
-        var bit = (CurrentWorldExportSettings)(1 << index);
-        if ((currentWorldExportSettings & bit) != 0)
-        {
-            currentWorldExportSettings &= ~bit;
-        }
-        else
-        {
-            currentWorldExportSettings |= bit;
-        }
-
-        currentWorldExportSettingsMenu.Popup.SetItemChecked(index, (currentWorldExportSettings & bit) != 0);
     }
 
     private void SetControlButtonsState(RunControlState runControlState)

@@ -11,44 +11,36 @@ using Path = System.IO.Path;
 /// </summary>
 public partial class AutoEvoExploringTool
 {
-    private void ExportCurrentWorld()
+    private void ExportWorlds()
     {
-        if (currentWorldExportSettings == 0 || world.CurrentGeneration == 0)
+        var previousWorld = worldsList.FindIndex(w => ReferenceEquals(w, world));
+        worldExportButton.Disabled = true;
+        var exportPath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
+
+        for (int worldToExport = 0; worldToExport < worldsList.Count; ++worldToExport)
         {
-            exportSuccessNotificationDialog.DialogText = TranslationServer.Translate("NOTHING_TO_EXPORT");
-            exportSuccessNotificationDialog.PopupCenteredShrink();
-            return;
-        }
+            // Init the world (we need evolutionary tree data so tree needs to be built)
+            WorldsListMenuIndexChanged(worldToExport);
 
-        currentWorldExportButton.Disabled = true;
-        var basePath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
+            var basePath = Path.Combine(exportPath, worldToExport.ToString(CultureInfo.InvariantCulture));
+            FileHelpers.MakeSureDirectoryExists(basePath);
 
-        FileHelpers.MakeSureDirectoryExists(basePath);
-
-        if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.SpeciesHistory))
-        {
             ExportCurrentWorldSpeciesHistory(basePath);
-        }
-
-        if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.PatchHistory))
-        {
             ExportCurrentWorldPatchHistory(basePath);
-        }
-
-        if (currentWorldExportSettings.HasFlag(CurrentWorldExportSettings.PopulationHistory))
-        {
             ExportCurrentWorldPopulationHistory(basePath);
         }
 
-        currentWorldExportButton.Disabled = false;
+        worldExportButton.Disabled = false;
         exportSuccessNotificationDialog.DialogText =
-            TranslationServer.Translate("CURRENT_WORLD_EXPORTATION_SUCCESS").FormatSafe(basePath);
+            TranslationServer.Translate("CURRENT_WORLD_EXPORTATION_SUCCESS").FormatSafe(exportPath);
         exportSuccessNotificationDialog.PopupCenteredShrink();
+
+        WorldsListMenuIndexChanged(previousWorld);
     }
 
     private void ExportCurrentWorldSpeciesHistory(string basePath)
     {
-        var path = Path.Combine(basePath, nameof(CurrentWorldExportSettings.SpeciesHistory) + ".csv");
+        var path = Path.Combine(basePath, "species_history.csv");
         var file = new File();
         file.Open(path, File.ModeFlags.Write);
 
@@ -64,7 +56,7 @@ public partial class AutoEvoExploringTool
             "Organelle count",
         });
 
-        header.AddRange(allOrganelles.Select(o => o.Name));
+        header.AddRange(allOrganelles.Select(o => o.Name.Replace('\n', ' ')));
         file.StoreCsvLine(header.ToArray());
 
         // Generate data
@@ -122,7 +114,7 @@ public partial class AutoEvoExploringTool
 
     private void ExportCurrentWorldPopulationHistory(string path)
     {
-        path = Path.Combine(path, nameof(CurrentWorldExportSettings.PopulationHistory) + ".csv");
+        path = Path.Combine(path, "population_history.csv");
         var file = new File();
         file.Open(path, File.ModeFlags.Write);
 
@@ -152,7 +144,7 @@ public partial class AutoEvoExploringTool
 
     private void ExportCurrentWorldPatchHistory(string basePath)
     {
-        var path = Path.Combine(basePath, nameof(CurrentWorldExportSettings.PatchHistory) + ".csv");
+        var path = Path.Combine(basePath, "patch_history.csv");
         var file = new File();
         file.Open(path, File.ModeFlags.Write);
 

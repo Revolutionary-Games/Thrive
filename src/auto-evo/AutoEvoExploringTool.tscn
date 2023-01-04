@@ -33,13 +33,10 @@ MapPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
 ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
 AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/AllWorldsStatLabel")
-AllWorldsExportSettingsMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/HBoxContainer/AllWorldsExportSettingsMenu")
-AllWorldsExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/HBoxContainer/AllWorldsExportButton")
-WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/WorldsListMenu")
-NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton")
-CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
-CurrentWorldExportSettingsMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportSettingsMenu")
-CurrentWorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportButton")
+WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WorldsListMenu")
+NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NewWorldButton")
+CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
+WorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/WorldExportButton")
 AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
 AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
 BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
@@ -152,25 +149,24 @@ group = SubResource( 1 )
 text = "VIEWER"
 
 [node name="WorldEditor" type="HBoxContainer" parent="GUI/VBoxContainer"]
-visible = false
 margin_top = 45.0
 margin_right = 1180.0
-margin_bottom = 325.0
+margin_bottom = 615.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="AllWorldsStatPanel" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
-margin_right = 580.0
-margin_bottom = 280.0
+margin_right = 434.0
+margin_bottom = 570.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 579.0
-margin_bottom = 279.0
+margin_right = 433.0
+margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -179,83 +175,102 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 568.0
-margin_bottom = 268.0
+margin_right = 422.0
+margin_bottom = 558.0
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer"]
-margin_right = 558.0
+margin_right = 412.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "ALL_WORLDS_GENERAL_STATISTICS"
 
 [node name="AllWorldsStatLabel" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 24.0
-margin_right = 558.0
-margin_bottom = 219.0
+margin_right = 412.0
+margin_bottom = 548.0
 focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fit_content_height = false
 selection_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer"]
-margin_top = 223.0
-margin_right = 558.0
-margin_bottom = 258.0
-custom_constants/separation = 20
-alignment = 1
-
-[node name="AllWorldsExportSettingsMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 155.0
-margin_right = 298.0
-margin_bottom = 35.0
-focus_mode = 2
-text = "EXPORT_SETTINGS"
-flat = false
-script = ExtResource( 12 )
-
-[node name="AllWorldsExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 318.0
-margin_right = 402.0
-margin_bottom = 35.0
-text = "EXPORT"
-
-[node name="SingleWorldStatPanel" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor"]
-margin_left = 600.0
-margin_right = 1180.0
-margin_bottom = 280.0
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
+margin_left = 454.0
+margin_right = 888.0
+margin_bottom = 570.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel"]
-margin_right = 580.0
-margin_bottom = 42.0
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 579.0
-margin_bottom = 41.0
+margin_right = 433.0
+margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 568.0
-margin_bottom = 30.0
+margin_right = 422.0
+margin_bottom = 558.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer"]
+margin_right = 412.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 412.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "WORLD_GENERAL_STATISTICS"
+
+[node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 24.0
+margin_right = 412.0
+margin_bottom = 548.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content_height = false
+selection_enabled = true
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
+margin_left = 908.0
+margin_right = 1180.0
+margin_bottom = 570.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 271.0
+margin_bottom = 569.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 260.0
+margin_bottom = 558.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 20.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 140.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "CURRENT_WORLD"
 
-[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 160.0
 margin_right = 210.0
 margin_bottom = 20.0
@@ -268,7 +283,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 230.0
 margin_right = 250.0
 margin_bottom = 20.0
@@ -278,72 +293,27 @@ texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 19 )
 expand = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel"]
-margin_top = 52.0
-margin_right = 580.0
-margin_bottom = 280.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 579.0
-margin_bottom = 227.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 568.0
-margin_bottom = 216.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer"]
-margin_right = 558.0
-margin_bottom = 206.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 558.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 4 )
-text = "WORLD_GENERAL_STATISTICS"
-
-[node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="Spacer" type="Control" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 558.0
-margin_bottom = 167.0
-focus_mode = 2
-size_flags_horizontal = 3
+margin_right = 250.0
+margin_bottom = 509.0
 size_flags_vertical = 3
-fit_content_height = false
-selection_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 171.0
-margin_right = 558.0
-margin_bottom = 206.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 513.0
+margin_right = 250.0
+margin_bottom = 548.0
 custom_constants/separation = 20
 alignment = 1
 
-[node name="CurrentWorldExportSettingsMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 155.0
-margin_right = 298.0
+[node name="WorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 15.0
+margin_right = 235.0
 margin_bottom = 35.0
-text = "EXPORT_SETTINGS"
-flat = false
-script = ExtResource( 12 )
-
-[node name="CurrentWorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 318.0
-margin_right = 402.0
-margin_bottom = 35.0
-text = "EXPORT"
+text = "EXPORT_ALL_WORLDS"
 
 [node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
@@ -1150,9 +1120,8 @@ HideCancelButton = true
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= [ "Map" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewGame"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/SingleWorldStatPanel/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CurrentWorldExportButton" to="." method="ExportCurrentWorld"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/WorldExportButton" to="." method="ExportWorlds"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
