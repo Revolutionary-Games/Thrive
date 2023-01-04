@@ -62,7 +62,9 @@ public class SpeciesDetailsPanel : PanelContainer
     {
         if (speciesPreview == null || hexesPreview == null || fossilisationButton == null ||
             speciesDetailsLabel == null)
+        {
             return;
+        }
 
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
