@@ -494,6 +494,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         worldsListMenu.AddItem((worldsList.Count - 1).ToString(), false, Colors.White);
         worldsListMenu.CreateElements();
+
+        UpdateAllWorldsStatistics();
     }
 
     private void InitAutoEvoConfigControls()
@@ -841,6 +843,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         totalTimeUsedLabel.Text = world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
 
         UpdateCurrentWorldStatistics();
+        UpdateAllWorldsStatistics();
     }
 
     /// <summary>
@@ -1035,38 +1038,95 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateCurrentWorldStatistics()
     {
-        var microbeSpecies = world.SpeciesHistoryList.Last().Values.Select(s => s as MicrobeSpecies).WhereNotNull()
-            .ToList();
+        world.UpdateWorldStatistics();
 
         var bbcode = $"[b]Generations:[/b]\n" +
             $"  {world.CurrentGeneration}\n" +
+            $"[b]Total Patches:[/b]\n" +
+            $"  {world.PatchesCount}\n" +
             $"[b]Total Species:[/b]\n" +
-            $"  {evolutionaryTree.CurrentWorldSpecies.Count}\n" +
+            $"  {world.TotalSpeciesCount}\n" +
             $"[b]Species Still Alive:[/b]\n" +
-            $"  {world.SpeciesHistoryList.Last().Count}\n" +
-            $"[b]Average Species Count per Patch:[/b]\n" +
-            $"  {(float)world.SpeciesHistoryList.Last().Count / world.GameProperties.GameWorld.Map.Patches.Count}\n" +
+            $"  {world.CurrentSpeciesCount}\n" +
+            $"[b]Species Count per Patch:[/b]\n" +
+            $"  Average {world.PatchSpeciesCountAverage.ToString("F2", CultureInfo.CurrentCulture)};" +
+            $" Standard deviation {world.PatchSpeciesCountStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)}\n" +
             $"[b]Total Population:[/b]\n" +
-            $"  {world.SpeciesHistoryList.Last().Values.Sum(s => s.Population)}\n" +
+            $"  {world.TotalPopulation}\n" +
             $"[b]Most Potential Species:[/b]\n" +
             $"  {world.SpeciesHistoryList.Last().Values.OrderByDescending(s => s.Population).First().FormattedNameBbCode}\n" +
             $"[b]Basic Microbe Species Data:[/b]\n" +
-            $"  Average hex size: {microbeSpecies.Average(s => s.BaseHexSize)}\n" +
+            $"  Average hex size: {world.MicrobeSpeciesAverageHexSize.ToString("F2", CultureInfo.CurrentCulture)}\n" +
             $"[b]Generic Organelle Data:[/b]\n";
 
-        foreach (var organelle in allOrganelles)
+        foreach (var stat in world.MicrobeSpeciesOrganelleStatistics)
         {
-            float percentage = (float)microbeSpecies.Count(s => s.Organelles.Any(o => o.Definition == organelle)) /
-                world.SpeciesHistoryList.Last().Values.Count;
-
-            float average = (float)microbeSpecies.Sum(s => s.Organelles.Count(o => o.Definition == organelle)) /
-                world.SpeciesHistoryList.Last().Values.Count;
-
-            bbcode += $"  {organelle.Name}: Found in {percentage.ToString("P", CultureInfo.CurrentCulture)} species," +
-                $" averaging {average.ToString("F2", CultureInfo.CurrentCulture)} each\n";
+            bbcode += $"  {stat.Key.Name.Replace('\n', ' ')}:" +
+                $" Found in {stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture)} species," +
+                $" averaging {stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture)} each\n";
         }
 
         currentWorldStatisticsLabel.ExtendedBbcode = bbcode;
+    }
+
+    private void UpdateAllWorldsStatistics()
+    {
+        var worldGenerations = string.Join(", ", worldsList.Select(w => w.CurrentGeneration).OrderBy(g => g));
+
+        var totalSpeciesList = worldsList.Select(w => w.TotalSpeciesCount).ToList();
+        var totalSpeciesAverage = totalSpeciesList.Average();
+        var totalSpeciesStandardDeviation = Math.Sqrt(totalSpeciesList.Average(
+            c => (c - totalSpeciesAverage) * (c - totalSpeciesAverage)));
+
+        var speciesStillAliveList = worldsList.Select(w => w.CurrentSpeciesCount).ToList();
+        var speciesStillAliveAverage = speciesStillAliveList.Average();
+        var speciesStillAliveStandardDeviation = Math.Sqrt(speciesStillAliveList.Average(
+            c => (c - speciesStillAliveAverage) * (c - speciesStillAliveAverage)));
+
+        var speciesCountPerPatchList = worldsList.Select(w => w.PatchSpeciesCountAverage).ToList();
+        var speciesCountPerPatchAverage = speciesCountPerPatchList.Average();
+        var speciesCountPerPatchStandardDeviation = Math.Sqrt(speciesCountPerPatchList.Average(c =>
+            (c - speciesCountPerPatchAverage) * (c - speciesCountPerPatchAverage)));
+
+        var populationPerPatchList = worldsList.Select(w => (double)w.TotalPopulation / w.PatchesCount).ToList();
+        var populationPerPatchAverage = populationPerPatchList.Average();
+        var populationPerPatchStandardDeviation = Math.Sqrt(populationPerPatchList.Average(p =>
+            (p - populationPerPatchAverage) * (p - populationPerPatchAverage)));
+
+        var microbeSpeciesHexSizeList = worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).ToList();
+        var microbeSpeciesHexSizeAverage = microbeSpeciesHexSizeList.Average();
+        var microbeSpeciesHexSizeStandardDeviation = Math.Sqrt(microbeSpeciesHexSizeList.Average(s =>
+            (s - microbeSpeciesHexSizeAverage) * (s - microbeSpeciesHexSizeAverage)));
+
+        var bbcode = $"[b]Generations:[/b]\n" +
+            $"  {worldGenerations}\n" +
+            $"[b]Total Species:[/b]\n" +
+            $"  Average {totalSpeciesAverage.ToString("F2", CultureInfo.CurrentCulture)};" +
+            $" Standard deviation {totalSpeciesStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)}\n" +
+            $"[b]Species Still Alive:[/b]\n" +
+            $"  Average {speciesStillAliveAverage.ToString("F2", CultureInfo.CurrentCulture)};" +
+            $" Standard deviation {speciesStillAliveStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)}\n" +
+            $"[b]Per-patch Species Count:[/b]\n" +
+            $"  Average {speciesCountPerPatchAverage.ToString("F2", CultureInfo.CurrentCulture)};" +
+            $" Standard deviation {speciesCountPerPatchStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)}\n" +
+            $"[b]Per-patch Total Population:[/b]\n" +
+            $"  Average {populationPerPatchAverage.ToString("F2", CultureInfo.CurrentCulture)};" +
+            $" Standard deviation {populationPerPatchStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)}\n" +
+            $"[b]Microbe Species Average Hex Size:[/b]\n" +
+            $"  Average {microbeSpeciesHexSizeAverage.ToString("F2", CultureInfo.CurrentCulture)};" +
+            $" Standard deviation {microbeSpeciesHexSizeStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)}\n" +
+            $"[b]Generic Organelle Data[/b]\n";
+
+        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        {
+            var percentage = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Percentage);
+            var average = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Average);
+            bbcode += $"  {organelle.Name.Replace('\n', ' ')}:" +
+                $" found in {percentage.ToString("P", CultureInfo.CurrentCulture)} species," +
+                $" averaging {average.ToString("F2", CultureInfo.CurrentCulture)} each.\n";
+        }
+
+        allWorldsStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
     /// <summary>
@@ -1095,6 +1155,11 @@ public partial class AutoEvoExploringTool : NodeWithInput
         ///   This list stores all auto-evo results.
         /// </summary>
         public readonly List<LocalizedStringBuilder> RunResultsList;
+
+        /// <summary>
+        ///   Used to generate world statistics
+        /// </summary>
+        public readonly Dictionary<OrganelleDefinition, (double Percentage, double Average)> MicrobeSpeciesOrganelleStatistics;
 
         /// <summary>
         ///   The current generation auto-evo has evolved
@@ -1128,6 +1193,55 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
             PatchHistoryList.Add(GameProperties.GameWorld.Map.Patches.ToDictionary(pair => pair.Key,
                 pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
+
+            PatchesCount = GameProperties.GameWorld.Map.Patches.Count;
+
+            MicrobeSpeciesOrganelleStatistics =
+                new Dictionary<OrganelleDefinition, (double Percentage, double Average)>();
+
+            foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+            {
+                MicrobeSpeciesOrganelleStatistics.Add(organelle, (0, 0));
+            }
+
+            UpdateWorldStatistics();
+        }
+
+        public int TotalSpeciesCount { get; private set; }
+
+        public int CurrentSpeciesCount { get; private set; }
+
+        public int PatchesCount { get; }
+
+        public double PatchSpeciesCountAverage { get; private set; }
+
+        public double PatchSpeciesCountStandardDeviation { get; private set; }
+
+        public long TotalPopulation { get; private set; }
+
+        public double MicrobeSpeciesAverageHexSize { get; private set; }
+
+        public void UpdateWorldStatistics()
+        {
+            TotalSpeciesCount = (int)SpeciesHistoryList.Last().Values.Max(s => s.ID);
+            CurrentSpeciesCount = SpeciesHistoryList.Last().Values.Count;
+            PatchSpeciesCountAverage = GameProperties.GameWorld.Map.Patches.Values.Average(p => p.SpeciesInPatch.Count);
+            PatchSpeciesCountStandardDeviation = Math.Sqrt(GameProperties.GameWorld.Map.Patches.Values
+                .Select(p => p.SpeciesInPatch.Count)
+                .Average(c => (c - PatchSpeciesCountAverage) * (c - PatchSpeciesCountAverage)));
+            TotalPopulation = SpeciesHistoryList.Last().Values.Sum(s => s.Population);
+
+            var microbeSpecies = SpeciesHistoryList.Last().Values.Select(s => s as MicrobeSpecies).WhereNotNull()
+                .ToList();
+
+            MicrobeSpeciesAverageHexSize = microbeSpecies.Average(s => s.BaseHexSize);
+
+            foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+            {
+                MicrobeSpeciesOrganelleStatistics[organelle] = (
+                    microbeSpecies.Average(s => s.Organelles.Any(o => o.Definition == organelle) ? 1 : 0),
+                    microbeSpecies.Average(s => s.Organelles.Count(o => o.Definition == organelle)));
+            }
         }
     }
 }
