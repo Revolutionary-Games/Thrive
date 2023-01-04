@@ -1015,7 +1015,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// <summary>
         ///   Used to generate world statistics
         /// </summary>
-        public readonly Dictionary<OrganelleDefinition, (double Percentage, double Average)> MicrobeSpeciesOrganelleStatistics;
+        public readonly Dictionary<OrganelleDefinition, (double Percentage, double Average)>
+            MicrobeSpeciesOrganelleStatistics;
 
         /// <summary>
         ///   The current generation auto-evo has evolved
