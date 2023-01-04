@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-29 20:54+0800\n"
+"POT-Creation-Date: 2023-01-02 15:23+0200\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -21,63 +21,52 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "簡單"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "普通"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "困難"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 #: ../src/general/WorldGenerationSettings.cs:169
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "自定義"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "概念美術"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"在一個遙遠的外星星球上，漫長的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
-"\n"
-"生命。\n"
-"\n"
-"簡單的微生物居住在海洋的深層區域。你是這個星球上最後的宇宙共同祖先（LUCA）。\n"
-"\n"
-"為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
+msgstr "微生物階段"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "放置細胞器"
+msgstr "多細胞階段"
 
 #: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
 msgstr "世代"
 
 #: ../simulation_parameters/common/gallery.json:138
-#, fuzzy
 msgid "MODELS"
-msgstr "上帝模式"
+msgstr "模式"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
-msgstr ""
+msgstr "音樂"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "全部"
 
 #: ../simulation_parameters/common/gallery.json:268
 #, fuzzy
@@ -87,12 +76,11 @@ msgstr "菜單"
 #: ../simulation_parameters/common/gallery.json:332
 #, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "在加載微生物編輯器"
+msgstr "微生物編輯器"
 
 #: ../simulation_parameters/common/gallery.json:408
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "在加載微生物編輯器"
+msgstr "多細胞編輯器"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -115,32 +103,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]鍵讓你的细胞可以吞噬比你小的敵對細胞、細菌、鐵塊和細胞器。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound]，並且會讓你減慢移動。不要忘記按第二次[thrive:input]g_toggle_engulf[/thrive:input]來停止吞噬。"
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"原核結構\n"
-"\n"
-"代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"化學合成蛋白：作為化學質體使用一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只生產半份[thrive:compound type=\"glucose\"][/thrive:compound]，但同時進行糖酵解。占用一个六角格。\n"
-"\n"
-"類囊體：產生的[thrive:compound type=\"glucose\"][/thrive:compound]量是正常葉綠體的1/3，但同時進行糖酵解。占用一个六角格。\n"
-"\n"
-"鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"氮化酶：將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"細胞質：有儲存空間，進行糖酵解（產生少量[thrive:compound type=\"atp\"][/thrive:compound]）"
+msgstr "胞吞完成後，所有在胞吞中攝入的物體都會被儲存在細胞膜內以將其消化。無法被消化的物體都會被排出，所以請事先確保您具備能夠處理它們的突變。酶有助於消化並由溶酶體產生；進化該細胞器可以使消化更加高效。"
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+msgstr "然而，溶酶體僅存在於真核細胞中。原核細胞沒有這種細胞器，這使其消化相對低效。這對於小型細胞而言無傷大雅，但對大型細胞來說，沒有溶酶體將使它們處於極大的劣勢之中。"
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+msgstr "特別地，纖維素和幾丁質細胞壁在未經必須的酶將其降解之前無法被消化。"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -412,7 +384,7 @@ msgstr "發射毒素"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2177
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "分泌粘液"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
@@ -422,7 +394,7 @@ msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:52
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "按住以顯示群體指令菜單"
 
 #: ../simulation_parameters/common/input_options.json:56
 #: ../src/microbe_stage/MicrobeStage.tscn:2142
@@ -517,47 +489,44 @@ msgid "MOVE_ORGANELLE"
 msgstr "移動細胞器"
 
 #: ../simulation_parameters/common/input_options.json:160
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "移動"
+msgstr "3D移動"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "向上移動或起跳"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "向下移動或下蹲"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "雜項"
+msgstr "3D階段雜項"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "按住以顯示光標"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "編輯器"
+msgstr "3D編輯器"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "按住以在平移與旋轉模式間切換"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "切換至正視圖"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "切換至右視圖"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "切換至俯視圖"
 
 #: ../simulation_parameters/common/input_options.json:213
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -592,7 +561,7 @@ msgstr "雜項"
 
 #: ../simulation_parameters/common/input_options.json:248
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "暫停"
 
 #: ../simulation_parameters/common/input_options.json:252
 #, fuzzy
@@ -1055,7 +1024,7 @@ msgstr "纖毛"
 msgid "LYSOSOME"
 msgstr "毒素體"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:588
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "濃度為"
@@ -6113,7 +6082,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 

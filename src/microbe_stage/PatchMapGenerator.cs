@@ -144,10 +144,10 @@ public static class PatchMapGenerator
         BuildPatchesInRegions(map, random);
 
         if (vents == null)
-            throw new InvalidOperationException("No vent patch created");
+            throw new InvalidOperationException($"No vent patch created for seed {settings.Seed}");
 
         if (tidepool == null)
-            throw new InvalidOperationException("No tidepool patch created");
+            throw new InvalidOperationException($"No tidepool patch created for seed {settings.Seed}");
 
         // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type
         // so this makes the same map be generated anyway

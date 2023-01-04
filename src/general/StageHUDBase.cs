@@ -754,7 +754,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (button.AttachedOrganism is Microbe microbe)
+        if (button.AttachedEntity is Microbe microbe)
         {
             fossilisationDialog.SelectedSpecies = microbe.Species;
             fossilisationDialog.PopupCenteredShrink();

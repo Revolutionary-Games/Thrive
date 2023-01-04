@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-29 20:54+0800\n"
+"POT-Creation-Date: 2023-01-02 15:23+0200\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Allstreamer <cbredenbach@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -78,7 +78,7 @@ msgstr "Mikrobeneditor"
 
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Mikrobeneditor"
+msgstr "Mehrzelliger Editor"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -1003,7 +1003,7 @@ msgstr "Zilie"
 msgid "LYSOSOME"
 msgstr "Lysosom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:588
 msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Generationen fertigstellen"
 
@@ -2292,17 +2292,16 @@ msgid "SAFE_MODE_TITLE"
 msgstr "Thrive im abgesicherten Modus gestartet"
 
 #: ../src/general/MainMenu.tscn:833
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive wurde aufgrund eines Fehlstarts im abgesicherten Modus gestartet.\n"
 "\n"
-"Dies wurde vermutlich entweder durch eine Mod oder den Videoplayer verursacht. Als Vorsichtsmaßnahme kann das Laden von Mods übersprungen und/oder die Videowiedergabe deaktiviert worden sein. Dies bleibt so lange bestehen, bis Thrive neu gestartet wird.\n"
+"Dies wurde vermutlich entweder durch eine Mod oder den Videoplayer verursacht. Als Vorsichtsmaßnahme kann das Laden von Mods übersprungen und/oder die Videowiedergabe deaktiviert worden sein. Um den abgesicherten Modus zu verlassen, muss das Spiel neu gestartet werden.\n"
 "\n"
-"Bitte deaktivieren Sie vor dem Neustart alle Mods, die problematisch oder mit dieser Version von Thrive nicht kompatibel sind (Sie können die Logs von früheren Spielstarts lesen, probleme zu diagnostizieren).\n"
-"Bei Problemen mit dem Videoplayer verwenden Sie bitte die Startoptionen, um die Deaktivierung des Videos zu erzwingen.\n"
+"Bitte deaktivieren Sie vor dem Neustart alle Mods, die problematisch oder mit dieser Version von Thrive nicht kompatibel sind (Sie können die Logs von früheren Spielstarts lesen, um inkompatible Mods zu finden).\n"
+"Bei Problemen mit dem Videoplayer verwenden Sie bitte die Launcheroptionen, um die Deaktivierung des Videos zu erzwingen.\n"
 "\n"
-"Wenn Sie das Problem, das den Startfehler verursacht, nicht beheben, müssen Sie Thrive mehrmals neu starten und abstürzen lassen, um wieder in den sicheren Modus zu gelangen."
+"Wenn das Problem, das den Startfehler verursacht, nicht behoben wird, müssen Sie Thrive mehrmals neu starten und abstürzen lassen, um wieder in den abgesicherten Modus zu gelangen."
 
 #: ../src/general/MainMenu.tscn:837
 msgid "MOD_LOAD_ERRORS"
@@ -2356,9 +2355,8 @@ msgstr "(Startgebiet)"
 
 #: ../src/general/NewGameSettings.tscn:196
 #: ../src/general/NewGameSettings.tscn:941
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Einige Optionen werden möglicherweise gesperrt, wenn LAWK aktiviert ist"
+msgstr "Einige Optionen sind möglicherweise nicht verfügbar, wenn nur kohlenstoffbasiertes Leben aktiviert ist"
 
 #: ../src/general/NewGameSettings.tscn:198
 #: ../src/general/NewGameSettings.tscn:199
@@ -2434,7 +2432,7 @@ msgstr "(Dichte der Ressourcen-Wolken in der Spielumgebung)"
 
 #: ../src/general/NewGameSettings.tscn:589
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "Spielertod Bevölkerungsstrafe"
+msgstr "Bevölkerungsstrafe bei Spielertod"
 
 #: ../src/general/NewGameSettings.tscn:634
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
@@ -2466,21 +2464,20 @@ msgstr "(Starte jede Generation mit einer Gratis-Glukosewolke in der Nähe)"
 
 #: ../src/general/NewGameSettings.tscn:788
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Passiv Reproduktionsfortschritt erhalten"
+msgstr "Passiven Reproduktionsfortschritt erhalten"
 
 #: ../src/general/NewGameSettings.tscn:795
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
 
 #: ../src/general/NewGameSettings.tscn:807
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "BESTÄTIGEN"
+msgstr "Beschränke die Nutzung von Wachstums-Substanzen"
 
 #: ../src/general/NewGameSettings.tscn:814
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
+msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
 
 #: ../src/general/NewGameSettings.tscn:858
 msgid "PATCH_MAP_TYPE"
@@ -2507,7 +2504,7 @@ msgstr "Tag-/Nachtzyklus aktivieren"
 
 #: ../src/general/NewGameSettings.tscn:967
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "(WARNUNG: Photosynthese wird viel weniger rentabel)"
+msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
 #: ../src/general/NewGameSettings.tscn:985
 msgid "DAY_LENGTH"
@@ -2522,9 +2519,8 @@ msgid "PLANET_GENERATION_TEASER"
 msgstr "Planetenerstellung kommt bald!"
 
 #: ../src/general/NewGameSettings.tscn:1146
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
+msgstr "Möglichkeit zum Übergang zur nächsten Stufe des Spiels (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
 #: ../src/general/NewGameSettings.tscn:1153
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
@@ -2535,27 +2531,20 @@ msgid "EASTER_EGGS"
 msgstr "Easter eggs einbeziehen"
 
 #: ../src/general/NewGameSettings.tscn:1172
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
-"Furchtsame Mikroben fliehen über größere Entfernungen\n"
-"und fliehen im Allgemeinen eher vor Angreifern.\n"
-"Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
-"und werden eher zurückschlagen."
+msgstr "(zufällig generierte Geheimnisse im Spielverlauf)"
 
 #: ../src/general/NewGameSettings.tscn:1200
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Pause-Menü"
+msgstr "Erweiterte Einstellungen anzeigen"
 
 #: ../src/general/NewGameSettings.tscn:1202
 msgid "ADVANCED_VIEW"
 msgstr "Fortgeschritten"
 
 #: ../src/general/NewGameSettings.tscn:1213
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "Suizid"
+msgstr "Zu den grundlegenden Einstellungen zurückkehren"
 
 #: ../src/general/NewGameSettings.tscn:1214
 msgid "BASIC_VIEW"
@@ -2578,9 +2567,8 @@ msgid "GLES3"
 msgstr "GLES3"
 
 #: ../src/general/OptionsMenu.cs:800
-#, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
-msgstr "Fähigkeitenleiste anzeigen"
+msgstr "Unbekannt"
 
 #: ../src/general/OptionsMenu.cs:809 ../src/general/OptionsMenu.tscn:510
 msgid "VIDEO_MEMORY_MIB"
@@ -2723,9 +2711,8 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI-Lichteffekte aktivieren"
 
 #: ../src/general/OptionsMenu.tscn:554
-#, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "Fähigkeitenleiste anzeigen"
+msgstr "Namen der Teile Schaltflächen anzeigen"
 
 #: ../src/general/OptionsMenu.tscn:580
 msgid "MASTER_VOLUME"
@@ -2951,21 +2938,18 @@ msgid "OPEN_LOGS_FOLDER"
 msgstr "Logverzeichnis öffnen"
 
 #: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
-#, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Fokussierte Mikroben werden über größere Entfernungen nach Brocken oder Beute suchen\n"
-"und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
-"Responsive Mikroben wechseln schneller zu neuen Zielen."
+"Dies zeigt an, wie viele Popups vom Spieler dauerhaft ausgeblendet wurden.\n"
+"Wenn einige davon wieder sichtbar werden sollen, können mit der Schaltfläche neben dieser alle ausgeblendeten Popups wieder angezeigt werden."
 
 #: ../src/general/OptionsMenu.tscn:1565
-#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Geschwindigkeit:"
+msgstr "Versteckte Pop-ups:"
 
 #: ../src/general/OptionsMenu.tscn:1587
 msgid "RESET_DISMISSED_POPUPS"
-msgstr "Verworfene Pop-ups zurücksetzen"
+msgstr "Versteckte Pop-ups zurücksetzen"
 
 #: ../src/general/OptionsMenu.tscn:1597
 msgid "JSON_DEBUG_MODE"
@@ -2984,9 +2968,8 @@ msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Niemals"
 
 #: ../src/general/OptionsMenu.tscn:1628
-#, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "Suizid"
+msgstr "Dies ist die exakte Version dieser Thrive Instanz"
 
 #: ../src/general/OptionsMenu.tscn:1630
 msgid "EXACT_VERSION_COLON"
@@ -3193,15 +3176,29 @@ msgstr "Deaktiviert"
 
 #: ../src/general/WorldGenerationSettings.cs:171
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
-#, fuzzy
 msgid "DIFFICULTY_DETAILS_STRING"
-msgstr "Schwierigkeitsgrad"
+msgstr ""
+"Schwierigkeitsgrad: {0}\n"
+"Mutationskostenmultiplikator: {1}\n"
+"KI Mutationsrate: {2}\n"
+"Wolkendichte: {3}\n"
+"Bevölkerungsstrafe bei Spielertod: {4}\n"
+"Glukoseerhalt in der Umwelt: {5}\n"
+"Osmoregulationskostenmultiplikator: {6}\n"
+"Verfügbare Glukosewolke beim Verlassen des Editors: {7}\n"
+"Passiven Reproduktionsfortschritt erhalten: {8}\n"
+"Beschränke die Nutzung von Wachstums-Substanzen: {9}"
 
 #: ../src/general/WorldGenerationSettings.cs:189
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
-#, fuzzy
 msgid "PLANET_DETAILS_STRING"
-msgstr "Logverzeichnis öffnen"
+msgstr ""
+"Gebietskartentyp: {0}\n"
+"Nur kohlenstoffbasiertes Leben: {1}\n"
+"Ursprung des Lebens: {2}\n"
+"Tag-/Nacht-Zyklus: {3}\n"
+"Tageslänge: {4} Sekunden\n"
+"Planetensamen Nummer: {5}"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -3610,14 +3607,18 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr "Die Lizenzen für Teile von Thrive werden hier angezeigt"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr "Prototypen weiterentwickeln?"
+msgstr "Mit Prototyp Stadien fortfahren?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Rotblindheit (Rot-Grün)"
+msgstr ""
+"Du hast das Ende des \"komplett\" entwickelten Teils von Thrive erreicht.\n"
+"Wenn du möchtest kannst du mit den Prototypen der weiteren Stadien fortfahren, soweit sie im Augenblick implementiert sind. Diese können sehr unvollständig sein, Platzhalter Grafiken benutzen und allgemein sehr grundlegend sein. Sie sind im Spiel enthalten, um die mögliche Zukunft und unsere Vision des weiteren Spielverlaufs zu zeigen.\n"
+"\n"
+"Du wirst in den meisten Prototypen nicht speichern können und auch nicht in das bisherige Spiel zurückkehren können. Wenn du zum aktuellen Stadium zurückkehren können möchtest, speichere bitte bevor du fortfährst.\n"
+"\n"
+"Wenn du dich entscheidest weiterzuspielen, sei dir bitte bewusst, dass die kommenden Stadien Prototypen sind und beschwere dich nicht über fehlende Inhalte."
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
@@ -3683,9 +3684,8 @@ msgstr "Eine steifere Membran ist widerstandsfähiger gegen Schaden, erschwert a
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3121
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "Mobilität"
+msgstr "Basis Mobilität"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:196
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
@@ -3831,7 +3831,6 @@ msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
-#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
 
@@ -3852,14 +3851,12 @@ msgid "OXYTOXISOME_DESC"
 msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Temperatur ab."
+msgstr "Produziert [thrive:compound type=\"atp\"][/thrive:compound] mithilfe von Temperaturgefällen. Die Rate hängt von der Temperatur ab."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:979
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindliche Pigmente in Membransäcken gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Thermoplast sind in der Lage, die Energie der Wärmeunterschiede in der Umgebung zu nutzen, um in einem Prozess namens Thermosynthese aus Wasser und gasförmigem Kohlendioxid Glukose zu produzieren. Die Geschwindigkeit seiner Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Temperatur ab."
+msgstr "Thermosynthase ist ein Protein, welches Temperaturveränderungen benutzt um seine Form zu ändern. Bei Erwärmung faltet sich das Protein zusammen und bindet sich an ADP. Dieses wird in einem Prozess names [b]Thermosynthese[/b] zu [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt, wenn das Protein sich unter Einwirkung von Kälte wieder entfaltet. Die Rate der [thrive:compound type=\"atp\"][/thrive:compound] Produktion skaliert mit der [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3878,9 +3875,8 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"mucilage\"][/thrive:compound] um. Drücke [thrive:input]g_secrete_slime[/thrive:input] um gespeicherten [thrive:compound type=\"mucilage\"][/thrive:compound] freizusetzen; dieser erhöht die eigene Geschwindigkeit und verlangsamt Gegner."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die Glykolyse, die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen Organellen fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie auf diese Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+msgstr "Viele Organismen produzieren polysaccharide Substanzen, wie diesen Schleim. Oft wird dieser zur Fortbewegung benutzt. So auch von einigen Bakterien, welche Substanzen wie diese mit hohem Druck nach hinten schleudern. Dies wirkt wie ein Raketen Antrieb und treibt die Zellen mit unglaublicher Geschwindigkeit vorwärts. Der Schleim wird ebenfalls benutzt, um Räuber zu behindern. Sie werden im Schleim gefangen, den nur andere Organismen mit diesem Antrieb ungehindert durchqueren können."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -3903,9 +3899,8 @@ msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Erhöht die Wendigkeit von großen Zellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die Glykolyse, die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen Organellen fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie auf diese Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+msgstr "Zilien funktionieren ähnlich wie Flagellen. Aber anstatt Antrieb in eine bestimmte Richtung zu geben, helfen sie bei der Drehbewegung der Zelle."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -4000,14 +3995,12 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Noch zu implementieren."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Konzentration niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
+msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
 msgid "DIGESTION_SPEED"
@@ -4107,7 +4100,7 @@ msgstr "Klicke, ziehe und zoome um dir einen Überblick zu verschaffen"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 #, fuzzy
 msgid "LOOKING_AT"
-msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Blickrichtung:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:595
@@ -4184,29 +4177,31 @@ msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Landgang?"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
-#, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
-msgstr "Rotblindheit (Rot-Grün)"
+msgstr ""
+"Du bist dabei an Land zu gehen. Dies ist eine Vorraussetzung um weiter im Spiel voranzuschreiten. Bist du einmal an Land, gibt es kein zurück mehr.\n"
+"\n"
+"Im Augenblick ist der Übergang zum Land deutlich abrupter, als er in Zukunft sein soll.\n"
+"\n"
+"Geplant ist es, diesen Schritt gradueller und weniger plötzlich zu gestalten."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Lade Mikrobeneditor"
+msgstr "Lade mehrzelligen Editor"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Wähle im Editor-Tab eine Zelle aus um sie hier zu editieren"
+msgstr "Wähle einen Zellentyp aus dem Editor Tab aus, um ihn hier zu bearbeiten"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "Metaball kann nicht in den Baum seiner Untergeordneten verschoben werden"
+msgstr "Zelle kann nicht in den Baum der Nachfahren verschoben werden"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 #, fuzzy
 msgid "INTERNALS"
-msgstr "Extern"
+msgstr "Innere"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:373
 msgid "APPEARANCE"
@@ -4214,36 +4209,31 @@ msgstr "Erscheinungsbild"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Reproduktion"
+msgstr "Asexuell"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
 msgstr "Getrennte Zellen"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Es gibt Zellen, die nicht mit dem Rest verbunden sind.\n"
 "Bitte verbinde alle platzierten Zellen miteinander oder mach deine Änderungen rückgängig."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:679
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Neuen Zellentyp erstellen"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:693
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann benennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
+msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann umbenennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
 #, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Organelle platzieren"
+msgstr "Mehrere Zellen"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:48
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -4258,7 +4248,6 @@ msgid "RESUME_TOOLTIP"
 msgstr "Spiel fortsetzen"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Umgebung und Substanzen ein-/ausblenden"
 
@@ -4327,9 +4316,8 @@ msgid "SPAWN_ENEMY"
 msgstr "Gegner spawnen"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Gegner spawnen"
+msgstr "Alle Objekte entfernen"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
@@ -4419,9 +4407,8 @@ msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1964
-#, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Betritt den Editor und bearbeite deine Spezies"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:808
 msgid "PANGONIAN_REGION_NAME"
@@ -4488,9 +4475,8 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Gemischt..."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
@@ -4556,9 +4542,8 @@ msgid "LIGHT_LEVEL_DAY"
 msgstr "Tag"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
-#, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr "Mausrad rechts"
+msgstr "Nacht"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
 msgid "LIGHT_LEVEL_AVERAGE"
@@ -4617,9 +4602,8 @@ msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:851
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "Gesamtbevölkerung:"
+msgstr "Drehung:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:857
 msgid "HP_COLON"
@@ -4731,9 +4715,8 @@ msgid "INFINITE_MP"
 msgstr "Unendliche MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "In dieses Gebiet wechseln"
+msgstr "In ein Gebiet wechseln"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -4745,9 +4728,8 @@ msgstr "Zum aktuellen Gebiet"
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
-#, fuzzy
 msgid "SEED_LABEL"
-msgstr "Biom: {0}"
+msgstr "Planetenseed: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -4845,9 +4827,8 @@ msgid "MUTATION_POINTS"
 msgstr "Mutationspunkte"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:62
-#, fuzzy
 msgid "MULTIPLE_ORGANELLES"
-msgstr "Organelle platzieren"
+msgstr "Mehrere Organellen"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
@@ -4870,9 +4851,8 @@ msgid "N_A_MP"
 msgstr "N/V MP"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
-#, fuzzy
 msgid "REQUIRES_NUCLEUS"
-msgstr "Nukleus"
+msgstr "Benötigt Nukleus"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
@@ -4891,24 +4871,20 @@ msgid "LINE_COLOUR"
 msgstr "Linienfarbe:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die Glykolyse, die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen Organellen fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie auf diese Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+msgstr "Lipase ermöglicht es der Zelle die meisten Membranen zu zersetzen. Etwas davon wird auch ohne Lysosom von deiner Zelle produziert, aber es hier auszuwählen erhöht die Effizienz des Prozesses."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Die Vakuole ist eine interne membranöse Organelle, die zur Speicherung in der Zelle dient. Sie bestehen aus mehreren Vesikeln, kleineren membranösen Strukturen, die häufig in Zellen zur Lagerung verwendet werden und die miteinander verschmolzen sind. Die Vakuole ist mit Wasser gefüllt, das zur Aufnahme von Molekülen, Enzymen, Feststoffen und anderen Substanzen verwendet wird. Ihre Form ist flüssig und kann zwischen den Zellen variieren."
+msgstr "Cellulase ermöglicht es der Zelle Cellulose Membranen zu zersetzen. Dies erhöht die Effektivität des Prozesses."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die Glykolyse, die Umwandlung von Glukose in ATP-Energie. Damit Zellen, denen Organellen fehlen, einen fortgeschritteneren Stoffwechsel haben, sind sie auf diese Energie angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+msgstr "Chitinase ermöglicht es der Zelle Chitin Membranen zu zersetzen. Dies erhöht die Effektivität des Prozesses."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
-#, fuzzy
 msgid "SELECT_ENZYME"
-msgstr "Ausgewählte Mods:"
+msgstr "Wähle Enzyme aus:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -4951,9 +4927,8 @@ msgid "PRESSURE"
 msgstr "Druck"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
-#, fuzzy
 msgid "LIGHT_MAX"
-msgstr "Licht"
+msgstr "Licht Maximum"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:863
 msgid "SPECIES_PRESENT"
@@ -4964,9 +4939,8 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "In dieses Gebiet wechseln"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "AUSSTERBEN"
+msgstr "AUSSTERBEN IM BEREICH"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 msgid "PATCH_EXTINCTION_BOX_TEXT"
@@ -5015,19 +4989,16 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: Aufrufen der Initialisierungsmethode des Mods schlug mit folgenden Fehler fehl: {1}"
 
 #: ../src/modding/ModLoader.cs:498
-#, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}: Aufrufen der Initialisierungsmethode des Mods schlug mit folgenden Fehler fehl: {1}"
 
 #: ../src/modding/ModLoader.cs:519
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: Aufruf der \"unload\"-Methode schlug mit folgendem Fehler fehl: {1}"
 
 #: ../src/modding/ModLoader.cs:530
-#, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "Laden der pck-Datei ({0}) fehlgeschlagen"
+msgstr "Laden der pck-Datei ({0}) fehlgeschlagen weil die Datei nicht existiert"
 
 #: ../src/modding/ModLoader.cs:538
 msgid "PCK_LOAD_FAILED"
@@ -5046,9 +5017,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasse der Programmbibliothek ist erforderlich, wenn angegeben"
 
 #: ../src/modding/ModManager.cs:334
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Klasse der Programmbibliothek ist erforderlich, wenn angegeben"
+msgstr "Mod Assembler ist erforderlich wenn Auto Harmony aktiviert ist"
 
 #: ../src/modding/ModManager.cs:660
 msgid "NO_SELECTED_MOD"
@@ -5230,9 +5200,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Hauptklasse:"
 
 #: ../src/modding/ModManager.tscn:972
-#, fuzzy
 msgid "MOD_AUTO_HARMONY"
-msgstr "Modauthor:"
+msgstr "Benutzt Auto Harmony:"
 
 #: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
@@ -5443,13 +5412,12 @@ msgid "OUR_WIKI"
 msgstr "unser Wiki"
 
 #: ../src/modding/NewModGUI.tscn:439
-#, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Suizid"
+msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
-msgstr ""
+msgstr "Nutze Auto Harmony Laden"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
@@ -5666,17 +5634,15 @@ msgstr ""
 "{0}"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
 msgstr "Der ausgewählte Speicherstand ist inkompatibel"
 
 #: ../src/saving/SaveList.tscn:129
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
-"Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
-"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
+"Der ausgewählte Spielstand wurde mit einem Prototyp einer anderen Thrive Version erstellt.\n"
+"Da Prototyp Spielstände nicht upgradebar sind, kann er nicht geladen werden.\n"
+"Kompatibilität von Speicherständen hat zur Zeit keine hohe Priorität, da es zu viel Arbeitsaufwand kosten würde bei den häufigen Änderungen der Prototypen Spreicherstands Upgrades verfügbar zu machen."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -5721,12 +5687,12 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht rückgängig gemacht werden. Bist du sicher, dass du die {0} Speicherung(en) dauerhaft löschen möchten?"
 
 #: ../src/saving/SaveManagerGUI.cs:233
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht rückgängig gemacht werden. Bist du sicher, dass du Folgendes dauerhaft löschen möchtest?\n"
-" - {0} Automatische Speicherung(en)\n"
-" - {1} Schnellspeicherung(en)"
+" - {0} Automatische Speicherstände\n"
+" - {1} Schnellspeicherstände\n"
+" - {2} Backup Speicherstände"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -5850,27 +5816,22 @@ msgid "PAGE_TITLE"
 msgstr "Seitentitel"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
-#, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
+msgstr ""
+"Ein Fossil mit diesem Namen existiert bereits.\n"
+"Bist du sicher, dass du es überschreiben willst?"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
-#, fuzzy
 msgid "FOSSILISATION_EXPLANATION"
-msgstr ""
-"Aggressive Mikroben jagen ihre Beute über größere Entfernungen\n"
-"und kämpfen eher gegen Angreifer, wenn sie angegriffen werden.\n"
-"Friedliche Mikroben greifen andere nicht über größere Entfernungen an\n"
-"und setzen seltener Giftstoffe gegen Angreifer ein."
+msgstr "Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor laden."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
-#, fuzzy
 msgid "FOSSILISE"
-msgstr "Sessil"
+msgstr "Versteinern"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
@@ -5897,9 +5858,11 @@ msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolutionsbaum"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
-msgstr "Evolutionsbaum"
+msgstr ""
+"Wird im Sandboxmode oder in Spielständen die vor der 0.6.0 gestartet wurden nicht angezeigt.\n"
+"\n"
+"Trifft keins von beidem zu, ist ein Fehler aufgetreten. Bitte benachrichtige das Entwickler Team und stelle Log Dateien zur Verfügung."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
@@ -5930,7 +5893,7 @@ msgstr "Die Verstörung (Thrive Maskottchen)"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Dies' startet ein neues Spiel im Sandboxmodus mit der selektierten Art.\n"
@@ -6115,20 +6078,20 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
+"Deine Zelle kann nur eine begrenzte Menge an Objekten auf einmal verschlingen. Die Grenze hängt von der Größe der Zelle ab, kleinere Zellen haben weniger Kapazität. \n"
 "\n"
-"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+"Eine volle Zelle kann nichts mehr verschlingen. Warte bis einige verschlungene Objekte verdaut sind."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
+"Verschlinge Objekte indem du dich im Verschling-Modus über sie bewegst. Schalte Verschlingen an oder aus indem du [thrive:input]g_toggle_engulf[/thrive:input] drückst. \n"
 "\n"
-"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+"Verlasse den Modus, sobald das Objekt von dir eingesogen wird. \n"
+"\n"
+"Folge der Linie zum nächsten verschlingbaren Objekt."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
@@ -6141,20 +6104,27 @@ msgstr ""
 "Drücke den Apoptose (Suizid) Knopf um den Verdauungsprozess zu überspringen und schneller reinkarniert zu werden. Bedenke aber, dass immer eine Chance besteht zu entkommen!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
+"Du bist voll mit [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound]. Da du dich aber in einer nicht-multizellulären Kolonie befindest, machst du keinen Reproduktions Fortschritt. \n"
 "\n"
-"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+"Wenn du nicht planst multizellulär zu werden, musst du die Kolonie verlassen um dich fortzupflanzen und zum Editor zu gelangen. \n"
+"Verlasse die Kolonie und wachse weiter, indem du [thrive:input]g_unbind_all[/thrive:input] drückst."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
-#, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Lade Mikrobeneditor"
+msgstr ""
+"Willkommen im frühen multizellulären Stadium!\n"
+"\n"
+"Du hast deine Spezies erfolgreich durch die einzellige Phase geleitet.\n"
+"\n"
+"Das Gameplay hat im Kern die selben Mechaniken, wie das Mikroben Stadium. Du musst genauso deinen Organismus wachsen lassen und dich fortpflanzen um zum Editor zu gelangen. \n"
+"\n"
+"Allerdings kannst du das zelluläre Layout deiner Kolonie im Editor bearbeiten und deine Zellen für bestimmte Rollen spezialisieren. Bedenke, dass die Mitglieder deiner Kolonie [thrive:compound type=\"atp\"][/thrive:compound] nicht teilen können. \n"
+"\n"
+"Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
-#, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Gedeihe"
 

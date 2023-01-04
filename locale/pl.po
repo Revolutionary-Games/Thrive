@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-29 20:54+0800\n"
+"POT-Creation-Date: 2023-01-02 15:23+0200\n"
 "PO-Revision-Date: 2022-10-28 14:00+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1017,7 +1017,7 @@ msgstr "Rzęski"
 msgid "LYSOSOME"
 msgstr "Lizosom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:587
+#: ../src/auto-evo/AutoEvoExploringTool.cs:588
 msgid "FINISH_X_GENERATIONS"
 msgstr "Zakończ {0} Pokoleń"
 
@@ -2098,12 +2098,13 @@ msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Stężenie glukozy drastycznie spadło!"
 
 #: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
-#, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
-"Dziękujemy za grę!\n"
+"Dziękujemy za wspieranie twórców Thrive przez kupowanie tej kopii gry!\n"
 "\n"
-"Jeżeli Ci się spodobało, opowiedz o nas swoim znajomym."
+"Jeśli ty jej nie kupiłeś, proszę dostać własną kopię [color=#3796e1][url={0}]z tąd[/url][/color] lub sprawdzić naszą stronę [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color]. \n"
+"\n"
+"Jeśli byś chciał zobaczyć Launcher Thrive przed rozpoczęciem gry, możesz użyć guzika w głównym menu by wyjść do launchera i potem wyłączyć tryb bezszwowy w jego ustawieniach."
 
 #: ../src/general/MainMenu.cs:414
 msgid "STORE_LOGGED_IN_AS"
@@ -2156,9 +2157,8 @@ msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Opuść grę"
 
 #: ../src/general/MainMenu.tscn:321
-#, fuzzy
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Uruchom E"
+msgstr "Wyjdź do Launchera"
 
 #: ../src/general/MainMenu.tscn:332
 msgid "QUIT"
@@ -2174,7 +2174,7 @@ msgstr "Narzędzie Eksploracji Auto-Ewo"
 
 #: ../src/general/MainMenu.tscn:433 ../src/general/PauseMenu.tscn:206
 msgid "THRIVEOPEDIA"
-msgstr ""
+msgstr "Thrivopedia"
 
 #: ../src/general/MainMenu.tscn:448
 msgid "MODS"
@@ -5904,7 +5904,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:129
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 

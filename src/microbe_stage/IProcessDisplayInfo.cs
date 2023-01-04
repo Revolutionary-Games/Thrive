@@ -1,9 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 ///   Info needed to show a process in a process list
 /// </summary>
-public interface IProcessDisplayInfo
+/// <remarks>
+///   <para>
+///     This requires the <see cref="IEquatable{T}"/> interface as comparing the process display info must match when
+///     the objects are for the same <b>process</b> (and not the same display info object).
+///   </para>
+/// </remarks>
+public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
 {
     /// <summary>
     ///   User readable name
