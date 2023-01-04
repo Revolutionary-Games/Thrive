@@ -88,10 +88,7 @@ public static class PatchMapGenerator
                 }
 
                 // If there's no tidepool, add one
-                if (tidepool == null)
-                {
-                    NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
-                }
+                tidepool ??= NewPredefinedPatch(BiomeType.Tidepool, ++currentPatchId, region, regionName);
             }
             else
             {
@@ -114,7 +111,11 @@ public static class PatchMapGenerator
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    vents ??= NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName);
+                    // First call the function to add the vents to the region
+                    var patch = NewPredefinedPatch(BiomeType.Vents, ++currentPatchId, region, regionName);
+
+                    // Then update vents variable if null
+                    vents ??= patch;
                 }
             }
 
