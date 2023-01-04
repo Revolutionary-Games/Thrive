@@ -18,13 +18,11 @@ public class SpeciesDetailsPanel : PanelContainer
     [Export]
     public NodePath FossilisationDialogPath = null!;
 
-    private CustomRichTextLabel speciesDetailsLabel = null!;
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
-    private Button fossilisationButton = null!;
+    private CustomRichTextLabel? speciesDetailsLabel;
+    private SpeciesPreview? speciesPreview;
+    private CellHexesPreview? hexesPreview;
+    private Button? fossilisationButton;
     private FossilisationDialog fossilisationDialog = null!;
-
-    private bool ready;
 
     private Species? previewSpecies;
 
@@ -38,7 +36,7 @@ public class SpeciesDetailsPanel : PanelContainer
 
             previewSpecies = value;
 
-            if (previewSpecies != null && ready)
+            if (previewSpecies != null)
                 UpdateSpeciesPreview();
         }
     }
@@ -52,7 +50,6 @@ public class SpeciesDetailsPanel : PanelContainer
         hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         fossilisationButton = GetNode<Button>(FossilisationButtonPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
-        ready = true;
 
         if (previewSpecies != null)
             UpdateSpeciesPreview();
@@ -63,6 +60,10 @@ public class SpeciesDetailsPanel : PanelContainer
     /// </summary>
     private void UpdateSpeciesPreview()
     {
+        if (speciesPreview == null || hexesPreview == null || fossilisationButton == null ||
+            speciesDetailsLabel == null)
+            return;
+
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
         if (PreviewSpecies is MicrobeSpecies microbeSpecies)
@@ -81,7 +82,7 @@ public class SpeciesDetailsPanel : PanelContainer
 
     private void OnFossilisePressed()
     {
-        if (speciesPreview.PreviewSpecies is not MicrobeSpecies)
+        if (speciesPreview!.PreviewSpecies is not MicrobeSpecies)
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
 
         fossilisationDialog.SelectedSpecies = speciesPreview.PreviewSpecies;
