@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/FocusGrabber.cs" type="Script" id=1]
+
+[node name="FocusGrabber" type="Control"]
+pause_mode = 2
+mouse_filter = 2
+script = ExtResource( 1 )
