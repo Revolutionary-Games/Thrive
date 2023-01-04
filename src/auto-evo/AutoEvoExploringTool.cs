@@ -112,15 +112,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
     // Status and control paths
 
     [Export]
-    public NodePath CurrentGenerationLabelPath = null!;
-
-    [Export]
-    public NodePath CurrentWorldLabelPath = null!;
-
-    [Export]
-    public NodePath TotalTimeUsedLabelPath = null!;
-
-    [Export]
     public NodePath RunStatusLabelPath = null!;
 
     [Export]
@@ -228,9 +219,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private CustomCheckBox useBiodiversityForceSplitCheckBox = null!;
 
     // Status controls
-    private Label currentGenerationLabel = null!;
-    private Label currentWorldLabel = null!;
-    private Label totalTimeUsedLabel = null!;
     private Label runStatusLabel = null!;
     private SpinBox finishXGenerationsSpinBox = null!;
     private Button finishXGenerationsButton = null!;
@@ -338,9 +326,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
             GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationFractionPath);
         useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
 
-        currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
-        currentWorldLabel = GetNode<Label>(CurrentWorldLabelPath);
-        totalTimeUsedLabel = GetNode<Label>(TotalTimeUsedLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
         finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
         finishXGenerationsButton = GetNode<Button>(FinishXGenerationsButtonPath);
@@ -724,10 +709,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         // Select the current generation
         HistoryListMenuIndexChanged(world.CurrentGeneration);
 
-        currentGenerationLabel.Text = world.CurrentGeneration.ToString();
-
         world.TotalTimeUsed += autoEvoRun.RunDuration;
-        totalTimeUsedLabel.Text = world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
 
         UpdateCurrentWorldStatistics();
         UpdateAllWorldsStatistics();
@@ -778,13 +760,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
         SetControlButtonsState(RunControlState.Ready);
         runStatusLabel.Text = TranslationServer.Translate("READY");
 
-        currentWorldLabel.Text = worldsListMenu.Text = index.ToString();
-
         world = worldsList[index];
 
         generationDisplayed = world.CurrentGeneration;
-        currentGenerationLabel.Text = world.CurrentGeneration.ToString();
-        totalTimeUsedLabel.Text = world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture);
 
         // Rebuild history list
         historyListMenu.ClearAllItems();
@@ -931,6 +909,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
             $"  {world.CurrentGeneration}\n" +
             $"[b]Total Patches:[/b]\n" +
             $"  {world.PatchesCount}\n" +
+            $"[b]Total Auto-Evo Time:[/b]\n" +
+            $"  {world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture)}\n" +
             $"[b]Total Species:[/b]\n" +
             $"  {world.TotalSpeciesCount}\n" +
             $"[b]Species Still Alive:[/b]\n" +

@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/PhotographablePreview.tscn" type="PackedScene" id=9]
@@ -33,40 +32,37 @@ MapPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
 ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
 AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/AllWorldsStatLabel")
-WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/WorldsListMenu")
-NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NewWorldButton")
+WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/WorldsListMenu")
+NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton")
 CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
-WorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/WorldExportButton")
-AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
-AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
-BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
-BiodiversityFromNeighbourPatchChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance/BiodiversityFromNeighbourPatchChance")
-BiodiversityNearbyPatchIsFreePopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityNearbyPatchIsFreePopulation")
-BiodiversitySplitIsMutatedPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
-LowBiodiversityLimitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit/LowBiodiversityLimit")
-MaximumSpeciesInPatchPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
-MoveAttemptsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
-MutationsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
-NewBiodiversityIncreasingSpeciesPopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation/NewBiodiversityIncreasingSpeciesPopulation")
-ProtectMigrationsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/ProtectMigrationsFromSpeciesCap")
-ProtectNewCellsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/ProtectNewCellsFromSpeciesCap")
-RefundMigrationsInExtinctionsPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/RefundMigrationsInExtinctions")
-StrictNicheCompetitionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
-SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
-SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
-UseBiodiversityForceSplitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
-CurrentGenerationLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer3/CurrentGenerationLabel")
-CurrentWorldLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer6/CurrentWorldLabel")
-TotalTimeUsedLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer4/TotalTimeUsedLabel")
-RunStatusLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer5/RunStatusLabel")
-FinishXGenerationsSpinBoxPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerationsSpin")
-FinishXGenerationsButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerations")
-RunXWorldsSpinBoxPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorldsSpin")
-RunXWorldsButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorlds")
-RunGenerationButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration")
-RunStepButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep")
-AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
-PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis")
+WorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton")
+AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
+AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
+BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
+BiodiversityFromNeighbourPatchChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance/BiodiversityFromNeighbourPatchChance")
+BiodiversityNearbyPatchIsFreePopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityNearbyPatchIsFreePopulation")
+BiodiversitySplitIsMutatedPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
+LowBiodiversityLimitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit/LowBiodiversityLimit")
+MaximumSpeciesInPatchPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
+MoveAttemptsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
+MutationsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
+NewBiodiversityIncreasingSpeciesPopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation/NewBiodiversityIncreasingSpeciesPopulation")
+ProtectMigrationsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/ProtectMigrationsFromSpeciesCap")
+ProtectNewCellsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/ProtectNewCellsFromSpeciesCap")
+RefundMigrationsInExtinctionsPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/RefundMigrationsInExtinctions")
+StrictNicheCompetitionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
+SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
+SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
+UseBiodiversityForceSplitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
+RunStatusLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStatusLabel")
+FinishXGenerationsSpinBoxPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin")
+FinishXGenerationsButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations")
+RunXWorldsSpinBoxPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin")
+RunXWorldsButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds")
+RunGenerationButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration")
+RunStepButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep")
+AbortButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort")
+PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis")
 PatchMapDrawerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchDetailsPanel")
 HistoryListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer/HistoryListMenu")
@@ -157,7 +153,7 @@ size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="AllWorldsStatPanel" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
-margin_right = 434.0
+margin_right = 403.0
 margin_bottom = 570.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -165,7 +161,7 @@ size_flags_vertical = 3
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 433.0
+margin_right = 402.0
 margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -175,18 +171,18 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 422.0
+margin_right = 391.0
 margin_bottom = 558.0
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer"]
-margin_right = 412.0
+margin_right = 381.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "ALL_WORLDS_GENERAL_STATISTICS"
 
 [node name="AllWorldsStatLabel" parent="GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 24.0
-margin_right = 412.0
+margin_right = 381.0
 margin_bottom = 548.0
 focus_mode = 2
 size_flags_horizontal = 3
@@ -195,8 +191,8 @@ fit_content_height = false
 selection_enabled = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
-margin_left = 454.0
-margin_right = 888.0
+margin_left = 423.0
+margin_right = 827.0
 margin_bottom = 570.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -204,7 +200,7 @@ size_flags_vertical = 3
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 433.0
+margin_right = 403.0
 margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -214,23 +210,23 @@ custom_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 422.0
+margin_right = 392.0
 margin_bottom = 558.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer"]
-margin_right = 412.0
+margin_right = 382.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 412.0
+margin_right = 382.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "WORLD_GENERAL_STATISTICS"
 
 [node name="CurrentWorldStatLabel" parent="GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 24.0
-margin_right = 412.0
+margin_right = 382.0
 margin_bottom = 548.0
 focus_mode = 2
 size_flags_horizontal = 3
@@ -238,41 +234,43 @@ size_flags_vertical = 3
 fit_content_height = false
 selection_enabled = true
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor"]
-margin_left = 908.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor"]
+margin_left = 847.0
 margin_right = 1180.0
 margin_bottom = 570.0
+custom_constants/separation = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
+margin_right = 333.0
+margin_bottom = 42.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 271.0
-margin_bottom = 569.0
+margin_right = 332.0
+margin_bottom = 41.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 260.0
-margin_bottom = 558.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 250.0
-margin_bottom = 20.0
+margin_right = 321.0
+margin_bottom = 30.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 140.0
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+margin_right = 201.0
 margin_bottom = 20.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 text = "CURRENT_WORLD"
 
-[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 160.0
-margin_right = 210.0
+[node name="WorldsListMenu" type="MenuButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+margin_left = 221.0
+margin_right = 271.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 50, 0 )
 focus_mode = 2
@@ -283,9 +281,9 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 230.0
-margin_right = 250.0
+[node name="NewWorldButton" type="TextureButton" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+margin_left = 291.0
+margin_right = 311.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 texture_normal = ExtResource( 18 )
@@ -293,28 +291,190 @@ texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 19 )
 expand = true
 
-[node name="Spacer" type="Control" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 250.0
-margin_bottom = 509.0
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
+margin_top = 62.0
+margin_right = 333.0
+margin_bottom = 570.0
 size_flags_vertical = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 513.0
-margin_right = 250.0
-margin_bottom = 548.0
-custom_constants/separation = 20
-alignment = 1
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 332.0
+margin_bottom = 507.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
 
-[node name="WorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 15.0
-margin_right = 235.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 321.0
+margin_bottom = 496.0
+custom_constants/separation = 5
+
+[node name="Spacer8" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 311.0
+margin_bottom = 11.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 16.0
+margin_right = 311.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 4 )
+text = "AUTO_EVO_STATUS_COLON"
+
+[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 311.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "READY"
+align = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Spacer6" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 311.0
+margin_bottom = 77.0
+size_flags_vertical = 3
+
+[node name="HSeparator3" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 311.0
+margin_bottom = 92.0
+custom_constants/separation = 10
+
+[node name="Spacer7" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 97.0
+margin_right = 311.0
+margin_bottom = 108.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 113.0
+margin_right = 311.0
+margin_bottom = 148.0
+
+[node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 80.0
 margin_bottom = 35.0
+rect_min_size = Vector2( 80, 0 )
+min_value = 2.0
+value = 10.0
+align = 1
+
+[node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 84.0
+margin_right = 311.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "Finish 10 Generations"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 311.0
+margin_bottom = 188.0
+
+[node name="RunXWorldsSpin" type="SpinBox" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 80.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 80, 0 )
+min_value = 2.0
+value = 10.0
+align = 1
+
+[node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 84.0
+margin_right = 311.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "Run 10 Worlds"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 193.0
+margin_right = 311.0
+margin_bottom = 228.0
+text = "FINISH_ONE_GENERATION"
+
+[node name="RunStep" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 233.0
+margin_right = 311.0
+margin_bottom = 268.0
+text = "RUN_ONE_STEP"
+
+[node name="Abort" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 273.0
+margin_right = 311.0
+margin_bottom = 308.0
+text = "ABORT"
+
+[node name="Spacer4" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 313.0
+margin_right = 311.0
+margin_bottom = 324.0
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 329.0
+margin_right = 311.0
+margin_bottom = 333.0
+
+[node name="Spacer5" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 338.0
+margin_right = 311.0
+margin_bottom = 349.0
+size_flags_vertical = 3
+
+[node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 354.0
+margin_right = 311.0
+margin_bottom = 389.0
+text = "PLAY_WITH_CURRENT_SETTING"
+
+[node name="Spacer3" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 394.0
+margin_right = 311.0
+margin_bottom = 405.0
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 410.0
+margin_right = 311.0
+margin_bottom = 414.0
+
+[node name="Spacer2" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 419.0
+margin_right = 311.0
+margin_bottom = 430.0
+size_flags_vertical = 3
+
+[node name="WorldExportButton" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 435.0
+margin_right = 311.0
+margin_bottom = 470.0
 text = "EXPORT_ALL_WORLDS"
+
+[node name="Spacer" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 475.0
+margin_right = 311.0
+margin_bottom = 486.0
+size_flags_vertical = 3
 
 [node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
 visible = false
-margin_top = 45.0
+margin_top = 564.0
 margin_right = 1180.0
 margin_bottom = 615.0
 size_flags_horizontal = 3
@@ -330,447 +490,256 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1179.0
-margin_bottom = 569.0
+margin_bottom = 50.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1168.0
-margin_bottom = 558.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 20
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
-margin_right = 591.0
-margin_bottom = 548.0
+margin_bottom = 39.0
 scroll_horizontal_enabled = false
 
-[node name="ConfigEditorContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer"]
-margin_right = 591.0
-margin_bottom = 548.0
+[node name="ConfigEditorContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer"]
+margin_right = 1158.0
+margin_bottom = 527.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AllowSpeciesToNotMutate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
-margin_right = 591.0
+[node name="AllowSpeciesToNotMutate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_right = 1152.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 7 )
 text = "ALLOW_SPECIES_TO_NOT_MUTATE"
 
-[node name="AllowSpeciesToNotMigrate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="AllowSpeciesToNotMigrate" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 24.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 7 )
 text = "ALLOW_SPECIES_TO_NOT_MIGRATE"
 
-[node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 48.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 79.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 
-[node name="BiodiversityAttemptFillChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="BiodiversityAttemptFillChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 max_value = 1.0
 step = 0.01
 
-[node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 83.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 114.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 
-[node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 max_value = 1.0
 step = 0.01
 
-[node name="BiodiversityNearbyPatchIsFreePopulation" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="BiodiversityNearbyPatchIsFreePopulation" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 118.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 138.0
 custom_fonts/font = ExtResource( 7 )
 text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 
-[node name="BiodiversitySplitIsMutated" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="BiodiversitySplitIsMutated" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 142.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 162.0
 custom_fonts/font = ExtResource( 7 )
 text = "BIODIVERSITY_SPLIT_IS_MUTATED"
 
-[node name="LowBiodiversityLimit" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="LowBiodiversityLimit" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 166.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 197.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "LOW_BIODIVERSITY_LIMIT"
 
-[node name="LowBiodiversityLimit" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="LowBiodiversityLimit" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 
-[node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 201.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 232.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "MAXIMUM_SPECIES_IN_PATCH"
 
-[node name="MaximumSpeciesInPatch" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="MaximumSpeciesInPatch" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 
-[node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 236.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 267.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "MOVE_ATTEMPTS_PER_SPECIES"
 
-[node name="MoveAttemptsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="MoveAttemptsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 
-[node name="MutationsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="MutationsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 271.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 302.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "MUTATIONS_PER_SPECIES"
 
-[node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 
-[node name="NewBiodiversityIncreasingSpeciesPopulation" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="NewBiodiversityIncreasingSpeciesPopulation" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 306.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 337.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 
-[node name="NewBiodiversityIncreasingSpeciesPopulation" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="NewBiodiversityIncreasingSpeciesPopulation" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 max_value = 1000.0
 step = 10.0
 
-[node name="ProtectMigrationsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="ProtectMigrationsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 341.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 361.0
 custom_fonts/font = ExtResource( 7 )
 text = "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 
-[node name="ProtectNewCellsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="ProtectNewCellsFromSpeciesCap" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 365.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 385.0
 custom_fonts/font = ExtResource( 7 )
 text = "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 
-[node name="RefundMigrationsInExtinctions" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="RefundMigrationsInExtinctions" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 389.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 409.0
 custom_fonts/font = ExtResource( 7 )
 text = "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 
-[node name="StrictNicheCompetition" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="StrictNicheCompetition" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 413.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 433.0
 custom_fonts/font = ExtResource( 7 )
 text = "STRICT_NICHE_COMPETITION"
 
-[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 437.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 468.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 
-[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 max_value = 1000.0
 step = 10.0
 
-[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 472.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 503.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
+[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
 margin_top = 5.0
-margin_right = 515.0
+margin_right = 1076.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
 text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 
-[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
-margin_left = 519.0
-margin_right = 591.0
+[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
+margin_left = 1080.0
+margin_right = 1152.0
 margin_bottom = 31.0
 
-[node name="UseBiodiversityForceSplit" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="UseBiodiversityForceSplit" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 507.0
-margin_right = 591.0
+margin_right = 1152.0
 margin_bottom = 527.0
 custom_fonts/font = ExtResource( 7 )
 text = "USE_BIODIVERSITY_FORCE_SPLIT"
-
-[node name="CenterContainer" type="CenterContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 611.0
-margin_right = 1158.0
-margin_bottom = 548.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
-margin_left = 93.0
-margin_top = 80.0
-margin_right = 453.0
-margin_bottom = 468.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 10
-
-[node name="HBoxContainer6" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 360.0
-margin_bottom = 22.0
-custom_constants/separation = 10
-
-[node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer6"]
-margin_right = 227.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 6 )
-text = "CURRENT_WORLD_COLON"
-
-[node name="CurrentWorldLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer6"]
-margin_left = 237.0
-margin_top = 1.0
-margin_right = 360.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
-text = "0"
-align = 2
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 32.0
-margin_right = 360.0
-margin_bottom = 54.0
-custom_constants/separation = 10
-
-[node name="Label2" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 276.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 6 )
-text = "CURRENT_GENERATION_COLON"
-
-[node name="CurrentGenerationLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 286.0
-margin_top = 1.0
-margin_right = 360.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
-text = "0"
-align = 2
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 64.0
-margin_right = 360.0
-margin_bottom = 86.0
-custom_constants/separation = 10
-
-[node name="Label3" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 230.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 6 )
-text = "TOTAL_TIME_USED_COLON"
-
-[node name="TotalTimeUsedLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer4"]
-margin_left = 240.0
-margin_top = 1.0
-margin_right = 360.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
-text = "0:00:00:0000000"
-align = 2
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 96.0
-margin_right = 360.0
-margin_bottom = 118.0
-custom_constants/separation = 10
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer5"]
-margin_right = 135.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 6 )
-text = "STATUS_COLON"
-
-[node name="RunStatusLabel" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 145.0
-margin_top = 1.0
-margin_right = 360.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
-text = "READY"
-align = 2
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 128.0
-margin_right = 360.0
-margin_bottom = 163.0
-
-[node name="FinishXGenerationsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
-margin_right = 80.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 80, 0 )
-min_value = 2.0
-value = 10.0
-align = 1
-
-[node name="FinishXGenerations" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 84.0
-margin_right = 360.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-text = "Finish 10 Generations"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 173.0
-margin_right = 360.0
-margin_bottom = 208.0
-
-[node name="RunXWorldsSpin" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 80.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 80, 0 )
-min_value = 2.0
-value = 10.0
-align = 1
-
-[node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 84.0
-margin_right = 360.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-text = "Run 10 Worlds"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="RunGeneration" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 218.0
-margin_right = 360.0
-margin_bottom = 253.0
-text = "FINISH_ONE_GENERATION"
-
-[node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 263.0
-margin_right = 360.0
-margin_bottom = 298.0
-text = "RUN_ONE_STEP"
-
-[node name="Abort" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 308.0
-margin_right = 360.0
-margin_bottom = 343.0
-text = "ABORT"
-
-[node name="PlayWithThis" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 353.0
-margin_right = 360.0
-margin_bottom = 388.0
-text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
 visible = false
@@ -1120,21 +1089,21 @@ HideCancelButton = true
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= [ "Map" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ "Report" ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ "Viewer" ]]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/WorldExportButton" to="." method="ExportWorlds"]
-[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
-[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorldsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
-[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
+[connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
+[connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
+[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
