@@ -1,18 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/NewSaveMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
 
 [node name="NewSaveMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 SaveListPath = NodePath("VBoxContainer/VBoxContainer/SaveList")
 SaveNameBoxPath = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/SaveName")
 OverwriteConfirmPath = NodePath("OverwriteConfirm")
@@ -111,6 +109,16 @@ text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FocusGrabber" parent="VBoxContainer/CenterContainer" instance=ExtResource( 5 )]
+margin_left = 640.0
+margin_top = 18.0
+margin_right = 640.0
+margin_bottom = 18.0
+SkipOverridingFocusForElements = [ NodePath("../../..") ]
+Priority = 3
+NodeToGiveFocusTo = NodePath("../../VBoxContainer/HBoxContainer/Save")
+AlwaysOverrideFocus = true
 
 [node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
 rect_min_size = Vector2( 500, 0 )

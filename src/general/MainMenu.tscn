@@ -658,7 +658,7 @@ margin_top = 220.0
 margin_right = 158.0
 margin_bottom = 220.0
 SkipOverridingFocusForElements = [ NodePath("../../..") ]
-Priority = 1
+Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
 
@@ -932,34 +932,34 @@ rect_min_size = Vector2( 500, 0 )
 size_flags_horizontal = 3
 
 [node name="ThanksText" parent="ThanksForBuyingDialog/VBoxContainer" instance=ExtResource( 55 )]
-margin_right = 550.0
+margin_right = 500.0
 ExtendedBbcode = "THANKS_FOR_BUYING_THRIVE"
 
 [node name="Spacer" type="Control" parent="ThanksForBuyingDialog/VBoxContainer"]
 margin_top = 26.0
-margin_right = 550.0
-margin_bottom = 31.0
+margin_right = 500.0
+margin_bottom = 135.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="CheckBox" parent="ThanksForBuyingDialog/VBoxContainer" instance=ExtResource( 54 )]
-margin_top = 35.0
-margin_right = 550.0
-margin_bottom = 52.0
+margin_top = 139.0
+margin_right = 500.0
+margin_bottom = 156.0
 custom_fonts/font = ExtResource( 51 )
 pressed = true
 text = "DISMISS_PERMANENTLY"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ThanksForBuyingDialog/VBoxContainer"]
-margin_top = 56.0
-margin_right = 550.0
-margin_bottom = 88.0
+margin_top = 160.0
+margin_right = 500.0
+margin_bottom = 192.0
 size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="ThanksForBuyingDialog/VBoxContainer/HBoxContainer"]
-margin_left = 256.0
-margin_right = 293.0
+margin_left = 231.0
+margin_right = 268.0
 margin_bottom = 32.0
 size_flags_horizontal = 6
 custom_fonts/font = ExtResource( 53 )

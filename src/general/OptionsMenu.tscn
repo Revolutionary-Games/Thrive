@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
 [ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -1682,7 +1683,6 @@ margin_bottom = 680.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-focus_mode = 0
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1692,7 +1692,6 @@ __meta__ = {
 margin_left = 104.0
 margin_right = 176.0
 margin_bottom = 35.0
-focus_mode = 0
 disabled = true
 text = "RESET"
 __meta__ = {
@@ -1704,15 +1703,21 @@ margin_left = 180.0
 margin_right = 280.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-focus_mode = 0
 disabled = true
 text = "SAVE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 13 )]
 margin_left = 284.0
+margin_right = 284.0
+margin_bottom = 35.0
+Priority = 2
+NodeToGiveFocusTo = NodePath("../Back")
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 288.0
 margin_right = 360.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
@@ -1722,7 +1727,6 @@ custom_styles/separator = SubResource( 5 )
 margin_left = 364.0
 margin_right = 689.0
 margin_bottom = 35.0
-focus_mode = 0
 text = "RESET_SETTINGS_TO_DEFAULTS"
 __meta__ = {
 "_edit_use_anchors_": false

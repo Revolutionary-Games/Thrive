@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/NewGameSettings.cs" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/concept_art/planet_generation.jpg" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -1180,13 +1181,22 @@ margin_bottom = 304.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
+focus_neighbour_right = NodePath("../Basic")
+focus_next = NodePath("../Basic")
+focus_previous = NodePath(".")
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
 margin_left = 104.0
+margin_right = 104.0
+margin_bottom = 35.0
+NodeToGiveFocusTo = NodePath("../Confirm")
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 108.0
 margin_right = 180.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
@@ -1198,7 +1208,10 @@ margin_right = 359.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 hint_tooltip = "ADVANCED_VIEW_BUTTON_TOOLTIP"
-focus_mode = 0
+focus_neighbour_left = NodePath("../Basic")
+focus_neighbour_right = NodePath("../Confirm")
+focus_next = NodePath("../Confirm")
+focus_previous = NodePath("../Basic")
 text = "ADVANCED_VIEW"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1211,6 +1224,10 @@ margin_right = 416.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 hint_tooltip = "BASIC_VIEW_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath("../Back")
+focus_neighbour_right = NodePath("../Advanced")
+focus_next = NodePath("../Advanced")
+focus_previous = NodePath("../Back")
 text = "BASIC_VIEW"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1221,6 +1238,8 @@ margin_left = 363.0
 margin_right = 550.0
 margin_bottom = 35.0
 hint_tooltip = "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath("../Advanced")
+focus_previous = NodePath("../Advanced")
 text = "CONFIRM_NORMAL"
 __meta__ = {
 "_edit_use_anchors_": false
