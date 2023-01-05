@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=13]
 [ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=15]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
@@ -193,6 +194,22 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.00784314, 0.607843, 0.329412, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="StyleBoxFlat" id=27]
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -272,13 +289,13 @@ margin_right = 170.0
 margin_bottom = 57.0
 
 [node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
-margin_right = 340.0
+margin_right = 499.0
 margin_bottom = 50.0
 
 [node name="MarginContainer" type="MarginContainer" parent="TopPanel/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 339.0
+margin_right = 498.0
 margin_bottom = 49.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -288,7 +305,7 @@ custom_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="TopPanel/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 328.0
+margin_right = 487.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -311,7 +328,7 @@ rect_min_size = Vector2( 10, 0 )
 
 [node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
 margin_left = 48.0
-margin_right = 135.0
+margin_right = 173.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -331,8 +348,8 @@ __meta__ = {
 }
 
 [node name="NightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 139.0
-margin_right = 226.0
+margin_left = 177.0
+margin_right = 315.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -352,8 +369,8 @@ __meta__ = {
 }
 
 [node name="AverageLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 230.0
-margin_right = 318.0
+margin_left = 319.0
+margin_right = 477.0
 margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -462,6 +479,7 @@ __meta__ = {
 [node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
 margin_right = 103.0
 margin_bottom = 30.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -484,6 +502,7 @@ __meta__ = {
 margin_left = 107.0
 margin_right = 210.0
 margin_bottom = 30.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -505,6 +524,7 @@ __meta__ = {
 margin_left = 214.0
 margin_right = 318.0
 margin_bottom = 30.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
@@ -740,10 +760,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 284.0
-margin_top = 309.0
-margin_right = 600.0
-margin_bottom = 899.0
+margin_left = 304.0
+margin_top = 329.0
+margin_right = 620.0
+margin_bottom = 919.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1075,6 +1095,8 @@ margin_right = 258.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "PREDICTION_DETAILS_OPEN_TOOLTIP"
+focus_neighbour_bottom = NodePath("../../../../../../../BottomRight/HBoxContainer/ConfirmButton")
+focus_next = NodePath("../../../../../../../BottomRight/HBoxContainer/ConfirmButton")
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource( 18 )
@@ -1219,15 +1241,21 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
-margin_right = 150.0
+margin_right = 154.0
 margin_bottom = 40.0
 alignment = 2
+
+[node name="FocusGrabber" parent="BottomRight/HBoxContainer" instance=ExtResource( 16 )]
+margin_bottom = 40.0
+NodeToGiveFocusTo = NodePath("../ConfirmButton")
 
 [node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
 visible = false
 margin_right = 237.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
+focus_neighbour_right = NodePath("../ConfirmButton")
+focus_next = NodePath("../ConfirmButton")
 mouse_filter = 1
 custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
@@ -1241,12 +1269,15 @@ __meta__ = {
 }
 
 [node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
-margin_right = 150.0
+margin_left = 4.0
+margin_right = 154.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
+rect_pivot_offset = Vector2( 671, 71.4142 )
 mouse_filter = 1
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
+custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
 __meta__ = {
