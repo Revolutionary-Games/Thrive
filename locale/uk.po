@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-02 15:23+0200\n"
-"PO-Revision-Date: 2022-12-03 09:31+0000\n"
-"Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
+"PO-Revision-Date: 2023-01-04 08:14+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Багатоклітинна стадія"
 
 #: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
-msgstr "Загальгне"
+msgstr "Загальне"
 
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
@@ -93,7 +93,7 @@ msgstr "Ваша клітина використовує [thrive:compound type=\
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Щоб увійти в редактор і розмножитися, вам потрібно зібрати [thrive:compound type=\"ammonia\"][/thrive:compound] (Оранжеві хмари) і [thrive:compound type=\"phosphates\"][/thrive:compound] (Фіолетові хмари)."
+msgstr "Щоб увійти до редактора й розмножитися, вам потрібно зібрати [thrive:compound type=\"ammonia\"][/thrive:compound] (Оранжеві хмари) і [thrive:compound type=\"phosphates\"][/thrive:compound] (Фіолетові хмари)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -115,7 +115,7 @@ msgstr "Целюлозні та хітинові клітинні стінки, 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Осморегуляція коштує [thrive:compound type=\"atp\"][/thrive:compound], що означає, чим більша ваша клітина, тим більше Мітохондрій, Метаблосом чи Рустиціаніну (або цитоплазми, що виконує Гліколіз) вам потрібно, аби уникнути втрат [thrive:compound type=\"atp\"][/thrive:compound], коли ви непорушні."
+msgstr "Осморегуляція коштує [thrive:compound type=\"atp\"][/thrive:compound], що означає, чим більша Ваша клітина, тим більше Мітохондрій, Метаболосом чи Рустіціаніну (або цитоплазми, що виконує гліколіз) Вам потрібно, аби уникнути втрат [thrive:compound type=\"atp\"][/thrive:compound], коли Ви непорушні."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -138,7 +138,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] може бути перетворено на [thrive:compound type=\"glucose\"][/thrive:compound] за допомогою хемопластів та хемосинтизуючих білків. [thrive:compound type=\"iron\"][/thrive:compound] може бути перетворено за допомогю рустицианіну на [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] може бути перетворено на [thrive:compound type=\"glucose\"][/thrive:compound] за допомогою хемопластів та хемосинтезувальних білків. [thrive:compound type=\"iron\"][/thrive:compound] може бути перетворено за допомогою рустіцианіну на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
@@ -176,7 +176,7 @@ msgstr ""
 "\n"
 "Тилакоїди: Продукують 1/3іх від кількості [thrive:compound type=\"glucose\"][/thrive:compound] як нормальні хлорпласти, але проводить гліколіз і використовує 1 Гекс\n"
 "\n"
-"Залізоокисні білки: Трансформує [thrive:compound type=\"iron\"][/thrive:compound] в\n"
+"Рустіціанін: Трансформує [thrive:compound type=\"iron\"][/thrive:compound] в\n"
 "[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Нітрогеназа: Трансформує атмосферний азот та [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] анаеробним диханням\n"
@@ -190,7 +190,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Зовнішні органели\n"
 "\n"
-"Джугутики: живлячися прискорюють вашу клітину [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Джгутики: живлячися прискорюють вашу клітину [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Ворсинки: Можна використати, щоб заколювати інші клітини насмерть\n"
 "\n"
@@ -246,7 +246,7 @@ msgstr "Цікавий факт: Інфузорії Дідініум та Туф
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Порада:токсини можна використати виведенням із вас, якщо ви достатньо швидкий."
+msgstr "Порада: токсини можна використати виведенням із вас, якщо ви достатньо швидкий."
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
@@ -294,7 +294,7 @@ msgstr "Порада: Біоми це більш ніж задній фон, у 
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Порада: чим більше у вас джугутиків, ти ви швидші, бум брум, та це вартує більше АТФ"
+msgstr "Порада: чим більше у вас джгутиків, ти ви швидші, бум брум, та це вартує більше АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -338,11 +338,11 @@ msgstr "Thrive позиціонується ,як симулятор іншої 
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Цікавий факт: команда Thrive час від час випускають підкасти, вам варто зацінити їх!"
+msgstr "Цікавий факт: команда Thrive час від часу випускає подкасти, вам варто зацінити їх!"
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Цікавий факт: Thrive створено з відкритим кодом на движку Godot!"
+msgstr "Цікавий факт: Thrive створено з відкритим кодом на рушію Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
@@ -861,7 +861,7 @@ msgstr "Хітин"
 #: ../simulation_parameters/microbe_stage/organelles.json:58
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
-msgstr "Заліокисні білки"
+msgstr "Рустіціанін"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2506
@@ -1116,9 +1116,8 @@ msgid "CURRENT_GENERATION_COLON"
 msgstr "Поточна Генерація:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:442
-#, fuzzy
 msgid "TOTAL_TIME_USED_COLON"
-msgstr "Статус:"
+msgstr "Усього часу використано:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:459
 msgid "STATUS_COLON"
