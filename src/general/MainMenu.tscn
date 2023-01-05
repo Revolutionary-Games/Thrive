@@ -786,6 +786,7 @@ margin_right = 340.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "TWITTER_TOOLTIP"
+focus_neighbour_right = NodePath("../../Menus/MainMenu/Quit")
 focus_next = NodePath("../../Menus/MainMenu/Quit")
 texture_normal = ExtResource( 29 )
 texture_pressed = ExtResource( 27 )
