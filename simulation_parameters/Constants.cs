@@ -1098,7 +1098,7 @@ public static class Constants
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
-    public const float MINIMUM_DELAY_BETWEEN_ICON_TYPE_CHANGE = 0.3f;
+    public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
 
     // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
     public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;

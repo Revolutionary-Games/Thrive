@@ -180,6 +180,26 @@ public class InputManager : Node
         Input.Singleton.Connect("joy_connection_changed", this, nameof(OnConnectedControllersChanged));
 
         DoPostLoad();
+
+        // Detect initial controllers
+        var controllers = Input.GetConnectedJoypads();
+        if (controllers.Count > 0)
+        {
+            // Apply button style from initial controller
+            try
+            {
+                int controllerId = (int)controllers[0];
+                lastUsedControllerName = Input.GetJoyName(controllerId);
+                lastUsedControllerId = controllerId;
+
+                GD.Print("First connected controller is: ", lastUsedControllerName);
+                ApplyInputPromptTypes();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Startup controller style applying failed: ", e);
+            }
+        }
     }
 
     /// <summary>
@@ -515,6 +535,8 @@ public class InputManager : Node
         {
             ApplyInputPromptTypes();
         }
+
+        inputChangeDelay = Constants.MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE;
     }
 
     private void ApplyInputPromptTypes()
@@ -533,9 +555,10 @@ public class InputManager : Node
 
     private void OnConnectedControllersChanged(int device, bool connected)
     {
+        // This connected signal doesn't seem to apply during startup, instead only when a controller is reconnected
         if (connected)
         {
-            GD.Print($"New controller ({device}) connected");
+            GD.Print($"Controller {device} connected");
         }
         else
         {
