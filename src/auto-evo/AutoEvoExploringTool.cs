@@ -363,7 +363,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
         worldsListMenu.Popup.Connect("index_pressed", this, nameof(WorldsListMenuIndexChanged));
 
-        InitNewWorld();
+        InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
     }
 
     public override void _Process(float delta)
@@ -397,7 +397,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         if (autoEvoRun == null && worldsPendingToRun > 0)
         {
-            InitNewWorld();
+            InitNewWorld(world.AutoEvoConfiguration);
             FinishOneGeneration();
             generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
             --worldsPendingToRun;
@@ -418,9 +418,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
-    private void InitNewWorld()
+    private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
-        worldsList.Add(new AutoEvoExploringToolWorld());
+        worldsList.Add(new AutoEvoExploringToolWorld(configuration));
         WorldsListMenuIndexChanged(worldsList.Count - 1);
 
         worldsListMenu.AddItem((worldsList.Count - 1).ToString(), false, Colors.White);
@@ -1028,9 +1028,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// </summary>
         public TimeSpan TotalTimeUsed;
 
-        public AutoEvoExploringToolWorld(AutoEvoConfiguration? configuration = null)
+        public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration)
         {
-            AutoEvoConfiguration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration.Clone();
+            AutoEvoConfiguration = configuration.Clone();
             GameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
                 { AutoEvoConfiguration = AutoEvoConfiguration });
             SpeciesHistoryList = new List<Dictionary<uint, Species>>();
