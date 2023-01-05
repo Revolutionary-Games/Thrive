@@ -125,7 +125,7 @@ AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tool
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
-PatchNotesPath = NodePath("MenuContainers/PatchNotes")
+PatchNotesPath = NodePath("MenuContainers/Menus/PatchNotesPanelContainer")
 GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
@@ -511,13 +511,21 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
+[node name="PatchNotesPanelContainer" type="PanelContainer" parent="MenuContainers/Menus"]
+visible = false
+anchor_right = 0.391
+anchor_bottom = 0.836
+margin_left = 2.0
+margin_top = 1.04001
+margin_right = -348.48
+margin_bottom = -231.373
+rect_scale = Vector2( 3.33667, 2.63395 )
+
 [node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
-anchor_top = 1.0
-anchor_bottom = 1.0
 margin_left = 7.0
-margin_top = -246.0
+margin_top = 474.0
 margin_right = 175.0
-margin_bottom = -36.0
+margin_bottom = 684.0
 rect_min_size = Vector2( 0, 80 )
 theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 2 )
@@ -722,17 +730,6 @@ texture_normal = ExtResource( 29 )
 texture_pressed = ExtResource( 27 )
 texture_hover = ExtResource( 33 )
 expand = true
-
-[node name="PatchNotes" type="PopupPanel" parent="MenuContainers"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 7.0
-margin_top = -246.0
-margin_right = 175.0
-margin_bottom = -36.0
-rect_min_size = Vector2( 0, 80 )
-theme = ExtResource( 1 )
-custom_styles/panel = SubResource( 2 )
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 visible = false

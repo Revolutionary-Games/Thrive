@@ -98,7 +98,7 @@ public class MainMenu : NodeWithInput
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
 
-    private PopupPanel patchNotes = null!;
+    private PanelContainer patchNotes = null!;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -261,7 +261,7 @@ public class MainMenu : NodeWithInput
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
 
-        patchNotes = GetNode<PopupPanel>(PatchNotesPath);
+        patchNotes = GetNode<PanelContainer>(PatchNotesPath);
 
         MenuArray?.Clear();
 
@@ -300,11 +300,11 @@ public class MainMenu : NodeWithInput
 
         if (DisplayPatchNotes())
         {
-            patchNotes.ShowModal();
-
-            // A plain PopupPanel doesn't resize automatically and using other popup types will be overkill,
-            // so we need to manually shrink it
-            patchNotes.RectSize = Vector2.Zero;
+            patchNotes.Visible = true;
+        }
+        else
+        {
+            patchNotes.Visible = false;
         }
     }
 
