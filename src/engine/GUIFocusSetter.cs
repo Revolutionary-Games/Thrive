@@ -17,6 +17,7 @@ public class GUIFocusSetter : Control
     {
         instance = this;
         MouseFilter = MouseFilterEnum.Ignore;
+        PauseMode = PauseModeEnum.Process;
     }
 
     public static GUIFocusSetter Instance => instance ?? throw new InstanceNotLoadedYetException();
