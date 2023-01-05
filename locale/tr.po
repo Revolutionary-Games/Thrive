@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-17 20:22+0000\n"
-"PO-Revision-Date: 2022-12-02 13:32+0000\n"
+"POT-Creation-Date: 2023-01-05 18:02+0000\n"
+"PO-Revision-Date: 2023-01-03 21:00+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -1017,153 +1017,157 @@ msgstr "Sil"
 msgid "LYSOSOME"
 msgstr "Lizozom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:570
+#: ../src/auto-evo/AutoEvoExploringTool.cs:578
 msgid "FINISH_X_GENERATIONS"
 msgstr "{0} Kuşak Tamamla"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:100
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:101
 msgid "CONFIG"
 msgstr "Yapılandırma"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:108
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:109
 msgid "MAP"
 msgstr "Harita"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:116
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:117
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:124
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:125
 msgid "VIEWER"
 msgstr "Görüntüleyici"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:172
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:173
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Türün mutasyona uğramasına izin verme (iyi bir mutasyon bulunamazsa)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:179
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Türün göç etmesine izin verme (göç edilecek bir yer bulunamazsa)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:192
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:193
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Çok az türe (düşük biyoçeşitlilik) sahip her arazide yeni bir tür oluşturma olasılığı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:212
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Yakınlardaki bir arazideki biyoçeşitliliği arttırmak için yeni bir tür oluşturma olasılığı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:226
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:227
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr "Yakınlardaki arazide biyoçeşitliliği arttıran türe bedava popülasyon verilsin"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:233
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:234
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biyoçeşitliliği arttıran tür, oluşum ile mutasyona uğrasın"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:246
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Düşük biyoçeşitliliğe sahip bu kadar miktarda tür içeren arazileri göz önünde bulundur"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:265
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Zorunlu soy tükenmelerinden önce bir arazideki maksimum tür sayısı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:282
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:283
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Tür başına göç girişimi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:301
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Tür başına mutasyon denemesi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:318
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:319
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Biyoçeşitliliği arttıran tür için başlangıçtaki popülasyon"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:332
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Maksimum tür sınırından yalnızca yeni göç eden popülasyonları koru"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:339
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Maksimum tür sınırından yalnızca yeni oluşan türleri koru"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:346
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:347
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr "Soy tükenmesi durumunda, hedef arazideki göçleri iade et"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:353
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Sıkı alan mücadelesi (uyum başarısı farklılıkları abartılı)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:366
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:367
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr "Birden fazla iyi mutasyon ile ayrılan türler için minimum popülasyon"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Bir türün, mutasyon ile ayrılması sağlanan, minimum popülasyon bölümü"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:398
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:399
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Biyoçeşitliliği arttıran tür oluşumu mevcut türlerden popülasyon çalsın"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:420
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Mevcut Kuşak:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:437
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:438
+msgid "TOTAL_TIME_USED_COLON"
+msgstr "Toplam geçen süre:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:455
 msgid "STATUS_COLON"
 msgstr "Durum:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:462
 msgid "READY"
 msgstr "Hazır"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:475
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:493
 msgid "FINISH_ONE_GENERATION"
 msgstr "Bir Kuşak Tamamla"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:481
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "RUN_ONE_STEP"
 msgstr "Bir Adım İlerle"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:487
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:505
 msgid "ABORT"
 msgstr "Durdur"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:493
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:511
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:535
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "GENERATIONS"
 msgstr "Kuşaklar"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:542
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:560
 msgid "SELECT_A_GENERATION"
 msgstr "Bir kuşak seç"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:576
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:594
 msgid "SPECIES"
 msgstr "Türler"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:583
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:601
 msgid "SELECT_A_SPECIES"
 msgstr "Bir tür seç"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:684
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:702
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:732
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:750
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:753
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1173,13 +1177,13 @@ msgstr "Evrim Ağacı"
 msgid "BACK"
 msgstr "Geri"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:757
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:775
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:191
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:776
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -4398,7 +4402,7 @@ msgstr ""
 "[b]Temel Altıgen Büyüklüğü[/b]\n"
 "  {4}"
 
-#: ../src/microbe_stage/MicrobeStage.cs:732
+#: ../src/microbe_stage/MicrobeStage.cs:743
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermemekte"
 
@@ -4418,11 +4422,11 @@ msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücr
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Editöre gir ve türünde değişiklik yap"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:808
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Pangonik"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:879
+#: ../src/microbe_stage/PatchMapGenerator.cs:880
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -5895,7 +5899,7 @@ msgstr "Disturbance"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Müze"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:137
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Seçilen tür ile yeni bir oyuna başlamak istediğine emin misin?\n"

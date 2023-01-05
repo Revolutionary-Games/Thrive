@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-17 20:22+0000\n"
+"POT-Creation-Date: 2023-01-05 18:02+0000\n"
 "PO-Revision-Date: 2022-11-10 00:00+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1007,153 +1007,158 @@ msgstr "Cílios"
 msgid "LYSOSOME"
 msgstr "Lisossomo"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:570
+#: ../src/auto-evo/AutoEvoExploringTool.cs:578
 msgid "FINISH_X_GENERATIONS"
 msgstr "Completar {0} gerações"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:100
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:101
 msgid "CONFIG"
 msgstr "Configuração"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:108
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:109
 msgid "MAP"
 msgstr "Mapa"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:116
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:117
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Relatório"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:124
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:125
 msgid "VIEWER"
 msgstr "Visualizador"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:172
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:173
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Permitir que a espécie não mute"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:179
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Permitir que a espécie não migre"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:192
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:193
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr "Probabilidade da criação de uma nova espécie em regiões com poucas espécies (biodiversidade baixa)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:212
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:213
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr "Probabilidade da criação de uma nova espécie para aumentar a biodiversidade de uma região próxima"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:226
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:227
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr "População grátis é dada às espécies que aumentam a biodiversidade de uma região próxima"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:233
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:234
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Espécies que aumentam a biodiversidade são mutadas na criação"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:246
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:247
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:265
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Máximo de espécies na região"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:282
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:283
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr "Tentativas de migração por espécie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:301
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutações por espécie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:318
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:319
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "População inicial para espécies que aumentam a biodiversidade"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:332
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr "Teto de proteção de espécies recém-migradas"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:339
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Teto de proteção de espécies criadas de outras espécies"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:346
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:347
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr "Reembolsar migrações em caso de extinção"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:353
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:354
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Competição por nichos mais forte (diferenças de aptidão exageradas)"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:366
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:367
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr "População mínima para que uma espécie se divida se há mutações boas o suficiente"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:386
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "População mínima para que uma fração de uma espécie possa dividir por mutações"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:398
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:399
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Espécies criadas para aumentar a biodiversidade tomam parte da população de espécies existentes"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:420
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Geração atual:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:437
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:438
+#, fuzzy
+msgid "TOTAL_TIME_USED_COLON"
+msgstr "Estado:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:455
 msgid "STATUS_COLON"
 msgstr "Estado:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:462
 msgid "READY"
 msgstr "Pronto"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:475
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:493
 msgid "FINISH_ONE_GENERATION"
 msgstr "Completar uma geração"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:481
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "RUN_ONE_STEP"
 msgstr "Executar um passo"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:487
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:505
 msgid "ABORT"
 msgstr "Abortar"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:493
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:511
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jogar com essas configurações"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:535
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "GENERATIONS"
 msgstr "Gerações"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:542
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:560
 msgid "SELECT_A_GENERATION"
 msgstr "Selecione uma geração"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:576
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:594
 msgid "SPECIES"
 msgstr "Espécie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:583
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:601
 msgid "SELECT_A_SPECIES"
 msgstr "Selecione uma espécie"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:684
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:702
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da Auto-evo:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:732
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:750
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore evolucionária"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:753
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:771
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1163,13 +1168,13 @@ msgstr "Árvore evolucionária"
 msgid "BACK"
 msgstr "Voltar"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:757
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:775
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:191
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:758
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:776
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -4389,7 +4394,7 @@ msgstr ""
 "[b]Tamanho em hexágonos[/b]\n"
 "  {4}"
 
-#: ../src/microbe_stage/MicrobeStage.cs:732
+#: ../src/microbe_stage/MicrobeStage.cs:743
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
@@ -4409,11 +4414,11 @@ msgstr "Ir para o próximo estágio do jogo (milticelular). Disponível ao ter u
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Abre o editor e modifica a sua espécie"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:808
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Pangoninano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:879
+#: ../src/microbe_stage/PatchMapGenerator.cs:880
 msgid "PATCH_NAME"
 msgstr "{1} {0}"
 
@@ -5885,7 +5890,7 @@ msgstr "O Disturbance"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museu"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:137
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Tem certeza que você quer começar um novo jogo com a espécie selecionada?\n"
