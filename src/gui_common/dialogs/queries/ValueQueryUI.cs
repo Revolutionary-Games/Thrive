@@ -83,6 +83,7 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
         categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
         propertyButton.Popup.Connect("index_pressed", this, nameof(OnNewPropertySelected));
+        wholeNumberInputField.Connect("value_changed", this, nameof(OnSpinBoxValueChanged));
     }
 
     public void OnNewCategorySelected(int choiceIndex)
@@ -153,5 +154,12 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
         propertyButton.Text = newProperty;
         valueQuery.CurrentProperty = newProperty;
+    }
+
+    private void OnSpinBoxValueChanged(float value)
+    {
+        // WHY NEED DOUBLE APPLY FOR RESULTS?
+        GD.Print("changing value", value);
+        valueQuery.CurrentNumericValue = value;
     }
 }

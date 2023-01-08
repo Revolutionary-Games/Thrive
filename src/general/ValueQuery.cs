@@ -1,3 +1,4 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ public sealed class ValueQuery<T> : IValueQuery
 
     private string currentCategory = null!;
     private string currentProperty = null!;
+
+    // For numbers
+    private float currentNumericValue = 0;
 
     // TODO FUNCTION : in filter argument or aside? => filter argument
     private readonly Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions = new();
@@ -52,6 +56,7 @@ public sealed class ValueQuery<T> : IValueQuery
 
     public string CurrentCategory { get => currentCategory; set => currentCategory = value; }
     public string CurrentProperty { get => currentProperty; set => currentProperty = value; }
+    public float CurrentNumericValue { get => currentNumericValue; set => currentNumericValue = value; }
 
     public Dictionary<string, IEnumerable<string>> CategorizedProperties =>
         categorizedArgumentFunctions.ToDictionary(c => c.Key, c => c.Value.Select(p => p.Key));
@@ -82,8 +87,9 @@ public sealed class ValueQuery<T> : IValueQuery
     /// </summary>
     public float Apply(T target)
     {
+        GD.Print(CurrentCategory == NumberCategory, CurrentCategory);
         if (CurrentCategory == NumberCategory)
-            return categorizedArgument[CurrentCategory].GetNumberValue();
+            return currentNumericValue;
 
         return categorizedArgumentFunctions[CurrentCategory][CurrentProperty](target);
     }

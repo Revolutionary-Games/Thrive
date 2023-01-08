@@ -7,6 +7,8 @@ public interface IValueQuery
     public string CurrentCategory { get; set; }
     public string CurrentProperty { get; set; }
 
+    public float CurrentNumericValue { get; set; }
+
     /// <summary>
     ///   A dictionary of all the possible properties, categorized by the dictionary's keys.
     /// </summary>
