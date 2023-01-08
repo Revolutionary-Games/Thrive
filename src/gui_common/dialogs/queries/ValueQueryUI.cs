@@ -18,6 +18,9 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
     [Export]
     public NodePath PropertyButtonPath = null!;
 
+    [Export]
+    public NodePath WholeNumberInputFieldPath = null!;
+
     /// <summary>
     ///   Button for choosing which category of property will be queried
     ///   (e.g. for species: behavior or number of a given organelle).
@@ -28,6 +31,8 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
     ///   Button for choosing the property whose value is to be retrieved (e.g. speed, or the number of flagella).
     /// </summary>
     private CustomDropDown propertyButton = null!;
+
+    private SpinBox wholeNumberInputField = null!;
 
     /// <summary>
     ///   The ValueQuery instance that will translate selected options to a value.
@@ -64,7 +69,9 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
         categoryButton = GetNode<CustomDropDown>(CategoryButtonPath);
         propertyButton = GetNode<CustomDropDown>(PropertyButtonPath);
+        wholeNumberInputField = GetNode<SpinBox>(WholeNumberInputFieldPath);
 
+        categoryButton.AddItem("NUMBER", false, Colors.White);
         foreach (var category in valueQuery.CategorizedProperties.Keys)
         {
             categoryButton.AddItem(category, false, Colors.White);
@@ -103,6 +110,9 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     private void ChangeCategory(string newCategory)
     {
+        // TEMP
+        var NUMBER_FIELD = "NUMBER";
+
         // Do nothing if no change actually happened
         if (newCategory == categoryButton.Text)
             return;
@@ -110,18 +120,30 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         categoryButton.Text = newCategory;
         valueQuery.CurrentCategory = newCategory;
 
-        // Update properties
-        propertyButton.ClearAllItems();
-
-        foreach (var property in valueQuery.CategorizedProperties[newCategory])
+        if (newCategory == NUMBER_FIELD)
         {
-            propertyButton.AddItem(property, false, Colors.White);
+            propertyButton.Visible = false;
+            wholeNumberInputField.Visible = true;
         }
+        else
+        {
+            propertyButton.Visible = true;
+            wholeNumberInputField.Visible = false;
 
-        propertyButton.CreateElements();
+            // Update properties
+            propertyButton.ClearAllItems();
 
-        // Restore previous property value
-        ChangeProperty(lastUsedProperties[newCategory]);
+            foreach (var property in valueQuery.CategorizedProperties[newCategory])
+            {
+                propertyButton.AddItem(property, false, Colors.White);
+            }
+
+            propertyButton.CreateElements();
+
+            // Restore previous property value
+            ChangeProperty(lastUsedProperties[newCategory]);
+        }
+       
     }
 
     private void ChangeProperty(string newProperty)

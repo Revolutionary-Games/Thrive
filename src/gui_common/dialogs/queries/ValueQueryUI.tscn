@@ -9,6 +9,7 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 CategoryButtonPath = NodePath("CategoryButton")
 PropertyButtonPath = NodePath("PropertyButton")
+WholeNumberInputFieldPath = NodePath("SpinBox")
 
 [node name="CategoryButton" type="MenuButton" parent="."]
 margin_right = 12.0
@@ -21,3 +22,9 @@ margin_right = 28.0
 margin_bottom = 720.0
 focus_mode = 2
 script = ExtResource( 1 )
+
+[node name="SpinBox" type="SpinBox" parent="."]
+visible = false
+margin_left = 32.0
+margin_right = 106.0
+margin_bottom = 720.0
