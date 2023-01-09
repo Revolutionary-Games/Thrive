@@ -14,6 +14,9 @@ public class TabButtons : HBoxContainer
     public bool TabsLoop;
 
     [Export]
+    public PressType TabChangeTriggerMethod = PressType.PressedSignal;
+
+    [Export]
     public NodePath LeftContainerPath = null!;
 
     [Export]
@@ -39,6 +42,12 @@ public class TabButtons : HBoxContainer
     private KeyPrompt rightButtonIndicator = null!;
 
     private Container tabButtonsContainer = null!;
+
+    public enum PressType
+    {
+        SetPressedState,
+        PressedSignal,
+    }
 
     /// <summary>
     ///   The level of tabs this Control controls. Only one tab control of each level may be enabled at once, otherwise
@@ -114,6 +123,23 @@ public class TabButtons : HBoxContainer
         }
 
         tabButtons.Clear();
+    }
+
+    /// <summary>
+    ///   Maps a path from a static scene path to one that has been adjusted for the tab buttons modifying its children
+    /// </summary>
+    /// <param name="pathToTabs">The path to this instance of tabs</param>
+    /// <param name="specificTabButtonPath">The specific button that needs adjusting</param>
+    /// <returns>The adjusted path</returns>
+    public NodePath GetAdjustedButtonPath(NodePath pathToTabs, NodePath specificTabButtonPath)
+    {
+        var inputString = specificTabButtonPath.ToString();
+        var tabPathString = pathToTabs.ToString();
+
+        if (inputString.StartsWith(tabPathString))
+            inputString = inputString.Substring(tabPathString.Length + 1);
+
+        return new NodePath($"{tabPathString}/{tabButtonsContainer.Name}/{inputString}");
     }
 
     // Due to the way our input system works, we need to listen to all the types of inputs at once and then after
@@ -192,7 +218,7 @@ public class TabButtons : HBoxContainer
                     // Found an unpressed button
                     // We assume here that clicking the new button will correctly clear the old one as otherwise
                     // mouse control would be broken as well
-                    button.Pressed = true;
+                    PressButton(button);
                     return;
                 }
 
@@ -212,7 +238,7 @@ public class TabButtons : HBoxContainer
         // If we are specified as looping, move back to the start
         if (TabsLoop)
         {
-            firstTab.Pressed = true;
+            PressButton(firstTab);
         }
     }
 
@@ -229,7 +255,7 @@ public class TabButtons : HBoxContainer
                     // When we find a pressed button, we want to move to press the previously seen button
                     if (previousButton != null)
                     {
-                        previousButton.Pressed = true;
+                        PressButton(previousButton);
                         break;
                     }
 
@@ -250,7 +276,29 @@ public class TabButtons : HBoxContainer
         // If we are specified as looping, move to the last tab
         if (TabsLoop)
         {
-            previousButton.Pressed = true;
+            PressButton(previousButton);
+        }
+    }
+
+    private void PressButton(Button button)
+    {
+        // None of the methods seem to work in all cases so we just allow the GUI creator to define which is the right
+        // way
+        switch (TabChangeTriggerMethod)
+        {
+            case PressType.SetPressedState:
+                button.Pressed = true;
+                break;
+            case PressType.PressedSignal:
+                button.EmitSignal("pressed");
+
+                // These don't seem to work in any current case but might just be necessary in the future
+                // button.EmitSignal("button_down");
+                // button.EmitSignal("button_up");
+
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -269,6 +317,11 @@ public class TabButtons : HBoxContainer
             // Found a button to move
             tabButtons.Add(child);
             child.ReParent(tabButtonsContainer);
+
+            // Auto disable the focus mode as that's not wanted for tab buttons, this makes things simpler in the
+            // scenes that specify tab buttons
+            if (child is Button button)
+                button.FocusMode = FocusModeEnum.None;
         }
     }
 

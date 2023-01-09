@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/NewGameSettings.cs" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/concept_art/planet_generation.jpg" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -272,21 +273,17 @@ margin_right = 518.0
 margin_bottom = 232.0
 ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 
-[node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource( 13 )]
 visible = false
-margin_top = 213.0
-margin_right = 550.0
-margin_bottom = 248.0
-size_flags_horizontal = 3
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 700.0
+margin_bottom = 48.0
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 76.0
-margin_right = 206.0
-margin_bottom = 35.0
+margin_left = 302.0
+margin_right = 432.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 pressed = true
@@ -295,9 +292,9 @@ group = SubResource( 5 )
 text = "DIFFICULTY"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 210.0
-margin_right = 340.0
-margin_bottom = 35.0
+margin_left = 436.0
+margin_right = 566.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
@@ -305,9 +302,9 @@ group = SubResource( 5 )
 text = "PLANET"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 344.0
-margin_right = 474.0
-margin_bottom = 35.0
+margin_left = 570.0
+margin_right = 700.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
