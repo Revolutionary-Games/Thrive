@@ -510,6 +510,7 @@ text = "BROWSE_WORKSHOP"
 margin_left = 714.0
 margin_right = 796.0
 margin_bottom = 32.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 11 )
 text = "UPLOAD"
 
@@ -517,8 +518,12 @@ text = "UPLOAD"
 margin_left = 800.0
 margin_right = 850.0
 margin_bottom = 32.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 11 )
 text = "NEW"
+__meta__ = {
+"_editor_description_": "This is not focusable due to controller input getting stuck in the new form"
+}
 
 [node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 534.0
