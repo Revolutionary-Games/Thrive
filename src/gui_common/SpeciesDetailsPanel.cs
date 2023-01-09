@@ -18,10 +18,10 @@ public class SpeciesDetailsPanel : PanelContainer
     [Export]
     public NodePath FossilisationDialogPath = null!;
 
-    private CustomRichTextLabel? speciesDetailsLabel;
+    private CustomRichTextLabel speciesDetailsLabel = null!;
     private SpeciesPreview? speciesPreview;
-    private CellHexesPreview? hexesPreview;
-    private Button? fossilisationButton;
+    private CellHexesPreview hexesPreview = null!;
+    private Button fossilisationButton = null!;
     private FossilisationDialog fossilisationDialog = null!;
 
     private Species? previewSpecies;
@@ -60,11 +60,8 @@ public class SpeciesDetailsPanel : PanelContainer
     /// </summary>
     private void UpdateSpeciesPreview()
     {
-        if (speciesPreview == null || hexesPreview == null || fossilisationButton == null ||
-            speciesDetailsLabel == null)
-        {
+        if (speciesPreview == null)
             return;
-        }
 
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
