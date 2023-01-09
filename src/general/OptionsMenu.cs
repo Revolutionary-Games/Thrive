@@ -22,6 +22,9 @@ public class OptionsMenu : ControlWithInput
 
     // Tab selector buttons.
     [Export]
+    public NodePath TabButtonsPath = null!;
+
+    [Export]
     public NodePath GraphicsButtonPath = null!;
 
     [Export]
@@ -284,6 +287,7 @@ public class OptionsMenu : ControlWithInput
     private Button saveButton = null!;
 
     // Tab selector buttons
+    private TabButtons tabButtons = null!;
     private Button graphicsButton = null!;
     private Button soundButton = null!;
     private Button performanceButton = null!;
@@ -429,11 +433,12 @@ public class OptionsMenu : ControlWithInput
         saveButton = GetNode<Button>(SaveButtonPath);
 
         // Tab selector buttons
-        graphicsButton = GetNode<Button>(GraphicsButtonPath);
-        soundButton = GetNode<Button>(SoundButtonPath);
-        performanceButton = GetNode<Button>(PerformanceButtonPath);
-        inputsButton = GetNode<Button>(InputsButtonPath);
-        miscButton = GetNode<Button>(MiscButtonPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
+        graphicsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, GraphicsButtonPath));
+        soundButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, SoundButtonPath));
+        performanceButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PerformanceButtonPath));
+        inputsButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, InputsButtonPath));
+        miscButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscButtonPath));
 
         // Graphics
         graphicsTab = GetNode<Control>(GraphicsTabPath);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=11]
 [ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -43,6 +44,7 @@ __meta__ = {
 }
 ResetButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Reset")
 SaveButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Save")
+TabButtonsPath = NodePath("CenterContainer/VBoxContainer/TabButtons")
 GraphicsButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/GraphicsButton")
 SoundButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/SoundButton")
 PerformanceButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/PerformanceButton")
@@ -131,27 +133,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 295.0
-margin_top = 20.0
-margin_right = 984.0
-margin_bottom = 700.0
+margin_left = 220.0
+margin_top = 13.0
+margin_right = 1060.0
+margin_bottom = 706.0
+rect_min_size = Vector2( 840, 0 )
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 689.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 840.0
+margin_bottom = 48.0
 
 [node name="GraphicsButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_right = 130.0
-margin_bottom = 35.0
+margin_left = 151.0
+margin_right = 281.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
@@ -161,9 +162,9 @@ group = SubResource( 1 )
 text = "GRAPHICS"
 
 [node name="SoundButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 134.0
-margin_right = 264.0
-margin_bottom = 35.0
+margin_left = 285.0
+margin_right = 415.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
@@ -172,9 +173,9 @@ group = SubResource( 1 )
 text = "SOUND"
 
 [node name="PerformanceButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 268.0
-margin_right = 421.0
-margin_bottom = 35.0
+margin_left = 419.0
+margin_right = 572.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
@@ -183,9 +184,9 @@ group = SubResource( 1 )
 text = "PERFORMANCE"
 
 [node name="InputsButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 425.0
-margin_right = 555.0
-margin_bottom = 35.0
+margin_left = 576.0
+margin_right = 706.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
@@ -194,9 +195,9 @@ group = SubResource( 1 )
 text = "INPUTS"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 559.0
-margin_right = 689.0
-margin_bottom = 35.0
+margin_left = 710.0
+margin_right = 840.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
 toggle_mode = true
@@ -205,15 +206,15 @@ group = SubResource( 1 )
 text = "MISC"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 40.0
-margin_right = 689.0
-margin_bottom = 640.0
+margin_top = 53.0
+margin_right = 840.0
+margin_bottom = 653.0
 rect_min_size = Vector2( 0, 600 )
 
 [node name="Graphics" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 688.0
+margin_right = 839.0
 margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -223,13 +224,13 @@ custom_constants/margin_bottom = 15
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 672.0
+margin_right = 823.0
 margin_bottom = 583.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer"]
-margin_right = 657.0
+margin_right = 808.0
 margin_bottom = 568.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -237,7 +238,7 @@ custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer"]
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 558.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -262,12 +263,12 @@ text = "FULLSCREEN"
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 70.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 74.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 84.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 129.0
 size_flags_horizontal = 3
 
@@ -290,14 +291,14 @@ text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 294.0
-margin_right = 443.0
+margin_right = 594.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="MSAAResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 447.0
-margin_right = 647.0
+margin_left = 598.0
+margin_right = 798.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -310,7 +311,7 @@ __meta__ = {
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 139.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 164.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
@@ -320,20 +321,20 @@ text = "RESOLUTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_left = 128.0
-margin_right = 456.0
+margin_right = 607.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="Resolution" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
-margin_left = 460.0
-margin_right = 647.0
+margin_left = 611.0
+margin_right = 798.0
 margin_bottom = 25.0
 text = "AUTO_RESOLUTION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 174.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 199.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -344,14 +345,14 @@ text = "MAX_FPS"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 254.0
-margin_right = 443.0
+margin_right = 594.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="MaxFramesPerSecond" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 447.0
-margin_right = 647.0
+margin_left = 598.0
+margin_right = 798.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 text = "60"
@@ -363,7 +364,7 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 209.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 234.0
 size_flags_horizontal = 3
 
@@ -375,14 +376,14 @@ text = "COLOURBLIND_CORRECTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 275.0
-margin_right = 443.0
+margin_right = 594.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="ColourblindSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 447.0
-margin_right = 647.0
+margin_left = 598.0
+margin_right = 798.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 text = "NONE"
@@ -394,7 +395,7 @@ __meta__ = {
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 244.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 269.0
 size_flags_horizontal = 3
 
@@ -406,14 +407,14 @@ text = "CHROMATIC_ABERRATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 margin_left = 269.0
-margin_right = 443.0
+margin_right = 531.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 447.0
-margin_right = 647.0
+margin_left = 535.0
+margin_right = 798.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
@@ -432,7 +433,7 @@ text = "DISPLAY_BACKGROUND_PARTICLES"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 314.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 339.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
@@ -442,14 +443,14 @@ text = "GPU_NAME"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_left = 110.0
-margin_right = 376.0
+margin_right = 452.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="GpuName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
-margin_left = 380.0
-margin_right = 647.0
+margin_left = 456.0
+margin_right = 798.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -462,7 +463,7 @@ __meta__ = {
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 349.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 374.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
@@ -472,14 +473,14 @@ text = "USED_RENDERER_NAME"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 margin_left = 234.0
-margin_right = 579.0
+margin_right = 730.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="UsedRendererName" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
-margin_left = 583.0
-margin_right = 647.0
+margin_left = 734.0
+margin_right = 798.0
 margin_bottom = 25.0
 text = "GLES3"
 align = 2
@@ -489,7 +490,7 @@ __meta__ = {
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 384.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 409.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
@@ -499,14 +500,14 @@ text = "VIDEO_MEMORY"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
 margin_left = 153.0
-margin_right = 451.0
+margin_right = 602.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="VideoMemory" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
-margin_left = 455.0
-margin_right = 647.0
+margin_left = 606.0
+margin_right = 798.0
 margin_bottom = 25.0
 text = "VIDEO_MEMORY_MIB"
 align = 2
@@ -516,7 +517,7 @@ __meta__ = {
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 419.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 444.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
@@ -526,7 +527,7 @@ text = "GUI"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 margin_left = 38.0
-margin_right = 647.0
+margin_right = 798.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
@@ -1675,9 +1676,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 645.0
-margin_right = 689.0
-margin_bottom = 680.0
+margin_top = 658.0
+margin_right = 840.0
+margin_bottom = 693.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -1718,14 +1719,14 @@ NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 288.0
-margin_right = 360.0
+margin_right = 511.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="Defaults" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 364.0
-margin_right = 689.0
+margin_left = 515.0
+margin_right = 840.0
 margin_bottom = 35.0
 text = "RESET_SETTINGS_TO_DEFAULTS"
 __meta__ = {
