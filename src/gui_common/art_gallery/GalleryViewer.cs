@@ -11,7 +11,7 @@ public class GalleryViewer : CustomDialog
     public NodePath GalleryGridPath = null!;
 
     [Export]
-    public NodePath TabButtonsContainerPath = null!;
+    public NodePath TabButtonsPath = null!;
 
     [Export]
     public NodePath AssetsCategoryDropdownPath = null!;
@@ -34,7 +34,7 @@ public class GalleryViewer : CustomDialog
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
     private GridContainer cardTile = null!;
 
-    private HBoxContainer tabButtonsContainer = null!;
+    private TabButtons tabButtons = null!;
     private OptionButton assetsCategoryDropdown = null!;
     private SlideScreen slideScreen = null!;
     private Button slideshowButton = null!;
@@ -83,7 +83,7 @@ public class GalleryViewer : CustomDialog
     {
         slideScreen = GetNode<SlideScreen>("SlideScreen");
         cardTile = GetNode<GridContainer>(GalleryGridPath);
-        tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
         slideshowButton = GetNode<Button>(SlideshowButtonPath);
     }
@@ -130,7 +130,7 @@ public class GalleryViewer : CustomDialog
     {
         GD.Print("Initializing gallery viewer");
 
-        tabButtonsContainer.QueueFreeChildren();
+        tabButtons.ClearTabButtons();
         cardTile.QueueFreeChildren();
 
         var tabsButtonGroup = new ButtonGroup();
@@ -162,7 +162,7 @@ public class GalleryViewer : CustomDialog
             };
 
             firstEntry ??= tabButton;
-            tabButtonsContainer.AddChild(tabButton);
+            tabButtons.AddNewTab(tabButton);
 
             categoryCards[gallery.Key][ALL_CATEGORY] = new List<GalleryCard>();
 
