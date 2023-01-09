@@ -7,6 +7,12 @@ using Godot;
 /// </summary>
 public class TabButtons : HBoxContainer
 {
+    /// <summary>
+    ///   When true the tab left and right change buttons loop to the other side when the end is reached
+    /// </summary>
+    [Export]
+    public bool TabsLoop;
+
     [Export]
     public NodePath LeftContainerPath = null!;
 
@@ -73,6 +79,8 @@ public class TabButtons : HBoxContainer
 
         KeyPromptHelper.IconsChanged += CheckControllerInput;
 
+        InputManager.RegisterReceiver(this);
+
         // Skip updating stuff before ready is called
         if (leftContainer == null)
             return;
@@ -87,6 +95,8 @@ public class TabButtons : HBoxContainer
         base._ExitTree();
 
         KeyPromptHelper.IconsChanged -= CheckControllerInput;
+
+        InputManager.UnregisterReceiver(this);
     }
 
     public void AddNewTab(Button button)
@@ -104,6 +114,144 @@ public class TabButtons : HBoxContainer
         }
 
         tabButtons.Clear();
+    }
+
+    // Due to the way our input system works, we need to listen to all the types of inputs at once and then after
+    // receiving the input determine if those inputs were relevant for us
+
+    [RunOnKeyDown("ui_tab_right", Priority = 1)]
+    public bool OnNextPrimaryTab()
+    {
+        if (LevelOnScreen != TabLevel.Primary)
+            return false;
+
+        if (!IsVisibleInTree())
+            return false;
+
+        TryToMoveToNextTab();
+
+        // For now always consume without checking if tab change actually worked
+        return true;
+    }
+
+    [RunOnKeyDown("ui_tab_secondary_right", Priority = 1)]
+    public bool OnNextSecondaryTab()
+    {
+        if (LevelOnScreen != TabLevel.Secondary)
+            return false;
+
+        if (!IsVisibleInTree())
+            return false;
+
+        TryToMoveToNextTab();
+
+        return true;
+    }
+
+    [RunOnKeyDown("ui_tab_left", Priority = 1)]
+    public bool OnPreviousPrimaryTab()
+    {
+        if (LevelOnScreen != TabLevel.Primary)
+            return false;
+
+        if (!IsVisibleInTree())
+            return false;
+
+        TryToMoveToPreviousTab();
+
+        return true;
+    }
+
+    [RunOnKeyDown("ui_tab_secondary_left", Priority = 1)]
+    public bool OnPreviousSecondaryTab()
+    {
+        if (LevelOnScreen != TabLevel.Secondary)
+            return false;
+
+        if (!IsVisibleInTree())
+            return false;
+
+        TryToMoveToPreviousTab();
+
+        return true;
+    }
+
+    private void TryToMoveToNextTab()
+    {
+        bool foundPressed = false;
+        Button? firstTab = null;
+
+        foreach (var potentialButton in tabButtons)
+        {
+            if (potentialButton is Button button)
+            {
+                firstTab ??= button;
+
+                if (foundPressed)
+                {
+                    // Found an unpressed button
+                    // We assume here that clicking the new button will correctly clear the old one as otherwise
+                    // mouse control would be broken as well
+                    button.Pressed = true;
+                    return;
+                }
+
+                if (button.Pressed)
+                {
+                    foundPressed = true;
+                }
+            }
+        }
+
+        if (firstTab == null)
+        {
+            GD.PrintErr("TabButtons not setup correctly");
+            return;
+        }
+
+        // If we are specified as looping, move back to the start
+        if (TabsLoop)
+        {
+            firstTab.Pressed = true;
+        }
+    }
+
+    private void TryToMoveToPreviousTab()
+    {
+        Button? previousButton = null;
+
+        foreach (var potentialButton in tabButtons)
+        {
+            if (potentialButton is Button button)
+            {
+                if (button.Pressed)
+                {
+                    // When we find a pressed button, we want to move to press the previously seen button
+                    if (previousButton != null)
+                    {
+                        previousButton.Pressed = true;
+                        break;
+                    }
+
+                    // If we don't have a previous button, then we loop until the end and rely on the previous button
+                    // variable
+                }
+
+                previousButton = button;
+            }
+        }
+
+        if (previousButton == null)
+        {
+            GD.PrintErr("TabButtons not setup correctly for previous tab action");
+            return;
+        }
+
+        // If we are specified as looping, move to the last tab
+        if (TabsLoop)
+        {
+            previousButton.Pressed = true;
+        }
     }
 
     /// <summary>
