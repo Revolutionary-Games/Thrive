@@ -511,6 +511,10 @@ public class InputManager : Node
                 return;
         }
 
+        // Skip changing input method if the input is an action that shouldn't change input type
+        if (Constants.ActionsThatDoNotChangeInputMethod.Any(a => @event.IsAction(a)))
+            return;
+
         usedInputMethod = wantedInputMethod.Value;
 
         if (joypadId != null)

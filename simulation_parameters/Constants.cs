@@ -1162,6 +1162,16 @@ public static class Constants
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
 
+    /// <summary>
+    ///   When any action is triggered matching any of these, input method change is prevented.
+    ///   This is used to allow taking screenshots with the keyboard while playing with a controller, for example.
+    /// </summary>
+    public static readonly IReadOnlyCollection<string> ActionsThatDoNotChangeInputMethod = new[]
+    {
+        "screenshot",
+        "toggle_FPS",
+    };
+
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
     // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
