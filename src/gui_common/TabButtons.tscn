@@ -30,6 +30,9 @@ margin_right = 17.0
 margin_bottom = 41.0
 custom_fonts/font = ExtResource( 2 )
 text = "<"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="KeyPrompt" parent="LeftIndicatorContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 21.0
@@ -67,3 +70,6 @@ margin_right = 69.0
 margin_bottom = 41.0
 custom_fonts/font = ExtResource( 2 )
 text = ">"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}

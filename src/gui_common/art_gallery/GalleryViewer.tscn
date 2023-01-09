@@ -48,17 +48,17 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1270.0
-margin_bottom = 35.0
+margin_bottom = 48.0
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 40.0
+margin_top = 53.0
 margin_right = 1270.0
-margin_bottom = 44.0
+margin_bottom = 57.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 49.0
+margin_top = 62.0
 margin_right = 1270.0
-margin_bottom = 68.0
+margin_bottom = 81.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_top = 1.0
@@ -73,14 +73,14 @@ margin_right = 287.0
 margin_bottom = 19.0
 
 [node name="HBoxContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 73.0
+margin_top = 86.0
 margin_right = 1270.0
 margin_bottom = 683.0
 size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 1270.0
-margin_bottom = 610.0
+margin_bottom = 597.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -89,7 +89,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer"]
 margin_right = 1270.0
-margin_bottom = 610.0
+margin_bottom = 597.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 5
