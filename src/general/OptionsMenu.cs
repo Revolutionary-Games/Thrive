@@ -529,6 +529,7 @@ public class OptionsMenu : ControlWithInput
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
         commitLabel = GetNode<Label>(CommitLabelPath);
         builtAtLabel = GetNode<Label>(BuiltAtLabelPath);
+        builtAtLabel.RegisterCustomFocusDrawer();
         unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
