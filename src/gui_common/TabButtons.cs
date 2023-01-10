@@ -211,6 +211,9 @@ public class TabButtons : HBoxContainer
         {
             if (potentialButton is Button button)
             {
+                if (!button.Visible)
+                    continue;
+
                 firstTab ??= button;
 
                 if (foundPressed)
@@ -263,7 +266,8 @@ public class TabButtons : HBoxContainer
                     // variable
                 }
 
-                previousButton = button;
+                if (button.Visible)
+                    previousButton = button;
             }
         }
 

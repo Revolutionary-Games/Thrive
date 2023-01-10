@@ -16,18 +16,18 @@ RightButtonIndicatorPath = NodePath("RightIndicatorContainer/HBoxContainer/KeyPr
 TabButtonsContainerPath = NodePath("ButtonsContainer")
 
 [node name="LeftIndicatorContainer" type="CenterContainer" parent="."]
-margin_right = 69.0
+margin_right = 63.0
 margin_bottom = 720.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftIndicatorContainer"]
-margin_top = 336.0
-margin_right = 69.0
-margin_bottom = 384.0
+margin_top = 339.0
+margin_right = 63.0
+margin_bottom = 381.0
 
 [node name="Label" type="Label" parent="LeftIndicatorContainer/HBoxContainer"]
-margin_top = 6.0
+margin_top = 3.0
 margin_right = 17.0
-margin_bottom = 41.0
+margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "<"
 __meta__ = {
@@ -36,38 +36,38 @@ __meta__ = {
 
 [node name="KeyPrompt" parent="LeftIndicatorContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 21.0
-margin_right = 69.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 48 )
+margin_right = 63.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 42, 42 )
 
 [node name="ButtonsContainer" type="HFlowContainer" parent="."]
-margin_left = 73.0
+margin_left = 67.0
 margin_top = 360.0
-margin_right = 1207.0
+margin_right = 1213.0
 margin_bottom = 360.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="RightIndicatorContainer" type="CenterContainer" parent="."]
-margin_left = 1211.0
+margin_left = 1217.0
 margin_right = 1280.0
 margin_bottom = 720.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RightIndicatorContainer"]
-margin_top = 336.0
-margin_right = 69.0
-margin_bottom = 384.0
+margin_top = 339.0
+margin_right = 63.0
+margin_bottom = 381.0
 
 [node name="KeyPrompt" parent="RightIndicatorContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_right = 48.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 48 )
+margin_right = 42.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 42, 42 )
 
 [node name="Label" type="Label" parent="RightIndicatorContainer/HBoxContainer"]
-margin_left = 52.0
-margin_top = 6.0
-margin_right = 69.0
-margin_bottom = 41.0
+margin_left = 46.0
+margin_top = 3.0
+margin_right = 63.0
+margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = ">"
 __meta__ = {
