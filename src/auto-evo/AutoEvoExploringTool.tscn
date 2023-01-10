@@ -1047,7 +1047,8 @@ WindowTitle = "CONFIRM_EXIT"
 DialogText = "RETURN_TO_MENU_WARNING"
 
 [node name="ExportSuccessNotificationDialog" parent="." instance=ExtResource( 11 )]
-WindowTitle = "EXPORTATION_SUCCESS"
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "EXPORT_SUCCESS"
 Movable = false
 HideCancelButton = true
 

@@ -920,7 +920,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             world.SpeciesHistoryList.Last().Values.OrderByDescending(s => s.Population).First().FormattedNameBbCode,
             world.MicrobeSpeciesAverageHexSize.ToString("F2", CultureInfo.CurrentCulture));
 
-        foreach (var stat in world.MicrobeSpeciesOrganelleStatistics)
+        foreach (var stat in world.MicrobeSpeciesOrganelleStatistics.OrderByDescending(s => s.Value.Percentage))
         {
             bbcode += TranslationServer.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
                 stat.Key.Name.Replace('\n', ' '),
