@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-10 09:43+0800\n"
+"POT-Creation-Date: 2023-01-10 09:59+0800\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1021,20 +1021,24 @@ msgstr "Lysosome"
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr "Worlds' data have been successfully exported to {0}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:621
+#: ../src/auto-evo/AutoEvoExploringTool.cs:368
+msgid "RUN_X_WORLDS_TOOLTIP"
+msgstr "Run a certain number of worlds, the amount of generations for each world to run is determined by the previous spin."
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:632
 msgid "FINISH_X_GENERATIONS"
 msgstr "Finish {0} Generations"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:637
+#: ../src/auto-evo/AutoEvoExploringTool.cs:648
 msgid "RUN_X_WORLDS"
 msgstr "Run {0} Worlds"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:761
+#: ../src/auto-evo/AutoEvoExploringTool.cs:772
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "READY"
 msgstr "Ready"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:911
+#: ../src/auto-evo/AutoEvoExploringTool.cs:922
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generations:[/b]\n"
@@ -1057,12 +1061,12 @@ msgstr ""
 "  Average hex size: {9}\n"
 "[b]Generic Organelle Data:[/b]\n"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:925
-#: ../src/auto-evo/AutoEvoExploringTool.cs:979
+#: ../src/auto-evo/AutoEvoExploringTool.cs:936
+#: ../src/auto-evo/AutoEvoExploringTool.cs:990
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Found in {1} species, averaging {2} each\n"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:963
+#: ../src/auto-evo/AutoEvoExploringTool.cs:974
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generations:[/b]\n"

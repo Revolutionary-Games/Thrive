@@ -224,6 +224,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private Button finishXGenerationsButton = null!;
     private SpinBox runXWorldsSpinBox = null!;
     private Button runXWorldsButton = null!;
+    private DefaultToolTip runXWorldsToolTip = null!;
     private Button finishOneGenerationButton = null!;
     private Button runOneStepButton = null!;
     private Button abortButton = null!;
@@ -363,6 +364,12 @@ public partial class AutoEvoExploringTool : NodeWithInput
         speciesListMenu.Popup.Connect("index_pressed", this, nameof(SpeciesListMenuIndexChanged));
         worldsListMenu.Popup.Connect("index_pressed", this, nameof(WorldsListMenuIndexChanged));
 
+        runXWorldsToolTip = ToolTipHelper.GetDefaultToolTip();
+        runXWorldsToolTip.Description = TranslationServer.Translate("RUN_X_WORLDS_TOOLTIP");
+        runXWorldsToolTip.Positioning = ToolTipPositioning.LastMousePosition;
+        runXWorldsButton.RegisterToolTipForControl(runXWorldsToolTip);
+        ToolTipManager.Instance.AddToolTip(runXWorldsToolTip);
+
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
     }
 
@@ -407,6 +414,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public override void _ExitTree()
     {
         base._ExitTree();
+
+        runXWorldsButton.UnRegisterToolTipForControl(runXWorldsToolTip);
+        ToolTipHelper.ReturnDefaultToolTip(runXWorldsToolTip);
+        runXWorldsToolTip = null!;
 
         // Abort the current run to avoid problems
         autoEvoRun?.Abort();

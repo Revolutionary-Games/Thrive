@@ -394,7 +394,7 @@ margin_right = 75.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 75, 0 )
 min_value = 2.0
-value = 10.0
+value = 5.0
 align = 1
 
 [node name="RunXWorlds" type="Button" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
@@ -403,7 +403,7 @@ margin_right = 281.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
-text = "Run 10 Worlds"
+text = "Run 5 Worlds"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }

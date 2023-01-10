@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-10 09:43+0800\n"
+"POT-Creation-Date: 2023-01-10 09:59+0800\n"
 "PO-Revision-Date: 2022-11-10 00:00+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1012,31 +1012,36 @@ msgstr "Lisossomo"
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr "Erro: {0}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:621
+#: ../src/auto-evo/AutoEvoExploringTool.cs:368
+#, fuzzy
+msgid "RUN_X_WORLDS_TOOLTIP"
+msgstr "Junte-se ao servidor Discord da comunidade"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:632
 msgid "FINISH_X_GENERATIONS"
 msgstr "Completar {0} gerações"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:637
+#: ../src/auto-evo/AutoEvoExploringTool.cs:648
 msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:761
+#: ../src/auto-evo/AutoEvoExploringTool.cs:772
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:336
 msgid "READY"
 msgstr "Pronto"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:911
+#: ../src/auto-evo/AutoEvoExploringTool.cs:922
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Estatísticas do Organismo"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:925
-#: ../src/auto-evo/AutoEvoExploringTool.cs:979
+#: ../src/auto-evo/AutoEvoExploringTool.cs:936
+#: ../src/auto-evo/AutoEvoExploringTool.cs:990
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Estatísticas do Organismo"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:963
+#: ../src/auto-evo/AutoEvoExploringTool.cs:974
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Estatísticas do Organismo"
