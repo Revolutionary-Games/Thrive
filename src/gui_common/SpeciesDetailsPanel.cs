@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class SpeciesDetailsPanel : PanelContainer
+public class SpeciesDetailsPanel : VBoxContainer
 {
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;

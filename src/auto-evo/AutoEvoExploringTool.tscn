@@ -60,7 +60,7 @@ HistoryListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/
 ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
 SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
 EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
-SpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailsPanel")
+SpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
@@ -608,7 +608,7 @@ __meta__ = {
 [node name="PatchMap" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 margin_top = 52.0
 margin_right = 1180.0
-margin_bottom = 280.0
+margin_bottom = 570.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -621,7 +621,7 @@ custom_constants/separation = 10
 
 [node name="PatchMap" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer"]
 margin_right = 824.0
-margin_bottom = 228.0
+margin_bottom = 518.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -629,7 +629,7 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 823.0
-margin_bottom = 227.0
+margin_bottom = 517.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -641,25 +641,25 @@ anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 812.0
-margin_bottom = 216.0
+margin_bottom = 506.0
 ContentPath = NodePath("PatchMapDrawer")
 
 [node name="PatchMapDrawer" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" instance=ExtResource( 13 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 802.0
-margin_bottom = 206.0
+margin_bottom = 496.0
 DrawDefaultMapIfEmpty = false
 
 [node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" instance=ExtResource( 17 )]
 margin_left = 834.0
 margin_right = 1180.0
-margin_bottom = 228.0
+margin_bottom = 518.0
 MoveToPatchButtonVisible = false
 
 [node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
-margin_top = 62.0
+margin_top = 52.0
 margin_right = 1180.0
 margin_bottom = 570.0
 size_flags_horizontal = 3
@@ -675,7 +675,7 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1179.0
-margin_bottom = 507.0
+margin_bottom = 517.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -687,11 +687,11 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1168.0
-margin_bottom = 496.0
+margin_bottom = 506.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer"]
 margin_right = 1158.0
-margin_bottom = 486.0
+margin_bottom = 496.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -708,9 +708,9 @@ margin_bottom = 46.0
 
 [node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
-margin_top = 62.0
+margin_top = 52.0
 margin_right = 1180.0
-margin_bottom = 570.0
+margin_bottom = 280.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -722,16 +722,16 @@ size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-margin_right = 808.0
-margin_bottom = 508.0
+margin_right = 786.0
+margin_bottom = 358.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 807.0
-margin_bottom = 507.0
+margin_right = 785.0
+margin_bottom = 357.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -740,11 +740,11 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 796.0
-margin_bottom = 496.0
+margin_right = 774.0
+margin_bottom = 346.0
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 786.0
+margin_right = 764.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "EVOLUTIONARY_TREE"
@@ -753,12 +753,31 @@ text = "EVOLUTIONARY_TREE"
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 24.0
-margin_right = 786.0
-margin_bottom = 486.0
+margin_right = 764.0
+margin_bottom = 336.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer" instance=ExtResource( 9 )]
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+margin_left = 806.0
+margin_right = 1180.0
+margin_bottom = 358.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 373.0
+margin_bottom = 357.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource( 9 )]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 362.0
+margin_bottom = 346.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 625.0
