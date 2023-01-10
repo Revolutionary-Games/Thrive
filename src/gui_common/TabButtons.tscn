@@ -7,24 +7,22 @@
 [node name="TabButtons" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -1280.0
+margin_bottom = -720.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
 LeftContainerPath = NodePath("LeftIndicatorContainer")
-LeftButtonIndicatorPath = NodePath("LeftIndicatorContainer/HBoxContainer/KeyPrompt")
+LeftButtonIndicatorPath = NodePath("LeftIndicatorContainer/KeyPrompt")
 RightContainerPath = NodePath("RightIndicatorContainer")
-RightButtonIndicatorPath = NodePath("RightIndicatorContainer/HBoxContainer/KeyPrompt")
+RightButtonIndicatorPath = NodePath("RightIndicatorContainer/KeyPrompt")
 TabButtonsContainerPath = NodePath("ButtonsContainer")
 
-[node name="LeftIndicatorContainer" type="CenterContainer" parent="."]
+[node name="LeftIndicatorContainer" type="HBoxContainer" parent="."]
+visible = false
 margin_right = 63.0
-margin_bottom = 720.0
+margin_bottom = 42.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftIndicatorContainer"]
-margin_top = 339.0
-margin_right = 63.0
-margin_bottom = 381.0
-
-[node name="Label" type="Label" parent="LeftIndicatorContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="LeftIndicatorContainer"]
 margin_top = 3.0
 margin_right = 17.0
 margin_bottom = 38.0
@@ -34,36 +32,37 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="KeyPrompt" parent="LeftIndicatorContainer/HBoxContainer" instance=ExtResource( 3 )]
+[node name="KeyPrompt" parent="LeftIndicatorContainer" instance=ExtResource( 3 )]
 margin_left = 21.0
 margin_right = 63.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="ButtonsContainer" type="HFlowContainer" parent="."]
+visible = false
 margin_left = 67.0
-margin_top = 360.0
-margin_right = 1213.0
-margin_bottom = 360.0
+margin_top = 21.0
+margin_right = 67.0
+margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="RightIndicatorContainer" type="CenterContainer" parent="."]
-margin_left = 1217.0
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="RightIndicatorContainer" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 67.0
+margin_right = 130.0
+margin_bottom = 42.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RightIndicatorContainer"]
-margin_top = 339.0
-margin_right = 63.0
-margin_bottom = 381.0
-
-[node name="KeyPrompt" parent="RightIndicatorContainer/HBoxContainer" instance=ExtResource( 3 )]
+[node name="KeyPrompt" parent="RightIndicatorContainer" instance=ExtResource( 3 )]
 margin_right = 42.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="RightIndicatorContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="RightIndicatorContainer"]
 margin_left = 46.0
 margin_top = 3.0
 margin_right = 63.0

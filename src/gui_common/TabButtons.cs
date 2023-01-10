@@ -75,6 +75,9 @@ public class TabButtons : HBoxContainer
 
         tabButtonsContainer = GetNode<Container>(TabButtonsContainerPath);
 
+        // This is hidden in the editor to make other scenes nicer that use the tab buttons
+        tabButtonsContainer.Visible = true;
+
         UpdateChangeButtonActionNames();
 
         AdjustSceneAddedChildren();
@@ -211,7 +214,7 @@ public class TabButtons : HBoxContainer
         {
             if (potentialButton is Button button)
             {
-                if (!button.Visible)
+                if (!button.Visible || button.Disabled)
                     continue;
 
                 firstTab ??= button;
@@ -266,7 +269,7 @@ public class TabButtons : HBoxContainer
                     // variable
                 }
 
-                if (button.Visible)
+                if (button.Visible && !button.Disabled)
                     previousButton = button;
             }
         }
@@ -321,6 +324,10 @@ public class TabButtons : HBoxContainer
             // Found a button to move
             tabButtons.Add(child);
             child.ReParent(tabButtonsContainer);
+
+            // Make all of the added things visible, this is because line splitting doesn't work by default in the
+            // editor so some scenes will want to hide the tab buttons in the editor
+            child.Visible = true;
 
             // Auto disable the focus mode as that's not wanted for tab buttons, this makes things simpler in the
             // scenes that specify tab buttons
