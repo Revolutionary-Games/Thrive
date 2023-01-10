@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=14]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -195,9 +196,10 @@ MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContai
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 IslandErrorPath = NodePath("IslandError")
-StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
-ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Reproduction")
-BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour")
+TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
+StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction")
+BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -286,17 +288,16 @@ __meta__ = {
 "_editor_description_": "To add a new item to a cell parts list, instantiate MicrobePartSelection scene into the list and change its node name with the defined internal name of a cell part object (e.g. organelle, membrane) it represents. Note that if the object is registered in the JSON files, the values of the newly-added item would be automatically updated at runtime, otherwise it wouldn't. Final step is to assign the item into the appropriate Group in the Node tab (see the existing selection buttons for reference)."
 }
 
-[node name="Tab" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 318.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 0, 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+margin_bottom = 28.0
+LevelOnScreen = 1
 
-[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_right = 99.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -315,10 +316,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Reproduction" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_left = 103.0
 margin_right = 215.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -336,10 +337,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_left = 219.0
 margin_right = 318.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
@@ -358,7 +359,7 @@ __meta__ = {
 }
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 40.0
+margin_top = 38.0
 margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
@@ -367,7 +368,7 @@ custom_styles/panel = SubResource( 7 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
 margin_right = 318.0
-margin_bottom = 516.0
+margin_bottom = 518.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -621,9 +622,9 @@ mouse_filter = 2
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Reproduction" to="." method="SetSelectionMenuTab" binds= [ "Reproduction" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Reproduction" to="." method="SetSelectionMenuTab" binds= [ "Reproduction" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
