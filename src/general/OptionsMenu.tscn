@@ -133,9 +133,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 265.0
+margin_left = 197.0
 margin_top = 20.0
-margin_right = 1015.0
+margin_right = 1082.0
 margin_bottom = 699.0
 custom_constants/separation = 5
 __meta__ = {
@@ -145,9 +145,10 @@ __meta__ = {
 [node name="TabButtons" parent="CenterContainer/VBoxContainer" instance=ExtResource( 14 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 750.0
+margin_right = 885.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 750, 0 )
+rect_min_size = Vector2( 885, 0 )
+MoveIndicatorsTakeUpSpaceWhileInvisible = true
 
 [node name="GraphicsButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
 margin_right = 130.0
@@ -205,8 +206,9 @@ group = SubResource( 1 )
 text = "MISC"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_left = 67.0
 margin_top = 40.0
-margin_right = 750.0
+margin_right = 817.0
 margin_bottom = 679.0
 rect_min_size = Vector2( 750, 0 )
 size_flags_horizontal = 4

@@ -16,14 +16,27 @@ public class TabButtons : HBoxContainer
     [Export]
     public PressType TabChangeTriggerMethod = PressType.PressedSignal;
 
+    /// <summary>
+    ///   If enabled the left/right tab switch indicators take up the same space they would even when they are
+    ///   invisible
+    /// </summary>
+    [Export]
+    public bool MoveIndicatorsTakeUpSpaceWhileInvisible;
+
     [Export]
     public NodePath LeftContainerPath = null!;
+
+    [Export]
+    public NodePath LeftPaddingPath = null!;
 
     [Export]
     public NodePath LeftButtonIndicatorPath = null!;
 
     [Export]
     public NodePath RightContainerPath = null!;
+
+    [Export]
+    public NodePath RightPaddingPath = null!;
 
     [Export]
     public NodePath RightButtonIndicatorPath = null!;
@@ -36,9 +49,11 @@ public class TabButtons : HBoxContainer
     private TabLevel levelOnScreen = TabLevel.Primary;
 
     private Container? leftContainer;
+    private Control leftPadding = null!;
     private KeyPrompt? leftButtonIndicator;
 
     private Container rightContainer = null!;
+    private Control rightPadding = null!;
     private KeyPrompt rightButtonIndicator = null!;
 
     private Container tabButtonsContainer = null!;
@@ -68,9 +83,11 @@ public class TabButtons : HBoxContainer
     public override void _Ready()
     {
         leftContainer = GetNode<Container>(LeftContainerPath);
+        leftPadding = GetNode<Control>(LeftPaddingPath);
         leftButtonIndicator = GetNode<KeyPrompt>(LeftButtonIndicatorPath);
 
         rightContainer = GetNode<Container>(RightContainerPath);
+        rightPadding = GetNode<Control>(RightPaddingPath);
         rightButtonIndicator = GetNode<KeyPrompt>(RightButtonIndicatorPath);
 
         tabButtonsContainer = GetNode<Container>(TabButtonsContainerPath);
@@ -318,8 +335,11 @@ public class TabButtons : HBoxContainer
         foreach (Control child in GetChildren())
         {
             // Move all children that aren't our own scene set children to the buttons container
-            if (child.Equals(leftContainer) || child.Equals(rightContainer) || child.Equals(tabButtonsContainer))
+            if (child.Equals(leftContainer) || child.Equals(rightContainer) || child.Equals(tabButtonsContainer) ||
+                child.Equals(leftPadding) || child.Equals(rightPadding))
+            {
                 continue;
+            }
 
             // Found a button to move
             tabButtons.Add(child);
@@ -352,11 +372,17 @@ public class TabButtons : HBoxContainer
         {
             leftContainer.Visible = true;
             rightContainer.Visible = true;
+
+            leftPadding.Visible = false;
+            rightPadding.Visible = false;
         }
         else
         {
             leftContainer.Visible = false;
             rightContainer.Visible = false;
+
+            leftPadding.Visible = MoveIndicatorsTakeUpSpaceWhileInvisible;
+            rightPadding.Visible = MoveIndicatorsTakeUpSpaceWhileInvisible;
         }
     }
 

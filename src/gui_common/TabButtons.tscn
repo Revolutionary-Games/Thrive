@@ -12,10 +12,17 @@ margin_bottom = -720.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
 LeftContainerPath = NodePath("LeftIndicatorContainer")
+LeftPaddingPath = NodePath("LeftAlternativePadding")
 LeftButtonIndicatorPath = NodePath("LeftIndicatorContainer/KeyPrompt")
 RightContainerPath = NodePath("RightIndicatorContainer")
+RightPaddingPath = NodePath("RightAlternativePadding")
 RightButtonIndicatorPath = NodePath("RightIndicatorContainer/KeyPrompt")
 TabButtonsContainerPath = NodePath("ButtonsContainer")
+
+[node name="LeftAlternativePadding" type="Control" parent="."]
+visible = false
+margin_right = 63.0
+rect_min_size = Vector2( 63, 42 )
 
 [node name="LeftIndicatorContainer" type="HBoxContainer" parent="."]
 visible = false
@@ -68,3 +75,9 @@ text = ">"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
+
+[node name="RightAlternativePadding" type="Control" parent="."]
+visible = false
+margin_left = 56.0
+margin_right = 119.0
+rect_min_size = Vector2( 63, 42 )
