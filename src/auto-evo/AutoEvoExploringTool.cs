@@ -434,7 +434,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         worldsList.Add(new AutoEvoExploringToolWorld(configuration));
         WorldsListMenuIndexChanged(worldsList.Count - 1);
 
-        worldsListMenu.AddItem((worldsList.Count - 1).ToString(), false, Colors.White);
+        worldsListMenu.AddItem((worldsList.Count - 1).ToString(CultureInfo.CurrentCulture), false, Colors.White);
         worldsListMenu.CreateElements();
 
         UpdateAllWorldsStatistics();
@@ -714,7 +714,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 
         // Add checkbox to history container
-        historyListMenu.AddItem(world.CurrentGeneration.ToString(), false, Colors.White);
+        historyListMenu.AddItem(world.CurrentGeneration.ToString(CultureInfo.CurrentCulture), false, Colors.White);
         historyListMenu.CreateElements();
 
         // Select the current generation
@@ -772,7 +772,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         runStatusLabel.Text = TranslationServer.Translate("READY");
 
         world = worldsList[index];
-        worldsListMenu.Text = index.ToString();
+        worldsListMenu.Text = index.ToString(CultureInfo.CurrentCulture);
 
         generationDisplayed = world.CurrentGeneration;
 
@@ -780,7 +780,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         historyListMenu.ClearAllItems();
         for (int i = 0; i <= world.CurrentGeneration; ++i)
         {
-            historyListMenu.AddItem(i.ToString(), false, Colors.White);
+            historyListMenu.AddItem(i.ToString(CultureInfo.CurrentCulture), false, Colors.White);
         }
 
         historyListMenu.CreateElements();
@@ -807,7 +807,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         if (generationDisplayed == index && speciesListMenu.Popup.GetItemCount() > 0)
             return;
 
-        historyListMenu.Text = index.ToString();
+        historyListMenu.Text = index.ToString(CultureInfo.CurrentCulture);
 
         generationDisplayed = index;
         UpdateAutoEvoReport();

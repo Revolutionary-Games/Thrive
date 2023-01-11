@@ -12,7 +12,7 @@ public partial class AutoEvoExploringTool
 {
     private void ExportWorlds()
     {
-        var previousWorld = worldsList.FindIndex(w => ReferenceEquals(w, world));
+        var previousWorld = worldsList.FindIndex(w => w == world);
         worldExportButton.Disabled = true;
         var exportPath = Path.Combine(Constants.AUTO_EVO_EXPORT_FOLDER, DateTime.Now.ToString("yyyyMMdd_hh_mm_ss"));
 
