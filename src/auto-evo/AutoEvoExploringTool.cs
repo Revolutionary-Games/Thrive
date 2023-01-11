@@ -1082,7 +1082,14 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         public void UpdateWorldStatistics()
         {
-            TotalSpeciesCount = (int)SpeciesHistoryList.Last().Values.Max(s => s.ID);
+            var speciesIDList = new List<uint>();
+            foreach (var speciesDictionary in SpeciesHistoryList)
+            {
+                speciesIDList.AddRange(speciesDictionary.Keys);
+            }
+
+            TotalSpeciesCount = speciesIDList.Distinct().Count();
+
             CurrentSpeciesCount = SpeciesHistoryList.Last().Values.Count;
             (PatchSpeciesCountAverage, PatchSpeciesCountStandardDeviation) = GameProperties.GameWorld.Map.Patches.Values
                 .Select(p => p.SpeciesInPatch.Count).ToList().CalculateAverageAndStandardDeviation();
