@@ -9,8 +9,12 @@ using Godot;
 ///   Auto-evo exploring tool is a scene that contains numerous tools to debug, test, and explore auto-evo.
 ///   You can change the parameters to see how auto-evo responds, get a clearer view of how species evolves,
 ///   and start a game based on the simulation results.
-///   Partial class: GUI, auto-evo, world control
 /// </summary>
+/// <remarks>
+///   <para>
+///     Partial class: GUI, auto-evo, world control
+///   </para>
+/// </remarks>
 public partial class AutoEvoExploringTool : NodeWithInput
 {
     // Tab paths
