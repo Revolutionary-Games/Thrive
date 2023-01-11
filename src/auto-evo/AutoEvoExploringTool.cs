@@ -1036,7 +1036,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// <summary>
         ///   The current generation auto-evo has evolved
         /// </summary>
-        public int CurrentGeneration = 0;
+        public int CurrentGeneration;
 
         /// <summary>
         ///   Total used auto-evo time

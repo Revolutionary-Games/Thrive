@@ -175,7 +175,7 @@ public class EvolutionaryTree : Control
         }
 
         if (speciesNames.Count == 0)
-            throw new InvalidOperationException("No initial species provided");
+            throw new ArgumentException("No initial species provided");
 
         if (updatedPlayerSpeciesName != null)
             speciesNames[playerSpeciesId] = updatedPlayerSpeciesName;
