@@ -1018,41 +1018,36 @@ public partial class AutoEvoExploringTool : NodeWithInput
         /// <summary>
         ///   This list stores copy of species in every generation.
         /// </summary>
-        public readonly List<Dictionary<uint, Species>> SpeciesHistoryList;
+        public readonly List<Dictionary<uint, Species>> SpeciesHistoryList = new();
 
-        public readonly List<Dictionary<int, PatchSnapshot>> PatchHistoryList;
+        public readonly List<Dictionary<int, PatchSnapshot>> PatchHistoryList = new();
 
         /// <summary>
         ///   This list stores all auto-evo results.
         /// </summary>
-        public readonly List<LocalizedStringBuilder> RunResultsList;
+        public readonly List<LocalizedStringBuilder> RunResultsList = new();
 
         /// <summary>
         ///   Used to generate world statistics
         /// </summary>
         public readonly Dictionary<OrganelleDefinition, (double Percentage, double Average)>
-            MicrobeSpeciesOrganelleStatistics;
+            MicrobeSpeciesOrganelleStatistics = new();
 
         /// <summary>
         ///   The current generation auto-evo has evolved
         /// </summary>
-        public int CurrentGeneration;
+        public int CurrentGeneration = 0;
 
         /// <summary>
         ///   Total used auto-evo time
         /// </summary>
-        public TimeSpan TotalTimeUsed;
+        public TimeSpan TotalTimeUsed = TimeSpan.Zero;
 
         public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration)
         {
             AutoEvoConfiguration = configuration.Clone();
             GameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
                 { AutoEvoConfiguration = AutoEvoConfiguration });
-            SpeciesHistoryList = new List<Dictionary<uint, Species>>();
-            PatchHistoryList = new List<Dictionary<int, PatchSnapshot>>();
-            RunResultsList = new List<LocalizedStringBuilder>();
-            CurrentGeneration = 0;
-            TotalTimeUsed = TimeSpan.Zero;
 
             RunResultsList.Add(new LocalizedStringBuilder());
             SpeciesHistoryList.Add(new Dictionary<uint, Species>
@@ -1067,9 +1062,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
                 pair => (PatchSnapshot)pair.Value.CurrentSnapshot.Clone()));
 
             PatchesCount = GameProperties.GameWorld.Map.Patches.Count;
-
-            MicrobeSpeciesOrganelleStatistics =
-                new Dictionary<OrganelleDefinition, (double Percentage, double Average)>();
 
             foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
             {
