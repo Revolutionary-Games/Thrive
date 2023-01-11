@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -85,5 +87,19 @@ public static class MathUtils
     {
         int result = val % mod;
         return (result < 0) ? result + mod : result;
+    }
+
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(this List<int> l)
+    {
+        double average = l.Average();
+        double standardDeviation = Math.Sqrt(l.Average(i => (i - average) * (i - average)));
+        return (average, standardDeviation);
+    }
+
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(this List<double> l)
+    {
+        double average = l.Average();
+        double standardDeviation = Math.Sqrt(l.Average(i => (i - average) * (i - average)));
+        return (average, standardDeviation);
     }
 }
