@@ -6,7 +6,7 @@ using Godot;
 using Path = System.IO.Path;
 
 /// <summary>
-///   Partial class: Export
+///   Partial class: Data export functionality of the auto-evo exploring tool
 /// </summary>
 public partial class AutoEvoExploringTool
 {
