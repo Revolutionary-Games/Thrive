@@ -137,7 +137,7 @@ public class EvolutionaryTree : Control
     public delegate void SpeciesSelected(int generation, uint id);
 
     /// <summary>
-    ///   Make use of tree-generated data to help exporting.
+    ///   Allows access to tree-generated data. This helps with data exporting, for example.
     /// </summary>
     public IReadOnlyDictionary<uint, string> CurrentWorldSpecies => speciesNames;
 
