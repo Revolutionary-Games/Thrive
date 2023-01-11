@@ -56,7 +56,7 @@ public partial class AutoEvoExploringTool
             "Organelle count",
         });
 
-        header.AddRange(allOrganelles.Select(o => o.Name.Replace('\n', ' ')));
+        header.AddRange(allOrganelles.Select(o => o.UntranslatedName));
         file.StoreCsvLine(header.ToArray());
 
         // Generate data

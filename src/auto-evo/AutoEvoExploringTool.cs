@@ -932,7 +932,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         foreach (var stat in world.MicrobeSpeciesOrganelleStatistics.OrderByDescending(s => s.Value.Percentage))
         {
             bbcode += TranslationServer.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
-                stat.Key.Name.Replace('\n', ' '),
+                stat.Key.NameWithoutSpecialCharacters,
                 stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture),
                 stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
         }
@@ -981,7 +981,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
             var percentage = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Percentage);
             var average = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Average);
             bbcode += TranslationServer.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
-                organelle.Name.Replace('\n', ' '),
+                organelle.NameWithoutSpecialCharacters,
                 percentage.ToString("P", CultureInfo.CurrentCulture),
                 average.ToString("F2", CultureInfo.CurrentCulture));
         }

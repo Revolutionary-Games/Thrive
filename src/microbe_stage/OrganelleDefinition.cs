@@ -204,6 +204,12 @@ public class OrganelleDefinition : IRegistryType
     }
 
     /// <summary>
+    ///   Name fit in one line
+    /// </summary>
+    [JsonIgnore]
+    public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');
+
+    /// <summary>
     ///   The total amount of compounds in InitialComposition
     /// </summary>
     [JsonIgnore]
