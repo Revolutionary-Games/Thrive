@@ -365,6 +365,9 @@ Code style rules
 Godot usage
 -----------
 
+- GUIs need to be usable with the mouse and a controller. See
+  [making_guis.md](making_guis.md).
+
 - Do not use Control margins to try to position elements, that's not good
   Godot usage. Use proper parent container and min size instead.
 
