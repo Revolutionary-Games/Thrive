@@ -422,6 +422,19 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
+    /// <summary>
+    ///   Uncalled static method to workaround a problem in translation extraction.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: Remove this once https://github.com/Revolutionary-Games/Thrive/issues/3984 is solved.
+    ///   </para>
+    /// </remarks>
+    private static void ApplyPlaceholderTooltipTranslationKey()
+    {
+        _ = TranslationServer.Translate("RUN_X_WORLDS_TOOLTIP");
+    }
+
     private void InitNewWorld()
     {
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
@@ -984,12 +997,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         allWorldsStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
-    // Apply placeholder translation key
-    private void ApplyTranslationKey()
-    {
-        _ = TranslationServer.Translate("RUN_X_WORLDS_TOOLTIP");
-    }
-
     /// <summary>
     ///   Stores all data auto-evo exploring tool needs to present a world.
     /// </summary>
@@ -1077,14 +1084,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         public void UpdateWorldStatistics()
         {
-            var speciesIDList = new List<uint>();
-            foreach (var speciesDictionary in SpeciesHistoryList)
-            {
-                speciesIDList.AddRange(speciesDictionary.Keys);
-            }
-
-            TotalSpeciesCount = speciesIDList.Distinct().Count();
-
+            TotalSpeciesCount = SpeciesHistoryList.SelectMany(s => s.Keys).Distinct().Count();
             CurrentSpeciesCount = SpeciesHistoryList.Last().Values.Count;
             (PatchSpeciesCountAverage, PatchSpeciesCountStandardDeviation) = GameProperties.GameWorld.Map.Patches.Values
                 .Select(p => p.SpeciesInPatch.Count).CalculateAverageAndStandardDeviation();

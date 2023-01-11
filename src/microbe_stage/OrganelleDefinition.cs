@@ -204,7 +204,7 @@ public class OrganelleDefinition : IRegistryType
     }
 
     /// <summary>
-    ///   Name fit in one line
+    ///   <see cref="Name"/> without any special characters (line changes etc.)
     /// </summary>
     [JsonIgnore]
     public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');

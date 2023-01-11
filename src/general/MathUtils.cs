@@ -89,21 +89,22 @@ public static class MathUtils
         return (result < 0) ? result + mod : result;
     }
 
+    // ReSharper disable PossibleMultipleEnumeration
     public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
         this IEnumerable<int> enumerable)
     {
-        var list = enumerable.ToList();
-        double average = list.Average();
-        double standardDeviation = Math.Sqrt(list.Average(i => (i - average) * (i - average)));
+        double average = enumerable.Average();
+        double standardDeviation = Math.Sqrt(enumerable.Average(i => (i - average) * (i - average)));
         return (average, standardDeviation);
     }
 
     public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
         this IEnumerable<double> enumerable)
     {
-        var list = enumerable.ToList();
-        double average = list.Average();
-        double standardDeviation = Math.Sqrt(list.Average(i => (i - average) * (i - average)));
+        double average = enumerable.Average();
+        double standardDeviation = Math.Sqrt(enumerable.Average(i => (i - average) * (i - average)));
         return (average, standardDeviation);
     }
+
+    // ReSharper enable PossibleMultipleEnumeration
 }
