@@ -89,17 +89,18 @@ public static class MathUtils
         return (result < 0) ? result + mod : result;
     }
 
-    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(this List<int> l)
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(this List<int> list)
     {
-        double average = l.Average();
-        double standardDeviation = Math.Sqrt(l.Average(i => (i - average) * (i - average)));
+        double average = list.Average();
+        double standardDeviation = Math.Sqrt(list.Average(i => (i - average) * (i - average)));
         return (average, standardDeviation);
     }
 
-    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(this List<double> l)
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
+        this List<double> list)
     {
-        double average = l.Average();
-        double standardDeviation = Math.Sqrt(l.Average(i => (i - average) * (i - average)));
+        double average = list.Average();
+        double standardDeviation = Math.Sqrt(list.Average(i => (i - average) * (i - average)));
         return (average, standardDeviation);
     }
 }

@@ -286,10 +286,14 @@ margin_left = 271.0
 margin_right = 291.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
+hint_tooltip = "INIT_NEW_WORLD_TOOLTIP"
 texture_normal = ExtResource( 18 )
 texture_pressed = ExtResource( 19 )
 texture_hover = ExtResource( 19 )
 expand = true
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Control" type="Control" parent="GUI/VBoxContainer/WorldEditor/VBoxContainer"]
 margin_top = 46.0
@@ -401,9 +405,10 @@ align = 1
 margin_left = 85.0
 margin_right = 281.0
 margin_bottom = 32.0
+hint_tooltip = "RUN_X_WORLDS_TOOLTIP"
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
-text = "Run 5 Worlds"
+text = "Run 5 worlds"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -436,8 +441,12 @@ margin_bottom = 344.0
 margin_top = 354.0
 margin_right = 281.0
 margin_bottom = 386.0
+hint_tooltip = "EXPORT_ALL_WORLDS_TOOLTIP"
 custom_fonts/font = ExtResource( 6 )
 text = "EXPORT_ALL_WORLDS"
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
 visible = false
@@ -1063,8 +1072,8 @@ HideCancelButton = true
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin" to="." method="OnFinishXGenerationsSpinBoxValueChanged"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations" to="." method="OnFinishXGenerationsButtonPressed"]
 [connection signal="value_changed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorldsSpin" to="." method="OnRunXWorldsSpinBoxValueChanged"]
-[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnFinishXGenerationsButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/RunXWorlds" to="." method="OnRunXWorldsButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
