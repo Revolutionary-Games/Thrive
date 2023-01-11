@@ -944,25 +944,20 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         var worldGenerations = string.Join(", ", worldsList.Select(w => w.CurrentGeneration).OrderBy(g => g));
 
-        var totalSpeciesList = worldsList.Select(w => w.TotalSpeciesCount).ToList();
         var (totalSpeciesAverage, totalSpeciesStandardDeviation) =
-            totalSpeciesList.CalculateAverageAndStandardDeviation();
+            worldsList.Select(w => w.TotalSpeciesCount).CalculateAverageAndStandardDeviation();
 
-        var speciesStillAliveList = worldsList.Select(w => w.CurrentSpeciesCount).ToList();
         var (speciesStillAliveAverage, speciesStillAliveStandardDeviation) =
-            speciesStillAliveList.CalculateAverageAndStandardDeviation();
+            worldsList.Select(w => w.CurrentSpeciesCount).CalculateAverageAndStandardDeviation();
 
-        var speciesCountPerPatchList = worldsList.Select(w => w.PatchSpeciesCountAverage).ToList();
         var (speciesCountPerPatchAverage, speciesCountPerPatchStandardDeviation) =
-            speciesCountPerPatchList.CalculateAverageAndStandardDeviation();
+            worldsList.Select(w => w.PatchSpeciesCountAverage).CalculateAverageAndStandardDeviation();
 
-        var populationPerPatchList = worldsList.Select(w => (double)w.TotalPopulation / w.PatchesCount).ToList();
         var (populationPerPatchAverage, populationPerPatchStandardDeviation) =
-            populationPerPatchList.CalculateAverageAndStandardDeviation();
+            worldsList.Select(w => (double)w.TotalPopulation / w.PatchesCount).CalculateAverageAndStandardDeviation();
 
-        var microbeSpeciesHexSizeList = worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).ToList();
         var (microbeSpeciesHexSizeAverage, microbeSpeciesHexSizeStandardDeviation) =
-            microbeSpeciesHexSizeList.CalculateAverageAndStandardDeviation();
+            worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).CalculateAverageAndStandardDeviation();
 
         var bbcode = TranslationServer.Translate("ALL_WORLDS_STATISTICS").FormatSafe(worldGenerations,
             totalSpeciesAverage.ToString("F2", CultureInfo.CurrentCulture),
@@ -1092,7 +1087,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
             CurrentSpeciesCount = SpeciesHistoryList.Last().Values.Count;
             (PatchSpeciesCountAverage, PatchSpeciesCountStandardDeviation) = GameProperties.GameWorld.Map.Patches.Values
-                .Select(p => p.SpeciesInPatch.Count).ToList().CalculateAverageAndStandardDeviation();
+                .Select(p => p.SpeciesInPatch.Count).CalculateAverageAndStandardDeviation();
             TotalPopulation = SpeciesHistoryList.Last().Values.Sum(s => s.Population);
 
             var microbeSpecies = SpeciesHistoryList.Last().Values.Select(s => s as MicrobeSpecies).WhereNotNull()

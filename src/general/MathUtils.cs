@@ -89,16 +89,19 @@ public static class MathUtils
         return (result < 0) ? result + mod : result;
     }
 
-    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(this List<int> list)
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
+        this IEnumerable<int> enumerable)
     {
+        var list = enumerable.ToList();
         double average = list.Average();
         double standardDeviation = Math.Sqrt(list.Average(i => (i - average) * (i - average)));
         return (average, standardDeviation);
     }
 
     public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
-        this List<double> list)
+        this IEnumerable<double> enumerable)
     {
+        var list = enumerable.ToList();
         double average = list.Average();
         double standardDeviation = Math.Sqrt(list.Average(i => (i - average) * (i - average)));
         return (average, standardDeviation);
