@@ -174,6 +174,9 @@ public class EvolutionaryTree : Control
             speciesNames.Add(species.ID, species.FormattedName);
         }
 
+        if (speciesNames.Count == 0)
+            throw new InvalidOperationException("No initial species provided");
+
         if (updatedPlayerSpeciesName != null)
             speciesNames[playerSpeciesId] = updatedPlayerSpeciesName;
 
