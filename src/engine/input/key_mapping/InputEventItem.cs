@@ -134,8 +134,8 @@ public class InputEventItem : Node
         if (groupList.IsConflictDialogOpen())
             return;
 
-        // Only InputEventMouseButton and InputEventKey are supported now
-        if (!(@event is InputEventMouseButton) && !(@event is InputEventKey))
+        // Ignore some unbindable inputs event types
+        if (@event is InputEventMIDI or InputEventScreenDrag or InputEventScreenTouch or InputEventGesture)
             return;
 
         // Hacky custom button press detection
@@ -170,8 +170,13 @@ public class InputEventItem : Node
             return;
         }
 
+        // We ignore a bunch of events that are not pressed events, additionally we have special handing for escape
+        // and the modifier keys
         if (@event is InputEventKey key)
         {
+            if (!key.Pressed)
+                return;
+
             switch (key.Scancode)
             {
                 case (uint)KeyList.Escape:
@@ -195,6 +200,8 @@ public class InputEventItem : Node
                     return;
                 }
 
+                // TODO: allow binding these (probably need to wait a bit to see if a second keypress is coming soon)
+                // See: https://github.com/Revolutionary-Games/Thrive/issues/3887
                 case (uint)KeyList.Alt:
                 case (uint)KeyList.Shift:
                 case (uint)KeyList.Control:
@@ -206,10 +213,34 @@ public class InputEventItem : Node
             if (!mouse.Pressed)
                 return;
         }
+        else if (@event is InputEventJoypadButton controllerButton)
+        {
+            if (!controllerButton.Pressed)
+                return;
+        }
+        else if (@event is InputEventJoypadMotion controllerAxis)
+        {
+            // Ignore too low values to disallow this accidentally happening
+            if (Math.Abs(controllerAxis.AxisValue) < Constants.CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH)
+                return;
+
+            // TODO: should we allow binding L2 and R2 as axis inputs
+            if (controllerAxis.Axis is (int)JoystickList.R2 or (int)JoystickList.L2)
+                return;
+        }
 
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
-        AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
+
+        try
+        {
+            AssociatedEvent = new SpecifiedInputKey(@event);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Unbindable input got too far, error: ", e);
+            return;
+        }
 
         GetTree().SetInputAsHandled();
 

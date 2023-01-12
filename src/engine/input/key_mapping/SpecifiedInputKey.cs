@@ -10,28 +10,45 @@ public class SpecifiedInputKey : ICloneable
     {
     }
 
-    public SpecifiedInputKey(InputEventWithModifiers @event)
+    public SpecifiedInputKey(InputEvent @event)
     {
-        Control = @event.Control;
-        Alt = @event.Alt;
-        Shift = @event.Shift;
         switch (@event)
         {
             case InputEventKey inputKey:
-                Type = InputType.Key;
-                Code = inputKey.Scancode;
-                break;
+                ConstructFrom(inputKey);
+                return;
             case InputEventMouseButton inputMouse:
-                Type = InputType.MouseButton;
-                Code = (uint)inputMouse.ButtonIndex;
+                ConstructFrom(inputMouse);
+                return;
+            case InputEventJoypadButton inputControllerButton:
+                if (inputControllerButton.ButtonIndex < 0)
+                    throw new ArgumentException("Controller button index is invalid");
+
+                Type = InputType.ControllerButton;
+                Code = PackCodeWithDevice(inputControllerButton.ButtonIndex, inputControllerButton.Device);
                 break;
+
+            case InputEventJoypadMotion inputControllerAxis:
+                Type = InputType.ControllerAxis;
+                Code = PackAxisWithDirection(inputControllerAxis.Axis, inputControllerAxis.AxisValue,
+                    inputControllerAxis.Device);
+                break;
+
+            default:
+                throw new ArgumentException("Unknown type of event to convert to input key");
         }
+
+        Control = false;
+        Alt = false;
+        Shift = false;
     }
 
     public enum InputType
     {
         Key,
         MouseButton,
+        ControllerButton,
+        ControllerAxis,
     }
 
     public bool Control { get; set; }
@@ -76,23 +93,76 @@ public class SpecifiedInputKey : ICloneable
                 _ => TranslationServer.Translate("UNKNOWN_MOUSE"),
             };
         }
+        else if (Type == InputType.ControllerAxis)
+        {
+            // This won't be preferably shown to the user so for now, no translations here
+            var (axis, direction, device) = UnpackAxis(Code);
+            text += direction < 0 ? "Negative " : "Positive ";
+            text += Input.GetJoyAxisString(axis);
+
+            if (device != -1)
+            {
+                text += $" device {device}";
+            }
+            else
+            {
+                text += " any device";
+            }
+        }
+        else if (Type == InputType.ControllerButton)
+        {
+            var (button, device) = UnpackCodeAndDevice(Code);
+            text += Input.GetJoyButtonString(button);
+
+            if (device != -1)
+            {
+                text += $" device {device}";
+            }
+            else
+            {
+                text += " any device";
+            }
+        }
+        else
+        {
+            text += "Invalid input key type";
+        }
 
         return text;
     }
 
-    public InputEventWithModifiers ToInputEvent()
+    public InputEvent ToInputEvent()
     {
-        InputEventWithModifiers result = Type switch
+        switch (Type)
         {
-            InputType.Key => new InputEventKey { Scancode = Code },
-            InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (int)Code },
-            _ => throw new NotSupportedException("Unsupported InputType given"),
-        };
+            case InputType.Key or InputType.MouseButton:
+                return ToInputEventWithModifiers();
 
-        result.Alt = Alt;
-        result.Control = Control;
-        result.Shift = Shift;
-        return result;
+            case InputType.ControllerButton:
+            {
+                var (button, device) = UnpackCodeAndDevice(Code);
+                return new InputEventJoypadButton
+                {
+                    ButtonIndex = button,
+                    Device = device,
+                };
+            }
+
+            case InputType.ControllerAxis:
+            {
+                var (axis, direction, device) = UnpackAxis(Code);
+
+                return new InputEventJoypadMotion
+                {
+                    Axis = axis,
+                    AxisValue = direction,
+                    Device = device,
+                };
+            }
+
+            default:
+                throw new NotSupportedException("Unsupported InputType to convert to an event");
+        }
     }
 
     public object Clone()
@@ -134,5 +204,190 @@ public class SpecifiedInputKey : ICloneable
             hashCode = (hashCode * 397) ^ (int)Code;
             return hashCode;
         }
+    }
+
+    /// <summary>
+    ///   Packs an int and a sign into a single uint
+    /// </summary>
+    /// <param name="axis">The axis to pack, note that this needs to be less than 14 bits</param>
+    /// <param name="value">The direction value to pack</param>
+    /// <param name="device">The device to pack in, note that this needs to be less than 15 bits</param>
+    /// <returns>The packed value</returns>
+    private static uint PackAxisWithDirection(int axis, float value, int device)
+    {
+        // For direction we just need to preserve the sign
+        uint result = value < 0 ? 1U : 0U;
+
+        // For axis we preserve the sign with one bit
+        if (axis < 0)
+        {
+            result |= (0x1 << 1) | ((uint)(axis * -1) << 2);
+        }
+        else
+        {
+            result |= (uint)axis << 2;
+        }
+
+        // For device we also preserve a sign bit
+        if (device < 0)
+        {
+            result = (result & 0xffff) | (0x1 << 16) | ((uint)(device * -1) << 17);
+        }
+        else
+        {
+            result = (result & 0xffff) | ((uint)device << 17);
+        }
+
+        return result;
+    }
+
+    private static (int Axis, float Direction, int Device) UnpackAxis(uint packed)
+    {
+        float direction = 1;
+
+        if ((packed & 0x1) != 0)
+        {
+            direction *= -1;
+        }
+
+        int axis = (int)((packed & 0xfffc) >> 2);
+
+        if ((packed & 0x2) != 0)
+        {
+            axis *= -1;
+        }
+
+        int device = (int)((packed & 0xffff0000) >> 17);
+
+        if ((packed & 0x10000) != 0)
+        {
+            device *= -1;
+        }
+
+        return (axis, direction, device);
+    }
+
+    /// <summary>
+    ///   Packs a code along with a device identifier
+    /// </summary>
+    /// <param name="code">The input code to pack, needs to be 15 bytes or less</param>
+    /// <param name="device">The device, needs to be 15 bytes or less</param>
+    /// <returns>The packed value</returns>
+    private static uint PackCodeWithDevice(int code, int device)
+    {
+        uint result;
+
+        // For code we preserve the sign with one bit
+        if (code < 0)
+        {
+            result = 0x1 | ((uint)(code * -1) << 1);
+        }
+        else
+        {
+            result = (uint)code << 1;
+        }
+
+        // For device we also preserve a sign bit
+        if (device < 0)
+        {
+            result = (result & 0xffff) | (0x1 << 16) | ((uint)(device * -1) << 17);
+        }
+        else
+        {
+            result = (result & 0xffff) | ((uint)device << 17);
+        }
+
+        return result;
+    }
+
+    private static (int Code, int Device) UnpackCodeAndDevice(uint packed)
+    {
+        int code = (int)((packed & 0xfffe) >> 1);
+
+        if ((packed & 0x1) != 0)
+        {
+            code *= -1;
+        }
+
+        int device = (int)((packed & 0xffff0000) >> 17);
+
+        if ((packed & 0x10000) != 0)
+        {
+            device *= -1;
+        }
+
+        return (code, device);
+    }
+
+    // TODO: proper unit testing
+    private static void TestCodePacking()
+    {
+        if (UnpackCodeAndDevice(PackCodeWithDevice(0, -1)) != (0, -1))
+            throw new Exception();
+
+        if (UnpackCodeAndDevice(PackCodeWithDevice(5, -1)) != (5, -1))
+            throw new Exception();
+
+        if (UnpackCodeAndDevice(PackCodeWithDevice(-5, -1)) != (-5, -1))
+            throw new Exception();
+
+        if (UnpackCodeAndDevice(PackCodeWithDevice(5, 5)) != (5, 5))
+            throw new Exception();
+
+        if (UnpackCodeAndDevice(PackCodeWithDevice(155, 128)) != (155, 128))
+            throw new Exception();
+
+        if (UnpackAxis(PackAxisWithDirection(1, -1, -1)) != (1, -1, -1))
+            throw new Exception();
+
+        if (UnpackAxis(PackAxisWithDirection(-1, -1, -1)) != (-1, -1, -1))
+            throw new Exception();
+
+        if (UnpackAxis(PackAxisWithDirection(1, 1, -1)) != (1, 1, -1))
+            throw new Exception();
+
+        if (UnpackAxis(PackAxisWithDirection(5, 1, -1)) != (5, 1, -1))
+            throw new Exception();
+
+        if (UnpackAxis(PackAxisWithDirection(5, 1, 15)) != (5, 1, 15))
+            throw new Exception();
+
+        if (UnpackAxis(PackAxisWithDirection(150, 1, 128)) != (150, 1, 128))
+            throw new Exception();
+    }
+
+    private void ConstructFrom(InputEventWithModifiers @event)
+    {
+        Control = @event.Control;
+        Alt = @event.Alt;
+        Shift = @event.Shift;
+        switch (@event)
+        {
+            case InputEventKey inputKey:
+                Type = InputType.Key;
+                Code = inputKey.Scancode;
+                break;
+            case InputEventMouseButton inputMouse:
+                Type = InputType.MouseButton;
+                Code = (uint)inputMouse.ButtonIndex;
+                break;
+            default:
+                throw new ArgumentException("Unknown type of event to convert to input key");
+        }
+    }
+
+    private InputEventWithModifiers ToInputEventWithModifiers()
+    {
+        InputEventWithModifiers result = Type switch
+        {
+            InputType.Key => new InputEventKey { Scancode = Code },
+            InputType.MouseButton => new InputEventMouseButton { ButtonIndex = (int)Code },
+            _ => throw new NotSupportedException("Unsupported InputType given"),
+        };
+
+        result.Alt = Alt;
+        result.Control = Control;
+        result.Shift = Shift;
+        return result;
     }
 }
