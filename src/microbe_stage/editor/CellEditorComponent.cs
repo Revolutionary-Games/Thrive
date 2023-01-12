@@ -30,6 +30,9 @@ public partial class CellEditorComponent :
     public NodePath AverageLightButtonPath = null!;
 
     [Export]
+    public NodePath TabButtonsPath = null!;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -612,14 +615,17 @@ public partial class CellEditorComponent :
         nightButton = GetNode<Button>(NightButtonPath);
         averageLightButton = GetNode<Button>(AverageLightButtonPath);
 
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
 
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
-        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
+        appearanceTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
         partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
         membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);

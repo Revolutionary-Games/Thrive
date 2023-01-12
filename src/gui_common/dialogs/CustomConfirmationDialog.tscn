@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
 
 [node name="CustomConfirmationDialog" type="Popup"]
 margin_right = 163.0
@@ -21,9 +22,6 @@ margin_top = 15.0
 margin_right = 148.0
 margin_bottom = 82.0
 custom_constants/separation = 15
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 133.0
@@ -34,10 +32,19 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="FocusGrabber" parent="VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 35.0
 margin_right = 133.0
-margin_bottom = 67.0
+margin_bottom = 35.0
+SkipOverridingFocusForElements = [ NodePath("../..") ]
+Priority = 11
+NodeToGiveFocusTo = NodePath("../HBoxContainer/CancelButton")
+AlwaysOverrideFocus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 50.0
+margin_right = 133.0
+margin_bottom = 82.0
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_bottom = 32.0
