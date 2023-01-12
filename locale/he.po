@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-02 15:23+0200\n"
+"POT-Creation-Date: 2023-01-11 21:38+0800\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1015,162 +1015,218 @@ msgstr "ריס"
 msgid "LYSOSOME"
 msgstr "ליזוזום"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:588
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
+#, fuzzy
+msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
+msgstr "שגיאה: {0}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:435
+#, fuzzy
+msgid "RUN_X_WORLDS_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:643
 msgid "FINISH_X_GENERATIONS"
 msgstr "סיים {0} דורות"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
+#: ../src/auto-evo/AutoEvoExploringTool.cs:659
+msgid "RUN_X_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:783
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:340
+msgid "READY"
+msgstr "מוכן"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:933
+#, fuzzy
+msgid "CURRENT_WORLD_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:947
+#: ../src/auto-evo/AutoEvoExploringTool.cs:991
+#, fuzzy
+msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:975
+#, fuzzy
+msgid "ALL_WORLDS_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+msgid "WORLD"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
 msgstr "קובץ תצורה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
 msgstr "מפה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:138
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "תסקיר"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:146
 msgid "VIEWER"
 msgstr "צופה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:177
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "מאפשר למינים לא לפתח מוטציות (אם לא ניתן למצוא מוטציות טובות)"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#, fuzzy
+msgid "ALL_WORLDS_GENERAL_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:184
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "מאפשר למינים לא לנדוד (אם לא נמצא מקום טוב לנדוד לו)"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:197
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "הסיכוי לכל אזור אם מעט מינים (מגוון ביולוגי נמוך) ליצור מינים חדשים"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:217
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "סיכוי למינים חדשים להגדיל את מגוון ביולוגי מאזורים שכנים"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:231
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "מהגדיל את מספר המינים של מגוון ביולוגי מאזורים קרובים חסרי אוכלוסיה"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:238
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "מינים המגדילים את המגוון הביולוגי עובר מוטציה עם היווצרותם"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "שקול אזורים עם עד כה מספר מינים בעלי מגוון ביולוגי נמוך"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:226
+#, fuzzy
+msgid "WORLD_GENERAL_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "מספר מינים מרבי באזור לפני הכחדות מכוונות"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
-msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "ניסיונות מעבר למין"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
-msgid "MUTATIONS_PER_SPECIES"
-msgstr "ניסיונות התפתחות מוטציות למין"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:323
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "אוכלוסיה ראשונית למינים הגדלים במגוון הביולוגי"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "הגן על אוכלוסיות שהיגרו ממכסת מינים"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:344
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "הגן על מינים חדשים ממכסת מינים"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:351
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "החזר הגירה במקרה של מהכחדה מאזור מטרה"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:358
-msgid "STRICT_NICHE_COMPETITION"
-msgstr "תחרות נישה קפדנית (הבדלי הכושר מוגזמים)"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "אוכלוסיה המינימלית למינים להתפצל על ידי מספר מוטציות טובות שפותחו"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "חלק מאוכלוסייה המינימלי של מין שמאפשר פיצול על ידי מוטציות"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "יצירת מינים שמגדילה את המגוון הביולוגי גונבת מספרי אוכלוסיה ממינים קיימים"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
-msgid "CURRENT_GENERATION_COLON"
-msgstr "דור נוכחי:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:442
 #, fuzzy
-msgid "TOTAL_TIME_USED_COLON"
-msgstr "מצב:"
+msgid "CURRENT_WORLD"
+msgstr "מפתחים נוכחים"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
-msgid "STATUS_COLON"
-msgstr "מצב:"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
+#, fuzzy
+msgid "INIT_NEW_WORLD_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
-msgid "READY"
-msgstr "מוכן"
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:332
+#, fuzzy
+msgid "AUTO_EVO_STATUS_COLON"
+msgstr "מריץ סטטוס:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
-msgid "FINISH_ONE_GENERATION"
-msgstr "סיים דור אחד"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
 msgstr "הרץ צעד אחת"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:509
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:363
+msgid "FINISH_ONE_GENERATION"
+msgstr "סיים דור אחד"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
 msgstr "בטל"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:515
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "שחק עם ההגדרות הנוכחות"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:557
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
+#, fuzzy
+msgid "EXPORT_ALL_WORLDS_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:446
+msgid "EXPORT_ALL_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:492
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "מאפשר למינים לא לפתח מוטציות (אם לא ניתן למצוא מוטציות טובות)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:499
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr "מאפשר למינים לא לנדוד (אם לא נמצא מקום טוב לנדוד לו)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:512
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr "הסיכוי לכל אזור אם מעט מינים (מגוון ביולוגי נמוך) ליצור מינים חדשים"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr "סיכוי למינים חדשים להגדיל את מגוון ביולוגי מאזורים שכנים"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr "מהגדיל את מספר המינים של מגוון ביולוגי מאזורים קרובים חסרי אוכלוסיה"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:553
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr "מינים המגדילים את המגוון הביולוגי עובר מוטציה עם היווצרותם"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr "שקול אזורים עם עד כה מספר מינים בעלי מגוון ביולוגי נמוך"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:584
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "מספר מינים מרבי באזור לפני הכחדות מכוונות"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:602
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr "ניסיונות מעבר למין"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:620
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "ניסיונות התפתחות מוטציות למין"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:638
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr "אוכלוסיה ראשונית למינים הגדלים במגוון הביולוגי"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:652
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr "הגן על אוכלוסיות שהיגרו ממכסת מינים"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:659
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr "הגן על מינים חדשים ממכסת מינים"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:666
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr "החזר הגירה במקרה של מהכחדה מאזור מטרה"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:673
+msgid "STRICT_NICHE_COMPETITION"
+msgstr "תחרות נישה קפדנית (הבדלי הכושר מוגזמים)"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:686
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr "אוכלוסיה המינימלית למינים להתפצל על ידי מספר מוטציות טובות שפותחו"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr "חלק מאוכלוסייה המינימלי של מין שמאפשר פיצול על ידי מוטציות"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:718
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr "יצירת מינים שמגדילה את המגוון הביולוגי גונבת מספרי אוכלוסיה ממינים קיימים"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:760
 msgid "GENERATIONS"
 msgstr "דורות"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 msgid "SELECT_A_GENERATION"
 msgstr "בחר דור"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:598
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:801
 msgid "SPECIES"
 msgstr "מינים"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:605
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:808
 msgid "SELECT_A_SPECIES"
 msgstr "בחר מין"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "תוצאות מפתח אוטומטי:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:754
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:957
 msgid "EVOLUTIONARY_TREE"
 msgstr "עץ אבולוציוני"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:994
 msgid "SPECIES_DETAILS"
 msgstr "פרטי המין"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:848
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1051
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1180,18 +1236,23 @@ msgstr "פרטי המין"
 msgid "BACK"
 msgstr "חזור"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:852
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1055
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
 msgid "CONFIRM_EXIT"
 msgstr "אשר יציאה"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:853
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1056
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "האם אתה בטוח שאתה רוצה לצאת לתפריט הראשי?\n"
 "אתה עלול לאבד כל פעולה לא שמורה."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1060
+#, fuzzy
+msgid "EXPORT_SUCCESS"
+msgstr "טריפה של {0}"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -1221,7 +1282,7 @@ msgstr "מתחיל"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב-{1} בתוך {2} בגלל: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:352
+#: ../src/auto-evo/EvolutionaryTree.cs:378
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -4408,11 +4469,11 @@ msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:808
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PANGONIAN_REGION_NAME"
 msgstr "פאנגוניה"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:879
+#: ../src/microbe_stage/PatchMapGenerator.cs:880
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -6121,6 +6182,16 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
+
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "דור נוכחי:"
+
+#, fuzzy
+#~ msgid "TOTAL_TIME_USED_COLON"
+#~ msgstr "מצב:"
+
+#~ msgid "STATUS_COLON"
+#~ msgstr "מצב:"
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "עובדות מעניינות לגבי המשחק הנוכחי"

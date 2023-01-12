@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-02 15:23+0200\n"
+"POT-Creation-Date: 2023-01-11 21:38+0800\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1014,178 +1014,232 @@ msgstr "Trilharen"
 msgid "LYSOSOME"
 msgstr "Oxytoxisoom"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:588
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
+#, fuzzy
+msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
+msgstr "Error: {0}"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:435
+#, fuzzy
+msgid "RUN_X_WORLDS_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:643
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "met concentratie van"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
-msgid "CONFIG"
+#: ../src/auto-evo/AutoEvoExploringTool.cs:659
+msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:113
-#, fuzzy
-msgid "MAP"
-msgstr "ATP"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:121
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
-msgid "REPORT"
-msgstr "Rapport"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
-msgid "VIEWER"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:177
-#, fuzzy
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "heeft een mutatie"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:184
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:197
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:217
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:231
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:238
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:251
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "stierf uit op de planeet"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:287
-msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:305
-#, fuzzy
-msgid "MUTATIONS_PER_SPECIES"
-msgstr "Mutatiepunten"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:323
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:344
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:351
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:358
-msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
-#, fuzzy
-msgid "CURRENT_GENERATION_COLON"
-msgstr "Generatie:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:442
-#, fuzzy
-msgid "TOTAL_TIME_USED_COLON"
-msgstr "Soorten:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:459
-#, fuzzy
-msgid "STATUS_COLON"
-msgstr "Soorten:"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:466
+#: ../src/auto-evo/AutoEvoExploringTool.cs:783
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 #, fuzzy
 msgid "READY"
 msgstr "Threads:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:497
+#: ../src/auto-evo/AutoEvoExploringTool.cs:933
+#, fuzzy
+msgid "CURRENT_WORLD_STATISTICS"
+msgstr "Organismestatistieken"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:947
+#: ../src/auto-evo/AutoEvoExploringTool.cs:991
+#, fuzzy
+msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organismestatistieken"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:975
+#, fuzzy
+msgid "ALL_WORLDS_STATISTICS"
+msgstr "Organismestatistieken"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+msgid "WORLD"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:122
+msgid "CONFIG"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:130
+#, fuzzy
+msgid "MAP"
+msgstr "ATP"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:138
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+msgid "REPORT"
+msgstr "Rapport"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:146
+msgid "VIEWER"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:182
+#, fuzzy
+msgid "ALL_WORLDS_GENERAL_STATISTICS"
+msgstr "Organismestatistieken"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:226
+#, fuzzy
+msgid "WORLD_GENERAL_STATISTICS"
+msgstr "Organismestatistieken"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:269
+#, fuzzy
+msgid "CURRENT_WORLD"
+msgstr "Huidige Ontwikkelaars"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:289
+#, fuzzy
+msgid "INIT_NEW_WORLD_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:332
+#, fuzzy
+msgid "AUTO_EVO_STATUS_COLON"
+msgstr "loopstatus:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:356
+msgid "RUN_ONE_STEP"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:363
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "met concentratie van"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
-msgid "RUN_ONE_STEP"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:509
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 #, fuzzy
 msgid "ABORT"
 msgstr "Onvoltooid."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:515
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:557
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
+#, fuzzy
+msgid "EXPORT_ALL_WORLDS_TOOLTIP"
+msgstr "Voeg een nieuwe sneltoets toe"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:446
+msgid "EXPORT_ALL_WORLDS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:492
+#, fuzzy
+msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+msgstr "heeft een mutatie"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:499
+msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:512
+msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:532
+msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:546
+msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:553
+msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:566
+msgid "LOW_BIODIVERSITY_LIMIT"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:584
+#, fuzzy
+msgid "MAXIMUM_SPECIES_IN_PATCH"
+msgstr "stierf uit op de planeet"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:602
+msgid "MOVE_ATTEMPTS_PER_SPECIES"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:620
+#, fuzzy
+msgid "MUTATIONS_PER_SPECIES"
+msgstr "Mutatiepunten"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:638
+msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:652
+msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:659
+msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:666
+msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:673
+msgid "STRICT_NICHE_COMPETITION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:686
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:718
+msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:760
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generatie:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #, fuzzy
 msgid "SELECT_A_GENERATION"
 msgstr "Geselecteerd:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:598
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:801
 #, fuzzy
 msgid "SPECIES"
 msgstr "Soortenlijst"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:605
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:808
 #, fuzzy
 msgid "SELECT_A_SPECIES"
 msgstr "Kies een plek om de details hier te zien"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:706
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo resultaten:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:754
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:957
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "Door Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:791
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:994
 #, fuzzy
 msgid "SPECIES_DETAILS"
 msgstr "Soortenlijst"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:848
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1051
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
 #: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
 #: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
@@ -1195,18 +1249,22 @@ msgstr "Soortenlijst"
 msgid "BACK"
 msgstr "Terug"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:852
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1055
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
 msgid "CONFIRM_EXIT"
 msgstr "Bevestig Stoppen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:853
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1056
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ben je zeker dat terug wilt naar het hoofd menu?\n"
 "Je verliest alle niet opgeslagen voortgang."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1060
+msgid "EXPORT_SUCCESS"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 #, fuzzy
@@ -1241,7 +1299,7 @@ msgstr "Startend"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:352
+#: ../src/auto-evo/EvolutionaryTree.cs:378
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
@@ -4571,11 +4629,11 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:808
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:879
+#: ../src/microbe_stage/PatchMapGenerator.cs:880
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Grot"
@@ -6337,6 +6395,18 @@ msgstr "Microbe editor laden"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Begin met Thriving"
+
+#, fuzzy
+#~ msgid "CURRENT_GENERATION_COLON"
+#~ msgstr "Generatie:"
+
+#, fuzzy
+#~ msgid "TOTAL_TIME_USED_COLON"
+#~ msgstr "Soorten:"
+
+#, fuzzy
+#~ msgid "STATUS_COLON"
+#~ msgstr "Soorten:"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"

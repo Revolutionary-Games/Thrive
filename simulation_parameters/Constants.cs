@@ -929,6 +929,7 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
+    public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
