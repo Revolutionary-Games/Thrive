@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -55,6 +55,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=53]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=54]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=55]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -232,16 +233,23 @@ theme = ExtResource( 1 )
 
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 margin_left = 515.0
-margin_top = 23.0
+margin_top = 13.0
 margin_right = 765.0
-margin_bottom = 463.0
+margin_bottom = 473.0
 custom_constants/separation = 10
 
-[node name="NewGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/MainMenu"]
 margin_right = 250.0
-margin_bottom = 40.0
+
+[node name="NewGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
+margin_top = 10.0
+margin_right = 250.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
+focus_neighbour_top = NodePath(".")
+focus_neighbour_bottom = NodePath("../LoadGame")
+focus_previous = NodePath(".")
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "NEW_GAME"
@@ -250,9 +258,9 @@ __meta__ = {
 }
 
 [node name="LoadGame" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 50.0
+margin_top = 60.0
 margin_right = 250.0
-margin_bottom = 90.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
@@ -260,60 +268,55 @@ size_flags_horizontal = 4
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 100.0
+margin_top = 110.0
 margin_right = 250.0
-margin_bottom = 140.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 150.0
+margin_top = 160.0
 margin_right = 250.0
-margin_bottom = 190.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "TOOLS"
 
 [node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 200.0
+margin_top = 210.0
 margin_right = 250.0
-margin_bottom = 240.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 250.0
+margin_top = 260.0
 margin_right = 250.0
-margin_bottom = 290.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 300.0
+margin_top = 310.0
 margin_right = 250.0
-margin_bottom = 340.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "CREDITS"
 
 [node name="Launcher" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 350.0
+margin_top = 360.0
 margin_right = 250.0
-margin_bottom = 390.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "QUIT_BUTTON_TOOLTIP"
 mouse_filter = 1
@@ -321,32 +324,44 @@ size_flags_horizontal = 4
 text = "EXIT_TO_LAUNCHER"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MainMenu"]
-margin_top = 400.0
+margin_top = 410.0
 margin_right = 250.0
-margin_bottom = 440.0
+margin_bottom = 450.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "QUIT_BUTTON_TOOLTIP"
-focus_mode = 0
+focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath("../../../SocialMedia/RevolutionaryGamesButton")
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "QUIT"
 
+[node name="FocusGrabber" parent="MenuContainers/Menus/MainMenu" instance=ExtResource( 56 )]
+margin_top = 460.0
+margin_right = 250.0
+margin_bottom = 460.0
+NodeToGiveFocusTo = NodePath("../NewGame")
+
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
 margin_left = 496.0
-margin_top = 123.0
+margin_top = 113.0
 margin_right = 784.0
-margin_bottom = 363.0
+margin_bottom = 373.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/Tools"]
+margin_right = 250.0
+
 [node name="FreebuildEditor" type="Button" parent="MenuContainers/Menus/Tools"]
 margin_right = 288.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
+focus_neighbour_top = NodePath(".")
+focus_previous = NodePath(".")
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -357,7 +372,8 @@ margin_top = 50.0
 margin_right = 288.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
+focus_neighbour_bottom = NodePath("../Back")
+focus_next = NodePath("../Back")
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -404,29 +420,41 @@ margin_top = 200.0
 margin_right = 269.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
+focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbour_top = NodePath("../AutoEvoExploring")
+focus_previous = NodePath("../AutoEvoExploring")
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
+[node name="FocusGrabber" parent="MenuContainers/Menus/Tools" instance=ExtResource( 56 )]
+margin_top = 460.0
+margin_right = 250.0
+margin_bottom = 460.0
+NodeToGiveFocusTo = NodePath("../FreebuildEditor")
+
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
 margin_left = 508.0
-margin_top = 98.0
+margin_top = 88.0
 margin_right = 771.0
-margin_bottom = 388.0
+margin_bottom = 398.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/Extras"]
+margin_right = 250.0
 
 [node name="Thriveopedia" type="Button" parent="MenuContainers/Menus/Extras"]
 margin_left = 515.0
 margin_right = 765.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
+focus_neighbour_top = NodePath(".")
+focus_previous = NodePath(".")
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -441,7 +469,6 @@ margin_top = 50.0
 margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -456,7 +483,6 @@ margin_top = 100.0
 margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -468,7 +494,6 @@ margin_top = 150.0
 margin_right = 765.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -483,7 +508,6 @@ margin_top = 200.0
 margin_right = 771.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -498,18 +522,27 @@ margin_top = 250.0
 margin_right = 765.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
+focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
+[node name="FocusGrabber" parent="MenuContainers/Menus/Extras" instance=ExtResource( 56 )]
+margin_top = 460.0
+margin_right = 250.0
+margin_bottom = 460.0
+NodeToGiveFocusTo = NodePath("../Thriveopedia")
+
 [node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
-margin_top = -246.0
+margin_top = -270.0
 margin_right = 175.0
-margin_bottom = -36.0
+margin_bottom = -40.0
 rect_min_size = Vector2( 0, 80 )
 theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 2 )
@@ -518,17 +551,27 @@ custom_styles/panel = SubResource( 2 )
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 163.0
-margin_bottom = 205.0
+margin_bottom = 225.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
 margin_right = 158.0
-margin_bottom = 200.0
+margin_bottom = 220.0
 custom_constants/separation = 10
 
-[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
 margin_right = 158.0
-margin_bottom = 25.0
+
+[node name="OfficialWebsiteButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 10.0
+margin_right = 158.0
+margin_bottom = 35.0
 hint_tooltip = "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../VisitSuggestionsSite")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../CommunityForumButton")
+focus_next = NodePath("../CommunityForumButton")
+focus_previous = NodePath("../VisitSuggestionsSite")
 mouse_filter = 1
 custom_fonts/font = ExtResource( 50 )
 text = "OFFICIAL_WEBSITE"
@@ -537,10 +580,12 @@ __meta__ = {
 }
 
 [node name="CommunityForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 35.0
+margin_top = 45.0
 margin_right = 158.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 hint_tooltip = "COMMUNITY_FORUM_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
 mouse_filter = 1
 custom_fonts/font = ExtResource( 50 )
 text = "COMMUNITY_FORUM"
@@ -549,10 +594,12 @@ __meta__ = {
 }
 
 [node name="DevelopmentForumButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 70.0
+margin_top = 80.0
 margin_right = 158.0
-margin_bottom = 95.0
+margin_bottom = 105.0
 hint_tooltip = "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
 mouse_filter = 1
 custom_fonts/font = ExtResource( 50 )
 text = "DEVELOPMENT_FORUM"
@@ -561,10 +608,12 @@ __meta__ = {
 }
 
 [node name="DevelopmentWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 105.0
+margin_top = 115.0
 margin_right = 158.0
-margin_bottom = 130.0
+margin_bottom = 140.0
 hint_tooltip = "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
 mouse_filter = 1
 custom_fonts/font = ExtResource( 50 )
 text = "DEVELOPMENT_WIKI"
@@ -573,10 +622,12 @@ __meta__ = {
 }
 
 [node name="CommunityWikiButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 140.0
+margin_top = 150.0
 margin_right = 158.0
-margin_bottom = 165.0
+margin_bottom = 175.0
 hint_tooltip = "COMMUNITY_WIKI_BUTTON_TOOLTIP"
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
 mouse_filter = 1
 custom_fonts/font = ExtResource( 50 )
 text = "COMMUNITY_WIKI"
@@ -585,9 +636,15 @@ __meta__ = {
 }
 
 [node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
-margin_top = 175.0
+margin_top = 185.0
 margin_right = 158.0
-margin_bottom = 200.0
+margin_bottom = 210.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../CommunityWikiButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../OfficialWebsiteButton")
+focus_next = NodePath("../OfficialWebsiteButton")
+focus_previous = NodePath("../CommunityWikiButton")
 mouse_filter = 1
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 50 )
@@ -595,6 +652,15 @@ text = "VISIT_SUGGESTIONS_SITE"
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource( 56 )]
+margin_top = 220.0
+margin_right = 158.0
+margin_bottom = 220.0
+SkipOverridingFocusForElements = [ NodePath("../../..") ]
+Priority = 10
+NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
+AlwaysOverrideFocus = true
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
@@ -611,9 +677,11 @@ margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
+focus_previous = NodePath("../../Menus/MainMenu/Quit")
 texture_normal = ExtResource( 46 )
 texture_pressed = ExtResource( 47 )
 texture_hover = ExtResource( 48 )
+texture_focused = ExtResource( 48 )
 expand = true
 
 [node name="SteamButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -625,6 +693,7 @@ hint_tooltip = "STEAM_TOOLTIP"
 texture_normal = ExtResource( 25 )
 texture_pressed = ExtResource( 30 )
 texture_hover = ExtResource( 32 )
+texture_focused = ExtResource( 32 )
 expand = true
 
 [node name="ItchButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -636,6 +705,7 @@ hint_tooltip = "ITCH_TOOLTIP"
 texture_normal = ExtResource( 36 )
 texture_pressed = ExtResource( 34 )
 texture_hover = ExtResource( 35 )
+texture_focused = ExtResource( 35 )
 expand = true
 
 [node name="PatreonButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -647,6 +717,7 @@ hint_tooltip = "PATREON_TOOLTIP"
 texture_normal = ExtResource( 43 )
 texture_pressed = ExtResource( 44 )
 texture_hover = ExtResource( 45 )
+texture_focused = ExtResource( 45 )
 expand = true
 
 [node name="GitHubButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -658,6 +729,7 @@ hint_tooltip = "GITHUB_TOOLTIP"
 texture_normal = ExtResource( 24 )
 texture_pressed = ExtResource( 37 )
 texture_hover = ExtResource( 38 )
+texture_focused = ExtResource( 38 )
 expand = true
 
 [node name="YouTubeButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -669,6 +741,7 @@ hint_tooltip = "YOUTUBE_TOOLTIP"
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 21 )
 texture_hover = ExtResource( 19 )
+texture_focused = ExtResource( 19 )
 expand = true
 
 [node name="RedditButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -680,6 +753,7 @@ hint_tooltip = "REDDIT_TOOLTIP"
 texture_normal = ExtResource( 23 )
 texture_pressed = ExtResource( 28 )
 texture_hover = ExtResource( 31 )
+texture_focused = ExtResource( 31 )
 expand = true
 
 [node name="DiscordButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -691,6 +765,7 @@ hint_tooltip = "DISCORD_TOOLTIP"
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 39 )
 texture_hover = ExtResource( 40 )
+texture_focused = ExtResource( 40 )
 expand = true
 
 [node name="FacebookButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -702,6 +777,7 @@ hint_tooltip = "FACEBOOK_TOOLTIP"
 texture_normal = ExtResource( 22 )
 texture_pressed = ExtResource( 26 )
 texture_hover = ExtResource( 41 )
+texture_focused = ExtResource( 41 )
 expand = true
 
 [node name="TwitterButton" type="TextureButton" parent="MenuContainers/SocialMedia"]
@@ -710,9 +786,12 @@ margin_right = 340.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "TWITTER_TOOLTIP"
+focus_neighbour_right = NodePath("../../Menus/MainMenu/Quit")
+focus_next = NodePath("../../Menus/MainMenu/Quit")
 texture_normal = ExtResource( 29 )
 texture_pressed = ExtResource( 27 )
 texture_hover = ExtResource( 33 )
+texture_focused = ExtResource( 33 )
 expand = true
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
@@ -763,6 +842,9 @@ text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FocusGrabber" parent="CreditsView" instance=ExtResource( 56 )]
+NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="ModManager" parent="." instance=ExtResource( 14 )]
 visible = false
@@ -850,34 +932,34 @@ rect_min_size = Vector2( 500, 0 )
 size_flags_horizontal = 3
 
 [node name="ThanksText" parent="ThanksForBuyingDialog/VBoxContainer" instance=ExtResource( 55 )]
-margin_right = 550.0
+margin_right = 500.0
 ExtendedBbcode = "THANKS_FOR_BUYING_THRIVE"
 
 [node name="Spacer" type="Control" parent="ThanksForBuyingDialog/VBoxContainer"]
 margin_top = 26.0
-margin_right = 550.0
-margin_bottom = 31.0
+margin_right = 500.0
+margin_bottom = 135.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="CheckBox" parent="ThanksForBuyingDialog/VBoxContainer" instance=ExtResource( 54 )]
-margin_top = 35.0
-margin_right = 550.0
-margin_bottom = 52.0
+margin_top = 139.0
+margin_right = 500.0
+margin_bottom = 156.0
 custom_fonts/font = ExtResource( 51 )
 pressed = true
 text = "DISMISS_PERMANENTLY"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ThanksForBuyingDialog/VBoxContainer"]
-margin_top = 56.0
-margin_right = 550.0
-margin_bottom = 88.0
+margin_top = 160.0
+margin_right = 500.0
+margin_bottom = 192.0
 size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="ThanksForBuyingDialog/VBoxContainer/HBoxContainer"]
-margin_left = 256.0
-margin_right = 293.0
+margin_left = 231.0
+margin_right = 268.0
 margin_bottom = 32.0
 size_flags_horizontal = 6
 custom_fonts/font = ExtResource( 53 )

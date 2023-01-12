@@ -64,9 +64,13 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\DebugOverlays.SceneTreeDumper.cs" />
+    <Compile Include="src\engine\GUIFocusSetter.cs" />
+    <Compile Include="src\engine\input\ActiveInputMethod.cs" />
     <Compile Include="src\engine\input\ControllerAxisVisualizer.cs" />
     <Compile Include="src\engine\input\ControllerDeadzoneConfiguration.cs" />
     <Compile Include="src\engine\input\ControllerInputAxisVisualizationContainer.cs" />
+    <Compile Include="src\engine\input\ControllerType.cs" />
+    <Compile Include="src\engine\input\ControllerTypeDetection.cs" />
     <Compile Include="src\engine\input\MouseInputScaling.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAndRepeatAttribute.cs" />
     <Compile Include="src\engine\input\RunOnInputWithStrengthAttribute.cs" />
@@ -143,7 +147,10 @@
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
+    <Compile Include="src\gui_common\FocusGrabber.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
+    <Compile Include="src\gui_common\TabButtons.cs" />
+    <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />

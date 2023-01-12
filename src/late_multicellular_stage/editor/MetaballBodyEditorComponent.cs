@@ -13,6 +13,9 @@ public partial class MetaballBodyEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
+    public NodePath TabButtonsPath = null!;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -168,17 +171,21 @@ public partial class MetaballBodyEditorComponent :
 
         NodeReferencesResolved = true;
 
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
 
         reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton = GetNode<Button>(ReproductionTabButtonPath);
+        reproductionTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
-        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
+        appearanceTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
 
         cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
 

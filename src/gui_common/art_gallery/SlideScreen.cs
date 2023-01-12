@@ -179,15 +179,21 @@ public class SlideScreen : CustomDialog
     }
 
     [RunOnKeyDownWithRepeat("ui_right", OnlyUnhandled = false)]
-    public void OnSlideToRight()
+    public bool OnSlideToRight()
     {
-        AdvanceSlide();
+        if (!Visible)
+            return false;
+
+        return AdvanceSlide();
     }
 
     [RunOnKeyDownWithRepeat("ui_left", OnlyUnhandled = false)]
-    public void OnSlideToLeft()
+    public bool OnSlideToLeft()
     {
-        RetreatSlide();
+        if (!Visible)
+            return false;
+
+        return RetreatSlide();
     }
 
     public override void CustomShow()
@@ -235,33 +241,36 @@ public class SlideScreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public void AdvanceSlide(bool fade = false, int searchCounter = 0)
+    public bool AdvanceSlide(bool fade = false, int searchCounter = 0)
     {
         if (Items == null)
-            return;
+            return false;
 
         currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
 
         // Can be shown in a slideshow check is only done here because slideshow only moves forward
         if (!Items[CurrentSlideIndex].CanBeShownInASlideshow && SlideshowMode)
         {
+            // TODO: rewrite this to an iterative method, in case we have slideshows with thousands of items
             // Limit recursion to the number of items total
             if (searchCounter < Items.Count)
             {
                 // Keep advancing until we found an item that allows slideshow
-                AdvanceSlide(fade, ++searchCounter);
+                return AdvanceSlide(fade, ++searchCounter);
             }
 
-            return;
+            // Advancing failed
+            return false;
         }
 
         ChangeSlide(fade);
+        return true;
     }
 
-    public void RetreatSlide(bool fade = false)
+    public bool RetreatSlide(bool fade = false)
     {
         if (Items == null)
-            return;
+            return false;
 
         --currentSlideIndex;
 
@@ -269,6 +278,7 @@ public class SlideScreen : CustomDialog
             currentSlideIndex = Items.Count - 1;
 
         ChangeSlide(fade);
+        return true;
     }
 
     protected override void OnHidden()
