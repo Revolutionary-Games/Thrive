@@ -156,8 +156,11 @@ public class InputEventItem : Node
             return;
 
         // Ignore some unbindable inputs event types
-        if (@event is InputEventMIDI or InputEventScreenDrag or InputEventScreenTouch or InputEventGesture)
+        if (@event is InputEventMIDI or InputEventScreenDrag or InputEventScreenTouch or InputEventGesture
+            or InputEventMouseMotion)
+        {
             return;
+        }
 
         // Hacky custom button press detection
         if (@event is InputEventMouseButton mouseEvent)
