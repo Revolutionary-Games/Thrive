@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-11 21:38+0800\n"
-"PO-Revision-Date: 2023-01-05 08:50+0000\n"
+"PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -1034,7 +1034,7 @@ msgstr "Завершення {0} генерацій"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:659
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "Запустити {0} Світів"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:783
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
@@ -1042,15 +1042,32 @@ msgid "READY"
 msgstr "Готово"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:933
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Статистика Організму"
+msgstr ""
+"[b]Генерації:[/b]\n"
+"  {0}\n"
+"[b]Загальні ділянки:[/b]\n"
+"  {1}\n"
+"[b]Загальний Час Авто-Ево:[/b]\n"
+"  {2}\n"
+"[b]Загальні види:[/b]\n"
+"  {3}\n"
+"[b]Ще Існуючі Види:[/b]\n"
+"  {4}\n"
+"[b]Кількість Видів на Ділянці:[/b]\n"
+"  Середній {5}; Стандартні відхилення {6}\n"
+"[b]Загальна Популяція:[/b]\n"
+"  {7}\n"
+"[b]Найбільша Популяція Видів:[/b]\n"
+"  {8}\n"
+"[b]Базові Дані про Види Мікробів:[/b]\n"
+"  Середній розмір гексу: {9}\n"
+"[b]Заггальні Дані про Органели:[/b]\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:947
 #: ../src/auto-evo/AutoEvoExploringTool.cs:991
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Статистика Організму"
+msgstr "  {0}: Знайдено в {1} видів, у середньому {2} кожен\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:975
 #, fuzzy
@@ -1059,7 +1076,7 @@ msgstr "Статистика Організму"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "Світ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
@@ -1089,14 +1106,12 @@ msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Статистика Організму"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Поточні розробники"
+msgstr "Поточний світ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Приєднуйтесь до спільноти Discord серверу"
+msgstr "Створити новий світ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
 #, fuzzy
