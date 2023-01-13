@@ -22,6 +22,8 @@ public class InputEventItem : Node
     private Button xButton = null!;
     private bool wasPressingButton;
 
+    private Control? alternativeButtonContentToText;
+
     /// <summary>
     ///   If this is currently awaiting the user to press a button (for rebinding purposes)
     /// </summary>
@@ -106,6 +108,25 @@ public class InputEventItem : Node
         }
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        KeyPromptHelper.IconsChanged += OnIconsChanged;
+
+        // We need to also listen for this as when controller type changes even when not using controller input,
+        // we want to know about that
+        KeyPromptHelper.ControllerTypeChanged += OnControllerChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        KeyPromptHelper.IconsChanged -= OnIconsChanged;
+        KeyPromptHelper.ControllerTypeChanged -= OnControllerChanged;
+    }
+
     /// <summary>
     ///   Delete this event from the associated action and update the godot InputMap
     /// </summary>
@@ -184,6 +205,8 @@ public class InputEventItem : Node
                     GetTree().SetInputAsHandled();
 
                     WaitingForInput = false;
+                    if (alternativeButtonContentToText != null)
+                        alternativeButtonContentToText.Visible = true;
 
                     // Rebind canceled, alert the InputManager so it can resume getting input
                     InputManager.PerformingRebind = false;
@@ -323,6 +346,8 @@ public class InputEventItem : Node
         WaitingForInput = false;
         JustAdded = false;
 
+        // Alternative button content doesn't need to become visible as it will be recreated in UpdateButtonText
+
         // Update the godot InputMap
         GroupList?.ControlsChanged();
 
@@ -370,14 +395,71 @@ public class InputEventItem : Node
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
 
+        if (alternativeButtonContentToText != null)
+            alternativeButtonContentToText.Visible = false;
+
         // Notify InputManager that input rebinding has started and it should not react to input
         InputManager.PerformingRebind = true;
     }
 
     private void UpdateButtonText()
     {
-        button.Text = AssociatedEvent != null ? AssociatedEvent.ToString() : "error";
-
         xButton.Visible = false;
+
+        if (alternativeButtonContentToText != null)
+        {
+            alternativeButtonContentToText.QueueFree();
+            alternativeButtonContentToText = null;
+        }
+
+        if (AssociatedEvent == null)
+        {
+            button.Text = "error";
+            button.HintTooltip = string.Empty;
+            return;
+        }
+
+        UpdateButtonContentFromEvent();
+    }
+
+    private void UpdateButtonContentFromEvent()
+    {
+        if (AssociatedEvent!.PrefersGraphicalRepresentation)
+        {
+            button.Text = string.Empty;
+
+            alternativeButtonContentToText = AssociatedEvent.GenerateGraphicalRepresentation();
+
+            button.AddChild(alternativeButtonContentToText);
+
+            button.RectMinSize = new Vector2(alternativeButtonContentToText.RectSize.x + 1,
+                alternativeButtonContentToText.RectSize.y + 1);
+
+            // To guard against broken inputs being entirely unknown, show the name of the key on hover
+            button.HintTooltip = AssociatedEvent.ToString();
+        }
+        else
+        {
+            button.Text = AssociatedEvent.ToString();
+            button.RectMinSize = new Vector2(0, 0);
+            button.HintTooltip = string.Empty;
+        }
+    }
+
+    private void OnIconsChanged(object sender, EventArgs eventArgs)
+    {
+        if (AssociatedEvent != null && alternativeButtonContentToText != null)
+        {
+            UpdateButtonContentFromEvent();
+        }
+    }
+
+    private void OnControllerChanged(object sender, EventArgs eventArgs)
+    {
+        // This avoids duplicate refresh with the general icons changed signal
+        if (KeyPromptHelper.InputMethod == ActiveInputMethod.Controller)
+            return;
+
+        OnIconsChanged(sender, eventArgs);
     }
 }

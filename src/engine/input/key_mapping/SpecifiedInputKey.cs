@@ -1,11 +1,13 @@
 ﻿using System;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Represents a single button, along with modifiers, used to trigger some action
 /// </summary>
 public class SpecifiedInputKey : ICloneable
 {
+    [JsonConstructor]
     public SpecifiedInputKey()
     {
     }
@@ -57,6 +59,10 @@ public class SpecifiedInputKey : ICloneable
     public InputType Type { get; set; }
     public uint Code { get; set; }
 
+    [JsonIgnore]
+    public bool PrefersGraphicalRepresentation =>
+        Type is InputType.ControllerAxis or InputType.ControllerButton or InputType.MouseButton;
+
     /// <summary>
     ///   Creates a string for the button to show.
     /// </summary>
@@ -95,32 +101,33 @@ public class SpecifiedInputKey : ICloneable
         }
         else if (Type == InputType.ControllerAxis)
         {
-            // This won't be preferably shown to the user so for now, no translations here
+            // TODO: add translations for the text here
             var (axis, direction, device) = UnpackAxis(Code);
             text += direction < 0 ? "Negative " : "Positive ";
             text += Input.GetJoyAxisString(axis);
 
             if (device != -1)
             {
-                text += $" device {device}";
+                text += $" Device {device + 1}";
             }
             else
             {
-                text += " any device";
+                text += " Any Device";
             }
         }
         else if (Type == InputType.ControllerButton)
         {
+            // TODO: and also translations here
             var (button, device) = UnpackCodeAndDevice(Code);
             text += Input.GetJoyButtonString(button);
 
             if (device != -1)
             {
-                text += $" device {device}";
+                text += $" Device {device + 1}";
             }
             else
             {
-                text += " any device";
+                text += " Any Device";
             }
         }
         else
@@ -129,6 +136,85 @@ public class SpecifiedInputKey : ICloneable
         }
 
         return text;
+    }
+
+    public Control GenerateGraphicalRepresentation()
+    {
+        var container = new HBoxContainer();
+
+        switch (Type)
+        {
+            case InputType.ControllerButton:
+            {
+                var (button, device) = UnpackCodeAndDevice(Code);
+
+                container.AddChild(CreateTextureRect(KeyPromptHelper.GetPathForControllerButton((JoystickList)button)));
+
+                if (device >= 0)
+                    GD.Print("TODO: displaying device restriction");
+
+                break;
+            }
+
+            case InputType.ControllerAxis:
+            {
+                var overlayPositioner = new CenterContainer
+                {
+                    MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+                };
+
+                var (axis, direction, device) = UnpackAxis(Code);
+
+                overlayPositioner.AddChild(
+                    CreateTextureRect(KeyPromptHelper.GetPathForControllerAxis((JoystickList)axis)));
+
+                var directionImage = KeyPromptHelper.GetPathForControllerAxisDirection((JoystickList)axis, direction);
+
+                if (directionImage != null)
+                {
+                    overlayPositioner.AddChild(CreateTextureRect(directionImage));
+                }
+
+                if (device >= 0)
+                    GD.Print("TODO: displaying device restriction");
+
+                container.AddChild(overlayPositioner);
+                break;
+            }
+
+            case InputType.MouseButton:
+            {
+                var overlayPositioner = new CenterContainer
+                {
+                    MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+                };
+
+                var (primary, overlay) = KeyPromptHelper.GetPathForMouseButton((ButtonList)Code);
+
+                if (overlay != null)
+                {
+                    overlayPositioner.AddChild(CreateTextureRect(primary, true));
+                    overlayPositioner.AddChild(CreateTextureRect(overlay));
+                }
+                else
+                {
+                    overlayPositioner.AddChild(CreateTextureRect(primary));
+                }
+
+                container.AddChild(overlayPositioner);
+                break;
+            }
+
+            default:
+                container.AddChild(new Label
+                {
+                    Text = ToString(),
+                    MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+                });
+                break;
+        }
+
+        return container;
     }
 
     public InputEvent ToInputEvent()
@@ -389,5 +475,16 @@ public class SpecifiedInputKey : ICloneable
         result.Control = Control;
         result.Shift = Shift;
         return result;
+    }
+
+    private TextureRect CreateTextureRect(string image, bool small = false)
+    {
+        return new TextureRect
+        {
+            Texture = GD.Load<Texture>(image),
+            Expand = true,
+            StretchMode = TextureRect.StretchModeEnum.ScaleOnExpand,
+            RectMinSize = small ? new Vector2(14, 14) : new Vector2(32, 32),
+        };
     }
 }

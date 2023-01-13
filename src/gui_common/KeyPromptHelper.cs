@@ -200,21 +200,43 @@ public static class KeyPromptHelper
     }
 
     /// <summary>
-    ///   Returns an icon for a mouse button
+    ///   Returns an icon for a mouse button (directions require an overlay, which when not null needs to be opened
+    ///   as a separate layer for correct display)
     /// </summary>
-    public static string GetPathForMouseButton(ButtonList button)
+    /// <returns>
+    ///   A tuple of the primary key texture and an optional overlay texture that should be drawn on top of the primary
+    ///   one. If not drawn the icon will not be clear
+    /// </returns>
+    public static (string Primary, string? Overlay) GetPathForMouseButton(ButtonList button)
     {
         switch (button)
         {
             case ButtonList.Left:
-                return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Left_Key_{Theme}.png";
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Left_Key_{Theme}.png",
+                    null);
             case ButtonList.Middle:
-                return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png";
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
+                    null);
             case ButtonList.Right:
-                return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Right_Key_{Theme}.png";
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Right_Key_{Theme}.png",
+                    null);
+            case ButtonList.WheelUp:
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Up.png");
+            case ButtonList.WheelDown:
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Down.png");
+            case ButtonList.WheelLeft:
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Left.png");
+            case ButtonList.WheelRight:
+                return ($"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/Mouse_Middle_Key_{Theme}.png",
+                    "res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_Right.png");
+
+            // TODO: handle the extra mouse buttons 1 and 2 (need custom images for them)
         }
 
-        return GetPathForInvalidKey();
+        return (GetPathForInvalidKey(), null);
     }
 
     public static string GetPathForControllerButton(JoystickList button)
@@ -257,6 +279,41 @@ public static class KeyPromptHelper
             case ControllerType.PlayStation5:
                 return GetPlayStationControllerAxis("PS5", axis);
         }
+    }
+
+    public static string? GetPathForControllerAxisDirection(JoystickList axis, float direction, bool large = true)
+    {
+        var suffix = large ? string.Empty : "_Unscaled";
+
+        string directionName;
+
+        switch (axis)
+        {
+            // Handling both sticks at once here assumes the direction mappings are the same
+            // TODO: the above needs confirming
+            case JoystickList.AnalogLy:
+            case JoystickList.AnalogRy:
+                directionName = direction < 0 ? "Up" : "Down";
+
+                break;
+
+            case JoystickList.AnalogLx:
+            case JoystickList.AnalogRx:
+                directionName = direction < 0 ? "Left" : "Right";
+
+                break;
+
+            // These don't really have "directions" so we return empty for them
+            case JoystickList.AnalogL2:
+            case JoystickList.AnalogR2:
+                return null;
+
+            // But unknown value is still error
+            default:
+                return GetPathForInvalidKey();
+        }
+
+        return $"res://assets/textures/gui/xelu_prompts/Customized/Directional_Arrow_{directionName}{suffix}.png";
     }
 
     private static string GetXboxControllerButton(string folder, string typePrefix, JoystickList button)
