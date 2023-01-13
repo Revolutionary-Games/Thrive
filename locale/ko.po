@@ -21,82 +21,69 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "쉬움"
 
 #: ../simulation_parameters/common/difficulty_presets.json:16
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "보통"
 
 #: ../simulation_parameters/common/difficulty_presets.json:29
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "어려움"
 
 #: ../simulation_parameters/common/difficulty_presets.json:42
 #: ../src/general/WorldGenerationSettings.cs:169
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "직접 설정"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "콘셉트 아트"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
-"\n"
-"생명.\n"
-"\n"
-"단순한 미생물이 바다 깊은 곳에 살고 있습니다. 당신은 이 행성에 남은 모든 생물의 마지막 공통 조상(LUCA) 입니다.\n"
-"\n"
-"이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
+msgstr "미생물 단계"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "세포 기관 배치"
+msgstr "다세포 단계"
 
 #: ../simulation_parameters/common/gallery.json:86
-#, fuzzy
 msgid "GENERAL"
-msgstr "세대:"
+msgstr "일반"
 
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
-msgstr ""
+msgstr "모델"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
-msgstr ""
+msgstr "음악"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:354
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "모두"
 
 #: ../simulation_parameters/common/gallery.json:268
 msgid "MENU"
-msgstr ""
+msgstr "메뉴"
 
 #: ../simulation_parameters/common/gallery.json:332
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "미생물 편집기 불러오는 중"
+msgstr "미생물 편집기"
 
 #: ../simulation_parameters/common/gallery.json:408
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "미생물 편집기 불러오는 중"
+msgstr "다세포 편집기"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 발사합니다. G 키로 삼키기 모드로 전환합니다."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] 와 마우스를 사용하여 이동합니다. 독소 액포가 있다면 [thrive:input]g_fire_toxin[/thrive:input] 를 사용하여 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 를 사용합니다. [thrive:input]g_toggle_engulf[/thrive:input] 를 사용하여 삼킴 모드를 켜고 끕니다. 마우스 휠을 사용하여 확대/축소할 수 있습니다."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -114,32 +101,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "G 키를 눌러 자신보다 작은 세포나 박테리아 또는 철과 세포 조각들을 삼킬 수 있습니다. 이것은 추가적인 ATP를 소모하며 더 느려지게 만듭니다. G 키를 한번 더 눌러 삼키기를 멈추는 것을 잊지 마십시오."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"원핵 구조체\n"
-"\n"
-"대사체: 포도당으로부터 ATP 생산\n"
-"\n"
-"화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
-"\n"
-"틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
-"\n"
-"루스티시아닌: 철을 ATP로 전환\n"
-"\n"
-"니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
-"\n"
-"세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
+msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 발사합니다. G 키로 삼키기 모드로 전환합니다."
+msgstr "하지만, 리소좀은 진핵생물에만 있습니다. 원핵생물은 그런 소기관을 가지고 있지 않으며 음식을 비교적 비효율적으로 소화합니다. 작은 세포들에게는 괜찮지만, 큰 세포들에게 리소좀이 없으면 아주 불리합니다."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 발사합니다. G 키로 삼키기 모드로 전환합니다."
+msgstr "특히 셀룰로오스와 키틴 세포벽은 먼저 이들을 분해할 수 있는 효소를 가지고 있지 않으면 소화할 수 없습니다."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -189,9 +160,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "당신의 경쟁자 또한 당신처럼 진화한다는 것을 명심하십시오. 당신이 편집기에 들어갈 때마다 그들도 진화할 것입니다."
 
 #: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "다른 세포들과 결합하여, 흡수하거나 생산한 물질들을 서로 공유하는 세포 군집을 만들 수 있습니다. 다른 세포와 결합하기 위해서는 세포 결합 소기관을 가진 채로 결합 모드에 들어간 다음 다른 세포들을 향해 이동해야 합니다. 자신과 동일한 종의 세포끼리만 결합할 수 있습니다. 군집 안에 있는 동안에는 세포 분열을 하거나 세포 편집기에 들어갈 수 없습니다(현재 버전 기준). 세포 편집기를 사용하려면 충분한 물질을 모은 다음 군집을 빠져나온 뒤에 세포 편집기를 열어야 합니다. 거대 세포 군집은 다세포 생물로 이어질 수 있습니다(아직은 개발중입니다)."
+msgstr "결합 기관은 당신의 세포가 같은 종의 다른 세포들과 함께 세포 군집을 형성하여 흡수하거나 생산한 물질들을 서로 공유할 수 있게 합니다. [thrive:input]g_toggle_binding[/thrive:input]를 눌러 결합 모드에 진입하세요. 군집을 이루고 있을 때는 세포를 분열시켜 편집기에 진입할 수 없습니다. 편집기에 진입하려면, 필요한 화합물을 모은 다음 [thrive:input]g_unbind_all[/thrive:input]를 눌러 군집을 떠나세요. 커다란 세포 군집은 다세포 생물로 이어질 수 있습니다."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -222,21 +192,29 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"세포 소 기관\n"
+"세포막 결합 소기관\n"
 "\n"
-"핵: 세포 11칸을 차지하며 세포 소 기관의 진화를 가능하게 함. 또한 세포 크기를 두 배로 늘림. (한 번만 진화 할 수 있음)\n"
+"핵: 헥스 11칸을 차지하며, 세포막 결합 소기관의 진화를 가능하게 하며, 세포 크기를 두 배로 늘리며, 세포가 입는 피해를 50% 감소 (한 번만 진화할 수 있음)\n"
 "\n"
-"미토콘드리아: 포도당과 대기 중 산소로 ATP를 생성. 세포질보다 더욱 효율적\n"
+"결합 기관: 다른 세포와 결합할 수 있게 함. 다세포 단계로 진행하는 데에 필수적\n"
 "\n"
-"엽록체: 햇빛과 대기 중 이산화탄소로 포도당을 생성\n"
+"미토콘드리아: [thrive:compound type=\"glucose\"][/thrive:compound]과 대기 중의 산소로부터 세포질보다 훨씬 효율적으로 [thrive:compound type=\"atp\"][/thrive:compound]를 합성\n"
 "\n"
-"화학세포: 황화수소로 포도당을 생성\n"
+"엽록체: 햇빛과 대기 중의 이산화탄소로부터 [thrive:compound type=\"glucose\"][/thrive:compound]을 합성\n"
 "\n"
-"질소 고정 색소체: ATP와 대기 중 질소와 산소로 암모니아를 생성\n"
+"열합성 기관: 온도 경사를 사용하여 [thrive:compound type=\"atp\"][/thrive:compound]를 합성\n"
 "\n"
-"액포: 화합물 15개 저장\n"
+"리소좀: 소화 효소를 가지고 있음. 효소는 소화 능률과 속도를 개선함\n"
 "\n"
-"독성 액포: 독소 생성 (OxyToxy NT라 불림)"
+"화학합성 기관: [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]로부터 [thrive:compound type=\"glucose\"][/thrive:compound]를 합성\n"
+"\n"
+"질소 고정 색소체: [thrive:compound type=\"atp\"][/thrive:compound] 및 대기 중의 질소와 산소로부터 [thrive:compound type=\"ammonia\"][/thrive:compound]를 합성\n"
+"\n"
+"액포: 수집한 물질을 8단위 저장\n"
+"\n"
+"독소 액포: 독소([thrive:compound type=\"oxytoxy\"][/thrive:compound])를 생산하며 이를 분비하여 옥시톡시 잔량에 따라 피해를 입힐 수 있게 함\n"
+"\n"
+"신호 기관: 세포에서 다른 세포가 반응할 수 있는 화합물을 합성할 수 있게 함"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -398,7 +376,7 @@ msgstr "독소 공격"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2092
 #: ../src/microbe_stage/MicrobeStage.tscn:2177
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "점액 분비"
 
 #: ../simulation_parameters/common/input_options.json:48
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2054
@@ -408,28 +386,25 @@ msgstr "삼키기 전환"
 
 #: ../simulation_parameters/common/input_options.json:52
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "눌러서 무리 명령 메뉴를 보이기"
 
 #: ../simulation_parameters/common/input_options.json:56
 #: ../src/microbe_stage/MicrobeStage.tscn:2142
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "삼키기 전환"
+msgstr "결합 모드 켜고 끄기"
 
 #: ../simulation_parameters/common/input_options.json:60
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "삼키기 전환"
+msgstr "결합 해제 켜고 끄기"
 
 #: ../simulation_parameters/common/input_options.json:64
 #: ../src/microbe_stage/MicrobeStage.tscn:2154
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "모두 결합 해제하기"
 
 #: ../simulation_parameters/common/input_options.json:68
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "불러오기 오류"
+msgstr "결합 해제 수행하기"
 
 #: ../simulation_parameters/common/input_options.json:78
 msgid "CAMERA"
@@ -469,9 +444,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "세포 기관 배치"
 
 #: ../simulation_parameters/common/input_options.json:119
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "세포 기관 제거"
+msgstr "세포 소기관 메뉴 열기"
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_LEFT"
@@ -496,60 +470,55 @@ msgstr "카메라 초기화"
 #: ../simulation_parameters/common/input_options.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "현재 동작 취소"
 
 #: ../simulation_parameters/common/input_options.json:147
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "세포 기관 배치"
+msgstr "세포 소기관 삭제"
 
 #: ../simulation_parameters/common/input_options.json:151
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "세포 기관 제거"
+msgstr "세포 소기관 이동"
 
 #: ../simulation_parameters/common/input_options.json:160
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "이동"
+msgstr "3차원 이동"
 
 #: ../simulation_parameters/common/input_options.json:164
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "위로 움직이거나 뛰어오르기"
 
 #: ../simulation_parameters/common/input_options.json:168
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "아래로 움직이거나 쭈그리기"
 
 #: ../simulation_parameters/common/input_options.json:176
-#, fuzzy
 msgid "MISCELLANEOUS_3D_STAGE"
-msgstr "기타"
+msgstr "기타 3D 단계"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "HOLD_TO_SHOW_CURSOR"
-msgstr ""
+msgstr "눌러서 커서 보이기"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "편집기"
+msgstr "3차원 편집기"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "눌러서 패닝 및 회전 모드 전환"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "전방 카메라 보기로 전환"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "우측 카메라 보기로 전환"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "상향 카메라 보기로 전환"
 
 #: ../simulation_parameters/common/input_options.json:213
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -574,9 +543,8 @@ msgid "SPAWN_PHOSPHATES"
 msgstr "인산염 배치"
 
 #: ../simulation_parameters/common/input_options.json:233
-#, fuzzy
 msgid "CHEAT_MENU"
-msgstr "치트"
+msgstr "치트 메뉴"
 
 #: ../simulation_parameters/common/input_options.json:244
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
@@ -585,21 +553,19 @@ msgstr "기타"
 
 #: ../simulation_parameters/common/input_options.json:248
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "일시 정지"
 
 #: ../simulation_parameters/common/input_options.json:252
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "삼키기 전환"
+msgstr "디버깅 패널 켜고 끄기"
 
 #: ../simulation_parameters/common/input_options.json:256
 msgid "TOGGLE_FPS"
 msgstr "FPS 표시 전환"
 
 #: ../simulation_parameters/common/input_options.json:260
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "FPS 표시 전환"
+msgstr "수치 표시 켜고 끄기"
 
 #: ../simulation_parameters/common/input_options.json:264
 msgid "QUICK_SAVE"
@@ -622,9 +588,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "전체화면 전환"
 
 #: ../simulation_parameters/common/input_options.json:284
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "삼키기 전환"
+msgstr "HUD 켜고 끄기"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:111
@@ -650,9 +615,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "산소 합성"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
-msgstr "화학적 합성"
+msgstr "점액 합성"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -673,9 +637,8 @@ msgstr "철 화학합성독립영양"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "화학적 합성"
+msgstr "열합성"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -734,9 +697,8 @@ msgstr "큰 철 덩어리"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "플레이어 세포"
+msgstr "만화 눈 세포"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -832,7 +794,7 @@ msgstr "OxyToxy NT"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1640
 #: ../src/microbe_stage/MicrobeStage.tscn:1711
 msgid "MUCILAGE"
-msgstr ""
+msgstr "점액"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
@@ -874,17 +836,15 @@ msgstr "온도"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "지질 분해 효소"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "섬유소"
+msgstr "셀룰로오스 분해 효소"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "키틴질"
+msgstr "키틴 분해 효소"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -962,9 +922,8 @@ msgstr "질소 고정 색소체"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "화학적 합성"
+msgstr "열합성 효소"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
@@ -990,16 +949,13 @@ msgstr "미토콘드리아"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
-"독성 \n"
+"독소 \n"
 "액포"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:550
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"{0}에서 충돌이 있습니다.\n"
-"{1}에서 입력을 제거하시겠습니까?"
+msgstr "결합 기관"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:592
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
@@ -1018,22 +974,18 @@ msgstr "핵"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:719
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "화학 기관"
+msgstr "화학 수용체"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:753
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
-msgstr ""
+msgstr "점액 분출"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:779
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr ""
-"{0}에서 충돌이 있습니다.\n"
-"{1}에서 입력을 제거하시겠습니까?"
+msgstr "신호 기관"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:802
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
@@ -1052,9 +1004,8 @@ msgstr "섬모"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:907
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "옥시톡시솜"
+msgstr "리소좀"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
 #, fuzzy
@@ -1067,9 +1018,8 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:643
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "농도"
+msgstr "{0}세대 끝내기"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:659
 msgid "RUN_X_WORLDS"
@@ -1078,7 +1028,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.cs:783
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
-msgstr ""
+msgstr "준비"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:933
 #, fuzzy
@@ -1102,12 +1052,11 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
-msgstr ""
+msgstr "설정"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
-#, fuzzy
 msgid "MAP"
-msgstr "ATP"
+msgstr "지도"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:138
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
@@ -1116,7 +1065,7 @@ msgstr "보고"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:146
 msgid "VIEWER"
-msgstr ""
+msgstr "뷰어"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 #, fuzzy
@@ -1144,21 +1093,19 @@ msgstr "실행 상태:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
-msgstr ""
+msgstr "한 단계 실행하기"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:363
-#, fuzzy
 msgid "FINISH_ONE_GENERATION"
-msgstr "농도"
+msgstr "한 세대 끝내기"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
-#, fuzzy
 msgid "ABORT"
-msgstr "취소됨."
+msgstr "중지"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr ""
+msgstr "현재 설정으로 실행"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
 #, fuzzy
@@ -1170,113 +1117,105 @@ msgid "EXPORT_ALL_WORLDS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "변이 소유"
+msgstr "종이 변이하지 않을 수 있도록 허용 (좋은 변이가 발견되지 않는 경우)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "종이 이주하지 않을 수 있도록 허용 (좋은 이주를 찾을 수 없는 경우)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "종의 수가 적은 (생물 다양성이 낮은) 지역에서 새로운 종을 생성할 확률"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "근처 지역에서 생물 다양성을 늘리기 위해 새로운 종을 생성할 확률"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "생물 다양성을 증진하는 주변 지역의 종에게 공짜 개체수 제공"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "생성 시 생물 다양성을 증진하는 종이 변이됨"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "지역의 생물 다양성이 낮은 것으로 간주되게 하는 최대 생물종 수"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:584
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "세부 사항을 표시할 파편을 선택하십시오"
+msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:602
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr ""
+msgstr "각 종의 이주 시도 횟수"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:620
-#, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
-msgstr "변이 점수"
+msgstr "각 종의 변이 시도 횟수"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
+msgstr "생물 다양성을 증진하는 종의 최초 개체수"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:652
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "방금 이주한 개체군을 종 개수 제한으로부터 보호"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:659
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
+msgstr "방금 생성된 종을 종 개수 제한으로부터 보호"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:666
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "목표 지역에서 멸종 시 이주를 다시 지원"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
-msgstr ""
+msgstr "엄격한 생태적 지위 경쟁 (적합도 차이가 과장됨)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:686
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "좋은 변이가 다수 발견되었을 때 종이 분화될 수 있는 최소 개체수"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "종의 개체수 중 변이를 통해 새로운 종으로 분화될 수 있는 최소 비율"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:718
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
+msgstr "생물 다양성을 증진하는 종의 생성 시 기존 종의 개체수를 빼앗음"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:760
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "세대:"
+msgstr "세대"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
-#, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "선택됨:"
+msgstr "세대를 선택하세요"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
-#, fuzzy
 msgid "SPECIES"
-msgstr "존재하는 종"
+msgstr "종"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:808
-#, fuzzy
 msgid "SELECT_A_SPECIES"
-msgstr "세부 사항을 표시할 파편을 선택하십시오"
+msgstr "종을 선택하세요"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
-msgstr "자동 진화 결과:"
+msgstr "Auto-evo 결과:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:957
 msgid "EVOLUTIONARY_TREE"
-msgstr ""
+msgstr "진화 계보"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:994
-#, fuzzy
 msgid "SPECIES_DETAILS"
-msgstr "존재하는 종"
+msgstr "종 세부 사항"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1051
 #: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
@@ -1286,146 +1225,130 @@ msgstr "존재하는 종"
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
-msgstr "뒤로가기"
+msgstr "뒤로"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1055
 #: ../src/general/PauseMenu.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "확인"
+msgstr "나가기 확인"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1056
 #: ../src/general/PauseMenu.cs:380
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "메뉴로 돌아가기"
+msgstr ""
+"정말 주 메뉴로 나가시겠어요?\n"
+"저장되지 않은 진행 상황을 모두 잃게 됩니다."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1060
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
-#, fuzzy
 msgid "ABORTED_DOT"
-msgstr "취소됨."
+msgstr "중지됨."
 
 #: ../src/auto-evo/AutoEvoRun.cs:127
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "완료됨."
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "취소됨."
+msgstr "시작되지 않음."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
-#, fuzzy
 msgid "OPERATION_PAUSED_DOT"
-msgstr "취소됨."
+msgstr "일시 정지됨."
 
 #: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "STARTING"
-msgstr "시작"
+msgstr "시작하는 중"
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "다음으로 인하여 {0} 개체수가 {2}에서 {1}(으)로 변함: {3}"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:378
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
 #: ../src/microbe_stage/editor/TimelineTab.cs:203
 msgid "MEGA_YEARS"
-msgstr "백만년"
+msgstr "백만 년"
 
 #: ../src/auto-evo/RunResults.cs:622
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "개체수:"
 
 #: ../src/auto-evo/RunResults.cs:631
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "{0}에서 멸종"
 
 #: ../src/auto-evo/RunResults.cs:637
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "종:"
+msgstr "이전:"
 
 #: ../src/auto-evo/RunResults.cs:655
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "유전자 코드:"
+msgstr "{0}에서 분화됨"
 
 #: ../src/auto-evo/RunResults.cs:668
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "유전자 코드:"
+msgstr "생태적 지위를 채우기 위해 등장"
 
 #: ../src/auto-evo/RunResults.cs:671
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "퍼뜨리기:"
+msgstr "서로 다른 자연 선택 압력으로 인해 등장"
 
 #: ../src/auto-evo/RunResults.cs:688
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "퍼뜨리기:"
+msgstr "일부 지역의 개체수는 새로운 종 {0}을(를) 형성하기 위해 분화됨:"
 
 #: ../src/auto-evo/RunResults.cs:704
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "변이 소유"
+msgstr "변이함"
 
 #: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "유전자 코드:"
 
 #: ../src/auto-evo/RunResults.cs:720
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
-msgstr "퍼뜨리기:"
+msgstr "다음 지역으로 퍼짐:"
 
 #: ../src/auto-evo/RunResults.cs:728
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr "{0} 으로의: {1} 개체 전송: {2} 로부터"
+msgstr "{0}(으)로 이주: 다음 지역으로부터 {1}개체: {2}"
 
 #: ../src/auto-evo/RunResults.cs:747
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "개체수:"
+msgstr "지역 내 개체수:"
 
 #: ../src/auto-evo/RunResults.cs:862
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "행성에서 멸종"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b]은(는) 멸종했습니다!"
 
 #: ../src/auto-evo/RunResults.cs:926 ../src/auto-evo/RunResults.cs:948
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "종:"
+msgstr "[b][u]{0}[/u][/b] 개체수가 {1}개체로 늘어남"
 
 #: ../src/auto-evo/RunResults.cs:932 ../src/auto-evo/RunResults.cs:954
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "종:"
+msgstr "[b][u]{0}[/u][/b] 개체수가 {1}개체로 줄어듦"
 
 #: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b]이(가) 이 지역에서 사라짐"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] 개체군의 일부가 {1} 지역으로부터 이 지역으로 이주함"
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
@@ -1609,7 +1532,7 @@ msgstr "미생물 편집기 불러오는 중"
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:253
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
-msgstr "자동 진화 실행 실패"
+msgstr "Auto-evo 실행 실패"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
@@ -1723,9 +1646,8 @@ msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "자동 진화 실행 실패"
+msgstr "데드존 보정이 끝났습니다. 새로운 데드존은 아래의 축 설정값 표시기에 표시됩니다."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 #, fuzzy
@@ -1733,9 +1655,10 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr ""
+"이 도구는 컨트롤러 축의 데드존을 설정할 수 있게 합니다. 데드존의 크기는 컨트롤러 막대(혹은 아날로그 버튼)가 입력으로 인식되려면 최소한 얼마나 움직여야 하는지를 의미합니다.\n"
+"보정을 시작하기 전에 컨트롤러에 있는 모든 컨트롤러 막대를 이리저리 움직인 다음 놓고, 모든 아날로그 버튼(방아쇠 등)을 눌렀다가 놓아 주세요."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
@@ -2223,7 +2146,7 @@ msgstr "행동"
 
 #: ../src/general/EditorBase.cs:260
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "자동 진화 대기중:"
+msgstr "Auto-evo 대기중:"
 
 #: ../src/general/EditorComponentBase.cs:72
 msgid "CONFIRM_CAPITAL"
@@ -2485,9 +2408,16 @@ msgid "SAFE_MODE_TITLE"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:833
-#, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr ""
+"이전의 실행 실패로 인해 Thrive가 안전 모드로 시작되었습니다.\n"
+"\n"
+"모드나 동영상 재생기로 인해 발생했을 가능성이 높습니다. 예방적 조치로 활성화된 모드의 불러오기가 생략되거나 동영상 재생이 비활성화되었을 수 있습니다. 이는 Thrive를 재시작할 때까지 유효합니다.\n"
+"\n"
+"재시작하기 전에 문제를 일으키거나 현재 버전의 Thrive와 호환되지 않을 수 있는 모드를 모두 비활성화해 주세요(문제를 일으킨 주범이 모드였는지 확인하기 위해 지난 실행 시의 로그를 읽어볼 수 있습니다).\n"
+"동영상 재생기와 관련된 문제에 대해서는 동영상을 강제로 비활성화하는 실행기 설정을 사용하세요.\n"
+"\n"
+"시작 문제를 일으키는 원인을 해결하지 않으면 다시 안전 모드에 들어오기 위해 Thrive를 여러 번 재시작하고 오류를 겪어야 할 수도 있습니다."
 
 #: ../src/general/MainMenu.tscn:837
 msgid "MOD_LOAD_ERRORS"
@@ -2529,9 +2459,8 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:159
 #: ../src/general/NewGameSettings.tscn:904
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(기관과 능력을 우리에게 알려진 생명(LAWK)으로 제한)"
 
 #: ../src/general/NewGameSettings.tscn:175
 #: ../src/general/NewGameSettings.tscn:920
@@ -2612,9 +2541,8 @@ msgid "AI_MUTATION_RATE"
 msgstr "변이 점수"
 
 #: ../src/general/NewGameSettings.tscn:510
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(AI 종이 변이하는 속도)"
 
 #: ../src/general/NewGameSettings.tscn:527
 #, fuzzy
@@ -2631,18 +2559,16 @@ msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:634
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(플레이어가 죽을 때마다 플레이어 종의 개체수가 감소하는 정도)"
 
 #: ../src/general/NewGameSettings.tscn:651
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:695
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
 
 #: ../src/general/NewGameSettings.tscn:712
 #, fuzzy
@@ -2663,14 +2589,12 @@ msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:788
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "번식 진도를 자동으로 진전"
 
 #: ../src/general/NewGameSettings.tscn:795
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
 
 #: ../src/general/NewGameSettings.tscn:807
 #, fuzzy
@@ -2678,14 +2602,12 @@ msgid "LIMIT_GROWTH_RATE"
 msgstr "확인"
 
 #: ../src/general/NewGameSettings.tscn:814
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
 
 #: ../src/general/NewGameSettings.tscn:858
-#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr "파편 지도"
+msgstr "지역 지도 종류"
 
 #: ../src/general/NewGameSettings.tscn:865
 msgid "PATCH_MAP_TYPE_EXPLANATION"
@@ -2715,9 +2637,8 @@ msgid "DAY_LENGTH"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:1033
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(게임 시간으로 하루의 길이가 현실 시간으로 몇 초인지)"
 
 #: ../src/general/NewGameSettings.tscn:1114
 msgid "PLANET_GENERATION_TEASER"
@@ -2738,9 +2659,8 @@ msgid "EASTER_EGGS"
 msgstr "농담 하나, 강섬모충속과 짚신벌레속은 수십 년 간 연구된 포식자와 피식자 관계의 교과서입니다, 당신은 강섬모충속입니까 아니면 짚신벌레속입니까? 사냥꾼입니까 아니면 사냥감입니까?"
 
 #: ../src/general/NewGameSettings.tscn:1172
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "(게임 안에서 무작위로 생성되는 비밀)"
 
 #: ../src/general/NewGameSettings.tscn:1200
 #, fuzzy
@@ -3000,7 +2920,7 @@ msgstr "구름 해상도 인자:"
 
 #: ../src/general/OptionsMenu.tscn:948
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "게임 플레이 중 자동 진화 실행"
+msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
 
 #: ../src/general/OptionsMenu.tscn:968
 #, fuzzy
@@ -3354,9 +3274,8 @@ msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
 #: ../src/general/StageBase.cs:542
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
-msgstr "세부 사항을 표시할 파편을 선택하십시오"
+msgstr "지역에서 멸종"
 
 #: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
@@ -4072,7 +3991,7 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
-msgstr "원시 형태의 독성 물질 OxyToxy NT의 생성을 담당하는 변형된 대사체."
+msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 #, fuzzy
@@ -4218,13 +4137,12 @@ msgid "VACUOLE_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "독성 액포는 OxyToxy 독소의 특정 생산, 저장 및 분비를 위해 수정 된 액포입니다. 독성 액포가 많을 수록 독소의 방출 속도를 증가시킬 수 있습니다."
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "독성 액포는 OxyToxy 독소의 특정 생산, 저장 및 분비를 위해 수정 된 액포입니다. 독성 액포가 많을 수록 독소의 방출 속도를 증가시킬 수 있습니다."
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 #, fuzzy
@@ -4303,13 +4221,13 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 중독성 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
+msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 독소에 의한 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 드는 에너지가 적지만, 자원을 빠르게 흡수할 수 없고 속도가 더 느려집니다. [b]키틴 소화 효소는 이 벽을 소화할 수 있어[/b] 포식자의 삼킴에 취약하게 만듭니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3811
 msgid "TOXIN_RESISTANCE"
-msgstr "독성 저항"
+msgstr "독소 저항"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
@@ -4407,9 +4325,8 @@ msgid "AGENTS"
 msgstr "물질"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
-#, fuzzy
 msgid "MOVE_TO_LAND"
-msgstr "해당 파편으로 이동"
+msgstr "육지로 이주"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1719
 #, fuzzy
@@ -4902,15 +4819,15 @@ msgid "ATP_BALANCE"
 msgstr "ATP 균형"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1065
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
+msgstr ""
+"이 패널은 Auto-Evo가 예측한 편집되는 종의 개체수를 보여줍니다.\n"
+"Auto-Evo는 개체수 시뮬레이션을 구동하며 이는 당신의 개체수에 가해지는 영향 중 (당신 스스로의 실력을 제외한) 나머지 부분을 담당합니다."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1069
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1285
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION"
-msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
+msgstr "Auto-Evo 예측"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1077
 #, fuzzy
@@ -4958,9 +4875,8 @@ msgstr ""
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1329
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+msgstr "이 패널은 Auto-Evo가 예측에 사용하는 숫자들을 보여줍니다. 하나의 종이 얻을 수 있는 에너지의 총량과 그 종의 한 개체당 필요한 에너지 비용이 최종 개체수를 결정합니다. Auto-Evo는 현실을 간략화한 모델을 사용하여 하나의 종이 얻을 수 있는 에너지로부터 그 종이 얼마나 잘 기능하고 있는지 계산합니다. 각각의 에너지원에 대해, 종이 해당 에너지원으로부터 얻는 에너지의 양이 표시됩니다. 이에 더하여 해당 에너지원으로부터 얻을 수 있는 에너지의 총량이 표시됩니다. 주어진 에너지의 총량에 비해 해당 종이 얻는 양의 비율은 해당 종의 적합도가 적합도 총량에 비해 얼마나 높은지에 따라 결정됩니다. 적합도는 종이 에너지원을 얼마나 잘 활용할 수 있는지 측정하는 지표입니다."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 #, fuzzy
@@ -4991,9 +4907,8 @@ msgid "INFINITE_MP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "해당 파편으로 이동"
+msgstr "아무 지역으로 이주"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -5045,13 +4960,12 @@ msgstr "이전에 존재했던 다른 99%의 종처럼, 당신의 종 또한 멸
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:418
-#, fuzzy
 msgid "EXTINCT_FROM_PATCH"
-msgstr "세부 사항을 표시할 파편을 선택하십시오"
+msgstr "지역에서 멸종"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
 msgid "AUTO_EVO"
-msgstr "자동 진화"
+msgstr "Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:215
 msgid "FOOD_CHAIN"
@@ -5094,7 +5008,7 @@ msgstr "물리적 상태"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
-msgstr "파편 지도"
+msgstr "지역 지도"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
 #, fuzzy
@@ -5211,7 +5125,7 @@ msgstr "종:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:122
 msgid "SELECT_A_PATCH"
-msgstr "세부 사항을 표시할 파편을 선택하십시오"
+msgstr "세부 사항을 표시하려면 지역을 선택하세요"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
 msgid "CURRENT_LOCATION_CAPITAL"
@@ -5233,7 +5147,7 @@ msgstr "존재하는 종"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "해당 파편으로 이동"
+msgstr "이 지역으로 이주"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
@@ -5507,9 +5421,8 @@ msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
-#, fuzzy
 msgid "MOD_PCK_NAME"
-msgstr "파편 이름"
+msgstr "모드 .pck 파일:"
 
 #: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
@@ -6350,17 +6263,15 @@ msgid "GOT_IT"
 msgstr "알겠습니다"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"이것은 파편 지도 입니다.\n"
-"미생물이 생존할 수 있는 다양한 파편을 볼 수 있습니다.\n"
-"현재 파편은 강조되어 보일 것입니다.\n"
-"마우스로 파편을 클릭하면 선택된 파편의 자세한 내용이 오른쪽에 표시됩니다.\n"
+"이 패널은 예상되는 당신의 미래 개체수를 보여줍니다. 이 숫자들은 Auto-Evo의 개체수 시뮬레이션 결과에 따른 것입니다.\n"
 "\n"
-"현재 파편의 옆의 파편을 선택하면, 오른쪽 버튼을 눌러 그곳으로 이동할 수 있습니다. 이것으로 당신의 개체를 새 파편에 퍼뜨릴 수 있습니다.\n"
+"이 숫자들은 당신 스스로의 실력은 고려하지 않습니다. 그러니 당신이 편집기에 진입하면 당신이 현재 있는 지역에서는 개체수가 더 많아질 것입니다.\n"
 "\n"
-"파편을 선택하여 진행하세요."
+"하지만 당신이 직접 개입하지 않더라도 최대한 많은 개체수를 이룰 수 있도록 노력해야 합니다.\n"
+"\n"
+"이 패널에 있는 물음표 버튼을 눌러 예측의 이유에 대해 더 자세한 정보를 볼 수 있습니다. 계속하려면 해당 버튼을 누르세요."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 #, fuzzy
@@ -6493,17 +6404,14 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "CONTINUE_THRIVING"
 msgstr "Thrive 시작"
 
-#, fuzzy
 #~ msgid "CURRENT_GENERATION_COLON"
-#~ msgstr "세대:"
+#~ msgstr "현재 세대:"
 
-#, fuzzy
 #~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "종:"
+#~ msgstr "총 소모 시간:"
 
-#, fuzzy
 #~ msgid "STATUS_COLON"
-#~ msgstr "종:"
+#~ msgstr "상태:"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
