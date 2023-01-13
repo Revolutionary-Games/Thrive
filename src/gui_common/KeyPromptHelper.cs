@@ -117,8 +117,10 @@ public static class KeyPromptHelper
     ///   Returns a path to an icon for the action
     /// </summary>
     /// <param name="actionName">Name of the action</param>
-    /// <returns>Path to the icon for the action</returns>
-    public static string GetPathForAction(string actionName)
+    /// <returns>
+    ///   A tuple of path to the icon for the action and potentially an overlay image to be drawn on top
+    /// </returns>
+    public static (string Primary, string? Overlay) GetPathForAction(string actionName)
     {
         return GetPathForAction(InputMap.GetActionList(actionName));
     }
@@ -127,18 +129,27 @@ public static class KeyPromptHelper
     ///   Returns a path to an icon for the action
     /// </summary>
     /// <param name="actionName">Name of the action</param>
-    /// <returns>An icon for the action</returns>
-    public static Texture GetTextureForAction(string actionName)
+    /// <returns>A tuple of icon for the action and a potential overlay that should be drawn on top</returns>
+    public static (Texture Primary, Texture? Overlay) GetTextureForAction(string actionName)
     {
-        return GD.Load<Texture>(GetPathForAction(actionName));
+        var (primaryPath, overlayPath) = GetPathForAction(actionName);
+
+        Texture? overlay = null;
+
+        if (overlayPath != null)
+            overlay = GD.Load<Texture>(overlayPath);
+
+        return (GD.Load<Texture>(primaryPath), overlay);
     }
 
     /// <summary>
     ///   Returns a path to an icon for the already resolved action
     /// </summary>
     /// <param name="actionList">The list of buttons for the action</param>
-    /// <returns>Path to the icon for the action</returns>
-    public static string GetPathForAction(Array actionList)
+    /// <returns>
+    ///   A tuple of path to the icon for the action and potentially an overlay image to be drawn on top
+    /// </returns>
+    public static (string Primary, string? Overlay) GetPathForAction(Array actionList)
     {
         // Find the first action matching InputMethod
         foreach (var action in actionList)
@@ -149,7 +160,7 @@ public static class KeyPromptHelper
                 {
                     if (action is InputEventKey key)
                     {
-                        return GetPathForKeyboardKey(OS.GetScancodeString(key.Scancode));
+                        return (GetPathForKeyboardKey(OS.GetScancodeString(key.Scancode)), null);
                     }
 
                     if (action is InputEventMouseButton button)
@@ -164,12 +175,13 @@ public static class KeyPromptHelper
                 {
                     if (action is InputEventJoypadButton joypadButton)
                     {
-                        return GetPathForControllerButton((JoystickList)joypadButton.ButtonIndex);
+                        return (GetPathForControllerButton((JoystickList)joypadButton.ButtonIndex), null);
                     }
 
                     if (action is InputEventJoypadMotion joypadMotion)
                     {
-                        return GetPathForControllerAxis((JoystickList)joypadMotion.Axis);
+                        return (GetPathForControllerAxis((JoystickList)joypadMotion.Axis),
+                            GetPathForControllerAxisDirection((JoystickList)joypadMotion.Axis, joypadMotion.AxisValue));
                     }
 
                     break;
@@ -177,7 +189,7 @@ public static class KeyPromptHelper
             }
         }
 
-        return GetPathForInvalidKey();
+        return (GetPathForInvalidKey(), null);
     }
 
     /// <summary>
