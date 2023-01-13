@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=19]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ButtonGroup" id=1]
 resource_name = "TabsButtonGroup"
@@ -101,7 +103,9 @@ margin_right = 1230.0
 margin_bottom = 690.0
 custom_constants/separation = 10
 
-[node name="TabButtons" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="TabButtons" parent="GUI/VBoxContainer" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 1180.0
 margin_bottom = 35.0
 
@@ -1049,6 +1053,12 @@ margin_bottom = 660.0
 margin_right = 62.0
 margin_bottom = 35.0
 text = "BACK"
+
+[node name="FocusGrabber" parent="GUI/VBoxContainer/HBoxContainer" instance=ExtResource( 20 )]
+margin_left = 66.0
+margin_right = 66.0
+margin_bottom = 35.0
+NodeToGiveFocusTo = NodePath("../BackButton")
 
 [node name="ExitConfirmationDialog" parent="." instance=ExtResource( 11 )]
 rect_min_size = Vector2( 400, 0 )
