@@ -117,8 +117,16 @@ public class InputActionItem : VBoxContainer
         }
 
         inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
+    }
 
+    public override void _EnterTree()
+    {
         Inputs.CollectionChanged += OnInputsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        Inputs.CollectionChanged -= OnInputsChanged;
     }
 
     public override bool Equals(object? obj)
