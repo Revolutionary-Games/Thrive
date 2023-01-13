@@ -10,7 +10,7 @@ using Godot;
 ///     Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem>InputActionItem>InputEventItem
 ///   </para>
 /// </remarks>
-public class InputEventItem : Node
+public class InputEventItem : MarginContainer
 {
     [Export]
     public NodePath ButtonPath = null!;

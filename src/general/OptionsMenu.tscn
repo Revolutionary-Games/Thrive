@@ -1178,9 +1178,17 @@ text = "MOUSE_LOOK_SENSITIVITY"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine"]
 margin_left = 263.0
-margin_right = 449.0
+margin_right = 445.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
+
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine" instance=ExtResource( 13 )]
+margin_left = 449.0
+margin_right = 449.0
+margin_bottom = 25.0
+Priority = 3
+NodeToGiveFocusTo = NodePath("../SameBothAxesSensitivity")
+GrabFocusWhenBecomingVisible = true
 
 [node name="SameBothAxesSensitivity" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine" instance=ExtResource( 10 )]
 margin_left = 453.0
@@ -1345,8 +1353,6 @@ text = "INVERTED"
 margin_top = 241.0
 margin_right = 267.0
 margin_bottom = 276.0
-focus_neighbour_bottom = NodePath("../../../../../HBoxContainer/ResetInputsButton")
-focus_next = NodePath("../../../../../HBoxContainer/ResetInputsButton")
 size_flags_horizontal = 0
 text = "CONTROLLER_DEADZONES"
 
@@ -1359,6 +1365,13 @@ margin_bottom = 284.0
 margin_top = 288.0
 margin_right = 708.0
 margin_bottom = 288.0
+focus_neighbour_left = NodePath("../../../../../../../../../HBoxContainer/Back")
+focus_neighbour_top = NodePath("../DeadzonesButton")
+focus_neighbour_right = NodePath("../../../../../HBoxContainer/ResetInputsButton")
+focus_neighbour_bottom = NodePath("../../../../../HBoxContainer/ResetInputsButton")
+focus_next = NodePath("../../../../../HBoxContainer/ResetInputsButton")
+focus_previous = NodePath("../DeadzonesButton")
+focus_mode = 2
 custom_constants/separation = 30
 script = ExtResource( 3 )
 __meta__ = {
@@ -1384,6 +1397,7 @@ margin_right = 718.0
 margin_bottom = 35.0
 focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DeadzonesButton")
 focus_neighbour_bottom = NodePath("../../../../../../HBoxContainer/Back")
+focus_next = NodePath("../../../../../../HBoxContainer/Back")
 focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DeadzonesButton")
 text = "RESET_KEYBINDINGS"
 
