@@ -29,7 +29,7 @@ when parts are hidden and others are shown, there's always an active
 grabber that makes sense.
 
 For a Control to be focusable it needs to be set to accept "all" focus
-instead on "none"
+instead of "none"
 
 Navigation Directions
 ---------------------
@@ -48,7 +48,7 @@ Even if a GUI is not made to be controller navigable, there should at
 least be an exit button that is made focused by a `FocusGrabber` (and
 it should have all the navigation directions set to itself to avoid
 navigating away from it). This way a controller user can at least
-exist the screen without having to force close the game or reach for a
+exit the screen without having to force close the game or reach for a
 mouse.
 
 Making Tabs
