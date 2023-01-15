@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-11 21:38+0800\n"
+"POT-Creation-Date: 2023-01-15 15:25+0000\n"
 "PO-Revision-Date: 2022-12-11 22:00+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -375,7 +375,7 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr "Hauska fakta, untrustedlife, meidän mahtava ohjelmoida, teki yhden ensimmäisistä pelattavista prototyypeistä!"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:395
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:386
 msgid "MOVEMENT"
 msgstr "Liikkuminen"
 
@@ -456,7 +456,7 @@ msgid "ZOOM_IN"
 msgstr "Zoomaa sisään"
 
 #: ../simulation_parameters/common/input_options.json:95
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
 msgstr "Editori"
 
@@ -864,8 +864,8 @@ msgstr "Typpi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4080
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:301
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:628
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:320
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "Auringonvalo"
@@ -873,7 +873,7 @@ msgstr "Auringonvalo"
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:617
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
 msgid "TEMPERATURE"
 msgstr "Lämpötila"
@@ -1060,38 +1060,38 @@ msgstr "Happimyrkkysomi"
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr "Virhe: {0}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:435
+#: ../src/auto-evo/AutoEvoExploringTool.cs:425
 #, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:643
+#: ../src/auto-evo/AutoEvoExploringTool.cs:633
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "konsentraatiosta riippuen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:659
+#: ../src/auto-evo/AutoEvoExploringTool.cs:649
 msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:783
+#: ../src/auto-evo/AutoEvoExploringTool.cs:773
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 #, fuzzy
 msgid "READY"
 msgstr "Taustasuorittajia:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:933
+#: ../src/auto-evo/AutoEvoExploringTool.cs:907
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:947
-#: ../src/auto-evo/AutoEvoExploringTool.cs:991
+#: ../src/auto-evo/AutoEvoExploringTool.cs:921
+#: ../src/auto-evo/AutoEvoExploringTool.cs:965
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:975
+#: ../src/auto-evo/AutoEvoExploringTool.cs:949
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistiikkaa organismista"
@@ -1111,7 +1111,7 @@ msgid "MAP"
 msgstr "ATP"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:138
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:112
 msgid "REPORT"
 msgstr "Raportti"
 
@@ -1268,7 +1268,7 @@ msgid "SELECT_A_SPECIES"
 msgstr "Valitse alue nähdäksesi sen tiedot tässä"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:289
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulokset:"
 
@@ -1277,35 +1277,30 @@ msgstr "Auto-evo tulokset:"
 msgid "EVOLUTIONARY_TREE"
 msgstr "Tehnyt Revolutionary Games Studio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:994
-#, fuzzy
-msgid "SPECIES_DETAILS"
-msgstr "Lista lajeista"
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1051
-#: ../src/general/MainMenu.tscn:411 ../src/general/MainMenu.tscn:504
-#: ../src/general/MainMenu.tscn:762 ../src/general/NewGameSettings.tscn:1183
-#: ../src/general/OptionsMenu.tscn:1686 ../src/general/PauseMenu.tscn:264
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:998
+#: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:841 ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/OptionsMenu.tscn:1724 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
-#: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
+#: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr "Takaisin"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1055
-#: ../src/general/PauseMenu.tscn:292
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:176
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
+#: ../src/general/PauseMenu.tscn:312
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
 msgid "CONFIRM_EXIT"
 msgstr "Vahvista poistuminen"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1056
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
 #: ../src/general/PauseMenu.cs:380
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Haluatko varmasti palata päävalikkoon?\n"
 "Menetät tallentamattomat tiedot."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1060
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
 #, fuzzy
 msgid "EXPORT_SUCCESS"
 msgstr "Lajin {0} saalistus"
@@ -1461,105 +1456,105 @@ msgstr "Lajin {0} saalistus"
 msgid "STEM_CELL_NAME"
 msgstr "Kantasolu"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:301
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:314
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:298
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:497
 msgid "STRUCTURE"
 msgstr "Rakenne"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:416
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
 msgid "REPRODUCTION"
 msgstr "Lisääntyminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:344
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:520
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:541
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Käyttäytyminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:462
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
 msgid "CELLS"
 msgstr "Solut"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:419
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:471
 msgid "MODIFY_TYPE"
 msgstr "Vaihda tyyppiä"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:433
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:485
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Poista"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:441
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
 msgid "DUPLICATE_TYPE"
 msgstr "Kopioi tyyppi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:485
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:498
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:499
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:521
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:646
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1238
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:538
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:638
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "PERU"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:162
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:740
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:552
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:651
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:754
 msgid "NEXT_CAPITAL"
 msgstr "SEURAAVA"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:561
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:563
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole keskenään yhdessä.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Soluelimen tyyppiä ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Solutyyppiä, joka on tällä hetkellä käytössä kehon suunnitelmassa, ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:575
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Luo uusi soluelin"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:572
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:586
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:706
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:604
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:698
 msgid "NEW_NAME_COLON"
 msgstr "Uusi nimi:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:593
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:713
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
 msgid "NEW_NAME"
 msgstr "Uusi nimi"
 
@@ -2186,19 +2181,20 @@ msgstr "Odotetaan auto-evoa:"
 msgid "CONFIRM_CAPITAL"
 msgstr "VAHVISTA"
 
-#: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:114
+#: ../src/general/HelpScreen.tscn:104
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1338
-#: ../src/modding/ModManager.tscn:992 ../src/thriveopedia/Thriveopedia.tscn:286
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/modding/ModManager.tscn:1001
+#: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Sulje"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:618 ../src/general/StageHUDBase.cs:717
+#: ../src/general/NewGameSettings.cs:619 ../src/general/StageHUDBase.cs:717
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:175
 #: ../src/microbe_stage/MicrobeHUD.cs:229
@@ -2219,7 +2215,7 @@ msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glukoosin pitoisuudet ovat tippuneet rajusti!"
 
-#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:854
+#: ../src/general/MainMenu.cs:193 ../src/general/MainMenu.tscn:936
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -2231,225 +2227,225 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
 
-#: ../src/general/MainMenu.tscn:244
+#: ../src/general/MainMenu.tscn:249
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:255
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
 
-#: ../src/general/MainMenu.tscn:257 ../src/general/PauseMenu.tscn:197
+#: ../src/general/MainMenu.tscn:265 ../src/general/PauseMenu.tscn:199
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/MainMenu.tscn:260 ../src/general/PauseMenu.tscn:198
+#: ../src/general/MainMenu.tscn:268 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Lataa Peli"
 
-#: ../src/general/MainMenu.tscn:267 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:275 ../src/general/PauseMenu.tscn:223
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/MainMenu.tscn:271 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:278 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "Asetukset"
 
-#: ../src/general/MainMenu.tscn:281
+#: ../src/general/MainMenu.tscn:287
 msgid "TOOLS"
 msgstr "Työkalut"
 
-#: ../src/general/MainMenu.tscn:291
+#: ../src/general/MainMenu.tscn:296
 msgid "VIEW_SOURCE_CODE"
 msgstr "Katsele lähdekoodia"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:305
 msgid "EXTRAS"
 msgstr "Ekstrat"
 
-#: ../src/general/MainMenu.tscn:311
+#: ../src/general/MainMenu.tscn:314
 msgid "CREDITS"
 msgstr "Tekijät"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/MainMenu.tscn:328
-#: ../src/general/PauseMenu.tscn:237
+#: ../src/general/MainMenu.tscn:321 ../src/general/MainMenu.tscn:331
+#: ../src/general/PauseMenu.tscn:239
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/MainMenu.tscn:321
+#: ../src/general/MainMenu.tscn:324
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:332
+#: ../src/general/MainMenu.tscn:337
 msgid "QUIT"
 msgstr "Lopeta"
 
-#: ../src/general/MainMenu.tscn:353
+#: ../src/general/MainMenu.tscn:368
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrobien vapaa rakentelu"
 
-#: ../src/general/MainMenu.tscn:364
+#: ../src/general/MainMenu.tscn:380
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "suorituksen status:"
 
-#: ../src/general/MainMenu.tscn:433 ../src/general/PauseMenu.tscn:206
+#: ../src/general/MainMenu.tscn:461 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:448
+#: ../src/general/MainMenu.tscn:475
 msgid "MODS"
 msgstr "Modit"
 
-#: ../src/general/MainMenu.tscn:463
+#: ../src/general/MainMenu.tscn:489
 msgid "ART_GALLERY"
 msgstr "Taidegalleria"
 
-#: ../src/general/MainMenu.tscn:475
+#: ../src/general/MainMenu.tscn:500
 msgid "LICENSES"
 msgstr "Lisenssit"
 
-#: ../src/general/MainMenu.tscn:490 ../src/general/MainMenu.tscn:594
+#: ../src/general/MainMenu.tscn:514 ../src/general/MainMenu.tscn:651
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:568
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/MainMenu.tscn:534
+#: ../src/general/MainMenu.tscn:577
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:543
+#: ../src/general/MainMenu.tscn:586
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/MainMenu.tscn:546
+#: ../src/general/MainMenu.tscn:591
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:555
+#: ../src/general/MainMenu.tscn:600
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:605
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Kehitystä tukee Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:614
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:619
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Kehittäjät"
 
-#: ../src/general/MainMenu.tscn:579
+#: ../src/general/MainMenu.tscn:628
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/MainMenu.tscn:582
+#: ../src/general/MainMenu.tscn:633
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "Wikimme"
 
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:679
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Tehnyt Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:624
+#: ../src/general/MainMenu.tscn:692
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/general/MainMenu.tscn:635
+#: ../src/general/MainMenu.tscn:704
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/MainMenu.tscn:646
+#: ../src/general/MainMenu.tscn:716
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:728
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/MainMenu.tscn:668
+#: ../src/general/MainMenu.tscn:740
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:752
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Jatka"
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:764
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:776
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:788
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/MainMenu.tscn:779
+#: ../src/general/MainMenu.tscn:861
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-moodi Varoitus"
 
-#: ../src/general/MainMenu.tscn:781
+#: ../src/general/MainMenu.tscn:863
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:784
+#: ../src/general/MainMenu.tscn:866
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Ei käytössä"
 
-#: ../src/general/MainMenu.tscn:797
+#: ../src/general/MainMenu.tscn:879
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:895
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:827 ../src/general/MainMenu.tscn:884
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
+#: ../src/general/MainMenu.tscn:909 ../src/general/MainMenu.tscn:966
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.tscn:831
+#: ../src/general/MainMenu.tscn:913
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Poista Paikallinen Data"
 
-#: ../src/general/MainMenu.tscn:833
+#: ../src/general/MainMenu.tscn:915
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -2458,46 +2454,46 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:919
 msgid "MOD_LOAD_ERRORS"
 msgstr "Modien latausvirheet"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:920
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
 
-#: ../src/general/MainMenu.tscn:844
+#: ../src/general/MainMenu.tscn:926
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "OLET SELVIYTYNYT!"
 
-#: ../src/general/MainMenu.tscn:870
+#: ../src/general/MainMenu.tscn:952
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:322
-#: ../src/general/NewGameSettings.tscn:1223
+#: ../src/general/NewGameSettings.cs:323
+#: ../src/general/NewGameSettings.tscn:1237
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.cs:329
+#: ../src/general/NewGameSettings.cs:330
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.tscn:124
-#: ../src/general/NewGameSettings.tscn:364
+#: ../src/general/NewGameSettings.tscn:126
+#: ../src/general/NewGameSettings.tscn:362
 msgid "DIFFICULTY_PRESET"
 msgstr "Vaikeustason esiasetus"
 
-#: ../src/general/NewGameSettings.tscn:152
-#: ../src/general/NewGameSettings.tscn:897
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:895
 msgid "LAWK_ONLY"
 msgstr "Vain LAWK"
 
-#: ../src/general/NewGameSettings.tscn:159
-#: ../src/general/NewGameSettings.tscn:904
+#: ../src/general/NewGameSettings.tscn:161
+#: ../src/general/NewGameSettings.tscn:902
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -2506,13 +2502,13 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:175
-#: ../src/general/NewGameSettings.tscn:920
+#: ../src/general/NewGameSettings.tscn:177
+#: ../src/general/NewGameSettings.tscn:918
 msgid "LIFE_ORIGIN"
 msgstr "Elämän alkuperä"
 
-#: ../src/general/NewGameSettings.tscn:182
-#: ../src/general/NewGameSettings.tscn:927
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:925
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -2521,88 +2517,88 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:196
-#: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/NewGameSettings.tscn:198
+#: ../src/general/NewGameSettings.tscn:939
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/NewGameSettings.tscn:198
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:943
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:200
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:941
+#: ../src/general/NewGameSettings.tscn:942
 #: ../src/general/WorldGenerationSettings.cs:43
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Mustat savuttajat"
 
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:942
 #: ../src/general/WorldGenerationSettings.cs:46
 msgid "LIFE_ORIGIN_POND"
 msgstr "Lämmin pieni allas"
 
-#: ../src/general/NewGameSettings.tscn:199
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:201
+#: ../src/general/NewGameSettings.tscn:942
 #: ../src/general/WorldGenerationSettings.cs:49
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (satunnainen)"
 
-#: ../src/general/NewGameSettings.tscn:214
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:216
+#: ../src/general/NewGameSettings.tscn:1042
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
 
-#: ../src/general/NewGameSettings.tscn:233
-#: ../src/general/NewGameSettings.tscn:1063
+#: ../src/general/NewGameSettings.tscn:235
+#: ../src/general/NewGameSettings.tscn:1061
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/general/NewGameSettings.tscn:272
+#: ../src/general/NewGameSettings.tscn:274
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:294
+#: ../src/general/NewGameSettings.tscn:292
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Vaikeustaso"
 
-#: ../src/general/NewGameSettings.tscn:304
+#: ../src/general/NewGameSettings.tscn:302
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeetta"
 
-#: ../src/general/NewGameSettings.tscn:314 ../src/general/OptionsMenu.tscn:204
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:206
 msgid "MISC"
 msgstr "Muut"
 
-#: ../src/general/NewGameSettings.tscn:403
+#: ../src/general/NewGameSettings.tscn:401
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutaatiohinnan kerroin"
 
-#: ../src/general/NewGameSettings.tscn:448
+#: ../src/general/NewGameSettings.tscn:446
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
 "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
-#: ../src/general/NewGameSettings.tscn:465
+#: ../src/general/NewGameSettings.tscn:463
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/NewGameSettings.tscn:510
+#: ../src/general/NewGameSettings.tscn:508
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:527
+#: ../src/general/NewGameSettings.tscn:525
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/NewGameSettings.tscn:572
+#: ../src/general/NewGameSettings.tscn:570
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -2610,39 +2606,39 @@ msgstr ""
 "todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
 "Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
 
-#: ../src/general/NewGameSettings.tscn:589
+#: ../src/general/NewGameSettings.tscn:587
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:634
+#: ../src/general/NewGameSettings.tscn:632
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:651
+#: ../src/general/NewGameSettings.tscn:649
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Ympäristön glukoosin säilyminen"
 
-#: ../src/general/NewGameSettings.tscn:695
+#: ../src/general/NewGameSettings.tscn:693
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:712
+#: ../src/general/NewGameSettings.tscn:710
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:757
+#: ../src/general/NewGameSettings.tscn:755
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:769
+#: ../src/general/NewGameSettings.tscn:767
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:774
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2650,62 +2646,62 @@ msgstr ""
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
 "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
-#: ../src/general/NewGameSettings.tscn:788
+#: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:795
+#: ../src/general/NewGameSettings.tscn:793
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:807
+#: ../src/general/NewGameSettings.tscn:805
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "VAHVISTA"
 
-#: ../src/general/NewGameSettings.tscn:814
+#: ../src/general/NewGameSettings.tscn:812
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:858
+#: ../src/general/NewGameSettings.tscn:856
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Aluekartta"
 
-#: ../src/general/NewGameSettings.tscn:865
+#: ../src/general/NewGameSettings.tscn:863
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
 "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
-#: ../src/general/NewGameSettings.tscn:880
-#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/NewGameSettings.tscn:878
+#: ../src/general/NewGameSettings.tscn:879
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/NewGameSettings.tscn:879
 #: ../src/general/WorldGenerationSettings.cs:58
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Klassinen"
 
-#: ../src/general/NewGameSettings.tscn:959
+#: ../src/general/NewGameSettings.tscn:957
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:967
+#: ../src/general/NewGameSettings.tscn:965
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:985
+#: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1033
+#: ../src/general/NewGameSettings.tscn:1031
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
@@ -2714,25 +2710,25 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:1114
+#: ../src/general/NewGameSettings.tscn:1112
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1146
+#: ../src/general/NewGameSettings.tscn:1144
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Lisää soluelin"
 
-#: ../src/general/NewGameSettings.tscn:1153
+#: ../src/general/NewGameSettings.tscn:1151
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1165
+#: ../src/general/NewGameSettings.tscn:1163
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "KIEMURTELEVIA JUTTUJA!!"
 
-#: ../src/general/NewGameSettings.tscn:1172
+#: ../src/general/NewGameSettings.tscn:1170
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2741,428 +2737,428 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:1200
+#: ../src/general/NewGameSettings.tscn:1207
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.tscn:1202
+#: ../src/general/NewGameSettings.tscn:1212
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1213
+#: ../src/general/NewGameSettings.tscn:1223
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1228
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1224
+#: ../src/general/NewGameSettings.tscn:1240
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "VAHVISTA"
 
-#: ../src/general/OptionsMenu.cs:776 ../src/general/OptionsMenu.tscn:331
+#: ../src/general/OptionsMenu.cs:782 ../src/general/OptionsMenu.tscn:346
 msgid "AUTO_RESOLUTION"
 msgstr "Automaattinen ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:790
+#: ../src/general/OptionsMenu.cs:796
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/OptionsMenu.cs:795
+#: ../src/general/OptionsMenu.cs:801
 msgid "GLES3"
 msgstr "GLES3"
 
-#: ../src/general/OptionsMenu.cs:800
+#: ../src/general/OptionsMenu.cs:806
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.cs:809 ../src/general/OptionsMenu.tscn:510
+#: ../src/general/OptionsMenu.cs:815 ../src/general/OptionsMenu.tscn:534
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
-#: ../src/general/OptionsMenu.cs:1232
+#: ../src/general/OptionsMenu.cs:1238
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
-#: ../src/general/OptionsMenu.cs:1264
+#: ../src/general/OptionsMenu.cs:1270
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
 
-#: ../src/general/OptionsMenu.cs:1268
+#: ../src/general/OptionsMenu.cs:1274
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:1272
+#: ../src/general/OptionsMenu.cs:1278
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tämä kieli on {0}% käännetty"
 
-#: ../src/general/OptionsMenu.cs:1332
+#: ../src/general/OptionsMenu.cs:1338
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 "Tämä tallennus on uudemmasta Thriven versiosta ja erittäin todennäköisesti\n"
 "se ei ole yhteensopiva. Lataa kuitenkin?"
 
-#: ../src/general/OptionsMenu.cs:1339
+#: ../src/general/OptionsMenu.cs:1345
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
 
-#: ../src/general/OptionsMenu.tscn:160
+#: ../src/general/OptionsMenu.tscn:162
 msgid "GRAPHICS"
 msgstr "Grafiikat"
 
-#: ../src/general/OptionsMenu.tscn:171
+#: ../src/general/OptionsMenu.tscn:173
 msgid "SOUND"
 msgstr "Ääni"
 
-#: ../src/general/OptionsMenu.tscn:182
+#: ../src/general/OptionsMenu.tscn:184
 msgid "PERFORMANCE"
 msgstr "Suorituskyky"
 
-#: ../src/general/OptionsMenu.tscn:193
+#: ../src/general/OptionsMenu.tscn:195
 msgid "INPUTS"
 msgstr "Syötteet"
 
-#: ../src/general/OptionsMenu.tscn:252
+#: ../src/general/OptionsMenu.tscn:267
 msgid "VSYNC"
 msgstr "Pystysynkronointi"
 
-#: ../src/general/OptionsMenu.tscn:259
+#: ../src/general/OptionsMenu.tscn:274
 msgid "FULLSCREEN"
 msgstr "Koko näyttö"
 
-#: ../src/general/OptionsMenu.tscn:281
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Monen näytteen reunanpehmennys:"
 
-#: ../src/general/OptionsMenu.tscn:288 ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:1098
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:319
 msgid "DISABLED"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:319
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:319
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:319
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:319
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:318
+#: ../src/general/OptionsMenu.tscn:333
 msgid "RESOLUTION"
 msgstr "Tarkkuus:"
 
-#: ../src/general/OptionsMenu.tscn:342
+#: ../src/general/OptionsMenu.tscn:357
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
-#: ../src/general/OptionsMenu.tscn:357
+#: ../src/general/OptionsMenu.tscn:372
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Rajoittamaton"
 
-#: ../src/general/OptionsMenu.tscn:373
+#: ../src/general/OptionsMenu.tscn:388
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Värisokeuden korjaus:"
 
-#: ../src/general/OptionsMenu.tscn:387 ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:404 ../src/general/OptionsMenu.tscn:405
 msgid "NONE"
 msgstr "Ei mitään"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:405
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (punavihersokeus)"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:405
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (sininen-keltainen)"
 
-#: ../src/general/OptionsMenu.tscn:404
+#: ../src/general/OptionsMenu.tscn:426
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
-#: ../src/general/OptionsMenu.tscn:430
+#: ../src/general/OptionsMenu.tscn:454
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Näytä taustahiukkasia"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:464
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:494
 msgid "USED_RENDERER_NAME"
 msgstr "Käytetty renderöijä:"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:521
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:524
+#: ../src/general/OptionsMenu.tscn:548
 msgid "GUI"
 msgstr "Käyttöliittymä"
 
-#: ../src/general/OptionsMenu.tscn:539
+#: ../src/general/OptionsMenu.tscn:563
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.tscn:547
+#: ../src/general/OptionsMenu.tscn:571
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Käytä käyttöliittymän valoefektejä"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:580
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.tscn:580
+#: ../src/general/OptionsMenu.tscn:606
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
-#: ../src/general/OptionsMenu.tscn:606 ../src/general/OptionsMenu.tscn:646
-#: ../src/general/OptionsMenu.tscn:678 ../src/general/OptionsMenu.tscn:710
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:632 ../src/general/OptionsMenu.tscn:672
+#: ../src/general/OptionsMenu.tscn:704 ../src/general/OptionsMenu.tscn:736
+#: ../src/general/OptionsMenu.tscn:768
 msgid "MUTE"
 msgstr "Mykistä"
 
-#: ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:646
 msgid "MUSIC_VOLUME"
 msgstr "Musiikin voimakkuus"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:678
 msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
 
-#: ../src/general/OptionsMenu.tscn:684
+#: ../src/general/OptionsMenu.tscn:710
 msgid "SFX_VOLUME"
 msgstr "Efektien voimakkuus"
 
-#: ../src/general/OptionsMenu.tscn:716
+#: ../src/general/OptionsMenu.tscn:742
 msgid "GUI_VOLUME"
 msgstr "Käyttöliittymä"
 
-#: ../src/general/OptionsMenu.tscn:760
+#: ../src/general/OptionsMenu.tscn:786
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Äänen ulostulolaite:"
 
-#: ../src/general/OptionsMenu.tscn:788
+#: ../src/general/OptionsMenu.tscn:814
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.tscn:806 ../src/general/OptionsMenu.tscn:1697
+#: ../src/general/OptionsMenu.tscn:832 ../src/general/OptionsMenu.tscn:1734
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:851
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Auta pelin kääntämisessä"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:877
 msgid "COMPOUND_CLOUDS"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/OptionsMenu.tscn:865
+#: ../src/general/OptionsMenu.tscn:892
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Pienin pilvien päivitys aikajakso:"
 
-#: ../src/general/OptionsMenu.tscn:872 ../src/general/OptionsMenu.tscn:914
+#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:941
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(suuremmat arvot lisäävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:934
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pilvien resoluutioiden jakaja:"
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:975
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Suorita auto-evo pelin aikana"
 
-#: ../src/general/OptionsMenu.tscn:968
+#: ../src/general/OptionsMenu.tscn:995
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tunnistettu prosessoriytimien määrä:"
 
-#: ../src/general/OptionsMenu.tscn:985
+#: ../src/general/OptionsMenu.tscn:1012
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Nykyinen suorittajien määrä:"
 
-#: ../src/general/OptionsMenu.tscn:999
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Oleta, että prosessorissa on hyperthreading käytössä"
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 
-#: ../src/general/OptionsMenu.tscn:1017
+#: ../src/general/OptionsMenu.tscn:1044
 msgid "THREADS"
 msgstr "Taustasuorittajia:"
 
-#: ../src/general/OptionsMenu.tscn:1064
+#: ../src/general/OptionsMenu.tscn:1091
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1086 ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1114 ../src/general/OptionsMenu.tscn:1115
 msgid "LIMIT_TINY"
 msgstr "Hyvin pieni"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "LIMIT_VERY_SMALL"
 msgstr "Erittäin pieni"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "LIMIT_SMALL"
 msgstr "Pieni"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "VAHVISTA"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "LIMIT_LARGE"
 msgstr "Suuri"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "LIMIT_VERY_LARGE"
 msgstr "Erittäin suuri"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "LIMIT_HUGE"
 msgstr "Valtava"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Ekstrat"
 
-#: ../src/general/OptionsMenu.tscn:1148
+#: ../src/general/OptionsMenu.tscn:1177
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1160 ../src/general/OptionsMenu.tscn:1266
+#: ../src/general/OptionsMenu.tscn:1189 ../src/general/OptionsMenu.tscn:1296
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1172 ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1201 ../src/general/OptionsMenu.tscn:1308
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1185 ../src/general/OptionsMenu.tscn:1206
-#: ../src/general/OptionsMenu.tscn:1291 ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1235
+#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1342
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1191 ../src/general/OptionsMenu.tscn:1297
+#: ../src/general/OptionsMenu.tscn:1220 ../src/general/OptionsMenu.tscn:1327
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1212
+#: ../src/general/OptionsMenu.tscn:1241
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1223 ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1252 ../src/general/OptionsMenu.tscn:1253
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1253
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Viestintäkeskus"
 
-#: ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1253
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1237
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1284
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1319
+#: ../src/general/OptionsMenu.tscn:1351
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1353
+#: ../src/general/OptionsMenu.tscn:1388
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
-#: ../src/general/OptionsMenu.tscn:1393
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Näytä introvideo"
 
-#: ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1437
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Näytä mikrobi-intro aloitettaessa uusi peli"
 
-#: ../src/general/OptionsMenu.tscn:1409
+#: ../src/general/OptionsMenu.tscn:1445
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Tallenna automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1456
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Paikat automaattitallenuksille:"
 
-#: ../src/general/OptionsMenu.tscn:1448
+#: ../src/general/OptionsMenu.tscn:1484
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Paikat nopeille tallennuksille:"
 
-#: ../src/general/OptionsMenu.tscn:1473
+#: ../src/general/OptionsMenu.tscn:1509
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näytä tutoriaalit (uusissa peleissä)"
 
-#: ../src/general/OptionsMenu.tscn:1480
+#: ../src/general/OptionsMenu.tscn:1516
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
-#: ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1522
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Näytä varoitus tallentamattomista muutoksista"
 
-#: ../src/general/OptionsMenu.tscn:1498
+#: ../src/general/OptionsMenu.tscn:1534
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Huijauskoodit aktiivisia"
 
-#: ../src/general/OptionsMenu.tscn:1506
+#: ../src/general/OptionsMenu.tscn:1542
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
 
-#: ../src/general/OptionsMenu.tscn:1517
+#: ../src/general/OptionsMenu.tscn:1553
 msgid "CUSTOM_USERNAME"
 msgstr "Valittu käyttäjänimi:"
 
-#: ../src/general/OptionsMenu.tscn:1543
+#: ../src/general/OptionsMenu.tscn:1579
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Avaa Näyttökuva kansio"
 
-#: ../src/general/OptionsMenu.tscn:1551
+#: ../src/general/OptionsMenu.tscn:1587
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/general/OptionsMenu.tscn:1563 ../src/general/OptionsMenu.tscn:1572
+#: ../src/general/OptionsMenu.tscn:1599 ../src/general/OptionsMenu.tscn:1608
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -3170,109 +3166,109 @@ msgstr ""
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
 "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
-#: ../src/general/OptionsMenu.tscn:1565
+#: ../src/general/OptionsMenu.tscn:1601
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Nopeus:"
 
-#: ../src/general/OptionsMenu.tscn:1587
+#: ../src/general/OptionsMenu.tscn:1623
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1597
+#: ../src/general/OptionsMenu.tscn:1633
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-virheenkäsittelymoodi:"
 
-#: ../src/general/OptionsMenu.tscn:1611 ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1647 ../src/general/OptionsMenu.tscn:1648
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1648
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Aina"
 
-#: ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1648
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ei koskaan"
 
-#: ../src/general/OptionsMenu.tscn:1628
+#: ../src/general/OptionsMenu.tscn:1664
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:1630
+#: ../src/general/OptionsMenu.tscn:1666
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1658
+#: ../src/general/OptionsMenu.tscn:1694
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Yhdisteet:"
 
-#: ../src/general/OptionsMenu.tscn:1709 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1747 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:1726
+#: ../src/general/OptionsMenu.tscn:1772
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:1737
+#: ../src/general/OptionsMenu.tscn:1783
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1738
+#: ../src/general/OptionsMenu.tscn:1784
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1746
+#: ../src/general/OptionsMenu.tscn:1792
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1747
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1756
+#: ../src/general/OptionsMenu.tscn:1802
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
-#: ../src/general/OptionsMenu.tscn:1776
+#: ../src/general/OptionsMenu.tscn:1822
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/general/OptionsMenu.tscn:1799
+#: ../src/general/OptionsMenu.tscn:1845
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:1809
+#: ../src/general/OptionsMenu.tscn:1855
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:1826
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
+#: ../src/general/OptionsMenu.tscn:1872
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
 msgid "CANCEL"
 msgstr "Peruuta"
 
-#: ../src/general/OptionsMenu.tscn:1837 ../src/general/OptionsMenu.tscn:1845
+#: ../src/general/OptionsMenu.tscn:1883 ../src/general/OptionsMenu.tscn:1891
 msgid "ERROR"
 msgstr "Virhe"
 
-#: ../src/general/OptionsMenu.tscn:1847
+#: ../src/general/OptionsMenu.tscn:1893
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
-#: ../src/general/OptionsMenu.tscn:1855
+#: ../src/general/OptionsMenu.tscn:1901
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Avaa Näyttökuva kansio"
 
-#: ../src/general/OptionsMenu.tscn:1857
+#: ../src/general/OptionsMenu.tscn:1903
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
@@ -3282,47 +3278,47 @@ msgstr ""
 "Haluatko varmasti poistua pelistä?\n"
 "Menetät tallentamattomat tiedot."
 
-#: ../src/general/PauseMenu.tscn:181
+#: ../src/general/PauseMenu.tscn:183
 #, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Jatka"
 
-#: ../src/general/PauseMenu.tscn:182
+#: ../src/general/PauseMenu.tscn:184
 msgid "RESUME"
 msgstr "Jatka"
 
-#: ../src/general/PauseMenu.tscn:189
+#: ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/PauseMenu.tscn:190
+#: ../src/general/PauseMenu.tscn:192
 msgid "SAVE_GAME"
 msgstr "Tallenna Peli"
 
-#: ../src/general/PauseMenu.tscn:205
+#: ../src/general/PauseMenu.tscn:207
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:213 ../src/microbe_stage/HUDBottomBar.tscn:139
+#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:139
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:214
+#: ../src/general/PauseMenu.tscn:216
 msgid "HELP"
 msgstr "Apua"
 
-#: ../src/general/PauseMenu.tscn:229
+#: ../src/general/PauseMenu.tscn:231
 #, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.tscn:230
+#: ../src/general/PauseMenu.tscn:232
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:240
 msgid "EXIT"
 msgstr "Poistu"
 
@@ -3670,6 +3666,12 @@ msgstr "Tallennus on pelin eri versiosta"
 msgid "SELECT_OPTION"
 msgstr "Valitse vaihtoehto"
 
+#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#, fuzzy
+msgid "FOSSILISE"
+msgstr "Sessiili"
+
 #: ../src/gui_common/TweakedColourPicker.cs:387
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Valitse väri pelin ikkunasta"
@@ -3746,8 +3748,8 @@ msgstr "DevBuild-tukijat"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2218
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2228
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2224
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2234
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #, fuzzy
 msgid "N_A"
@@ -3777,21 +3779,21 @@ msgstr "edellinen:"
 msgid "UNTITLED"
 msgstr "Biomi: {0}"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
 msgid "GALLERY_VIEWER"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:70
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:128
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:176
 msgid "SLIDESHOW"
 msgstr "Diaesitys"
 
 #: ../src/gui_common/charts/line/LineChart.cs:651
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2360
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2366
 msgid "NO_DATA_TO_SHOW"
 msgstr "Ei dataa näytettäväksi"
 
@@ -3821,11 +3823,11 @@ msgstr "Kopioi virhe leikepöydälle"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL-lisenssin teksti:"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:31
 msgid "THRIVE_LICENSES"
 msgstr "Thriven lisenssit"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:94
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Lisenssit, jotka liittyvät Thriven osiin näytetään tässä"
 
@@ -4377,8 +4379,8 @@ msgstr "Paine"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:681
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:715
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
 msgid "COMPOUNDS"
 msgstr "Yhdisteet"
@@ -4425,43 +4427,43 @@ msgstr "Ladataan mikrobieditoria"
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Valitse muokattavan soluelimen tyyppi editorin sivulta"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:725
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
 #, fuzzy
 msgid "INTERNALS"
 msgstr "Ulkoinen"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:373
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
 msgid "APPEARANCE"
 msgstr "Ulkonäkö"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:558
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:559
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Lisääntyminen"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
 #, fuzzy
 msgid "DISCONNECTED_METABALLS"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
 #, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole keskenään yhdessä.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:679
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Luo uusi soluelin"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:693
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
@@ -4499,8 +4501,8 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näytä / piilota solun toiminnot"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:114
-#: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:57
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
+#: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
 msgid "STATISTICS"
 msgstr "Statistiikkaa"
 
@@ -4740,194 +4742,194 @@ msgstr "Perus liikkuminen"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:577
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:580
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1279
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1275
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1281
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2209
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2215
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2328
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2334
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energiaa {0} jota käytetään {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2338
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2345
 msgid "ENERGY_SOURCES"
 msgstr "Energianlähteet:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2345
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2351
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: {4})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:328
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:347
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:349
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:368
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Hiiren rulla oikealle"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:370
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:389
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:499
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
 msgid "MEMBRANE"
 msgstr "Solukalvo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:572
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:593
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Hae..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:600
 msgid "STRUCTURAL"
 msgstr "Rakenteellinen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:588
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:609
 msgid "PROTEINS"
 msgstr "Proteiini"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:597
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
 msgstr "Ulkoinen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:606
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:627
 msgid "ORGANELLES"
 msgstr "Soluelin"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:647
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:668
 msgid "MEMBRANE_TYPES"
 msgstr "Solukalvotyypit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:665
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:686
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Valuvuus / jäykkyys"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:706
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:698
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:719
 msgid "RIGID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
 msgid "COLOUR"
 msgstr "Väri"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:845
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:866
 msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:851
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "populaatio:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:857
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
 msgid "HP_COLON"
 msgstr "Terv.:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:863
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:884
 msgid "SIZE_COLON"
 msgstr "Koko:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:869
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
 msgid "STORAGE_COLON"
 msgstr "Varastotila:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Nopeus:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Kuvaus on liian pitkä"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
 msgid "GENERATION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:952
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ATP_BALANCE"
 msgstr "ATP Tasapaino"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1065
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon mukaan.\n"
 "Auto-evo ajaa populaatiosimulaatiota, joka oman suoriutumisen lisäksi vaikuttaa lajisi populaatioon."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1069
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1285
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1090
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1317
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evon simuloitu ennuste"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1077
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Jatka"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1133
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
 #, fuzzy
 msgid "FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1139
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Kanta:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1151
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1176
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1260
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatiivinen ATP:n tasapaino"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobi ei tuota tarpeeksi ATP:tä selviytyäkseen!\n"
 "Haluatko varmasti jatkaa?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1267
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1301
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole yhtydessä muihin.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1329
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
@@ -4945,7 +4947,7 @@ msgstr "Lajin nimi..."
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:173
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Lajin nimi..."
@@ -4963,14 +4965,14 @@ msgstr "Loputon MP"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Siirry tälle alueelle"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:144
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Peruuta nykyinen toimenpide"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:134
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
@@ -4995,8 +4997,8 @@ msgid "YEARS"
 msgstr "vuotta"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:392
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:638
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:679
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Ilmakehän kaasut"
@@ -5017,44 +5019,44 @@ msgstr "sukupuuttoon planeetalta"
 msgid "EXTINCT_FROM_PATCH"
 msgstr "sukupuuttoon planeetalta"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:206
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:215
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:221
 msgid "FOOD_CHAIN"
 msgstr "Ruokaketju"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:228
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:235
 msgid "TIMELINE"
 msgstr "Aikajana"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:300
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:307
 msgid "EXTERNAL_EFFECTS"
 msgstr "Ulkoiset vaikutukset:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Näytä maailmanlaajuiset tapahtumat"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näytä paikalliset tapahtumat"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:500
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:528
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:507
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "SPECIES_POPULATION"
 msgstr "Lajien populaatiot"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:538
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:545
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:239
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Olosuhteet"
@@ -5063,7 +5065,7 @@ msgstr "Olosuhteet"
 msgid "PATCH_MAP"
 msgstr "Aluekartta"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:175
 msgid "CELL"
 msgstr "Solu"
 
@@ -5310,195 +5312,195 @@ msgstr "Virhe tallennettaessa"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:119
+#: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr "Saatavilla Olevat Modit"
 
-#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:68
 msgid "REFRESH"
 msgstr "Virkistä"
 
-#: ../src/modding/ModManager.tscn:150
+#: ../src/modding/ModManager.tscn:154
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/modding/ModManager.tscn:168
+#: ../src/modding/ModManager.tscn:172
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Hiiren oikea painike"
 
-#: ../src/modding/ModManager.tscn:181
+#: ../src/modding/ModManager.tscn:185
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Hiiren vasen painike"
 
-#: ../src/modding/ModManager.tscn:193
+#: ../src/modding/ModManager.tscn:197
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Avaa editorin lukitus"
 
-#: ../src/modding/ModManager.tscn:211
+#: ../src/modding/ModManager.tscn:215
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/modding/ModManager.tscn:248
+#: ../src/modding/ModManager.tscn:252
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Valittu:"
 
-#: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
+#: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:679
 #: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr "Modin Tekijä:"
 
-#: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
+#: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:701
 #: ../src/modding/NewModGUI.tscn:163
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versio:"
 
-#: ../src/modding/ModManager.tscn:369
+#: ../src/modding/ModManager.tscn:373
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Thriven Suositeltu Versio:"
 
-#: ../src/modding/ModManager.tscn:413
+#: ../src/modding/ModManager.tscn:417
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Versio:"
 
-#: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
+#: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:723
 #: ../src/modding/NewModGUI.tscn:186
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Kuvaus:"
 
-#: ../src/modding/ModManager.tscn:472
+#: ../src/modding/ModManager.tscn:476
 msgid "MORE_INFO"
 msgstr "Näytä Lisää Tietoa"
 
-#: ../src/modding/ModManager.tscn:480
+#: ../src/modding/ModManager.tscn:484
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Avaa osoite"
 
-#: ../src/modding/ModManager.tscn:503
+#: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
 msgstr "Selaa Steam Workshopia"
 
-#: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Lataa"
 
-#: ../src/modding/ModManager.tscn:517
+#: ../src/modding/ModManager.tscn:523
 msgid "NEW"
 msgstr "Uusi"
 
-#: ../src/modding/ModManager.tscn:530
+#: ../src/modding/ModManager.tscn:539
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/modding/ModManager.tscn:557
+#: ../src/modding/ModManager.tscn:566
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Valittu tallennus ei ole yhteensopiva"
 
-#: ../src/modding/ModManager.tscn:566
+#: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
 msgstr "Hyväksy Muutokset"
 
-#: ../src/modding/ModManager.tscn:577
+#: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Tallentamattomia muutoksia"
 
-#: ../src/modding/ModManager.tscn:578
+#: ../src/modding/ModManager.tscn:587
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:588
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Hylkää ja jatka"
 
-#: ../src/modding/ModManager.tscn:586
+#: ../src/modding/ModManager.tscn:595
 msgid "FULL_MOD_INFO"
 msgstr "Täydet Modin Tiedot"
 
-#: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
+#: ../src/modding/ModManager.tscn:636 ../src/modding/NewModGUI.tscn:117
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nimi:"
 
-#: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
+#: ../src/modding/ModManager.tscn:658 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr "Sisäinen nimi (Kansio):"
 
-#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
+#: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
-#: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
+#: ../src/modding/ModManager.tscn:783 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr "Kuvakkeen Tiedosto:"
 
-#: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
+#: ../src/modding/ModManager.tscn:805 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr "Modin Tietojen URL:"
 
-#: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
+#: ../src/modding/ModManager.tscn:827 ../src/modding/NewModGUI.tscn:279
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Lisenssit"
 
-#: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
+#: ../src/modding/ModManager.tscn:849 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Suositeltu Thriven Versio:"
 
-#: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
+#: ../src/modding/ModManager.tscn:871 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Pienin Vaadittu Thrive-versio:"
 
-#: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
+#: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Suurin Tuettu Thrive Versio:"
 
-#: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
+#: ../src/modding/ModManager.tscn:915 ../src/modding/NewModGUI.tscn:371
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Alueen nimi"
 
-#: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
+#: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr "Modin Assembly:"
 
-#: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
+#: ../src/modding/ModManager.tscn:959 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:981
 msgid "MOD_AUTO_HARMONY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:999
+#: ../src/modding/ModManager.tscn:1008
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/modding/ModManager.tscn:1008
+#: ../src/modding/ModManager.tscn:1017
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/modding/ModManager.tscn:1013
+#: ../src/modding/ModManager.tscn:1022
 msgid "RESTART_REQUIRED"
 msgstr "Uudelleenkäynnistys Vaaditaan"
 
-#: ../src/modding/ModManager.tscn:1015
+#: ../src/modding/ModManager.tscn:1024
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Lataa rikkinäinen tallennus?"
@@ -5793,32 +5795,32 @@ msgstr "Valittu tiedostonimi ({0}) on jo olemassa. Kirjoitetaanko yli?"
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Tiedostonimessä ei voi käyttää erikoismerkkejä (<>:\"/\\|?*)"
 
-#: ../src/saving/NewSaveMenu.tscn:32
+#: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
 msgstr "Luo uusi tallennus"
 
-#: ../src/saving/NewSaveMenu.tscn:49
+#: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
 msgstr "Nimi:"
 
-#: ../src/saving/NewSaveMenu.tscn:67
+#: ../src/saving/NewSaveMenu.tscn:69
 msgid "EXTRA_OPTIONS"
 msgstr "Lisäasetukset"
 
-#: ../src/saving/NewSaveMenu.tscn:85
+#: ../src/saving/NewSaveMenu.tscn:91
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Korvaa aikaisempi tallennus:"
 
-#: ../src/saving/NewSaveMenu.tscn:117
+#: ../src/saving/NewSaveMenu.tscn:139
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Korvataanko aikaisempi tallennus?"
 
-#: ../src/saving/NewSaveMenu.tscn:121
+#: ../src/saving/NewSaveMenu.tscn:143
 #, fuzzy
 msgid "CANNOT_WRITE_SAVE"
 msgstr "Ei voi niellä"
 
-#: ../src/saving/NewSaveMenu.tscn:124
+#: ../src/saving/NewSaveMenu.tscn:146
 #, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
@@ -5994,46 +5996,46 @@ msgstr ""
 "- {0} Automaattiset tallennukset\n"
 "- {1} Pikatallennukset"
 
-#: ../src/saving/SaveManagerGUI.tscn:78
+#: ../src/saving/SaveManagerGUI.tscn:76
 msgid "DELETE_SELECTED"
 msgstr "Poista valitut"
 
-#: ../src/saving/SaveManagerGUI.tscn:87
+#: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Siivoa vanhat tallennukset"
 
-#: ../src/saving/SaveManagerGUI.tscn:99
+#: ../src/saving/SaveManagerGUI.tscn:95
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/saving/SaveManagerGUI.tscn:132
+#: ../src/saving/SaveManagerGUI.tscn:127
 msgid "TOTAL_SAVES"
 msgstr "Tallennusten määrä:"
 
-#: ../src/saving/SaveManagerGUI.tscn:152
+#: ../src/saving/SaveManagerGUI.tscn:147
 msgid "SAVE_SPACE_USED"
 msgstr "Tilaa käytössä:"
 
-#: ../src/saving/SaveManagerGUI.tscn:172
+#: ../src/saving/SaveManagerGUI.tscn:167
 msgid "SELECTED_COLON"
 msgstr "Valittu:"
 
-#: ../src/saving/SaveManagerGUI.tscn:186
+#: ../src/saving/SaveManagerGUI.tscn:188
 #, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Poista valitut tallennukset?"
 
-#: ../src/saving/SaveManagerGUI.tscn:193
+#: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Poista vanhat tallennukset?"
 
-#: ../src/saving/SaveManagerGUI.tscn:200
+#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:204
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Kokeile tallennuksen tekemistä!"
 
@@ -6100,26 +6102,26 @@ msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Tuntematon Steam-virhe tapahtui"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:197
+#: ../src/thriveopedia/Thriveopedia.tscn:198
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:226
+#: ../src/thriveopedia/Thriveopedia.tscn:232
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "Takaisin"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:240
+#: ../src/thriveopedia/Thriveopedia.tscn:251
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Eteenpäin"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:254
+#: ../src/thriveopedia/Thriveopedia.tscn:270
 #, fuzzy
 msgid "HOME"
 msgstr "Koti"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:272
+#: ../src/thriveopedia/Thriveopedia.tscn:294
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Poista Paikallinen Data"
@@ -6142,11 +6144,6 @@ msgstr ""
 "ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
 "Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
 "käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
-
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
-#, fuzzy
-msgid "FOSSILISE"
-msgstr "Sessiili"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
@@ -6178,11 +6175,11 @@ msgstr "Lisää soluelin"
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:43
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:35
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:75
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:70
 #, fuzzy
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Tehnyt Revolutionary Games Studio"
@@ -6203,22 +6200,37 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:39
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:35
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:132
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:108
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
+#, fuzzy
+msgid "OPEN_FOSSIL_FOLDER"
+msgstr "Avaa lokien kansio"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 #, fuzzy
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Vapaa rakentelu"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:166
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#, fuzzy
+msgid "NO_FOSSIL_DIRECTORY"
+msgstr "Avaa tallennusten kansio"
+
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#, fuzzy
+msgid "TRY_FOSSILISING_SOME_SPECIES"
+msgstr "Kokeile ottaa ruudunkaappauksia!"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -6427,6 +6439,10 @@ msgstr "Ladataan mikrobieditoria"
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Aloita selviytyminen"
+
+#, fuzzy
+#~ msgid "SPECIES_DETAILS"
+#~ msgstr "Lista lajeista"
 
 #, fuzzy
 #~ msgid "CURRENT_GENERATION_COLON"
