@@ -206,17 +206,24 @@ have your own repository to work with. There is an in-depth guide
 for working with forks
 [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962).
 
-Next, use `git clone --recursive` to copy your fork to your computer. If you're
-setting up Thrive just for testing or because you want to try in
-development features you don't need to fork the project, and can clone
-the main Thrive repository.
+Next, use `git clone --recursive` to copy your fork to your
+computer. If you're setting up Thrive just for testing or because you
+want to try in development features you don't need to fork the
+project, and can clone the main Thrive repository. If you cloned
+without the `--recursive` flag, you can initialize the submodules
+afterwards. See the instructions for that a bit later in this
+document. Also if you run into sudden build issues updating the
+submodules is a good first step to solving such a problem.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/terminal_git_clone.png" alt="termina running git clone">
 
 Terminal showing git clone command. If you don't see the line with
 "filtering content", then you don't have Git LFS working correctly.
 If you don't have Github ssh key setup, you'll want to use a HTTPS URL
-for cloning.
+for cloning. Note that the screenshot is slightly outdated as it
+doesn't clone the submodules with the `--recursive` flag. So use the
+up to date command in this document rather than what is shown in the
+screenshot.
 
 If you use the "download as zip" option on Github, it won't work. This
 is because that option won't properly include the Git LFS files in it.
@@ -379,6 +386,7 @@ the main menu.
 
 If it didn't work you can try these:
 
+- The troubleshooting tips at the end of this document
 - Thrive community forums
 - Thrive developer forums
 - Thrive community discord
@@ -615,6 +623,12 @@ git submodule update --init --recursive
 because if they are not you will have missing or outdated files. Once
 you have done that check the other troubleshooting tips if that didn't
 help.
+
+If you especially get errors for `RevolutionaryGamesCommon` (for
+example
+`RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj`
+or other csproj or .cs files missing), first try initializing and
+updating git submodules and building again.
 
 ### Troubleshooting regarding Godot automatically breaking
 

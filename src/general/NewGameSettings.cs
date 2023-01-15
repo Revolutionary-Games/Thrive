@@ -135,7 +135,7 @@ public class NewGameSettings : ControlWithInput
     // Main controls
     private PanelContainer basicOptions = null!;
     private PanelContainer advancedOptions = null!;
-    private HBoxContainer tabButtons = null!;
+    private TabButtons tabButtons = null!;
     private Control difficultyTab = null!;
     private Control planetTab = null!;
     private Control miscTab = null!;
@@ -209,13 +209,14 @@ public class NewGameSettings : ControlWithInput
         advancedOptions = GetNode<PanelContainer>(AdvancedOptionsPath);
         basicButton = GetNode<Button>(BasicButtonPath);
         advancedButton = GetNode<Button>(AdvancedButtonPath);
-        tabButtons = GetNode<HBoxContainer>(TabButtonsPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
         difficultyTab = GetNode<Control>(DifficultyTabPath);
         planetTab = GetNode<Control>(PlanetTabPath);
         miscTab = GetNode<Control>(MiscTabPath);
-        difficultyTabButton = GetNode<Button>(DifficultyTabButtonPath);
-        planetTabButton = GetNode<Button>(PlanetTabButtonPath);
-        miscTabButton = GetNode<Button>(MiscTabButtonPath);
+        difficultyTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, DifficultyTabButtonPath));
+        planetTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PlanetTabButtonPath));
+        miscTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, MiscTabButtonPath));
 
         difficultyPresetButton = GetNode<OptionButton>(DifficultyPresetButtonPath);
         difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);

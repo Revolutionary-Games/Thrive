@@ -929,6 +929,7 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
+    public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
@@ -952,6 +953,9 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
+    public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
+    public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
     public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
 
@@ -1094,6 +1098,9 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
+    public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
+
     // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
     public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
     public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
@@ -1155,6 +1162,16 @@ public static class Constants
     public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
+
+    /// <summary>
+    ///   When any action is triggered matching any of these, input method change is prevented.
+    ///   This is used to allow taking screenshots with the keyboard while playing with a controller, for example.
+    /// </summary>
+    public static readonly IReadOnlyCollection<string> ActionsThatDoNotChangeInputMethod = new[]
+    {
+        "screenshot",
+        "toggle_FPS",
+    };
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.

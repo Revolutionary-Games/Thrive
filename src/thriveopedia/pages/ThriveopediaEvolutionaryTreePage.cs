@@ -69,64 +69,26 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     ///   Clear and then rebuild the evolutionary tree each time we open the page. This way, we ensure the tree is
     ///   always up to date.
     /// </summary>
-    public void RebuildTree()
+    private void RebuildTree()
     {
         if (CurrentGame == null)
             throw new InvalidOperationException("Current game is null");
 
-        // TODO: fix the tree for freebuild
-        if (CurrentGame.FreeBuild)
-        {
-            OnTreeFailedToBuild("Tree opened in freebuild mode");
-            return;
-        }
-
-        // Building the tree relies on the existence of a full history of generations stored in the current game. Since
-        // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
-        // TODO: avoid an ugly try/catch block by actually checking the original save version?
-        var generationHistory = CurrentGame.GameWorld.GenerationHistory;
-        if (generationHistory.Count < 1)
-        {
-            OnTreeFailedToBuild("Generation history is empty");
-            return;
-        }
-
         try
         {
-            evolutionaryTree.Clear();
+            CurrentGame.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
+
             speciesHistoryList.Clear();
 
-            foreach (var generation in generationHistory)
+            foreach (var generation in CurrentGame.GameWorld.GenerationHistory)
             {
-                var record = generation.Value;
-
-                if (generation.Key == 0)
-                {
-                    var playerSpeciesID = CurrentGame!.GameWorld.PlayerSpecies.ID;
-                    var playerSpeciesData = record.AllSpeciesData[playerSpeciesID];
-
-                    // Player species data should never be null for any generation
-                    evolutionaryTree.Init(
-                        playerSpeciesData.Species!,
-                        CurrentGame.GameWorld.PlayerSpecies.FormattedName);
-                    speciesHistoryList.Add(new Dictionary<uint, Species>
-                    {
-                        { playerSpeciesID, playerSpeciesData.Species! },
-                    });
-                    continue;
-                }
-
-                // Recover all omitted species data for this generation so we can fill the tree
-                var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
-                    s => s.Key,
-                    s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, generationHistory));
-
-                evolutionaryTree.UpdateEvolutionaryTreeWithRunResults(updatedSpeciesData, generation.Key,
-                    record.TimeElapsed, CurrentGame.GameWorld.PlayerSpecies.ID);
-                speciesHistoryList.Add(updatedSpeciesData.ToDictionary(s => s.Key, s => s.Value.Species));
+                var updatedSpeciesData = generation.Value.AllSpeciesData.ToDictionary(s => s.Key,
+                    s => GenerationRecord
+                        .GetFullSpeciesRecord(s.Key, generation.Key, CurrentGame.GameWorld.GenerationHistory).Species);
+                speciesHistoryList.Add(updatedSpeciesData);
             }
         }
-        catch (KeyNotFoundException e)
+        catch (Exception e)
         {
             OnTreeFailedToBuild(e.ToString());
         }

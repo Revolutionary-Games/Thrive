@@ -7,6 +7,9 @@ public class MicrobeEditorTabButtons : MarginContainer
     public bool IsForMulticellular;
 
     [Export]
+    public NodePath TabButtonsPath = null!;
+
+    [Export]
     public NodePath ReportTabButtonPath = null!;
 
     [Export]
@@ -31,10 +34,12 @@ public class MicrobeEditorTabButtons : MarginContainer
 
     public override void _Ready()
     {
-        reportTabButton = GetNode<Button>(ReportTabButtonPath);
-        patchMapButton = GetNode<Button>(PatchMapButtonPath);
-        cellEditorButton = GetNode<Button>(CellEditorButtonPath);
-        cellTypeTab = GetNode<Button>(CellTypeTabPath);
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
+        reportTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReportTabButtonPath));
+        patchMapButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, PatchMapButtonPath));
+        cellEditorButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, CellEditorButtonPath));
+        cellTypeTab = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, CellTypeTabPath));
 
         cellTypeTab.Visible = IsForMulticellular;
     }
