@@ -161,19 +161,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
     // Viewer paths
 
     [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexPreviewPath = null!;
-
-    [Export]
     public NodePath SpeciesListMenuPath = null!;
 
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
+    public NodePath EvolutionaryTreePath = null!;
 
     [Export]
-    public NodePath EvolutionaryTreePath = null!;
+    public NodePath SpeciesDetailsPanelPath = null!;
 
     // Dialog paths
 
@@ -242,11 +236,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private PatchDetailsPanel patchDetailsPanel = null!;
 
     // Viewer controls
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
     private CustomDropDown speciesListMenu = null!;
-    private CustomRichTextLabel speciesDetailsLabel = null!;
     private EvolutionaryTree evolutionaryTree = null!;
+    private SpeciesDetailsPanel speciesDetailsPanel = null!;
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
@@ -346,11 +338,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
         autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
         historyListMenu = GetNode<CustomDropDown>(HistoryListMenuPath);
 
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
         speciesListMenu = GetNode<CustomDropDown>(SpeciesListMenuPath);
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
+        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
 
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
         exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
@@ -851,7 +841,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         var speciesName = speciesListMenu.Popup.GetItemText(index);
         var species = world.SpeciesHistoryList[generationDisplayed].Values.First(p => p.FormattedName == speciesName);
 
-        if (species == speciesPreview.PreviewSpecies)
+        if (species == speciesDetailsPanel.PreviewSpecies)
             return;
 
         UpdateSpeciesPreview(species);
@@ -860,29 +850,13 @@ public partial class AutoEvoExploringTool : NodeWithInput
     private void UpdateSpeciesPreview(Species species)
     {
         speciesListMenu.Text = species.FormattedName;
-        speciesPreview.PreviewSpecies = species;
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", species);
-        }
-
-        UpdateSpeciesDetail(species);
+        speciesDetailsPanel.PreviewSpecies = species;
     }
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
         HistoryListMenuIndexChanged(generation);
         UpdateSpeciesPreview(world.SpeciesHistoryList[generation][id]);
-    }
-
-    private void UpdateSpeciesDetail(Species species)
-    {
-        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
     }
 
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)
