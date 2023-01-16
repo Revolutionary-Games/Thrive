@@ -9,8 +9,6 @@ using System.Linq;
 /// </summary>
 public sealed class ValueQuery<T> : IValueQuery
 {
-    public static string NumberCategory = "NUMBER";
-
     private string currentCategory = null!;
     private string currentProperty = null!;
 
@@ -27,10 +25,10 @@ public sealed class ValueQuery<T> : IValueQuery
 
     public ValueQuery()
     {
-        currentCategory = NumberCategory;
+        currentCategory = ValueQueryUI.NUMBER_FIELD;
 
         // TODO DEAL WITH VALUES AND AVOID NUMBER-NUMBER COMPARISON
-        categorizedArgument.Add(NumberCategory, new FilterArgument.NumberFilterArgument(0, 500, 100));
+        categorizedArgument.Add(ValueQueryUI.NUMBER_FIELD, new FilterArgument.NumberFilterArgument(0, 500, 100));
     }
 
     public ValueQuery(Dictionary<string, Dictionary<string, Func<T, float>>> categorizedArgumentFunctions) : base()
@@ -87,8 +85,8 @@ public sealed class ValueQuery<T> : IValueQuery
     /// </summary>
     public float Apply(T target)
     {
-        GD.Print(CurrentCategory == NumberCategory, CurrentCategory);
-        if (CurrentCategory == NumberCategory)
+        GD.Print(CurrentCategory == ValueQueryUI.NUMBER_FIELD, CurrentCategory);
+        if (CurrentCategory == ValueQueryUI.NUMBER_FIELD)
             return currentNumericValue;
 
         return categorizedArgumentFunctions[CurrentCategory][CurrentProperty](target);

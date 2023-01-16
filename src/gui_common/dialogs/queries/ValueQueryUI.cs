@@ -12,6 +12,8 @@ using Godot;
 /// </TODO>
 public class ValueQueryUI : HBoxContainer, ISnapshotable
 {
+    public static string NUMBER_FIELD = "NUMBER";
+
     [Export]
     public NodePath CategoryButtonPath = null!;
 
@@ -71,19 +73,31 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
         propertyButton = GetNode<CustomDropDown>(PropertyButtonPath);
         wholeNumberInputField = GetNode<SpinBox>(WholeNumberInputFieldPath);
 
-        categoryButton.AddItem("NUMBER", false, Colors.White);
-        foreach (var category in valueQuery.CategorizedProperties.Keys)
-        {
-            categoryButton.AddItem(category, false, Colors.White);
-        }
-
-        categoryButton.CreateElements();
+        UpdateButtonItems(_ => true);
         ChangeCategory(valueQuery.CurrentCategory);
         propertyButton.Text = valueQuery.CurrentProperty;
 
         categoryButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
         propertyButton.Popup.Connect("index_pressed", this, nameof(OnNewPropertySelected));
         wholeNumberInputField.Connect("value_changed", this, nameof(OnSpinBoxValueChanged));
+    }
+
+    public void UpdateButtonItems(Func<string, bool> validCategoriesFilter)
+    {
+        categoryButton.ClearAllItems();
+
+        categoryButton.AddItem("NUMBER", false, Colors.White);
+        foreach (var category in valueQuery.CategorizedProperties.Keys)
+        {
+            if (validCategoriesFilter(category))
+                categoryButton.AddItem(category, false, Colors.White);
+        }
+
+        categoryButton.CreateElements();
+
+        //TODO CHANGE CATEGORY IF NECESSARY
+        if (!validCategoriesFilter(valueQuery.CurrentCategory))
+            OnNewCategorySelected(0);
     }
 
     public void OnNewCategorySelected(int choiceIndex)
@@ -111,9 +125,6 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
 
     private void ChangeCategory(string newCategory)
     {
-        // TEMP
-        var NUMBER_FIELD = "NUMBER";
-
         // Do nothing if no change actually happened
         if (newCategory == categoryButton.Text)
             return;
@@ -144,7 +155,6 @@ public class ValueQueryUI : HBoxContainer, ISnapshotable
             // Restore previous property value
             ChangeProperty(lastUsedProperties[newCategory]);
         }
-       
     }
 
     private void ChangeProperty(string newProperty)

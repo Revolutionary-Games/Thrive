@@ -61,6 +61,8 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
 
         headArgumentButton.Text = filter.HeadArgument.Value;
         headArgumentButton.Popup.Connect("index_pressed", this, nameof(OnNewCategorySelected));
+        //TEMP
+        headArgumentButton.Popup.Connect("index_pressed", this, nameof(UpdateRightValueQuery));
 
         dirty = true;
     }
@@ -75,6 +77,14 @@ public class FilterQueryUI : HBoxContainer, ISnapshotable
             Update();
             dirty = false;
         }
+    }
+
+    // TO MATCH LEFT QUERY
+    // TODO FORMAT
+    //TODO REMOVE ARGE (only for connect to popup)
+    public void UpdateRightValueQuery(int c)
+    {
+        rightValueQueryUI.UpdateButtonItems(c => c == leftValueQueryUI.CategoryName || c == ValueQueryUI.NUMBER_FIELD);
     }
 
     public void MakeSnapshot()
