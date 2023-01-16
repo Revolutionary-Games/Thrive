@@ -679,6 +679,11 @@ public class AutoEvoExploringTool : NodeWithInput
 
         speciesValueQuery.AddArgumentCategory("BEHAVIOR_VALUE", behaviourOptions);
 
+        var statOptions = new Dictionary<string, Func<Species, float>>();
+        // TODO
+        statOptions.Add("Speed", s => ((MicrobeSpecies)s).BaseSpeed);
+        speciesValueQuery.AddArgumentCategory("STATS", statOptions);
+
         var speciesFilterFactory = new Filter<Species>.FilterFactory(speciesValueQuery.ToFactory());
 
         filterWindow.Initialize(speciesFilterFactory, speciesFilters);
