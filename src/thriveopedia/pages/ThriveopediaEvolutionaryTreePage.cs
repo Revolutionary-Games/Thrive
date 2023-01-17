@@ -27,7 +27,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private VBoxContainer disabledWarning = null!;
     private EvolutionaryTree evolutionaryTree = null!;
-    private SpeciesDetailsPanel speciesDetailsPanel = null!;
+    private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 
     public override string PageName => "EvolutionaryTree";
 
@@ -40,7 +40,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
         disabledWarning = GetNode<VBoxContainer>(DisabledInFreebuildPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
-        speciesDetailsPanel = GetNode<SpeciesDetailsPanel>(SpeciesDetailsPanelPath);
+        speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
         UpdateCurrentWorldDetails();
     }
@@ -103,6 +103,6 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
-        speciesDetailsPanel.PreviewSpecies = speciesHistoryList[generation][id];
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = speciesHistoryList[generation][id];
     }
 }

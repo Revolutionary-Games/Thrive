@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-15 15:25+0000\n"
+"POT-Creation-Date: 2023-01-17 16:11+0800\n"
 "PO-Revision-Date: 2023-01-03 21:00+0000\n"
 "Last-Translator: RotzRoffl <raphaelkobler41@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1222,7 +1222,7 @@ msgstr "Zurück"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:312
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
 
@@ -3081,7 +3081,7 @@ msgstr "Verwerfen und fortfahren"
 #: ../src/general/OptionsMenu.tscn:1872
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:163
 msgid "CANCEL"
 msgstr "Abbrechen"
 
@@ -3512,8 +3512,8 @@ msgstr "Speicherstände haben verschiedene Versionen"
 msgid "SELECT_OPTION"
 msgstr "Eine Option auswählen"
 
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+#: ../src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn:30
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:178
 msgid "FOSSILISE"
 msgstr "Versteinern"
 
@@ -4759,12 +4759,12 @@ msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Artenname ist zu lang!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:132
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Der Name der Art muss dem binomischen Benennungssystem entsprechen (Genus und Epitheton)!"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:170
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:104
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:103
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Speziesname..."
 
@@ -5877,21 +5877,21 @@ msgstr "Pos1"
 msgid "PAGE_TITLE"
 msgstr "Seitentitel"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:162
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 "Ein Fossil mit diesem Namen existiert bereits.\n"
 "Bist du sicher, dass du es überschreiben willst?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:38
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:36
 msgid "FOSSILISATION"
 msgstr "Fossilisation"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:141
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:144
 msgid "FOSSILISATION_EXPLANATION"
 msgstr "Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor laden."
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:236
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:192
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Überschreiben bestätigen"
 
@@ -5951,7 +5951,7 @@ msgstr "Die Verstörung (Thrive Maskottchen)"
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr "Museum"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:108
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:105
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Dies' startet ein neues Spiel im Sandboxmodus mit der selektierten Art.\n"
@@ -5962,23 +5962,23 @@ msgstr ""
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Logverzeichnis öffnen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:117
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Im Sandboxmodus öffnen"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:134
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:133
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 "Willkommen im Museum! Hier können die vielen Arten bewundert werden die während der Spielabläufe fossilisiert wurden. Es kann sogar als eine fossilisierte Art gespielt werden indem man sie im Sandboxmodus aufruft.\n"
 "\n"
 "Um eine Art während eines Spiel zu fossilisieren muss zunächst das Spiel pausiert werden. Danach selektiert man die zu fossilisierende Art auf dem Bildschirm."
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:151
 #, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Kein Speicherverzeichnis gefunden"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 #, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Versuche ein paar Screenshots zu machen!"

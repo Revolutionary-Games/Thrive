@@ -1,7 +1,6 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
-public class SpeciesDetailsPanel : VBoxContainer
+public class SpeciesDetailsPanel : MarginContainer
 {
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
@@ -12,18 +11,9 @@ public class SpeciesDetailsPanel : VBoxContainer
     [Export]
     public NodePath HexPreviewPath = null!;
 
-    [Export]
-    public NodePath FossilisationButtonPath = null!;
-
-    [Export]
-    public NodePath FossilisationDialogPath = null!;
-
     private CustomRichTextLabel speciesDetailsLabel = null!;
-    private SpeciesPreview? speciesPreview;
+    private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
-    private Button fossilisationButton = null!;
-    private FossilisationDialog fossilisationDialog = null!;
-
     private Species? previewSpecies;
 
     public Species? PreviewSpecies
@@ -36,7 +26,7 @@ public class SpeciesDetailsPanel : VBoxContainer
 
             previewSpecies = value;
 
-            if (previewSpecies != null)
+            if (previewSpecies != null && speciesPreview != null!)
                 UpdateSpeciesPreview();
         }
     }
@@ -48,8 +38,6 @@ public class SpeciesDetailsPanel : VBoxContainer
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexesPreview = GetNode<CellHexesPreview>(HexPreviewPath);
-        fossilisationButton = GetNode<Button>(FossilisationButtonPath);
-        fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
         if (previewSpecies != null)
             UpdateSpeciesPreview();
@@ -60,31 +48,17 @@ public class SpeciesDetailsPanel : VBoxContainer
     /// </summary>
     private void UpdateSpeciesPreview()
     {
-        if (speciesPreview == null)
-            return;
-
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
         if (PreviewSpecies is MicrobeSpecies microbeSpecies)
         {
             hexesPreview.PreviewSpecies = microbeSpecies;
-            fossilisationButton.Disabled = false;
         }
         else
         {
-            fossilisationButton.Disabled = true;
             GD.PrintErr("Unknown species type to preview: ", PreviewSpecies);
         }
 
         speciesDetailsLabel.ExtendedBbcode = PreviewSpecies?.GetDetailString();
-    }
-
-    private void OnFossilisePressed()
-    {
-        if (speciesPreview!.PreviewSpecies is not MicrobeSpecies)
-            throw new NotImplementedException("Saving non-microbe species is not yet implemented");
-
-        fossilisationDialog.SelectedSpecies = speciesPreview.PreviewSpecies;
-        fossilisationDialog.PopupCenteredShrink();
     }
 }
