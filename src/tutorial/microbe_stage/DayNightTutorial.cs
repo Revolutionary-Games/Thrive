@@ -21,7 +21,7 @@
             {
                 case TutorialEventType.MicrobePlayerEnterSunlightPatch:
                 {
-                    if (!HasBeenShown && CanTrigger)
+                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
                     {
                         Show();
                         return true;
