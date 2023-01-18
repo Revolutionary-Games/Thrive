@@ -42,6 +42,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_vertical_guides_": [ -85.3295 ]
 }
+BackButtonPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Back")
 ResetButtonPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Reset")
 SaveButtonPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Save")
 TabButtonsPath = NodePath("CenterContainer/VBoxContainer/TabButtons")
@@ -270,19 +271,22 @@ text = "VSYNC"
 margin_top = 35.0
 margin_right = 147.0
 margin_bottom = 60.0
+focus_neighbour_bottom = NodePath("../HBoxContainer/MSAAResolution")
 size_flags_horizontal = 0
 text = "FULLSCREEN"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 13 )]
 margin_top = 70.0
 margin_right = 708.0
-margin_bottom = 74.0
+margin_bottom = 70.0
+Priority = 3
+NodeToGiveFocusTo = NodePath("../Vsync")
+GrabFocusWhenBecomingVisible = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 84.0
+margin_top = 80.0
 margin_right = 708.0
-margin_bottom = 129.0
+margin_bottom = 125.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -323,9 +327,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 139.0
+margin_top = 135.0
 margin_right = 708.0
-margin_bottom = 164.0
+margin_bottom = 160.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_right = 124.0
@@ -346,9 +350,9 @@ margin_bottom = 25.0
 text = "AUTO_RESOLUTION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 174.0
+margin_top = 170.0
 margin_right = 708.0
-margin_bottom = 199.0
+margin_bottom = 195.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_right = 250.0
@@ -376,9 +380,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 209.0
+margin_top = 205.0
 margin_right = 708.0
-margin_bottom = 234.0
+margin_bottom = 230.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -409,9 +413,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 244.0
+margin_top = 240.0
 margin_right = 708.0
-margin_bottom = 269.0
+margin_bottom = 265.0
 size_flags_horizontal = 3
 
 [node name="ChromaticToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource( 10 )]
@@ -446,17 +450,17 @@ max_value = 50.0
 value = 20.0
 
 [node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 279.0
+margin_top = 275.0
 margin_right = 360.0
-margin_bottom = 304.0
+margin_bottom = 300.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_BACKGROUND_PARTICLES"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 314.0
+margin_top = 310.0
 margin_right = 708.0
-margin_bottom = 339.0
+margin_bottom = 335.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 106.0
@@ -484,9 +488,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 349.0
+margin_top = 345.0
 margin_right = 708.0
-margin_bottom = 374.0
+margin_bottom = 370.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
 margin_right = 230.0
@@ -511,9 +515,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer9" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 384.0
+margin_top = 380.0
 margin_right = 708.0
-margin_bottom = 409.0
+margin_bottom = 405.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
 margin_right = 149.0
@@ -538,9 +542,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 419.0
+margin_top = 415.0
 margin_right = 708.0
-margin_bottom = 444.0
+margin_bottom = 440.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 margin_right = 34.0
@@ -555,25 +559,25 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 8 )
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 454.0
+margin_top = 450.0
 margin_right = 247.0
-margin_bottom = 479.0
+margin_bottom = 475.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 489.0
+margin_top = 485.0
 margin_right = 300.0
-margin_bottom = 514.0
+margin_bottom = 510.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 524.0
+margin_top = 520.0
 margin_right = 238.0
-margin_bottom = 549.0
+margin_bottom = 545.0
 focus_neighbour_bottom = NodePath("../../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../../HBoxContainer/Back")
 size_flags_horizontal = 0
@@ -614,6 +618,8 @@ margin_bottom = 60.0
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer"]
 margin_right = 632.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath("../MasterMuted")
+focus_neighbour_right = NodePath("../MasterMuted")
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
@@ -628,32 +634,42 @@ custom_styles/separator = SubResource( 3 )
 margin_left = 643.0
 margin_right = 718.0
 margin_bottom = 25.0
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/MusicMuted")
 size_flags_horizontal = 0
 text = "MUTE"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer" instance=ExtResource( 13 )]
 margin_top = 70.0
 margin_right = 718.0
-margin_bottom = 74.0
+margin_bottom = 70.0
+Priority = 3
+NodeToGiveFocusTo = NodePath("../HBoxContainer/MasterMuted")
+GrabFocusWhenBecomingVisible = true
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 80.0
+margin_right = 718.0
+margin_bottom = 84.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 84.0
+margin_top = 94.0
 margin_right = 718.0
-margin_bottom = 109.0
+margin_bottom = 119.0
 text = "MUSIC_VOLUME"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 119.0
+margin_top = 129.0
 margin_right = 718.0
-margin_bottom = 144.0
+margin_bottom = 154.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer2"]
 margin_right = 632.0
 margin_bottom = 25.0
+focus_neighbour_right = NodePath("../MusicMuted")
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
@@ -668,24 +684,27 @@ custom_styles/separator = SubResource( 3 )
 margin_left = 643.0
 margin_right = 718.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath("../../HBoxContainer/MasterMuted")
+focus_neighbour_bottom = NodePath("../../HBoxContainer3/AmbianceMuted")
 size_flags_horizontal = 0
 text = "MUTE"
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 154.0
+margin_top = 164.0
 margin_right = 718.0
-margin_bottom = 179.0
+margin_bottom = 189.0
 text = "AMBIANCE_VOLUME"
 align = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 189.0
+margin_top = 199.0
 margin_right = 718.0
-margin_bottom = 214.0
+margin_bottom = 224.0
 
 [node name="AmbianceVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer3"]
 margin_right = 632.0
 margin_bottom = 25.0
+focus_neighbour_right = NodePath("../AmbianceMuted")
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
@@ -700,24 +719,27 @@ custom_styles/separator = SubResource( 3 )
 margin_left = 643.0
 margin_right = 718.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath("../../HBoxContainer2/MusicMuted")
+focus_neighbour_bottom = NodePath("../../HBoxContainer4/SFXMuted")
 size_flags_horizontal = 0
 text = "MUTE"
 
 [node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 224.0
+margin_top = 234.0
 margin_right = 718.0
-margin_bottom = 249.0
+margin_bottom = 259.0
 text = "SFX_VOLUME"
 align = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 259.0
+margin_top = 269.0
 margin_right = 718.0
-margin_bottom = 284.0
+margin_bottom = 294.0
 
 [node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4"]
 margin_right = 632.0
 margin_bottom = 25.0
+focus_neighbour_right = NodePath("../SFXMuted")
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
@@ -732,24 +754,27 @@ custom_styles/separator = SubResource( 3 )
 margin_left = 643.0
 margin_right = 718.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath("../../HBoxContainer3/AmbianceMuted")
+focus_neighbour_bottom = NodePath("../../HBoxContainer5/GUIMuted")
 size_flags_horizontal = 0
 text = "MUTE"
 
 [node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 294.0
+margin_top = 304.0
 margin_right = 718.0
-margin_bottom = 319.0
+margin_bottom = 329.0
 text = "GUI_VOLUME"
 align = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 329.0
+margin_top = 339.0
 margin_right = 718.0
-margin_bottom = 354.0
+margin_bottom = 364.0
 
 [node name="GUIVolume" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5"]
 margin_right = 632.0
 margin_bottom = 25.0
+focus_neighbour_right = NodePath("../GUIMuted")
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
@@ -764,21 +789,23 @@ custom_styles/separator = SubResource( 3 )
 margin_left = 643.0
 margin_right = 718.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath("../../HBoxContainer4/SFXMuted")
+focus_neighbour_bottom = NodePath("../../HBoxContainer7/AudioOutputDevicesButton")
 size_flags_horizontal = 0
 text = "MUTE"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 364.0
+margin_top = 374.0
 margin_right = 718.0
-margin_bottom = 368.0
+margin_bottom = 378.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 378.0
+margin_top = 388.0
 margin_right = 718.0
-margin_bottom = 403.0
+margin_bottom = 413.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
 margin_right = 229.0
@@ -790,23 +817,24 @@ align = 1
 margin_left = 233.0
 margin_right = 718.0
 margin_bottom = 25.0
+focus_neighbour_top = NodePath("../../HBoxContainer5/GUIMuted")
 size_flags_horizontal = 3
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 413.0
+margin_top = 423.0
 margin_right = 718.0
-margin_bottom = 417.0
+margin_bottom = 427.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 427.0
+margin_top = 437.0
 margin_right = 718.0
-margin_bottom = 452.0
+margin_bottom = 462.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6"]
 margin_right = 107.0
@@ -835,18 +863,18 @@ __meta__ = {
 }
 
 [node name="LanguageProgress" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 462.0
+margin_top = 472.0
 margin_right = 718.0
-margin_bottom = 487.0
+margin_bottom = 497.0
 text = "Language progress % goes here"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 497.0
+margin_top = 507.0
 margin_right = 718.0
-margin_bottom = 532.0
+margin_bottom = 542.0
 focus_neighbour_bottom = NodePath("../../../../../HBoxContainer/Back")
 text = "OPEN_TRANSLATION_SITE"
 
@@ -900,10 +928,18 @@ text = "HIGHER_VALUES_INCREASE_PERFORMANCE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer"]
 margin_left = 400.0
-margin_right = 514.0
+margin_right = 510.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
+
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer" instance=ExtResource( 13 )]
+margin_left = 514.0
+margin_right = 514.0
+margin_bottom = 45.0
+Priority = 3
+NodeToGiveFocusTo = NodePath("../CloudInterval")
+GrabFocusWhenBecomingVisible = true
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer"]
 margin_left = 518.0
@@ -952,6 +988,7 @@ margin_left = 518.0
 margin_right = 718.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
+focus_neighbour_bottom = NodePath("../../RunAutoEvoDuringGameplay")
 size_flags_vertical = 0
 disabled = true
 text = "2"
@@ -1194,6 +1231,7 @@ GrabFocusWhenBecomingVisible = true
 margin_left = 453.0
 margin_right = 708.0
 margin_bottom = 25.0
+focus_neighbour_bottom = NodePath("../../Mouse/HorizontalInverted")
 text = "BIND_AXES_SENSITIVITY"
 
 [node name="Mouse" type="GridContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1232,6 +1270,7 @@ margin_left = 205.0
 margin_top = 29.0
 margin_right = 589.0
 margin_bottom = 44.0
+focus_neighbour_top = NodePath("../Horizontal")
 size_flags_horizontal = 3
 step = 0.0
 
@@ -1301,6 +1340,7 @@ size_flags_horizontal = 3
 margin_left = 453.0
 margin_right = 708.0
 margin_bottom = 25.0
+focus_neighbour_bottom = NodePath("../../Controller/HorizontalInverted")
 text = "BIND_AXES_SENSITIVITY"
 
 [node name="Controller" type="GridContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -1339,6 +1379,7 @@ margin_left = 205.0
 margin_top = 29.0
 margin_right = 589.0
 margin_bottom = 44.0
+focus_neighbour_top = NodePath("../Horizontal")
 size_flags_horizontal = 3
 step = 0.0
 
@@ -1347,12 +1388,14 @@ margin_left = 593.0
 margin_top = 29.0
 margin_right = 708.0
 margin_bottom = 54.0
+focus_neighbour_bottom = NodePath("../../DeadzonesButton")
 text = "INVERTED"
 
 [node name="DeadzonesButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 241.0
 margin_right = 267.0
 margin_bottom = 276.0
+focus_neighbour_right = NodePath("../../../../../HBoxContainer/ResetInputsButton")
 size_flags_horizontal = 0
 text = "CONTROLLER_DEADZONES"
 
@@ -1395,10 +1438,10 @@ alignment = 2
 margin_left = 506.0
 margin_right = 718.0
 margin_bottom = 35.0
-focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DeadzonesButton")
+focus_neighbour_top = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
 focus_neighbour_bottom = NodePath("../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../HBoxContainer/Back")
-focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DeadzonesButton")
+focus_previous = NodePath("../../VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList")
 text = "RESET_KEYBINDINGS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
@@ -1421,7 +1464,7 @@ follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer"]
 margin_right = 718.0
-margin_bottom = 655.0
+margin_bottom = 665.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -1429,7 +1472,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer"]
 margin_right = 708.0
-margin_bottom = 645.0
+margin_bottom = 655.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -1450,18 +1493,26 @@ rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 text = "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 
-[node name="AutoSave" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 13 )]
 margin_top = 70.0
+margin_right = 702.0
+margin_bottom = 70.0
+Priority = 3
+NodeToGiveFocusTo = NodePath("../Intro")
+GrabFocusWhenBecomingVisible = true
+
+[node name="AutoSave" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 80.0
 margin_right = 322.0
-margin_bottom = 95.0
+margin_bottom = 105.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 text = "AUTOSAVE_DURING_THE_GAME"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 105.0
+margin_top = 115.0
 margin_right = 702.0
-margin_bottom = 136.0
+margin_bottom = 146.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
@@ -1487,9 +1538,9 @@ max_value = 50.0
 value = 1.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 146.0
+margin_top = 156.0
 margin_right = 702.0
-margin_bottom = 177.0
+margin_bottom = 187.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_top = 3.0
@@ -1509,56 +1560,60 @@ margin_left = 502.0
 margin_right = 702.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 200, 25 )
+focus_neighbour_bottom = NodePath("../../TutorialsEnabledOnNewGame")
 size_flags_vertical = 0
 min_value = 1.0
 max_value = 50.0
 value = 1.0
 
 [node name="TutorialsEnabledOnNewGame" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 187.0
+margin_top = 197.0
 margin_right = 440.0
-margin_bottom = 212.0
+margin_bottom = 222.0
+focus_neighbour_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 size_flags_horizontal = 0
 pressed = true
 text = "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 
 [node name="TutorialsEnabled" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 222.0
+margin_top = 232.0
 margin_right = 463.0
-margin_bottom = 247.0
+margin_bottom = 257.0
+focus_neighbour_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 size_flags_horizontal = 0
 text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 
 [node name="UnsavedProgressWarning" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 257.0
+margin_top = 267.0
 margin_right = 702.0
-margin_bottom = 282.0
+margin_bottom = 292.0
+focus_neighbour_right = NodePath("../HBoxContainer2/MaxQuickSaves")
 text = "SHOW_UNSAVED_PROGRESS_WARNING"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 292.0
+margin_top = 302.0
 margin_right = 702.0
-margin_bottom = 296.0
+margin_bottom = 306.0
 
 [node name="Cheats" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 306.0
+margin_top = 316.0
 margin_right = 244.0
-margin_bottom = 331.0
+margin_bottom = 341.0
 size_flags_horizontal = 0
 text = "CHEAT_KEYS_ENABLED"
 
 [node name="CustomUsernameEnabled" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 341.0
+margin_top = 351.0
 margin_right = 295.0
-margin_bottom = 366.0
+margin_bottom = 376.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 376.0
+margin_top = 386.0
 margin_right = 702.0
-margin_bottom = 407.0
+margin_bottom = 417.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
@@ -1578,11 +1633,12 @@ margin_left = 402.0
 margin_right = 702.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 300, 0 )
+focus_neighbour_top = NodePath("../../CustomUsernameEnabled")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 417.0
+margin_top = 427.0
 margin_right = 702.0
-margin_bottom = 452.0
+margin_bottom = 462.0
 size_flags_horizontal = 3
 
 [node name="ScreenshotFolder" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
@@ -1601,9 +1657,9 @@ action_mode = 0
 text = "OPEN_LOGS_FOLDER"
 
 [node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 462.0
+margin_top = 472.0
 margin_right = 702.0
-margin_bottom = 497.0
+margin_bottom = 507.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
@@ -1637,9 +1693,9 @@ action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 507.0
+margin_top = 517.0
 margin_right = 702.0
-margin_bottom = 532.0
+margin_bottom = 542.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 margin_right = 197.0
@@ -1658,19 +1714,20 @@ margin_left = 485.0
 margin_right = 702.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 0 )
+focus_neighbour_bottom = NodePath("../../HBoxContainer7/BuiltAt")
 text = "JSON_DEBUG_MODE_AUTO"
 items = [ "JSON_DEBUG_MODE_AUTO", null, false, 0, null, "JSON_DEBUG_MODE_ALWAYS", null, false, 1, null, "JSON_DEBUG_MODE_NEVER", null, false, 2, null ]
 selected = 0
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 542.0
+margin_top = 552.0
 margin_right = 702.0
-margin_bottom = 546.0
+margin_bottom = 556.0
 
 [node name="HBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 556.0
+margin_top = 566.0
 margin_right = 702.0
-margin_bottom = 610.0
+margin_bottom = 620.0
 
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 margin_right = 702.0
@@ -1697,9 +1754,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 620.0
+margin_top = 630.0
 margin_right = 702.0
-margin_bottom = 645.0
+margin_bottom = 655.0
 
 [node name="BuiltTimeInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 209.0
@@ -1735,6 +1792,7 @@ margin_bottom = 639.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
+focus_neighbour_bottom = NodePath(".")
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1744,6 +1802,7 @@ __meta__ = {
 margin_left = 104.0
 margin_right = 176.0
 margin_bottom = 35.0
+focus_neighbour_bottom = NodePath(".")
 disabled = true
 text = "RESET"
 __meta__ = {
@@ -1756,6 +1815,7 @@ margin_right = 280.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_neighbour_right = NodePath("../Defaults")
+focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath("../Defaults")
 disabled = true
 text = "SAVE"
@@ -1782,6 +1842,7 @@ margin_left = 425.0
 margin_right = 750.0
 margin_bottom = 35.0
 focus_neighbour_left = NodePath("../Save")
+focus_neighbour_bottom = NodePath(".")
 focus_previous = NodePath("../Save")
 text = "RESET_SETTINGS_TO_DEFAULTS"
 __meta__ = {

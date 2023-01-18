@@ -15,6 +15,9 @@ public class OptionsMenu : ControlWithInput
     // Options control buttons.
 
     [Export]
+    public NodePath BackButtonPath = null!;
+
+    [Export]
     public NodePath ResetButtonPath = null!;
 
     [Export]
@@ -283,6 +286,7 @@ public class OptionsMenu : ControlWithInput
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+    private Button backButton = null!;
     private Button resetButton = null!;
     private Button saveButton = null!;
 
@@ -429,6 +433,7 @@ public class OptionsMenu : ControlWithInput
     public override void _Ready()
     {
         // Options control buttons
+        backButton = GetNode<Button>(BackButtonPath);
         resetButton = GetNode<Button>(ResetButtonPath);
         saveButton = GetNode<Button>(SaveButtonPath);
 
@@ -834,6 +839,10 @@ public class OptionsMenu : ControlWithInput
         inputsTab.Hide();
         miscTab.Hide();
 
+        var invalidNodePath = new NodePath();
+        backButton.FocusNeighbourTop = invalidNodePath;
+        backButton.FocusPrevious = invalidNodePath;
+
         switch (selection)
         {
             case OptionsTab.Graphics:
@@ -851,6 +860,12 @@ public class OptionsMenu : ControlWithInput
             case OptionsTab.Inputs:
                 inputsTab.Show();
                 inputsButton.Pressed = true;
+
+                // This needs different neighbours here to not mess with the inputs list as badly
+                var neighbourPath = mouseAxisSensitivitiesBound.GetPath();
+                backButton.FocusNeighbourTop = neighbourPath;
+                backButton.FocusPrevious = neighbourPath;
+
                 break;
             case OptionsTab.Miscellaneous:
                 miscTab.Show();
