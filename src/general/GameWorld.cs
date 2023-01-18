@@ -63,6 +63,7 @@ public class GameWorld : ISaveLoadable
         else
         {
             startingSpecies.BecomePlayerSpecies();
+            startingSpecies.Generation = 1;
             startingSpecies.OnEdited();
 
             // Need to update the species ID in case it was different in a previous game
