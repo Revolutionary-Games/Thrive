@@ -1223,12 +1223,10 @@ msgstr "Lizozom"
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr "Dünyaların verileri başarıyla {0}'e aktarıldı"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:425
 #: ../src/auto-evo/AutoEvoExploringTool.cs:435
-#, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
-"Belirli sayıda dünyayı çalıştırın, her dünyanın çalıştırılacağı nesillerin "
+"Belirli sayıda dünya çalıştırın, her dünyada çalıştırılacak nesillerin "
 "miktarı yukarıdaki döndürme kutusu tarafından belirlenir."
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:633
@@ -1238,7 +1236,7 @@ msgstr "{0} Kuşak Tamamla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:659
 msgid "RUN_X_WORLDS"
-msgstr "{0} Dünyalarını Çalıştır"
+msgstr "{0} Dünya Çalıştır"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:773
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
@@ -1251,44 +1249,41 @@ msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Kuşaklar:[/b]\n"
 "   {0}\n"
-"[b]Toplam Yama :[/b]\n"
+"[b]Toplam Arazi :[/b]\n"
 "   {1}\n"
 "[b]Toplam Oto-Evrim Süresi:[/b]\n"
 "   {2}\n"
 "[b]Toplam Tür:[/b]\n"
 "   {3}\n"
-"[b]Hala Canlı Türler:[/b]\n"
+"[b]Hayatta Olan Türler:[/b]\n"
 "   {4}\n"
-"[b]Yama Başına Tür Sayısı:[/b]\n"
+"[b]Arazi Başına Tür Sayısı:[/b]\n"
 "   Ortalama {5}; Standart sapma {6}\n"
 "[b]Toplam Popülasyon:[/b]\n"
 "   {7}\n"
-"[b]En kalabalık tür:[/b]\n"
+"[b]En Kalabalık Tür:[/b]\n"
 "   {8}\n"
 "[b]Temel Mikrop Türü Verileri:[/b]\n"
 "   Ortalama altıgen boyutu: {9}\n"
 "[b]Genel Organel Verileri:[/b]\n"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:921
-#: ../src/auto-evo/AutoEvoExploringTool.cs:965
 #: ../src/auto-evo/AutoEvoExploringTool.cs:947
 #: ../src/auto-evo/AutoEvoExploringTool.cs:991
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}: {1} türde bulundu, her biri ortalama {2}\n"
+msgstr "  {0}: {1} türünde bulundu, her birinde ortalama {2} adet\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:975
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
-"[b]Jenerasyonlar:[/b]\n"
+"[b]Kuşaklar:[/b]\n"
 "   {0}\n"
 "[b]Toplam Tür:[/b]\n"
 "   Ortalama {1}; Standart sapma {2}\n"
-"[b]Hala Canlı Türler:[/b]\n"
+"[b]Hayatta Olan Türler:[/b]\n"
 "   Ortalama {3}; Standart sapma {4}\n"
-"[b]Yama Başına Tür Sayısı:[/b]\n"
+"[b]Arazi Başına Tür Sayısı:[/b]\n"
 "   Ortalama {5}; Standart sapma {6}\n"
-"[b]Yama Başına Toplam Nüfus:[/b]\n"
+"[b]Arazi Başına Toplam Popülasyon:[/b]\n"
 "   Ortalama {7}; Standart sapma {8}\n"
 "[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
 "   Ortalama {9}; Standart sapma {10}\n"
@@ -1330,7 +1325,7 @@ msgstr "Mevcut Dünya"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Yenı Dünya Oluştur"
+msgstr "Yeni bir dünya oluştur"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
 msgid "AUTO_EVO_STATUS_COLON"
