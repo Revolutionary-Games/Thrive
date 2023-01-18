@@ -97,8 +97,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"][/thrive:"
-"compound]'yi kullanır, eğer bu tükenirse hücren ölür."
+"Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:"
+"compound] kullanır, eğer bu tükenirse hücren ölür."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
@@ -191,8 +191,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Çoğalmak için her bir organelini ikiye bölmen gerekir. Organeller, ikiye "
 "ayrılmak için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], "
-"[thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve zamana "
-"ihtiyacı vardır."
+"[thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve zaman "
+"gerektirir."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -218,7 +218,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Bağlayıcı ajan, hücrenizin ve diğer türlerinin, hücrelerin emdikleri ve "
 "ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi "
-"oluşturmasına olanak tanır.[thrive:input]g_toggle_binding[/thrive:input] "
+"oluşturmasına olanak tanır. [thrive:input]g_toggle_binding[/thrive:input] "
 "tuşuna basarak bağlanma moduna gir. Yalnızca kendi türüne ait hücrelere "
 "bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve düzenleyiciye "
 "giremezsin. Düzenleyiciye girmek için, ilk önce, yeterli bileşik toplamalı "
@@ -325,7 +325,7 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Her kuşakta, harcanacak 100 mutasyon puanınız (MP) vardır ve her değişiklik "
-"(veya mutasyon) o MP'nin belirli miktarına mal olur. Organel eklemek ve "
+"(veya mutasyon) o MP'nin belirli bir miktarına mal olur. Organel eklemek ve "
 "kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen "
 "organellerin kaldırılması, o organelin değeri kadar MP'yi iade eder. Bir "
 "organelin üzerine sağ tıklayarak ve açılır menüden uygun eylemi seçerek "
@@ -336,23 +336,24 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Her çoğaldığında, Mikrop Düzenleyicisi'ne giriş yaparsınız, burada, türünün "
-"başarısını arttırmak için türünüzde (organelleri ekleyerek, taşıyarak veya "
-"kaldırarak) değişiklikler yapabilirsiniz . Mikrop Evresinde düzenleyiciye "
-"her ziyaret, [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:"
-"constant] milyon yıllık evrimi temsil eder."
+"Her çoğaldığınızda, Mikrop Düzenleyicisi'ne giriş yaparsınız. Burada, "
+"türünüzün başarısını arttırmak için türünüzde (organelleri ekleyerek, "
+"taşıyarak veya kaldırarak) değişiklikler yapabilirsiniz. Mikrop Evresi'nde "
+"düzenleyiciye yapılan her ziyaret, [thrive:"
+"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık "
+"evrimi temsil eder."
 
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
-msgstr "Bir hatayı düzeltmek için düzenleyicideki geri al düğmesine basın"
+msgstr "Bir hatayı düzeltmek için düzenleyicideki geri al butonuna basın"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
 "ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa "
-"Didinyum mu? Avcı mı yoksa av mı ?"
+"Didinyum mu? Av mı yoksa avcı mı?"
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
@@ -364,9 +365,9 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "İşte sana ipucu, Ozmoregülasyon hücrenizin sahip olduğu her bir altıgen alan "
-"için saniyede 1 ATP'ye mal olur, sitoplazmanın bulunduğu her boş altıgenlik "
-"alan da saniyede 5 ATP üretir, bu da demek oluyor ki; eğer ozmoregülasyondan "
-"dolayı ATP kaybediyorsan, sadece birkaç altıgen alanı yalnızca sitoplazmayla "
+"için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik "
+"alan da saniyede 5 ATP üretir. Bu da demek oluyor ki; eğer ozmoregülasyondan "
+"dolayı ATP kaybediyorsan, sadece birkaç altıgen alanı sitoplazmayla "
 "doldurmalı veya bazı organelleri kaldırmalısın."
 
 #: ../simulation_parameters/common/help_texts.json:154
@@ -379,8 +380,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
 msgstr ""
-"İlginç Gerçek: Metabolozom, Çok yüzeyli organel olarak adlandırılan bir "
-"şeydir."
+"İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandırılır."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
@@ -395,7 +395,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"İşte sana ipucu, bakteriler göründüğünden daha güçlü olabilir,küçük "
+"İşte sana ipucu, bakteriler göründüğünden daha güçlü olabilir; küçük "
 "görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde öldürebilir!"
 
 #: ../simulation_parameters/common/help_texts.json:169
@@ -411,7 +411,7 @@ msgstr "KIMILDAYAN ŞEYLER!!"
 
 #: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Eritalım şu Metalı."
+msgstr "Eritalim şu metali."
 
 #: ../simulation_parameters/common/help_texts.json:178
 msgid "EASTEREGG_MESSAGE_12"
@@ -436,7 +436,7 @@ msgstr "İşte sana ipucu, demir veya başka parçaları yutabilirsin."
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"İşte sana ipucu, çekirdeği eklemeden önce bir hazırlığını yap. Bu tür şeyler "
+"İşte sana ipucu, çekirdeği eklemeden önce hazırlığını yap. Bu tür şeyler "
 "pahalı olur! Bakım ve ön ödeme ücretiyle."
 
 #: ../simulation_parameters/common/help_texts.json:193
@@ -1271,7 +1271,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.cs:947
 #: ../src/auto-evo/AutoEvoExploringTool.cs:991
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}: {1} türlerinde bulundu, her birinde ortalama {2} adet\n"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:975
 msgid "ALL_WORLDS_STATISTICS"
