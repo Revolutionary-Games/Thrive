@@ -58,7 +58,7 @@ public class InputGroupList : VBoxContainer
         this.RegisterCustomFocusDrawer();
 
         focusHelper = new FocusFlowDynamicChildrenHelper(this,
-            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.Vertical,
+            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.VerticalToChildrenOnly,
             FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
     }
 
@@ -205,6 +205,14 @@ public class InputGroupList : VBoxContainer
 
     private void EnsureNavigationFlowIsCorrect()
     {
-        focusHelper.ApplyNavigationFlow(ActiveInputGroupList.SelectFirstFocusableChild());
+        // This needs to first set the top level items to have correct navigation as NotifyFocusAdjusted calls below
+        // will use that info to further adjust the descendents
+        focusHelper.ApplyNavigationFlow(ActiveInputGroupList, ActiveInputGroupList.SelectFirstFocusableChild(),
+            ActiveInputGroupList.Select(g => g.GetLastInputInGroup()).SelectFirstFocusableChild());
+
+        foreach (var inputGroupItem in ActiveInputGroupList)
+        {
+            inputGroupItem.NotifyFocusAdjusted();
+        }
     }
 }
