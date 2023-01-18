@@ -19,7 +19,7 @@ public class InputGroupList : VBoxContainer
 
     private InputEventItem? latestDialogCaller;
     private InputEventItem? latestDialogConflict;
-    private InputEventWithModifiers? latestDialogNewEvent;
+    private InputEvent? latestDialogNewEvent;
 
     private CustomConfirmationDialog conflictDialog = null!;
     private CustomConfirmationDialog resetInputsDialog = null!;
@@ -118,7 +118,7 @@ public class InputGroupList : VBoxContainer
     /// <param name="conflict">The event which produced the conflict</param>
     /// <param name="newEvent">The new event wanted to be set to the caller</param>
     public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
-        InputEventWithModifiers newEvent)
+        InputEvent newEvent)
     {
         // See the comments in Conflicts as to why this is done like this
         // ReSharper disable InlineOutVariableDeclaration RedundantAssignment

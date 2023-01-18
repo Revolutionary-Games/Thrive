@@ -184,6 +184,27 @@ public class InputEventItem : MarginContainer
                 return;
             }
         }
+        else if (!WaitingForInput && @event is InputEventJoypadButton joypadButton && button.HasFocus())
+        {
+            if (joypadButton.IsActionPressed("ui_select"))
+            {
+                // TODO: show somewhere in the GUI that this is for unbinding inputs
+
+                GetTree().SetInputAsHandled();
+                OnButtonPressed(new InputEventMouseButton
+                {
+                    ButtonIndex = (int)ButtonList.Right,
+                });
+            }
+            else if (joypadButton.IsActionPressed("ui_accept"))
+            {
+                GetTree().SetInputAsHandled();
+                OnButtonPressed(new InputEventMouseButton
+                {
+                    ButtonIndex = (int)ButtonList.Left,
+                });
+            }
+        }
 
         if (!WaitingForInput)
             return;
@@ -243,6 +264,9 @@ public class InputEventItem : MarginContainer
         {
             if (!controllerButton.Pressed)
                 return;
+
+            // TODO: controller device keybinding mode setting
+            controllerButton.Device = -1;
         }
         else if (@event is InputEventJoypadMotion controllerAxis)
         {
@@ -253,6 +277,9 @@ public class InputEventItem : MarginContainer
             // TODO: should we allow binding L2 and R2 as axis inputs
             if (controllerAxis.Axis is (int)JoystickList.R2 or (int)JoystickList.L2)
                 return;
+
+            // TODO: controller device keybinding mode setting
+            controllerAxis.Device = -1;
         }
 
         // The old key input event. Null if this event is assigned a value the first time.
@@ -311,7 +338,7 @@ public class InputEventItem : MarginContainer
             AssociatedEvent = old;
 
             // If there are conflicts detected reset the changes and ask the user.
-            groupList.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
+            groupList.ShowInputConflictDialog(this, conflict, @event);
             return true;
         }
 
