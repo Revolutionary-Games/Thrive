@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-19 11:43+0200\n"
-"PO-Revision-Date: 2023-01-19 11:40+0200\n"
+"POT-Creation-Date: 2023-01-19 15:13+0200\n"
+"PO-Revision-Date: 2023-01-19 15:13+0200\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1268,7 +1268,7 @@ msgstr "Evolutionary Tree"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:531
 #: ../src/general/MainMenu.tscn:841 ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1832 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1903 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -2515,7 +2515,7 @@ msgstr "Difficulty"
 msgid "PLANET"
 msgstr "Planet"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:208
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:210
 msgid "MISC"
 msgstr "Misc"
 
@@ -2666,525 +2666,547 @@ msgstr "Basic"
 msgid "CONFIRM_NORMAL"
 msgstr "Confirm"
 
-#: ../src/general/OptionsMenu.cs:793 ../src/general/OptionsMenu.tscn:351
+#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:354
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:807
+#: ../src/general/OptionsMenu.cs:822
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/OptionsMenu.cs:812
+#: ../src/general/OptionsMenu.cs:827
 msgid "GLES3"
 msgstr "GLES3"
 
-#: ../src/general/OptionsMenu.cs:817
+#: ../src/general/OptionsMenu.cs:832
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Unknown"
 
-#: ../src/general/OptionsMenu.cs:826 ../src/general/OptionsMenu.tscn:540
+#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:543
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
-#: ../src/general/OptionsMenu.cs:1259
+#: ../src/general/OptionsMenu.cs:1274
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
-#: ../src/general/OptionsMenu.cs:1291
+#: ../src/general/OptionsMenu.cs:1306
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/general/OptionsMenu.cs:1295
+#: ../src/general/OptionsMenu.cs:1310
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "This language is still a work in progress ({0}% complete)"
 
-#: ../src/general/OptionsMenu.cs:1299
+#: ../src/general/OptionsMenu.cs:1314
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "This language is {0}% complete"
 
-#: ../src/general/OptionsMenu.cs:1359
+#: ../src/general/OptionsMenu.cs:1374
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "This is a debug build where the info below is probably not up to date"
 
-#: ../src/general/OptionsMenu.cs:1366
+#: ../src/general/OptionsMenu.cs:1381
 msgid "UNKNOWN_VERSION"
 msgstr "Unknown version"
 
-#: ../src/general/OptionsMenu.tscn:164
+#: ../src/general/OptionsMenu.tscn:166
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:175
+#: ../src/general/OptionsMenu.tscn:177
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:186
+#: ../src/general/OptionsMenu.tscn:188
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:197
+#: ../src/general/OptionsMenu.tscn:199
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:269
+#: ../src/general/OptionsMenu.tscn:272
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:280
 msgid "FULLSCREEN"
 msgstr "Fullscreen"
 
-#: ../src/general/OptionsMenu.tscn:301
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:308 ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:311 ../src/general/OptionsMenu.tscn:1174
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:326 ../src/general/OptionsMenu.tscn:327
 msgid "DISABLED"
 msgstr "Disabled"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:338
+#: ../src/general/OptionsMenu.tscn:341
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:362
+#: ../src/general/OptionsMenu.tscn:365
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:377
+#: ../src/general/OptionsMenu.tscn:380
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Unlimited"
 
-#: ../src/general/OptionsMenu.tscn:393
+#: ../src/general/OptionsMenu.tscn:396
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind correction:"
 
-#: ../src/general/OptionsMenu.tscn:409 ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:412 ../src/general/OptionsMenu.tscn:413
 msgid "NONE"
 msgstr "None"
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:413
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanope (Red-Green)"
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:413
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanope (Blue-Yellow)"
 
-#: ../src/general/OptionsMenu.tscn:431
+#: ../src/general/OptionsMenu.tscn:434
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic aberration:"
 
-#: ../src/general/OptionsMenu.tscn:460
+#: ../src/general/OptionsMenu.tscn:463
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Display background particles"
 
-#: ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:473
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:500
+#: ../src/general/OptionsMenu.tscn:503
 msgid "USED_RENDERER_NAME"
 msgstr "Used renderer:"
 
-#: ../src/general/OptionsMenu.tscn:527
+#: ../src/general/OptionsMenu.tscn:530
 msgid "VIDEO_MEMORY"
 msgstr "Currently used video memory:"
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:557
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/general/OptionsMenu.tscn:571
+#: ../src/general/OptionsMenu.tscn:574
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Controller button prompts type:"
 
-#: ../src/general/OptionsMenu.tscn:588 ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1469
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:603
+#: ../src/general/OptionsMenu.tscn:606
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Display abilities bar"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:614
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI light effects"
 
-#: ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:623
 msgid "DISPLAY_PART_NAMES"
 msgstr "Display part selection button names"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:649
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
-#: ../src/general/OptionsMenu.tscn:675 ../src/general/OptionsMenu.tscn:726
-#: ../src/general/OptionsMenu.tscn:761 ../src/general/OptionsMenu.tscn:796
-#: ../src/general/OptionsMenu.tscn:831
+#: ../src/general/OptionsMenu.tscn:678 ../src/general/OptionsMenu.tscn:729
+#: ../src/general/OptionsMenu.tscn:764 ../src/general/OptionsMenu.tscn:799
+#: ../src/general/OptionsMenu.tscn:834
 msgid "MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:697
+#: ../src/general/OptionsMenu.tscn:700
 msgid "MUSIC_VOLUME"
 msgstr "Music volume"
 
-#: ../src/general/OptionsMenu.tscn:732
+#: ../src/general/OptionsMenu.tscn:735
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance volume"
 
-#: ../src/general/OptionsMenu.tscn:767
+#: ../src/general/OptionsMenu.tscn:770
 msgid "SFX_VOLUME"
 msgstr "SFX volume"
 
-#: ../src/general/OptionsMenu.tscn:802
+#: ../src/general/OptionsMenu.tscn:805
 msgid "GUI_VOLUME"
 msgstr "GUI volume"
 
-#: ../src/general/OptionsMenu.tscn:849
+#: ../src/general/OptionsMenu.tscn:852
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio output device:"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:881
 msgid "LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:896 ../src/general/OptionsMenu.tscn:1843
+#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:1914
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:918
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help Translate The Game"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:944
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:956
+#: ../src/general/OptionsMenu.tscn:959
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Cloud simulation minimum interval:"
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:966 ../src/general/OptionsMenu.tscn:1016
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1009
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Cloud resolution divisor:"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1051
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detected CPU count:"
 
-#: ../src/general/OptionsMenu.tscn:1085
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Current threads:"
 
-#: ../src/general/OptionsMenu.tscn:1099
+#: ../src/general/OptionsMenu.tscn:1102
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
 
-#: ../src/general/OptionsMenu.tscn:1117
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1167
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum number of entities:"
 
-#: ../src/general/OptionsMenu.tscn:1187 ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_TINY"
 msgstr "Tiny"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_VERY_SMALL"
 msgstr "Very small"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_SMALL"
 msgstr "Small"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_NORMAL"
 msgstr "Normal"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_LARGE"
 msgstr "Large"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_VERY_LARGE"
 msgstr "Very large"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_HUGE"
 msgstr "Huge"
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_EXTREME"
 msgstr "Extreme"
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1252
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Mouse look sensitivity"
 
-#: ../src/general/OptionsMenu.tscn:1271 ../src/general/OptionsMenu.tscn:1380
+#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1382
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind axes together"
 
-#: ../src/general/OptionsMenu.tscn:1283 ../src/general/OptionsMenu.tscn:1392
+#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1394
 msgid "HORIZONTAL_COLON"
 msgstr "Horizontal:"
 
-#: ../src/general/OptionsMenu.tscn:1296 ../src/general/OptionsMenu.tscn:1318
-#: ../src/general/OptionsMenu.tscn:1405 ../src/general/OptionsMenu.tscn:1428
+#: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
+#: ../src/general/OptionsMenu.tscn:1407 ../src/general/OptionsMenu.tscn:1430
 msgid "INVERTED"
 msgstr "Inverted"
 
-#: ../src/general/OptionsMenu.tscn:1302 ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1413
 msgid "VERTICAL_COLON"
 msgstr "Vertical:"
 
-#: ../src/general/OptionsMenu.tscn:1324
+#: ../src/general/OptionsMenu.tscn:1326
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Mouse sensitivity scaling by window size"
 
-#: ../src/general/OptionsMenu.tscn:1335 ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_NONE"
 msgstr "None"
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_ON"
 msgstr "Scaled"
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_ON_INVERSE"
 msgstr "Inversely scaled"
 
-#: ../src/general/OptionsMenu.tscn:1350
+#: ../src/general/OptionsMenu.tscn:1352
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Use virtual window size"
 
-#: ../src/general/OptionsMenu.tscn:1367
+#: ../src/general/OptionsMenu.tscn:1369
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Controller sensitivity"
 
-#: ../src/general/OptionsMenu.tscn:1436
+#: ../src/general/OptionsMenu.tscn:1441
 msgid "CONTROLLER_DEADZONES"
 msgstr "Controller Deadzones"
 
-#: ../src/general/OptionsMenu.tscn:1481
+#: ../src/general/OptionsMenu.tscn:1451
+msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr "2D movement style:"
+
+#: ../src/general/OptionsMenu.tscn:1469
+msgid "PLAYER_RELATIVE_MOVEMENT"
+msgstr "Player relative"
+
+#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1502
+#: ../src/general/OptionsMenu.tscn:1503
+msgid "SCREEN_RELATIVE_MOVEMENT"
+msgstr "Screen relative"
+
+#: ../src/general/OptionsMenu.tscn:1483
+msgid "3D_MOVEMENT_TYPE_SELECTION"
+msgstr "3D movement style:"
+
+#: ../src/general/OptionsMenu.tscn:1503
+msgid "WORLD_RELATIVE_MOVEMENT"
+msgstr "World relative"
+
+#: ../src/general/OptionsMenu.tscn:1552
 msgid "RESET_KEYBINDINGS"
 msgstr "Reset Keybindings"
 
-#: ../src/general/OptionsMenu.tscn:1522
+#: ../src/general/OptionsMenu.tscn:1593
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1601
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Play microbe intro on new game"
 
-#: ../src/general/OptionsMenu.tscn:1546
+#: ../src/general/OptionsMenu.tscn:1617
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:1557
+#: ../src/general/OptionsMenu.tscn:1628
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1585
+#: ../src/general/OptionsMenu.tscn:1656
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1683
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
 
-#: ../src/general/OptionsMenu.tscn:1620
+#: ../src/general/OptionsMenu.tscn:1691
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
-#: ../src/general/OptionsMenu.tscn:1627
+#: ../src/general/OptionsMenu.tscn:1698
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Show unsaved progress warning"
 
-#: ../src/general/OptionsMenu.tscn:1639
+#: ../src/general/OptionsMenu.tscn:1710
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:1647
+#: ../src/general/OptionsMenu.tscn:1718
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
-#: ../src/general/OptionsMenu.tscn:1658
+#: ../src/general/OptionsMenu.tscn:1729
 msgid "CUSTOM_USERNAME"
 msgstr "Custom username:"
 
-#: ../src/general/OptionsMenu.tscn:1685
+#: ../src/general/OptionsMenu.tscn:1756
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshot Folder"
 
-#: ../src/general/OptionsMenu.tscn:1693
+#: ../src/general/OptionsMenu.tscn:1764
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1705 ../src/general/OptionsMenu.tscn:1714
+#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1785
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "This shows how many popups have been permanently dismissed by the user.\n"
 "If some popups that are actually wanted are dismissed, the button next to this can be used to make all dismissed popups appear again."
 
-#: ../src/general/OptionsMenu.tscn:1707
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Dismissed popups:"
 
-#: ../src/general/OptionsMenu.tscn:1729
+#: ../src/general/OptionsMenu.tscn:1800
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Reset Dismissed Popups"
 
-#: ../src/general/OptionsMenu.tscn:1739
+#: ../src/general/OptionsMenu.tscn:1810
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mode:"
 
-#: ../src/general/OptionsMenu.tscn:1754 ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1825 ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatically"
 
-#: ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Always"
 
-#: ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Never"
 
-#: ../src/general/OptionsMenu.tscn:1771
+#: ../src/general/OptionsMenu.tscn:1842
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "This is the exact code commit that this version of Thrive was compiled from"
 
-#: ../src/general/OptionsMenu.tscn:1773
+#: ../src/general/OptionsMenu.tscn:1844
 msgid "EXACT_VERSION_COLON"
 msgstr "Exact Thrive version:"
 
-#: ../src/general/OptionsMenu.tscn:1801
+#: ../src/general/OptionsMenu.tscn:1872
 msgid "COMPILED_AT_COLON"
 msgstr "Built at:"
 
-#: ../src/general/OptionsMenu.tscn:1857 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Save"
 
-#: ../src/general/OptionsMenu.tscn:1883
+#: ../src/general/OptionsMenu.tscn:1954
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaults"
 
-#: ../src/general/OptionsMenu.tscn:1894
+#: ../src/general/OptionsMenu.tscn:1965
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1895
+#: ../src/general/OptionsMenu.tscn:1966
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:1974
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1904
+#: ../src/general/OptionsMenu.tscn:1975
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Are you sure you want to reset the input settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1913
+#: ../src/general/OptionsMenu.tscn:1984
 msgid "CLOSE_OPTIONS"
 msgstr "Close options?"
 
-#: ../src/general/OptionsMenu.tscn:1933
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "You have unsaved changes that will be discarded.\n"
 "Do you wish to continue?"
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:2027
 msgid "SAVE_AND_CONTINUE"
 msgstr "Save and continue"
 
-#: ../src/general/OptionsMenu.tscn:1966
+#: ../src/general/OptionsMenu.tscn:2037
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Discard and continue"
 
-#: ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:2054
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/general/OptionsMenu.tscn:1994 ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2065 ../src/general/OptionsMenu.tscn:2073
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:2004
+#: ../src/general/OptionsMenu.tscn:2075
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
-#: ../src/general/OptionsMenu.tscn:2012
+#: ../src/general/OptionsMenu.tscn:2083
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "No screenshot directory found"
 
-#: ../src/general/OptionsMenu.tscn:2014
+#: ../src/general/OptionsMenu.tscn:2085
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Try taking some screenshots!"
 
@@ -4569,7 +4591,7 @@ msgstr "{0} {1}"
 msgid "PAUSED"
 msgstr "PAUSED"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:125
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:154
 msgid "UNBIND_HELP_TEXT"
 msgstr "Unbind Mode"
 
@@ -6453,9 +6475,6 @@ msgstr "Continue Thriving"
 
 #~ msgid "USES"
 #~ msgstr "Uses"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "to increase the movement"
 
 #~ msgid "ALLOWS_BINDING"
 #~ msgstr "Allows binding"

@@ -215,6 +215,12 @@ public class OptionsMenu : ControlWithInput
     public NodePath ControllerVerticalInvertedPath = null!;
 
     [Export]
+    public NodePath TwoDimensionalMovementPath = null!;
+
+    [Export]
+    public NodePath ThreeDimensionalMovementPath = null!;
+
+    [Export]
     public NodePath InputGroupListPath = null!;
 
     [Export]
@@ -367,6 +373,9 @@ public class OptionsMenu : ControlWithInput
     private Slider controllerVerticalSensitivity = null!;
     private Button controllerVerticalInverted = null!;
 
+    private OptionButton twoDimensionalMovement = null!;
+    private OptionButton threeDimensionalMovement = null!;
+
     private InputGroupList inputGroupList = null!;
 
     private ControllerDeadzoneConfiguration deadzoneConfigurationPopup = null!;
@@ -516,6 +525,9 @@ public class OptionsMenu : ControlWithInput
         controllerHorizontalInverted = GetNode<Button>(ControllerHorizontalInvertedPath);
         controllerVerticalSensitivity = GetNode<Slider>(ControllerVerticalSensitivityPath);
         controllerVerticalInverted = GetNode<Button>(ControllerVerticalInvertedPath);
+
+        twoDimensionalMovement = GetNode<OptionButton>(TwoDimensionalMovementPath);
+        threeDimensionalMovement = GetNode<OptionButton>(ThreeDimensionalMovementPath);
 
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
@@ -698,6 +710,9 @@ public class OptionsMenu : ControlWithInput
         controllerVerticalSensitivity.Value =
             ControllerInputSensitivityToBarValue(settings.VerticalControllerLookSensitivity);
         controllerVerticalInverted.Pressed = settings.InvertVerticalControllerLook;
+
+        twoDimensionalMovement.Selected = Movement2DToIndex(settings.TwoDimensionalMovement);
+        threeDimensionalMovement.Selected = Movement3DToIndex(settings.ThreeDimensionalMovement);
 
         BuildInputRebindControls();
 
@@ -1855,6 +1870,69 @@ public class OptionsMenu : ControlWithInput
     private void OnInvertedControllerVerticalToggled(bool pressed)
     {
         Settings.Instance.InvertVerticalControllerLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private int Movement2DToIndex(TwoDimensionalMovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case TwoDimensionalMovementMode.Automatic:
+            case TwoDimensionalMovementMode.PlayerRelative:
+            case TwoDimensionalMovementMode.ScreenRelative:
+                return (int)movementMode;
+            default:
+                GD.PrintErr("Invalid 2D movement type value");
+                return 0;
+        }
+    }
+
+    private TwoDimensionalMovementMode Movement2DIndexToType(int index)
+    {
+        if (index is >= 0 and <= (int)TwoDimensionalMovementMode.ScreenRelative)
+        {
+            return (TwoDimensionalMovementMode)index;
+        }
+
+        GD.PrintErr("Invalid movement 2D type index");
+        return TwoDimensionalMovementMode.Automatic;
+    }
+
+    private void OnMovement2DTypeSelected(int index)
+    {
+        Settings.Instance.TwoDimensionalMovement.Value = Movement2DIndexToType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private int Movement3DToIndex(ThreeDimensionalMovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case ThreeDimensionalMovementMode.ScreenRelative:
+            case ThreeDimensionalMovementMode.WorldRelative:
+                return (int)movementMode;
+            default:
+                GD.PrintErr("Invalid 3D movement type value");
+                return 0;
+        }
+    }
+
+    private ThreeDimensionalMovementMode Movement3DIndexToMovementType(int index)
+    {
+        if (index is >= 0 and <= (int)ThreeDimensionalMovementMode.WorldRelative)
+        {
+            return (ThreeDimensionalMovementMode)index;
+        }
+
+        GD.PrintErr("Invalid 3D movement type index");
+        return ThreeDimensionalMovementMode.ScreenRelative;
+    }
+
+    private void OnMovement3DTypeSelected(int index)
+    {
+        Settings.Instance.ThreeDimensionalMovement.Value = Movement3DIndexToMovementType(index);
 
         UpdateResetSaveButtonState();
     }

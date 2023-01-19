@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-19 11:43+0200\n"
+"POT-Creation-Date: 2023-01-19 15:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1180,7 +1180,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:531
 #: ../src/general/MainMenu.tscn:841 ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1832 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1903 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -2410,7 +2410,7 @@ msgstr "Sunkumas"
 msgid "PLANET"
 msgstr "Planeta"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:208
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:210
 msgid "MISC"
 msgstr "Įvairūs"
 
@@ -2566,528 +2566,550 @@ msgstr ""
 msgid "CONFIRM_NORMAL"
 msgstr "Patvirtinti"
 
-#: ../src/general/OptionsMenu.cs:793 ../src/general/OptionsMenu.tscn:351
+#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:354
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:807
+#: ../src/general/OptionsMenu.cs:822
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:812
+#: ../src/general/OptionsMenu.cs:827
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:817
+#: ../src/general/OptionsMenu.cs:832
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:826 ../src/general/OptionsMenu.tscn:540
+#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:543
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1259
+#: ../src/general/OptionsMenu.cs:1274
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1291
+#: ../src/general/OptionsMenu.cs:1306
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1295
+#: ../src/general/OptionsMenu.cs:1310
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1299
+#: ../src/general/OptionsMenu.cs:1314
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1359
+#: ../src/general/OptionsMenu.cs:1374
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1366
+#: ../src/general/OptionsMenu.cs:1381
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:164
+#: ../src/general/OptionsMenu.tscn:166
 msgid "GRAPHICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:175
+#: ../src/general/OptionsMenu.tscn:177
 msgid "SOUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:186
+#: ../src/general/OptionsMenu.tscn:188
 msgid "PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:197
+#: ../src/general/OptionsMenu.tscn:199
 msgid "INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:269
+#: ../src/general/OptionsMenu.tscn:272
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:280
 msgid "FULLSCREEN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:301
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:308 ../src/general/OptionsMenu.tscn:1171
+#: ../src/general/OptionsMenu.tscn:311 ../src/general/OptionsMenu.tscn:1174
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:326 ../src/general/OptionsMenu.tscn:327
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "TWO_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "EIGHT_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:327
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:338
+#: ../src/general/OptionsMenu.tscn:341
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:362
+#: ../src/general/OptionsMenu.tscn:365
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:377
+#: ../src/general/OptionsMenu.tscn:380
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:393
+#: ../src/general/OptionsMenu.tscn:396
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:409 ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:412 ../src/general/OptionsMenu.tscn:413
 msgid "NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:413
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:410
+#: ../src/general/OptionsMenu.tscn:413
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:431
+#: ../src/general/OptionsMenu.tscn:434
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:460
+#: ../src/general/OptionsMenu.tscn:463
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:470
+#: ../src/general/OptionsMenu.tscn:473
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "Pavadinimas:"
 
-#: ../src/general/OptionsMenu.tscn:500
+#: ../src/general/OptionsMenu.tscn:503
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:527
+#: ../src/general/OptionsMenu.tscn:530
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:557
 msgid "GUI"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:571
+#: ../src/general/OptionsMenu.tscn:574
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:588 ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1469
 msgid "AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:592
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:603
+#: ../src/general/OptionsMenu.tscn:606
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:614
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:623
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:649
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:675 ../src/general/OptionsMenu.tscn:726
-#: ../src/general/OptionsMenu.tscn:761 ../src/general/OptionsMenu.tscn:796
-#: ../src/general/OptionsMenu.tscn:831
+#: ../src/general/OptionsMenu.tscn:678 ../src/general/OptionsMenu.tscn:729
+#: ../src/general/OptionsMenu.tscn:764 ../src/general/OptionsMenu.tscn:799
+#: ../src/general/OptionsMenu.tscn:834
 msgid "MUTE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:697
+#: ../src/general/OptionsMenu.tscn:700
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:732
+#: ../src/general/OptionsMenu.tscn:735
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:767
+#: ../src/general/OptionsMenu.tscn:770
 msgid "SFX_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:802
+#: ../src/general/OptionsMenu.tscn:805
 msgid "GUI_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:849
+#: ../src/general/OptionsMenu.tscn:852
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:881
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:896 ../src/general/OptionsMenu.tscn:1843
+#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:1914
 msgid "RESET"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:918
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:944
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:956
+#: ../src/general/OptionsMenu.tscn:959
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:1013
+#: ../src/general/OptionsMenu.tscn:966 ../src/general/OptionsMenu.tscn:1016
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1009
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1051
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1085
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1099
+#: ../src/general/OptionsMenu.tscn:1102
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1117
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1167
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1187 ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_NORMAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1252
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1271 ../src/general/OptionsMenu.tscn:1380
+#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1382
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1283 ../src/general/OptionsMenu.tscn:1392
+#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1394
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Pavadinimas:"
 
-#: ../src/general/OptionsMenu.tscn:1296 ../src/general/OptionsMenu.tscn:1318
-#: ../src/general/OptionsMenu.tscn:1405 ../src/general/OptionsMenu.tscn:1428
+#: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
+#: ../src/general/OptionsMenu.tscn:1407 ../src/general/OptionsMenu.tscn:1430
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1302 ../src/general/OptionsMenu.tscn:1411
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1413
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Pavadinimas:"
 
-#: ../src/general/OptionsMenu.tscn:1324
+#: ../src/general/OptionsMenu.tscn:1326
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1335 ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_ON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1336
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1350
+#: ../src/general/OptionsMenu.tscn:1352
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1367
+#: ../src/general/OptionsMenu.tscn:1369
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1436
+#: ../src/general/OptionsMenu.tscn:1441
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1481
+#: ../src/general/OptionsMenu.tscn:1451
+msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1469
+msgid "PLAYER_RELATIVE_MOVEMENT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1502
+#: ../src/general/OptionsMenu.tscn:1503
+msgid "SCREEN_RELATIVE_MOVEMENT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1483
+msgid "3D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1503
+msgid "WORLD_RELATIVE_MOVEMENT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1552
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1522
+#: ../src/general/OptionsMenu.tscn:1593
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1530
+#: ../src/general/OptionsMenu.tscn:1601
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1546
+#: ../src/general/OptionsMenu.tscn:1617
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1557
+#: ../src/general/OptionsMenu.tscn:1628
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1585
+#: ../src/general/OptionsMenu.tscn:1656
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1612
+#: ../src/general/OptionsMenu.tscn:1683
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1620
+#: ../src/general/OptionsMenu.tscn:1691
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1627
+#: ../src/general/OptionsMenu.tscn:1698
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1639
+#: ../src/general/OptionsMenu.tscn:1710
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1647
+#: ../src/general/OptionsMenu.tscn:1718
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1658
+#: ../src/general/OptionsMenu.tscn:1729
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1685
+#: ../src/general/OptionsMenu.tscn:1756
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1693
+#: ../src/general/OptionsMenu.tscn:1764
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1705 ../src/general/OptionsMenu.tscn:1714
+#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1785
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "(pradžios vieta)"
 
-#: ../src/general/OptionsMenu.tscn:1707
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1729
+#: ../src/general/OptionsMenu.tscn:1800
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1739
+#: ../src/general/OptionsMenu.tscn:1810
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1754 ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1825 ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1771
+#: ../src/general/OptionsMenu.tscn:1842
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Baigti žaidimą"
 
-#: ../src/general/OptionsMenu.tscn:1773
+#: ../src/general/OptionsMenu.tscn:1844
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Aprašymas:"
 
-#: ../src/general/OptionsMenu.tscn:1801
+#: ../src/general/OptionsMenu.tscn:1872
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Pavadinimas:"
 
-#: ../src/general/OptionsMenu.tscn:1857 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1883
+#: ../src/general/OptionsMenu.tscn:1954
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1894
+#: ../src/general/OptionsMenu.tscn:1965
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1895
+#: ../src/general/OptionsMenu.tscn:1966
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:1974
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1904
+#: ../src/general/OptionsMenu.tscn:1975
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1913
+#: ../src/general/OptionsMenu.tscn:1984
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1933
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:2027
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1966
+#: ../src/general/OptionsMenu.tscn:2037
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1983
+#: ../src/general/OptionsMenu.tscn:2054
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1994 ../src/general/OptionsMenu.tscn:2002
+#: ../src/general/OptionsMenu.tscn:2065 ../src/general/OptionsMenu.tscn:2073
 msgid "ERROR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2004
+#: ../src/general/OptionsMenu.tscn:2075
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2012
+#: ../src/general/OptionsMenu.tscn:2083
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2014
+#: ../src/general/OptionsMenu.tscn:2085
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -4384,7 +4406,7 @@ msgstr ""
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:125
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:154
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
