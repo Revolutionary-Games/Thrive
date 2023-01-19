@@ -1728,10 +1728,21 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+
+        // Apply the current value to the slider to make sure it is showing the actual setting value
+        if (pressed)
+        {
+            threadCountSlider.Value = Settings.Instance.ThreadCount.Value;
+        }
     }
 
     private void OnManualThreadCountChanged(float value)
     {
+        // Ignore setting these things when we are using automatic thread count to prevent unnecessarily settings
+        // being detected as changed
+        if (!Settings.Instance.UseManualThreadCount.Value)
+            return;
+
         int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
         Settings.Instance.ThreadCount.Value = threads;
         Settings.Instance.ApplyThreadSettings();

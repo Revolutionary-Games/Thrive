@@ -320,6 +320,11 @@ public class TabButtons : HBoxContainer
                 // button.EmitSignal("button_down");
                 // button.EmitSignal("button_up");
 
+                // If the button doesn't move to pressed state, set it here. This makes some differently made tab
+                // controlled buttons work (auto-evo exploring tool, for example)
+                if (button.Pressed != true)
+                    button.Pressed = true;
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

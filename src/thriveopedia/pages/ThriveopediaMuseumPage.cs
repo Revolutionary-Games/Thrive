@@ -15,24 +15,20 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     public NodePath SpeciesPreviewContainerPath = null!;
 
     [Export]
-    public NodePath SpeciesPreviewPath = null!;
-
-    [Export]
-    public NodePath HexesPreviewPath = null!;
-
-    [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
+    public NodePath SpeciesPreviewPanelPath = null!;
 
     [Export]
     public NodePath LeaveGameConfirmationDialogPath = null!;
 
+    [Export]
+    public NodePath FossilDirectoryWarningBoxPath = null!;
+
     private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
-    private SpeciesPreview speciesPreview = null!;
-    private CellHexesPreview hexesPreview = null!;
-    private CustomRichTextLabel speciesDetailsLabel = null!;
+    private SpeciesDetailsPanel speciesPreviewPanel = null!;
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
+    private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
     private PackedScene museumCardScene = null!;
 
     public override string PageName => "Museum";
@@ -45,12 +41,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         cardContainer = GetNode<HFlowContainer>(CardContainerPath);
         welcomeLabel = GetNode<Control>(WelcomeLabelPath);
         speciesPreviewContainer = GetNode<VBoxContainer>(SpeciesPreviewContainerPath);
-        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
-        hexesPreview = GetNode<CellHexesPreview>(HexesPreviewPath);
-        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
+        speciesPreviewPanel = GetNode<SpeciesDetailsPanel>(SpeciesPreviewPanelPath);
         leaveGameConfirmationDialog = GetNode<CustomConfirmationDialog>(LeaveGameConfirmationDialogPath);
+        fossilDirectoryWarningBox = GetNode<CustomConfirmationDialog>(FossilDirectoryWarningBoxPath);
 
         museumCardScene = GD.Load<PackedScene>("res://src/thriveopedia/fossilisation/MuseumCard.tscn");
+
+        // Hide the fossilise button
+        speciesPreviewPanel.GetNode<Button>(speciesPreviewPanel.FossilisationButtonPath).Visible = false;
     }
 
     public override void OnThriveopediaOpened()
@@ -94,36 +92,14 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
         var species = card.SavedSpecies;
 
-        if (species == null)
-        {
-            GD.PrintErr("Attempted to load a null species");
-            return;
-        }
-
-        speciesPreview.PreviewSpecies = species;
-
-        if (species is MicrobeSpecies microbeSpecies)
-        {
-            hexesPreview.PreviewSpecies = microbeSpecies;
-        }
-        else
-        {
-            GD.PrintErr("Unknown species type to preview: ", species);
-        }
-
-        UpdateSpeciesDetail(species);
-    }
-
-    private void UpdateSpeciesDetail(Species species)
-    {
-        speciesDetailsLabel.ExtendedBbcode = species.GetDetailString();
+        speciesPreviewPanel.PreviewSpecies = species;
     }
 
     private void OnOpenInFreebuildPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (speciesPreview.PreviewSpecies == null)
+        if (speciesPreviewPanel.PreviewSpecies == null)
             return;
 
         // If we're opening from a game in progress, warn the player
@@ -134,21 +110,21 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             return;
         }
 
-        if (speciesPreview.PreviewSpecies is not MicrobeSpecies)
+        if (speciesPreviewPanel.PreviewSpecies is not MicrobeSpecies)
         {
             GD.PrintErr("Loading non-microbe species is not yet implemented");
             return;
         }
 
-        TransitionToFreebuild(speciesPreview.PreviewSpecies);
+        TransitionToFreebuild(speciesPreviewPanel.PreviewSpecies);
     }
 
     private void OnOpenInFreebuildConfirmPressed()
     {
-        if (speciesPreview.PreviewSpecies == null)
+        if (speciesPreviewPanel.PreviewSpecies == null)
             return;
 
-        TransitionToFreebuild(speciesPreview.PreviewSpecies);
+        TransitionToFreebuild(speciesPreviewPanel.PreviewSpecies);
     }
 
     private void TransitionToFreebuild(Species startingSpecies)
@@ -167,5 +143,13 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
         }, false);
+    }
+
+    private void OnOpenFossilFolder()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (!FolderHelpers.OpenFolder(Constants.FOSSILISED_SPECIES_FOLDER))
+            fossilDirectoryWarningBox.PopupCenteredShrink();
     }
 }
