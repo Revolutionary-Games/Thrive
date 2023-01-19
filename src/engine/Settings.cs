@@ -353,6 +353,18 @@ public class Settings
     public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
 
     /// <summary>
+    ///   Sets how left/right inputs are interpreted in 2D (for example the microbe stage)
+    /// </summary>
+    public SettingValue<TwoDimensionalMovementMode> TwoDimensionalMovement { get; set; } =
+        new(TwoDimensionalMovementMode.Automatic);
+
+    /// <summary>
+    ///   Sets how movement direction inputs are interpreted for 3D movement
+    /// </summary>
+    public SettingValue<ThreeDimensionalMovementMode> ThreeDimensionalMovement { get; set; } =
+        new(ThreeDimensionalMovementMode.ScreenRelative);
+
+    /// <summary>
     ///   How big the deadzones are for controller axes
     /// </summary>
     /// <remarks>
