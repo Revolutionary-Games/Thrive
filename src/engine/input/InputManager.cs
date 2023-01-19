@@ -165,12 +165,20 @@ public class InputManager : Node
         staticInstance._UnhandledInput(inputEvent);
     }
 
-    public static void OnPostLoad()
+    /// <summary>
+    ///   Always converts an input event to an input method type
+    /// </summary>
+    /// <param name="event">The event to look at and make the determination</param>
+    /// <returns>The detected input type or the default value</returns>
+    public static ActiveInputMethod InputMethodFromInput(InputEvent @event)
     {
-        if (staticInstance == null)
-            throw new InstanceNotLoadedYetException();
+        if (@event is InputEventJoypadButton or InputEventJoypadMotion)
+        {
+            return ActiveInputMethod.Controller;
+        }
 
-        staticInstance.DoPostLoad();
+        // Everything that isn't a controller is currently a keyboard
+        return ActiveInputMethod.Keyboard;
     }
 
     public override void _Ready()
