@@ -95,6 +95,9 @@ public static class KeyPromptHelper
         get => activeControllerType;
         set
         {
+            if (value == ControllerType.Automatic)
+                throw new ArgumentException("This property can only have concrete valid controller types");
+
             if (activeControllerType == value)
                 return;
 

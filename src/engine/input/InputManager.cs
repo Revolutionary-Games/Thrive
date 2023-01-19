@@ -181,25 +181,31 @@ public class InputManager : Node
 
         DoPostLoad();
 
-        // Detect initial controllers
-        var controllers = Input.GetConnectedJoypads();
-        if (controllers.Count > 0)
+        try
         {
-            // Apply button style from initial controller
-            try
+            // Detect initial controllers
+            var controllers = Input.GetConnectedJoypads();
+
+            if (controllers.Count > 0)
             {
+                // Apply button style from initial controller
+
                 int controllerId = (int)controllers[0];
                 lastUsedControllerName = Input.GetJoyName(controllerId);
                 lastUsedControllerId = controllerId;
 
                 GD.Print("First connected controller is: ", lastUsedControllerName);
-                ApplyInputPromptTypes();
             }
-            catch (Exception e)
-            {
-                GD.PrintErr("Startup controller style applying failed: ", e);
-            }
+
+            // Apply button prompt types anyway even if there's no plugged in controller
+            ApplyInputPromptTypes();
         }
+        catch (Exception e)
+        {
+            GD.PrintErr("Startup controller style applying failed: ", e);
+        }
+
+        Settings.Instance.ControllerPromptType.OnChanged += _ => ApplyInputPromptTypes();
     }
 
     /// <summary>
@@ -545,10 +551,14 @@ public class InputManager : Node
 
     private void ApplyInputPromptTypes()
     {
-        if (lastUsedControllerName != null)
-        {
-            // TODO: allow overriding controller button types from the options menu
+        var settingsControllerValue = Settings.Instance.ControllerPromptType.Value;
 
+        if (settingsControllerValue != ControllerType.Automatic)
+        {
+            KeyPromptHelper.ActiveControllerType = settingsControllerValue;
+        }
+        else if (lastUsedControllerName != null)
+        {
             KeyPromptHelper.ActiveControllerType =
                 ControllerTypeDetection.DetectControllerTypeFromName(lastUsedControllerName);
         }

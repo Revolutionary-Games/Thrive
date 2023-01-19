@@ -71,6 +71,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath ChromaticAberrationTogglePath = null!;
 
     [Export]
+    public NodePath ControllerPromptTypePath = null!;
+
+    [Export]
     public NodePath DisplayAbilitiesBarTogglePath = null!;
 
     [Export]
@@ -308,6 +311,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting = null!;
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
+    private OptionButton controllerPromptType = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
@@ -455,6 +459,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        controllerPromptType = GetNode<OptionButton>(ControllerPromptTypePath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
@@ -634,6 +639,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
@@ -1537,6 +1543,44 @@ public class OptionsMenu : ControlWithInput
     private void OnDisplayAbilitiesHotBarToggled(bool toggle)
     {
         Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private int ControllerPromptTypeToIndex(ControllerType controllerType)
+    {
+        // This is done like this to ensure that invalid values don't get converted to out of range values (for
+        // example when settings might be loaded that were saved by a newer Thrive version)
+        switch (controllerType)
+        {
+            case ControllerType.Automatic:
+            case ControllerType.Xbox360:
+            case ControllerType.XboxOne:
+            case ControllerType.XboxSeriesX:
+            case ControllerType.PlayStation3:
+            case ControllerType.PlayStation4:
+            case ControllerType.PlayStation5:
+                return (int)controllerType;
+            default:
+                GD.PrintErr("Invalid controller type value");
+                return 0;
+        }
+    }
+
+    private ControllerType ControllerIndexToPromptType(int index)
+    {
+        if (index is >= 0 and <= (int)ControllerType.PlayStation5)
+        {
+            return (ControllerType)index;
+        }
+
+        GD.PrintErr("Invalid controller type index");
+        return ControllerType.Automatic;
+    }
+
+    private void OnControllerTypeSelected(int index)
+    {
+        Settings.Instance.ControllerPromptType.Value = ControllerIndexToPromptType(index);
 
         UpdateResetSaveButtonState();
     }

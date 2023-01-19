@@ -89,6 +89,11 @@ public class Settings
     public SettingValue<bool> ChromaticEnabled { get; set; } = new(true);
 
     /// <summary>
+    ///   Type of controller button prompts to show
+    /// </summary>
+    public SettingValue<ControllerType> ControllerPromptType { get; set; } = new(ControllerType.Automatic);
+
+    /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
     public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new(true);
