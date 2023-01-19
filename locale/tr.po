@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-19 11:09+0200\n"
+"POT-Creation-Date: 2023-01-19 11:43+0200\n"
 "PO-Revision-Date: 2023-01-03 21:00+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -530,74 +530,97 @@ msgstr "Sağ kamera görünümüne geç"
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Üst kamera görünümüne geç"
 
-#: ../simulation_parameters/common/input_options.json:213
+#: ../simulation_parameters/common/input_options.json:214
+#, fuzzy
+msgid "GUI_TAB_NAVIGATION"
+msgstr "{0} B"
+
+#: ../simulation_parameters/common/input_options.json:218
+#, fuzzy
+msgid "TAB_SWITCH_LEFT"
+msgstr "Sola döndür"
+
+#: ../simulation_parameters/common/input_options.json:222
+#, fuzzy
+msgid "TAB_SWITCH_RIGHT"
+msgstr "Sağa döndür"
+
+#: ../simulation_parameters/common/input_options.json:226
+msgid "TAB_SECONDARY_SWITCH_LEFT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:230
+msgid "TAB_SECONDARY_SWITCH_RIGHT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:239
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Hileler"
 
-#: ../simulation_parameters/common/input_options.json:217
+#: ../simulation_parameters/common/input_options.json:243
 msgid "ENABLE_EDITOR"
 msgstr "Editörü aç"
 
-#: ../simulation_parameters/common/input_options.json:221
+#: ../simulation_parameters/common/input_options.json:247
 msgid "SPAWN_GLUCOSE"
 msgstr "Glukoz oluştur"
 
-#: ../simulation_parameters/common/input_options.json:225
+#: ../simulation_parameters/common/input_options.json:251
 msgid "SPAWN_AMMONIA"
 msgstr "Amonyak oluştur"
 
-#: ../simulation_parameters/common/input_options.json:229
+#: ../simulation_parameters/common/input_options.json:255
 msgid "SPAWN_PHOSPHATES"
 msgstr "Fosfat oluştur"
 
-#: ../simulation_parameters/common/input_options.json:233
+#: ../simulation_parameters/common/input_options.json:259
 msgid "CHEAT_MENU"
 msgstr "Hile menüsü"
 
-#: ../simulation_parameters/common/input_options.json:244
+#: ../simulation_parameters/common/input_options.json:270
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Diğer"
 
-#: ../simulation_parameters/common/input_options.json:248
+#: ../simulation_parameters/common/input_options.json:274
 msgid "TOGGLE_PAUSE"
 msgstr "Oyunu duraklat"
 
-#: ../simulation_parameters/common/input_options.json:252
+#: ../simulation_parameters/common/input_options.json:278
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Hata ayıklayıcı panelini aç"
 
-#: ../simulation_parameters/common/input_options.json:256
+#: ../simulation_parameters/common/input_options.json:282
 msgid "TOGGLE_FPS"
 msgstr "FPS göstergesini aç"
 
-#: ../simulation_parameters/common/input_options.json:260
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_METRICS"
 msgstr "Ölçümler göstergesini aç"
 
-#: ../simulation_parameters/common/input_options.json:264
+#: ../simulation_parameters/common/input_options.json:290
 msgid "QUICK_SAVE"
 msgstr "Çabuk kaydet"
 
-#: ../simulation_parameters/common/input_options.json:268
+#: ../simulation_parameters/common/input_options.json:294
 msgid "QUICK_LOAD"
 msgstr "Çabuk yükle"
 
-#: ../simulation_parameters/common/input_options.json:272
+#: ../simulation_parameters/common/input_options.json:298
 msgid "TAKE_SCREENSHOT"
 msgstr "Ekran görüntüsü al"
 
-#: ../simulation_parameters/common/input_options.json:276
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
-#: ../simulation_parameters/common/input_options.json:280
+#: ../simulation_parameters/common/input_options.json:306
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Tam ekrana geç"
 
-#: ../simulation_parameters/common/input_options.json:284
+#: ../simulation_parameters/common/input_options.json:310
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Oyun arayüzünü gizle"
 
