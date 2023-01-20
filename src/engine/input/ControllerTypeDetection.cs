@@ -41,14 +41,18 @@
         if (name.Contains("xbox") || name.Contains("microsoft"))
         {
             if (name.Contains("xbox one"))
-            {
                 return ControllerType.XboxOne;
-            }
 
-            if (!name.Contains("series") && !name.Contains("one"))
-            {
+            if (name.Contains("series s") || name.Contains("series x"))
+                return ControllerType.XboxSeriesX;
+
+            // This detection was more broad before but didn't work well, mainly because when bluetooth wireless
+            // the xbox controller is not well detected on Linux
+            if (name.Contains("360"))
                 return ControllerType.Xbox360;
-            }
+
+            if (name.Contains("one"))
+                return ControllerType.XboxOne;
 
             // Default to latest if the controller isn't probably an older one
             return ControllerType.XboxSeriesX;

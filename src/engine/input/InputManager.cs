@@ -165,12 +165,20 @@ public class InputManager : Node
         staticInstance._UnhandledInput(inputEvent);
     }
 
-    public static void OnPostLoad()
+    /// <summary>
+    ///   Always converts an input event to an input method type
+    /// </summary>
+    /// <param name="event">The event to look at and make the determination</param>
+    /// <returns>The detected input type or the default value</returns>
+    public static ActiveInputMethod InputMethodFromInput(InputEvent @event)
     {
-        if (staticInstance == null)
-            throw new InstanceNotLoadedYetException();
+        if (@event is InputEventJoypadButton or InputEventJoypadMotion)
+        {
+            return ActiveInputMethod.Controller;
+        }
 
-        staticInstance.DoPostLoad();
+        // Everything that isn't a controller is currently a keyboard
+        return ActiveInputMethod.Keyboard;
     }
 
     public override void _Ready()
@@ -181,25 +189,31 @@ public class InputManager : Node
 
         DoPostLoad();
 
-        // Detect initial controllers
-        var controllers = Input.GetConnectedJoypads();
-        if (controllers.Count > 0)
+        try
         {
-            // Apply button style from initial controller
-            try
+            // Detect initial controllers
+            var controllers = Input.GetConnectedJoypads();
+
+            if (controllers.Count > 0)
             {
+                // Apply button style from initial controller
+
                 int controllerId = (int)controllers[0];
                 lastUsedControllerName = Input.GetJoyName(controllerId);
                 lastUsedControllerId = controllerId;
 
                 GD.Print("First connected controller is: ", lastUsedControllerName);
-                ApplyInputPromptTypes();
             }
-            catch (Exception e)
-            {
-                GD.PrintErr("Startup controller style applying failed: ", e);
-            }
+
+            // Apply button prompt types anyway even if there's no plugged in controller
+            ApplyInputPromptTypes();
         }
+        catch (Exception e)
+        {
+            GD.PrintErr("Startup controller style applying failed: ", e);
+        }
+
+        Settings.Instance.ControllerPromptType.OnChanged += _ => ApplyInputPromptTypes();
     }
 
     /// <summary>
@@ -545,10 +559,14 @@ public class InputManager : Node
 
     private void ApplyInputPromptTypes()
     {
-        if (lastUsedControllerName != null)
-        {
-            // TODO: allow overriding controller button types from the options menu
+        var settingsControllerValue = Settings.Instance.ControllerPromptType.Value;
 
+        if (settingsControllerValue != ControllerType.Automatic)
+        {
+            KeyPromptHelper.ActiveControllerType = settingsControllerValue;
+        }
+        else if (lastUsedControllerName != null)
+        {
             KeyPromptHelper.ActiveControllerType =
                 ControllerTypeDetection.DetectControllerTypeFromName(lastUsedControllerName);
         }

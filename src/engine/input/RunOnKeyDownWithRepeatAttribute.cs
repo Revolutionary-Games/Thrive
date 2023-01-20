@@ -30,6 +30,12 @@ public class RunOnKeyDownWithRepeatAttribute : RunOnKeyAttribute
             if (SetKeyDown)
                 HeldDown = true;
 
+            if (TrackInputMethod)
+            {
+                LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+                return CallMethod(LastUsedInputMethod);
+            }
+
             return CallMethod();
         }
 
