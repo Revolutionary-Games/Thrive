@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-15 15:25+0000\n"
+"POT-Creation-Date: 2023-01-19 15:13+0200\n"
 "PO-Revision-Date: 2022-12-09 20:00+0000\n"
 "Last-Translator: tabat-dectocoder <aliks234066aliks@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -530,74 +530,97 @@ msgstr "Переключить на вид справа"
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Переключить на вид спереди"
 
-#: ../simulation_parameters/common/input_options.json:213
+#: ../simulation_parameters/common/input_options.json:214
+#, fuzzy
+msgid "GUI_TAB_NAVIGATION"
+msgstr "{0} Тыс"
+
+#: ../simulation_parameters/common/input_options.json:218
+#, fuzzy
+msgid "TAB_SWITCH_LEFT"
+msgstr "Повернуть влево"
+
+#: ../simulation_parameters/common/input_options.json:222
+#, fuzzy
+msgid "TAB_SWITCH_RIGHT"
+msgstr "Повернуть вправо"
+
+#: ../simulation_parameters/common/input_options.json:226
+msgid "TAB_SECONDARY_SWITCH_LEFT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:230
+msgid "TAB_SECONDARY_SWITCH_RIGHT"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:239
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 msgid "CHEATS"
 msgstr "Читы"
 
-#: ../simulation_parameters/common/input_options.json:217
+#: ../simulation_parameters/common/input_options.json:243
 msgid "ENABLE_EDITOR"
 msgstr "Включить редактор"
 
-#: ../simulation_parameters/common/input_options.json:221
+#: ../simulation_parameters/common/input_options.json:247
 msgid "SPAWN_GLUCOSE"
 msgstr "Создать глюкозу"
 
-#: ../simulation_parameters/common/input_options.json:225
+#: ../simulation_parameters/common/input_options.json:251
 msgid "SPAWN_AMMONIA"
 msgstr "Создать аммиак"
 
-#: ../simulation_parameters/common/input_options.json:229
+#: ../simulation_parameters/common/input_options.json:255
 msgid "SPAWN_PHOSPHATES"
 msgstr "Создать фосфат"
 
-#: ../simulation_parameters/common/input_options.json:233
+#: ../simulation_parameters/common/input_options.json:259
 msgid "CHEAT_MENU"
 msgstr "Чит-меню"
 
-#: ../simulation_parameters/common/input_options.json:244
+#: ../simulation_parameters/common/input_options.json:270
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Разное"
 
-#: ../simulation_parameters/common/input_options.json:248
+#: ../simulation_parameters/common/input_options.json:274
 msgid "TOGGLE_PAUSE"
 msgstr "Пауза"
 
-#: ../simulation_parameters/common/input_options.json:252
+#: ../simulation_parameters/common/input_options.json:278
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Переключить панель откладки"
 
-#: ../simulation_parameters/common/input_options.json:256
+#: ../simulation_parameters/common/input_options.json:282
 msgid "TOGGLE_FPS"
 msgstr "Включить показ FPS"
 
-#: ../simulation_parameters/common/input_options.json:260
+#: ../simulation_parameters/common/input_options.json:286
 msgid "TOGGLE_METRICS"
 msgstr "Переключение отображения показателей"
 
-#: ../simulation_parameters/common/input_options.json:264
+#: ../simulation_parameters/common/input_options.json:290
 msgid "QUICK_SAVE"
 msgstr "Быстрое сохранение"
 
-#: ../simulation_parameters/common/input_options.json:268
+#: ../simulation_parameters/common/input_options.json:294
 msgid "QUICK_LOAD"
 msgstr "Быстрая загрузка"
 
-#: ../simulation_parameters/common/input_options.json:272
+#: ../simulation_parameters/common/input_options.json:298
 msgid "TAKE_SCREENSHOT"
 msgstr "Сделать снимок экрана"
 
-#: ../simulation_parameters/common/input_options.json:276
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SHOW_HELP"
 msgstr "Показать помощь"
 
-#: ../simulation_parameters/common/input_options.json:280
+#: ../simulation_parameters/common/input_options.json:306
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Переключить на полный экран"
 
-#: ../simulation_parameters/common/input_options.json:284
+#: ../simulation_parameters/common/input_options.json:310
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Включить HUD"
 
@@ -1231,7 +1254,7 @@ msgstr "Автор: Revolutionary Games Studio"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:531
 #: ../src/general/MainMenu.tscn:841 ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1724 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1903 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -1677,11 +1700,11 @@ msgstr ""
 msgid "APPLY"
 msgstr "Применить"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:339
+#: ../src/engine/input/key_mapping/InputEventItem.cs:425
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Нажмите любую клавишу..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:127
+#: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Здесь есть конфликт с {0}.\n"
@@ -2039,55 +2062,55 @@ msgstr "Num9"
 msgid "UNKNOWN"
 msgstr "Неизвестная кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "CTRL"
 msgstr "CTRL"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:79
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:90
 msgid "LEFT_MOUSE"
 msgstr "Левая кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:91
 msgid "RIGHT_MOUSE"
 msgstr "Правая кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "MIDDLE_MOUSE"
 msgstr "Средняя кнопка мыши"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:93
 msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:94
 msgid "WHEEL_DOWN"
 msgstr "Колёсико вниз"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:95
 msgid "WHEEL_LEFT"
 msgstr "Колёсико влево"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:96
 msgid "WHEEL_RIGHT"
 msgstr "Колёсико вправо"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:97
 msgid "SPECIAL_MOUSE_1"
 msgstr "Специальная кнопка мыши 1"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:98
 msgid "SPECIAL_MOUSE_2"
 msgstr "Специальная кнопка мыши 2"
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:99
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестная кнопка мыши"
 
@@ -2502,7 +2525,7 @@ msgstr "Сложность"
 msgid "PLANET"
 msgstr "Планета"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:206
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:210
 msgid "MISC"
 msgstr "Дополнительное"
 
@@ -2658,494 +2681,551 @@ msgstr "Базовый вид"
 msgid "CONFIRM_NORMAL"
 msgstr "Подтвердить"
 
-#: ../src/general/OptionsMenu.cs:782 ../src/general/OptionsMenu.tscn:346
+#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:354
 msgid "AUTO_RESOLUTION"
 msgstr "Авто ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:796
+#: ../src/general/OptionsMenu.cs:822
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:801
+#: ../src/general/OptionsMenu.cs:827
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:806
+#: ../src/general/OptionsMenu.cs:832
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Неизвестно"
 
-#: ../src/general/OptionsMenu.cs:815 ../src/general/OptionsMenu.tscn:534
+#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:543
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1238
+#: ../src/general/OptionsMenu.cs:1274
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
 
-#: ../src/general/OptionsMenu.cs:1270
+#: ../src/general/OptionsMenu.cs:1306
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
 
-#: ../src/general/OptionsMenu.cs:1274
+#: ../src/general/OptionsMenu.cs:1310
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Этот язык всё ещё находится в стадии разработки ({0}% завершено)"
 
-#: ../src/general/OptionsMenu.cs:1278
+#: ../src/general/OptionsMenu.cs:1314
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Этот язык на {0}% завершён"
 
-#: ../src/general/OptionsMenu.cs:1338
+#: ../src/general/OptionsMenu.cs:1374
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Это отладочная сборка, где приведенная ниже информация, вероятно, не актуальна"
 
-#: ../src/general/OptionsMenu.cs:1345
+#: ../src/general/OptionsMenu.cs:1381
 msgid "UNKNOWN_VERSION"
 msgstr "Неизвестная версия"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:166
 msgid "GRAPHICS"
 msgstr "Графика"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:177
 msgid "SOUND"
 msgstr "Звук"
 
-#: ../src/general/OptionsMenu.tscn:184
+#: ../src/general/OptionsMenu.tscn:188
 msgid "PERFORMANCE"
 msgstr "Производительность"
 
-#: ../src/general/OptionsMenu.tscn:195
+#: ../src/general/OptionsMenu.tscn:199
 msgid "INPUTS"
 msgstr "Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:267
+#: ../src/general/OptionsMenu.tscn:272
 msgid "VSYNC"
 msgstr "Вертикальная синхронизация"
 
-#: ../src/general/OptionsMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:280
 msgid "FULLSCREEN"
 msgstr "Полный экран"
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
-#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:1098
+#: ../src/general/OptionsMenu.tscn:311 ../src/general/OptionsMenu.tscn:1174
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(высокие значения ухудшают производительность)"
 
-#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:326 ../src/general/OptionsMenu.tscn:327
 msgid "DISABLED"
 msgstr "Отключено"
 
-#: ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:327
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:327
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:327
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:319
+#: ../src/general/OptionsMenu.tscn:327
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:341
 msgid "RESOLUTION"
 msgstr "Разрешение:"
 
-#: ../src/general/OptionsMenu.tscn:357
+#: ../src/general/OptionsMenu.tscn:365
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
-#: ../src/general/OptionsMenu.tscn:372
+#: ../src/general/OptionsMenu.tscn:380
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Бесконечно"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:396
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Цветокоррекция для дальтоников:"
 
-#: ../src/general/OptionsMenu.tscn:404 ../src/general/OptionsMenu.tscn:405
+#: ../src/general/OptionsMenu.tscn:412 ../src/general/OptionsMenu.tscn:413
 msgid "NONE"
 msgstr "Отсутствует"
 
-#: ../src/general/OptionsMenu.tscn:405
+#: ../src/general/OptionsMenu.tscn:413
 msgid "CORRECTION_PROTANOPE"
 msgstr "Протанопия (Крас.-Зел.)"
 
-#: ../src/general/OptionsMenu.tscn:405
+#: ../src/general/OptionsMenu.tscn:413
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (Син.-Жел.)"
 
-#: ../src/general/OptionsMenu.tscn:426
+#: ../src/general/OptionsMenu.tscn:434
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая аберрация:"
 
-#: ../src/general/OptionsMenu.tscn:454
+#: ../src/general/OptionsMenu.tscn:463
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Отображение фоновых частиц"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:473
 msgid "GPU_NAME"
 msgstr "Видеокарта:"
 
-#: ../src/general/OptionsMenu.tscn:494
+#: ../src/general/OptionsMenu.tscn:503
 msgid "USED_RENDERER_NAME"
 msgstr "Движок отрисовки:"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:530
 msgid "VIDEO_MEMORY"
 msgstr "Видеопамяти используется:"
 
-#: ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.tscn:557
 msgid "GUI"
 msgstr "Графический интерфейс"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:574
+msgid "CONTROLLER_PROMPT_TYPE_SETTING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1469
+msgid "AUTO"
+msgstr "Авто"
+
+#: ../src/general/OptionsMenu.tscn:592
+msgid "XBOX360"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:592
+msgid "XBOX_ONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:592
+msgid "XBOX_SERIES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:592
+msgid "PLAYSTATION_3"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:592
+msgid "PLAYSTATION_4"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:592
+msgid "PLAYSTATION_5"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:606
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Показать панель способностей"
 
-#: ../src/general/OptionsMenu.tscn:571
+#: ../src/general/OptionsMenu.tscn:614
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
-#: ../src/general/OptionsMenu.tscn:580
+#: ../src/general/OptionsMenu.tscn:623
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать названия кнопок при выборе частей"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:649
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
-#: ../src/general/OptionsMenu.tscn:632 ../src/general/OptionsMenu.tscn:672
-#: ../src/general/OptionsMenu.tscn:704 ../src/general/OptionsMenu.tscn:736
-#: ../src/general/OptionsMenu.tscn:768
+#: ../src/general/OptionsMenu.tscn:678 ../src/general/OptionsMenu.tscn:729
+#: ../src/general/OptionsMenu.tscn:764 ../src/general/OptionsMenu.tscn:799
+#: ../src/general/OptionsMenu.tscn:834
 msgid "MUTE"
 msgstr "Заглушить"
 
-#: ../src/general/OptionsMenu.tscn:646
+#: ../src/general/OptionsMenu.tscn:700
 msgid "MUSIC_VOLUME"
 msgstr "Громкость музыки"
 
-#: ../src/general/OptionsMenu.tscn:678
+#: ../src/general/OptionsMenu.tscn:735
 msgid "AMBIANCE_VOLUME"
 msgstr "Громкость окружения"
 
-#: ../src/general/OptionsMenu.tscn:710
+#: ../src/general/OptionsMenu.tscn:770
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
 
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:805
 msgid "GUI_VOLUME"
 msgstr "Громкость пользовательского интерфейса"
 
-#: ../src/general/OptionsMenu.tscn:786
+#: ../src/general/OptionsMenu.tscn:852
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода звука:"
 
-#: ../src/general/OptionsMenu.tscn:814
+#: ../src/general/OptionsMenu.tscn:881
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.tscn:832 ../src/general/OptionsMenu.tscn:1734
+#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:1914
 msgid "RESET"
 msgstr "Сбросить"
 
-#: ../src/general/OptionsMenu.tscn:851
+#: ../src/general/OptionsMenu.tscn:918
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Помогите перевести эту игру"
 
-#: ../src/general/OptionsMenu.tscn:877
+#: ../src/general/OptionsMenu.tscn:944
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака веществ"
 
-#: ../src/general/OptionsMenu.tscn:892
+#: ../src/general/OptionsMenu.tscn:959
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мин. интервал симуляции облаков:"
 
-#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:966 ../src/general/OptionsMenu.tscn:1016
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
-#: ../src/general/OptionsMenu.tscn:934
+#: ../src/general/OptionsMenu.tscn:1009
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель разрешения облака:"
 
-#: ../src/general/OptionsMenu.tscn:975
+#: ../src/general/OptionsMenu.tscn:1051
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время игры"
 
-#: ../src/general/OptionsMenu.tscn:995
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "DETECTED_CPU_COUNT"
 msgstr "Число обнаруженных ядер процессора:"
 
-#: ../src/general/OptionsMenu.tscn:1012
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Число потоков:"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1102
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Предположить, что в процессоре включена гиперпоточность"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1110
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
-#: ../src/general/OptionsMenu.tscn:1044
+#: ../src/general/OptionsMenu.tscn:1120
 msgid "THREADS"
 msgstr "Потоки:"
 
-#: ../src/general/OptionsMenu.tscn:1091
+#: ../src/general/OptionsMenu.tscn:1167
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальное количество сущностей:"
 
-#: ../src/general/OptionsMenu.tscn:1114 ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_TINY"
 msgstr "Крохотное"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_VERY_SMALL"
 msgstr "Очень маленькое"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_SMALL"
 msgstr "Маленькое"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_NORMAL"
 msgstr "Нормальное"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_LARGE"
 msgstr "Большое"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_VERY_LARGE"
 msgstr "Очень большое"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_HUGE"
 msgstr "Огромное"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_EXTREME"
 msgstr "Экстремальное"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1252
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Чувствительность обзора мышью"
 
-#: ../src/general/OptionsMenu.tscn:1189 ../src/general/OptionsMenu.tscn:1296
+#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1382
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Общее значение для осей"
 
-#: ../src/general/OptionsMenu.tscn:1201 ../src/general/OptionsMenu.tscn:1308
+#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1394
 msgid "HORIZONTAL_COLON"
 msgstr "По горизонтали:"
 
-#: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1235
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
+#: ../src/general/OptionsMenu.tscn:1407 ../src/general/OptionsMenu.tscn:1430
 msgid "INVERTED"
 msgstr "Инвертировать"
 
-#: ../src/general/OptionsMenu.tscn:1220 ../src/general/OptionsMenu.tscn:1327
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1413
 msgid "VERTICAL_COLON"
 msgstr "По вертикали:"
 
-#: ../src/general/OptionsMenu.tscn:1241
+#: ../src/general/OptionsMenu.tscn:1326
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Изменять чувствительность мыши в зависимости от размера окна"
 
-#: ../src/general/OptionsMenu.tscn:1252 ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_NONE"
 msgstr "Не изменять"
 
-#: ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_ON"
 msgstr "Увеличивать"
 
-#: ../src/general/OptionsMenu.tscn:1253
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "SCALING_ON_INVERSE"
 msgstr "Уменьшать"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1352
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1284
+#: ../src/general/OptionsMenu.tscn:1369
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чувствительность контроллера"
 
-#: ../src/general/OptionsMenu.tscn:1351
+#: ../src/general/OptionsMenu.tscn:1441
 msgid "CONTROLLER_DEADZONES"
 msgstr "Настройка мёртвых зон контроллера"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1451
+msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1469
+#, fuzzy
+msgid "PLAYER_RELATIVE_MOVEMENT"
+msgstr "Игрок вымер"
+
+#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1502
+#: ../src/general/OptionsMenu.tscn:1503
+#, fuzzy
+msgid "SCREEN_RELATIVE_MOVEMENT"
+msgstr "увеличивает передвижение"
+
+#: ../src/general/OptionsMenu.tscn:1483
+msgid "3D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1503
+#, fuzzy
+msgid "WORLD_RELATIVE_MOVEMENT"
+msgstr "увеличивает передвижение"
+
+#: ../src/general/OptionsMenu.tscn:1552
 msgid "RESET_KEYBINDINGS"
 msgstr "Сбросить настройки клавиш"
 
-#: ../src/general/OptionsMenu.tscn:1429
+#: ../src/general/OptionsMenu.tscn:1593
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:1437
+#: ../src/general/OptionsMenu.tscn:1601
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать вступление микроба при новой игре"
 
-#: ../src/general/OptionsMenu.tscn:1445
+#: ../src/general/OptionsMenu.tscn:1617
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
-#: ../src/general/OptionsMenu.tscn:1456
+#: ../src/general/OptionsMenu.tscn:1628
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1484
+#: ../src/general/OptionsMenu.tscn:1656
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1509
+#: ../src/general/OptionsMenu.tscn:1683
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:1516
+#: ../src/general/OptionsMenu.tscn:1691
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:1522
+#: ../src/general/OptionsMenu.tscn:1698
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
 
-#: ../src/general/OptionsMenu.tscn:1534
+#: ../src/general/OptionsMenu.tscn:1710
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Чит-коды включены"
 
-#: ../src/general/OptionsMenu.tscn:1542
+#: ../src/general/OptionsMenu.tscn:1718
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
-#: ../src/general/OptionsMenu.tscn:1553
+#: ../src/general/OptionsMenu.tscn:1729
 msgid "CUSTOM_USERNAME"
 msgstr "Кастомное имя пользователя:"
 
-#: ../src/general/OptionsMenu.tscn:1579
+#: ../src/general/OptionsMenu.tscn:1756
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть папку со скриншотами"
 
-#: ../src/general/OptionsMenu.tscn:1587
+#: ../src/general/OptionsMenu.tscn:1764
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть папку с логами"
 
-#: ../src/general/OptionsMenu.tscn:1599 ../src/general/OptionsMenu.tscn:1608
+#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1785
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Это показывает, сколько всплывающих окон было навсегда отклонено пользователем.\n"
 "Если некоторые всплывающие окна, которые действительно нужны, будут отклонены, можно использовать кнопку рядом с этим, чтобы все отклоненные всплывающие окна снова появились."
 
-#: ../src/general/OptionsMenu.tscn:1601
+#: ../src/general/OptionsMenu.tscn:1778
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Скорость переваривания:"
 
-#: ../src/general/OptionsMenu.tscn:1623
+#: ../src/general/OptionsMenu.tscn:1800
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1633
+#: ../src/general/OptionsMenu.tscn:1810
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим отладки JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1647 ../src/general/OptionsMenu.tscn:1648
+#: ../src/general/OptionsMenu.tscn:1825 ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматически"
 
-#: ../src/general/OptionsMenu.tscn:1648
+#: ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Всегда"
 
-#: ../src/general/OptionsMenu.tscn:1648
+#: ../src/general/OptionsMenu.tscn:1826
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
-#: ../src/general/OptionsMenu.tscn:1664
+#: ../src/general/OptionsMenu.tscn:1842
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Код коммита, с которого была скомпилирована эта версия Thrive"
 
-#: ../src/general/OptionsMenu.tscn:1666
+#: ../src/general/OptionsMenu.tscn:1844
 msgid "EXACT_VERSION_COLON"
 msgstr "Точная версия Thrive:"
 
-#: ../src/general/OptionsMenu.tscn:1694
+#: ../src/general/OptionsMenu.tscn:1872
 msgid "COMPILED_AT_COLON"
 msgstr "Собрано в:"
 
-#: ../src/general/OptionsMenu.tscn:1747 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:1772
+#: ../src/general/OptionsMenu.tscn:1954
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:1783
+#: ../src/general/OptionsMenu.tscn:1965
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1784
+#: ../src/general/OptionsMenu.tscn:1966
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1792
+#: ../src/general/OptionsMenu.tscn:1974
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Сбросить настройки ввода до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1975
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Вы действительно хотите сбросить настройки ввода до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1802
+#: ../src/general/OptionsMenu.tscn:1984
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1822
+#: ../src/general/OptionsMenu.tscn:2004
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "У вас есть несохранённые изменения, которые будут утрачены.\n"
 "Желаете продолжить?"
 
-#: ../src/general/OptionsMenu.tscn:1845
+#: ../src/general/OptionsMenu.tscn:2027
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1855
+#: ../src/general/OptionsMenu.tscn:2037
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отменить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1872
+#: ../src/general/OptionsMenu.tscn:2054
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
 msgid "CANCEL"
 msgstr "Отмена"
 
-#: ../src/general/OptionsMenu.tscn:1883 ../src/general/OptionsMenu.tscn:1891
+#: ../src/general/OptionsMenu.tscn:2065 ../src/general/OptionsMenu.tscn:2073
 msgid "ERROR"
 msgstr "Ошибка"
 
-#: ../src/general/OptionsMenu.tscn:1893
+#: ../src/general/OptionsMenu.tscn:2075
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
-#: ../src/general/OptionsMenu.tscn:1901
+#: ../src/general/OptionsMenu.tscn:2083
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папка скриншотов не найдена"
 
-#: ../src/general/OptionsMenu.tscn:1903
+#: ../src/general/OptionsMenu.tscn:2085
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
@@ -4533,7 +4613,7 @@ msgstr "{0} {1}"
 msgid "PAUSED"
 msgstr "В паузе"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:125
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:154
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим Развязки"
 
@@ -6334,9 +6414,6 @@ msgstr "Начать Процветание"
 #~ msgid "PATCH_PANGONIAN_SEAFLOOR"
 #~ msgstr "Пангонское Морское Дно"
 
-#~ msgid "AUTO"
-#~ msgstr "Авто"
-
 #~ msgid "LOADING_DOT"
 #~ msgstr "Загрузка..."
 
@@ -6441,9 +6518,6 @@ msgstr "Начать Процветание"
 
 #~ msgid "USES"
 #~ msgstr "Использует"
-
-#~ msgid "TO_INCREASE_THE_MOVEMENT"
-#~ msgstr "увеличивает передвижение"
 
 #, fuzzy
 #~ msgid "DOT_RATE"

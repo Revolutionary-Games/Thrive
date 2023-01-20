@@ -76,7 +76,7 @@ public class GUIFocusSetter : Control
         if (currentlyFocused != null && currentlyFocused.IsVisibleInTree())
         {
             // We may not want to override the current focus
-            if (!grabber.AlwaysOverrideFocus)
+            if (!grabber.CheckWantsToStealFocusAndReset())
                 return;
 
             var currentPath = currentlyFocused.GetPath().ToString();

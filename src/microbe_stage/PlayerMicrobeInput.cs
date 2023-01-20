@@ -32,11 +32,10 @@ public class PlayerMicrobeInput : NodeWithInput
         autoMove = !autoMove;
     }
 
-    // TODO: when using controller movement this should be screen relative movement by default
     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-    [RunOnAxisGroup(InvokeAlsoWithNoInput = true)]
-    public void OnMovement(float delta, float forwardMovement, float leftRightMovement)
+    [RunOnAxisGroup(InvokeAlsoWithNoInput = true, TrackInputMethod = true)]
+    public void OnMovement(float delta, float forwardMovement, float leftRightMovement, ActiveInputMethod inputMethod)
     {
         _ = delta;
         const float epsilon = 0.01f;
@@ -55,13 +54,43 @@ public class PlayerMicrobeInput : NodeWithInput
                 return;
             }
 
+            bool screenRelative = false;
+            var settingValue = Settings.Instance.TwoDimensionalMovement.Value;
+
+            if (settingValue == TwoDimensionalMovementMode.ScreenRelative ||
+                (settingValue == TwoDimensionalMovementMode.Automatic && inputMethod == ActiveInputMethod.Controller))
+            {
+                screenRelative = true;
+            }
+
             var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
-            // TODO: change this line to only normalize when length exceeds 1 to make slowly moving with a controller
-            // work
-            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
+            if (inputMethod == ActiveInputMethod.Controller)
+            {
+                // TODO: look direction for controller input  https://github.com/Revolutionary-Games/Thrive/issues/4034
+                stage.Player.LookAtPoint = stage.Player.GlobalTranslation + new Vector3(0, 0, -10);
+            }
+            else
+            {
+                stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
+            }
 
-            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
+            // Rotate the inputs when we want to use screen relative movement to make it happen
+            if (screenRelative)
+            {
+                // Rotate the opposite of the player orientation to get back to screen
+                movement = stage.Player.GlobalTransform.basis.Quat().Inverse().Xform(movement);
+            }
+
+            if (autoMove)
+            {
+                stage.Player.MovementDirection = new Vector3(0, 0, -1);
+            }
+            else
+            {
+                // We only normalize when the length is over to make moving slowly with a controller work
+                stage.Player.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
+            }
         }
     }
 

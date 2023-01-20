@@ -15,6 +15,9 @@ public class OptionsMenu : ControlWithInput
     // Options control buttons.
 
     [Export]
+    public NodePath BackButtonPath = null!;
+
+    [Export]
     public NodePath ResetButtonPath = null!;
 
     [Export]
@@ -66,6 +69,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath ChromaticAberrationTogglePath = null!;
+
+    [Export]
+    public NodePath ControllerPromptTypePath = null!;
 
     [Export]
     public NodePath DisplayAbilitiesBarTogglePath = null!;
@@ -209,6 +215,12 @@ public class OptionsMenu : ControlWithInput
     public NodePath ControllerVerticalInvertedPath = null!;
 
     [Export]
+    public NodePath TwoDimensionalMovementPath = null!;
+
+    [Export]
+    public NodePath ThreeDimensionalMovementPath = null!;
+
+    [Export]
     public NodePath InputGroupListPath = null!;
 
     [Export]
@@ -283,6 +295,7 @@ public class OptionsMenu : ControlWithInput
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+    private Button backButton = null!;
     private Button resetButton = null!;
     private Button saveButton = null!;
 
@@ -304,6 +317,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton colourblindSetting = null!;
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
+    private OptionButton controllerPromptType = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
@@ -358,6 +372,9 @@ public class OptionsMenu : ControlWithInput
     private Button controllerHorizontalInverted = null!;
     private Slider controllerVerticalSensitivity = null!;
     private Button controllerVerticalInverted = null!;
+
+    private OptionButton twoDimensionalMovement = null!;
+    private OptionButton threeDimensionalMovement = null!;
 
     private InputGroupList inputGroupList = null!;
 
@@ -429,6 +446,7 @@ public class OptionsMenu : ControlWithInput
     public override void _Ready()
     {
         // Options control buttons
+        backButton = GetNode<Button>(BackButtonPath);
         resetButton = GetNode<Button>(ResetButtonPath);
         saveButton = GetNode<Button>(SaveButtonPath);
 
@@ -450,6 +468,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        controllerPromptType = GetNode<OptionButton>(ControllerPromptTypePath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
@@ -506,6 +525,9 @@ public class OptionsMenu : ControlWithInput
         controllerHorizontalInverted = GetNode<Button>(ControllerHorizontalInvertedPath);
         controllerVerticalSensitivity = GetNode<Slider>(ControllerVerticalSensitivityPath);
         controllerVerticalInverted = GetNode<Button>(ControllerVerticalInvertedPath);
+
+        twoDimensionalMovement = GetNode<OptionButton>(TwoDimensionalMovementPath);
+        threeDimensionalMovement = GetNode<OptionButton>(ThreeDimensionalMovementPath);
 
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
@@ -629,6 +651,7 @@ public class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
@@ -687,6 +710,9 @@ public class OptionsMenu : ControlWithInput
         controllerVerticalSensitivity.Value =
             ControllerInputSensitivityToBarValue(settings.VerticalControllerLookSensitivity);
         controllerVerticalInverted.Pressed = settings.InvertVerticalControllerLook;
+
+        twoDimensionalMovement.Selected = Movement2DToIndex(settings.TwoDimensionalMovement);
+        threeDimensionalMovement.Selected = Movement3DToIndex(settings.ThreeDimensionalMovement);
 
         BuildInputRebindControls();
 
@@ -834,6 +860,10 @@ public class OptionsMenu : ControlWithInput
         inputsTab.Hide();
         miscTab.Hide();
 
+        var invalidNodePath = new NodePath();
+        backButton.FocusNeighbourTop = invalidNodePath;
+        backButton.FocusPrevious = invalidNodePath;
+
         switch (selection)
         {
             case OptionsTab.Graphics:
@@ -851,6 +881,12 @@ public class OptionsMenu : ControlWithInput
             case OptionsTab.Inputs:
                 inputsTab.Show();
                 inputsButton.Pressed = true;
+
+                // This needs different neighbours here to not mess with the inputs list as badly
+                var neighbourPath = mouseAxisSensitivitiesBound.GetPath();
+                backButton.FocusNeighbourTop = neighbourPath;
+                backButton.FocusPrevious = neighbourPath;
+
                 break;
             case OptionsTab.Miscellaneous:
                 miscTab.Show();
@@ -1526,6 +1562,44 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private int ControllerPromptTypeToIndex(ControllerType controllerType)
+    {
+        // This is done like this to ensure that invalid values don't get converted to out of range values (for
+        // example when settings might be loaded that were saved by a newer Thrive version)
+        switch (controllerType)
+        {
+            case ControllerType.Automatic:
+            case ControllerType.Xbox360:
+            case ControllerType.XboxOne:
+            case ControllerType.XboxSeriesX:
+            case ControllerType.PlayStation3:
+            case ControllerType.PlayStation4:
+            case ControllerType.PlayStation5:
+                return (int)controllerType;
+            default:
+                GD.PrintErr("Invalid controller type value");
+                return 0;
+        }
+    }
+
+    private ControllerType ControllerIndexToPromptType(int index)
+    {
+        if (index is >= 0 and <= (int)ControllerType.PlayStation5)
+        {
+            return (ControllerType)index;
+        }
+
+        GD.PrintErr("Invalid controller type index");
+        return ControllerType.Automatic;
+    }
+
+    private void OnControllerTypeSelected(int index)
+    {
+        Settings.Instance.ControllerPromptType.Value = ControllerIndexToPromptType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnDisplayBackgroundParticlesToggled(bool toggle)
     {
         Settings.Instance.DisplayBackgroundParticles.Value = toggle;
@@ -1669,10 +1743,21 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+
+        // Apply the current value to the slider to make sure it is showing the actual setting value
+        if (pressed)
+        {
+            threadCountSlider.Value = Settings.Instance.ThreadCount.Value;
+        }
     }
 
     private void OnManualThreadCountChanged(float value)
     {
+        // Ignore setting these things when we are using automatic thread count to prevent unnecessarily settings
+        // being detected as changed
+        if (!Settings.Instance.UseManualThreadCount.Value)
+            return;
+
         int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
         Settings.Instance.ThreadCount.Value = threads;
         Settings.Instance.ApplyThreadSettings();
@@ -1785,6 +1870,69 @@ public class OptionsMenu : ControlWithInput
     private void OnInvertedControllerVerticalToggled(bool pressed)
     {
         Settings.Instance.InvertVerticalControllerLook.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private int Movement2DToIndex(TwoDimensionalMovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case TwoDimensionalMovementMode.Automatic:
+            case TwoDimensionalMovementMode.PlayerRelative:
+            case TwoDimensionalMovementMode.ScreenRelative:
+                return (int)movementMode;
+            default:
+                GD.PrintErr("Invalid 2D movement type value");
+                return 0;
+        }
+    }
+
+    private TwoDimensionalMovementMode Movement2DIndexToType(int index)
+    {
+        if (index is >= 0 and <= (int)TwoDimensionalMovementMode.ScreenRelative)
+        {
+            return (TwoDimensionalMovementMode)index;
+        }
+
+        GD.PrintErr("Invalid movement 2D type index");
+        return TwoDimensionalMovementMode.Automatic;
+    }
+
+    private void OnMovement2DTypeSelected(int index)
+    {
+        Settings.Instance.TwoDimensionalMovement.Value = Movement2DIndexToType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private int Movement3DToIndex(ThreeDimensionalMovementMode movementMode)
+    {
+        switch (movementMode)
+        {
+            case ThreeDimensionalMovementMode.ScreenRelative:
+            case ThreeDimensionalMovementMode.WorldRelative:
+                return (int)movementMode;
+            default:
+                GD.PrintErr("Invalid 3D movement type value");
+                return 0;
+        }
+    }
+
+    private ThreeDimensionalMovementMode Movement3DIndexToMovementType(int index)
+    {
+        if (index is >= 0 and <= (int)ThreeDimensionalMovementMode.WorldRelative)
+        {
+            return (ThreeDimensionalMovementMode)index;
+        }
+
+        GD.PrintErr("Invalid 3D movement type index");
+        return ThreeDimensionalMovementMode.ScreenRelative;
+    }
+
+    private void OnMovement3DTypeSelected(int index)
+    {
+        Settings.Instance.ThreeDimensionalMovement.Value = Movement3DIndexToMovementType(index);
 
         UpdateResetSaveButtonState();
     }

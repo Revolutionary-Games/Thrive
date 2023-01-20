@@ -404,7 +404,8 @@ public class CustomRichTextLabel : RichTextLabel
                     registeredForInputChanges = true;
                 }
 
-                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input), 30, 0, 9);
+                // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0, 9);
 
                 break;
             }
