@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-19 15:13+0200\n"
+"POT-Creation-Date: 2023-01-20 14:34+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1248,7 +1248,7 @@ msgstr "A Revolutionary Games Studio-tól"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:531
 #: ../src/general/MainMenu.tscn:841 ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1903 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1904 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -2682,7 +2682,7 @@ msgstr "Alap"
 msgid "CONFIRM_NORMAL"
 msgstr "Elfogad"
 
-#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:353
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
@@ -2699,7 +2699,7 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Képesség sáv megjelenítése"
 
-#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:543
+#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:542
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -2747,261 +2747,261 @@ msgstr "Teljesítmény"
 msgid "INPUTS"
 msgstr "Bemenet"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:271
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:279
 msgid "FULLSCREEN"
 msgstr "Teljes képernyő"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Többszörös élsimítás:"
 
-#: ../src/general/OptionsMenu.tscn:311 ../src/general/OptionsMenu.tscn:1174
+#: ../src/general/OptionsMenu.tscn:310 ../src/general/OptionsMenu.tscn:1173
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(a nagyobb értékek ronthatják a teljesítményt)"
 
-#: ../src/general/OptionsMenu.tscn:326 ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:325 ../src/general/OptionsMenu.tscn:326
 msgid "DISABLED"
 msgstr "Kikapcsolva"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:341
+#: ../src/general/OptionsMenu.tscn:340
 msgid "RESOLUTION"
 msgstr "Felbontás:"
 
-#: ../src/general/OptionsMenu.tscn:365
+#: ../src/general/OptionsMenu.tscn:364
 msgid "MAX_FPS"
 msgstr "Maximum FPS:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:379
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Végtelen"
 
-#: ../src/general/OptionsMenu.tscn:396
+#: ../src/general/OptionsMenu.tscn:395
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Színvakság javító:"
 
-#: ../src/general/OptionsMenu.tscn:412 ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:411 ../src/general/OptionsMenu.tscn:412
 msgid "NONE"
 msgstr "Semmi"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:412
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanóp (Piros-Zöld)"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:412
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanóp (Kék-Citrom)"
 
-#: ../src/general/OptionsMenu.tscn:434
+#: ../src/general/OptionsMenu.tscn:433
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatikus aberráció:"
 
-#: ../src/general/OptionsMenu.tscn:463
+#: ../src/general/OptionsMenu.tscn:462
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Háttérrészecskék megjelenítése"
 
-#: ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.tscn:472
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:503
+#: ../src/general/OptionsMenu.tscn:502
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:529
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:574
+#: ../src/general/OptionsMenu.tscn:573
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:592
-#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1469
+#: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:591
+#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1470
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:605
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Képesség sáv megjelenítése"
 
-#: ../src/general/OptionsMenu.tscn:614
+#: ../src/general/OptionsMenu.tscn:613
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI fényeffektjeinek engedélyezése"
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:622
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Képesség sáv megjelenítése"
 
-#: ../src/general/OptionsMenu.tscn:649
+#: ../src/general/OptionsMenu.tscn:648
 msgid "MASTER_VOLUME"
 msgstr "Fő hangerő"
 
-#: ../src/general/OptionsMenu.tscn:678 ../src/general/OptionsMenu.tscn:729
-#: ../src/general/OptionsMenu.tscn:764 ../src/general/OptionsMenu.tscn:799
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:677 ../src/general/OptionsMenu.tscn:728
+#: ../src/general/OptionsMenu.tscn:763 ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:833
 msgid "MUTE"
 msgstr "Némítás"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:699
 msgid "MUSIC_VOLUME"
 msgstr "Zene hangereje"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:734
 msgid "AMBIANCE_VOLUME"
 msgstr "Környezeti hangerő"
 
-#: ../src/general/OptionsMenu.tscn:770
+#: ../src/general/OptionsMenu.tscn:769
 msgid "SFX_VOLUME"
 msgstr "SFX hangerő"
 
-#: ../src/general/OptionsMenu.tscn:805
+#: ../src/general/OptionsMenu.tscn:804
 msgid "GUI_VOLUME"
 msgstr "GUI hangerő"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:851
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio eszköz:"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:880
 msgid "LANGUAGE"
 msgstr "Nyelv:"
 
-#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:1914
+#: ../src/general/OptionsMenu.tscn:898 ../src/general/OptionsMenu.tscn:1915
 msgid "RESET"
 msgstr "Visszaállít"
 
-#: ../src/general/OptionsMenu.tscn:918
+#: ../src/general/OptionsMenu.tscn:917
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Segíts a játék fordításában"
 
-#: ../src/general/OptionsMenu.tscn:944
+#: ../src/general/OptionsMenu.tscn:943
 msgid "COMPOUND_CLOUDS"
 msgstr "Vegyületfelhők"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:958
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Felhőszimuláció minimum intervalluma:"
 
-#: ../src/general/OptionsMenu.tscn:966 ../src/general/OptionsMenu.tscn:1016
+#: ../src/general/OptionsMenu.tscn:965 ../src/general/OptionsMenu.tscn:1015
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
 
-#: ../src/general/OptionsMenu.tscn:1009
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Felhő felbontásának osztója:"
 
-#: ../src/general/OptionsMenu.tscn:1051
+#: ../src/general/OptionsMenu.tscn:1050
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-evo futtatása játék alatt"
 
-#: ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "DETECTED_CPU_COUNT"
 msgstr "Észlelt processzorszám:"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Észlelhető szálak:"
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "ASSUME_HYPERTHREADING"
 msgstr "A CPU hyperthread engedélyezésének feltételezése"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "A háttérben futó szálak számának manuális beállítása"
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1119
 msgid "THREADS"
 msgstr "Szálak:"
 
-#: ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1166
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Entitások maximális száma:"
 
-#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1189 ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_VERY_SMALL"
 msgstr "Elég kicsi"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_SMALL"
 msgstr "Kicsi"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "Elfogad"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_LARGE"
 msgstr "Nagy"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_VERY_LARGE"
 msgstr "Nagyon nagy"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Extrém"
@@ -3010,21 +3010,21 @@ msgstr "Extrém"
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1382
+#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1383
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1394
+#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1395
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Verzió:"
 
 #: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
-#: ../src/general/OptionsMenu.tscn:1407 ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1408 ../src/general/OptionsMenu.tscn:1431
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1414
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Verzió:"
@@ -3033,220 +3033,220 @@ msgstr "Verzió:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1338 ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1339
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Jelző szövet"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1352
+#: ../src/general/OptionsMenu.tscn:1353
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1370
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1441
+#: ../src/general/OptionsMenu.tscn:1442
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1451
+#: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1469
+#: ../src/general/OptionsMenu.tscn:1470
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "A játékos faja kihalt"
 
-#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1502
-#: ../src/general/OptionsMenu.tscn:1503
+#: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
+#: ../src/general/OptionsMenu.tscn:1504
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1483
+#: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1503
+#: ../src/general/OptionsMenu.tscn:1504
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Alap mozgás"
 
-#: ../src/general/OptionsMenu.tscn:1552
+#: ../src/general/OptionsMenu.tscn:1553
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Bemeneti eszközök visszaállítása"
 
-#: ../src/general/OptionsMenu.tscn:1593
+#: ../src/general/OptionsMenu.tscn:1594
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intró videó lejátszása"
 
-#: ../src/general/OptionsMenu.tscn:1601
+#: ../src/general/OptionsMenu.tscn:1602
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Új játék esetén az intró lejátszása"
 
-#: ../src/general/OptionsMenu.tscn:1617
+#: ../src/general/OptionsMenu.tscn:1618
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automata mentés a játék során"
 
-#: ../src/general/OptionsMenu.tscn:1628
+#: ../src/general/OptionsMenu.tscn:1629
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Megtartható automentések mennyisége:"
 
-#: ../src/general/OptionsMenu.tscn:1656
+#: ../src/general/OptionsMenu.tscn:1657
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Megtartható gyorsmentések mennyisége:"
 
-#: ../src/general/OptionsMenu.tscn:1683
+#: ../src/general/OptionsMenu.tscn:1684
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutoriálok mutatása (új játék esetén)"
 
-#: ../src/general/OptionsMenu.tscn:1691
+#: ../src/general/OptionsMenu.tscn:1692
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutoriálok mutatása (jelenlegi játékban)"
 
-#: ../src/general/OptionsMenu.tscn:1698
+#: ../src/general/OptionsMenu.tscn:1699
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "\"Mentetlen játék\" figyelmeztetés mutatása"
 
-#: ../src/general/OptionsMenu.tscn:1710
+#: ../src/general/OptionsMenu.tscn:1711
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Csalások engedélyezve"
 
-#: ../src/general/OptionsMenu.tscn:1718
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Adj meg egy saját felhasználónevet"
 
-#: ../src/general/OptionsMenu.tscn:1729
+#: ../src/general/OptionsMenu.tscn:1730
 msgid "CUSTOM_USERNAME"
 msgstr "Saját felhasználónév:"
 
-#: ../src/general/OptionsMenu.tscn:1756
+#: ../src/general/OptionsMenu.tscn:1757
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Képernyőkép mappa megnyitása"
 
-#: ../src/general/OptionsMenu.tscn:1764
+#: ../src/general/OptionsMenu.tscn:1765
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Feljegyzés mappa megnyitása"
 
-#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1777 ../src/general/OptionsMenu.tscn:1786
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
 "A reszponzív sejtek hamar új célpontokat keresnek."
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1779
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Sebesség:"
 
-#: ../src/general/OptionsMenu.tscn:1800
+#: ../src/general/OptionsMenu.tscn:1801
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1810
+#: ../src/general/OptionsMenu.tscn:1811
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mód:"
 
-#: ../src/general/OptionsMenu.tscn:1825 ../src/general/OptionsMenu.tscn:1826
+#: ../src/general/OptionsMenu.tscn:1826 ../src/general/OptionsMenu.tscn:1827
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatikusan"
 
-#: ../src/general/OptionsMenu.tscn:1826
+#: ../src/general/OptionsMenu.tscn:1827
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Mindig"
 
-#: ../src/general/OptionsMenu.tscn:1826
+#: ../src/general/OptionsMenu.tscn:1827
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Soha"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1843
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Öngyilkosság"
 
-#: ../src/general/OptionsMenu.tscn:1844
+#: ../src/general/OptionsMenu.tscn:1845
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verzió:"
 
-#: ../src/general/OptionsMenu.tscn:1872
+#: ../src/general/OptionsMenu.tscn:1873
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Vegyületek:"
 
-#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1929 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Mentés"
 
-#: ../src/general/OptionsMenu.tscn:1954
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Alapok"
 
-#: ../src/general/OptionsMenu.tscn:1965
+#: ../src/general/OptionsMenu.tscn:1966
 msgid "RESET_TO_DEFAULTS"
 msgstr "Visszaállítja-e az alap dolgokat?"
 
-#: ../src/general/OptionsMenu.tscn:1966
+#: ../src/general/OptionsMenu.tscn:1967
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Biztos MINDEN beállítást vissza akarsz állítani alap értékekre?"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1975
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 
-#: ../src/general/OptionsMenu.tscn:1975
+#: ../src/general/OptionsMenu.tscn:1976
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Biztos vissza akarod állítani a bemeneti beállításokat az alapokra?"
 
-#: ../src/general/OptionsMenu.tscn:1984
+#: ../src/general/OptionsMenu.tscn:1985
 msgid "CLOSE_OPTIONS"
 msgstr "Bezárod a beállítás panelt?"
 
-#: ../src/general/OptionsMenu.tscn:2004
+#: ../src/general/OptionsMenu.tscn:2005
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Mentetlen változtatásaid vannak, melyek el fognak veszni.\n"
 "Biztos, hogy folytatod?"
 
-#: ../src/general/OptionsMenu.tscn:2027
+#: ../src/general/OptionsMenu.tscn:2028
 msgid "SAVE_AND_CONTINUE"
 msgstr "Mentés és folytatás"
 
-#: ../src/general/OptionsMenu.tscn:2037
+#: ../src/general/OptionsMenu.tscn:2038
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Elvet és folytatás"
 
-#: ../src/general/OptionsMenu.tscn:2054
+#: ../src/general/OptionsMenu.tscn:2055
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
 msgid "CANCEL"
 msgstr "Mégse"
 
-#: ../src/general/OptionsMenu.tscn:2065 ../src/general/OptionsMenu.tscn:2073
+#: ../src/general/OptionsMenu.tscn:2066 ../src/general/OptionsMenu.tscn:2074
 msgid "ERROR"
 msgstr "Hiba"
 
-#: ../src/general/OptionsMenu.tscn:2075
+#: ../src/general/OptionsMenu.tscn:2076
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hiba: A beállításokat nem sikerült menteni."
 
-#: ../src/general/OptionsMenu.tscn:2083
+#: ../src/general/OptionsMenu.tscn:2084
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "A képernyőképmappa nem található"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Próbálj pár képernyőképet készíteni!"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-19 15:13+0200\n"
+"POT-Creation-Date: 2023-01-20 14:34+0200\n"
 "PO-Revision-Date: 2022-12-11 22:00+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1303,7 +1303,7 @@ msgstr "Tehnyt Revolutionary Games Studio"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:429 ../src/general/MainMenu.tscn:531
 #: ../src/general/MainMenu.tscn:841 ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1903 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1904 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -2783,7 +2783,7 @@ msgstr ""
 msgid "CONFIRM_NORMAL"
 msgstr "VAHVISTA"
 
-#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:353
 msgid "AUTO_RESOLUTION"
 msgstr "Automaattinen ({0}x{1})"
 
@@ -2800,7 +2800,7 @@ msgstr "GLES3"
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:543
+#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:542
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -2848,257 +2848,257 @@ msgstr "Suorituskyky"
 msgid "INPUTS"
 msgstr "Syötteet"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:271
 msgid "VSYNC"
 msgstr "Pystysynkronointi"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:279
 msgid "FULLSCREEN"
 msgstr "Koko näyttö"
 
-#: ../src/general/OptionsMenu.tscn:304
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Monen näytteen reunanpehmennys:"
 
-#: ../src/general/OptionsMenu.tscn:311 ../src/general/OptionsMenu.tscn:1174
+#: ../src/general/OptionsMenu.tscn:310 ../src/general/OptionsMenu.tscn:1173
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:326 ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:325 ../src/general/OptionsMenu.tscn:326
 msgid "DISABLED"
 msgstr "Ei käytössä"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:326
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:341
+#: ../src/general/OptionsMenu.tscn:340
 msgid "RESOLUTION"
 msgstr "Tarkkuus:"
 
-#: ../src/general/OptionsMenu.tscn:365
+#: ../src/general/OptionsMenu.tscn:364
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:379
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Rajoittamaton"
 
-#: ../src/general/OptionsMenu.tscn:396
+#: ../src/general/OptionsMenu.tscn:395
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Värisokeuden korjaus:"
 
-#: ../src/general/OptionsMenu.tscn:412 ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:411 ../src/general/OptionsMenu.tscn:412
 msgid "NONE"
 msgstr "Ei mitään"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:412
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (punavihersokeus)"
 
-#: ../src/general/OptionsMenu.tscn:413
+#: ../src/general/OptionsMenu.tscn:412
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (sininen-keltainen)"
 
-#: ../src/general/OptionsMenu.tscn:434
+#: ../src/general/OptionsMenu.tscn:433
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
-#: ../src/general/OptionsMenu.tscn:463
+#: ../src/general/OptionsMenu.tscn:462
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Näytä taustahiukkasia"
 
-#: ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.tscn:472
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:503
+#: ../src/general/OptionsMenu.tscn:502
 msgid "USED_RENDERER_NAME"
 msgstr "Käytetty renderöijä:"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:529
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI"
 msgstr "Käyttöliittymä"
 
-#: ../src/general/OptionsMenu.tscn:574
+#: ../src/general/OptionsMenu.tscn:573
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:591 ../src/general/OptionsMenu.tscn:592
-#: ../src/general/OptionsMenu.tscn:1468 ../src/general/OptionsMenu.tscn:1469
+#: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:591
+#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1470
 msgid "AUTO"
 msgstr "automaattinen"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:605
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.tscn:614
+#: ../src/general/OptionsMenu.tscn:613
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Käytä käyttöliittymän valoefektejä"
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:622
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Näytä kykypalkki"
 
-#: ../src/general/OptionsMenu.tscn:649
+#: ../src/general/OptionsMenu.tscn:648
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
-#: ../src/general/OptionsMenu.tscn:678 ../src/general/OptionsMenu.tscn:729
-#: ../src/general/OptionsMenu.tscn:764 ../src/general/OptionsMenu.tscn:799
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:677 ../src/general/OptionsMenu.tscn:728
+#: ../src/general/OptionsMenu.tscn:763 ../src/general/OptionsMenu.tscn:798
+#: ../src/general/OptionsMenu.tscn:833
 msgid "MUTE"
 msgstr "Mykistä"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:699
 msgid "MUSIC_VOLUME"
 msgstr "Musiikin voimakkuus"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:734
 msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
 
-#: ../src/general/OptionsMenu.tscn:770
+#: ../src/general/OptionsMenu.tscn:769
 msgid "SFX_VOLUME"
 msgstr "Efektien voimakkuus"
 
-#: ../src/general/OptionsMenu.tscn:805
+#: ../src/general/OptionsMenu.tscn:804
 msgid "GUI_VOLUME"
 msgstr "Käyttöliittymä"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:851
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Äänen ulostulolaite:"
 
-#: ../src/general/OptionsMenu.tscn:881
+#: ../src/general/OptionsMenu.tscn:880
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:1914
+#: ../src/general/OptionsMenu.tscn:898 ../src/general/OptionsMenu.tscn:1915
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
-#: ../src/general/OptionsMenu.tscn:918
+#: ../src/general/OptionsMenu.tscn:917
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Auta pelin kääntämisessä"
 
-#: ../src/general/OptionsMenu.tscn:944
+#: ../src/general/OptionsMenu.tscn:943
 msgid "COMPOUND_CLOUDS"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/OptionsMenu.tscn:959
+#: ../src/general/OptionsMenu.tscn:958
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Pienin pilvien päivitys aikajakso:"
 
-#: ../src/general/OptionsMenu.tscn:966 ../src/general/OptionsMenu.tscn:1016
+#: ../src/general/OptionsMenu.tscn:965 ../src/general/OptionsMenu.tscn:1015
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(suuremmat arvot lisäävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:1009
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pilvien resoluutioiden jakaja:"
 
-#: ../src/general/OptionsMenu.tscn:1051
+#: ../src/general/OptionsMenu.tscn:1050
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Suorita auto-evo pelin aikana"
 
-#: ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:1070
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tunnistettu prosessoriytimien määrä:"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Nykyinen suorittajien määrä:"
 
-#: ../src/general/OptionsMenu.tscn:1102
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Oleta, että prosessorissa on hyperthreading käytössä"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 
-#: ../src/general/OptionsMenu.tscn:1120
+#: ../src/general/OptionsMenu.tscn:1119
 msgid "THREADS"
 msgstr "Taustasuorittajia:"
 
-#: ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1166
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1189 ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_TINY"
 msgstr "Hyvin pieni"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_VERY_SMALL"
 msgstr "Erittäin pieni"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_SMALL"
 msgstr "Pieni"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "VAHVISTA"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_LARGE"
 msgstr "Suuri"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_VERY_LARGE"
 msgstr "Erittäin suuri"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_HUGE"
 msgstr "Valtava"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1190
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Ekstrat"
@@ -3107,21 +3107,21 @@ msgstr "Ekstrat"
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1382
+#: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1383
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1394
+#: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1395
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Sukupolvi:"
 
 #: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
-#: ../src/general/OptionsMenu.tscn:1407 ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1408 ../src/general/OptionsMenu.tscn:1431
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1414
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Sukupolvi:"
@@ -3130,115 +3130,115 @@ msgstr "Sukupolvi:"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1337 ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1338 ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1339
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Viestintäkeskus"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1352
+#: ../src/general/OptionsMenu.tscn:1353
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1369
+#: ../src/general/OptionsMenu.tscn:1370
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1441
+#: ../src/general/OptionsMenu.tscn:1442
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1451
+#: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1469
+#: ../src/general/OptionsMenu.tscn:1470
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "pelaaja kuoli"
 
-#: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1502
-#: ../src/general/OptionsMenu.tscn:1503
+#: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
+#: ../src/general/OptionsMenu.tscn:1504
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Lisätäksesi nopeutta"
 
-#: ../src/general/OptionsMenu.tscn:1483
+#: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1503
+#: ../src/general/OptionsMenu.tscn:1504
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Lisätäksesi nopeutta"
 
-#: ../src/general/OptionsMenu.tscn:1552
+#: ../src/general/OptionsMenu.tscn:1553
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
-#: ../src/general/OptionsMenu.tscn:1593
+#: ../src/general/OptionsMenu.tscn:1594
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Näytä introvideo"
 
-#: ../src/general/OptionsMenu.tscn:1601
+#: ../src/general/OptionsMenu.tscn:1602
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Näytä mikrobi-intro aloitettaessa uusi peli"
 
-#: ../src/general/OptionsMenu.tscn:1617
+#: ../src/general/OptionsMenu.tscn:1618
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Tallenna automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1628
+#: ../src/general/OptionsMenu.tscn:1629
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Paikat automaattitallenuksille:"
 
-#: ../src/general/OptionsMenu.tscn:1656
+#: ../src/general/OptionsMenu.tscn:1657
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Paikat nopeille tallennuksille:"
 
-#: ../src/general/OptionsMenu.tscn:1683
+#: ../src/general/OptionsMenu.tscn:1684
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näytä tutoriaalit (uusissa peleissä)"
 
-#: ../src/general/OptionsMenu.tscn:1691
+#: ../src/general/OptionsMenu.tscn:1692
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
-#: ../src/general/OptionsMenu.tscn:1698
+#: ../src/general/OptionsMenu.tscn:1699
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Näytä varoitus tallentamattomista muutoksista"
 
-#: ../src/general/OptionsMenu.tscn:1710
+#: ../src/general/OptionsMenu.tscn:1711
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Huijauskoodit aktiivisia"
 
-#: ../src/general/OptionsMenu.tscn:1718
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
 
-#: ../src/general/OptionsMenu.tscn:1729
+#: ../src/general/OptionsMenu.tscn:1730
 msgid "CUSTOM_USERNAME"
 msgstr "Valittu käyttäjänimi:"
 
-#: ../src/general/OptionsMenu.tscn:1756
+#: ../src/general/OptionsMenu.tscn:1757
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Avaa Näyttökuva kansio"
 
-#: ../src/general/OptionsMenu.tscn:1764
+#: ../src/general/OptionsMenu.tscn:1765
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1777 ../src/general/OptionsMenu.tscn:1786
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -3246,109 +3246,109 @@ msgstr ""
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
 "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1779
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Nopeus:"
 
-#: ../src/general/OptionsMenu.tscn:1800
+#: ../src/general/OptionsMenu.tscn:1801
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1810
+#: ../src/general/OptionsMenu.tscn:1811
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON-virheenkäsittelymoodi:"
 
-#: ../src/general/OptionsMenu.tscn:1825 ../src/general/OptionsMenu.tscn:1826
+#: ../src/general/OptionsMenu.tscn:1826 ../src/general/OptionsMenu.tscn:1827
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:1826
+#: ../src/general/OptionsMenu.tscn:1827
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Aina"
 
-#: ../src/general/OptionsMenu.tscn:1826
+#: ../src/general/OptionsMenu.tscn:1827
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Ei koskaan"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1843
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/general/OptionsMenu.tscn:1844
+#: ../src/general/OptionsMenu.tscn:1845
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/general/OptionsMenu.tscn:1872
+#: ../src/general/OptionsMenu.tscn:1873
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Yhdisteet:"
 
-#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1929 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:1954
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:1965
+#: ../src/general/OptionsMenu.tscn:1966
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1966
+#: ../src/general/OptionsMenu.tscn:1967
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1975
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1975
+#: ../src/general/OptionsMenu.tscn:1976
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1984
+#: ../src/general/OptionsMenu.tscn:1985
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
-#: ../src/general/OptionsMenu.tscn:2004
+#: ../src/general/OptionsMenu.tscn:2005
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/general/OptionsMenu.tscn:2027
+#: ../src/general/OptionsMenu.tscn:2028
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:2037
+#: ../src/general/OptionsMenu.tscn:2038
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:2054
+#: ../src/general/OptionsMenu.tscn:2055
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:58
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:207
 msgid "CANCEL"
 msgstr "Peruuta"
 
-#: ../src/general/OptionsMenu.tscn:2065 ../src/general/OptionsMenu.tscn:2073
+#: ../src/general/OptionsMenu.tscn:2066 ../src/general/OptionsMenu.tscn:2074
 msgid "ERROR"
 msgstr "Virhe"
 
-#: ../src/general/OptionsMenu.tscn:2075
+#: ../src/general/OptionsMenu.tscn:2076
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
-#: ../src/general/OptionsMenu.tscn:2083
+#: ../src/general/OptionsMenu.tscn:2084
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Avaa Näyttökuva kansio"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2086
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
