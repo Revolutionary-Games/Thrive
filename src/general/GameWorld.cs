@@ -62,8 +62,11 @@ public class GameWorld : ISaveLoadable
         }
         else
         {
-            startingSpecies.BecomePlayerSpecies();
+            // Species generation are forced to be 1 (the default value) in case it is different
+            // when in a fossilisation file.
             startingSpecies.Generation = 1;
+
+            startingSpecies.BecomePlayerSpecies();
             startingSpecies.OnEdited();
 
             // Need to update the species ID in case it was different in a previous game
