@@ -21,6 +21,9 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
         var before = HeldDown;
         if (base.OnInput(@event) && !before && HeldDown)
         {
+            if (TrackInputMethod)
+                return CallMethod(LastUsedInputMethod);
+
             return CallMethod();
         }
 

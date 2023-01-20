@@ -1108,6 +1108,8 @@ public static class Constants
     public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
 
+    public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
+
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
     /// <summary>

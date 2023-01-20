@@ -7,21 +7,17 @@
 [node name="InputEventItem" type="MarginContainer"]
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-ButtonPath = NodePath("HBoxContainer/Button")
+ButtonPath = NodePath("HBoxContainer/RebindButton")
 XButtonPath = NodePath("HBoxContainer/XButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 98.0
-margin_bottom = 32.0
+margin_right = 97.0
+margin_bottom = 35.0
 custom_constants/separation = 0
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="RebindButton" type="Button" parent="HBoxContainer"]
 margin_right = 77.0
-margin_bottom = 32.0
-focus_mode = 0
+margin_bottom = 35.0
 custom_fonts/font = ExtResource( 3 )
 text = "Control+A"
 __meta__ = {
@@ -30,8 +26,9 @@ __meta__ = {
 
 [node name="XButton" type="Button" parent="HBoxContainer"]
 margin_left = 77.0
-margin_right = 98.0
-margin_bottom = 32.0
+margin_right = 97.0
+margin_bottom = 35.0
+focus_mode = 0
 custom_colors/font_color = Color( 0.784314, 0, 0, 1 )
 action_mode = 0
 text = "x"
