@@ -78,6 +78,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "ChartName",
         "ConfirmText",
         "Description",
+        "DescriptionForController",
         "DialogText",
         "DisplayName",
         "ErrorMessage",

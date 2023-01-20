@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-20 14:34+0200\n"
+"POT-Creation-Date: 2023-01-20 14:36+0200\n"
 "PO-Revision-Date: 2023-01-03 21:00+0000\n"
 "Last-Translator: RotzRoffl <raphaelkobler41@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -3766,8 +3766,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Anleitung"
 
@@ -4564,7 +4564,7 @@ msgstr "{0} {1}"
 msgid "PAUSED"
 msgstr "PAUSIERT"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:154
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:161
 msgid "UNBIND_HELP_TEXT"
 msgstr "Entbindungsmodus"
 
@@ -6172,14 +6172,22 @@ msgstr "Einführung anzeigen"
 msgid "BEGIN_THRIVING"
 msgstr "Gedeihe"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle (Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern.\n"
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
+#, fuzzy
+msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
+msgstr ""
+"Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle (Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern.\n"
+"\n"
+"Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
@@ -6188,7 +6196,7 @@ msgstr ""
 "\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
@@ -6196,14 +6204,14 @@ msgstr ""
 "Du regenerierst Gesundheit, solange du ATP hast.\n"
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich mittels Mitose zu vermehren, müssen sich zunächst alle deiner Organellen verdoppeln, indem Du genügend [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] sammelst.\n"
 "\n"
 "Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen noch für eine Zellteilung benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett gefüllt sind."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen kann.\n"
@@ -6212,32 +6220,32 @@ msgstr ""
 "\n"
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:263
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren linken Ecke klickst.\n"
 "\n"
 "Ein weiterer Tipp: Du kannst mit dem Mausrad herein- und herauszoomen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Deine Zelle kann nur eine begrenzte Menge an Objekten auf einmal verschlingen. Die Grenze hängt von der Größe der Zelle ab, kleinere Zellen haben weniger Kapazität. \n"
 "\n"
 "Eine volle Zelle kann nichts mehr verschlingen. Warte bis einige verschlungene Objekte verdaut sind."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Verschlinge Objekte indem du dich im Verschling-Modus über sie bewegst. Schalte Verschlingen an oder aus indem du [thrive:input]g_toggle_engulf[/thrive:input] drückst. \n"
@@ -6246,7 +6254,7 @@ msgstr ""
 "\n"
 "Folge der Linie zum nächsten verschlingbaren Objekt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Deine Zelle wurde von einer Anderen Zelle umschlungen, welche dich jetzt verdaut.\n"
@@ -6256,7 +6264,7 @@ msgstr ""
 "\n"
 "Drücke den Apoptose (Suizid) Knopf um den Verdauungsprozess zu überspringen und schneller reinkarniert zu werden. Bedenke aber, dass immer eine Chance besteht zu entkommen!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Du bist voll mit [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound]. Da du dich aber in einer nicht-multizellulären Kolonie befindest, machst du keinen Reproduktions Fortschritt. \n"
@@ -6264,7 +6272,7 @@ msgstr ""
 "Wenn du nicht planst multizellulär zu werden, musst du die Kolonie verlassen um dich fortzupflanzen und zum Editor zu gelangen. \n"
 "Verlasse die Kolonie und wachse weiter, indem du [thrive:input]g_unbind_all[/thrive:input] drückst."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:357
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Willkommen im frühen multizellulären Stadium!\n"
@@ -6277,7 +6285,7 @@ msgstr ""
 "\n"
 "Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:391
 msgid "CONTINUE_THRIVING"
 msgstr "Gedeihe"
 

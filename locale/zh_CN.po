@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-20 14:34+0200\n"
+"POT-Creation-Date: 2023-01-20 14:36+0200\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -3777,8 +3777,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:354
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "教程"
 
@@ -4571,7 +4571,7 @@ msgstr "{0}{1}"
 msgid "PAUSED"
 msgstr "暂停中"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:154
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:161
 msgid "UNBIND_HELP_TEXT"
 msgstr "解连接模式"
 
@@ -6177,14 +6177,22 @@ msgstr "显示教程"
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
 "尝试所有按键几秒钟以继续。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:191
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
+#, fuzzy
+msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
+msgstr ""
+"使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
+"\n"
+"尝试所有按键几秒钟以继续。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
@@ -6193,7 +6201,7 @@ msgstr ""
 "\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -6201,14 +6209,14 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:214
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你存活的足够久以将所有细胞器都复制一份。收集氨和磷酸盐可以加快繁殖速度。\n"
 "\n"
 "右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "你已经存活的足够久以让你的细胞分裂了。\n"
@@ -6217,7 +6225,7 @@ msgstr ""
 "\n"
 "按右下角闪烁的编辑器按钮以进入编辑器。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6225,25 +6233,25 @@ msgstr ""
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按下“[thrive:input]解除所有连接[/thrive:input]”键。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:263
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "遇到困难？请查看帮助菜单。你可以用左下角的问号按钮打开它。\n"
 "\n"
 "还有一个提示：你可以用滚轮放大你的视野。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:295
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:306
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "你的细胞对一次可吞噬的物体的能力是有限的。这个限制基于大小；较小的细胞的容量较小。\n"
 "\n"
 "当充满时，细胞不能吞噬更多的东西。要继续吞噬，要等到一个或多个摄入的物体被完全消化。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:317
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "在吞噬模式下，通过在物体上移动来吞噬它们。按[thrive:input]g_toggle_engulf[/thrive:input]来切换吞噬模式。\n"
@@ -6252,14 +6260,14 @@ msgstr ""
 "\n"
 "沿着你的细胞上出现的路线前往附近的可吞噬物体。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:329
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "你的细胞已经被吞噬，正在被消化。进度显示在你的健康栏上。一旦完成或达到最大的时间限制，你的细胞就会死亡。\n"
 "\n"
 "你可以使用自杀按钮跳过并重生，但请记住，你总是有机会逃脱的！"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "你已经收集了足够多的 [thrive:compound type=\"ammonia\"][/thrive:compound] 和 [thrive:compound type=\"phosphates\"][/thrive:compound]. 然而，由于你现在所在的细胞群落并非是一个多细胞生物，你现在无法进行繁殖。\n"
@@ -6267,7 +6275,7 @@ msgstr ""
 "你需要离开这个细胞群落才能繁殖并进入细胞编辑器，除非你决定成为多细胞生物。\n"
 "按下 [thrive:input]g_unbind_all[/thrive:input] 以离开这个细胞群落从而继续繁殖。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:357
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "欢迎来到早期多细胞生物阶段!\n"
@@ -6280,7 +6288,7 @@ msgstr ""
 "\n"
 "如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:391
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
 
