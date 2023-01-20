@@ -46,11 +46,14 @@ public class PlayerMicrobeInput : NodeWithInput
             autoMove = false;
         }
 
-        if (stage.Player != null)
+        var player = stage.Player;
+        if (player != null)
         {
-            if (stage.Player.State == Microbe.MicrobeState.Unbinding)
+            if (player.State == Microbe.MicrobeState.Unbinding)
             {
-                stage.Player.MovementDirection = Vector3.Zero;
+                // It's probably fine to not update the tutorial state here with events as this state doesn't last
+                // that long and the player needs a pretty long time to get so far in the game as to get here
+                player.MovementDirection = Vector3.Zero;
                 return;
             }
 
@@ -68,29 +71,33 @@ public class PlayerMicrobeInput : NodeWithInput
             if (inputMethod == ActiveInputMethod.Controller)
             {
                 // TODO: look direction for controller input  https://github.com/Revolutionary-Games/Thrive/issues/4034
-                stage.Player.LookAtPoint = stage.Player.GlobalTranslation + new Vector3(0, 0, -10);
+                player.LookAtPoint = player.GlobalTranslation + new Vector3(0, 0, -10);
             }
             else
             {
-                stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
+                player.LookAtPoint = stage.Camera.CursorWorldPos;
             }
 
             // Rotate the inputs when we want to use screen relative movement to make it happen
             if (screenRelative)
             {
                 // Rotate the opposite of the player orientation to get back to screen
-                movement = stage.Player.GlobalTransform.basis.Quat().Inverse().Xform(movement);
+                movement = player.GlobalTransform.basis.Quat().Inverse().Xform(movement);
             }
 
             if (autoMove)
             {
-                stage.Player.MovementDirection = new Vector3(0, 0, -1);
+                player.MovementDirection = new Vector3(0, 0, -1);
             }
             else
             {
                 // We only normalize when the length is over to make moving slowly with a controller work
-                stage.Player.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
+                player.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
             }
+
+            stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
+                new MicrobeMovementEventArgs(screenRelative, player.MovementDirection,
+                    player.LookAtPoint - player.GlobalTranslation), this);
         }
     }
 
