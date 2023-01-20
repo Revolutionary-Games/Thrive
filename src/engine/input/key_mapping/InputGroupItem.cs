@@ -20,6 +20,8 @@ public class InputGroupItem : VBoxContainer
     private VBoxContainer inputActionsContainer = null!;
     private string groupName = "error";
 
+    private FocusFlowDynamicChildrenHelper focusHelper = null!;
+
     /// <summary>
     ///   The display name for the group
     /// </summary>
@@ -75,6 +77,31 @@ public class InputGroupItem : VBoxContainer
         foreach (var action in Actions)
         {
             inputActionsContainer.AddChild(action);
+        }
+
+        focusHelper = new FocusFlowDynamicChildrenHelper(this,
+            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.None,
+            FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
+    }
+
+    public InputActionItem GetLastInputInGroup()
+    {
+        return Actions.Last();
+    }
+
+    /// <summary>
+    ///   Called when the parent has tweaked navigation layout and this object should tweak its children's layouts
+    /// </summary>
+    public void NotifyFocusAdjusted()
+    {
+        focusHelper.ReReadOwnerNeighbours();
+        focusHelper.ApplyNavigationFlow(Actions, Actions.SelectFirstFocusableChild());
+
+        // focusHelper.ApplyNavigationFlow(Actions.SelectFirstFocusableChild());
+
+        foreach (var action in Actions)
+        {
+            action.NotifyFocusAdjusted();
         }
     }
 
