@@ -14,6 +14,11 @@ public enum TutorialEventType
     MicrobePlayerOrientation,
 
     /// <summary>
+    ///   Player movement in the microbe stage, args is <see cref="MicrobeMovementEventArgs"/>
+    /// </summary>
+    MicrobePlayerMovement,
+
+    /// <summary>
     ///   There are tutorial relevant compounds near the player, args is <see cref="EntityPositionEventArgs"/>
     /// </summary>
     MicrobeCompoundsNearPlayer,

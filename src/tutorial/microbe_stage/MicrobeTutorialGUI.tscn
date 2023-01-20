@@ -128,8 +128,10 @@ anchor_bottom = 0.5
 margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
-margin_bottom = 61.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 260, 274 )
 Description = "MICROBE_STAGE_CONTROL_TEXT"
+DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false
@@ -363,7 +365,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EarlyMulticellularWelcome/ScrollContainer"]
 margin_right = 450.0
-margin_bottom = 400.0
+margin_bottom = 460.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
