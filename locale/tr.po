@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-20 13:56+0200\n"
+"POT-Creation-Date: 2023-01-20 14:36+0200\n"
 "PO-Revision-Date: 2023-01-03 21:00+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -88,7 +88,7 @@ msgstr "Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] kullanır, eğer ATP tükenirse hücren ölür."
+msgstr "Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] kullanır, eğer bu tükenirse hücren ölür."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
@@ -98,29 +98,29 @@ msgstr "Editörü açmak ve hücreni çoğaltmak için hücrenin yeterince uzun 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsin. Bu fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutma."
+msgstr "Ayrıca senden küçük hücreleri, bakterileri,demir parçalarını ve hücre parçalarını [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsin. Bu fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutma."
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Yutma tamamlandığında, yutulan herhangi bir nesne sindirilmek için hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı atılacak. Bu yüzden, ilk önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğundan emin ol. Enzimler sindirim konusunda yardımcı olur ve lizozom tarafından karşılanır. Sindirimi daha etkili hale getirmek için lizozom organelini evrimleştir."
+msgstr "Yutulma tamamlandığında, yutulan herhangi bir nesne sindirilmek üzere hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı atılır, bu yüzden önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğunuzdan emin olun. Enzimler sindirime yardımcı olur ve lizozom tarafından sağlanır; sindirimi çok daha verimli hale getirmek için bu organeli geliştirin."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Ancak, lizozomlar sadece ökaryotlara özgü bir organel. Öte yandan, prokaryotlar böyle bir organele sahip değil ve onlar besini daha verimsiz bir biçimde sindirir. Küçük hücreler için bu iyi, ancak daha büyük hücreler için, lizozomlara sahip olmamak çok dezavantajlıdır."
+msgstr "Ancak, lizozomlar yalnızca ökaryotlara özgü organellerdir. Öte yandan, prokaryotların bu tür organelleri yoktur ve besinlerini daha verimsiz bir şekilde sindirirler. Küçük hücreler için bu iyidir, ancak daha büyük hücreler için lizozomların olmaması çok dezavantajlıdır."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Özellikle selüloz ve kitin hücre duvarları, onları parçalayan gerekli enzimler olmadan sindirilemez."
+msgstr "Özellikle selüloz ve kitin hücre duvarları, onları parçalayabilen gerekli enzim olmadan sindirilemez."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur. Bu demek oluyor ki hücren ne kadar büyükse, hücren durgun haldeyken [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaybını önlemek için o kadar çok mitokondri, metabolozom ya da rustisiyanine (veya glikoliz yapan sitoplazmaya) ihtiyacın var."
+msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur, yani hücreniz ne kadar büyükse, durağan haldeyken[thrive:compound type=\"atp\"]ATP[/thrive:compound] kaybetmekten kaçınmak için o kadar çok mitokondriye, metabolozoma veya rustisyanine (veya glikoliz yapan sitoplazmaya) ihtiyacın var."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Editörde, evrimleşmeni sağlayan birçok organel bulunur. Böylece geniş kapsamda, farklı oynama şekillerine olanak var."
+msgstr "Düzenleyicide, çok çeşitli farklı oyun stillerine izin veren, geliştirmeniz için birçok organel vardır."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -138,12 +138,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound]; kemoplastlar ve kemosentez yapan proteinler aracılığıyla [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülür. [thrive:compound type=\"iron\"]Demir[/thrive:compound], rustisiyanin aracılığıyla [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülür."
+msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound]; kemoplastlar ve kemosentez yapan proteinler aracılığıyla [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülebilir. [thrive:compound type=\"iron\"]Demir[/thrive:compound], rustisiyanin aracılığıyla [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülebilir."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller, ikiye ayrılmak için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve zaman gerektirir."
+msgstr "Çoğalmak için her bir organelini ikiye bölmen gerekir. Organeller, ikiye ayrılmak için [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve zaman gerektirir."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -152,16 +152,16 @@ msgstr "Eğer popülasyonun sıfıra düşerse neslin tükenir."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut oyunu kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere çıkar, ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
+msgstr "Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut oyunu kazanmış sayılırsın. Kazandıktan sonra karşına bir pencere çıkar, sonrasında oyunu istediğin kadar oynamaya devam edebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre girdiğin her an onlar da evrimleşiyor."
+msgstr "Dikkatli olun çünkü rakipleriniz sizinle birlikte gelişiyor. Düzenleyiciye her girdiğinizde onlar da evrimleşir."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Bağlayıcı ajan, hücrenin ve aynı türden diğer hücrelerin, aldıkları bileşikleri paylaşan ve birbiri için üreten hücrelerin bulunduğu bir hücre kolonisi kurmasını sağlar. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna gir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin. Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur."
+msgstr "Bağlayıcı ajan, hücrenizin ve diğer türlerinin, hücrelerin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi oluşturmasına olanak tanır. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna gir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve düzenleyiciye giremezsin. Düzenleyiciye girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -228,28 +228,28 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi seçebilirsin. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile organellerini döndürebilirsin."
+msgstr "Her kuşakta, harcanacak 100 mutasyon puanınız (MP) vardır ve her değişiklik (veya mutasyon) o MP'nin belirli bir miktarına mal olur. Organel eklemek ve kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen organellerin kaldırılması, o organelin değeri kadar MP'yi iade eder. Bir organelin üzerine sağ tıklayarak ve açılır menüden uygun eylemi seçerek taşıyabilir veya tamamen kaldırabilirsiniz. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile organellerini döndürebilirsiniz."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Hücren her çoğaldığında, Mikrop Editörü'ne giriş yaparsın. Burada, türünün başarısını arttırmak için onda değişiklikler yapabilirsin (organelleri ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her ziyaret, Mikrop Evresi'nde [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
+msgstr "Her çoğaldığınızda, Mikrop Düzenleyicisi'ne giriş yaparsınız. Burada, türünüzün başarısını arttırmak için türünüzde (organelleri ekleyerek, taşıyarak veya kaldırarak) değişiklikler yapabilirsiniz. Mikrop Evresi'nde düzenleyiciye yapılan her ziyaret, [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
 
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
-msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
+msgstr "Bir hatayı düzeltmek için düzenleyicideki geri al butonuna basın"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa Didinyum mu? Av mı, avcı mı?"
+msgstr "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa Didinyum mu? Av mı yoksa avcı mı?"
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında, diğer toksinleri vurup uzaklaştırmak için kullanılabilir."
+msgstr "İşte sana bir ipucu, yeterince hızlı davranıldığında toksinler diğer toksinleri vurup uzaklaştırmak için kullanılabilir."
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybedersen, birkaç altıgenlik alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
+msgstr "İşte sana ipucu, Ozmoregülasyon hücrenizin sahip olduğu her bir altıgen alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP üretir. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybediyorsan, sadece birkaç altıgen alanı sitoplazmayla doldurmalı veya bazı organelleri kaldırmalısın."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -261,19 +261,19 @@ msgstr "İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandı
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "İşte sana ipucu. Bazen en iyisi yalnızca diğer hücrelerden kaçmak."
+msgstr "İşte sana ipucu, bazen en iyisi yalnızca diğer hücrelerden kaçmaktır."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "İşte sana ipucu. Eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu onu yutabileceğin anlamına gelir."
+msgstr "İşte sana ipucu, eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu onu yutabileceğin anlamına gelir."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük duruyor görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde öldürebilir!"
+msgstr "İşte sana ipucu, bakteriler göründüğünden daha güçlü olabilir; küçük görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde öldürebilir!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri avlayarak soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca başka türler de neden olabilir."
+msgstr "İşte sana ipucu, eğer yeterince dikkatli olmazsan, diğer türleri avlayarak soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca başka türler de neden olabilir."
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -281,7 +281,7 @@ msgstr "KIMILDAYAN ŞEYLER!!"
 
 #: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Metali eritalim."
+msgstr "Eritalim şu metali."
 
 #: ../simulation_parameters/common/help_texts.json:178
 msgid "EASTEREGG_MESSAGE_12"
@@ -289,23 +289,23 @@ msgstr "Ama şu mavi hücreler var ya."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı biyomlardaki bileşikler farklı oranlarda oluşur."
+msgstr "İşte sana ipucu, Biyomlar farklı arka planlardan daha fazlasıdır, farklı biyomlardaki bileşikler bazen farklı oranlarda ortaya çıkar."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "İşte sana ipucu. Ne kadar kamçıya sahipsen, o kadar hızlı gidersin, vınn vınnn, ama ayrıca daha fazla ATP'ye mal olur"
+msgstr "İşte sana ipucu, ne kadar kamçıya sahipsen, o kadar hızlı gidersin, vınn vınnn, ama ayrıca daha fazla ATP'ye mal olur"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "İşte sana ipucu. Demir veya başka parçalar yutabilirsin."
+msgstr "İşte sana ipucu, demir veya başka parçaları yutabilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür şeyler pahalı! Bakım ve ön ödeme ücretiyle."
+msgstr "İşte sana ipucu, çekirdeği eklemeden önce hazırlığını yap. Bu tür şeyler pahalı olur! Bakım ve ön ödeme ücretiyle."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "İlginç Gerçek: Dünya üzerinde 8000'in üzerinde silli türü olduğunu biliyor muydun?"
+msgstr "İlginç Gerçek: Dünya gezegeninde 8000'in üzerinde silli türü olduğunu biliyor muydunuz?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
@@ -321,15 +321,15 @@ msgstr "İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "İşte sana ipucu. Büyük hücrelere ve bakterilere dikkat et. Bir şeyler tarafından sindirilmek eğlenceli değil ki, seni yerler."
+msgstr "İşte sana ipucu, Daha büyük hücrelere ve büyük bakterilere dikkat et, sindirilmesi eğlenceli değildir ve sizi yerler."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive'ın ses ekip kaptanı oyuna henüz eklenmeyen birçok şarkı yaptı. Bu şarkıları dinleyebilirsin veya sahibi Oliver Lugg'ın YouTube kanalından beste yaptığı sırada çekilen yayın akışlarını izleyebilirsin."
+msgstr "Thrive'ın ses ekibi yöneticisi oyuna henüz eklenmeyen birçok şarkı yaptı. Bu şarkıları dinleyebilirsin veya sahibi Oliver Lugg'ın YouTube kanalından beste yaptığı sırada çekilen yayın akışlarını izleyebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "İşte sana ipucu. Eğer hücren 150 altıgenlik alan büyüklüğündeyse, büyük demir parçalarını yutabilirsin."
+msgstr "İşte sana ipucu, eğer hücren 150 altıgen alan büyüklüğündeyse, büyük demir parçalarını yutabilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
@@ -396,7 +396,7 @@ msgstr "Yutma moduna geç"
 
 #: ../simulation_parameters/common/input_options.json:52
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr "Komut takımı menüsünü göstermek için basılı tut"
+msgstr "Komut takımı menüsünü göstermek için basılı tutun"
 
 #: ../simulation_parameters/common/input_options.json:56
 #: ../src/microbe_stage/MicrobeStage.tscn:2142
@@ -431,7 +431,7 @@ msgstr "Yakınlaştır"
 #: ../simulation_parameters/common/input_options.json:95
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:154
 msgid "EDITOR"
-msgstr "Editör"
+msgstr "Düzenleyici"
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "ROTATE_RIGHT"
@@ -484,7 +484,7 @@ msgstr "Mevcut eylemi iptal et"
 
 #: ../simulation_parameters/common/input_options.json:147
 msgid "DELETE_ORGANELLE"
-msgstr "Organeli sil"
+msgstr "Organeli kaldır"
 
 #: ../simulation_parameters/common/input_options.json:151
 msgid "MOVE_ORGANELLE"
@@ -512,7 +512,7 @@ msgstr "İmleci göstermek için basılı tut"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
-msgstr "3D Editör"
+msgstr "3D Düzenleyici"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
@@ -561,7 +561,7 @@ msgstr "Hileler"
 
 #: ../simulation_parameters/common/input_options.json:243
 msgid "ENABLE_EDITOR"
-msgstr "Editörü aç"
+msgstr "Düzenleyiciyi aç"
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "SPAWN_GLUCOSE"
@@ -590,7 +590,7 @@ msgstr "Oyunu duraklat"
 
 #: ../simulation_parameters/common/input_options.json:278
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Hata ayıklayıcı panelini aç"
+msgstr "Hata ayıklama panelini aç"
 
 #: ../simulation_parameters/common/input_options.json:282
 msgid "TOGGLE_FPS"
@@ -602,11 +602,11 @@ msgstr "Ölçümler göstergesini aç"
 
 #: ../simulation_parameters/common/input_options.json:290
 msgid "QUICK_SAVE"
-msgstr "Çabuk kaydet"
+msgstr "Hızlı kaydet"
 
 #: ../simulation_parameters/common/input_options.json:294
 msgid "QUICK_LOAD"
-msgstr "Çabuk yükle"
+msgstr "Hızlı yükle"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "TAKE_SCREENSHOT"
@@ -1041,14 +1041,12 @@ msgid "LYSOSOME"
 msgstr "Lizozom"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Hata: {0}"
+msgstr "Dünyaların verileri başarıyla {0}'e aktarıldı"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:425
-#, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
-msgstr "Discord topluluk sunucumuza katıl"
+msgstr "Belirli sayıda dünya çalıştırın, her dünyada çalıştırılacak nesillerin miktarı yukarıdaki döndürme kutusu tarafından belirlenir."
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:633
 msgid "FINISH_X_GENERATIONS"
@@ -1056,7 +1054,7 @@ msgstr "{0} Kuşak Tamamla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:649
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "{0} Adet Dünyayı Çalıştır"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:773
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
@@ -1064,24 +1062,53 @@ msgid "READY"
 msgstr "Hazır"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:907
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Organizma İstatistikleri"
+msgstr ""
+"[b]Kuşaklar:[/b]\n"
+"   {0}\n"
+"[b]Toplam Arazi :[/b]\n"
+"   {1}\n"
+"[b]Toplam Oto-Evrim Süresi:[/b]\n"
+"   {2}\n"
+"[b]Toplam Tür:[/b]\n"
+"   {3}\n"
+"[b]Hayatta Olan Türler:[/b]\n"
+"   {4}\n"
+"[b]Arazi Başına Tür Sayısı:[/b]\n"
+"   Ortalama {5}; Standart sapma {6}\n"
+"[b]Toplam Popülasyon:[/b]\n"
+"   {7}\n"
+"[b]En Kalabalık Tür:[/b]\n"
+"   {8}\n"
+"[b]Temel Mikrop Türü Verileri:[/b]\n"
+"   Ortalama altıgen boyutu: {9}\n"
+"[b]Genel Organel Verileri:[/b]\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:921
 #: ../src/auto-evo/AutoEvoExploringTool.cs:965
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Organizma İstatistikleri"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:949
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Organizma İstatistikleri"
+msgstr ""
+"[b]Kuşaklar:[/b]\n"
+"   {0}\n"
+"[b]Toplam Tür:[/b]\n"
+"   Ortalama {1}; Standart sapma {2}\n"
+"[b]Hayatta Olan Türler:[/b]\n"
+"   Ortalama {3}; Standart sapma {4}\n"
+"[b]Arazi Başına Tür Sayısı:[/b]\n"
+"   Ortalama {5}; Standart sapma {6}\n"
+"[b]Arazi Başına Toplam Popülasyon:[/b]\n"
+"   Ortalama {7}; Standart sapma {8}\n"
+"[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
+"   Ortalama {9}; Standart sapma {10}\n"
+"[b]Genel Organel Verileri[/b]\n"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "Dünya"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
@@ -1101,29 +1128,24 @@ msgid "VIEWER"
 msgstr "Görüntüleyici"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organizma İstatistikleri"
+msgstr "Tüm Dünyaların Genel İstatistikleri"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "Organizma İstatistikleri"
+msgstr "Mevcut Dünyanın Genel İstatistikleri"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Mevcut Oyun Geliştiricileri"
+msgstr "Mevcut Dünya"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Discord topluluk sunucumuza katıl"
+msgstr "Yeni bir dünya oluştur"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "çalışma durumu:"
+msgstr "Oto-Evrim Durumu:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
@@ -1142,13 +1164,12 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
-#, fuzzy
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "Thrive'ın mevcut sürümünden derlenen tam kod işlemesi"
+msgstr "Tüm dünyaların verilerini virgülle ayrılmış değerler (csv) biçiminde dışa aktarın"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Tüm Dünyaları Dışa Aktar"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
@@ -1272,7 +1293,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
 msgid "EXPORT_SUCCESS"
-msgstr ""
+msgstr "Başarımı Dışa Aktar"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -3782,8 +3803,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:261
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
@@ -4421,7 +4442,7 @@ msgstr "İstatistikler"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:151
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "İntihar Et"
+msgstr "Hemen yok ol"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:743
 msgid "SUCCESSFUL_SCAVENGE"
@@ -6008,9 +6029,9 @@ msgstr "Evrim Ağacı"
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:70
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr ""
-"Henüz serbest yapım editöründe ya da 0.6.0 sürümünden önce başlamış kayıtlarda gösterilmemekte.\n"
+"0.6.0'dan önceki sürümlerde başlatılan kayıtlarda veya 0.6.1'den önceki sürümlerde başlatılan serbest derleme kayıtlarında henüz görüntülenemiyor.\n"
 "\n"
-"Eğer bunların hiçbiri geçerli değilse, bir hata meydana geldi. Lütfen geliştirici takımına bildir ve oyun loglarını temin et."
+"Bunlardan hiçbiri geçerli değilse, bir hata oluşmuştur. Lütfen geliştirici ekibi bilgilendirin ve oyun günlüklerini sağlayın."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
@@ -6048,9 +6069,8 @@ msgstr ""
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "Log Klasörünü Aç"
+msgstr "Fosiller Klasörünü Aç"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "OPEN_IN_FREEBUILD"
@@ -6064,14 +6084,12 @@ msgstr ""
 "Oyun esnasında bir türü fosilleştirmek için duraklatma butonuna bas. Sonra, ekran üzerindeki bir mikropu seç."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "Kayıt dizini bulunamadı"
+msgstr "Fosiller dizini bulunamadı"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "Bir ekran görüntüsü almayı dene!"
+msgstr "Bazı türleri fosilleştirmeyi dene!"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -6182,14 +6200,14 @@ msgstr "Oyun rehberini göster"
 msgid "BEGIN_THRIVING"
 msgstr "İlerlemeye Başla"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Hücreni kontrol etmek için hücrenin yanında bulunan tuşları (ekranın ortasında) ve hücreyi döndürmek için fareyi kullan.\n"
 "\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -6197,7 +6215,7 @@ msgstr ""
 "\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:192
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Glukozu (beyaz bulutlar) üzerine gelerek topla.\n"
@@ -6206,7 +6224,7 @@ msgstr ""
 "\n"
 "Yakınlardaki bir glukoz kaynağına doğru uzanan bu çizgiyi takip et."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:203
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Gözün ATP çubuğunun (sağ altta) yanındaki sağlık çubuğunda olsun.\n"
@@ -6214,14 +6232,14 @@ msgstr ""
 "ATP varken ise hücren iyileşir.\n"
 "ATP üretmek için yeterli glukoz topladığından emin ol."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Hücreni çoğaltmak için bütün organellerini ikiye katlamak zorundasın. Bu, hayatta kaldığın sürece, kademeli şekilde meydana gelir. Ama amonyak ve fosfat toplayarak bu işlemi hızlandırabilirsin.\n"
 "\n"
 "Sağ alttaki çubuklar ilerlemeni gösterir. Hücren çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hücrenin bölünmesi için yeterince uzun süre hayatta kaldın.\n"
@@ -6230,32 +6248,32 @@ msgstr ""
 "\n"
 "Editöre girmek için sağ altta yanıp sönen büyük butona bas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:263
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Zorlanıyor musun? Yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
 "\n"
 "Bir ipucu daha: Fare tekeri ile görüş alanını arttırabilirsin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:296
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:307
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Hücren, aynı anda yutulabilecek nesneler için sınırlı bir kapasiteye sahiptir. Bu sınır, hücrenin büyüklüğüne dayanır; daha küçük hücreler daha az kapasiteye sahiptir.\n"
 "\n"
 "Bir hücre dolduğunda, daha fazla şey yutamaz. Yutmaya devam etmek için içeri alınmış bir ya da daha fazla nesnenin tamamen sindirilmesini bekle."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:318
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Yutma modunda, nesnelerin üzerlerine gelerek onları yut. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas.\n"
@@ -6264,14 +6282,14 @@ msgstr ""
 "\n"
 "Yakınlardaki bir yutulabilir nesneye doğru uzanan bu çizgiyi takip et."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Hücren yutuldu ve sindirilmeye başlandı. Sindirim işlemi, sağlık çubuğunda gösterilir. Hücren, sindirim bittiğinde ya da maksimum zaman sınırı aşıldığında ölü sayılacak.\n"
 "\n"
-"Bu işlemi atlamak için intihar butonuna bas ve yeniden doğ. Ama unutma, her zaman kaçmak için bir şansın var!"
+"Bu işlemi atlamak için yok olma butonuna bas ve yeniden doğ. Ama unutma, her zaman kaçmak için bir şansın var!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Yeterli miktarda [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] topladın. Ancak çok hücreli olmayan bir koloni içinde olduğun için üremeye başlayamazsın.\n"
@@ -6279,7 +6297,7 @@ msgstr ""
 "Çok hücreli olmayı planlıyorsan, koloniden ayrılıp editöre girmen gerekir.\n"
 "Gelişimine devam etmek için [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrıl."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:357
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "İlk Çok Hücreli Evresi'ne hoşgeldin!\n"
@@ -6292,7 +6310,7 @@ msgstr ""
 "\n"
 "Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsan, ufak bir tomurcuğu kontrol etmeye başlarsın ve hücre düzeninin geri kalanını büyütmen gerekir."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:390
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:391
 msgid "CONTINUE_THRIVING"
 msgstr "İlerlemeye Devam Et"
 
@@ -6675,3 +6693,6 @@ msgstr "İlerlemeye Devam Et"
 
 #~ msgid "SPEED_OF_THE_CELL"
 #~ msgstr "hücrenin hızı."
+
+#~ msgid "TO_INCREASE_THE_MOVEMENT"
+#~ msgstr "hareketi arttırmak için"
