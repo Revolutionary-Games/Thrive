@@ -49,14 +49,33 @@ public class ReleaseInfo
         }
 
         var releaseJson = JsonArray.Parse(listOfReleases);
-
+        Dictionary<string, string> tmp = new Dictionary<string, string>();
         foreach (var release in releaseJson.AsArray())
         {
-            var info = new BuildInfo(release["name"].ToString(), release["body"].ToString());
-            patchList.Add(info);
+            // Process the key
+            string key = release["name"].ToString().Substring(7);
+
+            int count = key.Split(".").Length - 1;
+
+            if(count == 2)
+            {
+                key += ".0";
+            }
+
+            // Process the body
+            string val = release["body"].ToString();
+
+            int idx = val.IndexOf("## Patch Notes");
+
+            if (idx != -1)
+            {
+                val = val.Substring(idx);
+            }
+
+            tmp.Add($"{key}", val);
         }
 
-        await JsonWriteHelper.WriteJsonWithBom(PATCH_NOTES_LOCATION, patchList, cancellationToken);
+        await JsonWriteHelper.WriteJsonWithBom(PATCH_NOTES_LOCATION, tmp, cancellationToken);
 
         return true;
     }

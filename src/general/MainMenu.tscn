@@ -512,14 +512,32 @@ size_flags_vertical = 0
 text = "BACK"
 
 [node name="PatchNotesPanelContainer" type="PanelContainer" parent="MenuContainers/Menus"]
-visible = false
-anchor_right = 0.391
-anchor_bottom = 0.836
-margin_left = 2.0
-margin_top = 1.04001
-margin_right = -348.48
-margin_bottom = -231.373
+anchor_left = 0.118
+anchor_right = 0.393
+anchor_bottom = 0.859
+margin_left = -57.04
+margin_top = 5.04001
+margin_right = -303.04
+margin_bottom = -237.839
 rect_scale = Vector2( 3.33667, 2.63395 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainers/Menus/PatchNotesPanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 105.0
+margin_bottom = 147.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuContainers/Menus/PatchNotesPanelContainer/MarginContainer"]
+margin_right = 104.0
+margin_bottom = 146.0
+
+[node name="PatchText" type="Label" parent="MenuContainers/Menus/PatchNotesPanelContainer/MarginContainer/CenterContainer"]
+margin_top = 65.0
+margin_right = 104.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 16 )
+text = "TEMPORARY"
+align = 1
 
 [node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
 margin_left = 7.0

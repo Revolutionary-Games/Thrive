@@ -22,7 +22,19 @@ public class PatchNotesDisplay : CustomDialog
     /// <returns>The patch notes text</returns>
     public static string LoadPartialPatchNotesFile(string? version=null)
     {
-        return (version != null) ? patchNotesJson[version] : patchNotesJson[Constants.Version];
+        if (version == null)
+        {
+            version = Constants.Version;
+        }
+
+        string ret;
+
+        if (!patchNotesJson.TryGetValue(version, out ret))
+        {
+            ret = "Failed to fetch patch notes";
+        }
+
+        return ret;
     }
 
     public static string LoadCompletePatchNotesFile()
