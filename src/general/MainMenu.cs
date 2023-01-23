@@ -44,6 +44,9 @@ public class MainMenu : NodeWithInput
     public NodePath GLES2PopupPath = null!;
 
     [Export]
+    public NodePath SteamFailedPopupPath = null!;
+
+    [Export]
     public NodePath ModLoadFailuresPath = null!;
 
     [Export]
@@ -118,6 +121,8 @@ public class MainMenu : NodeWithInput
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
 
+    private CustomConfirmationDialog steamFailedPopup = null!;
+
     private CustomDialog safeModeWarning = null!;
 
     private CustomDialog modsInstalledButNotEnabledWarning = null!;
@@ -184,7 +189,8 @@ public class MainMenu : NodeWithInput
             if (canShowThanks)
             {
                 if (!IsReturningToMenu &&
-                    !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying))
+                    !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying)
+                    && !SteamFailed())
                 {
                     GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
@@ -207,6 +213,12 @@ public class MainMenu : NodeWithInput
                 {
                     CheckStartupSuccess();
                     WarnAboutNoEnabledMods();
+
+                    if (SteamFailed())
+                    {
+                        GD.PrintErr("Steam init has failed, showing failure popup");
+                        steamFailedPopup.PopupCenteredShrink();
+                    }
                 }
             }
         }
@@ -332,6 +344,7 @@ public class MainMenu : NodeWithInput
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
         safeModeWarning = GetNode<CustomDialog>(SafeModeWarningPath);
+        steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
         modsInstalledButNotEnabledWarning = GetNode<CustomDialog>(ModsInstalledButNotEnabledWarningPath);
         permanentlyDismissModsNotEnabledWarning = GetNode<CustomCheckBox>(PermanentlyDismissModsNotEnabledWarningPath);
@@ -421,6 +434,11 @@ public class MainMenu : NodeWithInput
             canShowThanks = true;
             storeBuyLink = "https://store.steampowered.com/app/1779200";
         }
+    }
+
+    private bool SteamFailed()
+    {
+        return SteamHandler.IsTaggedSteamRelease() && !SteamHandler.Instance.IsLoaded;
     }
 
     private void UpdateLauncherState()
