@@ -7,15 +7,22 @@ assignees: ''
 
 ---
 
-**Important**
+<!--
+**IMPORTANT**
 Please only submit technical bug reports here. This is not a place to make feature requests
 or suggestions. For that please visit our suggestions site:
 https://suggestions.revolutionarygamesstudio.com/
 
 Or our community forums for longer discussions
 https://community.revolutionarygamesstudio.com/
+-->
 
 **Describe the bug**
+
+<!-- Please replace the placeholder texts entirely as you fill in this
+template with your report to make things look tidier. If some section
+does not apply to your report you can remove that section entirely or
+replace the text in it with "N/A" -->
 
 A clear and concise description of what the bug is.
 
