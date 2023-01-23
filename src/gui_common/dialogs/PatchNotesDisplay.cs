@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 // [Tool]
@@ -13,21 +14,36 @@ public class PatchNotesDisplay : CustomDialog
 
     private Container textsContainer = null!;
 
+    private static Dictionary<string, string> patchNotesJson = null!;
+
     /// <summary>
-    /// Loads the specific patch notes
+    /// Loads the specific patch notes for the given or otherwise current version
     /// </sumary>
     /// <returns>The patch notes text</returns>
-    public static string LoadPatchNotesFile()
+    public static string LoadPartialPatchNotesFile(string? version=null)
     {
-        // TODO May need to add more
-        return LoadFile(Constants.PATCH_NOTES_FILE);
+        return (version != null) ? patchNotesJson[version] : patchNotesJson[Constants.Version];
+    }
+
+    public static string LoadCompletePatchNotesFile()
+    {
+        string ret = "";
+
+        foreach(KeyValuePair<string, string> entry in patchNotesJson)
+        {
+            ret += $"VERSION {entry.Key}:\n{entry.Value}\n\n";
+        }
+
+        return ret;
     }
 
     public override void _Ready()
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
 
-        patchNotes = (string.Empty, () => LoadFile(Constants.PATCH_NOTES_FILE));
+        InitDictionary();
+
+        patchNotes = (string.Empty, () => LoadCompletePatchNotesFile());
     }
 
     public override void _Process(float delta)
@@ -61,6 +77,14 @@ public class PatchNotesDisplay : CustomDialog
 
         GD.PrintErr("Can't load file to show in patch notes: ", file);
         return "Missing file to show here!";
+    }
+
+    private void InitDictionary()
+    {
+        string text = LoadFile(Constants.PATCH_NOTES_FILE);
+
+        patchNotesJson = ThriveJsonConverter.Instance.DeserializeObject<Dictionary<String, String>>(text) ??
+            throw new Newtonsoft.Json.JsonException("Current version is missing from patch notes");
     }
 
     private void LoadPatchNotesText()

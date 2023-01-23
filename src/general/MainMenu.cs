@@ -300,6 +300,7 @@ public class MainMenu : NodeWithInput
 
         if (DisplayPatchNotes())
         {
+            SetPatchLabelText();
             patchNotes.Visible = true;
         }
         else
@@ -452,6 +453,15 @@ public class MainMenu : NodeWithInput
         }
 
         return true;
+    }
+
+    private void SetPatchLabelText()
+    {
+        string text = PatchNotesDisplay.LoadPartialPatchNotesFile();
+
+        GetNode<Label>
+                ("MenuContainers/Menus/PatchNotesPanelContainer/MarginContainer/CenterContainer/PatchText")
+                .Text = text;
     }
 
     private void NewGamePressed()
