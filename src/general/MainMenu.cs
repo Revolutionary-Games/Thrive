@@ -459,8 +459,8 @@ public class MainMenu : NodeWithInput
     {
         string text = PatchNotesDisplay.LoadPartialPatchNotesFile();
 
-        GetNode<Label>
-                ("MenuContainers/Menus/PatchNotesPanelContainer/MarginContainer/CenterContainer/PatchText")
+        GetNode<RichTextLabel>
+                ("MenuContainers/Menus/MarginContainer/PatchNotesPanelContainer/MarginContainer/PatchNotesContainer/PatchText")
                 .Text = text;
     }
 
