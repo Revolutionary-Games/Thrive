@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-23 15:42+0200\n"
+"POT-Creation-Date: 2023-01-25 10:46+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -64,7 +64,7 @@ msgid "MUSIC"
 msgstr "Hudba"
 
 #: ../simulation_parameters/common/gallery.json:257
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:354
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:369
 msgid "ALL"
 msgstr "Všetko"
 
@@ -556,8 +556,8 @@ msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:239
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Cheaty"
 
@@ -794,29 +794,29 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1306
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
+#: ../src/microbe_stage/MicrobeStage.tscn:1348
 msgid "AMMONIA"
 msgstr "Amoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1358
-#: ../src/microbe_stage/MicrobeStage.tscn:1397
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
+#: ../src/microbe_stage/MicrobeStage.tscn:1397
 msgid "PHOSPHATE"
 msgstr "Fosfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1410
-#: ../src/microbe_stage/MicrobeStage.tscn:1449
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
+#: ../src/microbe_stage/MicrobeStage.tscn:1449
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sírovodík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
-#: ../src/microbe_stage/MicrobeStage.tscn:1302
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
+#: ../src/microbe_stage/MicrobeStage.tscn:1302
 msgid "GLUCOSE"
 msgstr "Glukóza"
 
@@ -835,8 +835,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
-#: ../src/microbe_stage/MicrobeStage.tscn:1495
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
+#: ../src/microbe_stage/MicrobeStage.tscn:1495
 msgid "IRON"
 msgstr "Železo"
 
@@ -865,7 +865,7 @@ msgstr "Slnečné žiarenie"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4075
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:259
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:287
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:624
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
 msgid "TEMPERATURE"
@@ -1045,46 +1045,47 @@ msgstr "Riasinky"
 msgid "LYSOSOME"
 msgstr "Lyzozóm"
 
-#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
-msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Chyba: {0}"
-
-#: ../src/auto-evo/AutoEvoExploringTool.cs:425
+#: ../src/auto-evo/AutoEvoExploringTool.cs:485
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 #, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:633
+#: ../src/auto-evo/AutoEvoExploringTool.cs:693
 #, fuzzy
 msgid "FINISH_X_GENERATIONS"
 msgstr "Generácia:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:649
+#: ../src/auto-evo/AutoEvoExploringTool.cs:709
 msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:773
+#: ../src/auto-evo/AutoEvoExploringTool.cs:833
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 #, fuzzy
 msgid "READY"
 msgstr "Vlákna:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:907
+#: ../src/auto-evo/AutoEvoExploringTool.cs:967
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Štatistika organizmu"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:921
-#: ../src/auto-evo/AutoEvoExploringTool.cs:965
+#: ../src/auto-evo/AutoEvoExploringTool.cs:981
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1025
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Štatistika organizmu"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:949
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1009
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Štatistika organizmu"
+
+#: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
+#, fuzzy
+msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
+msgstr "Chyba: {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
@@ -1326,9 +1327,9 @@ msgstr "Spustenie"
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Populácia {0} sa zmenila o {1} za {2} v dôsledku: {3}"
 
-#: ../src/auto-evo/EvolutionaryTree.cs:378
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:164
-#: ../src/microbe_stage/editor/TimelineTab.cs:203
+#: ../src/auto-evo/EvolutionaryTree.cs:393
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
+#: ../src/microbe_stage/editor/TimelineTab.cs:229
 msgid "MEGA_YEARS"
 msgstr "Miliónov rokov"
 
@@ -1559,25 +1560,25 @@ msgstr "Viac buniek"
 msgid "MP_COST"
 msgstr "{0} BM"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:92
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Načítanie skorého editora mnohobunkovcov"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:253
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:245
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:210
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatickú evolúciu sa nepodarilo spustiť"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:246
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:211
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "stav spustenia:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:391
-#: ../src/general/EditorBase.cs:678
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:441
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:407
+#: ../src/general/EditorBase.cs:694
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:461
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Akcia je zablokovaná, kým prebieha iná"
@@ -1586,26 +1587,26 @@ msgstr "Akcia je zablokovaná, kým prebieha iná"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Na karte editora, vyber typ bunky, ktorú chceš upraviť"
 
-#: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.FPSCounter.cs:18
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "Snímky za sekundu: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:69
 msgid "FRAME_DURATION"
 msgstr "Delta čas: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:76
-#: ../src/saving/SaveManagerGUI.cs:131
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
+#: ../src/saving/SaveManagerGUI.cs:133
 msgid "MIB_VALUE"
 msgstr "{0} MiB (mebibyte)"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Neznáme na Windowse"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
 #: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
 #, fuzzy
 msgid "METRICS_CONTENT"
@@ -1657,16 +1658,12 @@ msgstr ""
 msgid "TRANSPARENCY"
 msgstr "Priehľadnosť"
 
-#: ../src/engine/LoadingScreen.cs:67 ../src/engine/LoadingScreen.tscn:162
-msgid "LOADING"
-msgstr "Načítanie"
-
-#: ../src/engine/input/ControllerAxisVisualizer.cs:165
+#: ../src/engine/input/ControllerAxisVisualizer.cs:167
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/engine/input/ControllerAxisVisualizer.cs:171
+#: ../src/engine/input/ControllerAxisVisualizer.cs:173
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
 #, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
@@ -1683,16 +1680,16 @@ msgstr "Nové meno:"
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:152
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:169
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Tento jazyk je dokončený na {0}%"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:173
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:190
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:187
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:204
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Pri dodatočných validáciách bol zistený problém: {0}"
@@ -1724,11 +1721,11 @@ msgstr ""
 msgid "APPLY"
 msgstr "Použiť"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:425
+#: ../src/engine/input/key_mapping/InputEventItem.cs:438
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stlač kláves..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:135
+#: ../src/engine/input/key_mapping/InputGroupList.cs:137
 #, fuzzy
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
@@ -2139,6 +2136,10 @@ msgstr "Špeciálne tlačidlo myši 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Neznáme tlačidlo myši"
 
+#: ../src/engine/LoadingScreen.cs:69 ../src/engine/LoadingScreen.tscn:162
+msgid "LOADING"
+msgstr "Načítanie"
+
 #: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
@@ -2173,11 +2174,11 @@ msgstr "Správanie"
 msgid "BEHAVIOUR_FOCUS"
 msgstr "Správanie"
 
-#: ../src/general/EditorBase.cs:260
+#: ../src/general/EditorBase.cs:264
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čakanie na automatickú evolúciu:"
 
-#: ../src/general/EditorComponentBase.cs:72
+#: ../src/general/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIŤ"
 
@@ -2185,8 +2186,8 @@ msgstr "POTVRDIŤ"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1370
+#: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
@@ -2194,16 +2195,16 @@ msgid "CLOSE"
 msgstr "Zavrieť"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:619 ../src/general/StageHUDBase.cs:717
+#: ../src/general/NewGameSettings.cs:673 ../src/general/StageHUDBase.cs:725
 #: ../src/general/WorldGenerationSettings.cs:177
-#: ../src/gui_common/CompoundAmount.cs:175
-#: ../src/microbe_stage/MicrobeHUD.cs:229
+#: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:190
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:177
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:371
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:264
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:263
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:266
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2215,7 +2216,7 @@ msgstr "{0} koncentrácie sa znížili o {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Koncentrácia glukózy drasticky klesla!"
 
-#: ../src/general/MainMenu.cs:199 ../src/general/MainMenu.tscn:937
+#: ../src/general/MainMenu.cs:202 ../src/general/MainMenu.tscn:937
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -2223,7 +2224,7 @@ msgstr ""
 "\n"
 "Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
 
-#: ../src/general/MainMenu.cs:427
+#: ../src/general/MainMenu.cs:463
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prihlásený ako: {0}"
 
@@ -2464,22 +2465,22 @@ msgstr "Odstrániť lokálne údaje"
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:971
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Steamu sa nepodarilo získať UGC lock"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:973
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/general/NewGameSettings.cs:323
+#: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1237
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Vstúp do hry s týmito nastaveniami"
 
-#: ../src/general/NewGameSettings.cs:330
+#: ../src/general/NewGameSettings.cs:333
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Niektoré nastavenia sú neplatné"
 
@@ -2717,48 +2718,48 @@ msgstr "Základné"
 msgid "CONFIRM_NORMAL"
 msgstr "Potvrdiť"
 
-#: ../src/general/OptionsMenu.cs:808 ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.cs:908 ../src/general/OptionsMenu.tscn:353
 msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:822
+#: ../src/general/OptionsMenu.cs:922
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:827
+#: ../src/general/OptionsMenu.cs:927
 msgid "GLES3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:832
+#: ../src/general/OptionsMenu.cs:932
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
-#: ../src/general/OptionsMenu.cs:841 ../src/general/OptionsMenu.tscn:542
+#: ../src/general/OptionsMenu.cs:941 ../src/general/OptionsMenu.tscn:542
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1274
+#: ../src/general/OptionsMenu.cs:1374
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Predvolené výstupné zariadenie"
 
-#: ../src/general/OptionsMenu.cs:1306
+#: ../src/general/OptionsMenu.cs:1406
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento preklad nie je dokončený ({0}% hotovo) prosím pomôž nám s ním!"
 
-#: ../src/general/OptionsMenu.cs:1310
+#: ../src/general/OptionsMenu.cs:1410
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Na preklade tohto jazyka sa ešte pracuje ({0}% hotovo)"
 
-#: ../src/general/OptionsMenu.cs:1314
+#: ../src/general/OptionsMenu.cs:1414
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tento jazyk je dokončený na {0}%"
 
-#: ../src/general/OptionsMenu.cs:1374
+#: ../src/general/OptionsMenu.cs:1474
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1381
+#: ../src/general/OptionsMenu.cs:1481
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Verzia modu:"
@@ -3194,7 +3195,7 @@ msgstr "Vždy"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nikdy"
 
-#: ../src/general/OptionsMenu.tscn:1843
+#: ../src/general/OptionsMenu.tscn:1843 ../src/general/OptionsMenu.tscn:1854
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
@@ -3326,52 +3327,52 @@ msgstr "Odísť"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/general/StageBase.cs:424
+#: ../src/general/StageBase.cs:437
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč sa rozmnožil"
 
-#: ../src/general/StageBase.cs:480
+#: ../src/general/StageBase.cs:493
 msgid "PLAYER_DIED"
 msgstr "hráč zomrel"
 
-#: ../src/general/StageBase.cs:542
+#: ../src/general/StageBase.cs:555
 msgid "EXTINCT_IN_PATCH"
 msgstr "vyhynul v tejto oblasti"
 
-#: ../src/general/StageHUDBase.cs:718 ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:264
+#: ../src/general/StageHUDBase.cs:726 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:303
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
-#: ../src/general/StageHUDBase.cs:955
+#: ../src/general/StageHUDBase.cs:1028
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "veľké množstvo"
 
-#: ../src/general/StageHUDBase.cs:957
+#: ../src/general/StageHUDBase.cs:1030
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "celkom dosť"
 
-#: ../src/general/StageHUDBase.cs:959
+#: ../src/general/StageHUDBase.cs:1032
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatočné množstvo"
 
-#: ../src/general/StageHUDBase.cs:961
+#: ../src/general/StageHUDBase.cs:1034
 msgid "CATEGORY_SOME"
 msgstr "trochu"
 
-#: ../src/general/StageHUDBase.cs:963
+#: ../src/general/StageHUDBase.cs:1036
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/general/StageHUDBase.cs:965
+#: ../src/general/StageHUDBase.cs:1038
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "veľmi málo"
 
-#: ../src/general/StageHUDBase.cs:1175
+#: ../src/general/StageHUDBase.cs:1248
 msgid "PLAYER_CELL"
 msgstr "Bunka hráča"
 
-#: ../src/general/StageHUDBase.cs:1188
+#: ../src/general/StageHUDBase.cs:1261
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3413,333 +3414,11 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:141
-#: ../src/gui_common/ChemicalEquation.cs:184
-msgid "PER_SECOND_SLASH"
-msgstr "/sekúnd"
-
-#: ../src/gui_common/ChemicalEquation.cs:308
-msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr "@"
-
-#: ../src/gui_common/CreditsScroll.cs:223
-msgid "LEAD_DEVELOPERS"
-msgstr "Hlavný vývojár"
-
-#: ../src/gui_common/CreditsScroll.cs:229
-msgid "LEAD_PROGRAMMER"
-msgstr "Hlavný programátor"
-
-#: ../src/gui_common/CreditsScroll.cs:230
-msgid "LEAD_PROGRAMMERS"
-msgstr "Hlavní programátori"
-
-#: ../src/gui_common/CreditsScroll.cs:235
-msgid "LEAD_THEORIST"
-msgstr "Hlavný teoretik"
-
-#: ../src/gui_common/CreditsScroll.cs:236
-msgid "LEAD_THEORISTS"
-msgstr "Hlavní teoretici"
-
-#: ../src/gui_common/CreditsScroll.cs:241
-msgid "LEAD_ARTIST"
-msgstr "Hlavný umelec"
-
-#: ../src/gui_common/CreditsScroll.cs:242
-msgid "LEAD_ARTISTS"
-msgstr "Hlavní umelci"
-
-#: ../src/gui_common/CreditsScroll.cs:247
-msgid "SOUND_TEAM_LEAD"
-msgstr "Vedúci zvukár"
-
-#: ../src/gui_common/CreditsScroll.cs:248
-msgid "SOUND_TEAM_LEADS"
-msgstr "Vedúci zvukári"
-
-#: ../src/gui_common/CreditsScroll.cs:253
-msgid "LEAD_OUTREACH_PERSON"
-msgstr "Vedúci kontaktu s komunitou"
-
-#: ../src/gui_common/CreditsScroll.cs:254
-msgid "LEAD_OUTREACH_PEOPLE"
-msgstr "Vedúci kontaktu s komunitou"
-
-#: ../src/gui_common/CreditsScroll.cs:259
-msgid "LEAD_GAME_DESIGNER"
-msgstr "Vedúci herný dizajnér"
-
-#: ../src/gui_common/CreditsScroll.cs:260
-msgid "LEAD_GAME_DESIGNERS"
-msgstr "Vedúci herní dizajnéri"
-
-#: ../src/gui_common/CreditsScroll.cs:265
-msgid "LEAD_TESTER"
-msgstr "Hlavný tester"
-
-#: ../src/gui_common/CreditsScroll.cs:266
-msgid "LEAD_TESTERS"
-msgstr "Hlavní testeri"
-
-#: ../src/gui_common/CreditsScroll.cs:271
-msgid "LEAD_PROJECT_MANAGER"
-msgstr "Vedúci projektový manažér"
-
-#: ../src/gui_common/CreditsScroll.cs:272
-msgid "LEAD_PROJECT_MANAGERS"
-msgstr "Vedúci projektoví manažéri"
-
-#: ../src/gui_common/CreditsScroll.cs:279
-msgid "CURRENT_DEVELOPERS"
-msgstr "Súčasní vývojári"
-
-#: ../src/gui_common/CreditsScroll.cs:295
-msgid "PAST_DEVELOPERS"
-msgstr "Bývalí vývojári"
-
-#: ../src/gui_common/CreditsScroll.cs:311
-msgid "OUTSIDE_CONTRIBUTORS"
-msgstr "Externí prispievatelia"
-
-#: ../src/gui_common/CreditsScroll.cs:314
-msgid "YOU_CAN_MAKE_PULL_REQUEST"
-msgstr ""
-"Thrive je open source projekt.\n"
-"Môžeš prispieť aj keď nie si súčasťou tímu (formou pull request) ."
-
-#: ../src/gui_common/CreditsScroll.cs:329
-msgid "PATRONS"
-msgstr "Patróni"
-
-#: ../src/gui_common/CreditsScroll.cs:335
-msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Budúci vývoj Thrive môžeš podporiť na Patreone."
-
-#: ../src/gui_common/CreditsScroll.cs:352
-msgid "DONATIONS"
-msgstr "Príspevky"
-
-#: ../src/gui_common/CreditsScroll.cs:375
-msgid "TRANSLATORS"
-msgstr "Prekladatelia"
-
-#: ../src/gui_common/CreditsScroll.cs:389
-msgid "USED_LIBRARIES_LICENSES"
-msgstr "Licencie a použité knižnice"
-
-#: ../src/gui_common/CreditsScroll.cs:486
-msgid "THANKS_FOR_PLAYING"
-msgstr ""
-"Ďakujeme, že si hral našu hru!\n"
-"\n"
-"Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
-
-#: ../src/gui_common/CreditsScroll.cs:495
-msgid "PROGRAMMING_TEAM"
-msgstr "Programátori"
-
-#: ../src/gui_common/CreditsScroll.cs:496
-msgid "THEORY_TEAM"
-msgstr "Teoretici"
-
-#: ../src/gui_common/CreditsScroll.cs:497
-msgid "GRAPHICS_TEAM"
-msgstr "Grafici"
-
-#: ../src/gui_common/CreditsScroll.cs:498
-msgid "SOUND_TEAM"
-msgstr "Zvukári"
-
-#: ../src/gui_common/CreditsScroll.cs:499
-msgid "OUTREACH_TEAM"
-msgstr "Kontakt s komunitou"
-
-#: ../src/gui_common/CreditsScroll.cs:500
-msgid "GAME_DESIGN_TEAM"
-msgstr "Dizajnéri"
-
-#: ../src/gui_common/CreditsScroll.cs:501
-msgid "TESTING_TEAM"
-msgstr "Testeri"
-
-#: ../src/gui_common/CreditsScroll.cs:502
-msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr "Projektoví manažéri"
-
-#: ../src/gui_common/CreditsScroll.cs:503
-msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr "Externí programátori"
-
-#: ../src/gui_common/CreditsScroll.cs:504
-msgid "VIP_PATRONS"
-msgstr "VIP podporovatelia"
-
-#: ../src/gui_common/CreditsScroll.cs:505
-msgid "DEV_BUILD_PATRONS"
-msgstr "Devbuilds podporovatelia"
-
-#: ../src/gui_common/CreditsScroll.cs:506
-msgid "SUPPORTER_PATRONS"
-msgstr "Podporovatelia"
-
-#: ../src/gui_common/CreditsScroll.cs:507
-msgid "JANUARY"
-msgstr "Január"
-
-#: ../src/gui_common/CreditsScroll.cs:508
-msgid "FEBRUARY"
-msgstr "Február"
-
-#: ../src/gui_common/CreditsScroll.cs:509
-msgid "MARCH"
-msgstr "Marec"
-
-#: ../src/gui_common/CreditsScroll.cs:510
-msgid "APRIL"
-msgstr "Apríl"
-
-#: ../src/gui_common/CreditsScroll.cs:511
-msgid "MAY"
-msgstr "Máj"
-
-#: ../src/gui_common/CreditsScroll.cs:512
-msgid "JUNE"
-msgstr "Jún"
-
-#: ../src/gui_common/CreditsScroll.cs:513
-msgid "JULY"
-msgstr "Júl"
-
-#: ../src/gui_common/CreditsScroll.cs:514
-msgid "AUGUST"
-msgstr "August"
-
-#: ../src/gui_common/CreditsScroll.cs:515
-msgid "SEPTEMBER"
-msgstr "September"
-
-#: ../src/gui_common/CreditsScroll.cs:516
-msgid "OCTOBER"
-msgstr "Október"
-
-#: ../src/gui_common/CreditsScroll.cs:517
-msgid "NOVEMBER"
-msgstr "November"
-
-#: ../src/gui_common/CreditsScroll.cs:518
-msgid "DECEMBER"
-msgstr "December"
-
-#: ../src/gui_common/CreditsScroll.tscn:45
-msgid "BY_REVOLUTIONARY_GAMES"
-msgstr "Od Revolutionary Games Studio"
-
-#: ../src/gui_common/CreditsScroll.tscn:52
-msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
-
-#: ../src/gui_common/CreditsScroll.tscn:60
-msgid "DEVELOPERS"
-msgstr "Vývojári"
-
-#: ../src/gui_common/PlaybackControls.tscn:107
-msgid "STOP"
-msgstr "Stop"
-
-#: ../src/gui_common/QuickLoadHandler.tscn:20
-msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
-msgstr ""
-"Uložená verzia hry, ktorú sa pokúšaš načítať, nezodpovedá verzii hry. \n"
-"Načítaj ju manuálne cez menu."
-
-#: ../src/gui_common/QuickLoadHandler.tscn:22
-msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "Uložená hra má inú verziu"
-
-#: ../src/gui_common/RadialMenu.cs:63
-msgid "SELECT_OPTION"
-msgstr "Vyber možnosť"
-
-#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
-msgid "FOSSILISE"
-msgstr ""
-
-#: ../src/gui_common/TweakedColourPicker.cs:387
-msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr "Zvoľ farbu z herného okna"
-
-#: ../src/gui_common/TweakedColourPicker.cs:388
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Pridať aktuálnu farbu ako prednastavenú"
-
-#: ../src/gui_common/TweakedColourPicker.cs:389
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
-"Zapnúť alebo vypnúť režim OSJ (Odtieň, Saturácia, Jas).\n"
-"Nemôže byť zapnutý v režime raw."
-
-#: ../src/gui_common/TweakedColourPicker.cs:390
-msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr ""
-"Zapnúť alebo vypnúť režim raw.\n"
-"V režime raw môžeš hodnoty R, G, B nastaviť nad úroveň 1.0.\n"
-"Nemôže byť zapnutý v režime OSJ."
-
-#: ../src/gui_common/TweakedColourPicker.cs:394
-msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Odtieň - časť farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:395
-msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Saturácia - množstvo sivej farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:396
-msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Jas - svetlosť alebo intenzita farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:400
-msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Hodnota červeného kanála farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:401
-msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Hodnota zeleného kanála farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:402
-msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Hodnota modrého kanála farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:405
-msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Hodnota alfa kanála farby"
-
-#: ../src/gui_common/TweakedColourPicker.cs:579
-msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr ""
-"Farba: {0}\n"
-"Ľavé tlačidlo myši: Použiť toto prednastavenie\n"
-"Pravé tlačidlo myši: Vymazať toto prednastavenie"
-
-#: ../src/gui_common/TweakedColourPicker.tscn:47
-msgid "HSV"
-msgstr "OSJ"
-
-#: ../src/gui_common/TweakedColourPicker.tscn:69
-msgid "RAW"
-msgstr "Raw"
-
-#: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
-msgid "DEVBUILD_VERSION_INFO"
-msgstr "Devbuilds podporovatelia"
-
-#: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
-#: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
-#: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2224
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2234
+#: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
+#: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
+#: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2280
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2290
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -3760,7 +3439,7 @@ msgstr "Popis:"
 msgid "ARTIST_COLON"
 msgstr "Autor:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:259
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:274
 msgid "UNTITLED"
 msgstr "Bez názvu"
 
@@ -3777,22 +3456,22 @@ msgstr "Filtrovať položky podľa kategórie:"
 msgid "SLIDESHOW"
 msgstr "Prezentácia"
 
-#: ../src/gui_common/charts/line/LineChart.cs:651
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2366
+#: ../src/gui_common/charts/line/LineChart.cs:671
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2422
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žiadne údaje na zobrazenie"
 
-#: ../src/gui_common/charts/line/LineChart.cs:655
+#: ../src/gui_common/charts/line/LineChart.cs:675
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Neplatné údaje na vykreslenie"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1123
-#: ../src/gui_common/charts/line/LineChart.cs:1215
+#: ../src/gui_common/charts/line/LineChart.cs:1143
+#: ../src/gui_common/charts/line/LineChart.cs:1235
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Nie je povolené zobraziť viac ako {0} dátových súborov!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1129
-#: ../src/gui_common/charts/line/LineChart.cs:1220
+#: ../src/gui_common/charts/line/LineChart.cs:1149
+#: ../src/gui_common/charts/line/LineChart.cs:1240
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nie je povolené zobraziť menej ako {0} dátových súborov!"
 
@@ -3800,11 +3479,241 @@ msgstr "Nie je povolené zobraziť menej ako {0} dátových súborov!"
 msgid "INSPECT"
 msgstr "Prezrieť"
 
+#: ../src/gui_common/ChemicalEquation.cs:145
+#: ../src/gui_common/ChemicalEquation.cs:200
+msgid "PER_SECOND_SLASH"
+msgstr "/sekúnd"
+
+#: ../src/gui_common/ChemicalEquation.cs:324
+msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+msgstr "@"
+
+#: ../src/gui_common/CreditsScroll.cs:225
+msgid "LEAD_DEVELOPERS"
+msgstr "Hlavný vývojár"
+
+#: ../src/gui_common/CreditsScroll.cs:231
+msgid "LEAD_PROGRAMMER"
+msgstr "Hlavný programátor"
+
+#: ../src/gui_common/CreditsScroll.cs:232
+msgid "LEAD_PROGRAMMERS"
+msgstr "Hlavní programátori"
+
+#: ../src/gui_common/CreditsScroll.cs:237
+msgid "LEAD_THEORIST"
+msgstr "Hlavný teoretik"
+
+#: ../src/gui_common/CreditsScroll.cs:238
+msgid "LEAD_THEORISTS"
+msgstr "Hlavní teoretici"
+
+#: ../src/gui_common/CreditsScroll.cs:243
+msgid "LEAD_ARTIST"
+msgstr "Hlavný umelec"
+
+#: ../src/gui_common/CreditsScroll.cs:244
+msgid "LEAD_ARTISTS"
+msgstr "Hlavní umelci"
+
+#: ../src/gui_common/CreditsScroll.cs:249
+msgid "SOUND_TEAM_LEAD"
+msgstr "Vedúci zvukár"
+
+#: ../src/gui_common/CreditsScroll.cs:250
+msgid "SOUND_TEAM_LEADS"
+msgstr "Vedúci zvukári"
+
+#: ../src/gui_common/CreditsScroll.cs:255
+msgid "LEAD_OUTREACH_PERSON"
+msgstr "Vedúci kontaktu s komunitou"
+
+#: ../src/gui_common/CreditsScroll.cs:256
+msgid "LEAD_OUTREACH_PEOPLE"
+msgstr "Vedúci kontaktu s komunitou"
+
+#: ../src/gui_common/CreditsScroll.cs:261
+msgid "LEAD_GAME_DESIGNER"
+msgstr "Vedúci herný dizajnér"
+
+#: ../src/gui_common/CreditsScroll.cs:262
+msgid "LEAD_GAME_DESIGNERS"
+msgstr "Vedúci herní dizajnéri"
+
+#: ../src/gui_common/CreditsScroll.cs:267
+msgid "LEAD_TESTER"
+msgstr "Hlavný tester"
+
+#: ../src/gui_common/CreditsScroll.cs:268
+msgid "LEAD_TESTERS"
+msgstr "Hlavní testeri"
+
+#: ../src/gui_common/CreditsScroll.cs:273
+msgid "LEAD_PROJECT_MANAGER"
+msgstr "Vedúci projektový manažér"
+
+#: ../src/gui_common/CreditsScroll.cs:274
+msgid "LEAD_PROJECT_MANAGERS"
+msgstr "Vedúci projektoví manažéri"
+
+#: ../src/gui_common/CreditsScroll.cs:281
+msgid "CURRENT_DEVELOPERS"
+msgstr "Súčasní vývojári"
+
+#: ../src/gui_common/CreditsScroll.cs:297
+msgid "PAST_DEVELOPERS"
+msgstr "Bývalí vývojári"
+
+#: ../src/gui_common/CreditsScroll.cs:313
+msgid "OUTSIDE_CONTRIBUTORS"
+msgstr "Externí prispievatelia"
+
+#: ../src/gui_common/CreditsScroll.cs:316
+msgid "YOU_CAN_MAKE_PULL_REQUEST"
+msgstr ""
+"Thrive je open source projekt.\n"
+"Môžeš prispieť aj keď nie si súčasťou tímu (formou pull request) ."
+
+#: ../src/gui_common/CreditsScroll.cs:331
+msgid "PATRONS"
+msgstr "Patróni"
+
+#: ../src/gui_common/CreditsScroll.cs:337
+msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
+msgstr "Budúci vývoj Thrive môžeš podporiť na Patreone."
+
+#: ../src/gui_common/CreditsScroll.cs:354
+msgid "DONATIONS"
+msgstr "Príspevky"
+
+#: ../src/gui_common/CreditsScroll.cs:377
+msgid "TRANSLATORS"
+msgstr "Prekladatelia"
+
+#: ../src/gui_common/CreditsScroll.cs:391
+msgid "USED_LIBRARIES_LICENSES"
+msgstr "Licencie a použité knižnice"
+
+#: ../src/gui_common/CreditsScroll.cs:488
+msgid "THANKS_FOR_PLAYING"
+msgstr ""
+"Ďakujeme, že si hral našu hru!\n"
+"\n"
+"Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
+
+#: ../src/gui_common/CreditsScroll.cs:497
+msgid "PROGRAMMING_TEAM"
+msgstr "Programátori"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+msgid "THEORY_TEAM"
+msgstr "Teoretici"
+
+#: ../src/gui_common/CreditsScroll.cs:499
+msgid "GRAPHICS_TEAM"
+msgstr "Grafici"
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "SOUND_TEAM"
+msgstr "Zvukári"
+
+#: ../src/gui_common/CreditsScroll.cs:501
+msgid "OUTREACH_TEAM"
+msgstr "Kontakt s komunitou"
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "GAME_DESIGN_TEAM"
+msgstr "Dizajnéri"
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "TESTING_TEAM"
+msgstr "Testeri"
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr "Projektoví manažéri"
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr "Externí programátori"
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "VIP_PATRONS"
+msgstr "VIP podporovatelia"
+
+#: ../src/gui_common/CreditsScroll.cs:507
+msgid "DEV_BUILD_PATRONS"
+msgstr "Devbuilds podporovatelia"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "SUPPORTER_PATRONS"
+msgstr "Podporovatelia"
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "JANUARY"
+msgstr "Január"
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "FEBRUARY"
+msgstr "Február"
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "MARCH"
+msgstr "Marec"
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "APRIL"
+msgstr "Apríl"
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "MAY"
+msgstr "Máj"
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "JUNE"
+msgstr "Jún"
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "JULY"
+msgstr "Júl"
+
+#: ../src/gui_common/CreditsScroll.cs:516
+msgid "AUGUST"
+msgstr "August"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "SEPTEMBER"
+msgstr "September"
+
+#: ../src/gui_common/CreditsScroll.cs:518
+msgid "OCTOBER"
+msgstr "Október"
+
+#: ../src/gui_common/CreditsScroll.cs:519
+msgid "NOVEMBER"
+msgstr "November"
+
+#: ../src/gui_common/CreditsScroll.cs:520
+msgid "DECEMBER"
+msgstr "December"
+
+#: ../src/gui_common/CreditsScroll.tscn:45
+msgid "BY_REVOLUTIONARY_GAMES"
+msgstr "Od Revolutionary Games Studio"
+
+#: ../src/gui_common/CreditsScroll.tscn:52
+msgid "DEVELOPMENT_SUPPORTED_BY"
+msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
+
+#: ../src/gui_common/CreditsScroll.tscn:60
+msgid "DEVELOPERS"
+msgstr "Vývojári"
+
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopírovať chybu do schránky"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:64
 msgid "GPL_LICENSE_HEADING"
 msgstr "Text licencie GPL je nasledujúci:"
 
@@ -3832,6 +3741,29 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:366
 msgid "TUTORIAL"
 msgstr "Tutoriál"
+
+#: ../src/gui_common/PlaybackControls.tscn:107
+msgid "STOP"
+msgstr "Stop"
+
+#: ../src/gui_common/QuickLoadHandler.tscn:20
+msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
+msgstr ""
+"Uložená verzia hry, ktorú sa pokúšaš načítať, nezodpovedá verzii hry. \n"
+"Načítaj ju manuálne cez menu."
+
+#: ../src/gui_common/QuickLoadHandler.tscn:22
+msgid "SAVE_HAS_DIFFERENT_VERSION"
+msgstr "Uložená hra má inú verziu"
+
+#: ../src/gui_common/RadialMenu.cs:67
+msgid "SELECT_OPTION"
+msgstr "Vyber možnosť"
+
+#: ../src/gui_common/SpeciesDetailsPanel.tscn:80
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:222
+msgid "FOSSILISE"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
@@ -4133,7 +4065,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:200
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:202
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Žiadne procesy"
 
@@ -4178,8 +4110,8 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:162
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:170
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:177
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:185
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1714
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
@@ -4282,6 +4214,120 @@ msgstr ""
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Kliknutím, ťahaním a priblížením sa môžete pohybovať"
 
+#: ../src/gui_common/TweakedColourPicker.cs:389
+msgid "COLOUR_PICKER_PICK_COLOUR"
+msgstr "Zvoľ farbu z herného okna"
+
+#: ../src/gui_common/TweakedColourPicker.cs:390
+msgid "COLOUR_PICKER_ADD_PRESET"
+msgstr "Pridať aktuálnu farbu ako prednastavenú"
+
+#: ../src/gui_common/TweakedColourPicker.cs:391
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Zapnúť alebo vypnúť režim OSJ (Odtieň, Saturácia, Jas).\n"
+"Nemôže byť zapnutý v režime raw."
+
+#: ../src/gui_common/TweakedColourPicker.cs:392
+msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr ""
+"Zapnúť alebo vypnúť režim raw.\n"
+"V režime raw môžeš hodnoty R, G, B nastaviť nad úroveň 1.0.\n"
+"Nemôže byť zapnutý v režime OSJ."
+
+#: ../src/gui_common/TweakedColourPicker.cs:396
+msgid "COLOUR_PICKER_H_TOOLTIP"
+msgstr "Odtieň - časť farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:397
+msgid "COLOUR_PICKER_S_TOOLTIP"
+msgstr "Saturácia - množstvo sivej farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:398
+msgid "COLOUR_PICKER_V_TOOLTIP"
+msgstr "Jas - svetlosť alebo intenzita farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:402
+msgid "COLOUR_PICKER_R_TOOLTIP"
+msgstr "Hodnota červeného kanála farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:403
+msgid "COLOUR_PICKER_G_TOOLTIP"
+msgstr "Hodnota zeleného kanála farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:404
+msgid "COLOUR_PICKER_B_TOOLTIP"
+msgstr "Hodnota modrého kanála farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:407
+msgid "COLOUR_PICKER_A_TOOLTIP"
+msgstr "Hodnota alfa kanála farby"
+
+#: ../src/gui_common/TweakedColourPicker.cs:581
+msgid "COLOUR_PICKER_PRESET_TOOLTIP"
+msgstr ""
+"Farba: {0}\n"
+"Ľavé tlačidlo myši: Použiť toto prednastavenie\n"
+"Pravé tlačidlo myši: Vymazať toto prednastavenie"
+
+#: ../src/gui_common/TweakedColourPicker.tscn:47
+msgid "HSV"
+msgstr "OSJ"
+
+#: ../src/gui_common/TweakedColourPicker.tscn:69
+msgid "RAW"
+msgstr "Raw"
+
+#: ../src/gui_common/VersionNumber.cs:38
+#, fuzzy
+msgid "DEVBUILD_VERSION_INFO"
+msgstr "Devbuilds podporovatelia"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:108
+msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
+msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:754
+msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
+msgid "INTERNALS"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
+msgid "APPEARANCE"
+msgstr "Vzhľad"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+msgid "REPRODUCTION_ASEXUAL"
+msgstr "Asexuálne"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
+msgid "DISCONNECTED_METABALLS"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
+msgid "DISCONNECTED_METABALLS_TEXT"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
+msgid "CREATE_NEW_TISSUE_TYPE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
+msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
+msgid "MULTIPLE_METABALLS"
+msgstr ""
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 msgid "LOOKING_AT"
 msgstr ""
@@ -4326,11 +4372,11 @@ msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1204
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:688
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:722
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
+#: ../src/microbe_stage/MicrobeStage.tscn:1204
 msgid "COMPOUNDS"
 msgstr "Zlúčeniny"
 
@@ -4365,247 +4411,6 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:106
-msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:725
-msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
-msgid "INTERNALS"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
-msgid "APPEARANCE"
-msgstr "Vzhľad"
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
-msgid "REPRODUCTION_ASEXUAL"
-msgstr "Asexuálne"
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
-msgid "DISCONNECTED_METABALLS"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
-msgid "DISCONNECTED_METABALLS_TEXT"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
-msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
-msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr ""
-
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-msgid "MULTIPLE_METABALLS"
-msgstr ""
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:48
-msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:63
-msgid "PAUSE_TOOLTIP"
-msgstr "Pozastaviť hru"
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:64
-msgid "RESUME_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
-msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Zobraziť / skryť prostredie a zlúčeniny"
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:86
-#, fuzzy
-msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Zobraziť / skryť prostredie a zlúčeniny"
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:101
-msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "Zobraziť / skryť bunkové procesy"
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:114
-#: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
-msgid "STATISTICS"
-msgstr "Štatistiky"
-
-#: ../src/microbe_stage/HUDBottomBar.tscn:151
-msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Samovražda"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:743
-msgid "SUCCESSFUL_SCAVENGE"
-msgstr ""
-
-#: ../src/microbe_stage/Microbe.Contact.cs:750
-msgid "SUCCESSFUL_KILL"
-msgstr "úspešné zabitie"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:931
-msgid "DEATH"
-msgstr "smrť"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:1195
-#, fuzzy
-msgid "ESCAPE_ENGULFING"
-msgstr "uniknúť pohlteniu"
-
-#: ../src/microbe_stage/Microbe.Interior.cs:1116
-msgid "REPRODUCED"
-msgstr "reprodukované"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
-#, fuzzy
-msgid "INFINITE_COMPOUNDS"
-msgstr "Nekonečné zlúčeniny"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
-msgid "GODMODE"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
-#, fuzzy
-msgid "NO_AI"
-msgstr "Žiadne AI"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
-msgid "PLAYER_SPEED"
-msgstr ""
-"Hráč\n"
-"Rýchlosť"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
-#, fuzzy
-msgid "PLAYER_DUPLICATE"
-msgstr "Duplikovať hráča"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
-msgid "SPAWN_ENEMY"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
-msgid "DESPAWN_ENTITIES"
-msgstr "Maximálny počet entít:"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:62
-msgid "PAUSE_PROMPT"
-msgstr "[center]Pozastavenie zrušíte stlačením tlačidla [thrive:input]g_pause[/thrive:input][/center]"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:109
-msgid "SIGNAL_COMMAND_NONE"
-msgstr "Žiadny príkaz"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:110
-msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr "Nasleduj ma"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:111
-msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:112
-msgid "SIGNAL_COMMAND_FLEE"
-msgstr "Utiecť"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:113
-#, fuzzy
-msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "Stať sa agresívnym"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:116
-msgid "SIGNAL_TO_EMIT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:186
-msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:187
-#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
-msgid "FOSSILISATION_HINT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:223
-msgid "DEVOURED"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:322
-#, fuzzy
-msgid "STUFF_AT"
-msgstr "Veci na {0:F1}, {1:F1}:"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:414
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
-#, fuzzy
-msgid "BECOME_MULTICELLULAR"
-msgstr "Stať sa viacbunkovým ({0}/{1})"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:450
-#: ../src/microbe_stage/MicrobeStage.tscn:1796
-#, fuzzy
-msgid "BECOME_MACROSCOPIC"
-msgstr "Stať sa makroskopickým ({0}/{1})"
-
-#: ../src/microbe_stage/MicrobeSpecies.cs:182
-#, fuzzy
-msgid "MICROBE_SPECIES_DETAIL_TEXT"
-msgstr "[b][u]{0}[/u][/b] vyhynul!"
-
-#: ../src/microbe_stage/MicrobeStage.cs:743
-msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:569
-msgid "AT_CURSOR"
-msgstr "Na kurzore:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1545
-msgid "INGESTED_MATTER"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1781
-msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1964
-msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Vstúpte do editora a upravte svoj druh"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
-msgid "PANGONIAN_REGION_NAME"
-msgstr "Pangónsky"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:880
-msgid "PATCH_NAME"
-msgstr "{0} {1}"
-
-#: ../src/microbe_stage/PausePrompt.tscn:23
-msgid "PAUSED"
-msgstr "POZASTAVENÉ"
-
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:161
-msgid "UNBIND_HELP_TEXT"
-msgstr "Rozpojovací mód"
-
-#: ../src/microbe_stage/ProcessPanel.tscn:16
-#, fuzzy
-msgid "PROCESS_PANEL_TITLE"
-msgstr "Bunkové procesy"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
 msgid "PEACEFUL"
@@ -4647,6 +4452,39 @@ msgstr "Reagujúci"
 msgid "FOCUSED"
 msgstr "Sústredený"
 
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:586
+msgid "CELL_TYPE_NAME"
+msgstr "Názov typu bunky"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1335
+msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#, fuzzy
+msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr "Nedá sa odstrániť posledná organela"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2271
+msgid "POPULATION_IN_PATCH_SHORT"
+msgstr "{0} ({1})"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2390
+msgid "ENERGY_IN_PATCH_FOR"
+msgstr "Energia v {0} pre {1}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2394
+msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2401
+msgid "ENERGY_SOURCES"
+msgstr "Zdroje energie:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
+msgid "FOOD_SOURCE_ENERGY_INFO"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
@@ -4680,39 +4518,6 @@ msgstr "Základný pohyb"
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:580
-msgid "CELL_TYPE_NAME"
-msgstr "Názov typu bunky"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1279
-msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1281
-#, fuzzy
-msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "Nedá sa odstrániť posledná organela"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2215
-msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "{0} ({1})"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2334
-msgid "ENERGY_IN_PATCH_FOR"
-msgstr "Energia v {0} pre {1}"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2338
-msgid "ENERGY_SUMMARY_LINE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2345
-msgid "ENERGY_SOURCES"
-msgstr "Zdroje energie:"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2351
-msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:347
 msgid "LIGHT_LEVEL_DAY"
@@ -4867,13 +4672,19 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:263
+#: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:58
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
+#: ../src/microbe_stage/HUDBottomBar.tscn:114
+msgid "STATISTICS"
+msgstr "Štatistiky"
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:281
 #, fuzzy
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Názov druhu..."
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:267
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:141
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:285
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:158
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -4882,7 +4693,7 @@ msgstr ""
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Názov druhu..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítavanie editora mikróbov"
 
@@ -4902,47 +4713,47 @@ msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:217
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:109
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:231
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:124
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
 msgid "SEED_LABEL"
 msgstr "Bióm: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:171
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:389
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:390
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:392
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:395
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:399
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:417
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:418
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:392
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:679
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosférické plyny"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:395
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 msgid "SPECIES_LIST"
 msgstr "Zoznam druhov"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:406
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:419
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:434
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:447
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:407
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:418
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:435
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:446
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
@@ -4996,7 +4807,7 @@ msgstr ""
 msgid "CELL"
 msgstr "Bunka"
 
-#: ../src/microbe_stage/editor/MutationPointsBar.cs:46
+#: ../src/microbe_stage/editor/MutationPointsBar.cs:48
 msgid "FREEBUILDING"
 msgstr "Voľná stavba"
 
@@ -5020,7 +4831,7 @@ msgstr "Upraviť"
 msgid "EXTINCT_SPECIES"
 msgstr "Vyhynuté druhy"
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:260
+#: ../src/microbe_stage/editor/TimelineTab.cs:286
 msgid "NO_EVENTS_RECORDED"
 msgstr "Žiadne zaznamenané udalosti"
 
@@ -5049,15 +4860,15 @@ msgstr "Minimálne množstvo na detekciu:"
 msgid "LINE_COLOUR"
 msgstr "Farba čiary:"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:108
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
 msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
@@ -5077,19 +4888,19 @@ msgstr "VYHYNUTIE"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:257
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:296
 msgid "BIOME_LABEL"
 msgstr "Bióm: {0}"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:260
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:299
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod hladinou mora"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:275
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:314
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:304
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:343
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} s populáciou: {1}"
 
@@ -5134,6 +4945,196 @@ msgstr ""
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr ""
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:48
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:63
+msgid "PAUSE_TOOLTIP"
+msgstr "Pozastaviť hru"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:64
+msgid "RESUME_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:72
+#, fuzzy
+msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:86
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:101
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr "Zobraziť / skryť bunkové procesy"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:151
+msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr "Samovražda"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:745
+msgid "SUCCESSFUL_SCAVENGE"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Contact.cs:752
+msgid "SUCCESSFUL_KILL"
+msgstr "úspešné zabitie"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:933
+msgid "DEATH"
+msgstr "smrť"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1197
+#, fuzzy
+msgid "ESCAPE_ENGULFING"
+msgstr "uniknúť pohlteniu"
+
+#: ../src/microbe_stage/Microbe.Interior.cs:1116
+msgid "REPRODUCED"
+msgstr "reprodukované"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
+#, fuzzy
+msgid "INFINITE_COMPOUNDS"
+msgstr "Nekonečné zlúčeniny"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+msgid "GODMODE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#, fuzzy
+msgid "NO_AI"
+msgstr "Žiadne AI"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
+msgid "PLAYER_SPEED"
+msgstr ""
+"Hráč\n"
+"Rýchlosť"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
+#, fuzzy
+msgid "PLAYER_DUPLICATE"
+msgstr "Duplikovať hráča"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+msgid "SPAWN_ENEMY"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#, fuzzy
+msgid "DESPAWN_ENTITIES"
+msgstr "Maximálny počet entít:"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:64
+msgid "PAUSE_PROMPT"
+msgstr "[center]Pozastavenie zrušíte stlačením tlačidla [thrive:input]g_pause[/thrive:input][/center]"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:111
+msgid "SIGNAL_COMMAND_NONE"
+msgstr "Žiadny príkaz"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:112
+msgid "SIGNAL_COMMAND_FOLLOW"
+msgstr "Nasleduj ma"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:113
+msgid "SIGNAL_COMMAND_TO_ME"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:114
+msgid "SIGNAL_COMMAND_FLEE"
+msgstr "Utiecť"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:115
+#, fuzzy
+msgid "SIGNAL_COMMAND_AGGRESSION"
+msgstr "Stať sa agresívnym"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:118
+msgid "SIGNAL_TO_EMIT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:188
+msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:189
+#: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
+msgid "FOSSILISATION_HINT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:240
+msgid "DEVOURED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:339
+#, fuzzy
+msgid "STUFF_AT"
+msgstr "Veci na {0:F1}, {1:F1}:"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:431
+#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#, fuzzy
+msgid "BECOME_MULTICELLULAR"
+msgstr "Stať sa viacbunkovým ({0}/{1})"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:467
+#: ../src/microbe_stage/MicrobeStage.tscn:1796
+#, fuzzy
+msgid "BECOME_MACROSCOPIC"
+msgstr "Stať sa makroskopickým ({0}/{1})"
+
+#: ../src/microbe_stage/MicrobeSpecies.cs:182
+#, fuzzy
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr "[b][u]{0}[/u][/b] vyhynul!"
+
+#: ../src/microbe_stage/MicrobeStage.cs:755
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:569
+msgid "AT_CURSOR"
+msgstr "Na kurzore:"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1545
+msgid "INGESTED_MATTER"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1781
+msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1964
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Vstúpte do editora a upravte svoj druh"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
+msgid "PANGONIAN_REGION_NAME"
+msgstr "Pangónsky"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:880
+msgid "PATCH_NAME"
+msgstr "{0} {1}"
+
+#: ../src/microbe_stage/PausePrompt.tscn:23
+msgid "PAUSED"
+msgstr "POZASTAVENÉ"
+
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:164
+msgid "UNBIND_HELP_TEXT"
+msgstr "Rozpojovací mód"
+
+#: ../src/microbe_stage/ProcessPanel.tscn:16
+#, fuzzy
+msgid "PROCESS_PANEL_TITLE"
+msgstr "Bunkové procesy"
 
 #: ../src/modding/ModLoader.cs:302 ../src/modding/ModLoader.cs:350
 msgid "CANT_LOAD_MOD_INFO"
@@ -5184,48 +5185,48 @@ msgstr "Načítanie súboru pck ({0}) zlyhalo"
 msgid "PCK_LOAD_FAILED"
 msgstr "Načítanie súboru pck ({0}) zlyhalo"
 
-#: ../src/modding/ModManager.cs:297
+#: ../src/modding/ModManager.cs:299
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:311
+#: ../src/modding/ModManager.cs:313
 msgid "INVALID_URL_SCHEME"
 msgstr "Neplatná schéma adresy URL"
 
-#: ../src/modding/ModManager.cs:323
+#: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:334
+#: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:660
+#: ../src/modding/ModManager.cs:712
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Žiadny vybraný mod"
 
-#: ../src/modding/ModManager.cs:901
+#: ../src/modding/ModManager.cs:953
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:902
+#: ../src/modding/ModManager.cs:954
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Toto je lokálne nainštalovaný mód"
 
-#: ../src/modding/ModManager.cs:913
+#: ../src/modding/ModManager.cs:965
 msgid "USES_FEATURE"
 msgstr "Áno"
 
-#: ../src/modding/ModManager.cs:914
+#: ../src/modding/ModManager.cs:966
 msgid "DOES_NOT_USE_FEATURE"
 msgstr "Nie"
 
-#: ../src/modding/ModManager.cs:959
+#: ../src/modding/ModManager.cs:1011
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Chyba pri vytváraní priečinka pre mód"
 
-#: ../src/modding/ModManager.cs:968
+#: ../src/modding/ModManager.cs:1020
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
@@ -5408,75 +5409,75 @@ msgstr "Vyžaduje sa reštart"
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:273 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:305 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:304
+#: ../src/modding/ModUploader.cs:336
 msgid "MISSING_TITLE"
 msgstr "Chýba názov"
 
-#: ../src/modding/ModUploader.cs:310
+#: ../src/modding/ModUploader.cs:342
 msgid "MISSING_DESCRIPTION"
 msgstr "Chýba popis"
 
-#: ../src/modding/ModUploader.cs:318
+#: ../src/modding/ModUploader.cs:350
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Popis je príliš dlhý"
 
-#: ../src/modding/ModUploader.cs:324 ../src/steam/SteamClient.cs:280
+#: ../src/modding/ModUploader.cs:356 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Poznámky k zmene sú príliš dlhé"
 
-#: ../src/modding/ModUploader.cs:332
+#: ../src/modding/ModUploader.cs:364
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:340
+#: ../src/modding/ModUploader.cs:372
 msgid "INVALID_TAG"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:353
+#: ../src/modding/ModUploader.cs:385
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:360
+#: ../src/modding/ModUploader.cs:392
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:415
+#: ../src/modding/ModUploader.cs:447
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID nie je platné číslo"
 
-#: ../src/modding/ModUploader.cs:458
+#: ../src/modding/ModUploader.cs:490
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Vytváranie..."
 
-#: ../src/modding/ModUploader.cs:472
+#: ../src/modding/ModUploader.cs:504
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:517
+#: ../src/modding/ModUploader.cs:549
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Nahrávanie..."
 
-#: ../src/modding/ModUploader.cs:554
+#: ../src/modding/ModUploader.cs:586
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:558
+#: ../src/modding/ModUploader.cs:590
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:618
+#: ../src/modding/ModUploader.cs:650
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:642
+#: ../src/modding/ModUploader.cs:674
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:656 ../src/modding/NewModGUI.cs:304
+#: ../src/modding/ModUploader.cs:688 ../src/modding/NewModGUI.cs:333
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Chyba: {0}"
 
@@ -5566,32 +5567,32 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Nahrávanie bolo úspešné"
 
-#: ../src/modding/NewModGUI.cs:179
+#: ../src/modding/NewModGUI.cs:208
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/modding/NewModGUI.cs:238
+#: ../src/modding/NewModGUI.cs:267
 msgid "INVALID_URL_FORMAT"
 msgstr "Neplatný formát adresy URL"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:282
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:288
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:265
+#: ../src/modding/NewModGUI.cs:294
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:280
+#: ../src/modding/NewModGUI.cs:309
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:290
+#: ../src/modding/NewModGUI.cs:319
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Pri dodatočných validáciách bol zistený problém: {0}"
 
@@ -5677,11 +5678,11 @@ msgstr "Uloženie zlyhalo"
 msgid "ERROR_SAVING"
 msgstr "Chyba pri ukladaní"
 
-#: ../src/saving/NewSaveMenu.cs:79
+#: ../src/saving/NewSaveMenu.cs:95
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:196
+#: ../src/saving/NewSaveMenu.cs:212
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
@@ -5749,7 +5750,7 @@ msgstr "Rýchle uloženie"
 msgid "SAVE_INVALID"
 msgstr "Neplatné"
 
-#: ../src/saving/SaveList.cs:217
+#: ../src/saving/SaveList.cs:239
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
@@ -5855,11 +5856,11 @@ msgstr "Načítať"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:223
+#: ../src/saving/SaveManagerGUI.cs:244
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:233
+#: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 
@@ -5965,31 +5966,7 @@ msgstr "Steamu sa nepodarilo získať UGC lock"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nastala neznáma chyba služby Steam"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:198
-msgid "TOGGLE_NAVIGATION_TREE"
-msgstr ""
-
-#: ../src/thriveopedia/Thriveopedia.tscn:232
-#, fuzzy
-msgid "PAGE_BACK"
-msgstr "Dozadu"
-
-#: ../src/thriveopedia/Thriveopedia.tscn:251
-#, fuzzy
-msgid "PAGE_FORWARD"
-msgstr "Dopredu"
-
-#: ../src/thriveopedia/Thriveopedia.tscn:270
-#, fuzzy
-msgid "HOME"
-msgstr "Home"
-
-#: ../src/thriveopedia/Thriveopedia.tscn:294
-#, fuzzy
-msgid "PAGE_TITLE"
-msgstr "Odstrániť lokálne údaje"
-
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:190
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:207
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
@@ -6021,11 +5998,11 @@ msgstr "Mnohobunkový"
 msgid "LATE_MULTICELLULAR"
 msgstr "Mnohobunkový"
 
-#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:22
+#: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:24
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:35
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:37
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
@@ -6050,11 +6027,11 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:35
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:108
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:125
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -6082,9 +6059,33 @@ msgstr "Priečinok snímkov obrazovky nebol nájdený"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Skús spraviť zopár snímiek obrazovky!"
 
-#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:29
+#: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:32
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
 msgstr ""
+
+#: ../src/thriveopedia/Thriveopedia.tscn:198
+msgid "TOGGLE_NAVIGATION_TREE"
+msgstr ""
+
+#: ../src/thriveopedia/Thriveopedia.tscn:232
+#, fuzzy
+msgid "PAGE_BACK"
+msgstr "Dozadu"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:251
+#, fuzzy
+msgid "PAGE_FORWARD"
+msgstr "Dopredu"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:270
+#, fuzzy
+msgid "HOME"
+msgstr "Home"
+
+#: ../src/thriveopedia/Thriveopedia.tscn:294
+#, fuzzy
+msgid "PAGE_TITLE"
+msgstr "Odstrániť lokálne údaje"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
