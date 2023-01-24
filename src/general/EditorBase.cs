@@ -43,9 +43,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [Export]
     public NodePath? EditorTabSelectorPath;
 
+#pragma warning disable CA2213
     protected Node world = null!;
     protected PauseMenu pauseMenu = null!;
     protected MicrobeEditorTabButtons? editorTabSelector;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Where all user actions will  be registered
@@ -75,7 +77,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected GameProperties? currentGame;
 
+#pragma warning disable CA2213
     private Control editorGUIBaseNode = null!;
+#pragma warning restore CA2213
 
     private int? mutationPointsCache;
 
@@ -502,6 +506,18 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
 
         return OnFinishEditing(userOverrides);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            PauseMenuPath.Dispose();
+            EditorGUIBaseNodePath.Dispose();
+            EditorTabSelectorPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected abstract void InitEditorGUI(bool fresh);

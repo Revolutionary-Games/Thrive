@@ -8,7 +8,9 @@ public class CellTypeSelection : MicrobePartSelection
 {
     private CellType? cellType;
 
+#pragma warning disable CA2213
     private Texture placeholderIcon = null!;
+#pragma warning restore CA2213
 
     private Texture? cellImage;
     private ImageTask? imageTask;

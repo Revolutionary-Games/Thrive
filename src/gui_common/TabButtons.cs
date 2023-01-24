@@ -48,6 +48,7 @@ public class TabButtons : HBoxContainer
 
     private TabLevel levelOnScreen = TabLevel.Primary;
 
+#pragma warning disable CA2213
     private Container? leftContainer;
     private Control leftPadding = null!;
     private KeyPrompt? leftButtonIndicator;
@@ -57,6 +58,7 @@ public class TabButtons : HBoxContainer
     private KeyPrompt rightButtonIndicator = null!;
 
     private Container tabButtonsContainer = null!;
+#pragma warning restore CA2213
 
     public enum PressType
     {
@@ -220,6 +222,22 @@ public class TabButtons : HBoxContainer
         TryToMoveToPreviousTab();
 
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            LeftContainerPath.Dispose();
+            LeftPaddingPath.Dispose();
+            LeftButtonIndicatorPath.Dispose();
+            RightContainerPath.Dispose();
+            RightPaddingPath.Dispose();
+            RightButtonIndicatorPath.Dispose();
+            TabButtonsContainerPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void TryToMoveToNextTab()

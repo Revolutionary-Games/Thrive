@@ -295,6 +295,7 @@ public class OptionsMenu : ControlWithInput
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+#pragma warning disable CA2213
     private Button backButton = null!;
     private Button resetButton = null!;
     private Button saveButton = null!;
@@ -404,6 +405,7 @@ public class OptionsMenu : ControlWithInput
     private CustomDialog backConfirmationBox = null!;
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
+#pragma warning restore CA2213
 
     // Misc
 
@@ -762,6 +764,104 @@ public class OptionsMenu : ControlWithInput
     public void SelectOptionsTab(OptionsTab tab)
     {
         ChangeSettingsTab(tab.ToString());
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            BackButtonPath.Dispose();
+            ResetButtonPath.Dispose();
+            SaveButtonPath.Dispose();
+            TabButtonsPath.Dispose();
+            GraphicsButtonPath.Dispose();
+            SoundButtonPath.Dispose();
+            PerformanceButtonPath.Dispose();
+            InputsButtonPath.Dispose();
+            MiscButtonPath.Dispose();
+            GraphicsTabPath.Dispose();
+            VSyncPath.Dispose();
+            FullScreenPath.Dispose();
+            MSAAResolutionPath.Dispose();
+            ResolutionPath.Dispose();
+            MaxFramesPerSecondPath.Dispose();
+            ColourblindSettingPath.Dispose();
+            ChromaticAberrationSliderPath.Dispose();
+            ChromaticAberrationTogglePath.Dispose();
+            ControllerPromptTypePath.Dispose();
+            DisplayAbilitiesBarTogglePath.Dispose();
+            DisplayBackgroundParticlesTogglePath.Dispose();
+            GUILightEffectsTogglePath.Dispose();
+            DisplayPartNamesTogglePath.Dispose();
+            GpuNamePath.Dispose();
+            UsedRendererNamePath.Dispose();
+            VideoMemoryPath.Dispose();
+            SoundTabPath.Dispose();
+            MasterVolumePath.Dispose();
+            MasterMutedPath.Dispose();
+            MusicVolumePath.Dispose();
+            MusicMutedPath.Dispose();
+            AmbianceVolumePath.Dispose();
+            AmbianceMutedPath.Dispose();
+            SFXVolumePath.Dispose();
+            SFXMutedPath.Dispose();
+            GUIVolumePath.Dispose();
+            GUIMutedPath.Dispose();
+            AudioOutputDeviceSelectionPath.Dispose();
+            LanguageSelectionPath.Dispose();
+            ResetLanguageButtonPath.Dispose();
+            LanguageProgressLabelPath.Dispose();
+            PerformanceTabPath.Dispose();
+            CloudIntervalPath.Dispose();
+            CloudResolutionTitlePath.Dispose();
+            CloudResolutionPath.Dispose();
+            RunAutoEvoDuringGameplayPath.Dispose();
+            DetectedCPUCountPath.Dispose();
+            ActiveThreadCountPath.Dispose();
+            AssumeHyperthreadingPath.Dispose();
+            UseManualThreadCountPath.Dispose();
+            ThreadCountSliderPath.Dispose();
+            MaxSpawnedEntitiesPath.Dispose();
+            InputsTabPath.Dispose();
+            MouseAxisSensitivitiesBoundPath.Dispose();
+            MouseHorizontalSensitivityPath.Dispose();
+            MouseHorizontalInvertedPath.Dispose();
+            MouseVerticalSensitivityPath.Dispose();
+            MouseVerticalInvertedPath.Dispose();
+            MouseWindowSizeScalingPath.Dispose();
+            MouseWindowSizeScalingWithLogicalSizePath.Dispose();
+            ControllerAxisSensitivitiesBoundPath.Dispose();
+            ControllerHorizontalSensitivityPath.Dispose();
+            ControllerHorizontalInvertedPath.Dispose();
+            ControllerVerticalSensitivityPath.Dispose();
+            ControllerVerticalInvertedPath.Dispose();
+            TwoDimensionalMovementPath.Dispose();
+            ThreeDimensionalMovementPath.Dispose();
+            InputGroupListPath.Dispose();
+            DeadzoneConfigurationPopupPath.Dispose();
+            MiscTabPath.Dispose();
+            PlayIntroPath.Dispose();
+            PlayMicrobeIntroPath.Dispose();
+            TutorialsEnabledOnNewGamePath.Dispose();
+            CheatsPath.Dispose();
+            AutoSavePath.Dispose();
+            MaxAutoSavesPath.Dispose();
+            MaxQuickSavesPath.Dispose();
+            BackConfirmationBoxPath.Dispose();
+            TutorialsEnabledPath.Dispose();
+            ScreenshotDirectoryWarningBoxPath.Dispose();
+            DefaultsConfirmationBoxPath.Dispose();
+            ErrorAcceptBoxPath.Dispose();
+            CustomUsernameEnabledPath.Dispose();
+            CustomUsernamePath.Dispose();
+            DismissedNoticeCountPath.Dispose();
+            JSONDebugModePath.Dispose();
+            CommitLabelPath.Dispose();
+            BuiltAtLabelPath.Dispose();
+            UnsavedProgressWarningPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void SwitchMode(OptionsMode mode)

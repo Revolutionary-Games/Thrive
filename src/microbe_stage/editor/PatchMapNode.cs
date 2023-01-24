@@ -30,10 +30,12 @@ public class PatchMapNode : MarginContainer
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
+#pragma warning disable CA2213
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
+#pragma warning restore CA2213
 
     private Texture? patchIcon;
 
@@ -219,6 +221,19 @@ public class PatchMapNode : MarginContainer
     public void OnMouseExit()
     {
         Highlighted = false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            IconPath.Dispose();
+            HighlightPanelPath.Dispose();
+            MarkPanelPath.Dispose();
+            AdjacentPanelPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateSelectHighlightRing()

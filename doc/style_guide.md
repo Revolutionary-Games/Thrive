@@ -421,11 +421,34 @@ Godot usage
 - To remove all children of a Node use `FreeChildren` or
   `QueueFreeChildren` extension methods.
 
-- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or `Free`
-  instead. Also don't override Dispose in Node derived types, instead
-  use the tree enter and exit callbacks to handle resources that need
-  releasing when removed (unless it is a game entity for which there's
-  a special mechanism, `IEntity` destroyed callbacks)
+- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or
+  `Free` instead. Also don't override Dispose in Node derived types to
+  detect when the Node is removed, instead use the tree enter and exit
+  callbacks to handle resources that need releasing when removed
+  (unless it is a game entity for which there's a special mechanism,
+  `IEntity` destroyed callbacks)
+
+- DO NOT DISPOSE `GD.Load<T>` loaded resources. Any calls with the
+  same resource path will result in the same object instance being
+  returned. So it is not safe to dispose as other users may still be
+  using it.
+
+- For scene attached Nodes, they do not need to be manually freed or
+  disposed. Godot will automatically free them along with the parent.
+
+- `NodePath` variables should be disposed as they aren't part of the
+  scene tree or Godot properties it likely knows about. So disposing
+  those variables will speed up their clearing.
+
+- Automatic code checks will complain about `CA2213` due to the above.
+  For the above cases use `#pragma warning disable CA2213` and
+  `#pragma warning restore CA2213` around the block of variables to
+  suppress the warning. The warning is not globally suppressed as
+  non-Godot objects should still be disposed according to good style
+  so the warning helps in catching these cases. For example many
+  standard C# classes need to be disposed and for those objects, even
+  when they are held by Godot objects, custom dispose methods should
+  be implemented.
 
 - Avoid using a constructor to setup Godot resources, usually Node
   derived types should mostly do Godot Node related, constructor-like

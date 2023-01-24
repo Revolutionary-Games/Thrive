@@ -36,6 +36,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
+#pragma warning disable CA2213
     private PackedScene modifierInfoScene = null!;
     private Font latoBoldFont = null!;
 
@@ -46,6 +47,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
+#pragma warning restore CA2213
 
     private string? displayName;
     private string? description;
@@ -274,6 +276,23 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 modifier.AdjustValueColor(deltaValue);
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            NameLabelPath.Dispose();
+            MpLabelPath.Dispose();
+            RequiresNucleusPath.Dispose();
+            DescriptionLabelPath.Dispose();
+            ProcessesDescriptionLabelPath.Dispose();
+            ModifierListPath.Dispose();
+            ProcessListPath.Dispose();
+            modifierInfoScene.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateName()

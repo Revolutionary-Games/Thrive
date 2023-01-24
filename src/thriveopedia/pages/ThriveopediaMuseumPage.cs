@@ -23,6 +23,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     [Export]
     public NodePath FossilDirectoryWarningBoxPath = null!;
 
+#pragma warning disable CA2213
     private HFlowContainer cardContainer = null!;
     private Control welcomeLabel = null!;
     private VBoxContainer speciesPreviewContainer = null!;
@@ -30,6 +31,7 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     private CustomConfirmationDialog leaveGameConfirmationDialog = null!;
     private CustomConfirmationDialog fossilDirectoryWarningBox = null!;
     private PackedScene museumCardScene = null!;
+#pragma warning restore CA2213
 
     public override string PageName => "Museum";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_MUSEUM_PAGE_TITLE");
@@ -73,6 +75,21 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
 
     public override void UpdateCurrentWorldDetails()
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            CardContainerPath.Dispose();
+            WelcomeLabelPath.Dispose();
+            SpeciesPreviewContainerPath.Dispose();
+            SpeciesPreviewPanelPath.Dispose();
+            LeaveGameConfirmationDialogPath.Dispose();
+            FossilDirectoryWarningBoxPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateSpeciesPreview(MuseumCard card)

@@ -56,6 +56,8 @@ public abstract class
     /// </summary>
     protected readonly List<SceneDisplayer> placedModels = new();
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Object camera is over. Used to move the camera around
     /// </summary>
@@ -77,6 +79,7 @@ public abstract class
     protected PackedScene modelScene = null!;
 
     protected AudioStream hexPlacementSound = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     protected string? activeActionName;
@@ -97,7 +100,10 @@ public abstract class
     [JsonProperty]
     protected int placementRotation;
 
+    // This is separate from the other Godot resources as this is private and they are protected
+#pragma warning disable CA2213
     private CustomConfirmationDialog islandPopup = null!;
+#pragma warning restore CA2213
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
@@ -671,6 +677,20 @@ public abstract class
         {
             editorArrow.Translation = new Vector3(0, 0, arrowPosition);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            CameraPath.Dispose();
+            EditorArrowPath.Dispose();
+            EditorGridPath.Dispose();
+            CameraFollowPath.Dispose();
+            IslandErrorPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected MeshInstance CreateEditorHex()

@@ -22,7 +22,9 @@ public class ToolTipManager : CanvasLayer
 
     private readonly Dictionary<string, Control> groupsByName = new();
 
+#pragma warning disable CA2213
     private Control groupHolder = null!;
+#pragma warning restore CA2213
 
     private bool display;
     private float displayTimer;

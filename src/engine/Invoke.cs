@@ -101,6 +101,17 @@ public class Invoke : Node
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            queuedInvokes.Dispose();
+            nextFrameInvokes.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private class SkippableDisposedInvoke
     {
         private readonly Action underlyingAction;

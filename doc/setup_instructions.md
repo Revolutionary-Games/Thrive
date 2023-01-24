@@ -77,12 +77,12 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 6.0, but a
+Next you need, .NET SDK. Recommended version currently is 7.0, but a
 newer version may also work.
 
 On Linux you can use your package manager to install that. The package
-might be called `dotnet-sdk-6.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-6.0`
+might be called `dotnet-sdk-7.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-7.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an

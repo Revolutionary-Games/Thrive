@@ -63,6 +63,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     [Export]
     public NodePath ReportTabPatchSelectorPath = null!;
 
+#pragma warning disable CA2213
     private Button autoEvoSubtabButton = null!;
     private Button timelineSubtabButton = null!;
 
@@ -84,6 +85,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     private LineChart speciesPopulationChart = null!;
 
     private Texture temperatureIcon = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
@@ -206,6 +208,32 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     public override void OnValidAction()
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            AutoEvoSubtabButtonPath.Dispose();
+            TimelineSubtabButtonPath.Dispose();
+            AutoEvoSubtabPath.Dispose();
+            TimelineSubtabPath.Dispose();
+            TimelineEventsContainerPath.Dispose();
+            TimeIndicatorPath.Dispose();
+            PhysicalConditionsIconLegendPath.Dispose();
+            TemperatureChartPath.Dispose();
+            SunlightChartPath.Dispose();
+            AtmosphericGassesChartPath.Dispose();
+            CompoundsChartPath.Dispose();
+            SpeciesPopulationChartPath.Dispose();
+            GlucoseReductionLabelPath.Dispose();
+            AutoEvoLabelPath.Dispose();
+            ExternalEffectsLabelPath.Dispose();
+            ReportTabPatchNamePath.Dispose();
+            ReportTabPatchSelectorPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void OnTranslationsChanged()

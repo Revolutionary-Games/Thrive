@@ -5,8 +5,10 @@
 /// </summary>
 public class FossilisationButton : TextureButton
 {
+#pragma warning disable CA2213
     [Export]
     public Texture AlreadyFossilisedTexture = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The entity (organism) this button is attached to.
@@ -18,7 +20,13 @@ public class FossilisationButton : TextureButton
     /// </summary>
     private bool alreadyFossilised;
 
+#pragma warning disable CA2213
+
+    /// <summary>
+    ///   Active camera grabbed when this is created in order to properly position this on that camera's view
+    /// </summary>
     private Camera camera = null!;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnFossilisationDialogOpened(FossilisationButton button);

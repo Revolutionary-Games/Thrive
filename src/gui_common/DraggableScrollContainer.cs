@@ -28,8 +28,10 @@ public class DraggableScrollContainer : ScrollContainer
     /// </summary>
     private bool centering;
 
+#pragma warning disable CA2213
     private Control content = null!;
     private Tween tween = null!;
+#pragma warning restore CA2213
 
     private bool showScrollbars;
     private float contentScale = 1;

@@ -9,7 +9,9 @@ public class PlayerMulticellularInput : NodeWithInput
     private bool autoMove;
     private bool mouseUnCapturePressed;
 
+#pragma warning disable CA2213 // this is our parent object
     private MulticellularStage stage = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {

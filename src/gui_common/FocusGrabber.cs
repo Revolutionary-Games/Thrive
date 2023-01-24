@@ -103,6 +103,16 @@ public class FocusGrabber : Control
         return false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            NodeToGiveFocusTo.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateOverrideFocusStrings()
     {
         // We can't resolve relative paths before we are inside the tree

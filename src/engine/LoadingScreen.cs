@@ -37,6 +37,7 @@ public class LoadingScreen : Control
 
     private readonly Random random = new();
 
+#pragma warning disable CA2213
     private CrossFadableTextureRect artworkRect = null!;
     private Label? artDescriptionLabel;
     private Label? loadingMessageLabel;
@@ -44,9 +45,10 @@ public class LoadingScreen : Control
     private CustomRichTextLabel? tipLabel;
     private Control spinner = null!;
 
-    private bool wasVisible;
-
     private Timer randomizeTimer = null!;
+#pragma warning restore CA2213
+
+    private bool wasVisible;
 
     private string? loadingMessage;
     private string? tip;
@@ -210,6 +212,22 @@ public class LoadingScreen : Control
         totalElapsed += delta;
 
         spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ArtworkPath.Dispose();
+            ArtDescriptionPath.Dispose();
+            LoadingMessagePath.Dispose();
+            LoadingDescriptionPath.Dispose();
+            TipLabelPath.Dispose();
+            RandomizeTimerPath.Dispose();
+            SpinnerPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnBecomeVisible()

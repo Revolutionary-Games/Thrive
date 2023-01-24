@@ -11,10 +11,12 @@ public class TutorialDialog : CustomDialog
     [Export]
     public NodePath LabelPath = null!;
 
+#pragma warning disable CA2213
     private CustomRichTextLabel? label;
 
     // TODO: would make more sense for code consistency that this was defined in the scene for this class
     private Tween tween = new();
+#pragma warning restore CA2213
 
     private string description = string.Empty;
     private string controllerDescription = string.Empty;
@@ -77,6 +79,16 @@ public class TutorialDialog : CustomDialog
         base._ExitTree();
 
         KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            LabelPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void OnShown()

@@ -34,16 +34,27 @@ public class PhotoStudio : Viewport
 
     private bool waitingForBackgroundOperation;
 
+#pragma warning disable CA2213
     private PackedScene? taskScene;
+#pragma warning restore CA2213
+
     private string? loadedTaskScene;
     private bool previousSceneWasCorrect;
 
+#pragma warning disable CA2213
+
+    /// <summary>
+    ///   This holds the final rendered image across some steps, this is not disposed as this is passed out as the
+    ///   result object
+    /// </summary>
     private Image? renderedImage;
 
     private Spatial? instancedScene;
 
     private Camera camera = null!;
     private Spatial renderedObjectHolder = null!;
+
+#pragma warning restore CA2213
 
     private PhotoStudio() { }
 
@@ -241,6 +252,17 @@ public class PhotoStudio : Viewport
     public void SubmitTask(IPhotographable photographable)
     {
         tasks.Enqueue(new ImageTask(photographable));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            CameraPath.Dispose();
+            RenderedObjectHolderPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void LoadCurrentTaskScene()
