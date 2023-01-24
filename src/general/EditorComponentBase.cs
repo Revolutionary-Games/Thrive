@@ -14,9 +14,11 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     [Export]
     public NodePath FinishOrNextButtonPath = null!;
 
+#pragma warning disable CA2213
     protected AudioStream unableToPerformActionSound = null!;
 
     private Button finishOrNextButton = null!;
+#pragma warning restore CA2213
 
     private TEditor? editor;
 
@@ -146,6 +148,16 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     internal void PlayInvalidActionSound()
     {
         GUICommon.Instance.PlayCustomSound(unableToPerformActionSound, 0.4f);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            FinishOrNextButtonPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

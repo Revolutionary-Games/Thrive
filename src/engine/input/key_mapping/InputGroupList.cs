@@ -21,8 +21,10 @@ public class InputGroupList : VBoxContainer
     private InputEventItem? latestDialogConflict;
     private InputEvent? latestDialogNewEvent;
 
+#pragma warning disable CA2213
     private CustomConfirmationDialog conflictDialog = null!;
     private CustomConfirmationDialog resetInputsDialog = null!;
+#pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
 
@@ -181,6 +183,17 @@ public class InputGroupList : VBoxContainer
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
 
         Invoke.Instance.Queue(EnsureNavigationFlowIsCorrect);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ConflictDialogPath.Dispose();
+            ResetInputsDialog.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

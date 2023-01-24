@@ -16,8 +16,11 @@ public class InputGroupItem : VBoxContainer
     [Export]
     public NodePath InputActionsContainerPath = null!;
 
+#pragma warning disable CA2213
     private Label? inputGroupHeader;
     private VBoxContainer inputActionsContainer = null!;
+#pragma warning restore CA2213
+
     private string groupName = "error";
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
@@ -121,6 +124,17 @@ public class InputGroupItem : VBoxContainer
         // When the result is attached to the scene tree it attaches the child objects. So it *must* be attached
         // at least one otherwise the child objects leak
         return result;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            InputGroupHeaderPath.Dispose();
+            InputActionsContainerPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void ApplyGroupName()

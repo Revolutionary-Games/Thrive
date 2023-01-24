@@ -21,13 +21,16 @@ public class MicrobeEditorTabButtons : MarginContainer
     [Export]
     public NodePath CellTypeTabPath = null!;
 
-    private EditorTab selectedTab = EditorTab.Report;
+#pragma warning disable CA2213
 
     // Editor tab selector buttons
     private Button reportTabButton = null!;
     private Button patchMapButton = null!;
     private Button cellEditorButton = null!;
     private Button cellTypeTab = null!;
+#pragma warning restore CA2213
+
+    private EditorTab selectedTab = EditorTab.Report;
 
     [Signal]
     public delegate void OnTabSelected(EditorTab selectedTab);
@@ -51,6 +54,20 @@ public class MicrobeEditorTabButtons : MarginContainer
 
         selectedTab = tab;
         ApplyButtonStates();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TabButtonsPath.Dispose();
+            ReportTabButtonPath.Dispose();
+            PatchMapButtonPath.Dispose();
+            CellEditorButtonPath.Dispose();
+            CellTypeTabPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void SetEditorTab(string tab)

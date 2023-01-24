@@ -19,6 +19,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     [Export]
     public NodePath CellEditorTabPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -32,6 +33,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeEditorTutorialGUI tutorialGUI = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
@@ -107,6 +109,18 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ReportTabPath.Dispose();
+            PatchMapTabPath.Dispose();
+            CellEditorTabPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()

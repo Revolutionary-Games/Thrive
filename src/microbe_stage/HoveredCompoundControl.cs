@@ -2,8 +2,10 @@
 
 public class HoveredCompoundControl : HBoxContainer
 {
+#pragma warning disable CA2213
     private Label compoundName = null!;
     private Label compoundValue = null!;
+#pragma warning restore CA2213
 
     public HoveredCompoundControl(Compound compound)
     {

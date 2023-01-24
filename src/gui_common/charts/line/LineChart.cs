@@ -113,6 +113,8 @@ public class LineChart : VBoxContainer
 
     private readonly Dictionary<string, Dictionary<DataPoint, ICustomToolTip>> dataPointToolTips = new();
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Fallback icon for the legend display mode using icons
     /// </summary>
@@ -133,6 +135,7 @@ public class LineChart : VBoxContainer
     private TextureButton inspectButton = null!;
     private CustomDialog chartPopup = null!;
     private LineChart? childChart;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Useful for any operations in the child chart involving the parent chart.
@@ -633,6 +636,23 @@ public class LineChart : VBoxContainer
         {
             clonedTooltip.Description = description;
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            HorizontalLabelPath.Dispose();
+            VerticalLabelPath.Dispose();
+            VerticalTicksContainerPath.Dispose();
+            HorizontalTicksContainerPath.Dispose();
+            DrawAreaPath.Dispose();
+            LegendsContainerPath.Dispose();
+            ExtraLegendContainerPath.Dispose();
+            InspectButtonPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void RemoveDataLineTooltipOnDeletion(DataLine line)
@@ -1229,9 +1249,12 @@ public class LineChart : VBoxContainer
         public readonly string DataName;
         public readonly bool IsUsingFallbackIcon;
 
-        private LineChart chart;
-        private LineChartData data;
+        private readonly LineChart chart;
+        private readonly LineChartData data;
+
+#pragma warning disable CA2213
         private Tween tween;
+#pragma warning restore CA2213
 
         public DatasetIcon(string name, LineChart chart, LineChartData data, bool isUsingFallbackIcon)
         {
@@ -1300,10 +1323,13 @@ public class LineChart : VBoxContainer
         /// </summary>
         public readonly bool Default;
 
-        public Dictionary<DataPoint, Control> CollisionBoxes = new();
+        public readonly Dictionary<DataPoint, Control> CollisionBoxes = new();
 
-        private LineChartData data;
+        private readonly LineChartData data;
+
+#pragma warning disable CA2213
         private Tween tween;
+#pragma warning restore CA2213
 
         private Color dataColour;
 

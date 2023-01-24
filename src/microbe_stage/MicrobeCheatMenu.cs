@@ -26,6 +26,7 @@ public class MicrobeCheatMenu : CheatMenu
     [Export]
     public NodePath DespawnAllEntitiesPath = null!;
 
+#pragma warning disable CA2213
     private CustomCheckBox infiniteCompounds = null!;
     private CustomCheckBox godMode = null!;
     private CustomCheckBox disableAI = null!;
@@ -33,6 +34,7 @@ public class MicrobeCheatMenu : CheatMenu
     private Button playerDivide = null!;
     private Button spawnEnemy = null!;
     private Button despawnAllEntities = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -56,6 +58,22 @@ public class MicrobeCheatMenu : CheatMenu
         godMode.Pressed = CheatManager.GodMode;
         disableAI.Pressed = CheatManager.NoAI;
         speed.Value = CheatManager.Speed;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            InfiniteCompoundsPath.Dispose();
+            GodModePath.Dispose();
+            DisableAIPath.Dispose();
+            SpeedSliderPath.Dispose();
+            PlayerDividePath.Dispose();
+            SpawnEnemyPath.Dispose();
+            DespawnAllEntitiesPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnPlayerDivideClicked()

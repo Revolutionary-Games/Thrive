@@ -22,11 +22,13 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     [Export]
     public NodePath FocusSliderPath = null!;
 
+#pragma warning disable CA2213
     private Slider aggressionSlider = null!;
     private Slider opportunismSlider = null!;
     private Slider fearSlider = null!;
     private Slider activitySlider = null!;
     private Slider focusSlider = null!;
+#pragma warning restore CA2213
 
     private BehaviourDictionary? behaviour;
 
@@ -145,6 +147,20 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValueType {type} is not valid");
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            AggressionSliderPath.Dispose();
+            OpportunismSliderPath.Dispose();
+            FearSliderPath.Dispose();
+            ActivitySliderPath.Dispose();
+            FocusSliderPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void OnTranslationsChanged()

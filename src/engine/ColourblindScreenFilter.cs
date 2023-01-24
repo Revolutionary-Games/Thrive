@@ -6,7 +6,10 @@
 public class ColourblindScreenFilter : TextureRect
 {
     private static ColourblindScreenFilter? instance;
+
+#pragma warning disable CA2213
     private ShaderMaterial screenFilterMaterial = null!;
+#pragma warning restore CA2213
 
     private ColourblindScreenFilter()
     {

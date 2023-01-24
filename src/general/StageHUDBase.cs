@@ -129,21 +129,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath HintTextPath = null!;
 
     [Export]
-    public AudioStream MicrobePickupOrganelleSound = null!;
-
-    [Export]
-    public Texture AmmoniaBW = null!;
-
-    [Export]
-    public Texture PhosphatesBW = null!;
-
-    [Export]
-    public Texture AmmoniaInv = null!;
-
-    [Export]
-    public Texture PhosphatesInv = null!;
-
-    [Export]
     public NodePath HotBarPath = null!;
 
     [Export]
@@ -183,12 +168,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath AgentsPanelBarContainerPath = null!;
 
     [Export]
-    public PackedScene ExtinctionBoxScene = null!;
-
-    [Export]
-    public PackedScene PatchExtinctionBoxScene = null!;
-
-    [Export]
     public NodePath FireToxinHotkeyPath = null!;
 
     [Export]
@@ -198,10 +177,33 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath FossilisationButtonLayerPath = null!;
 
     [Export]
+    public NodePath FossilisationDialogPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
     public PackedScene FossilisationButtonScene = null!;
 
     [Export]
-    public NodePath FossilisationDialogPath = null!;
+    public AudioStream MicrobePickupOrganelleSound = null!;
+
+    [Export]
+    public Texture AmmoniaBW = null!;
+
+    [Export]
+    public Texture PhosphatesBW = null!;
+
+    [Export]
+    public Texture AmmoniaInv = null!;
+
+    [Export]
+    public Texture PhosphatesInv = null!;
+
+    [Export]
+    public PackedScene ExtinctionBoxScene = null!;
+
+    [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
+#pragma warning restore CA2213
 
     // Inspections and cleanup disagree here
     // ReSharper disable RedundantNameQualifier
@@ -229,6 +231,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
     protected Compound temperature = null!;
+
+#pragma warning disable CA2213
     protected AnimationPlayer compoundsGroupAnimationPlayer = null!;
     protected AnimationPlayer environmentGroupAnimationPlayer = null!;
     protected MarginContainer mouseHoverPanel = null!;
@@ -237,10 +241,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton signallingAgentsHotkey = null!;
-
-    // Store these statefully for after player death
-    protected float maxHP = 1.0f;
-    protected float maxATP = 1.0f;
 
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
@@ -283,6 +283,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected Control fossilisationButtonLayer = null!;
     protected FossilisationDialog fossilisationDialog = null!;
+#pragma warning restore CA2213
+
+    // Store these statefully for after player death
+    protected float maxHP = 1.0f;
+    protected float maxATP = 1.0f;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as well as call some player initiated actions.
@@ -297,8 +302,26 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected bool showMouseCoordinates;
 #pragma warning restore 649
 
+    // This block of controls is split from the reset as some controls are protected and these are private
+#pragma warning disable CA2213
     private Control pausePrompt = null!;
     private CustomRichTextLabel pauseInfo = null!;
+
+    private VBoxContainer hoveredCompoundsContainer = null!;
+    private HSeparator hoveredCellsSeparator = null!;
+    private VBoxContainer hoveredCellsContainer = null!;
+    private Panel compoundsPanel = null!;
+    private HBoxContainer hotBar = null!;
+    private ActionButton fireToxinHotkey = null!;
+    private Control agentsPanel = null!;
+    private ProgressBar oxytoxyBar = null!;
+    private ProgressBar mucilageBar = null!;
+    private CustomDialog? extinctionBox;
+    private PatchExtinctionBox? patchExtinctionBox;
+    private ProcessPanel processPanel = null!;
+#pragma warning restore CA2213
+
+    private Array compoundBars = null!;
 
     /// <summary>
     ///   For toggling paused with the pause button.
@@ -313,21 +336,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool compoundsPanelActive;
 
     private bool environmentPanelActive;
-
-    private VBoxContainer hoveredCompoundsContainer = null!;
-    private HSeparator hoveredCellsSeparator = null!;
-    private VBoxContainer hoveredCellsContainer = null!;
-    private Panel compoundsPanel = null!;
-    private HBoxContainer hotBar = null!;
-    private ActionButton fireToxinHotkey = null!;
-    private Control agentsPanel = null!;
-    private ProgressBar oxytoxyBar = null!;
-    private ProgressBar mucilageBar = null!;
-    private CustomDialog? extinctionBox;
-    private PatchExtinctionBox? patchExtinctionBox;
-
-    private Array compoundBars = null!;
-    private ProcessPanel processPanel = null!;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
@@ -763,6 +771,71 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         {
             throw new NotImplementedException("Saving non-microbe species is not yet implemented");
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            CompoundsGroupAnimationPlayerPath.Dispose();
+            EnvironmentGroupAnimationPlayerPath.Dispose();
+            PanelsTweenPath.Dispose();
+            LeftPanelsPath.Dispose();
+            MouseHoverPanelPath.Dispose();
+            HoveredCellsContainerPath.Dispose();
+            MenuPath.Dispose();
+            AtpLabelPath.Dispose();
+            HpLabelPath.Dispose();
+            PopulationLabelPath.Dispose();
+            PatchOverlayPath.Dispose();
+            EditorButtonPath.Dispose();
+            EnvironmentPanelPath.Dispose();
+            OxygenBarPath.Dispose();
+            Co2BarPath.Dispose();
+            NitrogenBarPath.Dispose();
+            TemperaturePath.Dispose();
+            SunlightPath.Dispose();
+            PressurePath.Dispose();
+            EnvironmentPanelBarContainerPath.Dispose();
+            CompoundsPanelPath.Dispose();
+            GlucoseBarPath.Dispose();
+            AmmoniaBarPath.Dispose();
+            PhosphateBarPath.Dispose();
+            HydrogenSulfideBarPath.Dispose();
+            IronBarPath.Dispose();
+            EnvironmentPanelExpandButtonPath.Dispose();
+            EnvironmentPanelCompressButtonPath.Dispose();
+            CompoundsPanelExpandButtonPath.Dispose();
+            CompoundsPanelCompressButtonPath.Dispose();
+            CompoundsPanelBarContainerPath.Dispose();
+            AtpBarPath.Dispose();
+            HealthBarPath.Dispose();
+            AmmoniaReproductionBarPath.Dispose();
+            PhosphateReproductionBarPath.Dispose();
+            EditorButtonFlashPath.Dispose();
+            ProcessPanelPath.Dispose();
+            HintTextPath.Dispose();
+            HotBarPath.Dispose();
+            EngulfHotkeyPath.Dispose();
+            SecreteSlimeHotkeyPath.Dispose();
+            SignallingAgentsHotkeyPath.Dispose();
+            MicrobeControlRadialPath.Dispose();
+            PausePromptPath.Dispose();
+            PauseInfoPath.Dispose();
+            HoveredCompoundsContainerPath.Dispose();
+            HoverPanelSeparatorPath.Dispose();
+            AgentsPanelPath.Dispose();
+            OxytoxyBarPath.Dispose();
+            MucilageBarPath.Dispose();
+            AgentsPanelBarContainerPath.Dispose();
+            FireToxinHotkeyPath.Dispose();
+            BottomLeftBarPath.Dispose();
+            FossilisationButtonLayerPath.Dispose();
+            FossilisationDialogPath.Dispose();
+            compoundBars.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

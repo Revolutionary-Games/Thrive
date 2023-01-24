@@ -19,10 +19,12 @@ public abstract class HexPopupMenu : PopupPanel
     [Export]
     public NodePath ModifyButtonPath = null!;
 
+#pragma warning disable CA2213
     protected Label? titleLabel;
     protected Button? deleteButton;
     protected Button? moveButton;
     protected Button? modifyButton;
+#pragma warning restore CA2213
 
     private bool showPopup;
     private bool enableDelete = true;
@@ -159,6 +161,19 @@ public abstract class HexPopupMenu : PopupPanel
 
         // Return false to indicate that the key input wasn't handled.
         return false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TitleLabelPath.Dispose();
+            DeleteButtonPath.Dispose();
+            MoveButtonPath.Dispose();
+            ModifyButtonPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected abstract void UpdateTitleLabel();

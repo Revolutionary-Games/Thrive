@@ -34,9 +34,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonProperty]
     protected Patch playerPatchOnEntry = null!;
 
+#pragma warning disable CA2213
     protected PatchMapDrawer mapDrawer = null!;
     protected PatchDetailsPanel detailsPanel = null!;
     private Label seedLabel = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -130,6 +132,18 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     public override void OnValidAction()
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            MapDrawerPath.Dispose();
+            PatchDetailsPanelPath.Dispose();
+            SeedLabelPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected virtual void UpdateShownPatchDetails()

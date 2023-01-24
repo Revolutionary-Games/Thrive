@@ -35,8 +35,10 @@ public class KeyPrompt : CenterContainer
     [Export]
     public Color PressedColour = new(0.7f, 0.7f, 0.7f, 1);
 
+#pragma warning disable CA2213
     private TextureRect? primaryIcon;
     private TextureRect secondaryIcon = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {

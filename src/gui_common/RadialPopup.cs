@@ -55,6 +55,16 @@ public class RadialPopup : CustomDialog
         return true;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            RadialPath.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ForwardSelected(int itemId)
     {
         EmitSignal(nameof(OnItemSelected), itemId);

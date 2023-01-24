@@ -140,6 +140,8 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
 
+#pragma warning disable CA2213
+
     // Light level controls
     private Control topPanel = null!;
     private Button dayButton = null!;
@@ -221,6 +223,9 @@ public partial class CellEditorComponent :
 
     private PackedScene organelleSelectionButtonScene = null!;
 
+    private PackedScene microbeScene = null!;
+#pragma warning restore CA2213
+
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
@@ -265,15 +270,16 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private string newName = "unset";
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   We're taking advantage of the available membrane and organelle system already present in
     ///   the microbe class for the cell preview.
     /// </summary>
     private Microbe? previewMicrobe;
+#pragma warning restore CA2213
 
     private MicrobeSpecies? previewMicrobeSpecies;
-
-    private PackedScene microbeScene = null!;
 
     [JsonProperty]
     private Color colour;
@@ -1084,6 +1090,56 @@ public partial class CellEditorComponent :
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TopPanelPath.Dispose();
+            DayButtonPath.Dispose();
+            NightButtonPath.Dispose();
+            AverageLightButtonPath.Dispose();
+            TabButtonsPath.Dispose();
+            StructureTabButtonPath.Dispose();
+            AppearanceTabButtonPath.Dispose();
+            BehaviourTabButtonPath.Dispose();
+            StructureTabPath.Dispose();
+            AppearanceTabPath.Dispose();
+            BehaviourTabPath.Dispose();
+            PartsSelectionContainerPath.Dispose();
+            MembraneTypeSelectionPath.Dispose();
+            SizeLabelPath.Dispose();
+            OrganismStatisticsPath.Dispose();
+            SpeedLabelPath.Dispose();
+            RotationSpeedLabelPath.Dispose();
+            HpLabelPath.Dispose();
+            StorageLabelPath.Dispose();
+            DigestionSpeedLabelPath.Dispose();
+            DigestionEfficiencyLabelPath.Dispose();
+            DigestionEfficiencyDetailsPath.Dispose();
+            GenerationLabelPath.Dispose();
+            AutoEvoPredictionPanelPath.Dispose();
+            TotalPopulationLabelPath.Dispose();
+            AutoEvoPredictionFailedLabelPath.Dispose();
+            WorstPatchLabelPath.Dispose();
+            BestPatchLabelPath.Dispose();
+            MembraneColorPickerPath.Dispose();
+            ATPBalanceLabelPath.Dispose();
+            ATPProductionLabelPath.Dispose();
+            ATPConsumptionLabelPath.Dispose();
+            ATPProductionBarPath.Dispose();
+            ATPConsumptionBarPath.Dispose();
+            RigiditySliderPath.Dispose();
+            NegativeAtpPopupPath.Dispose();
+            OrganelleMenuPath.Dispose();
+            CompoundBalancePath.Dispose();
+            AutoEvoPredictionExplanationPopupPath.Dispose();
+            AutoEvoPredictionExplanationLabelPath.Dispose();
+            OrganelleUpgradeGUIPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override int CalculateCurrentActionCost()

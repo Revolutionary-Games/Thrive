@@ -22,12 +22,15 @@ public class ControllerDeadzoneConfiguration : CustomDialog
     private const float SettleDownTimeStart = 4.5f;
     private const float SettleDownTimeIncreaseMultiplier = 5;
 
+#pragma warning disable CA2213
     private ControllerInputAxisVisualizationContainer visualizationContainer = null!;
 
     private Button startButton = null!;
     private Button applyButton = null!;
 
     private Label statusLabel = null!;
+
+#pragma warning restore CA2213
 
     private bool calibrating;
     private float timeRemaining;
@@ -87,6 +90,20 @@ public class ControllerDeadzoneConfiguration : CustomDialog
                 timeRemaining += absoluteValue * SettleDownTimeIncreaseMultiplier;
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            VisualizationContainerPath.Dispose();
+            StartButtonPath.Dispose();
+            ApplyButtonPath.Dispose();
+            StatusLabelPath.Dispose();
+            ExplanationLabelPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnBecomeVisible()

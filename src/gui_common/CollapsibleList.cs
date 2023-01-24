@@ -31,12 +31,14 @@ public class CollapsibleList : VBoxContainer
     private bool collapsed;
     private bool isCollapsing;
 
+#pragma warning disable CA2213
     private Label? titleLabel;
     private GridContainer? itemContainer;
     private MarginContainer clipBox = null!;
     private TextureButton collapseButton = null!;
     private TextureButton expandButton = null!;
     private Tween tween = null!;
+#pragma warning restore CA2213
 
     private int cachedTopMarginValue;
 
@@ -129,6 +131,21 @@ public class CollapsibleList : VBoxContainer
         {
             RemoveItem(item.Name);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TitleLabelPath.Dispose();
+            CollapseButtonPath.Dispose();
+            ExpandButtonPath.Dispose();
+            ClipBoxPath.Dispose();
+            ItemContainerPath.Dispose();
+            TweenPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateTitle()

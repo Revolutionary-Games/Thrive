@@ -26,7 +26,9 @@ public class OrbitCamera : Spatial
     [Export]
     public float InterpolateZoomSpeed = 5.0f;
 
+#pragma warning disable CA2213
     private Camera camera = null!;
+#pragma warning restore CA2213
 
     private Vector3 rotation;
     private Vector2 moveSpeed;

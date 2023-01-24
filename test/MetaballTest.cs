@@ -3,7 +3,9 @@ using Godot;
 
 public class MetaballTest : Node
 {
+#pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
+#pragma warning restore CA2213
 
     private DisplayLayout wantedLayout = DisplayLayout.PerformanceTest;
     private DisplayLayout currentLayout = DisplayLayout.None;

@@ -11,10 +11,14 @@ public class MuseumCard : Button
     [Export]
     public NodePath SpeciesPreviewPath = null!;
 
+#pragma warning disable CA2213
     private Label? speciesNameLabel;
     private TextureRect? speciesPreview;
+#pragma warning restore CA2213
 
     private Species? savedSpecies;
+
+    // TODO: check if this should be disposed
     private Image? fossilPreviewImage;
 
     [Signal]
@@ -58,6 +62,17 @@ public class MuseumCard : Button
 
         UpdateSpeciesName();
         UpdatePreviewImage();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            SpeciesNameLabelPath.Dispose();
+            SpeciesPreviewPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateSpeciesName()

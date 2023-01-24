@@ -31,9 +31,11 @@ public class InputActionItem : VBoxContainer
     [Export]
     public NodePath InputEventsContainerPath = null!;
 
+#pragma warning disable CA2213
     private Label inputActionHeader = null!;
     private HBoxContainer inputEventsContainer = null!;
     private Button addInputEvent = null!;
+#pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
 
@@ -186,6 +188,18 @@ public class InputActionItem : VBoxContainer
             new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
 
         return inputActionItem;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            AddInputEventPath.Dispose();
+            InputActionHeaderPath.Dispose();
+            InputEventsContainerPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
