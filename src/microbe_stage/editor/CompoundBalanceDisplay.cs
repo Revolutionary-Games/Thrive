@@ -7,7 +7,7 @@ using Godot;
 public class CompoundBalanceDisplay : VBoxContainer
 {
     [Export]
-    public NodePath CompoundListContainerPath = null!;
+    public NodePath? CompoundListContainerPath;
 
 #pragma warning disable CA2213
     private VBoxContainer compoundListContainer = null!;
@@ -46,7 +46,7 @@ public class CompoundBalanceDisplay : VBoxContainer
     {
         if (disposing)
         {
-            CompoundListContainerPath.Dispose();
+            CompoundListContainerPath?.Dispose();
         }
 
         base.Dispose(disposing);

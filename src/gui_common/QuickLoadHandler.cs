@@ -6,7 +6,7 @@
 public class QuickLoadHandler : NodeWithInput
 {
     [Export]
-    public NodePath DifferentVersionDialogPath = null!;
+    public NodePath? DifferentVersionDialogPath = null!;
 
 #pragma warning disable CA2213
     private CustomConfirmationDialog differentVersionDialog = null!;
@@ -40,7 +40,7 @@ public class QuickLoadHandler : NodeWithInput
     {
         if (disposing)
         {
-            DifferentVersionDialogPath.Dispose();
+            DifferentVersionDialogPath?.Dispose();
         }
 
         base.Dispose(disposing);

@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
     [Export]
-    public NodePath AggressionSliderPath = null!;
+    public NodePath? AggressionSliderPath;
 
     [Export]
     public NodePath OpportunismSliderPath = null!;
@@ -153,11 +153,14 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     {
         if (disposing)
         {
-            AggressionSliderPath.Dispose();
-            OpportunismSliderPath.Dispose();
-            FearSliderPath.Dispose();
-            ActivitySliderPath.Dispose();
-            FocusSliderPath.Dispose();
+            if (AggressionSliderPath != null)
+            {
+                AggressionSliderPath.Dispose();
+                OpportunismSliderPath.Dispose();
+                FearSliderPath.Dispose();
+                ActivitySliderPath.Dispose();
+                FocusSliderPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

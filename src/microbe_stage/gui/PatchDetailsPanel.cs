@@ -7,7 +7,7 @@ using Godot;
 public class PatchDetailsPanel : PanelContainer
 {
     [Export]
-    public NodePath NothingSelectedPath = null!;
+    public NodePath? NothingSelectedPath;
 
     [Export]
     public NodePath DetailsPath = null!;
@@ -252,34 +252,37 @@ public class PatchDetailsPanel : PanelContainer
     {
         if (disposing)
         {
-            NothingSelectedPath.Dispose();
-            DetailsPath.Dispose();
-            NamePath.Dispose();
-            PlayerHerePath.Dispose();
-            BiomePath.Dispose();
-            DepthPath.Dispose();
-            TemperaturePath.Dispose();
-            PressurePath.Dispose();
-            LightPath.Dispose();
-            LightMaxPath.Dispose();
-            OxygenPath.Dispose();
-            NitrogenPath.Dispose();
-            CO2Path.Dispose();
-            HydrogenSulfidePath.Dispose();
-            AmmoniaPath.Dispose();
-            GlucosePath.Dispose();
-            PhosphatePath.Dispose();
-            IronPath.Dispose();
-            SpeciesListBoxPath.Dispose();
-            MoveToPatchHSeparatorPath.Dispose();
-            MoveToPatchButtonPath.Dispose();
-            TemperatureSituationPath.Dispose();
-            LightSituationPath.Dispose();
-            HydrogenSulfideSituationPath.Dispose();
-            GlucoseSituationPath.Dispose();
-            IronSituationPath.Dispose();
-            AmmoniaSituationPath.Dispose();
-            PhosphateSituationPath.Dispose();
+            if (NothingSelectedPath != null)
+            {
+                NothingSelectedPath.Dispose();
+                DetailsPath.Dispose();
+                NamePath.Dispose();
+                PlayerHerePath.Dispose();
+                BiomePath.Dispose();
+                DepthPath.Dispose();
+                TemperaturePath.Dispose();
+                PressurePath.Dispose();
+                LightPath.Dispose();
+                LightMaxPath.Dispose();
+                OxygenPath.Dispose();
+                NitrogenPath.Dispose();
+                CO2Path.Dispose();
+                HydrogenSulfidePath.Dispose();
+                AmmoniaPath.Dispose();
+                GlucosePath.Dispose();
+                PhosphatePath.Dispose();
+                IronPath.Dispose();
+                SpeciesListBoxPath.Dispose();
+                MoveToPatchHSeparatorPath.Dispose();
+                MoveToPatchButtonPath.Dispose();
+                TemperatureSituationPath.Dispose();
+                LightSituationPath.Dispose();
+                HydrogenSulfideSituationPath.Dispose();
+                GlucoseSituationPath.Dispose();
+                IronSituationPath.Dispose();
+                AmmoniaSituationPath.Dispose();
+                PhosphateSituationPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

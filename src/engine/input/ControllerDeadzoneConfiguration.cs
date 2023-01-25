@@ -5,7 +5,7 @@ using Godot;
 public class ControllerDeadzoneConfiguration : CustomDialog
 {
     [Export]
-    public NodePath VisualizationContainerPath = null!;
+    public NodePath? VisualizationContainerPath;
 
     [Export]
     public NodePath StartButtonPath = null!;
@@ -96,11 +96,14 @@ public class ControllerDeadzoneConfiguration : CustomDialog
     {
         if (disposing)
         {
-            VisualizationContainerPath.Dispose();
-            StartButtonPath.Dispose();
-            ApplyButtonPath.Dispose();
-            StatusLabelPath.Dispose();
-            ExplanationLabelPath.Dispose();
+            if (VisualizationContainerPath != null)
+            {
+                VisualizationContainerPath.Dispose();
+                StartButtonPath.Dispose();
+                ApplyButtonPath.Dispose();
+                StatusLabelPath.Dispose();
+                ExplanationLabelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

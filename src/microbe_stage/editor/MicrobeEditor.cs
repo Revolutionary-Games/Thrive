@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -115,9 +115,12 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     {
         if (disposing)
         {
-            ReportTabPath.Dispose();
-            PatchMapTabPath.Dispose();
-            CellEditorTabPath.Dispose();
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

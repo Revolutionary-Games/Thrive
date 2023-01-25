@@ -20,7 +20,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     // Tab paths
 
     [Export]
-    public NodePath WorldEditorPath = null!;
+    public NodePath? WorldEditorPath;
 
     [Export]
     public NodePath ConfigEditorPath = null!;
@@ -419,54 +419,57 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         if (disposing)
         {
-            WorldEditorPath.Dispose();
-            ConfigEditorPath.Dispose();
-            HistoryReportSplitPath.Dispose();
-            SpeciesSelectPanelPath.Dispose();
-            MapPath.Dispose();
-            ReportPath.Dispose();
-            ViewerPath.Dispose();
-            AllWorldsStatisticsLabelPath.Dispose();
-            WorldsListMenuPath.Dispose();
-            NewWorldButtonPath.Dispose();
-            CurrentWorldStatisticsLabelPath.Dispose();
-            WorldExportButtonPath.Dispose();
-            AllowSpeciesToNotMutatePath.Dispose();
-            AllowSpeciesToNotMigratePath.Dispose();
-            BiodiversityAttemptFillChancePath.Dispose();
-            BiodiversityFromNeighbourPatchChancePath.Dispose();
-            BiodiversityNearbyPatchIsFreePopulationPath.Dispose();
-            BiodiversitySplitIsMutatedPath.Dispose();
-            LowBiodiversityLimitPath.Dispose();
-            MaximumSpeciesInPatchPath.Dispose();
-            MoveAttemptsPerSpeciesPath.Dispose();
-            MutationsPerSpeciesPath.Dispose();
-            NewBiodiversityIncreasingSpeciesPopulationPath.Dispose();
-            ProtectMigrationsFromSpeciesCapPath.Dispose();
-            ProtectNewCellsFromSpeciesCapPath.Dispose();
-            RefundMigrationsInExtinctionsPath.Dispose();
-            StrictNicheCompetitionPath.Dispose();
-            SpeciesSplitByMutationThresholdPopulationAmountPath.Dispose();
-            SpeciesSplitByMutationThresholdPopulationFractionPath.Dispose();
-            UseBiodiversityForceSplitPath.Dispose();
-            RunStatusLabelPath.Dispose();
-            FinishXGenerationsSpinBoxPath.Dispose();
-            FinishXGenerationsButtonPath.Dispose();
-            RunXWorldsSpinBoxPath.Dispose();
-            RunXWorldsButtonPath.Dispose();
-            RunGenerationButtonPath.Dispose();
-            RunStepButtonPath.Dispose();
-            AbortButtonPath.Dispose();
-            PlayWithCurrentSettingPath.Dispose();
-            PatchMapDrawerPath.Dispose();
-            PatchDetailsPanelPath.Dispose();
-            HistoryListMenuPath.Dispose();
-            ResultsLabelPath.Dispose();
-            SpeciesListMenuPath.Dispose();
-            EvolutionaryTreePath.Dispose();
-            SpeciesDetailsPanelPath.Dispose();
-            ExitConfirmationDialogPath.Dispose();
-            ExportSuccessNotificationDialogPath.Dispose();
+            if (WorldEditorPath != null)
+            {
+                WorldEditorPath.Dispose();
+                ConfigEditorPath.Dispose();
+                HistoryReportSplitPath.Dispose();
+                SpeciesSelectPanelPath.Dispose();
+                MapPath.Dispose();
+                ReportPath.Dispose();
+                ViewerPath.Dispose();
+                AllWorldsStatisticsLabelPath.Dispose();
+                WorldsListMenuPath.Dispose();
+                NewWorldButtonPath.Dispose();
+                CurrentWorldStatisticsLabelPath.Dispose();
+                WorldExportButtonPath.Dispose();
+                AllowSpeciesToNotMutatePath.Dispose();
+                AllowSpeciesToNotMigratePath.Dispose();
+                BiodiversityAttemptFillChancePath.Dispose();
+                BiodiversityFromNeighbourPatchChancePath.Dispose();
+                BiodiversityNearbyPatchIsFreePopulationPath.Dispose();
+                BiodiversitySplitIsMutatedPath.Dispose();
+                LowBiodiversityLimitPath.Dispose();
+                MaximumSpeciesInPatchPath.Dispose();
+                MoveAttemptsPerSpeciesPath.Dispose();
+                MutationsPerSpeciesPath.Dispose();
+                NewBiodiversityIncreasingSpeciesPopulationPath.Dispose();
+                ProtectMigrationsFromSpeciesCapPath.Dispose();
+                ProtectNewCellsFromSpeciesCapPath.Dispose();
+                RefundMigrationsInExtinctionsPath.Dispose();
+                StrictNicheCompetitionPath.Dispose();
+                SpeciesSplitByMutationThresholdPopulationAmountPath.Dispose();
+                SpeciesSplitByMutationThresholdPopulationFractionPath.Dispose();
+                UseBiodiversityForceSplitPath.Dispose();
+                RunStatusLabelPath.Dispose();
+                FinishXGenerationsSpinBoxPath.Dispose();
+                FinishXGenerationsButtonPath.Dispose();
+                RunXWorldsSpinBoxPath.Dispose();
+                RunXWorldsButtonPath.Dispose();
+                RunGenerationButtonPath.Dispose();
+                RunStepButtonPath.Dispose();
+                AbortButtonPath.Dispose();
+                PlayWithCurrentSettingPath.Dispose();
+                PatchMapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                HistoryListMenuPath.Dispose();
+                ResultsLabelPath.Dispose();
+                SpeciesListMenuPath.Dispose();
+                EvolutionaryTreePath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+                ExitConfirmationDialogPath.Dispose();
+                ExportSuccessNotificationDialogPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

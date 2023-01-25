@@ -19,7 +19,7 @@ public class ControllerAxisVisualizer : MarginContainer
     public float CrossLineWidth = 2;
 
     [Export]
-    public NodePath DrawerNodePath = null!;
+    public NodePath? DrawerNodePath;
 
     [Export]
     public NodePath HorizontalLabelPath = null!;
@@ -220,15 +220,18 @@ public class ControllerAxisVisualizer : MarginContainer
     {
         if (disposing)
         {
-            DrawerNodePath.Dispose();
-            HorizontalLabelPath.Dispose();
-            HorizontalRawValuePath.Dispose();
-            HorizontalDeadzoneValuePath.Dispose();
-            VerticalLabelPath.Dispose();
-            VerticalRawValuePath.Dispose();
-            VerticalDeadzoneValuePath.Dispose();
-            VerticalRawDisplayerPath.Dispose();
-            VerticalDeadzoneDisplayerPath.Dispose();
+            if (DrawerNodePath != null)
+            {
+                DrawerNodePath.Dispose();
+                HorizontalLabelPath.Dispose();
+                HorizontalRawValuePath.Dispose();
+                HorizontalDeadzoneValuePath.Dispose();
+                VerticalLabelPath.Dispose();
+                VerticalRawValuePath.Dispose();
+                VerticalDeadzoneValuePath.Dispose();
+                VerticalRawDisplayerPath.Dispose();
+                VerticalDeadzoneDisplayerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

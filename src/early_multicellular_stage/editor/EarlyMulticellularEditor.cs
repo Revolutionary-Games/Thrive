@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -159,11 +159,14 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         if (disposing)
         {
-            ReportTabPath.Dispose();
-            PatchMapTabPath.Dispose();
-            BodyPlanEditorTabPath.Dispose();
-            CellEditorTabPath.Dispose();
-            NoCellTypeSelectedPath.Dispose();
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

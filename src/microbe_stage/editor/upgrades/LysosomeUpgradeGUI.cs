@@ -4,7 +4,7 @@ using Godot;
 public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
-    public NodePath EnzymesPath = null!;
+    public NodePath? EnzymesPath;
 
     [Export]
     public NodePath EnzymeDescriptionPath = null!;
@@ -80,8 +80,11 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            EnzymesPath.Dispose();
-            EnzymeDescriptionPath.Dispose();
+            if (EnzymesPath != null)
+            {
+                EnzymesPath.Dispose();
+                EnzymeDescriptionPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

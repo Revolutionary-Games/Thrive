@@ -7,7 +7,7 @@ using Godot;
 public class NewGameSettings : ControlWithInput
 {
     [Export]
-    public NodePath BasicOptionsPath = null!;
+    public NodePath? BasicOptionsPath;
 
     [Export]
     public NodePath AdvancedOptionsPath = null!;
@@ -338,48 +338,51 @@ public class NewGameSettings : ControlWithInput
     {
         if (disposing)
         {
-            BasicOptionsPath.Dispose();
-            AdvancedOptionsPath.Dispose();
-            BasicButtonPath.Dispose();
-            AdvancedButtonPath.Dispose();
-            TabButtonsPath.Dispose();
-            DifficultyTabPath.Dispose();
-            PlanetTabPath.Dispose();
-            MiscTabPath.Dispose();
-            DifficultyTabButtonPath.Dispose();
-            PlanetTabButtonPath.Dispose();
-            MiscTabButtonPath.Dispose();
-            DifficultyPresetButtonPath.Dispose();
-            DifficultyPresetAdvancedButtonPath.Dispose();
-            MPMultiplierPath.Dispose();
-            MPMultiplierReadoutPath.Dispose();
-            MutationRatePath.Dispose();
-            MutationRateReadoutPath.Dispose();
-            CompoundDensityPath.Dispose();
-            CompoundDensityReadoutPath.Dispose();
-            PlayerDeathPopulationPenaltyPath.Dispose();
-            PlayerDeathPopulationPenaltyReadoutPath.Dispose();
-            GlucoseDecayRatePath.Dispose();
-            GlucoseDecayRateReadoutPath.Dispose();
-            OsmoregulationMultiplierPath.Dispose();
-            OsmoregulationMultiplierReadoutPath.Dispose();
-            FreeGlucoseCloudButtonPath.Dispose();
-            PassiveReproductionButtonPath.Dispose();
-            LimitGrowthRateButtonPath.Dispose();
-            MapTypeButtonPath.Dispose();
-            LifeOriginButtonPath.Dispose();
-            LifeOriginButtonAdvancedPath.Dispose();
-            LAWKButtonPath.Dispose();
-            LAWKAdvancedButtonPath.Dispose();
-            DayNightCycleButtonPath.Dispose();
-            DayLengthContainerPath.Dispose();
-            DayLengthPath.Dispose();
-            DayLengthReadoutPath.Dispose();
-            GameSeedPath.Dispose();
-            GameSeedAdvancedPath.Dispose();
-            IncludeMulticellularButtonPath.Dispose();
-            EasterEggsButtonPath.Dispose();
-            ConfirmButtonPath.Dispose();
+            if (BasicOptionsPath != null)
+            {
+                BasicOptionsPath.Dispose();
+                AdvancedOptionsPath.Dispose();
+                BasicButtonPath.Dispose();
+                AdvancedButtonPath.Dispose();
+                TabButtonsPath.Dispose();
+                DifficultyTabPath.Dispose();
+                PlanetTabPath.Dispose();
+                MiscTabPath.Dispose();
+                DifficultyTabButtonPath.Dispose();
+                PlanetTabButtonPath.Dispose();
+                MiscTabButtonPath.Dispose();
+                DifficultyPresetButtonPath.Dispose();
+                DifficultyPresetAdvancedButtonPath.Dispose();
+                MPMultiplierPath.Dispose();
+                MPMultiplierReadoutPath.Dispose();
+                MutationRatePath.Dispose();
+                MutationRateReadoutPath.Dispose();
+                CompoundDensityPath.Dispose();
+                CompoundDensityReadoutPath.Dispose();
+                PlayerDeathPopulationPenaltyPath.Dispose();
+                PlayerDeathPopulationPenaltyReadoutPath.Dispose();
+                GlucoseDecayRatePath.Dispose();
+                GlucoseDecayRateReadoutPath.Dispose();
+                OsmoregulationMultiplierPath.Dispose();
+                OsmoregulationMultiplierReadoutPath.Dispose();
+                FreeGlucoseCloudButtonPath.Dispose();
+                PassiveReproductionButtonPath.Dispose();
+                LimitGrowthRateButtonPath.Dispose();
+                MapTypeButtonPath.Dispose();
+                LifeOriginButtonPath.Dispose();
+                LifeOriginButtonAdvancedPath.Dispose();
+                LAWKButtonPath.Dispose();
+                LAWKAdvancedButtonPath.Dispose();
+                DayNightCycleButtonPath.Dispose();
+                DayLengthContainerPath.Dispose();
+                DayLengthPath.Dispose();
+                DayLengthReadoutPath.Dispose();
+                GameSeedPath.Dispose();
+                GameSeedAdvancedPath.Dispose();
+                IncludeMulticellularButtonPath.Dispose();
+                EasterEggsButtonPath.Dispose();
+                ConfirmButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

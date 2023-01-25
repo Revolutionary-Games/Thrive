@@ -6,7 +6,7 @@
 public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 {
     [Export]
-    public NodePath EditorEntryReportPath = null!;
+    public NodePath? EditorEntryReportPath;
 
     [Export]
     public NodePath PatchMapPath = null!;
@@ -255,17 +255,20 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     {
         if (disposing)
         {
-            EditorEntryReportPath.Dispose();
-            PatchMapPath.Dispose();
-            CellEditorIntroductionPath.Dispose();
-            CellEditorUndoPath.Dispose();
-            CellEditorUndoHighlightPath.Dispose();
-            CellEditorRedoPath.Dispose();
-            CellEditorRedoHighlightPath.Dispose();
-            CellEditorClosingWordsPath.Dispose();
-            AutoEvoPredictionPath.Dispose();
-            AutoEvoPredictionHighlightPath.Dispose();
-            StaySmallTutorialPath.Dispose();
+            if (EditorEntryReportPath != null)
+            {
+                EditorEntryReportPath.Dispose();
+                PatchMapPath.Dispose();
+                CellEditorIntroductionPath.Dispose();
+                CellEditorUndoPath.Dispose();
+                CellEditorUndoHighlightPath.Dispose();
+                CellEditorRedoPath.Dispose();
+                CellEditorRedoHighlightPath.Dispose();
+                CellEditorClosingWordsPath.Dispose();
+                AutoEvoPredictionPath.Dispose();
+                AutoEvoPredictionHighlightPath.Dispose();
+                StaySmallTutorialPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

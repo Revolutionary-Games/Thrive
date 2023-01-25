@@ -8,7 +8,7 @@ using Godot;
 public class ChemicalEquation : VBoxContainer
 {
     [Export]
-    public NodePath TitlePath = null!;
+    public NodePath? TitlePath;
 
     [Export]
     public NodePath SpinnerPath = null!;
@@ -153,9 +153,12 @@ public class ChemicalEquation : VBoxContainer
     {
         if (disposing)
         {
-            TitlePath.Dispose();
-            SpinnerPath.Dispose();
-            FirstLineContainerPath.Dispose();
+            if (TitlePath != null)
+            {
+                TitlePath.Dispose();
+                SpinnerPath.Dispose();
+                FirstLineContainerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

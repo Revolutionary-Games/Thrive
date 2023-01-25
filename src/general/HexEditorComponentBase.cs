@@ -17,7 +17,7 @@ public abstract class
     where THexMove : class, IActionHex
 {
     [Export]
-    public NodePath CameraPath = null!;
+    public NodePath? CameraPath;
 
     [Export]
     public NodePath EditorArrowPath = null!;
@@ -683,11 +683,14 @@ public abstract class
     {
         if (disposing)
         {
-            CameraPath.Dispose();
-            EditorArrowPath.Dispose();
-            EditorGridPath.Dispose();
-            CameraFollowPath.Dispose();
-            IslandErrorPath.Dispose();
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                EditorArrowPath.Dispose();
+                EditorGridPath.Dispose();
+                CameraFollowPath.Dispose();
+                IslandErrorPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

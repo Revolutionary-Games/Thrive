@@ -15,7 +15,7 @@ using Godot;
 public class PhotoStudio : Viewport
 {
     [Export]
-    public NodePath CameraPath = null!;
+    public NodePath? CameraPath;
 
     [Export]
     public NodePath RenderedObjectHolderPath = null!;
@@ -258,8 +258,11 @@ public class PhotoStudio : Viewport
     {
         if (disposing)
         {
-            CameraPath.Dispose();
-            RenderedObjectHolderPath.Dispose();
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                RenderedObjectHolderPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

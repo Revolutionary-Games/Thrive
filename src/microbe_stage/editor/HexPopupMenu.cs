@@ -8,7 +8,7 @@ using Godot;
 public abstract class HexPopupMenu : PopupPanel
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath DeleteButtonPath = null!;
@@ -167,10 +167,13 @@ public abstract class HexPopupMenu : PopupPanel
     {
         if (disposing)
         {
-            TitleLabelPath.Dispose();
-            DeleteButtonPath.Dispose();
-            MoveButtonPath.Dispose();
-            ModifyButtonPath.Dispose();
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                DeleteButtonPath.Dispose();
+                MoveButtonPath.Dispose();
+                ModifyButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

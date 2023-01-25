@@ -18,7 +18,7 @@ public partial class CellEditorComponent :
     public bool IsMulticellularEditor;
 
     [Export]
-    public NodePath TopPanelPath = null!;
+    public NodePath? TopPanelPath;
 
     [Export]
     public NodePath DayButtonPath = null!;
@@ -505,7 +505,12 @@ public partial class CellEditorComponent :
 
         ResolveNodeReferences();
 
-        // GUI setup part
+        // This works only after this is attached to the scene tree
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
+        appearanceTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
@@ -621,17 +626,11 @@ public partial class CellEditorComponent :
         nightButton = GetNode<Button>(NightButtonPath);
         averageLightButton = GetNode<Button>(AverageLightButtonPath);
 
-        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
-
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
 
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
-        appearanceTabButton =
-            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
 
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
-        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
         partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
         membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);
@@ -1096,47 +1095,50 @@ public partial class CellEditorComponent :
     {
         if (disposing)
         {
-            TopPanelPath.Dispose();
-            DayButtonPath.Dispose();
-            NightButtonPath.Dispose();
-            AverageLightButtonPath.Dispose();
-            TabButtonsPath.Dispose();
-            StructureTabButtonPath.Dispose();
-            AppearanceTabButtonPath.Dispose();
-            BehaviourTabButtonPath.Dispose();
-            StructureTabPath.Dispose();
-            AppearanceTabPath.Dispose();
-            BehaviourTabPath.Dispose();
-            PartsSelectionContainerPath.Dispose();
-            MembraneTypeSelectionPath.Dispose();
-            SizeLabelPath.Dispose();
-            OrganismStatisticsPath.Dispose();
-            SpeedLabelPath.Dispose();
-            RotationSpeedLabelPath.Dispose();
-            HpLabelPath.Dispose();
-            StorageLabelPath.Dispose();
-            DigestionSpeedLabelPath.Dispose();
-            DigestionEfficiencyLabelPath.Dispose();
-            DigestionEfficiencyDetailsPath.Dispose();
-            GenerationLabelPath.Dispose();
-            AutoEvoPredictionPanelPath.Dispose();
-            TotalPopulationLabelPath.Dispose();
-            AutoEvoPredictionFailedLabelPath.Dispose();
-            WorstPatchLabelPath.Dispose();
-            BestPatchLabelPath.Dispose();
-            MembraneColorPickerPath.Dispose();
-            ATPBalanceLabelPath.Dispose();
-            ATPProductionLabelPath.Dispose();
-            ATPConsumptionLabelPath.Dispose();
-            ATPProductionBarPath.Dispose();
-            ATPConsumptionBarPath.Dispose();
-            RigiditySliderPath.Dispose();
-            NegativeAtpPopupPath.Dispose();
-            OrganelleMenuPath.Dispose();
-            CompoundBalancePath.Dispose();
-            AutoEvoPredictionExplanationPopupPath.Dispose();
-            AutoEvoPredictionExplanationLabelPath.Dispose();
-            OrganelleUpgradeGUIPath.Dispose();
+            if (TopPanelPath != null)
+            {
+                TopPanelPath.Dispose();
+                DayButtonPath.Dispose();
+                NightButtonPath.Dispose();
+                AverageLightButtonPath.Dispose();
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                AppearanceTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                AppearanceTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                PartsSelectionContainerPath.Dispose();
+                MembraneTypeSelectionPath.Dispose();
+                SizeLabelPath.Dispose();
+                OrganismStatisticsPath.Dispose();
+                SpeedLabelPath.Dispose();
+                RotationSpeedLabelPath.Dispose();
+                HpLabelPath.Dispose();
+                StorageLabelPath.Dispose();
+                DigestionSpeedLabelPath.Dispose();
+                DigestionEfficiencyLabelPath.Dispose();
+                DigestionEfficiencyDetailsPath.Dispose();
+                GenerationLabelPath.Dispose();
+                AutoEvoPredictionPanelPath.Dispose();
+                TotalPopulationLabelPath.Dispose();
+                AutoEvoPredictionFailedLabelPath.Dispose();
+                WorstPatchLabelPath.Dispose();
+                BestPatchLabelPath.Dispose();
+                MembraneColorPickerPath.Dispose();
+                ATPBalanceLabelPath.Dispose();
+                ATPProductionLabelPath.Dispose();
+                ATPConsumptionLabelPath.Dispose();
+                ATPProductionBarPath.Dispose();
+                ATPConsumptionBarPath.Dispose();
+                RigiditySliderPath.Dispose();
+                NegativeAtpPopupPath.Dispose();
+                OrganelleMenuPath.Dispose();
+                CompoundBalancePath.Dispose();
+                AutoEvoPredictionExplanationPopupPath.Dispose();
+                AutoEvoPredictionExplanationLabelPath.Dispose();
+                OrganelleUpgradeGUIPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

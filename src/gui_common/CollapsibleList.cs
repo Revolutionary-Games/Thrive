@@ -7,7 +7,7 @@ using Godot;
 public class CollapsibleList : VBoxContainer
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath CollapseButtonPath = null!;
@@ -137,12 +137,15 @@ public class CollapsibleList : VBoxContainer
     {
         if (disposing)
         {
-            TitleLabelPath.Dispose();
-            CollapseButtonPath.Dispose();
-            ExpandButtonPath.Dispose();
-            ClipBoxPath.Dispose();
-            ItemContainerPath.Dispose();
-            TweenPath.Dispose();
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                CollapseButtonPath.Dispose();
+                ExpandButtonPath.Dispose();
+                ClipBoxPath.Dispose();
+                ItemContainerPath.Dispose();
+                TweenPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

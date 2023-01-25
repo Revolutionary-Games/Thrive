@@ -7,7 +7,7 @@ using Godot;
 public class ProcessPanel : CustomDialog
 {
     [Export]
-    public NodePath ProcessListPath = null!;
+    public NodePath? ProcessListPath;
 
     [Export]
     public bool ShowCustomCloseButton;
@@ -54,8 +54,11 @@ public class ProcessPanel : CustomDialog
     {
         if (disposing)
         {
-            ProcessListPath.Dispose();
-            CloseButtonContainerPath.Dispose();
+            if (ProcessListPath != null)
+            {
+                ProcessListPath.Dispose();
+                CloseButtonContainerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

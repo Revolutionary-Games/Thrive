@@ -8,7 +8,7 @@ using Godot;
 public class FossilisationDialog : CustomDialog
 {
     [Export]
-    public NodePath NameEditPath = null!;
+    public NodePath? NameEditPath;
 
     [Export]
     public NodePath SpeciesPreviewPath = null!;
@@ -121,12 +121,15 @@ public class FossilisationDialog : CustomDialog
     {
         if (disposing)
         {
-            NameEditPath.Dispose();
-            SpeciesPreviewPath.Dispose();
-            HexPreviewPath.Dispose();
-            FossiliseButtonPath.Dispose();
-            SpeciesDetailsLabelPath.Dispose();
-            OverwriteNameConfirmationDialogPath.Dispose();
+            if (NameEditPath != null)
+            {
+                NameEditPath.Dispose();
+                SpeciesPreviewPath.Dispose();
+                HexPreviewPath.Dispose();
+                FossiliseButtonPath.Dispose();
+                SpeciesDetailsLabelPath.Dispose();
+                OverwriteNameConfirmationDialogPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

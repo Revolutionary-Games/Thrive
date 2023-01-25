@@ -3,7 +3,7 @@
 public class ExtinctionBox : CustomDialog
 {
     [Export]
-    public NodePath ExtinctionMenuPath = null!;
+    public NodePath? ExtinctionMenuPath;
 
     [Export]
     public NodePath LoadMenuPath = null!;
@@ -48,8 +48,11 @@ public class ExtinctionBox : CustomDialog
     {
         if (disposing)
         {
-            ExtinctionMenuPath.Dispose();
-            LoadMenuPath.Dispose();
+            if (ExtinctionMenuPath != null)
+            {
+                ExtinctionMenuPath.Dispose();
+                LoadMenuPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

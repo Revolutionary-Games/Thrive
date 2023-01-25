@@ -10,7 +10,7 @@ public class SlideScreen : CustomDialog
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
     [Export]
-    public NodePath SlideTextureRectPath = null!;
+    public NodePath? SlideTextureRectPath;
 
     [Export]
     public NodePath SlideToolbarPath = null!;
@@ -287,16 +287,19 @@ public class SlideScreen : CustomDialog
     {
         if (disposing)
         {
-            SlideTextureRectPath.Dispose();
-            SlideToolbarPath.Dispose();
-            SlideCloseButtonPath.Dispose();
-            SlideShowModeButtonPath.Dispose();
-            SlideTitleLabelPath.Dispose();
-            ModelViewerContainerPath.Dispose();
-            ModelViewerPath.Dispose();
-            ModelHolderPath.Dispose();
-            ModelViewerCameraPath.Dispose();
-            PlaybackControlsPath.Dispose();
+            if (SlideTextureRectPath != null)
+            {
+                SlideTextureRectPath.Dispose();
+                SlideToolbarPath.Dispose();
+                SlideCloseButtonPath.Dispose();
+                SlideShowModeButtonPath.Dispose();
+                SlideTitleLabelPath.Dispose();
+                ModelViewerContainerPath.Dispose();
+                ModelViewerPath.Dispose();
+                ModelHolderPath.Dispose();
+                ModelViewerCameraPath.Dispose();
+                PlaybackControlsPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -13,7 +13,7 @@ public partial class CellBodyPlanEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
-    public NodePath TabButtonsPath = null!;
+    public NodePath? TabButtonsPath;
 
     [Export]
     public NodePath StructureTabButtonPath = null!;
@@ -195,6 +195,9 @@ public partial class CellBodyPlanEditorComponent :
         base.ResolveNodeReferences();
 
         NodeReferencesResolved = true;
+
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
 
         var tabButtons = GetNode<TabButtons>(TabButtonsPath);
 
@@ -457,21 +460,24 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (disposing)
         {
-            TabButtonsPath.Dispose();
-            StructureTabButtonPath.Dispose();
-            ReproductionTabButtonPath.Dispose();
-            BehaviourTabButtonPath.Dispose();
-            StructureTabPath.Dispose();
-            ReproductionTabPath.Dispose();
-            BehaviourTabPath.Dispose();
-            CellTypeSelectionListPath.Dispose();
-            ModifyTypeButtonPath.Dispose();
-            DeleteTypeButtonPath.Dispose();
-            DuplicateTypeButtonPath.Dispose();
-            CannotDeleteInUseTypeDialogPath.Dispose();
-            DuplicateCellTypeDialogPath.Dispose();
-            DuplicateCellTypeNamePath.Dispose();
-            CellPopupMenuPath.Dispose();
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                ReproductionTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                ReproductionTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                CellTypeSelectionListPath.Dispose();
+                ModifyTypeButtonPath.Dispose();
+                DeleteTypeButtonPath.Dispose();
+                DuplicateTypeButtonPath.Dispose();
+                CannotDeleteInUseTypeDialogPath.Dispose();
+                DuplicateCellTypeDialogPath.Dispose();
+                DuplicateCellTypeNamePath.Dispose();
+                CellPopupMenuPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

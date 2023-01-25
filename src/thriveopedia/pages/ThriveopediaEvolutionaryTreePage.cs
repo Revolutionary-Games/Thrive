@@ -15,7 +15,7 @@ using Godot;
 public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 {
     [Export]
-    public NodePath DisabledInFreebuildPath = null!;
+    public NodePath? DisabledInFreebuildPath;
 
     [Export]
     public NodePath EvolutionaryTreePath = null!;
@@ -71,9 +71,12 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     {
         if (disposing)
         {
-            DisabledInFreebuildPath.Dispose();
-            EvolutionaryTreePath.Dispose();
-            SpeciesDetailsPanelPath.Dispose();
+            if (DisabledInFreebuildPath != null)
+            {
+                DisabledInFreebuildPath.Dispose();
+                EvolutionaryTreePath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

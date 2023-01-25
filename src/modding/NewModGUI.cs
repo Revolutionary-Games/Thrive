@@ -7,7 +7,7 @@ using Path = System.IO.Path;
 public class NewModGUI : Control
 {
     [Export]
-    public NodePath DialogPath = null!;
+    public NodePath? DialogPath;
 
     [Export]
     public NodePath InternalNamePath = null!;
@@ -129,24 +129,27 @@ public class NewModGUI : Control
     {
         if (disposing)
         {
-            DialogPath.Dispose();
-            InternalNamePath.Dispose();
-            NamePath.Dispose();
-            AuthorPath.Dispose();
-            VersionPath.Dispose();
-            DescriptionPath.Dispose();
-            LongDescriptionPath.Dispose();
-            IconFilePath.Dispose();
-            InfoUrlPath.Dispose();
-            LicensePath.Dispose();
-            RecommendedThrivePath.Dispose();
-            MinimumThrivePath.Dispose();
-            MaximumThrivePath.Dispose();
-            PckNamePath.Dispose();
-            ModAssemblyPath.Dispose();
-            AssemblyModClassPath.Dispose();
-            AssemblyModAutoHarmonyPath.Dispose();
-            ErrorDisplayPath.Dispose();
+            if (DialogPath != null)
+            {
+                DialogPath.Dispose();
+                InternalNamePath.Dispose();
+                NamePath.Dispose();
+                AuthorPath.Dispose();
+                VersionPath.Dispose();
+                DescriptionPath.Dispose();
+                LongDescriptionPath.Dispose();
+                IconFilePath.Dispose();
+                InfoUrlPath.Dispose();
+                LicensePath.Dispose();
+                RecommendedThrivePath.Dispose();
+                MinimumThrivePath.Dispose();
+                MaximumThrivePath.Dispose();
+                PckNamePath.Dispose();
+                ModAssemblyPath.Dispose();
+                AssemblyModClassPath.Dispose();
+                AssemblyModAutoHarmonyPath.Dispose();
+                ErrorDisplayPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

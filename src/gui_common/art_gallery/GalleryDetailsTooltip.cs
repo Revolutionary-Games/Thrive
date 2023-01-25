@@ -3,7 +3,7 @@
 public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath DescriptionLabelPath = null!;
@@ -80,9 +80,12 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
     {
         if (disposing)
         {
-            TitleLabelPath.Dispose();
-            DescriptionLabelPath.Dispose();
-            ArtistLabelPath.Dispose();
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                DescriptionLabelPath.Dispose();
+                ArtistLabelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

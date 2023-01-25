@@ -3,7 +3,7 @@
 public class HUDBottomBar : HBoxContainer
 {
     [Export]
-    public NodePath PauseButtonPath = null!;
+    public NodePath? PauseButtonPath;
 
     [Export]
     public NodePath CompoundsButtonPath = null!;
@@ -103,10 +103,13 @@ public class HUDBottomBar : HBoxContainer
     {
         if (disposing)
         {
-            PauseButtonPath.Dispose();
-            CompoundsButtonPath.Dispose();
-            EnvironmentButtonPath.Dispose();
-            ProcessPanelButtonPath.Dispose();
+            if (PauseButtonPath != null)
+            {
+                PauseButtonPath.Dispose();
+                CompoundsButtonPath.Dispose();
+                EnvironmentButtonPath.Dispose();
+                ProcessPanelButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

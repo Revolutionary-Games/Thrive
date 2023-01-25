@@ -3,7 +3,7 @@
 public class MicrobeEditorCheatMenu : CheatMenu
 {
     [Export]
-    public NodePath InfiniteMpPath = null!;
+    public NodePath? InfiniteMpPath;
 
 #pragma warning disable CA2213
     private CustomCheckBox infiniteMp = null!;
@@ -24,7 +24,7 @@ public class MicrobeEditorCheatMenu : CheatMenu
     {
         if (disposing)
         {
-            InfiniteMpPath.Dispose();
+            InfiniteMpPath?.Dispose();
         }
 
         base.Dispose(disposing);

@@ -3,7 +3,7 @@
 public class EditorCommonBottomLeftButtons : MarginContainer
 {
     [Export]
-    public NodePath MenuButtonPath = null!;
+    public NodePath? MenuButtonPath;
 
     [Export]
     public NodePath HelpButtonPath = null!;
@@ -37,8 +37,11 @@ public class EditorCommonBottomLeftButtons : MarginContainer
     {
         if (disposing)
         {
-            MenuButtonPath.Dispose();
-            HelpButtonPath.Dispose();
+            if (MenuButtonPath != null)
+            {
+                MenuButtonPath.Dispose();
+                HelpButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

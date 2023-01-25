@@ -11,7 +11,7 @@ using Godot;
 public class SaveManagerGUI : Control
 {
     [Export]
-    public NodePath SaveListPath = null!;
+    public NodePath? SaveListPath;
 
     [Export]
     public NodePath SelectedItemCountPath = null!;
@@ -143,16 +143,19 @@ public class SaveManagerGUI : Control
     {
         if (disposing)
         {
-            SaveListPath.Dispose();
-            SelectedItemCountPath.Dispose();
-            TotalSaveCountPath.Dispose();
-            TotalSaveSizePath.Dispose();
-            LoadButtonPath.Dispose();
-            DeleteSelectedButtonPath.Dispose();
-            DeleteOldButtonPath.Dispose();
-            DeleteSelectedConfirmDialogPath.Dispose();
-            DeleteOldConfirmDialogPath.Dispose();
-            SaveDirectoryWarningDialogPath.Dispose();
+            if (SaveListPath != null)
+            {
+                SaveListPath.Dispose();
+                SelectedItemCountPath.Dispose();
+                TotalSaveCountPath.Dispose();
+                TotalSaveSizePath.Dispose();
+                LoadButtonPath.Dispose();
+                DeleteSelectedButtonPath.Dispose();
+                DeleteOldButtonPath.Dispose();
+                DeleteSelectedConfirmDialogPath.Dispose();
+                DeleteOldConfirmDialogPath.Dispose();
+                SaveDirectoryWarningDialogPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -12,7 +12,7 @@ using Godot;
 public class ThriveopediaPatchMapPage : ThriveopediaPage
 {
     [Export]
-    public NodePath MapDrawerPath = null!;
+    public NodePath? MapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -76,9 +76,12 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     {
         if (disposing)
         {
-            MapDrawerPath.Dispose();
-            PatchDetailsPanelPath.Dispose();
-            SeedLabelPath.Dispose();
+            if (MapDrawerPath != null)
+            {
+                MapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                SeedLabelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

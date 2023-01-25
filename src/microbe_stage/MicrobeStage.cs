@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 public class MicrobeStage : StageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -538,7 +538,7 @@ public class MicrobeStage : StageBase<Microbe>
     {
         if (disposing)
         {
-            GuidanceLinePath.Dispose();
+            GuidanceLinePath?.Dispose();
         }
 
         base.Dispose(disposing);

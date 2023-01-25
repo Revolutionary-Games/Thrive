@@ -11,7 +11,7 @@ using Godot;
 public class InputGroupItem : VBoxContainer
 {
     [Export]
-    public NodePath InputGroupHeaderPath = null!;
+    public NodePath? InputGroupHeaderPath;
 
     [Export]
     public NodePath InputActionsContainerPath = null!;
@@ -130,8 +130,11 @@ public class InputGroupItem : VBoxContainer
     {
         if (disposing)
         {
-            InputGroupHeaderPath.Dispose();
-            InputActionsContainerPath.Dispose();
+            if (InputGroupHeaderPath != null)
+            {
+                InputGroupHeaderPath.Dispose();
+                InputActionsContainerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

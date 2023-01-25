@@ -6,7 +6,7 @@
 public class MicrobeCheatMenu : CheatMenu
 {
     [Export]
-    public NodePath InfiniteCompoundsPath = null!;
+    public NodePath? InfiniteCompoundsPath;
 
     [Export]
     public NodePath GodModePath = null!;
@@ -64,13 +64,16 @@ public class MicrobeCheatMenu : CheatMenu
     {
         if (disposing)
         {
-            InfiniteCompoundsPath.Dispose();
-            GodModePath.Dispose();
-            DisableAIPath.Dispose();
-            SpeedSliderPath.Dispose();
-            PlayerDividePath.Dispose();
-            SpawnEnemyPath.Dispose();
-            DespawnAllEntitiesPath.Dispose();
+            if (InfiniteCompoundsPath != null)
+            {
+                InfiniteCompoundsPath.Dispose();
+                GodModePath.Dispose();
+                DisableAIPath.Dispose();
+                SpeedSliderPath.Dispose();
+                PlayerDividePath.Dispose();
+                SpawnEnemyPath.Dispose();
+                DespawnAllEntitiesPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

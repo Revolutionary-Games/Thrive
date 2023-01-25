@@ -4,7 +4,7 @@ using Godot;
 public class PatchExtinctionBox : Control
 {
     [Export]
-    public NodePath PatchMapDrawerPath = null!;
+    public NodePath? PatchMapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -62,9 +62,12 @@ public class PatchExtinctionBox : Control
     {
         if (disposing)
         {
-            PatchMapDrawerPath.Dispose();
-            PatchDetailsPanelPath.Dispose();
-            AnimationPlayer.Dispose();
+            if (PatchMapDrawerPath != null)
+            {
+                PatchMapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                AnimationPlayer.Dispose();
+            }
         }
 
         base.Dispose(disposing);

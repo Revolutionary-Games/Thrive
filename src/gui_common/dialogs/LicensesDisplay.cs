@@ -8,7 +8,7 @@ using Godot;
 public class LicensesDisplay : CustomDialog
 {
     [Export]
-    public NodePath TextsContainerPath = null!;
+    public NodePath? TextsContainerPath;
 
     private List<(string Heading, Func<string> Content)> licensesToShow = null!;
 
@@ -92,7 +92,7 @@ public class LicensesDisplay : CustomDialog
     {
         if (disposing)
         {
-            TextsContainerPath.Dispose();
+            TextsContainerPath?.Dispose();
         }
 
         base.Dispose(disposing);

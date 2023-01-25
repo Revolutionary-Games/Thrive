@@ -7,7 +7,7 @@ using Godot;
 public class PatchMapNode : MarginContainer
 {
     [Export]
-    public NodePath IconPath = null!;
+    public NodePath? IconPath;
 
     /// <summary>
     ///   Selected patch graphics
@@ -227,10 +227,13 @@ public class PatchMapNode : MarginContainer
     {
         if (disposing)
         {
-            IconPath.Dispose();
-            HighlightPanelPath.Dispose();
-            MarkPanelPath.Dispose();
-            AdjacentPanelPath.Dispose();
+            if (IconPath != null)
+            {
+                IconPath.Dispose();
+                HighlightPanelPath.Dispose();
+                MarkPanelPath.Dispose();
+                AdjacentPanelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

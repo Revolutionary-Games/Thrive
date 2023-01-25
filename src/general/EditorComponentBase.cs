@@ -12,7 +12,7 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     where TEditor : IEditor
 {
     [Export]
-    public NodePath FinishOrNextButtonPath = null!;
+    public NodePath? FinishOrNextButtonPath;
 
 #pragma warning disable CA2213
     protected AudioStream unableToPerformActionSound = null!;
@@ -154,7 +154,7 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     {
         if (disposing)
         {
-            FinishOrNextButtonPath.Dispose();
+            FinishOrNextButtonPath?.Dispose();
         }
 
         base.Dispose(disposing);

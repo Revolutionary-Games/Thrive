@@ -11,7 +11,7 @@ using Godot;
 public class SelectionMenuToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath NameLabelPath = null!;
+    public NodePath? NameLabelPath;
 
     [Export]
     public NodePath MpLabelPath = null!;
@@ -282,14 +282,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         if (disposing)
         {
-            NameLabelPath.Dispose();
-            MpLabelPath.Dispose();
-            RequiresNucleusPath.Dispose();
-            DescriptionLabelPath.Dispose();
-            ProcessesDescriptionLabelPath.Dispose();
-            ModifierListPath.Dispose();
-            ProcessListPath.Dispose();
-            modifierInfoScene.Dispose();
+            if (NameLabelPath != null)
+            {
+                NameLabelPath.Dispose();
+                MpLabelPath.Dispose();
+                RequiresNucleusPath.Dispose();
+                DescriptionLabelPath.Dispose();
+                ProcessesDescriptionLabelPath.Dispose();
+                ModifierListPath.Dispose();
+                ProcessListPath.Dispose();
+                modifierInfoScene.Dispose();
+            }
         }
 
         base.Dispose(disposing);

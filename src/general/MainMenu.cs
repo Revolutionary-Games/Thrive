@@ -16,7 +16,7 @@ public class MainMenu : NodeWithInput
     public uint CurrentMenuIndex;
 
     [Export]
-    public NodePath ThriveLogoPath = null!;
+    public NodePath? ThriveLogoPath;
 
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
@@ -308,29 +308,33 @@ public class MainMenu : NodeWithInput
     {
         if (disposing)
         {
-            ThriveLogoPath.Dispose();
-            FreebuildButtonPath.Dispose();
-            AutoEvoExploringButtonPath.Dispose();
-            ExitToLauncherButtonPath.Dispose();
-            CreditsContainerPath.Dispose();
-            CreditsScrollPath.Dispose();
-            LicensesDisplayPath.Dispose();
-            GLES2PopupPath.Dispose();
-            SteamFailedPopupPath.Dispose();
-            ModLoadFailuresPath.Dispose();
-            SafeModeWarningPath.Dispose();
-            ModsInstalledButNotEnabledWarningPath.Dispose();
-            PermanentlyDismissModsNotEnabledWarningPath.Dispose();
-            SocialMediaContainerPath.Dispose();
-            WebsiteButtonsContainerPath.Dispose();
-            ItchButtonPath.Dispose();
-            PatreonButtonPath.Dispose();
-            StoreLoggedInDisplayPath.Dispose();
-            ModManagerPath.Dispose();
-            GalleryViewerPath.Dispose();
-            ThanksDialogPath.Dispose();
-            ThanksDialogTextPath.Dispose();
-            PermanentlyDismissThanksDialogPath.Dispose();
+            if (ThriveLogoPath != null)
+            {
+                ThriveLogoPath.Dispose();
+                FreebuildButtonPath.Dispose();
+                AutoEvoExploringButtonPath.Dispose();
+                ExitToLauncherButtonPath.Dispose();
+                CreditsContainerPath.Dispose();
+                CreditsScrollPath.Dispose();
+                LicensesDisplayPath.Dispose();
+                GLES2PopupPath.Dispose();
+                SteamFailedPopupPath.Dispose();
+                ModLoadFailuresPath.Dispose();
+                SafeModeWarningPath.Dispose();
+                ModsInstalledButNotEnabledWarningPath.Dispose();
+                PermanentlyDismissModsNotEnabledWarningPath.Dispose();
+                SocialMediaContainerPath.Dispose();
+                WebsiteButtonsContainerPath.Dispose();
+                ItchButtonPath.Dispose();
+                PatreonButtonPath.Dispose();
+                StoreLoggedInDisplayPath.Dispose();
+                ModManagerPath.Dispose();
+                GalleryViewerPath.Dispose();
+                ThanksDialogPath.Dispose();
+                ThanksDialogTextPath.Dispose();
+                PermanentlyDismissThanksDialogPath.Dispose();
+            }
+
             menuArray?.Dispose();
         }
 

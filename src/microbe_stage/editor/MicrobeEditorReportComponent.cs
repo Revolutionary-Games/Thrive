@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
     [Export]
-    public NodePath AutoEvoSubtabButtonPath = null!;
+    public NodePath? AutoEvoSubtabButtonPath;
 
     [Export]
     public NodePath TimelineSubtabButtonPath = null!;
@@ -214,23 +214,26 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
         if (disposing)
         {
-            AutoEvoSubtabButtonPath.Dispose();
-            TimelineSubtabButtonPath.Dispose();
-            AutoEvoSubtabPath.Dispose();
-            TimelineSubtabPath.Dispose();
-            TimelineEventsContainerPath.Dispose();
-            TimeIndicatorPath.Dispose();
-            PhysicalConditionsIconLegendPath.Dispose();
-            TemperatureChartPath.Dispose();
-            SunlightChartPath.Dispose();
-            AtmosphericGassesChartPath.Dispose();
-            CompoundsChartPath.Dispose();
-            SpeciesPopulationChartPath.Dispose();
-            GlucoseReductionLabelPath.Dispose();
-            AutoEvoLabelPath.Dispose();
-            ExternalEffectsLabelPath.Dispose();
-            ReportTabPatchNamePath.Dispose();
-            ReportTabPatchSelectorPath.Dispose();
+            if (AutoEvoSubtabButtonPath != null)
+            {
+                AutoEvoSubtabButtonPath.Dispose();
+                TimelineSubtabButtonPath.Dispose();
+                AutoEvoSubtabPath.Dispose();
+                TimelineSubtabPath.Dispose();
+                TimelineEventsContainerPath.Dispose();
+                TimeIndicatorPath.Dispose();
+                PhysicalConditionsIconLegendPath.Dispose();
+                TemperatureChartPath.Dispose();
+                SunlightChartPath.Dispose();
+                AtmosphericGassesChartPath.Dispose();
+                CompoundsChartPath.Dispose();
+                SpeciesPopulationChartPath.Dispose();
+                GlucoseReductionLabelPath.Dispose();
+                AutoEvoLabelPath.Dispose();
+                ExternalEffectsLabelPath.Dispose();
+                ReportTabPatchNamePath.Dispose();
+                ReportTabPatchSelectorPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

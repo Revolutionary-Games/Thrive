@@ -450,6 +450,30 @@ Godot usage
   when they are held by Godot objects, custom dispose methods should
   be implemented.
 
+- For most Godot-derived types a Dispose method just needs to be added
+  to dispose any `NodePath` variables. Note that Godot autoloads,
+  loading saves, and using things in the editor, dispose not fully
+  initialized Nodes. To workaround this the dispose method should
+  check that the `Export` variables are set (the first `NodePath`
+  variable needs to be set nullable):
+
+```c#
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (FirstControlPath != null)
+            {
+                FirstControlPath.Dispose();
+                SecondControlPath.Dispose();
+                ThirdControlPathAndSoOn.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+```
+
 - Avoid using a constructor to setup Godot resources, usually Node
   derived types should mostly do Godot Node related, constructor-like
   operations entirely in `_Ready`. Many resources are not ready yet when

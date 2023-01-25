@@ -15,7 +15,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     where TStage : Object, IStage
 {
     [Export]
-    public NodePath CompoundsGroupAnimationPlayerPath = null!;
+    public NodePath? CompoundsGroupAnimationPlayerPath;
 
     [Export]
     public NodePath EnvironmentGroupAnimationPlayerPath = null!;
@@ -321,7 +321,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private ProcessPanel processPanel = null!;
 #pragma warning restore CA2213
 
-    private Array compoundBars = null!;
+    private Array? compoundBars;
 
     /// <summary>
     ///   For toggling paused with the pause button.
@@ -777,62 +777,66 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     {
         if (disposing)
         {
-            CompoundsGroupAnimationPlayerPath.Dispose();
-            EnvironmentGroupAnimationPlayerPath.Dispose();
-            PanelsTweenPath.Dispose();
-            LeftPanelsPath.Dispose();
-            MouseHoverPanelPath.Dispose();
-            HoveredCellsContainerPath.Dispose();
-            MenuPath.Dispose();
-            AtpLabelPath.Dispose();
-            HpLabelPath.Dispose();
-            PopulationLabelPath.Dispose();
-            PatchOverlayPath.Dispose();
-            EditorButtonPath.Dispose();
-            EnvironmentPanelPath.Dispose();
-            OxygenBarPath.Dispose();
-            Co2BarPath.Dispose();
-            NitrogenBarPath.Dispose();
-            TemperaturePath.Dispose();
-            SunlightPath.Dispose();
-            PressurePath.Dispose();
-            EnvironmentPanelBarContainerPath.Dispose();
-            CompoundsPanelPath.Dispose();
-            GlucoseBarPath.Dispose();
-            AmmoniaBarPath.Dispose();
-            PhosphateBarPath.Dispose();
-            HydrogenSulfideBarPath.Dispose();
-            IronBarPath.Dispose();
-            EnvironmentPanelExpandButtonPath.Dispose();
-            EnvironmentPanelCompressButtonPath.Dispose();
-            CompoundsPanelExpandButtonPath.Dispose();
-            CompoundsPanelCompressButtonPath.Dispose();
-            CompoundsPanelBarContainerPath.Dispose();
-            AtpBarPath.Dispose();
-            HealthBarPath.Dispose();
-            AmmoniaReproductionBarPath.Dispose();
-            PhosphateReproductionBarPath.Dispose();
-            EditorButtonFlashPath.Dispose();
-            ProcessPanelPath.Dispose();
-            HintTextPath.Dispose();
-            HotBarPath.Dispose();
-            EngulfHotkeyPath.Dispose();
-            SecreteSlimeHotkeyPath.Dispose();
-            SignallingAgentsHotkeyPath.Dispose();
-            MicrobeControlRadialPath.Dispose();
-            PausePromptPath.Dispose();
-            PauseInfoPath.Dispose();
-            HoveredCompoundsContainerPath.Dispose();
-            HoverPanelSeparatorPath.Dispose();
-            AgentsPanelPath.Dispose();
-            OxytoxyBarPath.Dispose();
-            MucilageBarPath.Dispose();
-            AgentsPanelBarContainerPath.Dispose();
-            FireToxinHotkeyPath.Dispose();
-            BottomLeftBarPath.Dispose();
-            FossilisationButtonLayerPath.Dispose();
-            FossilisationDialogPath.Dispose();
-            compoundBars.Dispose();
+            if (CompoundsGroupAnimationPlayerPath != null)
+            {
+                CompoundsGroupAnimationPlayerPath.Dispose();
+                EnvironmentGroupAnimationPlayerPath.Dispose();
+                PanelsTweenPath.Dispose();
+                LeftPanelsPath.Dispose();
+                MouseHoverPanelPath.Dispose();
+                HoveredCellsContainerPath.Dispose();
+                MenuPath.Dispose();
+                AtpLabelPath.Dispose();
+                HpLabelPath.Dispose();
+                PopulationLabelPath.Dispose();
+                PatchOverlayPath.Dispose();
+                EditorButtonPath.Dispose();
+                EnvironmentPanelPath.Dispose();
+                OxygenBarPath.Dispose();
+                Co2BarPath.Dispose();
+                NitrogenBarPath.Dispose();
+                TemperaturePath.Dispose();
+                SunlightPath.Dispose();
+                PressurePath.Dispose();
+                EnvironmentPanelBarContainerPath.Dispose();
+                CompoundsPanelPath.Dispose();
+                GlucoseBarPath.Dispose();
+                AmmoniaBarPath.Dispose();
+                PhosphateBarPath.Dispose();
+                HydrogenSulfideBarPath.Dispose();
+                IronBarPath.Dispose();
+                EnvironmentPanelExpandButtonPath.Dispose();
+                EnvironmentPanelCompressButtonPath.Dispose();
+                CompoundsPanelExpandButtonPath.Dispose();
+                CompoundsPanelCompressButtonPath.Dispose();
+                CompoundsPanelBarContainerPath.Dispose();
+                AtpBarPath.Dispose();
+                HealthBarPath.Dispose();
+                AmmoniaReproductionBarPath.Dispose();
+                PhosphateReproductionBarPath.Dispose();
+                EditorButtonFlashPath.Dispose();
+                ProcessPanelPath.Dispose();
+                HintTextPath.Dispose();
+                HotBarPath.Dispose();
+                EngulfHotkeyPath.Dispose();
+                SecreteSlimeHotkeyPath.Dispose();
+                SignallingAgentsHotkeyPath.Dispose();
+                MicrobeControlRadialPath.Dispose();
+                PausePromptPath.Dispose();
+                PauseInfoPath.Dispose();
+                HoveredCompoundsContainerPath.Dispose();
+                HoverPanelSeparatorPath.Dispose();
+                AgentsPanelPath.Dispose();
+                OxytoxyBarPath.Dispose();
+                MucilageBarPath.Dispose();
+                AgentsPanelBarContainerPath.Dispose();
+                FireToxinHotkeyPath.Dispose();
+                BottomLeftBarPath.Dispose();
+                FossilisationButtonLayerPath.Dispose();
+                FossilisationDialogPath.Dispose();
+            }
+
+            compoundBars?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -1356,6 +1360,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         {
             agentsPanel.Hide();
         }
+
+        if (compoundBars == null)
+            throw new InvalidOperationException("This HUD is not initialized");
 
         foreach (ProgressBar bar in compoundBars)
         {
