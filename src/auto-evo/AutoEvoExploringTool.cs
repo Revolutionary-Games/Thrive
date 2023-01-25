@@ -472,19 +472,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
         base.Dispose(disposing);
     }
 
-    /// <summary>
-    ///   Uncalled static method to workaround a problem in translation extraction.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: Remove this once https://github.com/Revolutionary-Games/Thrive/issues/3984 is solved.
-    ///   </para>
-    /// </remarks>
-    private static void ApplyPlaceholderTooltipTranslationKey()
-    {
-        _ = TranslationServer.Translate("RUN_X_WORLDS_TOOLTIP");
-    }
-
     private void InitNewWorld()
     {
         InitNewWorld(SimulationParameters.Instance.AutoEvoConfiguration);
