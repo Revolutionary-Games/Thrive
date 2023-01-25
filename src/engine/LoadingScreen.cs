@@ -7,7 +7,7 @@ using Godot;
 public class LoadingScreen : Control
 {
     [Export]
-    public NodePath ArtworkPath = null!;
+    public NodePath? ArtworkPath;
 
     [Export]
     public NodePath ArtDescriptionPath = null!;
@@ -218,13 +218,16 @@ public class LoadingScreen : Control
     {
         if (disposing)
         {
-            ArtworkPath.Dispose();
-            ArtDescriptionPath.Dispose();
-            LoadingMessagePath.Dispose();
-            LoadingDescriptionPath.Dispose();
-            TipLabelPath.Dispose();
-            RandomizeTimerPath.Dispose();
-            SpinnerPath.Dispose();
+            if (ArtworkPath != null)
+            {
+                ArtworkPath.Dispose();
+                ArtDescriptionPath.Dispose();
+                LoadingMessagePath.Dispose();
+                LoadingDescriptionPath.Dispose();
+                TipLabelPath.Dispose();
+                RandomizeTimerPath.Dispose();
+                SpinnerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

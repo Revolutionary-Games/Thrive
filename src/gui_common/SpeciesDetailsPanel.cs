@@ -4,7 +4,7 @@ using Godot;
 public class SpeciesDetailsPanel : VBoxContainer
 {
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
+    public NodePath? SpeciesDetailsLabelPath;
 
     [Export]
     public NodePath SpeciesPreviewPath = null!;
@@ -61,11 +61,14 @@ public class SpeciesDetailsPanel : VBoxContainer
     {
         if (disposing)
         {
-            SpeciesDetailsLabelPath.Dispose();
-            SpeciesPreviewPath.Dispose();
-            HexPreviewPath.Dispose();
-            FossilisationButtonPath.Dispose();
-            FossilisationDialogPath.Dispose();
+            if (SpeciesDetailsLabelPath != null)
+            {
+                SpeciesDetailsLabelPath.Dispose();
+                SpeciesPreviewPath.Dispose();
+                HexPreviewPath.Dispose();
+                FossilisationButtonPath.Dispose();
+                FossilisationDialogPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

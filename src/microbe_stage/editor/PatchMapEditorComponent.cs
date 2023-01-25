@@ -17,7 +17,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     where TEditor : IEditorWithPatches
 {
     [Export]
-    public NodePath MapDrawerPath = null!;
+    public NodePath? MapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -138,9 +138,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
         if (disposing)
         {
-            MapDrawerPath.Dispose();
-            PatchDetailsPanelPath.Dispose();
-            SeedLabelPath.Dispose();
+            if (MapDrawerPath != null)
+            {
+                MapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                SeedLabelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

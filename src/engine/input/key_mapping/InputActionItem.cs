@@ -23,7 +23,7 @@ using Godot;
 public class InputActionItem : VBoxContainer
 {
     [Export]
-    public NodePath AddInputEventPath = null!;
+    public NodePath? AddInputEventPath;
 
     [Export]
     public NodePath InputActionHeaderPath = null!;
@@ -194,9 +194,12 @@ public class InputActionItem : VBoxContainer
     {
         if (disposing)
         {
-            AddInputEventPath.Dispose();
-            InputActionHeaderPath.Dispose();
-            InputEventsContainerPath.Dispose();
+            if (AddInputEventPath != null)
+            {
+                AddInputEventPath.Dispose();
+                InputActionHeaderPath.Dispose();
+                InputEventsContainerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

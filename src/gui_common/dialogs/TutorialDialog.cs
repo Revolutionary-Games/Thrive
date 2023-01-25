@@ -9,7 +9,7 @@ using Godot;
 public class TutorialDialog : CustomDialog
 {
     [Export]
-    public NodePath LabelPath = null!;
+    public NodePath? LabelPath;
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? label;
@@ -85,7 +85,7 @@ public class TutorialDialog : CustomDialog
     {
         if (disposing)
         {
-            LabelPath.Dispose();
+            LabelPath?.Dispose();
         }
 
         base.Dispose(disposing);

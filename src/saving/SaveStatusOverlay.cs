@@ -7,7 +7,7 @@ using Godot;
 public class SaveStatusOverlay : Control
 {
     [Export]
-    public NodePath StatusLabelPath = null!;
+    public NodePath? StatusLabelPath;
 
     [Export]
     public NodePath AnimationPlayerPath = null!;
@@ -112,9 +112,12 @@ public class SaveStatusOverlay : Control
     {
         if (disposing)
         {
-            StatusLabelPath.Dispose();
-            AnimationPlayerPath.Dispose();
-            ErrorDialogPath.Dispose();
+            if (StatusLabelPath != null)
+            {
+                StatusLabelPath.Dispose();
+                AnimationPlayerPath.Dispose();
+                ErrorDialogPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -14,7 +14,7 @@ public class HelpScreen : Control
     public string Category = null!;
 
     [Export]
-    public NodePath LeftColumnPath = null!;
+    public NodePath? LeftColumnPath;
 
     [Export]
     public NodePath RightColumnPath = null!;
@@ -92,10 +92,13 @@ public class HelpScreen : Control
     {
         if (disposing)
         {
-            LeftColumnPath.Dispose();
-            RightColumnPath.Dispose();
-            TipMessageLabelPath.Dispose();
-            TimerPath.Dispose();
+            if (LeftColumnPath != null)
+            {
+                LeftColumnPath.Dispose();
+                RightColumnPath.Dispose();
+                TipMessageLabelPath.Dispose();
+                TimerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -14,7 +14,7 @@ public class SaveListItem : PanelContainer
     public bool Loadable = true;
 
     [Export]
-    public NodePath SaveNamePath = null!;
+    public NodePath? SaveNamePath;
 
     [Export]
     public NodePath ScreenshotPath = null!;
@@ -301,17 +301,20 @@ public class SaveListItem : PanelContainer
     {
         if (disposing)
         {
-            SaveNamePath.Dispose();
-            ScreenshotPath.Dispose();
-            VersionPath.Dispose();
-            VersionWarningPath.Dispose();
-            TypePath.Dispose();
-            CreatedAtPath.Dispose();
-            CreatedByPath.Dispose();
-            CreatedOnPlatformPath.Dispose();
-            DescriptionPath.Dispose();
-            LoadButtonPath.Dispose();
-            HighlightPath.Dispose();
+            if (SaveNamePath != null)
+            {
+                SaveNamePath.Dispose();
+                ScreenshotPath.Dispose();
+                VersionPath.Dispose();
+                VersionWarningPath.Dispose();
+                TypePath.Dispose();
+                CreatedAtPath.Dispose();
+                CreatedByPath.Dispose();
+                CreatedOnPlatformPath.Dispose();
+                DescriptionPath.Dispose();
+                LoadButtonPath.Dispose();
+                HighlightPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

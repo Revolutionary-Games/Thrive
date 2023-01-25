@@ -13,7 +13,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     where TMetaball : Metaball
 {
     [Export]
-    public NodePath CameraPath = null!;
+    public NodePath? CameraPath;
 
     [Export]
     public NodePath EditorArrowPath = null!;
@@ -495,10 +495,13 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     {
         if (disposing)
         {
-            CameraPath.Dispose();
-            EditorArrowPath.Dispose();
-            EditorGroundPath.Dispose();
-            IslandErrorPath.Dispose();
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                EditorArrowPath.Dispose();
+                EditorGroundPath.Dispose();
+                IslandErrorPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

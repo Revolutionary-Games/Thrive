@@ -10,7 +10,7 @@ using Path = System.IO.Path;
 public class NewSaveMenu : Control
 {
     [Export]
-    public NodePath SaveListPath = null!;
+    public NodePath? SaveListPath;
 
     [Export]
     public NodePath SaveNameBoxPath = null!;
@@ -74,11 +74,14 @@ public class NewSaveMenu : Control
     {
         if (disposing)
         {
-            SaveListPath.Dispose();
-            SaveNameBoxPath.Dispose();
-            OverwriteConfirmPath.Dispose();
-            AttemptWriteFailAcceptPath.Dispose();
-            SaveButtonPath.Dispose();
+            if (SaveListPath != null)
+            {
+                SaveListPath.Dispose();
+                SaveNameBoxPath.Dispose();
+                OverwriteConfirmPath.Dispose();
+                AttemptWriteFailAcceptPath.Dispose();
+                SaveButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -10,7 +10,7 @@ using Godot;
 public class Thriveopedia : ControlWithInput
 {
     [Export]
-    public NodePath BackButtonPath = null!;
+    public NodePath? BackButtonPath;
 
     [Export]
     public NodePath ForwardButtonPath = null!;
@@ -217,14 +217,17 @@ public class Thriveopedia : ControlWithInput
     {
         if (disposing)
         {
-            BackButtonPath.Dispose();
-            ForwardButtonPath.Dispose();
-            PageContainerPath.Dispose();
-            PageTreeContainerPath.Dispose();
-            PageTreeContainerAnimPath.Dispose();
-            PageTitlePath.Dispose();
-            PageTreePath.Dispose();
-            HomePagePath.Dispose();
+            if (BackButtonPath != null)
+            {
+                BackButtonPath.Dispose();
+                ForwardButtonPath.Dispose();
+                PageContainerPath.Dispose();
+                PageTreeContainerPath.Dispose();
+                PageTreeContainerAnimPath.Dispose();
+                PageTitlePath.Dispose();
+                PageTreePath.Dispose();
+                HomePagePath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -18,7 +18,7 @@ using Array = Godot.Collections.Array;
 public class EvolutionaryTree : Control
 {
     [Export]
-    public NodePath TimelinePath = null!;
+    public NodePath? TimelinePath;
 
     [Export]
     public NodePath TreePath = null!;
@@ -268,9 +268,12 @@ public class EvolutionaryTree : Control
     {
         if (disposing)
         {
-            TimelinePath.Dispose();
-            TreePath.Dispose();
-            nodesGroup.Dispose();
+            if (TimelinePath != null)
+            {
+                TimelinePath.Dispose();
+                TreePath.Dispose();
+                nodesGroup.Dispose();
+            }
         }
 
         base.Dispose(disposing);

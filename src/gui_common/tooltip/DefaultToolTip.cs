@@ -6,7 +6,7 @@
 public class DefaultToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath DescriptionLabelPath = null!;
+    public NodePath? DescriptionLabelPath;
 
 #pragma warning disable CA2213
 
@@ -66,7 +66,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     {
         if (disposing)
         {
-            DescriptionLabelPath.Dispose();
+            DescriptionLabelPath?.Dispose();
         }
 
         base.Dispose(disposing);

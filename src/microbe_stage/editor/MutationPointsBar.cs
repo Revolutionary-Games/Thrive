@@ -3,7 +3,7 @@
 public class MutationPointsBar : HBoxContainer
 {
     [Export]
-    public NodePath CurrentMutationPointsLabelPath = null!;
+    public NodePath? CurrentMutationPointsLabelPath;
 
     [Export]
     public NodePath MutationPointsArrowPath = null!;
@@ -112,13 +112,16 @@ public class MutationPointsBar : HBoxContainer
     {
         if (disposing)
         {
-            CurrentMutationPointsLabelPath.Dispose();
-            MutationPointsArrowPath.Dispose();
-            ResultingMutationPointsLabelPath.Dispose();
-            BaseMutationPointsLabelPath.Dispose();
-            MutationPointsBarPath.Dispose();
-            MutationPointsSubtractBarPath.Dispose();
-            AnimationPlayerPath.Dispose();
+            if (CurrentMutationPointsLabelPath != null)
+            {
+                CurrentMutationPointsLabelPath.Dispose();
+                MutationPointsArrowPath.Dispose();
+                ResultingMutationPointsLabelPath.Dispose();
+                BaseMutationPointsLabelPath.Dispose();
+                MutationPointsBarPath.Dispose();
+                MutationPointsSubtractBarPath.Dispose();
+                AnimationPlayerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

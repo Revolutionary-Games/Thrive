@@ -12,7 +12,7 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, ChartDat
 public class LineChart : VBoxContainer
 {
     [Export]
-    public NodePath HorizontalLabelPath = null!;
+    public NodePath? HorizontalLabelPath;
 
     [Export]
     public NodePath VerticalLabelPath = null!;
@@ -642,14 +642,17 @@ public class LineChart : VBoxContainer
     {
         if (disposing)
         {
-            HorizontalLabelPath.Dispose();
-            VerticalLabelPath.Dispose();
-            VerticalTicksContainerPath.Dispose();
-            HorizontalTicksContainerPath.Dispose();
-            DrawAreaPath.Dispose();
-            LegendsContainerPath.Dispose();
-            ExtraLegendContainerPath.Dispose();
-            InspectButtonPath.Dispose();
+            if (HorizontalLabelPath != null)
+            {
+                HorizontalLabelPath.Dispose();
+                VerticalLabelPath.Dispose();
+                VerticalTicksContainerPath.Dispose();
+                HorizontalTicksContainerPath.Dispose();
+                DrawAreaPath.Dispose();
+                LegendsContainerPath.Dispose();
+                ExtraLegendContainerPath.Dispose();
+                InspectButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

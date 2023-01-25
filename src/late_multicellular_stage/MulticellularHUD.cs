@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class MulticellularHUD : StageHUDBase<MulticellularStage>
 {
     [Export]
-    public NodePath MoveToLandPopupPath = null!;
+    public NodePath? MoveToLandPopupPath;
 
     [Export]
     public NodePath ToLandButtonPath = null!;
@@ -77,10 +77,13 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     {
         if (disposing)
         {
-            MoveToLandPopupPath.Dispose();
-            ToLandButtonPath.Dispose();
-            AwareButtonPath.Dispose();
-            AwakenButtonPath.Dispose();
+            if (MoveToLandPopupPath != null)
+            {
+                MoveToLandPopupPath.Dispose();
+                ToLandButtonPath.Dispose();
+                AwareButtonPath.Dispose();
+                AwakenButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

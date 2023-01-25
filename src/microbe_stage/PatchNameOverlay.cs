@@ -3,7 +3,7 @@
 public class PatchNameOverlay : PanelContainer
 {
     [Export]
-    public NodePath PatchLabelPath = null!;
+    public NodePath? PatchLabelPath;
 
     [Export]
     public NodePath PatchOverlayAnimatorPath = null!;
@@ -29,8 +29,11 @@ public class PatchNameOverlay : PanelContainer
     {
         if (disposing)
         {
-            PatchLabelPath.Dispose();
-            PatchOverlayAnimatorPath.Dispose();
+            if (PatchLabelPath != null)
+            {
+                PatchLabelPath.Dispose();
+                PatchOverlayAnimatorPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

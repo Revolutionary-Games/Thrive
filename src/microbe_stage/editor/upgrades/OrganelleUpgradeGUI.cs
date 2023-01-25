@@ -3,7 +3,7 @@
 public class OrganelleUpgradeGUI : Control
 {
     [Export]
-    public NodePath PopupPath = null!;
+    public NodePath? PopupPath;
 
     [Export]
     public NodePath OrganelleSpecificContentPath = null!;
@@ -59,9 +59,12 @@ public class OrganelleUpgradeGUI : Control
     {
         if (disposing)
         {
-            PopupPath.Dispose();
-            OrganelleSpecificContentPath.Dispose();
-            ScrollContainerPath.Dispose();
+            if (PopupPath != null)
+            {
+                PopupPath.Dispose();
+                OrganelleSpecificContentPath.Dispose();
+                ScrollContainerPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

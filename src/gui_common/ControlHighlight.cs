@@ -6,7 +6,7 @@
 public class ControlHighlight : Control
 {
     [Export]
-    public NodePath LeftPlanePath = null!;
+    public NodePath? LeftPlanePath;
 
     [Export]
     public NodePath TopPlanePath = null!;
@@ -86,10 +86,13 @@ public class ControlHighlight : Control
     {
         if (disposing)
         {
-            LeftPlanePath.Dispose();
-            TopPlanePath.Dispose();
-            RightPlanePath.Dispose();
-            BottomPlanePath.Dispose();
+            if (LeftPlanePath != null)
+            {
+                LeftPlanePath.Dispose();
+                TopPlanePath.Dispose();
+                RightPlanePath.Dispose();
+                BottomPlanePath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

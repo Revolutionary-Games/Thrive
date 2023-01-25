@@ -4,7 +4,7 @@ using Godot;
 public class RadialPopup : CustomDialog
 {
     [Export]
-    public NodePath RadialPath = null!;
+    public NodePath? RadialPath;
 
     [Signal]
     public delegate void OnItemSelected(int itemId);
@@ -59,7 +59,7 @@ public class RadialPopup : CustomDialog
     {
         if (disposing)
         {
-            RadialPath.Dispose();
+            RadialPath?.Dispose();
         }
 
         base.Dispose(disposing);

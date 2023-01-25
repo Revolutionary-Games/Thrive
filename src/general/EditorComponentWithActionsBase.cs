@@ -11,7 +11,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     where TAction : EditorAction
 {
     [Export]
-    public NodePath MutationPointsBarPath = null!;
+    public NodePath? MutationPointsBarPath;
 
     [Export]
     public NodePath ComponentBottomLeftButtonsPath = null!;
@@ -98,9 +98,12 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     {
         if (disposing)
         {
-            MutationPointsBarPath.Dispose();
-            ComponentBottomLeftButtonsPath.Dispose();
-            CancelButtonPath.Dispose();
+            if (MutationPointsBarPath != null)
+            {
+                MutationPointsBarPath.Dispose();
+                ComponentBottomLeftButtonsPath.Dispose();
+                CancelButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

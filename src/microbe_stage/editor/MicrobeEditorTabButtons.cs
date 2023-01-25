@@ -7,7 +7,7 @@ public class MicrobeEditorTabButtons : MarginContainer
     public bool IsForMulticellular;
 
     [Export]
-    public NodePath TabButtonsPath = null!;
+    public NodePath? TabButtonsPath;
 
     [Export]
     public NodePath ReportTabButtonPath = null!;
@@ -37,6 +37,9 @@ public class MicrobeEditorTabButtons : MarginContainer
 
     public override void _Ready()
     {
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
+
         var tabButtons = GetNode<TabButtons>(TabButtonsPath);
 
         reportTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReportTabButtonPath));
@@ -60,11 +63,14 @@ public class MicrobeEditorTabButtons : MarginContainer
     {
         if (disposing)
         {
-            TabButtonsPath.Dispose();
-            ReportTabButtonPath.Dispose();
-            PatchMapButtonPath.Dispose();
-            CellEditorButtonPath.Dispose();
-            CellTypeTabPath.Dispose();
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                ReportTabButtonPath.Dispose();
+                PatchMapButtonPath.Dispose();
+                CellEditorButtonPath.Dispose();
+                CellTypeTabPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

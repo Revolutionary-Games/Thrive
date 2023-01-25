@@ -5,7 +5,7 @@ using Godot;
 public class RadialMenu : CenterContainer
 {
     [Export]
-    public NodePath CenterLabelPath = null!;
+    public NodePath? CenterLabelPath;
 
     [Export]
     public NodePath DynamicLabelsContainerPath = null!;
@@ -271,9 +271,12 @@ public class RadialMenu : CenterContainer
     {
         if (disposing)
         {
-            CenterLabelPath.Dispose();
-            DynamicLabelsContainerPath.Dispose();
-            IndicatorPath.Dispose();
+            if (CenterLabelPath != null)
+            {
+                CenterLabelPath.Dispose();
+                DynamicLabelsContainerPath.Dispose();
+                IndicatorPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

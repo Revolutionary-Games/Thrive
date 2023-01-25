@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 public class MicrobeHUD : StageHUDBase<MicrobeStage>
 {
     [Export]
-    public NodePath MulticellularButtonPath = null!;
+    public NodePath? MulticellularButtonPath;
 
     [Export]
     public NodePath MulticellularConfirmPopupPath = null!;
@@ -207,12 +207,15 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     {
         if (disposing)
         {
-            MulticellularButtonPath.Dispose();
-            MulticellularConfirmPopupPath.Dispose();
-            MacroscopicButtonPath.Dispose();
-            IngestedMatterBarPath.Dispose();
-            BindingModeHotkeyPath.Dispose();
-            UnbindAllHotkeyPath.Dispose();
+            if (MulticellularButtonPath != null)
+            {
+                MulticellularButtonPath.Dispose();
+                MulticellularConfirmPopupPath.Dispose();
+                MacroscopicButtonPath.Dispose();
+                IngestedMatterBarPath.Dispose();
+                BindingModeHotkeyPath.Dispose();
+                UnbindAllHotkeyPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

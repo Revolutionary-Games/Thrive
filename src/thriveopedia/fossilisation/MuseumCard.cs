@@ -6,7 +6,7 @@
 public class MuseumCard : Button
 {
     [Export]
-    public NodePath SpeciesNameLabelPath = null!;
+    public NodePath? SpeciesNameLabelPath;
 
     [Export]
     public NodePath SpeciesPreviewPath = null!;
@@ -68,8 +68,11 @@ public class MuseumCard : Button
     {
         if (disposing)
         {
-            SpeciesNameLabelPath.Dispose();
-            SpeciesPreviewPath.Dispose();
+            if (SpeciesNameLabelPath != null)
+            {
+                SpeciesNameLabelPath.Dispose();
+                SpeciesPreviewPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

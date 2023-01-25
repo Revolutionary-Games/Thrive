@@ -10,7 +10,7 @@ using Godot;
 public class InputGroupList : VBoxContainer
 {
     [Export]
-    public NodePath ConflictDialogPath = null!;
+    public NodePath? ConflictDialogPath;
 
     [Export]
     public NodePath ResetInputsDialog = null!;
@@ -189,8 +189,11 @@ public class InputGroupList : VBoxContainer
     {
         if (disposing)
         {
-            ConflictDialogPath.Dispose();
-            ResetInputsDialog.Dispose();
+            if (ConflictDialogPath != null)
+            {
+                ConflictDialogPath.Dispose();
+                ResetInputsDialog.Dispose();
+            }
         }
 
         base.Dispose(disposing);

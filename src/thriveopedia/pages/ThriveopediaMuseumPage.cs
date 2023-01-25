@@ -6,7 +6,7 @@
 public class ThriveopediaMuseumPage : ThriveopediaPage
 {
     [Export]
-    public NodePath CardContainerPath = null!;
+    public NodePath? CardContainerPath;
 
     [Export]
     public NodePath WelcomeLabelPath = null!;
@@ -81,12 +81,15 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
     {
         if (disposing)
         {
-            CardContainerPath.Dispose();
-            WelcomeLabelPath.Dispose();
-            SpeciesPreviewContainerPath.Dispose();
-            SpeciesPreviewPanelPath.Dispose();
-            LeaveGameConfirmationDialogPath.Dispose();
-            FossilDirectoryWarningBoxPath.Dispose();
+            if (CardContainerPath != null)
+            {
+                CardContainerPath.Dispose();
+                WelcomeLabelPath.Dispose();
+                SpeciesPreviewContainerPath.Dispose();
+                SpeciesPreviewPanelPath.Dispose();
+                LeaveGameConfirmationDialogPath.Dispose();
+                FossilDirectoryWarningBoxPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

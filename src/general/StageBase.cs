@@ -14,7 +14,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     where TPlayer : class
 {
     [Export]
-    public NodePath PauseMenuPath = null!;
+    public NodePath? PauseMenuPath;
 
     [Export]
     public NodePath HUDRootPath = null!;
@@ -380,8 +380,11 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     {
         if (disposing)
         {
-            PauseMenuPath.Dispose();
-            HUDRootPath.Dispose();
+            if (PauseMenuPath != null)
+            {
+                PauseMenuPath.Dispose();
+                HUDRootPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

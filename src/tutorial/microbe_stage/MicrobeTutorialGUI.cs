@@ -10,7 +10,7 @@ using Tutorial;
 public class MicrobeTutorialGUI : Control, ITutorialGUI
 {
     [Export]
-    public NodePath MicrobeWelcomeMessagePath = null!;
+    public NodePath? MicrobeWelcomeMessagePath;
 
     [Export]
     public NodePath MicrobeMovementKeyPromptsPath = null!;
@@ -420,25 +420,28 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     {
         if (disposing)
         {
-            MicrobeWelcomeMessagePath.Dispose();
-            MicrobeMovementKeyPromptsPath.Dispose();
-            MicrobeMovementPopupPath.Dispose();
-            MicrobeMovementKeyForwardPath.Dispose();
-            MicrobeMovementKeyLeftPath.Dispose();
-            MicrobeMovementKeyRightPath.Dispose();
-            MicrobeMovementKeyBackwardsPath.Dispose();
-            GlucoseTutorialPath.Dispose();
-            StayingAlivePath.Dispose();
-            ReproductionTutorialPath.Dispose();
-            EditorButtonTutorialPath.Dispose();
-            UnbindTutorialPath.Dispose();
-            LeaveColonyTutorialPath.Dispose();
-            EarlyMulticellularWelcomePath.Dispose();
-            CheckTheHelpMenuPath.Dispose();
-            EngulfmentExplanationPath.Dispose();
-            EngulfedExplanationPath.Dispose();
-            EngulfmentFullCapacityPath.Dispose();
-            EditorButtonHighlightPath.Dispose();
+            if (MicrobeWelcomeMessagePath != null)
+            {
+                MicrobeWelcomeMessagePath.Dispose();
+                MicrobeMovementKeyPromptsPath.Dispose();
+                MicrobeMovementPopupPath.Dispose();
+                MicrobeMovementKeyForwardPath.Dispose();
+                MicrobeMovementKeyLeftPath.Dispose();
+                MicrobeMovementKeyRightPath.Dispose();
+                MicrobeMovementKeyBackwardsPath.Dispose();
+                GlucoseTutorialPath.Dispose();
+                StayingAlivePath.Dispose();
+                ReproductionTutorialPath.Dispose();
+                EditorButtonTutorialPath.Dispose();
+                UnbindTutorialPath.Dispose();
+                LeaveColonyTutorialPath.Dispose();
+                EarlyMulticellularWelcomePath.Dispose();
+                CheckTheHelpMenuPath.Dispose();
+                EngulfmentExplanationPath.Dispose();
+                EngulfedExplanationPath.Dispose();
+                EngulfmentFullCapacityPath.Dispose();
+                EditorButtonHighlightPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

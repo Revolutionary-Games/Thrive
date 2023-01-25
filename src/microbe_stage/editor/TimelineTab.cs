@@ -7,7 +7,7 @@ using Godot;
 public class TimelineTab : PanelContainer
 {
     [Export]
-    public NodePath GlobalEventsContainerPath = null!;
+    public NodePath? GlobalEventsContainerPath;
 
     [Export]
     public NodePath LocalEventsContainerPath = null!;
@@ -154,11 +154,14 @@ public class TimelineTab : PanelContainer
     {
         if (disposing)
         {
-            GlobalEventsContainerPath.Dispose();
-            LocalEventsContainerPath.Dispose();
-            ScrollContainerPath.Dispose();
-            LocalFilterButtonPath.Dispose();
-            GlobalFilterButtonPath.Dispose();
+            if (GlobalEventsContainerPath != null)
+            {
+                GlobalEventsContainerPath.Dispose();
+                LocalEventsContainerPath.Dispose();
+                ScrollContainerPath.Dispose();
+                LocalFilterButtonPath.Dispose();
+                GlobalFilterButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

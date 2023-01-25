@@ -19,7 +19,7 @@
 public abstract class PhotographablePreview : Control
 {
     [Export]
-    public NodePath TextureRectPath = null!;
+    public NodePath? TextureRectPath;
 
     /// <summary>
     ///   If true then the plain <see cref="Image"/> version of the preview texture is also kept in memory
@@ -84,7 +84,7 @@ public abstract class PhotographablePreview : Control
     {
         if (disposing)
         {
-            TextureRectPath.Dispose();
+            TextureRectPath?.Dispose();
         }
 
         base.Dispose(disposing);

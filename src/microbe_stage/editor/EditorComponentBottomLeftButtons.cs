@@ -14,7 +14,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     public bool UseSpeciesNameValidation = true;
 
     [Export]
-    public NodePath SymmetryButtonPath = null!;
+    public NodePath? SymmetryButtonPath;
 
     [Export]
     public NodePath SymmetryIconPath = null!;
@@ -197,13 +197,16 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (disposing)
         {
-            SymmetryButtonPath.Dispose();
-            SymmetryIconPath.Dispose();
-            UndoButtonPath.Dispose();
-            RedoButtonPath.Dispose();
-            NewButtonPath.Dispose();
-            NameEditPath.Dispose();
-            RandomizeNameButtonPath.Dispose();
+            if (SymmetryButtonPath != null)
+            {
+                SymmetryButtonPath.Dispose();
+                SymmetryIconPath.Dispose();
+                UndoButtonPath.Dispose();
+                RedoButtonPath.Dispose();
+                NewButtonPath.Dispose();
+                NameEditPath.Dispose();
+                RandomizeNameButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

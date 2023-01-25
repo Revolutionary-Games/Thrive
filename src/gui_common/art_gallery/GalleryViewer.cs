@@ -8,7 +8,7 @@ public class GalleryViewer : CustomDialog
     public const string ALL_CATEGORY = "All";
 
     [Export]
-    public NodePath GalleryGridPath = null!;
+    public NodePath? GalleryGridPath;
 
     [Export]
     public NodePath TabButtonsPath = null!;
@@ -126,10 +126,13 @@ public class GalleryViewer : CustomDialog
     {
         if (disposing)
         {
-            GalleryGridPath.Dispose();
-            TabButtonsPath.Dispose();
-            AssetsCategoryDropdownPath.Dispose();
-            SlideshowButtonPath.Dispose();
+            if (GalleryGridPath != null)
+            {
+                GalleryGridPath.Dispose();
+                TabButtonsPath.Dispose();
+                AssetsCategoryDropdownPath.Dispose();
+                SlideshowButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -22,7 +22,7 @@ public class SaveList : ScrollContainer
     public bool LoadableItems = true;
 
     [Export]
-    public NodePath LoadingItemPath = null!;
+    public NodePath? LoadingItemPath;
 
     [Export]
     public NodePath NoSavesItemPath = null!;
@@ -208,17 +208,20 @@ public class SaveList : ScrollContainer
     {
         if (disposing)
         {
-            LoadingItemPath.Dispose();
-            NoSavesItemPath.Dispose();
-            SavesListPath.Dispose();
-            DeleteConfirmDialogPath.Dispose();
-            LoadNewerSaveDialogPath.Dispose();
-            LoadOlderSaveDialogPath.Dispose();
-            LoadInvalidSaveDialogPath.Dispose();
-            LoadIncompatibleDialogPath.Dispose();
-            UpgradeSaveDialogPath.Dispose();
-            UpgradeFailedDialogPath.Dispose();
-            LoadIncompatiblePrototypeDialogPath.Dispose();
+            if (LoadingItemPath != null)
+            {
+                LoadingItemPath.Dispose();
+                NoSavesItemPath.Dispose();
+                SavesListPath.Dispose();
+                DeleteConfirmDialogPath.Dispose();
+                LoadNewerSaveDialogPath.Dispose();
+                LoadOlderSaveDialogPath.Dispose();
+                LoadInvalidSaveDialogPath.Dispose();
+                LoadIncompatibleDialogPath.Dispose();
+                UpgradeSaveDialogPath.Dispose();
+                UpgradeFailedDialogPath.Dispose();
+                LoadIncompatiblePrototypeDialogPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

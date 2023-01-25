@@ -6,7 +6,7 @@
 public class ThriveopediaCurrentWorldPage : ThriveopediaPage
 {
     [Export]
-    public NodePath DifficultyDetailsPath = null!;
+    public NodePath? DifficultyDetailsPath;
 
     [Export]
     public NodePath PlanetDetailsPath = null!;
@@ -58,9 +58,12 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
     {
         if (disposing)
         {
-            DifficultyDetailsPath.Dispose();
-            PlanetDetailsPath.Dispose();
-            MiscDetailsPath.Dispose();
+            if (DifficultyDetailsPath != null)
+            {
+                DifficultyDetailsPath.Dispose();
+                PlanetDetailsPath.Dispose();
+                MiscDetailsPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

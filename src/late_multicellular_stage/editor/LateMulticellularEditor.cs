@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -177,15 +177,18 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         if (disposing)
         {
-            ReportTabPath.Dispose();
-            PatchMapTabPath.Dispose();
-            BodyPlanEditorTabPath.Dispose();
-            CellEditorTabPath.Dispose();
-            NoCellTypeSelectedPath.Dispose();
-            CellEditorCameraPath.Dispose();
-            CellEditorLightPath.Dispose();
-            Body3DEditorCameraPath.Dispose();
-            BodyEditorLightPath.Dispose();
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+                CellEditorCameraPath.Dispose();
+                CellEditorLightPath.Dispose();
+                Body3DEditorCameraPath.Dispose();
+                BodyEditorLightPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

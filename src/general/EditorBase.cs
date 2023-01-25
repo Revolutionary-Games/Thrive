@@ -35,7 +35,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     where TStage : Node, IReturnableGameState
 {
     [Export]
-    public NodePath PauseMenuPath = null!;
+    public NodePath? PauseMenuPath;
 
     [Export]
     public NodePath EditorGUIBaseNodePath = null!;
@@ -512,8 +512,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         if (disposing)
         {
-            PauseMenuPath.Dispose();
-            EditorGUIBaseNodePath.Dispose();
+            if (PauseMenuPath != null)
+            {
+                PauseMenuPath.Dispose();
+                EditorGUIBaseNodePath.Dispose();
+            }
+
             EditorTabSelectorPath?.Dispose();
         }
 

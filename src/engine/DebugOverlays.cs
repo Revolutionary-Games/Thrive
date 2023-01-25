@@ -7,7 +7,7 @@
 public partial class DebugOverlays : Control
 {
     [Export]
-    public NodePath FPSCheckBoxPath = null!;
+    public NodePath? FPSCheckBoxPath;
 
     [Export]
     public NodePath PerformanceMetricsCheckBoxPath = null!;
@@ -120,16 +120,20 @@ public partial class DebugOverlays : Control
     {
         if (disposing)
         {
-            FPSLabelPath.Dispose();
-            DeltaLabelPath.Dispose();
-            MetricsTextPath.Dispose();
-            FPSCheckBoxPath.Dispose();
-            PerformanceMetricsCheckBoxPath.Dispose();
-            DebugPanelDialogPath.Dispose();
-            FPSCounterPath.Dispose();
-            PerformanceMetricsPath.Dispose();
-            EntityLabelsPath.Dispose();
-            FPSDisplayLabelPath.Dispose();
+            if (FPSCheckBoxPath != null)
+            {
+                FPSCheckBoxPath.Dispose();
+                FPSLabelPath.Dispose();
+                DeltaLabelPath.Dispose();
+                MetricsTextPath.Dispose();
+
+                PerformanceMetricsCheckBoxPath.Dispose();
+                DebugPanelDialogPath.Dispose();
+                FPSCounterPath.Dispose();
+                PerformanceMetricsPath.Dispose();
+                EntityLabelsPath.Dispose();
+                FPSDisplayLabelPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

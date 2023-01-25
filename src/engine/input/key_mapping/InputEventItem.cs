@@ -13,7 +13,7 @@ using Godot;
 public class InputEventItem : MarginContainer
 {
     [Export]
-    public NodePath ButtonPath = null!;
+    public NodePath? ButtonPath;
 
     [Export]
     public NodePath XButtonPath = null!;
@@ -335,8 +335,11 @@ public class InputEventItem : MarginContainer
     {
         if (disposing)
         {
-            ButtonPath.Dispose();
-            XButtonPath.Dispose();
+            if (ButtonPath != null)
+            {
+                ButtonPath.Dispose();
+                XButtonPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

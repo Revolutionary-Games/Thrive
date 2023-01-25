@@ -5,7 +5,7 @@ using Godot;
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
-    public NodePath CompoundsPath = null!;
+    public NodePath? CompoundsPath;
 
     [Export]
     public NodePath MaximumDistancePath = null!;
@@ -112,10 +112,13 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (disposing)
         {
-            CompoundsPath.Dispose();
-            MaximumDistancePath.Dispose();
-            MinimumAmountPath.Dispose();
-            ColourPath.Dispose();
+            if (CompoundsPath != null)
+            {
+                CompoundsPath.Dispose();
+                MaximumDistancePath.Dispose();
+                MinimumAmountPath.Dispose();
+                ColourPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

@@ -3,7 +3,7 @@
 public class GalleryCard : Button
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath TextureRectPath = null!;
@@ -64,8 +64,11 @@ public class GalleryCard : Button
     {
         if (disposing)
         {
-            TitleLabelPath.Dispose();
-            TextureRectPath.Dispose();
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                TextureRectPath.Dispose();
+            }
         }
 
         base.Dispose(disposing);

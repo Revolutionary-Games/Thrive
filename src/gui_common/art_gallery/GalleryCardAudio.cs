@@ -4,7 +4,7 @@ using Godot;
 public class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
     [Export]
-    public NodePath PlaybackControlsPath = null!;
+    public NodePath? PlaybackControlsPath;
 
 #pragma warning disable CA2213
     private PlaybackControls? playbackControls;
@@ -57,7 +57,7 @@ public class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
     {
         if (disposing)
         {
-            PlaybackControlsPath.Dispose();
+            PlaybackControlsPath?.Dispose();
         }
 
         base.Dispose(disposing);
