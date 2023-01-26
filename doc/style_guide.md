@@ -450,12 +450,14 @@ Godot usage
   when they are held by Godot objects, custom dispose methods should
   be implemented.
 
-- For most Godot-derived types a Dispose method just needs to be added
-  to dispose any `NodePath` variables. Note that Godot autoloads,
-  loading saves, and using things in the editor, dispose not fully
-  initialized Nodes. To workaround this the dispose method should
-  check that the `Export` variables are set (the first `NodePath`
-  variable needs to be set nullable):
+- For most Godot-derived types a `Dispose` method just needs to be
+  added to dispose any `NodePath` variables. Note that Godot sometimes
+  creates partly initialized objects (for example autoloads, when
+  loading saves, and objects that Godot editor creates
+  internally). For that reason the `Dispose` method needs to work even
+  with those partly initialized objects. To take this into account the
+  `Dispose` method should check that the `Export` variables are set
+  (the first `NodePath` variable needs to be set nullable) like this:
 
 ```c#
     protected override void Dispose(bool disposing)
