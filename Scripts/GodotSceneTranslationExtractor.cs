@@ -15,7 +15,17 @@ using ScriptsBase.Utilities;
 /// </summary>
 public class GodotSceneTranslationExtractor : TranslationExtractorBase
 {
+    /// <summary>
+    ///   Text that when put in a Node description, disables text extraction from that node
+    /// </summary>
     private const string PlaceHolderMarker = "PLACEHOLDER";
+
+    /// <summary>
+    ///   Tooltip text is always extracted even when <see cref="PlaceHolderMarker"/> is used. That is except when this
+    ///   text is in the Node's editor description, then the tooltip is not extracted. It is completely intentional
+    ///   that this text contains the placeholder marker, and the code is written to assume that tooltip extraction
+    ///   can't be disabled unless other text extraction is also disabled.
+    /// </summary>
     private const string TooltipPlaceHolderMarker = "TOOLTIP_PLACEHOLDER";
 
     private const string TooltipPropertyName = "hint_tooltip";
