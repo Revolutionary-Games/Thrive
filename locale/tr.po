@@ -690,18 +690,16 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Üst kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:214
-#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "Kullanıcı Arayüzünde Gezinme"
+msgstr "Kullanıcı Arayüzünde Sekme Gezinme"
 
 #: ../simulation_parameters/common/input_options.json:218
-#, fuzzy
 msgid "TAB_SWITCH_LEFT"
-msgstr "Sekmeyi sola taşı"
+msgstr "Önceki sekmeye git"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "TAB_SWITCH_RIGHT"
-msgstr "Sekmeyi sağa taşı"
+msgstr "Sonraki sekmeye git"
 
 #: ../simulation_parameters/common/input_options.json:226
 msgid "TAB_SECONDARY_SWITCH_LEFT"
@@ -1237,7 +1235,7 @@ msgstr ""
 "   {8}\n"
 "[b]Temel Mikrop Türü Verileri:[/b]\n"
 "   Ortalama altıgen boyutu: {9}\n"
-"[b]Genel Organel Verileri:[/b]\n"
+"[b]Genel Organel Verileri:[/b]"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:968
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1012
@@ -1262,7 +1260,7 @@ msgstr ""
 "   Ortalama {7}; Standart sapma {8}\n"
 "[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
 "   Ortalama {9}; Standart sapma {10}\n"
-"[b]Genel Organel Verileri[/b]\n"
+"[b]Genel Organel Verileri[/b]"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
@@ -1369,7 +1367,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biyoçeşitliliği arttıran türler, oluşum ile mutasyona uğrasın"
+msgstr "Biyoçeşitliliği arttıran tür, oluşum ile mutasyona uğrasın"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -1912,12 +1910,12 @@ msgstr "Ölü Bölge Yapılandırması"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Bu araç, oyun kumandasının eksen ölü bölgelerinin yapılandırılmasını sağlar. "
+"Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. "
 "Ölü bölgesi büyüklükleri, hareketin girdi olarak algılanmasından önce bir "
 "kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi "
 "gerektiğini denetler.\n"
-"Kalibrasyona başlamadan önce, lütfen bütün oyun kumandası çubuklarını oynat "
-"ve bırak. Ayrıca oyun kumandanda, bunun benzeri bir işlev gören butonlara "
+"Kalibrasyona başlamadan önce, lütfen bütün kontrol cihazı çubuklarını oynat "
+"ve bırak. Ayrıca kontrol cihazında, bunun benzeri bir işlev gören butonlara "
 "(örneğin tetik tuşları) da bas ve onları bırak."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
@@ -1930,7 +1928,7 @@ msgstr "Ölü Bölgeleri Sıfırla"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr "Oyun Kumandası Eksen Görüntüleyicileri:"
+msgstr "Kontrol Cihazı Eksen Görüntüleyicileri:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2703,15 +2701,18 @@ msgstr "Teşekkürler"
 msgid "DISMISS_PERMANENTLY"
 msgstr "Bunu bir daha gösterme"
 
-#: ../src/general/MainMenu.tscn:971 ../src/general/MainMenu.tscn:970
-#, fuzzy
+#: ../src/general/MainMenu.tscn:970
 msgid "STEAM_INIT_FAILED"
-msgstr "Steam istemci kütüphanesi başlatma başarısız"
+msgstr "Steam'i Başlatma Başarısız"
 
-#: ../src/general/MainMenu.tscn:973 ../src/general/MainMenu.tscn:972
-#, fuzzy
+#: ../src/general/MainMenu.tscn:972
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr "Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:"
+msgstr ""
+"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam "
+"özellikleri mevcut olmayacak.\n"
+"Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin "
+"olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden "
+"çalıştırın."
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1237
@@ -3110,7 +3111,7 @@ msgstr "Arayüz"
 
 #: ../src/general/OptionsMenu.tscn:573
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Kontrol cihazı buton istemleri türü:"
 
 #: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:591
 #: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1470
@@ -3314,35 +3315,32 @@ msgstr "Sanal pencere büyüklüğünü kullan"
 
 #: ../src/general/OptionsMenu.tscn:1370
 msgid "CONTROLLER_SENSITIVITY"
-msgstr "Oyun kumandası hassasiyeti"
+msgstr "Kontrol cihazı hassasiyeti"
 
 #: ../src/general/OptionsMenu.tscn:1442
 msgid "CONTROLLER_DEADZONES"
-msgstr "Oyun Kumandası Ölü Bölgeleri"
+msgstr "Kontrol Cihazı Ölü Bölgeleri"
 
 #: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr "2D Hareket stili:"
+msgstr "2D hareket stili:"
 
 #: ../src/general/OptionsMenu.tscn:1470
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "Oyuncuyla bağıntılı"
+msgstr "Oyuncuya bağlı"
 
 #: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "Ekranla bağıntılı"
+msgstr "Ekrana bağlı"
 
 #: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D Hareket stili:"
 
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "Dünya ile bağıntılı"
+msgstr "Dünyaya bağlı"
 
 #: ../src/general/OptionsMenu.tscn:1553
 msgid "RESET_KEYBINDINGS"
@@ -7108,16 +7106,16 @@ msgstr ""
 "\n"
 "Devam etmek için birkaç saniyeliğine tuşları deneyin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "Hücrenizi kontrol etmek için hücrenizin etrafında gösterilen kontrolleri ve "
-"hücreyi işaret etmek için diğer çubukları kullanın.\n"
-"UYARI: Kontrol girdileri deneyseldir ve tam anlamıyla kullanılamaz "
-"(dokunmatik yüzey olmadan), ayrıca hatalar da olabilir\n"
-"Devam etmek için tüm yönleri birkaç saniye deneyin."
+"hücreyi işaret etmek için diğer çubuğu kullanın.\n"
+"UYARI: Kontrol cihazı girdileri deneyseldir ve tam anlamıyla kullanılamaz "
+"(dokunmatik yüzey olmadan), ayrıca hatalar olabilir\n"
+"Devam etmek için birkaç saniyeliğine ekranda gösterilen tüm yönlendirmeleri "
+"deneyin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:203
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:193
