@@ -24,7 +24,7 @@ public class TabButtons : HBoxContainer
     public bool MoveIndicatorsTakeUpSpaceWhileInvisible;
 
     [Export]
-    public NodePath LeftContainerPath = null!;
+    public NodePath? LeftContainerPath;
 
     [Export]
     public NodePath LeftPaddingPath = null!;
@@ -48,6 +48,7 @@ public class TabButtons : HBoxContainer
 
     private TabLevel levelOnScreen = TabLevel.Primary;
 
+#pragma warning disable CA2213
     private Container? leftContainer;
     private Control leftPadding = null!;
     private KeyPrompt? leftButtonIndicator;
@@ -57,12 +58,15 @@ public class TabButtons : HBoxContainer
     private KeyPrompt rightButtonIndicator = null!;
 
     private Container tabButtonsContainer = null!;
+#pragma warning restore CA2213
 
     public enum PressType
     {
         SetPressedState,
         PressedSignal,
     }
+
+    public bool NodeReferencesResolved { get; private set; }
 
     /// <summary>
     ///   The level of tabs this Control controls. Only one tab control of each level may be enabled at once, otherwise
@@ -82,6 +86,23 @@ public class TabButtons : HBoxContainer
 
     public override void _Ready()
     {
+        ResolveNodeReferences();
+
+        // This is hidden in the editor to make other scenes nicer that use the tab buttons
+        tabButtonsContainer.Visible = true;
+
+        UpdateChangeButtonActionNames();
+
+        AdjustSceneAddedChildren();
+
+        CheckControllerInput(null, EventArgs.Empty);
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
         leftContainer = GetNode<Container>(LeftContainerPath);
         leftPadding = GetNode<Control>(LeftPaddingPath);
         leftButtonIndicator = GetNode<KeyPrompt>(LeftButtonIndicatorPath);
@@ -92,14 +113,7 @@ public class TabButtons : HBoxContainer
 
         tabButtonsContainer = GetNode<Container>(TabButtonsContainerPath);
 
-        // This is hidden in the editor to make other scenes nicer that use the tab buttons
-        tabButtonsContainer.Visible = true;
-
-        UpdateChangeButtonActionNames();
-
-        AdjustSceneAddedChildren();
-
-        CheckControllerInput(null, EventArgs.Empty);
+        NodeReferencesResolved = true;
     }
 
     public override void _EnterTree()
@@ -153,6 +167,10 @@ public class TabButtons : HBoxContainer
     /// <returns>The adjusted path</returns>
     public NodePath GetAdjustedButtonPath(NodePath pathToTabs, NodePath specificTabButtonPath)
     {
+        // When loading a save this can get called before _Ready is called so we ensure the node references are
+        // up to date here
+        ResolveNodeReferences();
+
         var inputString = specificTabButtonPath.ToString();
         var tabPathString = pathToTabs.ToString();
 
@@ -220,6 +238,25 @@ public class TabButtons : HBoxContainer
         TryToMoveToPreviousTab();
 
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LeftContainerPath != null)
+            {
+                LeftContainerPath.Dispose();
+                LeftPaddingPath.Dispose();
+                LeftButtonIndicatorPath.Dispose();
+                RightContainerPath.Dispose();
+                RightPaddingPath.Dispose();
+                RightButtonIndicatorPath.Dispose();
+                TabButtonsContainerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void TryToMoveToNextTab()

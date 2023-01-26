@@ -6,6 +6,7 @@ using Godot;
 /// </summary>
 public class MicrobePartSelection : MarginContainer
 {
+#pragma warning disable CA2213
     [Export]
     public ButtonGroup SelectionGroup = null!;
 
@@ -14,6 +15,7 @@ public class MicrobePartSelection : MarginContainer
     private Button? button;
     private TextureRect? iconRect;
     private Label? nameLabel;
+#pragma warning restore CA2213
 
     private int mpCost;
     private Texture? partIcon;

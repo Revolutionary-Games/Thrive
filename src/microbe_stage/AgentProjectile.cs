@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
 public class AgentProjectile : RigidBody, ITimedLife, IEntity
 {
+#pragma warning disable CA2213
     private Particles particles = null!;
+#pragma warning restore CA2213
 
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }

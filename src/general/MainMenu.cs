@@ -16,7 +16,7 @@ public class MainMenu : NodeWithInput
     public uint CurrentMenuIndex;
 
     [Export]
-    public NodePath ThriveLogoPath = null!;
+    public NodePath? ThriveLogoPath;
 
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
@@ -88,10 +88,8 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath PermanentlyDismissThanksDialogPath = null!;
 
-    public Array? MenuArray;
-    public TextureRect Background = null!;
-
-    public bool IsReturningToMenu;
+#pragma warning disable CA2213
+    private TextureRect background = null!;
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
@@ -131,6 +129,9 @@ public class MainMenu : NodeWithInput
     private CustomDialog thanksDialog = null!;
     private CustomRichTextLabel thanksDialogText = null!;
     private CustomCheckBox permanentlyDismissThanksDialog = null!;
+#pragma warning restore CA2213
+
+    private Array? menuArray;
 
     private bool introVideoPassed;
 
@@ -145,6 +146,8 @@ public class MainMenu : NodeWithInput
     ///   The store specific page link. Defaults to the website link if we don't know a valid store name
     /// </summary>
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+
+    public bool IsReturningToMenu { get; set; }
 
     public static void OnEnteringGame()
     {
@@ -247,7 +250,7 @@ public class MainMenu : NodeWithInput
     /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
-        if (MenuArray == null)
+        if (menuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
 
         // Hide the website button container whenever anything else is pressed, and only display the social media icons
@@ -256,7 +259,7 @@ public class MainMenu : NodeWithInput
         socialMediaContainer.Visible = index != uint.MaxValue;
 
         // Allow disabling all the menus for going to the options menu
-        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
+        if (index > menuArray.Count - 1 && index != uint.MaxValue)
         {
             GD.PrintErr("Selected menu index is out of range!");
             return;
@@ -301,12 +304,49 @@ public class MainMenu : NodeWithInput
         return false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ThriveLogoPath != null)
+            {
+                ThriveLogoPath.Dispose();
+                FreebuildButtonPath.Dispose();
+                AutoEvoExploringButtonPath.Dispose();
+                ExitToLauncherButtonPath.Dispose();
+                CreditsContainerPath.Dispose();
+                CreditsScrollPath.Dispose();
+                LicensesDisplayPath.Dispose();
+                GLES2PopupPath.Dispose();
+                SteamFailedPopupPath.Dispose();
+                ModLoadFailuresPath.Dispose();
+                SafeModeWarningPath.Dispose();
+                ModsInstalledButNotEnabledWarningPath.Dispose();
+                PermanentlyDismissModsNotEnabledWarningPath.Dispose();
+                SocialMediaContainerPath.Dispose();
+                WebsiteButtonsContainerPath.Dispose();
+                ItchButtonPath.Dispose();
+                PatreonButtonPath.Dispose();
+                StoreLoggedInDisplayPath.Dispose();
+                ModManagerPath.Dispose();
+                GalleryViewerPath.Dispose();
+                ThanksDialogPath.Dispose();
+                ThanksDialogTextPath.Dispose();
+                PermanentlyDismissThanksDialogPath.Dispose();
+            }
+
+            menuArray?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Setup the main menu.
     /// </summary>
     private void RunMenuSetup()
     {
-        Background = GetNode<TextureRect>("Background");
+        background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
@@ -324,12 +364,12 @@ public class MainMenu : NodeWithInput
         itchButton = GetNode<TextureButton>(ItchButtonPath);
         patreonButton = GetNode<TextureButton>(PatreonButtonPath);
 
-        MenuArray?.Clear();
+        menuArray?.Clear();
 
         // Get all of menu items
-        MenuArray = GetTree().GetNodesInGroup("MenuItem");
+        menuArray = GetTree().GetNodesInGroup("MenuItem");
 
-        if (MenuArray == null)
+        if (menuArray == null)
         {
             GD.PrintErr("Failed to find all the menu items!");
             return;
@@ -380,7 +420,7 @@ public class MainMenu : NodeWithInput
 
     private void SetBackground(Texture backgroundImage)
     {
-        Background.Texture = backgroundImage;
+        background.Texture = backgroundImage;
     }
 
     private void UpdateStoreVersionStatus()
@@ -476,7 +516,7 @@ public class MainMenu : NodeWithInput
         thriveLogo.Hide();
 
         // Hide other menus and only show the one of the current index
-        foreach (Control menu in MenuArray!)
+        foreach (Control menu in menuArray!)
         {
             menu.Hide();
 

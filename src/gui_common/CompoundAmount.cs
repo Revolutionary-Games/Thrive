@@ -7,8 +7,10 @@ using Godot;
 /// </summary>
 public class CompoundAmount : HBoxContainer
 {
+#pragma warning disable CA2213
     private Label? amountLabel;
     private TextureRect? icon;
+#pragma warning restore CA2213
 
     private Compound? compound;
 

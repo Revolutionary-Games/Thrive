@@ -7,11 +7,13 @@ using Newtonsoft.Json;
 /// </summary>
 public class MulticellularCamera : Spatial, IGodotEarlyNodeResolve
 {
+#pragma warning disable CA2213
     private Camera camera = null!;
     private Listener listener = null!;
     private Spatial offsetNode = null!;
 
     private SpringArm? arm;
+#pragma warning restore CA2213
 
     private float armLength = 8;
 

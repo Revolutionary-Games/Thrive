@@ -7,7 +7,7 @@ using Godot;
 public class NewGameSettings : ControlWithInput
 {
     [Export]
-    public NodePath BasicOptionsPath = null!;
+    public NodePath? BasicOptionsPath;
 
     [Export]
     public NodePath AdvancedOptionsPath = null!;
@@ -132,6 +132,8 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath ConfirmButtonPath = null!;
 
+#pragma warning disable CA2213
+
     // Main controls
     private PanelContainer basicOptions = null!;
     private PanelContainer advancedOptions = null!;
@@ -181,6 +183,7 @@ public class NewGameSettings : ControlWithInput
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
+#pragma warning restore CA2213
 
     private SelectedOptionsTab selectedOptionsTab;
 
@@ -329,6 +332,60 @@ public class NewGameSettings : ControlWithInput
             confirmButton.Disabled = true;
             confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BasicOptionsPath != null)
+            {
+                BasicOptionsPath.Dispose();
+                AdvancedOptionsPath.Dispose();
+                BasicButtonPath.Dispose();
+                AdvancedButtonPath.Dispose();
+                TabButtonsPath.Dispose();
+                DifficultyTabPath.Dispose();
+                PlanetTabPath.Dispose();
+                MiscTabPath.Dispose();
+                DifficultyTabButtonPath.Dispose();
+                PlanetTabButtonPath.Dispose();
+                MiscTabButtonPath.Dispose();
+                DifficultyPresetButtonPath.Dispose();
+                DifficultyPresetAdvancedButtonPath.Dispose();
+                MPMultiplierPath.Dispose();
+                MPMultiplierReadoutPath.Dispose();
+                MutationRatePath.Dispose();
+                MutationRateReadoutPath.Dispose();
+                CompoundDensityPath.Dispose();
+                CompoundDensityReadoutPath.Dispose();
+                PlayerDeathPopulationPenaltyPath.Dispose();
+                PlayerDeathPopulationPenaltyReadoutPath.Dispose();
+                GlucoseDecayRatePath.Dispose();
+                GlucoseDecayRateReadoutPath.Dispose();
+                OsmoregulationMultiplierPath.Dispose();
+                OsmoregulationMultiplierReadoutPath.Dispose();
+                FreeGlucoseCloudButtonPath.Dispose();
+                PassiveReproductionButtonPath.Dispose();
+                LimitGrowthRateButtonPath.Dispose();
+                MapTypeButtonPath.Dispose();
+                LifeOriginButtonPath.Dispose();
+                LifeOriginButtonAdvancedPath.Dispose();
+                LAWKButtonPath.Dispose();
+                LAWKAdvancedButtonPath.Dispose();
+                DayNightCycleButtonPath.Dispose();
+                DayLengthContainerPath.Dispose();
+                DayLengthPath.Dispose();
+                DayLengthReadoutPath.Dispose();
+                GameSeedPath.Dispose();
+                GameSeedAdvancedPath.Dispose();
+                IncludeMulticellularButtonPath.Dispose();
+                EasterEggsButtonPath.Dispose();
+                ConfirmButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void InitialiseToPreset(DifficultyPreset preset)

@@ -31,7 +31,9 @@ public class ControllerInputAxisVisualizationContainer : HFlowContainer
     /// </summary>
     private readonly Dictionary<int, ControllerAxisVisualizer> secondaryVisualizerMapping = new();
 
+#pragma warning disable CA2213
     private PackedScene visualizerScene = null!;
+#pragma warning restore CA2213
 
     private FocusFlowDynamicChildrenHelper focusHelper = null!;
 

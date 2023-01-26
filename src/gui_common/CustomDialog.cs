@@ -54,16 +54,18 @@ public class CustomDialog : Popup, ICustomPopup
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
 
+#pragma warning disable CA2213
     private TextureButton? closeButton;
-
-    private DragType dragType = DragType.None;
 
     private StyleBox customPanel = null!;
     private StyleBox titleBarPanel = null!;
     private StyleBox closeButtonHighlight = null!;
 
     private Font? titleFont;
+#pragma warning restore CA2213
     private Color titleColor;
+
+    private DragType dragType = DragType.None;
 
     private int titleBarHeight;
     private int titleHeight;

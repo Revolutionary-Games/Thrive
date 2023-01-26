@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 public class MicrobeStage : StageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -32,8 +32,10 @@ public class MicrobeStage : StageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
+#pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
+#pragma warning restore CA2213
     private Vector3? guidancePosition;
 
     private List<GuidanceLine> chemoreceptionLines = new();
@@ -530,6 +532,16 @@ public class MicrobeStage : StageBase<Microbe>
     public override void OnSuicide()
     {
         Player?.Damage(9999.0f, "suicide");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void SetupStage()

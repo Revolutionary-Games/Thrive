@@ -4,7 +4,7 @@ using Godot;
 public class SpeciesDetailsPanel : VBoxContainer
 {
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
+    public NodePath? SpeciesDetailsLabelPath;
 
     [Export]
     public NodePath SpeciesPreviewPath = null!;
@@ -18,11 +18,13 @@ public class SpeciesDetailsPanel : VBoxContainer
     [Export]
     public NodePath FossilisationDialogPath = null!;
 
+#pragma warning disable CA2213
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private SpeciesPreview? speciesPreview;
     private CellHexesPreview hexesPreview = null!;
     private Button fossilisationButton = null!;
     private FossilisationDialog fossilisationDialog = null!;
+#pragma warning restore CA2213
 
     private Species? previewSpecies;
 
@@ -53,6 +55,23 @@ public class SpeciesDetailsPanel : VBoxContainer
 
         if (previewSpecies != null)
             UpdateSpeciesPreview();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SpeciesDetailsLabelPath != null)
+            {
+                SpeciesDetailsLabelPath.Dispose();
+                SpeciesPreviewPath.Dispose();
+                HexPreviewPath.Dispose();
+                FossilisationButtonPath.Dispose();
+                FossilisationDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

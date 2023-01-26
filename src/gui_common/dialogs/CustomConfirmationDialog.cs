@@ -16,11 +16,13 @@ public class CustomConfirmationDialog : CustomDialog
     private string confirmText = "OK";
     private string cancelText = "CANCEL";
 
+#pragma warning disable CA2213
     private Label? dialogLabel;
     private HBoxContainer buttonsContainer = null!;
     private Button? confirmButton;
     private Button? cancelButton;
     private Control cancelEndSpacer = null!;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void Confirmed();

@@ -6,7 +6,10 @@
 public class CrossFadableTextureRect : TextureRect
 {
     private Texture? image;
+
+#pragma warning disable CA2213
     private Tween tween = null!;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void Faded();

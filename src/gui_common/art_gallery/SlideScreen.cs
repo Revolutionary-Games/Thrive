@@ -10,7 +10,7 @@ public class SlideScreen : CustomDialog
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
     [Export]
-    public NodePath SlideTextureRectPath = null!;
+    public NodePath? SlideTextureRectPath;
 
     [Export]
     public NodePath SlideToolbarPath = null!;
@@ -39,6 +39,7 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
+#pragma warning disable CA2213
     private CrossFadableTextureRect? slideTextureRect;
     private Control? toolbar;
     private Button? closeButton;
@@ -52,6 +53,7 @@ public class SlideScreen : CustomDialog
 
     private Tween popupTween = null!;
     private Tween toolbarTween = null!;
+#pragma warning restore CA2213
 
     private float toolbarHideTimer;
     private float slideshowTimer;
@@ -279,6 +281,28 @@ public class SlideScreen : CustomDialog
 
         ChangeSlide(fade);
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SlideTextureRectPath != null)
+            {
+                SlideTextureRectPath.Dispose();
+                SlideToolbarPath.Dispose();
+                SlideCloseButtonPath.Dispose();
+                SlideShowModeButtonPath.Dispose();
+                SlideTitleLabelPath.Dispose();
+                ModelViewerContainerPath.Dispose();
+                ModelViewerPath.Dispose();
+                ModelHolderPath.Dispose();
+                ModelViewerCameraPath.Dispose();
+                PlaybackControlsPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void OnHidden()

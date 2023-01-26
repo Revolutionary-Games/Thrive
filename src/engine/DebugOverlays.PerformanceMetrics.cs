@@ -24,9 +24,11 @@ public partial class DebugOverlays
     private readonly Deque<float> spawnHistory = new(SpawnHistoryLength);
     private readonly Deque<float> despawnHistory = new(SpawnHistoryLength);
 
+#pragma warning disable CA2213
     private Label fpsLabel = null!;
     private Label deltaLabel = null!;
     private Label metricsText = null!;
+#pragma warning restore CA2213
 
     private float entities;
     private int children;

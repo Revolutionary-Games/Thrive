@@ -22,7 +22,7 @@ public class SaveList : ScrollContainer
     public bool LoadableItems = true;
 
     [Export]
-    public NodePath LoadingItemPath = null!;
+    public NodePath? LoadingItemPath;
 
     [Export]
     public NodePath NoSavesItemPath = null!;
@@ -54,6 +54,7 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadIncompatiblePrototypeDialogPath = null!;
 
+#pragma warning disable CA2213
     private Control loadingItem = null!;
     private Control noSavesItem = null!;
     private BoxContainer savesList = null!;
@@ -67,6 +68,7 @@ public class SaveList : ScrollContainer
     private ErrorDialog upgradeFailedDialog = null!;
 
     private PackedScene listItemScene = null!;
+#pragma warning restore CA2213
 
     private bool refreshing;
     private bool refreshedAtLeastOnce;
@@ -200,6 +202,29 @@ public class SaveList : ScrollContainer
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
         EmitSignal(nameof(OnItemsChanged));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LoadingItemPath != null)
+            {
+                LoadingItemPath.Dispose();
+                NoSavesItemPath.Dispose();
+                SavesListPath.Dispose();
+                DeleteConfirmDialogPath.Dispose();
+                LoadNewerSaveDialogPath.Dispose();
+                LoadOlderSaveDialogPath.Dispose();
+                LoadInvalidSaveDialogPath.Dispose();
+                LoadIncompatibleDialogPath.Dispose();
+                UpgradeSaveDialogPath.Dispose();
+                UpgradeFailedDialogPath.Dispose();
+                LoadIncompatiblePrototypeDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSubItemSelectedChanged()
