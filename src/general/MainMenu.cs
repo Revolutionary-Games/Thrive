@@ -298,9 +298,8 @@ public class MainMenu : NodeWithInput
 
         UpdateStoreVersionStatus();
 
-        if (DisplayPatchNotes())
+        if (DisplayPatchNotes() && SetPatchLabelText())
         {
-            SetPatchLabelText();
             patchNotes.Visible = true;
         }
         else
@@ -450,18 +449,26 @@ public class MainMenu : NodeWithInput
         else
         {
             GD.PrintErr("Failed to load/generate version file: ", file);
+            return false;
         }
 
         return true;
     }
 
-    private void SetPatchLabelText()
+    private bool SetPatchLabelText()
     {
         string text = PatchNotesDisplay.LoadPartialPatchNotesFile();
 
+        if(text == "Failed to fetch patch notes")
+        {
+            return false;
+        }
+
         GetNode<RichTextLabel>
-                ("MenuContainers/Menus/MarginContainer/PatchNotesPanelContainer/MarginContainer/PatchNotesContainer/PatchText")
+                ("MenuContainers/Menus/MarginContainer/MarginContainer/PatchNotesPanelContainer/MarginContainer/PatchNotesContainer/PatchText")
                 .Text = text;
+
+        return true;
     }
 
     private void NewGamePressed()
