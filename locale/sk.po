@@ -165,14 +165,13 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "Spojením s ostatnými bunkami môžeš vytvoriť kolóniu buniek, kde bunky zdieľajú zlúčeniny, ktoré absorbujú a produkujú medzi sebou. Aby bola bunka schopná sa spojiť s inou, potrebuješ spojivovú organelu ... po vstupe do spojovacieho módu stlačením [thrive:input] g_toggle_binding[/thrive:input]. Spojiť sa môžeš len s bunkami svojho vlastného druhu. Keď si v kolónií, nemôžeš rozdeliť svoju bunku a ani s ňou vstúpiť do editora (zatiaľ). Pre vstup do editora, nazbieraj potrebné zlúčeniny a opusti kolóniu stlačením [thrive:input] g_unbind_all[/thrive:input]. Veľké kolónie buniek sú cestou k mnohobunkovým organizmom."
 
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotická štruktúra \n"
 "\n"
 "Cytoplazma: Má úložný priestor a vykonáva glykolýzu (Produkuje malé množstvo [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Metabolozóm: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolóm: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
 "Tylakoid: Produkuje 1/3 množstva [thrive:compound type=\"glucose\"][/thrive:compound] ako normálny chloroplast, vykonáva glykolýzu a zaberá 1 hex políčko.\n"
 "\n"
@@ -184,7 +183,7 @@ msgstr ""
 "\n"
 "Oxytoxizóm: Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"Termosyntáza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] použitím teplotných gradientov."
+"Termosyntéza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] použitím teplotných gradientov."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -242,11 +241,11 @@ msgstr "Chybu opravíš stlačením tlačidla Zrušiť v editore"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
+msgstr "Zaujímavosť: Didínium a Črievička sú dokonalý príklad vzťahu medzi predátorom a korisťou, ktorý je skúmaný už desaťročia. Takže, si Didínium, alebo Črievička? Predátor či korisť?"
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "Tip: Toxíny môžu byť použité na odvrátenie iných toxínov, ak si dosť rýchly."
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
@@ -1046,9 +1045,8 @@ msgid "LYSOSOME"
 msgstr "Lyzozóm"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:680
-#, fuzzy
 msgid "FINISH_X_GENERATIONS"
-msgstr "Generácia:"
+msgstr "Počet potrebných generácií: {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:696
 msgid "RUN_X_WORLDS"
@@ -1056,9 +1054,8 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:820
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
-#, fuzzy
 msgid "READY"
-msgstr "Vlákna:"
+msgstr "Pripravené"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:954
 #, fuzzy
@@ -1237,9 +1234,8 @@ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:760
-#, fuzzy
 msgid "GENERATIONS"
-msgstr "Generácia:"
+msgstr "Generácia"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #, fuzzy
@@ -1664,9 +1660,8 @@ msgstr ""
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:173
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:108
-#, fuzzy
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
-msgstr "Nové meno:"
+msgstr "Vertikálne(Osa: {0})"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
@@ -2287,9 +2282,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Neobmedzený editor mikróbov"
 
 #: ../src/general/MainMenu.tscn:381
-#, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "stav spustenia:"
+msgstr "Nástroj prieskumu Auto-Evo"
 
 #: ../src/general/MainMenu.tscn:462 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
@@ -2759,9 +2753,8 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
 #: ../src/general/OptionsMenu.cs:1481
-#, fuzzy
 msgid "UNKNOWN_VERSION"
-msgstr "Verzia modu:"
+msgstr "Neznáma verzia"
 
 #: ../src/general/OptionsMenu.tscn:166
 msgid "GRAPHICS"
@@ -2852,9 +2845,8 @@ msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobraziť častice v pozadí"
 
 #: ../src/general/OptionsMenu.tscn:472
-#, fuzzy
 msgid "GPU_NAME"
-msgstr "{0} {1}"
+msgstr "GPU:"
 
 #: ../src/general/OptionsMenu.tscn:502
 msgid "USED_RENDERER_NAME"
@@ -3995,9 +3987,8 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
-#, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Popis módu:"
+msgstr "Mnoho organizmov produkuje lepkavé polysacharidy, ako napríklad sliz. Aj keď ho mnoho živočíchov používa pre pohyb, isté typy baktérií tieto látky vystreľujú vo vysokom tlaku. Takéto trysky pracujú ako raketový pohon. Posúvajú bunky neuveriteľnou rýchlosťou. Pre iné živočíchy bez trysiek je pohyb v takýchto látkach obtiažny."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
@@ -5026,9 +5017,8 @@ msgid "SPAWN_ENEMY"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "Maximálny počet entít:"
+msgstr "Odstrániť všetky entity"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:64
 msgid "PAUSE_PROMPT"

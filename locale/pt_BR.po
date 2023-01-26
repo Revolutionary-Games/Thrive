@@ -168,9 +168,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estruturas Procarióticas\n"
 "\n"
+"Citoplasma: Tem espaço de armazenamento e realiza a glicólise (Produz pequenas quantidades de [thrive:compound type=\"atp\"][/thrive:compound])\n"
+"\n"
 "Metabolossomos: Produz [thrive:compound type=\"atp\"][/thrive:compound] por meio da [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Proteína Quimiossintetizante: Produz metade da [thrive:compound type=\"glucose\"][/thrive:compound] por meio do [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] comparado com o quimioplasto, porém também realiza a glicólise, e ocupa 1 Hexágono\n"
+"Proteínas Quimiossintetizantes: Produz metade da [thrive:compound type=\"glucose\"][/thrive:compound] por meio do [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] comparado com o quimioplasto, porém também realiza a glicólise, e ocupa 1 Hexágono\n"
 "\n"
 "Tilacoide: Produz um terço da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] comparado a um cloroplasto, mas também realiza a glicólise, e ocupa um espaço\n"
 "\n"
@@ -178,7 +180,7 @@ msgstr ""
 "\n"
 "Nitrogenase: Converte nitrogênio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
 "\n"
-"Citoplasma: Tem espaço de armazenamento e realiza a Glicólise (Produz pequenas quantidades de [thrive:compound type=\"atp\"][/thrive:compound])"
+"Termossintase: Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -191,6 +193,8 @@ msgstr ""
 "\n"
 "Quimiorreceptor: Detecta compostos mais distantes\n"
 "\n"
+"Jato de Slime: Dispara [thrive:compound type=\"mucilage\"][/thrive:compound], produzida por meio da [thrive:compound type=\"glucose\"][/thrive:compound], que pode ser usada para acelerar sua célula\n"
+"\n"
 "Cílios: Aumentam a velocidade de rotação das células"
 
 #: ../simulation_parameters/common/help_texts.json:82
@@ -198,13 +202,17 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organelas acopladas à membrana\n"
 "\n"
-"Núcleo: Ocupa 11 espaços e permite a evolução das orgnanelas da membranas, e também dobra o tamanho de sua célula (Só pode ser evoluído uma vez)\n"
+"Núcleo: Ocupa 11 espaços e permite a evolução das organelas da membrana, e também dobra o tamanho de sua célula. Só pode ser evoluído uma vez\n"
 "\n"
 "Agente de Ligação: Permite ligar-se com outras células\n"
 "\n"
-"Mitocôndria: Produz [thrive:compound type=\"atp\"][/thrive:compound] da glicose e O2 atmosférico. Muito mais eficiente que o citoplasma\n"
+"Mitocôndria: Produz [thrive:compound type=\"atp\"][/thrive:compound] da [thrive:compound type=\"glucose\"][/thrive:compound] e oxigênio atmosférico. Muito mais eficiente que o citoplasma\n"
 "\n"
-"Cloroplasto: Produz [thrive:compound type=\"glucose\"][/thrive:compound] da luz solar e do O2 atmosférico\n"
+"Cloroplasto: Produz [thrive:compound type=\"glucose\"][/thrive:compound] da luz solar e do oxigênio atmosférico\n"
+"\n"
+"Termoplasto: Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura\n"
+"\n"
+"Lisossomo: Contém enzimas digestivas. As enzimas aceleram e aumentam a eficiência da digestão\n"
 "\n"
 "Quimioplasto: Produz [thrive:compound type=\"glucose\"][/thrive:compound] do [thrive:compound type=\"hydrogensulfide\"]\n"
 "\n"
@@ -521,19 +529,16 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Alternar para a câmera de cima"
 
 #: ../simulation_parameters/common/input_options.json:214
-#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "{0} K"
+msgstr "Navegação em Abas da Interface"
 
 #: ../simulation_parameters/common/input_options.json:218
-#, fuzzy
 msgid "TAB_SWITCH_LEFT"
-msgstr "Girar à esquerda"
+msgstr "Alternar para a aba à esquerda"
 
 #: ../simulation_parameters/common/input_options.json:222
-#, fuzzy
 msgid "TAB_SWITCH_RIGHT"
-msgstr "Girar à direita"
+msgstr "Alternar para a aba à direita"
 
 #: ../simulation_parameters/common/input_options.json:226
 msgid "TAB_SECONDARY_SWITCH_LEFT"
@@ -1036,7 +1041,7 @@ msgstr "Completar {0} gerações"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:696
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "Executar em {0} Mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:820
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
@@ -1044,15 +1049,32 @@ msgid "READY"
 msgstr "Pronto"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:954
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Estatísticas do Organismo"
+msgstr ""
+"[b]Gerações:[/b]\n"
+"  {0}\n"
+"[b]Quantidade de Regiões:[/b]\n"
+"  {1}\n"
+"[b]Quantidade de Tempo Utilizado pela Auto-Evo:[/b]\n"
+"  {2}\n"
+"[b]Quantidade de Espécies:[/b]\n"
+"  {3}\n"
+"[b]Quantidade de Espécies Vivas:[/b]\n"
+"  {4}\n"
+"[b]Contagem de Espécies por Região:[/b]\n"
+"  Média {5}; Desvio Padrão {6}\n"
+"[b]População Total:[/b]\n"
+"  {7}\n"
+"[b]Espécie Mais Populosa:[/b]\n"
+"  {8}\n"
+"[b]Dados Básicos das Espécies de Micróbios:[/b]\n"
+"  Tamanho Médio das Células: {9}\n"
+"[b]Dados Gerais de Organelas:[/b]"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:968
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1012
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Estatísticas do Organismo"
+msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:996
 #, fuzzy
@@ -1060,13 +1082,12 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr "Estatísticas do Organismo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Erro: {0}"
+msgstr "Os dados do mundo foram exportados para {0} com sucesso"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "Mundo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
@@ -1086,42 +1107,36 @@ msgid "VIEWER"
 msgstr "Visualizador"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Estatísticas do Organismo"
+msgstr "Estatísticas Gerais de Todos os Mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "Estatísticas do Organismo"
+msgstr "Estatísticas Gerais do Mundo Atual"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Desenvolvedores Atuais"
+msgstr "Mundo Atual"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Junte-se ao servidor Discord da comunidade"
+msgstr "Criar um novo mundo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "Estado da execução:"
+msgstr "Estado da Auto-Evo:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
-msgstr "Executar um passo"
+msgstr "Executar Um Passo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:363
 msgid "FINISH_ONE_GENERATION"
 msgstr "Completar uma geração"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
-#, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
-msgstr "Junte-se ao servidor Discord da comunidade"
+msgstr "Executar a simulação em um certo número de mundos, a quantidade de gerações que cada mundo deve simular é determinada pela opção acima."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
@@ -1132,13 +1147,12 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jogar com essas configurações"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
-#, fuzzy
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "Junte-se ao servidor Discord da comunidade"
+msgstr "Exportar os dados de todos os mundos no formato CSV"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Exportar Todos os Mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
@@ -1261,9 +1275,8 @@ msgstr ""
 "Você vai perder seu progresso não salvo."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
-#, fuzzy
 msgid "EXPORT_SUCCESS"
-msgstr "Predação de {0}"
+msgstr "Exportados com Sucesso"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -2808,27 +2821,27 @@ msgstr "Auto"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX360"
-msgstr ""
+msgstr "Xbox 360"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_SERIES"
-msgstr ""
+msgstr "Xbox Series X"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_3"
-msgstr ""
+msgstr "PlayStation 3"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_4"
-msgstr ""
+msgstr "PlayStation 4"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_5"
-msgstr ""
+msgstr "PlayStation 5"
 
 #: ../src/general/OptionsMenu.tscn:605
 msgid "DISPLAY_ABILITIES_BAR"
@@ -3011,27 +3024,24 @@ msgstr "Zonas mortas do controle"
 
 #: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Estilo de movimento bidimensional:"
 
 #: ../src/general/OptionsMenu.tscn:1470
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "O jogador foi extinto"
+msgstr "Relativo ao jogador"
 
 #: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "para aumentar a velocidade de movimentação"
+msgstr "Relativo à tela"
 
 #: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Estilo de movimento tridimensional:"
 
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "para aumentar a velocidade de movimentação"
+msgstr "Relativo ao mundo"
 
 #: ../src/general/OptionsMenu.tscn:1553
 msgid "RESET_KEYBINDINGS"
@@ -4250,7 +4260,6 @@ msgid "RAW"
 msgstr "Bruto"
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
 "DevBuild {0}\n"
@@ -6029,9 +6038,8 @@ msgstr ""
 "Você perderá qualquer progresso não salvo."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "Abrir pasta de logs"
+msgstr "Abrir a Pasta de Fósseis"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "OPEN_IN_FREEBUILD"
@@ -6045,14 +6053,12 @@ msgstr ""
 "Para fossilizar uma espécie dentro de um jogo, selecione um micróbio após pausar o jogo."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "O diretório de salvamentos não foi encontrado"
+msgstr "O diretório de fósseis não foi encontrado"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "Tente fazer algumas capturas de tela!"
+msgstr "Tente fossilizar algumas espécies!"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:32
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
@@ -6187,6 +6193,8 @@ msgstr "Começar a prosperar"
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Para controlar a sua célula use as teclas mostradas perto de sua célula (centro da tela) e o mouse para controlar a sua orientação.\n"
+"\n"
+"O estilo do movimento pode ser configurado no menu de configurações.\n"
 "\n"
 "Prove todas as teclas por alguns segundos para continuar."
 
