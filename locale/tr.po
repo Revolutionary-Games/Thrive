@@ -531,27 +531,24 @@ msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Üst kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:214
-#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "{0} B"
+msgstr "Kullanıcı Arayüzünde Sekme Gezinme"
 
 #: ../simulation_parameters/common/input_options.json:218
-#, fuzzy
 msgid "TAB_SWITCH_LEFT"
-msgstr "Sola döndür"
+msgstr "Önceki sekmeye git"
 
 #: ../simulation_parameters/common/input_options.json:222
-#, fuzzy
 msgid "TAB_SWITCH_RIGHT"
-msgstr "Sağa döndür"
+msgstr "Sonraki sekmeye git"
 
 #: ../simulation_parameters/common/input_options.json:226
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "İkinci düzey sekmesini sola taşı"
 
 #: ../simulation_parameters/common/input_options.json:230
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "İkinci düzey sekmesini sağa taşı"
 
 #: ../simulation_parameters/common/input_options.json:239
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
@@ -1042,7 +1039,7 @@ msgstr "Lizozom"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:680
 msgid "FINISH_X_GENERATIONS"
-msgstr "{0} Kuşak Tamamla"
+msgstr "{0} Kuşağı Tamamla"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:696
 msgid "RUN_X_WORLDS"
@@ -1074,7 +1071,7 @@ msgstr ""
 "   {8}\n"
 "[b]Temel Mikrop Türü Verileri:[/b]\n"
 "   Ortalama altıgen boyutu: {9}\n"
-"[b]Genel Organel Verileri:[/b]\n"
+"[b]Genel Organel Verileri:[/b]"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:968
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1012
@@ -1096,7 +1093,7 @@ msgstr ""
 "   Ortalama {7}; Standart sapma {8}\n"
 "[b]Mikrop Türlerinin Ortalama Altıgen Boyutu:[/b]\n"
 "   Ortalama {9}; Standart sapma {10}\n"
-"[b]Genel Organel Verileri[/b]\n"
+"[b]Genel Organel Verileri[/b]"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
@@ -1213,15 +1210,15 @@ msgstr "Tür başına mutasyon denemesi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Biyoçeşitliliği arttıran tür için başlangıçtaki popülasyon"
+msgstr "Biyoçeşitliliği artıran türler için başlangıç popülasyonu"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:652
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Maksimum tür sınırından yalnızca yeni göç eden popülasyonları koru"
+msgstr "Yeni göç etmiş popülasyonları tür sınırından koru"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:659
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Maksimum tür sınırından yalnızca yeni oluşan türleri koru"
+msgstr "Yeni oluşturulan türleri tür sınırından koru"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:666
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
@@ -1395,7 +1392,7 @@ msgstr "[b][u]{0}[/u][/b] popülasyonu {1} sayısına düştü"
 
 #: ../src/auto-evo/RunResults.cs:940
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[b][u]{0}[/u][/b], araziden yok oldu"
+msgstr "[b][u]{0}[/u][/b], bu araziden yok oldu"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
@@ -1575,7 +1572,7 @@ msgstr "çalışma durumu:"
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:461
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr "Devam etmekte olan başka bir eylem var"
+msgstr "Başka bir eylem devam ettiğinden, mevcut işlem engellendi"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:73
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -1629,7 +1626,7 @@ msgstr "Performans Ölçümleri"
 
 #: ../src/engine/DebugOverlays.tscn:85
 msgid "DEBUG_PANEL"
-msgstr "Hata Ayıklayıcı Paneli"
+msgstr "Hata Ayıklama Paneli"
 
 #: ../src/engine/DebugOverlays.tscn:95
 msgid "FPS_DISPLAY"
@@ -1673,7 +1670,7 @@ msgstr "Ölü Bölge:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:169
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Ölü bölge kalibrasyon işlemi sürüyor. Lütfen oyun kumandasındaki herhangi bir butona veya çubuğa dokunma ve birkaç saniye bekle."
+msgstr "Ölü bölge kalibrasyonu devam ediyor. Lütfen kontrol cihazınızdaki herhangi bir tuşa veya çubuğa dokunmayın ve birkaç saniye bekleyin."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:190
 msgid "DEADZONE_CALIBRATION_IS_RESET"
@@ -1690,8 +1687,8 @@ msgstr "Ölü Bölge Yapılandırması"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Bu araç, oyun kumandasının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölgesi büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
-"Kalibrasyona başlamadan önce, lütfen bütün oyun kumandası çubuklarını oynat ve bırak. Ayrıca oyun kumandanda, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da bas ve onları bırak."
+"Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölgesi büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
+"Kalibrasyona başlamadan önce, lütfen bütün kontrol cihazı çubuklarını oynat ve bırak. Ayrıca kontrol cihazında, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da bas ve onları bırak."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
@@ -1703,7 +1700,7 @@ msgstr "Ölü Bölgeleri Sıfırla"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr "Oyun Kumandası Eksen Görüntüleyicileri:"
+msgstr "Kontrol Cihazı Eksen Görüntüleyicileri:"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
@@ -2436,14 +2433,14 @@ msgid "DISMISS_PERMANENTLY"
 msgstr "Bunu bir daha gösterme"
 
 #: ../src/general/MainMenu.tscn:971
-#, fuzzy
 msgid "STEAM_INIT_FAILED"
-msgstr "Steam istemci kütüphanesi başlatma başarısız"
+msgstr "Steam'i Başlatma Başarısız"
 
 #: ../src/general/MainMenu.tscn:973
-#, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr "Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:"
+msgstr ""
+"Steam istemci kütüphanesini başlatma işlemi başarısız oldu. Steam özellikleri mevcut olmayacak.\n"
+"Lütfen Steam'in çalıştığından ve doğru hesap ile giriş yaptığınızdan emin olun. Eğer bu hata gitmezse, lütfen oyunu Steam istemci yazılımı üzerinden çalıştırın."
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1237
@@ -2829,7 +2826,7 @@ msgstr "Arayüz"
 
 #: ../src/general/OptionsMenu.tscn:573
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Kontrol cihazı buton istemleri türü:"
 
 #: ../src/general/OptionsMenu.tscn:590 ../src/general/OptionsMenu.tscn:591
 #: ../src/general/OptionsMenu.tscn:1469 ../src/general/OptionsMenu.tscn:1470
@@ -2838,27 +2835,27 @@ msgstr "Otomatik"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX360"
-msgstr ""
+msgstr "Xbox 360"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_SERIES"
-msgstr ""
+msgstr "Xbox Series X"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_3"
-msgstr ""
+msgstr "PlayStation 3"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_4"
-msgstr ""
+msgstr "PlayStation 4"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_5"
-msgstr ""
+msgstr "PlayStation 5"
 
 #: ../src/general/OptionsMenu.tscn:605
 msgid "DISPLAY_ABILITIES_BAR"
@@ -3033,35 +3030,32 @@ msgstr "Sanal pencere büyüklüğünü kullan"
 
 #: ../src/general/OptionsMenu.tscn:1370
 msgid "CONTROLLER_SENSITIVITY"
-msgstr "Oyun kumandası hassasiyeti"
+msgstr "Kontrol cihazı hassasiyeti"
 
 #: ../src/general/OptionsMenu.tscn:1442
 msgid "CONTROLLER_DEADZONES"
-msgstr "Oyun Kumandası Ölü Bölgeleri"
+msgstr "Kontrol Cihazı Ölü Bölgeleri"
 
 #: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D hareket stili:"
 
 #: ../src/general/OptionsMenu.tscn:1470
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "Oyuncunun nesli tükendi"
+msgstr "Oyuncuya bağlı"
 
 #: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "hareketi arttırmak için"
+msgstr "Ekrana bağlı"
 
 #: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D Hareket stili:"
 
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "hareketi arttırmak için"
+msgstr "Dünyaya bağlı"
 
 #: ../src/general/OptionsMenu.tscn:1553
 msgid "RESET_KEYBINDINGS"
@@ -6213,17 +6207,18 @@ msgstr "İlerlemeye Başla"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:143
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Hücreni kontrol etmek için hücrenin yanında bulunan tuşları (ekranın ortasında) ve hücreyi döndürmek için fareyi kullan.\n"
+"Hücrenizi kontrol etmek için hücrenizin yanında gösterilen tuşları (ekranın ortası) ve hücrenin yönünü kontrol etmek için fareyi kullanın.\n"
 "\n"
-"Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
+"Hareket modu, ayarlar menüsünden değiştirilebilir.\n"
+"\n"
+"Devam etmek için birkaç saniyeliğine tuşları deneyin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
-#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Hücreni kontrol etmek için hücrenin yanında bulunan tuşları (ekranın ortasında) ve hücreyi döndürmek için fareyi kullan.\n"
-"\n"
-"Devam etmek için birkaç saniyeliğine ekranda gösterilen tuşları dene."
+"Hücrenizi kontrol etmek için hücrenizin etrafında gösterilen kontrolleri ve hücreyi işaret etmek için diğer çubuğu kullanın.\n"
+"UYARI: Kontrol cihazı girdileri deneyseldir ve tam anlamıyla kullanılamaz (dokunmatik yüzey olmadan), ayrıca hatalar olabilir\n"
+"Devam etmek için birkaç saniyeliğine ekranda gösterilen tüm yönlendirmeleri deneyin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:203
 msgid "MICROBE_STAGE_COLLECT_TEXT"
