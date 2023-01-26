@@ -8,14 +8,19 @@ using Godot;
 /// </summary>
 public class CustomDropDown : MenuButton
 {
+#pragma warning disable CA2213
     /// <summary>
     ///   The MenuButton's popup menu
     /// </summary>
-    public PopupMenu Popup;
+    public readonly PopupMenu Popup;
+
+    private readonly Tween tween;
+
+#pragma warning restore CA2213
 
     private readonly float cachedPopupVSeparation;
 
-    private Tween tween;
+    private readonly Dictionary<string, List<Item>> items = new();
 
     /// <summary>
     ///   All item icon sizes will be adjusted according to this. Currently it's automatically
@@ -23,12 +28,9 @@ public class CustomDropDown : MenuButton
     /// </summary>
     private Vector2 iconSize;
 
-    private Dictionary<string, List<Item>> items;
-
     public CustomDropDown()
     {
         Popup = GetPopup();
-        items = new Dictionary<string, List<Item>>();
         tween = new Tween();
 
         AddChild(tween);

@@ -569,6 +569,17 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         material.SetShaderParam("BrightnessMultiplier", brightness);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            texture.Dispose();
+            image.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     /// <summary>
     ///   Calculates the multipliers for the old density to move to new locations
     /// </summary>

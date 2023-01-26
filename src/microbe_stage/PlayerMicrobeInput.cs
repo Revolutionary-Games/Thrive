@@ -15,10 +15,13 @@ public class PlayerMicrobeInput : NodeWithInput
 {
     private bool autoMove;
 
+#pragma warning disable CA2213 // this is our parent object
+
     /// <summary>
     ///   A reference to the stage is kept to get to the player object and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {

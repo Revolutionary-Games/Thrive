@@ -13,7 +13,7 @@ public partial class MetaballBodyEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
-    public NodePath TabButtonsPath = null!;
+    public NodePath? TabButtonsPath;
 
     [Export]
     public NodePath StructureTabButtonPath = null!;
@@ -65,6 +65,8 @@ public partial class MetaballBodyEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+#pragma warning disable CA2213
+
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
     private Button reproductionTabButton = null!;
@@ -100,6 +102,7 @@ public partial class MetaballBodyEditorComponent :
     private MetaballPopupMenu metaballPopupMenu = null!;
 
     private PackedScene metaballDisplayerScene = null!;
+#pragma warning restore CA2213
 
     // TODO: add way to control the size of the placed metaball
     [JsonProperty]
@@ -170,6 +173,9 @@ public partial class MetaballBodyEditorComponent :
         base.ResolveNodeReferences();
 
         NodeReferencesResolved = true;
+
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
 
         var tabButtons = GetNode<TabButtons>(TabButtonsPath);
 
@@ -355,6 +361,35 @@ public partial class MetaballBodyEditorComponent :
 
         ShowCellMenu(metaballs.Select(h => h).Distinct());
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                ReproductionTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                AppearanceTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                ReproductionTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                AppearanceTabPath.Dispose();
+                CellTypeSelectionListPath.Dispose();
+                ModifyTypeButtonPath.Dispose();
+                DeleteTypeButtonPath.Dispose();
+                DuplicateTypeButtonPath.Dispose();
+                CannotDeleteInUseTypeDialogPath.Dispose();
+                DuplicateCellTypeDialogPath.Dispose();
+                DuplicateCellTypeNamePath.Dispose();
+                MetaballPopupMenuPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected CellType CellTypeFromName(string name)

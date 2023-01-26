@@ -25,9 +25,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
+#pragma warning disable CA2213
     private HybridAudioPlayer engulfAudio = null!;
     private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
+#pragma warning restore CA2213
+
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
@@ -84,10 +87,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     [JsonProperty]
     private MicrobeAI? ai;
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
     private Listener? listener;
+#pragma warning restore CA2213
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;

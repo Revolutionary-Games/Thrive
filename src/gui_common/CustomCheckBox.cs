@@ -6,6 +6,7 @@ using Godot;
 /// </summary>
 public class CustomCheckBox : Button
 {
+#pragma warning disable CA2213
     private Texture unpressedNormal = null!;
     private Texture unpressedHovered = null!;
     private Texture unpressedClicked = null!;
@@ -18,6 +19,7 @@ public class CustomCheckBox : Button
     private Texture radioPressedNormal = null!;
     private Texture radioPressedHovered = null!;
     private Texture radioPressedClicked = null!;
+#pragma warning restore CA2213
 
     private Color normalColor;
     private Color pressedColor;

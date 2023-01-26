@@ -13,15 +13,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     public Spatial? ObjectToFollow;
 
     /// <summary>
-    ///   Background plane that is moved farther away from the camera when zooming out
-    /// </summary>
-    [JsonIgnore]
-    public Spatial? BackgroundPlane;
-
-    [JsonIgnore]
-    public Particles? BackgroundParticles;
-
-    /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
@@ -56,6 +47,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [Export]
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
+
+#pragma warning disable CA2213
+
+    /// <summary>
+    ///   Background plane that is moved farther away from the camera when zooming out
+    /// </summary>
+    [JsonIgnore]
+    private Spatial? backgroundPlane;
+
+    [JsonIgnore]
+    private Particles? backgroundParticles;
+#pragma warning restore CA2213
 
     private ShaderMaterial? materialToUpdate;
 
@@ -164,7 +167,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         NodeReferencesResolved = true;
 
         if (HasNode("BackgroundPlane"))
-            BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
+            backgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
     public void ResetHeight()
@@ -241,11 +244,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             Translation = target;
         }
 
-        if (BackgroundPlane != null)
+        if (backgroundPlane != null)
         {
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
-            BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
+            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
                 target, InterpolateZoomSpeed);
         }
 
@@ -267,20 +270,20 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
 
-        BackgroundParticles?.DetachAndQueueFree();
+        backgroundParticles?.DetachAndQueueFree();
 
-        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
-        BackgroundParticles.Rotation = Rotation;
-        BackgroundParticles.LocalCoords = false;
+        backgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+        backgroundParticles.Rotation = Rotation;
+        backgroundParticles.LocalCoords = false;
 
-        AddChild(BackgroundParticles);
+        AddChild(backgroundParticles);
 
         OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
     private void OnDisplayBackgroundParticlesChanged(bool displayed)
     {
-        if (BackgroundParticles == null)
+        if (backgroundParticles == null)
         {
             GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
             return;
@@ -290,15 +293,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         if (!Current)
             displayed = false;
 
-        BackgroundParticles.Emitting = displayed;
+        backgroundParticles.Emitting = displayed;
 
         if (displayed)
         {
-            BackgroundParticles.Show();
+            backgroundParticles.Show();
         }
         else
         {
-            BackgroundParticles.Hide();
+            backgroundParticles.Hide();
         }
     }
 
@@ -329,10 +332,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private void UpdateBackgroundVisibility()
     {
-        if (BackgroundPlane != null)
-            BackgroundPlane.Visible = Current;
+        if (backgroundPlane != null)
+            backgroundPlane.Visible = Current;
 
-        if (BackgroundParticles != null)
+        if (backgroundParticles != null)
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 

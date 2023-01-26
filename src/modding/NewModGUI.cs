@@ -7,7 +7,7 @@ using Path = System.IO.Path;
 public class NewModGUI : Control
 {
     [Export]
-    public NodePath DialogPath = null!;
+    public NodePath? DialogPath;
 
     [Export]
     public NodePath InternalNamePath = null!;
@@ -60,6 +60,7 @@ public class NewModGUI : Control
     [Export]
     public NodePath ErrorDisplayPath = null!;
 
+#pragma warning disable CA2213
     private CustomDialog dialog = null!;
 
     private LineEdit internalName = null!;
@@ -80,6 +81,7 @@ public class NewModGUI : Control
     private CheckBox assemblyModAutoHarmony = null!;
 
     private Label errorDisplay = null!;
+#pragma warning restore CA2213
 
     private ModInfo? editedInfo;
 
@@ -121,6 +123,36 @@ public class NewModGUI : Control
         ResetForm();
 
         dialog.PopupCenteredShrink();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DialogPath != null)
+            {
+                DialogPath.Dispose();
+                InternalNamePath.Dispose();
+                NamePath.Dispose();
+                AuthorPath.Dispose();
+                VersionPath.Dispose();
+                DescriptionPath.Dispose();
+                LongDescriptionPath.Dispose();
+                IconFilePath.Dispose();
+                InfoUrlPath.Dispose();
+                LicensePath.Dispose();
+                RecommendedThrivePath.Dispose();
+                MinimumThrivePath.Dispose();
+                MaximumThrivePath.Dispose();
+                PckNamePath.Dispose();
+                ModAssemblyPath.Dispose();
+                AssemblyModClassPath.Dispose();
+                AssemblyModAutoHarmonyPath.Dispose();
+                ErrorDisplayPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void Closed()

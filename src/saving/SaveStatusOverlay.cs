@@ -7,7 +7,7 @@ using Godot;
 public class SaveStatusOverlay : Control
 {
     [Export]
-    public NodePath StatusLabelPath = null!;
+    public NodePath? StatusLabelPath;
 
     [Export]
     public NodePath AnimationPlayerPath = null!;
@@ -17,10 +17,12 @@ public class SaveStatusOverlay : Control
 
     private static SaveStatusOverlay? instance;
 
+#pragma warning disable CA2213
     private Label statusLabel = null!;
     private AnimationPlayer animationPlayer = null!;
 
     private ErrorDialog errorDialog = null!;
+#pragma warning restore CA2213
 
     private float hideTimer;
     private bool hidden;
@@ -104,6 +106,21 @@ public class SaveStatusOverlay : Control
                 hidden = true;
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (StatusLabelPath != null)
+            {
+                StatusLabelPath.Dispose();
+                AnimationPlayerPath.Dispose();
+                ErrorDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void ExternalSetStatus(bool visible)

@@ -18,7 +18,7 @@ using Array = Godot.Collections.Array;
 public class EvolutionaryTree : Control
 {
     [Export]
-    public NodePath TimelinePath = null!;
+    public NodePath? TimelinePath;
 
     [Export]
     public NodePath TreePath = null!;
@@ -85,6 +85,8 @@ public class EvolutionaryTree : Control
     /// </summary>
     private readonly ButtonGroup nodesGroup = new();
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Timeline part of <see cref="EvolutionaryTree"/>. Consists of an axis and multiple time marks.
     /// </summary>
@@ -100,6 +102,7 @@ public class EvolutionaryTree : Control
     private Font latoSmallRegular = null!;
 
     private PackedScene treeNodeScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Drag offset relative to tree.
@@ -259,6 +262,21 @@ public class EvolutionaryTree : Control
         BuildTree();
 
         dirty = true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TimelinePath != null)
+            {
+                TimelinePath.Dispose();
+                TreePath.Dispose();
+                nodesGroup.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void SetupTreeNode(Species species, EvolutionaryTreeNode? parent, int generation,

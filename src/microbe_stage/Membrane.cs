@@ -39,8 +39,10 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private MembraneType? type;
 
+#pragma warning disable CA2213
     private Texture? albedoTexture;
     private Texture noiseTexture = null!;
+#pragma warning restore CA2213
 
     private string? currentlyLoadedAlbedoTexture;
 

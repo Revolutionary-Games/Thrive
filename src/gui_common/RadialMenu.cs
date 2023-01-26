@@ -5,7 +5,7 @@ using Godot;
 public class RadialMenu : CenterContainer
 {
     [Export]
-    public NodePath CenterLabelPath = null!;
+    public NodePath? CenterLabelPath;
 
     [Export]
     public NodePath DynamicLabelsContainerPath = null!;
@@ -13,8 +13,10 @@ public class RadialMenu : CenterContainer
     [Export]
     public NodePath IndicatorPath = null!;
 
+#pragma warning disable CA2213
     [Export]
     public Texture HoveredItemHighlightBackground = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   For some reason I couldn't figure out the math to get the background to position perfectly without this
@@ -56,9 +58,11 @@ public class RadialMenu : CenterContainer
 
     private readonly List<LabelWithId> createdLabels = new();
 
+#pragma warning disable CA2213
     private Label? centerLabel;
     private Node dynamicLabelsContainer = null!;
     private TextureRect indicator = null!;
+#pragma warning restore CA2213
 
     private string centerText = TranslationServer.Translate("SELECT_OPTION");
 
@@ -261,6 +265,21 @@ public class RadialMenu : CenterContainer
         EmitSignal(nameof(OnItemSelected), HoveredItem.Value);
         Visible = false;
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CenterLabelPath != null)
+            {
+                CenterLabelPath.Dispose();
+                DynamicLabelsContainerPath.Dispose();
+                IndicatorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateCenterText()

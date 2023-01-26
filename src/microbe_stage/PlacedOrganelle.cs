@@ -26,10 +26,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private Microbe? currentShapesParent;
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Used to update the tint
     /// </summary>
     private ShaderMaterial? organelleMaterial;
+
+    private Spatial? organelleSceneInstance;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
@@ -37,7 +42,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft = new();
 
-    private Spatial? organelleSceneInstance;
     private List<IOrganelleComponent>? components;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
