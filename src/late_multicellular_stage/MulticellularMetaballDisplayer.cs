@@ -133,6 +133,17 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         SetCustomAabb(new AABB(-extends, extends * 2));
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            material?.Dispose();
+            metaballSphere.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ApplyAlpha()
     {
         if (material == null)

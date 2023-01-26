@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class MulticellularHUD : StageHUDBase<MulticellularStage>
 {
     [Export]
-    public NodePath MoveToLandPopupPath = null!;
+    public NodePath? MoveToLandPopupPath;
 
     [Export]
     public NodePath ToLandButtonPath = null!;
@@ -21,10 +21,12 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     [Export]
     public NodePath AwakenButtonPath = null!;
 
+#pragma warning disable CA2213
     private CustomDialog moveToLandPopup = null!;
     private Button toLandButton = null!;
     private Button awareButton = null!;
     private Button awakenButton = null!;
+#pragma warning restore CA2213
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -69,6 +71,22 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     public override void ShowFossilisationButtons()
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MoveToLandPopupPath != null)
+            {
+                MoveToLandPopupPath.Dispose();
+                ToLandButtonPath.Dispose();
+                AwareButtonPath.Dispose();
+                AwakenButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)

@@ -5,9 +5,11 @@
 /// </summary>
 public class PlaybackControls : HBoxContainer
 {
+#pragma warning disable CA2213
     private HSlider? playbackSlider;
     private PlayButton? playButton;
     private Button? stopButton;
+#pragma warning restore CA2213
 
     private float playbackProgress;
     private bool sliderAutoUpdate;

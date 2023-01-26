@@ -12,7 +12,7 @@ using Godot;
 public class ThriveopediaPatchMapPage : ThriveopediaPage
 {
     [Export]
-    public NodePath MapDrawerPath = null!;
+    public NodePath? MapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -20,10 +20,13 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     [Export]
     public NodePath SeedLabelPath = null!;
 
-    protected Patch playerPatchOnEntry = null!;
+#pragma warning disable CA2213
     private PatchMapDrawer mapDrawer = null!;
     private PatchDetailsPanel detailsPanel = null!;
     private Label seedLabel = null!;
+#pragma warning restore CA2213
+
+    private Patch playerPatchOnEntry = null!;
 
     public override string PageName => "PatchMap";
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE");
@@ -67,6 +70,21 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
 
     public override void OnNavigationPanelSizeChanged(bool collapsed)
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MapDrawerPath != null)
+            {
+                MapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                SeedLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected virtual void UpdateShownPatchDetails()

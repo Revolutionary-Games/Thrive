@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=12]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -108,6 +109,14 @@ custom_fonts/font = ExtResource( 5 )
 pressed = true
 text = "SHOW_TUTORIALS"
 
+[node name="FocusGrabber" parent="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
+margin_left = 178.0
+margin_right = 178.0
+margin_bottom = 20.0
+Priority = 2
+NodeToGiveFocusTo = NodePath("../../Button")
+GrabFocusWhenBecomingVisible = true
+
 [node name="Button" type="Button" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
 margin_left = 354.0
 margin_top = 738.0
@@ -130,8 +139,10 @@ anchor_bottom = 0.5
 margin_left = -260.0
 margin_top = -179.0
 margin_right = 0.0
-margin_bottom = 61.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 260, 274 )
 Description = "MICROBE_STAGE_CONTROL_TEXT"
+DescriptionForController = "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false

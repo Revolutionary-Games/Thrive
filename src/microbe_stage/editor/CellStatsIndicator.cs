@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class CellStatsIndicator : HBoxContainer
 {
+#pragma warning disable CA2213
     private Label? descriptionLabel;
     private Label? valueLabel;
     private TextureRect? changeIndicator;
@@ -15,6 +16,7 @@ public class CellStatsIndicator : HBoxContainer
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
     private Texture questionIcon = null!;
+#pragma warning restore CA2213
 
     private string description = "unset";
     private string? format;

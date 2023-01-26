@@ -7,7 +7,7 @@
 public partial class DebugOverlays : Control
 {
     [Export]
-    public NodePath FPSCheckBoxPath = null!;
+    public NodePath? FPSCheckBoxPath;
 
     [Export]
     public NodePath PerformanceMetricsCheckBoxPath = null!;
@@ -26,12 +26,14 @@ public partial class DebugOverlays : Control
 
     private static DebugOverlays? instance;
 
+#pragma warning disable CA2213
     private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
     private Control fpsCounter = null!;
     private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
+#pragma warning restore CA2213
 
     private DebugOverlays()
     {
@@ -112,6 +114,29 @@ public partial class DebugOverlays : Control
     public void OnFpsToggled()
     {
         fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (FPSCheckBoxPath != null)
+            {
+                FPSCheckBoxPath.Dispose();
+                FPSLabelPath.Dispose();
+                DeltaLabelPath.Dispose();
+                MetricsTextPath.Dispose();
+
+                PerformanceMetricsCheckBoxPath.Dispose();
+                DebugPanelDialogPath.Dispose();
+                FPSCounterPath.Dispose();
+                PerformanceMetricsPath.Dispose();
+                EntityLabelsPath.Dispose();
+                FPSDisplayLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)

@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 public class MicrobeStage : StageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -32,8 +32,10 @@ public class MicrobeStage : StageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
+#pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
+#pragma warning restore CA2213
     private Vector3? guidancePosition;
 
     private List<GuidanceLine> chemoreceptionLines = new();
@@ -43,6 +45,12 @@ public class MicrobeStage : StageBase<Microbe>
     /// </summary>
     [JsonProperty]
     private float elapsedSinceEntityPositionCheck;
+
+    /// <summary>
+    ///   Used to control how often light level is updated by the day/night cycle.
+    /// </summary>
+    [JsonProperty]
+    private float elapsedSinceLightLevelUpdate;
 
     [JsonProperty]
     private bool wonOnce;
@@ -208,10 +216,19 @@ public class MicrobeStage : StageBase<Microbe>
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
 
-        // TODO: only update these like 60 times a second
-        if (GameWorld.Map.CurrentPatch != null)
-            patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-        patchManager.UpdateAllPatchLightLevels();
+        elapsedSinceLightLevelUpdate += delta;
+        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
+        {
+            elapsedSinceLightLevelUpdate = 0;
+
+            if (GameWorld.Map.CurrentPatch != null)
+            {
+                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+                patchManager.UpdateAllPatchLightLevels();
+                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+                UpdateDayLightEffects();
+            }
+        }
 
         if (gameOver)
             return;
@@ -283,10 +300,6 @@ public class MicrobeStage : StageBase<Microbe>
         }
 
         UpdateLinePlayerPosition();
-
-        // TODO: only update these like 60 times a second
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
-        UpdateDayLightEffects();
     }
 
     [RunOnKeyDown("g_pause")]
@@ -533,6 +546,16 @@ public class MicrobeStage : StageBase<Microbe>
     public override void OnSuicide()
     {
         Player?.Damage(9999.0f, "suicide");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void SetupStage()

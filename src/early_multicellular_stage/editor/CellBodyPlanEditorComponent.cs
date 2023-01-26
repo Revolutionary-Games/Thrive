@@ -13,6 +13,9 @@ public partial class CellBodyPlanEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
+    public NodePath? TabButtonsPath;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -58,6 +61,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+#pragma warning disable CA2213
+
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
     private Button reproductionTabButton = null!;
@@ -91,6 +96,7 @@ public partial class CellBodyPlanEditorComponent :
     private PackedScene microbeScene = null!;
 
     private CellPopupMenu cellPopupMenu = null!;
+#pragma warning restore CA2213
 
     // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
     private List<Microbe> pendingScaleApplies = new();
@@ -190,14 +196,20 @@ public partial class CellBodyPlanEditorComponent :
 
         NodeReferencesResolved = true;
 
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
+
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
 
         reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton = GetNode<Button>(ReproductionTabButtonPath);
+        reproductionTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
         cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
 
@@ -442,6 +454,33 @@ public partial class CellBodyPlanEditorComponent :
 
         ShowCellMenu(cells.Select(h => h).Distinct());
         return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                ReproductionTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                ReproductionTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                CellTypeSelectionListPath.Dispose();
+                ModifyTypeButtonPath.Dispose();
+                DeleteTypeButtonPath.Dispose();
+                DuplicateTypeButtonPath.Dispose();
+                CannotDeleteInUseTypeDialogPath.Dispose();
+                DuplicateCellTypeDialogPath.Dispose();
+                DuplicateCellTypeNamePath.Dispose();
+                CellPopupMenuPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected CellType CellTypeFromName(string name)

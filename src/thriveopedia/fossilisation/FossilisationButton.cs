@@ -5,20 +5,28 @@
 /// </summary>
 public class FossilisationButton : TextureButton
 {
+#pragma warning disable CA2213
     [Export]
     public Texture AlreadyFossilisedTexture = null!;
+#pragma warning restore CA2213
 
     /// <summary>
-    ///   The organism this button is attached to.
+    ///   The entity (organism) this button is attached to.
     /// </summary>
-    public Spatial AttachedOrganism = null!;
+    public IEntity AttachedEntity = null!;
 
     /// <summary>
     ///   Whether this species has already been fossilised.
     /// </summary>
     private bool alreadyFossilised;
 
+#pragma warning disable CA2213
+
+    /// <summary>
+    ///   Active camera grabbed when this is created in order to properly position this on that camera's view
+    /// </summary>
     private Camera camera = null!;
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnFossilisationDialogOpened(FossilisationButton button);
@@ -53,7 +61,14 @@ public class FossilisationButton : TextureButton
         if (camera is not { Current: true })
             camera = GetViewport().GetCamera();
 
-        RectGlobalPosition = camera.UnprojectPosition(AttachedOrganism.GlobalTransform.origin);
+        // If the entity is removed (e.g. forcefully despawned)
+        if (AttachedEntity.AliveMarker.Alive == false)
+        {
+            this.DetachAndQueueFree();
+            return;
+        }
+
+        RectGlobalPosition = camera.UnprojectPosition(AttachedEntity.EntityNode.GlobalTransform.origin);
     }
 
     private void OnPressed()

@@ -62,6 +62,10 @@ public class GameWorld : ISaveLoadable
         }
         else
         {
+            // Species generation are forced to be 1 (the default value) in case it is different
+            // when in a fossilisation file.
+            startingSpecies.Generation = 1;
+
             startingSpecies.BecomePlayerSpecies();
             startingSpecies.OnEdited();
 
@@ -235,8 +239,13 @@ public class GameWorld : ISaveLoadable
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
-                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK), population);
+                var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
+
+                GenerationHistory[0].AllSpeciesData
+                    .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
+
+                entry.Value.AddSpecies(randomSpecies, population);
             }
         }
     }
@@ -592,6 +601,38 @@ public class GameWorld : ISaveLoadable
     {
         if (Map == null || PlayerSpecies == null)
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
+    }
+
+    public void BuildEvolutionaryTree(EvolutionaryTree tree)
+    {
+        // Building the tree relies on the existence of a full history of generations stored in the current game. Since
+        // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
+        // TODO: avoid an ugly try/catch block by actually checking the original save version?
+        if (GenerationHistory.Count < 1)
+        {
+            throw new InvalidOperationException("Generation history is empty");
+        }
+
+        tree.Clear();
+
+        foreach (var generation in GenerationHistory)
+        {
+            var record = generation.Value;
+
+            if (generation.Key == 0)
+            {
+                var initialSpecies = GenerationHistory[0].AllSpeciesData.Values.Select(s => s.Species).WhereNotNull();
+                tree.Init(initialSpecies, PlayerSpecies.ID, PlayerSpecies.FormattedName);
+                continue;
+            }
+
+            // Recover all omitted species data for this generation so we can fill the tree
+            var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
+                s => s.Key,
+                s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, GenerationHistory));
+
+            tree.Update(updatedSpeciesData, generation.Key, record.TimeElapsed, PlayerSpecies.ID);
+        }
     }
 
     private void CreateRunIfMissing()

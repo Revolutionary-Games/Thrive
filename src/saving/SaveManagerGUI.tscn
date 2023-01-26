@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/saving/SaveManagerGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=5]
 
 [node name="SaveManagerGUI" type="Control"]
 anchor_right = 1.0
@@ -51,7 +52,6 @@ margin_left = 70.0
 margin_right = 132.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
-focus_mode = 0
 disabled = true
 text = "LOAD"
 
@@ -65,7 +65,6 @@ margin_left = 144.0
 margin_right = 242.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
-focus_mode = 0
 text = "REFRESH"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
@@ -73,7 +72,6 @@ margin_left = 246.0
 margin_right = 439.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
-focus_mode = 0
 disabled = true
 text = "DELETE_SELECTED"
 
@@ -82,7 +80,6 @@ margin_left = 443.0
 margin_right = 677.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
-focus_mode = 0
 disabled = true
 text = "CLEAN_UP_OLD_SAVES"
 
@@ -95,7 +92,6 @@ margin_bottom = 37.0
 margin_left = 689.0
 margin_right = 929.0
 margin_bottom = 37.0
-focus_mode = 0
 text = "OPEN_SAVE_DIRECTORY"
 
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -116,7 +112,6 @@ margin_bottom = 600.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-focus_mode = 0
 text = "BACK"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
@@ -177,6 +172,13 @@ margin_top = 5.0
 margin_right = 690.0
 margin_bottom = 30.0
 text = "0"
+
+[node name="FocusGrabber" parent="CenterContainer/VBoxContainer/BottomBox" instance=ExtResource( 5 )]
+margin_left = 694.0
+margin_right = 694.0
+margin_bottom = 35.0
+Priority = 1
+NodeToGiveFocusTo = NodePath("../Back")
 
 [node name="DeleteSelectedConfirmDialog" parent="CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 523.0

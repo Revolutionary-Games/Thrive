@@ -11,7 +11,7 @@ using Godot;
 public class SaveManagerGUI : Control
 {
     [Export]
-    public NodePath SaveListPath = null!;
+    public NodePath? SaveListPath;
 
     [Export]
     public NodePath SelectedItemCountPath = null!;
@@ -40,6 +40,7 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath SaveDirectoryWarningDialogPath = null!;
 
+#pragma warning disable CA2213
     private SaveList saveList = null!;
     private Label selectedItemCount = null!;
     private Label totalSaveCount = null!;
@@ -50,6 +51,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
+#pragma warning restore CA2213
 
     private List<SaveListItem>? selected;
     private bool selectedDirty = true;
@@ -135,6 +137,28 @@ public class SaveManagerGUI : Control
         UpdateButtonsStatus();
 
         refreshing = false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SaveListPath != null)
+            {
+                SaveListPath.Dispose();
+                SelectedItemCountPath.Dispose();
+                TotalSaveCountPath.Dispose();
+                TotalSaveSizePath.Dispose();
+                LoadButtonPath.Dispose();
+                DeleteSelectedButtonPath.Dispose();
+                DeleteOldButtonPath.Dispose();
+                DeleteSelectedConfirmDialogPath.Dispose();
+                DeleteOldConfirmDialogPath.Dispose();
+                SaveDirectoryWarningDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSelectedChanged()

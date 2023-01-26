@@ -6,7 +6,9 @@ using Godot;
 /// </summary>
 public class ProcessList : VBoxContainer
 {
+#pragma warning disable CA2213
     private PackedScene chemicalEquationScene = null!;
+#pragma warning restore CA2213
 
     private ChildObjectCache<IProcessDisplayInfo, ChemicalEquation> createdProcessControls = null!;
 

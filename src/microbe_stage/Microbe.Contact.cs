@@ -12,6 +12,12 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public partial class Microbe
 {
+#pragma warning disable CA2213
+    private PackedScene endosomeScene = null!;
+
+    private PackedScene cellBurstEffectScene = null!;
+#pragma warning restore CA2213
+
     // private SphereShape pseudopodRangeSphereShape = null!;
 
     /// <summary>
@@ -57,8 +63,6 @@ public partial class Microbe
 
     // private MeshInstance pseudopodTarget = null!;
 
-    private PackedScene endosomeScene = null!;
-
     /// <summary>
     ///   Controls for how long the flashColour is held before going
     ///   back to species colour.
@@ -82,8 +86,6 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     private float invulnerabilityDuration;
-
-    private PackedScene cellBurstEffectScene = null!;
 
     [JsonProperty]
     private bool deathParticlesSpawned;

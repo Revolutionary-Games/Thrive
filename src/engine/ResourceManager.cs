@@ -175,6 +175,16 @@ public class ResourceManager : Node
         queuedResources.Add(resource);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            queuedResources.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private static void PrepareLoad(IResource resource)
     {
         resource.PrepareLoading();

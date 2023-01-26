@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 public class MicrobeHUD : StageHUDBase<MicrobeStage>
 {
     [Export]
-    public NodePath MulticellularButtonPath = null!;
+    public NodePath? MulticellularButtonPath;
 
     [Export]
     public NodePath MulticellularConfirmPopupPath = null!;
@@ -24,13 +24,14 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     public NodePath IngestedMatterBarPath = null!;
 
     [Export]
-    public PackedScene WinBoxScene = null!;
-
-    [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
     public NodePath UnbindAllHotkeyPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
+    public PackedScene WinBoxScene = null!;
 
     private ActionButton bindingModeHotkey = null!;
     private ActionButton unbindAllHotkey = null!;
@@ -42,6 +43,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private ProgressBar ingestedMatterBar = null!;
 
     private CustomDialog? winBox;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
@@ -174,7 +176,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
                 continue;
 
             var button = FossilisationButtonScene.Instance<FossilisationButton>();
-            button.AttachedOrganism = microbe;
+            button.AttachedEntity = microbe;
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
@@ -199,6 +201,24 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             UpdateColonySizeForMulticellular();
             UpdateColonySizeForMacroscopic();
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MulticellularButtonPath != null)
+            {
+                MulticellularButtonPath.Dispose();
+                MulticellularConfirmPopupPath.Dispose();
+                MacroscopicButtonPath.Dispose();
+                IngestedMatterBarPath.Dispose();
+                BindingModeHotkeyPath.Dispose();
+                UnbindAllHotkeyPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)

@@ -5,8 +5,10 @@
 /// </summary>
 public class ScreenFade : Control, ITransition
 {
+#pragma warning disable CA2213
     private ColorRect? rect;
     private Tween fader = null!;
+#pragma warning restore CA2213
 
     private FadeType currentFadeType;
 

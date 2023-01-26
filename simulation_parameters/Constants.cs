@@ -184,6 +184,8 @@ public static class Constants
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
+    public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
+
     /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
@@ -772,7 +774,8 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
-    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
@@ -930,6 +933,7 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
+    public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
@@ -953,6 +957,9 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
+    public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
+    public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
     public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
 
@@ -1095,12 +1102,17 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
+    public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
+
     // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
     public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
     public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
 
     public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
+
+    public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
 
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
@@ -1156,6 +1168,16 @@ public static class Constants
     public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
+
+    /// <summary>
+    ///   When any action is triggered matching any of these, input method change is prevented.
+    ///   This is used to allow taking screenshots with the keyboard while playing with a controller, for example.
+    /// </summary>
+    public static readonly IReadOnlyCollection<string> ActionsThatDoNotChangeInputMethod = new[]
+    {
+        "screenshot",
+        "toggle_FPS",
+    };
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.

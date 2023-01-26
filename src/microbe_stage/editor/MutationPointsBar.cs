@@ -3,7 +3,7 @@
 public class MutationPointsBar : HBoxContainer
 {
     [Export]
-    public NodePath CurrentMutationPointsLabelPath = null!;
+    public NodePath? CurrentMutationPointsLabelPath;
 
     [Export]
     public NodePath MutationPointsArrowPath = null!;
@@ -23,6 +23,7 @@ public class MutationPointsBar : HBoxContainer
     [Export]
     public NodePath AnimationPlayerPath = null!;
 
+#pragma warning disable CA2213
     private Label currentMutationPointsLabel = null!;
     private TextureRect mutationPointsArrow = null!;
     private Label resultingMutationPointsLabel = null!;
@@ -30,6 +31,7 @@ public class MutationPointsBar : HBoxContainer
     private ProgressBar mutationPointsBar = null!;
     private ProgressBar mutationPointsSubtractBar = null!;
     private AnimationPlayer animationPlayer = null!;
+#pragma warning restore CA2213
 
     private string freebuildingText = string.Empty;
 
@@ -104,5 +106,24 @@ public class MutationPointsBar : HBoxContainer
     public void PlayFlashAnimation()
     {
         animationPlayer.Play("FlashBar");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CurrentMutationPointsLabelPath != null)
+            {
+                CurrentMutationPointsLabelPath.Dispose();
+                MutationPointsArrowPath.Dispose();
+                ResultingMutationPointsLabelPath.Dispose();
+                BaseMutationPointsLabelPath.Dispose();
+                MutationPointsBarPath.Dispose();
+                MutationPointsSubtractBarPath.Dispose();
+                AnimationPlayerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 }

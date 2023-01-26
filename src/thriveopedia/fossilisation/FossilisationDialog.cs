@@ -8,7 +8,7 @@ using Godot;
 public class FossilisationDialog : CustomDialog
 {
     [Export]
-    public NodePath NameEditPath = null!;
+    public NodePath? NameEditPath;
 
     [Export]
     public NodePath SpeciesPreviewPath = null!;
@@ -25,12 +25,14 @@ public class FossilisationDialog : CustomDialog
     [Export]
     public NodePath OverwriteNameConfirmationDialogPath = null!;
 
+#pragma warning disable CA2213
     private LineEdit speciesNameEdit = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private Button fossiliseButton = null!;
     private CustomConfirmationDialog overwriteNameConfirmationDialog = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The species currently open in the dialog.
@@ -113,6 +115,24 @@ public class FossilisationDialog : CustomDialog
             GUICommon.MarkInputAsInvalid(speciesNameEdit);
             fossiliseButton.Disabled = true;
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (NameEditPath != null)
+            {
+                NameEditPath.Dispose();
+                SpeciesPreviewPath.Dispose();
+                HexPreviewPath.Dispose();
+                FossiliseButtonPath.Dispose();
+                SpeciesDetailsLabelPath.Dispose();
+                OverwriteNameConfirmationDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnNameTextChanged(string newText)

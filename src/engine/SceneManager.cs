@@ -10,7 +10,9 @@ public class SceneManager : Node
 
     private bool alreadyQuit;
 
+#pragma warning disable CA2213
     private Node internalRootNode = null!;
+#pragma warning restore CA2213
 
     private SceneManager()
     {
