@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" type="Script" id=1]
+[ext_resource path="res://shaders/Monochrome.shader" type="Shader" id=1]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=14]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" type="Script" id=28]
+[ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=30]
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 content_margin_left = 5.0
@@ -12,6 +19,22 @@ content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
 bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.00784314, 0.607843, 0.329412, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -44,8 +67,9 @@ anchor_bottom = 1.0
 theme = ExtResource( 14 )
 script = ExtResource( 28 )
 FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
-MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer/PatchMapDrawer")
+MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("MarginContainer/HSplitContainer/PatchDetailsPanel")
+SeedLabelPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/SeedLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -84,22 +108,53 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" instance=ExtResource( 30 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 896.0
 margin_bottom = 608.0
-follow_focus = true
+ShowScrollbars = false
+ContentPath = NodePath("PatchMapDrawer")
 
-[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer" instance=ExtResource( 18 )]
+[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource( 18 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 886.0
-margin_bottom = 598.0
+margin_right = 1500.0
+margin_bottom = 1500.0
+rect_min_size = Vector2( 1500, 1500 )
 DrawDefaultMapIfEmpty = false
+MonochromeMaterial = SubResource( 28 )
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+margin_left = 709.0
+margin_top = 10.0
+margin_right = 896.0
+margin_bottom = 40.0
+size_flags_horizontal = 10
+size_flags_vertical = 2
+
+[node name="FindCurrentPatchButton" type="Button" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
+margin_right = 187.0
+margin_bottom = 30.0
+focus_neighbour_bottom = NodePath("../../../../../../MarginContainer2/NextTabButton")
+focus_next = NodePath("../../../../../../MarginContainer2/NextTabButton")
+custom_fonts/font = ExtResource( 7 )
+text = "FIND_CURRENT_PATCH"
+
+[node name="SeedLabel" type="Label" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 591.0
+margin_right = 896.0
+margin_bottom = 608.0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 3 )
+text = "SEED_LABEL"
 
 [node name="PatchDetailsPanel" parent="MarginContainer/HSplitContainer" instance=ExtResource( 2 )]
-script = ExtResource( 1 )
+margin_left = 920.0
+margin_right = 1260.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -112,20 +167,29 @@ grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="FocusGrabber" parent="MarginContainer2" instance=ExtResource( 4 )]
+margin_right = 150.0
+margin_bottom = 40.0
+NodeToGiveFocusTo = NodePath("../NextTabButton")
 
 [node name="NextTabButton" type="Button" parent="MarginContainer2"]
 margin_right = 150.0
 margin_bottom = 40.0
+focus_neighbour_left = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
+focus_neighbour_top = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
+focus_next = NodePath(".")
+focus_previous = NodePath("../../MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton")
 mouse_filter = 1
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
+custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="OnCurrentPatchCentered" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]
 [connection signal="pressed" from="MarginContainer2/NextTabButton" to="." method="NextOrFinishClicked"]

@@ -26,8 +26,19 @@ public class PauseManager : Node
         {
             if (isPaused != value)
             {
-                GetTree().Paused = value;
                 isPaused = value;
+
+                var tree = GetTree();
+
+                // If the game was closed while paused from a dialog, we get the unpause signal after the node tree
+                // is no longer usable
+                if (tree == null)
+                {
+                    GD.PrintErr("PauseManager can't apply paused state as node tree doesn't exist");
+                    return;
+                }
+
+                tree.Paused = value;
             }
         }
     }
@@ -56,9 +67,15 @@ public class PauseManager : Node
         }
     }
 
+    public bool HasLock(string pauseLockName)
+    {
+        return activeLocks.Contains(pauseLockName);
+    }
+
     /// <summary>
-    ///   Force clears all locks. Should *only* be called in the main menu, where this is just an extra safety measure
-    ///   against requiring the player to restart the game entirely if they get a pause state stuck issue
+    ///   Force clears all locks. Should be called in the main menu or when switching directly from one in-progress
+    ///   game to another. This is an extra safety measure against requiring the player to restart the game entirely
+    ///   if they get a pause state stuck issue.
     /// </summary>
     public void ForceClear()
     {

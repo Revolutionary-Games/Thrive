@@ -13,7 +13,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     where TMetaball : Metaball
 {
     [Export]
-    public NodePath CameraPath = null!;
+    public NodePath? CameraPath;
 
     [Export]
     public NodePath EditorArrowPath = null!;
@@ -30,6 +30,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     [Export]
     public float ForwardArrowOffsetFromGround = 0.1f;
 
+#pragma warning disable CA2213
     protected EditorCamera3D? camera;
 
     [JsonIgnore]
@@ -38,6 +39,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected MeshInstance editorGround = null!;
 
     protected AudioStream hexPlacementSound = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     protected string? activeActionName;
@@ -74,7 +76,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         new Plane(new Vector3(0, 1, 0), 0.0f),
     };
 
+    // Another section of Godot objects here as these are private (and not protected like the above set)
+#pragma warning disable CA2213
     private CustomConfirmationDialog islandPopup = null!;
+#pragma warning restore CA2213
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
@@ -418,7 +423,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
     public override void OnValidAction()
     {
-        GUICommon.Instance.PlayCustomSound(hexPlacementSound);
+        GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
 
     public override void _Process(float delta)
@@ -484,6 +489,22 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         {
             editorArrow.Translation = arrowPosition;
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                EditorArrowPath.Dispose();
+                EditorGroundPath.Dispose();
+                IslandErrorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected abstract MetaballLayout<TMetaball> CreateLayout();

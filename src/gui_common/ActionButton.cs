@@ -5,9 +5,11 @@
 /// </summary>
 public class ActionButton : Button
 {
+#pragma warning disable CA2213
     private Panel highlight = null!;
     private TextureRect? iconRect;
     private KeyPrompt? keyPrompt;
+#pragma warning restore CA2213
 
     private bool highlighted;
 

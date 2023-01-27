@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 public class MicrobeHUD : StageHUDBase<MicrobeStage>
 {
     [Export]
-    public NodePath MulticellularButtonPath = null!;
+    public NodePath? MulticellularButtonPath;
 
     [Export]
     public NodePath MulticellularConfirmPopupPath = null!;
@@ -24,13 +24,14 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     public NodePath IngestedMatterBarPath = null!;
 
     [Export]
-    public PackedScene WinBoxScene = null!;
-
-    [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
     public NodePath UnbindAllHotkeyPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
+    public PackedScene WinBoxScene = null!;
 
     private ActionButton bindingModeHotkey = null!;
     private ActionButton unbindAllHotkey = null!;
@@ -42,6 +43,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private ProgressBar ingestedMatterBar = null!;
 
     private CustomDialog? winBox;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
@@ -164,6 +166,32 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
+    public override void ShowFossilisationButtons()
+    {
+        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+        var fossils = FossilisedSpecies.CreateListOfFossils(false);
+        foreach (var microbe in microbes)
+        {
+            if (microbe.Species is not MicrobeSpecies)
+                continue;
+
+            var button = FossilisationButtonScene.Instance<FossilisationButton>();
+            button.AttachedEntity = microbe;
+            button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
+                nameof(ShowFossilisationDialog));
+
+            // Display a faded button with a different hint if the species has been fossilised.
+            var alreadyFossilised =
+                FossilisedSpecies.IsSpeciesAlreadyFossilised(microbe.Species.FormattedName, fossils);
+            button.AlreadyFossilised = alreadyFossilised;
+            button.HintTooltip = alreadyFossilised ?
+                TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
+                TranslationServer.Translate("FOSSILISATION_HINT");
+
+            fossilisationButtonLayer.AddChild(button);
+        }
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -173,6 +201,24 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             UpdateColonySizeForMulticellular();
             UpdateColonySizeForMacroscopic();
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MulticellularButtonPath != null)
+            {
+                MulticellularButtonPath.Dispose();
+                MulticellularConfirmPopupPath.Dispose();
+                MacroscopicButtonPath.Dispose();
+                IngestedMatterBarPath.Dispose();
+                BindingModeHotkeyPath.Dispose();
+                UnbindAllHotkeyPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -185,42 +231,29 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     {
         if (stage?.Player != null && stage.Player.PhagocytosisStep != PhagocytosisPhase.Ingested)
         {
+            playerWasDigested = false;
+            healthBar.TintProgress = defaultHealthBarColour;
             base.UpdateHealth(delta);
             return;
         }
 
         float hp = 0;
 
-        if (stage!.Player != null)
-            hp = stage.Player.Hitpoints;
-
         string hpText = playerWasDigested ?
             TranslationServer.Translate("DEVOURED") :
             hp.ToString(CultureInfo.CurrentCulture);
 
-        // Update to the player's current HP, unless the player does not exist
-        if (stage.Player != null)
+        // Update to the player's current digested progress, unless the player does not exist
+        if (stage!.HasPlayer)
         {
-            // Change mode depending on whether the player is ingested or not
-            if (stage.Player.PhagocytosisStep == PhagocytosisPhase.Ingested)
-            {
-                var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
+            var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
-                // Show the digestion progress to the player
-                hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
-                maxHP = Constants.FULLY_DIGESTED_LIMIT;
-                hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
-                playerWasDigested = true;
-                FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
-            }
-            else
-            {
-                hp = stage.Player.Hitpoints;
-                maxHP = stage.Player.MaxHitpoints;
-                hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
-                playerWasDigested = false;
-                healthBar.TintProgress = defaultHealthBarColour;
-            }
+            // Show the digestion progress to the player
+            hp = 1 - (stage.Player!.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+            maxHP = Constants.FULLY_DIGESTED_LIMIT;
+            hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
+            playerWasDigested = true;
+            FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
         }
 
         healthBar.MaxValue = maxHP;
@@ -262,10 +295,11 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var colony = stage!.Player!.Colony;
         if (colony == null)
         {
-            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy);
+            return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
 
-        return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
+        return colony.ColonyMembers.Any(
+            c => c.Compounds.AreAnySpecificallySetUseful(allAgents));
     }
 
     protected override ICompoundStorage GetPlayerStorage()
@@ -273,12 +307,12 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
     }
 
-    protected override void UpdateCompoundBars()
+    protected override void UpdateCompoundBars(float delta)
     {
-        base.UpdateCompoundBars();
+        base.UpdateCompoundBars(delta);
 
         ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
-        ingestedMatterBar.Value = GetPlayerUsedIngestionCapacity();
+        GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
 
@@ -305,8 +339,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     protected override string GetMouseHoverCoordinateText()
     {
-        return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("STUFF_AT"),
-            stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
+        return TranslationServer.Translate("STUFF_AT")
+            .FormatSafe(stage!.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
     }
 
     protected override void UpdateAbilitiesHotBar()
@@ -314,18 +348,21 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         var player = stage!.Player!;
 
         bool showToxin;
+        bool showSlime;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Colony != null)
         {
             showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
+            showSlime = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
         }
         else
         {
             showToxin = player.AgentVacuoleCount > 0;
+            showSlime = player.SlimeJets.Count > 0;
         }
 
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin,
+        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin, showSlime,
             player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;
@@ -394,8 +431,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        multicellularButton.Text = string.Format(TranslationServer.Translate("BECOME_MULTICELLULAR"), playerColonySize,
-            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
+        multicellularButton.Text = TranslationServer.Translate("BECOME_MULTICELLULAR")
+            .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
     }
 
     private void UpdateMacroscopicButton(Microbe player)
@@ -430,15 +467,15 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         if (playerColonySize == null)
             return;
 
-        macroscopicButton.Text = string.Format(TranslationServer.Translate("BECOME_MACROSCOPIC"), playerColonySize,
-            Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
+        macroscopicButton.Text = TranslationServer.Translate("BECOME_MACROSCOPIC")
+            .FormatSafe(playerColonySize, Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
     }
 
     private void OnBecomeMulticellularPressed()
     {
         if (!Paused)
         {
-            bottomLeftBar.Paused = true;
+            PauseButtonPressed(true);
         }
         else
         {
@@ -453,7 +490,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         // The game should have been paused already but just in case
         if (Paused)
         {
-            bottomLeftBar.Paused = false;
+            PauseButtonPressed(false);
         }
     }
 

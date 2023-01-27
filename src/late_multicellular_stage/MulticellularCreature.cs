@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -12,6 +13,8 @@ using Newtonsoft.Json;
 [DeserializedCallbackTarget]
 public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked
 {
+    private static readonly Vector3 SwimUpForce = new(0, 20, 0);
+
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
 
@@ -20,6 +23,19 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     [JsonProperty]
     private CreatureAI? ai;
+
+    [JsonProperty]
+    private ISpawnSystem? spawnSystem;
+
+#pragma warning disable CA2213
+    private MulticellularMetaballDisplayer metaballDisplayer = null!;
+#pragma warning restore CA2213
+
+    [JsonProperty]
+    private float targetSwimLevel;
+
+    [JsonProperty]
+    private float upDownSwimSpeed = 3;
 
     // TODO: implement
     [JsonIgnore]
@@ -67,6 +83,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
 
+    /// <summary>
+    ///   The direction the creature wants to move. Doesn't need to be normalized
+    /// </summary>
+    public Vector3 MovementDirection { get; set; } = Vector3.Zero;
+
     [JsonProperty]
     public float TimeUntilNextAIUpdate { get; set; }
 
@@ -78,6 +99,12 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
     public int DespawnRadiusSquared { get; set; }
 
+    /// <summary>
+    ///   TODO: adjust entity weight once fleshed out
+    /// </summary>
+    [JsonIgnore]
+    public float EntityWeight => 1.0f;
+
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
 
@@ -87,13 +114,16 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+
+        metaballDisplayer = GetNode<MulticellularMetaballDisplayer>("MetaballDisplayer");
     }
 
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(GameProperties currentGame, bool isPlayer)
+    public void Init(ISpawnSystem spawnSystem, GameProperties currentGame, bool isPlayer)
     {
+        this.spawnSystem = spawnSystem;
         CurrentGame = currentGame;
         IsPlayerCreature = isPlayer;
 
@@ -104,12 +134,33 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         _Ready();
     }
 
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
 
         // TODO: implement growth
         OnReproductionStatus?.Invoke(this, true);
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+
+        // TODO: apply buoyancy (if this is underwater)
+
+        if (Translation.y < targetSwimLevel)
+            ApplyCentralImpulse(Mass * SwimUpForce * delta);
+
+        if (MovementDirection != Vector3.Zero)
+        {
+            // TODO: movement force calculation
+            ApplyCentralImpulse(Mass * MovementDirection * delta);
+        }
     }
 
     public void ApplySpecies(Species species)
@@ -122,7 +173,12 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         // TODO: set from species
         compounds.Capacity = 100;
 
-        // TODO: setup
+        // TODO: better mass calculation
+        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
+
+        // Setup graphics
+        // TODO: handle lateSpecies.Scale
+        metaballDisplayer.DisplayFromList(lateSpecies.BodyLayout);
     }
 
     public void SetInitialCompounds()
@@ -140,10 +196,10 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
 
         // Create the offspring
         var copyEntity = SpawnHelpers.SpawnCreature(Species, currentPosition + separation,
-            GetParent(), SpawnHelpers.LoadMulticellularScene(), true, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMulticellularScene(), true, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawnSystem!.AddEntityToTrack(copyEntity);
 
         // TODO: some kind of resource splitting for the offspring?
 
@@ -155,6 +211,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public void BecomeFullyGrown()
     {
         // TODO: implement growth
+        // Once growth is added check spawnSystem.IsUnderEntityLimitForReproducing before calling SpawnOffspring
     }
 
     public void ResetGrowth()
@@ -221,8 +278,13 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         player.Play();*/
     }
 
-    public void OnDestroyed()
+    public void SwimUpOrJump(float delta)
     {
-        AliveMarker.Alive = false;
+        targetSwimLevel += upDownSwimSpeed * delta;
+    }
+
+    public void SwimDownOrCrouch(float delta)
+    {
+        targetSwimLevel -= upDownSwimSpeed * delta;
     }
 }

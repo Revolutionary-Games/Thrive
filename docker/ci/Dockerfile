@@ -1,12 +1,11 @@
-FROM fedora:35
+FROM fedora:37
 
-RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs \
-    p7zip tar unzip xz gcc make wget dotnet-sdk-5.0 && dnf clean all
+RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-7.0 \
+    gettext p7zip && dnf clean all
 RUN git lfs install
-RUN gem install os colorize rubyzip json sha3 httparty parallel nokogiri
 
 # Godot install
-ENV GODOT_VERSION "3.4.4"
+ENV GODOT_VERSION "3.5"
 
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_linux_headless_64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \
@@ -27,7 +26,7 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot
 COPY editor_settings-3.tres /root/.config/godot/editor_settings-3.tres
 
 # Godot pck tool
-ENV PCK_TOOL_VERSION "v1.7"
+ENV PCK_TOOL_VERSION "v1.8"
 
 RUN wget https://github.com/hhyyrylainen/GodotPckTool/releases/download/${PCK_TOOL_VERSION}/godotpcktool -O /usr/bin/godotpcktool && \
     chmod +x /usr/bin/godotpcktool

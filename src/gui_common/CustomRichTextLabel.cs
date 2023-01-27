@@ -12,6 +12,10 @@ public class CustomRichTextLabel : RichTextLabel
 {
     private string? extendedBbcode;
 
+    private string? heightWorkaroundRanForString;
+
+    private bool registeredForInputChanges;
+
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
@@ -58,16 +62,15 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        InputDataList.InputsRemapped += OnInputsRemapped;
-    }
-
     public override void _ExitTree()
     {
         base._ExitTree();
-        InputDataList.InputsRemapped -= OnInputsRemapped;
+
+        if (registeredForInputChanges)
+        {
+            InputDataList.InputsRemapped -= OnInputsRemapped;
+            registeredForInputChanges = false;
+        }
     }
 
     public override void _Ready()
@@ -84,8 +87,47 @@ public class CustomRichTextLabel : RichTextLabel
         // See https://github.com/Revolutionary-Games/Thrive/issues/2236
         // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
 #pragma warning disable CA2245 // Necessary for workaround
-        Invoke.Instance.QueueForObject(() => BbcodeText = BbcodeText, this);
+        Invoke.Instance.QueueForObject(() =>
+        {
+            var bbCode = BbcodeText;
+
+            // Only run this once to not absolutely tank performance with long rich text labels
+            if (heightWorkaroundRanForString == bbCode)
+                return;
+
+            heightWorkaroundRanForString = bbCode;
+
+            BbcodeText = bbCode;
+        }, this);
 #pragma warning restore CA2245
+    }
+
+    /// <summary>
+    ///   Parses ExtendedBbcode for any custom Thrive tags and applying the final result
+    ///   into this RichTextLabel's bbcode text.
+    /// </summary>
+    private void ParseCustomTags()
+    {
+        if (extendedBbcode == null)
+        {
+            BbcodeText = null;
+            return;
+        }
+
+        var translated = TranslationServer.Translate(extendedBbcode);
+
+        try
+        {
+            // Parse our custom tags into standard tags and display that text
+            BbcodeText = ParseCustomTagsString(translated);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to parse bbcode string due to exception: ", e);
+
+            // Just display the raw markup for now
+            BbcodeText = translated;
+        }
     }
 
     /// <summary>
@@ -94,7 +136,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     /// <param name="extendedBbcode">The extended bbcode string</param>
     /// <returns>Parsed bbcode string in standard format</returns>
-    private static string ParseCustomTagsString(string extendedBbcode)
+    private string ParseCustomTagsString(string extendedBbcode)
     {
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
@@ -177,8 +219,11 @@ public class CustomRichTextLabel : RichTextLabel
                 // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
+                var closingTag = bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture);
+
                 // Not a thrive bbcode, don't parse this
-                if (!bbcodeNamespace.Contains("thrive"))
+                if ((!closingTag && !bbcodeNamespace.StartsWith("thrive", StringComparison.InvariantCulture)) ||
+                    (closingTag && !bbcodeNamespace.StartsWith("/thrive", StringComparison.InvariantCulture)))
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
@@ -190,8 +235,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 // Tag seems okay, next step is to try parse the content and the closing tag
 
-                // Is a closing tag
-                if (bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture))
+                if (closingTag)
                 {
                     if (tagStack.Count < 1)
                     {
@@ -262,7 +306,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
     /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
-    private static string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
@@ -352,7 +396,16 @@ public class CustomRichTextLabel : RichTextLabel
                     break;
                 }
 
-                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input), 30, 0, 9);
+                // First time we display an input key, we start listening for key changes so that we can change what
+                // we display when keys are rebound
+                if (!registeredForInputChanges)
+                {
+                    InputDataList.InputsRemapped += OnInputsRemapped;
+                    registeredForInputChanges = true;
+                }
+
+                // TODO: add support for showing the overlay image / text saying the direction for axis type inputs
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input).Primary, 30, 0, 9);
 
                 break;
             }
@@ -425,32 +478,6 @@ public class CustomRichTextLabel : RichTextLabel
         }
 
         return output;
-    }
-
-    /// <summary>
-    ///   Parses ExtendedBbcode for any custom Thrive tags and applying the final result
-    ///   into this RichTextLabel's bbcode text.
-    /// </summary>
-    private void ParseCustomTags()
-    {
-        if (extendedBbcode == null)
-        {
-            BbcodeText = null;
-            return;
-        }
-
-        try
-        {
-            // Parse our custom tags into standard tags and display that text
-            BbcodeText = ParseCustomTagsString(extendedBbcode);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Failed to parse bbcode string due to exception: ", e);
-
-            // Just display the raw markup for now
-            BbcodeText = extendedBbcode;
-        }
     }
 
     private void OnInputsRemapped(object sender, EventArgs args)

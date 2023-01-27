@@ -17,6 +17,13 @@ public class RunOnKeyUpAttribute : RunOnKeyAttribute
         var before = HeldDown;
         if (base.OnInput(@event) && before && !HeldDown)
         {
+            // Base doesn't react to key up triggering the input method type change
+            if (TrackInputMethod)
+            {
+                LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+                return CallMethod(LastUsedInputMethod);
+            }
+
             return CallMethod();
         }
 

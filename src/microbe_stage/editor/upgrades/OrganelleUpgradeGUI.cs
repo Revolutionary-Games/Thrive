@@ -3,7 +3,7 @@
 public class OrganelleUpgradeGUI : Control
 {
     [Export]
-    public NodePath PopupPath = null!;
+    public NodePath? PopupPath;
 
     [Export]
     public NodePath OrganelleSpecificContentPath = null!;
@@ -11,12 +11,17 @@ public class OrganelleUpgradeGUI : Control
     [Export]
     public NodePath ScrollContainerPath = null!;
 
+#pragma warning disable CA2213
     private CustomConfirmationDialog popup = null!;
     private Container organelleSpecificContent = null!;
     private ScrollContainer scrollContainer = null!;
+#pragma warning restore CA2213
 
     private ICellEditorData? storedEditor;
     private IOrganelleUpgrader? upgrader;
+
+    [Signal]
+    public delegate void Accepted();
 
     public override void _Ready()
     {
@@ -50,6 +55,21 @@ public class OrganelleUpgradeGUI : Control
         storedEditor = editor;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PopupPath != null)
+            {
+                PopupPath.Dispose();
+                OrganelleSpecificContentPath.Dispose();
+                ScrollContainerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnAccept()
     {
         if (upgrader == null || storedEditor == null)
@@ -60,6 +80,8 @@ public class OrganelleUpgradeGUI : Control
 
         GUICommon.Instance.PlayButtonPressSound();
         upgrader.ApplyChanges(storedEditor);
+
+        EmitSignal(nameof(Accepted));
     }
 
     private void OnCancel()

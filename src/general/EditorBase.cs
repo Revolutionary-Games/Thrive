@@ -35,7 +35,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     where TStage : Node, IReturnableGameState
 {
     [Export]
-    public NodePath PauseMenuPath = null!;
+    public NodePath? PauseMenuPath;
 
     [Export]
     public NodePath EditorGUIBaseNodePath = null!;
@@ -43,9 +43,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [Export]
     public NodePath? EditorTabSelectorPath;
 
+#pragma warning disable CA2213
     protected Node world = null!;
     protected PauseMenu pauseMenu = null!;
     protected MicrobeEditorTabButtons? editorTabSelector;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Where all user actions will  be registered
@@ -75,9 +77,23 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected GameProperties? currentGame;
 
+#pragma warning disable CA2213
     private Control editorGUIBaseNode = null!;
+#pragma warning restore CA2213
 
     private int? mutationPointsCache;
+
+    /// <summary>
+    ///   The light level the editor is previewing things at
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is saved but there's a slight bug that the selected light level gets reset anyway when loading a save
+    ///     made in the editor
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    private float lightLevel = 1.0f;
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
@@ -135,6 +151,18 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public bool IsLoadedFromSave { get; set; }
 
     public bool NodeReferencesResolved { get; private set; }
+
+    [JsonIgnore]
+    public float LightLevel
+    {
+        get => lightLevel;
+        set
+        {
+            lightLevel = value;
+
+            ApplyComponentLightLevels();
+        }
+    }
 
     [JsonProperty]
     public bool Ready
@@ -480,6 +508,22 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing(userOverrides);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PauseMenuPath != null)
+            {
+                PauseMenuPath.Dispose();
+                EditorGUIBaseNodePath.Dispose();
+            }
+
+            EditorTabSelectorPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected abstract void InitEditorGUI(bool fresh);
 
     protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
@@ -603,6 +647,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             throw new Exception($"Editor setup which was just ran didn't setup {nameof(EditedBaseSpecies)}");
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
+
+        ApplyComponentLightLevels();
     }
 
     /// <summary>
@@ -621,6 +667,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (run.Results != null)
         {
+            // External effects need to be finalized now before we use them for printing summaries or anything like
+            // that
+            run.CalculateFinalExternalEffectSizes();
+
             autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
@@ -660,7 +710,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     protected void ExitPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
     }
 
     protected IEditorComponent? GetActiveEditorComponent()
@@ -785,28 +835,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
-        run.ApplyExternalEffects();
+        run.ApplyAllResultsAndEffects(FreeBuilding);
 
-        CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
-
-        // Update populations before recording conditions - should not affect per-patch population
-        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
-
-        // Needs to be before the remove extinct species call, so that extinct species could still be stored
-        // for reference in patch history (e.g. displaying it as zero on the species population chart)
-        foreach (var entry in CurrentGame.GameWorld.Map.Patches)
-        {
-            entry.Value.RecordSnapshot(true);
-        }
-
-        var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
-
-        foreach (var species in extinct)
-        {
-            CurrentGame.GameWorld.RemoveSpecies(species);
-
-            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
-        }
+        // Add the current generation to history before resetting Auto-Evo
+        CurrentGame.GameWorld.AddCurrentGenerationToHistory();
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
@@ -832,6 +864,14 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         OnMutationPointsChanged();
 
         return mutationPointsCache.Value;
+    }
+
+    private void ApplyComponentLightLevels()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.OnLightLevelChanged(lightLevel);
+        }
     }
 
     /// <summary>

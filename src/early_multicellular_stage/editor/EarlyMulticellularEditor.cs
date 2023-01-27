@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -24,6 +24,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [Export]
     public NodePath NoCellTypeSelectedPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -40,10 +41,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [AssignOnlyChildItemsOnDeserialize]
     private CellEditorComponent cellEditorTab = null!;
 
+    private Control noCellTypeSelected = null!;
+#pragma warning restore CA2213
+
     [JsonProperty]
     private EarlyMulticellularSpecies? editedSpecies;
-
-    private Control noCellTypeSelected = null!;
 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
@@ -106,10 +108,10 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
-        cellEditorTab.UpdatePatchDependentBalanceData();
+        cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
+        reportTab.UpdatePatchDetails(patch);
+
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
@@ -153,6 +155,23 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         return false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
@@ -187,8 +206,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdateReportTabStatistics(CurrentPatch);
-            reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
@@ -216,6 +234,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         {
             editorComponent.Init(this, fresh);
         }
+
+        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEditorReady()
@@ -238,8 +258,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdateReportTabStatistics(CurrentPatch);
-        reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
     }
 
     protected override void OnUndoPerformed()
@@ -310,6 +329,10 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             case EditorTab.CellEditor:
             {
+                // This must be set visible before CheckAndApplyCellTypeEdit otherwise it won't update already placed
+                // visuals
+                bodyPlanEditorTab.Show();
+
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
                 // tab as that's the only exit point and the point where we actually need to use the edited cell
                 // type information
@@ -317,7 +340,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
                 CheckAndApplyCellTypeEdit();
 
-                bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
@@ -373,6 +395,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    private void OnSelectPatchForReportTab(Patch patch)
+    {
+        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void OnStartEditingCellType(string name)

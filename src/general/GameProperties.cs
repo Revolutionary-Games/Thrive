@@ -16,19 +16,25 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
-    [JsonConstructor]
-    private GameProperties(WorldGenerationSettings? settings = null)
+    private GameProperties(WorldGenerationSettings? settings = null, Species? startingSpecies = null)
     {
         settings ??= new WorldGenerationSettings();
-        GameWorld = new GameWorld(settings);
+        GameWorld = new GameWorld(settings, startingSpecies);
         TutorialState = new TutorialState();
+    }
+
+    [JsonConstructor]
+    private GameProperties(GameWorld gameWorld, TutorialState tutorialState)
+    {
+        GameWorld = gameWorld;
+        TutorialState = tutorialState;
     }
 
     /// <summary>
     ///   The world this game is played in. Has all the species and map data
     /// </summary>
     [JsonProperty]
-    public GameWorld GameWorld { get; private set; }
+    public GameWorld GameWorld { get; }
 
     /// <summary>
     ///   When true the player is in freebuild mode and various things
@@ -41,7 +47,7 @@ public class GameProperties
     ///   The tutorial state for this game
     /// </summary>
     [JsonProperty]
-    public TutorialState TutorialState { get; private set; }
+    public TutorialState TutorialState { get; }
 
     // TODO: start using this to prevent saving
     /// <summary>
@@ -52,9 +58,10 @@ public class GameProperties
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
-    public static GameProperties StartNewMicrobeGame(WorldGenerationSettings settings, bool freebuild = false)
+    public static GameProperties StartNewMicrobeGame(WorldGenerationSettings settings, bool freebuild = false,
+        Species? startingSpecies = null)
     {
-        var game = new GameProperties(settings);
+        var game = new GameProperties(settings, startingSpecies);
 
         if (freebuild)
         {

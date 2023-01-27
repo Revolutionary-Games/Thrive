@@ -12,22 +12,16 @@ public class GUICommon : NodeWithInput
 {
     private static GUICommon? instance;
 
-    private AudioStream buttonPressSound;
+#pragma warning disable CA2213
+    private AudioStream buttonPressSound = null!;
+#pragma warning restore CA2213
 
     private GUICommon()
     {
         instance = this;
 
-        AudioSources = new List<AudioStreamPlayer>();
-
         Tween = new Tween();
         AddChild(Tween);
-
-        // Keep this node running even while paused
-        PauseMode = PauseModeEnum.Process;
-
-        buttonPressSound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -45,7 +39,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   The audio players for UI sound effects.
     /// </summary>
-    private List<AudioStreamPlayer> AudioSources { get; }
+    private List<AudioStreamPlayer> AudioSources { get; } = new();
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -62,7 +56,7 @@ public class GUICommon : NodeWithInput
         popup.RectPosition = new Vector2(left, top);
     }
 
-    public static void SmoothlyUpdateBar(TextureProgress bar, float target, float delta)
+    public static void SmoothlyUpdateBar(Range bar, float target, float delta)
     {
         if (delta <= 0)
         {
@@ -101,6 +95,17 @@ public class GUICommon : NodeWithInput
         control.Set("custom_colors/font_color", new Color(1, 1, 1));
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        // Keep this node running even while paused
+        PauseMode = PauseModeEnum.Process;
+
+        buttonPressSound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+    }
+
     /// <summary>
     ///   Closes any currently active exclusive modal popups.
     /// </summary>
@@ -118,6 +123,7 @@ public class GUICommon : NodeWithInput
         if (customPopup != null)
         {
             customPopup.CustomHide();
+            popup!.EmitSignal(nameof(CustomDialog.Closed));
         }
         else
         {
@@ -237,6 +243,24 @@ public class GUICommon : NodeWithInput
         };
 
         return element;
+    }
+
+    /// <summary>
+    ///   This method exists because Godot signals always need an object so this is here as it makes some sense for
+    ///   <see cref="ControlHelpers"/> to rely on this class
+    /// </summary>
+    /// <param name="target">The target control that should forward focus</param>
+    internal void ProxyFocusForward(Control target)
+    {
+        target.ForwardFocusToNext();
+    }
+
+    /// <summary>
+    ///   Proxies requests to
+    /// </summary>
+    internal void ProxyDrawFocus(Control target)
+    {
+        target.DrawCustomFocusBorderIfFocused();
     }
 
     private void HideControlOnFadeOutComplete(Object obj, NodePath key, Control control)

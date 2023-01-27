@@ -6,7 +6,7 @@
 public class ControlHighlight : Control
 {
     [Export]
-    public NodePath LeftPlanePath = null!;
+    public NodePath? LeftPlanePath;
 
     [Export]
     public NodePath TopPlanePath = null!;
@@ -24,10 +24,12 @@ public class ControlHighlight : Control
     [Export]
     public bool UseParentControlSizeAsWindowSize = true;
 
+#pragma warning disable CA2213
     private Control leftPlane = null!;
     private Control topPlane = null!;
     private Control rightPlane = null!;
     private Control bottomPlane = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The control that is highlighted by this object
@@ -78,5 +80,21 @@ public class ControlHighlight : Control
             bottomPlane.RectGlobalPosition = new Vector2(nonCoveredArea.Position.x, screenHeight - bottomHeight);
             bottomPlane.RectSize = new Vector2(middleWidth, bottomHeight);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LeftPlanePath != null)
+            {
+                LeftPlanePath.Dispose();
+                TopPlanePath.Dispose();
+                RightPlanePath.Dispose();
+                BottomPlanePath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 }

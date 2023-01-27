@@ -11,8 +11,10 @@
 /// </remarks>
 public class HybridAudioPlayer : Spatial
 {
+#pragma warning disable CA2213
     private AudioStreamPlayer3D? player3D;
     private AudioStreamPlayer? playerNonPositional;
+#pragma warning restore CA2213
 
     private bool positional;
     private AudioStream? stream;

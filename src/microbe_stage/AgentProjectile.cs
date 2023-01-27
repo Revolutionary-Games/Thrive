@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
 public class AgentProjectile : RigidBody, ITimedLife, IEntity
 {
+#pragma warning disable CA2213
     private Particles particles = null!;
+#pragma warning restore CA2213
 
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
@@ -64,20 +66,20 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
         _ = bodyID;
         _ = localShape;
 
-        if (body is Microbe microbe)
-        {
-            if (microbe.Species != Properties!.Species)
-            {
-                // If more stuff needs to be damaged we could make an IAgentDamageable interface.
-                var target = microbe.GetMicrobeFromShape(bodyShape);
+        if (body is not Microbe microbe)
+            return;
 
-                if (target != null)
-                {
-                    Invoke.Instance.Perform(
-                        () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
-                }
-            }
-        }
+        if (microbe.Species == Properties!.Species)
+            return;
+
+        // If more stuff needs to be damaged we could make an IAgentDamageable interface.
+        var target = microbe.GetMicrobeFromShape(bodyShape);
+
+        if (target == null)
+            return;
+
+        Invoke.Instance.Perform(
+            () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
 
         if (FadeTimeRemaining == null)
         {

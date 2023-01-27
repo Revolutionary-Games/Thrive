@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
+[JsonObject(IsReference = true)]
 public class CellType : ICellProperties, IPhotographable, ICloneable
 {
     [JsonConstructor]
@@ -50,6 +51,12 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public bool IsBacteria { get; set; }
     public float BaseRotationSpeed { get; set; }
 
+    /// <summary>
+    ///   Total mass of all the organelles in this cell type
+    /// </summary>
+    [JsonIgnore]
+    public float TotalMass => Organelles.Sum(o => o.Definition.Mass);
+
     [JsonIgnore]
     public string FormattedName => TypeName;
 
@@ -74,36 +81,14 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     public void ApplySceneParameters(Spatial instancedScene)
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
-
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        var tempSpecies = new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
-        {
-            IsBacteria = false,
-        };
-
-        microbe.ApplySpecies(tempSpecies);
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
+            .ApplySceneParameters(instancedScene);
     }
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
         return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
-    }
-
-    public Dictionary<Compound, float> CalculateTotalComposition()
-    {
-        var result = new Dictionary<Compound, float>();
-
-        foreach (var organelle in Organelles)
-        {
-            result.Merge(organelle.Definition.InitialComposition);
-        }
-
-        return result;
     }
 
     public object Clone()

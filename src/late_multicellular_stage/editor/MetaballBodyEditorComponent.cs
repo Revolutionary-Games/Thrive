@@ -13,6 +13,9 @@ public partial class MetaballBodyEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
+    public NodePath? TabButtonsPath;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -62,6 +65,8 @@ public partial class MetaballBodyEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+#pragma warning disable CA2213
+
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
     private Button reproductionTabButton = null!;
@@ -97,6 +102,7 @@ public partial class MetaballBodyEditorComponent :
     private MetaballPopupMenu metaballPopupMenu = null!;
 
     private PackedScene metaballDisplayerScene = null!;
+#pragma warning restore CA2213
 
     // TODO: add way to control the size of the placed metaball
     [JsonProperty]
@@ -168,17 +174,24 @@ public partial class MetaballBodyEditorComponent :
 
         NodeReferencesResolved = true;
 
+        if (TabButtonsPath == null)
+            throw new MissingExportVariableValueException();
+
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
 
         reproductionTab = GetNode<PanelContainer>(ReproductionTabPath);
-        reproductionTabButton = GetNode<Button>(ReproductionTabButtonPath);
+        reproductionTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, ReproductionTabButtonPath));
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
-        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
+        appearanceTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
 
         cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
 
@@ -350,6 +363,35 @@ public partial class MetaballBodyEditorComponent :
         return true;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TabButtonsPath != null)
+            {
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                ReproductionTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                AppearanceTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                ReproductionTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                AppearanceTabPath.Dispose();
+                CellTypeSelectionListPath.Dispose();
+                ModifyTypeButtonPath.Dispose();
+                DeleteTypeButtonPath.Dispose();
+                DuplicateTypeButtonPath.Dispose();
+                CannotDeleteInUseTypeDialogPath.Dispose();
+                DuplicateCellTypeDialogPath.Dispose();
+                DuplicateCellTypeNamePath.Dispose();
+                MetaballPopupMenuPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
@@ -383,12 +425,12 @@ public partial class MetaballBodyEditorComponent :
 
         if (MovingPlacedMetaball == null)
         {
-            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, false);
         }
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                new List<MulticellularMetaball> { MovingPlacedMetaball }, false);
+                new List<MulticellularMetaball> { MovingPlacedMetaball }, true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -795,7 +837,7 @@ public partial class MetaballBodyEditorComponent :
                 control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
             }
 
-            control.MPCost = cellType.MPCost;
+            control.MPCost = Constants.METABALL_ADD_COST;
 
             // TODO: tooltips for these
         }

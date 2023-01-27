@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -15,10 +17,13 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     where TEditor : IEditorWithPatches
 {
     [Export]
-    public NodePath MapDrawerPath = null!;
+    public NodePath? MapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
+
+    [Export]
+    public NodePath SeedLabelPath = null!;
 
     /// <summary>
     ///   Where the player wants to move after editing
@@ -26,18 +31,14 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonProperty]
     protected Patch? targetPatch;
 
-    /// <summary>
-    ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
-    ///   start)
-    /// </summary>
-    [JsonProperty]
-    protected bool canStillMove;
-
     [JsonProperty]
     protected Patch playerPatchOnEntry = null!;
 
+#pragma warning disable CA2213
     protected PatchMapDrawer mapDrawer = null!;
     protected PatchDetailsPanel detailsPanel = null!;
+    private Label seedLabel = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Returns the current patch the player is in
@@ -48,14 +49,27 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     [JsonIgnore]
     public Patch? SelectedPatch => targetPatch;
 
+    /// <summary>
+    ///   Called when the selected patch changes
+    /// </summary>
+    [JsonIgnore]
+    public Action<Patch>? OnSelectedPatchChanged { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
 
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
         detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
+        seedLabel = GetNode<Label>(SeedLabelPath);
 
-        mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = _ =>
+        {
+            UpdateShownPatchDetails();
+
+            if (mapDrawer.SelectedPatch != null)
+                OnSelectedPatchChanged?.Invoke(mapDrawer.SelectedPatch);
+        };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
     }
@@ -75,9 +89,10 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
                 throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
 
-            canStillMove = true;
             UpdatePlayerPatch(playerPatchOnEntry);
         }
+
+        UpdateSeedLabel();
     }
 
     public void SetMap(PatchMap map)
@@ -119,6 +134,21 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MapDrawerPath != null)
+            {
+                MapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                SeedLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected virtual void UpdateShownPatchDetails()
     {
         detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
@@ -129,6 +159,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     protected override void OnTranslationsChanged()
     {
         UpdateShownPatchDetails();
+        UpdateSeedLabel();
     }
 
     /// <summary>
@@ -140,32 +171,35 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         if (patch == null)
             return false;
 
-        var from = CurrentPatch;
-
         // Can't go to the patch you are in
-        if (from == patch)
+        if (CurrentPatch == patch)
             return false;
-
-        // Can return to the patch the player started in, as a way to "undo" the change
-        if (patch == playerPatchOnEntry)
-            return true;
 
         // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
         if (Editor.FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
             return true;
 
-        // Can't move if out of moves
-        if (!canStillMove)
-            return false;
+        if (CheatManager.MoveToAnyPatch)
+            return true;
 
-        // Need to have a connection to move
-        foreach (var adjacent in from.Adjacent)
+        // Can move to any patch that player species inhabits or is adjacent to such a patch
+        return GetMovablePatches().Contains(patch);
+    }
+
+    private HashSet<Patch> GetMovablePatches()
+    {
+        var movablePatches = Editor.CurrentGame.GameWorld.Map.Patches.Values.Where(p =>
+            p.SpeciesInPatch.ContainsKey(Editor.CurrentGame.GameWorld.PlayerSpecies)).ToHashSet();
+
+        foreach (var patch in movablePatches.ToList())
         {
-            if (adjacent == patch)
-                return true;
+            foreach (var adjacent in patch.Adjacent)
+            {
+                movablePatches.Add(adjacent);
+            }
         }
 
-        return false;
+        return movablePatches;
     }
 
     private void SetPlayerPatch(Patch? patch)
@@ -173,16 +207,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         if (!IsPatchMoveValid(patch))
             return;
 
-        // One move per editor cycle allowed, unless freebuilding
-        if (!Editor.FreeBuilding)
-            canStillMove = false;
-
         if (patch == playerPatchOnEntry)
         {
             targetPatch = null;
-
-            // Undoing the move, restores the move
-            canStillMove = true;
         }
         else
         {
@@ -200,5 +227,22 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
+    }
+
+    private void UpdateSeedLabel()
+    {
+        seedLabel.Text = TranslationServer.Translate("SEED_LABEL")
+            .FormatSafe(Editor.CurrentGame.GameWorld.WorldSettings.Seed);
+    }
+
+    private void OnFindCurrentPatchPressed()
+    {
+        mapDrawer.CenterScroll();
+        mapDrawer.SelectedPatch = mapDrawer.PlayerPatch;
+    }
+
+    private void MoveToPatchClicked()
+    {
+        SetPlayerPatch(mapDrawer.SelectedPatch);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -85,5 +86,49 @@ public static class MathUtils
     {
         int result = val % mod;
         return (result < 0) ? result + mod : result;
+    }
+
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
+        this IEnumerable<int> enumerable)
+    {
+        int count = 0;
+        double sum = 0;
+        double sumOfSquares = 0;
+
+        foreach (var value in enumerable)
+        {
+            ++count;
+            sum += value;
+            sumOfSquares += value * value;
+        }
+
+        if (count == 0)
+            throw new InvalidOperationException("Sequence contains no elements");
+
+        double average = sum / count;
+        double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
+        return (average, standardDeviation);
+    }
+
+    public static (double Average, double StandardDeviation) CalculateAverageAndStandardDeviation(
+        this IEnumerable<double> enumerable)
+    {
+        int count = 0;
+        double sum = 0;
+        double sumOfSquares = 0;
+
+        foreach (var value in enumerable)
+        {
+            ++count;
+            sum += value;
+            sumOfSquares += value * value;
+        }
+
+        if (count == 0)
+            throw new InvalidOperationException("Sequence contains no elements");
+
+        double average = sum / count;
+        double standardDeviation = Math.Sqrt(sumOfSquares / count - average * average);
+        return (average, standardDeviation);
     }
 }

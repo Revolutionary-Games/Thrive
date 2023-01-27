@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -19,6 +19,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     [Export]
     public NodePath CellEditorTabPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -32,6 +33,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeEditorTutorialGUI tutorialGUI = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
@@ -86,10 +88,10 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
-        cellEditorTab.UpdatePatchDependentBalanceData();
+        cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
+        reportTab.UpdatePatchDetails(patch);
+
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
@@ -107,6 +109,21 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -151,8 +168,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdateReportTabStatistics(CurrentPatch);
-            reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
@@ -183,6 +199,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         {
             editorComponent.Init(this, fresh);
         }
+
+        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEditorReady()
@@ -205,8 +223,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdateReportTabStatistics(CurrentPatch);
-        reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
     }
 
     protected override void ElapseEditorEntryTime()
@@ -310,6 +327,11 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 #pragma warning restore 162
 
         base.SetupEditedSpecies();
+    }
+
+    private void OnSelectPatchForReportTab(Patch patch)
+    {
+        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void CreateMutatedSpeciesCopy(Species species)

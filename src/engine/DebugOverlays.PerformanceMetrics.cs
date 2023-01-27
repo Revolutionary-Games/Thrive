@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Nito.Collections;
@@ -22,17 +21,19 @@ public partial class DebugOverlays
     // TODO: make this time based
     private const int SpawnHistoryLength = 300;
 
-    private readonly Deque<int> spawnHistory = new(SpawnHistoryLength);
-    private readonly Deque<int> despawnHistory = new(SpawnHistoryLength);
+    private readonly Deque<float> spawnHistory = new(SpawnHistoryLength);
+    private readonly Deque<float> despawnHistory = new(SpawnHistoryLength);
 
+#pragma warning disable CA2213
     private Label fpsLabel = null!;
     private Label deltaLabel = null!;
     private Label metricsText = null!;
+#pragma warning restore CA2213
 
-    private int entities;
+    private float entities;
     private int children;
-    private int currentSpawned;
-    private int currentDespawned;
+    private float currentSpawned;
+    private float currentDespawned;
 
     public bool PerformanceMetricsVisible
     {
@@ -46,18 +47,18 @@ public partial class DebugOverlays
         }
     }
 
-    public void ReportEntities(int totalEntities, int otherChildren)
+    public void ReportEntities(float totalEntities, int otherChildren)
     {
         entities = totalEntities;
         children = otherChildren;
     }
 
-    public void ReportSpawns(int newSpawns)
+    public void ReportSpawns(float newSpawns)
     {
         currentSpawned += newSpawns;
     }
 
-    public void ReportDespawns(int newDespawns)
+    public void ReportDespawns(float newDespawns)
     {
         currentDespawned += newDespawns;
     }
@@ -84,12 +85,13 @@ public partial class DebugOverlays
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
-                    entities, children, spawnHistory.Sum(), despawnHistory.Sum(),
+                    Math.Round(entities, 1), children,
+                    Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
                     OS.GetName() == Constants.OS_WINDOWS_NAME ?
                         TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
-                        string.Format(CultureInfo.CurrentCulture, mibFormat, usedMemory),
-                    string.Format(CultureInfo.CurrentCulture, mibFormat, usedVideoMemory),
+                        mibFormat.FormatSafe(usedMemory),
+                    mibFormat.FormatSafe(usedVideoMemory),
                     Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),
@@ -100,7 +102,7 @@ public partial class DebugOverlays
                     Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
                 .ToString();
 
-        entities = 0;
+        entities = 0.0f;
         children = 0;
 
         spawnHistory.AddToBack(currentSpawned);
@@ -112,7 +114,7 @@ public partial class DebugOverlays
         while (despawnHistory.Count > SpawnHistoryLength)
             despawnHistory.RemoveFromFront();
 
-        currentSpawned = 0;
-        currentDespawned = 0;
+        currentSpawned = 0.0f;
+        currentDespawned = 0.0f;
     }
 }

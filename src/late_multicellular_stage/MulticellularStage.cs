@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -13,7 +14,11 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 {
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public MulticellularCamera NoPlayerCamera { get; private set; } = null!;
+    private SpawnSystem dummySpawner = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public MulticellularCamera PlayerCamera { get; private set; } = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -54,16 +59,19 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
 
-        NoPlayerCamera = world.GetNode<MulticellularCamera>("NoPlayerCamera");
+        PlayerCamera = world.GetNode<MulticellularCamera>("PlayerCamera");
 
         // These need to be created here as well for child property save load to work
         // TODO: systems
+
+        // We don't actually spawn anything currently, and anyway will want a different spawn system for late
+        // multicellular
+        dummySpawner = new SpawnSystem(rootOfDynamicallySpawned);
     }
 
     public override void StartMusic()
     {
-        // TODO: setup own music category for this
-        Jukebox.Instance.PlayCategory("EarlyMulticellularStage");
+        Jukebox.Instance.PlayCategory("LateMulticellularStage");
     }
 
     public override void OnFinishLoading(Save save)
@@ -97,9 +105,12 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (Player != null)
         {
         }
+
+        // TODO: notify metrics
     }
 
-    [RunOnKeyDown("g_pause")]
+    // TODO: different pause key as space will be for jumping
+    // [RunOnKeyDown("g_pause")]
     public void PauseKeyPressed()
     {
         // Check nothing else has keyboard focus and pause the game
@@ -173,6 +184,12 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         Player?.Damage(9999.0f, "suicide");
     }
 
+    public void RotateCamera(float yawMovement, float pitchMovement)
+    {
+        PlayerCamera.XRotation += pitchMovement;
+        PlayerCamera.YRotation += yawMovement;
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -181,9 +198,35 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         //     spawner.Init();
 
         // TODO: implement
-        // If this is a new game, start the camera in top down view as a learning tool
         if (!IsLoadedFromSave)
         {
+            // If this is a new game (first time entering the stage), start the camera in top down view
+            // as a learning tool
+            if (!CurrentGame!.IsBoolSet("played_multicellular"))
+            {
+                CurrentGame.SetBool("played_multicellular", true);
+
+                // TODO: change the view
+            }
+
+            // TODO: remove
+            // Spawn a chunk to give the player some navigation reference
+            var mesh = new ChunkConfiguration.ChunkScene
+            {
+                ScenePath = "res://assets/models/Iron5.tscn",
+                ConvexShapePath = "res://assets/models/Iron5.shape",
+            };
+            mesh.LoadScene();
+            SpawnHelpers.SpawnChunk(new ChunkConfiguration
+                {
+                    Name = "test",
+                    Size = 10000,
+                    Radius = 10,
+                    Mass = 100,
+                    ChunkScale = 1,
+                    Meshes = new List<ChunkConfiguration.ChunkScene> { mesh },
+                }, new Vector3(3, 0, -15), rootOfDynamicallySpawned, SpawnHelpers.LoadChunkScene(),
+                random);
         }
 
         // patchManager.CurrentGame = CurrentGame;
@@ -198,6 +241,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         // patchManager.CurrentGame = CurrentGame;
 
+        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings();
 
         SpawnPlayer();
@@ -224,17 +268,15 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (HasPlayer)
             return;
 
-        // Player object has its own camera, so we won't use the no player camera here
-        // TODO: actually implement this
-        // NoPlayerCamera.Current = false;
-
         Player = SpawnHelpers.SpawnCreature(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMulticellularScene(), false, CurrentGame!);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMulticellularScene(), false, dummySpawner, CurrentGame!);
         Player.AddToGroup(Constants.PLAYER_GROUP);
 
         Player.OnDeath = OnPlayerDied;
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
+
+        PlayerCamera.FollowedNode = Player;
 
         // spawner.DespawnAll();
 
@@ -262,10 +304,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    private void SaveGame(string name)
+    {
+        SaveHelper.ShowErrorAboutPrototypeSaving(this);
+    }
+
     private void OnFinishLoading()
     {
-        // Not sure if this is needed, but at least this was something to put here
-        PointCameraAtPlayer();
     }
 
     [DeserializedCallbackAllowed]
@@ -273,7 +318,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         HandlePlayerDeath();
 
-        PointCameraAtPlayer();
+        PlayerCamera.FollowedNode = null;
         Player = null;
     }
 
@@ -281,20 +326,5 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private void OnPlayerReproductionStatusChanged(MulticellularCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
-    }
-
-    private void PointCameraAtPlayer()
-    {
-        // TODO: should we instead copy the player camera position so that when the player dies it is less jarring?
-
-        if (Player != null)
-        {
-            var playerPos = Player.GlobalTransform.origin;
-            NoPlayerCamera.LookAtFromPosition(playerPos + new Vector3(10, 4, 0), playerPos, Vector3.Up);
-        }
-
-        NoPlayerCamera.Current = true;
-
-        // TODO: listener for the no player camera
     }
 }

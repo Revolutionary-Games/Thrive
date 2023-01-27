@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
@@ -11,10 +12,17 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowed]
+[JSONAlwaysDynamicType]
 [UseThriveConverter]
+[UseThriveSerializer]
 public abstract class Species : ICloneable
 {
+    /// <summary>
+    ///   This is not an auto property to make save compatibility easier
+    /// </summary>
+    [JsonProperty]
+    private Dictionary<Compound, float>? cachedBaseReproductionCost;
+
     protected Species(uint id, string genus, string epithet)
     {
         ID = id;
@@ -28,10 +36,31 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
+    /// <summary>
+    ///   The base compounds needed to reproduce an individual of this species. Do not modify the returned value.
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<Compound, float> BaseReproductionCost =>
+        cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
+
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
     public Color Colour { get; set; } = new(1, 1, 1);
+
+    /// <summary>
+    ///   The colour value for GUI Components that want to show this species' colour.
+    ///   This value has additional constraints compared to plain Colour,
+    ///   for example ensuring full opacity to avoid transparency, which can cause rendering bugs.
+    /// </summary>
+    public Color GUIColour
+    {
+        get
+        {
+            var colour = Colour;
+            return new Color(colour.r, colour.g, colour.b, 1);
+        }
+    }
 
     /// <summary>
     ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
@@ -51,8 +80,7 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Changing this has no effect as this is set after auto-evo
-    ///     from the per patch populations.
+    ///     Changing this has no effect as this is set after auto-evo from the per patch populations.
     ///   </para>
     /// </remarks>
     public long Population { get; set; } = 1;
@@ -60,13 +88,12 @@ public abstract class Species : ICloneable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   Unique id of this species, used to identity this
+    ///   Unique id of this species, used to identify this
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     In the previous version a string name was used to identify
-    ///     species, but it was just the word species followed by a
-    ///     sequential number, so now this is an actual number.
+    ///     In the previous version a string name was used to identify species, but it was just the word species
+    ///     followed by a sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -104,7 +131,10 @@ public abstract class Species : ICloneable
     ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
     ///   regarding its properties, including <see cref="RepositionToOrigin"/>
     /// </summary>
-    public abstract void OnEdited();
+    public virtual void OnEdited()
+    {
+        cachedBaseReproductionCost = null;
+    }
 
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
@@ -143,17 +173,14 @@ public abstract class Species : ICloneable
     {
         ThrowPopulationChangeErrorIfNotPlayer();
 
-        var oldPopulation = patch.GetSpeciesPopulation(this);
+        var oldPopulation = patch.GetSpeciesGameplayPopulation(this);
         var population = (long)(oldPopulation * coefficient);
         population += constant;
 
         if (population < 0)
             population = 0;
 
-        var populationChange = population - oldPopulation;
-
-        patch.UpdateSpeciesPopulation(this, population);
-        Population += populationChange;
+        patch.UpdateSpeciesGameplayPopulation(this, population);
     }
 
     /// <summary>
@@ -170,6 +197,8 @@ public abstract class Species : ICloneable
             Behaviour[entry.Key] = entry.Value;
 
         Colour = mutation.Colour;
+
+        cachedBaseReproductionCost = null;
 
         // These don't mutate for a species
         // genus;
@@ -244,7 +273,19 @@ public abstract class Species : ICloneable
 
     public override string ToString()
     {
-        return FormattedIdentifier;
+        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
+    }
+
+    public virtual string GetDetailString()
+    {
+        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
+            FormattedNameBbCode,
+            ID,
+            Generation,
+            Population,
+            Colour.ToHtml(),
+            string.Join("\n  ",
+                Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
     }
 
     /// <summary>
@@ -254,8 +295,7 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual int GetVisualHashCode()
     {
-        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607)
-            ^ (Colour.GetHashCode() * 617);
+        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
     }
 
     internal virtual void CopyDataToConvertedSpecies(Species species)
@@ -293,6 +333,27 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    protected virtual Dictionary<Compound, float> CalculateBaseReproductionCost()
+    {
+        var result = new Dictionary<Compound, float>();
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        if (Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA > 0)
+        {
+            result.Add(simulationParameters.GetCompound("ammonia"),
+                Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA);
+        }
+
+        if (Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES > 0)
+        {
+            result.Add(simulationParameters.GetCompound("phosphates"),
+                Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
+        }
+
+        return result;
     }
 
     private void ThrowPopulationChangeErrorIfNotPlayer()

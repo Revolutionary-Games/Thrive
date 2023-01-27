@@ -20,9 +20,13 @@ public class PatchManager : IChildPropertiesLoadCallback
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
+    private DayNightCycle lightCycle;
 
     [JsonProperty]
     private Patch? previousPatch;
+
+    [JsonProperty]
+    private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
     ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
@@ -31,13 +35,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties? currentGame)
+        GameProperties? currentGame, DayNightCycle lightCycle)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
+        this.lightCycle = lightCycle;
         CurrentGame = currentGame;
     }
 
@@ -93,6 +98,10 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
+        // TODO: this is kind of logically the wrong place to make sure the averages are correct, instead whatever
+        // place can change the averages should recompute the averages instead of doing this here
+        UpdateAllPatchAverageLightLevels();
+
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
 
@@ -109,10 +118,44 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
+        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
 
-        compoundCloudSystem.SetBrightnessModifier(currentPatch.BiomeTemplate.CompoundCloudBrightness);
+        UpdateAllPatchLightLevels();
 
         return patchIsChanged;
+    }
+
+    public void UpdatePatchBiome(Patch currentPatch)
+    {
+        // Update environment for the process system
+        processSystem.SetBiome(currentPatch.Biome);
+    }
+
+    public void UpdateAllPatchLightLevels()
+    {
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
+
+        var multiplier = lightCycle.DayLightFraction;
+        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
+
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateCurrentSunlight(lightCycle);
+        }
+    }
+
+    private void UpdateAllPatchAverageLightLevels()
+    {
+        if (!CurrentGame!.GameWorld.WorldSettings.DayNightCycleEnabled)
+            return;
+
+        // TODO: does this need to also happen when entering the editor (after applying auto-evo changes in case those
+        // modify things)? See comment in ApplyChangedPatchSettingsIfNeeded
+        foreach (var patch in CurrentGame!.GameWorld.Map.Patches.Values)
+        {
+            patch.UpdateAverageSunlight(lightCycle);
+        }
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)
@@ -134,13 +177,8 @@ public class PatchManager : IChildPropertiesLoadCallback
                 density *= CurrentGame.GameWorld.WorldSettings.CompoundDensity;
 
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                });
+                () => new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value),
+                    Constants.MICROBE_SPAWN_RADIUS));
         }
     }
 
@@ -160,14 +198,9 @@ public class PatchManager : IChildPropertiesLoadCallback
                 Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
 
             HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(entry.Key.InternalName,
-                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount));
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.CLOUD_SPAWN_RADIUS);
-                    return spawner;
-                });
+                () => new CreatedSpawner(entry.Key.InternalName,
+                    Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount),
+                    Constants.CLOUD_SPAWN_RADIUS));
         }
     }
 
@@ -181,8 +214,9 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in patch.SpeciesInPatch.OrderByDescending(entry => entry.Value))
         {
             var species = entry.Key;
+            var population = entry.Value;
 
-            if (species.Population <= 0)
+            if (population <= 0)
             {
                 GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
@@ -194,20 +228,16 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = Mathf.Max(Mathf.Log(species.Population / 50.0f) * 0.01f, 0.0f);
+            var density = Mathf.Max(
+                Mathf.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
+                Constants.MICROBE_SPAWN_DENSITY_SCALE_FACTOR, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () =>
-                {
-                    var spawner = new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, CurrentGame));
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
-                }, new MicrobeSpawnerComparer());
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
+                    compoundCloudSystem, CurrentGame), Constants.MICROBE_SPAWN_RADIUS),
+                new MicrobeSpawnerComparer());
         }
     }
 
@@ -238,6 +268,11 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         if (existing != null)
         {
+            if (existing.Marked)
+            {
+                GD.PrintErr($"Multiple spawn items want to use the same spawner {existing.Name} ({existing})");
+            }
+
             existing.Marked = true;
 
             if (existing.Spawner.Density != density)
@@ -253,6 +288,11 @@ public class PatchManager : IChildPropertiesLoadCallback
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
             newSpawner ??= createNew();
+
+            // Register this here to not cause problems if the new spawner was created just to compare against the old
+            // object (and the code execution never got here)
+            spawnSystem.AddSpawnType(newSpawner.Spawner, density, newSpawner.WantedRadius);
+
             existingSpawners.Add(newSpawner);
         }
     }
@@ -310,14 +350,22 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private class CreatedSpawner
     {
-        public Spawner Spawner;
-        public string Name;
+        public readonly Spawner Spawner;
+        public readonly string Name;
+
+        /// <summary>
+        ///   The wanted radius that is passed to <see cref="SpawnSystem.AddSpawnType"/> when this is initially
+        ///   registered
+        /// </summary>
+        public readonly int WantedRadius;
+
         public bool Marked = true;
 
-        public CreatedSpawner(string name, Spawner spawner)
+        public CreatedSpawner(string name, Spawner spawner, int wantedRadius)
         {
             Name = name;
             Spawner = spawner;
+            WantedRadius = wantedRadius;
         }
     }
 

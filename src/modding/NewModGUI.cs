@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using Godot;
 using Newtonsoft.Json;
@@ -8,7 +7,7 @@ using Path = System.IO.Path;
 public class NewModGUI : Control
 {
     [Export]
-    public NodePath DialogPath = null!;
+    public NodePath? DialogPath;
 
     [Export]
     public NodePath InternalNamePath = null!;
@@ -61,6 +60,7 @@ public class NewModGUI : Control
     [Export]
     public NodePath ErrorDisplayPath = null!;
 
+#pragma warning disable CA2213
     private CustomDialog dialog = null!;
 
     private LineEdit internalName = null!;
@@ -81,6 +81,7 @@ public class NewModGUI : Control
     private CheckBox assemblyModAutoHarmony = null!;
 
     private Label errorDisplay = null!;
+#pragma warning restore CA2213
 
     private ModInfo? editedInfo;
 
@@ -122,6 +123,36 @@ public class NewModGUI : Control
         ResetForm();
 
         dialog.PopupCenteredShrink();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DialogPath != null)
+            {
+                DialogPath.Dispose();
+                InternalNamePath.Dispose();
+                NamePath.Dispose();
+                AuthorPath.Dispose();
+                VersionPath.Dispose();
+                DescriptionPath.Dispose();
+                LongDescriptionPath.Dispose();
+                IconFilePath.Dispose();
+                InfoUrlPath.Dispose();
+                LicensePath.Dispose();
+                RecommendedThrivePath.Dispose();
+                MinimumThrivePath.Dispose();
+                MaximumThrivePath.Dispose();
+                PckNamePath.Dispose();
+                ModAssemblyPath.Dispose();
+                AssemblyModClassPath.Dispose();
+                AssemblyModAutoHarmonyPath.Dispose();
+                ErrorDisplayPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void Closed()
@@ -278,8 +309,7 @@ public class NewModGUI : Control
         }
         catch (JsonSerializationException e)
         {
-            SetError(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD"), e.Message));
+            SetError(TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD").FormatSafe(e.Message));
             return null;
         }
 
@@ -289,8 +319,7 @@ public class NewModGUI : Control
         }
         catch (Exception e)
         {
-            SetError(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED"), e.Message));
+            SetError(TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED").FormatSafe(e.Message));
             return null;
         }
 
@@ -304,8 +333,7 @@ public class NewModGUI : Control
             ClearError();
         }
 
-        errorDisplay.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("FORM_ERROR_MESSAGE"),
-            message);
+        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()

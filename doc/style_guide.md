@@ -82,15 +82,10 @@ Code style rules
   fail.
 
 - Due to StyleCop not having rules for everything, there are
-  additional rules implemented by `check_formatting.rb` which you
-  should run before committing to make sure there are no issues in
-  your code.
-
-- For faster rebuilding have a look at the scripts in
-  scripts/fast_build. With the `toggle_analysis_mode.rb` script it is
-  possible to turn off the analysis so that small tweaks to the game
-  are faster to test. Next time you run the formatting script the
-  checks should get turned back on.
+  additional rules implemented by a custom script (`dotnet run
+  --project Scripts check`) which you should run before committing to
+  make sure there are no issues in your code. This script can be
+  enabled to run automatically with pre-commit.
 
 - All classes and their public and protected members should be
   documented by XML comments. If the function's purpose is clear from
@@ -270,9 +265,22 @@ Code style rules
 - Avoid globals. Especially in object trees where you can easily
   enough pass the reference along.
 
+- Do not use `string.Format` with a translated format string, as
+  translation mistakes can crash the game in that case. Instead either
+  use `LocalizedString`, `LocalizedStringBuilder`, or
+  `StringUtils.FormatSafe`. Those ways will automatically catch
+  exceptions from broken translations and return the format string
+  un-formatted. `StringUtils` will likely want to be invoked as an
+  extension method on the string (`"example".FormatSafe(...)`). If the
+  format string is not user supplied, normal `string.Format` is allowed,
+  but should be passed `CultureInfo.CurrentCulture` as the first
+  parameter as we want text shown to the user in the user's selected
+  locale.
+
 - Prefer `List` and other concrete containers over `IList` and similar
   interfaces. `IList` should be used only in very special cases that
-  require it.
+  require it. In many cases `IEnumerable` is the preferred type to use
+  to not place constraints on other code unnecessarily.
 
 - Methods should not use `=> style` bodies, properties when they are
   short should use that style bodies.
@@ -294,6 +302,12 @@ Code style rules
   variable for these. Instead use the first letter that a more
   descriptive name would have. For example use "i" for "item", "c" for
   "cells" etc.
+
+- If the word "percentage" is used in a variable name, the valid range
+  of value *must be* 0-100. If instead the valid range is 0-1, then
+  the variable name *may* contain the word "fraction". Variables that
+  are not percentages may not under any circumstances have the word
+  "percentage" in their name.
 
 - Don't add a `Dispose` method to classes that don't need it.
 
@@ -351,12 +365,18 @@ Code style rules
 Godot usage
 -----------
 
+- GUIs need to be usable with the mouse and a controller. See
+  [making_guis.md](making_guis.md).
+
 - Do not use Control margins to try to position elements, that's not good
   Godot usage. Use proper parent container and min size instead.
 
 - For spacing elements use either a spacer (that has a visual
   appearance) or for invisible space use an empty Control with rect
   `minsize` set to the amount of blank you want.
+
+- Don't use text in the GUI with leading or trailing spaces to add
+  padding, see previous bullet instead.
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
@@ -401,11 +421,60 @@ Godot usage
 - To remove all children of a Node use `FreeChildren` or
   `QueueFreeChildren` extension methods.
 
-- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or `Free`
-  instead. Also don't override Dispose in Node derived types, instead
-  use the tree enter and exit callbacks to handle resources that need
-  releasing when removed (unless it is a game entity for which there's
-  a special mechanism, `IEntity` destroyed callbacks)
+- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or
+  `Free` instead. Also don't override Dispose in Node derived types to
+  detect when the Node is removed, instead use the tree enter and exit
+  callbacks to handle resources that need releasing when removed
+  (unless it is a game entity for which there's a special mechanism,
+  `IEntity` destroyed callbacks)
+
+- DO NOT DISPOSE `GD.Load<T>` loaded resources. Any calls with the
+  same resource path will result in the same object instance being
+  returned. So it is not safe to dispose as other users may still be
+  using it.
+
+- For scene attached Nodes, they do not need to be manually freed or
+  disposed. Godot will automatically free them along with the parent.
+
+- `NodePath` variables should be disposed as they aren't part of the
+  scene tree or Godot properties it likely knows about. So disposing
+  those variables will speed up their clearing.
+
+- Automatic code checks will complain about `CA2213` due to the above.
+  For the above cases use `#pragma warning disable CA2213` and
+  `#pragma warning restore CA2213` around the block of variables to
+  suppress the warning. The warning is not globally suppressed as
+  non-Godot objects should still be disposed according to good style
+  so the warning helps in catching these cases. For example many
+  standard C# classes need to be disposed and for those objects, even
+  when they are held by Godot objects, custom dispose methods should
+  be implemented.
+
+- For most Godot-derived types a `Dispose` method just needs to be
+  added to dispose any `NodePath` variables. Note that Godot sometimes
+  creates partly initialized objects (for example autoloads, when
+  loading saves, and objects that Godot editor creates
+  internally). For that reason the `Dispose` method needs to work even
+  with those partly initialized objects. To take this into account the
+  `Dispose` method should check that the `Export` variables are set
+  (the first `NodePath` variable needs to be set nullable) like this:
+
+```c#
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (FirstControlPath != null)
+            {
+                FirstControlPath.Dispose();
+                SecondControlPath.Dispose();
+                ThirdControlPathAndSoOn.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+```
 
 - Avoid using a constructor to setup Godot resources, usually Node
   derived types should mostly do Godot Node related, constructor-like
@@ -466,10 +535,7 @@ Godot usage
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
-  ", variable);`
-
-- Don't use text in the GUI with leading or trailing spaces to add
-  padding, see previous bullet instead.
+  ", variable);` Or use string interpolation.
 
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
@@ -521,6 +587,16 @@ Godot usage
 
 - All images used in the GUI should have mipmaps on in the import
   options.
+
+Other recommended approaches
+----------------------------
+
+- When changing the meaning of a game setting in a major way that is
+  incompatible with previous values, the updated setting should use a
+  different name when saved in JSON to avoid problems. For example:
+  `[JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]`. This way
+  the options menu doesn't need complicated adapting logic as
+  otherwise it would show misleading values to the player.
 
 Other files
 -----------

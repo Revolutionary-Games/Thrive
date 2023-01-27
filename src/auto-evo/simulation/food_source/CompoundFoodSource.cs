@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CompoundFoodSource : FoodSource
+    public class CompoundFoodSource : RandomEncounterFoodSource
     {
         private readonly Patch patch;
         private readonly Compound compound;
@@ -12,8 +12,9 @@
         {
             this.patch = patch;
             this.compound = compound;
-            if (patch.Biome.Compounds.TryGetValue(compound, out var compoundData))
+            if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
             {
+                // TODO: multiply by storing score if average different from max?
                 totalCompound = compoundData.Density * compoundData.Amount;
             }
             else
@@ -22,14 +23,16 @@
             }
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings)
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound, patch);
+            var compoundUseScore = CompoundUseScore(microbeSpecies, compound, patch,
+                simulationCache, worldSettings);
 
             var energyCost = simulationCache
-                .GetEnergyBalanceForSpecies(microbeSpecies, patch)
+                .GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome)
                 .TotalConsumptionStationary;
 
             return compoundUseScore / energyCost;

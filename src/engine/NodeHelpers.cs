@@ -27,15 +27,27 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Detach a node from its parent
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Be very careful not to cause a resource leak if the node is detached but not freed.
+    ///   </para>
+    /// </remarks>
+    public static void Detach(this Node node)
+    {
+        var parent = node.GetParent();
+        parent?.RemoveChild(node);
+    }
+
+    /// <summary>
     ///   Safely queues a Node free. Detaches from parent if attached to not leave disposed objects in scene tree.
     ///   This should always be preferred over QueueFree, except when multiple children should be deleted.
     ///   For that see <see cref="NodeHelpers.QueueFreeChildren"/>
     /// </summary>
     public static void DetachAndQueueFree(this Node node)
     {
-        var parent = node.GetParent();
-        parent?.RemoveChild(node);
-
+        node.Detach();
         node.QueueFree();
     }
 
@@ -123,6 +135,20 @@ public static class NodeHelpers
         var temp = node.GlobalTransform;
         node.ReParent(newParent);
         node.GlobalTransform = temp;
+    }
+
+    /// <summary>
+    ///   Converts a NodePath to a full path
+    /// </summary>
+    /// <param name="node">The node to use to resolve relative paths</param>
+    /// <param name="potentiallyRelativePath">The path to resolve</param>
+    /// <returns>The fully resolved path</returns>
+    public static NodePath ResolveToAbsolutePath(this Node node, NodePath potentiallyRelativePath)
+    {
+        if (potentiallyRelativePath.IsEmpty() || potentiallyRelativePath.IsAbsolute())
+            return potentiallyRelativePath;
+
+        return node.GetNode(potentiallyRelativePath).GetPath();
     }
 
     /// <summary>

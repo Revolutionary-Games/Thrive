@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/MPNoCircleLight.png" type="Texture" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Tiny.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
@@ -71,23 +72,10 @@ margin_bottom = 98.0
 mouse_filter = 2
 custom_constants/separation = 1
 
-[node name="MP" type="Label" parent="VBoxContainer"]
-margin_right = 85.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 1 )
-text = "N_A_MP"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
 [node name="Button" type="Button" parent="VBoxContainer"]
 margin_left = 2.0
-margin_top = 17.0
 margin_right = 82.0
-margin_bottom = 77.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 80, 60 )
 focus_mode = 0
 mouse_filter = 1
@@ -113,9 +101,9 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="VBoxContainer"]
-margin_top = 78.0
+margin_top = 61.0
 margin_right = 85.0
-margin_bottom = 93.0
+margin_bottom = 76.0
 rect_min_size = Vector2( 85, 0 )
 size_flags_horizontal = 4
 custom_constants/line_spacing = -3
@@ -127,5 +115,39 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 77.0
+margin_right = 85.0
+margin_bottom = 92.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 16.0
+margin_right = 31.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="MP" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 31.0
+margin_right = 54.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 4 )
+text = "N_A"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 68.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 14, 0 )
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="OnPressed"]

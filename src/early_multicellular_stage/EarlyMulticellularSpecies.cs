@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
+[UseThriveSerializer]
 public class EarlyMulticellularSpecies : Species
 {
     public EarlyMulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -33,6 +34,8 @@ public class EarlyMulticellularSpecies : Species
 
     public override void OnEdited()
     {
+        base.OnEdited();
+
         RepositionToOrigin();
         UpdateInitialCompounds();
 
@@ -116,6 +119,21 @@ public class EarlyMulticellularSpecies : Species
         foreach (var cellType in CellTypes)
         {
             result.CellTypes.Add((CellType)cellType.Clone());
+        }
+
+        return result;
+    }
+
+    protected override Dictionary<Compound, float> CalculateBaseReproductionCost()
+    {
+        var baseReproductionCost = base.CalculateBaseReproductionCost();
+
+        // Apply the multiplier to the costs for being multicellular
+        var result = new Dictionary<Compound, float>();
+
+        foreach (var entry in baseReproductionCost)
+        {
+            result[entry.Key] = entry.Value * Constants.EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
         }
 
         return result;

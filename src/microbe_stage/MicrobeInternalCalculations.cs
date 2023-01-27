@@ -8,7 +8,7 @@ public static class MicrobeInternalCalculations
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
 
-        var movementOrganelles = organelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>())
+        var movementOrganelles = organelles.Where(o => o.Definition.HasMovementComponent)
             .ToList();
 
         foreach (var organelle in movementOrganelles)
@@ -36,6 +36,12 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
+    public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)
+    {
+        return organelles.Where(
+            o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
+    }
+
     public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity)
     {
@@ -61,7 +67,7 @@ public static class MicrobeInternalCalculations
         {
             microbeMass += organelle.Definition.Mass;
 
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
 
@@ -133,7 +139,7 @@ public static class MicrobeInternalCalculations
         {
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
-            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            if (organelle.Definition.HasCiliaComponent)
             {
                 ++ciliaCount;
 
@@ -195,19 +201,40 @@ public static class MicrobeInternalCalculations
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
 
-        return Mathf.Clamp(absorption + buff, 0.0f, 0.6f);
+        return Mathf.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
 
-    public static float CalculateTotalDigestionEfficiency(IEnumerable<OrganelleTemplate> organelles)
+    /// <summary>
+    ///   Returns the efficiency of all enzymes present in the given organelles.
+    /// </summary>
+    public static Dictionary<Enzyme, float> CalculateDigestionEfficiencies(IEnumerable<OrganelleTemplate> organelles)
     {
-        var multiplier = 0;
+        var enzymes = new Dictionary<Enzyme, int>();
+        var result = new Dictionary<Enzyme, float>();
+
+        var lipase = SimulationParameters.Instance.GetEnzyme("lipase");
+
         foreach (var organelle in organelles)
         {
-            if (organelle.Definition.HasComponentFactory<LysosomeComponentFactory>())
-                ++multiplier;
+            if (!organelle.Definition.HasComponentFactory<LysosomeComponentFactory>())
+                continue;
+
+            var configuration = organelle.Upgrades?.CustomUpgradeData;
+            var upgrades = configuration as LysosomeUpgrades;
+            var enzyme = upgrades == null ? lipase : upgrades.Enzyme;
+
+            enzymes.TryGetValue(enzyme, out int count);
+            enzymes[enzyme] = count + 1;
         }
 
-        return CalculateDigestionEfficiency(multiplier);
+        result[lipase] = CalculateDigestionEfficiency(0);
+
+        foreach (var enzyme in enzymes)
+        {
+            result[enzyme.Key] = CalculateDigestionEfficiency(enzyme.Value);
+        }
+
+        return result;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

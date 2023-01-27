@@ -83,7 +83,6 @@ text = "SELECT_TISSUE_TYPE_FROM_EDITOR"
 align = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource( 2 )]
-visible = true
 theme = ExtResource( 1 )
 HelpCategory = "MicrobeEditor"
 
@@ -91,6 +90,8 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnTabSelected" from="LateMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnOpenMenu" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
+[connection signal="OnOpenStatistics" from="LateMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
+[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]
 [editable path="MicrobeEditorWorld"]

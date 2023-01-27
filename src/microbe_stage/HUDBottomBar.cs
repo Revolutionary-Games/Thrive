@@ -3,20 +3,27 @@
 public class HUDBottomBar : HBoxContainer
 {
     [Export]
-    public NodePath PauseButtonPath = null!;
+    public NodePath? PauseButtonPath;
 
     [Export]
     public NodePath CompoundsButtonPath = null!;
 
     [Export]
+    public NodePath EnvironmentButtonPath = null!;
+
+    [Export]
     public NodePath ProcessPanelButtonPath = null!;
 
+#pragma warning disable CA2213
     private PlayButton pauseButton = null!;
 
     private TextureButton? compoundsButton;
+    private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
+#pragma warning restore CA2213
 
     private bool compoundsPressed = true;
+    private bool environmentPressed = true;
     private bool processPanelPressed;
 
     [Signal]
@@ -32,10 +39,16 @@ public class HUDBottomBar : HBoxContainer
     public delegate void OnCompoundsToggled(bool expanded);
 
     [Signal]
+    public delegate void OnEnvironmentToggled(bool expanded);
+
+    [Signal]
     public delegate void OnSuicidePressed();
 
     [Signal]
     public delegate void OnHelpPressed();
+
+    [Signal]
+    public delegate void OnStatisticsPressed();
 
     public bool Paused
     {
@@ -50,6 +63,16 @@ public class HUDBottomBar : HBoxContainer
         {
             compoundsPressed = value;
             UpdateCompoundButton();
+        }
+    }
+
+    public bool EnvironmentPressed
+    {
+        get => environmentPressed;
+        set
+        {
+            environmentPressed = value;
+            UpdateEnvironmentButton();
         }
     }
 
@@ -68,10 +91,28 @@ public class HUDBottomBar : HBoxContainer
         pauseButton = GetNode<PlayButton>(PauseButtonPath);
 
         compoundsButton = GetNode<TextureButton>(CompoundsButtonPath);
+        environmentButton = GetNode<TextureButton>(EnvironmentButtonPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
         UpdateCompoundButton();
+        UpdateEnvironmentButton();
         UpdateProcessPanelButton();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PauseButtonPath != null)
+            {
+                PauseButtonPath.Dispose();
+                CompoundsButtonPath.Dispose();
+                EnvironmentButtonPath.Dispose();
+                ProcessPanelButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void MenuPressed()
@@ -100,6 +141,13 @@ public class HUDBottomBar : HBoxContainer
         EmitSignal(nameof(OnCompoundsToggled), CompoundsPressed);
     }
 
+    private void EnvironmentButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EnvironmentPressed = !EnvironmentPressed;
+        EmitSignal(nameof(OnEnvironmentToggled), EnvironmentPressed);
+    }
+
     private void SuicideButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -110,6 +158,12 @@ public class HUDBottomBar : HBoxContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnHelpPressed));
+    }
+
+    private void StatisticsButtonPressed()
+    {
+        // No need to play a sound as changing Thriveopedia page does it anyway
+        EmitSignal(nameof(OnStatisticsPressed));
     }
 
     private void PausePressed(bool paused)
@@ -123,6 +177,14 @@ public class HUDBottomBar : HBoxContainer
             return;
 
         compoundsButton.Pressed = CompoundsPressed;
+    }
+
+    private void UpdateEnvironmentButton()
+    {
+        if (environmentButton == null)
+            return;
+
+        environmentButton.Pressed = EnvironmentPressed;
     }
 
     private void UpdateProcessPanelButton()

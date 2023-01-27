@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -25,6 +24,7 @@ public class TweakedColourPicker : ColorPicker
     /// </summary>
     private readonly List<TweakedColourPickerPreset> presets = new();
 
+#pragma warning disable CA2213
     private HSlider sliderROrH = null!;
     private HSlider sliderGOrS = null!;
     private HSlider sliderBOrV = null!;
@@ -37,6 +37,7 @@ public class TweakedColourPicker : ColorPicker
     private HSeparator separator = null!;
     private GridContainer? presetsContainer;
     private TextureButton? addPresetButton;
+#pragma warning restore CA2213
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
@@ -577,9 +578,8 @@ public class TweakedColourPicker : ColorPicker
 
         private void UpdateTooltip()
         {
-            HintTooltip = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"),
-                Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
+            HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP")
+                .FormatSafe(Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
         }
     }
 

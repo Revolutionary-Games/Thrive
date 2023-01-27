@@ -25,9 +25,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
+#pragma warning disable CA2213
     private HybridAudioPlayer engulfAudio = null!;
     private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
+#pragma warning restore CA2213
+
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
@@ -64,6 +67,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private float movementSoundCooldownTimer;
 
+    /// <summary>
+    ///   Whether this microbe is currently being slowed by environmental slime
+    /// </summary>
+    private bool slowedBySlime;
+
     [JsonProperty]
     private int renderPriority = 18;
 
@@ -79,10 +87,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     [JsonProperty]
     private MicrobeAI? ai;
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
     private Listener? listener;
+#pragma warning restore CA2213
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
@@ -204,6 +215,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public int DespawnRadiusSquared { get; set; }
 
     /// <summary>
+    ///   Entity weight for microbes counts all organelles with a scaling factor.
+    /// </summary>
+    [JsonIgnore]
+    public float EntityWeight => organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
+        throw new InvalidOperationException("Organelles not initialised on microbe spawn");
+
+    /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
     ///   (Completely stops the normal functioning of the cell).
     /// </summary>
@@ -301,9 +319,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem, GameProperties currentGame, bool isPlayer)
+    public void Init(CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
+        bool isPlayer)
     {
         this.cloudSystem = cloudSystem;
+        this.spawnSystem = spawnSystem;
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
 
@@ -333,6 +353,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         atp = SimulationParameters.Instance.GetCompound("atp");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
         lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
@@ -388,6 +410,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if (organelles == null)
                 throw new JsonException($"Loaded microbe is missing {nameof(organelles)} property");
 
+            // Fix base reproduction cost if we we were loaded from an older save
+            if (requiredCompoundsForBaseReproduction.Count < 1)
+                SetupRequiredBaseReproductionCompounds();
+
             // Fix the tree of colonies
             if (ColonyChildren != null)
             {
@@ -429,10 +455,20 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 if (engulfable == null)
                     continue;
 
-                AddChild(engulfable.EntityNode);
+                // Some engulfables were already parented to the world, in their case they don't need to be reattached
+                // here since the world node already does that.
+                // TODO: find out why some engulfables in engulfedObject are not parented to the engulfer?
+                if (!engulfable.EntityNode.IsInsideTree())
+                    AddChild(engulfable.EntityNode);
 
                 if (engulfed.Phagosome.Value != null)
-                    engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
+                {
+                    // Defer call to avoid a state where EntityGraphics is still null.
+                    // NOTE: My reasoning to why this can happen is due to some IEngulfables implementing
+                    // EntityGraphics in a way that it's initialized on _Ready and the problem occurs probably when
+                    // that IEngulfable is not yet inside the tree. - Kasterisk
+                    Invoke.Instance.Queue(() => engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value));
+                }
             }
         }
 
@@ -471,6 +507,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+
+        if (!IsForPreviewOnly)
+        {
+            SetupRequiredBaseReproductionCompounds();
+        }
 
         FinishSpeciesSetup();
     }
@@ -606,6 +647,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
 
+        slimeSecretionCooldown -= delta;
+        if (slimeSecretionCooldown < 0)
+            slimeSecretionCooldown = 0;
+
         lastCheckedATPDamage += delta;
 
         if (!Membrane.Dirty)
@@ -631,6 +676,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         HandleHitpointsRegeneration(delta);
+
+        HandleInvulnerabilityDecay(delta);
 
         HandleOsmoregulation(delta);
 
@@ -676,6 +723,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             EmitToxin(queuedToxinToEmit);
             queuedToxinToEmit = null;
         }
+
+        HandleSlimeSecretion(delta);
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
         if (absorptionSkippedEarly)
@@ -1028,6 +1077,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (Colony == null)
             return GetParent();
 
+        // If the colony leader is engulfed, the colony children, when the colony is disbanded, need to access the
+        // stage through the engulfer. Because at that point the colony leader is already re-parented to the engulfer,
+        // so its parent is no longer the stage here.
+        if (Colony.Master.HostileEngulfer.Value != null)
+            return Colony.Master.HostileEngulfer.Value.GetStageAsParent();
+
         return Colony.Master.GetParent();
     }
 
@@ -1057,6 +1112,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             force *= 0.5f;
         }
 
+        if (slowedBySlime)
+            force /= Constants.MUCILAGE_IMPEDE_FACTOR;
+
         if (IsPlayerMicrobe && CheatManager.Speed > 1)
             force *= Mass * CheatManager.Speed;
 
@@ -1071,6 +1129,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return;
 
         // Scale movement by delta time (not by framerate). We aren't Fallout 4
+        // TODO: it seems that at low framerate (below 20 or so) cells get a speed boost for some reason
         ApplyCentralImpulse(movement * delta);
     }
 
@@ -1083,6 +1142,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
         float speed = RotationSpeed;
+
+        if (IsPlayerMicrobe && CheatManager.Speed > 1)
+            speed *= CheatManager.Speed;
+
         var ownRotation = RotationSpeed;
 
         if (Colony != null && ColonyParent == null)

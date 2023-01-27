@@ -11,7 +11,7 @@ using Godot;
 public class SelectionMenuToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath NameLabelPath = null!;
+    public NodePath? NameLabelPath;
 
     [Export]
     public NodePath MpLabelPath = null!;
@@ -36,6 +36,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
+#pragma warning disable CA2213
     private PackedScene modifierInfoScene = null!;
     private Font latoBoldFont = null!;
 
@@ -46,13 +47,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
+#pragma warning restore CA2213
 
     private string? displayName;
     private string? description;
     private string processesDescription = string.Empty;
     private int mpCost;
     private bool requiresNucleus;
-    private float editorCostFactor = 1.0f;
 
     [Export]
     public string DisplayName
@@ -128,24 +129,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float EditorCostFactor
-    {
-        get => editorCostFactor;
-        set
-        {
-            editorCostFactor = value;
-            UpdateMpCost();
-        }
-    }
-
-    [Export]
     public float DisplayDelay { get; set; }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
 
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
-    public bool HideOnMousePress { get; set; }
+    public bool HideOnMouseAction { get; set; }
 
     public Control ToolTipNode => this;
 
@@ -273,8 +263,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             else
             {
                 modifier.ModifierValue = (deltaValue >= 0 ? "+" : string.Empty)
-                    + string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-                        (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
+                    + TranslationServer.Translate("PERCENTAGE_VALUE")
+                        .FormatSafe((deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
             }
 
             if (modifier.Name == "osmoregulationCost")
@@ -286,6 +276,26 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 modifier.AdjustValueColor(deltaValue);
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (NameLabelPath != null)
+            {
+                NameLabelPath.Dispose();
+                MpLabelPath.Dispose();
+                RequiresNucleusPath.Dispose();
+                DescriptionLabelPath.Dispose();
+                ProcessesDescriptionLabelPath.Dispose();
+                ModifierListPath.Dispose();
+                ProcessListPath.Dispose();
+                modifierInfoScene.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateName()
@@ -325,7 +335,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = mpCost.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateRequiresNucleus()

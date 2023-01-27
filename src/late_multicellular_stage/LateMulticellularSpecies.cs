@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
+[UseThriveSerializer]
 public class LateMulticellularSpecies : Species
 {
     public LateMulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -39,6 +40,8 @@ public class LateMulticellularSpecies : Species
 
     public override void OnEdited()
     {
+        base.OnEdited();
+
         RepositionToOrigin();
         UpdateInitialCompounds();
     }

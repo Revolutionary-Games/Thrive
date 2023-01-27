@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -23,7 +22,7 @@ public class SaveList : ScrollContainer
     public bool LoadableItems = true;
 
     [Export]
-    public NodePath LoadingItemPath = null!;
+    public NodePath? LoadingItemPath;
 
     [Export]
     public NodePath NoSavesItemPath = null!;
@@ -55,6 +54,7 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadIncompatiblePrototypeDialogPath = null!;
 
+#pragma warning disable CA2213
     private Control loadingItem = null!;
     private Control noSavesItem = null!;
     private BoxContainer savesList = null!;
@@ -68,6 +68,7 @@ public class SaveList : ScrollContainer
     private ErrorDialog upgradeFailedDialog = null!;
 
     private PackedScene listItemScene = null!;
+#pragma warning restore CA2213
 
     private bool refreshing;
     private bool refreshedAtLeastOnce;
@@ -203,6 +204,29 @@ public class SaveList : ScrollContainer
         EmitSignal(nameof(OnItemsChanged));
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LoadingItemPath != null)
+            {
+                LoadingItemPath.Dispose();
+                NoSavesItemPath.Dispose();
+                SavesListPath.Dispose();
+                DeleteConfirmDialogPath.Dispose();
+                LoadNewerSaveDialogPath.Dispose();
+                LoadOlderSaveDialogPath.Dispose();
+                LoadInvalidSaveDialogPath.Dispose();
+                LoadIncompatibleDialogPath.Dispose();
+                UpgradeSaveDialogPath.Dispose();
+                UpgradeFailedDialogPath.Dispose();
+                LoadIncompatiblePrototypeDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnSubItemSelectedChanged()
     {
         EmitSignal(nameof(OnSelectedChanged));
@@ -215,9 +239,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
-        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("SAVE_DELETE_WARNING"),
-            saveName);
+        deleteConfirmDialog.DialogText = TranslationServer.Translate("SAVE_DELETE_WARNING").FormatSafe(saveName);
         deleteConfirmDialog.PopupCenteredShrink();
     }
 

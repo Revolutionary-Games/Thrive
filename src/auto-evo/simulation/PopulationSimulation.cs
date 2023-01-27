@@ -17,10 +17,16 @@
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        public static void Simulate(SimulationConfiguration parameters)
+        public static void Simulate(SimulationConfiguration parameters, SimulationCache? existingCache)
         {
+            if (existingCache?.MatchesSettings(parameters.WorldSettings) == false)
+                throw new ArgumentException("Given cache doesn't match world settings");
+
+            // This only seems to help a bit, so caching entirely in an auto-evo task by adding the cache parameter
+            // to IRunStep.RunStep might not be worth the effort at all
+            var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
+
             var random = new Random();
-            var cache = new SimulationCache(parameters.WorldSettings);
 
             var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 
@@ -37,7 +43,7 @@
             while (parameters.StepsLeft > 0)
             {
                 RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache,
-                    parameters.AutoEvoConfiguration);
+                    parameters.AutoEvoConfiguration, parameters.WorldSettings);
                 --parameters.StepsLeft;
             }
         }
@@ -61,14 +67,25 @@
             // Copy extra species
             species.AddRange(parameters.ExtraSpecies);
 
-            // Prepare population numbers for each patch for each of the included species
-            foreach (var entry in parameters.OriginalMap.Patches)
+            foreach (var entry in species)
             {
-                var patch = entry.Value;
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (entry == null)
+                    throw new Exception("Species in a simulation run is null");
+            }
 
-                foreach (var currentSpecies in species)
+            // Prepare population numbers for each patch for each of the included species
+            var patches = parameters.OriginalMap.Patches.Values;
+
+            var results = parameters.Results;
+
+            foreach (var currentSpecies in species)
+            {
+                var currentResult = results.GetSpeciesResultForInternalUse(currentSpecies);
+
+                foreach (var patch in patches)
                 {
-                    long currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
+                    long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
 
                     // If this is an extra species, this first takes the
                     // population from excluded species that match its index, if that
@@ -83,7 +100,8 @@
                             {
                                 if (parameters.ExcludedSpecies.Count > i)
                                 {
-                                    currentPopulation = patch.GetSpeciesPopulation(parameters.ExcludedSpecies[i]);
+                                    currentPopulation =
+                                        patch.GetSpeciesSimulationPopulation(parameters.ExcludedSpecies[i]);
                                     useGlobal = false;
                                 }
 
@@ -113,15 +131,8 @@
 
                     // All species even ones not in a patch need to have their population numbers added
                     // as the simulation expects to be able to get the populations
-                    parameters.Results.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation);
+                    currentResult.NewPopulationInPatches[patch] = currentPopulation;
                 }
-            }
-
-            foreach (var entry in species)
-            {
-                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
-                if (entry == null)
-                    throw new Exception("Species in a simulation run is null");
             }
 
             return species;
@@ -129,14 +140,14 @@
 
         private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
             IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
-            AutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings)
         {
             foreach (var entry in patchesToSimulate)
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters, entry.Value,
                     species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0),
-                    random, cache, autoEvoConfiguration);
+                    random, cache, autoEvoConfiguration, worldSettings);
             }
         }
 
@@ -145,7 +156,7 @@
         /// </summary>
         private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
             IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
-            AutoEvoConfiguration autoEvoConfiguration)
+            IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings)
         {
             _ = random;
 
@@ -183,7 +194,7 @@
 
             foreach (var currentSpecies in species)
             {
-                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies));
+                niches.Add(new HeterotrophicFoodSource(patch, currentSpecies, cache));
             }
 
             foreach (var niche in niches)
@@ -203,11 +214,13 @@
                         // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
                         // by exaggerating fitness differences
                         thisSpeciesFitness =
-                            Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache), 2.5f), 0.0f);
+                            Mathf.Max(Mathf.Pow(niche.FitnessScore(
+                                currentSpecies, cache, worldSettings), 2.5f), 0.0f);
                     }
                     else
                     {
-                        thisSpeciesFitness = Mathf.Max(niche.FitnessScore(currentSpecies, cache), 0.0f);
+                        thisSpeciesFitness = Mathf.Max(
+                            niche.FitnessScore(currentSpecies, cache, worldSettings), 0.0f);
                     }
 
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
@@ -241,8 +254,9 @@
 
             foreach (var currentSpecies in species)
             {
-                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
-                var individualCost = energyBalanceInfo.TotalConsumptionStationary;
+                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch.Biome);
+                var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+                    * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]

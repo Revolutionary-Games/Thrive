@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -19,6 +20,9 @@ public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
+
+    [JsonProperty]
+    public Dictionary<int, GenerationRecord> GenerationHistory = new();
 
     [JsonProperty]
     private uint speciesIdCounter;
@@ -47,10 +51,30 @@ public class GameWorld : ISaveLoadable
     ///   Creates a new world
     /// </summary>
     /// <param name="settings">Settings to generate the world with</param>
-    public GameWorld(WorldGenerationSettings settings) : this()
+    /// <param name="startingSpecies">Starting species for the player</param>
+    public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
     {
         WorldSettings = settings;
-        PlayerSpecies = CreatePlayerSpecies();
+
+        if (startingSpecies == null)
+        {
+            PlayerSpecies = CreatePlayerSpecies();
+        }
+        else
+        {
+            // Species generation are forced to be 1 (the default value) in case it is different
+            // when in a fossilisation file.
+            startingSpecies.Generation = 1;
+
+            startingSpecies.BecomePlayerSpecies();
+            startingSpecies.OnEdited();
+
+            // Need to update the species ID in case it was different in a previous game
+            startingSpecies.OnBecomePartOfWorld(++speciesIdCounter);
+            worldSpecies[startingSpecies.ID] = startingSpecies;
+
+            PlayerSpecies = startingSpecies;
+        }
 
         if (!PlayerSpecies.PlayerSpecies)
             throw new Exception("PlayerSpecies flag for being player species is not set");
@@ -62,11 +86,18 @@ public class GameWorld : ISaveLoadable
 
         // Apply initial populations
         Map.UpdateGlobalPopulations();
+
+        // Create the initial generation by adding only the player species
+        var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
+        GenerationHistory.Add(0, new GenerationRecord(
+            0,
+            new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
     }
 
     /// <summary>
     ///   Blank world creation, only for loading saves
     /// </summary>
+    [JsonConstructor]
     public GameWorld()
     {
         // TODO: when loading a save this shouldn't be recreated as otherwise that happens all the time
@@ -80,6 +111,9 @@ public class GameWorld : ISaveLoadable
 
     [JsonProperty]
     public Species PlayerSpecies { get; private set; } = null!;
+
+    [JsonIgnore]
+    public IReadOnlyDictionary<uint, Species> Species => worldSpecies;
 
     [JsonProperty]
     public PatchMap Map { get; private set; } = null!;
@@ -148,6 +182,23 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
+    ///   Adds data for the current generation to a list of generation records.
+    /// </summary>
+    public void AddCurrentGenerationToHistory()
+    {
+        if (autoEvo?.Results == null)
+        {
+            GD.PrintErr("Auto-evo run not finished for adding to generation history");
+            return;
+        }
+
+        var generation = PlayerSpecies.Generation - 1;
+        GenerationHistory.Add(generation, new GenerationRecord(
+            TotalPassedTime,
+            autoEvo.Results.GetSpeciesRecords()));
+    }
+
+    /// <summary>
     ///   Creates an empty species object
     /// </summary>
     public MicrobeSpecies NewMicrobeSpecies(string genus, string epithet)
@@ -188,8 +239,13 @@ public class GameWorld : ISaveLoadable
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
-                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK), population);
+                var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
+
+                GenerationHistory[0].AllSpeciesData
+                    .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
+
+                entry.Value.AddSpecies(randomSpecies, population);
             }
         }
     }
@@ -231,7 +287,6 @@ public class GameWorld : ISaveLoadable
 
         species.OnBecomePartOfWorld(++speciesIdCounter);
         worldSpecies[species.ID] = species;
-        GD.Print("New species has become part of the world: ", species.FormattedIdentifier);
     }
 
     /// <summary>
@@ -293,11 +348,16 @@ public class GameWorld : ISaveLoadable
     public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
         bool immediate = false, float coefficient = 1)
     {
-        if (constant == 0 || coefficient == 0)
+        // It sort of makes sense to allow 0 coefficient to force population to 0, that's why this check is here
+        // now if this effect would do nothing, then it is skipped
+        if (constant == 0 && Math.Abs(coefficient - 1) < MathUtils.EPSILON)
             return;
 
         if (species == null)
             throw new ArgumentException("species is null");
+
+        if (coefficient < 0)
+            throw new ArgumentException("coefficient may not be negative");
 
         if (string.IsNullOrEmpty(description))
             throw new ArgumentException("May not be empty or null", nameof(description));
@@ -308,7 +368,9 @@ public class GameWorld : ISaveLoadable
             if (!species.PlayerSpecies)
                 throw new ArgumentException("immediate effect is only for player dying");
 
-            GD.Print("Applying immediate population effect (should only be used for the player dying)");
+            GD.Print(
+                $"Applying immediate population effect to {species.FormattedIdentifier}, constant: " +
+                $"{constant}, coefficient: {coefficient}, reason: {description}");
 
             species.ApplyImmediatePopulationChange(constant, coefficient, patch);
         }
@@ -539,6 +601,38 @@ public class GameWorld : ISaveLoadable
     {
         if (Map == null || PlayerSpecies == null)
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
+    }
+
+    public void BuildEvolutionaryTree(EvolutionaryTree tree)
+    {
+        // Building the tree relies on the existence of a full history of generations stored in the current game. Since
+        // we only started adding these in 0.6.0, it's impossible to build a tree in older saves.
+        // TODO: avoid an ugly try/catch block by actually checking the original save version?
+        if (GenerationHistory.Count < 1)
+        {
+            throw new InvalidOperationException("Generation history is empty");
+        }
+
+        tree.Clear();
+
+        foreach (var generation in GenerationHistory)
+        {
+            var record = generation.Value;
+
+            if (generation.Key == 0)
+            {
+                var initialSpecies = GenerationHistory[0].AllSpeciesData.Values.Select(s => s.Species).WhereNotNull();
+                tree.Init(initialSpecies, PlayerSpecies.ID, PlayerSpecies.FormattedName);
+                continue;
+            }
+
+            // Recover all omitted species data for this generation so we can fill the tree
+            var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
+                s => s.Key,
+                s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, GenerationHistory));
+
+            tree.Update(updatedSpeciesData, generation.Key, record.TimeElapsed, PlayerSpecies.ID);
+        }
     }
 
     private void CreateRunIfMissing()

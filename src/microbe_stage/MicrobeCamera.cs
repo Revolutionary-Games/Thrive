@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -10,15 +11,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     ///   Object the camera positions itself over
     /// </summary>
     public Spatial? ObjectToFollow;
-
-    /// <summary>
-    ///   Background plane that is moved farther away from the camera when zooming out
-    /// </summary>
-    [JsonIgnore]
-    public Spatial? BackgroundPlane;
-
-    [JsonIgnore]
-    public Particles? BackgroundParticles;
 
     /// <summary>
     ///   How fast the camera zooming is
@@ -56,10 +48,25 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
-    private ShaderMaterial materialToUpdate = null!;
+#pragma warning disable CA2213
+
+    /// <summary>
+    ///   Background plane that is moved farther away from the camera when zooming out
+    /// </summary>
+    [JsonIgnore]
+    private Spatial? backgroundPlane;
+
+    [JsonIgnore]
+    private Particles? backgroundParticles;
+#pragma warning restore CA2213
+
+    private ShaderMaterial? materialToUpdate;
 
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
+
+    [JsonProperty]
+    private float lightLevel = 1.0f;
 
     [Signal]
     public delegate void OnZoomChanged(float zoom);
@@ -78,6 +85,24 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     ///   </para>
     /// </remarks>
     public bool FramerateAdjustZoomSpeed { get; set; }
+
+    /// <summary>
+    ///   Current relative light level for the camera (between 0 and 1).
+    /// </summary>
+    [JsonIgnore]
+    public float LightLevel
+    {
+        get => lightLevel;
+        set
+        {
+            if (Math.Abs(lightLevel - value) < MathUtils.EPSILON)
+                return;
+
+            lightLevel = value;
+
+            UpdateLightLevel();
+        }
+    }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -115,6 +140,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             ResetHeight();
 
         UpdateBackgroundVisibility();
+        UpdateLightLevel();
     }
 
     public override void _EnterTree()
@@ -141,7 +167,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         NodeReferencesResolved = true;
 
         if (HasNode("BackgroundPlane"))
-            BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
+            backgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
     public void ResetHeight()
@@ -218,11 +244,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             Translation = target;
         }
 
-        if (BackgroundPlane != null)
+        if (backgroundPlane != null)
         {
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
-            BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
+            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
                 target, InterpolateZoomSpeed);
         }
 
@@ -236,25 +262,28 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         // TODO: skip duplicate background changes
 
+        if (materialToUpdate == null)
+            throw new InvalidOperationException("Camera not initialized yet");
+
         for (int i = 0; i < 4; ++i)
         {
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
 
-        BackgroundParticles?.DetachAndQueueFree();
+        backgroundParticles?.DetachAndQueueFree();
 
-        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
-        BackgroundParticles.Rotation = Rotation;
-        BackgroundParticles.LocalCoords = false;
+        backgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+        backgroundParticles.Rotation = Rotation;
+        backgroundParticles.LocalCoords = false;
 
-        AddChild(BackgroundParticles);
+        AddChild(backgroundParticles);
 
         OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
     private void OnDisplayBackgroundParticlesChanged(bool displayed)
     {
-        if (BackgroundParticles == null)
+        if (backgroundParticles == null)
         {
             GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
             return;
@@ -264,15 +293,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         if (!Current)
             displayed = false;
 
-        BackgroundParticles.Emitting = displayed;
+        backgroundParticles.Emitting = displayed;
 
         if (displayed)
         {
-            BackgroundParticles.Show();
+            backgroundParticles.Show();
         }
         else
         {
-            BackgroundParticles.Hide();
+            backgroundParticles.Hide();
         }
     }
 
@@ -303,10 +332,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private void UpdateBackgroundVisibility()
     {
-        if (BackgroundPlane != null)
-            BackgroundPlane.Visible = Current;
+        if (backgroundPlane != null)
+            backgroundPlane.Visible = Current;
 
-        if (BackgroundParticles != null)
+        if (backgroundParticles != null)
             OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+    }
+
+    private void UpdateLightLevel()
+    {
+        materialToUpdate?.SetShaderParam("lightLevel", LightLevel);
     }
 }

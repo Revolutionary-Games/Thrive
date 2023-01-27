@@ -16,7 +16,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonProperty]
     private List<CompoundCloudPlane> clouds = new();
 
+#pragma warning disable CA2213
     private PackedScene cloudScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   This is the point in the center of the middle cloud. This is
@@ -172,6 +174,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
     public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
+        if (fraction < 0.0f)
+            throw new ArgumentException("Fraction to take can't be negative");
+
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
@@ -211,13 +216,13 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Returns the total amount of all compounds at position
     /// </summary>
-    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result)
+    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
     {
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
             {
-                cloud.GetCompoundsAt(x, y, result);
+                cloud.GetCompoundsAt(x, y, result, onlyAbsorbable);
             }
         }
     }

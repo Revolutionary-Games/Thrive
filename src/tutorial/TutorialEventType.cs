@@ -14,6 +14,11 @@ public enum TutorialEventType
     MicrobePlayerOrientation,
 
     /// <summary>
+    ///   Player movement in the microbe stage, args is <see cref="MicrobeMovementEventArgs"/>
+    /// </summary>
+    MicrobePlayerMovement,
+
+    /// <summary>
     ///   There are tutorial relevant compounds near the player, args is <see cref="EntityPositionEventArgs"/>
     /// </summary>
     MicrobeCompoundsNearPlayer,
@@ -27,6 +32,11 @@ public enum TutorialEventType
     ///   Reports the player compound amounts while they are alive, args is <see cref="CompoundBagEventArgs"/>
     /// </summary>
     MicrobePlayerCompounds,
+
+    /// <summary>
+    ///   Reports the player colony status while they are alive, args is <see cref="MicrobeColonyEventArgs"/>
+    /// </summary>
+    MicrobePlayerColony,
 
     /// <summary>
     ///   Reports total compounds the player has absorbed, args is <see cref="CompoundEventArgs"/>
@@ -67,6 +77,11 @@ public enum TutorialEventType
     ///   Player entered the microbe editor
     /// </summary>
     EnteredMicrobeEditor,
+
+    /// <summary>
+    ///   Player entered the early multicellular stage
+    /// </summary>
+    EnteredEarlyMulticellularStage,
 
     /// <summary>
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>
@@ -112,4 +127,9 @@ public enum TutorialEventType
     ///   Player opened the auto-evo prediction details
     /// </summary>
     MicrobeEditorAutoEvoPredictionOpened,
+
+    /// <summary>
+    ///   Player enters a patch with more than 0 sunlight at noon
+    /// </summary>
+    MicrobePlayerEnterSunlightPatch,
 }

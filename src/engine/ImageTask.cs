@@ -6,10 +6,14 @@ using Godot;
 /// </summary>
 public class ImageTask
 {
-    private ImageTexture? finalImage;
+    private readonly bool storePlainImage;
 
-    public ImageTask(IPhotographable photographable)
+    private ImageTexture? finalImage;
+    private Image? plainImage;
+
+    public ImageTask(IPhotographable photographable, bool storePlainImage = false)
     {
+        this.storePlainImage = storePlainImage;
         Photographable = photographable;
     }
 
@@ -23,12 +27,28 @@ public class ImageTask
         private set => finalImage = value;
     }
 
-    public void OnFinished(ImageTexture texture)
+    /// <summary>
+    ///   Raw <see cref="Image"/> version of <see cref="FinalImage"/>, only stored if specified in the constructor
+    /// </summary>
+    /// <exception cref="InvalidOperationException">If not ready or configured not</exception>
+    public Image PlainImage
+    {
+        get => plainImage ?? throw new InvalidOperationException("Not finished yet or not configured to be saved");
+        private set => plainImage = value;
+    }
+
+    public void OnFinished(ImageTexture texture, Image rawImage)
     {
         if (Finished)
             throw new InvalidOperationException("Already finished");
 
-        Finished = true;
         FinalImage = texture;
+
+        if (storePlainImage)
+        {
+            PlainImage = rawImage;
+        }
+
+        Finished = true;
     }
 }

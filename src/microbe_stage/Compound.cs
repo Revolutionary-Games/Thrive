@@ -20,13 +20,28 @@ public class Compound : IRegistryType
 
     public bool IsCloud;
 
+    /// <summary>
+    ///   Scales the retention rate of this compound as a cloud in the environment
+    /// </summary>
+    public float DecayRate = 1.0f;
+
+    /// <summary>
+    ///   Whether this compound is an agent, i.e. synthesized for cell-to-cell interaction
+    /// </summary>
+    public bool IsAgent;
+
     public string IconPath = null!;
 
     /// <summary>
-    ///   When this is true the compound is always considered to be
-    ///   useful and is not dumped.
+    ///   When this is true the compound is always considered to be useful and is not dumped.
     /// </summary>
     public bool IsAlwaysUseful;
+
+    /// <summary>
+    ///   Allows absorbing this compound from environmental clouds (also needs <see cref="IsCloud"/> to be true).
+    ///   If false microbes can't absorb clouds of this compound type.
+    /// </summary>
+    public bool IsAbsorbable = true;
 
     public bool IsEnvironmental;
 
@@ -95,6 +110,11 @@ public class Compound : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Volume should be > 0");
+        }
+
+        if (DecayRate > 1.0f)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Decay rate can't be > 1");
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);

@@ -7,7 +7,10 @@ using Godot;
 public class TimelineTab : PanelContainer
 {
     [Export]
-    public NodePath EventsContainerPath = null!;
+    public NodePath? GlobalEventsContainerPath;
+
+    [Export]
+    public NodePath LocalEventsContainerPath = null!;
 
     [Export]
     public NodePath ScrollContainerPath = null!;
@@ -18,21 +21,33 @@ public class TimelineTab : PanelContainer
     [Export]
     public NodePath GlobalFilterButtonPath = null!;
 
-    private readonly PackedScene customRichTextLabelScene = GD.Load<PackedScene>(
-        "res://src/gui_common/CustomRichTextLabel.tscn");
+#pragma warning disable CA2213
+    private readonly PackedScene customRichTextLabelScene;
 
-    private readonly StyleBoxTexture eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
-        "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
+    private readonly StyleBoxTexture eventHighlightStyleBox;
 
-    private VBoxContainer eventsContainer = null!;
+    private VBoxContainer globalEventsContainer = null!;
+    private VBoxContainer localEventsContainer = null!;
     private ScrollContainer scrollContainer = null!;
     private Button localFilterButton = null!;
     private Button globalFilterButton = null!;
+#pragma warning restore CA2213
+
+    private double lastUpdateGameTime = -1;
 
     private Filters eventFilter = Filters.Local;
 
     private List<TimelineSection>? cachedLocalTimelineElements;
     private List<TimelineSection>? cachedGlobalTimelineElements;
+
+    public TimelineTab()
+    {
+        customRichTextLabelScene = GD.Load<PackedScene>(
+            "res://src/gui_common/CustomRichTextLabel.tscn");
+
+        eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
+            "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
+    }
 
     public enum Filters
     {
@@ -62,7 +77,8 @@ public class TimelineTab : PanelContainer
 
     public override void _Ready()
     {
-        eventsContainer = GetNode<VBoxContainer>(EventsContainerPath);
+        globalEventsContainer = GetNode<VBoxContainer>(GlobalEventsContainerPath);
+        localEventsContainer = GetNode<VBoxContainer>(LocalEventsContainerPath);
         scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
         localFilterButton = GetNode<Button>(LocalFilterButtonPath);
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
@@ -71,21 +87,31 @@ public class TimelineTab : PanelContainer
     public void UpdateTimeline(IEditorReportData editor, Patch? selectedPatch, Patch? patch = null)
     {
         if (editor.CurrentGame == null)
-            throw new ArgumentException($"Editor must be initialized ({nameof(IEditorReportData.CurrentGame)} is null");
-
-        eventsContainer.FreeChildren();
-
-        cachedGlobalTimelineElements = new List<TimelineSection>();
-        cachedLocalTimelineElements = new List<TimelineSection>();
-
-        foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
         {
-            var section = new TimelineSection(
-                customRichTextLabelScene, eventHighlightStyleBox, (entry.Key, entry.Value));
-
-            cachedGlobalTimelineElements.Add(section);
-            eventsContainer.AddChild(section);
+            throw new ArgumentException(
+                $"Editor must be initialized ({nameof(IEditorReportData.CurrentGame)} is null)");
         }
+
+        // If global time changes, global events need to be updated
+        if (Math.Abs(lastUpdateGameTime - editor.CurrentGame.GameWorld.TotalPassedTime) > MathUtils.EPSILON)
+        {
+            lastUpdateGameTime = editor.CurrentGame.GameWorld.TotalPassedTime;
+
+            globalEventsContainer.FreeChildren();
+            cachedGlobalTimelineElements = new List<TimelineSection>();
+
+            foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
+            {
+                var section = new TimelineSection(
+                    customRichTextLabelScene, eventHighlightStyleBox, (entry.Key, entry.Value));
+
+                cachedGlobalTimelineElements.Add(section);
+                globalEventsContainer.AddChild(section);
+            }
+        }
+
+        localEventsContainer.FreeChildren();
+        cachedLocalTimelineElements = new List<TimelineSection>();
 
         var targetPatch = patch ?? selectedPatch ?? editor.CurrentPatch;
 
@@ -96,7 +122,7 @@ public class TimelineTab : PanelContainer
                 customRichTextLabelScene, eventHighlightStyleBox, (snapshot.TimePeriod, snapshot.EventsLog));
 
             cachedLocalTimelineElements.Add(section);
-            eventsContainer.AddChild(section);
+            localEventsContainer.AddChild(section);
         }
 
         ApplyEventsFilter();
@@ -110,12 +136,12 @@ public class TimelineTab : PanelContainer
         if (eventFilter == Filters.Global)
         {
             var last = cachedGlobalTimelineElements?.LastOrDefault();
-            anchorRect = last != null ? last.HeaderGlobalRect : new Rect2(Vector2.Zero, Vector2.Zero);
+            anchorRect = last?.HeaderGlobalRect ?? new Rect2(Vector2.Zero, Vector2.Zero);
         }
         else if (eventFilter == Filters.Local)
         {
             var last = cachedLocalTimelineElements?.LastOrDefault();
-            anchorRect = last != null ? last.HeaderGlobalRect : new Rect2(Vector2.Zero, Vector2.Zero);
+            anchorRect = last?.HeaderGlobalRect ?? new Rect2(Vector2.Zero, Vector2.Zero);
         }
 
         var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
@@ -124,18 +150,35 @@ public class TimelineTab : PanelContainer
         scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.y);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (GlobalEventsContainerPath != null)
+            {
+                GlobalEventsContainerPath.Dispose();
+                LocalEventsContainerPath.Dispose();
+                ScrollContainerPath.Dispose();
+                LocalFilterButtonPath.Dispose();
+                GlobalFilterButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void ApplyEventsFilter()
     {
         switch (EventFilter)
         {
             case Filters.Global:
-                cachedGlobalTimelineElements?.ForEach(e => e.Show());
-                cachedLocalTimelineElements?.ForEach(e => e.Hide());
+                localEventsContainer.Hide();
+                globalEventsContainer.Show();
                 globalFilterButton.Pressed = true;
                 break;
             case Filters.Local:
-                cachedGlobalTimelineElements?.ForEach(e => e.Hide());
-                cachedLocalTimelineElements?.ForEach(e => e.Show());
+                globalEventsContainer.Hide();
+                localEventsContainer.Show();
                 localFilterButton.Pressed = true;
                 break;
             default:
@@ -162,7 +205,9 @@ public class TimelineTab : PanelContainer
 
         private readonly (double TimePeriod, List<GameEventDescription> Events) data;
 
+#pragma warning disable CA2213
         private Control? headerContainer;
+#pragma warning restore CA2213
 
         public TimelineSection(PackedScene customRichTextLabelScene, StyleBoxTexture eventHighlightStyleBox,
             (double TimePeriod, List<GameEventDescription> Events) data)

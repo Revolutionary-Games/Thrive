@@ -131,8 +131,13 @@ public partial class Microbe
         }
     }
 
-    private void HandleMulticellularReproduction()
+    private void HandleMulticellularReproduction(float elapsedSinceLastUpdate)
     {
+        compoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
+
+        var (remainingAllowedCompoundUse, remainingFreeCompounds) =
+            CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
+
         if (compoundsNeededForNextCell == null)
         {
             // Regrow lost cells
@@ -162,6 +167,15 @@ public partial class Microbe
                 }
                 else
                 {
+                    // Apply the base reproduction cost at this point after growing the full layout
+                    if (!ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                            compoundsUsedForMulticellularGrowth))
+                    {
+                        // Not ready yet for budding
+                        return;
+                    }
+
+                    // Budding cost is after the base reproduction cost has been overcome
                     compoundsNeededForNextCell = GetCompoundsNeededForNextCell();
                 }
 
@@ -173,27 +187,41 @@ public partial class Microbe
 
         bool stillNeedsSomething = false;
 
-        compoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
-
         // Consume some compounds for the next cell in the layout
         // Similar logic for "growing" more cells than in PlacedOrganelle growth
-        foreach (var entry in compoundsNeededForNextCell)
+        foreach (var entry in consumeReproductionCompoundsReverse ?
+                     compoundsNeededForNextCell.Reverse() :
+                     compoundsNeededForNextCell)
         {
             var amountNeeded = entry.Value;
+
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+            if (remainingFreeCompounds > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+
+                // As we loop just once we don't need to update the free compounds or allowed use compounds variables
+            }
 
             stillNeedsSomething = true;
 
             var amountAvailable = Compounds.GetCompoundAmount(entry.Key) -
                 Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
 
-            if (amountAvailable <= MathUtils.EPSILON)
-                continue;
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
 
-            // We can take some
-            var amountToTake = Mathf.Min(amountNeeded, amountAvailable);
+                usedAmount += Compounds.TakeCompound(entry.Key, amountToTake);
+            }
 
-            var amount = Compounds.TakeCompound(entry.Key, amountToTake);
-            var left = amountNeeded - amount;
+            var left = amountNeeded - usedAmount;
 
             if (left < 0.0001f)
             {
@@ -206,7 +234,7 @@ public partial class Microbe
 
             compoundsUsedForMulticellularGrowth.TryGetValue(entry.Key, out float alreadyUsed);
 
-            compoundsUsedForMulticellularGrowth[entry.Key] = alreadyUsed + amount;
+            compoundsUsedForMulticellularGrowth[entry.Key] = alreadyUsed + usedAmount;
 
             // As we modify the list, we are content just consuming one type of compound per frame
             break;
@@ -266,10 +294,10 @@ public partial class Microbe
     private Microbe CreateMulticellularColonyMemberCell(CellType cellType)
     {
         var newCell = SpawnHelpers.SpawnMicrobe(Species, Translation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame, cellType);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame, cellType);
 
         // Make it despawn like normal (if our colony is accidentally somehow disbanded)
-        SpawnSystem.AddEntityToTrack(newCell);
+        spawnSystem!.AddEntityToTrack(newCell);
 
         // Remove the compounds from the created cell
         newCell.Compounds.ClearCompounds();
@@ -379,6 +407,8 @@ public partial class Microbe
             {
                 totalNeededForMulticellularGrowth.Merge(cell.CellType.CalculateTotalComposition());
             }
+
+            totalNeededForMulticellularGrowth.Merge(Species.BaseReproductionCost);
         }
 
         return totalNeededForMulticellularGrowth;

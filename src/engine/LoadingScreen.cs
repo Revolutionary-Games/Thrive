@@ -7,7 +7,7 @@ using Godot;
 public class LoadingScreen : Control
 {
     [Export]
-    public NodePath ArtworkPath = null!;
+    public NodePath? ArtworkPath;
 
     [Export]
     public NodePath ArtDescriptionPath = null!;
@@ -22,7 +22,7 @@ public class LoadingScreen : Control
     public NodePath TipLabelPath = null!;
 
     [Export]
-    public NodePath RandomizeTipTimerPath = null!;
+    public NodePath RandomizeTimerPath = null!;
 
     [Export]
     public NodePath SpinnerPath = null!;
@@ -37,16 +37,18 @@ public class LoadingScreen : Control
 
     private readonly Random random = new();
 
-    private TextureRect artworkRect = null!;
+#pragma warning disable CA2213
+    private CrossFadableTextureRect artworkRect = null!;
     private Label? artDescriptionLabel;
     private Label? loadingMessageLabel;
     private Label? loadingDescriptionLabel;
     private CustomRichTextLabel? tipLabel;
     private Control spinner = null!;
 
-    private bool wasVisible;
+    private Timer randomizeTimer = null!;
+#pragma warning restore CA2213
 
-    private Timer randomizeTipTimer = null!;
+    private bool wasVisible;
 
     private string? loadingMessage;
     private string? tip;
@@ -54,7 +56,6 @@ public class LoadingScreen : Control
     private string? artDescription;
 
     private float totalElapsed;
-    private MainGameState currentlyLoadingGameState = MainGameState.Invalid;
 
     private LoadingScreen()
     {
@@ -115,27 +116,23 @@ public class LoadingScreen : Control
         }
     }
 
-    private MainGameState CurrentlyLoadingGameState
-    {
-        get => currentlyLoadingGameState;
-        set
-        {
-            if (currentlyLoadingGameState == value)
-                return;
+    /// <summary>
+    ///   The logical size of the Godot rendering area. This is needed by <see cref="InputManager"/> but as that is not
+    ///   a control, it cannot get this info by itself, so this property needs to be in some suitable autoload even if
+    ///   this doesn't fully make sense here.
+    /// </summary>
+    public Vector2 LogicalDrawingAreaSize => GetViewportRect().Size;
 
-            currentlyLoadingGameState = value;
-            RandomizeTip();
-        }
-    }
+    private MainGameState CurrentlyLoadingGameState { get; set; } = MainGameState.Invalid;
 
     public override void _Ready()
     {
-        artworkRect = GetNode<TextureRect>(ArtworkPath);
+        artworkRect = GetNode<CrossFadableTextureRect>(ArtworkPath);
         artDescriptionLabel = GetNode<Label>(ArtDescriptionPath);
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
         tipLabel = GetNode<CustomRichTextLabel>(TipLabelPath);
-        randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
+        randomizeTimer = GetNode<Timer>(RandomizeTimerPath);
         spinner = GetNode<Control>(SpinnerPath);
 
         UpdateMessage();
@@ -162,6 +159,12 @@ public class LoadingScreen : Control
         }
     }
 
+    public void RandomizeContent()
+    {
+        RandomizeTip();
+        RandomizeArt();
+    }
+
     public void RandomizeTip()
     {
         if (CurrentlyLoadingGameState == MainGameState.Invalid)
@@ -183,7 +186,7 @@ public class LoadingScreen : Control
         var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
         var artwork = gallery.AssetCategories[category].Assets.Random(random);
 
-        artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);
+        artworkRect.Image = GD.Load<Texture>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
     }
 
@@ -199,7 +202,7 @@ public class LoadingScreen : Control
             if (wasVisible)
             {
                 wasVisible = false;
-                randomizeTipTimer.Stop();
+                randomizeTimer.Stop();
             }
 
             return;
@@ -211,14 +214,38 @@ public class LoadingScreen : Control
         spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ArtworkPath != null)
+            {
+                ArtworkPath.Dispose();
+                ArtDescriptionPath.Dispose();
+                LoadingMessagePath.Dispose();
+                LoadingDescriptionPath.Dispose();
+                TipLabelPath.Dispose();
+                RandomizeTimerPath.Dispose();
+                SpinnerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnBecomeVisible()
     {
         wasVisible = true;
         totalElapsed = 0;
 
-        RandomizeArt();
+        RandomizeContent();
 
-        randomizeTipTimer.Start();
+        randomizeTimer.Start();
+    }
+
+    private void OnBecomeHidden()
+    {
+        artworkRect.Texture = null;
     }
 
     private void UpdateMessage()

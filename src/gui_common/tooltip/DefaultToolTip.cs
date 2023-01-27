@@ -6,12 +6,15 @@
 public class DefaultToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath DescriptionLabelPath = null!;
+    public NodePath? DescriptionLabelPath;
+
+#pragma warning disable CA2213
 
     /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label? descriptionLabel;
+#pragma warning restore CA2213
 
     private string? description;
 
@@ -45,7 +48,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
     [Export]
-    public bool HideOnMousePress { get; set; } = true;
+    public bool HideOnMouseAction { get; set; } = true;
 
     public Control ToolTipNode => this;
 
@@ -57,6 +60,16 @@ public class DefaultToolTip : Control, ICustomToolTip
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
 
         UpdateDescription();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            DescriptionLabelPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateDescription()

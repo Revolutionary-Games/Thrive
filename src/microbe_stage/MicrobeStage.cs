@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 public class MicrobeStage : StageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -32,8 +32,10 @@ public class MicrobeStage : StageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
+#pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
+#pragma warning restore CA2213
     private Vector3? guidancePosition;
 
     private List<GuidanceLine> chemoreceptionLines = new();
@@ -44,8 +46,18 @@ public class MicrobeStage : StageBase<Microbe>
     [JsonProperty]
     private float elapsedSinceEntityPositionCheck;
 
+    /// <summary>
+    ///   Used to control how often light level is updated by the day/night cycle.
+    /// </summary>
+    [JsonProperty]
+    private float elapsedSinceLightLevelUpdate;
+
     [JsonProperty]
     private bool wonOnce;
+
+    private float maxLightLevel;
+
+    private float templateMaxLightLevel;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -91,6 +103,9 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base._Ready();
 
+        // Start a new game if started directly from MicrobeStage.tscn
+        CurrentGame ??= GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
+
         ResolveNodeReferences();
 
         glucose = SimulationParameters.Instance.GetCompound("glucose");
@@ -108,12 +123,14 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base._EnterTree();
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
     public override void ResolveNodeReferences()
@@ -139,15 +156,23 @@ public class MicrobeStage : StageBase<Microbe>
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame);
+            worldLight, CurrentGame, lightCycle);
     }
 
     public override void OnFinishTransitioning()
     {
         base.OnFinishTransitioning();
-        TutorialState.SendEvent(
-            TutorialEventType.EnteredMicrobeStage,
-            new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+
+        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
+        {
+            TutorialState.SendEvent(
+                TutorialEventType.EnteredMicrobeStage,
+                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+        }
+        else
+        {
+            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
+        }
     }
 
     public override void OnFinishLoading(Save save)
@@ -191,6 +216,20 @@ public class MicrobeStage : StageBase<Microbe>
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
 
+        elapsedSinceLightLevelUpdate += delta;
+        if (elapsedSinceLightLevelUpdate > Constants.LIGHT_LEVEL_UPDATE_INTERVAL)
+        {
+            elapsedSinceLightLevelUpdate = 0;
+
+            if (GameWorld.Map.CurrentPatch != null)
+            {
+                patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
+                patchManager.UpdateAllPatchLightLevels();
+                HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+                UpdateDayLightEffects();
+            }
+        }
+
         if (gameOver)
             return;
 
@@ -200,7 +239,7 @@ public class MicrobeStage : StageBase<Microbe>
         if (Player != null)
         {
             var playerTransform = Player.GlobalTransform;
-            spawner.Process(delta, playerTransform.origin, playerTransform.basis.GetEuler());
+            spawner.Process(delta, playerTransform.origin);
             Clouds.ReportPlayerPosition(playerTransform.origin);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
@@ -211,6 +250,12 @@ public class MicrobeStage : StageBase<Microbe>
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
                 new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
+
+            // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
+            // relevant, for example only when in a colony or just leaving a colony should the player colony
+            // info be sent
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
+                new MicrobeColonyEventArgs(Player.Colony), this);
 
             elapsedSinceEntityPositionCheck += delta;
 
@@ -365,12 +410,18 @@ public class MicrobeStage : StageBase<Microbe>
 
             if (microbe == Player)
                 playerHandled = true;
+
+            if (microbe.Species != multicellularSpecies)
+                throw new Exception("Failed to apply multicellular species");
         }
 
         if (!playerHandled)
             throw new Exception("Did not find player to apply multicellular species to");
 
         GameWorld.NotifySpeciesChangedStages();
+
+        // Make sure no queued player species can spawn with the old species
+        spawner.ClearSpawnQueue();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
@@ -476,6 +527,20 @@ public class MicrobeStage : StageBase<Microbe>
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
         }
+        else
+        {
+            // Show day/night cycle tutorial when entering a patch with sunlight
+            if (GameWorld.WorldSettings.DayNightCycleEnabled)
+            {
+                var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
+
+                if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                }
+            }
+        }
     }
 
     public override void OnSuicide()
@@ -483,15 +548,26 @@ public class MicrobeStage : StageBase<Microbe>
         Player?.Damage(9999.0f, "suicide");
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected override void SetupStage()
     {
         // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
         Clouds.Init(FluidSystem);
 
-        base.SetupStage();
-
+        // Initialise spawners next, since this removes existing spawners if present
         if (!IsLoadedFromSave)
             spawner.Init();
+
+        base.SetupStage();
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendEditorButtonToTutorial(TutorialState);
@@ -514,6 +590,7 @@ public class MicrobeStage : StageBase<Microbe>
     {
         patchManager.CurrentGame = CurrentGame;
 
+        lightCycle.ApplyWorldSettings(GameWorld.WorldSettings);
         UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
@@ -525,7 +602,7 @@ public class MicrobeStage : StageBase<Microbe>
             return;
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, CurrentGame!);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, spawner, CurrentGame!);
         Player.AddToGroup(Constants.PLAYER_GROUP);
 
         Player.OnDeath = OnPlayerDied;
@@ -616,12 +693,43 @@ public class MicrobeStage : StageBase<Microbe>
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
         UpdateBackground();
+
+        UpdatePatchLightLevelSettings();
     }
 
     private void UpdateBackground()
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
+    }
+
+    /// <summary>
+    ///   Updates the background lighting and does various post-effects
+    /// </summary>
+    private void UpdateDayLightEffects()
+    {
+        if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
+        {
+            // This might need to be refactored for efficiency but, it works for now
+            var lightLevel = GameWorld.Map.CurrentPatch!.GetCompoundAmount("sunlight") * lightCycle.DayLightFraction;
+
+            // Normalise by maximum light level in the patch
+            Camera.LightLevel = lightLevel / maxLightLevel;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            Camera.LightLevel = 1.0f;
+        }
+    }
+
+    private void UpdatePatchLightLevelSettings()
+    {
+        if (GameWorld.Map.CurrentPatch == null)
+            throw new InvalidOperationException("Unknown current patch");
+
+        maxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        templateMaxLightLevel = GameWorld.Map.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
     }
 
     private void SaveGame(string name)
@@ -666,11 +774,16 @@ public class MicrobeStage : StageBase<Microbe>
         var randomSpecies = species.Random(random);
 
         var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds, spawner,
             CurrentGame!);
 
         // Make the cell despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawner.AddEntityToTrack(copyEntity);
+    }
+
+    private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
+    {
+        spawner.DespawnAll();
     }
 
     [DeserializedCallbackAllowed]

@@ -204,6 +204,12 @@ public class OrganelleDefinition : IRegistryType
     }
 
     /// <summary>
+    ///   <see cref="Name"/> without any special characters (line changes etc.)
+    /// </summary>
+    [JsonIgnore]
+    public string NameWithoutSpecialCharacters => Name.Replace('\n', ' ');
+
+    /// <summary>
     ///   The total amount of compounds in InitialComposition
     /// </summary>
     [JsonIgnore]
@@ -219,6 +225,11 @@ public class OrganelleDefinition : IRegistryType
     public int HexCount => Hexes.Count;
 
     public string InternalName { get; set; } = null!;
+
+    // Faster checks for specific components
+    public bool HasPilusComponent { get; private set; }
+    public bool HasMovementComponent { get; private set; }
+    public bool HasCiliaComponent { get; private set; }
 
     [JsonIgnore]
     public string UntranslatedName =>
@@ -285,7 +296,9 @@ public class OrganelleDefinition : IRegistryType
     /// <remarks>
     ///   <para>
     ///     The <see cref="PlacedOrganelle.HasComponent{T}"/> method checks for the actual component class this checks
-    ///     for the *factory* class.
+    ///     for the *factory* class. For performance reasons a few components are available as direct boolean
+    ///     properties, if a component you want to check for has such a boolean defined for it, use those instead of
+    ///     this general interface.
     ///   </para>
     /// </remarks>
     public bool HasComponentFactory<T>()
@@ -423,6 +436,8 @@ public class OrganelleDefinition : IRegistryType
         {
             GetRotatedHexes(i);
         }
+
+        ComputeFactoryCache();
     }
 
     public void ApplyTranslations()
@@ -435,6 +450,13 @@ public class OrganelleDefinition : IRegistryType
         return Name + " Organelle";
     }
 
+    private void ComputeFactoryCache()
+    {
+        HasPilusComponent = HasComponentFactory<PilusComponentFactory>();
+        HasMovementComponent = HasComponentFactory<MovementComponentFactory>();
+        HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
+    }
+
     public class OrganelleComponentFactoryInfo
     {
         public NucleusComponentFactory? Nucleus;
@@ -442,6 +464,7 @@ public class OrganelleDefinition : IRegistryType
         public AgentVacuoleComponentFactory? AgentVacuole;
         public BindingAgentComponentFactory? BindingAgent;
         public MovementComponentFactory? Movement;
+        public SlimeJetComponentFactory? SlimeJet;
         public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
         public SignalingAgentComponentFactory? SignalingAgent;
@@ -499,6 +522,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Movement.Check(name);
                 allFactories.Add(Movement);
+                ++count;
+            }
+
+            if (SlimeJet != null)
+            {
+                SlimeJet.Check(name);
+                allFactories.Add(SlimeJet);
                 ++count;
             }
 

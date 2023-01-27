@@ -2,8 +2,10 @@
 
 public class PlayButton : MarginContainer
 {
+#pragma warning disable CA2213
     private Button? pauseButton;
     private Button? playButton;
+#pragma warning restore CA2213
 
     private string? pauseButtonTooltip;
     private string? playButtonTooltip;

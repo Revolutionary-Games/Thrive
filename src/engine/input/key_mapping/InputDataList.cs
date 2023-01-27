@@ -46,6 +46,15 @@ public class InputDataList : ICloneable
     {
         foreach (var action in Data)
         {
+            // Skip destroying ui actions to keep the UI usable even with bad inputs
+            // This doesn't seem to happen and luckily it seems controller navigation is intact for loading settings
+            // made in previous versions
+            if (action.Key.StartsWith("ui_") && action.Value.Count < 1)
+            {
+                GD.PrintErr("Skipping clearing an UI input action");
+                return;
+            }
+
             // Clear all old input keys
             InputMap.ActionEraseEvents(action.Key);
 

@@ -55,6 +55,17 @@ public class CompoundBag : ICompoundStorage
         return amount;
     }
 
+    /// <summary>
+    ///   The space available for a compound of given type. If not useful no free space is ever reported.
+    /// </summary>
+    /// <param name="compound">The compound type to check</param>
+    /// <returns>The free space available</returns>
+    public float GetFreeSpaceForCompound(Compound compound)
+    {
+        // Due to venting not triggering immediately at capacity, we use max here to avoid negative free space
+        return Math.Max(GetCapacityForCompound(compound) - GetCompoundAmount(compound), 0);
+    }
+
     public float TakeCompound(Compound compound, float amount)
     {
         if (!Compounds.TryGetValue(compound, out var existingAmount) || amount <= 0.0f)
@@ -128,6 +139,11 @@ public class CompoundBag : ICompoundStorage
     public bool IsSpecificallySetUseful(Compound compound)
     {
         return usefulCompounds.Contains(compound);
+    }
+
+    public bool AreAnySpecificallySetUseful(IEnumerable<Compound> compounds)
+    {
+        return compounds.Any(usefulCompounds.Contains);
     }
 
     public void ClampNegativeCompoundAmounts()

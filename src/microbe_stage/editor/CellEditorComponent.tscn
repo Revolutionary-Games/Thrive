@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -14,8 +14,11 @@
 [ext_resource path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=13]
 [ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=15]
+[ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=18]
+[ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=23]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=25]
@@ -28,10 +31,8 @@
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=47]
-
-[sub_resource type="StyleBoxTexture" id=8]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 429, 1 )
+[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=48]
+[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=49]
 
 [sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 5.0
@@ -96,6 +97,12 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="ButtonGroup" id=38]
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="ButtonGroup" id=13]
 
@@ -188,6 +195,22 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.00784314, 0.607843, 0.329412, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="StyleBoxFlat" id=27]
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -217,9 +240,14 @@ MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContai
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 IslandErrorPath = NodePath("IslandError")
-StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
-AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane")
-BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour")
+TopPanelPath = NodePath("TopPanel")
+DayButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
+NightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")
+AverageLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton")
+TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
+StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
+AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane")
+BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour")
 StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 AppearanceTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -232,7 +260,8 @@ RotationSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxConta
 HpLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Hp")
 StorageLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 DigestionSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
-DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
+DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DigestionEfficiency")
+DigestionEfficiencyDetailsPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DigestionEfficienyDetails")
 GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
 TotalPopulationLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total")
@@ -252,6 +281,115 @@ CompoundBalancePath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContaine
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
+
+[node name="TopPanel" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -170.0
+margin_top = 10.0
+margin_right = 170.0
+margin_bottom = 57.0
+
+[node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
+margin_right = 499.0
+margin_bottom = 50.0
+
+[node name="MarginContainer" type="MarginContainer" parent="TopPanel/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 498.0
+margin_bottom = 49.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopPanel/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 487.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 30.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "SUNLIGHT"
+size_flags_vertical = 4
+texture = ExtResource( 15 )
+expand = true
+
+[node name="Control" type="Control" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 34.0
+margin_right = 44.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 48.0
+margin_right = 173.0
+margin_bottom = 28.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 38 )
+text = "LIGHT_LEVEL_DAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 177.0
+margin_right = 315.0
+margin_bottom = 28.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 38 )
+text = "LIGHT_LEVEL_NIGHT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AverageLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 319.0
+margin_right = 477.0
+margin_bottom = 28.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 38 )
+text = "LIGHT_LEVEL_AVERAGE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -332,17 +470,17 @@ __meta__ = {
 "_editor_description_": "To add a new item to a cell parts list, instantiate MicrobePartSelection scene into the list and change its node name with the defined internal name of a cell part object (e.g. organelle, membrane) it represents. Note that if the object is registered in the JSON files, the values of the newly-added item would be automatically updated at runtime, otherwise it wouldn't. Final step is to assign the item into the appropriate Group in the Node tab (see the existing selection buttons for reference)."
 }
 
-[node name="Tab" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="TabButtons" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 19 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 318.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 0, 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+margin_bottom = 28.0
+LevelOnScreen = 1
 
-[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_right = 103.0
-margin_bottom = 30.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -361,10 +499,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Membrane" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Membrane" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_left = 107.0
 margin_right = 210.0
-margin_bottom = 30.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -382,10 +521,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
+[node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
 margin_left = 214.0
 margin_right = 318.0
-margin_bottom = 30.0
+margin_bottom = 28.0
+focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
@@ -404,7 +544,7 @@ __meta__ = {
 }
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 40.0
+margin_top = 38.0
 margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
@@ -413,7 +553,7 @@ custom_styles/panel = SubResource( 14 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
 margin_right = 318.0
-margin_bottom = 516.0
+margin_bottom = 518.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -621,10 +761,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 256.0
-margin_top = 281.0
-margin_right = 572.0
-margin_bottom = 871.0
+margin_left = 312.0
+margin_top = 337.0
+margin_right = 628.0
+margin_bottom = 927.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -755,11 +895,25 @@ margin_right = 246.0
 margin_bottom = 134.0
 Description = "DIGESTION_SPEED_COLON"
 
-[node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 138.0
 margin_right = 246.0
 margin_bottom = 157.0
+
+[node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
+margin_right = 199.0
+size_flags_horizontal = 0
 Description = "DIGESTION_EFFICIENCY_COLON"
+
+[node name="DigestionEfficienyDetails" type="TextureButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 203.0
+margin_right = 222.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 19, 19 )
+texture_normal = ExtResource( 49 )
+texture_pressed = ExtResource( 48 )
+texture_hover = ExtResource( 48 )
+expand = true
 
 [node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 161.0
@@ -942,6 +1096,8 @@ margin_right = 258.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 hint_tooltip = "PREDICTION_DETAILS_OPEN_TOOLTIP"
+focus_neighbour_bottom = NodePath("../../../../../../../BottomRight/HBoxContainer/ConfirmButton")
+focus_next = NodePath("../../../../../../../BottomRight/HBoxContainer/ConfirmButton")
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource( 18 )
@@ -1086,15 +1242,21 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
-margin_right = 150.0
+margin_right = 154.0
 margin_bottom = 40.0
 alignment = 2
+
+[node name="FocusGrabber" parent="BottomRight/HBoxContainer" instance=ExtResource( 16 )]
+margin_bottom = 40.0
+NodeToGiveFocusTo = NodePath("../ConfirmButton")
 
 [node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
 visible = false
 margin_right = 237.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
+focus_neighbour_right = NodePath("../ConfirmButton")
+focus_next = NodePath("../ConfirmButton")
 mouse_filter = 1
 custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
@@ -1108,12 +1270,15 @@ __meta__ = {
 }
 
 [node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
-margin_right = 150.0
+margin_left = 4.0
+margin_right = 154.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
+rect_pivot_offset = Vector2( 671, 71.4142 )
 mouse_filter = 1
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
+custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 27 )
 text = "NEXT_CAPITAL"
 __meta__ = {
@@ -1208,9 +1373,12 @@ text = "CLOSE"
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane" to="." method="SetSelectionMenuTab" binds= [ "Membrane" ]]
-[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnLightLevelButtonPressed" binds= [ "Day" ]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Night" ]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightLevelButtonPressed" binds= [ "Average" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= [ "Structure" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= [ "Membrane" ]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
 [connection signal="text_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/SearchBar" to="." method="OnSearchBoxTextChanged"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
@@ -1223,6 +1391,7 @@ text = "CLOSE"
 [connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="Confirmed" from="NegativeAtpWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]
+[connection signal="Accepted" from="OrganelleUpgradeGUI" to="." method="UpdateStats"]
 [connection signal="DeletePressed" from="OrganellePopupMenu" to="." method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="OrganellePopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="OrganellePopupMenu" to="." method="OnMovePressed"]

@@ -9,16 +9,17 @@
     /// </summary>
     public class FindBestMutation : VariantTryingStep
     {
-        private readonly AutoEvoConfiguration configuration;
+        private readonly IAutoEvoConfiguration configuration;
         private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
+        private readonly SimulationCache cache;
 
         private readonly Mutations mutations = new();
 
-        public FindBestMutation(AutoEvoConfiguration configuration,
+        public FindBestMutation(IAutoEvoConfiguration configuration,
             WorldGenerationSettings worldSettings, PatchMap map, Species species,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
@@ -30,6 +31,7 @@
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
             this.splitThresholdAmount = splitThresholdAmount;
+            cache = new SimulationCache(worldSettings);
         }
 
         public override bool CanRunConcurrently => true;
@@ -52,7 +54,7 @@
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             return new AttemptResult(null, config.Results.GetPopulationInPatches(species));
         }
@@ -70,7 +72,7 @@
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
 
-            PopulationSimulation.Simulate(config);
+            PopulationSimulation.Simulate(config, cache);
 
             return new AttemptResult(mutated, config.Results.GetPopulationInPatches(mutated));
         }

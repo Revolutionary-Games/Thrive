@@ -10,9 +10,11 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
 public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 {
+#pragma warning disable CA2213 // a shared resource from the chunk definition
     [Export]
     [JsonProperty]
     public PackedScene GraphicsScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If this is null, a sphere shape is used as a default for collision detections.
@@ -36,7 +38,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
 
+#pragma warning disable CA2213
     private MeshInstance? chunkMesh;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private bool isDissolving;
@@ -59,7 +63,13 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     [JsonProperty]
     private int renderPriority;
 
+    [JsonProperty]
+    private float engulfSize;
+
     public int DespawnRadiusSquared { get; set; }
+
+    [JsonIgnore]
+    public float EntityWeight => 1.0f;
 
     [JsonIgnore]
     public Spatial EntityNode => this;
@@ -81,7 +91,12 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
-    public float EngulfSize { get; set; } = -1.0f;
+    [JsonIgnore]
+    public float EngulfSize
+    {
+        get => engulfSize * (1 - DigestedAmount);
+        set => engulfSize = value;
+    }
 
     /// <summary>
     ///   Compounds this chunk contains, and vents
@@ -91,6 +106,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     ///     Capacity is set to 0 so that no compounds can be added the normal way to the chunk.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     public CompoundBag Compounds { get; private set; } = new(0.0f);
 
     /// <summary>

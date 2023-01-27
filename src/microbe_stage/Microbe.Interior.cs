@@ -14,12 +14,20 @@ public partial class Microbe
     [JsonProperty]
     private readonly CompoundBag compounds = new(0.0f);
 
+    [JsonProperty]
+    private readonly Dictionary<Compound, float> requiredCompoundsForBaseReproduction = new();
+
     private Compound atp = null!;
+    private Compound glucose = null!;
+    private Compound mucilage = null!;
 
     private Enzyme lipase = null!;
 
     [JsonProperty]
     private CompoundCloudSystem? cloudSystem;
+
+    [JsonProperty]
+    private ISpawnSystem? spawnSystem;
 
     [JsonProperty]
     private Compound? queuedToxinToEmit;
@@ -45,7 +53,19 @@ public partial class Microbe
     [JsonProperty]
     private float playerEngulfedDeathTimer;
 
+    [JsonProperty]
+    private float slimeSecretionCooldown;
+
+    [JsonProperty]
+    private float queuedSlimeSecretionTime;
+
     private float lastCheckedReproduction;
+
+    /// <summary>
+    ///   Flips every reproduction update. Used to make compound use for reproduction distribute more evenly between
+    ///   the compound types.
+    /// </summary>
+    private bool consumeReproductionCompoundsReverse;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -93,6 +113,12 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     public int AgentVacuoleCount { get; private set; }
+
+    /// <summary>
+    ///   The slime jets attached to this microbe. JsonIgnore as the components add themselves to this list each load.
+    /// </summary>
+    [JsonIgnore]
+    public List<SlimeJetComponent> SlimeJets { get; private set; } = new();
 
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
@@ -190,6 +216,7 @@ public partial class Microbe
 
         // Reproduction progress is lost
         allOrganellesDivided = false;
+        SetupRequiredBaseReproductionCompounds();
 
         // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
@@ -233,16 +260,9 @@ public partial class Microbe
         if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
-        if (Colony?.Master == this)
-        {
-            foreach (var cell in Colony.ColonyMembers)
-            {
-                if (cell == this)
-                    continue;
+        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
-                cell.EmitToxin(agentType);
-            }
-        }
+        PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
 
         if (AgentEmissionCooldown > 0)
             return;
@@ -250,8 +270,6 @@ public partial class Microbe
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
             return;
-
-        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
@@ -312,6 +330,16 @@ public partial class Microbe
     public void QueueEmitToxin(Compound toxinCompound)
     {
         queuedToxinToEmit = toxinCompound;
+    }
+
+    public void QueueSecreteSlime(float duration)
+    {
+        PerformForOtherColonyMembersIfWeAreLeader(m => m.QueueSecreteSlime(duration));
+
+        if (SlimeJets.Count < 1)
+            return;
+
+        queuedSlimeSecretionTime += duration;
     }
 
     /// <summary>
@@ -390,10 +418,10 @@ public partial class Microbe
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        SpawnSystem.AddEntityToTrack(copyEntity);
+        spawnSystem!.AddEntityToTrack(copyEntity);
 
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
@@ -458,11 +486,15 @@ public partial class Microbe
     /// <summary>
     ///   Throws some compound out of this Microbe, up to maxAmount
     /// </summary>
-    public float EjectCompound(Compound compound, float maxAmount)
+    /// <param name="compound">The compound type to eject</param>
+    /// <param name="maxAmount">The maximum amount to eject</param>
+    /// <param name="direction">The direction in which to eject relative to the microbe</param>
+    /// <param name="displacement">How far away from the microbe to eject</param>
+    public float EjectCompound(Compound compound, float maxAmount, Vector3 direction, float displacement = 0)
     {
         float amount = Compounds.TakeCompound(compound, maxAmount);
 
-        SpawnEjectedCompound(compound, amount);
+        SpawnEjectedCompound(compound, amount, direction, displacement);
         return amount;
     }
 
@@ -479,22 +511,26 @@ public partial class Microbe
         // Calculate how many compounds the cell already has absorbed to grow
         gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
 
-        // Add the currently held compounds
-        var keys = new List<Compound>(gatheredCompounds.Keys);
-
-        foreach (var key in keys)
+        // Add the currently held compounds, but only if configured as this can be pretty confusing for players
+        // to have the bars in ready to reproduce state for a while before the time limited reproduction actually
+        // catches up
+        if (Constants.ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS ||
+            !GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed)
         {
-            float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
-                Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
-
-            if (value > 0)
+            foreach (var key in gatheredCompounds.Keys.ToList())
             {
-                float existing = gatheredCompounds[key];
+                float value = Math.Max(0.0f, Compounds.GetCompoundAmount(key) -
+                    Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
-                // Only up to the total needed
-                float total = totalCompounds[key];
+                if (value > 0)
+                {
+                    float existing = gatheredCompounds[key];
 
-                gatheredCompounds[key] = Math.Min(total, existing + value);
+                    // Only up to the total needed
+                    float total = totalCompounds[key];
+
+                    gatheredCompounds[key] = Math.Min(total, existing + value);
+                }
             }
         }
 
@@ -502,7 +538,7 @@ public partial class Microbe
 
         foreach (var entry in totalCompounds)
         {
-            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered))
+            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered) && entry.Value != 0)
                 totalFraction += gathered / entry.Value;
         }
 
@@ -521,15 +557,9 @@ public partial class Microbe
         if (IsMulticellular)
             return CalculateTotalBodyPlanCompounds();
 
-        var result = new Dictionary<Compound, float>();
+        var result = CellTypeProperties.CalculateTotalComposition();
 
-        foreach (var organelle in organelles)
-        {
-            if (organelle.IsDuplicate)
-                continue;
-
-            result.Merge(organelle.Definition.InitialComposition);
-        }
+        result.Merge(Species.BaseReproductionCost);
 
         return result;
     }
@@ -561,7 +591,24 @@ public partial class Microbe
         }
 
         if (compoundsUsedForMulticellularGrowth != null)
+        {
             result.Merge(compoundsUsedForMulticellularGrowth);
+        }
+        else
+        {
+            // For single microbes the base reproduction cost needs to be calculated here
+            // TODO: can we make this more efficient somehow
+            foreach (var entry in Species.BaseReproductionCost)
+            {
+                requiredCompoundsForBaseReproduction.TryGetValue(entry.Key, out var remaining);
+
+                var used = entry.Value - remaining;
+
+                result.TryGetValue(entry.Key, out var alreadyUsed);
+
+                result[entry.Key] = alreadyUsed + used;
+            }
+        }
 
         return result;
     }
@@ -580,7 +627,25 @@ public partial class Microbe
             }
         }
 
+        CalculateBonusDigestibleGlucose(result);
         return result;
+    }
+
+    /// <summary>
+    ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
+    /// </summary>
+    private void PerformForOtherColonyMembersIfWeAreLeader(Action<Microbe> action)
+    {
+        if (Colony?.Master == this)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                action(cell);
+            }
+        }
     }
 
     private void HandleCompoundAbsorbing(float delta)
@@ -594,11 +659,15 @@ public partial class Microbe
         cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
+        // Cells with jets aren't affected by mucilage
+        slowedBySlime = SlimeJets.Count < 1 && cloudSystem.AmountAvailable(mucilage, GlobalTransform.origin, 1.0f) >
+            Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;
+
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
         {
             var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
             foreach (var usefulCompound in usefulCompounds)
-                Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
+                Compounds.AddCompound(usefulCompound, Compounds.GetFreeSpaceForCompound(usefulCompound));
         }
     }
 
@@ -620,16 +689,18 @@ public partial class Microbe
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
             // Vent if not useful, or if overflowed the capacity
+            // The multiply by 2 is here to be more kind to cells that have just divided and make it much less likely
+            // the player often sees their cell venting away their precious compounds
             if (!Compounds.IsUseful(type))
             {
-                amountToVent -= EjectCompound(type, amountToVent);
+                amountToVent -= EjectCompound(type, amountToVent, Vector3.Back);
             }
             else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
             {
                 // Vent the part that went over
                 float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
 
-                amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent));
+                amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent), Vector3.Back);
             }
 
             if (amountToVent <= 0)
@@ -700,88 +771,120 @@ public partial class Microbe
         if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
             return;
 
-        lastCheckedReproduction = 0;
+        // Limit how big progress spikes lag can cause
+        if (lastCheckedReproduction > Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME)
+            lastCheckedReproduction = Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME;
 
-        // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
-        // might make a lot of cells use less CPU power
+        var elapsedSinceLastUpdate = lastCheckedReproduction;
+        consumeReproductionCompoundsReverse = !consumeReproductionCompoundsReverse;
+
+        lastCheckedReproduction = 0;
 
         // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
         if (IsMulticellular && ColonyParent == null)
         {
-            HandleMulticellularReproduction();
+            HandleMulticellularReproduction(elapsedSinceLastUpdate);
             return;
         }
 
         if (Colony != null)
+        {
+            // TODO: should the colony just passively get the reproduction compounds in its storage?
+            // Otherwise early multicellular colonies lose the passive reproduction feature
             return;
-
-        bool reproductionStageComplete = true;
-
-        // Organelles that are ready to split
-        var organellesToAdd = new List<PlacedOrganelle>();
-
-        // Grow all the organelles, except the nucleus which is given compounds last
-        foreach (var organelle in organelles!.Organelles)
-        {
-            // Check if already done
-            if (organelle.WasSplit)
-                continue;
-
-            // We are in G1 phase of the cell cycle, duplicate all organelles.
-
-            // Except the unique organelles
-            if (organelle.Definition.Unique)
-                continue;
-
-            // If Give it some compounds to make it larger.
-            organelle.GrowOrganelle(Compounds);
-
-            if (organelle.GrowthValue >= 1.0f)
-            {
-                // Queue this organelle for splitting after the loop.
-                organellesToAdd.Add(organelle);
-            }
-            else
-            {
-                // Needs more stuff
-                reproductionStageComplete = false;
-            }
         }
 
-        // Splitting the queued organelles.
-        foreach (var organelle in organellesToAdd)
-        {
-            // Mark this organelle as done and return to its normal size.
-            organelle.ResetGrowth();
-            organelle.WasSplit = true;
+        var (remainingAllowedCompoundUse, remainingFreeCompounds) =
+            CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
 
-            // Create a second organelle.
-            var organelle2 = SplitOrganelle(organelle);
-            organelle2.WasSplit = true;
-            organelle2.IsDuplicate = true;
-            organelle2.SisterOrganelle = organelle;
-        }
+        // Process base cost first so the player can be their designed cell (without extra organelles) for a while
+        bool reproductionStageComplete =
+            ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds);
 
+        // For this stage and all others below, reproductionStageComplete tracks whether the previous reproduction
+        // stage completed, i.e. whether we should proceed with the next stage
         if (reproductionStageComplete)
         {
-            // All organelles have split. Now give the nucleus compounds
+            // Organelles that are ready to split
+            var organellesToAdd = new List<PlacedOrganelle>();
 
-            foreach (var organelle in organelles.Organelles)
+            // Grow all the organelles, except the unique organelles which are given compounds last
+            foreach (var organelle in organelles!.Organelles)
             {
                 // Check if already done
                 if (organelle.WasSplit)
                     continue;
 
-                // In the S phase, the nucleus grows as chromatin is duplicated.
-                if (organelle.Definition.InternalName != "nucleus")
+                // If we ran out of allowed compound use, stop early
+                if (remainingAllowedCompoundUse <= 0)
+                {
+                    reproductionStageComplete = false;
+                    break;
+                }
+
+                // We are in G1 phase of the cell cycle, duplicate all organelles.
+
+                // Except the unique organelles
+                if (organelle.Definition.Unique)
                     continue;
 
-                // The nucleus hasn't finished replicating its DNA, give it some compounds.
-                organelle.GrowOrganelle(Compounds);
+                // Give it some compounds to make it larger.
+                organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                    consumeReproductionCompoundsReverse);
 
+                if (organelle.GrowthValue >= 1.0f)
+                {
+                    // Queue this organelle for splitting after the loop.
+                    organellesToAdd.Add(organelle);
+                }
+                else
+                {
+                    // Needs more stuff
+                    reproductionStageComplete = false;
+                }
+
+                // TODO: can we quit this loop early if we still would have dozens of organelles to check but don't have
+                // any compounds left to give them (that are probably useful)?
+            }
+
+            // Splitting the queued organelles.
+            foreach (var organelle in organellesToAdd)
+            {
+                // Mark this organelle as done and return to its normal size.
+                organelle.ResetGrowth();
+                organelle.WasSplit = true;
+
+                // Create a second organelle.
+                var organelle2 = SplitOrganelle(organelle);
+                organelle2.WasSplit = true;
+                organelle2.IsDuplicate = true;
+                organelle2.SisterOrganelle = organelle;
+            }
+        }
+
+        if (reproductionStageComplete)
+        {
+            foreach (var organelle in organelles!.Organelles)
+            {
+                // In the second phase all unique organelles are given compounds
+                // It used to be that only the nucleus was given compounds here
+                if (!organelle.Definition.Unique)
+                    continue;
+
+                // If we ran out of allowed compound use, stop early
+                if (remainingAllowedCompoundUse <= 0)
+                {
+                    reproductionStageComplete = false;
+                    break;
+                }
+
+                // Unique organelles don't split so we use the growth value to know when something is fully grown
                 if (organelle.GrowthValue < 1.0f)
                 {
-                    // Nucleus needs more compounds
+                    organelle.GrowOrganelle(Compounds, ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
+                        consumeReproductionCompoundsReverse);
+
+                    // Nucleus (or another unique organelle) needs more compounds
                     reproductionStageComplete = false;
                 }
             }
@@ -789,12 +892,136 @@ public partial class Microbe
 
         if (reproductionStageComplete)
         {
-            // Nucleus is also now ready to reproduce
+            // All organelles and base reproduction cost is now fulfilled, we are fully ready to reproduce
             allOrganellesDivided = true;
 
             // For NPC cells this immediately splits them and the allOrganellesDivided flag is reset
             ReadyToReproduce();
         }
+    }
+
+    private (float RemainingAllowedCompoundUse, float RemainingFreeCompounds)
+        CalculateFreeCompoundsAndLimits(float delta)
+    {
+        var gameWorldWorldSettings = GameWorld.WorldSettings;
+
+        // Skip some computations when they are not needed
+        if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds &&
+            !gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
+        {
+            return (float.MaxValue, 0);
+        }
+
+        // TODO: make the current patch affect this?
+        // TODO: make being in a colony affect this
+        float remainingFreeCompounds = Constants.MICROBE_REPRODUCTION_FREE_COMPOUNDS *
+            (HexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
+
+        if (IsMulticellular)
+            remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+
+        float remainingAllowedCompoundUse = float.MaxValue;
+
+        if (gameWorldWorldSettings.LimitReproductionCompoundUseSpeed)
+        {
+            remainingAllowedCompoundUse = remainingFreeCompounds * Constants.MICROBE_REPRODUCTION_MAX_COMPOUND_USE;
+        }
+
+        // Reset the free compounds if we don't want to give free compounds.
+        // It was necessary to calculate for the above math to be able to use it, but we don't want it to apply when
+        // not enabled.
+        if (!gameWorldWorldSettings.PassiveGainOfReproductionCompounds)
+        {
+            remainingFreeCompounds = 0;
+        }
+
+        return (remainingAllowedCompoundUse, remainingFreeCompounds);
+    }
+
+    private bool ProcessBaseReproductionCost(ref float remainingAllowedCompoundUse, ref float remainingFreeCompounds,
+        Dictionary<Compound, float>? trackCompoundUse = null)
+    {
+        if (remainingAllowedCompoundUse <= 0)
+        {
+            return false;
+        }
+
+        bool reproductionStageComplete = true;
+
+        foreach (var key in consumeReproductionCompoundsReverse ?
+                     requiredCompoundsForBaseReproduction.Keys.Reverse() :
+                     requiredCompoundsForBaseReproduction.Keys)
+        {
+            var amountNeeded = requiredCompoundsForBaseReproduction[key];
+
+            if (amountNeeded <= 0.0f)
+                continue;
+
+            // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+            if (remainingFreeCompounds > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                remainingFreeCompounds -= usedFreeCompounds;
+            }
+
+            // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
+            // organelle growth
+            var amountAvailable =
+                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                usedAmount += compounds.TakeCompound(key, amountToTake);
+            }
+
+            if (usedAmount < MathUtils.EPSILON)
+                continue;
+
+            remainingAllowedCompoundUse -= usedAmount;
+
+            if (trackCompoundUse != null)
+            {
+                trackCompoundUse.TryGetValue(key, out var trackedAlreadyUsed);
+                trackCompoundUse[key] = trackedAlreadyUsed + usedAmount;
+            }
+
+            var left = amountNeeded - usedAmount;
+
+            if (left < 0.0001f)
+            {
+                // We don't remove these values even when empty as we rely on detecting this being empty for earlier
+                // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
+                left = 0;
+            }
+
+            requiredCompoundsForBaseReproduction[key] = left;
+
+            // As we don't make duplicate lists, we can only process a single type per call
+            // So we can't know here if we are fully ready
+            reproductionStageComplete = false;
+            break;
+        }
+
+        return reproductionStageComplete;
+    }
+
+    /// <summary>
+    ///   Sets up the base reproduction cost that is on top of the normal costs
+    /// </summary>
+    private void SetupRequiredBaseReproductionCompounds()
+    {
+        requiredCompoundsForBaseReproduction.Clear();
+        requiredCompoundsForBaseReproduction.Merge(Species.BaseReproductionCost);
+        totalNeededForMulticellularGrowth = null;
     }
 
     private void OnPlayerDuplicationCheat(object sender, EventArgs e)
@@ -875,6 +1102,14 @@ public partial class Microbe
         }
         else
         {
+            // Skip reproducing if we would go too much over the entity limit
+            if (!spawnSystem!.IsUnderEntityLimitForReproducing())
+            {
+                // Set this to false so that we re-check in a few frames if we can reproduce then
+                allOrganellesDivided = false;
+                return;
+            }
+
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
@@ -891,7 +1126,12 @@ public partial class Microbe
             else
             {
                 Divide();
+
                 enoughResourcesForBudding = false;
+
+                // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
+                // spam, and for consistency with non-multicellular microbes
+                SetupRequiredBaseReproductionCompounds();
             }
         }
     }
@@ -1033,6 +1273,9 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
 
+        if (organelle.IsSlimeJet)
+            SlimeJets.Remove((SlimeJetComponent)organelle.Components.First(c => c is SlimeJetComponent));
+
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
@@ -1077,21 +1320,24 @@ public partial class Microbe
     ///     the compound to the cloud system at the right position.
     ///   </para>
     /// </remarks>
-    private void SpawnEjectedCompound(Compound compound, float amount)
+    private void SpawnEjectedCompound(Compound compound, float amount, Vector3 direction, float displacement = 0)
     {
         var amountToEject = amount * Constants.MICROBE_VENT_COMPOUND_MULTIPLIER;
 
-        if (amountToEject <= 0)
+        if (amountToEject <= MathUtils.EPSILON)
             return;
 
-        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
+        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition(direction, displacement));
     }
 
     /// <summary>
     ///   Calculates a world pos for emitting compounds
     /// </summary>
-    private Vector3 CalculateNearbyWorldPosition()
+    private Vector3 CalculateNearbyWorldPosition(Vector3 direction, float displacement = 0)
     {
+        // OLD CODE kept here in case we want a more accurate membrane position, also this code
+        // produces an incorrect world position which needs fixing if this were to be used
+        /*
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
@@ -1125,6 +1371,23 @@ public partial class Microbe
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+        */
+
+        // Unlike the commented block of code above, this uses cheap membrane radius to calculate
+        // distance for cheaper computations
+        var distance = Membrane.EncompassingCircleRadius;
+
+        // The membrane radius doesn't take being bacteria into account
+        if (CellTypeProperties.IsBacteria)
+            distance *= 0.5f;
+
+        distance += displacement;
+
+        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(direction);
+
+        var result = GlobalTransform.origin + (ejectionDirection * distance);
+
+        return result;
     }
 
     private void HandleChemoreceptorLines(float delta)
@@ -1152,6 +1415,8 @@ public partial class Microbe
 
         var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+
+        float usedCapacity = 0.0f;
 
         // Handle logic if the objects that are being digested are the ones we have engulfed
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
@@ -1191,9 +1456,13 @@ public partial class Microbe
             var containedCompounds = engulfable.Compounds;
             var additionalCompounds = engulfedObject.AdditionalEngulfableCompounds;
 
+            // Workaround to avoid NaN compounds in engulfed objects, leading to glitches like infinite compound
+            // ejection and incorrect ingested matter display
+            // https://github.com/Revolutionary-Games/Thrive/issues/3548
+            containedCompounds.FixNaNCompounds();
+
             var totalAmountLeft = 0.0f;
 
-            var hasAnyUsefulCompounds = false;
             foreach (var compound in compoundTypes.Values)
             {
                 if (!compound.Digestible)
@@ -1207,68 +1476,62 @@ public partial class Microbe
                 var totalAvailable = originalAmount + additionalAmount;
                 totalAmountLeft += totalAvailable;
 
-                if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
+                if (totalAvailable <= 0)
                     continue;
-
-                hasAnyUsefulCompounds = true;
 
                 var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(Enzymes[usedEnzyme]);
                 amount *= delta;
 
-                // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
-                // maximum efficiency
-                // TODO: Maybe set max efficiency lower to 80%?
+                // Efficiency starts from Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD up to
+                // Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM. This means at least 7 lysosomes
+                // are needed to achieve "maximum" efficiency
                 var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(Enzymes[usedEnzyme]);
 
                 var taken = Mathf.Min(totalAvailable, amount);
 
+                // Toxin damage
                 if (compound == oxytoxy && taken > 0)
                 {
                     lastCheckedOxytoxyDigestionDamage += delta;
 
-                    if (lastCheckedOxytoxyDigestionDamage >=
-                        Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION)
+                    if (lastCheckedOxytoxyDigestionDamage >= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL)
                     {
-                        lastCheckedOxytoxyDigestionDamage -=
-                            Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION;
-                        Damage(MaxHitpoints * taken, "oxytoxy");
+                        lastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
+                        Damage(MaxHitpoints * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
                     }
                 }
-
-                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
-                // entirely full then this object won't be digested and would just be stored away until it's needed
-                // again
-                if (Compounds.GetCompoundAmount(compound) > Compounds.Capacity)
-                    continue;
 
                 if (additionalCompounds?.ContainsKey(compound) == true)
                     additionalCompounds[compound] -= taken;
 
                 engulfable.Compounds.TakeCompound(compound, taken);
-                Compounds.AddCompound(compound, taken * efficiency);
+
+                var takenAdjusted = taken * efficiency;
+                var added = Compounds.AddCompound(compound, takenAdjusted);
+
+                // Eject excess
+                SpawnEjectedCompound(compound, takenAdjusted - added, Vector3.Back);
             }
 
-            if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
+            var initialTotalEngulfableCompounds = engulfedObject.InitialTotalEngulfableCompounds;
+
+            if (initialTotalEngulfableCompounds.HasValue && initialTotalEngulfableCompounds.Value != 0)
             {
                 engulfable.DigestedAmount = 1 -
-                    (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds.Value);
+                    (totalAmountLeft / initialTotalEngulfableCompounds.Value);
             }
 
             if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
             {
-                // Ignore size from foreign-ingested objects for now
-                if (!engulfedObject.ReclaimedByAnotherHost)
-                    UsedIngestionCapacity -= engulfable.EngulfSize;
-
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
             }
-
-            // Expel this object as it has no use
-            if (!hasAnyUsefulCompounds && engulfable.PhagocytosisStep != PhagocytosisPhase.Digested)
+            else
             {
-                EjectEngulfable(engulfable);
+                usedCapacity += engulfable.EngulfSize;
             }
         }
+
+        UsedIngestionCapacity = usedCapacity;
 
         // Else handle logic if the cell that's being/has been digested is us
         if (PhagocytosisStep == PhagocytosisPhase.None)
@@ -1294,6 +1557,13 @@ public partial class Microbe
                 // Microbe is beyond repair, might as well consider it as dead
                 Kill();
 
+                if (IsPlayerMicrobe)
+                {
+                    // Playing from a positional audio player won't have any effect since the listener is
+                    // directly on it.
+                    PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+                }
+
                 var hostile = HostileEngulfer.Value;
                 if (hostile == null)
                     return;
@@ -1307,11 +1577,51 @@ public partial class Microbe
                         engulfed.HostileEngulfer.Value = hostile;
                         hostile.engulfedObjects.Add(other);
                         engulfed.EntityNode.ReParentWithTransform(hostile);
-                        other.ReclaimedByAnotherHost = true;
                     }
                 }
             }
         }
+    }
+
+    private void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result)
+    {
+        result.TryGetValue(glucose, out float existingGlucose);
+        result[glucose] = existingGlucose + Compounds.Capacity *
+            Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
+    }
+
+    private void HandleSlimeSecretion(float delta)
+    {
+        // Ignore if we have no slime jets
+        if (SlimeJets.Count < 1)
+            return;
+
+        // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty.
+        // Scaling by slime jet count ensures we aren't producing mucilage fast enough to beat this check.
+        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT * SlimeJets.Count)
+            slimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
+
+        // If we've been told to secrete slime and can do it, proceed
+        if (queuedSlimeSecretionTime > 0 && slimeSecretionCooldown <= 0)
+        {
+            // Play a sound only if we've just started, i.e. only if no jets are already active
+            if (SlimeJets.All(c => !c.Active))
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+
+            // Activate all jets, which will constantly secrete slime until we turn them off
+            foreach (var jet in SlimeJets)
+                jet.Active = true;
+        }
+        else
+        {
+            // Deactivate the jets if we aren't supposed to secrete slime
+            foreach (var jet in SlimeJets)
+                jet.Active = false;
+        }
+
+        queuedSlimeSecretionTime -= delta;
+        if (queuedSlimeSecretionTime < 0)
+            queuedSlimeSecretionTime = 0;
     }
 
     private void UpdateDissolveEffect()

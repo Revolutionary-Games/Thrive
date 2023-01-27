@@ -45,10 +45,12 @@ public class CreditsScroll : Container
 
     private GameCredits credits = null!;
 
+#pragma warning disable CA2213
     private Control logo = null!;
     private Control revolutionaryGames = null!;
     private Control supportedBy = null!;
     private Control developersHeading = null!;
+#pragma warning restore CA2213
 
     private float normalScrollSpeed;
 
@@ -281,7 +283,7 @@ public class CreditsScroll : Container
 
         foreach (var pair in credits.Developers.Current)
         {
-            offset = CreateTeamNameList(offset, pair.Key, pair.Value.Select(p => p.Name));
+            offset = CreateTeamNameList(offset, pair.Key, pair.Value.Select(p => p.Person));
         }
 
         // Queue the next section to show once the last item becomes visible
@@ -297,7 +299,7 @@ public class CreditsScroll : Container
 
         foreach (var pair in credits.Developers.Past)
         {
-            offset = CreateTeamNameList(offset, pair.Key, pair.Value.Select(p => p.Name), 2);
+            offset = CreateTeamNameList(offset, pair.Key, pair.Value.Select(p => p.Person), 2);
         }
 
         dynamicParts.Last().OnBecomeVisible += LoadOutsideDevelopers;
@@ -316,7 +318,7 @@ public class CreditsScroll : Container
 
         foreach (var pair in credits.Developers.Outside)
         {
-            offset = CreateTeamNameList(offset, pair.Key, pair.Value.Select(p => p.Name));
+            offset = CreateTeamNameList(offset, pair.Key, pair.Value.Select(p => p.Person));
         }
 
         dynamicParts.Last().OnBecomeVisible += LoadPatrons;
@@ -560,12 +562,7 @@ public class CreditsScroll : Container
 
         foreach (var columnText in splitTexts)
         {
-            var label = new Label
-            {
-                Text = columnText.ToString(),
-                Align = Label.AlignEnum.Center,
-                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-            };
+            var label = new CustomExpandingWordWrappedLabel(columnText.ToString());
 
             if (overrideFont != null)
                 label.AddFontOverride("font", overrideFont);
@@ -634,7 +631,7 @@ public class CreditsScroll : Container
             Text = text,
             RectMinSize = new Vector2(RectSize.x * LicenseTextWidthFraction, 0),
             RectPosition = new Vector2(Mathf.Round(RectSize.x * (1.0f - LicenseTextWidthFraction)), 0),
-            Align = Label.AlignEnum.Fill,
+            Align = Label.AlignEnum.Left,
             Autowrap = true,
         });
 
@@ -644,7 +641,7 @@ public class CreditsScroll : Container
 
     private IEnumerable<string> FindLeadsInTeam(IEnumerable<GameCredits.DeveloperPerson> people)
     {
-        return people.Where(p => p.Lead).Select(p => p.Name);
+        return people.Where(p => p.Lead).Select(p => p.Person);
     }
 
     private int CreateTeamLeadsList(int offset, string leadHeading, string leadHeadingPlural, IEnumerable<string> leads)

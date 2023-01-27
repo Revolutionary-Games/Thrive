@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo
 {
     using System;
+    using System.Collections;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,7 +15,7 @@
     ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
     ///   </para>
     /// </remarks>
-    public class RunResults
+    public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
     {
         /// <summary>
         ///   The per-species results
@@ -40,6 +41,28 @@
             ///   The new species was added due to experiencing different selection pressure
             /// </summary>
             SplitDueToMutation,
+        }
+
+        /// <summary>
+        ///   Per-species results. Species are cloned if they've changed to retain contemporary data and set to null if
+        ///   they haven't to reduce save file size.
+        /// </summary>
+        /// <returns>The per-species results with changed species cloned and unchanged species set to null</returns>
+        public Dictionary<uint, SpeciesRecordLite> GetSpeciesRecords()
+        {
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
+                HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
+                r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+        }
+
+        /// <summary>
+        ///   Per-species results with all species data. All species are cloned.
+        /// </summary>
+        /// <returns>The per-species results with all species cloned</returns>
+        public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
+        {
+            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordFull(
+                (Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
         }
 
         public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -191,6 +214,45 @@
             }
         }
 
+        /// <summary>
+        ///   Creates a blank results for the player species
+        /// </summary>
+        /// <param name="playerSpecies">The player species</param>
+        /// <param name="patchesToFillResultsFor">
+        ///   Patches to add results for if the species is missing from results. All patches in the used map need
+        ///   to be included here, otherwise population counting will throw an exception later.
+        /// </param>
+        /// <exception cref="ArgumentException">If species is not valid</exception>
+        /// <remarks>
+        ///   <para>
+        ///     When the player has 0 global population, but has not lost the game due to making it to the editor,
+        ///     the player species wouldn't have any results, but as that breaks a lot of stuff we need to create blank
+        ///     results for the player in that case. <see cref="AutoEvoRun.AddPlayerSpeciesPopulationChangeClampStep"/>
+        ///     handles calling this.
+        ///   </para>
+        /// </remarks>
+        public void AddPlayerSpeciesBlankResult(Species playerSpecies, IEnumerable<Patch> patchesToFillResultsFor)
+        {
+            if (!playerSpecies.PlayerSpecies)
+                throw new ArgumentException("Species must be player species");
+
+            lock (results)
+            {
+                if (results.ContainsKey(playerSpecies))
+                    return;
+
+                var result = new SpeciesResult(playerSpecies);
+
+                // All patches need to have a population result for population counting to work
+                foreach (var patch in patchesToFillResultsFor)
+                {
+                    result.NewPopulationInPatches[patch] = 0;
+                }
+
+                results[playerSpecies] = result;
+            }
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)
@@ -211,7 +273,7 @@
 
                     // We ignore the return value as population results are added for all existing patches for all
                     // species (if the species is not in the patch the population is 0 in the results)
-                    patch.UpdateSpeciesPopulation(entry.Key, populationEntry.Value);
+                    patch.UpdateSpeciesSimulationPopulation(entry.Key, populationEntry.Value);
                 }
 
                 if (entry.Value.NewlyCreated != null)
@@ -247,15 +309,15 @@
                     var from = world.Map.GetPatch(spreadEntry.From.ID);
                     var to = world.Map.GetPatch(spreadEntry.To.ID);
 
-                    long remainingPopulation = from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
-                    long newPopulation = to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
+                    long remainingPopulation = from.GetSpeciesSimulationPopulation(entry.Key) - spreadEntry.Population;
+                    long newPopulation = to.GetSpeciesSimulationPopulation(entry.Key) + spreadEntry.Population;
 
-                    if (!from.UpdateSpeciesPopulation(entry.Key, remainingPopulation))
+                    if (!from.UpdateSpeciesSimulationPopulation(entry.Key, remainingPopulation))
                     {
                         GD.PrintErr("RunResults failed to update population for a species in a patch it moved from");
                     }
 
-                    if (!to.UpdateSpeciesPopulation(entry.Key, newPopulation))
+                    if (!to.UpdateSpeciesSimulationPopulation(entry.Key, newPopulation))
                     {
                         if (!to.AddSpecies(entry.Key, newPopulation))
                         {
@@ -269,18 +331,18 @@
                 {
                     if (entry.Value.SplitOffPatches != null)
                     {
-                        // Set populations to 0 for the patches that moved and replace the results for the split off
-                        // species with those
+                        // Set populations to 0 for the patches that split off and use the populations for the split
+                        // off species
                         foreach (var splitOffPatch in entry.Value.SplitOffPatches)
                         {
                             var patch = world.Map.GetPatch(splitOffPatch.ID);
 
-                            var population = patch.GetSpeciesPopulation(entry.Key);
+                            var population = patch.GetSpeciesSimulationPopulation(entry.Key);
 
                             if (population <= 0)
                                 continue;
 
-                            if (!patch.UpdateSpeciesPopulation(entry.Key, 0))
+                            if (!patch.UpdateSpeciesSimulationPopulation(entry.Key, 0))
                             {
                                 GD.PrintErr("RunResults failed to update population for a species that split");
                             }
@@ -297,6 +359,8 @@
                     }
                 }
             }
+
+            world.Map.DiscardGameplayPopulations();
         }
 
         /// <summary>
@@ -514,8 +578,12 @@
         ///   Makes summary text
         /// </summary>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
-        /// <param name="playerReadable">if true ids are removed from the output</param>
-        /// <param name="effects">if not null these effects are applied to the population numbers</param>
+        /// <param name="playerReadable">If true ids are removed from the output</param>
+        /// <param name="effects">
+        ///   If not null these effects are applied to the population numbers.
+        ///   Must be final effects with <see cref="ExternalEffect.Coefficient"/> set to 1 created by
+        ///   <see cref="AutoEvoRun.CalculateFinalExternalEffectSizes"/>
+        /// </param>
         /// <returns>The generated summary text</returns>
         public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect>? effects = null)
@@ -568,7 +636,7 @@
                     builder.Append(' ');
                     builder.Append(new LocalizedString("PREVIOUS_COLON"));
                     builder.Append(' ');
-                    builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
+                    builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesSimulationPopulation(species));
                 }
 
                 builder.Append('\n');
@@ -699,16 +767,21 @@
                     }
 
                     // Apply external effects
-                    if (effects != null && previousPopulations != null &&
-                        previousPopulations.CurrentPatch!.ID == patchPopulation.Key.ID)
+                    if (effects != null && previousPopulations != null)
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == entry.Species && effect.Patch.ID == patchPopulation.Key.ID)
+                            if (effect.Species == entry.Species && effect.Patch == patchPopulation.Key)
                             {
-                                adjustedPopulation +=
-                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
-                                    - effect.Species.Population;
+                                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                                if (effect.Coefficient != 1)
+                                {
+                                    GD.PrintErr(
+                                        "CalculateFinalExternalEffectSizes has not been called to finalize" +
+                                        $" external effects passed to {nameof(MakeSummary)}");
+                                }
+
+                                adjustedPopulation += effect.Constant;
                             }
                         }
                     }
@@ -724,8 +797,8 @@
                     }
                     else
                     {
-                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
-                            0)
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
+                                .GetSpeciesSimulationPopulation(entry.Species) > 0)
                         {
                             include = true;
                         }
@@ -810,10 +883,11 @@
                 {
                     long globalPopulation = GetGlobalPopulation(species, true, true);
 
-                    var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
+                    var previousGlobalPopulation = world.Map.GetSpeciesGlobalSimulationPopulation(species);
 
-                    var finalPatchPopulation = GetPopulationInPatch(species, patch);
-                    var previousPatchPopulation = patch.GetSpeciesPopulation(species);
+                    var unadjustedPopulation = GetPopulationInPatch(species, patch);
+                    var finalPatchPopulation = unadjustedPopulation;
+                    var previousPatchPopulation = patch.GetSpeciesSimulationPopulation(species);
 
                     finalPatchPopulation += CountSpeciesSpreadPopulation(species, patch);
 
@@ -824,15 +898,13 @@
                     }
 
                     // Apply external effects
-                    if (effects != null && world.Map.CurrentPatch.ID == patch.ID)
+                    if (effects != null)
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == species && effect.Patch.ID == patch.ID)
+                            if (effect.Species == species && effect.Patch == patch)
                             {
-                                finalPatchPopulation +=
-                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
-                                    - effect.Species.Population;
+                                finalPatchPopulation += effect.Constant;
                             }
                         }
                     }
@@ -939,6 +1011,47 @@
         }
 
         /// <summary>
+        ///   Call this only when auto-evo has finished. Calling at runtime will result in
+        ///   incorrect result and random CollectionModifiedException.
+        /// </summary>
+        public IEnumerator GetEnumerator()
+        {
+            return results.GetEnumerator();
+        }
+
+        /// <summary>
+        ///   Call this only when auto-evo has finished. Calling at runtime will result in
+        ///   incorrect result and random CollectionModifiedException.
+        /// </summary>
+        IEnumerator<KeyValuePair<Species, SpeciesResult>> IEnumerable<KeyValuePair<Species, SpeciesResult>>.
+            GetEnumerator()
+        {
+            return results.GetEnumerator();
+        }
+
+        /// <summary>
+        ///   Returns the results for a given species for use by auto-evo internally
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Should be used very carefully and not at all by normal auto-evo steps. Used for more efficient auto-evo
+        ///     run setups. Doesn't use any locking as this is not meant to be called before a run is started.
+        ///   </para>
+        /// </remarks>
+        /// <param name="species">The species to get the results for</param>
+        /// <returns>The species results for the species, modifications should be done very carefully</returns>
+        internal SpeciesResult GetSpeciesResultForInternalUse(Species species)
+        {
+            if (results.TryGetValue(species, out var result))
+                return result;
+
+            result = new SpeciesResult(species);
+            results[species] = result;
+
+            return result;
+        }
+
+        /// <summary>
         ///   Logs an event description into game world and a patch. Use this if the event description in question
         ///   is exactly the same.
         /// </summary>
@@ -987,6 +1100,11 @@
             }
 
             return totalPopulation;
+        }
+
+        private bool HasSpeciesChanged(SpeciesResult result)
+        {
+            return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
         }
 
         public class SpeciesResult
@@ -1071,14 +1189,19 @@
             public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
 
             public long UnadjustedPopulation;
+
             public float TotalEnergyGathered;
+
             public float IndividualCost;
 
             public class NicheInfo
             {
                 public float CurrentSpeciesFitness;
+
                 public float CurrentSpeciesEnergy;
+
                 public float TotalFitness;
+
                 public float TotalAvailableEnergy;
             }
         }

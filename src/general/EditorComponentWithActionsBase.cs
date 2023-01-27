@@ -11,7 +11,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     where TAction : EditorAction
 {
     [Export]
-    public NodePath MutationPointsBarPath = null!;
+    public NodePath? MutationPointsBarPath;
 
     [Export]
     public NodePath ComponentBottomLeftButtonsPath = null!;
@@ -19,11 +19,13 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     [Export]
     public NodePath CancelButtonPath = null!;
 
+#pragma warning disable CA2213
     protected EditorComponentBottomLeftButtons componentBottomLeftButtons = null!;
 
     private MutationPointsBar mutationPointsBar = null!;
 
     private Button cancelButton = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If true an editor (component) action is active and can be cancelled. By default just checks for moves
@@ -90,6 +92,21 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     {
         SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
         SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MutationPointsBarPath != null)
+            {
+                MutationPointsBarPath.Dispose();
+                ComponentBottomLeftButtonsPath.Dispose();
+                CancelButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected void Undo()

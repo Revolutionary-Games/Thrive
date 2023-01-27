@@ -14,7 +14,7 @@ using Path = System.IO.Path;
 public class ModManager : Control
 {
     [Export]
-    public NodePath LeftArrowPath = null!;
+    public NodePath? LeftArrowPath;
 
     [Export]
     public NodePath RightArrowPath = null!;
@@ -141,6 +141,7 @@ public class ModManager : Control
     private List<FullModDetails>? notEnabledMods;
     private List<FullModDetails>? enabledMods;
 
+#pragma warning disable CA2213
     private Button leftArrow = null!;
     private Button rightArrow = null!;
 
@@ -193,6 +194,7 @@ public class ModManager : Control
     private ErrorDialog modErrorDialog = null!;
 
     private CustomDialog restartRequired = null!;
+#pragma warning restore CA2213
 
     private FullModDetails? selectedMod;
 
@@ -424,6 +426,59 @@ public class ModManager : Control
         wasVisible = isCurrentlyVisible;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LeftArrowPath != null)
+            {
+                LeftArrowPath.Dispose();
+                RightArrowPath.Dispose();
+                AvailableModsContainerPath.Dispose();
+                EnabledModsContainerPath.Dispose();
+                OpenModInfoButtonPath.Dispose();
+                OpenModUrlButtonPath.Dispose();
+                DisableAllModsButtonPath.Dispose();
+                SelectedModNamePath.Dispose();
+                SelectedModIconPath.Dispose();
+                SelectedModAuthorPath.Dispose();
+                SelectedModVersionPath.Dispose();
+                SelectedModRecommendedThriveVersionPath.Dispose();
+                SelectedModMinimumThriveVersionPath.Dispose();
+                SelectedModDescriptionPath.Dispose();
+                ApplyChangesButtonPath.Dispose();
+                UnAppliedChangesWarningPath.Dispose();
+                ModFullInfoPopupPath.Dispose();
+                FullInfoNamePath.Dispose();
+                FullInfoInternalNamePath.Dispose();
+                FullInfoAuthorPath.Dispose();
+                FullInfoVersionPath.Dispose();
+                FullInfoDescriptionPath.Dispose();
+                FullInfoLongDescriptionPath.Dispose();
+                FullInfoFromWorkshopPath.Dispose();
+                FullInfoIconFilePath.Dispose();
+                FullInfoInfoUrlPath.Dispose();
+                FullInfoLicensePath.Dispose();
+                FullInfoRecommendedThrivePath.Dispose();
+                FullInfoMinimumThrivePath.Dispose();
+                FullInfoMaximumThrivePath.Dispose();
+                FullInfoPckNamePath.Dispose();
+                FullInfoModAssemblyPath.Dispose();
+                FullInfoAssemblyModClassPath.Dispose();
+                FullInfoAutoHarmonyPath.Dispose();
+                OpenWorkshopButtonPath.Dispose();
+                ModUploaderButtonPath.Dispose();
+                NewModGUIPath.Dispose();
+                ModCreateErrorDialogPath.Dispose();
+                ModUploaderPath.Dispose();
+                ModErrorDialogPath.Dispose();
+                RestartRequiredPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private static bool IsAllowedModPath(string path)
     {
         if (string.IsNullOrWhiteSpace(path))
@@ -433,6 +488,101 @@ public class ModManager : Control
             return false;
 
         return true;
+    }
+
+    /// <summary>
+    ///   Loads info for valid mods
+    /// </summary>
+    /// <returns>The valid mod names and their info</returns>
+    private static List<FullModDetails> LoadValidMods()
+    {
+        var mods = FindModFolders();
+        var result = new List<FullModDetails> { Capacity = mods.Count };
+
+        foreach (var modFolder in mods)
+        {
+            var info = LoadModInfo(modFolder);
+
+            if (info == null)
+            {
+                GD.PrintErr("Can't read mod info from folder: ", modFolder);
+                continue;
+            }
+
+            var name = Path.GetFileName(modFolder);
+
+            if (info.InternalName != name)
+            {
+                GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
+                    ")");
+                continue;
+            }
+
+            result.Add(new FullModDetails(name, modFolder, info));
+        }
+
+        var previousLength = result.Count;
+
+        result = result.Distinct().ToList();
+
+        if (result.Count != previousLength)
+        {
+            GD.PrintErr("Multiple mods detected with the same name, only one of them is usable");
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Finds existing mod folders
+    /// </summary>
+    /// <returns>List of mod folders that contain mod files</returns>
+    private static List<string> FindModFolders()
+    {
+        var result = new List<string>();
+
+        using var currentDirectory = new Directory();
+
+        foreach (var location in Constants.ModLocations)
+        {
+            if (!currentDirectory.DirExists(location))
+                continue;
+
+            if (currentDirectory.Open(location) != Error.Ok)
+            {
+                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
+                continue;
+            }
+
+            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
+            {
+                GD.PrintErr("Failed to begin directory listing");
+                continue;
+            }
+
+            while (true)
+            {
+                var item = currentDirectory.GetNext();
+
+                if (string.IsNullOrEmpty(item))
+                    break;
+
+                if (currentDirectory.DirExists(item))
+                {
+                    var modsFolder = Path.Combine(location, item);
+
+                    if (currentDirectory.FileExists(Path.Combine(item, Constants.MOD_INFO_FILE_NAME)))
+                    {
+                        // Found a mod folder
+                        result.Add(modsFolder);
+                    }
+                }
+            }
+
+            currentDirectory.ListDirEnd();
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -575,101 +725,6 @@ public class ModManager : Control
             leftArrow.Disabled = true;
             rightArrow.Disabled = true;
         }
-    }
-
-    /// <summary>
-    ///   Loads info for valid mods
-    /// </summary>
-    /// <returns>The valid mod names and their info</returns>
-    private List<FullModDetails> LoadValidMods()
-    {
-        var mods = FindModFolders();
-        var result = new List<FullModDetails> { Capacity = mods.Count };
-
-        foreach (var modFolder in mods)
-        {
-            var info = LoadModInfo(modFolder);
-
-            if (info == null)
-            {
-                GD.PrintErr("Can't read mod info from folder: ", modFolder);
-                continue;
-            }
-
-            var name = Path.GetFileName(modFolder);
-
-            if (info.InternalName != name)
-            {
-                GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
-                    ")");
-                continue;
-            }
-
-            result.Add(new FullModDetails(name, modFolder, info));
-        }
-
-        var previousLength = result.Count;
-
-        result = result.Distinct().ToList();
-
-        if (result.Count != previousLength)
-        {
-            GD.PrintErr("Multiple mods detected with the same name, only one of them is usable");
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    ///   Finds existing mod folders
-    /// </summary>
-    /// <returns>List of mod folders that contain mod files</returns>
-    private List<string> FindModFolders()
-    {
-        var result = new List<string>();
-
-        using var currentDirectory = new Directory();
-
-        foreach (var location in Constants.ModLocations)
-        {
-            if (!currentDirectory.DirExists(location))
-                continue;
-
-            if (currentDirectory.Open(location) != Error.Ok)
-            {
-                GD.PrintErr("Failed to open potential mod folder for reading at: ", location);
-                continue;
-            }
-
-            if (currentDirectory.ListDirBegin(true, true) != Error.Ok)
-            {
-                GD.PrintErr("Failed to begin directory listing");
-                continue;
-            }
-
-            while (true)
-            {
-                var item = currentDirectory.GetNext();
-
-                if (string.IsNullOrEmpty(item))
-                    break;
-
-                if (currentDirectory.DirExists(item))
-                {
-                    var modsFolder = Path.Combine(location, item);
-
-                    if (currentDirectory.FileExists(Path.Combine(item, Constants.MOD_INFO_FILE_NAME)))
-                    {
-                        // Found a mod folder
-                        result.Add(modsFolder);
-                    }
-                }
-            }
-
-            currentDirectory.ListDirEnd();
-        }
-
-        return result;
     }
 
     /// <summary>

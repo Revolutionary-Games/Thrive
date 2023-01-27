@@ -11,7 +11,7 @@ using Godot;
 public class SaveManagerGUI : Control
 {
     [Export]
-    public NodePath SaveListPath = null!;
+    public NodePath? SaveListPath;
 
     [Export]
     public NodePath SelectedItemCountPath = null!;
@@ -40,6 +40,7 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath SaveDirectoryWarningDialogPath = null!;
 
+#pragma warning disable CA2213
     private SaveList saveList = null!;
     private Label selectedItemCount = null!;
     private Label totalSaveCount = null!;
@@ -50,6 +51,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
+#pragma warning restore CA2213
 
     private List<SaveListItem>? selected;
     private bool selectedDirty = true;
@@ -128,13 +130,35 @@ public class SaveManagerGUI : Control
         getBackupCountTask = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MIB_VALUE"),
-            Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
+        totalSaveSize.Text = TranslationServer.Translate("MIB_VALUE")
+            .FormatSafe(Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
 
         UpdateSelectedCount();
         UpdateButtonsStatus();
 
         refreshing = false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SaveListPath != null)
+            {
+                SaveListPath.Dispose();
+                SelectedItemCountPath.Dispose();
+                TotalSaveCountPath.Dispose();
+                TotalSaveSizePath.Dispose();
+                LoadButtonPath.Dispose();
+                DeleteSelectedButtonPath.Dispose();
+                DeleteOldButtonPath.Dispose();
+                DeleteSelectedConfirmDialogPath.Dispose();
+                DeleteOldConfirmDialogPath.Dispose();
+                SaveDirectoryWarningDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSelectedChanged()
@@ -220,9 +244,7 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         deleteSelectedConfirmDialog.DialogText =
-            string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
-                Selected.Count);
+            TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING").FormatSafe(Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredShrink();
     }
 
@@ -232,10 +254,8 @@ public class SaveManagerGUI : Control
         int quickSavesToDeleteCount = Math.Max(currentQuickSaveCount - 1, 0);
         int oldBackupsToDeleteCount = Math.Max(currentBackupCount, 0);
 
-        deleteOldConfirmDialog.DialogText =
-            string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING_2"),
-                autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
+        deleteOldConfirmDialog.DialogText = TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING_2").FormatSafe(
+            autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredShrink();
     }
 

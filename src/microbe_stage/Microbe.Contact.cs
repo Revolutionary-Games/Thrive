@@ -12,6 +12,12 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public partial class Microbe
 {
+#pragma warning disable CA2213
+    private PackedScene endosomeScene = null!;
+
+    private PackedScene cellBurstEffectScene = null!;
+#pragma warning restore CA2213
+
     // private SphereShape pseudopodRangeSphereShape = null!;
 
     /// <summary>
@@ -57,8 +63,6 @@ public partial class Microbe
 
     // private MeshInstance pseudopodTarget = null!;
 
-    private PackedScene endosomeScene = null!;
-
     /// <summary>
     ///   Controls for how long the flashColour is held before going
     ///   back to species colour.
@@ -76,7 +80,12 @@ public partial class Microbe
     [JsonProperty]
     private int flashPriority;
 
-    private PackedScene cellBurstEffectScene = null!;
+    /// <summary>
+    ///   This determines how much time is left (in seconds) until this cell can take damage again after becoming
+    ///   invulnerable due to a damage source. This was added to balance pili but might extend to more sources.
+    /// </summary>
+    [JsonProperty]
+    private float invulnerabilityDuration;
 
     [JsonProperty]
     private bool deathParticlesSpawned;
@@ -216,12 +225,13 @@ public partial class Microbe
     {
         get
         {
-            if (CellTypeProperties.IsBacteria)
-            {
-                return HexCount * 0.5f;
-            }
+            // Scale with digested progress
+            var size = HexCount * (1 - DigestedAmount);
 
-            return HexCount;
+            if (CellTypeProperties.IsBacteria)
+                return size * 0.5f;
+
+            return size;
         }
     }
 
@@ -266,6 +276,15 @@ public partial class Microbe
             Membrane.Type.BaseWigglyness) * 0.2f;
         Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.MovementWigglyness) * 0.2f;
+    }
+
+    /// <summary>
+    ///   Give this microbe a specified amount of invulnerability time. Overrides previous value.
+    ///   NOTE: Not all damage sources apply invulnerability, check method usages.
+    /// </summary>
+    public void MakeInvulnerable(float duration)
+    {
+        invulnerabilityDuration = duration;
     }
 
     /// <summary>
@@ -336,8 +355,15 @@ public partial class Microbe
         }
         else if (source == "pilus")
         {
+            if (invulnerabilityDuration > 0)
+                return;
+
             // Play the pilus sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg", 4.0f);
+
+            // Give immunity to prevent massive damage at some angles
+            // https://github.com/Revolutionary-Games/Thrive/issues/3267
+            MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
 
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
@@ -446,6 +472,10 @@ public partial class Microbe
         if (Membrane.Type.CellWall)
             return false;
 
+        // Godmode grants player complete engulfment invulnerability
+        if (targetAsMicrobe != null && targetAsMicrobe.IsPlayerMicrobe && CheatManager.GodMode)
+            return false;
+
         // Needs to be big enough to engulf
         return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
@@ -453,6 +483,8 @@ public partial class Microbe
     public void OnAttemptedToBeEngulfed()
     {
         Membrane.WigglyNess = 0;
+
+        UnreadyToReproduce();
 
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
@@ -466,6 +498,8 @@ public partial class Microbe
                 organelle.UpdateRenderPriority(newPriority);
             }
         }
+
+        Colony?.RemoveFromColony(this);
 
         // Just in case player is engulfed again after escaping
         playerEngulfedDeathTimer = 0;
@@ -521,11 +555,11 @@ public partial class Microbe
 
     public void ClearEngulfedObjects()
     {
-        foreach (var engulfed in engulfedObjects)
+        foreach (var engulfed in engulfedObjects.ToList())
         {
             if (engulfed.Object.Value != null)
             {
-                EjectEngulfable(engulfed.Object.Value);
+                engulfedObjects.Remove(engulfed);
                 engulfed.Object.Value.DestroyDetachAndQueueFree();
             }
 
@@ -536,7 +570,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true if this microbe is currently in the process of attempting to engulf something.
+    ///   Returns true if this microbe is currently in the process of ingesting engulfables.
     /// </summary>
     public bool IsPullingInEngulfables()
     {
@@ -645,7 +679,9 @@ public partial class Microbe
         {
             OnUnbound?.Invoke(this);
 
-            RevertNodeParent();
+            if (PhagocytosisStep == PhagocytosisPhase.None)
+                RevertNodeParent();
+
             ai?.ResetAI();
 
             Mode = ModeEnum.Rigid;
@@ -793,6 +829,8 @@ public partial class Microbe
             }
         }
 
+        CalculateBonusDigestibleGlucose(compoundsToRelease);
+
         // Queues either 1 corpse chunk or a factor of the hexes
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
@@ -883,7 +921,7 @@ public partial class Microbe
             droppedCorpseChunks.Add(chunk);
 
             // Add to the spawn system to make these chunks limit possible number of entities
-            SpawnSystem.AddEntityToTrack(chunk);
+            spawnSystem!.AddEntityToTrack(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
@@ -982,6 +1020,17 @@ public partial class Microbe
             pseudopodRangeSphereShape.Radius = wantedRadius;
         }
         */
+    }
+
+    /// <summary>
+    ///   Decrease the remaining invulnerability time
+    /// </summary>
+    private void HandleInvulnerabilityDecay(float delta)
+    {
+        if (invulnerabilityDuration > 0)
+        {
+            invulnerabilityDuration -= delta;
+        }
     }
 
     /// <summary>
@@ -1177,11 +1226,6 @@ public partial class Microbe
 
             if (!engulfedObject.Interpolate)
                 continue;
-
-            // Ingestion hasn't completed yet but the cell is no longer in engulfment mode, cancel ingestion.
-            // Engulfment mode must be kept until internalization is complete
-            if (State != MicrobeState.Engulf && engulfable.PhagocytosisStep == PhagocytosisPhase.Ingestion)
-                EjectEngulfable(engulfable, 1.0f);
 
             if (AnimateBulkTransport(delta, engulfedObject))
             {
@@ -1408,7 +1452,8 @@ public partial class Microbe
             // TODO: should this also check for pilus before removing the collision?
             hitMicrobe.touchedEntities.Remove(engulfable);
 
-            hitMicrobe.attemptingToEngulf.Remove(engulfable);
+            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+                hitMicrobe.attemptingToEngulf.Remove(engulfable);
         }
     }
 
@@ -1550,18 +1595,11 @@ public partial class Microbe
         if (engulfedObject == null)
             return;
 
-        if (engulfedObject.HasBeenIngested)
-        {
-            UsedIngestionCapacity -= target.EngulfSize;
-
-            if (UsedIngestionCapacity < 0)
-                UsedIngestionCapacity = 0;
-        }
-
         target.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
 
-        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
-            body.Translation.x, body.Translation.z);
+        // The back of the microbe
+        var exit = Hex.AxialToCartesian(new Hex(0, 1));
+        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
@@ -1803,9 +1841,6 @@ public partial class Microbe
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);
 
-        UsedIngestionCapacity += engulfable.EngulfSize;
-        engulfed.HasBeenIngested = true;
-
         OnSuccessfulEngulfment?.Invoke(this, engulfable);
         engulfable.OnIngestedFromEngulfment();
     }
@@ -1820,7 +1855,6 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         expelledObjects.Add(engulfed);
 
-        engulfed.ReclaimedByAnotherHost = false;
         engulfable.PhagocytosisStep = PhagocytosisPhase.None;
 
         foreach (string group in engulfed.OriginalGroups)
@@ -1912,8 +1946,6 @@ public partial class Microbe
         [JsonProperty]
         public Array OriginalGroups { get; private set; } = new();
 
-        public bool HasBeenIngested { get; set; }
-        public bool ReclaimedByAnotherHost { get; set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }
         public float AnimationTimeElapsed { get; set; }

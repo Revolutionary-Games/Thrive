@@ -39,8 +39,10 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private MembraneType? type;
 
+#pragma warning disable CA2213
     private Texture? albedoTexture;
     private Texture noiseTexture = null!;
+#pragma warning restore CA2213
 
     private string? currentlyLoadedAlbedoTexture;
 
@@ -193,7 +195,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
             // According to stack overflow HSV and HSB are the same thing
             value.ToHsv(out var hue, out var saturation, out var brightness);
 
-            value = Color.FromHsv(hue, saturation * 0.75f, brightness);
+            value = Color.FromHsv(hue, saturation * 0.75f, brightness,
+                Mathf.Clamp(value.a, 0.4f - brightness * 0.3f, 1.0f));
 
             if (tint == value)
                 return;

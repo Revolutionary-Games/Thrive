@@ -13,6 +13,11 @@ using Godot;
 public class RunOnKeyAttribute : InputAttribute
 {
     /// <summary>
+    ///   When an input action starts with this, it's not a Godot action but a mouse motion we handle in a custom way
+    /// </summary>
+    public const string CAPTURED_MOUSE_AS_AXIS_PREFIX = "captured_mouse:";
+
+    /// <summary>
     ///   Priming comes to effect when an input gets pressed for less than one frame
     ///   (when the release input gets detected before OnProcess could be called)
     /// </summary>
@@ -34,7 +39,7 @@ public class RunOnKeyAttribute : InputAttribute
     public bool HeldDown { get; protected set; }
 
     /// <summary>
-    ///   The internal godot input name
+    ///   The internal godot input name. Except in some cases, <see cref="CAPTURED_MOUSE_AS_AXIS_PREFIX"/>.
     /// </summary>
     /// <example>ui_select</example>
     public string InputName { get; }
@@ -64,11 +69,22 @@ public class RunOnKeyAttribute : InputAttribute
     {
         bool result = false;
 
-        if (@event.IsActionPressed(InputName))
+        // Exact match is not used as doing things like holding down shift makes all inputs no longer work
+        if (@event.IsActionPressed(InputName, false, false))
         {
+            if (TrackInputMethod)
+                LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+
             if (CallMethodInOnInput && !CallbackRequiresElapsedTime)
             {
-                result = CallMethod(0.0f);
+                if (TrackInputMethod)
+                {
+                    result = CallMethod(0.0f, LastUsedInputMethod);
+                }
+                else
+                {
+                    result = CallMethod(0.0f);
+                }
             }
             else
             {
@@ -79,7 +95,7 @@ public class RunOnKeyAttribute : InputAttribute
             HeldDown = true;
         }
 
-        if (@event.IsActionReleased(InputName))
+        if (@event.IsActionReleased(InputName, false))
         {
             result = true;
             HeldDown = false;
@@ -93,29 +109,21 @@ public class RunOnKeyAttribute : InputAttribute
         if (HeldDown || primed)
         {
             primed = false;
-            CallMethod(delta);
+
+            if (TrackInputMethod)
+            {
+                CallMethod(delta, LastUsedInputMethod);
+            }
+            else
+            {
+                CallMethod(delta);
+            }
         }
     }
 
     public override void FocusLost()
     {
         HeldDown = false;
-    }
-
-    public override bool Equals(object obj)
-    {
-        if (!base.Equals(obj) || !(obj is RunOnKeyAttribute key))
-            return false;
-
-        return string.Equals(InputName, key.InputName, StringComparison.InvariantCulture);
-    }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            return (base.GetHashCode() * 397) ^ InputName.GetHashCode();
-        }
     }
 
     protected void Prime()

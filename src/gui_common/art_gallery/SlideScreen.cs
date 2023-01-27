@@ -10,7 +10,7 @@ public class SlideScreen : CustomDialog
     public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
     [Export]
-    public NodePath SlideTextureRectPath = null!;
+    public NodePath? SlideTextureRectPath;
 
     [Export]
     public NodePath SlideToolbarPath = null!;
@@ -39,7 +39,8 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
-    private TextureRect? fullscreenTextureRect;
+#pragma warning disable CA2213
+    private CrossFadableTextureRect? slideTextureRect;
     private Control? toolbar;
     private Button? closeButton;
     private Button? slideShowModeButton;
@@ -51,8 +52,8 @@ public class SlideScreen : CustomDialog
     private PlaybackControls? playbackControls;
 
     private Tween popupTween = null!;
-    private Tween slideshowTween = null!;
     private Tween toolbarTween = null!;
+#pragma warning restore CA2213
 
     private float toolbarHideTimer;
     private float slideshowTimer;
@@ -120,7 +121,7 @@ public class SlideScreen : CustomDialog
 
     public override void _Ready()
     {
-        fullscreenTextureRect = GetNode<TextureRect>(SlideTextureRectPath);
+        slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
         toolbar = GetNode<Control>(SlideToolbarPath);
         closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
@@ -132,7 +133,6 @@ public class SlideScreen : CustomDialog
         playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
         popupTween = GetNode<Tween>("PopupTween");
-        slideshowTween = GetNode<Tween>("SlideshowTween");
         toolbarTween = GetNode<Tween>("ToolbarTween");
 
         UpdateScreen();
@@ -151,8 +151,8 @@ public class SlideScreen : CustomDialog
                 toolbarTween.Start();
             }
 
-            if (Input.GetMouseMode() == Input.MouseMode.Hidden)
-                Input.SetMouseMode(Input.MouseMode.Visible);
+            if (Input.MouseMode == Input.MouseModeEnum.Hidden)
+                Input.MouseMode = Input.MouseModeEnum.Visible;
 
             if (toolbarHideTimer < 0)
             {
@@ -161,7 +161,7 @@ public class SlideScreen : CustomDialog
                 toolbarTween.InterpolateProperty(
                     closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 toolbarTween.Start();
-                Input.SetMouseMode(Input.MouseMode.Hidden);
+                Input.MouseMode = Input.MouseModeEnum.Hidden;
             }
         }
 
@@ -181,15 +181,21 @@ public class SlideScreen : CustomDialog
     }
 
     [RunOnKeyDownWithRepeat("ui_right", OnlyUnhandled = false)]
-    public void OnSlideToRight()
+    public bool OnSlideToRight()
     {
-        AdvanceSlide();
+        if (!Visible)
+            return false;
+
+        return AdvanceSlide();
     }
 
     [RunOnKeyDownWithRepeat("ui_left", OnlyUnhandled = false)]
-    public void OnSlideToLeft()
+    public bool OnSlideToLeft()
     {
-        RetreatSlide();
+        if (!Visible)
+            return false;
+
+        return RetreatSlide();
     }
 
     public override void CustomShow()
@@ -237,33 +243,36 @@ public class SlideScreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public void AdvanceSlide(bool fade = false, int searchCounter = 0)
+    public bool AdvanceSlide(bool fade = false, int searchCounter = 0)
     {
         if (Items == null)
-            return;
+            return false;
 
         currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
 
         // Can be shown in a slideshow check is only done here because slideshow only moves forward
         if (!Items[CurrentSlideIndex].CanBeShownInASlideshow && SlideshowMode)
         {
+            // TODO: rewrite this to an iterative method, in case we have slideshows with thousands of items
             // Limit recursion to the number of items total
             if (searchCounter < Items.Count)
             {
                 // Keep advancing until we found an item that allows slideshow
-                AdvanceSlide(fade, ++searchCounter);
+                return AdvanceSlide(fade, ++searchCounter);
             }
 
-            return;
+            // Advancing failed
+            return false;
         }
 
         ChangeSlide(fade);
+        return true;
     }
 
-    public void RetreatSlide(bool fade = false)
+    public bool RetreatSlide(bool fade = false)
     {
         if (Items == null)
-            return;
+            return false;
 
         --currentSlideIndex;
 
@@ -271,13 +280,36 @@ public class SlideScreen : CustomDialog
             currentSlideIndex = Items.Count - 1;
 
         ChangeSlide(fade);
+        return true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SlideTextureRectPath != null)
+            {
+                SlideTextureRectPath.Dispose();
+                SlideToolbarPath.Dispose();
+                SlideCloseButtonPath.Dispose();
+                SlideShowModeButtonPath.Dispose();
+                SlideTitleLabelPath.Dispose();
+                ModelViewerContainerPath.Dispose();
+                ModelViewerPath.Dispose();
+                ModelHolderPath.Dispose();
+                ModelViewerCameraPath.Dispose();
+                PlaybackControlsPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void OnHidden()
     {
         base.OnHidden();
         SlideshowMode = false;
-        Input.SetMouseMode(Input.MouseMode.Visible);
+        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 
     private void ChangeSlide(bool fade)
@@ -291,11 +323,11 @@ public class SlideScreen : CustomDialog
             return;
         }
 
-        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.Black, 0.5f);
-        slideshowTween.Start();
+        if (items == null || slideTextureRect == null)
+            return;
 
-        if (!slideshowTween.IsConnected("tween_completed", this, nameof(OnSlideFaded)))
-            slideshowTween.Connect("tween_completed", this, nameof(OnSlideFaded), null, (uint)ConnectFlags.Oneshot);
+        var item = items[currentSlideIndex];
+        slideTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateScreen()
@@ -307,7 +339,7 @@ public class SlideScreen : CustomDialog
 
     private void UpdateSlide()
     {
-        if (items == null || slideTitleLabel == null || fullscreenTextureRect == null || slideShowModeButton == null)
+        if (items == null || slideTitleLabel == null || slideTextureRect == null || slideShowModeButton == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -317,7 +349,7 @@ public class SlideScreen : CustomDialog
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
         slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
-        fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateModelViewer()
@@ -354,7 +386,7 @@ public class SlideScreen : CustomDialog
     {
         var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (playbackControls == null || fullscreenTextureRect == null)
+        if (playbackControls == null || slideTextureRect == null)
             return;
 
         if (item?.Asset.Type != AssetType.AudioPlayback)
@@ -368,7 +400,7 @@ public class SlideScreen : CustomDialog
         playbackControls?.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
-        fullscreenTextureRect.Texture = item.MissingTexture;
+        slideTextureRect.Texture = item.MissingTexture;
     }
 
     private void UpdateHandles()
@@ -378,16 +410,6 @@ public class SlideScreen : CustomDialog
 
         toolbar.Visible = slideControlsVisible;
         closeButton.Visible = slideControlsVisible;
-    }
-
-    private void OnSlideFaded(Object @object, NodePath key)
-    {
-        _ = @object;
-        _ = key;
-
-        UpdateScreen();
-        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.White, 0.5f);
-        slideshowTween.Start();
     }
 
     private void OnScaledUp(Object @object, NodePath key)

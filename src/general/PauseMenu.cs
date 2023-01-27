@@ -16,6 +16,9 @@ public class PauseMenu : CustomDialog
     public NodePath PrimaryMenuPath = null!;
 
     [Export]
+    public NodePath ThriveopediaPath = null!;
+
+    [Export]
     public NodePath HelpScreenPath = null!;
 
     [Export]
@@ -34,6 +37,7 @@ public class PauseMenu : CustomDialog
     public NodePath UnsavedProgressWarningPath = null!;
 
     private Control primaryMenu = null!;
+    private Thriveopedia thriveopedia = null!;
     private HelpScreen helpScreen = null!;
     private Control loadMenu = null!;
     private OptionsMenu optionsMenu = null!;
@@ -48,6 +52,10 @@ public class PauseMenu : CustomDialog
     ///   game exit will be performed on exit confirmation.
     /// </summary>
     private ExitType exitType;
+
+    private bool exiting;
+
+    private int exitTries;
 
     [Signal]
     public delegate void OnResumed();
@@ -78,6 +86,7 @@ public class PauseMenu : CustomDialog
     private enum ActiveMenuType
     {
         Primary,
+        Thriveopedia,
         Help,
         Load,
         Options,
@@ -144,6 +153,11 @@ public class PauseMenu : CustomDialog
                         throw new InvalidOperationException(
                             $"{nameof(GameProperties)} is required before opening options"));
                     break;
+                case ActiveMenuType.Thriveopedia:
+                    thriveopedia.OpenInGame(GameProperties ??
+                        throw new InvalidOperationException(
+                            $"{nameof(GameProperties)} is required before opening Thriveopedia in-game"));
+                    break;
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;
@@ -188,6 +202,8 @@ public class PauseMenu : CustomDialog
         helpScreen.Category = HelpCategory;
         InputManager.RegisterReceiver(this);
 
+        GetTree().AutoAcceptQuit = false;
+
         base._EnterTree();
     }
 
@@ -197,16 +213,34 @@ public class PauseMenu : CustomDialog
 
         InputManager.UnregisterReceiver(this);
         Paused = false;
+
+        GetTree().AutoAcceptQuit = true;
     }
 
     public override void _Ready()
     {
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
+        thriveopedia = GetNode<Thriveopedia>(ThriveopediaPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        unsavedProgressWarning.Connect(nameof(Closed), this, nameof(CancelExit));
+        unsavedProgressWarning.Connect(nameof(CustomConfirmationDialog.Cancelled), this, nameof(CancelExit));
+    }
+
+    public override void _Notification(int notification)
+    {
+        base._Notification(notification);
+
+        if (notification == NotificationWmQuitRequest)
+        {
+            // For some reason we need to perform this later, otherwise Godot complains about a node being busy
+            // setting up children
+            Invoke.Instance.Perform(ExitPressed);
+        }
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -253,6 +287,15 @@ public class PauseMenu : CustomDialog
         helpScreen.RandomizeEasterEgg();
     }
 
+    public void ShowThriveopedia(string pageName)
+    {
+        if (ActiveMenu == ActiveMenuType.Thriveopedia)
+            return;
+
+        ActiveMenu = ActiveMenuType.Thriveopedia;
+        thriveopedia.ChangePage(pageName);
+    }
+
     public void Open()
     {
         if (Visible)
@@ -260,6 +303,7 @@ public class PauseMenu : CustomDialog
 
         animationPlayer.Play("Open");
         Paused = true;
+        exiting = false;
     }
 
     public void Close()
@@ -275,6 +319,12 @@ public class PauseMenu : CustomDialog
     {
         Open();
         ShowHelpScreen();
+    }
+
+    public void OpenToStatistics()
+    {
+        Open();
+        ShowThriveopedia("CurrentWorld");
     }
 
     public void SetNewSaveName(string name)
@@ -298,6 +348,7 @@ public class PauseMenu : CustomDialog
         return value switch
         {
             ActiveMenuType.Primary => primaryMenu,
+            ActiveMenuType.Thriveopedia => thriveopedia,
             ActiveMenuType.Help => helpScreen,
             ActiveMenuType.Load => loadMenu,
             ActiveMenuType.Options => optionsMenu,
@@ -335,7 +386,10 @@ public class PauseMenu : CustomDialog
     {
         exitType = ExitType.QuitGame;
 
-        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        ++exitTries;
+
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning
+            || exitTries >= Constants.FORCE_CLOSE_AFTER_TRIES)
         {
             ConfirmExit();
         }
@@ -357,6 +411,11 @@ public class PauseMenu : CustomDialog
 
     private void ConfirmExit()
     {
+        if (exiting)
+            return;
+
+        exiting = true;
+
         switch (exitType)
         {
             case ExitType.ReturnToMenu:
@@ -368,6 +427,11 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    private void CancelExit()
+    {
+        exitTries = 0;
+    }
+
     private void ReturnToMenu()
     {
         Paused = false;
@@ -377,7 +441,14 @@ public class PauseMenu : CustomDialog
 
     private void Quit()
     {
-        GetTree().Quit();
+        SceneManager.Instance.QuitThrive();
+    }
+
+    private void OpenThriveopediaPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ActiveMenu = ActiveMenuType.Thriveopedia;
     }
 
     private void CloseHelpPressed()
@@ -406,6 +477,17 @@ public class PauseMenu : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
 
         ActiveMenu = ActiveMenuType.Options;
+    }
+
+    private void OnThriveopediaClosed()
+    {
+        ActiveMenu = ActiveMenuType.Primary;
+    }
+
+    private void OnSceneChangedFromThriveopedia()
+    {
+        // Remove all pause locks before changing to the new game
+        PauseManager.Instance.ForceClear();
     }
 
     private void OnOptionsClosed()

@@ -4,10 +4,12 @@ using Godot;
 public class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
     [Export]
-    public NodePath PlaybackControlsPath = null!;
+    public NodePath? PlaybackControlsPath;
 
+#pragma warning disable CA2213
     private PlaybackControls? playbackControls;
     private AudioStreamPlayer? ownPlayer;
+#pragma warning restore CA2213
 
     public event EventHandler? PlaybackStarted;
     public event EventHandler? PlaybackStopped;
@@ -49,6 +51,16 @@ public class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
     public void StopPlayback()
     {
         playbackControls?.StopPlayback();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            PlaybackControlsPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void EnsurePlayerExist()

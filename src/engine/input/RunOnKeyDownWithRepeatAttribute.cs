@@ -24,11 +24,17 @@ public class RunOnKeyDownWithRepeatAttribute : RunOnKeyAttribute
     public override bool OnInput(InputEvent @event)
     {
         // Check key or echo from key being down
-        if (@event.IsActionPressed(InputName, true))
+        if (@event.IsActionPressed(InputName, true, false))
         {
             Prime();
             if (SetKeyDown)
                 HeldDown = true;
+
+            if (TrackInputMethod)
+            {
+                LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+                return CallMethod(LastUsedInputMethod);
+            }
 
             return CallMethod();
         }

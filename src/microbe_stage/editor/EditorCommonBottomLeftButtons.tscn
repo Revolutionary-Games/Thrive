@@ -20,9 +20,6 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
 script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 MenuButtonPath = NodePath("HBoxContainer/MenuButton")
 HelpButtonPath = NodePath("HBoxContainer/HelpButton")
 
@@ -41,6 +38,7 @@ margin_top = 5.0
 margin_right = 50.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 50, 35 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
@@ -52,16 +50,15 @@ __meta__ = {
 }
 
 [node name="StatisticsButton" type="TextureButton" parent="HBoxContainer"]
-modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
 margin_left = 55.0
 margin_top = 5.0
 margin_right = 90.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 35, 35 )
+hint_tooltip = "STATISTICS"
 focus_mode = 0
 mouse_filter = 1
 size_flags_vertical = 4
-disabled = true
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 9 )
 texture_hover = ExtResource( 7 )
@@ -76,6 +73,7 @@ margin_top = 5.0
 margin_right = 130.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 35, 35 )
+focus_mode = 0
 mouse_filter = 1
 size_flags_vertical = 4
 texture_normal = ExtResource( 2 )
@@ -87,4 +85,5 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="HBoxContainer/MenuButton" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="HBoxContainer/StatisticsButton" to="." method="OnStatisticsButtonPressed"]
 [connection signal="pressed" from="HBoxContainer/HelpButton" to="." method="OnHelpButtonPressed"]

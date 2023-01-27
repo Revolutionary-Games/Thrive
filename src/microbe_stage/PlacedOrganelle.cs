@@ -26,10 +26,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private Microbe? currentShapesParent;
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   Used to update the tint
     /// </summary>
     private ShaderMaterial? organelleMaterial;
+
+    private Spatial? organelleSceneInstance;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
@@ -37,7 +42,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft = new();
 
-    private Spatial? organelleSceneInstance;
     private List<IOrganelleComponent>? components;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
@@ -171,6 +175,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// </summary>
     [JsonIgnore]
     public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
+
+    [JsonIgnore]
+    public bool IsSlimeJet => HasComponent<SlimeJetComponent>();
 
     [JsonIgnore]
     public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
@@ -309,43 +316,67 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Gives organelles more compounds to grow
+    ///   Gives organelles more compounds to grow (or takes free compounds).
+    ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
     /// </summary>
-    public void GrowOrganelle(CompoundBag compounds)
+    public void GrowOrganelle(CompoundBag compounds, ref float allowedCompoundUse, ref float freeCompoundsLeft,
+        bool reverseCompoundsLeftOrder)
     {
         float totalTaken = 0;
 
-        // TODO: should we just check a single type per frame (and remove once done) so we can skip creating a bunch
+        // TODO: should we just check a single type per update (and remove once done) so we can skip creating a bunch
         // of extra lists
-        foreach (var key in compoundsLeft.Keys.ToArray())
+        foreach (var key in reverseCompoundsLeftOrder ?
+                     compoundsLeft.Keys.Reverse().ToArray() :
+                     compoundsLeft.Keys.ToArray())
         {
             var amountNeeded = compoundsLeft[key];
 
             if (amountNeeded <= 0.0f)
                 continue;
 
-            // Take compounds if the cell has what we need
-            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how
-            // much of a certain compound must exist before we take
-            // some
-            var amountAvailable = compounds.GetCompoundAmount(key)
-                - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+            if (allowedCompoundUse <= 0)
+                break;
 
-            if (amountAvailable <= MathUtils.EPSILON)
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, allowedCompoundUse);
+
+            if (freeCompoundsLeft > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, freeCompoundsLeft);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                freeCompoundsLeft -= usedFreeCompounds;
+            }
+
+            // Take compounds if the cell has what we need
+            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how much of a certain compound must exist before we
+            // take some
+            var amountAvailable =
+                compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                usedAmount += compounds.TakeCompound(key, amountToTake);
+            }
+
+            if (usedAmount < MathUtils.EPSILON)
                 continue;
 
-            // We can take some
-            var amountToTake = Mathf.Min(amountNeeded, amountAvailable);
+            allowedCompoundUse -= usedAmount;
 
-            var amount = compounds.TakeCompound(key, amountToTake);
-            var left = amountNeeded - amount;
+            var left = amountNeeded - usedAmount;
 
             if (left < 0.0001f)
                 left = 0;
 
             compoundsLeft[key] = left;
 
-            totalTaken += amount;
+            totalTaken += usedAmount;
         }
 
         if (totalTaken > 0)
@@ -372,8 +403,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Calculates how much compounds this organelle has absorbed
-    ///   already, adds to the dictionary
+    ///   Calculates how much compounds this organelle has absorbed already, adds to the dictionary
     /// </summary>
     public float CalculateAbsorbedCompounds(Dictionary<Compound, float> result)
     {

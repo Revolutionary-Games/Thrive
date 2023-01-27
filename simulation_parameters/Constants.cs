@@ -12,6 +12,12 @@ using Path = System.IO.Path;
 public static class Constants
 {
     /// <summary>
+    ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
+    ///   NewGameSettings.tscn should also be changed.
+    /// </summary>
+    public const int DEFAULT_DAY_LENGTH = 180;
+
+    /// <summary>
     ///   How long the player stays dead before respawning
     /// </summary>
     public const float PLAYER_RESPAWN_TIME = 5.0f;
@@ -39,6 +45,24 @@ public static class Constants
     ///   Scale factor for amount of compound in each spawned cloud
     /// </summary>
     public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
+
+    /// <summary>
+    ///   Scale factor for how dense microbes spawn (also affected by their populations).
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Due to an earlier problem, old species spawners were never cleared so they accumulated a lot.
+    ///     This multiplier has now been increased quite a bit to try to make the lower number of species spawners
+    ///     result in the same level of microbe spawning.
+    ///   </para>
+    /// </remarks>
+    public const float MICROBE_SPAWN_DENSITY_SCALE_FACTOR = 0.022f;
+
+    /// <summary>
+    ///   Along with <see cref="MICROBE_SPAWN_DENSITY_SCALE_FACTOR"/> affects spawn density of microbes.
+    ///   The lower this multiplier is set the more evenly species with different populations are spawned.
+    /// </summary>
+    public const float MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER = 1 / 25.0f;
 
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
@@ -124,6 +148,12 @@ public static class Constants
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
+    ///   This controls how many entities over the entity limit we allow things to reproduce. This is so that even when
+    ///   the spawn system has spawned things until the limit is full, the spawned things can still reproduce.
+    /// </summary>
+    public const float REPRODUCTION_ALLOW_EXCEED_ENTITY_LIMIT_MULTIPLIER = 1.15f;
+
+    /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
     ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
     /// </summary>
@@ -158,6 +188,8 @@ public static class Constants
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
+
+    public const float LIGHT_LEVEL_UPDATE_INTERVAL = 0.1f;
 
     /// <summary>
     ///   How often the microbe AI processes each microbe
@@ -204,6 +236,26 @@ public static class Constants
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
+
+    /// <summary>
+    ///   How much a cell's speed is slowed when travelling through slime
+    /// </summary>
+    public const float MUCILAGE_IMPEDE_FACTOR = 4.0f;
+
+    /// <summary>
+    ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
+    /// </summary>
+    public const float MUCILAGE_JET_FACTOR = 600.0f;
+
+    /// <summary>
+    ///   Minimum stored slime needed to start secreting
+    /// </summary>
+    public const float MUCILAGE_MIN_TO_VENT = 0.01f;
+
+    /// <summary>
+    ///   Length in seconds for slime secretion cooldown
+    /// </summary>
+    public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
@@ -305,6 +357,51 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
+    ///   Used to prevent lag / loading causing big jumps in reproduction progress
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_MAX_DELTA_FRAME = 0.2f;
+
+    /// <summary>
+    ///   Because reproduction progress is most often time limited,
+    ///   the bars can go to the reproduction ready state way too early, so this being false prevents that.
+    /// </summary>
+    public const bool ALWAYS_SHOW_STORED_COMPOUNDS_IN_REPRODUCTION_PROGRESS = false;
+
+    /// <summary>
+    ///   Multiplier on how much total compounds can be absorbed by organelles to grow per second compared to the free
+    ///   compounds amount. Value of 2 means that having available compounds in storage can make reproduction 2x the
+    ///   speed of just using free compounds.
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_MAX_COMPOUND_USE = 2.25f;
+
+    /// <summary>
+    ///   Controls how many "free" compounds a microbe absorbs out of thin air (or water, really) per second for
+    ///   reproduction use. Note this limit applies to all compounds combined, not to each individual compound type.
+    ///   This is because it is way easier to implement that way.
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_FREE_COMPOUNDS = 0.25f;
+
+    /// <summary>
+    ///   Bonus per hex given to the free compound rate (<see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/>)
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX = 0.02f;
+
+    /// <summary>
+    ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> and
+    ///   <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for early multicellular microbes
+    /// </summary>
+    public const float EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
+
+    /// <summary>
+    ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
+    /// </summary>
+    public const float MICROBE_REPRODUCTION_COST_BASE_AMMONIA = 16;
+
+    public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
+
+    public const float EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
+
+    /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
     ///   is dealt to a microbe at a time when it is out of ATP.
     /// </summary>
@@ -389,7 +486,16 @@ public static class Constants
     /// </summary>
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
-    public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
+    /// <summary>
+    ///   How often in seconds damage is checked and applied when cell digests a toxic cell
+    /// </summary>
+    public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
+
+    /// <summary>
+    ///   Determines how big of a fraction of damage (of total health)
+    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    /// </summary>
+    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
@@ -401,6 +507,13 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
 
+    /// <summary>
+    ///   The maximum cap for efficiency of digestion.
+    /// </summary>
+    public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
+
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.25f;
+
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
     /// <summary>
@@ -411,7 +524,12 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 3.0f;
+    public const float PILUS_BASE_DAMAGE = 20.0f;
+
+    /// <summary>
+    ///   How much time (in seconds) a pilus applies invulnerability upon damage.
+    /// </summary>
+    public const float PILUS_INVULNERABLE_TIME = 0.25f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
@@ -435,7 +553,7 @@ public static class Constants
     public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
-    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 2.0f;
+    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus
@@ -595,14 +713,19 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 150000;
     public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
+
+    public const float AUTO_EVO_MINIMUM_VIABLE_RESERVE_PER_TIME_UNIT = 1.0f;
+    public const float AUTO_EVO_NON_VIABLE_RESERVE_PENALTY = 10;
+
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
@@ -619,14 +742,14 @@ public static class Constants
 
     // These control how many game entities can exist at once
     // TODO: bump these back up once we resolve the performance bottleneck
-    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
-    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
-    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
-    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
-    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
-    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
-    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
-    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+    public const int TINY_MAX_SPAWNED_ENTITIES = 50;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 100;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 200;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 300;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 400;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 500;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 600;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 800;
 
     /// <summary>
     ///   Controls how fast entities are allowed to spawn
@@ -635,8 +758,15 @@ public static class Constants
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    ///   Note that this is a raw count and not a weighted count as game instability is probably related to the number
+    ///   of deleted world child Nodes and not their complexity.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 4;
+
+    /// <summary>
+    ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
+    /// </summary>
+    public const float ORGANELLE_ENTITY_WEIGHT = 0.5f;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
@@ -649,14 +779,18 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
-    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
-    public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
+    public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
+
+    public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panel are
@@ -674,6 +808,8 @@ public static class Constants
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
     public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+
+    public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
     /// <summary>
     ///   Scale used for one frame while membrane data is not ready yet
@@ -711,6 +847,11 @@ public static class Constants
     ///   Popups have a highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
+
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
+    public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
+    public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
@@ -796,6 +937,8 @@ public static class Constants
     public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
+    public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
+    public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
@@ -808,6 +951,8 @@ public static class Constants
 
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
+    public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
+
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
@@ -817,6 +962,13 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
+    public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
+    public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
+
+    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
+
+    public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
@@ -846,6 +998,15 @@ public static class Constants
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+    public const int FOSSILISED_PREVIEW_IMAGE_HEIGHT = 400;
+
+    public const string FOSSIL_EXTENSION = "thrivefossil";
+    public const string FOSSIL_EXTENSION_WITH_DOT = "." + FOSSIL_EXTENSION;
+
+    /// <summary>
+    ///   How long the main menu needs to be ready before game startup is considered successful
+    /// </summary>
+    public const float MAIN_MENU_TIME_BEFORE_STARTUP_SUCCESS = 1.25f;
 
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
@@ -894,6 +1055,13 @@ public static class Constants
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
     public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
 
+    public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
+    public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
+    public const bool TRACK_ACTUAL_RESOURCE_LOAD_TIMES = false;
+    public const float REPORT_LOAD_TIMES_OF_BY = 0.1f;
+
+    public const int GALLERY_THUMBNAIL_MAX_WIDTH = 500;
+
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
@@ -908,7 +1076,15 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
+    // TODO: combine to a common module with launcher as these are there as well
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
+    public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
+    public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
+    public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
+
+    public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
+    public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
+    public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
 
     // Min/max values for each customisable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
@@ -924,6 +1100,39 @@ public static class Constants
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
 
+    // Constants for procedural patch map
+    public const float PATCH_NODE_RECT_LENGTH = 64.0f;
+    public const float PATCH_AND_REGION_MARGIN = 2 * 3.0f;
+    public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
+    public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
+    public const int PATCH_GENERATION_MAX_RETRIES = 100;
+
+    public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
+    public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
+
+    // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
+    public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
+    public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
+
+    public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
+    public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
+
+    public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
+
+    public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
+
+    /// <summary>
+    ///   How big fraction of extra margin is added on top of a calibrated deadzone
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN = 0.1f;
+
+    /// <summary>
+    ///   Constant value added to the calibration value to make the deadzones not as tight, especially at low values
+    /// </summary>
+    public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
+
+    public const int FORCE_CLOSE_AFTER_TRIES = 3;
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -933,6 +1142,11 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Colour of the custom focus highlight elements. Should be the same as what it set in Thrive theme
+    /// </summary>
+    public static readonly Color CustomFocusDrawerColour = new("#00bfb6");
 
     /// <summary>
     ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
@@ -960,6 +1174,16 @@ public static class Constants
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
 
+    /// <summary>
+    ///   When any action is triggered matching any of these, input method change is prevented.
+    ///   This is used to allow taking screenshots with the keyboard while playing with a controller, for example.
+    /// </summary>
+    public static readonly IReadOnlyCollection<string> ActionsThatDoNotChangeInputMethod = new[]
+    {
+        "screenshot",
+        "toggle_FPS",
+    };
+
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
     // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
@@ -975,6 +1199,18 @@ public static class Constants
 
     private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
         (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
+
+    private const uint FreeCompoundAmountIsLessThanUsePerSecond =
+        (MICROBE_REPRODUCTION_FREE_COMPOUNDS < MICROBE_REPRODUCTION_MAX_COMPOUND_USE) ? 0 : -42;
+
+    private const uint ReproductionProgressIntervalLessThanMaxDelta =
+        (MICROBE_REPRODUCTION_PROGRESS_INTERVAL < MICROBE_REPRODUCTION_MAX_DELTA_FRAME) ? 0 : -42;
+
+    private const uint ReproductionTutorialDelaysAreSensible =
+        (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    // Needed to be true by InputManager
+    private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
 
     // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823

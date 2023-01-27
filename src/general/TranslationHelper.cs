@@ -78,6 +78,13 @@ public static class TranslationHelper
         }
     }
 
+    public static string TranslateFeatureFlag(bool enabled)
+    {
+        return enabled ?
+            TranslationServer.Translate("FEATURE_ENABLED") :
+            TranslationServer.Translate("FEATURE_DISABLED");
+    }
+
     private static string GetTranslatedText(Type type, object instance, object[] attributes)
     {
         var data = (TranslateFromAttribute)attributes[0];

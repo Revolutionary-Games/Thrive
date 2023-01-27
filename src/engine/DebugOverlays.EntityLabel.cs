@@ -9,9 +9,12 @@ public partial class DebugOverlays
 {
     private readonly Dictionary<IEntity, Label> entityLabels = new();
 
-    private bool showEntityLabels;
+#pragma warning disable CA2213
     private Font smallerFont = null!;
     private Camera? activeCamera;
+#pragma warning restore CA2213
+
+    private bool showEntityLabels;
 
     private bool ShowEntityLabels
     {

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -36,6 +36,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [Export]
     public NodePath BodyEditorLightPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -58,10 +59,11 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private Camera body3DEditorCamera = null!;
     private Light bodyEditorLight = null!;
 
+    private Control noCellTypeSelected = null!;
+#pragma warning restore CA2213
+
     [JsonProperty]
     private LateMulticellularSpecies? editedSpecies;
-
-    private Control noCellTypeSelected = null!;
 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
@@ -100,8 +102,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [JsonIgnore]
     public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
 
-    // TODO: separate track list for this editor
-    protected override string MusicCategory => "EarlyMulticellularEditor";
+    protected override string MusicCategory => "LateMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MulticellularStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MULTICELLULAR_EDITOR");
@@ -125,10 +126,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
-        cellEditorTab.CalculateOrganelleEffectivenessInPatch(patch);
-        cellEditorTab.UpdatePatchDependentBalanceData();
+        cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
+        reportTab.UpdatePatchDetails(patch);
 
         UpdateBackgrounds(patch);
     }
@@ -173,6 +173,27 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         return false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+                CellEditorCameraPath.Dispose();
+                CellEditorLightPath.Dispose();
+                Body3DEditorCameraPath.Dispose();
+                BodyEditorLightPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
@@ -213,8 +234,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdateReportTabStatistics(CurrentPatch);
-            reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
         UpdateBackgrounds(CurrentPatch);
@@ -242,6 +262,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         {
             editorComponent.Init(this, fresh);
         }
+
+        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEditorReady()
@@ -264,8 +286,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdateReportTabStatistics(CurrentPatch);
-        reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
     }
 
     protected override void OnUndoPerformed()
@@ -343,6 +364,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
                 CheckAndApplyCellTypeEdit();
 
+                // This doesn't need to be before CheckAndApplyCellTypeEdit like in early multicellular editor as
+                // this doesn't skip anything even if the tab is not visible yet
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
 
@@ -397,6 +420,11 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         selectedCellTypeToEdit = null;
 
         base.OnEditorExitTransitionFinished();
+    }
+
+    private void OnSelectPatchForReportTab(Patch patch)
+    {
+        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void UpdateBackgrounds(Patch patch)

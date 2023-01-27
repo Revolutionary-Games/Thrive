@@ -18,6 +18,21 @@ public partial class CellEditorComponent :
     public bool IsMulticellularEditor;
 
     [Export]
+    public NodePath? TopPanelPath;
+
+    [Export]
+    public NodePath DayButtonPath = null!;
+
+    [Export]
+    public NodePath NightButtonPath = null!;
+
+    [Export]
+    public NodePath AverageLightButtonPath = null!;
+
+    [Export]
+    public NodePath TabButtonsPath = null!;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -64,6 +79,9 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath DigestionEfficiencyLabelPath = null!;
+
+    [Export]
+    public NodePath DigestionEfficiencyDetailsPath = null!;
 
     [Export]
     public NodePath GenerationLabelPath = null!;
@@ -122,6 +140,14 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
 
+#pragma warning disable CA2213
+
+    // Light level controls
+    private Control topPanel = null!;
+    private Button dayButton = null!;
+    private Button nightButton = null!;
+    private Button averageLightButton = null!;
+
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
     private Button appearanceTabButton = null!;
@@ -165,6 +191,8 @@ public partial class CellEditorComponent :
     [AssignOnlyChildItemsOnDeserialize]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
 
+    private TextureButton digestionEfficiencyDetails = null!;
+
     private Label generationLabel = null!;
 
     private CellStatsIndicator totalPopulationLabel = null!;
@@ -195,14 +223,14 @@ public partial class CellEditorComponent :
 
     private PackedScene organelleSelectionButtonScene = null!;
 
+    private PackedScene microbeScene = null!;
+#pragma warning restore CA2213
+
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
 
-    /// <summary>
-    ///   Controls MP discounts (for multicellular)
-    /// </summary>
-    private float editorCostFactor = 1.0f;
+    private Compound sunlight = null!;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -223,6 +251,10 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    // TODO: bug this isn't loaded correctly because this is overridden on load
+    [JsonProperty]
+    private LightLevelOption selectedLightLevelOption = LightLevelOption.Day;
+
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
@@ -238,21 +270,36 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private string newName = "unset";
 
+#pragma warning disable CA2213
+
     /// <summary>
     ///   We're taking advantage of the available membrane and organelle system already present in
     ///   the microbe class for the cell preview.
     /// </summary>
     private Microbe? previewMicrobe;
+#pragma warning restore CA2213
 
     private MicrobeSpecies? previewMicrobeSpecies;
-
-    private PackedScene microbeScene = null!;
 
     [JsonProperty]
     private Color colour;
 
     [JsonProperty]
     private float rigidity;
+
+    /// <summary>
+    ///   Editor modified biome conditions for previewing things in the editor. This is recreated each time the current
+    ///   patch in the editor is changed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is required because the editor currently wants to be detached from the patch map current state (
+    ///     we run out of data modification layers available in BiomeConditions). This will become unnecessary once
+    ///     the patch map is synced with the other editor stage:
+    ///     https://github.com/Revolutionary-Games/Thrive/issues/3881
+    ///   </para>
+    /// </remarks>
+    private BiomeConditions previewBiomeConditions = null!;
 
     /// <summary>
     ///   To not have to recreate this object for each place / remove this is a cached clone of editedSpecies to which
@@ -288,6 +335,13 @@ public partial class CellEditorComponent :
         Structure,
         Membrane,
         Behaviour,
+    }
+
+    public enum LightLevelOption
+    {
+        Day,
+        Night,
+        Average,
     }
 
     /// <summary>
@@ -422,13 +476,41 @@ public partial class CellEditorComponent :
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
         Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
+    public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
+    {
+        organelleModel.Transform = new Transform(
+            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganelleModelPosition);
+
+        organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+            Constants.DEFAULT_HEX_SIZE);
+    }
+
+    /// <summary>
+    ///   Updates the organelle model displayer to have the specified scene in it
+    /// </summary>
+    public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
+    {
+        organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
 
         ResolveNodeReferences();
 
-        // GUI setup part
+        // This works only after this is attached to the scene tree
+        var tabButtons = GetNode<TabButtons>(TabButtonsPath);
+        structureTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, StructureTabButtonPath));
+        appearanceTabButton =
+            GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, AppearanceTabButtonPath));
+        behaviourTabButton = GetNode<Button>(tabButtons.GetAdjustedButtonPath(TabButtonsPath, BehaviourTabButtonPath));
 
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
@@ -444,8 +526,9 @@ public partial class CellEditorComponent :
         organelleSelectionButtonScene =
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
 
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
         SetupMicrobePartSelections();
-        UpdateMicrobePartSelections();
 
         ApplySelectionMenuTab();
         RegisterTooltips();
@@ -462,6 +545,8 @@ public partial class CellEditorComponent :
 
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
+
+        SetPatchConditions(Editor.CurrentPatch, true);
 
         if (fresh)
         {
@@ -491,18 +576,12 @@ public partial class CellEditorComponent :
         }
 
         // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
-
-        UpdateRigiditySliderState(Editor.MutationPoints);
+        CalculateOrganelleEffectivenessInCurrentPatch();
 
         UpdateCancelButtonVisibility();
 
         if (IsMulticellularEditor)
         {
-            editorCostFactor = Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
-            organelleMenu.EditorCostFactor = editorCostFactor;
-            UpdateMicrobePartSelections();
-
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
             componentBottomLeftButtons.UseSpeciesNameValidation = false;
 
@@ -518,14 +597,19 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
         }
 
+        UpdateMicrobePartSelections();
+
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
-        UpdateMPCostFactors();
+        UpdateMPCost();
 
         UpdateOrganelleUnlockTooltips();
 
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
+
+        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
+            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
     }
 
     public override void ResolveNodeReferences()
@@ -537,13 +621,15 @@ public partial class CellEditorComponent :
 
         NodeReferencesResolved = true;
 
+        topPanel = GetNode<Control>(TopPanelPath);
+        dayButton = GetNode<Button>(DayButtonPath);
+        nightButton = GetNode<Button>(NightButtonPath);
+        averageLightButton = GetNode<Button>(AverageLightButtonPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        structureTabButton = GetNode<Button>(StructureTabButtonPath);
 
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
-        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
-        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
 
         partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
@@ -556,6 +642,7 @@ public partial class CellEditorComponent :
         storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
+        digestionEfficiencyDetails = GetNode<TextureButton>(DigestionEfficiencyDetailsPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
         totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
@@ -750,12 +837,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    public override void OnMutationPointsChanged(int mutationPoints)
-    {
-        base.OnMutationPointsChanged(mutationPoints);
-        UpdateRigiditySliderState(mutationPoints);
-    }
-
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
         var editorUserOverrides = userOverrides.ToList();
@@ -777,27 +858,44 @@ public partial class CellEditorComponent :
         return true;
     }
 
+    /// <summary>
+    ///   Report that the current patch used in the editor has changed
+    /// </summary>
+    /// <param name="patch">The patch that is set</param>
+    public void OnCurrentPatchUpdated(Patch patch)
+    {
+        SetPatchConditions(patch, false);
+        CalculateOrganelleEffectivenessInCurrentPatch();
+        UpdatePatchDependentBalanceData();
+    }
+
     public void UpdatePatchDependentBalanceData()
     {
         // Skip if not opened in the multicellular editor
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
+        topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
+            Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
+
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
+            editedMicrobeOrganelles.Organelles, Membrane, previewBiomeConditions);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, previewBiomeConditions);
     }
 
     /// <summary>
-    ///   Calculates the effectiveness of organelles in the current or given patch
+    ///   Calculates the effectiveness of organelles in the current patch (actually the editor biome conditions which
+    ///   may have additional modifiers applied)
     /// </summary>
-    public void CalculateOrganelleEffectivenessInPatch(Patch patch)
+    public void CalculateOrganelleEffectivenessInCurrentPatch()
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+        var result =
+            ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, previewBiomeConditions,
+                CompoundAmountType.Current);
 
         UpdateOrganelleEfficiencies(result);
     }
@@ -846,44 +944,41 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void OnRigidityChanged(int rigidity)
+    public void OnRigidityChanged(int desiredRigidity)
     {
-        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        int previousRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
-            UpdateRigiditySlider(intRigidity);
+            UpdateRigiditySlider(previousRigidity);
             return;
         }
 
-        if (intRigidity == rigidity)
+        if (previousRigidity == desiredRigidity)
             return;
 
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP *
-            editorCostFactor * CostMultiplier, 100);
-        int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+
+        var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
+        {
+            CostMultiplier = CostMultiplier,
+        };
+
+        var cost = Editor.WhatWouldActionsCost(new[] { data });
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsLeft = Editor.MutationPoints / costPerStep;
-            if (stepsLeft < 1)
-            {
-                UpdateRigiditySlider(intRigidity);
-                return;
-            }
+            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
+            data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
+                Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            // Action is enqueued or canceled here, so we don't need to go on.
+            UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            return;
         }
 
-        var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
-        var prevRigidity = Rigidity;
-
-        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
-            new RigidityActionData(newRigidity, prevRigidity)
-            {
-                CostMultiplier = CostMultiplier,
-            });
+        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction, data);
 
         Editor.EnqueueAction(action);
     }
@@ -945,16 +1040,7 @@ public partial class CellEditorComponent :
 
     public float CalculateStorage()
     {
-        var totalStorage = 0.0f;
-        foreach (var organelle in editedMicrobeOrganelles)
-        {
-            if (organelle.Definition.Components.Storage != null)
-            {
-                totalStorage += organelle.Definition.Components.Storage.Capacity;
-            }
-        }
-
-        return totalStorage;
+        return MicrobeInternalCalculations.CalculateCapacity(editedMicrobeOrganelles);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -962,9 +1048,100 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateTotalDigestionSpeed(editedMicrobeOrganelles);
     }
 
-    public float CalculateTotalDigestionEfficiency()
+    public Dictionary<Enzyme, float> CalculateDigestionEfficiencies()
     {
-        return MicrobeInternalCalculations.CalculateTotalDigestionEfficiency(editedMicrobeOrganelles);
+        return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
+    }
+
+    public override void OnLightLevelChanged(float lightLevel)
+    {
+        var maxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum);
+        var templateMaxLightLevel = Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Template);
+
+        // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
+        // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
+        // reduce light level in such patches without things looking bad. So we have to check the template light level
+        // is non-zero too.
+        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
+        {
+            // Normalise by maximum light level in the patch
+            camera!.LightLevel = lightLevel * 100.0f / maxLightLevel;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            camera!.LightLevel = 1.0f;
+        }
+
+        var lightLevelAmount = new BiomeCompoundProperties
+        {
+            Ambient = lightLevel,
+        };
+
+        previewBiomeConditions.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
+
+        // TODO: isn't this entirely logically wrong? See the comment in PatchManager about needing to set average
+        // light levels on editor entry. This seems wrong because the average light amount is *not* the current light
+        // level, meaning that auto-evo prediction would be incorrect (if these numbers were used there, but aren't
+        // currently, see the documentation on previewBiomeConditions)
+        // // Need to set average to be the same as ambient so Auto-Evo updates correctly
+        // previewBiomeConditions.AverageCompounds[sunlight] = lightLevelAmount;
+
+        CalculateOrganelleEffectivenessInCurrentPatch();
+        UpdatePatchDependentBalanceData();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TopPanelPath != null)
+            {
+                TopPanelPath.Dispose();
+                DayButtonPath.Dispose();
+                NightButtonPath.Dispose();
+                AverageLightButtonPath.Dispose();
+                TabButtonsPath.Dispose();
+                StructureTabButtonPath.Dispose();
+                AppearanceTabButtonPath.Dispose();
+                BehaviourTabButtonPath.Dispose();
+                StructureTabPath.Dispose();
+                AppearanceTabPath.Dispose();
+                BehaviourTabPath.Dispose();
+                PartsSelectionContainerPath.Dispose();
+                MembraneTypeSelectionPath.Dispose();
+                SizeLabelPath.Dispose();
+                OrganismStatisticsPath.Dispose();
+                SpeedLabelPath.Dispose();
+                RotationSpeedLabelPath.Dispose();
+                HpLabelPath.Dispose();
+                StorageLabelPath.Dispose();
+                DigestionSpeedLabelPath.Dispose();
+                DigestionEfficiencyLabelPath.Dispose();
+                DigestionEfficiencyDetailsPath.Dispose();
+                GenerationLabelPath.Dispose();
+                AutoEvoPredictionPanelPath.Dispose();
+                TotalPopulationLabelPath.Dispose();
+                AutoEvoPredictionFailedLabelPath.Dispose();
+                WorstPatchLabelPath.Dispose();
+                BestPatchLabelPath.Dispose();
+                MembraneColorPickerPath.Dispose();
+                ATPBalanceLabelPath.Dispose();
+                ATPProductionLabelPath.Dispose();
+                ATPConsumptionLabelPath.Dispose();
+                ATPProductionBarPath.Dispose();
+                ATPConsumptionBarPath.Dispose();
+                RigiditySliderPath.Dispose();
+                NegativeAtpPopupPath.Dispose();
+                OrganelleMenuPath.Dispose();
+                CompoundBalancePath.Dispose();
+                AutoEvoPredictionExplanationPopupPath.Dispose();
+                AutoEvoPredictionExplanationLabelPath.Dispose();
+                OrganelleUpgradeGUIPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override int CalculateCurrentActionCost()
@@ -975,7 +1152,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
-        var cost = (int)Math.Min(organelleDefinition.MPCost * editorCostFactor * CostMultiplier, 100);
+        var cost = (int)Math.Min(organelleDefinition.MPCost * CostMultiplier, 100);
 
         if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();
@@ -1351,22 +1528,38 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
+    ///   Updates the editor modifiable biome information from a patch
+    /// </summary>
+    /// <param name="patch">The new patch to grab the biome data to copy from</param>
+    /// <param name="initializing">True when this is called during editor initialization</param>
+    private void SetPatchConditions(Patch patch, bool initializing)
+    {
+        previewBiomeConditions = (BiomeConditions)patch.Biome.Clone();
+
+        // If the editor has initialised (i.e. if this is a change of patch during an editor session), switch back to
+        // daytime light levels
+        if (!initializing)
+            SetLightLevelOption(LightLevelOption.Day);
+    }
+
+    /// <summary>
     ///   Calculates the energy balance for a cell with the given organelles
     /// </summary>
     private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
-        MembraneType membrane, Patch? patch = null)
+        MembraneType membrane, BiomeConditions? biome = null)
     {
-        patch ??= Editor.CurrentPatch;
+        biome ??= previewBiomeConditions;
 
-        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane, true,
-            Editor.CurrentGame.GameWorld.WorldSettings));
+        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, true,
+            Editor.CurrentGame.GameWorld.WorldSettings, CompoundAmountType.Current));
     }
 
-    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
+    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles,
+        BiomeConditions? biome = null)
     {
-        patch ??= Editor.CurrentPatch;
+        biome ??= previewBiomeConditions;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles, patch.Biome);
+        var result = ProcessSystem.ComputeCompoundBalance(organelles, biome, CompoundAmountType.Current);
 
         UpdateCompoundBalances(result);
     }
@@ -1572,12 +1765,7 @@ public partial class CellEditorComponent :
     private void OnPostNewMicrobeChange()
     {
         UpdateMembraneButtons(Membrane.InternalName);
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(CalculateStorage());
-        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateStats();
         OnRigidityChanged();
         OnColourChanged();
 
@@ -1596,6 +1784,16 @@ public partial class CellEditorComponent :
     private void OnColourChanged()
     {
         membraneColorPicker.SetColour(Colour);
+    }
+
+    private void UpdateStats()
+    {
+        UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
+        UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
+        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
     }
 
     /// <summary>
@@ -1659,7 +1857,7 @@ public partial class CellEditorComponent :
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateStorage(CalculateStorage());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
 
         UpdateCellVisualization();
 
@@ -1674,6 +1872,7 @@ public partial class CellEditorComponent :
     {
         var islands = editedMicrobeOrganelles.GetIslandHexes();
 
+        // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
             editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, Editor.HexPlacedThisSession(o))), islands,
@@ -1688,9 +1887,6 @@ public partial class CellEditorComponent :
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
             {
-                var pos = Hex.AxialToCartesian(organelle.Position) +
-                    organelle.Definition.CalculateModelOffset();
-
                 if (nextFreeOrganelle >= placedModels.Count)
                 {
                     // New organelle model needed
@@ -1699,11 +1895,7 @@ public partial class CellEditorComponent :
 
                 var organelleModel = placedModels[nextFreeOrganelle++];
 
-                organelleModel.Transform = new Transform(
-                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
-
-                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                    Constants.DEFAULT_HEX_SIZE);
+                UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
                 organelleModel.Visible = !MicrobePreviewMode;
 
@@ -1779,20 +1971,6 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Updates the organelle model displayer to have the specified scene in it
-    /// </summary>
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
-    {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
-        if (material != null)
-        {
-            material.RenderPriority = renderPriority;
-        }
-    }
-
-    /// <summary>
     ///   Lock / unlock a single organelle that need a nucleus
     /// </summary>
     private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
@@ -1818,6 +1996,10 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Creates part and membrane selection buttons
     /// </summary>
+    /// <remarks>
+    ///   This doesn't multiply the shown MP Cost by the cost factor as this is called much earlier before editor is
+    ///   initialized proper, for that use <see cref="UpdateMicrobePartSelections"/> or <see cref="UpdateMPCost"/>.
+    /// </remarks>
     private void SetupMicrobePartSelections()
     {
         var simulationParameters = SimulationParameters.Instance;
@@ -1843,7 +2025,7 @@ public partial class CellEditorComponent :
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
-            control.MPCost = (int)(organelle.MPCost * editorCostFactor);
+            control.MPCost = organelle.MPCost;
             control.Name = organelle.InternalName;
 
             // Special case with registering the tooltip here for item with no associated organelle
@@ -1868,7 +2050,7 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = (int)(membraneType.EditorCost * editorCostFactor);
+            control.MPCost = membraneType.EditorCost;
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");
@@ -1978,6 +2160,52 @@ public partial class CellEditorComponent :
         }
     }
 
+    private void OnLightLevelButtonPressed(string option)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var selection = (LightLevelOption)Enum.Parse(typeof(LightLevelOption), option);
+        SetLightLevelOption(selection);
+    }
+
+    private void SetLightLevelOption(LightLevelOption selection)
+    {
+        selectedLightLevelOption = selection;
+        ApplyLightLevelOption();
+    }
+
+    private void ApplyLightLevelOption()
+    {
+        // TODO: remember light level in saves (right now the property is saved but the GUI seems to revert things)
+        // Show selected light level
+        switch (selectedLightLevelOption)
+        {
+            case LightLevelOption.Day:
+            {
+                dayButton.Pressed = true;
+                Editor.LightLevel = Editor.CurrentPatch.Biome.MaximumCompounds[sunlight].Ambient;
+                break;
+            }
+
+            case LightLevelOption.Night:
+            {
+                nightButton.Pressed = true;
+                Editor.LightLevel = Editor.CurrentPatch.Biome.MinimumCompounds[sunlight].Ambient;
+                break;
+            }
+
+            case LightLevelOption.Average:
+            {
+                averageLightButton.Pressed = true;
+                Editor.LightLevel = Editor.CurrentPatch.Biome.AverageCompounds[sunlight].Ambient;
+                break;
+            }
+
+            default:
+                throw new Exception("Invalid light level option");
+        }
+    }
+
     private void SetSelectionMenuTab(string tab)
     {
         var selection = (SelectionMenuTab)Enum.Parse(typeof(SelectionMenuTab), tab);
@@ -2042,12 +2270,12 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
+        var populationFormat = TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+
         if (!string.IsNullOrEmpty(bestPatchName))
         {
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(bestPatchName),
-                bestPatchPopulation);
+            bestPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
         }
         else
         {
@@ -2056,10 +2284,8 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                TranslationServer.Translate(worstPatchName),
-                worstPatchPopulation);
+            worstPatchLabel.Text =
+                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
         }
         else
         {

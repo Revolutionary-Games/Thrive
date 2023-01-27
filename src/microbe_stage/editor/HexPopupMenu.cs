@@ -8,7 +8,7 @@ using Godot;
 public abstract class HexPopupMenu : PopupPanel
 {
     [Export]
-    public NodePath TitleLabelPath = null!;
+    public NodePath? TitleLabelPath;
 
     [Export]
     public NodePath DeleteButtonPath = null!;
@@ -19,12 +19,12 @@ public abstract class HexPopupMenu : PopupPanel
     [Export]
     public NodePath ModifyButtonPath = null!;
 
+#pragma warning disable CA2213
     protected Label? titleLabel;
     protected Button? deleteButton;
     protected Button? moveButton;
     protected Button? modifyButton;
-
-    protected float editorCostFactor = 1.0f;
+#pragma warning restore CA2213
 
     private bool showPopup;
     private bool enableDelete = true;
@@ -41,12 +41,6 @@ public abstract class HexPopupMenu : PopupPanel
 
     [Signal]
     public delegate void ModifyPressed();
-
-    public float EditorCostFactor
-    {
-        get => editorCostFactor;
-        set => editorCostFactor = value;
-    }
 
     public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
@@ -167,6 +161,22 @@ public abstract class HexPopupMenu : PopupPanel
 
         // Return false to indicate that the key input wasn't handled.
         return false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (TitleLabelPath != null)
+            {
+                TitleLabelPath.Dispose();
+                DeleteButtonPath.Dispose();
+                MoveButtonPath.Dispose();
+                ModifyButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected abstract void UpdateTitleLabel();

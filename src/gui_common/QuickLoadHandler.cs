@@ -6,9 +6,11 @@
 public class QuickLoadHandler : NodeWithInput
 {
     [Export]
-    public NodePath DifferentVersionDialogPath = null!;
+    public NodePath? DifferentVersionDialogPath = null!;
 
+#pragma warning disable CA2213
     private CustomConfirmationDialog differentVersionDialog = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -32,5 +34,15 @@ public class QuickLoadHandler : NodeWithInput
         {
             GD.Print("Quick load pressed, cancelled because another is already in progress");
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            DifferentVersionDialogPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }

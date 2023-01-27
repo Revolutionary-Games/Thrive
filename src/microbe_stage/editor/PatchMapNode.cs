@@ -7,36 +7,81 @@ using Godot;
 public class PatchMapNode : MarginContainer
 {
     [Export]
-    public NodePath IconPath = null!;
+    public NodePath? IconPath;
 
+    /// <summary>
+    ///   Selected patch graphics
+    /// </summary>
     [Export]
     public NodePath HighlightPanelPath = null!;
 
+    /// <summary>
+    ///   Player patch graphics
+    /// </summary>
     [Export]
     public NodePath MarkPanelPath = null!;
 
+    /// <summary>
+    ///   For patches adjacent to the selected one
+    /// </summary>
+    [Export]
+    public NodePath AdjacentPanelPath = null!;
+
+    // TODO: Move this to Constants.cs
+    private const float HalfBlinkInterval = 0.5f;
+
+#pragma warning disable CA2213
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
-
-    private bool highlighted;
-    private bool selected;
-    private bool marked;
-    private bool enabled = true;
+    private Panel? adjacentHighlightPanel;
+#pragma warning restore CA2213
 
     private Texture? patchIcon;
 
-    private bool selectHighlightRingDirty = true;
-    private bool iconDirty = true;
-    private bool markRingDirty = true;
-    private bool grayscaleDirty = true;
+    /// <summary>
+    ///   True if mouse is hovering on this node
+    /// </summary>
+    private bool highlighted;
+
+    /// <summary>
+    ///   True if the current node is selected
+    /// </summary>
+    private bool selected;
+
+    /// <summary>
+    ///   True if player is in the current node
+    /// </summary>
+    private bool marked;
+
+    /// <summary>
+    ///   True if player can move to this patch
+    /// </summary>
+    private bool enabled = true;
+
+    /// <summary>
+    ///   True if the patch is adjacent to the selected patch
+    /// </summary>
+    private bool adjacentToSelectedPatch;
+
+    private float currentBlinkTime;
+
+    private Patch? patch;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
     /// </summary>
-    public Patch? Patch { get; set; }
+    public Patch Patch
+    {
+        get => patch ?? throw new InvalidOperationException("Patch not set yet");
+        set => patch = value;
+    }
+
+    public bool IsDirty { get; private set; }
 
     public ShaderMaterial? MonochromeMaterial { get; set; }
+
+    public Action<PatchMapNode>? SelectCallback { get; set; }
 
     /// <summary>
     ///   Display the icon in color and make it highlightable/selectable.
@@ -47,15 +92,14 @@ public class PatchMapNode : MarginContainer
         get => enabled;
         set
         {
-            if (!value)
-                Selected = false;
+            Selected = Selected && value;
+
             enabled = value;
-            selectHighlightRingDirty = true;
-            grayscaleDirty = true;
+
+            UpdateSelectHighlightRing();
+            UpdateGreyscale();
         }
     }
-
-    public Action<PatchMapNode>? SelectCallback { get; set; }
 
     public Texture? PatchIcon
     {
@@ -66,7 +110,8 @@ public class PatchMapNode : MarginContainer
                 return;
 
             patchIcon = value;
-            iconDirty = true;
+
+            UpdateIcon();
         }
     }
 
@@ -76,7 +121,8 @@ public class PatchMapNode : MarginContainer
         set
         {
             highlighted = value;
-            selectHighlightRingDirty = true;
+
+            UpdateSelectHighlightRing();
         }
     }
 
@@ -86,7 +132,8 @@ public class PatchMapNode : MarginContainer
         set
         {
             selected = value;
-            selectHighlightRingDirty = true;
+
+            UpdateSelectHighlightRing();
         }
     }
 
@@ -96,33 +143,51 @@ public class PatchMapNode : MarginContainer
         set
         {
             marked = value;
-            markRingDirty = true;
+
+            UpdateMarkRing();
+        }
+    }
+
+    public bool AdjacentToSelectedPatch
+    {
+        get => adjacentToSelectedPatch;
+        set
+        {
+            adjacentToSelectedPatch = value;
+            UpdateSelectHighlightRing();
         }
     }
 
     public override void _Ready()
     {
-        if (Patch == null)
+        base._Ready();
+
+        if (patch == null)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
         iconRect = GetNode<TextureRect>(IconPath);
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);
+        adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
+
+        UpdateSelectHighlightRing();
+        UpdateMarkRing();
+        UpdateIcon();
+        UpdateGreyscale();
     }
 
     public override void _Process(float delta)
     {
-        if (selectHighlightRingDirty)
-            UpdateSelectHighlightRing();
+        base._Process(delta);
 
-        if (iconDirty)
-            UpdateIcon();
+        currentBlinkTime += delta;
+        if (currentBlinkTime > HalfBlinkInterval)
+        {
+            currentBlinkTime = 0;
 
-        if (markRingDirty)
-            UpdateMarkRing();
-
-        if (grayscaleDirty)
-            UpdateGrayscale();
+            if (Marked)
+                markPanel!.Visible = !markPanel.Visible;
+        }
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -135,6 +200,7 @@ public class PatchMapNode : MarginContainer
                 Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
             })
         {
+            IsDirty = true;
             OnSelect();
             GetTree().SetInputAsHandled();
         }
@@ -157,21 +223,37 @@ public class PatchMapNode : MarginContainer
         Highlighted = false;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (IconPath != null)
+            {
+                IconPath.Dispose();
+                HighlightPanelPath.Dispose();
+                MarkPanelPath.Dispose();
+                AdjacentPanelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void UpdateSelectHighlightRing()
     {
-        if (highlightPanel == null)
+        if (highlightPanel == null || adjacentHighlightPanel == null)
             return;
 
         if (Enabled)
         {
             highlightPanel.Visible = Highlighted || Selected;
+            adjacentHighlightPanel.Visible = AdjacentToSelectedPatch;
         }
         else
         {
             highlightPanel.Visible = false;
+            adjacentHighlightPanel.Visible = false;
         }
-
-        selectHighlightRingDirty = false;
     }
 
     private void UpdateMarkRing()
@@ -180,8 +262,6 @@ public class PatchMapNode : MarginContainer
             return;
 
         markPanel.Visible = Marked;
-
-        markRingDirty = false;
     }
 
     private void UpdateIcon()
@@ -190,15 +270,13 @@ public class PatchMapNode : MarginContainer
             return;
 
         iconRect.Texture = PatchIcon;
-
-        iconDirty = false;
     }
 
-    private void UpdateGrayscale()
+    private void UpdateGreyscale()
     {
-        if (iconRect != null)
-            iconRect.Material = Enabled ? null : MonochromeMaterial;
+        if (iconRect == null)
+            return;
 
-        grayscaleDirty = false;
+        iconRect.Material = Enabled ? null : MonochromeMaterial;
     }
 }

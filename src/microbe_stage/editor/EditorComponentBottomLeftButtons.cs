@@ -14,7 +14,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     public bool UseSpeciesNameValidation = true;
 
     [Export]
-    public NodePath SymmetryButtonPath = null!;
+    public NodePath? SymmetryButtonPath;
 
     [Export]
     public NodePath SymmetryIconPath = null!;
@@ -34,9 +34,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public NodePath RandomizeNameButtonPath = null!;
 
-    [Export]
-    public NodePath NewHiddenAlternativeSpacerPath = null!;
-
+#pragma warning disable CA2213
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
     private TextureButton? randomizeNameButton;
@@ -44,12 +42,11 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     private TextureButton symmetryButton = null!;
     private TextureRect symmetryIcon = null!;
 
-    private Control newHiddenAlternativeSpacer = null!;
-
     private Texture symmetryIconDefault = null!;
     private Texture symmetryIcon2X = null!;
     private Texture symmetryIcon4X = null!;
     private Texture symmetryIcon6X = null!;
+#pragma warning restore CA2213
 
     private bool showNewButton = true;
     private bool showRandomizeButton = true;
@@ -119,8 +116,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
-
-        newHiddenAlternativeSpacer = GetNode<Control>(NewHiddenAlternativeSpacerPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
         symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
@@ -198,6 +193,25 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         PerformValidation(speciesNameEdit.Text);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SymmetryButtonPath != null)
+            {
+                SymmetryButtonPath.Dispose();
+                SymmetryIconPath.Dispose();
+                UndoButtonPath.Dispose();
+                RedoButtonPath.Dispose();
+                NewButtonPath.Dispose();
+                NameEditPath.Dispose();
+                RandomizeNameButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void OnSymmetryHold()
     {
         symmetryIcon.Modulate = new Color(0, 0, 0);
@@ -236,7 +250,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
-            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX));
+            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) && ValidateNameLength(newText));
         }
 
         EmitSignal(nameof(OnNameSet), newText);
@@ -252,8 +266,10 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
+            bool nameLengthValid = ValidateNameLength(text);
+
             // Only defocus if the name is valid to indicate invalid namings to the player
-            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
+            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX) && nameLengthValid)
             {
                 speciesNameEdit.ReleaseFocus();
             }
@@ -263,7 +279,14 @@ public class EditorComponentBottomLeftButtons : MarginContainer
                 GetTree().SetInputAsHandled();
 
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
-                ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+                if (!nameLengthValid)
+                {
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPECIES_NAME_TOO_LONG_POPUP"), 2.5f);
+                }
+                else
+                {
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+                }
 
                 speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
             }
@@ -272,6 +295,11 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         {
             speciesNameEdit.ReleaseFocus();
         }
+    }
+
+    private bool ValidateNameLength(string name)
+    {
+        return speciesNameEdit.GetFont("font").GetStringSize(name).x < Constants.MAX_SPECIES_NAME_LENGTH_PIXELS;
     }
 
     private void OnRandomizeNamePressed()
@@ -298,7 +326,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         if (newButton != null)
         {
             newButton.Visible = ShowNewButton;
-            newHiddenAlternativeSpacer.Visible = !ShowNewButton;
         }
     }
 

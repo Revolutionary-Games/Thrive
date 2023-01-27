@@ -41,6 +41,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private ImageTexture texture = null!;
     private FluidSystem? fluidSystem;
 
+    private Vector4 decayRates;
+
     [JsonProperty]
     private Int2 position = new(0, 0);
 
@@ -124,6 +126,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         this.fluidSystem = fluidSystem;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
+
+        decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
+            cloud3?.DecayRate ?? 1.0f, cloud4?.DecayRate ?? 1.0f);
 
         // Setup colours
         var material = (ShaderMaterial)Material;
@@ -424,13 +429,16 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Returns all the compounds that are available at point
     /// </summary>
-    public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result)
+    public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result, bool onlyAbsorbable)
     {
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
             var compound = Compounds[i];
             if (compound == null)
                 break;
+
+            if (!compound.IsAbsorbable && onlyAbsorbable)
+                continue;
 
             float amount = HackyAddress(Density[x, y], i);
             if (amount > 0)
@@ -496,6 +504,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
         Dictionary<Compound, float> totals, float delta, float rate)
     {
+        if (rate < 0)
+            throw new ArgumentException("Rate can't be negative");
+
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
@@ -504,8 +515,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (compound == null)
                 break;
 
-            // Skip if compound is non-useful
-            if (!storage.IsUseful(compound))
+            // Skip if compound is non-useful or disallowed to be absorbed
+            if (!compound.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
             // Overestimate of how much compounds we get
@@ -516,12 +527,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
+            float freeSpace = storage.GetFreeSpaceForCompound(compound);
 
             float multiplier = 1.0f * rate;
 
             if (freeSpace < generousAmount)
             {
+                if (freeSpace < 0.0f)
+                    throw new InvalidOperationException("Free space for compounds is negative");
+
                 // Allow partial absorption to allow cells to take from high density clouds
                 multiplier = freeSpace / generousAmount;
             }
@@ -553,6 +567,17 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         var material = (ShaderMaterial)Material;
         material.SetShaderParam("BrightnessMultiplier", brightness);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            texture.Dispose();
+            image.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -652,10 +677,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     r0 = r0.PositiveModulo(Size);
                     r1 = r1.PositiveModulo(Size);
 
-                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                    Density[q0, r0] += OldDensity[x, y] * decayRates * s0 * t0;
+                    Density[q0, r1] += OldDensity[x, y] * decayRates * s0 * t1;
+                    Density[q1, r0] += OldDensity[x, y] * decayRates * s1 * t0;
+                    Density[q1, r1] += OldDensity[x, y] * decayRates * s1 * t1;
                 }
             }
         }

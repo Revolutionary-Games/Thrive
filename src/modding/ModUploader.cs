@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 using Path = System.IO.Path;
@@ -8,7 +7,7 @@ using Path = System.IO.Path;
 public class ModUploader : Control
 {
     [Export]
-    public NodePath UploadDialogPath = null!;
+    public NodePath? UploadDialogPath;
 
     [Export]
     public NodePath ModSelectPath = null!;
@@ -70,6 +69,7 @@ public class ModUploader : Control
     [Export]
     public NodePath UploadSucceededTextPath = null!;
 
+#pragma warning disable CA2213
     private CustomConfirmationDialog uploadDialog = null!;
 
     private OptionButton modSelect = null!;
@@ -98,6 +98,7 @@ public class ModUploader : Control
 
     private CustomRichTextLabel workshopNotice = null!;
     private Label errorDisplay = null!;
+#pragma warning restore CA2213
 
     private List<FullModDetails>? mods;
 
@@ -167,6 +168,39 @@ public class ModUploader : Control
 
         uploadDialog.PopupCenteredShrink();
         UpdateUploadButtonStatus();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (UploadDialogPath != null)
+            {
+                UploadDialogPath.Dispose();
+                ModSelectPath.Dispose();
+                UnknownItemActionsPath.Dispose();
+                CreateNewButtonPath.Dispose();
+                ShowManualEnterIdPath.Dispose();
+                ManualIdEntryPath.Dispose();
+                AcceptManualIdPath.Dispose();
+                ManualEnterIdSectionPath.Dispose();
+                DetailsEditorPath.Dispose();
+                EditedTitlePath.Dispose();
+                EditedDescriptionPath.Dispose();
+                EditedVisibilityPath.Dispose();
+                EditedTagsPath.Dispose();
+                PreviewImageRectPath.Dispose();
+                ToBeUploadedContentLocationPath.Dispose();
+                ErrorDisplayPath.Dispose();
+                FileSelectDialogPath.Dispose();
+                WorkshopNoticePath.Dispose();
+                ChangeNotesPath.Dispose();
+                UploadSucceededDialogPath.Dispose();
+                UploadSucceededTextPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateAvailableModsList()
@@ -271,8 +305,8 @@ public class ModUploader : Control
             changeNotes.Text = "Initial version";
         }
 
-        toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
+        toBeUploadedContentLocation.Text = TranslationServer.Translate("CONTENT_UPLOADED_FROM")
+            .FormatSafe(ProjectSettings.GlobalizePath(selectedMod.Folder));
 
         UpdatePreviewRect();
     }
@@ -338,8 +372,7 @@ public class ModUploader : Control
             {
                 if (!SteamHandler.Tags.Contains(tag))
                 {
-                    SetError(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("INVALID_TAG"),
-                        tag));
+                    SetError(TranslationServer.Translate("INVALID_TAG").FormatSafe(tag));
                     return false;
                 }
             }
@@ -641,9 +674,7 @@ public class ModUploader : Control
         catch (Exception e)
         {
             GD.PrintErr("Saving workshop data failed: ", e);
-            SetError(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO"),
-                e.Message));
+            SetError(TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO").FormatSafe(e.Message));
             return false;
         }
 
@@ -657,8 +688,7 @@ public class ModUploader : Control
             ClearError();
         }
 
-        errorDisplay.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("FORM_ERROR_MESSAGE"),
-            message);
+        errorDisplay.Text = TranslationServer.Translate("FORM_ERROR_MESSAGE").FormatSafe(message);
     }
 
     private void ClearError()

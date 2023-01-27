@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -13,19 +14,20 @@ using Godot;
 /// </remarks>
 public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
-    public readonly double X;
-    public readonly double Y;
+    private static readonly Stack<DataPoint> DataPointCache = new();
 
+#pragma warning disable CA2213
     private Texture graphMarkerCircle = null!;
     private Texture graphMarkerCross = null!;
     private Texture graphMarkerSkull = null!;
+
+    private Tween tween = new();
+#pragma warning restore CA2213
 
     private bool isMouseOver;
 
     private Vector2 coordinate;
     private float size = 7;
-
-    private Tween tween = new();
 
     public DataPoint(double x, double y)
     {
@@ -39,6 +41,9 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         Cross,
         Skull,
     }
+
+    public double X { get; private set; }
+    public double Y { get; private set; }
 
     /// <summary>
     ///   Visual shape of this point
@@ -101,6 +106,49 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     public static bool operator !=(DataPoint? lhs, DataPoint? rhs)
     {
         return !(lhs == rhs);
+    }
+
+    /// <summary>
+    ///   Get a visible datapoint from the cache or a new one if the cache is empty. Due to the fact that this isn't a
+    ///   constructor, all common parameters that needs to be initialized can be passed passed in as optional
+    ///   parameters.
+    /// </summary>
+    public static DataPoint GetDataPoint(double x, double y, MarkerIcon iconType = MarkerIcon.Circle, float size = 7,
+        Color markerColour = default, bool draw = true, Vector2 coordinate = default)
+    {
+        if (DataPointCache.Count == 0)
+        {
+            return new DataPoint(x, y)
+                { IconType = iconType, Size = size, MarkerColour = markerColour, Draw = draw, coordinate = coordinate };
+        }
+
+        var point = DataPointCache.Pop();
+        point.X = x;
+        point.Y = y;
+        point.IconType = iconType;
+        point.Size = size;
+        point.MarkerColour = markerColour;
+        point.Draw = draw;
+        point.coordinate = coordinate;
+        point.Visible = true;
+        return point;
+    }
+
+    /// <summary>
+    ///   Returns a datapoint to the cache. Make sure that the point isn't used anywhere else before returning it to
+    ///   the cache.
+    /// </summary>
+    public static void ReturnDataPoint(DataPoint point)
+    {
+        if (point.GetParent() != null)
+        {
+            GD.PrintErr(point.GetPath(), " still has a parent, so returning to cache has failed.");
+            return;
+        }
+
+        point.tween.StopAll();
+
+        DataPointCache.Push(point);
     }
 
     public override void _Ready()

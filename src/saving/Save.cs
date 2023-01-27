@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Directory = Godot.Directory;
 using File = Godot.File;
-using Path = System.IO.Path;
 
 /// <summary>
 ///   A class representing a single saved game
@@ -135,6 +134,36 @@ public class Save
         return save;
     }
 
+    public static (SaveInformation Info, byte[]? ScreenshotData) LoadInfoAndRawScreenshotFromSave(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        try
+        {
+            var (info, _, screenshot) = LoadDataFromFile(target, true, false, true);
+
+            return (ParseSaveInfo(info), screenshot);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load save info and screenshot buffer from ${saveName}, error: ${e}");
+            return (SaveInformation.CreateInvalid(), null);
+        }
+    }
+
+    public static Save ConstructSaveFromInfoAndScreenshotBuffer(string saveName, SaveInformation info,
+        byte[]? screenshotData)
+    {
+        var save = new Save { Name = saveName, Info = info };
+
+        if (screenshotData != null)
+        {
+            save.Screenshot = TarHelper.ImageFromBuffer(screenshotData);
+        }
+
+        return save;
+    }
+
     public static (SaveInformation Info, JObject SaveObject, Image? Screenshot) LoadJSONStructureFromFile(
         string saveName)
     {
@@ -205,32 +234,10 @@ public class Save
 
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(saveInfo);
 
-        string? tempScreenshot = null;
-
-        if (screenshot != null)
-        {
-            // TODO: if in the future Godot allows converting images to in-memory PNGs that should be used here
-            tempScreenshot = Path.Combine(Constants.SAVE_FOLDER, "tmp.png");
-            if (screenshot.SavePng(tempScreenshot) != Error.Ok)
-            {
-                GD.PrintErr("Failed to save screenshot for inclusion in save");
-                tempScreenshot = null;
-            }
-        }
-
-        try
-        {
-            WriteDataToSaveFile(target, justInfo, saveContent, tempScreenshot);
-        }
-        finally
-        {
-            // Remove the temp file
-            if (tempScreenshot != null)
-                FileHelpers.DeleteFile(tempScreenshot);
-        }
+        WriteDataToSaveFile(target, justInfo, saveContent, screenshot);
     }
 
-    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string? tempScreenshot)
+    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, Image? screenshot)
     {
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
@@ -239,34 +246,25 @@ public class Save
             throw new IOException("Cannot open: " + target);
         }
 
-        using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
+        using var fileStream = new GodotFileStream(file);
+        using Stream gzoStream = new GZipOutputStream(fileStream);
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
 
-        OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+        TarHelper.OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
 
-        if (tempScreenshot != null)
+        if (screenshot != null)
         {
-            byte[]? data = null;
+            byte[] data = screenshot.SavePngToBuffer();
 
-            using (var reader = new File())
-            {
-                reader.Open(tempScreenshot, File.ModeFlags.Read);
-
-                if (!reader.IsOpen())
-                {
-                    GD.PrintErr("Failed to open temp screenshot for writing to save");
-                }
-                else
-                {
-                    data = reader.GetBuffer((int)reader.GetLen());
-                }
-            }
-
-            if (data?.Length > 0)
-                OutputEntry(tar, SAVE_SCREENSHOT, data);
+            if (data.Length > 0)
+                TarHelper.OutputEntry(tar, SAVE_SCREENSHOT, data);
         }
 
-        OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+        TarHelper.OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
+
+        // TODO: queue a task to start a background operation next frame to check that reading the file as compressed
+        // tar file works correctly
+        // https://github.com/Revolutionary-Games/Thrive/issues/3865
     }
 
     private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
@@ -288,13 +286,7 @@ public class Save
 
         if (info)
         {
-            if (string.IsNullOrEmpty(infoStr))
-            {
-                throw new IOException("couldn't find info content in save");
-            }
-
-            infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
-                throw new JsonException("SaveInformation is null");
+            infoResult = ParseSaveInfo(infoStr);
         }
 
         if (save)
@@ -311,17 +303,24 @@ public class Save
 
         if (screenshot)
         {
-            imageResult = new Image();
-
-            if (screenshotData?.Length > 0)
-            {
-                imageResult.LoadPngFromBuffer(screenshotData);
-            }
+            if (screenshotData != null)
+                imageResult = TarHelper.ImageFromBuffer(screenshotData);
 
             // Not a critical error that screenshot is missing even if it was requested
         }
 
         return (infoResult, saveResult, imageResult);
+    }
+
+    private static SaveInformation ParseSaveInfo(string? infoStr)
+    {
+        if (string.IsNullOrEmpty(infoStr))
+        {
+            throw new IOException("couldn't find info content in save");
+        }
+
+        return ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+            throw new JsonException("SaveInformation is null");
     }
 
     private static (string? InfoStr, string? SaveStr, byte[]? Screenshot) LoadDataFromFile(string file, bool info,
@@ -369,7 +368,7 @@ public class Save
                 if (!info)
                     continue;
 
-                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                infoStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SAVE_JSON)
@@ -377,7 +376,7 @@ public class Save
                 if (!save)
                     continue;
 
-                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                saveStr = TarHelper.ReadStringEntry(tar, (int)tarEntry.Size);
                 --itemsToRead;
             }
             else if (tarEntry.Name == SAVE_SCREENSHOT)
@@ -385,7 +384,7 @@ public class Save
                 if (!screenshot)
                     continue;
 
-                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                screenshotData = TarHelper.ReadBytesEntry(tar, (int)tarEntry.Size);
                 --itemsToRead;
             }
             else
@@ -399,46 +398,5 @@ public class Save
         }
 
         return (infoStr, saveStr, screenshotData);
-    }
-
-    private static void OutputEntry(TarOutputStream archive, string name, byte[] data)
-    {
-        var entry = TarEntry.CreateTarEntry(name);
-
-        entry.TarHeader.Mode = Convert.ToInt32("0664", 8);
-
-        // TODO: could fill in more of the properties
-
-        entry.Size = data.Length;
-
-        archive.PutNextEntry(entry);
-
-        archive.Write(data, 0, data.Length);
-
-        archive.CloseEntry();
-    }
-
-    private static string ReadStringEntry(TarInputStream tar, int length)
-    {
-        // Pre-allocate storage
-        var buffer = new byte[length];
-        {
-            using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
-        }
-
-        return Encoding.UTF8.GetString(buffer);
-    }
-
-    private static byte[] ReadBytesEntry(TarInputStream tar, int length)
-    {
-        // Pre-allocate storage
-        var buffer = new byte[length];
-        {
-            using var stream = new MemoryStream(buffer);
-            tar.CopyEntryContents(stream);
-        }
-
-        return buffer;
     }
 }

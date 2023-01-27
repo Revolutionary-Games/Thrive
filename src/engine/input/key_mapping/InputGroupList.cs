@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -11,7 +10,7 @@ using Godot;
 public class InputGroupList : VBoxContainer
 {
     [Export]
-    public NodePath ConflictDialogPath = null!;
+    public NodePath? ConflictDialogPath;
 
     [Export]
     public NodePath ResetInputsDialog = null!;
@@ -20,10 +19,14 @@ public class InputGroupList : VBoxContainer
 
     private InputEventItem? latestDialogCaller;
     private InputEventItem? latestDialogConflict;
-    private InputEventWithModifiers? latestDialogNewEvent;
+    private InputEvent? latestDialogNewEvent;
 
+#pragma warning disable CA2213
     private CustomConfirmationDialog conflictDialog = null!;
     private CustomConfirmationDialog resetInputsDialog = null!;
+#pragma warning restore CA2213
+
+    private FocusFlowDynamicChildrenHelper focusHelper = null!;
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
@@ -53,6 +56,12 @@ public class InputGroupList : VBoxContainer
 
         conflictDialog = GetNode<CustomConfirmationDialog>(ConflictDialogPath);
         resetInputsDialog = GetNode<CustomConfirmationDialog>(ResetInputsDialog);
+
+        this.RegisterCustomFocusDrawer();
+
+        focusHelper = new FocusFlowDynamicChildrenHelper(this,
+            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.VerticalToChildrenOnly,
+            FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Vertical);
     }
 
     /// <summary>
@@ -111,7 +120,7 @@ public class InputGroupList : VBoxContainer
     /// <param name="conflict">The event which produced the conflict</param>
     /// <param name="newEvent">The new event wanted to be set to the caller</param>
     public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
-        InputEventWithModifiers newEvent)
+        InputEvent newEvent)
     {
         // See the comments in Conflicts as to why this is done like this
         // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
@@ -125,9 +134,8 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
-            inputActionItem.DisplayName, inputActionItem.DisplayName);
+        conflictDialog.DialogText = TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT")
+            .FormatSafe(inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();
     }
@@ -156,21 +164,6 @@ public class InputGroupList : VBoxContainer
         return conflictDialog.Visible;
     }
 
-    /// <summary>
-    ///   Processes the input data and saves the created GUI Controls in AllGroupItems
-    /// </summary>
-    /// <param name="data">The input data the input tab should be loaded with</param>
-    public void LoadFromData(InputDataList data)
-    {
-        if (activeInputGroupList != null)
-        {
-            foreach (var inputGroupItem in activeInputGroupList)
-                inputGroupItem.Free();
-        }
-
-        activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
-    }
-
     public void InitGroupList()
     {
         this.QueueFreeChildren();
@@ -181,15 +174,61 @@ public class InputGroupList : VBoxContainer
         {
             AddChild(inputGroup);
         }
+
+        EnsureNavigationFlowIsCorrect();
     }
 
     internal void ControlsChanged()
     {
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
+
+        Invoke.Instance.Queue(EnsureNavigationFlowIsCorrect);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ConflictDialogPath != null)
+            {
+                ConflictDialogPath.Dispose();
+                ResetInputsDialog.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Processes the input data and saves the created GUI Controls in AllGroupItems
+    /// </summary>
+    /// <param name="data">The input data the input tab should be loaded with</param>
+    private void LoadFromData(InputDataList data)
+    {
+        if (activeInputGroupList != null)
+        {
+            foreach (var inputGroupItem in activeInputGroupList)
+                inputGroupItem.Free();
+        }
+
+        activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
     }
 
     private IEnumerable<InputGroupItem> BuildGUI(IEnumerable<NamedInputGroup> groupData, InputDataList data)
     {
         return groupData.Select(p => InputGroupItem.BuildGUI(this, p, data)).ToList();
+    }
+
+    private void EnsureNavigationFlowIsCorrect()
+    {
+        // This needs to first set the top level items to have correct navigation as NotifyFocusAdjusted calls below
+        // will use that info to further adjust the descendents
+        focusHelper.ApplyNavigationFlow(ActiveInputGroupList, ActiveInputGroupList.SelectFirstFocusableChild(),
+            ActiveInputGroupList.Select(g => g.GetLastInputInGroup()).SelectFirstFocusableChild());
+
+        foreach (var inputGroupItem in ActiveInputGroupList)
+        {
+            inputGroupItem.NotifyFocusAdjusted();
+        }
     }
 }

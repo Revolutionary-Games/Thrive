@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
-///   Combines multiple RunOnAxisAttributes to be able to distinguish between axes
+///   Combines multiple <see cref="RunOnAxisAttribute"/>s to be able to distinguish between axes
 ///   Can only be applied once.
 /// </summary>
 /// <example>
-///   [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
-///   [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
-///   [RunOnAxisGroup]
-///   public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
+///   <code>
+///     [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1.0f, 1.0f })]
+///     [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1.0f, 1.0f })]
+///     [RunOnAxisGroup]
+///     public void OnMovement(float delta, float forwardBackwardMovement, float leftRightMovement)
+///   </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Method)]
 public class RunOnAxisGroupAttribute : InputAttribute
@@ -21,10 +22,24 @@ public class RunOnAxisGroupAttribute : InputAttribute
     /// </summary>
     private readonly List<RunOnAxisAttribute> axes = new();
 
+    // These two variables exist to make OnProcess more efficient
+    private readonly List<float> currentAxisValues = new();
+
+    /// <summary>
+    ///   Cached call parameters object to not recreate this all the time.
+    ///   This needs to be <code>object[]</code> to match CallMethod's parameter declaration.
+    /// </summary>
+    private object[]? callParameters;
+
     /// <summary>
     ///   Should the method be invoked when all of the inputs are in their idle states
     /// </summary>
     public bool InvokeAlsoWithNoInput { get; set; }
+
+    /// <summary>
+    ///   If false then the delta is not passed to the called method
+    /// </summary>
+    public bool InvokeWithDelta { get; set; } = true;
 
     public override bool OnInput(InputEvent @event)
     {
@@ -36,23 +51,71 @@ public class RunOnAxisGroupAttribute : InputAttribute
                 wasUsed = true;
         }
 
+        if (wasUsed && TrackInputMethod)
+            LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
+
         return wasUsed;
     }
 
     public override void OnProcess(float delta)
     {
-        List<(float CurrentValue, float DefaultValue)> axisValues =
-            axes.Select(axis => (axis.CurrentResult, axis.DefaultState)).ToList();
+        // Read new axis values
+        // TODO: could this run only if OnInput used something? (currently wouldn't work for mouse look)
+        int axisCount = axes.Count;
+
+        int parameterOffset = 0;
+
+        int wantedLength = axisCount;
+
+        if (InvokeWithDelta)
+        {
+            ++parameterOffset;
+            ++wantedLength;
+        }
+
+        if (TrackInputMethod)
+            ++wantedLength;
+
+        if (callParameters?.Length != wantedLength)
+            callParameters = new object[wantedLength];
+
+        for (int i = 0; i < axisCount; ++i)
+        {
+            var value = axes[i].GetCurrentResult(delta);
+            currentAxisValues[i] = value;
+
+            // This is applied here for more performance as InvokeAlsoWithNoInput seems very common, and assigning
+            // two variables in a single loop is hopefully really optimized in the runtime
+            callParameters[i + parameterOffset] = value;
+        }
 
         // Skip process if all axes have default values, and invoke also with no input is not set
-        if (!InvokeAlsoWithNoInput && axisValues.All(p => Math.Abs(p.CurrentValue - p.DefaultValue) < 0.001f))
-            return;
+        if (!InvokeAlsoWithNoInput)
+        {
+            bool hasDifference = false;
 
-        var callParameters = axisValues.Select(p => p.CurrentValue).ToList();
-        callParameters.Insert(0, delta);
+            // TODO: check if combining this into the first loop in this method would be faster
+            for (int i = 0; i < axisCount; ++i)
+            {
+                var difference = currentAxisValues[i] - axes[i].DefaultState;
+                if (difference is > 0.001f or < -0.001f)
+                {
+                    hasDifference = true;
+                    break;
+                }
+            }
 
-        // Casting to an object[] to match CallMethods parameter declaration
-        CallMethod(callParameters.Cast<object>().ToArray());
+            if (!hasDifference)
+                return;
+        }
+
+        if (InvokeWithDelta)
+            callParameters[0] = delta;
+
+        if (TrackInputMethod)
+            callParameters[wantedLength - 1] = LastUsedInputMethod;
+
+        CallMethod(callParameters);
     }
 
     public override void FocusLost()
@@ -60,24 +123,29 @@ public class RunOnAxisGroupAttribute : InputAttribute
         axes.ForEach(p => p.FocusLost());
     }
 
-    public override bool Equals(object obj)
+    internal override void OnPostLoad()
     {
-        if (!base.Equals(obj) || !(obj is RunOnAxisGroupAttribute group))
-            return false;
+        base.OnPostLoad();
 
-        return axes.SequenceEqual(group.axes);
+        foreach (var axisAttribute in axes)
+        {
+            axisAttribute.OnPostLoad();
+        }
     }
 
-    public override int GetHashCode()
+    internal override void OnWindowSizeChanged()
     {
-        unchecked
+        base.OnWindowSizeChanged();
+
+        foreach (var axisAttribute in axes)
         {
-            return (base.GetHashCode() * 397) ^ axes.GetHashCode();
+            axisAttribute.OnWindowSizeChanged();
         }
     }
 
     internal void AddAxis(RunOnAxisAttribute axis)
     {
         axes.Add(axis);
+        currentAxisValues.Add(axis.DefaultState);
     }
 }

@@ -8,10 +8,10 @@ public class GalleryViewer : CustomDialog
     public const string ALL_CATEGORY = "All";
 
     [Export]
-    public NodePath GalleryGridPath = null!;
+    public NodePath? GalleryGridPath;
 
     [Export]
-    public NodePath TabButtonsContainerPath = null!;
+    public NodePath TabButtonsPath = null!;
 
     [Export]
     public NodePath AssetsCategoryDropdownPath = null!;
@@ -19,6 +19,7 @@ public class GalleryViewer : CustomDialog
     [Export]
     public NodePath SlideshowButtonPath = null!;
 
+#pragma warning disable CA2213
     [Export]
     public PackedScene GalleryCardScene = null!;
 
@@ -34,10 +35,11 @@ public class GalleryViewer : CustomDialog
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
     private GridContainer cardTile = null!;
 
-    private HBoxContainer tabButtonsContainer = null!;
+    private TabButtons tabButtons = null!;
     private OptionButton assetsCategoryDropdown = null!;
     private SlideScreen slideScreen = null!;
     private Button slideshowButton = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Holds gallery categories and their respective asset categories with their respective indexes in the category
@@ -83,7 +85,7 @@ public class GalleryViewer : CustomDialog
     {
         slideScreen = GetNode<SlideScreen>("SlideScreen");
         cardTile = GetNode<GridContainer>(GalleryGridPath);
-        tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
+        tabButtons = GetNode<TabButtons>(TabButtonsPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
         slideshowButton = GetNode<Button>(SlideshowButtonPath);
     }
@@ -120,6 +122,22 @@ public class GalleryViewer : CustomDialog
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (GalleryGridPath != null)
+            {
+                GalleryGridPath.Dispose();
+                TabButtonsPath.Dispose();
+                AssetsCategoryDropdownPath.Dispose();
+                SlideshowButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected override void OnHidden()
     {
         base.OnHidden();
@@ -130,7 +148,7 @@ public class GalleryViewer : CustomDialog
     {
         GD.Print("Initializing gallery viewer");
 
-        tabButtonsContainer.QueueFreeChildren();
+        tabButtons.ClearTabButtons();
         cardTile.QueueFreeChildren();
 
         var tabsButtonGroup = new ButtonGroup();
@@ -162,7 +180,7 @@ public class GalleryViewer : CustomDialog
             };
 
             firstEntry ??= tabButton;
-            tabButtonsContainer.AddChild(tabButton);
+            tabButtons.AddNewTab(tabButton);
 
             categoryCards[gallery.Key][ALL_CATEGORY] = new List<GalleryCard>();
 
@@ -220,7 +238,18 @@ public class GalleryViewer : CustomDialog
         {
             case AssetType.Texture:
                 item = GalleryCardScene.Instance<GalleryCard>();
-                item.Thumbnail = GD.Load<Texture>(asset.ResourcePath);
+
+                // To avoid massive lag spikes, only set a placeholder loading icon here and queue a load for the icon
+                var resourceManager = ResourceManager.Instance;
+
+                item.Thumbnail = resourceManager.LoadingIcon;
+
+                var loadingResource =
+                    new TextureThumbnailResource(asset.ResourcePath, Constants.GALLERY_THUMBNAIL_MAX_WIDTH);
+
+                loadingResource.OnComplete = _ => { item.Thumbnail = loadingResource.LoadedTexture; };
+
+                resourceManager.QueueLoad(loadingResource);
                 break;
             case AssetType.ModelScene:
                 item = GalleryCardModelScene.Instance<GalleryCardModel>();

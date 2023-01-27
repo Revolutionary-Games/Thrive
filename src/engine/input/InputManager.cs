@@ -17,6 +17,13 @@ public class InputManager : Node
     private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
 
+    private readonly Dictionary<int, float> controllerAxisDeadzones = new();
+
+    /// <summary>
+    ///   Used to send just one 0 event for a controller axis that is released and goes into the deadzone
+    /// </summary>
+    private readonly Dictionary<int, bool> deadzonedControllerAxes = new();
+
     /// <summary>
     ///   A list of all loaded attributes
     /// </summary>
@@ -26,6 +33,34 @@ public class InputManager : Node
     ///   </para>
     /// </remarks>
     private Dictionary<InputAttribute, List<WeakReference>> attributes = new();
+
+    /// <summary>
+    ///   The last used input method by the player
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: does this need to default to controller in some cases?
+    ///   </para>
+    /// </remarks>
+    private ActiveInputMethod usedInputMethod = ActiveInputMethod.Keyboard;
+
+    private float inputChangeDelay;
+    private bool queuedInputChange;
+
+    /// <summary>
+    ///   Used to detect when the used controller
+    /// </summary>
+    private int? lastUsedControllerId;
+
+    /// <summary>
+    ///   Used to detect when controller name changes to check if we should swap the used controller type variable
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: is this better than just detecting the last connected controller type?
+    ///   </para>
+    /// </remarks>
+    private string? lastUsedControllerName;
 
     public InputManager()
     {
@@ -42,6 +77,8 @@ public class InputManager : Node
     ///   Set to true when a rebinding is being performed, used to discard input
     /// </summary>
     public static bool PerformingRebind { get; set; }
+
+    public static Vector2 WindowSizeForInputs { get; private set; }
 
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
@@ -129,6 +166,57 @@ public class InputManager : Node
     }
 
     /// <summary>
+    ///   Always converts an input event to an input method type
+    /// </summary>
+    /// <param name="event">The event to look at and make the determination</param>
+    /// <returns>The detected input type or the default value</returns>
+    public static ActiveInputMethod InputMethodFromInput(InputEvent @event)
+    {
+        if (@event is InputEventJoypadButton or InputEventJoypadMotion)
+        {
+            return ActiveInputMethod.Controller;
+        }
+
+        // Everything that isn't a controller is currently a keyboard
+        return ActiveInputMethod.Keyboard;
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        Input.Singleton.Connect("joy_connection_changed", this, nameof(OnConnectedControllersChanged));
+
+        DoPostLoad();
+
+        try
+        {
+            // Detect initial controllers
+            var controllers = Input.GetConnectedJoypads();
+
+            if (controllers.Count > 0)
+            {
+                // Apply button style from initial controller
+
+                int controllerId = (int)controllers[0];
+                lastUsedControllerName = Input.GetJoyName(controllerId);
+                lastUsedControllerId = controllerId;
+
+                GD.Print("First connected controller is: ", lastUsedControllerName);
+            }
+
+            // Apply button prompt types anyway even if there's no plugged in controller
+            ApplyInputPromptTypes();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Startup controller style applying failed: ", e);
+        }
+
+        Settings.Instance.ControllerPromptType.OnChanged += _ => ApplyInputPromptTypes();
+    }
+
+    /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
@@ -140,6 +228,19 @@ public class InputManager : Node
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
         if (delta <= 0)
             return;
+
+        if (inputChangeDelay > 0)
+        {
+            inputChangeDelay -= delta;
+
+            if (inputChangeDelay <= 0)
+            {
+                inputChangeDelay = 0;
+
+                if (queuedInputChange)
+                    ApplyInputPromptTypes();
+            }
+        }
 
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.OnProcess(delta);
@@ -173,11 +274,11 @@ public class InputManager : Node
         OnInput(false, @event);
     }
 
-    public override void _Notification(int focus)
+    public override void _Notification(int what)
     {
         // If the window goes out of focus, we don't receive the key released events
         // We reset our held down keys if the player tabs out while pressing a key
-        if (focus == MainLoop.NotificationWmFocusOut)
+        if (what == NotificationWmFocusOut)
         {
             OnFocusLost();
         }
@@ -265,14 +366,84 @@ public class InputManager : Node
         return result;
     }
 
+    /// <summary>
+    ///   Performs post load actions for inputs. For example some inputs need to listen for settings changes
+    /// </summary>
+    private void DoPostLoad()
+    {
+        LoadControllerDeadzones();
+
+        Settings.Instance.ControllerAxisDeadzoneAxes.OnChanged += _ => LoadControllerDeadzones();
+
+        GetTree().Root.Connect("size_changed", this, nameof(OnWindowSizeChanged));
+        UpdateWindowSizeForInputs();
+
+        foreach (var attribute in attributes)
+        {
+            attribute.Key.OnPostLoad();
+        }
+    }
+
+    private void OnWindowSizeChanged()
+    {
+        UpdateWindowSizeForInputs();
+
+        foreach (var attribute in attributes)
+        {
+            attribute.Key.OnWindowSizeChanged();
+        }
+    }
+
+    private void UpdateWindowSizeForInputs()
+    {
+        if (Settings.Instance.InputWindowSizeIsLogicalSize.Value)
+        {
+            WindowSizeForInputs = LoadingScreen.Instance.LogicalDrawingAreaSize;
+        }
+        else
+        {
+            WindowSizeForInputs = OS.WindowSize * OS.GetScreenScale();
+        }
+    }
+
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
-        // Ignore mouse motion
-        // TODO: support mouse movement input as well
-        if (@event is InputEventMouseMotion)
-            return;
+        UpdateUsedInputMethodType(@event);
 
-        bool isDown = @event.IsPressed();
+        bool isDown = false;
+
+        // For now let's always assume mouse motion is not a "down" action
+        if (@event is not InputEventMouseMotion)
+        {
+            if (@event is InputEventJoypadMotion joypadMotion)
+            {
+                // Apply controller axis deadzone
+                var motionAxis = joypadMotion.Axis;
+                controllerAxisDeadzones.TryGetValue(motionAxis, out float deadzone);
+
+                if (Math.Abs(joypadMotion.AxisValue) < deadzone)
+                {
+                    deadzonedControllerAxes.TryGetValue(motionAxis, out var deadzoned);
+
+                    if (deadzoned)
+                    {
+                        // Already sent out the deadzone event for this input, don't send again until it changes
+                        return;
+                    }
+
+                    joypadMotion.AxisValue = 0;
+                    deadzonedControllerAxes[motionAxis] = true;
+                }
+                else
+                {
+                    deadzonedControllerAxes[motionAxis] = false;
+                }
+
+                // TODO: implement maximum value scaling for controller axes (if needed)
+            }
+
+            isDown = @event.IsPressed();
+        }
 
         bool handled = false;
 
@@ -307,6 +478,7 @@ public class InputManager : Node
 
     private void StartTimer()
     {
+        // TODO: switch this to using a timer variable like elsewhere in the code
         var timer = new Timer
         {
             Autostart = true,
@@ -316,6 +488,124 @@ public class InputManager : Node
         };
         timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
+    }
+
+    private void UpdateUsedInputMethodType(InputEvent @event)
+    {
+        ActiveInputMethod? wantedInputMethod = null;
+        int? joypadId = null;
+
+        // TODO: should mouse buttons switch the input method or not? In case a user needs to click something to get
+        // past something
+        if (@event is InputEventKey /* or InputEventMouseButton */)
+        {
+            wantedInputMethod = ActiveInputMethod.Keyboard;
+        }
+        else if (@event is InputEventJoypadButton joypadButton)
+        {
+            if (joypadButton.Device == -1)
+            {
+                // Emulated mouse
+            }
+            else
+            {
+                joypadId = joypadButton.Device;
+                wantedInputMethod = ActiveInputMethod.Controller;
+            }
+        }
+
+        // Exit if we don't know what mode we want to be in
+        if (wantedInputMethod == null)
+            return;
+
+        // or we are already in the right mode (and also controller mode is right)
+        if (wantedInputMethod.Value == usedInputMethod)
+        {
+            if (usedInputMethod != ActiveInputMethod.Controller || lastUsedControllerId == joypadId)
+                return;
+        }
+
+        // Skip changing input method if the input is an action that shouldn't change input type
+        if (Constants.ActionsThatDoNotChangeInputMethod.Any(a => @event.IsAction(a)))
+            return;
+
+        usedInputMethod = wantedInputMethod.Value;
+
+        if (joypadId != null)
+        {
+            if (lastUsedControllerId != joypadId)
+            {
+                // Used controller changed
+                lastUsedControllerId = joypadId;
+
+                lastUsedControllerName = Input.GetJoyName(lastUsedControllerId.Value);
+                GD.Print("Controller name is now: ", lastUsedControllerName);
+            }
+        }
+
+        // This delay prevents the icons from changing each frame if multiple input types are firing at the same time
+        // TODO: it would probably be nice to gradually increase this delay when rapid changes are detected
+        if (inputChangeDelay > 0)
+        {
+            queuedInputChange = true;
+        }
+        else
+        {
+            ApplyInputPromptTypes();
+        }
+
+        inputChangeDelay = Constants.MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE;
+    }
+
+    private void ApplyInputPromptTypes()
+    {
+        var settingsControllerValue = Settings.Instance.ControllerPromptType.Value;
+
+        if (settingsControllerValue != ControllerType.Automatic)
+        {
+            KeyPromptHelper.ActiveControllerType = settingsControllerValue;
+        }
+        else if (lastUsedControllerName != null)
+        {
+            KeyPromptHelper.ActiveControllerType =
+                ControllerTypeDetection.DetectControllerTypeFromName(lastUsedControllerName);
+        }
+
+        KeyPromptHelper.InputMethod = usedInputMethod;
+        queuedInputChange = false;
+    }
+
+    private void OnConnectedControllersChanged(int device, bool connected)
+    {
+        // This connected signal doesn't seem to apply during startup, instead only when a controller is reconnected
+        if (connected)
+        {
+            GD.Print($"Controller {device} connected");
+        }
+        else
+        {
+            GD.Print($"Controller {device} was disconnected");
+        }
+
+        lastUsedControllerId = null;
+    }
+
+    private void LoadControllerDeadzones()
+    {
+        var values = Settings.Instance.ControllerAxisDeadzoneAxes.Value;
+
+        if (values.Count != (int)JoystickList.AxisMax)
+        {
+            GD.PrintErr("Mismatching number of controller axis deadzones. Expected: ", (int)JoystickList.AxisMax,
+                " actually configured: ", values.Count);
+        }
+
+        controllerAxisDeadzones.Clear();
+
+        for (int i = 0; i < values.Count; ++i)
+        {
+            controllerAxisDeadzones[i] = values[i];
+        }
     }
 
     /// <summary>
@@ -369,8 +659,6 @@ public class InputManager : Node
                         }
                         else
                         {
-                            // TODO: it seems likely that if a class with input attributes is inherited a duplicate
-                            // key error will be raised in here
                             // Give the attribute a reference to the method it is placed on
                             attribute.Init(methodInfo);
 

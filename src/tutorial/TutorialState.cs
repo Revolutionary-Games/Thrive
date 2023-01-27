@@ -85,6 +85,15 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
+    [JsonProperty]
+    public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public EarlyMulticellularWelcome EarlyMulticellularWelcome { get; private set; } = new();
+
+    [JsonProperty]
+    public DayNightTutorial DayNightTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -363,6 +372,9 @@ public class TutorialState : ITutorialInput
             EditorTutorialEnd,
             AutoEvoPrediction,
             StaySmallTutorial,
+            LeaveColonyTutorial,
+            EarlyMulticellularWelcome,
+            DayNightTutorial,
         };
     }
 }

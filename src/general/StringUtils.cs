@@ -18,27 +18,24 @@ public static class StringUtils
         if (number is >= 1000000000 or <= -1000000000)
         {
             return withSuffix ?
-                string.Format(
-                    CultureInfo.CurrentCulture, TranslationServer.Translate("BILLION_ABBREVIATION"),
-                    number.ToString("0,,,.###", CultureInfo.CurrentCulture)) :
+                TranslationServer.Translate("BILLION_ABBREVIATION")
+                    .FormatSafe(number.ToString("0,,,.###", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,,.###", CultureInfo.CurrentCulture);
         }
 
         if (number is >= 1000000 or <= -1000000)
         {
             return withSuffix ?
-                string.Format(
-                    CultureInfo.CurrentCulture, TranslationServer.Translate("MILLION_ABBREVIATION"),
-                    number.ToString("0,,.##", CultureInfo.CurrentCulture)) :
+                TranslationServer.Translate("MILLION_ABBREVIATION")
+                    .FormatSafe(number.ToString("0,,.##", CultureInfo.CurrentCulture)) :
                 number.ToString("0,,.##", CultureInfo.CurrentCulture);
         }
 
         if (number is >= 1000 or <= -1000)
         {
             return withSuffix ?
-                string.Format(
-                    CultureInfo.CurrentCulture, TranslationServer.Translate("KILO_ABBREVIATION"),
-                    number.ToString("0,.#", CultureInfo.CurrentCulture)) :
+                TranslationServer.Translate("KILO_ABBREVIATION")
+                    .FormatSafe(number.ToString("0,.#", CultureInfo.CurrentCulture)) :
                 number.ToString("0,.#", CultureInfo.CurrentCulture);
         }
 
@@ -52,6 +49,32 @@ public static class StringUtils
     public static string FormatNumber(this long number, bool withSuffix = true)
     {
         return ((double)number).FormatNumber();
+    }
+
+    /// <summary>
+    ///   Safely formats a string where the format is loaded form a translation
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///      This should always be used instead of <see cref="string.Format(string,object)"/>
+    ///   </para>
+    /// </remarks>
+    /// <param name="format">The format to use</param>
+    /// <param name="formatArguments">Arguments to pass to the formatting</param>
+    /// <returns>
+    ///   The formatted string or <see cref="format"/> if the placeholders were incorrect in the translation
+    /// </returns>
+    public static string FormatSafe(this string format, params object?[] formatArguments)
+    {
+        try
+        {
+            return string.Format(CultureInfo.CurrentCulture, format, formatArguments);
+        }
+        catch (FormatException e)
+        {
+            GD.PrintErr("Invalid translation format for current language in text: ", format, ", exception: ", e);
+            return format;
+        }
     }
 
     /// <summary>

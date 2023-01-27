@@ -6,17 +6,30 @@ using Godot;
 /// </summary>
 public class CustomCheckBox : Button
 {
+#pragma warning disable CA2213
     private Texture unpressedNormal = null!;
     private Texture unpressedHovered = null!;
     private Texture unpressedClicked = null!;
     private Texture pressedNormal = null!;
     private Texture pressedHovered = null!;
     private Texture pressedClicked = null!;
+    private Texture radioUnpressedNormal = null!;
+    private Texture radioUnpressedHovered = null!;
+    private Texture radioUnpressedClicked = null!;
+    private Texture radioPressedNormal = null!;
+    private Texture radioPressedHovered = null!;
+    private Texture radioPressedClicked = null!;
+#pragma warning restore CA2213
+
+    private Color normalColor;
+    private Color pressedColor;
+    private Color focusColor;
 
     private bool pressing;
-    private CheckState currentCheckState;
+    private bool focused;
+    private State currentState;
 
-    private enum CheckState
+    private enum State
     {
         UnpressedNormal,
         UnpressedHovered,
@@ -27,6 +40,8 @@ public class CustomCheckBox : Button
         Disabled,
     }
 
+    public bool Radio => Group != null;
+
     public override void _Ready()
     {
         unpressedNormal = GetIcon("UnpressedNormal", "CheckBox");
@@ -35,24 +50,52 @@ public class CustomCheckBox : Button
         pressedNormal = GetIcon("PressedNormal", "CheckBox");
         pressedHovered = GetIcon("PressedHovered", "CheckBox");
         pressedClicked = GetIcon("PressedClicked", "CheckBox");
+        radioUnpressedNormal = GetIcon("RadioUnpressedNormal", "CheckBox");
+        radioUnpressedHovered = GetIcon("RadioUnpressedHovered", "CheckBox");
+        radioUnpressedClicked = GetIcon("RadioUnpressedClicked", "CheckBox");
+        radioPressedNormal = GetIcon("RadioPressedNormal", "CheckBox");
+        radioPressedHovered = GetIcon("RadioPressedHovered", "CheckBox");
+        radioPressedClicked = GetIcon("RadioPressedClicked", "CheckBox");
+
+        normalColor = GetColor("font_color");
+        focusColor = GetColor("font_color_focus");
+        pressedColor = GetColor("font_color_pressed");
+
         UpdateIcon();
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what is NotificationFocusEnter or NotificationFocusExit)
+        {
+            focused = what == NotificationFocusEnter;
+
+            // Update font colour based on focused state to make things more clear which box is focused (and more
+            // consistent with mouse hover)
+            AddColorOverride("font_color", focused ? focusColor : normalColor);
+            AddColorOverride("font_color_pressed", focused ? focusColor : pressedColor);
+
+            Update();
+        }
     }
 
     public override void _Draw()
     {
         if (pressing && !Disabled)
         {
-            currentCheckState = Pressed ? CheckState.PressedClicked : CheckState.UnpressedClicked;
+            currentState = Pressed ? State.PressedClicked : State.UnpressedClicked;
         }
         else
         {
-            currentCheckState = GetDrawMode() switch
+            currentState = GetDrawMode() switch
             {
-                DrawMode.Disabled => CheckState.Disabled,
-                DrawMode.Normal => CheckState.UnpressedNormal,
-                DrawMode.Hover => CheckState.UnpressedHovered,
-                DrawMode.Pressed => CheckState.PressedNormal,
-                DrawMode.HoverPressed => CheckState.PressedHovered,
+                DrawMode.Disabled => State.Disabled,
+                DrawMode.Normal => focused ? State.UnpressedHovered : State.UnpressedNormal,
+                DrawMode.Hover => State.UnpressedHovered,
+                DrawMode.Pressed => focused ? State.PressedHovered : State.PressedNormal,
+                DrawMode.HoverPressed => State.PressedHovered,
                 _ => throw new ArgumentOutOfRangeException(GetDrawMode().ToString()),
             };
         }
@@ -79,16 +122,33 @@ public class CustomCheckBox : Button
 
     private void UpdateIcon()
     {
-        Icon = currentCheckState switch
+        if (Radio)
         {
-            CheckState.Disabled => Pressed ? pressedNormal : unpressedNormal,
-            CheckState.UnpressedNormal => unpressedNormal,
-            CheckState.UnpressedHovered => unpressedHovered,
-            CheckState.UnpressedClicked => unpressedClicked,
-            CheckState.PressedNormal => pressedNormal,
-            CheckState.PressedHovered => pressedHovered,
-            CheckState.PressedClicked => pressedClicked,
-            _ => throw new ArgumentOutOfRangeException(nameof(currentCheckState)),
-        };
+            Icon = currentState switch
+            {
+                State.Disabled => Pressed ? radioPressedNormal : radioUnpressedNormal,
+                State.UnpressedNormal => radioUnpressedNormal,
+                State.UnpressedHovered => radioUnpressedHovered,
+                State.UnpressedClicked => radioUnpressedClicked,
+                State.PressedNormal => radioPressedNormal,
+                State.PressedHovered => radioPressedHovered,
+                State.PressedClicked => radioPressedClicked,
+                _ => throw new ArgumentOutOfRangeException(nameof(currentState)),
+            };
+        }
+        else
+        {
+            Icon = currentState switch
+            {
+                State.Disabled => Pressed ? pressedNormal : unpressedNormal,
+                State.UnpressedNormal => unpressedNormal,
+                State.UnpressedHovered => unpressedHovered,
+                State.UnpressedClicked => unpressedClicked,
+                State.PressedNormal => pressedNormal,
+                State.PressedHovered => pressedHovered,
+                State.PressedClicked => pressedClicked,
+                _ => throw new ArgumentOutOfRangeException(nameof(currentState)),
+            };
+        }
     }
 }

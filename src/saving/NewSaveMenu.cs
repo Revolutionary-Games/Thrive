@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using Godot;
@@ -11,7 +10,7 @@ using Path = System.IO.Path;
 public class NewSaveMenu : Control
 {
     [Export]
-    public NodePath SaveListPath = null!;
+    public NodePath? SaveListPath;
 
     [Export]
     public NodePath SaveNameBoxPath = null!;
@@ -25,11 +24,13 @@ public class NewSaveMenu : Control
     [Export]
     public NodePath SaveButtonPath = null!;
 
+#pragma warning disable CA2213
     private SaveList saveList = null!;
     private LineEdit saveNameBox = null!;
     private Button saveButton = null!;
     private CustomConfirmationDialog overwriteConfirm = null!;
     private CustomConfirmationDialog attemptWriteFailAccept = null!;
+#pragma warning restore CA2213
 
     private bool usingSelectedSaveName;
 
@@ -69,6 +70,23 @@ public class NewSaveMenu : Control
             saveNameBox.SelectAll();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SaveListPath != null)
+            {
+                SaveListPath.Dispose();
+                SaveNameBoxPath.Dispose();
+                OverwriteConfirmPath.Dispose();
+                AttemptWriteFailAcceptPath.Dispose();
+                SaveButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private static bool IsSaveNameValid(string name)
     {
         return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
@@ -77,9 +95,7 @@ public class NewSaveMenu : Control
     private void ShowOverwriteConfirm(string name)
     {
         // The chosen filename ({0}) already exists. Overwrite?
-        overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS"),
-            name);
+        overwriteConfirm.DialogText = TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS").FormatSafe(name);
         overwriteConfirm.PopupCenteredShrink();
     }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -15,7 +14,7 @@ public class SaveListItem : PanelContainer
     public bool Loadable = true;
 
     [Export]
-    public NodePath SaveNamePath = null!;
+    public NodePath? SaveNamePath;
 
     [Export]
     public NodePath ScreenshotPath = null!;
@@ -49,6 +48,7 @@ public class SaveListItem : PanelContainer
 
     private static readonly object ResizeLock = new();
 
+#pragma warning disable CA2213
     private Label? saveNameLabel;
     private TextureRect screenshot = null!;
     private Label version = null!;
@@ -60,12 +60,13 @@ public class SaveListItem : PanelContainer
     private Label description = null!;
     private Button loadButton = null!;
     private Panel? highlightPanel;
+#pragma warning restore CA2213
 
     private string saveName = string.Empty;
     private int versionDifference;
 
     private bool loadingData;
-    private Task<Save>? saveInfoLoadTask;
+    private SaveInfoAndScreenshot? saveInfoLoadTask;
 
     private bool highlighted;
     private bool selected;
@@ -180,22 +181,19 @@ public class SaveListItem : PanelContainer
         if (!loadingData)
             return;
 
-        if (!saveInfoLoadTask!.IsCompleted)
+        if (!saveInfoLoadTask!.Loaded)
             return;
 
-        var save = saveInfoLoadTask.Result;
-        saveInfoLoadTask.Dispose();
+        var save = saveInfoLoadTask.Save ?? throw new Exception("Save info resource didn't load a save instance");
+        var screenshotImage = saveInfoLoadTask.Screenshot;
         saveInfoLoadTask = null;
 
         isBroken = save.Info.Type == SaveInformation.SaveType.Invalid;
 
         // Screenshot (if present, saves can have a missing screenshot)
-        if (save.Screenshot != null)
+        if (screenshotImage != null)
         {
-            var texture = new ImageTexture();
-            texture.CreateFromImage(save.Screenshot);
-
-            screenshot.Texture = texture;
+            screenshot.Texture = screenshotImage;
         }
 
         // General info
@@ -299,6 +297,29 @@ public class SaveListItem : PanelContainer
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, LoadSave, true);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SaveNamePath != null)
+            {
+                SaveNamePath.Dispose();
+                ScreenshotPath.Dispose();
+                VersionPath.Dispose();
+                VersionWarningPath.Dispose();
+                TypePath.Dispose();
+                CreatedAtPath.Dispose();
+                CreatedByPath.Dispose();
+                CreatedOnPlatformPath.Dispose();
+                DescriptionPath.Dispose();
+                LoadButtonPath.Dispose();
+                HighlightPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void LoadSave()
     {
         SaveHelper.LoadSave(SaveName);
@@ -309,33 +330,10 @@ public class SaveListItem : PanelContainer
     {
         loadingData = true;
 
-        saveInfoLoadTask = new Task<Save>(() =>
-        {
-            var save = Save.LoadInfoAndScreenshotFromSave(saveName);
+        saveInfoLoadTask = new SaveInfoAndScreenshot(saveName);
 
-            if (save.Screenshot != null)
-            {
-                // Rescale the screenshot to save memory etc.
-                float aspectRatio = save.Screenshot.GetWidth() / (float)save.Screenshot.GetHeight();
-
-                if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
-                {
-                    // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
-                    // this lock. See: https://github.com/godotengine/godot/issues/55528
-                    // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
-                    // but not for all people and save amounts
-                    lock (ResizeLock)
-                    {
-                        save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                            Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
-                    }
-                }
-            }
-
-            return save;
-        });
-
-        TaskExecutor.Instance.AddTask(saveInfoLoadTask);
+        // Resource manager is now used to limit how big of a lag spike opening the pause menu causes
+        ResourceManager.Instance.QueueLoad(saveInfoLoadTask);
     }
 
     private void UpdateName()
@@ -384,5 +382,74 @@ public class SaveListItem : PanelContainer
         GUICommon.Instance.PlayButtonPressSound();
 
         EmitSignal(nameof(OnDeleted));
+    }
+
+    private class SaveInfoAndScreenshot : IResource
+    {
+        private readonly string saveName;
+        private (SaveInformation Info, byte[]? ScreenshotData)? data;
+
+        public SaveInfoAndScreenshot(string saveName)
+        {
+            this.saveName = saveName;
+        }
+
+        // See the TODO comment in PerformPostProcessing
+        public bool RequiresSyncLoad => true;
+        public bool UsesPostProcessing => true;
+
+        // See the TODO comment in PerformPostProcessing
+        public bool RequiresSyncPostProcess => true;
+        public float EstimatedTimeRequired => 0.025f;
+        public bool LoadingPrepared { get; set; }
+        public bool Loaded { get; private set; }
+        public string Identifier => $"{nameof(SaveInfoAndScreenshot)}/{saveName}";
+
+        // TODO: maybe this should switch to using the callback to update the state rather than _Process?
+        public Action<IResource>? OnComplete { get; set; }
+
+        public Save? Save { get; private set; }
+        public ImageTexture? Screenshot { get; private set; }
+
+        public void PrepareLoading()
+        {
+            data = Save.LoadInfoAndRawScreenshotFromSave(saveName);
+        }
+
+        public void Load()
+        {
+            Save = Save.ConstructSaveFromInfoAndScreenshotBuffer(saveName, data!.Value.Info, data.Value.ScreenshotData);
+
+            // Let go of the data
+            data = null;
+        }
+
+        public void PerformPostProcessing()
+        {
+            if (Save!.Screenshot != null)
+            {
+                // Rescale the screenshot to save memory etc.
+                float aspectRatio = Save.Screenshot.GetWidth() / (float)Save.Screenshot.GetHeight();
+
+                if (Save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+                {
+                    // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
+                    // this lock. See: https://github.com/godotengine/godot/issues/55528
+                    // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
+                    // but not for all people and save amounts
+                    // Note that now as an additional workaround this uses the resource manager with sync loading
+                    lock (ResizeLock)
+                    {
+                        Save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                            Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    }
+                }
+
+                Screenshot = new ImageTexture();
+                Screenshot.CreateFromImage(Save.Screenshot);
+            }
+
+            Loaded = true;
+        }
     }
 }

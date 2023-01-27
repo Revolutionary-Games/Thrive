@@ -5,7 +5,7 @@
     using System.Linq;
     using Godot;
 
-    public class ChunkFoodSource : FoodSource
+    public class ChunkFoodSource : RandomEncounterFoodSource
     {
         private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
         private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
@@ -42,28 +42,31 @@
             }
         }
 
-        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        public override float FitnessScore(Species species, SimulationCache simulationCache,
+            WorldGenerationSettings worldSettings)
         {
             if (energyCompounds == null)
                 throw new InvalidOperationException("Food source not valid for this patch");
 
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
+            var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
             // Don't penalize species that can't move at full speed all the time as much here
-            var chunkEaterSpeed = Math.Max(microbeSpecies.BaseSpeed + energyBalance.FinalBalance,
-                microbeSpecies.BaseSpeed / 3);
+            var baseSpeed = simulationCache.GetBaseSpeedForSpecies(microbeSpecies);
+            var chunkEaterSpeed = Math.Max(baseSpeed + energyBalance.FinalBalance,
+                baseSpeed / 3);
 
             // We ponder the score for each compound by its amount, leading to pondering in proportion of total
             // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
-            var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key, patch) * c.Value);
+            var score = energyCompounds.Sum(c => CompoundUseScore(
+                microbeSpecies, c.Key, patch, simulationCache, worldSettings) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 
             // If the species can't engulf, then they are dependent on only eating the runoff compounds
             if (microbeSpecies.MembraneType.CellWall ||
-                microbeSpecies.BaseHexSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
+                simulationCache.GetBaseHexSizeForSpecies(microbeSpecies) < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
             {
                 score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
             }
