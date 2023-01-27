@@ -33,8 +33,8 @@ albedo_color = Color( 0, 1, 0, 0.470588 )
 
 [node name="Microbe" type="RigidBody"]
 process_priority = 1
-collision_layer = 2
-collision_mask = 7
+collision_layer = 3
+collision_mask = 3
 contact_monitor = true
 can_sleep = false
 axis_lock_linear_y = true
