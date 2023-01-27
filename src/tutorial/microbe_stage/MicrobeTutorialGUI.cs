@@ -52,6 +52,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath EarlyMulticellularWelcomePath = null!;
 
     [Export]
+    public NodePath DayNightTutorialPath = null!;
+
+    [Export]
     public NodePath CheckTheHelpMenuPath = null!;
 
     [Export]
@@ -85,6 +88,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog engulfmentFullCapacity = null!;
     private CustomDialog leaveColonyTutorial = null!;
     private CustomDialog earlyMulticellularWelcome = null!;
+    private CustomDialog dayNightTutorial = null!;
 #pragma warning restore CA2213
 
     [Signal]
@@ -370,6 +374,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool DayNightTutorialVisible
+    {
+        get => dayNightTutorial.Visible;
+        set
+        {
+            if (value == dayNightTutorial.Visible)
+                return;
+
+            dayNightTutorial.Visible = value;
+        }
+    }
+
     public override void _Ready()
     {
         microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
@@ -390,6 +406,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
         leaveColonyTutorial = GetNode<CustomDialog>(LeaveColonyTutorialPath);
         earlyMulticellularWelcome = GetNode<CustomDialog>(EarlyMulticellularWelcomePath);
+        dayNightTutorial = GetNode<CustomDialog>(DayNightTutorialPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 
@@ -436,6 +453,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
                 UnbindTutorialPath.Dispose();
                 LeaveColonyTutorialPath.Dispose();
                 EarlyMulticellularWelcomePath.Dispose();
+                DayNightTutorialPath.Dispose();
                 CheckTheHelpMenuPath.Dispose();
                 EngulfmentExplanationPath.Dispose();
                 EngulfedExplanationPath.Dispose();
