@@ -4,7 +4,7 @@ using Godot;
 public class PatchExtinctionBox : Control
 {
     [Export]
-    public NodePath PatchMapDrawerPath = null!;
+    public NodePath? PatchMapDrawerPath;
 
     [Export]
     public NodePath PatchDetailsPanelPath = null!;
@@ -12,9 +12,11 @@ public class PatchExtinctionBox : Control
     [Export]
     public NodePath AnimationPlayer = null!;
 
+#pragma warning disable CA2213
     private PatchMapDrawer mapDrawer = null!;
     private PatchDetailsPanel detailsPanel = null!;
     private AnimationPlayer animationPlayer = null!;
+#pragma warning restore CA2213
 
     public PatchMap? Map
     {
@@ -54,6 +56,21 @@ public class PatchExtinctionBox : Control
 
         if (what == NotificationVisibilityChanged && Visible)
             animationPlayer.Play();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PatchMapDrawerPath != null)
+            {
+                PatchMapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                AnimationPlayer.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void NewPatchSelected(Patch patch)

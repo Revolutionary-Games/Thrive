@@ -16,7 +16,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonProperty]
     private List<CompoundCloudPlane> clouds = new();
 
+#pragma warning disable CA2213
     private PackedScene cloudScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   This is the point in the center of the middle cloud. This is

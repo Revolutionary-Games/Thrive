@@ -129,6 +129,7 @@ CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
+SteamFailedPopupPath = NodePath("SteamFailedDialog")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
@@ -964,6 +965,12 @@ margin_bottom = 32.0
 size_flags_horizontal = 6
 custom_fonts/font = ExtResource( 53 )
 text = "OK"
+
+[node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "STEAM_INIT_FAILED"
+HideCancelButton = true
+DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/LoadGame" to="." method="LoadGamePressed"]

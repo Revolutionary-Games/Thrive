@@ -21,10 +21,12 @@ public class ErrorDialog : CustomDialog
     /// </summary>
     private Action? onCloseCallback;
 
+#pragma warning disable CA2213
     private Label? extraDescriptionLabel;
     private Label? exceptionLabel;
     private VBoxContainer exceptionBox = null!;
     private Control copyException = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   The main error message.

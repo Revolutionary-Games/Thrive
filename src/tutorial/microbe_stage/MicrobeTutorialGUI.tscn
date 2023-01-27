@@ -28,6 +28,7 @@ MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
+DayNightTutorialPath = NodePath("DayNightTutorial")
 StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
@@ -201,6 +202,17 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 Description = "MICROBE_STAGE_COLLECT_TEXT"
+
+[node name="DayNightTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 10 )]
 anchor_left = 1.0
@@ -407,6 +419,8 @@ text = "CONTINUE_THRIVING"
 [connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
 [connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
+[connection signal="popup_hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
 [connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]

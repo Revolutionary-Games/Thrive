@@ -481,11 +481,6 @@ PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBa
 EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
-MicrobePickupOrganelleSound = ExtResource( 8 )
-AmmoniaBW = ExtResource( 6 )
-PhosphatesBW = ExtResource( 5 )
-AmmoniaInv = ExtResource( 3 )
-PhosphatesInv = ExtResource( 4 )
 HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
@@ -499,20 +494,25 @@ AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
-ExtinctionBoxScene = ExtResource( 70 )
-PatchExtinctionBoxScene = ExtResource( 94 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
-FossilisationButtonScene = ExtResource( 97 )
 FossilisationDialogPath = NodePath("FossilisationDialog")
+FossilisationButtonScene = ExtResource( 97 )
+MicrobePickupOrganelleSound = ExtResource( 8 )
+AmmoniaBW = ExtResource( 6 )
+PhosphatesBW = ExtResource( 5 )
+AmmoniaInv = ExtResource( 3 )
+PhosphatesInv = ExtResource( 4 )
+ExtinctionBoxScene = ExtResource( 70 )
+PatchExtinctionBoxScene = ExtResource( 94 )
 MulticellularButtonPath = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 MulticellularConfirmPopupPath = NodePath("StagePrototypeConfirm")
 MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
 IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
-WinBoxScene = ExtResource( 69 )
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
+WinBoxScene = ExtResource( 69 )
 
 [node name="FossilisationButtonLayer" type="Control" parent="MicrobeHUD"]
 margin_right = 1280.0
@@ -711,9 +711,6 @@ margin_top = 1.0
 margin_right = 196.0
 margin_bottom = 233.0
 rect_min_size = Vector2( 195, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer"]
 margin_right = 197.0
@@ -2218,6 +2215,7 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = false
 
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]

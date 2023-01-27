@@ -20,7 +20,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     // Tab paths
 
     [Export]
-    public NodePath WorldEditorPath = null!;
+    public NodePath? WorldEditorPath;
 
     [Export]
     public NodePath ConfigEditorPath = null!;
@@ -179,6 +179,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private readonly List<AutoEvoExploringToolWorld> worldsList = new();
 
+#pragma warning disable CA2213
+
     // Tabs
     private Control worldTab = null!;
     private Control configTab = null!;
@@ -242,6 +244,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private CustomConfirmationDialog exitConfirmationDialog = null!;
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
+#pragma warning restore CA2213
 
     private AutoEvoExploringToolWorld world = null!;
 
@@ -412,17 +415,64 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog.PopupCenteredShrink();
     }
 
-    /// <summary>
-    ///   Uncalled static method to workaround a problem in translation extraction.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: Remove this once https://github.com/Revolutionary-Games/Thrive/issues/3984 is solved.
-    ///   </para>
-    /// </remarks>
-    private static void ApplyPlaceholderTooltipTranslationKey()
+    protected override void Dispose(bool disposing)
     {
-        _ = TranslationServer.Translate("RUN_X_WORLDS_TOOLTIP");
+        if (disposing)
+        {
+            if (WorldEditorPath != null)
+            {
+                WorldEditorPath.Dispose();
+                ConfigEditorPath.Dispose();
+                HistoryReportSplitPath.Dispose();
+                SpeciesSelectPanelPath.Dispose();
+                MapPath.Dispose();
+                ReportPath.Dispose();
+                ViewerPath.Dispose();
+                AllWorldsStatisticsLabelPath.Dispose();
+                WorldsListMenuPath.Dispose();
+                NewWorldButtonPath.Dispose();
+                CurrentWorldStatisticsLabelPath.Dispose();
+                WorldExportButtonPath.Dispose();
+                AllowSpeciesToNotMutatePath.Dispose();
+                AllowSpeciesToNotMigratePath.Dispose();
+                BiodiversityAttemptFillChancePath.Dispose();
+                BiodiversityFromNeighbourPatchChancePath.Dispose();
+                BiodiversityNearbyPatchIsFreePopulationPath.Dispose();
+                BiodiversitySplitIsMutatedPath.Dispose();
+                LowBiodiversityLimitPath.Dispose();
+                MaximumSpeciesInPatchPath.Dispose();
+                MoveAttemptsPerSpeciesPath.Dispose();
+                MutationsPerSpeciesPath.Dispose();
+                NewBiodiversityIncreasingSpeciesPopulationPath.Dispose();
+                ProtectMigrationsFromSpeciesCapPath.Dispose();
+                ProtectNewCellsFromSpeciesCapPath.Dispose();
+                RefundMigrationsInExtinctionsPath.Dispose();
+                StrictNicheCompetitionPath.Dispose();
+                SpeciesSplitByMutationThresholdPopulationAmountPath.Dispose();
+                SpeciesSplitByMutationThresholdPopulationFractionPath.Dispose();
+                UseBiodiversityForceSplitPath.Dispose();
+                RunStatusLabelPath.Dispose();
+                FinishXGenerationsSpinBoxPath.Dispose();
+                FinishXGenerationsButtonPath.Dispose();
+                RunXWorldsSpinBoxPath.Dispose();
+                RunXWorldsButtonPath.Dispose();
+                RunGenerationButtonPath.Dispose();
+                RunStepButtonPath.Dispose();
+                AbortButtonPath.Dispose();
+                PlayWithCurrentSettingPath.Dispose();
+                PatchMapDrawerPath.Dispose();
+                PatchDetailsPanelPath.Dispose();
+                HistoryListMenuPath.Dispose();
+                ResultsLabelPath.Dispose();
+                SpeciesListMenuPath.Dispose();
+                EvolutionaryTreePath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+                ExitConfirmationDialogPath.Dispose();
+                ExportSuccessNotificationDialogPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void InitNewWorld()

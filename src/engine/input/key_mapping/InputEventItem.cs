@@ -13,16 +13,18 @@ using Godot;
 public class InputEventItem : MarginContainer
 {
     [Export]
-    public NodePath ButtonPath = null!;
+    public NodePath? ButtonPath;
 
     [Export]
     public NodePath XButtonPath = null!;
 
+#pragma warning disable CA2213
     private Button button = null!;
     private Button xButton = null!;
     private bool wasPressingButton;
 
     private Control? alternativeButtonContentToText;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If this is currently awaiting the user to press a button (for rebinding purposes)
@@ -327,6 +329,20 @@ public class InputEventItem : MarginContainer
         result.AssociatedAction = new WeakReference<InputActionItem>(associatedAction);
         result.AssociatedEvent = @event;
         return result;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ButtonPath != null)
+            {
+                ButtonPath.Dispose();
+                XButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)

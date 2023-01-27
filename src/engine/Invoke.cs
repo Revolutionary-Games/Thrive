@@ -15,6 +15,8 @@ public class Invoke : Node
     private readonly BlockingCollection<Action> nextFrameInvokes = new();
     private readonly List<Action> tempActionList = new();
 
+    private bool disposed;
+
     private Invoke()
     {
         instance = this;
@@ -31,6 +33,12 @@ public class Invoke : Node
     /// <param name="action">Action to run</param>
     public void Queue(Action action)
     {
+        if (disposed)
+        {
+            GD.PrintErr("Invoke is already disposed, cannot queue an action");
+            return;
+        }
+
         nextFrameInvokes.Add(action);
     }
 
@@ -48,6 +56,12 @@ public class Invoke : Node
     /// </param>
     public void QueueForObject(Action action, Object forObject, bool logDispose = false)
     {
+        if (disposed)
+        {
+            GD.PrintErr("Invoke is already disposed, cannot queue an action for object");
+            return;
+        }
+
         var skippableInvoke = new SkippableDisposedInvoke(action, forObject, logDispose);
 
         nextFrameInvokes.Add(() => skippableInvoke.Run());
@@ -59,6 +73,12 @@ public class Invoke : Node
     /// <param name="action">The action to perform</param>
     public void Perform(Action action)
     {
+        if (disposed)
+        {
+            GD.PrintErr("Invoke is already disposed, cannot perform an action");
+            return;
+        }
+
         queuedInvokes.Add(action);
     }
 
@@ -99,6 +119,19 @@ public class Invoke : Node
                 GD.PrintErr("An invoke target is already disposed: ", e);
             }
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            disposed = true;
+
+            queuedInvokes.Dispose();
+            nextFrameInvokes.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private class SkippableDisposedInvoke

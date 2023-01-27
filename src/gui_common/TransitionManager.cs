@@ -10,8 +10,10 @@ public class TransitionManager : ControlWithInput
 {
     private static TransitionManager? instance;
 
+#pragma warning disable CA2213
     private readonly PackedScene screenFadeScene;
     private readonly PackedScene cutsceneScene;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   A queue of running and pending transition sequences.

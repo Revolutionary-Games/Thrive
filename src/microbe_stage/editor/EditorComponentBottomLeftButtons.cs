@@ -14,7 +14,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     public bool UseSpeciesNameValidation = true;
 
     [Export]
-    public NodePath SymmetryButtonPath = null!;
+    public NodePath? SymmetryButtonPath;
 
     [Export]
     public NodePath SymmetryIconPath = null!;
@@ -34,6 +34,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public NodePath RandomizeNameButtonPath = null!;
 
+#pragma warning disable CA2213
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
     private TextureButton? randomizeNameButton;
@@ -45,6 +46,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     private Texture symmetryIcon2X = null!;
     private Texture symmetryIcon4X = null!;
     private Texture symmetryIcon6X = null!;
+#pragma warning restore CA2213
 
     private bool showNewButton = true;
     private bool showRandomizeButton = true;
@@ -189,6 +191,25 @@ public class EditorComponentBottomLeftButtons : MarginContainer
             return;
 
         PerformValidation(speciesNameEdit.Text);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SymmetryButtonPath != null)
+            {
+                SymmetryButtonPath.Dispose();
+                SymmetryIconPath.Dispose();
+                UndoButtonPath.Dispose();
+                RedoButtonPath.Dispose();
+                NewButtonPath.Dispose();
+                NameEditPath.Dispose();
+                RandomizeNameButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSymmetryHold()

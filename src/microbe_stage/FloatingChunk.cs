@@ -10,9 +10,11 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
 public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 {
+#pragma warning disable CA2213 // a shared resource from the chunk definition
     [Export]
     [JsonProperty]
     public PackedScene GraphicsScene = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   If this is null, a sphere shape is used as a default for collision detections.
@@ -36,7 +38,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
 
+#pragma warning disable CA2213
     private MeshInstance? chunkMesh;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private bool isDissolving;

@@ -27,7 +27,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonProperty]
     private ISpawnSystem? spawnSystem;
 
+#pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private float targetSwimLevel;

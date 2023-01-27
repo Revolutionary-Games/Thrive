@@ -12,22 +12,16 @@ public class GUICommon : NodeWithInput
 {
     private static GUICommon? instance;
 
-    private AudioStream buttonPressSound;
+#pragma warning disable CA2213
+    private AudioStream buttonPressSound = null!;
+#pragma warning restore CA2213
 
     private GUICommon()
     {
         instance = this;
 
-        AudioSources = new List<AudioStreamPlayer>();
-
         Tween = new Tween();
         AddChild(Tween);
-
-        // Keep this node running even while paused
-        PauseMode = PauseModeEnum.Process;
-
-        buttonPressSound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -45,7 +39,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   The audio players for UI sound effects.
     /// </summary>
-    private List<AudioStreamPlayer> AudioSources { get; }
+    private List<AudioStreamPlayer> AudioSources { get; } = new();
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -99,6 +93,17 @@ public class GUICommon : NodeWithInput
     public static void MarkInputAsValid(LineEdit control)
     {
         control.Set("custom_colors/font_color", new Color(1, 1, 1));
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        // Keep this node running even while paused
+        PauseMode = PauseModeEnum.Process;
+
+        buttonPressSound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     /// <summary>

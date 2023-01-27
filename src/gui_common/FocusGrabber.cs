@@ -9,7 +9,7 @@ public class FocusGrabber : Control
     public int Priority;
 
     [Export]
-    public NodePath NodeToGiveFocusTo = null!;
+    public NodePath? NodeToGiveFocusTo;
 
     /// <summary>
     ///   If true then this always grabs focus even if something is already focused
@@ -101,6 +101,16 @@ public class FocusGrabber : Control
         }
 
         return false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            NodeToGiveFocusTo?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateOverrideFocusStrings()
