@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
-public class CiliaComponent : ExternallyPositionedComponent, IDisposable
+[SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable",
+    Justification = "We don't dispose Godot scene-attached objects")]
+public class CiliaComponent : ExternallyPositionedComponent
 {
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
@@ -15,8 +18,6 @@ public class CiliaComponent : ExternallyPositionedComponent, IDisposable
 
     private Area? attractorArea;
     private CollisionShape? attractorAreaShape;
-
-    private bool disposed;
 
     public override void UpdateAsync(float delta)
     {
@@ -100,12 +101,6 @@ public class CiliaComponent : ExternallyPositionedComponent, IDisposable
         }
     }
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
     protected override void CustomAttach()
     {
         if (organelle?.OrganelleGraphics == null)
@@ -160,23 +155,6 @@ public class CiliaComponent : ExternallyPositionedComponent, IDisposable
         Vector3 membraneCoords)
     {
         organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!disposed)
-        {
-            if (disposing)
-            {
-                attractorArea?.DetachAndQueueFree();
-                attractorAreaShape?.DetachAndQueueFree();
-
-                attractorArea?.Dispose();
-                attractorAreaShape?.Dispose();
-            }
-
-            disposed = true;
-        }
     }
 
     private void SetSpeedFactor(float speed)
