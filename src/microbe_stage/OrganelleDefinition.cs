@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -180,6 +181,11 @@ public class OrganelleDefinition : IRegistryType
     ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable
     /// </summary>
     public string? UpgradeGUI;
+
+    /// <summary>
+    ///   The upgrades that are available for this organelle type
+    /// </summary>
+    public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -384,6 +390,26 @@ public class OrganelleDefinition : IRegistryType
                     "Duplicate hex position");
             }
         }
+
+        foreach (var availableUpgrade in AvailableUpgrades)
+        {
+            availableUpgrade.Value.InternalName = availableUpgrade.Key;
+            availableUpgrade.Value.Check(availableUpgrade.Key);
+
+            if ((availableUpgrade.Key == "none" && !availableUpgrade.Value.IsDefault) ||
+                (availableUpgrade.Key != "none" && availableUpgrade.Value.IsDefault))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Default upgrade must be named 'none', and the name must not be used by other upgrades");
+            }
+        }
+
+        // Fail with multiple default upgrades
+        if (AvailableUpgrades.Values.Count(u => u.IsDefault) > 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Multiple default upgrades specified");
+        }
     }
 
     /// <summary>
@@ -438,11 +464,21 @@ public class OrganelleDefinition : IRegistryType
         }
 
         ComputeFactoryCache();
+
+        foreach (var availableUpgrade in AvailableUpgrades.Values)
+        {
+            availableUpgrade.Resolve();
+        }
     }
 
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
+
+        foreach (var availableUpgrade in AvailableUpgrades.Values)
+        {
+            availableUpgrade.ApplyTranslations();
+        }
     }
 
     public override string ToString()

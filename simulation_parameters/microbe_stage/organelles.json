@@ -874,7 +874,20 @@
     "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
     "requiresNucleus": true,
     "editorButtonGroup": "External",
-    "editorButtonOrder": 5
+    "editorButtonOrder": 5,
+    "availableUpgrades": {
+      "none": {
+        "isDefault": true,
+        "name": "UPGRADE_NAME_NONE",
+        "description": "UPGRADE_DESCRIPTION_NONE"
+      },
+      "pull": {
+        "name": "CILIA_PULL_UPGRADE",
+        "description": "CILIA_PULL_UPGRADE_DESCRIPTION",
+        "mpCost": 25,
+        "iconPath": "res://assets/textures/gui/bevel/part_upgrades/CiliaPullIcon.png"
+      }
+    }
   },
   "lysosome": {
     "mpCost": 45,
