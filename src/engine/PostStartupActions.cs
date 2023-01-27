@@ -8,6 +8,12 @@ public class PostStartupActions : Node
 {
     private PostStartupActions()
     {
+        if (Engine.EditorHint)
+        {
+            // Skip these actions when running in the Godot editor
+            return;
+        }
+
         // Queue window title set as setting it in the autoloads doesn't work yet
         Invoke.Instance.Perform(() => { OS.SetWindowTitle("Thrive - " + Constants.Version); });
     }
