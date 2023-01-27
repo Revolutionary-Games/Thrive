@@ -17,7 +17,7 @@ public class CiliaComponent : ExternallyPositionedComponent
     private AnimationPlayer? animation;
 
     private Area? attractorArea;
-    private CollisionShape? attractorAreaShape;
+    private SphereShape? attractorShape;
 
     public override void UpdateAsync(float delta)
     {
@@ -95,9 +95,23 @@ public class CiliaComponent : ExternallyPositionedComponent
             SetSpeedFactor(targetSpeed);
         }
 
-        if (attractorAreaShape != null)
+        if (attractorArea != null)
         {
-            attractorAreaShape.Disabled = organelle!.ParentMicrobe!.State != Microbe.MicrobeState.Engulf;
+            // Enable cilia pulling force if parent cell is not in engulf mode and is not being engulfed
+            var enable = organelle!.ParentMicrobe!.State == Microbe.MicrobeState.Engulf &&
+                organelle.ParentMicrobe.PhagocytosisStep == PhagocytosisPhase.None;
+
+            // The approach of disabling the underlying collision shape or the Area's Monitoring property makes the
+            // Area lose its hold over any overlapping bodies once re-enabled. The following should be the proper way
+            // to do it without side effects.
+            attractorArea.SpaceOverride = enable ? Area.SpaceOverrideEnum.Combine : Area.SpaceOverrideEnum.Disabled;
+        }
+
+        if (attractorShape != null)
+        {
+            // Make the pulling force's radius scales with the organelle's growth value
+            attractorShape.Radius = Constants.CILIA_PULLING_FORCE_FIELD_RADIUS +
+                (Constants.CILIA_PULLING_FORCE_GROW_STEP * organelle!.GrowthValue);
         }
     }
 
@@ -119,25 +133,24 @@ public class CiliaComponent : ExternallyPositionedComponent
 
         attractorArea = new Area
         {
-            SpaceOverride = Area.SpaceOverrideEnum.Combine,
             GravityPoint = true,
             GravityDistanceScale = Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR,
             Gravity = Constants.CILIA_PULLING_FORCE,
             CollisionLayer = 0,
             CollisionMask = microbe.CollisionMask,
+            Translation = Hex.AxialToCartesian(organelle.Position),
         };
 
-        var sphereShape = new SphereShape { Radius = Constants.CILIA_PULLING_FORCE_FIELD_RADIUS };
-        attractorAreaShape = new CollisionShape { Shape = sphereShape };
-        attractorArea.AddChild(attractorAreaShape);
-        organelle.OrganelleGraphics.AddChild(attractorArea);
+        attractorShape ??= new SphereShape();
+        attractorArea.ShapeOwnerAddShape(attractorArea.CreateShapeOwner(attractorShape), attractorShape);
+        microbe.AddChild(attractorArea);
     }
 
     protected override void CustomDetach()
     {
         attractorArea?.DetachAndQueueFree();
         attractorArea = null;
-        attractorAreaShape = null;
+        attractorShape = null;
     }
 
     protected override bool NeedsUpdateAnyway()

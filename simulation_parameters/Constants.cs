@@ -138,6 +138,7 @@ public static class Constants
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
     public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
+    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
     public const float CILIA_PULLING_FORCE = 20.0f;
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;

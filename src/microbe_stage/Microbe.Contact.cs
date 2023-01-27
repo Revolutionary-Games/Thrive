@@ -1954,7 +1954,9 @@ public partial class Microbe
         public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
         public Vector3 OriginalScale { get; set; }
         public int OriginalRenderPriority { get; set; }
-        public uint OriginalCollisionLayer { get; set; }
-        public uint OriginalCollisionMask { get; set; }
+
+        // These values (default microbe collision layer & mask) are here for save compatibility
+        public uint OriginalCollisionLayer { get; set; } = 3;
+        public uint OriginalCollisionMask { get; set; } = 3;
     }
 }
