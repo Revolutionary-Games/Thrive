@@ -49,6 +49,7 @@ CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 visible = false
 
 [node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource( 5 )]
+margin_right = 350.0
 
 [node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource( 4 )]
 
