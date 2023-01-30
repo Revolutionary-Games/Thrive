@@ -1500,16 +1500,7 @@ public partial class Microbe
         target.HostileEngulfer.Value = this;
         target.PhagocytosisStep = PhagocytosisPhase.Ingestion;
 
-        // Disable collisions
-        body.CollisionLayer = 0;
-        body.CollisionMask = 0;
-
         body.ReParentWithTransform(this);
-
-        var originalRenderPriority = target.RenderPriority;
-
-        // We want the ingested material to be always visible over the organelles
-        target.RenderPriority += OrganelleMaxRenderPriority + 1;
 
         // Below is for figuring out where to place the object attempted to be engulfed inside the cytoplasm,
         // calculated accordingly to hopefully minimize any part of the object sticking out the membrane.
@@ -1555,10 +1546,19 @@ public partial class Microbe
         {
             TargetValuesToLerp = (ingestionPoint, body.Scale / 2, boundingBoxSize),
             OriginalScale = body.Scale,
-            OriginalRenderPriority = originalRenderPriority,
+            OriginalRenderPriority = target.RenderPriority,
+            OriginalCollisionLayer = body.CollisionLayer,
+            OriginalCollisionMask = body.CollisionMask,
         };
 
         engulfedObjects.Add(engulfedObject);
+
+        // We want the ingested material to be always visible over the organelles
+        target.RenderPriority += OrganelleMaxRenderPriority + 1;
+
+        // Disable collisions
+        body.CollisionLayer = 0;
+        body.CollisionMask = 0;
 
         foreach (string group in engulfedObject.OriginalGroups)
         {
@@ -1876,9 +1876,9 @@ public partial class Microbe
         // Re-parent to world node
         body.ReParentWithTransform(GetStageAsParent());
 
-        // Set to default microbe collision layer and mask values
-        body.CollisionLayer = 3;
-        body.CollisionMask = 3;
+        // Reset collision layer and mask
+        body.CollisionLayer = engulfed.OriginalCollisionLayer;
+        body.CollisionMask = engulfed.OriginalCollisionMask;
 
         var impulse = Transform.origin.DirectionTo(body.Transform.origin) * body.Mass *
             Constants.ENGULF_EJECTION_FORCE;
@@ -1954,5 +1954,9 @@ public partial class Microbe
         public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
         public Vector3 OriginalScale { get; set; }
         public int OriginalRenderPriority { get; set; }
+
+        // These values (default microbe collision layer & mask) are here for save compatibility
+        public uint OriginalCollisionLayer { get; set; } = 3;
+        public uint OriginalCollisionMask { get; set; } = 3;
     }
 }
