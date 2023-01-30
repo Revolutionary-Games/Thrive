@@ -396,8 +396,9 @@ public class OrganelleDefinition : IRegistryType
             availableUpgrade.Value.InternalName = availableUpgrade.Key;
             availableUpgrade.Value.Check(availableUpgrade.Key);
 
-            if ((availableUpgrade.Key == "none" && !availableUpgrade.Value.IsDefault) ||
-                (availableUpgrade.Key != "none" && availableUpgrade.Value.IsDefault))
+            if ((availableUpgrade.Key == Constants.ORGANELLE_UPGRADE_SPECIAL_NONE &&
+                    !availableUpgrade.Value.IsDefault) ||
+                (availableUpgrade.Key != Constants.ORGANELLE_UPGRADE_SPECIAL_NONE && availableUpgrade.Value.IsDefault))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Default upgrade must be named 'none', and the name must not be used by other upgrades");

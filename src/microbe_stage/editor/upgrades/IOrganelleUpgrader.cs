@@ -4,8 +4,15 @@ public interface IOrganelleUpgrader
 {
     public void OnStartFor(OrganelleTemplate organelle);
 
-    // TODO: allow checking for data validness / enough MP before applying the changes
-    public void ApplyChanges(ICellEditorData editor);
+    /// <summary>
+    ///   Called by the upgrade GUI when the changes should be applied
+    /// </summary>
+    /// <param name="editor">The editor instance to apply the changes to</param>
+    /// <returns>
+    ///   True should be returned on success, false if incorrect data is selected or, for example,
+    ///   the player is out of MP
+    /// </returns>
+    public bool ApplyChanges(ICellEditorData editor);
 
     public Vector2 GetMinDialogSize();
 }

@@ -76,12 +76,12 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
     }
 
-    public void ApplyChanges(ICellEditorData editor)
+    public bool ApplyChanges(ICellEditorData editor)
     {
         if (storedOrganelle == null || shownChoices == null)
         {
             GD.PrintErr("Chemoreceptor upgrade GUI was not opened properly");
-            return;
+            return false;
         }
 
         // Force some compound to be selected
@@ -91,6 +91,8 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // TODO: make an undoable action
         storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
+
+        return true;
     }
 
     public Vector2 GetMinDialogSize()
