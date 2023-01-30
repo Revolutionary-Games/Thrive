@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-26 15:03+0200\n"
-"PO-Revision-Date: 2023-01-03 21:00+0000\n"
-"Last-Translator: RotzRoffl <raphaelkobler41@gmail.com>\n"
+"PO-Revision-Date: 2023-01-30 07:23+0000\n"
+"Last-Translator: Alice König <alice.purple-rose@outlook.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1051,18 +1051,29 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismus-Statistik"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:999
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Organismus-Statistik"
+msgstr ""
+"[b]Generationen:[/b]\n"
+"  {0}\n"
+"[b]Gesamte Arten:[/b]\n"
+"  Durchschnitt {1}; Standardabweichung {2}\n"
+"[b]Lebende Arten:[/b]\n"
+"  Durchschnitt {3}; Standardabweichung {4}\n"
+"[b]Artenzahl pro Gebiet:[/b]\n"
+"  Durchschnitt {5}; Standardabweichung {6}\n"
+"[b]Gesamtpopulation pro Gebiet:[/b]\n"
+"  Durchschnitt {7}; Standardabweichung {8}\n"
+"[b]Durchschnittliche Größe der Mikrobenart (in hexagonalen Feldern):[/b]\n"
+"  Durchschnitt {9}; Standardabweichung {10}\n"
+"[b]Generische Organellendaten:[/b]"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Fehler: {0}"
+msgstr "Die Weltdaten wurden erfolgreich nach {0} exportiert"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "Welt"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
@@ -1082,24 +1093,20 @@ msgid "VIEWER"
 msgstr "Beobachter"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organismus-Statistik"
+msgstr "Allgemeine Statistiken aller Welten"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "Organismus-Statistik"
+msgstr "Allgemeine Statistiken der aktuellen Welt"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Aktuelle Entwickler(innen)"
+msgstr "Aktuelle Welt"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Tritt unserem Discord Server bei"
+msgstr "Neue Welt erstellen"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
 #, fuzzy
@@ -2405,11 +2412,10 @@ msgid "STEAM_INIT_FAILED"
 msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
 
 #: ../src/general/MainMenu.tscn:973
-#, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
-"Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
-"{0}"
+"Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
+"Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
 #: ../src/general/NewGameSettings.cs:326
 #: ../src/general/NewGameSettings.tscn:1237
@@ -4247,9 +4253,11 @@ msgid "RAW"
 msgstr "Roh"
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Entwicklungsversions Unterstützer"
+msgstr ""
+"DevBuild {0}\n"
+"auf Branch {1} bei {2}\n"
+"{3}"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:108
 msgid "LOADING_MULTICELLULAR_EDITOR"
@@ -4260,9 +4268,8 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Wähle einen Zellentyp aus dem Editor Tab aus, um ihn hier zu bearbeiten"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
-#, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "Zelle kann nicht in den Baum der Nachfahren verschoben werden"
+msgstr "Metaball kann nicht in den Baum der Nachkommen verschoben werden"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:320
 #, fuzzy
@@ -4297,9 +4304,8 @@ msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann umbenennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Mehrere Zellen"
+msgstr "Mehrere Metabälle"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 #, fuzzy
@@ -6029,9 +6035,8 @@ msgstr ""
 "Ungespeicherter Fortschritt geht verloren."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "Logverzeichnis öffnen"
+msgstr "Fossilienordner öffnen"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "OPEN_IN_FREEBUILD"
@@ -6045,14 +6050,12 @@ msgstr ""
 "Um eine Art während eines Spiel zu fossilisieren muss zunächst das Spiel pausiert werden. Danach selektiert man die zu fossilisierende Art auf dem Bildschirm."
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "Kein Speicherverzeichnis gefunden"
+msgstr "Kein Fossilienverzeichnis gefunden"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "Versuche ein paar Screenshots zu machen!"
+msgstr "Versuche ein paar Fossilien zu machen!"
 
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:32
 msgid "THRIVEOPEDIA_PATCH_MAP_PAGE_TITLE"
