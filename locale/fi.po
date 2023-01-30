@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-26 15:03+0200\n"
-"PO-Revision-Date: 2022-12-11 22:00+0000\n"
+"PO-Revision-Date: 2023-01-30 07:23+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -56,19 +56,16 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Lisää soluelin"
+msgstr "Monisoluinen vaihe"
 
 #: ../simulation_parameters/common/gallery.json:86
-#, fuzzy
 msgid "GENERAL"
-msgstr "Sukupolvi:"
+msgstr "Yleiset"
 
 #: ../simulation_parameters/common/gallery.json:138
-#, fuzzy
 msgid "MODELS"
-msgstr "Kuolemattomuus"
+msgstr "Mallit"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
@@ -76,24 +73,20 @@ msgstr "Musiikki"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:372
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Kaikki"
 
 #: ../simulation_parameters/common/gallery.json:268
-#, fuzzy
 msgid "MENU"
 msgstr "Valikko"
 
 #: ../simulation_parameters/common/gallery.json:332
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Ladataan mikrobieditoria"
+msgstr "Mikrobimuokkain"
 
 #: ../simulation_parameters/common/gallery.json:408
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Ladataan mikrobieditoria"
+msgstr "Monisoluinen muokkain"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -616,7 +609,7 @@ msgstr "Muut"
 
 #: ../simulation_parameters/common/input_options.json:274
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pysäytä"
 
 #: ../simulation_parameters/common/input_options.json:278
 #, fuzzy
@@ -671,7 +664,7 @@ msgstr "Soluliman glykolyysi"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:121
 msgid "PHOTOSYNTHESIS"
-msgstr "Photosynteesi"
+msgstr "Fotosynteesi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
@@ -1116,7 +1109,7 @@ msgstr "Virhe: {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "Maailma"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 #, fuzzy
@@ -1493,7 +1486,6 @@ msgstr "Lisääntyminen"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:356
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:341
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:541
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Käyttäytyminen"
 
@@ -1677,9 +1669,8 @@ msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:134
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Kääntäjät"
+msgstr "Läpinäkyvyys"
 
 #: ../src/engine/input/ControllerAxisVisualizer.cs:167
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:47
@@ -1729,7 +1720,7 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Aloita kalibrointi"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 #, fuzzy
@@ -1743,7 +1734,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr ""
+msgstr "Vahvista"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:441
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1977,7 +1968,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Media"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
@@ -2344,7 +2335,7 @@ msgstr "Kuole"
 
 #: ../src/general/MainMenu.tscn:578
 msgid "OFFICIAL_WEBSITE"
-msgstr ""
+msgstr "Virallinen Nettisivu"
 
 #: ../src/general/MainMenu.tscn:587
 #, fuzzy
@@ -2353,7 +2344,7 @@ msgstr "Lisää uusi syöte"
 
 #: ../src/general/MainMenu.tscn:592
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Yhteisöfoorumi"
 
 #: ../src/general/MainMenu.tscn:601
 #, fuzzy
@@ -2715,7 +2706,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:879
 #: ../src/general/WorldGenerationSettings.cs:55
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Proseduraalinen"
 
 #: ../src/general/NewGameSettings.tscn:879
 #: ../src/general/WorldGenerationSettings.cs:58
@@ -2732,7 +2723,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
-msgstr ""
+msgstr "Vuorokauden pituus"
 
 #: ../src/general/NewGameSettings.tscn:1031
 #, fuzzy
@@ -2777,7 +2768,7 @@ msgstr "Pysäytysmenu"
 
 #: ../src/general/NewGameSettings.tscn:1212
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Kehittynyt"
 
 #: ../src/general/NewGameSettings.tscn:1223
 #, fuzzy
@@ -2786,7 +2777,7 @@ msgstr "Kuole"
 
 #: ../src/general/NewGameSettings.tscn:1228
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Yksinkertainen"
 
 #: ../src/general/NewGameSettings.tscn:1240
 #, fuzzy
@@ -2958,11 +2949,11 @@ msgstr "automaattinen"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX360"
-msgstr ""
+msgstr "Xbox 360"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "XBOX_SERIES"
@@ -2970,15 +2961,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_3"
-msgstr ""
+msgstr "PlayStation 3"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_4"
-msgstr ""
+msgstr "PlayStation 4"
 
 #: ../src/general/OptionsMenu.tscn:591
 msgid "PLAYSTATION_5"
-msgstr ""
+msgstr "PlayStation 5"
 
 #: ../src/general/OptionsMenu.tscn:605
 msgid "DISPLAY_ABILITIES_BAR"
@@ -3092,9 +3083,8 @@ msgid "LIMIT_SMALL"
 msgstr "Pieni"
 
 #: ../src/general/OptionsMenu.tscn:1190
-#, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "VAHVISTA"
+msgstr "Normaali"
 
 #: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_LARGE"
@@ -3109,27 +3099,25 @@ msgid "LIMIT_HUGE"
 msgstr "Valtava"
 
 #: ../src/general/OptionsMenu.tscn:1190
-#, fuzzy
 msgid "LIMIT_EXTREME"
-msgstr "Ekstrat"
+msgstr "Äärimmäinen"
 
 #: ../src/general/OptionsMenu.tscn:1252
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Hiirellä näkymän kääntämisen herkkyys"
 
 #: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1383
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1395
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Sukupolvi:"
+msgstr "Horisontaalinen:"
 
 #: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
 #: ../src/general/OptionsMenu.tscn:1408 ../src/general/OptionsMenu.tscn:1431
 msgid "INVERTED"
-msgstr ""
+msgstr "Käänteinen"
 
 #: ../src/general/OptionsMenu.tscn:1304 ../src/general/OptionsMenu.tscn:1414
 #, fuzzy
@@ -3142,24 +3130,23 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1338 ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Ei mitään"
 
 #: ../src/general/OptionsMenu.tscn:1339
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Viestintäkeskus"
+msgstr "Skaalattu"
 
 #: ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Käänteisesti skaalattu"
 
 #: ../src/general/OptionsMenu.tscn:1353
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Käytä virtuaalista ikkunankokoa"
 
 #: ../src/general/OptionsMenu.tscn:1370
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Ohjaimen herkkyys"
 
 #: ../src/general/OptionsMenu.tscn:1442
 msgid "CONTROLLER_DEADZONES"
@@ -3167,30 +3154,26 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D-liikkumisen tyyli:"
 
 #: ../src/general/OptionsMenu.tscn:1470
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "pelaaja kuoli"
+msgstr "Suhteellinen pelaajaan"
 
 #: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "Lisätäksesi nopeutta"
+msgstr "Suhteellinen peli-ikkunaan"
 
 #: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D-liikkumisen tyyli:"
 
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "Lisätäksesi nopeutta"
+msgstr "Suhteellinen maailmaan"
 
 #: ../src/general/OptionsMenu.tscn:1553
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
@@ -3292,9 +3275,8 @@ msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
 #: ../src/general/OptionsMenu.tscn:1873
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Yhdisteet:"
+msgstr "Käännetty ajanhetkellä:"
 
 #: ../src/general/OptionsMenu.tscn:1929 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
@@ -3369,9 +3351,8 @@ msgstr ""
 "Menetät tallentamattomat tiedot."
 
 #: ../src/general/PauseMenu.tscn:183
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr "Jatka"
+msgstr "Palaa peliin"
 
 #: ../src/general/PauseMenu.tscn:184
 msgid "RESUME"
@@ -3513,9 +3494,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#, fuzzy
 msgid "N_A"
-msgstr "Ei tekoälyä"
+msgstr "N/A"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
@@ -4671,7 +4651,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:347
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Päivä"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:368
 #, fuzzy
@@ -4680,7 +4660,7 @@ msgstr "Hiiren rulla oikealle"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:389
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Keskiverto"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
 msgid "MEMBRANE"
@@ -4735,9 +4715,8 @@ msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "populaatio:"
+msgstr "Pyöriminen:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
 msgid "HP_COLON"
@@ -5294,7 +5273,7 @@ msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PausePrompt.tscn:23
 msgid "PAUSED"
-msgstr ""
+msgstr "PYSÄYTETTY"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:164
 msgid "UNBIND_HELP_TEXT"
@@ -5385,13 +5364,12 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:968
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "Lämpötila"
+msgstr "Kyllä"
 
 #: ../src/modding/ModManager.cs:969
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Ei"
 
 #: ../src/modding/ModManager.cs:1014
 #, fuzzy
@@ -5719,7 +5697,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "Näkyvä"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
@@ -5731,7 +5709,7 @@ msgstr "Kohteen Esikatselukuva:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Selaa"
 
 #: ../src/modding/ModUploader.tscn:284
 #, fuzzy
@@ -5865,9 +5843,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Virhe vapautettaessa jo ladattuja resursseja: {0}"
 
 #: ../src/saving/InProgressSave.cs:207
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Hae..."
+msgstr "Tallennetaan..."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -6054,9 +6031,8 @@ msgid "DESCRIPTION"
 msgstr "Kuvaus:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Sukupolvi:"
+msgstr "Versio:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -6239,11 +6215,11 @@ msgstr "Lisää soluelin"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:24
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr ""
+msgstr "Nykyinen maailma"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:37
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Evoluutiopuu"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:70
 #, fuzzy
@@ -6252,7 +6228,7 @@ msgstr "Tehnyt Revolutionary Games Studio"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.cs:9
 msgid "THRIVEOPEDIA_HOME_PAGE_TITLE"
-msgstr ""
+msgstr "Etusivu"
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
@@ -6268,7 +6244,7 @@ msgstr ""
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:37
 msgid "THRIVEOPEDIA_MUSEUM_PAGE_TITLE"
-msgstr ""
+msgstr "Museo"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
@@ -6501,7 +6477,6 @@ msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
