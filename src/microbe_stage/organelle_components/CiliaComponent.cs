@@ -6,6 +6,8 @@ using Godot;
     Justification = "We don't dispose Godot scene-attached objects")]
 public class CiliaComponent : ExternallyPositionedComponent
 {
+    private const string CILIA_PULL_UPGRADE_NAME = "pull";
+
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private float currentSpeed = 1.0f;
@@ -52,8 +54,9 @@ public class CiliaComponent : ExternallyPositionedComponent
         var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
         var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
-        if (microbe.State == Microbe.MicrobeState.Engulf)
+        if (microbe.State == Microbe.MicrobeState.Engulf && attractorArea != null)
         {
+            // We are using cilia pulling, play animation at fixed rate
             targetSpeed = Constants.CILIA_CURRENT_GENERATION_ANIMATION_SPEED;
         }
         else
@@ -128,6 +131,10 @@ public class CiliaComponent : ExternallyPositionedComponent
         }
 
         SetSpeedFactor(Constants.CILIA_DEFAULT_ANIMATION_SPEED);
+
+        // Only pulling cilia gets the following physics features
+        if (organelle.Upgrades?.UnlockedFeatures.Contains(CILIA_PULL_UPGRADE_NAME) != true)
+            return;
 
         var microbe = organelle.ParentMicrobe!;
 
