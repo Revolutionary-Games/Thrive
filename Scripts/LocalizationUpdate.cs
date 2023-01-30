@@ -134,6 +134,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
 
     protected override IReadOnlyList<string> Locales => ThriveLocales;
     protected override string LocaleFolder => "locale";
+    protected override bool AlphabeticallySortTranslationTemplate => true;
 
     protected override string ProjectName => "Thrive";
     protected override string ProjectOrganization => "Revolutionary Games Studio";
