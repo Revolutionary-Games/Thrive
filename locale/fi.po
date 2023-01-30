@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-26 15:03+0200\n"
-"PO-Revision-Date: 2023-01-30 06:45+0000\n"
-"Last-Translator: Vedertesu <vedertesu@gmail.com>\n"
+"PO-Revision-Date: 2023-01-30 07:23+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -57,12 +57,11 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
-msgstr "Monisoluinen Vaihe"
+msgstr "Monisoluinen vaihe"
 
 #: ../simulation_parameters/common/gallery.json:86
-#, fuzzy
 msgid "GENERAL"
-msgstr "Sukupolvi:"
+msgstr "Yleiset"
 
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
@@ -78,19 +77,16 @@ msgid "ALL"
 msgstr "Kaikki"
 
 #: ../simulation_parameters/common/gallery.json:268
-#, fuzzy
 msgid "MENU"
 msgstr "Valikko"
 
 #: ../simulation_parameters/common/gallery.json:332
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Ladataan mikrobieditoria"
+msgstr "Mikrobimuokkain"
 
 #: ../simulation_parameters/common/gallery.json:408
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Ladataan mikrobieditoria"
+msgstr "Monisoluinen muokkain"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -1724,7 +1720,7 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
 msgid "START_CALIBRATION"
-msgstr ""
+msgstr "Aloita kalibrointi"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
 #, fuzzy
@@ -1738,7 +1734,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr "Hae"
+msgstr "Vahvista"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:441
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -3087,9 +3083,8 @@ msgid "LIMIT_SMALL"
 msgstr "Pieni"
 
 #: ../src/general/OptionsMenu.tscn:1190
-#, fuzzy
 msgid "LIMIT_NORMAL"
-msgstr "VAHVISTA"
+msgstr "Normaali"
 
 #: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_LARGE"
@@ -3104,22 +3099,20 @@ msgid "LIMIT_HUGE"
 msgstr "Valtava"
 
 #: ../src/general/OptionsMenu.tscn:1190
-#, fuzzy
 msgid "LIMIT_EXTREME"
-msgstr "Ekstrat"
+msgstr "Äärimmäinen"
 
 #: ../src/general/OptionsMenu.tscn:1252
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr ""
+msgstr "Hiirellä näkymän kääntämisen herkkyys"
 
 #: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1383
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1285 ../src/general/OptionsMenu.tscn:1395
-#, fuzzy
 msgid "HORIZONTAL_COLON"
-msgstr "Sukupolvi:"
+msgstr "Horisontaalinen:"
 
 #: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1320
 #: ../src/general/OptionsMenu.tscn:1408 ../src/general/OptionsMenu.tscn:1431
@@ -3137,20 +3130,19 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1338 ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_NONE"
-msgstr ""
+msgstr "Ei mitään"
 
 #: ../src/general/OptionsMenu.tscn:1339
-#, fuzzy
 msgid "SCALING_ON"
-msgstr "Viestintäkeskus"
+msgstr "Skaalattu"
 
 #: ../src/general/OptionsMenu.tscn:1339
 msgid "SCALING_ON_INVERSE"
-msgstr ""
+msgstr "Käänteisesti skaalattu"
 
 #: ../src/general/OptionsMenu.tscn:1353
 msgid "USE_VIRTUAL_WINDOW_SIZE"
-msgstr ""
+msgstr "Käytä virtuaalista ikkunankokoa"
 
 #: ../src/general/OptionsMenu.tscn:1370
 msgid "CONTROLLER_SENSITIVITY"
@@ -3162,30 +3154,26 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1452
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D-liikkumisen tyyli:"
 
 #: ../src/general/OptionsMenu.tscn:1470
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "pelaaja kuoli"
+msgstr "Suhteellinen pelaajaan"
 
 #: ../src/general/OptionsMenu.tscn:1470 ../src/general/OptionsMenu.tscn:1503
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "Lisätäksesi nopeutta"
+msgstr "Suhteellinen peli-ikkunaan"
 
 #: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D-liikkumisen tyyli:"
 
 #: ../src/general/OptionsMenu.tscn:1504
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "Lisätäksesi nopeutta"
+msgstr "Suhteellinen maailmaan"
 
 #: ../src/general/OptionsMenu.tscn:1553
-#, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Palauta syötteet oletuksiksi"
 
@@ -3287,9 +3275,8 @@ msgid "EXACT_VERSION_COLON"
 msgstr "Sukupolvi:"
 
 #: ../src/general/OptionsMenu.tscn:1873
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Yhdisteet:"
+msgstr "Käännetty ajanhetkellä:"
 
 #: ../src/general/OptionsMenu.tscn:1929 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
@@ -3364,9 +3351,8 @@ msgstr ""
 "Menetät tallentamattomat tiedot."
 
 #: ../src/general/PauseMenu.tscn:183
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr "Jatka"
+msgstr "Palaa peliin"
 
 #: ../src/general/PauseMenu.tscn:184
 msgid "RESUME"
@@ -4729,9 +4715,8 @@ msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "populaatio:"
+msgstr "Pyöriminen:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
 msgid "HP_COLON"
@@ -6230,11 +6215,11 @@ msgstr "Lisää soluelin"
 
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.cs:24
 msgid "THRIVEOPEDIA_CURRENT_WORLD_PAGE_TITLE"
-msgstr "Nykyinen Maailma"
+msgstr "Nykyinen maailma"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs:37
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
-msgstr ""
+msgstr "Evoluutiopuu"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:70
 #, fuzzy
@@ -6492,7 +6477,6 @@ msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
