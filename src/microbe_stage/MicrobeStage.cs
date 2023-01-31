@@ -205,10 +205,6 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base._Process(delta);
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);

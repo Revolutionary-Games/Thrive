@@ -27,10 +27,6 @@ public class FloatingChunkSystem
         if (playerPosition != null)
             latestPlayerPosition = playerPosition.Value;
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var chunks = worldRoot.GetChildrenToProcess<FloatingChunk>(Constants.AI_TAG_CHUNK).ToList();
 
         var findTooManyChunksTask = new Task<IEnumerable<FloatingChunk>>(() =>

@@ -192,10 +192,6 @@ public class LoadingScreen : Control
 
     public override void _Process(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         // Only elapse passed time if this is visible
         if (!Visible)
         {

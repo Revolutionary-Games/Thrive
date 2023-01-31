@@ -92,10 +92,6 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     {
         base._Process(delta);
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (gameOver)
             return;
 

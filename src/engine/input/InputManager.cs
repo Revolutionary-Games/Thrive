@@ -225,10 +225,6 @@ public class InputManager : Node
         if (staticInstance == null)
             throw new InstanceNotLoadedYetException();
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (inputChangeDelay > 0)
         {
             inputChangeDelay -= delta;
