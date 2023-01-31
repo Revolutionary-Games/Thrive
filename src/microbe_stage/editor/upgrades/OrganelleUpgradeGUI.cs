@@ -93,6 +93,7 @@ public class OrganelleUpgradeGUI : Control
         else
         {
             organelleSpecificContent.FreeChildren();
+            upgrader = null;
         }
 
         upgradeSelectorButtonsContainer.FreeChildren();
