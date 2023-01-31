@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate>,
-    IGodotEarlyNodeResolve
+    ICellEditorComponent, IGodotEarlyNodeResolve
 {
     [Export]
     public bool IsMulticellularEditor;
@@ -1091,6 +1091,13 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
     }
 
+    public bool ApplyOrganelleUpgrade(OrganelleUpgradeActionData actionData)
+    {
+        return EnqueueAction(new CombinedEditorAction(
+            new SingleEditorAction<OrganelleUpgradeActionData>(DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
+                actionData)));
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -1972,7 +1979,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, Editor);
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this);
     }
 
     /// <summary>

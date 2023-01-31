@@ -540,6 +540,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 case RigidityActionData:
                 case NewMicrobeActionData:
                 case ColourActionData:
+                case OrganelleUpgradeActionData:
                     affectedACell = true;
                     break;
             }

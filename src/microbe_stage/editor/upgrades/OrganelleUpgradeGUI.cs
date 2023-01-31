@@ -35,7 +35,7 @@ public class OrganelleUpgradeGUI : Control
     private PackedScene upgradeTooltipScene = null!;
 #pragma warning restore CA2213
 
-    private ICellEditorData? storedEditor;
+    private ICellEditorComponent? storedEditor;
     private IOrganelleUpgrader? upgrader;
     private OrganelleTemplate? openedForOrganelle;
 
@@ -60,7 +60,8 @@ public class OrganelleUpgradeGUI : Control
         upgradeTooltipScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn");
     }
 
-    public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene, ICellEditorData editor)
+    public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene,
+        ICellEditorComponent editorComponent)
     {
         openedForOrganelle = organelle;
 
@@ -160,7 +161,7 @@ public class OrganelleUpgradeGUI : Control
 
         scrollContainer.ScrollVertical = 0;
         upgrader?.OnStartFor(organelle);
-        storedEditor = editor;
+        storedEditor = editorComponent;
     }
 
     protected override void Dispose(bool disposing)
@@ -206,24 +207,32 @@ public class OrganelleUpgradeGUI : Control
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Use the existing data as the old data or create new data if the organelle didn't have upgrades data yet
+        var oldUpgrades = openedForOrganelle.Upgrades ?? new OrganelleUpgrades();
+        var newUpgrades = (OrganelleUpgrades)oldUpgrades.Clone();
+
+        if (currentlySelectedGeneralUpgrades != null)
+        {
+            // Apply the general upgrades
+            newUpgrades.UnlockedFeatures = currentlySelectedGeneralUpgrades;
+        }
+
         if (upgrader != null)
         {
-            if (!upgrader.ApplyChanges(storedEditor))
+            if (!upgrader.ApplyChanges(storedEditor, newUpgrades))
             {
                 GD.Print("Upgrader can't apply changes, not closing upgrade GUI");
                 return;
             }
         }
 
-        if (currentlySelectedGeneralUpgrades != null)
+        // TODO: when no changes are done the action creation should be skipped
+        var action = new OrganelleUpgradeActionData(oldUpgrades, newUpgrades, openedForOrganelle);
+
+        if (!storedEditor.ApplyOrganelleUpgrade(action))
         {
-            // If the upgrader didn't create upgrade data in the organelle, we create that here
-            openedForOrganelle.Upgrades ??= new OrganelleUpgrades();
-
-            // TODO: cancellable action
-
-            // Apply the general upgrades
-            openedForOrganelle.Upgrades.UnlockedFeatures = currentlySelectedGeneralUpgrades;
+            GD.Print("Can't apply organelle upgrade action");
+            return;
         }
 
         EmitSignal(nameof(Accepted));

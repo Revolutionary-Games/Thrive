@@ -25,6 +25,23 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate>
         return GotReplaced ? 0 : base.CalculateCostInternal();
     }
 
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    {
+        var baseResult = base.GetInterferenceModeWithGuaranteed(other);
+
+        if (baseResult != ActionInterferenceMode.NoInterference)
+            return baseResult;
+
+        if (other is OrganelleUpgradeActionData upgradeActionData)
+        {
+            // This replaces (refunds) the MP for an upgrade done to this organelle
+            if (ReferenceEquals(upgradeActionData.UpgradedOrganelle, RemovedHex))
+                return ActionInterferenceMode.ReplacesOther;
+        }
+
+        return ActionInterferenceMode.NoInterference;
+    }
+
     protected override CombinableActionData CreateDerivedMoveAction(HexPlacementActionData<OrganelleTemplate> data)
     {
         return new OrganelleMoveActionData(data.PlacedHex, Location, data.Location,
