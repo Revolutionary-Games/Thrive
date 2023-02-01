@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-30 09:47+0200\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -642,7 +642,7 @@ msgstr "细胞"
 msgid "CELLULASE"
 msgstr "纤维素酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 msgid "CELLULASE_DESCRIPTION"
 msgstr "纤维素酶使细胞能够分解纤维素膜。每次添加都会增加其有效性。"
 
@@ -738,7 +738,7 @@ msgstr "几丁质"
 msgid "CHITINASE"
 msgstr "几丁质酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 msgid "CHITINASE_DESCRIPTION"
 msgstr "几丁质酶使细胞能够分解几丁质膜。每次添加都会增加其有效性。"
 
@@ -1657,15 +1657,15 @@ msgstr "{0}：-{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
@@ -1943,7 +1943,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "食物链"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -2555,7 +2555,7 @@ msgstr "此翻译仍在开发中（已完成 {0}%）"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
@@ -2829,7 +2829,7 @@ msgstr "线条颜色："
 msgid "LIPASE"
 msgstr "脂肪酶"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 msgid "LIPASE_DESCRIPTION"
 msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体你的细胞也能产生一些这种酶，但通过选择这种类型，你将增加其有效性。"
 
@@ -2921,7 +2921,7 @@ msgstr "看着："
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "将物种数量小于此的区块认为是生物多样性低"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:907
+#: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "溶酶体"
@@ -3387,7 +3387,7 @@ msgstr "模型"
 msgid "MODIFY"
 msgstr "修改"
 
-#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
 msgid "MODIFY_ORGANELLE"
 msgstr "修改细胞器"
 
@@ -3837,7 +3837,7 @@ msgid "NO_AI"
 msgstr "AI关闭"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -3880,7 +3880,7 @@ msgstr "未选择Mod"
 msgid "NUCLEUS"
 msgstr "细胞核"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "不能删除细胞核，因为这是个不可逆的进化。\n"
@@ -3901,8 +3901,8 @@ msgstr "数字锁定"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4408,7 +4408,7 @@ msgstr "种群数量："
 msgid "POPULATION_IN_PATCHES"
 msgstr "地区中的种群数量："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
@@ -6027,6 +6027,24 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:277
 msgid "UNTITLED"
 msgstr "未命名"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:885
+msgid "UPGRADE_CILIA_PULL"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:886
+#, fuzzy
+msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr "纤毛与鞭毛相似，但它们不提供方向性推力，而是提供旋转力，帮助细胞转动。"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:882
+#, fuzzy
+msgid "UPGRADE_DESCRIPTION_NONE"
+msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体你的细胞也能产生一些这种酶，但通过选择这种类型，你将增加其有效性。"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:881
+msgid "UPGRADE_NAME_NONE"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"

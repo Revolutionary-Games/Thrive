@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-30 09:47+0200\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
 "PO-Revision-Date: 2022-09-22 10:31+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -658,7 +658,7 @@ msgstr "Cellen"
 msgid "CELLULASE"
 msgstr "Cellulase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
@@ -760,7 +760,7 @@ msgstr "Chitine"
 msgid "CHITINASE"
 msgstr "Chitinase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
@@ -1681,15 +1681,15 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Energy Bronnen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1972,7 +1972,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2588,7 +2588,7 @@ msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft mee!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -2872,7 +2872,7 @@ msgstr "Kleur"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
@@ -2966,7 +2966,7 @@ msgstr "Klik de undo-knop in de editor om een fout te corrigeren"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:907
+#: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lysozoom"
@@ -3392,7 +3392,7 @@ msgstr "Modellen"
 msgid "MODIFY"
 msgstr "Aanpassen"
 
-#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
 #, fuzzy
 msgid "MODIFY_ORGANELLE"
 msgstr "Verplaats organellen"
@@ -3846,7 +3846,7 @@ msgid "NO_AI"
 msgstr "Geen AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -3891,7 +3891,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr "Kern"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3910,8 +3910,8 @@ msgstr "Numlock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #, fuzzy
 msgid "N_A"
@@ -4424,7 +4424,7 @@ msgstr "populatie:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "bevolking in gebieden:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULATIE:"
@@ -5998,6 +5998,24 @@ msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:277
 msgid "UNTITLED"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:885
+msgid "UPGRADE_CILIA_PULL"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:886
+#, fuzzy
+msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:882
+#, fuzzy
+msgid "UPGRADE_DESCRIPTION_NONE"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:881
+msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45

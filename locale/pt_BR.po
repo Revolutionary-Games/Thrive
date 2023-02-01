@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-30 09:47+0200\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
 "PO-Revision-Date: 2022-11-10 00:00+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -641,7 +641,7 @@ msgstr "Células"
 msgid "CELLULASE"
 msgstr "Celulase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 msgid "CELLULASE_DESCRIPTION"
 msgstr "A celulase permite que sua célula quebre membranas de celulose. Cada adição aumenta sua eficácia."
 
@@ -737,7 +737,7 @@ msgstr "Quitina"
 msgid "CHITINASE"
 msgstr "Quitinase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 msgid "CHITINASE_DESCRIPTION"
 msgstr "A quitinase permite que sua célula quebre membranas de quitina. Cada adição aumenta a sua eficácia."
 
@@ -1673,15 +1673,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Fontes de Energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total coletada é {0}, a um custo de {1} por indivíduo, resultando em uma população (não ajustada) de {2}"
 
@@ -1957,7 +1957,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Cadeia Alimentar"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} de energia: {1} (adaptação: {2}) energia total disponível: {3} (adaptação total: {4})"
 
@@ -2567,7 +2567,7 @@ msgstr "Esta tradução ainda está em andamento ({0}% completa)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Esta tradução está muito incompleta ({0}% concluída), por favor, nos ajude com ela!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Não foi possível remover a última organela"
 
@@ -2841,7 +2841,7 @@ msgstr "Cor da Linha:"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 msgid "LIPASE_DESCRIPTION"
 msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célula já produz um pouco dessa enzima sem o lisossomo, mas ao selecionar essa opção você aumentará sua eficácia."
 
@@ -2933,7 +2933,7 @@ msgstr "Olhando para:"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:907
+#: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lisossomo"
@@ -3402,7 +3402,7 @@ msgstr "Modelos"
 msgid "MODIFY"
 msgstr "Modificar"
 
-#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
 msgid "MODIFY_ORGANELLE"
 msgstr "Modificar Organela"
 
@@ -3852,7 +3852,7 @@ msgid "NO_AI"
 msgstr "Sem IA"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nenhum Dado a Exibir"
 
@@ -3894,7 +3894,7 @@ msgstr "Nenhum Mod Selecionado"
 msgid "NUCLEUS"
 msgstr "Núcleo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "O núcleo é uma mutação irreversível e é impossível removê-lo. Entretanto, se for colocado na sessão atual, é permitido desfazer ou refazer a ação"
 
@@ -3913,8 +3913,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4418,7 +4418,7 @@ msgstr "população:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "população nas regiões:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6033,6 +6033,24 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:277
 msgid "UNTITLED"
 msgstr "Sem Título"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:885
+msgid "UPGRADE_CILIA_PULL"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:886
+#, fuzzy
+msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr "Os cílios são semelhantes aos flagelos, mas ao invés de fornecerem força de impulso direcional, eles fornecem força rotacional para ajudar as células a girar."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:882
+#, fuzzy
+msgid "UPGRADE_DESCRIPTION_NONE"
+msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célula já produz um pouco dessa enzima sem o lisossomo, mas ao selecionar essa opção você aumentará sua eficácia."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:881
+msgid "UPGRADE_NAME_NONE"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"

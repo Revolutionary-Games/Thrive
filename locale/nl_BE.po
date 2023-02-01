@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-30 09:47+0200\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -669,7 +669,7 @@ msgstr "Cellulose"
 msgid "CELLULASE"
 msgstr "Cellulose"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr "De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen cellen."
@@ -770,7 +770,7 @@ msgstr "Chitine"
 msgid "CHITINASE"
 msgstr "Chitine"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
@@ -1735,15 +1735,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2038,7 +2038,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Voedselketen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2671,7 +2671,7 @@ msgstr "Aan deze taal wordt nog gewerkt ({0}% voltooid)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is erg onvolledig ({0}% klaar) help ons alstublieft!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -2964,7 +2964,7 @@ msgstr "Kleur"
 msgid "LIPASE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
@@ -3064,7 +3064,7 @@ msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corri
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:907
+#: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #, fuzzy
 msgid "LYSOSOME"
@@ -3501,7 +3501,7 @@ msgstr "Modellen"
 msgid "MODIFY"
 msgstr "Pas aan"
 
-#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
 #, fuzzy
 msgid "MODIFY_ORGANELLE"
 msgstr "Organel verplaatsen"
@@ -3963,7 +3963,7 @@ msgid "NO_AI"
 msgstr "Geen AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Geen data om te tonen"
 
@@ -4007,7 +4007,7 @@ msgstr "Geen geselecteerde mod"
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4026,8 +4026,8 @@ msgstr "Num Lock(toets)"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4549,7 +4549,7 @@ msgstr "Totale populatie:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6227,6 +6227,24 @@ msgstr ""
 #, fuzzy
 msgid "UNTITLED"
 msgstr "Bioom: {0}"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:885
+msgid "UPGRADE_CILIA_PULL"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:886
+#, fuzzy
+msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:882
+#, fuzzy
+msgid "UPGRADE_DESCRIPTION_NONE"
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:881
+msgid "UPGRADE_NAME_NONE"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"

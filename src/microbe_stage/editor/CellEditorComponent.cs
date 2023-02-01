@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
     HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate>,
-    IGodotEarlyNodeResolve
+    ICellEditorComponent, IGodotEarlyNodeResolve
 {
     [Export]
     public bool IsMulticellularEditor;
@@ -1091,6 +1091,13 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
     }
 
+    public bool ApplyOrganelleUpgrade(OrganelleUpgradeActionData actionData)
+    {
+        return EnqueueAction(new CombinedEditorAction(
+            new SingleEditorAction<OrganelleUpgradeActionData>(DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
+                actionData)));
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -1357,7 +1364,7 @@ public partial class CellEditorComponent :
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
         // Modify / upgrade possible when defined on the primary organelle definition
-        if (count > 0 && !string.IsNullOrEmpty(organelles.First().Definition.UpgradeGUI))
+        if (count > 0 && IsUpgradingPossibleFor(organelles.First().Definition))
         {
             organelleMenu.EnableModifyOption = true;
         }
@@ -1365,6 +1372,11 @@ public partial class CellEditorComponent :
         {
             organelleMenu.EnableModifyOption = false;
         }
+    }
+
+    private bool IsUpgradingPossibleFor(OrganelleDefinition organelleDefinition)
+    {
+        return !string.IsNullOrEmpty(organelleDefinition.UpgradeGUI) || organelleDefinition.AvailableUpgrades.Count > 0;
     }
 
     /// <summary>
@@ -1961,13 +1973,13 @@ public partial class CellEditorComponent :
         var targetOrganelle = organelleMenu.SelectedOrganelles.First();
         var upgradeGUI = targetOrganelle.Definition.UpgradeGUI;
 
-        if (string.IsNullOrEmpty(upgradeGUI))
+        if (!IsUpgradingPossibleFor(targetOrganelle.Definition))
         {
-            GD.PrintErr("Attempted to modify an organelle with no upgrade GUI known");
+            GD.PrintErr("Attempted to modify an organelle that can't be upgraded");
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI!, Editor);
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this);
     }
 
     /// <summary>

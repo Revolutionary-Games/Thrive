@@ -24,7 +24,6 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 #pragma warning restore CA2213
 
     private List<Compound>? shownChoices;
-    private OrganelleTemplate? storedOrganelle;
 
     public override void _Ready()
     {
@@ -44,7 +43,6 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle)
     {
-        storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetCloudCompounds();
 
         foreach (var choice in shownChoices)
@@ -76,21 +74,21 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
     }
 
-    public void ApplyChanges(ICellEditorData editor)
+    public bool ApplyChanges(ICellEditorComponent editorComponent, OrganelleUpgrades organelleUpgrades)
     {
-        if (storedOrganelle == null || shownChoices == null)
+        if (shownChoices == null)
         {
             GD.PrintErr("Chemoreceptor upgrade GUI was not opened properly");
-            return;
+            return false;
         }
 
         // Force some compound to be selected
         if (compounds.Selected == -1)
             compounds.Selected = 0;
 
-        // TODO: make an undoable action
-        storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
-            (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
+        organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
+            (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color);
+        return true;
     }
 
     public Vector2 GetMinDialogSize()

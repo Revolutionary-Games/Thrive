@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-30 09:47+0200\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
 "PO-Revision-Date: 2022-10-28 14:00+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -642,7 +642,7 @@ msgstr "Komórki"
 msgid "CELLULASE"
 msgstr "Celulaza"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Celulaza umożliwia komórce trawienie celulozowych błon. Każde dodanie zwiększa wydajność."
 
@@ -738,7 +738,7 @@ msgstr "Chitynowa"
 msgid "CHITINASE"
 msgstr "Chitynaza"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitynaza umożliwia komórce trawienie błon chitynowych. Każde dodanie zwiększa wydajność."
 
@@ -1656,15 +1656,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
@@ -1943,7 +1943,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Łańcuch Pokarmowy"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita sprawność: {4})"
 
@@ -2565,7 +2565,7 @@ msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, pomóż to zmienić!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
@@ -2842,7 +2842,7 @@ msgstr "Kolor Lini:"
 msgid "LIPASE"
 msgstr "Lipaza"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 msgid "LIPASE_DESCRIPTION"
 msgstr "Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu zwiększysz wydajność."
 
@@ -2934,7 +2934,7 @@ msgstr "Patrzysz Na:"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:907
+#: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lizosom"
@@ -3406,7 +3406,7 @@ msgstr "Modele"
 msgid "MODIFY"
 msgstr "Modyfikuj"
 
-#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
 msgid "MODIFY_ORGANELLE"
 msgstr "Modyfikuj Organellę"
 
@@ -3853,7 +3853,7 @@ msgid "NO_AI"
 msgstr "Brak SI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Brak danych do pokazania"
 
@@ -3896,7 +3896,7 @@ msgstr "Nie wybrano Modów"
 msgid "NUCLEUS"
 msgstr "Jądro Komórkowe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha.\n"
@@ -3917,8 +3917,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "Nie Dotyczy"
@@ -4425,7 +4425,7 @@ msgstr "populacja:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populacja w obszarach:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6032,6 +6032,24 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:277
 msgid "UNTITLED"
 msgstr "Niezatytułowany"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:885
+msgid "UPGRADE_CILIA_PULL"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:886
+#, fuzzy
+msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr "Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu dodają siłę obrotową by pomóc komórkom się obracać."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:882
+#, fuzzy
+msgid "UPGRADE_DESCRIPTION_NONE"
+msgstr "Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu zwiększysz wydajność."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:881
+msgid "UPGRADE_NAME_NONE"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"

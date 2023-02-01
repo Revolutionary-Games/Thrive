@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-30 09:47+0200\n"
-"PO-Revision-Date: 2023-01-23 15:54+0200\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
+"PO-Revision-Date: 2023-01-31 14:39+0200\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -652,7 +652,7 @@ msgstr "Cells"
 msgid "CELLULASE"
 msgstr "Cellulase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 msgid "CELLULASE_DESCRIPTION"
 msgstr "Cellulase enables the cell to break down cellulose membrane. Each addition increases the effectiveness."
 
@@ -748,7 +748,7 @@ msgstr "Chitin"
 msgid "CHITINASE"
 msgstr "Chitinase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitinase enables the cell to break down chitin membrane. Each addition increases the effectiveness."
 
@@ -1684,15 +1684,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
@@ -1968,7 +1968,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Food Chain"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 
@@ -2578,7 +2578,7 @@ msgstr "This language is still a work in progress ({0}% complete)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Can't delete the last organelle"
 
@@ -2852,7 +2852,7 @@ msgstr "Line Colour:"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 msgid "LIPASE_DESCRIPTION"
 msgstr "Lipase enables the cell to break down most types of membranes. Your cell already produces some of this enzyme without lysosome, but by selecting this type you will increase the effectiveness."
 
@@ -2944,7 +2944,7 @@ msgstr "Looking At:"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Consider patches with up to this many species having low biodiversity"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:907
+#: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lysosome"
@@ -3414,7 +3414,7 @@ msgstr "Models"
 msgid "MODIFY"
 msgstr "Modify"
 
-#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
 msgid "MODIFY_ORGANELLE"
 msgstr "Modify Organelle"
 
@@ -3864,7 +3864,7 @@ msgid "NO_AI"
 msgstr "No AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -3906,7 +3906,7 @@ msgstr "No Selected Mod"
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Can't delete the nucleus as this is an irreversible evolution.\n"
@@ -3927,8 +3927,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4432,7 +4432,7 @@ msgstr "population:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6047,6 +6047,22 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:277
 msgid "UNTITLED"
 msgstr "Untitled"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:885
+msgid "UPGRADE_CILIA_PULL"
+msgstr "Pulling Cilia"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:886
+msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
+msgstr "When in engulf mode ([thrive:input]g_toggle_engulf[/thrive:input]) this type of cilia will cause vortices in the water that pull in nearby objects. Useful for capturing prey."
+
+#: ../simulation_parameters/microbe_stage/organelles.json:882
+msgid "UPGRADE_DESCRIPTION_NONE"
+msgstr "The default non-upgraded state"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:881
+msgid "UPGRADE_NAME_NONE"
+msgstr "No Upgrade"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
