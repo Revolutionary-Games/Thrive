@@ -179,6 +179,13 @@ public class MainMenu : NodeWithInput
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
+
+        if (!IsReturningToMenu && Settings.Instance.ThriveNewsFeedEnabled.Value)
+        {
+            // Start feed fetch here as early as possible to not make the user wait a long time after the menu is
+            // visible to see it
+            ThriveNewsFeed.GetFeedContents();
+        }
     }
 
     public override void _Process(float delta)
