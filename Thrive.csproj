@@ -156,6 +156,7 @@
     <Compile Include="src\gui_common\SpeciesDetailsPanel.cs" />
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
+    <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
     <Compile Include="src\general\CombinableActionData.cs" />
@@ -244,8 +245,10 @@
     <Compile Include="src\late_multicellular_stage\MulticellularCamera.cs" />
     <Compile Include="src\late_multicellular_stage\PlayerMulticellularInput.cs" />
     <Compile Include="src\microbe_stage\BiomeType.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\OrganelleUpgradeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\ICellEditorComponent.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\ModifierInfoLabel.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\SelectionMenuToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ToolTipCallbackData.cs" />
