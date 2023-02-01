@@ -18,6 +18,7 @@ using SharedBase.Utilities;
 public class PackageTool : PackageToolBase<Program.PackageOptions>
 {
     private const string EXPECTED_THRIVE_DATA_FOLDER = "data_Thrive";
+    private const string EXPECTED_THRIVE_WASM = "Thrive.wasm";
 
     private const string STEAM_BUILD_MESSAGE = "This is the Steam build. This can only be distributed by " +
         "Revolutionary Games Studio (under a special license) due to Steam being incompatible with the GPL license!";
@@ -32,6 +33,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         PackagePlatform.Windows,
         PackagePlatform.Windows32,
         PackagePlatform.Mac,
+        PackagePlatform.Web,
     };
 
     /// <summary>
@@ -117,7 +119,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac).ToList();
+                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac && p != PackagePlatform.Web)
+                    .ToList();
             }
         }
 
@@ -214,12 +217,21 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
         // TODO: mac steam support
-        if (options.Steam != null && platform != PackagePlatform.Mac)
+        if (options.Steam != null && platform is not PackagePlatform.Mac and not PackagePlatform.Web)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
                     SteamBuild.ConvertPackagePlatformToSteam(platform)))
             {
                 ColourConsole.WriteErrorLine("Failed to set wanted Steam mode");
+                return false;
+            }
+        }
+        else
+        {
+            // Force disable Steam for unsupported platforms
+            if (!await SteamBuild.SetBuildMode(false, true, cancellationToken, SteamBuild.SteamPlatform.Linux))
+            {
+                ColourConsole.WriteErrorLine("Failed to set Steam to not be used mode");
                 return false;
             }
         }
@@ -255,7 +267,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
-        if (platform != PackagePlatform.Mac)
+        if (platform == PackagePlatform.Web)
+        {
+            var expectedWebFile = Path.Join(folder, EXPECTED_THRIVE_WASM);
+
+            if (!File.Exists(expectedWebFile))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected web file ({expectedWebFile}) was not created on export. " +
+                    "Are export templates installed?");
+                return false;
+            }
+        }
+        else if (platform != PackagePlatform.Mac)
         {
             var expectedDataFolder = Path.Join(folder, EXPECTED_THRIVE_DATA_FOLDER);
 
