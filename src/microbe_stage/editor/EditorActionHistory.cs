@@ -191,20 +191,52 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
             IEnumerable<EditorCombinableActionData> previousData)
     {
-        return previousData.Select(data =>
+        // Get an ordered enumerable sorted by priority and then by cost delta
+        var combinationDataEnumerable = previousData.Select(data =>
         {
             var interferenceMode = currentData.GetInterferenceModeWith(data);
 
             return (interferenceMode switch
             {
-                ActionInterferenceMode.Combinable => ((EditorCombinableActionData)currentData.Combine(data))
-                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(),
-                ActionInterferenceMode.CancelsOut => -data.CalculateCost() - currentData.CalculateCost(),
-                ActionInterferenceMode.ReplacesOther => -data.CalculateCost(),
-                ActionInterferenceMode.NoInterference => 0,
+                // A combination action refunds the delta cost
+                ActionInterferenceMode.Combinable => (Cost: ((EditorCombinableActionData)currentData.Combine(data))
+                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(), Priority: 0),
+
+                // A cancels out action refunds the initial action cost and the current action cost
+                ActionInterferenceMode.CancelsOut => (Cost: -data.CalculateCost() - currentData.CalculateCost(),
+                    Priority: 0),
+
+                // A replacement action doesn't modify the current action, thus is "free", having the highest priority
+                ActionInterferenceMode.ReplacesOther => (Cost: -data.CalculateCost(), Priority: 1),
+
+                // No action doesn't refund anything
+                ActionInterferenceMode.NoInterference => (Cost: 0, Priority: 0),
+
                 _ => throw new ArgumentOutOfRangeException(nameof(interferenceMode)),
             }, data, interferenceMode);
-        }).OrderBy(p => p.Item1).FirstOrDefault();
+        }).OrderByDescending(p => p.Item1.Priority).ThenBy(p => p.Item1.Cost);
+
+        // Calculate actual cost delta by adding up all replacement refunds, and if any, the first non-replacement one
+        var costDelta = 0;
+        using var combinationDataEnumerator = combinationDataEnumerable.GetEnumerator();
+        if (!combinationDataEnumerator.MoveNext())
+        {
+            throw new ArgumentException($"{nameof(previousData)} is empty");
+        }
+
+        // Get the first combination data, which is what we'll return
+        var firstData = combinationDataEnumerator.Current;
+
+        do
+        {
+            costDelta += combinationDataEnumerator.Current.Item1.Cost;
+        }
+
+        // We first make sure the current one is replacement type, then make sure the enumerator hasn't reached an end
+        while (combinationDataEnumerator.Current.interferenceMode == ActionInterferenceMode.ReplacesOther &&
+               combinationDataEnumerator.MoveNext());
+
+        return (costDelta, firstData.data, firstData.interferenceMode);
     }
 
     private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)
