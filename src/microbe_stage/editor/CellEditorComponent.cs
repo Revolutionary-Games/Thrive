@@ -1093,6 +1093,8 @@ public partial class CellEditorComponent :
 
     public bool ApplyOrganelleUpgrade(OrganelleUpgradeActionData actionData)
     {
+        actionData.CostMultiplier = CostMultiplier;
+
         return EnqueueAction(new CombinedEditorAction(
             new SingleEditorAction<OrganelleUpgradeActionData>(DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
                 actionData)));
