@@ -61,7 +61,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                         processedHistory.Take(compareIndex));
 
                 // If no more can be merged together, try next one.
-                if (mode == ActionInterferenceMode.NoInterference)
+                if (mode == ActionInterferenceMode.NoInterference || minimumCostCombinableAction == null)
                     break;
 
                 var minimumCostCombinableActionIndex = processedHistory.IndexOf(minimumCostCombinableAction);
@@ -187,7 +187,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     ///   MinimumCostActionData is the action data to combine with (not yet combined);
     ///   Mode is the interference mode currentData has with MinimumCostActionData.
     /// </returns>
-    private static (int CostDelta, EditorCombinableActionData MinimumCostActionData, ActionInterferenceMode Mode)
+    private static (int CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
         FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
             IEnumerable<EditorCombinableActionData> previousData)
     {
@@ -221,7 +221,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         using var combinationDataEnumerator = combinationDataEnumerable.GetEnumerator();
         if (!combinationDataEnumerator.MoveNext())
         {
-            throw new ArgumentException($"{nameof(previousData)} is empty");
+            return (0, null, ActionInterferenceMode.NoInterference);
         }
 
         // Get the first combination data, which is what we'll return
