@@ -65,6 +65,7 @@ public static class ThriveNewsFeed
         }
         catch (Exception e)
         {
+            GD.PrintErr($"Error in feed fetching or processing: {e}");
             return new[] { CreateErrorItem(e.Message) };
         }
     }
