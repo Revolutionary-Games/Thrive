@@ -9,8 +9,10 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-31 14:35+0200\n"
 "PO-Revision-Date: 2023-01-30 07:23+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
-"Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
+"com>\n"
+"Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,14 +26,12 @@ msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D-liikkumisen tyyli:"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editori"
+msgstr "3D Editori"
 
 #: ../simulation_parameters/common/input_options.json:160
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Liikkuminen"
+msgstr "3D-liikkuminen"
 
 #: ../src/general/OptionsMenu.tscn:1484
 msgid "3D_MOVEMENT_TYPE_SELECTION"
@@ -72,8 +72,10 @@ msgstr "Nykyinen suorittajien määrä:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei "
+"tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön "
+"muutoksia reagoidakseen niihin."
 
 #: ../src/modding/NewModGUI.cs:322
 #, fuzzy
@@ -122,7 +124,14 @@ msgstr "Mutaatiopisteet"
 #: ../src/general/NewGameSettings.tscn:508
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:372
@@ -234,7 +243,8 @@ msgstr "Oleta, että prosessorissa on hyperthreading käytössä"
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
-"Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
+"Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, "
+"koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
@@ -284,7 +294,14 @@ msgstr "automaattinen"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 #, fuzzy
@@ -299,8 +316,10 @@ msgstr "Auto-Evon simuloitu ennuste"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon mukaan.\n"
-"Auto-evo ajaa populaatiosimulaatiota, joka oman suoriutumisen lisäksi vaikuttaa lajisi populaatioon."
+"Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon "
+"mukaan.\n"
+"Auto-evo ajaa populaatiosimulaatiota, joka oman suoriutumisen lisäksi "
+"vaikuttaa lajisi populaatioon."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
@@ -446,14 +465,12 @@ msgid "BEHAVIOUR_ACTIVITY"
 msgstr "Käyttäytyminen"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Käyttäytyminen"
+msgstr "Aggressiivisuus"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Käyttäytyminen"
+msgstr "Aggressiivisuus"
 
 #: ../src/general/BehaviourDictionary.cs:106
 #, fuzzy
@@ -500,11 +517,17 @@ msgstr "Kiinnittymisen elimet"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+msgstr ""
+"Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun "
+"liikkumista."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Vaihda liittymismoodia painamall [thrive:input]g_toggle_binding[/thrive:input]. Liittymismoodissa voit liittyä toisiin lajisi soluihin liikkumalla heitä kohti. Poistuaksesi ryppäästä paina [thrive:input]g_unbind_all[/thrive:input]."
+msgstr ""
+"Vaihda liittymismoodia painamall [thrive:input]g_toggle_binding[/thrive:"
+"input]. Liittymismoodissa voit liittyä toisiin lajisi soluihin liikkumalla "
+"heitä kohti. Poistuaksesi ryppäästä paina [thrive:input]g_unbind_all[/thrive:"
+"input]."
 
 #: ../src/general/OptionsMenu.tscn:1273 ../src/general/OptionsMenu.tscn:1383
 msgid "BIND_AXES_SENSITIVITY"
@@ -512,7 +535,9 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Uuden lajin luomisen mahdollisuus pienen lajimäärän (matala biodiversiteetti) alueissa"
+msgstr ""
+"Uuden lajin luomisen mahdollisuus pienen lajimäärän (matala "
+"biodiversiteetti) alueissa"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
@@ -589,7 +614,9 @@ msgstr "Peruuta nykyinen toimenpide"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr "Solutyyppiä, joka on tällä hetkellä käytössä kehon suunnitelmassa, ei voi poistaa"
+msgstr ""
+"Solutyyppiä, joka on tällä hetkellä käytössä kehon suunnitelmassa, ei voi "
+"poistaa"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
@@ -669,9 +696,17 @@ msgid "CELLULASE"
 msgstr "Selluloosa"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:114
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
@@ -724,7 +759,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]n [thrive:compound type=\"glucose\"]glukoosiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound]."
+msgstr ""
+"Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]n "
+"[thrive:compound type=\"glucose\"]glukoosiksi[/thrive:compound]. "
+"Muunnosnopeus riippuu ympäristön [thrive:compound "
+"type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:719
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
@@ -748,11 +787,23 @@ msgstr "Kemosyntetisoivat proteiinit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Kemosyntetisoivat proteiinit ovat pieniä proteiiniryppäitä solulimassa, jotka pystyvät muuntamaan vetysulfideja, vettä ja hiilidioksidia glukoosiksi prosessissa nimeltä kemosynteesi. Kemosynteesissä, toisin kuin fotosynteesissä, ei tarvita energianlähteenä auringon valoa, vaan energia saadaan hapettamalla epäorgaanisia yhdisteitä. Vetysulfidikemosynteesissä glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta. Näiden proteiinien ympäröimä solulima toteuttaa myös glykolyysia."
+msgstr ""
+"Kemosyntetisoivat proteiinit ovat pieniä proteiiniryppäitä solulimassa, "
+"jotka pystyvät muuntamaan vetysulfideja, vettä ja hiilidioksidia glukoosiksi "
+"prosessissa nimeltä kemosynteesi. Kemosynteesissä, toisin kuin "
+"fotosynteesissä, ei tarvita energianlähteenä auringon valoa, vaan energia "
+"saadaan hapettamalla epäorgaanisia yhdisteitä. Vetysulfidikemosynteesissä "
+"glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta. "
+"Näiden proteiinien ympäröimä solulima toteuttaa myös glykolyysia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]t [thrive:compound type=\"glucose\"][/thrive:compound]:ksi. Vauhti riippuu [thrive:compound type=\"carbondioxide\"][/thrive:compound]n määrästä. Muuntaa myös [thrive:compound type=\"glucose\"][/thrive:compound]a [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+msgstr ""
+"Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]t "
+"[thrive:compound type=\"glucose\"][/thrive:compound]:ksi. Vauhti riippuu "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound]n määrästä. "
+"Muuntaa myös [thrive:compound type=\"glucose\"][/thrive:compound]a [thrive:"
+"compound type=\"atp\"][/thrive:compound]:ksi."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -770,9 +821,17 @@ msgid "CHITINASE"
 msgstr "Kitiini"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:117
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -789,7 +848,12 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
+msgstr ""
+"Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. "
+"Tuotannon nopeus riippuu ympäristön [thrive:compound "
+"type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja "
+"[thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] "
+"saatavuudesta."
 
 #: ../src/saving/NewSaveMenu.cs:98
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -801,7 +865,12 @@ msgstr "Kromaattinen vääristymä:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Tuottaa [thrive:compound type=\"glucose\"][/thrive:compound]a. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
+msgstr ""
+"Tuottaa [thrive:compound type=\"glucose\"][/thrive:compound]a. Tuotannon "
+"nopeus riippuu ympäristön [thrive:compound "
+"type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja "
+"[thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] "
+"saatavuudesta."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 #, fuzzy
@@ -816,12 +885,21 @@ msgstr "Värekarva"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:"
+"compound type=\"atp\"][/thrive:compound]:ksi."
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -987,8 +1065,10 @@ msgstr "Yhdistepilvet"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 "Opportunistiset mikrobit kilpailevat ahnaasti yhdisteistä ja yrittävät\n"
-"todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
-"Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
+"todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään "
+"heitä.\n"
+"Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita "
+"esimerkiksi ravinnon keruun yhteydessä."
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
@@ -1069,7 +1149,14 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 #, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
@@ -1123,7 +1210,11 @@ msgstr "Luo uusi soluelin"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
+msgstr ""
+"Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja "
+"antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne "
+"erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä "
+"vastaavat nykyiset soluelimet muokkaantuvat samalla."
 
 #: ../src/modding/NewModGUI.tscn:33
 #, fuzzy
@@ -1142,7 +1233,11 @@ msgstr "Luo uusi soluelin"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
+msgstr ""
+"Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja "
+"antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne "
+"erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä "
+"vastaavat nykyiset soluelimet muokkaantuvat samalla."
 
 #: ../src/modding/ModUploader.cs:493
 #, fuzzy
@@ -1190,7 +1285,14 @@ msgstr "Solulima"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -1198,7 +1300,9 @@ msgstr "Soluliman glykolyysi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:"
+"compound type=\"atp\"][/thrive:compound]:ksi."
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
@@ -1238,7 +1342,9 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
+msgstr ""
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen "
+"lopullisesti?"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:933
 msgid "DEATH"
@@ -1266,7 +1372,8 @@ msgstr "Poista"
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
-"Kaikkien Automaattisten- ja pikatallennuksien poistamista ei voida peruttaa, oletko varma, että haluatko pysyvästi poistaa seuraavat?\n"
+"Kaikkien Automaattisten- ja pikatallennuksien poistamista ei voida peruttaa, "
+"oletko varma, että haluatko pysyvästi poistaa seuraavat?\n"
 "- {0} Automaattiset tallennukset\n"
 "- {1} Pikatallennukset"
 
@@ -1281,7 +1388,9 @@ msgstr "Poista soluelin"
 
 #: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
+msgstr ""
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen "
+"lopullisesti?"
 
 #: ../src/saving/SaveManagerGUI.tscn:76
 msgid "DELETE_SELECTED"
@@ -1294,7 +1403,9 @@ msgstr "Poista valitut tallennukset?"
 
 #: ../src/saving/SaveManagerGUI.cs:247
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr "Valittujen tallennusten poistamista ei voi kumota, haluatko varmasti lopullisesti poistaa {0} tallennusta?"
+msgstr ""
+"Valittujen tallennusten poistamista ei voi kumota, haluatko varmasti "
+"lopullisesti poistaa {0} tallennusta?"
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
@@ -1493,9 +1604,11 @@ msgstr "Nopeus:"
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän "
+"matkan päästä\n"
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa "
+"kiinni."
 
 #: ../src/general/MainMenu.tscn:953
 msgid "DISMISS_PERMANENTLY"
@@ -1582,11 +1695,15 @@ msgstr "Ne siniset solut."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
+msgstr ""
+"Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri "
+"alueille joskus eri määrinä."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä"
+msgstr ""
+"Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, "
+"mutta se kuluttaa enemmän ATP:tä"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -1594,69 +1711,97 @@ msgstr "Vinkki: voit niellä paloja, rautaisia ja muun tyyppisiä."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Vinkki: valmistaudu ennen kuin lisäät tuman. Ne ovat kalliita! Kulutuksessaan ja hinnassaan."
+msgstr ""
+"Vinkki: valmistaudu ennen kuin lisäät tuman. Ne ovat kalliita! "
+"Kulutuksessaan ja hinnassaan."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Hauska vinkki: Tiesitkö, että maailmassa on yli 8000 eri lajia ripsieläimiä?"
+msgstr ""
+"Hauska vinkki: Tiesitkö, että maailmassa on yli 8000 eri lajia ripsieläimiä?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut siten!"
+msgstr ""
+"Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää "
+"pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut "
+"siten!"
 
 #: ../simulation_parameters/common/help_texts.json:199
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
+msgstr ""
+"Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut "
+"lajit voivat myös tehdä sen."
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+msgstr ""
+"Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos "
+"olet tarpeeksi nopea."
 
 #: ../simulation_parameters/common/help_texts.json:202
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+msgstr ""
+"Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos "
+"olet tarpeeksi nopea."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Vinkki: Varo isompia soluja ja isompia bakteereja, se ei ole hauskaa tulla syödyksi ja ne syövät sinut."
+msgstr ""
+"Vinkki: Varo isompia soluja ja isompia bakteereja, se ei ole hauskaa tulla "
+"syödyksi ja ne syövät sinut."
 
 #: ../simulation_parameters/common/help_texts.json:208
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+msgstr ""
+"Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos "
+"olet tarpeeksi nopea."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Vinkki: Jos sinun solussasi on yli 150 osaa, voit niellä isoja rautapaloja."
+msgstr ""
+"Vinkki: Jos sinun solussasi on yli 150 osaa, voit niellä isoja rautapaloja."
 
 #: ../simulation_parameters/common/help_texts.json:214
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+msgstr ""
+"Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos "
+"olet tarpeeksi nopea."
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Hauska fakta, Thriven tiimi tekee joskus podcasteja, sinun kannattaa tsekata ne!"
+msgstr ""
+"Hauska fakta, Thriven tiimi tekee joskus podcasteja, sinun kannattaa tsekata "
+"ne!"
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Hauska fakta, Thrive on tehty avoimen lähdekoodin Godot-pelimoottorilla!"
+msgstr ""
+"Hauska fakta, Thrive on tehty avoimen lähdekoodin Godot-pelimoottorilla!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Hauska fakta, untrustedlife, meidän mahtava ohjelmoida, teki yhden ensimmäisistä pelattavista prototyypeistä!"
+msgstr ""
+"Hauska fakta, untrustedlife, meidän mahtava ohjelmoida, teki yhden "
+"ensimmäisistä pelattavista prototyypeistä!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
+msgstr ""
+"Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri "
+"alueille joskus eri määrinä."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä."
+msgstr ""
+"Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, "
+"mutta se kuluttaa enemmän ATP:tä."
 
 #: ../simulation_parameters/common/help_texts.json:157
 #, fuzzy
@@ -1665,7 +1810,8 @@ msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "Vinkki: joskus paras vaihtoehto on yksinkertaisesti vain paeta muita soluja."
+msgstr ""
+"Vinkki: joskus paras vaihtoehto on yksinkertaisesti vain paeta muita soluja."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
@@ -1673,11 +1819,16 @@ msgstr "Vinkki: jos solu on noin puolet koostasi, voit niellä sen."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut siten!"
+msgstr ""
+"Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää "
+"pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut "
+"siten!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
+msgstr ""
+"Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut "
+"lajit voivat myös tehdä sen."
 
 #: ../src/general/NewGameSettings.tscn:1163
 #, fuzzy
@@ -1708,9 +1859,11 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Tervetuloa mikrobieditoriin.\n"
 "\n"
-"Täällä voit tarkastaa miten edelliset sukupolvesi ovat onnistuneet, ja tehdä muutoksia seuraavaan lajisi sukupolveen.\n"
+"Täällä voit tarkastaa miten edelliset sukupolvesi ovat onnistuneet, ja tehdä "
+"muutoksia seuraavaan lajisi sukupolveen.\n"
 "\n"
-"Tarjolla on lista muutoksista ympäristössä, jossa parhaillaan elät. Kokeile ja tutki erilaisia työkaluja solun ympäristön ja rakenteen muutoksiin!\n"
+"Tarjolla on lista muutoksista ympäristössä, jossa parhaillaan elät. Kokeile "
+"ja tutki erilaisia työkaluja solun ympäristön ja rakenteen muutoksiin!\n"
 "\n"
 "Kun olet valmis jatkamaan, paina \"jatka\" painiketta alhaalla oikealla."
 
@@ -1745,14 +1898,17 @@ msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2392
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energiaa {0} jota käytetään {1}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
 msgid "ENERGY_SOURCES"
 msgstr "Energianlähteet:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2396
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1782,7 +1938,14 @@ msgstr "Ympäristön glukoosin säilyminen"
 #: ../src/general/NewGameSettings.tscn:693
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
 #, fuzzy
@@ -1892,7 +2055,11 @@ msgstr "Ulkoiset vaikutukset:"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on kuollut sukupuuttoon. Muut täyttävät sinun ekologisen lokerosi and kukoistavat, mutta sinä et. Sinut tullaan unohtamaan, epäonnistunut kokeilu evoluutiossa."
+msgstr ""
+"Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on "
+"kuollut sukupuuttoon. Muut täyttävät sinun ekologisen lokerosi and "
+"kukoistavat, mutta sinä et. Sinut tullaan unohtamaan, epäonnistunut kokeilu "
+"evoluutiossa."
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -2009,7 +2176,9 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr "Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen solun liikkumisnopeutta."
+msgstr ""
+"Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen "
+"solun liikkumisnopeutta."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2040,17 +2209,22 @@ msgstr "Keskittynyt"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän "
+"matkan päästä\n"
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa "
+"kiinni."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:221
 msgid "FOOD_CHAIN"
 msgstr "Ruokaketju"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr "{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: {4})"
+msgstr ""
+"{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: "
+"{4})"
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -2125,9 +2299,11 @@ msgstr ""
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
-"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän "
+"matkan päästä\n"
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
-"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa "
+"kiinni."
 
 #: ../src/general/OptionsMenu.tscn:279
 msgid "FULLSCREEN"
@@ -2185,7 +2361,8 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:969
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2}"
+msgstr ""
+"Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1254
@@ -2672,9 +2849,12 @@ msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
 #: ../src/general/OptionsMenu.cs:1409
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
+msgstr ""
+"Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen "
+"kanssa!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1339
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -2927,7 +3107,14 @@ msgstr "VAHVISTA"
 #: ../src/general/NewGameSettings.tscn:812
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/general/OptionsMenu.tscn:1190
 msgid "LIMIT_HUGE"
@@ -2967,9 +3154,17 @@ msgid "LIPASE"
 msgstr "Lipaasi"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:111
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
@@ -3060,6 +3255,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:920
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
+#: ../simulation_parameters/microbe_stage/organelles.json:907
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Happimyrkkysomi"
@@ -3067,12 +3263,26 @@ msgstr "Happimyrkkysomi"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+msgstr ""
+"Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia "
+"proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian "
+"tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan "
+"aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita "
+"toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:"
+"tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten "
+"ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
+msgstr ""
+"Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound "
+"type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu "
+"ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:"
+"compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/"
+"thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n "
+"pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta "
+"aiheuttaa vähemmän vahinkoa."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -3174,11 +3384,21 @@ msgstr "Metabolosomi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
+msgstr ""
+"Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia "
+"proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian "
+"tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan "
+"aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita "
+"toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:"
+"tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten "
+"ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Nopeus skaalautuu [thrive:compound type=\"oxygen\"]hapen[/thrive:compound] pitoisuuden mukaan."
+msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] "
+"[thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Nopeus skaalautuu "
+"[thrive:compound type=\"oxygen\"]hapen[/thrive:compound] pitoisuuden mukaan."
 
 #: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3200,13 +3420,18 @@ msgstr "{0} MiB"
 #, fuzzy
 msgid "MICROBE"
 msgstr ""
-"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja "
+"meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen "
+"maailmankaikkeudessa.\n"
 "\n"
 "Elämä.\n"
 "\n"
-"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen "
+"universaali esivanhempi (LUCA) tällä planeetalla.\n"
 "\n"
-"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja "
+"kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja "
+"kilpailla muiden lajien kanssa."
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
@@ -3217,17 +3442,29 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Esitumallisen soluelimet\n"
 "\n"
-"Metabolosomit: Tuottaa [thrive:compound type=\"atp\"][/thrive:compound] [thrive:compound type=\"glucose\"][/thrive:compound]sta\n"
+"Metabolosomit: Tuottaa [thrive:compound type=\"atp\"][/thrive:compound] "
+"[thrive:compound type=\"glucose\"][/thrive:compound]sta\n"
 "\n"
-"Kemosynteesiproteiinit: Tuottaa puolet [thrive:compound type=\"glucose\"][/thrive:compound]sta käyttäen [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]a kemoplastina, mutta aiheuttaa myös glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien yhden Hexan lisää tilaa\n"
+"Kemosynteesiproteiinit: Tuottaa puolet [thrive:compound type=\"glucose\"][/"
+"thrive:compound]sta käyttäen [thrive:compound type=\"hydrogensulfide\"][/"
+"thrive:compound]a kemoplastina, mutta aiheuttaa myös glykolyysin (tuottaa "
+"pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien "
+"yhden Hexan lisää tilaa\n"
 "\n"
-"Tylakoidit: Tuottaa 1/3-osan [thrive:compound type=\"glucose\"][/thrive:compound]sta tavallisena viherhiukkasena, mutta aiheuttaa myös glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien yhden Hexan lisää tilaa\n"
+"Tylakoidit: Tuottaa 1/3-osan [thrive:compound type=\"glucose\"][/thrive:"
+"compound]sta tavallisena viherhiukkasena, mutta aiheuttaa myös glykolyysin "
+"(tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) "
+"vaatien yhden Hexan lisää tilaa\n"
 "\n"
-"Rustisyaniini: Muuttaa [thrive:compound type=\"iron\"][/thrive:compound]n [thrive:compound type=\"atp\"][/thrive:compound]:ksi\n"
+"Rustisyaniini: Muuttaa [thrive:compound type=\"iron\"][/thrive:compound]n "
+"[thrive:compound type=\"atp\"][/thrive:compound]:ksi\n"
 "\n"
-"Nitrogenaasi: Muuttaa ympäristön typen käyttäen [thrive:compound type=\"atp\"][/thrive:compound]:tä tuottaen [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobisesti\n"
+"Nitrogenaasi: Muuttaa ympäristön typen käyttäen [thrive:compound "
+"type=\"atp\"][/thrive:compound]:tä tuottaen [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] anaerobisesti\n"
 "\n"
-"Solulima: Lisää tilaa kerättäville yhdisteille ja toteuttaa glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä)"
+"Solulima: Lisää tilaa kerättäville yhdisteille ja toteuttaa glykolyysin "
+"(tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 #, fuzzy
@@ -3235,24 +3472,37 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
 "Esitumallisen soluelimet\n"
 "\n"
-"Metabolosomit: Tuottaa [thrive:compound type=\"atp\"][/thrive:compound] [thrive:compound type=\"glucose\"][/thrive:compound]sta\n"
+"Metabolosomit: Tuottaa [thrive:compound type=\"atp\"][/thrive:compound] "
+"[thrive:compound type=\"glucose\"][/thrive:compound]sta\n"
 "\n"
-"Kemosynteesiproteiinit: Tuottaa puolet [thrive:compound type=\"glucose\"][/thrive:compound]sta käyttäen [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]a kemoplastina, mutta aiheuttaa myös glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien yhden Hexan lisää tilaa\n"
+"Kemosynteesiproteiinit: Tuottaa puolet [thrive:compound type=\"glucose\"][/"
+"thrive:compound]sta käyttäen [thrive:compound type=\"hydrogensulfide\"][/"
+"thrive:compound]a kemoplastina, mutta aiheuttaa myös glykolyysin (tuottaa "
+"pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien "
+"yhden Hexan lisää tilaa\n"
 "\n"
-"Tylakoidit: Tuottaa 1/3-osan [thrive:compound type=\"glucose\"][/thrive:compound]sta tavallisena viherhiukkasena, mutta aiheuttaa myös glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien yhden Hexan lisää tilaa\n"
+"Tylakoidit: Tuottaa 1/3-osan [thrive:compound type=\"glucose\"][/thrive:"
+"compound]sta tavallisena viherhiukkasena, mutta aiheuttaa myös glykolyysin "
+"(tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) "
+"vaatien yhden Hexan lisää tilaa\n"
 "\n"
-"Rustisyaniini: Muuttaa [thrive:compound type=\"iron\"][/thrive:compound]n [thrive:compound type=\"atp\"][/thrive:compound]:ksi\n"
+"Rustisyaniini: Muuttaa [thrive:compound type=\"iron\"][/thrive:compound]n "
+"[thrive:compound type=\"atp\"][/thrive:compound]:ksi\n"
 "\n"
-"Nitrogenaasi: Muuttaa ympäristön typen käyttäen [thrive:compound type=\"atp\"][/thrive:compound]:tä tuottaen [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobisesti\n"
+"Nitrogenaasi: Muuttaa ympäristön typen käyttäen [thrive:compound "
+"type=\"atp\"][/thrive:compound]:tä tuottaen [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] anaerobisesti\n"
 "\n"
-"Solulima: Lisää tilaa kerättäville yhdisteille ja toteuttaa glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä)"
+"Solulima: Lisää tilaa kerättäville yhdisteille ja toteuttaa glykolyysin "
+"(tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä)"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Ulkoiset elimet\n"
 "\n"
-"Flagella/Siima: Liikuttaa solua nopeammin käyttäen [thrive:compound type=\"atp\"][/thrive:compound]:tä\n"
+"Flagella/Siima: Liikuttaa solua nopeammin käyttäen [thrive:compound "
+"type=\"atp\"][/thrive:compound]:tä\n"
 "\n"
 "Pili: Vahingoittaa toisia soluja pistämällä\n"
 "\n"
@@ -3263,31 +3513,57 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Kalvorakenteiset soluelimet\n"
 "\n"
-"Tuma: Käyttää 11 hexaa mahdollistaen muut kalvorakenteiset soluelimet. Kaksinkertaistaa myös solun koon (voi jalostaa vain kerran)\n"
+"Tuma: Käyttää 11 hexaa mahdollistaen muut kalvorakenteiset soluelimet. "
+"Kaksinkertaistaa myös solun koon (voi jalostaa vain kerran)\n"
 "\n"
 "Solukkoelimet: Solut voivat liittyä toisiinsa muodostaen solukkoja\n"
 "\n"
-"Mitokondrio: Tuottaa [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound] käyttäen [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] ja ympäristön happea (paljon nopeammin kuin solulima)\n"
+"Mitokondrio: Tuottaa [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound] "
+"käyttäen [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] ja "
+"ympäristön happea (paljon nopeammin kuin solulima)\n"
 "\n"
-"Kloroplasti: Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] auringon valosta ja ympäristön hapesta\n"
+"Kloroplasti: Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:"
+"compound] auringon valosta ja ympäristön hapesta\n"
 "\n"
-"Kemoplasti: Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"hydrogensulfide\"]vetysulfideista[/thrive:compound]\n"
+"Kemoplasti: Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:"
+"compound] [thrive:compound type=\"hydrogensulfide\"]vetysulfideista[/thrive:"
+"compound]\n"
 "\n"
-"Typpiplastidi: Tuottaa [thrive:compound type=\"ammonia\"]ammoniakkia[/thrive:compound] käyttäen [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound], ympäristön typpeä ja happea\n"
+"Typpiplastidi: Tuottaa [thrive:compound type=\"ammonia\"]ammoniakkia[/thrive:"
+"compound] käyttäen [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound], "
+"ympäristön typpeä ja happea\n"
 "\n"
 "Vakuoli: Varastoi 8 kerättyä yhdistettä\n"
 "\n"
-"Myrkkyvakuoli: Tuottaa myrkkyä ([thrive:compound type=\"oxytoxy\"][/thrive:compound]), jota voi vapauttaa sen aiheuttaen vahinkoa suhteessa varastoituun [thrive:compound type=\"oxytoxy\"]happimyrkkyyn[/thrive:compound]\n"
+"Myrkkyvakuoli: Tuottaa myrkkyä ([thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound]), jota voi vapauttaa sen aiheuttaen vahinkoa suhteessa "
+"varastoituun [thrive:compound type=\"oxytoxy\"]happimyrkkyyn[/thrive:"
+"compound]\n"
 "\n"
 "Viestintäkeskus: Tuottaa kemikaaleja joihin toiset solut reagoivat"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Joka sukupolvi sinulla on käytössäsi 100 mutaatiopistettä (MP). Jokainen muutos (mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen tai poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on lisätty nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. Soluelintä voi siirtää tai poistaa kokonaan painamalla sitä oikealla hiirennapilla ja valitsemalla halutun toimenpiteen avautuvasta valikosta. Asetettavaa soluelintä voi kääntää painamalla [thrive:input]e_rotate_left[/thrive:input]:ta tai [thrive:input]e_rotate_right[/thrive:input]:tä."
+msgstr ""
+"Joka sukupolvi sinulla on käytössäsi 100 mutaatiopistettä (MP). Jokainen "
+"muutos (mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten "
+"lisääminen tai poistaminen maksaa MP:tä, mutta soluelinten poistaminen, "
+"jotka on lisätty nykyisessä editorisessiossa, antaa takaisin niiden "
+"kustannuksen. Soluelintä voi siirtää tai poistaa kokonaan painamalla sitä "
+"oikealla hiirennapilla ja valitsemalla halutun toimenpiteen avautuvasta "
+"valikosta. Asetettavaa soluelintä voi kääntää painamalla [thrive:"
+"input]e_rotate_left[/thrive:input]:ta tai [thrive:input]e_rotate_right[/"
+"thrive:input]:tä."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Joka kerta kun jatkat sukuasi, pääset mikrobieditoriin, jossa voit tehdä muutoksia lajiisi (lisäämällä, siirtämällä tai poistamalla soluelimiä) parantaaksesi sen menestystä. Jokainen vierailu editoriin mikrobitasolla edustaa evoluutiota, joka tapahtuu [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoonan vuoden aikana."
+msgstr ""
+"Joka kerta kun jatkat sukuasi, pääset mikrobieditoriin, jossa voit tehdä "
+"muutoksia lajiisi (lisäämällä, siirtämällä tai poistamalla soluelimiä) "
+"parantaaksesi sen menestystä. Jokainen vierailu editoriin mikrobitasolla "
+"edustaa evoluutiota, joka tapahtuu [thrive:"
+"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoonan vuoden "
+"aikana."
 
 #: ../src/general/MainMenu.tscn:369
 msgid "MICROBE_FREEBUILD_EDITOR"
@@ -3314,13 +3590,18 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
-"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja "
+"meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen "
+"maailmankaikkeudessa.\n"
 "\n"
 "Elämä.\n"
 "\n"
-"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen "
+"universaali esivanhempi (LUCA) tällä planeetalla.\n"
 "\n"
-"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja "
+"kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja "
+"kilpailla muiden lajien kanssa."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3334,7 +3615,8 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
+"Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin "
+"kanssa.\n"
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
@@ -3342,7 +3624,8 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
+"Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin "
+"kanssa.\n"
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
@@ -3366,65 +3649,114 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Voit liikkua näppäimillä [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja käyttäen hiirtä. [thrive:input]g_fire_toxin[/thrive:input] ampuu [thrive:compound type=\"oxytoxy\"][/thrive:compound]ä, jos solussa on myrkkyvakuoli. [thrive:input]g_toggle_engulf[/thrive:input] aloittaa tai lopettaa nielemisen."
+msgstr ""
+"Voit liikkua näppäimillä [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] ja käyttäen hiirtä. [thrive:"
+"input]g_fire_toxin[/thrive:input] ampuu [thrive:compound type=\"oxytoxy\"][/"
+"thrive:compound]ä, jos solussa on myrkkyvakuoli. [thrive:"
+"input]g_toggle_engulf[/thrive:input] aloittaa tai lopettaa nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Lisääntyäkseen solun kaikkien soluelinten pitää jakautua kahdeksi. Soluelimet tarvitsevat ammoniakkia ja fosfaattia jakaantuakseen."
+msgstr ""
+"Lisääntyäkseen solun kaikkien soluelinten pitää jakautua kahdeksi. "
+"Soluelimet tarvitsevat ammoniakkia ja fosfaattia jakaantuakseen."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, voitat Thriven nykyisessä muodossaan, voiton jälkeen aukeaa ponnahdusikkuna, jonka sulkeuduttua peliä voi jatkaa oman halun mukaan."
+msgstr ""
+"Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, voitat "
+"Thriven nykyisessä muodossaan, voiton jälkeen aukeaa ponnahdusikkuna, jonka "
+"sulkeuduttua peliä voi jatkaa oman halun mukaan."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Ole varuillasi muita lajeja vastaan, sillä evoluutio muuttaa niitä, kun menet editoriin."
+msgstr ""
+"Ole varuillasi muita lajeja vastaan, sillä evoluutio muuttaa niitä, kun "
+"menet editoriin."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Liittymällä toisiin soluihin, voit yhdistyä soluryppääksi, jossa solut jakavat keräämänsä yhdisteet ja tuottavat niitä yhdessä. Liittyäksesi toisiin soluihin, sinulla on oltava liittymissoluelin ja liikuttava toisten samanlaisiin soluihin kiinni liittymismoodi päällä. Ryppäässä et voi jakautua tai siirtyä editoriin (toistaiseksi), joten irroittaudu ensin ryppäästä siirtyäksesi editoriin. Suuret ryppäät johtavat monisoluisiin eliöihin (ei toistaiseksi vielä pelissä)."
+msgstr ""
+"Liittymällä toisiin soluihin, voit yhdistyä soluryppääksi, jossa solut "
+"jakavat keräämänsä yhdisteet ja tuottavat niitä yhdessä. Liittyäksesi "
+"toisiin soluihin, sinulla on oltava liittymissoluelin ja liikuttava toisten "
+"samanlaisiin soluihin kiinni liittymismoodi päällä. Ryppäässä et voi "
+"jakautua tai siirtyä editoriin (toistaiseksi), joten irroittaudu ensin "
+"ryppäästä siirtyäksesi editoriin. Suuret ryppäät johtavat monisoluisiin "
+"eliöihin (ei toistaiseksi vielä pelissä)."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Voit liikkua näppäimillä [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja käyttäen hiirtä. [thrive:input]g_fire_toxin[/thrive:input] ampuu [thrive:compound type=\"oxytoxy\"][/thrive:compound]ä, jos solussa on myrkkyvakuoli. [thrive:input]g_toggle_engulf[/thrive:input] aloittaa tai lopettaa nielemisen."
+msgstr ""
+"Voit liikkua näppäimillä [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] ja käyttäen hiirtä. [thrive:"
+"input]g_fire_toxin[/thrive:input] ampuu [thrive:compound type=\"oxytoxy\"][/"
+"thrive:compound]ä, jos solussa on myrkkyvakuoli. [thrive:"
+"input]g_toggle_engulf[/thrive:input] aloittaa tai lopettaa nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Voit liikkua näppäimillä [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja käyttäen hiirtä. [thrive:input]g_fire_toxin[/thrive:input] ampuu [thrive:compound type=\"oxytoxy\"][/thrive:compound]ä, jos solussa on myrkkyvakuoli. [thrive:input]g_toggle_engulf[/thrive:input] aloittaa tai lopettaa nielemisen."
+msgstr ""
+"Voit liikkua näppäimillä [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] ja käyttäen hiirtä. [thrive:"
+"input]g_fire_toxin[/thrive:input] ampuu [thrive:compound type=\"oxytoxy\"][/"
+"thrive:compound]ä, jos solussa on myrkkyvakuoli. [thrive:"
+"input]g_toggle_engulf[/thrive:input] aloittaa tai lopettaa nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Solusi käyttää [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound] energianlähteenä, jos se loppuu, kuolet."
+msgstr ""
+"Solusi käyttää [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound] "
+"energianlähteenä, jos se loppuu, kuolet."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Avataksesi editorin ja lisääntyäksesi, kerää ammoniakkia (oransseja pilviä) sekä fosfaattia (purppuroita pilviä)."
+msgstr ""
+"Avataksesi editorin ja lisääntyäksesi, kerää ammoniakkia (oransseja pilviä) "
+"sekä fosfaattia (purppuroita pilviä)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Voit myös nielaista soluja, bakteereja, rautalohkareita sekä solujen kappaleita, jotka ovat sinua pienempiä painamalla [thrive:input]g_toggle_engulf[/thrive:input]:tä. Tämä lisää [thrive:compound type=\"atp\"][/thrive:compound]:n kulutusta ja hidastaa sinua. Älä unohda painaa [thrive:input]g_toggle_engulf[/thrive:input]:tä uudestaan lopettaaksesi nielemisen."
+msgstr ""
+"Voit myös nielaista soluja, bakteereja, rautalohkareita sekä solujen "
+"kappaleita, jotka ovat sinua pienempiä painamalla [thrive:"
+"input]g_toggle_engulf[/thrive:input]:tä. Tämä lisää [thrive:compound "
+"type=\"atp\"][/thrive:compound]:n kulutusta ja hidastaa sinua. Älä unohda "
+"painaa [thrive:input]g_toggle_engulf[/thrive:input]:tä uudestaan "
+"lopettaaksesi nielemisen."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulaatio kuluttaa ATP:tä, joka tarkoittaa, että mitä suurempi solusi on, sitä enemmän tarvitset mitokondrioita, metabolosomeja tai rusticyaninia (tai solulimaa, joka suorittaa glykolyysiä) välttääksesi menettämästä ATP:tä, kun olet paikallasi."
+msgstr ""
+"Osmoregulaatio kuluttaa ATP:tä, joka tarkoittaa, että mitä suurempi solusi "
+"on, sitä enemmän tarvitset mitokondrioita, metabolosomeja tai rusticyaninia "
+"(tai solulimaa, joka suorittaa glykolyysiä) välttääksesi menettämästä ATP:"
+"tä, kun olet paikallasi."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Editorissa on saatavilla monia soluelimiä, joita voit lisätä lajiisi. Nämä mahdollistavat paljon erilaisia pelityylejä."
+msgstr ""
+"Editorissa on saatavilla monia soluelimiä, joita voit lisätä lajiisi. Nämä "
+"mahdollistavat paljon erilaisia pelityylejä."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Toistaiseksi, jos populaatiosi tippuu nollaan, lajisi kuolee sukupuuttoon."
+msgstr ""
+"Toistaiseksi, jos populaatiosi tippuu nollaan, lajisi kuolee sukupuuttoon."
 
 #: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -3442,18 +3774,25 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Rikkivety voidaan muuttaa glukoosiksi kemoplastien ja kemosyntesoivien proteiinien avulla. Rauta voidaan muuttaa rusticyaniinin avulla ATP:ksi."
+msgstr ""
+"Rikkivety voidaan muuttaa glukoosiksi kemoplastien ja kemosyntesoivien "
+"proteiinien avulla. Rauta voidaan muuttaa rusticyaniinin avulla ATP:ksi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja "
+"meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen "
+"maailmankaikkeudessa.\n"
 "\n"
 "Elämä.\n"
 "\n"
-"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen "
+"universaali esivanhempi (LUCA) tällä planeetalla.\n"
 "\n"
-"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja "
+"kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja "
+"kilpailla muiden lajien kanssa."
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "MIDDLE_MOUSE"
@@ -3514,7 +3853,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
+msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] "
+"[thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus "
+"riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/"
+"thrive:compound]."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
 #, fuzzy
@@ -3534,6 +3877,7 @@ msgid "MODIFY"
 msgstr "Muokkaa"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:20
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
 msgstr "Muokkaa soluelintä"
 
@@ -3605,7 +3949,9 @@ msgstr "Kuvaus:"
 #: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+msgstr ""
+"Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun "
+"liikkumista."
 
 #: ../src/modding/ModLoader.cs:498
 #, fuzzy
@@ -3644,7 +3990,9 @@ msgstr "Modien latausvirheet"
 
 #: ../src/general/MainMenu.tscn:921
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
+msgstr ""
+"Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat "
+"sisältää lisää tietoa."
 
 #: ../src/modding/ModManager.tscn:1017
 #, fuzzy
@@ -3798,7 +4146,7 @@ msgstr "Kemosynteesi"
 
 #: ../simulation_parameters/common/gallery.json:408
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Monisoluinen muokkain"
+msgstr "Monisoluinen editori"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
@@ -3848,8 +4196,10 @@ msgstr "Mutaatiohinnan kerroin"
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
-"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei "
+"tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön "
+"muutoksia reagoidakseen niihin."
 
 #: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
 msgid "MUTATION_POINTS"
@@ -3942,11 +4292,20 @@ msgstr "Nitrogenaasi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+msgstr ""
+"Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien "
+"pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun "
+"kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. "
+"Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa "
+"osaltaan glykolyysia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
+msgstr ""
+"Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound "
+"type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu "
+"ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:"
+"compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:309
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
@@ -3959,7 +4318,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
+msgstr ""
+"Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound "
+"type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu "
+"ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja "
+"[thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
 #: ../src/general/OptionsMenu.tscn:411 ../src/general/OptionsMenu.tscn:412
 msgid "NONE"
@@ -3998,6 +4361,7 @@ msgstr "Ei tekoälyä"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
 msgid "NO_DATA_TO_SHOW"
 msgstr "Ei dataa näytettäväksi"
 
@@ -4044,6 +4408,7 @@ msgid "NUCLEUS"
 msgstr "Tuma"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4065,6 +4430,8 @@ msgstr "Num Lock"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2282
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2292
 msgid "N_A"
 msgstr "N/A"
 
@@ -4157,8 +4524,10 @@ msgstr "Laita peli tauolle"
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Opportunistiset mikrobit kilpailevat ahnaasti yhdisteistä ja yrittävät\n"
-"todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
-"Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
+"todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään "
+"heitä.\n"
+"Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita "
+"esimerkiksi ravinnon keruun yhteydessä."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
 msgid "OPPORTUNISTIC"
@@ -4251,7 +4620,9 @@ msgstr "Korvataanko aikaisempi tallennus?"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
+msgstr ""
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen "
+"lopullisesti?"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:124
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:480
@@ -4269,7 +4640,14 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
+msgstr ""
+"Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound "
+"type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu "
+"ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:"
+"compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/"
+"thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n "
+"pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta "
+"aiheuttaa vähemmän vahinkoa."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
@@ -4332,12 +4710,26 @@ msgstr "Siirrä kameraa ylöspäin"
 #: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/general/NewGameSettings.tscn:793
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/gui_common/CreditsScroll.cs:297
 msgid "PAST_DEVELOPERS"
@@ -4346,7 +4738,11 @@ msgstr "Entiset kehittäjät"
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on kuollut sukupuuttoon. Muut täyttävät sinun ekologisen lokerosi and kukoistavat, mutta sinä et. Sinut tullaan unohtamaan, epäonnistunut kokeilu evoluutiossa."
+msgstr ""
+"Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on "
+"kuollut sukupuuttoon. Muut täyttävät sinun ekologisen lokerosi and "
+"kukoistavat, mutta sinä et. Sinut tullaan unohtamaan, epäonnistunut kokeilu "
+"evoluutiossa."
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
@@ -4376,8 +4772,10 @@ msgstr "Klassinen"
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
-"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
-"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei "
+"tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön "
+"muutoksia reagoidakseen niihin."
 
 #: ../src/general/NewGameSettings.tscn:878
 #: ../src/general/NewGameSettings.tscn:879
@@ -4513,7 +4911,14 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:632
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+msgstr ""
+"Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin "
+"selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut "
+"tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
+"menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
+"ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"ravinnon lähteitä."
 
 #: ../src/general/StageBase.cs:496
 msgid "PLAYER_DIED"
@@ -4581,6 +4986,7 @@ msgid "POPULATION_IN_PATCHES"
 msgstr "populaatio alueilla:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2273
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4891,7 +5297,9 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+msgstr ""
+"Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun "
+"liikkumista."
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "ROTATE_LEFT"
@@ -4954,11 +5362,18 @@ msgstr "Ruostesyaniini"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+msgstr ""
+"Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea "
+"muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se "
+"vapauttaa energiaa, jonka solu voi hyödyntää."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"iron\"]raudan[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus vaihtelee ympäristön [thrive:compound type=\"carbondioxide\"][/thrive:compound]n ja [thrive:compound type=\"oxygen\"][/thrive:compound]n mukaan."
+msgstr ""
+"Muuntaa [thrive:compound type=\"iron\"]raudan[/thrive:compound] [thrive:"
+"compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus vaihtelee "
+"ympäristön [thrive:compound type=\"carbondioxide\"][/thrive:compound]n ja "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]n mukaan."
 
 #: ../src/general/MainMenu.tscn:916
 #, fuzzy
@@ -4988,7 +5403,9 @@ msgstr "Tallenna Peli"
 
 #: ../src/saving/SaveList.cs:242
 msgid "SAVE_DELETE_WARNING"
-msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti poistaa {0}?"
+msgstr ""
+"Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti "
+"poistaa {0}?"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5195,7 +5612,9 @@ msgstr "Sessiili"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr "Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän muuttamisen jälkeen"
+msgstr ""
+"Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän "
+"muuttamisen jälkeen"
 
 #: ../src/general/OptionsMenu.tscn:769
 msgid "SFX_VOLUME"
@@ -5243,11 +5662,15 @@ msgstr "Viestintäkeskus"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+msgstr ""
+"Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun "
+"liikkumista."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Pidä [thrive:input]g_pack_commands[/thrive:input] pohjassa avataksesi valikon, josta voit jakaa lajisi soluille komentoja."
+msgstr ""
+"Pidä [thrive:input]g_pack_commands[/thrive:input] pohjassa avataksesi "
+"valikon, josta voit jakaa lajisi soluille komentoja."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:115
 msgid "SIGNAL_COMMAND_AGGRESSION"
@@ -5303,12 +5726,21 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:"
+"compound type=\"atp\"][/thrive:compound]:ksi."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -5728,7 +6160,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
+msgstr ""
+"Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. "
+"Tuotannon nopeus riippuu ympäristön [thrive:compound "
+"type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja "
+"lämpötilasta."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:344
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
@@ -5739,12 +6175,21 @@ msgstr "Kemosynteesi"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+msgstr ""
+"Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien "
+"pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun "
+"kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. "
+"Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa "
+"osaltaan glykolyysia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
+msgstr ""
+"Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. "
+"Tuotannon nopeus riippuu ympäristön [thrive:compound "
+"type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja "
+"lämpötilasta."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -5818,7 +6263,15 @@ msgstr "Tylakoidit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+msgstr ""
+"Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta "
+"energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon "
+"energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia "
+"prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat "
+"viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus "
+"riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta "
+"valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan "
+"toteuttaa glykolyysia."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -5842,7 +6295,9 @@ msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta erikoistuen omaksi lajikseen"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista johtuen"
+msgstr ""
+"[u]{0}[/u] jakautui [u]{1}[/u]:sta uudeksi lajiksi lajin valintapaineista "
+"johtuen"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -5854,7 +6309,8 @@ msgstr "[u]{0}[/u] on kadonnut tältä alueelta"
 
 #: ../src/auto-evo/RunResults.cs:964
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} tälle alueelle"
+msgstr ""
+"Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} tälle alueelle"
 
 #: ../src/auto-evo/RunResults.cs:975
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
@@ -5953,7 +6409,14 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
+msgstr ""
+"Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound "
+"type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu "
+"ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:"
+"compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:"
+"input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot "
+"ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa "
+"kohteelle."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:180
@@ -6009,31 +6472,45 @@ msgstr "Ladataan mikrobieditoria"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Tältä paneelilta näet tulevan populaatiosi ennusteen. Auto-evo simuloi nämä populaation tunnusluvut.\n"
+"Tältä paneelilta näet tulevan populaatiosi ennusteen. Auto-evo simuloi nämä "
+"populaation tunnusluvut.\n"
 "\n"
-"Ennuste ei huomioi henkilökohtaista suoriutumistasi, joten nykyisessä ympäristössäsi tulet pärjäämään paremmin käyttäessäsi editoria.\n"
+"Ennuste ei huomioi henkilökohtaista suoriutumistasi, joten nykyisessä "
+"ympäristössäsi tulet pärjäämään paremmin käyttäessäsi editoria.\n"
 "\n"
-"Sinun kannattaa kuitenkin pyrkiä pitäämään populaatiosi kasvussa, vaikka et suoraan vaikutakaan siihen.\n"
+"Sinun kannattaa kuitenkin pyrkiä pitäämään populaatiosi kasvussa, vaikka et "
+"suoraan vaikutakaan siihen.\n"
 "\n"
-"Voit katsoa tarkempaa tietoa ennusteesta klikkaamalla ?-merkkiä paneelista. Klikkaa sitä jatkaaksesi."
+"Voit katsoa tarkempaa tietoa ennusteesta klikkaamalla ?-merkkiä paneelista. "
+"Klikkaa sitä jatkaaksesi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
+"Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä "
+"mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä "
+"käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan "
+"säästä niitä!\n"
 "\n"
-"Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi yhdestä solulima-osasta.\n"
+"Hexa(goni) ruudun keskellä kuvastaa soluasi, joka muodostuu toistaiseksi "
+"yhdestä solulima-osasta.\n"
 "\n"
-"Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
+"Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa "
+"vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit "
+"kiertää osia painamalla A tai D."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Olet nyt käynyt solun rakentamisen perusteet. Viimeistelläksesi voit vielä nimetä lajisi klikkaamalla lajin nimeä alhaalla vasemmalla, ja muokkaamalla nimeä.\n"
+"Olet nyt käynyt solun rakentamisen perusteet. Viimeistelläksesi voit vielä "
+"nimetä lajisi klikkaamalla lajin nimeä alhaalla vasemmalla, ja muokkaamalla "
+"nimeä.\n"
 "\n"
-"Tutki vapaasti muita sivuja MP-palkin alla nähdäksesi miten muuten voit vielä muovata lajisi mutaatiota.\n"
+"Tutki vapaasti muita sivuja MP-palkin alla nähdäksesi miten muuten voit "
+"vielä muovata lajisi mutaatiota.\n"
 "\n"
-"Selvitäksesi tässä raa'assa maailmassa, on sinun löydettävä varma energian lähde, sillä luonnossa esiintyvä glukoosi vähentyy nopeasti.\n"
+"Selvitäksesi tässä raa'assa maailmassa, on sinun löydettävä varma energian "
+"lähde, sillä luonnossa esiintyvä glukoosi vähentyy nopeasti.\n"
 "\n"
 "Lykkyä tykö!"
 
@@ -6042,40 +6519,54 @@ msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Tämä on ympäristökartta.\n"
 "\n"
-"Kuvakkeet esittävät erilaisia ympäristöjä, joihin solusi voi levittyä. Oikealla näkyvästä paneelista voit katsoa millaiset olosuhteet ympäristöllä valitsevat.\n"
+"Kuvakkeet esittävät erilaisia ympäristöjä, joihin solusi voi levittyä. "
+"Oikealla näkyvästä paneelista voit katsoa millaiset olosuhteet ympäristöllä "
+"valitsevat.\n"
 "\n"
-"Siirtyäksesi valitsemaasi ympäristöön (korostettu vaaleansinisellä reunalla) klikkaa Siirry-painiketta levitäksesi.\n"
+"Siirtyäksesi valitsemaasi ympäristöön (korostettu vaaleansinisellä reunalla) "
+"klikkaa Siirry-painiketta levitäksesi.\n"
 "\n"
 "Kokeile valita uusi ympäristö jatkaaksesi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Soluelimien poistaminen kuluttaa MP:tä sillä se mutaatioaskel lajillesi - paitsi silloin kun ne on tehty nykyisessä editorin sessiossa.\n"
+"Soluelimien poistaminen kuluttaa MP:tä sillä se mutaatioaskel lajillesi - "
+"paitsi silloin kun ne on tehty nykyisessä editorin sessiossa.\n"
 "\n"
-"Voit klikata oikealla hiirinapilla soluelimiä avataksesi soluelimien valikon, josta soluelimen voi poistaa.\n"
+"Voit klikata oikealla hiirinapilla soluelimiä avataksesi soluelimien "
+"valikon, josta soluelimen voi poistaa.\n"
 "\n"
-"Jos teet muutoksen, jonka haluat peruuttaa, voit tehdä sen vapaasti editorista (undo).\n"
+"Jos teet muutoksen, jonka haluat peruuttaa, voit tehdä sen vapaasti "
+"editorista (undo).\n"
 "\n"
 "Paina undo-painiketta jatkaaksesi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Valitessasi osia valikosta, huomioi avautuvat selitteet ymmärtääksesi mitä kukin osa tekee. Joistakin osista voi olla enemmän haittaa kuin hyötyä, jos niiden soveltuvuutta ei harkitse tarkoin.\n"
+"Valitessasi osia valikosta, huomioi avautuvat selitteet ymmärtääksesi mitä "
+"kukin osa tekee. Joistakin osista voi olla enemmän haittaa kuin hyötyä, jos "
+"niiden soveltuvuutta ei harkitse tarkoin.\n"
 "\n"
-"ATP tuotannon palkki oikealla kertoo kuinka paljon energiaa soluelimesi pystyvät tuottamaan suhteessa kuinka paljon ne kuluttavat yhdessä. Jos ylempi palkeista on alempaa lyhyempi, et tuota tarpeeksi energiaa.\n"
+"ATP tuotannon palkki oikealla kertoo kuinka paljon energiaa soluelimesi "
+"pystyvät tuottamaan suhteessa kuinka paljon ne kuluttavat yhdessä. Jos "
+"ylempi palkeista on alempaa lyhyempi, et tuota tarpeeksi energiaa.\n"
 "\n"
 "Paina redo-painiketta jatkaaksesi (undo-painikkeen vieressä)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"On suositeltavaa erikoistua vain yhteen tai kahteen energianlähteeseen, jotta et tarvitse montaa yhdistettä elääksesi.\n"
+"On suositeltavaa erikoistua vain yhteen tai kahteen energianlähteeseen, "
+"jotta et tarvitse montaa yhdistettä elääksesi.\n"
 "\n"
-"Kannattaa myös arvioida, onko osien lisääminen hyödyllistä. Jokainen osa käyttää lisää ATP:tä ja siten solu tarvitsee lisää yhdisteitä lisääntyäkseen.\n"
+"Kannattaa myös arvioida, onko osien lisääminen hyödyllistä. Jokainen osa "
+"käyttää lisää ATP:tä ja siten solu tarvitsee lisää yhdisteitä "
+"lisääntyäkseen.\n"
 "\n"
-"Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
+"Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata "
+"ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6090,51 +6581,66 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä "
+"erottautuaksesi niistä.\n"
 "\n"
-"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki "
+"(unbind all) painiketta."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä "
+"erottautuaksesi niistä.\n"
 "\n"
-"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki "
+"(unbind all) painiketta."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä "
+"erottautuaksesi niistä.\n"
 "\n"
-"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki "
+"(unbind all) painiketta."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
+msgstr ""
+"W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos "
+"solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:365
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä "
+"erottautuaksesi niistä.\n"
 "\n"
-"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki "
+"(unbind all) painiketta."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
-"Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
+"Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja "
+"monistautumiseen.\n"
+"Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja "
+"tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat "
+"valkoisiksi, kun ne ovat täynnä."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
+"Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä "
+"erottautuaksesi niistä.\n"
 "\n"
-"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
+"Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki "
+"(unbind all) painiketta."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_VIEW_NOW"
@@ -6237,12 +6743,26 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:886
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:882
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+msgstr ""
+"Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja "
+"muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen "
+"tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-"
+"energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä "
+"aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian "
+"tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi "
+"kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:881
 msgid "UPGRADE_NAME_NONE"
@@ -6423,7 +6943,10 @@ msgstr "OLET SELVIYTYNYT!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa maailmassa."
+msgstr ""
+"Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa "
+"pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa "
+"maailmassa."
 
 #: ../src/modding/ModUploader.tscn:294
 #, fuzzy
@@ -6438,7 +6961,9 @@ msgstr "\"{0}\" - {1}"
 #: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+msgstr ""
+"Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun "
+"liikkumista."
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
