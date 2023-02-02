@@ -1460,11 +1460,11 @@ public partial class CellEditorComponent :
                         CostMultiplier = CostMultiplier,
                     };
 
-                    var replacedHex = organelle.RotatedHexes.Select(h => editedMicrobeOrganelles.GetElementAt(hex + h))
+                    var replacedHexes = organelle.RotatedHexes.Select(h => editedMicrobeOrganelles.GetElementAt(hex + h))
                         .WhereNotNull().ToList();
 
-                    if (replacedHex.Count > 0)
-                        data.ReplacedCytoplasm = replacedHex;
+                    if (replacedHexes.Count > 0)
+                        data.ReplacedCytoplasm = replacedHexes;
 
                     action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
                         UndoOrganellePlaceAction, data);
