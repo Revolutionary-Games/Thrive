@@ -218,25 +218,27 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
         // Calculate actual cost delta by adding up all replacement refunds, and if any, the first non-replacement one
         var costDelta = 0;
-        using var combinationDataEnumerator = combinationDataEnumerable.GetEnumerator();
-        if (!combinationDataEnumerator.MoveNext())
+
+        // Get the first combination data and its type
+        EditorCombinableActionData? firstData = null;
+        ActionInterferenceMode firstDataInterferenceMode = default;
+
+        foreach (var combinationData in combinationDataEnumerable)
         {
-            return (0, null, ActionInterferenceMode.NoInterference);
+            costDelta += combinationData.Item1.Cost;
+
+            if (firstData == null)
+            {
+                firstData = combinationData.data;
+                firstDataInterferenceMode = combinationData.interferenceMode;
+            }
+
+            // Break after the first action whose interferenceMode is not ActionInterferenceMode.ReplacesOther
+            if (combinationData.interferenceMode != ActionInterferenceMode.ReplacesOther)
+                break;
         }
 
-        // Get the first combination data, which is what we'll return
-        var firstData = combinationDataEnumerator.Current;
-
-        do
-        {
-            costDelta += combinationDataEnumerator.Current.Item1.Cost;
-        }
-
-        // We first make sure the current one is replacement type, then make sure the enumerator hasn't reached an end
-        while (combinationDataEnumerator.Current.interferenceMode == ActionInterferenceMode.ReplacesOther &&
-               combinationDataEnumerator.MoveNext());
-
-        return (costDelta, firstData.data, firstData.interferenceMode);
+        return (costDelta, firstData, firstDataInterferenceMode);
     }
 
     private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)
