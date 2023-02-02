@@ -50,6 +50,7 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate>
 
     protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<OrganelleTemplate> data)
     {
-        return new OrganelleRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation);
+        return new OrganelleRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation)
+            { GotReplaced = GotReplaced };
     }
 }
