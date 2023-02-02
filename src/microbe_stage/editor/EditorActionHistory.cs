@@ -135,7 +135,12 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         // Handle adding directly the action to our history cache, this saves us from having to rebuild the cache
         if (action.Data.Any(d => d.ResetsHistory))
         {
-            History.Clear();
+            // We reset the cache here as otherwise there would be a potential problem if there exists a combined
+            // action where one part resets the history, but there's still other data after that. We could handle
+            // clearing and then adding those items to the cache here, but that is likely so rare it isn't really
+            // worth the complication to do here, so instead we just reset the cache here and will use the full rebuild
+            // logic when needed.
+            cache = null;
         }
         else
         {
