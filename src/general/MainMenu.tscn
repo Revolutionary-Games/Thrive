@@ -142,7 +142,8 @@ PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
-NewsFeedPath = NodePath("MenuContainers/ThriveFeedDisplayer")
+NewsFeedPath = NodePath("MenuContainers/FeedPositioner/ThriveFeedDisplayer")
+NewsFeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 ThanksDialogTextPath = NodePath("ThanksForBuyingDialog/VBoxContainer/ThanksText")
 PermanentlyDismissThanksDialogPath = NodePath("ThanksForBuyingDialog/VBoxContainer/CheckBox")
@@ -665,12 +666,21 @@ Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
 
-[node name="ThriveFeedDisplayer" parent="MenuContainers" instance=ExtResource( 57 )]
-anchor_left = 0.601
-margin_left = 55.72
-margin_top = 112.0
+[node name="FeedPositioner" type="MarginContainer" parent="MenuContainers"]
+anchor_left = 0.597
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 35.0
+margin_top = 125.0
 margin_right = -32.0
-margin_bottom = -124.0
+margin_bottom = -125.0
+mouse_filter = 2
+
+[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner" instance=ExtResource( 57 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 448.0
+margin_bottom = 470.0
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0

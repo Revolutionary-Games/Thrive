@@ -83,6 +83,9 @@ public class MainMenu : NodeWithInput
     public NodePath NewsFeedPath = null!;
 
     [Export]
+    public NodePath NewsFeedPositionerPath = null!;
+
+    [Export]
     public NodePath ThanksDialogPath = null!;
 
     [Export]
@@ -104,6 +107,7 @@ public class MainMenu : NodeWithInput
     private GalleryViewer galleryViewer = null!;
 
     private ThriveFeedDisplayer newsFeed = null!;
+    private Control newsFeedPositioner = null!;
 
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
@@ -262,6 +266,7 @@ public class MainMenu : NodeWithInput
         // if a menu is visible
         websiteButtonsContainer.Visible = false;
         socialMediaContainer.Visible = index != uint.MaxValue;
+        newsFeedPositioner.Visible = index != uint.MaxValue;
 
         // Allow disabling all the menus for going to the options menu
         if (index > menuArray.Count - 1 && index != uint.MaxValue)
@@ -336,6 +341,7 @@ public class MainMenu : NodeWithInput
                 ModManagerPath.Dispose();
                 GalleryViewerPath.Dispose();
                 NewsFeedPath.Dispose();
+                NewsFeedPositionerPath.Dispose();
                 ThanksDialogPath.Dispose();
                 ThanksDialogTextPath.Dispose();
                 PermanentlyDismissThanksDialogPath.Dispose();
@@ -365,6 +371,7 @@ public class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         newsFeed = GetNode<ThriveFeedDisplayer>(NewsFeedPath);
+        newsFeedPositioner = GetNode<Control>(NewsFeedPositionerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
         websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 

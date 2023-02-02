@@ -103,7 +103,12 @@ public class HtmlToBbCodeConverter
                 // out of one for some reason
                 if (!truncated && !string.IsNullOrWhiteSpace(anchorElement.Text))
                 {
+                    // We need to do our own clickable link colour setting for Godot
+                    stringBuilder.Append(Constants.CLICKABLE_TEXT_BBCODE);
+
                     stringBuilder.Append($"[url={anchorElement.Href}]{anchorElement.Text.Trim()}[/url]");
+
+                    stringBuilder.Append(Constants.CLICKABLE_TEXT_BBCODE_END);
                 }
 
                 // Anchor element children are not handled

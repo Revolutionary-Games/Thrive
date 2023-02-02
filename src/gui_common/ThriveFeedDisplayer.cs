@@ -11,17 +11,25 @@ public class ThriveFeedDisplayer : VBoxContainer
     public NodePath LoadingIndicatorPath = null!;
 
 #pragma warning disable CA2213
+    [Export]
+    public Font TitleFont = null!;
+
+    [Export]
+    public Font FooterFont = null!;
+
     private Container newsContainer = null!;
     private Control loadingIndicator = null!;
 
     private PackedScene customRichTextScene = null!;
 #pragma warning restore CA2213
 
+    private StyleBoxFlat feedItemBackground = null!;
+
     private Task<IReadOnlyCollection<ThriveNewsFeed.FeedItem>>? newsTask;
 
     private IEnumerator<ThriveNewsFeed.FeedItem>? newsEnumerator;
 
-    private bool processingFirstNewsItem;
+    private bool itemsCreated;
 
     public override void _Ready()
     {
@@ -29,6 +37,25 @@ public class ThriveFeedDisplayer : VBoxContainer
         loadingIndicator = GetNode<Control>(LoadingIndicatorPath);
 
         customRichTextScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
+
+        feedItemBackground = new StyleBoxFlat
+        {
+            BgColor = new Color(0.2f, 0.2f, 0.2f, 0.7f),
+            BorderWidthBottom = 0,
+            BorderWidthLeft = 0,
+            BorderWidthRight = 0,
+            BorderWidthTop = 0,
+
+            CornerRadiusBottomLeft = 6,
+            CornerRadiusBottomRight = 0,
+            CornerRadiusTopLeft = 6,
+            CornerRadiusTopRight = 0,
+
+            ContentMarginTop = 2,
+            ContentMarginBottom = 4,
+            ContentMarginLeft = 4,
+            ContentMarginRight = 3,
+        };
 
         // This doesn't check the returning to menu as if we have downloaded the data twice, we don't do that again
         // and if we should be hidden we'll need the logic to run to hide ourselves anyway
@@ -53,41 +80,64 @@ public class ThriveFeedDisplayer : VBoxContainer
                     continue;
                 }
 
-                var itemContainer = new VBoxContainer();
+                var itemContainer = new PanelContainer();
 
-                if (processingFirstNewsItem)
-                    itemContainer.MarginTop = 10;
+                // Customize the feed item background style to be less visible to not make the main menu look too busy
+                itemContainer.AddStyleboxOverride("panel", feedItemBackground);
 
-                processingFirstNewsItem = false;
+                var itemContentContainer = new VBoxContainer();
+                itemContainer.AddChild(itemContentContainer);
 
-                // TODO: big font
-                // TODO: make into a clickable button
-                var title = new Label
+                string titleText;
+
+                if (feedItem.ReadLink != null)
                 {
-                    Text = feedItem.Title,
-                };
+                    titleText = $"{Constants.CLICKABLE_TEXT_BBCODE}" +
+                        $"[url={feedItem.ReadLink}]{feedItem.Title}[/url]{Constants.CLICKABLE_TEXT_BBCODE_END}";
+                }
+                else
+                {
+                    titleText = feedItem.Title;
+                }
 
-                // feedItem.ReadLink
+                // This uses rich text purely to be clickable
+                var title = customRichTextScene.Instance<CustomRichTextLabel>();
 
-                itemContainer.AddChild(title);
+                // We don't generate custom bbcode when converting html so we use the simpler form here
+                // but we need to use the custom rich text label to ensure the links are clickable
+                title.BbcodeText = titleText;
+
+                // Big font for titles
+                title.AddFontOverride("normal_font", TitleFont);
+
+                itemContentContainer.AddChild(title);
 
                 var textDisplayer = customRichTextScene.Instance<CustomRichTextLabel>();
 
-                textDisplayer.ExtendedBbcode = feedItem.ContentBbCode;
+                // Make the feed look nicer with less repeating content by stripping the last part of the text
+                var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");
 
-                itemContainer.AddChild(textDisplayer);
+                textDisplayer.BbcodeText = content;
 
-                if (!string.IsNullOrWhiteSpace(feedItem.FooterLine))
+                itemContentContainer.AddChild(textDisplayer);
+
+                var footerText = feedItem.GetFooterText();
+
+                if (!string.IsNullOrWhiteSpace(footerText))
                 {
-                    var footerText = new Label
+                    var footerLabel = new Label
                     {
-                        Text = feedItem.FooterLine,
+                        Text = footerText,
                     };
 
-                    itemContainer.AddChild(footerText);
+                    // Small font for footers
+                    footerLabel.AddFontOverride("font", FooterFont);
+
+                    itemContentContainer.AddChild(footerLabel);
                 }
 
                 newsContainer.AddChild(itemContainer);
+                itemsCreated = true;
 
                 return;
             }
@@ -110,7 +160,6 @@ public class ThriveFeedDisplayer : VBoxContainer
 
         newsContainer.QueueFreeChildren();
         loadingIndicator.Visible = false;
-        processingFirstNewsItem = true;
     }
 
     public override void _Notification(int what)
@@ -121,22 +170,30 @@ public class ThriveFeedDisplayer : VBoxContainer
         {
             // Rebuild the displayed data if we have data currently
             // As the data is cached by the fetcher, we can very cheaply just start the fetch task again
-            if (newsTask == null)
-                CheckStartFetchNews();
+            // TODO: would be nice to only recreate the data once the user is done picking their language and exits
+            // the menu
+            if (itemsCreated)
+            {
+                CheckStartFetchNews(true);
+            }
         }
     }
 
-    public void CheckStartFetchNews()
+    public void CheckStartFetchNews(bool redoIfReady = false)
     {
         if (Settings.Instance.ThriveNewsFeedEnabled)
         {
-            Visible = true;
+            if (!redoIfReady && itemsCreated)
+                return;
 
             if (newsTask != null)
                 return;
 
+            Visible = true;
+
             newsTask = ThriveNewsFeed.GetFeedContents();
             loadingIndicator.Visible = true;
+            itemsCreated = false;
         }
         else
         {
@@ -153,6 +210,7 @@ public class ThriveFeedDisplayer : VBoxContainer
             {
                 NewsContainerPath.Dispose();
                 LoadingIndicatorPath.Dispose();
+                feedItemBackground.Dispose();
             }
 
             newsEnumerator?.Dispose();

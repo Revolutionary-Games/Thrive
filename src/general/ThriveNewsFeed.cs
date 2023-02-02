@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -92,7 +93,7 @@ public static class ThriveNewsFeed
         GD.PrintErr($"Fetching Thrive news feed failed due to: {error}");
 
         return new FeedItem(TranslationServer.Translate("ERROR_FETCHING_NEWS"), null,
-            TranslationServer.Translate("ERROR_FETCHING_EXPLANATION").FormatSafe(error), string.Empty);
+            TranslationServer.Translate("ERROR_FETCHING_EXPLANATION").FormatSafe(error), null);
     }
 
     private static IEnumerable<ExtractedFeedItem> ExtractFeedItems(XDocument document)
@@ -155,24 +156,13 @@ public static class ThriveNewsFeed
 
         var converter = new HtmlToBbCodeConverter();
 
-        // TODO: remove
-        results.Add(CreateErrorItem("Test error"));
-
         foreach (var item in items)
         {
-            var footer = string.Empty;
-
-            if (item.PublishedAt != null)
-            {
-                footer = TranslationServer.Translate("FEED_ITEM_PUBLISHED_AT")
-                    .FormatSafe(item.PublishedAt.Value.ToLocalTime().ToLongTimeString());
-            }
-
             // Special handling for items that don't have a summary for some reason
             if (string.IsNullOrWhiteSpace(item.Summary))
             {
                 results.Add(new FeedItem(item.Title, item.Link,
-                    TranslationServer.Translate("FEED_ITEM_MISSING_CONTENT"), footer));
+                    TranslationServer.Translate("FEED_ITEM_MISSING_CONTENT"), item.PublishedAt));
 
                 continue;
             }
@@ -182,21 +172,27 @@ public static class ThriveNewsFeed
 
             try
             {
-                bbCode = converter.Convert(item.Summary!, out truncated);
+                bbCode = converter.Convert(item.Summary!, out truncated).TrimEnd();
             }
             catch (Exception e)
             {
                 GD.PrintErr($"Failed to parse content of feed item ({item.ID}): {e}");
 
                 results.Add(new FeedItem(item.Title, item.Link,
-                    TranslationServer.Translate("FEED_ITEM_CONTENT_PARSING_FAILED"), footer));
+                    TranslationServer.Translate("FEED_ITEM_CONTENT_PARSING_FAILED"), item.PublishedAt));
                 continue;
             }
 
-            if (truncated)
-                footer = TranslationServer.Translate("FEED_ITEM_TRUNCATED_NOTICE").FormatSafe(footer);
+            // In case all the HTML didn't result in any displayable text
+            if (string.IsNullOrWhiteSpace(bbCode))
+            {
+                results.Add(new FeedItem(item.Title, item.Link,
+                    TranslationServer.Translate("FEED_ITEM_MISSING_CONTENT"), item.PublishedAt));
 
-            results.Add(new FeedItem(item.Title, item.Link, bbCode, footer));
+                continue;
+            }
+
+            results.Add(new FeedItem(item.Title, item.Link, bbCode, item.PublishedAt, truncated));
         }
 
         return results;
@@ -204,18 +200,40 @@ public static class ThriveNewsFeed
 
     public class FeedItem
     {
-        public FeedItem(string title, string? readLink, string contentBbCode, string footerLine)
+        public FeedItem(string title, string? readLink, string contentBbCode, DateTime? publishedAt,
+            bool truncated = false)
         {
             Title = title;
             ReadLink = readLink;
             ContentBbCode = contentBbCode;
-            FooterLine = footerLine;
+            PublishedAt = publishedAt;
+            Truncated = truncated;
         }
 
         public string Title { get; }
         public string? ReadLink { get; }
         public string ContentBbCode { get; }
-        public string FooterLine { get; }
+
+        public bool Truncated { get; }
+        private DateTime? PublishedAt { get; }
+
+        public string GetFooterText()
+        {
+            string footer = string.Empty;
+
+            if (PublishedAt != null)
+            {
+                footer = TranslationServer.Translate("FEED_ITEM_PUBLISHED_AT")
+                    .FormatSafe(PublishedAt.Value.ToLocalTime().ToString("g", CultureInfo.CurrentCulture));
+            }
+
+            if (Truncated)
+            {
+                return TranslationServer.Translate("FEED_ITEM_TRUNCATED_NOTICE").FormatSafe(footer);
+            }
+
+            return footer;
+        }
     }
 
     private class ExtractedFeedItem

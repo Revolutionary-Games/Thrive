@@ -1137,6 +1137,9 @@ public static class Constants
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
 
+    public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
+    public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -1189,6 +1192,9 @@ public static class Constants
     };
 
     public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
+
+    public static readonly Regex NewsFeedRegexDeleteContent =
+        new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
