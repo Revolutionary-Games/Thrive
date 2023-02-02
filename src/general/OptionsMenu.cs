@@ -273,6 +273,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath CustomUsernamePath = null!;
 
     [Export]
+    public NodePath WebFeedsEnabledPath = null!;
+
+    [Export]
     public NodePath DismissedNoticeCountPath = null!;
 
     [Export]
@@ -392,6 +395,7 @@ public class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves = null!;
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
+    private CustomCheckBox webFeedsEnabled = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
     private Label commitLabel = null!;
@@ -549,6 +553,7 @@ public class OptionsMenu : ControlWithInput
         tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
+        webFeedsEnabled = GetNode<CustomCheckBox>(WebFeedsEnabledPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
         commitLabel = GetNode<Label>(CommitLabelPath);
@@ -732,6 +737,7 @@ public class OptionsMenu : ControlWithInput
             settings.CustomUsername :
             Settings.EnvironmentUserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+        webFeedsEnabled.Pressed = settings.ThriveNewsFeedEnabled;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
 
@@ -856,6 +862,7 @@ public class OptionsMenu : ControlWithInput
                 ErrorAcceptBoxPath.Dispose();
                 CustomUsernameEnabledPath.Dispose();
                 CustomUsernamePath.Dispose();
+                WebFeedsEnabledPath.Dispose();
                 DismissedNoticeCountPath.Dispose();
                 JSONDebugModePath.Dispose();
                 CommitLabelPath.Dispose();
@@ -2174,6 +2181,13 @@ public class OptionsMenu : ControlWithInput
         {
             Settings.Instance.CustomUsername.Value = text;
         }
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnWebFeedsEnabledToggled(bool pressed)
+    {
+        Settings.Instance.ThriveNewsFeedEnabled.Value = pressed;
 
         UpdateResetSaveButtonState();
     }
