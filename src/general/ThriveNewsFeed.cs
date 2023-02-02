@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
 using Godot;
 
 /// <summary>
@@ -91,7 +87,6 @@ public static class ThriveNewsFeed
         return client;
     }
 
-    // TODO: test displaying this
     private static FeedItem CreateErrorItem(string error)
     {
         GD.PrintErr($"Fetching Thrive news feed failed due to: {error}");
@@ -127,7 +122,7 @@ public static class ThriveNewsFeed
                 link = linkElement.Attribute("href")?.Value ?? linkElement.Value;
             }
 
-            // TODO: link should be sanitized against bbcode
+            link = HtmlToBbCodeConverter.SanitizeUrlForBbCode(link);
 
             var title = element.Descendants().FirstOrDefault(p => p.Name.LocalName == "title")?.Value ??
                 "Unknown title";
@@ -156,22 +151,16 @@ public static class ThriveNewsFeed
 
     private static List<FeedItem> ParseHtmlItemsToBbCode(IEnumerable<ExtractedFeedItem> items)
     {
-        var htmlParser = new HtmlParser(new HtmlParserOptions
-        {
-            IsStrictMode = false,
-        });
-
-        var dummyDom = htmlParser.ParseDocument(string.Empty).DocumentElement;
-
-        var stringBuilder = new StringBuilder();
-
         var results = new List<FeedItem>();
+
+        var converter = new HtmlToBbCodeConverter();
+
+        // TODO: remove
+        results.Add(CreateErrorItem("Test error"));
 
         foreach (var item in items)
         {
-            stringBuilder.Clear();
-
-            string footer = string.Empty;
+            var footer = string.Empty;
 
             if (item.PublishedAt != null)
             {
@@ -188,16 +177,12 @@ public static class ThriveNewsFeed
                 continue;
             }
 
-            bool truncated = false;
+            bool truncated;
+            string bbCode;
 
             try
             {
-                var document = htmlParser.ParseFragment(item.Summary!, dummyDom);
-
-                foreach (var topLevelNode in document)
-                {
-                    HandleNode(topLevelNode, stringBuilder, ref truncated);
-                }
+                bbCode = converter.Convert(item.Summary!, out truncated);
             }
             catch (Exception e)
             {
@@ -211,232 +196,10 @@ public static class ThriveNewsFeed
             if (truncated)
                 footer = TranslationServer.Translate("FEED_ITEM_TRUNCATED_NOTICE").FormatSafe(footer);
 
-            results.Add(new FeedItem(item.Title, item.Link, stringBuilder.ToString(), footer));
+            results.Add(new FeedItem(item.Title, item.Link, bbCode, footer));
         }
 
         return results;
-    }
-
-    private static void HandleNode(INode node, StringBuilder stringBuilder, ref bool truncated)
-    {
-        // TODO: escaping Bbcode tags that are present in the text already
-        switch (node)
-        {
-            case IText text:
-            {
-                if (!truncated)
-                {
-                    var textToAdd = text.Data;
-
-                    if (stringBuilder.Length < 1)
-                    {
-                        textToAdd = textToAdd.TrimStart();
-                    }
-
-                    if (stringBuilder.Length + textToAdd.Length >= Constants.MAX_NEWS_FEED_ITEM_LENGTH)
-                    {
-                        textToAdd = textToAdd.Substring(0, Constants.MAX_NEWS_FEED_ITEM_LENGTH - stringBuilder.Length);
-                        truncated = true;
-                    }
-
-                    // Avoid a bunch of useless whitespace
-                    if (string.IsNullOrWhiteSpace(textToAdd))
-                    {
-                        if (stringBuilder.Length > 0)
-                        {
-                            var newLines = textToAdd.Count(c => c == '\n');
-                            if (newLines > 0)
-                            {
-                                // TODO:
-                                // if (CountEndingCharactersMatching('\n') < 3)
-                                {
-                                    stringBuilder.Append('\n');
-                                }
-                            }
-                            else
-                            {
-                                // AddLastTextIfDoesNotEndWithAlready(" ");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        stringBuilder.Append(textToAdd);
-                    }
-                }
-
-                break;
-            }
-
-            case IHtmlAnchorElement anchorElement:
-            {
-                if (!truncated)
-                {
-                    stringBuilder.Append($"[url={anchorElement.Href}]{anchorElement.Text}[/url]");
-                }
-
-                // Anchor element children are not handled
-                return;
-            }
-        }
-
-        // int length = Constants.MAX_NEWS_FEED_ITEM_LENGTH;
-
-        if (node.HasChildNodes)
-        {
-            foreach (var child in node.ChildNodes)
-            {
-                HandleNode(child, stringBuilder, ref truncated);
-            }
-        }
-
-        switch (node)
-        {
-            case IHtmlParagraphElement or IHtmlHeadingElement or IHtmlBreakRowElement:
-            {
-                // TODO: add the AddLastTextIfDoesNotEndWIthAlready
-                if (!truncated)
-                    stringBuilder.Append("\n\n");
-                break;
-            }
-        }
-
-        /*
-                    case IHtmlUnorderedListElement or IHtmlOrderedListElement:
-                        // These are handled in the below case
-                        break;
-
-                    case IHtmlListItemElement:
-                    {
-                        AddLastTextIfDoesNotEndWithAlready("\n");
-                        stringBuilder.Append("- ");
-                        break;
-                    }
-
-                    case IHtmlHrElement:
-                    {
-                        AddLastTextIfDoesNotEndWithAlready("\n");
-                        stringBuilder.Append("---\n");
-                        break;
-                    }
-
-                    case IHtmlParagraphElement or IHtmlHeadingElement or IHtmlBreakRowElement:
-                    {
-                        if (PendingText)
-                        {
-                            AddLastTextIfDoesNotEndWithAlready("\n\n");
-                        }
-
-                        break;
-                    }
-
-                    case IHtmlQuoteElement:
-                    {
-                        AddLastTextIfDoesNotEndWithAlready("> ");
-
-                        break;
-                    }
-
-                    case IHtmlSpanElement or IHtmlDivElement:
-                    {
-                        if (PendingText)
-                            AddLastTextIfDoesNotEndWithAlready(" ");
-
-                        break;
-                    }
-
-                    case IHtmlInlineFrameElement iFrame:
-                    {
-                        FlushTextIfPending();
-                        var match = LauncherConstants.YoutubeURLRegex.Match(iFrame.Source ?? string.Empty);
-
-                        if (match.Success)
-                        {
-                            FinishCurrentItem();
-
-                            currentItem = new Link(match.Groups[1].Value);
-                        }
-                        else
-                        {
-                            logger.LogDebug("Removing iframe to: {Source}", iFrame.Source);
-                        }
-
-                        break;
-                    }
-
-                    case IHtmlAnchorElement aElement:
-                    {
-                        HandleAElement(aElement, ref seenLength, length);
-                        break;
-                    }
-
-                    case IHtmlImageElement:
-                    {
-                        // TODO: image support
-                        truncated = true;
-                        break;
-                    }
-
-                    case ISvgElement:
-                    {
-                        // TODO: svg support
-                        truncated = true;
-                        break;
-                    }
-
-                    default:
-                    {
-                        var name = node.NodeName.ToLowerInvariant();
-
-                        if (name == TagNames.Dd || name ==
-                            TagNames.Dt || name ==
-                            TagNames.B || name ==
-                            TagNames.Big || name ==
-                            TagNames.Strike || name ==
-                            TagNames.Code || name ==
-                            TagNames.Em || name ==
-                            TagNames.I || name ==
-                            TagNames.S || name ==
-                            TagNames.Small || name ==
-                            TagNames.Strong || name ==
-                            TagNames.U || name ==
-                            TagNames.Tt || name ==
-                            TagNames.Pre || name ==
-                            TagNames.NoBr)
-                        {
-                            // TODO: implement text styling
-                            continue;
-                        }
-
-                        if (name is "aside" or "article")
-                        {
-                            if (!string.IsNullOrEmpty(AsideStart))
-                            {
-                                if (PendingText)
-                                    AddLastTextIfDoesNotEndWithAlready("\n\n");
-
-                                stringBuilder.Append(AsideStart);
-                            }
-
-                            continue;
-                        }
-
-                        if (name == TagNames.Header)
-                        {
-                            // TODO: better handling for this
-                            AddLastTextIfDoesNotEndWithAlready("# ");
-                            continue;
-                        }
-
-                        // Unknown node, so we are losing info here
-                        truncated = true;
-                        FlushTextIfPending();
-
-                        logger.LogDebug("Not parsing unknown HTML in feed: {Node}", node);
-                        break;
-                    }
-         *
-         */
     }
 
     public class FeedItem

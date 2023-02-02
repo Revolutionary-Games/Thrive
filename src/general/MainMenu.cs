@@ -80,6 +80,9 @@ public class MainMenu : NodeWithInput
     public NodePath GalleryViewerPath = null!;
 
     [Export]
+    public NodePath NewsFeedPath = null!;
+
+    [Export]
     public NodePath ThanksDialogPath = null!;
 
     [Export]
@@ -99,6 +102,8 @@ public class MainMenu : NodeWithInput
     private Thriveopedia thriveopedia = null!;
     private ModManager modManager = null!;
     private GalleryViewer galleryViewer = null!;
+
+    private ThriveFeedDisplayer newsFeed = null!;
 
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
@@ -179,13 +184,6 @@ public class MainMenu : NodeWithInput
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
-
-        if (!IsReturningToMenu && Settings.Instance.ThriveNewsFeedEnabled.Value)
-        {
-            // Start feed fetch here as early as possible to not make the user wait a long time after the menu is
-            // visible to see it
-            ThriveNewsFeed.GetFeedContents();
-        }
     }
 
     public override void _Process(float delta)
@@ -337,6 +335,7 @@ public class MainMenu : NodeWithInput
                 StoreLoggedInDisplayPath.Dispose();
                 ModManagerPath.Dispose();
                 GalleryViewerPath.Dispose();
+                NewsFeedPath.Dispose();
                 ThanksDialogPath.Dispose();
                 ThanksDialogTextPath.Dispose();
                 PermanentlyDismissThanksDialogPath.Dispose();
@@ -365,6 +364,7 @@ public class MainMenu : NodeWithInput
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
+        newsFeed = GetNode<ThriveFeedDisplayer>(NewsFeedPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
         websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 
@@ -679,6 +679,9 @@ public class MainMenu : NodeWithInput
     {
         options.Visible = false;
         SetCurrentMenu(0, false);
+
+        // In case news settings are changed, update that state
+        newsFeed.CheckStartFetchNews();
     }
 
     private void OnReturnFromNewGameSettings()

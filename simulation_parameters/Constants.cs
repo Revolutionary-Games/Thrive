@@ -1135,7 +1135,7 @@ public static class Constants
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
-    public const int MAX_NEWS_FEED_ITEM_LENGTH = 500;
+    public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

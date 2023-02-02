@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -56,6 +56,7 @@
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=54]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=55]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
+[ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=57]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -141,6 +142,7 @@ PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
+NewsFeedPath = NodePath("MenuContainers/ThriveFeedDisplayer")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 ThanksDialogTextPath = NodePath("ThanksForBuyingDialog/VBoxContainer/ThanksText")
 PermanentlyDismissThanksDialogPath = NodePath("ThanksForBuyingDialog/VBoxContainer/CheckBox")
@@ -662,6 +664,13 @@ SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
+
+[node name="ThriveFeedDisplayer" parent="MenuContainers" instance=ExtResource( 57 )]
+anchor_left = 0.601
+margin_left = 55.72
+margin_top = 112.0
+margin_right = -32.0
+margin_bottom = -124.0
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
