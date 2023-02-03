@@ -1191,7 +1191,9 @@ public static class Constants
         "toggle_FPS",
     };
 
-    public static readonly Uri MainSiteFeedURL = new("https://thrivefeeds.b-cdn.net/feed.rss");
+    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
+    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
+    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
 
     public static readonly Regex NewsFeedRegexDeleteContent =
         new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");
