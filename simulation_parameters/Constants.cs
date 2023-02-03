@@ -945,8 +945,6 @@ public static class Constants
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
-    public const int MAX_PATH_LENGTH = 1024;
-
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
@@ -1136,6 +1134,12 @@ public static class Constants
 
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
+    public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
+    public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
+
+    public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
+    public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -1186,6 +1190,13 @@ public static class Constants
         "screenshot",
         "toggle_FPS",
     };
+
+    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
+    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
+    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+
+    public static readonly Regex NewsFeedRegexDeleteContent =
+        new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
