@@ -1455,14 +1455,16 @@ public partial class CellEditorComponent :
                 }
                 else
                 {
-                    var replacedHex = editedMicrobeOrganelles.GetElementAt(hex);
                     var data = new OrganellePlacementActionData(organelle, hex, orientation)
                     {
                         CostMultiplier = CostMultiplier,
                     };
 
-                    if (replacedHex != null)
-                        data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
+                    var replacedHexes = organelle.RotatedHexes
+                        .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h)).WhereNotNull().ToList();
+
+                    if (replacedHexes.Count > 0)
+                        data.ReplacedCytoplasm = replacedHexes;
 
                     action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
                         UndoOrganellePlaceAction, data);
