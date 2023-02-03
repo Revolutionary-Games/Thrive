@@ -670,17 +670,17 @@ AlwaysOverrideFocus = true
 anchor_left = 0.597
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 35.0
-margin_top = 125.0
-margin_right = -32.0
+margin_left = 40.0
+margin_top = 195.0
+margin_right = -30.0
 margin_bottom = -125.0
 mouse_filter = 2
 
 [node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner" instance=ExtResource( 57 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 448.0
-margin_bottom = 470.0
+margin_right = 445.0
+margin_bottom = 400.0
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
