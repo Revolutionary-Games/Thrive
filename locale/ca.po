@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-02 15:23+0200\n"
+"POT-Creation-Date: 2023-02-03 10:53+0200\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1671,15 +1671,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2417
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2419
 msgid "ENERGY_SOURCES"
 msgstr "Fonts d'energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
@@ -1733,12 +1733,12 @@ msgstr "Error creant l'arxiu d'informació del mod"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: No s'ha pogut guardar la nova configuració."
 
-#: ../src/general/ThriveNewsFeed.cs:96
+#: ../src/general/ThriveNewsFeed.cs:97
 #, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
 msgstr "(secrets aleatòriament generats al joc)"
 
-#: ../src/general/ThriveNewsFeed.cs:95
+#: ../src/general/ThriveNewsFeed.cs:96
 #, fuzzy
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Error creant l'arxiu d'informació del mod"
@@ -1891,12 +1891,12 @@ msgstr "Trucs activats"
 msgid "FEBRUARY"
 msgstr "Febrer"
 
-#: ../src/general/ThriveNewsFeed.cs:182
+#: ../src/general/ThriveNewsFeed.cs:183
 #, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
 msgstr "Error en la inicialització de la llibreria de client d'Steam"
 
-#: ../src/general/ThriveNewsFeed.cs:165 ../src/general/ThriveNewsFeed.cs:190
+#: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
 #, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
 msgstr ""
@@ -1918,11 +1918,11 @@ msgstr ""
 "Temps de CPU Total:\n"
 "{18}"
 
-#: ../src/general/ThriveNewsFeed.cs:226
+#: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr ""
 
-#: ../src/general/ThriveNewsFeed.cs:232
+#: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
@@ -2008,7 +2008,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Cadena Alimentària o Tròfica"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2423
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (rendiment: {2}) energia total disponible: {3} (rendiment total: {4})"
 
@@ -3938,7 +3938,7 @@ msgid "NO_AI"
 msgstr "No IA"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2438
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2440
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -4003,8 +4003,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2296
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2306
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2298
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2308
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4512,7 +4512,7 @@ msgstr "població:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "població a les zones:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2287
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
