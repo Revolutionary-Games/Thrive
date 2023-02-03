@@ -187,4 +187,38 @@ public static class StringUtils
 
         return result.ToString();
     }
+
+    /// <summary>
+    // utility function to get the correct text for the ATP label, taking
+    // a number as an input. If greater than 100, it should use F0, otherwise
+    // it should use F1. Above 1000 it should use F0 and add a K.
+    /// </summary>
+    /// <param name="value">The value to format</param>
+    /// <returns>The formatted string</returns>
+    public static string ThreeDigitFormat(double value)
+    {
+        if (value >= 1000)
+            return (value / 1000).ToString("F1", CultureInfo.CurrentCulture) + "K";
+        else if (value >= 100)
+            return value.ToString("F0", CultureInfo.CurrentCulture);
+        else
+            return value.ToString("F1", CultureInfo.CurrentCulture);
+    }
+
+    /// <summary> Implements <see cref="ThreeDigitFormat(double)"/> for floats </summary>
+    public static string ThreeDigitFormat(float value)
+    {
+        return ThreeDigitFormat((double)value);
+    }
+
+    /// <summary>
+    /// Formats two numbers separated by a slash
+    /// </summary>
+    /// <param name="v1">The first number (numerator)</param>
+    /// <param name="v2">The second number (denominator)</param>
+    /// <returns>The formatted string</returns>
+    public static string SlashSeparatedNumbersFormat(double v1, double v2)
+    {
+        return ThreeDigitFormat(v1) + " / " + ThreeDigitFormat(v2);
+    }
 }
