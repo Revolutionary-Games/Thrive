@@ -145,8 +145,10 @@
     <Compile Include="src\general\AssetType.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
     <Compile Include="src\general\DictionaryWithFallback.cs" />
+    <Compile Include="src\general\HtmlToBbCodeConverter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
+    <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="src\gui_common\SpeciesDetailsPanel.cs" />
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
+    <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
     <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
@@ -609,8 +612,14 @@
     <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AngleSharp">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
