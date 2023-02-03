@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-02 15:23+0200\n"
-"PO-Revision-Date: 2023-01-30 07:23+0000\n"
+"POT-Creation-Date: 2023-01-31 14:35+0200\n"
+"PO-Revision-Date: 2023-02-02 07:30+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -1111,7 +1111,7 @@ msgstr "Oluşturuluyor..."
 
 #: ../src/saving/InProgressLoad.cs:104
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr "Kayıttan objeler oluşturuluyor"
+msgstr "Kayıttan nesneler oluşturuluyor"
 
 #: ../src/general/MainMenu.tscn:318
 msgid "CREDITS"
@@ -1796,7 +1796,7 @@ msgstr "Thrive'ın mevcut sürümünden derlenen tam kod işlemesi"
 
 #: ../src/saving/InProgressLoad.cs:168
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "Yüklenen objeleri işlerken bir sorun oluştu"
+msgstr "Yüklenen nesneleri işlerken bir sorun oluştu"
 
 #: ../src/saving/InProgressLoad.cs:113
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -3072,7 +3072,7 @@ msgstr "Media Stop"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
 #: ../src/microbe_stage/editor/TimelineTab.cs:232
 msgid "MEGA_YEARS"
-msgstr "Myö"
+msgstr "M.Y."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:519
 msgid "MEMBRANE"
@@ -4534,7 +4534,7 @@ msgstr "önceki:"
 
 #: ../src/saving/InProgressLoad.cs:153
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "Yüklenen objeler işleniyor"
+msgstr "Yüklenen nesneler işleniyor"
 
 #: ../src/gui_common/ChemicalEquation.cs:323
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
@@ -6104,21 +6104,19 @@ msgstr "Adsız"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:885
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "Çeken Sil"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:886
-#, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Sil tüyleri kamçıya benzer ancak, yönlü itiş kuvveti sağlamak yerine, hücrelerin dönmesi için dönme kuvveti sağlar."
+msgstr "Yutma modunda ([thrive:input]g_toggle_engulf[/thrive:input]), bu sil türü suda girdaplara yol açarak yakınlardaki nesneleri içine çeker. Av yakalamak için kullanışlıdır."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:882
-#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "Lipaz, hücrenin çoğu türde hücre zarını parçalamasını sağlar. Hücren zaten lizozom olmadan da bu enzimlerin bazılarını üretir. Ancak bu türü seçerek onun etkisini arttırırsın."
+msgstr "Varsayılan yükseltilmemiş durum"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:881
 msgid "UPGRADE_NAME_NONE"
-msgstr ""
+msgstr "Yükseltme Yok"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
