@@ -81,9 +81,11 @@ public static class StringUtils
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>
-    ///   Only handles a single whitespace ( ) and not tabs, multiple spaces, etc. For quoted
-    ///   substrings handling, this only considers double quotes (") and not apostrophes (').
-    ///   If there is no closing quote after an opening quote, the rest of string is considered within quotes.
+    ///  <para>
+    ///     Only handles a single whitespace ( ) and not tabs, multiple spaces, etc. For quoted
+    ///     substrings handling, this only considers double quotes (") and not apostrophes (').
+    ///     If there is no closing quote after an opening quote, the rest of string is considered within quotes.
+    ///   </para>
     /// </remarks>
     /// <param name="input">String to split.</param>
     /// <param name="ignoreWithinQuotes">Ignore whitespace within quotation marks.</param>
@@ -192,18 +194,21 @@ public static class StringUtils
     ///   Convert a value in a string with up to 3 digits.
     /// </summary>
     /// <remarks>
-    ///   If greater than 100, it should use F0, otherwise it should use F1.
-    ///   Above 1000 it should use the number formatting which uses K for
-    ///   thousands, M for millions etc.
+    ///   <para>
+    ///     If greater than 100, it should use F0, otherwise it should use F1.
+    ///     Above 1000 it should use the number formatting which uses K for
+    ///     thousands, M for millions etc. It can handle negative numbers
+    ///   </para>
     /// </remarks>
     /// <param name="value">The value to format</param>
     /// <returns>The formatted string</returns>
     public static string ThreeDigitFormat(double value)
     {
-        if (value >= 1000)
+        double absoluteValue = Math.Abs(value);
+        if (absoluteValue >= 1000)
             return FormatNumber(value);
 
-        if (value >= 100)
+        if (absoluteValue >= 100)
             return value.ToString("F0", CultureInfo.CurrentCulture);
 
         return value.ToString("F1", CultureInfo.CurrentCulture);
@@ -213,11 +218,11 @@ public static class StringUtils
     ///   Formats two numbers separated by a slash. The numbers will have
     ///   up to 3 digits each.
     /// </summary>
-    /// <param name="v1">The first number (numerator)</param>
-    /// <param name="v2">The second number (denominator)</param>
+    /// <param name="numerator">The first number (numerator)</param>
+    /// <param name="denominator">The second number (denominator)</param>
     /// <returns>The formatted string</returns>
-    public static string SlashSeparatedNumbersFormat(double v1, double v2)
+    public static string SlashSeparatedNumbersFormat(double numerator, double denominator)
     {
-        return ThreeDigitFormat(v1) + " / " + ThreeDigitFormat(v2);
+        return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
     }
 }
