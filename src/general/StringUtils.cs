@@ -189,30 +189,29 @@ public static class StringUtils
     }
 
     /// <summary>
-    // utility function to get the correct text for the ATP label, taking
-    // a number as an input. If greater than 100, it should use F0, otherwise
-    // it should use F1. Above 1000 it should use F0 and add a K.
+    ///   Convert a value in a string with up to 3 digits.
     /// </summary>
+    /// <remarks>
+    ///   If greater than 100, it should use F0, otherwise it should use F1.
+    ///   Above 1000 it should use the number formatting which uses K for
+    ///   thousands, M for millions etc.
+    /// </remarks>
     /// <param name="value">The value to format</param>
     /// <returns>The formatted string</returns>
     public static string ThreeDigitFormat(double value)
     {
         if (value >= 1000)
-            return (value / 1000).ToString("F1", CultureInfo.CurrentCulture) + "K";
-        else if (value >= 100)
-            return value.ToString("F0", CultureInfo.CurrentCulture);
-        else
-            return value.ToString("F1", CultureInfo.CurrentCulture);
-    }
+            return FormatNumber(value);
 
-    /// <summary> Implements <see cref="ThreeDigitFormat(double)"/> for floats </summary>
-    public static string ThreeDigitFormat(float value)
-    {
-        return ThreeDigitFormat((double)value);
+        if (value >= 100)
+            return value.ToString("F0", CultureInfo.CurrentCulture);
+
+        return value.ToString("F1", CultureInfo.CurrentCulture);
     }
 
     /// <summary>
-    /// Formats two numbers separated by a slash
+    ///   Formats two numbers separated by a slash. The numbers will have
+    ///   up to 3 digits each.
     /// </summary>
     /// <param name="v1">The first number (numerator)</param>
     /// <param name="v2">The second number (denominator)</param>

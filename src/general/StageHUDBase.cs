@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -1049,31 +1048,38 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         GUICommon.SmoothlyUpdateBar(glucoseBar, compounds.GetCompoundAmount(glucose), delta);
-        glucoseBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(glucoseBar.Value, glucoseBar.MaxValue);
+        glucoseBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(glucoseBar.Value, glucoseBar.MaxValue);
 
         ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
         GUICommon.SmoothlyUpdateBar(ammoniaBar, compounds.GetCompoundAmount(ammonia), delta);
-        ammoniaBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(ammoniaBar.Value, ammoniaBar.MaxValue);
+        ammoniaBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(ammoniaBar.Value, ammoniaBar.MaxValue);
 
         phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
         GUICommon.SmoothlyUpdateBar(phosphateBar, compounds.GetCompoundAmount(phosphates), delta);
-        phosphateBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(phosphateBar.Value, phosphateBar.MaxValue);
+        phosphateBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(phosphateBar.Value, phosphateBar.MaxValue);
 
         hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
         GUICommon.SmoothlyUpdateBar(hydrogenSulfideBar, compounds.GetCompoundAmount(hydrogensulfide), delta);
-        hydrogenSulfideBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(hydrogenSulfideBar.Value, hydrogenSulfideBar.MaxValue);
+        hydrogenSulfideBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(hydrogenSulfideBar.Value, hydrogenSulfideBar.MaxValue);
 
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         GUICommon.SmoothlyUpdateBar(ironBar, compounds.GetCompoundAmount(iron), delta);
-        ironBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(ironBar.Value, ironBar.MaxValue);
+        ironBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(ironBar.Value, ironBar.MaxValue);
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
-        oxytoxyBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(oxytoxyBar.Value, oxytoxyBar.MaxValue);
+        oxytoxyBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(oxytoxyBar.Value, oxytoxyBar.MaxValue);
 
         mucilageBar.MaxValue = compounds.GetCapacityForCompound(mucilage);
         GUICommon.SmoothlyUpdateBar(mucilageBar, compounds.GetCompoundAmount(mucilage), delta);
-        mucilageBar.GetNode<Label>("Value").Text = StringUtils.SlashSeparatedNumbersFormat(mucilageBar.Value, mucilageBar.MaxValue);
+        mucilageBar.GetNode<Label>("Value").Text =
+            StringUtils.SlashSeparatedNumbersFormat(mucilageBar.Value, mucilageBar.MaxValue);
     }
 
     protected void UpdateReproductionProgress()
