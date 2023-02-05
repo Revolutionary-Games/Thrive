@@ -271,6 +271,30 @@ public partial class CellEditorComponent
         OnColourChanged();
     }
 
+    [DeserializedCallbackAllowed]
+    private void DoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
+    {
+        data.UpgradedOrganelle.Upgrades = data.NewUpgrades;
+
+        // Uncomment when upgrades can visually affect the cell
+        // UpdateAlreadyPlacedVisuals();
+
+        // Organelle upgrades will in the future affect auto-evo
+        StartAutoEvoPrediction();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoOrganelleUpgradeAction(OrganelleUpgradeActionData data)
+    {
+        data.UpgradedOrganelle.Upgrades = data.OldUpgrades;
+
+        // Uncomment when upgrades can visually affect the cell
+        // UpdateAlreadyPlacedVisuals();
+
+        // Organelle upgrades will in the future affect auto-evo
+        StartAutoEvoPrediction();
+    }
+
     /// <summary>
     ///   In the case of the multicellular editor some actions need to work even if the editor has been reinitialized
     ///   in the meantime since they were performed. For sanity checking sake we throw an exception in those cases

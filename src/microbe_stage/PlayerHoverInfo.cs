@@ -52,10 +52,6 @@ public class PlayerHoverInfo : Node
 
     public override void _Process(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (camera == null || cloudSystem == null)
             throw new InvalidOperationException($"{nameof(PlayerHoverInfo)} was not initialized");
 

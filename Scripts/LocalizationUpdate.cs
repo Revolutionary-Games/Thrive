@@ -107,6 +107,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     /// </summary>
     private static readonly IReadOnlyCollection<string> TranslatedJSONKeys = new List<string>
     {
+        "Description",
         "DisplayName",
         "GroupName",
         "Message",
@@ -134,6 +135,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
 
     protected override IReadOnlyList<string> Locales => ThriveLocales;
     protected override string LocaleFolder => "locale";
+    protected override bool AlphabeticallySortTranslationTemplate => true;
 
     protected override string ProjectName => "Thrive";
     protected override string ProjectOrganization => "Revolutionary Games Studio";

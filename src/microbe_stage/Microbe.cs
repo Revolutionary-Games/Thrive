@@ -793,10 +793,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return;
         }
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         ProcessEarlyAsync(delta);
         ProcessSync(delta);
     }

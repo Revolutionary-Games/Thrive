@@ -100,10 +100,6 @@ public class ToolTipManager : CanvasLayer
         if (MainToolTip == null)
             return;
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         // Wait for duration of the delay and then show the tooltip
         if (displayTimer >= 0 && !MainToolTip.ToolTipNode.Visible)
         {

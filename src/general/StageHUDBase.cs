@@ -948,10 +948,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected virtual void UpdateHealth(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var hp = 0.0f;
 
         // Update to the player's current HP, unless the player does not exist
@@ -1120,10 +1116,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected void UpdateATP(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var atpAmount = 0.0f;
 
         // Update to the player's current ATP, unless the player does not exist
@@ -1164,10 +1156,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected void UpdatePanelSizing(float delta)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         var environmentPanelVBoxContainer = environmentPanel.GetNode<VBoxContainer>("VBoxContainer");
         var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
         var agentsPanelVBoxContainer = agentsPanel.GetNode<VBoxContainer>("VBoxContainer");

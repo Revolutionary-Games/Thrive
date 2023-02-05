@@ -261,6 +261,11 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new(false);
 
     /// <summary>
+    ///   Enables online news feed
+    /// </summary>
+    public SettingValue<bool> ThriveNewsFeedEnabled { get; set; } = new(true);
+
+    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new(false);

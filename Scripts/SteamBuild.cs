@@ -128,6 +128,8 @@ public static class SteamBuild
                 return SteamPlatform.Windows;
             case PackagePlatform.Mac:
                 throw new Exception("Steam not implemented for mac yet");
+            case PackagePlatform.Web:
+                throw new Exception("Web platform can't have Steam");
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }

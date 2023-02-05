@@ -486,6 +486,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 case RigidityActionData:
                 case NewMicrobeActionData:
                 case ColourActionData:
+                case OrganelleUpgradeActionData:
                     affectedACell = true;
                     break;
             }
