@@ -204,11 +204,10 @@ public static class StringUtils
     /// <returns>The formatted string</returns>
     public static string ThreeDigitFormat(double value)
     {
-        double absoluteValue = Math.Abs(value);
-        if (absoluteValue >= 1000)
+        if (value is >= 1000 or <= -1000)
             return FormatNumber(value);
 
-        if (absoluteValue >= 100)
+        if (value is >= 100 or <= -100)
             return value.ToString("F0", CultureInfo.CurrentCulture);
 
         return value.ToString("F1", CultureInfo.CurrentCulture);
