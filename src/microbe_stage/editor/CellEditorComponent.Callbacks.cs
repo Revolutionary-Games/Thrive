@@ -282,6 +282,8 @@ public partial class CellEditorComponent
         // Uncomment when upgrades can visually affect the cell
         // UpdateAlreadyPlacedVisuals();
 
+        UpdateStats();
+
         // Organelle upgrades will in the future affect auto-evo
         StartAutoEvoPrediction();
     }
@@ -293,6 +295,8 @@ public partial class CellEditorComponent
 
         // Uncomment when upgrades can visually affect the cell
         // UpdateAlreadyPlacedVisuals();
+
+        UpdateStats();
 
         // Organelle upgrades will in the future affect auto-evo
         StartAutoEvoPrediction();
