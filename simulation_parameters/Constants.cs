@@ -954,6 +954,8 @@ public static class Constants
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
 
+    public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
+
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
