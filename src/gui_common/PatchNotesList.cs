@@ -298,7 +298,7 @@ public class PatchNotesList : VBoxContainer
             stringBuilder.Append($"[font={subHeadingFontPath}]");
             stringBuilder.Append(changesHeading);
             stringBuilder.Append('\n');
-            stringBuilder.Append("[/font]")
+            stringBuilder.Append("[/font]");
 
             foreach (var bulletPoint in versionPatchNotes.PatchNotes)
             {
