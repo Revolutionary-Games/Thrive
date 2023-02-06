@@ -80,64 +80,7 @@ public class ThriveFeedDisplayer : VBoxContainer
                     continue;
                 }
 
-                var itemContainer = new PanelContainer();
-
-                // Customize the feed item background style to be less visible to not make the main menu look too busy
-                itemContainer.AddStyleboxOverride("panel", feedItemBackground);
-
-                var itemContentContainer = new VBoxContainer();
-                itemContainer.AddChild(itemContentContainer);
-
-                string titleText;
-
-                if (feedItem.ReadLink != null)
-                {
-                    titleText = $"{Constants.CLICKABLE_TEXT_BBCODE}" +
-                        $"[url={feedItem.ReadLink}]{feedItem.Title}[/url]{Constants.CLICKABLE_TEXT_BBCODE_END}";
-                }
-                else
-                {
-                    titleText = feedItem.Title;
-                }
-
-                // This uses rich text purely to be clickable
-                var title = customRichTextScene.Instance<CustomRichTextLabel>();
-
-                // We don't generate custom bbcode when converting html so we use the simpler form here
-                // but we need to use the custom rich text label to ensure the links are clickable
-                title.BbcodeText = titleText;
-
-                // Big font for titles
-                title.AddFontOverride("normal_font", TitleFont);
-
-                itemContentContainer.AddChild(title);
-
-                var textDisplayer = customRichTextScene.Instance<CustomRichTextLabel>();
-
-                // Make the feed look nicer with less repeating content by stripping the last part of the text
-                var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");
-
-                textDisplayer.BbcodeText = content;
-
-                itemContentContainer.AddChild(textDisplayer);
-
-                var footerText = feedItem.GetFooterText();
-
-                if (!string.IsNullOrWhiteSpace(footerText))
-                {
-                    var footerLabel = new Label
-                    {
-                        Text = footerText,
-                    };
-
-                    // Small font for footers
-                    footerLabel.AddFontOverride("font", FooterFont);
-
-                    itemContentContainer.AddChild(footerLabel);
-                }
-
-                newsContainer.AddChild(itemContainer);
-                itemsCreated = true;
+                CreateFeedItemGUI(feedItem);
 
                 return;
             }
@@ -217,5 +160,67 @@ public class ThriveFeedDisplayer : VBoxContainer
         }
 
         base.Dispose(disposing);
+    }
+
+    private void CreateFeedItemGUI(ThriveNewsFeed.FeedItem feedItem)
+    {
+        var itemContainer = new PanelContainer();
+
+        // Customize the feed item background style to be less visible to not make the main menu look too busy
+        itemContainer.AddStyleboxOverride("panel", feedItemBackground);
+
+        var itemContentContainer = new VBoxContainer();
+        itemContainer.AddChild(itemContentContainer);
+
+        string titleText;
+
+        if (feedItem.ReadLink != null)
+        {
+            titleText = $"{Constants.CLICKABLE_TEXT_BBCODE}" +
+                $"[url={feedItem.ReadLink}]{feedItem.Title}[/url]{Constants.CLICKABLE_TEXT_BBCODE_END}";
+        }
+        else
+        {
+            titleText = feedItem.Title;
+        }
+
+        // This uses rich text purely to be clickable
+        var title = customRichTextScene.Instance<CustomRichTextLabel>();
+
+        // We don't generate custom bbcode when converting html so we use the simpler form here
+        // but we need to use the custom rich text label to ensure the links are clickable
+        title.BbcodeText = titleText;
+
+        // Big font for titles
+        title.AddFontOverride("normal_font", TitleFont);
+
+        itemContentContainer.AddChild(title);
+
+        var textDisplayer = customRichTextScene.Instance<CustomRichTextLabel>();
+
+        // Make the feed look nicer with less repeating content by stripping the last part of the text
+        var content = Constants.NewsFeedRegexDeleteContent.Replace(feedItem.ContentBbCode, "\n");
+
+        textDisplayer.BbcodeText = content;
+
+        itemContentContainer.AddChild(textDisplayer);
+
+        var footerText = feedItem.GetFooterText();
+
+        if (!string.IsNullOrWhiteSpace(footerText))
+        {
+            var footerLabel = new Label
+            {
+                Text = footerText,
+            };
+
+            // Small font for footers
+            footerLabel.AddFontOverride("font", FooterFont);
+
+            itemContentContainer.AddChild(footerLabel);
+        }
+
+        newsContainer.AddChild(itemContainer);
+        itemsCreated = true;
     }
 }
