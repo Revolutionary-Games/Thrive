@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 using Directory = Godot.Directory;
 using File = Godot.File;
 
@@ -34,6 +36,8 @@ public class SimulationParameters : Node
     private DayNightConfiguration lightCycle = null!;
     private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
     private BuildInfo? buildInfo;
+    private Dictionary<string, VersionPatchNotes> oldVersionNotes = null!;
+    private Dictionary<string, VersionPatchNotes> newerVersionNotes = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -112,6 +116,11 @@ public class SimulationParameters : Node
 
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
+
+        oldVersionNotes = LoadRegistry<VersionPatchNotes>("res://simulation_parameters/common/older_patch_notes.json");
+
+        newerVersionNotes =
+            LoadYamlFile<Dictionary<string, VersionPatchNotes>>("res://simulation_parameters/common/patch_notes.yml");
 
         // Build info is only loaded if the file is present
         using var directory = new Directory();
@@ -353,6 +362,15 @@ public class SimulationParameters : Node
         return buildInfo;
     }
 
+    public IEnumerable<KeyValuePair<string, VersionPatchNotes>> GetPatchNotes()
+    {
+        foreach (var note in oldVersionNotes)
+            yield return note;
+
+        foreach (var note in newerVersionNotes)
+            yield return note;
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
@@ -370,6 +388,8 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(inputGroups);
         ApplyRegistryObjectTranslations(gallery);
         ApplyRegistryObjectTranslations(difficultyPresets);
+        ApplyRegistryObjectTranslations(oldVersionNotes);
+        ApplyRegistryObjectTranslations(newerVersionNotes);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -421,6 +441,9 @@ public class SimulationParameters : Node
         // This might be completely unnecessary
         file.Close();
 
+        if (string.IsNullOrEmpty(result))
+            throw new IOException($"Failed to read registry file: {path}");
+
         return result;
     }
 
@@ -441,6 +464,15 @@ public class SimulationParameters : Node
 
         // ReSharper restore HeuristicUnreachableCode
 #pragma warning restore CS0162
+
+        return result;
+    }
+
+    private T LoadYamlFile<T>(string path)
+    {
+        var deserializer = new DeserializerBuilder().WithNamingConvention(PascalCaseNamingConvention.Instance).Build();
+
+        var result = deserializer.Deserialize<T>(ReadJSONFile(path));
 
         return result;
     }
@@ -492,6 +524,8 @@ public class SimulationParameters : Node
         CheckRegistryType(inputGroups);
         CheckRegistryType(gallery);
         CheckRegistryType(difficultyPresets);
+        CheckRegistryType(oldVersionNotes);
+        CheckRegistryType(newerVersionNotes);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -502,6 +536,12 @@ public class SimulationParameters : Node
         lightCycle.Check(string.Empty);
         lightCycle.InternalName = DAY_NIGHT_CYCLE_NAME;
         buildInfo?.Check(string.Empty);
+
+        if (oldVersionNotes.Count < 1)
+            throw new Exception("Could not read old versions data");
+
+        if (newerVersionNotes.Count < 1)
+            throw new Exception("Could not read newer version patch notes data");
     }
 
     private void ResolveValueRelationships()

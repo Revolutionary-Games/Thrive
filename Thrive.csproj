@@ -634,6 +634,9 @@
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>
     </PackageReference>
+    <PackageReference Include="YamlDotNet">
+      <Version>12.3.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
