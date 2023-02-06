@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-03 10:53+0200\n"
+"POT-Creation-Date: 2023-02-06 16:34+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -207,7 +207,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "A rajzot {0} készítette"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:494
 msgid "ART_GALLERY"
 msgstr "Rajz galéria"
 
@@ -306,7 +306,7 @@ msgstr "Automata mentés a játék során"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "futtatási státusz:"
@@ -350,8 +350,8 @@ msgid "AWAKEN"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:433 ../src/general/MainMenu.tscn:535
-#: ../src/general/MainMenu.tscn:861 ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/MainMenu.tscn:434 ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:877 ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:1913 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -908,21 +908,21 @@ msgstr "Telítettségi érték, a szürke mennyisége egy adott színben"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Érték (fényerősség) értéke, a szín fényerőssége vagy intenzitása"
 
-#: ../src/general/MainMenu.tscn:595
+#: ../src/general/MainMenu.tscn:596
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:591
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Segítség"
 
-#: ../src/general/MainMenu.tscn:637
+#: ../src/general/MainMenu.tscn:638
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "Wikipédiánk"
 
-#: ../src/general/MainMenu.tscn:632
+#: ../src/general/MainMenu.tscn:633
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Kilépés a játékból"
@@ -1129,7 +1129,7 @@ msgstr "Létrehozás..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objektumok létrehozása a mentésből"
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:319
 msgid "CREDITS"
 msgstr "Stáblista"
 
@@ -1300,12 +1300,12 @@ msgstr "Devbuild támogatók"
 msgid "DEVELOPERS"
 msgstr "Fejlesztők"
 
-#: ../src/general/MainMenu.tscn:609
+#: ../src/general/MainMenu.tscn:610
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "A játékot a Revolutionary Games Studio ry fejleszti"
 
-#: ../src/general/MainMenu.tscn:604
+#: ../src/general/MainMenu.tscn:605
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Segítség"
@@ -1314,12 +1314,12 @@ msgstr "Segítség"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "A játékot a Revolutionary Games Studio ry fejleszti"
 
-#: ../src/general/MainMenu.tscn:623
+#: ../src/general/MainMenu.tscn:624
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Fejlesztők"
 
-#: ../src/general/MainMenu.tscn:618
+#: ../src/general/MainMenu.tscn:619
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Segítség"
@@ -1444,7 +1444,7 @@ msgstr ""
 "Vannak olyan sejtszervecskék, melyek nem kötődnek egymáshoz.\n"
 "Kérlek kapcsold össze a sejtszervecskéket egymással, vagy vond vissza eddigi változtatásaidat."
 
-#: ../src/general/MainMenu.tscn:784
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Segítség"
@@ -1461,7 +1461,7 @@ msgstr ""
 "A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
 "A reszponzív sejtek hamar új célpontokat keresnek."
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:988
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1509,7 +1509,7 @@ msgstr "Dupla kattintás a teljes képernyő nézetért"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülések ellen, és kevesebb energia szükséges ahhoz, hogy ne deformálódjon el. Hátránya viszont, hogy lassítja a sejt bekebelező képességét."
 
-#: ../src/general/MainMenu.tscn:915
+#: ../src/general/MainMenu.tscn:931
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1765,7 +1765,7 @@ msgstr "(random megidézett titkok a játékban)"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Hiba a mod fájllá való átalakítása közben"
 
-#: ../src/saving/InProgressLoad.cs:201
+#: ../src/saving/InProgressLoad.cs:203
 msgid "ERROR_LOADING"
 msgstr "Betöltési hiba"
 
@@ -1817,7 +1817,7 @@ msgstr ""
 msgid "EXIT"
 msgstr "Kilépés"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:329
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Indítás E"
@@ -1873,7 +1873,7 @@ msgstr "kihalt a bolygón"
 msgid "EXTINCT_SPECIES"
 msgstr "Kihalt fajok"
 
-#: ../src/general/MainMenu.tscn:309
+#: ../src/general/MainMenu.tscn:310
 msgid "EXTRAS"
 msgstr "Extrák"
 
@@ -1881,7 +1881,7 @@ msgstr "Extrák"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra opciók"
 
-#: ../src/general/MainMenu.tscn:796
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Játék szüneteltetése"
@@ -2138,7 +2138,7 @@ msgstr "Generáció:"
 msgid "GENERATION_COLON"
 msgstr "Generáció:"
 
-#: ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:764
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Kilépés a játékból"
@@ -2147,11 +2147,11 @@ msgstr "Kilépés a játékból"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:897
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 mód figyelmeztetés"
 
-#: ../src/general/MainMenu.tscn:883
+#: ../src/general/MainMenu.tscn:899
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
 
@@ -2436,7 +2436,7 @@ msgstr "Vas"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Vas oxidálása"
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:740
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Kilépés a játékból"
@@ -2814,7 +2814,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Bal egérgomb"
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:505
 msgid "LICENSES"
 msgstr "Licenszek"
 
@@ -2953,6 +2953,7 @@ msgstr "Töltés"
 msgid "LOADING"
 msgstr "Betöltés"
 
+#: ../src/gui_common/PatchNotesDisplayer.tscn:40
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:43 ../src/saving/SaveList.tscn:59
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
@@ -2985,12 +2986,12 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 msgid "LOAD_FINISHED"
 msgstr "Betöltés befejezve"
 
-#: ../src/general/MainMenu.tscn:272 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:273 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Játék betöltése"
 
-#: ../src/general/MainMenu.tscn:269 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:270 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Korábbi mentett játékok betöltése"
 
@@ -3253,7 +3254,7 @@ msgstr "Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedr
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
 
@@ -3500,11 +3501,11 @@ msgstr "Sejtalkotó szerkesztése"
 msgid "MODIFY_TYPE"
 msgstr "Típus módosítása"
 
-#: ../src/general/MainMenu.tscn:479
+#: ../src/general/MainMenu.tscn:480
 msgid "MODS"
 msgstr "Modok"
 
-#: ../src/general/MainMenu.tscn:899
+#: ../src/general/MainMenu.tscn:915
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3595,11 +3596,11 @@ msgstr "Mappa neve:"
 msgid "MOD_LICENSE"
 msgstr "Mod licensze:"
 
-#: ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:955
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod betöltési hibák"
 
-#: ../src/general/MainMenu.tscn:940
+#: ../src/general/MainMenu.tscn:956
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Hiba történt a mod/modok betöltése közben. A hibáról több információt találhatsz a logok között."
 
@@ -3855,11 +3856,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:259
+#: ../src/general/MainMenu.tscn:260
 msgid "NEW_GAME"
 msgstr "Új játék"
 
-#: ../src/general/MainMenu.tscn:253
+#: ../src/general/MainMenu.tscn:254
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Új játék indítása"
 
@@ -3973,7 +3974,7 @@ msgstr "Nincs feljegyzett esemény"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "A mentések mappa nem található"
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:902
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Kikapcsolva"
@@ -4038,16 +4039,16 @@ msgstr ""
 msgid "OCTOBER"
 msgstr "Október"
 
-#: ../src/general/MainMenu.tscn:581
+#: ../src/general/MainMenu.tscn:582
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:573
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Öngyilkosság"
 
-#: ../src/general/MainMenu.tscn:929 ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:945 ../src/general/MainMenu.tscn:1002
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4128,11 +4129,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunista"
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:283 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "Beállítások"
 
-#: ../src/general/MainMenu.tscn:279 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:280 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Változtasd meg beállításaidat"
 
@@ -4347,7 +4348,25 @@ msgstr "Procedurális"
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
-#: ../src/general/MainMenu.tscn:736
+#: ../src/gui_common/PatchNotesDisplayer.tscn:20
+#, fuzzy
+msgid "PATCH_NOTES_TITLE"
+msgstr "Helyi adatok törlése"
+
+#: ../src/gui_common/PatchNotesList.cs:247
+msgid "PATCH_NOTE_BULLET_POINT"
+msgstr ""
+
+#: ../src/gui_common/PatchNotesList.cs:246
+msgid "PATCH_NOTE_CHANGES_HEADING"
+msgstr ""
+
+#: ../src/gui_common/PatchNotesList.cs:248
+#, fuzzy
+msgid "PATCH_NOTE_LINK_VISIT_TEXT"
+msgstr "Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
+
+#: ../src/general/MainMenu.tscn:752
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Játék szüneteltetése"
@@ -4386,7 +4405,7 @@ msgid "PEACEFUL"
 msgstr "Békés"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:725
+#: ../src/general/NewGameSettings.cs:678 ../src/general/StageHUDBase.cs:725
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4634,11 +4653,11 @@ msgstr "Gyorstöltés"
 msgid "QUICK_SAVE"
 msgstr "Gyorsmentés"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "QUIT"
 msgstr "Kilépés"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/MainMenu.tscn:335
+#: ../src/general/MainMenu.tscn:326 ../src/general/MainMenu.tscn:336
 #: ../src/general/PauseMenu.tscn:239
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Kilépés a játékból"
@@ -4682,7 +4701,7 @@ msgstr "Szálak:"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Ajánlott Thrive verzió:"
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:788
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Játék folytatása"
@@ -4823,7 +4842,7 @@ msgstr ""
 "Biztos vissza akarsz lépni a főmenübe?\n"
 "Az eddigi teljesítményeid el fognak veszni (hacsak nem mentettél)."
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:715
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "A Revolutionary Games Studio-tól"
@@ -4911,7 +4930,7 @@ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségéve
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"carbondioxide\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#: ../src/general/MainMenu.tscn:935
+#: ../src/general/MainMenu.tscn:951
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4920,7 +4939,7 @@ msgstr ""
 "A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
 "így nagy eséllyel védekezésképp vissza is támadnak."
 
-#: ../src/general/MainMenu.tscn:933
+#: ../src/general/MainMenu.tscn:949
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Helyi adatok törlése"
@@ -4983,7 +5002,7 @@ msgstr ""
 "Ha nem frissíted a mentést, akkor a játék megpróbálja betölteni így is.\n"
 "Frissíted ezt a mentést?"
 
-#: ../src/saving/InProgressLoad.cs:240
+#: ../src/saving/InProgressLoad.cs:242
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Nem sikerült felszabadítani a már betöltött erőforrásokat: {0}"
 
@@ -5482,19 +5501,19 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ismeretlen Steam hiba történt"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:1006
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "A mentés sikertelen! Hiba történt"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:1008
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
 "{0}"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:728
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Játék szüneteltetése"
@@ -5652,7 +5671,7 @@ msgstr "Hőm."
 msgid "TESTING_TEAM"
 msgstr "Tesztelő csapat"
 
-#: ../src/general/MainMenu.cs:211 ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.cs:211 ../src/general/MainMenu.tscn:972
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5667,7 +5686,7 @@ msgstr ""
 "\n"
 "Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
 
-#: ../src/general/MainMenu.tscn:946
+#: ../src/general/MainMenu.tscn:962
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "TÚLÉLTÉL!"
@@ -5729,7 +5748,7 @@ msgstr "Ez a mod a Steam Műhelyből lett letöltve"
 msgid "THREADS"
 msgstr "Szálak:"
 
-#: ../src/general/MainMenu.tscn:465 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:466 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -5876,7 +5895,7 @@ msgstr "Szünet"
 msgid "TOGGLE_UNBINDING"
 msgstr "Szétválás be/ki"
 
-#: ../src/general/MainMenu.tscn:291
+#: ../src/general/MainMenu.tscn:292
 msgid "TOOLS"
 msgstr "Eszközök"
 
@@ -6085,7 +6104,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/general/MainMenu.tscn:808
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Változtasd meg beállításaidat"
@@ -6284,7 +6303,17 @@ msgstr ""
 msgid "VIEWER"
 msgstr "Galéria nézet"
 
-#: ../src/general/MainMenu.tscn:300
+#: ../src/gui_common/PatchNotesDisplayer.tscn:53
+#, fuzzy
+msgid "VIEW_ALL"
+msgstr "Az összes tiltása"
+
+#: ../src/gui_common/PatchNotesDisplayer.tscn:61
+#, fuzzy
+msgid "VIEW_PATCH_NOTES"
+msgstr "{0} {1}"
+
+#: ../src/general/MainMenu.tscn:301
 msgid "VIEW_SOURCE_CODE"
 msgstr "A forráskód megtekintése"
 
@@ -6296,7 +6325,7 @@ msgstr "VIP támogatók"
 msgid "VISIBLE"
 msgstr "Látható"
 
-#: ../src/general/MainMenu.tscn:518 ../src/general/MainMenu.tscn:655
+#: ../src/general/MainMenu.tscn:519 ../src/general/MainMenu.tscn:656
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6453,7 +6482,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "évek"
 
-#: ../src/general/MainMenu.tscn:760
+#: ../src/general/MainMenu.tscn:776
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Játék szüneteltetése"

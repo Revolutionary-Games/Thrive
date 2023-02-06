@@ -362,6 +362,10 @@ public class SimulationParameters : Node
         return buildInfo;
     }
 
+    /// <summary>
+    ///   Returns all of the known patch notes data
+    /// </summary>
+    /// <returns>Enumerable of the patch notes, this needs to be ordered from the oldest to the newest</returns>
     public IEnumerable<KeyValuePair<string, VersionPatchNotes>> GetPatchNotes()
     {
         foreach (var note in oldVersionNotes)

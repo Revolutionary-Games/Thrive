@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-03 10:53+0200\n"
+"POT-Creation-Date: 2023-02-06 16:34+0200\n"
 "PO-Revision-Date: 2022-07-26 06:43+0000\n"
 "Last-Translator: ben001109 <a0903932792@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -211,7 +211,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "由{0}創作"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:494
 msgid "ART_GALLERY"
 msgstr "藝術畫廊"
 
@@ -311,7 +311,7 @@ msgstr "遊戲過程中自動保存"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "運行狀態："
@@ -355,8 +355,8 @@ msgid "AWAKEN"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:433 ../src/general/MainMenu.tscn:535
-#: ../src/general/MainMenu.tscn:861 ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/MainMenu.tscn:434 ../src/general/MainMenu.tscn:536
+#: ../src/general/MainMenu.tscn:877 ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:1913 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -917,21 +917,21 @@ msgstr "S值，決定飽和度"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，決定明亮度"
 
-#: ../src/general/MainMenu.tscn:595
+#: ../src/general/MainMenu.tscn:596
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:591
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "添加新的綁定鍵位"
 
-#: ../src/general/MainMenu.tscn:637
+#: ../src/general/MainMenu.tscn:638
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "我們的Wiki"
 
-#: ../src/general/MainMenu.tscn:632
+#: ../src/general/MainMenu.tscn:633
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "自殺"
@@ -1143,7 +1143,7 @@ msgstr "創建中……"
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "從存檔中建立物體"
 
-#: ../src/general/MainMenu.tscn:318
+#: ../src/general/MainMenu.tscn:319
 msgid "CREDITS"
 msgstr "鳴謝"
 
@@ -1321,12 +1321,12 @@ msgstr "Devbuilds 支持者"
 msgid "DEVELOPERS"
 msgstr "開發者"
 
-#: ../src/general/MainMenu.tscn:609
+#: ../src/general/MainMenu.tscn:610
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "由Revolutionary Games Studio ry支持的開發"
 
-#: ../src/general/MainMenu.tscn:604
+#: ../src/general/MainMenu.tscn:605
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "添加新的綁定鍵位"
@@ -1335,12 +1335,12 @@ msgstr "添加新的綁定鍵位"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "由Revolutionary Games Studio ry支持的開發"
 
-#: ../src/general/MainMenu.tscn:623
+#: ../src/general/MainMenu.tscn:624
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "開發者"
 
-#: ../src/general/MainMenu.tscn:618
+#: ../src/general/MainMenu.tscn:619
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "幫助"
@@ -1465,7 +1465,7 @@ msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/general/MainMenu.tscn:784
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
@@ -1483,7 +1483,7 @@ msgstr ""
 "並且對物質塊更有渴求。\n"
 "應變型微生物將更快的轉向新的目標。"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:988
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1531,7 +1531,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，也不需要花費那麼多能量避免變形。然而它也會減慢細胞的移動速度，並降低其吸收營養的速率。"
 
-#: ../src/general/MainMenu.tscn:915
+#: ../src/general/MainMenu.tscn:931
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1798,7 +1798,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr "創建MOD信息文件出錯"
 
-#: ../src/saving/InProgressLoad.cs:201
+#: ../src/saving/InProgressLoad.cs:203
 msgid "ERROR_LOADING"
 msgstr "加載時出錯"
 
@@ -1852,7 +1852,7 @@ msgstr "加載存檔數據時發生異常"
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:328
+#: ../src/general/MainMenu.tscn:329
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E"
@@ -1906,7 +1906,7 @@ msgstr "從這個區域滅絕了"
 msgid "EXTINCT_SPECIES"
 msgstr "物種滅絕"
 
-#: ../src/general/MainMenu.tscn:309
+#: ../src/general/MainMenu.tscn:310
 msgid "EXTRAS"
 msgstr "額外內容"
 
@@ -1914,7 +1914,7 @@ msgstr "額外內容"
 msgid "EXTRA_OPTIONS"
 msgstr "額外選項"
 
-#: ../src/general/MainMenu.tscn:796
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "暫停遊戲"
@@ -2159,7 +2159,7 @@ msgstr "世代"
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/general/MainMenu.tscn:748
+#: ../src/general/MainMenu.tscn:764
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "自殺"
@@ -2168,11 +2168,11 @@ msgstr "自殺"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:897
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:883
+#: ../src/general/MainMenu.tscn:899
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
@@ -2460,7 +2460,7 @@ msgstr "鐵"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "鐵化能無機自養"
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:740
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "自殺"
@@ -2843,7 +2843,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "鼠標左鍵"
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:505
 msgid "LICENSES"
 msgstr "許可"
 
@@ -2984,6 +2984,7 @@ msgstr "加載"
 msgid "LOADING"
 msgstr "加載中"
 
+#: ../src/gui_common/PatchNotesDisplayer.tscn:40
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:43 ../src/saving/SaveList.tscn:59
 #: ../src/saving/SaveListItem.tscn:105
 #, fuzzy
@@ -3018,12 +3019,12 @@ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 msgid "LOAD_FINISHED"
 msgstr "加載完成"
 
-#: ../src/general/MainMenu.tscn:272 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:273 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
-#: ../src/general/MainMenu.tscn:269 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:270 ../src/general/PauseMenu.tscn:199
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
@@ -3300,7 +3301,7 @@ msgstr "每一代，你都有100個變異點(MP)可供花費，任何變化都�
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]百萬年的進化時間。"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
@@ -3540,11 +3541,11 @@ msgstr "修改細胞器"
 msgid "MODIFY_TYPE"
 msgstr "修改"
 
-#: ../src/general/MainMenu.tscn:479
+#: ../src/general/MainMenu.tscn:480
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:899
+#: ../src/general/MainMenu.tscn:915
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3633,11 +3634,11 @@ msgstr "內部（文件夾）名稱："
 msgid "MOD_LICENSE"
 msgstr "Mod許可："
 
-#: ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:955
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加載錯誤"
 
-#: ../src/general/MainMenu.tscn:940
+#: ../src/general/MainMenu.tscn:956
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
 
@@ -3883,11 +3884,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:259
+#: ../src/general/MainMenu.tscn:260
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
-#: ../src/general/MainMenu.tscn:253
+#: ../src/general/MainMenu.tscn:254
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
@@ -4006,7 +4007,7 @@ msgstr "沒有事件被記錄"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到存檔目錄"
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:902
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "已禁用"
@@ -4070,16 +4071,16 @@ msgstr "N/A 變異點"
 msgid "OCTOBER"
 msgstr "十月"
 
-#: ../src/general/MainMenu.tscn:581
+#: ../src/general/MainMenu.tscn:582
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:572
+#: ../src/general/MainMenu.tscn:573
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/MainMenu.tscn:929 ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:945 ../src/general/MainMenu.tscn:1002
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4160,11 +4161,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "機會主義"
 
-#: ../src/general/MainMenu.tscn:282 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:283 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "選項"
 
-#: ../src/general/MainMenu.tscn:279 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:280 ../src/general/PauseMenu.tscn:223
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "幫助"
@@ -4386,7 +4387,25 @@ msgstr ""
 msgid "PATCH_NAME"
 msgstr "洞穴"
 
-#: ../src/general/MainMenu.tscn:736
+#: ../src/gui_common/PatchNotesDisplayer.tscn:20
+#, fuzzy
+msgid "PATCH_NOTES_TITLE"
+msgstr "移除本地數據"
+
+#: ../src/gui_common/PatchNotesList.cs:247
+msgid "PATCH_NOTE_BULLET_POINT"
+msgstr ""
+
+#: ../src/gui_common/PatchNotesList.cs:246
+msgid "PATCH_NOTE_CHANGES_HEADING"
+msgstr ""
+
+#: ../src/gui_common/PatchNotesList.cs:248
+#, fuzzy
+msgid "PATCH_NOTE_LINK_VISIT_TEXT"
+msgstr "就像曾經存在過的所有物種中的99%一樣，你的物種已經滅絕了。其他人將繼續填補你的利基並茁壯成長，但那不會是你。你將被遺忘，成為進化過程中一個失敗的實驗。"
+
+#: ../src/general/MainMenu.tscn:752
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "暫停遊戲"
@@ -4426,7 +4445,7 @@ msgid "PEACEFUL"
 msgstr "和平"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:725
+#: ../src/general/NewGameSettings.cs:678 ../src/general/StageHUDBase.cs:725
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4675,11 +4694,11 @@ msgstr "快速讀檔"
 msgid "QUICK_SAVE"
 msgstr "快速存檔"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "QUIT"
 msgstr "離開"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/MainMenu.tscn:335
+#: ../src/general/MainMenu.tscn:326 ../src/general/MainMenu.tscn:336
 #: ../src/general/PauseMenu.tscn:239
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -4724,7 +4743,7 @@ msgstr "已就緒"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推薦Thrive："
 
-#: ../src/general/MainMenu.tscn:772
+#: ../src/general/MainMenu.tscn:788
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "返回遊戲"
@@ -4868,7 +4887,7 @@ msgstr ""
 "你確定要退出到主菜單嗎？\n"
 "你會失去任何未保存的進度。"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:715
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "由Revolutionary Games Studio製作"
@@ -4957,7 +4976,7 @@ msgstr "鐵硫菌藍蛋白[Rusticyanin]能夠利用二氧化碳和氧將鐵從�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"iron\"][/thrive:compound]轉換為thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的濃度成正比。"
 
-#: ../src/general/MainMenu.tscn:935
+#: ../src/general/MainMenu.tscn:951
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4966,7 +4985,7 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/MainMenu.tscn:933
+#: ../src/general/MainMenu.tscn:949
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "移除本地數據"
@@ -5030,7 +5049,7 @@ msgstr ""
 "如果你想跳過此更新的話，遊戲會嘗試直接加載存檔。\n"
 "要更新此存檔嗎？"
 
-#: ../src/saving/InProgressLoad.cs:240
+#: ../src/saving/InProgressLoad.cs:242
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". 未能釋放已加載的資源：{0}"
 
@@ -5526,17 +5545,17 @@ msgstr "Steam系統目前不可用，請重試"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "發生了未知的Steam錯誤"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:1006
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam 客戶端庫初始化失敗"
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:1008
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "更新此存檔失敗，錯誤："
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:728
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "暫停遊戲"
@@ -5697,7 +5716,7 @@ msgstr "溫度"
 msgid "TESTING_TEAM"
 msgstr "測試團隊"
 
-#: ../src/general/MainMenu.cs:211 ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.cs:211 ../src/general/MainMenu.tscn:972
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5712,7 +5731,7 @@ msgstr ""
 "\n"
 "如果你喜歡這款遊戲，記得也向你的朋友們推薦下。"
 
-#: ../src/general/MainMenu.tscn:946
+#: ../src/general/MainMenu.tscn:962
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "你已經茁壯繁盛了!"
@@ -5776,7 +5795,7 @@ msgstr "這個MOD是在Steam工作坊下載的"
 msgid "THREADS"
 msgstr "線程："
 
-#: ../src/general/MainMenu.tscn:465 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:466 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -5925,7 +5944,7 @@ msgstr "暫停"
 msgid "TOGGLE_UNBINDING"
 msgstr "解除鏈接模式"
 
-#: ../src/general/MainMenu.tscn:291
+#: ../src/general/MainMenu.tscn:292
 msgid "TOOLS"
 msgstr "工具"
 
@@ -6158,7 +6177,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
 
-#: ../src/general/MainMenu.tscn:808
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "經過的時間：{0:#,#} 年"
@@ -6358,7 +6377,17 @@ msgstr ""
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:300
+#: ../src/gui_common/PatchNotesDisplayer.tscn:53
+#, fuzzy
+msgid "VIEW_ALL"
+msgstr "禁用所有"
+
+#: ../src/gui_common/PatchNotesDisplayer.tscn:61
+#, fuzzy
+msgid "VIEW_PATCH_NOTES"
+msgstr "洞穴"
+
+#: ../src/general/MainMenu.tscn:301
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代碼"
 
@@ -6370,7 +6399,7 @@ msgstr "VIP 支持者"
 msgid "VISIBLE"
 msgstr "可見"
 
-#: ../src/general/MainMenu.tscn:518 ../src/general/MainMenu.tscn:655
+#: ../src/general/MainMenu.tscn:519 ../src/general/MainMenu.tscn:656
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6526,7 +6555,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/general/MainMenu.tscn:760
+#: ../src/general/MainMenu.tscn:776
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "暫停遊戲"

@@ -149,12 +149,15 @@
     <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\HtmlToBbCodeConverter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
+    <Compile Include="src\general\MarkdownToBbCodeConverter.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
+    <Compile Include="src\gui_common\PatchNotesDisplayer.cs" />
+    <Compile Include="src\gui_common\PatchNotesList.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\gui_common\ShowWhenInputTypeMatches.cs" />
     <Compile Include="src\gui_common\SpeciesDetailsPanel.cs" />

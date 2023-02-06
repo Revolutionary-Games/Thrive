@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=55]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
 [ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=57]
+[ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=58]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -681,6 +682,21 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 445.0
 margin_bottom = 400.0
+
+[node name="PatchNotesPositioner" type="MarginContainer" parent="MenuContainers"]
+anchor_right = 0.401
+anchor_bottom = 1.0
+margin_left = 35.0
+margin_top = 195.0
+margin_right = -16.28
+margin_bottom = -110.0
+mouse_filter = 2
+
+[node name="PatchNotesDisplayer" parent="MenuContainers/PatchNotesPositioner" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 462.0
+margin_bottom = 415.0
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
