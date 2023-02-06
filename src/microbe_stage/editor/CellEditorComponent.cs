@@ -1455,14 +1455,16 @@ public partial class CellEditorComponent :
                 }
                 else
                 {
-                    var replacedHex = editedMicrobeOrganelles.GetElementAt(hex);
                     var data = new OrganellePlacementActionData(organelle, hex, orientation)
                     {
                         CostMultiplier = CostMultiplier,
                     };
 
-                    if (replacedHex != null)
-                        data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
+                    var replacedHexes = organelle.RotatedHexes
+                        .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h)).WhereNotNull().ToList();
+
+                    if (replacedHexes.Count > 0)
+                        data.ReplacedCytoplasm = replacedHexes;
 
                     action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
                         UndoOrganellePlaceAction, data);
@@ -1867,11 +1869,7 @@ public partial class CellEditorComponent :
 
         // Send to gui current status of cell
         UpdateSize(MicrobeHexSize);
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateStorage(CalculateStorage());
-        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+        UpdateStats();
 
         UpdateCellVisualization();
 
