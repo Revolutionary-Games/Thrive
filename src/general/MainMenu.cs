@@ -454,13 +454,7 @@ public class MainMenu : NodeWithInput
         }
         else
         {
-            if (patchNotes.ShowIfNewPatchNotesExist())
-            {
-                GD.Print("We are playing a new version of Thrive for the first time");
-
-                // Hide the news when patch notes are visible (and there's something to show there)
-                newsFeedDisabler.Visible = false;
-            }
+            ShowPatchInfoIfPossible();
         }
     }
 
@@ -619,6 +613,41 @@ public class MainMenu : NodeWithInput
         SafeModeStartupHandler.ReportGameStartSuccessful();
     }
 
+    /// <summary>
+    ///   Updates feed visibilities if settings have been changed
+    /// </summary>
+    private void UpdateFeedVisibilities()
+    {
+        var settings = Settings.Instance;
+
+        if (!settings.ShowNewPatchNotes && patchNotesDisabler.Visible)
+        {
+            patchNotesDisabler.Visible = false;
+            newsFeedDisabler.Visible = true;
+        }
+        else if (settings.ShowNewPatchNotes && !patchNotesDisabler.Visible)
+        {
+            ShowPatchInfoIfPossible();
+        }
+    }
+
+    private void ShowPatchInfoIfPossible()
+    {
+        if (patchNotes.ShowIfNewPatchNotesExist())
+        {
+            GD.Print("We are playing a new version of Thrive for the first time, showing patch notes");
+
+            // Hide the news when patch notes are visible (and there's something to show there)
+            newsFeedDisabler.Visible = false;
+
+            patchNotesDisabler.Visible = true;
+        }
+        else
+        {
+            patchNotesDisabler.Visible = false;
+        }
+    }
+
     private void WarnAboutNoEnabledMods()
     {
         if (!ModLoader.Instance.HasEnabledMods() && ModLoader.Instance.HasAvailableMods() &&
@@ -732,6 +761,7 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0, false);
 
         // In case news settings are changed, update that state
+        UpdateFeedVisibilities();
         newsFeed.CheckStartFetchNews();
     }
 
