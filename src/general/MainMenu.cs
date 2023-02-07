@@ -188,6 +188,14 @@ public class MainMenu : NodeWithInput
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
+
+        // Start this early here to make sure this is ready as soon as possible
+        // In the case where patch notes take up the news feed, this is still not a complete waste as if the player
+        // exits to the menu after playing a bit they'll see the news feed
+        if (Settings.Instance.ThriveNewsFeedEnabled)
+        {
+            ThriveNewsFeed.GetFeedContents();
+        }
     }
 
     public override void _Process(float delta)
