@@ -83,7 +83,16 @@ public class MainMenu : NodeWithInput
     public NodePath NewsFeedPath = null!;
 
     [Export]
-    public NodePath NewsFeedPositionerPath = null!;
+    public NodePath NewsFeedDisablerPath = null!;
+
+    [Export]
+    public NodePath PatchNotesPath = null!;
+
+    [Export]
+    public NodePath PatchNotesDisablerPath = null!;
+
+    [Export]
+    public NodePath FeedPositionerPath = null!;
 
     [Export]
     public NodePath ThanksDialogPath = null!;
@@ -107,7 +116,12 @@ public class MainMenu : NodeWithInput
     private GalleryViewer galleryViewer = null!;
 
     private ThriveFeedDisplayer newsFeed = null!;
-    private Control newsFeedPositioner = null!;
+    private Control newsFeedDisabler = null!;
+
+    private PatchNotesDisplayer patchNotes = null!;
+    private Control patchNotesDisabler = null!;
+
+    private Control feedPositioner = null!;
 
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
@@ -274,7 +288,7 @@ public class MainMenu : NodeWithInput
         // if a menu is visible
         websiteButtonsContainer.Visible = false;
         socialMediaContainer.Visible = index != uint.MaxValue;
-        newsFeedPositioner.Visible = index != uint.MaxValue;
+        feedPositioner.Visible = index != uint.MaxValue;
 
         // Allow disabling all the menus for going to the options menu
         if (index > menuArray.Count - 1 && index != uint.MaxValue)
@@ -349,7 +363,10 @@ public class MainMenu : NodeWithInput
                 ModManagerPath.Dispose();
                 GalleryViewerPath.Dispose();
                 NewsFeedPath.Dispose();
-                NewsFeedPositionerPath.Dispose();
+                NewsFeedDisablerPath.Dispose();
+                PatchNotesPath.Dispose();
+                PatchNotesDisablerPath.Dispose();
+                FeedPositionerPath.Dispose();
                 ThanksDialogPath.Dispose();
                 ThanksDialogTextPath.Dispose();
                 PermanentlyDismissThanksDialogPath.Dispose();
@@ -379,7 +396,10 @@ public class MainMenu : NodeWithInput
         modManager = GetNode<ModManager>(ModManagerPath);
         galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
         newsFeed = GetNode<ThriveFeedDisplayer>(NewsFeedPath);
-        newsFeedPositioner = GetNode<Control>(NewsFeedPositionerPath);
+        newsFeedDisabler = GetNode<Control>(NewsFeedDisablerPath);
+        patchNotes = GetNode<PatchNotesDisplayer>(PatchNotesPath);
+        patchNotesDisabler = GetNode<Control>(PatchNotesDisablerPath);
+        feedPositioner = GetNode<Control>(FeedPositionerPath);
         socialMediaContainer = GetNode<Control>(SocialMediaContainerPath);
         websiteButtonsContainer = GetNode<PopupPanel>(WebsiteButtonsContainerPath);
 
@@ -426,6 +446,22 @@ public class MainMenu : NodeWithInput
 
         UpdateStoreVersionStatus();
         UpdateLauncherState();
+
+        // Hide patch notes when it does not want to be shown
+        if (!Settings.Instance.ShowNewPatchNotes)
+        {
+            patchNotesDisabler.Visible = false;
+        }
+        else
+        {
+            if (patchNotes.ShowIfNewPatchNotesExist())
+            {
+                GD.Print("We are playing a new version of Thrive for the first time");
+
+                // Hide the news when patch notes are visible (and there's something to show there)
+                newsFeedDisabler.Visible = false;
+            }
+        }
     }
 
     /// <summary>

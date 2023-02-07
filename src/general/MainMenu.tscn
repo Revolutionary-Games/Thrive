@@ -143,8 +143,11 @@ PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
-NewsFeedPath = NodePath("MenuContainers/FeedPositioner/ThriveFeedDisplayer")
-NewsFeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
+NewsFeedPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler/ThriveFeedDisplayer")
+NewsFeedDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler")
+PatchNotesPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler/PatchNotesDisplayer")
+PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
+FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 ThanksDialogTextPath = NodePath("ThanksForBuyingDialog/VBoxContainer/ThanksText")
 PermanentlyDismissThanksDialogPath = NodePath("ThanksForBuyingDialog/VBoxContainer/CheckBox")
@@ -673,11 +676,43 @@ margin_right = -30.0
 margin_bottom = -125.0
 mouse_filter = 2
 
-[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner" instance=ExtResource( 57 )]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
+margin_right = 445.0
+margin_bottom = 400.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+margin_right = 445.0
+margin_bottom = 198.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 445.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+margin_top = 202.0
+margin_right = 445.0
 margin_bottom = 400.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 445.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="PatchNotesPositioner" type="MarginContainer" parent="MenuContainers"]
 anchor_right = 0.401
@@ -687,12 +722,6 @@ margin_top = 195.0
 margin_right = -16.28
 margin_bottom = -110.0
 mouse_filter = 2
-
-[node name="PatchNotesDisplayer" parent="MenuContainers/PatchNotesPositioner" instance=ExtResource( 58 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 462.0
-margin_bottom = 415.0
 
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
