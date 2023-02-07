@@ -945,6 +945,11 @@ public static class Constants
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
+    /// <summary>
+    ///   This is used in Steam mode, so don't remove even if this shows as unused
+    /// </summary>
+    public const int MAX_PATH_LENGTH = 1024;
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
