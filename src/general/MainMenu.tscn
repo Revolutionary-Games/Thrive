@@ -227,6 +227,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FeedPositioner" type="MarginContainer" parent="MenuContainers"]
+anchor_left = 0.597
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 195.0
+margin_right = -30.0
+margin_bottom = -125.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
+margin_right = 445.0
+margin_bottom = 400.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+margin_right = 445.0
+margin_bottom = 198.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 445.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+margin_top = 202.0
+margin_right = 445.0
+margin_bottom = 400.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 445.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="Menus" type="CenterContainer" parent="MenuContainers"]
 anchor_top = 0.275
 anchor_right = 1.0
@@ -665,54 +713,6 @@ SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
-
-[node name="FeedPositioner" type="MarginContainer" parent="MenuContainers"]
-anchor_left = 0.597
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 40.0
-margin_top = 195.0
-margin_right = -30.0
-margin_bottom = -125.0
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
-margin_right = 445.0
-margin_bottom = 400.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
-margin_right = 445.0
-margin_bottom = 198.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 445.0
-margin_bottom = 198.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
-margin_top = 202.0
-margin_right = 445.0
-margin_bottom = 400.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 445.0
-margin_bottom = 198.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="PatchNotesPositioner" type="MarginContainer" parent="MenuContainers"]
 anchor_right = 0.401

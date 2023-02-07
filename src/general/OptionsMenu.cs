@@ -293,6 +293,12 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
 
+    [Export]
+    public NodePath PatchNotesBoxPath = null!;
+
+    [Export]
+    public NodePath PatchNotesDisplayerPath = null!;
+
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
@@ -413,6 +419,9 @@ public class OptionsMenu : ControlWithInput
     private CustomDialog backConfirmationBox = null!;
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
+
+    private CustomDialog patchNotesBox = null!;
+    private PatchNotesDisplayer patchNotesDisplayer = null!;
 #pragma warning restore CA2213
 
     // Misc
@@ -570,6 +579,8 @@ public class OptionsMenu : ControlWithInput
         backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
+        patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
+        patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
         selectedOptionsTab = OptionsTab.Graphics;
 
@@ -866,6 +877,8 @@ public class OptionsMenu : ControlWithInput
                 ScreenshotDirectoryWarningBoxPath.Dispose();
                 DefaultsConfirmationBoxPath.Dispose();
                 ErrorAcceptBoxPath.Dispose();
+                PatchNotesBoxPath.Dispose();
+                PatchNotesDisplayerPath.Dispose();
                 CustomUsernameEnabledPath.Dispose();
                 CustomUsernamePath.Dispose();
                 WebFeedsEnabledPath.Dispose();
@@ -2265,5 +2278,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDismissedNoticeCount();
+    }
+
+    private void OnOpenPatchNotesPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        patchNotesDisplayer.ShowLatest();
+        patchNotesBox.PopupCenteredShrink();
     }
 }

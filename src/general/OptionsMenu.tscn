@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -133,6 +134,8 @@ JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCo
 CommitLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Commit")
 BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/BuiltAt")
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
+PatchNotesBoxPath = NodePath("CenterContainer/PatchNotesBox")
+PatchNotesDisplayerPath = NodePath("CenterContainer/PatchNotesBox/VBoxContainer/PatchNotesDisplayer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -2024,7 +2027,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/BackConfirm/VBoxContainer"]
-margin_right = 570.0
+margin_right = 1170.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -2034,7 +2037,7 @@ autowrap = true
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 24.0
-margin_right = 570.0
+margin_right = 1170.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2042,13 +2045,13 @@ custom_styles/separator = SubResource( 6 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 31.0
-margin_right = 570.0
+margin_right = 1170.0
 margin_bottom = 63.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_right = 204.0
+margin_right = 203.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 7 )
 text = "SAVE_AND_CONTINUE"
@@ -2057,8 +2060,8 @@ __meta__ = {
 }
 
 [node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 445.0
+margin_left = 207.0
+margin_right = 444.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 7 )
 text = "DISCARD_AND_CONTINUE"
@@ -2067,15 +2070,15 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 449.0
-margin_right = 486.0
+margin_left = 448.0
+margin_right = 1086.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 7 )
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 490.0
-margin_right = 570.0
+margin_left = 1090.0
+margin_right = 1170.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 7 )
 text = "CANCEL"
@@ -2110,6 +2113,53 @@ rect_min_size = Vector2( 600, 0 )
 WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
+
+[node name="PatchNotesBox" parent="CenterContainer" instance=ExtResource( 8 )]
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
+popup_exclusive = true
+WindowTitle = "PATCH_NOTES_TITLE"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PatchNotesBox"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 515.0
+margin_bottom = 415.0
+rect_min_size = Vector2( 500, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatchNotesDisplayer" parent="CenterContainer/PatchNotesBox/VBoxContainer" instance=ExtResource( 15 )]
+margin_right = 102.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+InsideDialogStyle = true
+
+[node name="Spacer" type="Control" parent="CenterContainer/PatchNotesBox/VBoxContainer"]
+margin_bottom = 3.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PatchNotesBox/VBoxContainer"]
+margin_top = 31.0
+margin_right = 64.0
+margin_bottom = 63.0
+size_flags_horizontal = 4
+
+[node name="Close" type="Button" parent="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 7 )
+text = "CLOSE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ControllerDeadzoneConfiguration" parent="." instance=ExtResource( 12 )]
 
@@ -2182,6 +2232,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/WebFeeds" to="." method="OnWebFeedsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ShowNewPatchNotes" to="." method="OnPatchNotesEnabledToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ViewPatchNotes" to="." method="OnOpenPatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
@@ -2194,3 +2245,4 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
 [connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnConflictConfirmed"]
+[connection signal="pressed" from="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer/Close" to="CenterContainer/PatchNotesBox" method="OnCloseButtonPressed"]

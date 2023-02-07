@@ -13,8 +13,10 @@ mouse_filter = 2
 theme = ExtResource( 2 )
 script = ExtResource( 4 )
 PatchNotesPath = NodePath("ScrollContainer/VBoxContainer/PatchNotesList")
+TitlePath = NodePath("NotesTitle")
 NewVersionsCountLabelPath = NodePath("ScrollContainer/VBoxContainer/LastPlayedInfo")
 ViewAllButtonPath = NodePath("ScrollContainer/VBoxContainer/All")
+ViewAllButtonOutsideScrollPath = NodePath("All")
 
 [node name="NotesTitle" type="Label" parent="."]
 margin_right = 1280.0
@@ -58,4 +60,14 @@ margin_bottom = 68.0
 size_flags_horizontal = 4
 text = "VIEW_ALL"
 
+[node name="All" type="Button" parent="."]
+visible = false
+margin_left = 589.0
+margin_top = 685.0
+margin_right = 691.0
+margin_bottom = 720.0
+size_flags_horizontal = 4
+text = "VIEW_ALL"
+
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/All" to="." method="OnViewAllPressed"]
+[connection signal="pressed" from="All" to="." method="OnViewAllPressed"]

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Handles displaying the patch notes from the previous version to the current one
@@ -6,7 +7,13 @@
 public class PatchNotesDisplayer : VBoxContainer
 {
     [Export]
+    public bool InsideDialogStyle;
+
+    [Export]
     public NodePath? PatchNotesPath;
+
+    [Export]
+    public NodePath TitlePath = null!;
 
     [Export]
     public NodePath NewVersionsCountLabelPath = null!;
@@ -14,22 +21,38 @@ public class PatchNotesDisplayer : VBoxContainer
     [Export]
     public NodePath ViewAllButtonPath = null!;
 
+    [Export]
+    public NodePath ViewAllButtonOutsideScrollPath = null!;
+
 #pragma warning disable CA2213
     private PatchNotesList patchNotes = null!;
 
+    private Label title = null!;
     private Label newVersionsCountLabel = null!;
 
     private Button viewAllButton = null!;
+    private Button viewAllButtonOutsideScroll = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
         patchNotes = GetNode<PatchNotesList>(PatchNotesPath);
+        title = GetNode<Label>(TitlePath);
         newVersionsCountLabel = GetNode<Label>(NewVersionsCountLabelPath);
         viewAllButton = GetNode<Button>(ViewAllButtonPath);
+        viewAllButtonOutsideScroll = GetNode<Button>(ViewAllButtonOutsideScrollPath);
 
         patchNotes.Visible = false;
         newVersionsCountLabel.Visible = false;
+
+        if (InsideDialogStyle)
+        {
+            title.Visible = false;
+            patchNotes.StyleWithBackground = false;
+
+            viewAllButton.Visible = false;
+            viewAllButtonOutsideScroll.Visible = true;
+        }
     }
 
     public bool ShowIfNewPatchNotesExist()
@@ -102,6 +125,21 @@ public class PatchNotesDisplayer : VBoxContainer
         return true;
     }
 
+    public void ShowLatest()
+    {
+        var latestVersion = SimulationParameters.Instance.GetPatchNotes().Last();
+
+        patchNotes.ShowAll = false;
+        patchNotes.FilterNewestVersion = latestVersion.Key;
+        patchNotes.FilterOldestVersion = latestVersion.Key;
+        patchNotes.Visible = true;
+
+        newVersionsCountLabel.Visible = false;
+
+        viewAllButton.Disabled = false;
+        viewAllButtonOutsideScroll.Disabled = false;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -109,8 +147,10 @@ public class PatchNotesDisplayer : VBoxContainer
             if (PatchNotesPath != null)
             {
                 PatchNotesPath.Dispose();
+                TitlePath.Dispose();
                 NewVersionsCountLabelPath.Dispose();
                 ViewAllButtonPath.Dispose();
+                ViewAllButtonOutsideScrollPath.Dispose();
             }
         }
 
@@ -122,6 +162,7 @@ public class PatchNotesDisplayer : VBoxContainer
         GUICommon.Instance.PlayButtonPressSound();
 
         viewAllButton.Disabled = true;
+        viewAllButtonOutsideScroll.Disabled = true;
 
         patchNotes.ShowAll = true;
         patchNotes.Visible = true;
