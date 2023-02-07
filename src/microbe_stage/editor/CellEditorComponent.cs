@@ -1869,11 +1869,7 @@ public partial class CellEditorComponent :
 
         // Send to gui current status of cell
         UpdateSize(MicrobeHexSize);
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateStorage(CalculateStorage());
-        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+        UpdateStats();
 
         UpdateCellVisualization();
 

@@ -122,6 +122,8 @@ public partial class CellEditorComponent
 
             // Organelle placement *might* affect auto-evo in the future so this is here for that reason
             StartAutoEvoPrediction();
+
+            UpdateStats();
         }
         else
         {
@@ -140,6 +142,7 @@ public partial class CellEditorComponent
 
         UpdateAlreadyPlacedVisuals();
         StartAutoEvoPrediction();
+        UpdateStats();
 
         // TODO: dynamic MP PR had this line:
         // OnMembraneChanged();
@@ -279,6 +282,8 @@ public partial class CellEditorComponent
         // Uncomment when upgrades can visually affect the cell
         // UpdateAlreadyPlacedVisuals();
 
+        UpdateStats();
+
         // Organelle upgrades will in the future affect auto-evo
         StartAutoEvoPrediction();
     }
@@ -290,6 +295,8 @@ public partial class CellEditorComponent
 
         // Uncomment when upgrades can visually affect the cell
         // UpdateAlreadyPlacedVisuals();
+
+        UpdateStats();
 
         // Organelle upgrades will in the future affect auto-evo
         StartAutoEvoPrediction();
