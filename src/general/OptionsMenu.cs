@@ -276,6 +276,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath WebFeedsEnabledPath = null!;
 
     [Export]
+    public NodePath ShowNewPatchNotesPath = null!;
+
+    [Export]
     public NodePath DismissedNoticeCountPath = null!;
 
     [Export]
@@ -396,6 +399,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
     private CustomCheckBox webFeedsEnabled = null!;
+    private CustomCheckBox showNewPatchNotes = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
     private Label commitLabel = null!;
@@ -554,6 +558,7 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
         webFeedsEnabled = GetNode<CustomCheckBox>(WebFeedsEnabledPath);
+        showNewPatchNotes = GetNode<CustomCheckBox>(ShowNewPatchNotesPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
         commitLabel = GetNode<Label>(CommitLabelPath);
@@ -738,6 +743,7 @@ public class OptionsMenu : ControlWithInput
             Settings.EnvironmentUserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
         webFeedsEnabled.Pressed = settings.ThriveNewsFeedEnabled;
+        showNewPatchNotes.Pressed = settings.ShowNewPatchNotes;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
 
@@ -863,6 +869,7 @@ public class OptionsMenu : ControlWithInput
                 CustomUsernameEnabledPath.Dispose();
                 CustomUsernamePath.Dispose();
                 WebFeedsEnabledPath.Dispose();
+                ShowNewPatchNotesPath.Dispose();
                 DismissedNoticeCountPath.Dispose();
                 JSONDebugModePath.Dispose();
                 CommitLabelPath.Dispose();
@@ -2188,6 +2195,13 @@ public class OptionsMenu : ControlWithInput
     private void OnWebFeedsEnabledToggled(bool pressed)
     {
         Settings.Instance.ThriveNewsFeedEnabled.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnPatchNotesEnabledToggled(bool pressed)
+    {
+        Settings.Instance.ShowNewPatchNotes.Value = pressed;
 
         UpdateResetSaveButtonState();
     }
