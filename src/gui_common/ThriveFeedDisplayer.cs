@@ -142,6 +142,7 @@ public class ThriveFeedDisplayer : VBoxContainer
         {
             Visible = false;
             newsContainer.QueueFreeChildren();
+            itemsCreated = false;
         }
     }
 
