@@ -6,11 +6,11 @@ using Godot;
 /// </summary>
 public static class LastPlayedVersion
 {
-    private static readonly Lazy<string?> LastPlayedValue = new(ReadLastPlayedVersion);
+    private static Lazy<string?> lastPlayed = new(ReadLastPlayedVersion);
 
     private static bool handledCurrentVersionPlayed;
 
-    public static string? LastPlayed => LastPlayedValue.Value;
+    public static string? LastPlayed => lastPlayed.Value;
 
     public static void MarkCurrentVersionAsPlayed()
     {
@@ -29,6 +29,10 @@ public static class LastPlayedVersion
         }
 
         Invoke.Instance.Queue(WriteCurrentVersion);
+
+        // Override the last played value for the current run if something will still read this (for example exiting
+        // back to the menu)
+        lastPlayed = new Lazy<string?>(() => version);
     }
 
     private static string? ReadLastPlayedVersion()
