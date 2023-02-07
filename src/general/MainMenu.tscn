@@ -160,11 +160,9 @@ __meta__ = {
 }
 
 [node name="StoreUser" type="Label" parent="."]
-anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -468.0
+margin_left = 3.0
 margin_top = 4.0
-margin_right = -4.0
 margin_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -173,9 +171,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 16 )
 text = "Logged in as: name"
-align = 2
 max_lines_visible = 1
-script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
