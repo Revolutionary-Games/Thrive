@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/benchmark/microbe/MicrobeBenchmark.cs" type="Script" id=2]
+
+[node name="MicrobeBenchmark" type="Node"]
+script = ExtResource( 2 )
+
+[node name="WorldRoot" type="Spatial" parent="."]
+
+[node name="MicrobeCamera" parent="WorldRoot" instance=ExtResource( 1 )]
+ZoomSpeed = 2.0
+DefaultCameraHeight = 40.0
+MaxCameraHeight = 100.0
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
