@@ -1446,6 +1446,7 @@ public class OptionsMenu : ControlWithInput
             return false;
         }
 
+        ClearInputRebindingControls();
         EmitSignal(nameof(OnOptionsClosed));
         return true;
     }
@@ -2153,6 +2154,11 @@ public class OptionsMenu : ControlWithInput
     private void BuildInputRebindControls()
     {
         inputGroupList.InitGroupList();
+    }
+
+    private void ClearInputRebindingControls()
+    {
+        inputGroupList.ClearGroupList();
     }
 
     private void OnOpenScreenshotFolder()
