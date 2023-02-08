@@ -533,8 +533,6 @@ public class NewGameSettings : ControlWithInput
         // before the stage music starts)
         Jukebox.Instance.Stop(true);
 
-        LastPlayedVersion.MarkCurrentVersionAsPlayed();
-
         var transitions = new List<ITransition>();
 
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&

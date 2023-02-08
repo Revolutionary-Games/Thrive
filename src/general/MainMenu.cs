@@ -176,6 +176,7 @@ public class MainMenu : NodeWithInput
     {
         CheatManager.OnCheatsDisabled();
         SaveHelper.ClearLastSaveTime();
+        LastPlayedVersion.MarkCurrentVersionAsPlayed();
     }
 
     public override void _Ready()
