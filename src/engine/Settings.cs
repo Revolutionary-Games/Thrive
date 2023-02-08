@@ -266,6 +266,11 @@ public class Settings
     public SettingValue<bool> ThriveNewsFeedEnabled { get; set; } = new(true);
 
     /// <summary>
+    ///   Enables showing new patch notes when the game is updated
+    /// </summary>
+    public SettingValue<bool> ShowNewPatchNotes { get; set; } = new(true);
+
+    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new(false);
