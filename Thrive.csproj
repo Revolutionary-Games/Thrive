@@ -27,6 +27,7 @@
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
+    <Compile Include="simulation_parameters\VersionPatchNotes.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.cs" />
     <Compile Include="src\auto-evo\AutoEvoExploringTool.Export.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="src\engine\input\TwoDimensionalMovementMode.cs" />
     <Compile Include="src\engine\IResource.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
+    <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
     <Compile Include="src\engine\ResourceManager.cs" />
     <Compile Include="src\engine\SafeModeStartupHandler.cs" />
@@ -147,12 +149,15 @@
     <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\HtmlToBbCodeConverter.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
+    <Compile Include="src\general\MarkdownToBbCodeConverter.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
+    <Compile Include="src\gui_common\PatchNotesDisplayer.cs" />
+    <Compile Include="src\gui_common\PatchNotesList.cs" />
     <Compile Include="src\gui_common\PhotographablePreview.cs" />
     <Compile Include="src\gui_common\ShowWhenInputTypeMatches.cs" />
     <Compile Include="src\gui_common\SpeciesDetailsPanel.cs" />
@@ -632,6 +637,9 @@
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="YamlDotNet">
+      <Version>13.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

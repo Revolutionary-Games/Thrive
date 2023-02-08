@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/engine/input/ControllerDeadzoneConfiguration.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/gui_common/TabButtons.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -127,11 +128,14 @@ ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorDialog")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/CustomUsernameEnabled")
 CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/CustomUsername")
 WebFeedsEnabledPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/WebFeeds")
+ShowNewPatchNotesPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ShowNewPatchNotes")
 DismissedNoticeCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/DismissedCount")
 JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug")
 CommitLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/Commit")
 BuiltAtLabelPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/BuiltAt")
 UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/UnsavedProgressWarning")
+PatchNotesBoxPath = NodePath("CenterContainer/PatchNotesBox")
+PatchNotesDisplayerPath = NodePath("CenterContainer/PatchNotesBox/VBoxContainer/PatchNotesDisplayer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -1573,7 +1577,7 @@ follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer"]
 margin_right = 718.0
-margin_bottom = 700.0
+margin_bottom = 780.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -1581,7 +1585,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer"]
 margin_right = 708.0
-margin_bottom = 690.0
+margin_bottom = 770.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -1773,10 +1777,27 @@ rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 text = "SHOW_WEB_NEWS_FEED"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ShowNewPatchNotes" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 507.0
+margin_right = 286.0
+margin_bottom = 532.0
+rect_pivot_offset = Vector2( 114, 23 )
+hint_tooltip = "SHOW_NEW_PATCH_NOTES_TOOLTIP"
+size_flags_horizontal = 0
+text = "SHOW_NEW_PATCH_NOTES"
+
+[node name="ViewPatchNotes" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 542.0
+margin_right = 209.0
+margin_bottom = 577.0
+hint_tooltip = "VIEW_PATCH_NOTES_TOOLTIP"
+size_flags_horizontal = 0
+text = "VIEW_PATCH_NOTES"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 587.0
 margin_right = 702.0
-margin_bottom = 542.0
+margin_bottom = 622.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
@@ -1810,9 +1831,9 @@ action_mode = 0
 text = "RESET_DISMISSED_POPUPS"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 552.0
+margin_top = 632.0
 margin_right = 702.0
-margin_bottom = 577.0
+margin_bottom = 657.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 margin_right = 197.0
@@ -1837,14 +1858,14 @@ items = [ "JSON_DEBUG_MODE_AUTO", null, false, 0, null, "JSON_DEBUG_MODE_ALWAYS"
 selected = 0
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 587.0
+margin_top = 667.0
 margin_right = 702.0
-margin_bottom = 591.0
+margin_bottom = 671.0
 
 [node name="HBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 601.0
+margin_top = 681.0
 margin_right = 702.0
-margin_bottom = 655.0
+margin_bottom = 735.0
 
 [node name="CommitInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 margin_right = 702.0
@@ -1871,9 +1892,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 665.0
+margin_top = 745.0
 margin_right = 702.0
-margin_bottom = 690.0
+margin_bottom = 770.0
 
 [node name="BuiltTimeInfo" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 margin_right = 209.0
@@ -2007,7 +2028,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/BackConfirm/VBoxContainer"]
-margin_right = 570.0
+margin_right = 1170.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -2017,7 +2038,7 @@ autowrap = true
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 24.0
-margin_right = 570.0
+margin_right = 1170.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2025,13 +2046,13 @@ custom_styles/separator = SubResource( 6 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 31.0
-margin_right = 570.0
+margin_right = 1170.0
 margin_bottom = 63.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_right = 204.0
+margin_right = 203.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 7 )
 text = "SAVE_AND_CONTINUE"
@@ -2040,8 +2061,8 @@ __meta__ = {
 }
 
 [node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 445.0
+margin_left = 207.0
+margin_right = 444.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 7 )
 text = "DISCARD_AND_CONTINUE"
@@ -2050,15 +2071,15 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 449.0
-margin_right = 486.0
+margin_left = 448.0
+margin_right = 1086.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 7 )
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer"]
-margin_left = 490.0
-margin_right = 570.0
+margin_left = 1090.0
+margin_right = 1170.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 7 )
 text = "CANCEL"
@@ -2093,6 +2114,53 @@ rect_min_size = Vector2( 600, 0 )
 WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 HideCancelButton = true
 DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
+
+[node name="PatchNotesBox" parent="CenterContainer" instance=ExtResource( 8 )]
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
+popup_exclusive = true
+WindowTitle = "PATCH_NOTES_TITLE"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PatchNotesBox"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 515.0
+margin_bottom = 415.0
+rect_min_size = Vector2( 500, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatchNotesDisplayer" parent="CenterContainer/PatchNotesBox/VBoxContainer" instance=ExtResource( 15 )]
+margin_right = 102.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+InsideDialogStyle = true
+
+[node name="Spacer" type="Control" parent="CenterContainer/PatchNotesBox/VBoxContainer"]
+margin_bottom = 3.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PatchNotesBox/VBoxContainer"]
+margin_top = 31.0
+margin_right = 64.0
+margin_bottom = 63.0
+size_flags_horizontal = 4
+
+[node name="Close" type="Button" parent="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 7 )
+text = "CLOSE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ControllerDeadzoneConfiguration" parent="." instance=ExtResource( 12 )]
 
@@ -2164,6 +2232,8 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/WebFeeds" to="." method="OnWebFeedsEnabledToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ShowNewPatchNotes" to="." method="OnPatchNotesEnabledToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/ViewPatchNotes" to="." method="OnOpenPatchNotesPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/ResetDismissed" to="." method="OnResetDismissedPopups"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Misc/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
@@ -2176,3 +2246,4 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
 [connection signal="Confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/InputGroupList" method="OnConflictConfirmed"]
+[connection signal="pressed" from="CenterContainer/PatchNotesBox/VBoxContainer/HBoxContainer/Close" to="CenterContainer/PatchNotesBox" method="OnCloseButtonPressed"]
