@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -50,6 +51,25 @@ public static class LastPlayedVersion
         if (string.IsNullOrEmpty(version))
         {
             GD.PrintErr("Read last played version file, but we got just a blank line");
+            return null;
+        }
+
+        // Test that the version number is correct
+        try
+        {
+            // Parsing the first part as valid version number needs to work
+            Version.Parse(version!.Split('-').First());
+
+            // Version comparison needs to work
+            if (VersionUtils.Compare("1.0.0", version) == int.MaxValue)
+            {
+                // The failing comparison already prints an error message
+                return null;
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Last played version is corrupt ({version}): {e}");
             return null;
         }
 
