@@ -8,13 +8,15 @@ using Godot;
 public class LicensesDisplay : CustomDialog
 {
     [Export]
-    public NodePath TextsContainerPath = null!;
+    public NodePath? TextsContainerPath;
 
     private List<(string Heading, Func<string> Content)> licensesToShow = null!;
 
     private bool licensesLoaded;
 
+#pragma warning disable CA2213
     private Container textsContainer = null!;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Loads the Steam version specific readme by combining the special Steam file and the normal libraries list
@@ -84,6 +86,16 @@ public class LicensesDisplay : CustomDialog
 
             licensesLoaded = false;
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            TextsContainerPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private static string LoadFile(string file)

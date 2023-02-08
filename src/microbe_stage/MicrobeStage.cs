@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 public class MicrobeStage : StageBase<Microbe>
 {
     [Export]
-    public NodePath GuidanceLinePath = null!;
+    public NodePath? GuidanceLinePath;
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
@@ -32,8 +32,10 @@ public class MicrobeStage : StageBase<Microbe>
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
+#pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
+#pragma warning restore CA2213
     private Vector3? guidancePosition;
 
     private List<GuidanceLine> chemoreceptionLines = new();
@@ -202,10 +204,6 @@ public class MicrobeStage : StageBase<Microbe>
     public override void _Process(float delta)
     {
         base._Process(delta);
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
 
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
@@ -525,11 +523,35 @@ public class MicrobeStage : StageBase<Microbe>
         {
             tutorialGUI.EventReceiver?.OnTutorialDisabled();
         }
+        else
+        {
+            // Show day/night cycle tutorial when entering a patch with sunlight
+            if (GameWorld.WorldSettings.DayNightCycleEnabled)
+            {
+                var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+                var patchSunlight = GameWorld.Map.CurrentPatch!.GetCompoundAmount(sunlight, CompoundAmountType.Biome);
+
+                if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerEnterSunlightPatch, EventArgs.Empty, this);
+                }
+            }
+        }
     }
 
     public override void OnSuicide()
     {
         Player?.Damage(9999.0f, "suicide");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            GuidanceLinePath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void SetupStage()

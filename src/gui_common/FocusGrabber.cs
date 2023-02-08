@@ -9,7 +9,7 @@ public class FocusGrabber : Control
     public int Priority;
 
     [Export]
-    public NodePath NodeToGiveFocusTo = null!;
+    public NodePath? NodeToGiveFocusTo;
 
     /// <summary>
     ///   If true then this always grabs focus even if something is already focused
@@ -17,10 +17,18 @@ public class FocusGrabber : Control
     [Export]
     public bool AlwaysOverrideFocus;
 
+    /// <summary>
+    ///   If true then this always grabs focus when this becomes visible
+    /// </summary>
+    [Export]
+    public bool GrabFocusWhenBecomingVisible;
+
     private float elapsed;
     private bool reportedState;
     private List<NodePath>? skipOverridingFocusForElements;
     private IEnumerable<string> skipOverridingStringConverted = Array.Empty<string>();
+
+    private bool wantsToGrabFocusOnce;
 
     /// <summary>
     ///   Any paths listed here (and child paths as well) will skip the focus override. This allows creating areas that
@@ -61,6 +69,12 @@ public class FocusGrabber : Control
         if (IsVisibleInTree() != reportedState)
         {
             reportedState = !reportedState;
+
+            if (reportedState && GrabFocusWhenBecomingVisible)
+            {
+                wantsToGrabFocusOnce = true;
+            }
+
             GUIFocusSetter.Instance.ReportGrabberState(this, reportedState);
         }
     }
@@ -73,6 +87,30 @@ public class FocusGrabber : Control
         {
             GUIFocusSetter.Instance.ReportRemovedGrabber(this);
         }
+    }
+
+    public bool CheckWantsToStealFocusAndReset()
+    {
+        if (AlwaysOverrideFocus)
+            return true;
+
+        if (wantsToGrabFocusOnce)
+        {
+            wantsToGrabFocusOnce = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            NodeToGiveFocusTo?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateOverrideFocusStrings()

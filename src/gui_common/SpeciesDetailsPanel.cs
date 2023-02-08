@@ -3,7 +3,7 @@
 public class SpeciesDetailsPanel : MarginContainer
 {
     [Export]
-    public NodePath SpeciesDetailsLabelPath = null!;
+    public NodePath? SpeciesDetailsLabelPath;
 
     [Export]
     public NodePath SpeciesPreviewPath = null!;
@@ -11,10 +11,12 @@ public class SpeciesDetailsPanel : MarginContainer
     [Export]
     public NodePath HexPreviewPath = null!;
 
+#pragma warning disable CA2213
     private CustomRichTextLabel speciesDetailsLabel = null!;
     private SpeciesPreview speciesPreview = null!;
     private CellHexesPreview hexesPreview = null!;
     private Species? previewSpecies;
+#pragma warning restore CA2213
 
     public Species? PreviewSpecies
     {
@@ -41,6 +43,21 @@ public class SpeciesDetailsPanel : MarginContainer
 
         if (previewSpecies != null)
             UpdateSpeciesPreview();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (SpeciesDetailsLabelPath != null)
+            {
+                SpeciesDetailsLabelPath.Dispose();
+                SpeciesPreviewPath.Dispose();
+                HexPreviewPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

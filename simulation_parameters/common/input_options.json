@@ -207,6 +207,32 @@
   },
   {
     "EnvironmentId": [
+      "GUI",
+      "Editor",
+      "3DEditor"
+    ],
+    "GroupName": "GUI_TAB_NAVIGATION",
+    "Actions": [
+      {
+        "InputName": "ui_tab_left",
+        "Name": "TAB_SWITCH_LEFT"
+      },
+      {
+        "InputName": "ui_tab_right",
+        "Name": "TAB_SWITCH_RIGHT"
+      },
+      {
+        "InputName": "ui_tab_secondary_left",
+        "Name": "TAB_SECONDARY_SWITCH_LEFT"
+      },
+      {
+        "InputName": "ui_tab_secondary_right",
+        "Name": "TAB_SECONDARY_SWITCH_RIGHT"
+      }
+    ]
+  },
+  {
+    "EnvironmentId": [
       "Game",
       "3DGame"
     ],

@@ -7,7 +7,10 @@ using System.Runtime.Serialization;
 [Serializable]
 public class InstanceNotLoadedYetException : InvalidOperationException
 {
-    public InstanceNotLoadedYetException() { }
+    public InstanceNotLoadedYetException() : base(
+        $"Instance not loaded yet, called from:\n{Environment.StackTrace}\nend of not loaded yet stacktrace")
+    {
+    }
 
     protected InstanceNotLoadedYetException(SerializationInfo serializationInfo,
         StreamingContext streamingContext) : base(serializationInfo, streamingContext)

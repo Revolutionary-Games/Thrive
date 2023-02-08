@@ -16,16 +16,18 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
     private static readonly Stack<DataPoint> DataPointCache = new();
 
+#pragma warning disable CA2213
     private Texture graphMarkerCircle = null!;
     private Texture graphMarkerCross = null!;
     private Texture graphMarkerSkull = null!;
+
+    private Tween tween = new();
+#pragma warning restore CA2213
 
     private bool isMouseOver;
 
     private Vector2 coordinate;
     private float size = 7;
-
-    private Tween tween = new();
 
     public DataPoint(double x, double y)
     {

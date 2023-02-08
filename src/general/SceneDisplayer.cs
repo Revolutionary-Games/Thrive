@@ -6,7 +6,10 @@
 public class SceneDisplayer : Spatial
 {
     private string? currentScene;
+
+#pragma warning disable CA2213 // manually managed
     private Node? currentlyShown;
+#pragma warning restore CA2213
 
     public string? Scene
     {

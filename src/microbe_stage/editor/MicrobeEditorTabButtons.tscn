@@ -71,7 +71,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="ButtonGroup" id=35]
 
 [node name="MicrobeEditorTabButtons" type="MarginContainer"]
-margin_top = -2.0
+margin_top = -5.0
 margin_right = 511.0
 margin_bottom = 44.0
 custom_constants/margin_right = 5
@@ -91,11 +91,11 @@ anchor_bottom = 0.0
 margin_left = 15.0
 margin_top = 10.0
 margin_right = 506.0
-margin_bottom = 41.0
+margin_bottom = 44.0
 
 [node name="ReportButton" type="Button" parent="TabButtons"]
 margin_right = 119.0
-margin_bottom = 31.0
+margin_bottom = 34.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -117,7 +117,7 @@ __meta__ = {
 [node name="PatchMapButton" type="Button" parent="TabButtons"]
 margin_left = 123.0
 margin_right = 243.0
-margin_bottom = 31.0
+margin_bottom = 34.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -138,7 +138,7 @@ __meta__ = {
 [node name="CellEditorButton" type="Button" parent="TabButtons"]
 margin_left = 247.0
 margin_right = 367.0
-margin_bottom = 31.0
+margin_bottom = 34.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -159,7 +159,7 @@ __meta__ = {
 [node name="CellTypeEditorButton" type="Button" parent="TabButtons"]
 margin_left = 371.0
 margin_right = 491.0
-margin_bottom = 31.0
+margin_bottom = 34.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3

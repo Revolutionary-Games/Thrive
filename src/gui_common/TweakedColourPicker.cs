@@ -24,6 +24,7 @@ public class TweakedColourPicker : ColorPicker
     /// </summary>
     private readonly List<TweakedColourPickerPreset> presets = new();
 
+#pragma warning disable CA2213
     private HSlider sliderROrH = null!;
     private HSlider sliderGOrS = null!;
     private HSlider sliderBOrV = null!;
@@ -36,6 +37,7 @@ public class TweakedColourPicker : ColorPicker
     private HSeparator separator = null!;
     private GridContainer? presetsContainer;
     private TextureButton? addPresetButton;
+#pragma warning restore CA2213
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;

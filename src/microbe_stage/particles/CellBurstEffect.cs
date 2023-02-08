@@ -8,7 +8,9 @@ public class CellBurstEffect : Spatial, ITimedLife
     [JsonProperty]
     public float Radius;
 
+#pragma warning disable CA2213
     private Particles particles = null!;
+#pragma warning restore CA2213
 
     public float TimeToLiveRemaining { get; set; }
 

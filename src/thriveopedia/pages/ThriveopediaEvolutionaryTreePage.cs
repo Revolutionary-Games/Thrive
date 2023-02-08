@@ -15,7 +15,7 @@ using Godot;
 public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 {
     [Export]
-    public NodePath DisabledInFreebuildPath = null!;
+    public NodePath? DisabledInFreebuildPath;
 
     [Export]
     public NodePath EvolutionaryTreePath = null!;
@@ -25,9 +25,11 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
+#pragma warning disable CA2213
     private VBoxContainer disabledWarning = null!;
     private EvolutionaryTree evolutionaryTree = null!;
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
+#pragma warning restore CA2213
 
     public override string PageName => "EvolutionaryTree";
 
@@ -63,6 +65,21 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     public override void OnNavigationPanelSizeChanged(bool collapsed)
     {
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (DisabledInFreebuildPath != null)
+            {
+                DisabledInFreebuildPath.Dispose();
+                EvolutionaryTreePath.Dispose();
+                SpeciesDetailsPanelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

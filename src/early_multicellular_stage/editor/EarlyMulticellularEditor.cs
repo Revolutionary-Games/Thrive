@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
-    public NodePath ReportTabPath = null!;
+    public NodePath? ReportTabPath;
 
     [Export]
     public NodePath PatchMapTabPath = null!;
@@ -24,6 +24,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [Export]
     public NodePath NoCellTypeSelectedPath = null!;
 
+#pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -40,10 +41,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [AssignOnlyChildItemsOnDeserialize]
     private CellEditorComponent cellEditorTab = null!;
 
+    private Control noCellTypeSelected = null!;
+#pragma warning restore CA2213
+
     [JsonProperty]
     private EarlyMulticellularSpecies? editedSpecies;
-
-    private Control noCellTypeSelected = null!;
 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
@@ -151,6 +153,23 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
         GD.PrintErr("No action to cancel");
         return false;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                BodyPlanEditorTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+                NoCellTypeSelectedPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -467,6 +486,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 case RigidityActionData:
                 case NewMicrobeActionData:
                 case ColourActionData:
+                case OrganelleUpgradeActionData:
                     affectedACell = true;
                     break;
             }

@@ -17,8 +17,10 @@ public class PatchMapDrawer : Control
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
 
+#pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
+#pragma warning restore CA2213
 
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
@@ -27,7 +29,9 @@ public class PatchMapDrawer : Control
     /// </summary>
     private readonly Dictionary<Int2, Vector2[]> connections = new();
 
+#pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+#pragma warning restore CA2213
 
     private PatchMap map = null!;
 

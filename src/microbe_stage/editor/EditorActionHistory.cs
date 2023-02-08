@@ -61,7 +61,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                         processedHistory.Take(compareIndex));
 
                 // If no more can be merged together, try next one.
-                if (mode == ActionInterferenceMode.NoInterference)
+                if (mode == ActionInterferenceMode.NoInterference || minimumCostCombinableAction == null)
                     break;
 
                 var minimumCostCombinableActionIndex = processedHistory.IndexOf(minimumCostCombinableAction);
@@ -135,7 +135,12 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         // Handle adding directly the action to our history cache, this saves us from having to rebuild the cache
         if (action.Data.Any(d => d.ResetsHistory))
         {
-            History.Clear();
+            // We reset the cache here as otherwise there would be a potential problem if there exists a combined
+            // action where one part resets the history, but there's still other data after that. We could handle
+            // clearing and then adding those items to the cache here, but that is likely so rare it isn't really
+            // worth the complication to do here, so instead we just reset the cache here and will use the full rebuild
+            // logic when needed.
+            cache = null;
         }
         else
         {
@@ -187,24 +192,58 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     ///   MinimumCostActionData is the action data to combine with (not yet combined);
     ///   Mode is the interference mode currentData has with MinimumCostActionData.
     /// </returns>
-    private static (int CostDelta, EditorCombinableActionData MinimumCostActionData, ActionInterferenceMode Mode)
+    private static (int CostDelta, EditorCombinableActionData? MinimumCostActionData, ActionInterferenceMode Mode)
         FindCheapestActionToCombineWith(EditorCombinableActionData currentData,
             IEnumerable<EditorCombinableActionData> previousData)
     {
-        return previousData.Select(data =>
+        // Get an ordered enumerable sorted by priority and then by cost delta
+        var combinationDataEnumerable = previousData.Select(data =>
         {
             var interferenceMode = currentData.GetInterferenceModeWith(data);
 
             return (interferenceMode switch
             {
-                ActionInterferenceMode.Combinable => ((EditorCombinableActionData)currentData.Combine(data))
-                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(),
-                ActionInterferenceMode.CancelsOut => -data.CalculateCost() - currentData.CalculateCost(),
-                ActionInterferenceMode.ReplacesOther => -data.CalculateCost(),
-                ActionInterferenceMode.NoInterference => 0,
+                // A combination action refunds the delta cost
+                ActionInterferenceMode.Combinable => (Cost: ((EditorCombinableActionData)currentData.Combine(data))
+                    .CalculateCost() - data.CalculateCost() - currentData.CalculateCost(), Priority: 0),
+
+                // A cancels out action refunds the initial action cost and the current action cost
+                ActionInterferenceMode.CancelsOut => (Cost: -data.CalculateCost() - currentData.CalculateCost(),
+                    Priority: 0),
+
+                // A replacement action doesn't modify the current action, thus is "free", having the highest priority
+                ActionInterferenceMode.ReplacesOther => (Cost: -data.CalculateCost(), Priority: 1),
+
+                // No action doesn't refund anything
+                ActionInterferenceMode.NoInterference => (Cost: 0, Priority: 0),
+
                 _ => throw new ArgumentOutOfRangeException(nameof(interferenceMode)),
             }, data, interferenceMode);
-        }).OrderBy(p => p.Item1).FirstOrDefault();
+        }).OrderByDescending(p => p.Item1.Priority).ThenBy(p => p.Item1.Cost);
+
+        // Calculate actual cost delta by adding up all replacement refunds, and if any, the first non-replacement one
+        var costDelta = 0;
+
+        // Get the first combination data and its type
+        EditorCombinableActionData? firstData = null;
+        ActionInterferenceMode firstDataInterferenceMode = default;
+
+        foreach (var combinationData in combinationDataEnumerable)
+        {
+            costDelta += combinationData.Item1.Cost;
+
+            if (firstData == null)
+            {
+                firstData = combinationData.data;
+                firstDataInterferenceMode = combinationData.interferenceMode;
+            }
+
+            // Break after the first action whose interferenceMode is not ActionInterferenceMode.ReplacesOther
+            if (combinationData.interferenceMode != ActionInterferenceMode.ReplacesOther)
+                break;
+        }
+
+        return (costDelta, firstData, firstDataInterferenceMode);
     }
 
     private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)

@@ -23,7 +23,7 @@ using Godot;
 public class InputActionItem : VBoxContainer
 {
     [Export]
-    public NodePath AddInputEventPath = null!;
+    public NodePath? AddInputEventPath;
 
     [Export]
     public NodePath InputActionHeaderPath = null!;
@@ -31,9 +31,13 @@ public class InputActionItem : VBoxContainer
     [Export]
     public NodePath InputEventsContainerPath = null!;
 
+#pragma warning disable CA2213
     private Label inputActionHeader = null!;
     private HBoxContainer inputEventsContainer = null!;
     private Button addInputEvent = null!;
+#pragma warning restore CA2213
+
+    private FocusFlowDynamicChildrenHelper focusHelper = null!;
 
     /// <summary>
     ///   The group in which this action is defined.
@@ -118,7 +122,36 @@ public class InputActionItem : VBoxContainer
 
         inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
 
+        focusHelper = new FocusFlowDynamicChildrenHelper(this,
+            FocusFlowDynamicChildrenHelper.NavigationToChildrenDirection.None,
+            FocusFlowDynamicChildrenHelper.NavigationInChildrenDirection.Horizontal);
+    }
+
+    public override void _EnterTree()
+    {
         Inputs.CollectionChanged += OnInputsChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        Inputs.CollectionChanged -= OnInputsChanged;
+    }
+
+    /// <summary>
+    ///   Called by <see cref="InputGroupItem.NotifyFocusAdjusted"/> to finish the recursive adjustment of navigation
+    ///   flow
+    /// </summary>
+    public void NotifyFocusAdjusted()
+    {
+        focusHelper.ReReadOwnerNeighbours();
+
+        var focusableChildren = Inputs.SelectFirstFocusableChild().Append(addInputEvent).ToList();
+
+        focusHelper.ApplyNavigationFlow(focusableChildren);
+
+        // To make navigation a bit nicer we trap these like this as exiting the inputs list accidentally will
+        // make it hard to get back to where the user was
+        focusHelper.MakeFirstAndLastChildDeadEnds(focusableChildren);
     }
 
     public override bool Equals(object? obj)
@@ -155,6 +188,21 @@ public class InputActionItem : VBoxContainer
             new ObservableCollection<InputEventItem>(inputs.Select(d => InputEventItem.BuildGUI(inputActionItem, d)));
 
         return inputActionItem;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (AddInputEventPath != null)
+            {
+                AddInputEventPath.Dispose();
+                InputActionHeaderPath.Dispose();
+                InputEventsContainerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

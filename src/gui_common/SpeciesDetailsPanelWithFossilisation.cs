@@ -12,9 +12,11 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
     [Export]
     public NodePath FossilisationDialogPath = null!;
 
+#pragma warning disable CA2213
     private SpeciesDetailsPanel speciesDetailsPanel = null!;
     private Button? fossilisationButton;
     private FossilisationDialog fossilisationDialog = null!;
+#pragma warning restore CA2213
 
     private Species? previewSpecies;
 
@@ -42,6 +44,18 @@ public class SpeciesDetailsPanelWithFossilisation : VBoxContainer
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
         UpdateFossilisationButtonState();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            FossilisationButtonPath.Dispose();
+            FossilisationDialogPath.Dispose();
+            SpeciesDetailsPanelPath.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnFossilisePressed()

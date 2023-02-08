@@ -278,10 +278,6 @@ public class ProcessSystem
 
     public void Process(float delta)
     {
-        // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (biome == null)
         {
             GD.PrintErr("ProcessSystem has no biome set");

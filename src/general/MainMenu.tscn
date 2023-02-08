@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -56,6 +56,8 @@
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=54]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=55]
 [ext_resource path="res://src/gui_common/FocusGrabber.tscn" type="PackedScene" id=56]
+[ext_resource path="res://src/gui_common/ThriveFeedDisplayer.tscn" type="PackedScene" id=57]
+[ext_resource path="res://src/gui_common/PatchNotesDisplayer.tscn" type="PackedScene" id=58]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -129,6 +131,7 @@ CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
+SteamFailedPopupPath = NodePath("SteamFailedDialog")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 SafeModeWarningPath = NodePath("SafeModeWarningDialog")
 ModsInstalledButNotEnabledWarningPath = NodePath("ModsInstalledButNothingEnabledWarning")
@@ -140,6 +143,11 @@ PatreonButtonPath = NodePath("MenuContainers/SocialMedia/PatreonButton")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 GalleryViewerPath = NodePath("GalleryViewer")
+NewsFeedPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler/ThriveFeedDisplayer")
+NewsFeedDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler")
+PatchNotesPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler/PatchNotesDisplayer")
+PatchNotesDisablerPath = NodePath("MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler")
+FeedPositionerPath = NodePath("MenuContainers/FeedPositioner")
 ThanksDialogPath = NodePath("ThanksForBuyingDialog")
 ThanksDialogTextPath = NodePath("ThanksForBuyingDialog/VBoxContainer/ThanksText")
 PermanentlyDismissThanksDialogPath = NodePath("ThanksForBuyingDialog/VBoxContainer/CheckBox")
@@ -155,11 +163,9 @@ __meta__ = {
 }
 
 [node name="StoreUser" type="Label" parent="."]
-anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -468.0
+margin_left = 3.0
 margin_top = 4.0
-margin_right = -4.0
 margin_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -168,9 +174,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 16 )
 text = "Logged in as: name"
-align = 2
 max_lines_visible = 1
-script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -222,6 +226,54 @@ texture = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FeedPositioner" type="MarginContainer" parent="MenuContainers"]
+anchor_left = 0.597
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 195.0
+margin_right = -30.0
+margin_bottom = -125.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/FeedPositioner"]
+margin_right = 445.0
+margin_bottom = 400.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NewsDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+margin_right = 445.0
+margin_bottom = 198.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ThriveFeedDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/NewsDisabler" instance=ExtResource( 57 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 445.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PatchNotesDisabler" type="VBoxContainer" parent="MenuContainers/FeedPositioner/VBoxContainer"]
+margin_top = 202.0
+margin_right = 445.0
+margin_bottom = 400.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PatchNotesDisplayer" parent="MenuContainers/FeedPositioner/VBoxContainer/PatchNotesDisabler" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 445.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Menus" type="CenterContainer" parent="MenuContainers"]
 anchor_top = 0.275
@@ -662,6 +714,15 @@ Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
 AlwaysOverrideFocus = true
 
+[node name="PatchNotesPositioner" type="MarginContainer" parent="MenuContainers"]
+anchor_right = 0.401
+anchor_bottom = 1.0
+margin_left = 35.0
+margin_top = 195.0
+margin_right = -16.28
+margin_bottom = -110.0
+mouse_filter = 2
+
 [node name="SocialMedia" type="HBoxContainer" parent="MenuContainers"]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -964,6 +1025,12 @@ margin_bottom = 32.0
 size_flags_horizontal = 6
 custom_fonts/font = ExtResource( 53 )
 text = "OK"
+
+[node name="SteamFailedDialog" parent="." instance=ExtResource( 4 )]
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "STEAM_INIT_FAILED"
+HideCancelButton = true
+DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/LoadGame" to="." method="LoadGamePressed"]

@@ -137,6 +137,12 @@ public static class Constants
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
+    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
+    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
+    public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
@@ -560,6 +566,8 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const string ORGANELLE_UPGRADE_SPECIAL_NONE = "none";
+
     public const int METABALL_ADD_COST = 7;
     public const int METABALL_REMOVE_COST = 5;
     public const int METABALL_MOVE_COST = 3;
@@ -774,14 +782,18 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
-    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 12.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY_CONTROLLER = 1.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+    public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
+
+    public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panel are
@@ -933,6 +945,9 @@ public static class Constants
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
+    /// <summary>
+    ///   This is used in Steam mode, so don't remove even if this shows as unused
+    /// </summary>
     public const int MAX_PATH_LENGTH = 1024;
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
@@ -943,6 +958,8 @@ public static class Constants
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
+
+    public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
@@ -1108,6 +1125,8 @@ public static class Constants
     public const float MOUSE_INPUT_SENSITIVITY_STEP = 0.0001f;
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
 
+    public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
+
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
     /// <summary>
@@ -1121,6 +1140,12 @@ public static class Constants
     public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN_CONSTANT = 0.007f;
 
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
+
+    public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
+    public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
+
+    public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
+    public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.
@@ -1172,6 +1197,13 @@ public static class Constants
         "screenshot",
         "toggle_FPS",
     };
+
+    // TODO: switch to https once our runtime supports it: https://github.com/Revolutionary-Games/Thrive/issues/4100
+    // See: https://github.com/Revolutionary-Games/Thrive/pull/4097#issuecomment-1415301373
+    public static readonly Uri MainSiteFeedURL = new("http://thrivefeeds.b-cdn.net/feed.rss");
+
+    public static readonly Regex NewsFeedRegexDeleteContent =
+        new(@"\s*The\spost\s*.*appeared\sfirst\son.*Revolutionary\sGames\sStudio.*$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.

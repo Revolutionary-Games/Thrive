@@ -14,7 +14,7 @@ public class HelpScreen : Control
     public string Category = null!;
 
     [Export]
-    public NodePath LeftColumnPath = null!;
+    public NodePath? LeftColumnPath;
 
     [Export]
     public NodePath RightColumnPath = null!;
@@ -23,15 +23,17 @@ public class HelpScreen : Control
     public NodePath TipMessageLabelPath = null!;
 
     [Export]
-    public PackedScene HelpBoxScene = null!;
-
-    [Export]
     public NodePath TimerPath = null!;
+
+#pragma warning disable CA2213
+    [Export]
+    public PackedScene HelpBoxScene = null!;
 
     private VBoxContainer leftColumn = null!;
     private VBoxContainer rightColumn = null!;
     private Label tipMessageLabel = null!;
     private Timer timer = null!;
+#pragma warning restore CA2213
 
     private Random random = null!;
 
@@ -84,6 +86,22 @@ public class HelpScreen : Control
 
             timer.Start(20);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (LeftColumnPath != null)
+            {
+                LeftColumnPath.Dispose();
+                RightColumnPath.Dispose();
+                TipMessageLabelPath.Dispose();
+                TimerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

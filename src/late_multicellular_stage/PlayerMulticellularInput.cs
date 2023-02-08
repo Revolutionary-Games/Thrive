@@ -9,7 +9,9 @@ public class PlayerMulticellularInput : NodeWithInput
     private bool autoMove;
     private bool mouseUnCapturePressed;
 
+#pragma warning disable CA2213 // this is our parent object
     private MulticellularStage stage = null!;
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -70,20 +72,31 @@ public class PlayerMulticellularInput : NodeWithInput
 
         if (stage.Player != null)
         {
+            Vector3 movement;
+
             if (autoMove)
             {
-                stage.Player.MovementDirection = new Vector3(0, 0, -1);
+                movement = new Vector3(0, 0, -1);
             }
             else
             {
-                var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+                movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
                 // To allow slow movement with a controller
                 if (movement.Length() > 1)
                     movement = movement.Normalized();
-
-                stage.Player.MovementDirection = movement;
             }
+
+            if (autoMove || Settings.Instance.ThreeDimensionalMovement.Value !=
+                ThreeDimensionalMovementMode.WorldRelative)
+            {
+                // Rotate movement direction by the 2D rotation of the camera
+                var rotation = new Quat(new Vector3(0, 1, 0), stage.PlayerCamera.YRotation);
+
+                movement = rotation.Xform(movement);
+            }
+
+            stage.Player.MovementDirection = movement;
         }
     }
 

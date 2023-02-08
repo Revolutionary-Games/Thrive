@@ -89,6 +89,11 @@ public class Settings
     public SettingValue<bool> ChromaticEnabled { get; set; } = new(true);
 
     /// <summary>
+    ///   Type of controller button prompts to show
+    /// </summary>
+    public SettingValue<ControllerType> ControllerPromptType { get; set; } = new(ControllerType.Automatic);
+
+    /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
     public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new(true);
@@ -256,6 +261,16 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new(false);
 
     /// <summary>
+    ///   Enables online news feed
+    /// </summary>
+    public SettingValue<bool> ThriveNewsFeedEnabled { get; set; } = new(true);
+
+    /// <summary>
+    ///   Enables showing new patch notes when the game is updated
+    /// </summary>
+    public SettingValue<bool> ShowNewPatchNotes { get; set; } = new(true);
+
+    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new(false);
@@ -348,6 +363,18 @@ public class Settings
     public SettingValue<bool> InvertHorizontalControllerLook { get; set; } = new(false);
 
     /// <summary>
+    ///   Sets how left/right inputs are interpreted in 2D (for example the microbe stage)
+    /// </summary>
+    public SettingValue<TwoDimensionalMovementMode> TwoDimensionalMovement { get; set; } =
+        new(TwoDimensionalMovementMode.Automatic);
+
+    /// <summary>
+    ///   Sets how movement direction inputs are interpreted for 3D movement
+    /// </summary>
+    public SettingValue<ThreeDimensionalMovementMode> ThreeDimensionalMovement { get; set; } =
+        new(ThreeDimensionalMovementMode.ScreenRelative);
+
+    /// <summary>
     ///   How big the deadzones are for controller axes
     /// </summary>
     /// <remarks>
@@ -419,7 +446,7 @@ public class Settings
     {
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                p => InputMap.GetActionList(p).OfType<InputEvent>().Select(
                     x => new SpecifiedInputKey(x)).ToList())!);
     }
 
