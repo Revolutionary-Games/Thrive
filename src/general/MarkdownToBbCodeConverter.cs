@@ -10,7 +10,7 @@ public static class MarkdownToBbCodeConverter
     private static readonly Regex BasicHtmlLink =
         new(@"<a\s+[^>]*href=\""(http\S+)\""[^>]*>\s*(.+)\s*</a\s*>", RegexOptions.Compiled | RegexOptions.Multiline);
 
-    private static readonly Regex UrlWithoutMarkup = new(@"[^=](https?:\/\/[^\s)\]}]+)");
+    private static readonly Regex UrlWithoutMarkup = new(@"([^=])(https?:\/\/[^\s)\]}]+)");
 
     public static string Convert(string markdown)
     {
@@ -24,7 +24,7 @@ public static class MarkdownToBbCodeConverter
 
         // Handle plain URLs not contained in any kind of markup
         converted = UrlWithoutMarkup.Replace(converted,
-            $"{Constants.CLICKABLE_TEXT_BBCODE}[url=$1]$1[/url]{Constants.CLICKABLE_TEXT_BBCODE_END}");
+            $"$1{Constants.CLICKABLE_TEXT_BBCODE}[url=$2]$2[/url]{Constants.CLICKABLE_TEXT_BBCODE_END}");
 
         // TODO: convert text emphasis
 
