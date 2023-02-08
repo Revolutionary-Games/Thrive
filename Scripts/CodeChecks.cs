@@ -40,6 +40,9 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         FilePathsToAlwaysIgnore.Add(new Regex(@"patrons\.json"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"translators\.json"));
 
+        // Generated json files that are intentionally minimized
+        FilePathsToAlwaysIgnore.Add(new Regex(@"older_patch_notes\.json$"));
+
         // We ignore the .import files for now as checking those takes quite a bit of time
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.import$"));
     }

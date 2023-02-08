@@ -945,6 +945,11 @@ public static class Constants
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
+    /// <summary>
+    ///   This is used in Steam mode, so don't remove even if this shows as unused
+    /// </summary>
+    public const int MAX_PATH_LENGTH = 1024;
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
@@ -953,6 +958,8 @@ public static class Constants
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
     public const string STARTUP_ATTEMPT_INFO_FILE = "user://startup_attempt.json";
+
+    public const string LAST_PLAYED_VERSION_FILE = "user://last_played_version.txt";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
     public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";

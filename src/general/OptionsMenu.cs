@@ -276,6 +276,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath WebFeedsEnabledPath = null!;
 
     [Export]
+    public NodePath ShowNewPatchNotesPath = null!;
+
+    [Export]
     public NodePath DismissedNoticeCountPath = null!;
 
     [Export]
@@ -289,6 +292,12 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath UnsavedProgressWarningPath = null!;
+
+    [Export]
+    public NodePath PatchNotesBoxPath = null!;
+
+    [Export]
+    public NodePath PatchNotesDisplayerPath = null!;
 
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
@@ -396,6 +405,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox customUsernameEnabled = null!;
     private LineEdit customUsername = null!;
     private CustomCheckBox webFeedsEnabled = null!;
+    private CustomCheckBox showNewPatchNotes = null!;
     private Label dismissedNoticeCount = null!;
     private OptionButton jsonDebugMode = null!;
     private Label commitLabel = null!;
@@ -409,6 +419,9 @@ public class OptionsMenu : ControlWithInput
     private CustomDialog backConfirmationBox = null!;
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
+
+    private CustomDialog patchNotesBox = null!;
+    private PatchNotesDisplayer patchNotesDisplayer = null!;
 #pragma warning restore CA2213
 
     // Misc
@@ -554,6 +567,7 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
         webFeedsEnabled = GetNode<CustomCheckBox>(WebFeedsEnabledPath);
+        showNewPatchNotes = GetNode<CustomCheckBox>(ShowNewPatchNotesPath);
         dismissedNoticeCount = GetNode<Label>(DismissedNoticeCountPath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
         commitLabel = GetNode<Label>(CommitLabelPath);
@@ -565,6 +579,8 @@ public class OptionsMenu : ControlWithInput
         backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
+        patchNotesBox = GetNode<CustomDialog>(PatchNotesBoxPath);
+        patchNotesDisplayer = GetNode<PatchNotesDisplayer>(PatchNotesDisplayerPath);
 
         selectedOptionsTab = OptionsTab.Graphics;
 
@@ -738,6 +754,7 @@ public class OptionsMenu : ControlWithInput
             Settings.EnvironmentUserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
         webFeedsEnabled.Pressed = settings.ThriveNewsFeedEnabled;
+        showNewPatchNotes.Pressed = settings.ShowNewPatchNotes;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
 
@@ -860,9 +877,12 @@ public class OptionsMenu : ControlWithInput
                 ScreenshotDirectoryWarningBoxPath.Dispose();
                 DefaultsConfirmationBoxPath.Dispose();
                 ErrorAcceptBoxPath.Dispose();
+                PatchNotesBoxPath.Dispose();
+                PatchNotesDisplayerPath.Dispose();
                 CustomUsernameEnabledPath.Dispose();
                 CustomUsernamePath.Dispose();
                 WebFeedsEnabledPath.Dispose();
+                ShowNewPatchNotesPath.Dispose();
                 DismissedNoticeCountPath.Dispose();
                 JSONDebugModePath.Dispose();
                 CommitLabelPath.Dispose();
@@ -2192,6 +2212,13 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnPatchNotesEnabledToggled(bool pressed)
+    {
+        Settings.Instance.ShowNewPatchNotes.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnAudioOutputDeviceSettingSelected(int item)
     {
         Settings.Instance.SelectedAudioOutputDevice.Value = AudioOutputDevices[item];
@@ -2251,5 +2278,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDismissedNoticeCount();
+    }
+
+    private void OnOpenPatchNotesPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        patchNotesDisplayer.ShowLatest();
+        patchNotesBox.PopupCenteredShrink();
     }
 }
