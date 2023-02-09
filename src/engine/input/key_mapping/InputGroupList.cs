@@ -180,7 +180,9 @@ public class InputGroupList : VBoxContainer
 
     public void ClearGroupList()
     {
-        this.FreeChildren();
+        this.QueueFreeChildren();
+
+        activeInputGroupList = Array.Empty<InputGroupItem>();
     }
 
     internal void ControlsChanged()
