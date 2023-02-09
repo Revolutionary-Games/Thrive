@@ -29,6 +29,9 @@ public class MainMenu : NodeWithInput
     public NodePath AutoEvoExploringButtonPath = null!;
 
     [Export]
+    public NodePath MicrobeBenchmarkButtonPath = null!;
+
+    [Export]
     public NodePath ExitToLauncherButtonPath = null!;
 
     [Export]
@@ -128,6 +131,7 @@ public class MainMenu : NodeWithInput
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
     private Button autoEvoExploringButton = null!;
+    private Button microbeBenchmarkButton = null!;
 
     private Button exitToLauncherButton = null!;
 
@@ -346,6 +350,7 @@ public class MainMenu : NodeWithInput
                 ThriveLogoPath.Dispose();
                 FreebuildButtonPath.Dispose();
                 AutoEvoExploringButtonPath.Dispose();
+                MicrobeBenchmarkButtonPath.Dispose();
                 ExitToLauncherButtonPath.Dispose();
                 CreditsContainerPath.Dispose();
                 CreditsScrollPath.Dispose();
@@ -389,6 +394,7 @@ public class MainMenu : NodeWithInput
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
+        microbeBenchmarkButton = GetNode<Button>(MicrobeBenchmarkButtonPath);
         exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
@@ -914,5 +920,29 @@ public class MainMenu : NodeWithInput
     {
         if (permanentlyDismissThanksDialog.Pressed)
             Settings.Instance.PermanentlyDismissNotice(DismissibleNotice.ThanksForBuying);
+    }
+
+    private void BenchmarksPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetCurrentMenu(3, true);
+    }
+
+    private void OnReturnFromBenchmarks()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetCurrentMenu(1, true);
+    }
+
+    private void MicrobeBenchmarkPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        microbeBenchmarkButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
     }
 }

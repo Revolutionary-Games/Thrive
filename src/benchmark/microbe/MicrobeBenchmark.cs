@@ -1,4 +1,8 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Benchmarking tool for the microbe stage. Used for checking performance impact of changes or for players to see
@@ -6,11 +10,536 @@
 /// </summary>
 public class MicrobeBenchmark : Node
 {
+    [Export]
+    public NodePath? GUIContainerPath;
+
+    [Export]
+    public NodePath FPSLabelPath = null!;
+
+    [Export]
+    public NodePath PhaseLabelPath = null!;
+
+    [Export]
+    public NodePath MicrobesCountLabelPath = null!;
+
+    [Export]
+    public NodePath WorldRootPath = null!;
+
+    [Export]
+    public NodePath DynamicRootPath = null!;
+
+    // Benchmark configuration, should only be changed if there's really important reasons as then older benchmark
+    // results are no longer comparable
+    private const int FIRST_PHASE_CELL_COUNT = 100;
+    private const int SPECIES_COUNT = 8;
+    private const int MUTATION_STEPS_MIN = 2;
+    private const int MUTATION_STEPS_MAX = 6;
+    private const float AI_MUTATION_MULTIPLIER = 1;
+    private const float MAX_SPAWN_DISTANCE = 110;
+    private const float SPAWN_DISTANCE_INCREMENT = 1.8f;
+    private const float SPAWN_INTERVAL = 0.13f;
+    private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.11f;
+    private const float GLUCOSE_CLOUD_AMOUNT = 20000;
+    private const float AMMONIA_PHOSPHATE_CLOUD_AMOUNT = 10000;
+    private const float AI_FIGHT_TIME = 30;
+    private const int TARGET_FPS_FOR_SPAWNING = 60;
+    private const float STRESS_TEST_END_THRESHOLD = 10;
+    private const int RANDOM_SEED = 256345466;
+
+    private readonly BenchmarkHelpers.BenchmarkChangedSettingsStore storedSettings = new();
+
+    // We don't register the tracking callback here as we disallow reproduction so cells can't divide and require
+    // to be added
+    private readonly DummySpawnSystem dummySpawnSystem = new();
+
+    private readonly List<EntityReference<Microbe>> spawnedMicrobes = new();
+    private readonly List<Species> generatedSpecies = new();
+
+    private readonly List<float> fpsValues = new();
+
+#pragma warning disable CA2213
+    private CustomDialog guiContainer = null!;
+    private Label fpsLabel = null!;
+    private Label phaseLabel = null!;
+    private Label microbesCountLabel = null!;
+
+    private PackedScene microbeScene = null!;
+
+    private Node worldRoot = null!;
+    private Node dynamicRoot = null!;
+
+    private CompoundCloudSystem? cloudSystem;
+#pragma warning restore CA2213
+
+    private Compound glucose = null!;
+    private Compound ammonia = null!;
+    private Compound phosphates = null!;
+
+    private GameWorld? world;
+    private GameProperties? gameProperties;
+    private FluidSystem? fluidSystem;
+    private MicrobeSystem? microbeSystem;
+    private ProcessSystem? processSystem;
+    private MicrobeAISystem? microbeAI;
+
+    private Random random = new(RANDOM_SEED);
+    private Random aiRandom = new();
+
+    private int aiGroup1Seed;
+    private int aiGroup2Seed;
+
+    private bool preventDying;
+    private bool runAI;
+
+    private int internalPhaseCounter;
+    private float timer;
+
+    private int spawnCounter;
+    private double spawnAngle;
+    private float spawnDistance;
+    private float timeSinceSpawn;
+
+    private float microbeStationaryResult;
+    private float microbeAIResult;
+    private float microbeStressTestResult;
+    private float microbeStressTestMinFPS;
+    private float microbeDeathResult;
+    private float microbeDeathMinFPS;
+
+    private bool exiting;
+
     public override void _Ready()
     {
+        guiContainer = GetNode<CustomDialog>(GUIContainerPath);
+        fpsLabel = GetNode<Label>(FPSLabelPath);
+        phaseLabel = GetNode<Label>(PhaseLabelPath);
+        microbesCountLabel = GetNode<Label>(MicrobesCountLabelPath);
+
+        worldRoot = GetNode<Node>(WorldRootPath);
+        dynamicRoot = GetNode<Node>(DynamicRootPath);
+
+        microbeScene = SpawnHelpers.LoadMicrobeScene();
+
+        guiContainer.Visible = true;
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        glucose = simulationParameters.GetCompound("glucose");
+        ammonia = simulationParameters.GetCompound("ammonia");
+        phosphates = simulationParameters.GetCompound("phosphates");
+
+        StartBenchmark();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        BenchmarkHelpers.RestoreNormalSettings(storedSettings);
     }
 
     public override void _Process(float delta)
     {
+        fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
+        microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
+
+        timer += delta;
+        timeSinceSpawn += delta;
+
+        PruneDeadMicrobes();
+
+        if (preventDying)
+        {
+            // Force health back up for cells to prevent them from dying
+            foreach (var entityReference in spawnedMicrobes)
+            {
+                var microbe = entityReference.Value;
+
+                microbe?.TestOverrideHitpoints(microbe.MaxHitpoints);
+            }
+        }
+
+        processSystem?.Process(delta);
+
+        // Run the microbe system to process microbes
+        microbeSystem?.Process(delta);
+
+        if (runAI)
+        {
+            // The AI thinking randomly adds some randomness
+            // Update AI for the cells
+            microbeAI?.Process(delta, aiRandom);
+        }
+
+        switch (internalPhaseCounter)
+        {
+            case 0:
+            {
+                // TODO: if the benchmark ever supports restarting, then cleanup of existing objects needs to be
+                // performed here
+                BenchmarkHelpers.PerformBenchmarkSetup(storedSettings);
+
+                GenerateWorldAndSpecies();
+                SetupEnoughGameSystemsToRun();
+
+                spawnAngle = 0;
+                spawnDistance = 1;
+                runAI = false;
+                preventDying = true;
+
+                IncrementPhase();
+                break;
+            }
+
+            case 1:
+            {
+                // Need to pass some time between each spawn
+                if (timer < SPAWN_INTERVAL)
+                    break;
+
+                timer = 0;
+
+                // Spawn cells up to FIRST_PHASE_CELL_COUNT and then measure FPS
+                if (spawnedMicrobes.Count < FIRST_PHASE_CELL_COUNT)
+                {
+                    SpawnAndUpdatePositionState();
+                }
+                else
+                {
+                    // Done spawning
+                    IncrementPhase();
+                }
+
+                break;
+            }
+
+            case 2:
+            {
+                WaitForStableFPS();
+                break;
+            }
+
+            case 3:
+            {
+                if (MeasureFPS())
+                {
+                    microbeStationaryResult = ScoreFromMeasuredFPS();
+                    IncrementPhase();
+                }
+
+                break;
+            }
+
+            case 4:
+            {
+                // Enable AI
+                runAI = true;
+                aiRandom = new Random(aiGroup1Seed);
+
+                IncrementPhase();
+                break;
+            }
+
+            case 5:
+            {
+                if (timer > AI_FIGHT_TIME)
+                    IncrementPhase();
+                break;
+            }
+
+            case 6:
+            {
+                // And measure FPS with AI enabled
+                if (MeasureFPS())
+                {
+                    microbeAIResult = ScoreFromMeasuredFPS();
+                    IncrementPhase();
+                }
+
+                break;
+            }
+
+            case 7:
+            {
+                // New phase: spawn cells until FPS is no longer 60
+                preventDying = false;
+                spawnCounter = 0;
+
+                dynamicRoot.FreeChildren();
+                spawnedMicrobes.Clear();
+                cloudSystem!.EmptyAllClouds();
+
+                spawnAngle = 0;
+                spawnDistance = 1;
+                aiRandom = new Random(aiGroup2Seed);
+
+                IncrementPhase();
+                break;
+            }
+
+            case 8:
+            {
+                // Just to stabilize after the world clear
+                WaitForStableFPS();
+                break;
+            }
+
+            case 9:
+            {
+                // Spawn cells and measure FPS constantly
+                if (timer < SPAWN_INTERVAL)
+                    break;
+
+                timer = 0;
+
+                if (Engine.GetFramesPerSecond() >= TARGET_FPS_FOR_SPAWNING)
+                {
+                    SpawnAndUpdatePositionState();
+                }
+
+                fpsValues.Add(Engine.GetFramesPerSecond());
+
+                // Quit if it has been a while since the last spawn or there's been way too much data already
+                if ((timeSinceSpawn > STRESS_TEST_END_THRESHOLD && fpsValues.Count > 0) || fpsValues.Count > 10000)
+                {
+                    microbeStressTestResult = spawnCounter;
+                    microbeStressTestMinFPS = fpsValues.Min();
+                    IncrementPhase();
+                }
+
+                break;
+            }
+
+            case 10:
+            {
+                // Waiting for microbes to die phase
+                if (timer < 0.5f)
+                    break;
+
+                fpsValues.Add(Engine.GetFramesPerSecond());
+
+                // End this phase when either there aren't many microbes left or a few minutes have elapsed
+                if (spawnedMicrobes.Count > 10 && fpsValues.Count < 150)
+                    break;
+
+                // Microbes are basically dead now
+
+                microbeDeathResult = fpsValues.Average();
+                microbeDeathMinFPS = fpsValues.Min();
+
+                IncrementPhase();
+                break;
+            }
+
+            case 11:
+            {
+                // Benchmark ended
+
+                IncrementPhase();
+                break;
+            }
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (GUIContainerPath != null)
+            {
+                GUIContainerPath.Dispose();
+                FPSLabelPath.Dispose();
+                PhaseLabelPath.Dispose();
+                MicrobesCountLabelPath.Dispose();
+                WorldRootPath.Dispose();
+                DynamicRootPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
+    private void StartBenchmark()
+    {
+        internalPhaseCounter = 0;
+        random = new Random(RANDOM_SEED);
+
+        microbeStationaryResult = 0;
+        microbeAIResult = 0;
+        microbeStressTestResult = 0;
+        microbeStressTestMinFPS = 0;
+        microbeDeathResult = 0;
+        microbeDeathMinFPS = 0;
+
+        UpdatePhaseLabel();
+    }
+
+    private void GenerateWorldAndSpecies()
+    {
+        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
+        world = new GameWorld();
+
+        generatedSpecies.Clear();
+
+        aiGroup1Seed = random.Next();
+        aiGroup2Seed = random.Next();
+
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        var mutator = new Mutations(random);
+
+        for (int i = 0; i < SPECIES_COUNT; ++i)
+        {
+            var species = mutator.CreateRandomSpecies(world.NewMicrobeSpecies(nameGenerator.GenerateNameSection(random),
+                    nameGenerator.GenerateNameSection(random, true)), AI_MUTATION_MULTIPLIER, false,
+                random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
+
+            generatedSpecies.Add(species);
+        }
+    }
+
+    private void SetupEnoughGameSystemsToRun()
+    {
+        fluidSystem = new FluidSystem(worldRoot);
+
+        cloudSystem = new CompoundCloudSystem();
+        worldRoot.AddChild(cloudSystem);
+
+        cloudSystem.Init(fluidSystem);
+
+        microbeSystem = new MicrobeSystem(dynamicRoot);
+        microbeAI = new MicrobeAISystem(dynamicRoot, cloudSystem);
+
+        processSystem = new ProcessSystem(dynamicRoot);
+
+        // ReSharper disable once StringLiteralTypo
+        processSystem.SetBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
+    }
+
+    private void SpawnAndUpdatePositionState()
+    {
+        var position = new Vector3((float)Math.Cos(spawnAngle), 0, (float)-Math.Sin(spawnAngle)) *
+            spawnDistance;
+
+        SpawnMicrobe(position);
+
+        // Spawn in a kind of repeating spiral pattern
+        spawnAngle += SPAWN_ANGLE_INCREMENT;
+        spawnDistance += SPAWN_DISTANCE_INCREMENT;
+
+        while (spawnDistance > MAX_SPAWN_DISTANCE)
+        {
+            spawnDistance -= MAX_SPAWN_DISTANCE;
+        }
+
+        timeSinceSpawn = 0;
+    }
+
+    private void SpawnMicrobe(Vector3 position)
+    {
+        var microbe = SpawnHelpers.SpawnMicrobe(generatedSpecies[spawnCounter % generatedSpecies.Count], position,
+            dynamicRoot, microbeScene, true, cloudSystem!, dummySpawnSystem, gameProperties!);
+
+        spawnedMicrobes.Add(new EntityReference<Microbe>(microbe));
+        ++spawnCounter;
+
+        // Spawning also gives a glucose cloud to ensure the spawned microbe doesn't instantly just die
+        cloudSystem!.AddCloud(glucose, GLUCOSE_CLOUD_AMOUNT, position);
+
+        // And a bit of phosphate or ammonia
+        cloudSystem!.AddCloud(random.Next(0, 1) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
+    }
+
+    private void PruneDeadMicrobes()
+    {
+        spawnedMicrobes.RemoveAll(r => !r.IsAlive);
+    }
+
+    private void WaitForStableFPS()
+    {
+        // TODO: a more fancy method
+        if (timer > 3.5f)
+            IncrementPhase();
+    }
+
+    private bool MeasureFPS()
+    {
+        // Sample up to 10 times per second
+        if (timer < 0.1f)
+            return false;
+
+        timer = 0;
+
+        fpsValues.Add(Engine.GetFramesPerSecond());
+
+        // TODO: could check for standard deviation or something to determine when we have enough samples
+        if (fpsValues.Count > 25)
+            return true;
+
+        return false;
+    }
+
+    private float ScoreFromMeasuredFPS()
+    {
+        if (fpsValues.Count < 1)
+            throw new InvalidOperationException("No values recorded");
+
+        // For now just take the average
+        // TODO: would be nice to have also min and 1% lows
+        return fpsValues.Average();
+    }
+
+    private void UpdatePhaseLabel()
+    {
+        if (internalPhaseCounter <= 0)
+        {
+            phaseLabel.Text = "0";
+        }
+        else if (internalPhaseCounter <= 3)
+        {
+            phaseLabel.Text = "1";
+        }
+        else if (internalPhaseCounter <= 6)
+        {
+            phaseLabel.Text = "2";
+        }
+        else if (internalPhaseCounter <= 9)
+        {
+            phaseLabel.Text = "3";
+        }
+        else if (internalPhaseCounter <= 10)
+        {
+            phaseLabel.Text = "4";
+        }
+        else
+        {
+            phaseLabel.Text = "5";
+
+            // TODO: benchmark done text and copy button
+        }
+    }
+
+    private void IncrementPhase()
+    {
+        ++internalPhaseCounter;
+        timer = 0;
+        fpsValues.Clear();
+
+        UpdatePhaseLabel();
+    }
+
+    private void ExitBenchmark()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (exiting)
+            return;
+
+        exiting = true;
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenuScene, false);
+    }
+
+    private void OnSwitchToMenuScene()
+    {
+        SceneManager.Instance.ReturnToMenu();
     }
 }
