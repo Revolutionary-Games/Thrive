@@ -28,7 +28,18 @@ public class Mutations
     };
 
     [JsonProperty]
-    private Random random = new();
+    private Random random;
+
+    [JsonConstructor]
+    public Mutations(Random random)
+    {
+        this.random = random;
+    }
+
+    public Mutations()
+    {
+        random = new Random();
+    }
 
     /// <summary>
     ///   Creates a mutated version of a species
