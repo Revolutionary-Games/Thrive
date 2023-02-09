@@ -141,6 +141,8 @@ public class Mutations
             temp = (MicrobeSpecies)mutated.Clone();
         }
 
+        mutated.OnEdited();
+
         return mutated;
     }
 
