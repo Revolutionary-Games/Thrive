@@ -182,7 +182,7 @@ public class InputGroupList : VBoxContainer
     {
         this.QueueFreeChildren();
 
-        activeInputGroupList = Array.Empty<InputGroupItem>();
+        activeInputGroupList = null;
     }
 
     internal void ControlsChanged()
