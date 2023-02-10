@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:32+0200\n"
+"POT-Creation-Date: 2023-02-10 14:59+0200\n"
 "PO-Revision-Date: 2023-02-02 07:30+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -460,9 +460,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 #: ../src/general/MainMenu.tscn:448
-#, fuzzy
 msgid "BENCHMARKS"
-msgstr "Yükleme bitti"
+msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
@@ -1771,14 +1770,12 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hata: Yeni ayarlar yapılandırma dosyasına kaydedilemedi."
 
 #: ../src/general/ThriveNewsFeed.cs:97
-#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "(oyunda rastgele oluşan gizemler)"
+msgstr "Bir hatadan dolayı haberleri alma işlemi başarısız oldu: {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:96
-#, fuzzy
 msgid "ERROR_FETCHING_NEWS"
-msgstr "Mod bilgi dosyası oluştururken hata oluştu"
+msgstr "Haberleri Alma Hatası"
 
 #: ../src/saving/InProgressLoad.cs:203
 msgid "ERROR_LOADING"
@@ -1922,39 +1919,20 @@ msgid "FEBRUARY"
 msgstr "Şubat"
 
 #: ../src/general/ThriveNewsFeed.cs:183
-#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr "Steam istemci kütüphanesi başlatma başarısız"
+msgstr "Bu yayın öğesinin içeriğini ayrıştırma işlemi başarısız oldu."
 
 #: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
-#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
-"İşlem Süresi: {0} s\n"
-"Fizik Süresi: {1} s\n"
-"Varlıklar: {2} Diğer: {3}\n"
-"Oluşan: {4} Kaybolan: {5}\n"
-"Kullanılan Düğümler: {6}\n"
-"Kullanılan Bellek: {7}\n"
-"GPU Belleği: {8}\n"
-"İşlenen Nesneler: {9}\n"
-"Çizim Çağrıları: {10} 2D: {11}\n"
-"İşlenen Noktalar: {12}\n"
-"Materyal Değişiklikleri: {13}\n"
-"Gölgelendirici Değişiklikleri: {14}\n"
-"Artık Düğümler: {15}\n"
-"Ses Gecikmesi: {16} ms\n"
-"Toplam İş Parçacığı: {17}\n"
-"Toplam CPU Süresi:\n"
-"{18}"
+msgstr "Bu yayın öğesinin içeriği yok."
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "{0} tarihinde yayınlandı"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Bu öğe, gereğinden fazla uzun olduğu için kısaltıldı. Bütün içeriği görmek için lütfen orijinalini okuyun. {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:70
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
@@ -3841,7 +3819,7 @@ msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
-msgstr ""
+msgstr "HABERLER"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
@@ -5188,7 +5166,7 @@ msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyar�
 
 #: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Thrive haber akışını göster (internetten indirilir)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
@@ -6130,7 +6108,7 @@ msgstr "Hepsinin bağını kopar"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Bağ Koparma Modu"
 
-#: ../src/general/OptionsMenu.cs:1504
+#: ../src/general/OptionsMenu.cs:1505
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Bu bir hata ayıklama sürümü, bu yüzden aşağıdaki bilgi muhtemelen güncel değil"
 
@@ -6162,7 +6140,7 @@ msgstr "Bilinmeyen fare tuşu"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Windows'ta bilinmiyor"
 
-#: ../src/general/OptionsMenu.cs:1511
+#: ../src/general/OptionsMenu.cs:1512
 msgid "UNKNOWN_VERSION"
 msgstr "Bilinmeyen sürüm"
 
