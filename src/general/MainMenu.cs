@@ -470,9 +470,9 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private void RandomizeBackground()
     {
-        Random rand = new Random();
+        var random = new Random();
 
-        var chosenBackground = MenuBackgrounds.Random(rand);
+        var chosenBackground = MenuBackgrounds.Random(random);
 
         SetBackground(chosenBackground);
     }
