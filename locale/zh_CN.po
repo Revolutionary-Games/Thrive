@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 14:48+0200\n"
+"POT-Creation-Date: 2023-02-10 14:55+0200\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -480,7 +480,7 @@ msgstr "大铁块"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} *10⁹"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:550
+#: ../simulation_parameters/microbe_stage/organelles.json:517
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "连接器"
@@ -513,7 +513,7 @@ msgstr "从临近地区来的增加生物多样性的物种获得额外的种群
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "增加生物多样性的物种会在创造时被变异"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:802
+#: ../simulation_parameters/microbe_stage/organelles.json:762
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
@@ -611,27 +611,27 @@ msgstr "大写锁定"
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
-#: ../src/general/StageHUDBase.cs:1028
+#: ../src/general/StageHUDBase.cs:1027
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "很多"
 
-#: ../src/general/StageHUDBase.cs:1032
+#: ../src/general/StageHUDBase.cs:1031
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "较多"
 
-#: ../src/general/StageHUDBase.cs:1036
+#: ../src/general/StageHUDBase.cs:1035
 msgid "CATEGORY_LITTLE"
 msgstr "少"
 
-#: ../src/general/StageHUDBase.cs:1030
+#: ../src/general/StageHUDBase.cs:1029
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "多"
 
-#: ../src/general/StageHUDBase.cs:1034
+#: ../src/general/StageHUDBase.cs:1033
 msgid "CATEGORY_SOME"
 msgstr "中等"
 
-#: ../src/general/StageHUDBase.cs:1038
+#: ../src/general/StageHUDBase.cs:1037
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
@@ -695,7 +695,7 @@ msgstr "作弊菜单"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:383
+#: ../simulation_parameters/microbe_stage/organelles.json:353
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "化学质体"
@@ -708,7 +708,7 @@ msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:719
+#: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "化学感受器"
@@ -721,7 +721,7 @@ msgstr "化学感知是细胞的视觉。是细胞获得有关其周围环境信
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化学感受器可以从更远的地方探测到化合物。放置后可以修改，以选择化合物类型和引导线颜色。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:163
+#: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化学合成蛋白"
@@ -756,7 +756,7 @@ msgstr "几丁质酶使细胞能够分解几丁质膜。每次添加都会增加
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。. [b]几丁质酶可以消化这堵墙[/b]，使其容易被捕食者吞噬。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:592
+#: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "叶绿体"
@@ -785,7 +785,7 @@ msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[t
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:871
+#: ../simulation_parameters/microbe_stage/organelles.json:828
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "纤毛"
@@ -1160,7 +1160,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
-#: ../simulation_parameters/microbe_stage/organelles.json:626
+#: ../simulation_parameters/microbe_stage/organelles.json:587
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "细胞质"
@@ -1684,15 +1684,15 @@ msgstr "{0}：-{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2419
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
@@ -1942,7 +1942,7 @@ msgstr "完成{0}次世代"
 msgid "FIRE_TOXIN"
 msgstr "发射毒素"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:417
+#: ../simulation_parameters/microbe_stage/organelles.json:387
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "鞭毛"
@@ -1992,7 +1992,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "食物链"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -2888,7 +2888,7 @@ msgstr "载入"
 msgid "LOADING"
 msgstr "载入中"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:43 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "载入中……"
@@ -2969,7 +2969,7 @@ msgstr "看着："
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "将物种数量小于此的区块认为是生物多样性低"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:920
+#: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "溶酶体"
@@ -3073,7 +3073,7 @@ msgstr "菜单"
 msgid "MESOPELAGIC"
 msgstr "中层带"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:271
+#: ../simulation_parameters/microbe_stage/organelles.json:250
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 msgid "METABOLOSOMES"
 msgstr "代谢体"
@@ -3405,7 +3405,7 @@ msgstr "缺少或无效的必填字段的格式：{0}"
 msgid "MISSING_TITLE"
 msgstr "缺少标题"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:483
+#: ../simulation_parameters/microbe_stage/organelles.json:450
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "线粒体"
@@ -3776,7 +3776,7 @@ msgstr ""
 "这个存档是来自更新版本的Thrive的并且很可能不兼容。\n"
 "你确定要强行载入这个存档吗？"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:24
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
 msgstr "新闻"
 
@@ -3827,7 +3827,7 @@ msgstr "进入下一个编辑器标签"
 msgid "NITROGEN"
 msgstr "氮"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../simulation_parameters/microbe_stage/organelles.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "固氮酶"
@@ -3840,7 +3840,7 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:309
+#: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮质体"
@@ -3888,7 +3888,7 @@ msgid "NO_AI"
 msgstr "AI关闭"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2440
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -3925,7 +3925,7 @@ msgstr "找不到截图目录"
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:654
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "细胞核"
@@ -3951,8 +3951,8 @@ msgstr "数字锁定"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2298
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2308
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4145,7 +4145,7 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "氧"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:202
+#: ../simulation_parameters/microbe_stage/organelles.json:187
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "OXYTOXISOME"
 msgstr "毒素体"
@@ -4267,7 +4267,7 @@ msgid "PATCH_NAME"
 msgstr "{0}{1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
-#: ../src/gui_common/PatchNotesDisplayer.tscn:45
+#: ../src/gui_common/PatchNotesDisplayer.tscn:47
 #, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "页面标题"
@@ -4277,7 +4277,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2124
-#: ../src/gui_common/PatchNotesDisplayer.tscn:25
+#: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "页面标题"
@@ -4334,7 +4334,7 @@ msgid "PEACEFUL"
 msgstr "和平"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:678 ../src/general/StageHUDBase.cs:725
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:724
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4412,7 +4412,7 @@ msgstr "行星生成即将发布！"
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
 
-#: ../src/general/StageHUDBase.cs:1240
+#: ../src/general/StageHUDBase.cs:1245
 msgid "PLAYER_CELL"
 msgstr "玩家细胞"
 
@@ -4487,7 +4487,7 @@ msgstr "种群数量："
 msgid "POPULATION_IN_PATCHES"
 msgstr "地区中的种群数量："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
@@ -4569,7 +4569,7 @@ msgstr "保护刚刚创造的物种不受物种上限的影响"
 msgid "PROTEINS"
 msgstr "蛋白质"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:128
+#: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
 msgstr "原生质"
 
@@ -4840,7 +4840,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
-#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../simulation_parameters/microbe_stage/organelles.json:55
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
@@ -5127,7 +5127,7 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "显示 Thrive 新闻（联机下载）"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "信号剂"
@@ -5186,7 +5186,7 @@ msgstr "大小："
 msgid "SLIDESHOW"
 msgstr "幻灯片"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../simulation_parameters/microbe_stage/organelles.json:713
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "黏液喷嘴"
@@ -5301,7 +5301,7 @@ msgstr "物种名…"
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "物种名过长！"
 
-#: ../src/general/StageHUDBase.cs:1253
+#: ../src/general/StageHUDBase.cs:1258
 msgid "SPECIES_N_TIMES"
 msgstr "{0}（x{1}）"
 
@@ -5466,7 +5466,7 @@ msgstr "存储"
 msgid "STORAGE_COLON"
 msgstr "存储："
 
-#: ../src/general/MainMenu.cs:519
+#: ../src/general/MainMenu.cs:520
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
@@ -5581,7 +5581,7 @@ msgstr "温度"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-#: ../src/general/MainMenu.cs:233 ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.cs:234 ../src/general/MainMenu.tscn:997
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
@@ -5605,7 +5605,7 @@ msgstr "感谢"
 msgid "THEORY_TEAM"
 msgstr "理论家团队"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:797
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "热能体"
@@ -5618,7 +5618,7 @@ msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:344
+#: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 msgid "THERMOSYNTHASE"
 msgstr "热合成酶"
@@ -5705,7 +5705,7 @@ msgstr "Thrive的许可证书"
 msgid "THYLAKOID"
 msgstr "类囊体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:237
+#: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
 msgstr "类囊体"
 
@@ -5830,7 +5830,7 @@ msgstr "存档数："
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:519
+#: ../simulation_parameters/microbe_stage/organelles.json:486
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
@@ -6065,7 +6065,7 @@ msgstr "取消所有连接"
 msgid "UNBIND_HELP_TEXT"
 msgstr "解连接模式"
 
-#: ../src/general/OptionsMenu.cs:1504
+#: ../src/general/OptionsMenu.cs:1505
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "这是一个调试版本，下面的信息可能不是最新的"
 
@@ -6097,7 +6097,7 @@ msgstr "鼠标未知键"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "在Windows上未知"
 
-#: ../src/general/OptionsMenu.cs:1511
+#: ../src/general/OptionsMenu.cs:1512
 msgid "UNKNOWN_VERSION"
 msgstr "未知版本"
 
@@ -6115,19 +6115,19 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "未命名"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:885
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:886
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:882
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "默认状态"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:881
+#: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
 msgstr "默认"
 
@@ -6179,7 +6179,7 @@ msgstr "手动设置后台线程数"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虚拟窗口大小"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:446
+#: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "液泡"
@@ -6192,7 +6192,7 @@ msgstr "液泡是一个内部膜质细胞器，用于在细胞内储存。它们
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "增加细胞的存储空间。"
 
-#: ../src/general/StageHUDBase.cs:726 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:725 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6222,8 +6222,8 @@ msgstr "{0}MiB"
 msgid "VIEWER"
 msgstr "查看器"
 
-#: ../src/gui_common/PatchNotesDisplayer.tscn:61
-#: ../src/gui_common/PatchNotesDisplayer.tscn:70
+#: ../src/gui_common/PatchNotesDisplayer.tscn:63
+#: ../src/gui_common/PatchNotesDisplayer.tscn:72
 #, fuzzy
 msgid "VIEW_ALL"
 msgstr "全部禁用"

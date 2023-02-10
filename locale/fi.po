@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 14:48+0200\n"
+"POT-Creation-Date: 2023-02-10 14:55+0200\n"
 "PO-Revision-Date: 2023-02-02 14:27+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -488,7 +488,7 @@ msgstr "Iso rautalohkare"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} G"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:550
+#: ../simulation_parameters/microbe_stage/organelles.json:517
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Kiinnittymisen elimet"
@@ -522,7 +522,7 @@ msgstr ""
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:802
+#: ../simulation_parameters/microbe_stage/organelles.json:762
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminesenssivä vakuoli"
@@ -621,28 +621,28 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Hiilidioksidi"
 
-#: ../src/general/StageHUDBase.cs:1028
+#: ../src/general/StageHUDBase.cs:1027
 #, fuzzy
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "yltäkylläisyys"
 
-#: ../src/general/StageHUDBase.cs:1032
+#: ../src/general/StageHUDBase.cs:1031
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "kohtuullisesti"
 
-#: ../src/general/StageHUDBase.cs:1036
+#: ../src/general/StageHUDBase.cs:1035
 msgid "CATEGORY_LITTLE"
 msgstr "vähän"
 
-#: ../src/general/StageHUDBase.cs:1030
+#: ../src/general/StageHUDBase.cs:1029
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "jonkin verran"
 
-#: ../src/general/StageHUDBase.cs:1034
+#: ../src/general/StageHUDBase.cs:1033
 msgid "CATEGORY_SOME"
 msgstr "hieman"
 
-#: ../src/general/StageHUDBase.cs:1038
+#: ../src/general/StageHUDBase.cs:1037
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "erittäin vähän"
 
@@ -709,7 +709,7 @@ msgstr "Huijausvalikko"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näytä / piilota solun toiminnot"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:383
+#: ../simulation_parameters/microbe_stage/organelles.json:353
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "Kemoplasti"
@@ -722,7 +722,7 @@ msgstr ""
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]n [thrive:compound type=\"glucose\"]glukoosiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:719
+#: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreseptori"
@@ -737,7 +737,7 @@ msgstr "Pistä muita soluja tällä."
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:163
+#: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntetisoivat proteiinit"
@@ -774,7 +774,7 @@ msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiine
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:592
+#: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Viherhiukkanen"
@@ -804,7 +804,7 @@ msgstr "Tuottaa [thrive:compound type=\"glucose\"][/thrive:compound]a. Tuotannon
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "lohkareen, {0}, kulutus"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:871
+#: ../simulation_parameters/microbe_stage/organelles.json:828
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Värekarva"
@@ -1179,7 +1179,7 @@ msgstr "Statistiikkaa organismista"
 msgid "CUSTOM_USERNAME"
 msgstr "Valittu käyttäjänimi:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:626
+#: ../simulation_parameters/microbe_stage/organelles.json:587
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Solulima"
@@ -1740,15 +1740,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energiaa {0} jota käytetään {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2419
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Energianlähteet:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2024,7 +2024,7 @@ msgstr "konsentraatiosta riippuen"
 msgid "FIRE_TOXIN"
 msgstr "Ammu myrkkyä"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:417
+#: ../simulation_parameters/microbe_stage/organelles.json:387
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "Siima"
@@ -2074,7 +2074,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Ruokaketju"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: {4})"
 
@@ -3005,7 +3005,7 @@ msgstr "Lataa"
 msgid "LOADING"
 msgstr "Ladataan"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:43 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
 #: ../src/saving/SaveListItem.tscn:105
 #, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
@@ -3085,7 +3085,7 @@ msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:920
+#: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #, fuzzy
 msgid "LYSOSOME"
@@ -3194,7 +3194,7 @@ msgstr "Valikko"
 msgid "MESOPELAGIC"
 msgstr "Mesopelaginen vyöhyke"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:271
+#: ../simulation_parameters/microbe_stage/organelles.json:250
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 msgid "METABOLOSOMES"
 msgstr "Metabolosomi"
@@ -3530,7 +3530,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr "Otsikko puuttuu"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:483
+#: ../simulation_parameters/microbe_stage/organelles.json:450
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitokondrio"
@@ -3912,7 +3912,7 @@ msgstr ""
 "Tämä tallennus on uudemmasta Thriven versiosta ja erittäin todennäköisesti\n"
 "se ei ole yhteensopiva. Lataa kuitenkin?"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:24
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
 msgstr "UUTISET"
 
@@ -3966,7 +3966,7 @@ msgstr "Avaa editorin lukitus"
 msgid "NITROGEN"
 msgstr "Typpi"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../simulation_parameters/microbe_stage/organelles.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "Nitrogenaasi"
@@ -3979,7 +3979,7 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:309
+#: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Typpeä sitova plastidi"
@@ -4028,7 +4028,7 @@ msgid "NO_AI"
 msgstr "Ei tekoälyä"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2440
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Ei dataa näytettäväksi"
 
@@ -4069,7 +4069,7 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "NO_SELECTED_MOD"
 msgstr "Ei valittua Modia"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:654
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Tuma"
@@ -4093,8 +4093,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2298
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2308
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4289,7 +4289,7 @@ msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poista
 msgid "OXYGEN"
 msgstr "Happi"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:202
+#: ../simulation_parameters/microbe_stage/organelles.json:187
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "OXYTOXISOME"
 msgstr "Happimyrkkysomi"
@@ -4421,7 +4421,7 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
-#: ../src/gui_common/PatchNotesDisplayer.tscn:45
+#: ../src/gui_common/PatchNotesDisplayer.tscn:47
 #, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "Poista Paikallinen Data"
@@ -4431,7 +4431,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2124
-#: ../src/gui_common/PatchNotesDisplayer.tscn:25
+#: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Poista Paikallinen Data"
@@ -4489,7 +4489,7 @@ msgid "PEACEFUL"
 msgstr "Rauhallinen"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:678 ../src/general/StageHUDBase.cs:725
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:724
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4562,7 +4562,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planeetan satunnainen lähtöarvo"
 
-#: ../src/general/StageHUDBase.cs:1240
+#: ../src/general/StageHUDBase.cs:1245
 msgid "PLAYER_CELL"
 msgstr "Pelaajan solu"
 
@@ -4640,7 +4640,7 @@ msgstr "populaatio:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populaatio alueilla:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4723,7 +4723,7 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Proteiini"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:128
+#: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
@@ -5007,7 +5007,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
-#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../simulation_parameters/microbe_stage/organelles.json:55
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Ruostesyaniini"
@@ -5309,7 +5309,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Viestintäkeskus"
@@ -5369,7 +5369,7 @@ msgstr "Koko:"
 msgid "SLIDESHOW"
 msgstr "Diaesitys"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../simulation_parameters/microbe_stage/organelles.json:713
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr ""
@@ -5480,7 +5480,7 @@ msgstr "Lajin nimi..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Lajin nimi..."
 
-#: ../src/general/StageHUDBase.cs:1253
+#: ../src/general/StageHUDBase.cs:1258
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -5650,7 +5650,7 @@ msgstr "Varastotila"
 msgid "STORAGE_COLON"
 msgstr "Varastotila:"
 
-#: ../src/general/MainMenu.cs:519
+#: ../src/general/MainMenu.cs:520
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
 
@@ -5767,7 +5767,7 @@ msgstr "Lämpö."
 msgid "TESTING_TEAM"
 msgstr "Testaustiimi"
 
-#: ../src/general/MainMenu.cs:233 ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.cs:234 ../src/general/MainMenu.tscn:997
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5791,7 +5791,7 @@ msgstr "OLET SELVIYTYNYT!"
 msgid "THEORY_TEAM"
 msgstr "Teoriatiimi"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:797
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Lämpöplasti"
@@ -5804,7 +5804,7 @@ msgstr ""
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:344
+#: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 #, fuzzy
 msgid "THERMOSYNTHASE"
@@ -5886,7 +5886,7 @@ msgstr "Thriven lisenssit"
 msgid "THYLAKOID"
 msgstr "Tylakoidi"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:237
+#: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
 msgstr "Tylakoidit"
 
@@ -6014,7 +6014,7 @@ msgstr "Tallennusten määrä:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Myrkyn kestävyys"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:519
+#: ../simulation_parameters/microbe_stage/organelles.json:486
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6246,7 +6246,7 @@ msgstr "Erkane kaikista"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1504
+#: ../src/general/OptionsMenu.cs:1505
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6283,7 +6283,7 @@ msgstr "Tuntematon hiiren painike"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/OptionsMenu.cs:1511
+#: ../src/general/OptionsMenu.cs:1512
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Versio:"
@@ -6304,21 +6304,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Biomi: {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:885
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:886
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:882
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:881
+#: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -6374,7 +6374,7 @@ msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Käytä virtuaalista ikkunankokoa"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:446
+#: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "Vakuoli"
@@ -6387,7 +6387,7 @@ msgstr ""
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Lisää solun varastointitilaa kerätyille yhdisteille."
 
-#: ../src/general/StageHUDBase.cs:726 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:725 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6419,8 +6419,8 @@ msgstr "{0} MiB"
 msgid "VIEWER"
 msgstr "Tarkastelija"
 
-#: ../src/gui_common/PatchNotesDisplayer.tscn:61
-#: ../src/gui_common/PatchNotesDisplayer.tscn:70
+#: ../src/gui_common/PatchNotesDisplayer.tscn:63
+#: ../src/gui_common/PatchNotesDisplayer.tscn:72
 #, fuzzy
 msgid "VIEW_ALL"
 msgstr "Ei käytössä"

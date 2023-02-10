@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 14:48+0200\n"
+"POT-Creation-Date: 2023-02-10 14:55+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -481,7 +481,7 @@ msgstr "Nagy vasdarab"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:550
+#: ../simulation_parameters/microbe_stage/organelles.json:517
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Kötőszövet"
@@ -514,7 +514,7 @@ msgstr ""
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:802
+#: ../simulation_parameters/microbe_stage/organelles.json:762
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Foszforeszkáló vakuólum"
@@ -613,28 +613,28 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Szén-dioxid"
 
-#: ../src/general/StageHUDBase.cs:1028
+#: ../src/general/StageHUDBase.cs:1027
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "bőséges mennyiség"
 
-#: ../src/general/StageHUDBase.cs:1032
+#: ../src/general/StageHUDBase.cs:1031
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "elég sok"
 
-#: ../src/general/StageHUDBase.cs:1036
+#: ../src/general/StageHUDBase.cs:1035
 #, fuzzy
 msgid "CATEGORY_LITTLE"
 msgstr "Elméleti csapat"
 
-#: ../src/general/StageHUDBase.cs:1030
+#: ../src/general/StageHUDBase.cs:1029
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "kis mennyiség"
 
-#: ../src/general/StageHUDBase.cs:1034
+#: ../src/general/StageHUDBase.cs:1033
 msgid "CATEGORY_SOME"
 msgstr "közepes mennyiség"
 
-#: ../src/general/StageHUDBase.cs:1038
+#: ../src/general/StageHUDBase.cs:1037
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
@@ -701,7 +701,7 @@ msgstr "Csalások menü"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "A sejt folyamatainak mutatása/elrejtése"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:383
+#: ../simulation_parameters/microbe_stage/organelles.json:353
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "Kemoplasztisz"
@@ -714,7 +714,7 @@ msgstr ""
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:719
+#: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
@@ -727,7 +727,7 @@ msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:163
+#: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemoszintetizáló fehérjék"
@@ -763,7 +763,7 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a méreg általi sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:592
+#: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Kloroplasztisz"
@@ -792,7 +792,7 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A f
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:871
+#: ../simulation_parameters/microbe_stage/organelles.json:828
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Csilló"
@@ -1159,7 +1159,7 @@ msgstr "Organizmus statisztikái"
 msgid "CUSTOM_USERNAME"
 msgstr "Saját felhasználónév:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:626
+#: ../simulation_parameters/microbe_stage/organelles.json:587
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Citoplazma"
@@ -1692,15 +1692,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2419
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Energia forrásai:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1984,7 +1984,7 @@ msgstr "{0} generáció befejezve"
 msgid "FIRE_TOXIN"
 msgstr "Méreg lövése"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:417
+#: ../simulation_parameters/microbe_stage/organelles.json:387
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "Ostor"
@@ -2033,7 +2033,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Tápláléklánc"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2953,7 +2953,7 @@ msgstr "Töltés"
 msgid "LOADING"
 msgstr "Betöltés"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:43 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Betöltés..."
@@ -3031,7 +3031,7 @@ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy v
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:920
+#: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lizoszóma"
@@ -3138,7 +3138,7 @@ msgstr "Menü"
 msgid "MESOPELAGIC"
 msgstr "Mezopelágikus"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:271
+#: ../simulation_parameters/microbe_stage/organelles.json:250
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 msgid "METABOLOSOMES"
 msgstr "Metaboloszómák"
@@ -3461,7 +3461,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr "Nincs cím"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:483
+#: ../simulation_parameters/microbe_stage/organelles.json:450
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitokondrium"
@@ -3847,7 +3847,7 @@ msgstr ""
 "Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel nem kompatibilis.\n"
 "Így is be akarod tölteni a mentést?"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:24
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
 msgstr ""
 
@@ -3898,7 +3898,7 @@ msgstr "Menj a következő szerkesztő ablakba"
 msgid "NITROGEN"
 msgstr "Nitrogén"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../simulation_parameters/microbe_stage/organelles.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "Nitrogenáz"
@@ -3911,7 +3911,7 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:309
+#: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrifikáló színtest"
@@ -3960,7 +3960,7 @@ msgid "NO_AI"
 msgstr "Nincs MI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2440
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nincs adat"
 
@@ -3999,7 +3999,7 @@ msgstr "A képernyőképmappa nem található"
 msgid "NO_SELECTED_MOD"
 msgstr "Egy mod sincs kijelölve"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:654
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Sejtmag"
@@ -4024,8 +4024,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2298
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2308
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4219,7 +4219,7 @@ msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 msgid "OXYGEN"
 msgstr "Oxigén"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:202
+#: ../simulation_parameters/microbe_stage/organelles.json:187
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "OXYTOXISOME"
 msgstr "Oxytoxyszóma"
@@ -4348,7 +4348,7 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
-#: ../src/gui_common/PatchNotesDisplayer.tscn:45
+#: ../src/gui_common/PatchNotesDisplayer.tscn:47
 #, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "Helyi adatok törlése"
@@ -4358,7 +4358,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2124
-#: ../src/gui_common/PatchNotesDisplayer.tscn:25
+#: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Helyi adatok törlése"
@@ -4415,7 +4415,7 @@ msgid "PEACEFUL"
 msgstr "Békés"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:678 ../src/general/StageHUDBase.cs:725
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:724
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4488,7 +4488,7 @@ msgstr "Bolygó generálás hamarosan!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Véletlen bolygó seed"
 
-#: ../src/general/StageHUDBase.cs:1240
+#: ../src/general/StageHUDBase.cs:1245
 msgid "PLAYER_CELL"
 msgstr "Játékos sejtje"
 
@@ -4564,7 +4564,7 @@ msgstr "Populáció:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Populáció a patch-ekben:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4647,7 +4647,7 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Proteinek"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:128
+#: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
@@ -4927,7 +4927,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Segítség"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
-#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../simulation_parameters/microbe_stage/organelles.json:55
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
@@ -5222,7 +5222,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Jelző szövet"
@@ -5283,7 +5283,7 @@ msgstr "Méret:"
 msgid "SLIDESHOW"
 msgstr "Diavetítés"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../simulation_parameters/microbe_stage/organelles.json:713
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Nyálka jet"
@@ -5403,7 +5403,7 @@ msgstr "Faj neve..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Faj neve..."
 
-#: ../src/general/StageHUDBase.cs:1253
+#: ../src/general/StageHUDBase.cs:1258
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -5574,7 +5574,7 @@ msgstr "Tárhely"
 msgid "STORAGE_COLON"
 msgstr "Tárhely:"
 
-#: ../src/general/MainMenu.cs:519
+#: ../src/general/MainMenu.cs:520
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Belépve mint: {0}"
 
@@ -5691,7 +5691,7 @@ msgstr "Hőm."
 msgid "TESTING_TEAM"
 msgstr "Tesztelő csapat"
 
-#: ../src/general/MainMenu.cs:233 ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.cs:234 ../src/general/MainMenu.tscn:997
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5715,7 +5715,7 @@ msgstr "TÚLÉLTÉL!"
 msgid "THEORY_TEAM"
 msgstr "Elméleti csapat"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:797
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Termoplasztisz"
@@ -5728,7 +5728,7 @@ msgstr ""
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:344
+#: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 msgid "THERMOSYNTHASE"
 msgstr "Termoszintézis"
@@ -5808,7 +5808,7 @@ msgstr "Thrive licenszek"
 msgid "THYLAKOID"
 msgstr "Thilakoid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:237
+#: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
 msgstr "Thilakoidok"
 
@@ -5933,7 +5933,7 @@ msgstr "Összes mentés:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Méreg elleni állóképesség"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:519
+#: ../simulation_parameters/microbe_stage/organelles.json:486
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6154,7 +6154,7 @@ msgstr "Összes szétválasztása"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Szétkapcsolás mód"
 
-#: ../src/general/OptionsMenu.cs:1504
+#: ../src/general/OptionsMenu.cs:1505
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6190,7 +6190,7 @@ msgstr "Ismeretlen egér"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Ismeretlen a Windows-on"
 
-#: ../src/general/OptionsMenu.cs:1511
+#: ../src/general/OptionsMenu.cs:1512
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Mod verzió:"
@@ -6209,21 +6209,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Névtelen"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:885
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:886
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:882
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:881
+#: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -6277,7 +6277,7 @@ msgstr "A háttérben futó szálak számának manuális beállítása"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:446
+#: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "Vakuólum"
@@ -6290,7 +6290,7 @@ msgstr ""
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Növeli a sejt tárkapacitását."
 
-#: ../src/general/StageHUDBase.cs:726 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:725 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -6323,8 +6323,8 @@ msgstr ""
 msgid "VIEWER"
 msgstr "Galéria nézet"
 
-#: ../src/gui_common/PatchNotesDisplayer.tscn:61
-#: ../src/gui_common/PatchNotesDisplayer.tscn:70
+#: ../src/gui_common/PatchNotesDisplayer.tscn:63
+#: ../src/gui_common/PatchNotesDisplayer.tscn:72
 #, fuzzy
 msgid "VIEW_ALL"
 msgstr "Az összes tiltása"
