@@ -447,7 +447,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BENCHMARKS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
@@ -590,9 +590,9 @@ NodeToGiveFocusTo = NodePath("../Thriveopedia")
 
 [node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
-margin_left = 496.0
+margin_left = 515.0
 margin_top = 163.0
-margin_right = 784.0
+margin_right = 765.0
 margin_bottom = 323.0
 custom_constants/separation = 10
 __meta__ = {

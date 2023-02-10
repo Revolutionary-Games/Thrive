@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 11:22+0200\n"
+"POT-Creation-Date: 2023-02-10 14:32+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -449,16 +449,21 @@ msgstr "Oportunismus"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod mořskou hladinou"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:150
+#: ../src/general/MainMenu.tscn:448
+#, fuzzy
+msgid "BENCHMARKS"
+msgstr "Načítání dokončeno"
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "Načítání dokončeno"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:76
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:132
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
@@ -806,7 +811,7 @@ msgstr "Zvyšuje rychlost otáčení velkých buněk."
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:163
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1063,7 +1068,7 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopírovat chybu do schránky"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
 #, fuzzy
 msgid "COPY_RESULTS"
 msgstr "Výsledky Auto-evo:"
@@ -2074,7 +2079,7 @@ msgstr "Přisedlost"
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:167
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:182
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
@@ -3173,12 +3178,12 @@ msgstr "{0} MiB"
 msgid "MICROBE"
 msgstr "Mikrobiální Období"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:107
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr "Mikrobiální Období"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:33
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:614
 #, fuzzy
 msgid "MICROBE_BENCHMARK"

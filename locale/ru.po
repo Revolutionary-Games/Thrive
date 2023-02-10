@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 11:22+0200\n"
+"POT-Creation-Date: 2023-02-10 14:32+0200\n"
 "PO-Revision-Date: 2022-12-09 20:00+0000\n"
 "Last-Translator: tabat-dectocoder <aliks234066aliks@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -454,16 +454,21 @@ msgstr "Поведение"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:150
+#: ../src/general/MainMenu.tscn:448
+#, fuzzy
+msgid "BENCHMARKS"
+msgstr "Загрузка завершена"
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "Загрузка завершена"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:76
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:132
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
@@ -811,7 +816,7 @@ msgstr "Повышает скорость поворота клеток."
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Удалить устаревшие сохранения"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:163
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1067,7 +1072,7 @@ msgstr "Чувствительность контроллера"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
 #, fuzzy
 msgid "COPY_RESULTS"
 msgstr "Результаты авто-эво:"
@@ -2074,7 +2079,7 @@ msgstr "Окаменеть"
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:167
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:182
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
@@ -3173,12 +3178,12 @@ msgstr "{0} МиБ"
 msgid "MICROBE"
 msgstr "Стадия микроба"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:107
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr "Стадия микроба"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:33
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:614
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
