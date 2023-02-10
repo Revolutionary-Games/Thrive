@@ -178,6 +178,13 @@ public class InputGroupList : VBoxContainer
         EnsureNavigationFlowIsCorrect();
     }
 
+    public void ClearGroupList()
+    {
+        this.QueueFreeChildren();
+
+        activeInputGroupList = null;
+    }
+
     internal void ControlsChanged()
     {
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
