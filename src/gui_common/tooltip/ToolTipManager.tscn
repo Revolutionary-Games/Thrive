@@ -1314,9 +1314,9 @@ expand = true
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
-DisplayName = "PREDATORY_PILUS"
-ProcessesDescription = "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-Description = "PREDATORY_PILUS_DESCRIPTION"
+DisplayName = "ORGANELLE_PILUS"
+ProcessesDescription = "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+Description = "ORGANELLE_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
