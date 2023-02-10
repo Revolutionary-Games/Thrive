@@ -8,20 +8,18 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 14:48+0200\n"
-"PO-Revision-Date: 2022-12-09 20:00+0000\n"
-"Last-Translator: tabat-dectocoder <aliks234066aliks@gmail.com>\n"
-"Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/ru/>\n"
+"PO-Revision-Date: 2023-02-10 07:42+0000\n"
+"Last-Translator: Ilja Hlopushkin <sentryprime92@gmail.com>\n"
+"Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1453
+#: ../src/general/OptionsMenu.tscn:1453 ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D стиль движения:"
 
@@ -33,7 +31,7 @@ msgstr "3D-Редактор"
 msgid "3D_MOVEMENT"
 msgstr "Перемещение в трёх измерениях"
 
-#: ../src/general/OptionsMenu.tscn:1485
+#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D стиль движения:"
 
@@ -357,9 +355,8 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "статус запуска:"
+msgstr "статус Авто-Эволюции:"
 
 #: ../simulation_parameters/common/input_options.json:27
 msgid "AUTO_MOVE_FORWARDS"
@@ -414,7 +411,7 @@ msgstr "Базовое Передвижение"
 
 #: ../src/general/NewGameSettings.tscn:1228
 msgid "BASIC_VIEW"
-msgstr "Базовый вид"
+msgstr "Основной"
 
 #: ../src/general/NewGameSettings.tscn:1223
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
@@ -461,29 +458,24 @@ msgid "BEHAVIOUR"
 msgstr "Поведение"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Поведение"
+msgstr "Активность"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Поведение"
+msgstr "Агрессия"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Поведение"
+msgstr "Страх"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Поведение"
+msgstr "Целеустремлённость"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Поведение"
+msgstr "Оппортунизм"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
 msgid "BELOW_SEA_LEVEL"
@@ -546,7 +538,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
-"Шанс появления нового вида из соседнего биома для увеличения биоразнообразия"
+"Шанс создания нового вида для увеличения биоразнообразия в соседнем биоме"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
@@ -1015,24 +1007,21 @@ msgstr "Значение насыщенности, уровень серого �
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) значение, яркость или интенсивность цвета"
 
-#: ../src/general/MainMenu.tscn:595
+#: ../src/general/MainMenu.tscn:595 ../src/general/MainMenu.tscn:643
 msgid "COMMUNITY_FORUM"
 msgstr "Форум сообщества"
 
-#: ../src/general/MainMenu.tscn:638 ../src/general/MainMenu.tscn:590
-#, fuzzy
+#: ../src/general/MainMenu.tscn:590 ../src/general/MainMenu.tscn:638
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Войдите в редактор для модификации видов"
+msgstr "Присоединитесь к сообществу Thrive или на наш форум"
 
-#: ../src/general/MainMenu.tscn:685 ../src/general/MainMenu.tscn:637
-#, fuzzy
+#: ../src/general/MainMenu.tscn:637 ../src/general/MainMenu.tscn:685
 msgid "COMMUNITY_WIKI"
-msgstr "наша Wiki"
+msgstr "Wiki Сообщества"
 
-#: ../src/general/MainMenu.tscn:680 ../src/general/MainMenu.tscn:632
-#, fuzzy
+#: ../src/general/MainMenu.tscn:632 ../src/general/MainMenu.tscn:680
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Выйти из игры"
+msgstr "Зайти на нашу Wiki"
 
 #: ../src/general/OptionsMenu.tscn:1903 ../src/general/OptionsMenu.tscn:1882
 msgid "COMPILED_AT_COLON"
@@ -1124,9 +1113,8 @@ msgid "CONTENT_UPLOADED_FROM"
 msgstr "Материалы Мастерской будут загружены из папки: {0}"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:413
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Начать Процветание"
+msgstr "Продолжить Процветать"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
@@ -1172,7 +1160,7 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Мёртвая зона:"
 
-#: ../src/general/OptionsMenu.tscn:574
+#: ../src/general/OptionsMenu.tscn:574 ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Кнопка контроллера подсказывает тип:"
 
@@ -1268,18 +1256,35 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Текущие Разработчики"
+msgstr "Текущий мир"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:957
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Статистика Организма"
+msgstr ""
+"[b]Поколения:[/b]\n"
+"  {0}\n"
+"[b]Всего биомов:[/b]\n"
+"  {1}\n"
+"[b]Общая длительность авто-эволюции:[/b]\n"
+"  {2}\n"
+"[b]Всего видов:[/b]\n"
+"  {3}\n"
+"[b]Живые на данный момент виды:[/b]\n"
+"  {4}\n"
+"[b]Количество видов на биом:[/b]\n"
+"  Среднее кол-во {5}; Стандартное кол-во {6}\n"
+"[b]Всего живых существ:[/b]\n"
+"  {7}\n"
+"[b]Самый многочисленный вид:[/b]\n"
+"  {8}\n"
+"[b]Основная информация о микробах:[/b]\n"
+"  Средний размер цитоплазмы: {9}\n"
+"[b]Средняя информация об органеллах:[/b]"
 
 #: ../src/general/OptionsMenu.tscn:1735 ../src/general/OptionsMenu.tscn:1731
 msgid "CUSTOM_USERNAME"
-msgstr "Кастомное имя пользователя:"
+msgstr "Псевдоним пользователя:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:626
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
@@ -1313,9 +1318,8 @@ msgid "DAY_LENGTH"
 msgstr "Длина дня"
 
 #: ../src/general/NewGameSettings.tscn:1031
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr "(случайно расположенные секреты в игре)"
+msgstr "(длительность дней, выраженная в реальном времени)"
 
 #: ../src/general/NewGameSettings.tscn:957
 msgid "DAY_NIGHT_CYCLE_ENABLED"
@@ -1437,34 +1441,29 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчики"
 
-#: ../src/general/MainMenu.tscn:657 ../src/general/MainMenu.tscn:609
-#, fuzzy
+#: ../src/general/MainMenu.tscn:609 ../src/general/MainMenu.tscn:657
 msgid "DEVELOPMENT_FORUM"
-msgstr "Разработка поддержана командой Revolutionary Games Studio ry"
+msgstr "Форум Разработчиков"
 
-#: ../src/general/MainMenu.tscn:652 ../src/general/MainMenu.tscn:604
-#, fuzzy
+#: ../src/general/MainMenu.tscn:604 ../src/general/MainMenu.tscn:652
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Войдите в редактор для модификации видов"
+msgstr "Посмотреть новости с полей разработки на нашем форуме Разработчиков"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Разработка поддержана командой Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:671 ../src/general/MainMenu.tscn:623
-#, fuzzy
+#: ../src/general/MainMenu.tscn:623 ../src/general/MainMenu.tscn:671
 msgid "DEVELOPMENT_WIKI"
-msgstr "Разработчики"
+msgstr "Wiki Разработчиков"
 
-#: ../src/general/MainMenu.tscn:666 ../src/general/MainMenu.tscn:618
-#, fuzzy
+#: ../src/general/MainMenu.tscn:618 ../src/general/MainMenu.tscn:666
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "Как играть в эту игру"
+msgstr "Зайти на WIKI разработчиков"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:243
-#, fuzzy
 msgid "DEVOURED"
-msgstr "Съеденный"
+msgstr "Поглощённый"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "DEV_BUILD_PATRONS"
@@ -1559,7 +1558,7 @@ msgstr "Отменить изменения"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:561
 msgid "DISCONNECTED_CELLS"
-msgstr "Отсоединенные Клетки"
+msgstr "Отсоединённые Клетки"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:563
 msgid "DISCONNECTED_CELLS_TEXT"
@@ -1572,11 +1571,11 @@ msgid "DISCONNECTED_METABALLS"
 msgstr "Отсоединенные метасферы"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:662
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Среди размещённых клеток имеются несоединённые с остальными.\n"
-"Пожалуйста, соедините все размещённые клетки с другими для продолжения."
+"Среди размещённых клеток имеются несоединённые метасферы с остальными "
+"метасферами.\n"
+"Пожалуйста, соедините все размещённые метасферы с другими для продолжения."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
 msgid "DISCONNECTED_ORGANELLES"
@@ -1593,10 +1592,9 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
 
-#: ../src/general/OptionsMenu.tscn:1809 ../src/general/OptionsMenu.tscn:1788
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1788 ../src/general/OptionsMenu.tscn:1809
 msgid "DISMISSED_POPUPS_COLON"
-msgstr "Скорость переваривания:"
+msgstr "Отклоненные всплывающие окна:"
 
 #: ../src/general/OptionsMenu.tscn:1807 ../src/general/OptionsMenu.tscn:1816
 #: ../src/general/OptionsMenu.tscn:1786 ../src/general/OptionsMenu.tscn:1795
@@ -1608,7 +1606,7 @@ msgstr ""
 "отклонены, можно использовать кнопку рядом с этим, чтобы все отклоненные "
 "всплывающие окна снова появились."
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:972 ../src/general/MainMenu.tscn:1013
 msgid "DISMISS_PERMANENTLY"
 msgstr "Не показывайте это снова"
 
@@ -1622,7 +1620,7 @@ msgstr "Отображение фоновых частиц"
 
 #: ../src/general/OptionsMenu.tscn:627 ../src/general/OptionsMenu.tscn:623
 msgid "DISPLAY_PART_NAMES"
-msgstr "Показать названия кнопок при выборе частей"
+msgstr "Показать название кнопок выбора частей"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:41
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -1658,7 +1656,7 @@ msgstr ""
 "энергии, чтобы не деформироваться. Однако, несколько замедляет скорость "
 "клетки и снижает скорость, с которой она может поглощать ресурсы."
 
-#: ../src/general/MainMenu.tscn:915
+#: ../src/general/MainMenu.tscn:915 ../src/general/MainMenu.tscn:956
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Больше не предупреждайте об этом"
 
@@ -1672,9 +1670,8 @@ msgid "DUPLICATE_TYPE"
 msgstr "Дублировать Тип"
 
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
-#, fuzzy
 msgid "EARLY_MULTICELLULAR"
-msgstr "Этап Многоклеточного микроба"
+msgstr "Стадия Многоклеточного микроба"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
@@ -1932,9 +1929,8 @@ msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(доля глюкозы, остающейся в окружающей среде после каждого поколения)"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:72
-#, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
-msgstr "Показать/скрыть окружение и соединения"
+msgstr "Показать/скрыть окружение"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -1958,14 +1954,12 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
 #: ../src/general/ThriveNewsFeed.cs:97
-#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "(случайно расположенные секреты в игре)"
+msgstr "Показ новостей не удался из-за ошибки:{0}"
 
 #: ../src/general/ThriveNewsFeed.cs:96
-#, fuzzy
 msgid "ERROR_FETCHING_NEWS"
-msgstr "Ошибка создания info файла мода"
+msgstr "Ошибка в выведении Новостей"
 
 #: ../src/saving/InProgressLoad.cs:203 ../src/saving/InProgressLoad.cs:201
 msgid "ERROR_LOADING"
@@ -1988,9 +1982,8 @@ msgid "ESTUARY"
 msgstr "Устье реки"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:957
-#, fuzzy
 msgid "EVOLUTIONARY_TREE"
-msgstr "Автор: Revolutionary Games Studio"
+msgstr "Эволюционное древо"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:70
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
@@ -2022,24 +2015,21 @@ msgstr "Во время загрузки сохранённых данных п�
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/general/MainMenu.tscn:376 ../src/general/MainMenu.tscn:328
-#, fuzzy
+#: ../src/general/MainMenu.tscn:328 ../src/general/MainMenu.tscn:376
 msgid "EXIT_TO_LAUNCHER"
-msgstr "Запуск E"
+msgstr "Выйти в лаунчер"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Экспорт всех миров"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
-#, fuzzy
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "Присоединяйтесь к нашему Discord серверу"
+msgstr "Экспортировать всю информацию мира в csv формат"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
-#, fuzzy
 msgid "EXPORT_SUCCESS"
-msgstr "Истребление {0}"
+msgstr "Экспортировано удачно"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
@@ -2086,10 +2076,9 @@ msgstr "Дополнительное"
 msgid "EXTRA_OPTIONS"
 msgstr "Дополнительные Настройки"
 
-#: ../src/general/MainMenu.tscn:837 ../src/general/MainMenu.tscn:796
-#, fuzzy
+#: ../src/general/MainMenu.tscn:796 ../src/general/MainMenu.tscn:837
 msgid "FACEBOOK_TOOLTIP"
-msgstr "Приостановить игру"
+msgstr "Посетить нашу страницу на Facebook"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1156
 msgid "FAILED"
@@ -2108,12 +2097,10 @@ msgstr ""
 "и более склонны атаковать в ответ."
 
 #: ../src/general/TranslationHelper.cs:85
-#, fuzzy
 msgid "FEATURE_DISABLED"
 msgstr "Отключено"
 
 #: ../src/general/TranslationHelper.cs:84
-#, fuzzy
 msgid "FEATURE_ENABLED"
 msgstr "Чит-коды включены"
 
@@ -2122,31 +2109,14 @@ msgid "FEBRUARY"
 msgstr "Февраль"
 
 #: ../src/general/ThriveNewsFeed.cs:183
-#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
+msgstr ""
+"Не удалось выполнить синтаксический анализ содержимого этого элемента веб-"
+"канала."
 
 #: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
-#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
-"Время обработки: {0} с\n"
-"Обработка физики: {1} с\n"
-"Сущностей: {2}; Другое: {3}\n"
-"Создано: {4}; Удалено: {5}\n"
-"Использовано узлов: {6}\n"
-"Использовано оперативной памяти: {7} MiB\n"
-"Использовано видеопамяти: {8} MiB\n"
-"Отрисовано объектов: {9}\n"
-"Вызовов отрисовки: {10}; 2D: {11}\n"
-"Отрисовано вершин: {12}\n"
-"Изменение материала: {13}\n"
-"Изменение шейдера: {14}\n"
-"Отключенных узлов: {15}\n"
-"Латентность звука: {16} мс\n"
-"Количество потоков: {17}\n"
-"Общее время процессора:\n"
-"{18}"
+msgstr "В этом элементе веб-канала отсутствует содержимое."
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
@@ -2160,7 +2130,7 @@ msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:70
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr "Фильтровать предметы по категориям:"
+msgstr "Отфильтровать предметы по категориям:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:144
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
@@ -2182,7 +2152,7 @@ msgstr "Симулировать одно поколение"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:683
 msgid "FINISH_X_GENERATIONS"
-msgstr "Симулировать {0} поколений"
+msgstr "Закончить {0} поколений"
 
 #: ../simulation_parameters/common/input_options.json:40
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
@@ -2351,12 +2321,11 @@ msgstr "Поколения"
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/general/MainMenu.tscn:789 ../src/general/MainMenu.tscn:748
-#, fuzzy
+#: ../src/general/MainMenu.tscn:748 ../src/general/MainMenu.tscn:789
 msgid "GITHUB_TOOLTIP"
-msgstr "Выйти из игры"
+msgstr "Посетить наш Github-репозиторий"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:932 ../src/general/OptionsMenu.cs:952
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2371,7 +2340,7 @@ msgstr ""
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/OptionsMenu.cs:937
+#: ../src/general/OptionsMenu.cs:937 ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2450,9 +2419,8 @@ msgstr ""
 "вы можете попробовать отключить это и возможно, проблема устранится."
 
 #: ../simulation_parameters/common/input_options.json:214
-#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "{0} Тыс"
+msgstr "Навигация в интерфейсе"
 
 #: ../src/general/OptionsMenu.tscn:809 ../src/general/OptionsMenu.tscn:805
 msgid "GUI_VOLUME"
@@ -2503,9 +2471,8 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Удерживайте [thrive:input]g_free_cursor[/thrive:input] для курсора"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:270
-#, fuzzy
 msgid "HOME"
-msgstr "Home"
+msgstr "Дом"
 
 #: ../src/general/OptionsMenu.tscn:1290 ../src/general/OptionsMenu.tscn:1400
 #: ../src/general/OptionsMenu.tscn:1286 ../src/general/OptionsMenu.tscn:1396
@@ -2579,9 +2546,8 @@ msgid "INGESTED_MATTER"
 msgstr "Поглощённая материя"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "Присоединяйтесь к нашему Discord серверу"
+msgstr "Создать новый мир"
 
 #: ../src/general/OptionsMenu.tscn:204 ../src/general/OptionsMenu.tscn:200
 msgid "INPUTS"
@@ -2666,10 +2632,9 @@ msgstr "Железо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Железная хемолитоавтотрофия"
 
-#: ../src/general/MainMenu.tscn:765 ../src/general/MainMenu.tscn:724
-#, fuzzy
+#: ../src/general/MainMenu.tscn:724 ../src/general/MainMenu.tscn:765
 msgid "ITCH_TOOLTIP"
-msgstr "Выйти из игры"
+msgstr "Посетить нашу страницу на itch.io"
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "JANUARY"
@@ -3109,28 +3074,26 @@ msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} в полдень"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:368
-#, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
-msgstr "Колёсико вправо"
+msgstr "Ночь"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
-#, fuzzy
 msgid "LIGHT_MAX"
-msgstr "Свет"
+msgstr "Максимум света"
 
 #: ../src/general/OptionsMenu.tscn:1195 ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_EXTREME"
 msgstr "Экстремальное"
 
 #: ../src/general/NewGameSettings.tscn:805
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE"
-msgstr "Нормальное"
+msgstr "Ограничить использование соединений роста"
 
 #: ../src/general/NewGameSettings.tscn:812
-#, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(скорость, с которой ИИ будет мутировать)"
+msgstr ""
+"(при включенной скорости роста caps если отключены только доступные "
+"соединения, влияющие на скорость роста)"
 
 #: ../src/general/OptionsMenu.tscn:1195 ../src/general/OptionsMenu.tscn:1191
 msgid "LIMIT_HUGE"
@@ -3227,7 +3190,6 @@ msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
 #: ../src/saving/SaveList.tscn:129
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Выбранное для загрузки сохранение сделано в прототипе с помощью другой "
@@ -3581,9 +3543,8 @@ msgstr "Свободный микробный редактор"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:971
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1015
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Статистика Организма"
+msgstr "  {0}: Найдено {1} видов, среднее {2} которых"
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:182
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3626,21 +3587,21 @@ msgstr ""
 "Попробуйте все клавиши в течении нескольких секунд, чтобы продолжить."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
-#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "Для управления клеткой используйте клавиши, показанные рядом с клеткой (в "
 "центре экрана), и мышь для управления ориентацией клетки.\n"
-"\n"
+"ВНИМАНИЕ: Управление через контроллер экспериментально, к примеру - нет "
+"применения тач паду. Так же ожидайте баги. \n"
 "Попробуйте все клавиши в течении нескольких секунд, чтобы продолжить."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
-#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"Следите за своей шкалой здоровья рядом со шкалой АТФ (снизу справа).\n"
-"Ваша клетка умрёт, если у нее закончится здоровье.\n"
-"Вы восстанавливаете здоровье, пока у вас есть АТФ.\n"
+"Следите за количеством доступного света на панели окружающей среды.\n"
+"\n"
+"В ночное время фотосинтез менее эффективен из-за малого количества "
+"солнечного света.\n"
 "Убедитесь, что собрано достаточно глюкозы для производства АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
@@ -3668,7 +3629,9 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
 "Для размножения вам необходимо поделить каждую органеллу надвое. Для этого "
-"понадобится большее количество аммиака и фосфата."
+"понадобится большее количество аммиака и фосфата .Органеллам требуются "
+"[thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound "
+"type=\"phosphates\"][/thrive:compound] и время чтобы разделиться надвое"
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -3872,9 +3835,8 @@ msgstr ""
 "повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Перемешано..."
 
 #: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -3901,7 +3863,7 @@ msgstr "Изменить Вид"
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:899
+#: ../src/general/MainMenu.tscn:899 ../src/general/MainMenu.tscn:940
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Установленные моды были обнаружены, но нет включенных модов.\n"
@@ -4107,9 +4069,8 @@ msgid "MOVE_RIGHT"
 msgstr "Перемещение вправо"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
-#, fuzzy
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "Двигаться к Этому Биому"
+msgstr "Двигаться к любому биому"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1699
 msgid "MOVE_TO_LAND"
@@ -4381,9 +4342,8 @@ msgid "NOT_FOUND_CHUNK"
 msgstr "Ошибка: фрагмент не найден"
 
 #: ../src/auto-evo/AutoEvoRun.cs:130
-#, fuzzy
 msgid "NOT_STARTED_DOT"
-msgstr "Отменено."
+msgstr "Не начато."
 
 #: ../src/gui_common/CreditsScroll.cs:519
 msgid "NOVEMBER"
@@ -4403,14 +4363,12 @@ msgid "NO_EVENTS_RECORDED"
 msgstr "Никаких событий не зафиксировано"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "Папка сохранений не найдена"
+msgstr "Не найдена дирректория окаменелостей"
 
-#: ../src/general/MainMenu.tscn:927 ../src/general/MainMenu.tscn:886
-#, fuzzy
+#: ../src/general/MainMenu.tscn:886 ../src/general/MainMenu.tscn:927
 msgid "NO_MODS_ENABLED"
-msgstr "Отключено"
+msgstr "Отсутствуют включенные моды"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:202
@@ -4486,14 +4444,13 @@ msgstr "Н/Д МP"
 msgid "OCTOBER"
 msgstr "Октябрь"
 
-#: ../src/general/MainMenu.tscn:581
+#: ../src/general/MainMenu.tscn:581 ../src/general/MainMenu.tscn:629
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официальный сайт"
 
-#: ../src/general/MainMenu.tscn:620 ../src/general/MainMenu.tscn:572
-#, fuzzy
+#: ../src/general/MainMenu.tscn:572 ../src/general/MainMenu.tscn:620
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
-msgstr "Самоубийство"
+msgstr "Зайти на официальный сайт Revolutionary Games"
 
 #: ../src/general/MainMenu.tscn:970 ../src/general/MainMenu.tscn:1027
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
@@ -4518,9 +4475,8 @@ msgid "OPEN_FOLDER"
 msgstr "Открыть папку"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "Открыть папку с логами"
+msgstr "Открыть папку с окаменелостями"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
@@ -4533,9 +4489,8 @@ msgid "OPEN_HELP_SCREEN"
 msgstr "Открыть экран помощи"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
-#, fuzzy
 msgid "OPEN_IN_FREEBUILD"
-msgstr "Свободное Строительство"
+msgstr "Открыть в свободном редакторе клеток"
 
 #: ../src/general/OptionsMenu.tscn:1770 ../src/general/OptionsMenu.tscn:1766
 msgid "OPEN_LOGS_FOLDER"
@@ -4715,19 +4670,16 @@ msgid "PAGEUP"
 msgstr "Page Up"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:232
-#, fuzzy
 msgid "PAGE_BACK"
 msgstr "Назад"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:251
-#, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Перемещение вперед"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:294
-#, fuzzy
 msgid "PAGE_TITLE"
-msgstr "Удаление Локальных Данных"
+msgstr "Титульная Страница"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PANGONIAN_REGION_NAME"
@@ -4754,14 +4706,13 @@ msgid "PAN_CAMERA_UP"
 msgstr "Переместить вверх"
 
 #: ../src/general/NewGameSettings.tscn:786
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
-msgstr "(скорость, с которой ИИ будет мутировать)"
+msgstr "Пассивно получать прогресс в репродукции"
 
 #: ../src/general/NewGameSettings.tscn:793
-#, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(скорость, с которой ИИ будет мутировать)"
+msgstr ""
+"(пассивно получать необходимые для репродукции вещества из окружающей среды)"
 
 #: ../src/gui_common/CreditsScroll.cs:297
 msgid "PAST_DEVELOPERS"
@@ -4812,39 +4763,38 @@ msgstr "{0} {1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
 #: ../src/gui_common/PatchNotesDisplayer.tscn:45
-#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Удаление Локальных Данных"
+msgstr ""
+"Вы играли в Thrive последний раз {0} , с того момента доступен новый релиз."
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
+"Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых "
+"релизов"
 
 #: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:25
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Удаление Локальных Данных"
+msgstr "Заметки обновлений"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Изменения:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
-"Ваш вид вымер в этом биоме.\n"
-"Но это ещё не конец, вы можете выбрать для игры новый биом!"
+"Просмотреть полный список изменений этого обновления на [color=#3796e1]"
+"[url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:777 ../src/general/MainMenu.tscn:736
-#, fuzzy
+#: ../src/general/MainMenu.tscn:736 ../src/general/MainMenu.tscn:777
 msgid "PATREON_TOOLTIP"
-msgstr "Приостановить игру"
+msgstr "Зайти на нашу страницу на Patreon"
 
 #: ../src/gui_common/CreditsScroll.cs:331
 msgid "PATRONS"
@@ -4873,9 +4823,8 @@ msgid "PCK_LOAD_FAILED"
 msgstr "Не удалось загрузить файл pck ({0})"
 
 #: ../src/modding/ModLoader.cs:530
-#, fuzzy
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "Не удалось загрузить файл pck ({0})"
+msgstr "Не удалось загрузить файл pck ({0}), его не существует"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
 msgid "PEACEFUL"
@@ -4966,7 +4915,7 @@ msgstr "Клетка Игрока"
 
 #: ../src/general/NewGameSettings.tscn:587
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "Изменение популяции от смерти игрока"
+msgstr "Убыль популяции вида от смерти игрока"
 
 #: ../src/general/NewGameSettings.tscn:632
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
@@ -4984,10 +4933,9 @@ msgstr "Клонировать Игрока"
 msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
 
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1471
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1471 ../src/general/OptionsMenu.tscn:1475
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "Игрок вымер"
+msgstr "Родственник игрока"
 
 #: ../src/general/StageBase.cs:440
 msgid "PLAYER_REPRODUCED"
@@ -4999,15 +4947,15 @@ msgstr ""
 "Скорость\n"
 "Игрока"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:592 ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:592 ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:592 ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
@@ -5177,9 +5125,8 @@ msgstr "\"Raw\""
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:58
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:119
-#, fuzzy
 msgid "RAW_VALUE_COLON"
-msgstr "Новое Название Колонии:"
+msgstr "Сырое значение:"
 
 #: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
@@ -5194,10 +5141,9 @@ msgstr "Готово"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Рекомендуемая версия Thrive:"
 
-#: ../src/general/MainMenu.tscn:813 ../src/general/MainMenu.tscn:772
-#, fuzzy
+#: ../src/general/MainMenu.tscn:772 ../src/general/MainMenu.tscn:813
 msgid "REDDIT_TOOLTIP"
-msgstr "Продолжить игру"
+msgstr "Посетить наш саб-реддит"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "REDO"
@@ -5227,7 +5173,7 @@ msgstr "Воспроизведено"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:335
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:408
 msgid "REPRODUCTION"
-msgstr "АТФ Производство"
+msgstr "Репродукция"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
@@ -5257,7 +5203,7 @@ msgstr "Сбросить"
 msgid "RESET_DEADZONES"
 msgstr "Сбросить мёртвые зоны"
 
-#: ../src/general/OptionsMenu.tscn:1810
+#: ../src/general/OptionsMenu.tscn:1810 ../src/general/OptionsMenu.tscn:1831
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Сброс отклоненных всплывающих окон"
 
@@ -5332,10 +5278,9 @@ msgstr ""
 "Вы действительно хотите вернуться в главное меню?\n"
 "Весь несохраненный прогресс будет утерян."
 
-#: ../src/general/MainMenu.tscn:740 ../src/general/MainMenu.tscn:699
-#, fuzzy
+#: ../src/general/MainMenu.tscn:699 ../src/general/MainMenu.tscn:740
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
-msgstr "Автор: Revolutionary Games Studio"
+msgstr "Посетить официальный сайт Revolutionary Games"
 
 #: ../src/modding/ModManager.tscn:172
 msgid "RIGHT_ARROW"
@@ -5404,9 +5349,10 @@ msgid "RUN_X_WORLDS"
 msgstr "Смоделируйте {0} миров"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
-#, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
-msgstr "Присоединяйтесь к нашему Discord серверу"
+msgstr ""
+"Запустить определенное количество миров, количество генераций на каждый мир "
+"определяется в меню сверху."
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -5449,10 +5395,9 @@ msgstr ""
 "Если вы не устраните проблему, вызывающую сбой при запуске, вам потребуется "
 "перезапустить Thrive несколько раз, чтобы вернуться в безопасный режим."
 
-#: ../src/general/MainMenu.tscn:974 ../src/general/MainMenu.tscn:933
-#, fuzzy
+#: ../src/general/MainMenu.tscn:933 ../src/general/MainMenu.tscn:974
 msgid "SAFE_MODE_TITLE"
-msgstr "Удаление Локальных Данных"
+msgstr "Thrive запущен в безопасном режиме"
 
 #: ../src/general/OptionsMenu.tscn:1959 ../src/saving/NewSaveMenu.tscn:80
 #: ../src/general/OptionsMenu.tscn:1938
@@ -5576,12 +5521,11 @@ msgstr "Увеличивать"
 msgid "SCALING_ON_INVERSE"
 msgstr "Уменьшать"
 
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
-#: ../src/general/OptionsMenu.tscn:1509 ../src/general/OptionsMenu.tscn:1471
-#: ../src/general/OptionsMenu.tscn:1504 ../src/general/OptionsMenu.tscn:1505
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1471 ../src/general/OptionsMenu.tscn:1504
+#: ../src/general/OptionsMenu.tscn:1505 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1508 ../src/general/OptionsMenu.tscn:1509
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "увеличивает передвижение"
+msgstr "Относительно экрана"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
@@ -5633,18 +5577,16 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Выбранное сохранение можно обновить"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
-#, fuzzy
 msgid "SELECT_A_GENERATION"
-msgstr "Выберите вариант"
+msgstr "Выберите поколение"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:122
 msgid "SELECT_A_PATCH"
 msgstr "Выберите биом для просмотра деталей"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:808
-#, fuzzy
 msgid "SELECT_A_SPECIES"
-msgstr "Выберите биом для просмотра деталей"
+msgstr "Выберите вид"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:73
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -5691,14 +5633,14 @@ msgid "SHOW_HELP"
 msgstr "Показать помощь"
 
 #: ../src/general/OptionsMenu.tscn:1787
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "{0} {1}"
+msgstr "Показывать новые заметки релизов автоматически"
 
 #: ../src/general/OptionsMenu.tscn:1785
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0} {1}"
+msgstr ""
+"Показывать заметки обновлений новых релизов Thrive автоматически в главном "
+"меню"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
 msgid "SHOW_TUTORIALS"
@@ -5722,7 +5664,7 @@ msgstr ""
 "Включает / отключает предупреждение о несохраненном прогрессе, когда игрок "
 "пытается выйти из игры."
 
-#: ../src/general/OptionsMenu.tscn:1774
+#: ../src/general/OptionsMenu.tscn:1774 ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Показать ленту новостей Thrive (загрузка из интернета)"
 
@@ -5885,9 +5827,8 @@ msgid "SPECIAL_MOUSE_2"
 msgstr "Специальная кнопка мыши 2"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:801
-#, fuzzy
 msgid "SPECIES"
-msgstr "Список Видов"
+msgstr "Виды"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:608
 #: ../src/microbe_stage/MicrobeStage.tscn:660
@@ -6047,21 +5988,22 @@ msgstr "Steam в настоящее время недоступен, пожал�
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Произошла неизвестная ошибка Steam"
 
-#: ../src/general/MainMenu.tscn:1031 ../src/general/MainMenu.tscn:990
-#, fuzzy
+#: ../src/general/MainMenu.tscn:990 ../src/general/MainMenu.tscn:1031
 msgid "STEAM_INIT_FAILED"
 msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
 
-#: ../src/general/MainMenu.tscn:1033 ../src/general/MainMenu.tscn:992
-#, fuzzy
+#: ../src/general/MainMenu.tscn:992 ../src/general/MainMenu.tscn:1033
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
-"Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
+"Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут "
+"недоступны.\n"
+"Убедитесь что у вас запущен стим со входом в необходимый аккаунт. "
+"Пожалуйста, запустите игру напрямую, через свойства>показать локальные "
+"файлы, коль ошибка не уходит со временем"
 
-#: ../src/general/MainMenu.tscn:753 ../src/general/MainMenu.tscn:712
-#, fuzzy
+#: ../src/general/MainMenu.tscn:712 ../src/general/MainMenu.tscn:753
 msgid "STEAM_TOOLTIP"
-msgstr "Приостановить игру"
+msgstr "Посетить нашу страницу в Steam"
 
 #: ../src/early_multicellular_stage/CellType.cs:39
 msgid "STEM_CELL_NAME"
@@ -6097,7 +6039,7 @@ msgstr "Хранилище"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:890
 msgid "STORAGE_COLON"
-msgstr "Вместимость клетки:"
+msgstr "Вместимость соединений в клетке:"
 
 #: ../src/general/MainMenu.cs:519 ../src/general/MainMenu.cs:481
 msgid "STORE_LOGGED_IN_AS"
@@ -6184,12 +6126,10 @@ msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr "Переключение вкладки вторичного уровня вправо"
 
 #: ../simulation_parameters/common/input_options.json:218
-#, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Повернуть влево"
 
 #: ../simulation_parameters/common/input_options.json:222
-#, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Повернуть вправо"
 
@@ -6320,6 +6260,7 @@ msgid "THREADS"
 msgstr "Потоки:"
 
 #: ../src/general/MainMenu.tscn:465 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:513
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -6561,9 +6502,8 @@ msgid "TREBLEUP"
 msgstr "TrebleUp"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "Попробуйте сделать скриншоты!"
+msgstr "Попробуйте сохранить окаменелости некоторых видов!"
 
 #: ../src/saving/SaveManagerGUI.tscn:204
 msgid "TRY_MAKING_A_SAVE"
@@ -6872,19 +6812,15 @@ msgid "UPGRADE_CILIA_PULL"
 msgstr "Вытягивание ресничек"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:886
-#, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
-"Реснички похожи на жгутики, но вместо однонаправленного ускорения они "
-"производят вращательное, помогая клеткам вращаться."
+"Когда вы находитесь в режиме поглощения ([thrive:input]g_toggle_engulf[/"
+"thrive:input]) этот тип ресничек будет притягивать посторонние клетки к "
+"себе, т.е клетке игрока. Крайне полезно для захвата добычи."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:882
-#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr ""
-"Липаза позволяет клетке разрушать большинство типов мембран. Ваша клетка уже "
-"производит некоторые ферменты без лизосомы, но выбрав этот тип вы повысите "
-"эффективность."
+msgstr "Обычное, не улучшенное состояние"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:881
 msgid "UPGRADE_NAME_NONE"
@@ -6938,7 +6874,7 @@ msgstr ""
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
-#: ../src/general/OptionsMenu.tscn:1354
+#: ../src/general/OptionsMenu.tscn:1354 ../src/general/OptionsMenu.tscn:1358
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Используйте размер виртуального окна"
 
@@ -6982,9 +6918,10 @@ msgstr "По вертикали (ось: {0})"
 
 #: ../src/general/OptionsMenu.tscn:534 ../src/general/OptionsMenu.tscn:530
 msgid "VIDEO_MEMORY"
-msgstr "Видеопамяти используется:"
+msgstr "Используемая видеопамять:"
 
 #: ../src/general/OptionsMenu.cs:951 ../src/general/OptionsMenu.tscn:543
+#: ../src/general/OptionsMenu.cs:971 ../src/general/OptionsMenu.tscn:547
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} МиБ"
 
@@ -6994,19 +6931,16 @@ msgstr "Просмотр"
 
 #: ../src/gui_common/PatchNotesDisplayer.tscn:61
 #: ../src/gui_common/PatchNotesDisplayer.tscn:70
-#, fuzzy
 msgid "VIEW_ALL"
-msgstr "Отключить все"
+msgstr "Просмотреть всё"
 
 #: ../src/general/OptionsMenu.tscn:1795
-#, fuzzy
 msgid "VIEW_PATCH_NOTES"
-msgstr "{0} {1}"
+msgstr "Просмотреть Заметки Обновления"
 
 #: ../src/general/OptionsMenu.tscn:1793
-#, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0} {1}"
+msgstr "Просмотреть последние или все заметки обновлений Thrive"
 
 #: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:300
 msgid "VIEW_SOURCE_CODE"
@@ -7145,14 +7079,12 @@ msgid "WORLD"
 msgstr "Мир"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "Ошибка: {0}"
+msgstr "Информация мира была успешно экспортирована в : {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "Статистика Организма"
+msgstr "Минимальная статистика ныне выранного мира"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -7161,24 +7093,23 @@ msgstr ""
 "Включить прототипы поздних уровень: {0}\n"
 "Включить пасхальные яйца: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1509 ../src/general/OptionsMenu.tscn:1505
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1505 ../src/general/OptionsMenu.tscn:1509
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "увеличивает передвижение"
+msgstr "Относительно мира"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 msgid "WORST_PATCH_COLON"
 msgstr "Худший Путь:"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:592 ../src/general/OptionsMenu.tscn:596
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:592 ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:592 ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
@@ -7190,10 +7121,9 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "лет"
 
-#: ../src/general/MainMenu.tscn:801 ../src/general/MainMenu.tscn:760
-#, fuzzy
+#: ../src/general/MainMenu.tscn:760 ../src/general/MainMenu.tscn:801
 msgid "YOUTUBE_TOOLTIP"
-msgstr "Приостановить игру"
+msgstr "Зайти на наш Ютуб Канал"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
