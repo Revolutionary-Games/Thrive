@@ -213,6 +213,14 @@ public static class StringUtils
         return value.ToString("F1", CultureInfo.CurrentCulture);
     }
 
+    public static string ThreeDigitFormat(long value)
+    {
+        if (value is >= 1000 or <= -1000)
+            return FormatNumber(value);
+
+        return value.ToString(CultureInfo.CurrentCulture);
+    }
+
     /// <summary>
     ///   Formats two numbers separated by a slash. The numbers will have
     ///   up to 3 digits each.
@@ -221,6 +229,11 @@ public static class StringUtils
     /// <param name="denominator">The second number (denominator)</param>
     /// <returns>The formatted string</returns>
     public static string SlashSeparatedNumbersFormat(double numerator, double denominator)
+    {
+        return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
+    }
+
+    public static string SlashSeparatedNumbersFormat(long numerator, long denominator)
     {
         return ThreeDigitFormat(numerator) + " / " + ThreeDigitFormat(denominator);
     }
