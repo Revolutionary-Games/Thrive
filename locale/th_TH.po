@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:55+0200\n"
+"POT-Creation-Date: 2023-02-10 14:59+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -306,7 +306,7 @@ msgstr "บันทึกอัตโนมัติระหว่างเก
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
@@ -352,7 +352,8 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:481 ../src/general/MainMenu.tscn:583
-#: ../src/general/MainMenu.tscn:902 ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/MainMenu.tscn:642 ../src/general/MainMenu.tscn:961
+#: ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -454,6 +455,22 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
 msgid "BELOW_SEA_LEVEL"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:448
+msgid "BENCHMARKS"
+msgstr ""
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
+msgid "BENCHMARK_FINISHED"
+msgstr ""
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
+msgid "BENCHMARK_PHASE"
+msgstr ""
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
+msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
@@ -821,6 +838,7 @@ msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป�
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -911,20 +929,20 @@ msgstr ""
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:643
+#: ../src/general/MainMenu.tscn:702
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:638
+#: ../src/general/MainMenu.tscn:697
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:744
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:739
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -1068,6 +1086,10 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
+msgid "COPY_RESULTS"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
@@ -1135,7 +1157,7 @@ msgstr "กดปุ่ม ..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 msgid "CREDITS"
 msgstr "เครดิต"
 
@@ -1214,7 +1236,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:933
+#: ../src/microbe_stage/Microbe.Contact.cs:944
 msgid "DEATH"
 msgstr ""
 
@@ -1298,11 +1320,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:716
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -1311,11 +1333,11 @@ msgstr "ดำเนินการต่อ"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:730
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:725
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -1432,7 +1454,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -1447,7 +1469,7 @@ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} 
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/general/MainMenu.tscn:1013
+#: ../src/general/MainMenu.tscn:1072
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1497,7 +1519,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:1015
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1763,7 +1785,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1197
+#: ../src/microbe_stage/Microbe.Contact.cs:1208
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1801,7 +1823,7 @@ msgstr ""
 msgid "EXIT"
 msgstr "ออก"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:377
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "เปิด E"
@@ -1857,7 +1879,7 @@ msgstr "สูญพันธุ์ไปจากโลก"
 msgid "EXTINCT_SPECIES"
 msgstr "สูญพันธุ์ไปแล้วใน {0}"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "EXTRAS"
 msgstr "พิเศษ"
 
@@ -1865,7 +1887,7 @@ msgstr "พิเศษ"
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -2041,6 +2063,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:182
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
@@ -2099,7 +2122,7 @@ msgstr "ตั้งค่า"
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -2108,11 +2131,11 @@ msgstr "ดำเนินการต่อ"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:922
+#: ../src/general/MainMenu.tscn:981
 msgid "GLES2_MODE_WARNING"
 msgstr "คำเตือนโหมด GLES2"
 
-#: ../src/general/MainMenu.tscn:924
+#: ../src/general/MainMenu.tscn:983
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "คุณกำลังเจริญเติบโตด้วย GLES2 สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ Thrive"
 
@@ -2396,7 +2419,7 @@ msgstr "เหล็ก"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "เหล็กเคโมลิโทออโตโทรฟี"
 
-#: ../src/general/MainMenu.tscn:765
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -2946,12 +2969,12 @@ msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพ
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "โหลดเกม"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3133,6 +3156,17 @@ msgstr ""
 msgid "MICROBE"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
+#, fuzzy
+msgid "MICROBES_COUNT"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
+#: ../src/general/MainMenu.tscn:614
+#, fuzzy
+msgid "MICROBE_BENCHMARK"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
 #: ../simulation_parameters/common/gallery.json:332
 #, fuzzy
 msgid "MICROBE_EDITOR"
@@ -3209,7 +3243,7 @@ msgstr "แต่ละรุ่นคุณจะมีแต้มการก
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "ทุกครั้งที่คุณสืบพันธุ์คุณจะเข้าสู่ การแก้ไขจุลชีพ ซึ่งคุณสามารถทำการเปลี่ยนแปลงสายพันธุ์ของคุณ (โดยการเพิ่มย้ายหรือเอาออร์แกเนลล์ออก) เพื่อเพิ่มความสำเร็จให้กับสายพันธุ์ของคุณ การเยี่ยมชมบรรณาธิการใน Microbe Stage แต่ละครั้งแสดงถึงวิวัฒนาการ 100 ล้านปี"
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:421
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
@@ -3457,7 +3491,7 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:940
+#: ../src/general/MainMenu.tscn:999
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3547,11 +3581,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:1039
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:1040
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3792,11 +3826,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME"
 msgstr "เกมส์ใหม่"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3918,7 +3952,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/general/MainMenu.tscn:927
+#: ../src/general/MainMenu.tscn:986
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "เปิดใช้งานโกงคีย์"
@@ -3987,16 +4021,16 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:629
+#: ../src/general/MainMenu.tscn:688
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:620
+#: ../src/general/MainMenu.tscn:679
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/MainMenu.tscn:970 ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:1029 ../src/general/MainMenu.tscn:1086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4072,11 +4106,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:331 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "ตั้งค่า"
 
-#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:328 ../src/general/PauseMenu.tscn:223
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -4320,7 +4354,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -4610,11 +4644,11 @@ msgstr "โหลดด่วน"
 msgid "QUICK_SAVE"
 msgstr "บันทึกด่วน"
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:390
 msgid "QUIT"
 msgstr "ออก"
 
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/MainMenu.tscn:374 ../src/general/MainMenu.tscn:384
 #: ../src/general/PauseMenu.tscn:239
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -4657,7 +4691,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -4800,7 +4834,7 @@ msgstr "กลับไปที่เมนู"
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "กลับไปที่เมนู"
 
-#: ../src/general/MainMenu.tscn:740
+#: ../src/general/MainMenu.tscn:799
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4894,12 +4928,12 @@ msgstr "Rusticyanin เป็นโปรตีนที่สามารถใ
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticyanin เป็นโปรตีนที่สามารถใช้ก๊าซคาร์บอนไดออกไซด์และออกซิเจนในการออกซิไดซ์เหล็กจากสถานะทางเคมีหนึ่งไปยังอีกสถานะหนึ่ง กระบวนการนี้เรียกว่า Iron Respiration ปล่อยพลังงานออกมาซึ่งเซลล์สามารถเก็บเกี่ยวได้"
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:1035
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:1033
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5480,16 +5514,16 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1031
+#: ../src/general/MainMenu.tscn:1090
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1033
+#: ../src/general/MainMenu.tscn:1092
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
-#: ../src/general/MainMenu.tscn:753
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -5533,7 +5567,7 @@ msgstr "การจัดเก็บ"
 msgid "STORAGE_COLON"
 msgstr "การจัดเก็บ"
 
-#: ../src/general/MainMenu.cs:520
+#: ../src/general/MainMenu.cs:526
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -5555,11 +5589,11 @@ msgstr ""
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:752
+#: ../src/microbe_stage/Microbe.Contact.cs:763
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:745
+#: ../src/microbe_stage/Microbe.Contact.cs:756
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -5650,7 +5684,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:234 ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1056
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -5658,7 +5692,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:1046
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -5877,7 +5911,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "สลับเขมือบ"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:340
 msgid "TOOLS"
 msgstr "เครื่องมือ"
 
@@ -6055,7 +6089,7 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "บทช่วยสอน"
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:908
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "ดำเนินการต่อ"
@@ -6269,7 +6303,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "VIEW_SOURCE_CODE"
 msgstr "ดูซอร์สโค้ด"
 
@@ -6281,7 +6315,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6439,7 +6473,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "ดำเนินการต่อ"

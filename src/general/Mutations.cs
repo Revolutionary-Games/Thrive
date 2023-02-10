@@ -28,7 +28,61 @@ public class Mutations
     };
 
     [JsonProperty]
-    private Random random = new();
+    private Random random;
+
+    [JsonConstructor]
+    public Mutations(Random random)
+    {
+        this.random = random;
+    }
+
+    public Mutations()
+    {
+        random = new Random();
+    }
+
+    // TODO: proper unit testing (note the code here relies on Godot colour type)
+    public static void TestConsistentGenerationWithSeed()
+    {
+        int seed = 234234565;
+        int steps = 10;
+
+        string firstSpecies;
+        string secondSpecies;
+        string differentSpecies;
+
+        // Create the mutated species
+        {
+            var mutator = new Mutations(new Random(seed));
+
+            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, steps);
+
+            firstSpecies = species.StringCode;
+        }
+
+        {
+            var mutator = new Mutations(new Random(seed));
+
+            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, steps);
+
+            secondSpecies = species.StringCode;
+        }
+
+        {
+            var mutator = new Mutations(new Random(seed + 1));
+
+            var species = mutator.CreateRandomSpecies(new MicrobeSpecies(1, "Test", "species"), 1, true, steps);
+
+            differentSpecies = species.StringCode;
+        }
+
+        // Compare their JSON serialized forms to ensure that the seed resulted in the same mutations each time
+        if (firstSpecies != secondSpecies)
+            throw new Exception("Mutations from the same seed didn't result in the same generated species");
+
+        if (firstSpecies == differentSpecies)
+            throw new Exception("Different seeds resulted in same mutations");
+    }
 
     /// <summary>
     ///   Creates a mutated version of a species
@@ -62,7 +116,7 @@ public class Mutations
         }
         else
         {
-            mutated.Epithet = nameGenerator.GenerateNameSection(null, true);
+            mutated.Epithet = nameGenerator.GenerateNameSection(random, true);
         }
 
         MutateBehaviour(parent, mutated);
@@ -79,7 +133,7 @@ public class Mutations
             }
             else
             {
-                mutated.Genus = nameGenerator.GenerateNameSection();
+                mutated.Genus = nameGenerator.GenerateNameSection(random);
             }
         }
         else
@@ -131,8 +185,8 @@ public class Mutations
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        temp.Epithet = nameGenerator.GenerateNameSection(null, true);
-        temp.Genus = nameGenerator.GenerateNameSection();
+        temp.Epithet = nameGenerator.GenerateNameSection(random, true);
+        temp.Genus = nameGenerator.GenerateNameSection(random);
 
         for (int step = 0; step < steps; ++step)
         {
@@ -140,6 +194,8 @@ public class Mutations
 
             temp = (MicrobeSpecies)mutated.Clone();
         }
+
+        mutated.OnEdited();
 
         return mutated;
     }

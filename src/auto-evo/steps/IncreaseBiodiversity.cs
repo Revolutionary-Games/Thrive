@@ -144,7 +144,7 @@
                 // TODO: should we apply the population reduction to splitFrom?
             }
 
-            PopulationSimulation.Simulate(config, cache);
+            PopulationSimulation.Simulate(config, cache, random);
 
             var population = config.Results.GetPopulationInPatch(split, patch);
 

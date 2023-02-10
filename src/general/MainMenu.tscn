@@ -126,6 +126,7 @@ ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
 FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
+MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
 ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/MainMenu/Launcher")
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
@@ -434,7 +435,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="unknown2" type="Button" parent="MenuContainers/Menus/Tools"]
+[node name="Benchmarks" type="Button" parent="MenuContainers/Menus/Tools"]
 margin_left = 19.0
 margin_top = 100.0
 margin_right = 269.0
@@ -444,10 +445,9 @@ focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
-text = "???"
+text = "BENCHMARKS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
@@ -587,6 +587,65 @@ margin_top = 460.0
 margin_right = 250.0
 margin_bottom = 460.0
 NodeToGiveFocusTo = NodePath("../Thriveopedia")
+
+[node name="Benchmarks" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
+visible = false
+margin_left = 515.0
+margin_top = 163.0
+margin_right = 765.0
+margin_bottom = 323.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="MenuContainers/Menus/Benchmarks"]
+margin_right = 250.0
+
+[node name="MicrobeBenchmark" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+margin_right = 288.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+focus_neighbour_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "MICROBE_BENCHMARK"
+
+[node name="unknown" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+margin_left = 19.0
+margin_top = 100.0
+margin_right = 269.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Back" type="Button" parent="MenuContainers/Menus/Benchmarks"]
+margin_left = 19.0
+margin_top = 200.0
+margin_right = 269.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "BACK"
+
+[node name="FocusGrabber" parent="MenuContainers/Menus/Benchmarks" instance=ExtResource( 56 )]
+margin_top = 460.0
+margin_right = 250.0
+margin_bottom = 460.0
+NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 
 [node name="WebsiteButtons" type="PopupPanel" parent="MenuContainers"]
 anchor_top = 1.0
@@ -1043,6 +1102,7 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/Tools/Benchmarks" to="." method="BenchmarksPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Thriveopedia" to="." method="ThriveopediaPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Mods" to="." method="ModsPressed"]
@@ -1050,6 +1110,8 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Extras/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/Benchmarks/MicrobeBenchmark" to="." method="MicrobeBenchmarkPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/Benchmarks/Back" to="." method="OnReturnFromBenchmarks"]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]
