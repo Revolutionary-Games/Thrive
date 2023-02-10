@@ -404,7 +404,7 @@ public class AutoEvoRun
                 else
                 {
                     steps.Enqueue(new FindBestMutation(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        autoEvoConfiguration.MutationsPerSpecies,
+                        random, autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowSpeciesToNotMutate,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));

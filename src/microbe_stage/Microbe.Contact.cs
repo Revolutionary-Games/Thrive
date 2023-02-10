@@ -413,6 +413,17 @@ public partial class Microbe
     }
 
     /// <summary>
+    ///   Overrides this microbe's health. Used by testing code to ensure microbes don't die when not wanted
+    /// </summary>
+    /// <param name="newHitpoints">
+    ///   The new health to set the microbe to. Setting to 0 won't immediately kill the microbe
+    /// </param>
+    public void TestOverrideHitpoints(float newHitpoints)
+    {
+        Hitpoints = Mathf.Clamp(newHitpoints, 0, MaxHitpoints);
+    }
+
+    /// <summary>
     ///   Returns true when this microbe can engulf the target
     /// </summary>
     public bool CanEngulf(IEngulfable target)

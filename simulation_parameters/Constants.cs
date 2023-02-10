@@ -1141,6 +1141,11 @@ public static class Constants
 
     public const int FORCE_CLOSE_AFTER_TRIES = 3;
 
+    /// <summary>
+    ///   Controls whether benchmarks start off showing the hardware info, or only after some results are generated
+    /// </summary>
+    public const bool BENCHMARKS_SHOW_HARDWARE_INFO_IMMEDIATELY = true;
+
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
 
