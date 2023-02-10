@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/benchmark/microbe/MicrobeBenchmark.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=5]
 
 [node name="MicrobeBenchmark" type="Node"]
 script = ExtResource( 2 )
@@ -11,6 +12,9 @@ GUIContainerPath = NodePath("GUIContainer")
 FPSLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/FPS")
 PhaseLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Phase")
 MicrobesCountLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Microbes")
+BenchmarkResultsTextPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/Results")
+BenchmarkFinishedTextPath = NodePath("GUIContainer/VBoxContainer/FinishedText")
+CopyResultsButtonPath = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
 WorldRootPath = NodePath("WorldRoot")
 DynamicRootPath = NodePath("WorldRoot/DynamicRoot")
 
@@ -23,7 +27,6 @@ MinCameraHeight = 80.0
 [node name="DynamicRoot" type="Spatial" parent="WorldRoot"]
 
 [node name="GUIContainer" parent="." instance=ExtResource( 4 )]
-visible = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_right = 0.0
@@ -32,9 +35,9 @@ WindowTitle = "MICROBE_BENCHMARK"
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 240, 300 )
+margin_right = 250.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 250, 320 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -123,10 +126,11 @@ margin_right = 240.0
 margin_bottom = 76.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ResultsHeading" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 80.0
 margin_right = 240.0
 margin_bottom = 133.0
+custom_fonts/font = ExtResource( 5 )
 text = "BENCHMARK_RESULTS_COLON"
 autowrap = true
 
@@ -134,13 +138,14 @@ autowrap = true
 margin_top = 137.0
 margin_right = 240.0
 margin_bottom = 190.0
+custom_fonts/font = ExtResource( 3 )
 text = "Some stuff: 0
 Other things: 1234"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Label" type="Label" parent="GUIContainer/VBoxContainer"]
+[node name="FinishedText" type="Label" parent="GUIContainer/VBoxContainer"]
 margin_top = 236.0
 margin_right = 240.0
 margin_bottom = 261.0
@@ -167,3 +172,4 @@ text = "COPY_RESULTS"
 
 [connection signal="Closed" from="GUIContainer" to="." method="ExitBenchmark"]
 [connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/QuitBenchmark" to="." method="ExitBenchmark"]
+[connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/Copy" to="." method="CopyResultsToClipboard"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 14:48+0200\n"
+"POT-Creation-Date: 2023-02-10 11:22+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -306,7 +306,7 @@ msgstr "Autospara i spelet"
 msgid "AUTO_EVO"
 msgstr "Auto-Evolution"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:433
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "status:"
@@ -353,7 +353,8 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:481 ../src/general/MainMenu.tscn:583
-#: ../src/general/MainMenu.tscn:902 ../src/general/NewGameSettings.tscn:1184
+#: ../src/general/MainMenu.tscn:642 ../src/general/MainMenu.tscn:961
+#: ../src/general/NewGameSettings.tscn:1184
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:275
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -463,6 +464,19 @@ msgstr "Beteende"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m under havsnivån"
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:150
+#, fuzzy
+msgid "BENCHMARK_FINISHED"
+msgstr "Färdigladdat"
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:76
+msgid "BENCHMARK_PHASE"
+msgstr ""
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:132
+msgid "BENCHMARK_RESULTS_COLON"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
 msgstr ""
@@ -485,7 +499,7 @@ msgstr "Stor järnbit"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:550
+#: ../simulation_parameters/microbe_stage/organelles.json:517
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "BINDING_AGENT"
 msgstr "Bindemedel"
@@ -520,7 +534,7 @@ msgstr ""
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biodiversitetsökande art muteras när den skapas"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:802
+#: ../simulation_parameters/microbe_stage/organelles.json:762
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescerande vakuol"
@@ -619,27 +633,27 @@ msgstr "Capslock"
 msgid "CARBON_DIOXIDE"
 msgstr "Koldioxid"
 
-#: ../src/general/StageHUDBase.cs:1028
+#: ../src/general/StageHUDBase.cs:1027
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1032
+#: ../src/general/StageHUDBase.cs:1031
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1036
+#: ../src/general/StageHUDBase.cs:1035
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1030
+#: ../src/general/StageHUDBase.cs:1029
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1034
+#: ../src/general/StageHUDBase.cs:1033
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1038
+#: ../src/general/StageHUDBase.cs:1037
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -706,7 +720,7 @@ msgstr "Fusk meny"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:383
+#: ../simulation_parameters/microbe_stage/organelles.json:353
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -720,7 +734,7 @@ msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som k
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:719
+#: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
@@ -735,7 +749,7 @@ msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som k
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:163
+#: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
@@ -772,7 +786,7 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:592
+#: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
@@ -803,7 +817,7 @@ msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} konsumtion"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:871
+#: ../simulation_parameters/microbe_stage/organelles.json:828
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Flimmerhår"
@@ -822,6 +836,7 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:163
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2160
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -923,20 +938,20 @@ msgstr "Mättnadsvärde, mängden grått i en viss färg"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Värde (ljusstyrka) värde, ljusstyrka eller intensitet för färgen"
 
-#: ../src/general/MainMenu.tscn:643
+#: ../src/general/MainMenu.tscn:702
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:638
+#: ../src/general/MainMenu.tscn:697
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Hjälp"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:744
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:680
+#: ../src/general/MainMenu.tscn:739
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Självmord"
@@ -1083,6 +1098,11 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopiera felmeddelande till urklipp"
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
+#, fuzzy
+msgid "COPY_RESULTS"
+msgstr "Auto-evo resultat:"
+
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanope (Röd-Grön)"
@@ -1149,7 +1169,7 @@ msgstr "Skapar..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "skapar objekt från sparfil"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 msgid "CREDITS"
 msgstr "Eftertext"
 
@@ -1179,7 +1199,7 @@ msgstr "Organismstatistik"
 msgid "CUSTOM_USERNAME"
 msgstr "Anpassat Användarnamn:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:626
+#: ../simulation_parameters/microbe_stage/organelles.json:587
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
@@ -1235,7 +1255,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:933
+#: ../src/microbe_stage/Microbe.Contact.cs:944
 msgid "DEATH"
 msgstr "död"
 
@@ -1319,12 +1339,12 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Utvecklare"
 
-#: ../src/general/MainMenu.tscn:657
+#: ../src/general/MainMenu.tscn:716
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Utvecklingen stöds av Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:652
+#: ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -1333,12 +1353,12 @@ msgstr "Hjälp"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Utvecklingen stöds av Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:730
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Utvecklare"
 
-#: ../src/general/MainMenu.tscn:666
+#: ../src/general/MainMenu.tscn:725
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -1466,7 +1486,7 @@ msgstr ""
 "Det finns placerade organeller, som inte är anslutna till resten.\n"
 "Vänligen anslut alla placerade organeller med varandra eller ångra dina ändringar."
 
-#: ../src/general/MainMenu.tscn:825
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Hjälp"
@@ -1485,7 +1505,7 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#: ../src/general/MainMenu.tscn:1013
+#: ../src/general/MainMenu.tscn:1072
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1533,7 +1553,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:956
+#: ../src/general/MainMenu.tscn:1015
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1716,15 +1736,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}:+{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2419
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1808,7 +1828,7 @@ msgstr "Sparningsfel"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1197
+#: ../src/microbe_stage/Microbe.Contact.cs:1208
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -1850,7 +1870,7 @@ msgstr "Ett undantag har uppstått medan sparad data laddades"
 msgid "EXIT"
 msgstr "Lämna"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:377
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Avfyra E"
@@ -1907,7 +1927,7 @@ msgstr "dog ut på planeten"
 msgid "EXTINCT_SPECIES"
 msgstr "UTROTNING"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "EXTRAS"
 msgstr "Extra"
 
@@ -1915,7 +1935,7 @@ msgstr "Extra"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra Inställningar"
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Självmord"
@@ -1996,7 +2016,7 @@ msgstr "Slutför {0} Generationer"
 msgid "FIRE_TOXIN"
 msgstr "Skjut gift"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:417
+#: ../simulation_parameters/microbe_stage/organelles.json:387
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "Flagell"
@@ -2044,7 +2064,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Näringskedja"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2425
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2094,6 +2114,7 @@ msgstr "Stillastående"
 msgid "FOUR_TIMES"
 msgstr "4x"
 
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:167
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:63 ../src/engine/PerformanceMetrics.tscn:59
@@ -2157,7 +2178,7 @@ msgstr "generation:"
 msgid "GENERATION_COLON"
 msgstr "generation:"
 
-#: ../src/general/MainMenu.tscn:789
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Självmord"
@@ -2166,11 +2187,11 @@ msgstr "Självmord"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:922
+#: ../src/general/MainMenu.tscn:981
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Läges Varning"
 
-#: ../src/general/MainMenu.tscn:924
+#: ../src/general/MainMenu.tscn:983
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
@@ -2455,7 +2476,7 @@ msgstr "Järn"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Järnkemolitoautotrofi"
 
-#: ../src/general/MainMenu.tscn:765
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Självmord"
@@ -2982,7 +3003,7 @@ msgstr "Ladda"
 msgid "LOADING"
 msgstr "Laddar"
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:43 ../src/saving/SaveList.tscn:59
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:45 ../src/saving/SaveList.tscn:59
 #: ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laddar..."
@@ -3015,12 +3036,12 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 msgid "LOAD_FINISHED"
 msgstr "Färdigladdat"
 
-#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Ladda Spel"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:199
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -3058,7 +3079,7 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Betrakta områden med upp till såhär många arter som att de har låg biodiversitet"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:920
+#: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 msgid "LYSOSOME"
 msgstr "Lysosom"
@@ -3166,7 +3187,7 @@ msgstr "Meny"
 msgid "MESOPELAGIC"
 msgstr "Mesopelagisk"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:271
+#: ../simulation_parameters/microbe_stage/organelles.json:250
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 msgid "METABOLOSOMES"
 msgstr "Metabolosomer"
@@ -3200,6 +3221,17 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE"
 msgstr "Mikrob Stadiet"
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:107
+#, fuzzy
+msgid "MICROBES_COUNT"
+msgstr "Mikrob Stadiet"
+
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:33
+#: ../src/general/MainMenu.tscn:614
+#, fuzzy
+msgid "MICROBE_BENCHMARK"
+msgstr "Mikrobredigerare"
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
@@ -3262,7 +3294,7 @@ msgstr "Varje generation får du 100 mutationspoäng (MP), och varje förändrin
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:421
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -3458,7 +3490,7 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr "DU HAR FRODATS!"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:483
+#: ../simulation_parameters/microbe_stage/organelles.json:450
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitochondria"
@@ -3503,7 +3535,7 @@ msgstr "Modifiera Typ"
 msgid "MODS"
 msgstr "Mod"
 
-#: ../src/general/MainMenu.tscn:940
+#: ../src/general/MainMenu.tscn:999
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3593,11 +3625,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:1039
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Inladdningsfel"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:1040
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
 
@@ -3832,7 +3864,7 @@ msgstr "Ny"
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/gui_common/ThriveFeedDisplayer.tscn:24
+#: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
 msgstr ""
 
@@ -3840,11 +3872,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Ursprunglig population för biodiversitetsökande art"
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME"
 msgstr "Nytt spel"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:302
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -3888,7 +3920,7 @@ msgstr "Aktivera Cellredigeraren"
 msgid "NITROGEN"
 msgstr "Kväve"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../simulation_parameters/microbe_stage/organelles.json:87
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "Kvävegenas"
@@ -3902,7 +3934,7 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:309
+#: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Kväve-Fixande Plastid"
@@ -3952,7 +3984,7 @@ msgid "NO_AI"
 msgstr "Ingen AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2440
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Inga Data att Visa"
 
@@ -3965,7 +3997,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Hittade ingen screenshots mapp"
 
-#: ../src/general/MainMenu.tscn:927
+#: ../src/general/MainMenu.tscn:986
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Avstängt"
@@ -3992,7 +4024,7 @@ msgstr "Hittade ingen screenshots mapp"
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:693
+#: ../simulation_parameters/microbe_stage/organelles.json:654
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Kärna"
@@ -4016,8 +4048,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2298
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2308
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 msgid "N_A"
 msgstr "N/A"
@@ -4030,16 +4062,16 @@ msgstr "N/A MutationsPoäng"
 msgid "OCTOBER"
 msgstr "Oktober"
 
-#: ../src/general/MainMenu.tscn:629
+#: ../src/general/MainMenu.tscn:688
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:620
+#: ../src/general/MainMenu.tscn:679
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
-#: ../src/general/MainMenu.tscn:970 ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:1029 ../src/general/MainMenu.tscn:1086
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4115,11 +4147,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistisk"
 
-#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:331 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "Inställningar"
 
-#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:328 ../src/general/PauseMenu.tscn:223
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -4210,7 +4242,7 @@ msgstr "Skriv över aktuell sparfil:"
 msgid "OXYGEN"
 msgstr "Syre"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:202
+#: ../simulation_parameters/microbe_stage/organelles.json:187
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisom"
@@ -4341,7 +4373,7 @@ msgid "PATCH_NAME"
 msgstr "Grotta"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
-#: ../src/gui_common/PatchNotesDisplayer.tscn:45
+#: ../src/gui_common/PatchNotesDisplayer.tscn:47
 #, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr "Cellprocesser"
@@ -4351,7 +4383,7 @@ msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2124
-#: ../src/gui_common/PatchNotesDisplayer.tscn:25
+#: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
 msgstr "Cellprocesser"
@@ -4369,7 +4401,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Självmord"
@@ -4411,7 +4443,7 @@ msgid "PEACEFUL"
 msgstr "Fredlig"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:678 ../src/general/StageHUDBase.cs:725
+#: ../src/general/NewGameSettings.cs:676 ../src/general/StageHUDBase.cs:724
 #: ../src/general/WorldGenerationSettings.cs:177
 #: ../src/gui_common/CompoundAmount.cs:177
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:164
@@ -4484,7 +4516,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:1240
+#: ../src/general/StageHUDBase.cs:1245
 msgid "PLAYER_CELL"
 msgstr "spelarcell"
 
@@ -4560,7 +4592,7 @@ msgstr "befolkning:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "befolkning på platser:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "INVÅNARE:"
@@ -4645,7 +4677,7 @@ msgstr "Skydda nyligen skapade arter från artgränsen"
 msgid "PROTEINS"
 msgstr "Proteiner"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:128
+#: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
@@ -4661,11 +4693,11 @@ msgstr "Snabbladda"
 msgid "QUICK_SAVE"
 msgstr "Snabbspara"
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:390
 msgid "QUIT"
 msgstr "Lämna"
 
-#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/MainMenu.tscn:374 ../src/general/MainMenu.tscn:384
 #: ../src/general/PauseMenu.tscn:239
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -4711,7 +4743,7 @@ msgstr "Trådar:"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:813
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Fortsätt"
@@ -4856,7 +4888,7 @@ msgstr ""
 "Är du säker på att du vill tillbaka till huvudmenyn?\n"
 "Du kommer att förlora alla osparade framsteg."
 
-#: ../src/general/MainMenu.tscn:740
+#: ../src/general/MainMenu.tscn:799
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Av Revolutionary Games Studio"
@@ -4932,7 +4964,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Hjälp"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
-#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../simulation_parameters/microbe_stage/organelles.json:55
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rosticyanin"
@@ -4946,7 +4978,7 @@ msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syr
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
-#: ../src/general/MainMenu.tscn:976
+#: ../src/general/MainMenu.tscn:1035
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4955,7 +4987,7 @@ msgstr ""
 "Fredliga mikrober attackerar inte andra över större avstånd\n"
 "och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:1033
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5233,7 +5265,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 msgid "SIGNALING_AGENT"
 msgstr "Signaleringsmedel"
@@ -5300,7 +5332,7 @@ msgstr "Storlek:"
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../simulation_parameters/microbe_stage/organelles.json:713
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr "Slemmstråle"
@@ -5419,7 +5451,7 @@ msgstr "Artnamn..."
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr "Artnamn..."
 
-#: ../src/general/StageHUDBase.cs:1253
+#: ../src/general/StageHUDBase.cs:1258
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Artlista"
@@ -5537,17 +5569,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1031
+#: ../src/general/MainMenu.tscn:1090
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Sparande misslyckades"
 
-#: ../src/general/MainMenu.tscn:1033
+#: ../src/general/MainMenu.tscn:1092
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/general/MainMenu.tscn:753
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Fortsätt"
@@ -5590,7 +5622,7 @@ msgstr "Förråd"
 msgid "STORAGE_COLON"
 msgstr "Förråd"
 
-#: ../src/general/MainMenu.cs:519
+#: ../src/general/MainMenu.cs:526
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
 
@@ -5612,11 +5644,11 @@ msgstr "Struktur"
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:752
+#: ../src/microbe_stage/Microbe.Contact.cs:763
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:745
+#: ../src/microbe_stage/Microbe.Contact.cs:756
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -5707,7 +5739,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testning"
 
-#: ../src/general/MainMenu.cs:233 ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1056
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -5722,7 +5754,7 @@ msgstr ""
 "\n"
 "Om du gillade spelet, berätta om oss för dina vänner."
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:1046
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "DU HAR FRODATS!"
@@ -5731,7 +5763,7 @@ msgstr "DU HAR FRODATS!"
 msgid "THEORY_TEAM"
 msgstr "Teori"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:840
+#: ../simulation_parameters/microbe_stage/organelles.json:797
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Termoplast"
@@ -5745,7 +5777,7 @@ msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänslig
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:344
+#: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 msgid "THERMOSYNTHASE"
 msgstr "Termosyntes"
@@ -5825,7 +5857,7 @@ msgstr ""
 msgid "THYLAKOID"
 msgstr "THYLAKOID"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:237
+#: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
 
@@ -5933,7 +5965,7 @@ msgstr "Pausa"
 msgid "TOGGLE_UNBINDING"
 msgstr "Växla avbindning av och på"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:340
 msgid "TOOLS"
 msgstr "Verktyg"
 
@@ -5952,7 +5984,7 @@ msgstr "Totala sparningar:"
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:519
+#: ../simulation_parameters/microbe_stage/organelles.json:486
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6109,7 +6141,7 @@ msgstr "Mikrob Fri Byggredigerare"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:849
+#: ../src/general/MainMenu.tscn:908
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Hjälp"
@@ -6195,21 +6227,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Omgivning: {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:885
+#: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:886
+#: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:882
+#: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:881
+#: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
@@ -6263,7 +6295,7 @@ msgstr "Sätt antalet bakgrundstrådar manuellt"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:446
+#: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "Vakuol"
@@ -6277,7 +6309,7 @@ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen.
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/general/StageHUDBase.cs:726 ../src/gui_common/CompoundAmount.cs:173
+#: ../src/general/StageHUDBase.cs:725 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
 msgstr ""
@@ -6310,8 +6342,8 @@ msgstr ""
 msgid "VIEWER"
 msgstr "Visare eller åskådare, beroende på situation"
 
-#: ../src/gui_common/PatchNotesDisplayer.tscn:61
-#: ../src/gui_common/PatchNotesDisplayer.tscn:70
+#: ../src/gui_common/PatchNotesDisplayer.tscn:63
+#: ../src/gui_common/PatchNotesDisplayer.tscn:72
 msgid "VIEW_ALL"
 msgstr ""
 
@@ -6325,7 +6357,7 @@ msgstr "Grotta"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grotta"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:349
 msgid "VIEW_SOURCE_CODE"
 msgstr "Visa Källkod"
 
@@ -6337,7 +6369,7 @@ msgstr "VIP-supportrar"
 msgid "VISIBLE"
 msgstr "Synlig"
 
-#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:703
+#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6496,7 +6528,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "år"
 
-#: ../src/general/MainMenu.tscn:801
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Fortsätt"
