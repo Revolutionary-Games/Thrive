@@ -15,6 +15,12 @@ public static class BenchmarkHelpers
         RestoreCloudUpdateRate(settingsStore.CloudSettings);
     }
 
+    public static string GetGeneralHardwareInfo()
+    {
+        return $"CPU: {OS.GetProcessorName()} (used tasks: {TaskExecutor.Instance.ParallelTasks})\n" +
+            $"GPU: {VisualServer.GetVideoAdapterName()}\nOS: {OS.GetName()}";
+    }
+
     /// <summary>
     ///   Uncaps the engine framerate for better performance measuring
     /// </summary>

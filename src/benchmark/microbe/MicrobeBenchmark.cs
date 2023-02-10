@@ -53,8 +53,17 @@ public class MicrobeBenchmark : Node
     private const float AMMONIA_PHOSPHATE_CLOUD_AMOUNT = 10000;
     private const float AI_FIGHT_TIME = 30;
     private const int TARGET_FPS_FOR_SPAWNING = 60;
-    private const float STRESS_TEST_END_THRESHOLD = 8;
-    private const int RANDOM_SEED = 256345460;
+    private const float STRESS_TEST_END_THRESHOLD = 9;
+    private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
+    private const int REMAINING_MICROBES_THRESHOLD = 40;
+    private const int RANDOM_SEED = 256345464;
+
+    // Good other seeds:
+    // Some big cells, no toxins, quite a lot of eating
+    // private const int RANDOM_SEED = 256345461;
+
+    // Big cells, toxins, quite slow to die at the end
+    // private const int RANDOM_SEED = 256345463;
 
     /// <summary>
     ///   Increment this if the functionality of the benchmark changes considerably
@@ -99,6 +108,7 @@ public class MicrobeBenchmark : Node
     private MicrobeSystem? microbeSystem;
     private ProcessSystem? processSystem;
     private MicrobeAISystem? microbeAI;
+    private FloatingChunkSystem? chunkSystem;
 
     private Random random = new(RANDOM_SEED);
     private Random aiRandom = new();
@@ -126,6 +136,9 @@ public class MicrobeBenchmark : Node
     private float microbeDeathResult;
     private float microbeDeathMinFPS;
     private int remainingMicrobesAtEnd;
+
+    private DateTime startTime;
+    private float totalDuration;
 
     private bool exiting;
 
@@ -189,6 +202,8 @@ public class MicrobeBenchmark : Node
 
         // Run the microbe system to process microbes
         microbeSystem?.Process(delta);
+
+        chunkSystem?.Process(delta, new Vector3(0, 0, 0));
 
         if (runAI)
         {
@@ -329,7 +344,7 @@ public class MicrobeBenchmark : Node
                 fpsValues.Add(Engine.GetFramesPerSecond());
 
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > STRESS_TEST_END_THRESHOLD && fpsValues.Count > 0) || fpsValues.Count > 2000)
+                if ((timeSinceSpawn > STRESS_TEST_END_THRESHOLD && fpsValues.Count > 0) || fpsValues.Count > 3000)
                 {
                     microbeStressTestResult = spawnCounter;
                     microbeStressTestMinFPS = fpsValues.Min();
@@ -351,7 +366,14 @@ public class MicrobeBenchmark : Node
                 fpsValues.Add(Engine.GetFramesPerSecond());
 
                 // End this phase when either there aren't many microbes left or a few minutes have elapsed
-                if (spawnedMicrobes.Count > 10 && fpsValues.Count < 150)
+                if (spawnedMicrobes.Count > REMAINING_MICROBES_THRESHOLD &&
+                    fpsValues.Count * 0.5f < MAX_WAIT_TIME_FOR_MICROBE_DEATH)
+                {
+                    break;
+                }
+
+                // Don't allow ending before at least some FPS samples are captured
+                if (fpsValues.Count < 50)
                     break;
 
                 // Microbes are basically dead now
@@ -367,6 +389,7 @@ public class MicrobeBenchmark : Node
             case 11:
             {
                 // Benchmark ended
+                totalDuration = (float)(DateTime.Now - startTime).TotalSeconds;
 
                 IncrementPhase();
                 break;
@@ -410,6 +433,9 @@ public class MicrobeBenchmark : Node
         microbeDeathMinFPS = 0;
         remainingMicrobesAtEnd = 0;
 
+        startTime = DateTime.Now;
+        totalDuration = 0;
+
         UpdatePhaseLabel();
     }
 
@@ -452,6 +478,8 @@ public class MicrobeBenchmark : Node
 
         // ReSharper disable once StringLiteralTypo
         processSystem.SetBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
+
+        chunkSystem = new FloatingChunkSystem(dynamicRoot, cloudSystem);
     }
 
     private void SpawnAndUpdatePositionState()
@@ -642,6 +670,16 @@ public class MicrobeBenchmark : Node
             builder.Append('\n');
         }
 
+        if (totalDuration != 0)
+        {
+            builder.Append("Total test duration: ");
+            builder.Append(Math.Round(totalDuration, 1).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (builder.Length > 0 || Constants.BENCHMARKS_SHOW_HARDWARE_INFO_IMMEDIATELY)
+            builder.Append(BenchmarkHelpers.GetGeneralHardwareInfo());
+
         // TODO: overall score?
 
         return builder.ToString();
@@ -651,7 +689,7 @@ public class MicrobeBenchmark : Node
     {
         var builder = new StringBuilder();
 
-        builder.Append($"Benchmark {nameof(MicrobeBenchmark)} v{VERSION}\n");
+        builder.Append($"Benchmark results for {nameof(MicrobeBenchmark)} v{VERSION}\n");
         builder.Append(GenerateResultsText(3));
 
         OS.Clipboard = builder.ToString();
