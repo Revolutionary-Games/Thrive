@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Stile di movimento 2D:"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -33,7 +33,7 @@ msgstr "Movimento 3D"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Stile di movimento 3D:"
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
@@ -131,9 +131,8 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Permetti alle specie di non mutare (se una buona mutazione non è trovata)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Statistiche dell'organismo"
+msgstr "Statistiche generali di tutti i mondi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:999
 #, fuzzy
@@ -433,19 +432,16 @@ msgid "BEHAVIOUR_AGGRESSION"
 msgstr "Aggressività"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Comportamento"
+msgstr "Paura"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Comportamento"
+msgstr "Concentrazione"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Comportamento"
+msgstr "Opportunismo"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
 msgid "BELOW_SEA_LEVEL"
@@ -496,15 +492,15 @@ msgstr "Probabilità in ciascuna zona con poche specie (bassa biodiversità) di 
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Probabilità di creare una nuova specie per aumentare la biodiversità a partire da una zona adiacente"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Alle specie che aumentano la biodiversità che vengono da zone vicine viene data popolazione gratuitamente"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Specie che aumentano la biodiversità sono mutate appena vengono create"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:802
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
@@ -894,7 +890,7 @@ msgstr "V: value (valore): è la luminosità/intensità del colore"
 
 #: ../src/general/MainMenu.tscn:643
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Forum della comunità"
 
 #: ../src/general/MainMenu.tscn:638
 #, fuzzy
