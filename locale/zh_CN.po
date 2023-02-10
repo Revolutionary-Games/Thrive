@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D移动样式："
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -33,7 +33,7 @@ msgstr "3D移动"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D移动样式："
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
@@ -131,14 +131,25 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "允许物种不变异（如果没有发现好的变异）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "生物数据"
+msgstr "所有世界的生物数据"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:999
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "生物数据"
+msgstr ""
+"[b]当前代：[/b]\n"
+"  {0}\n"
+"[b]总物种数：[/b]\n"
+"  平均值 {1}，方差 {2}\n"
+"[b]现存物种数：[/b]\n"
+"  平均值 {3}，方差 {4}\n"
+"[b]区域平均物种数：[/b]\n"
+"  平均值 {5}，方差 {6}\n"
+"[b]区域平均种群数量：[/b]\n"
+"  平均值 {7}，方差 {8}\n"
+"[b]单细胞生物大小：[/b]\n"
+"  平均值 {9}，方差 {10}\n"
+"[b]基本细胞器信息：[/b]"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "ALT"
@@ -324,9 +335,8 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "运行状态："
+msgstr "自动进化运行状态："
 
 #: ../simulation_parameters/common/input_options.json:27
 msgid "AUTO_MOVE_FORWARDS"
@@ -1033,7 +1043,7 @@ msgstr "死区："
 
 #: ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "控制按钮提示类型："
 
 #: ../src/general/OptionsMenu.tscn:1375
 msgid "CONTROLLER_SENSITIVITY"
@@ -1120,14 +1130,31 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "当前开发人员"
+msgstr "当前世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:957
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "生物数据"
+msgstr ""
+"[b]当前代：[/b]\n"
+"  {0}\n"
+"[b]区域数：[/b]\n"
+"  {1}\n"
+"[b]自动进化运行时间：[/b]\n"
+"  {2}\n"
+"[b]总物种数：[/b]\n"
+"  {3}\n"
+"[b]现存物种数：[/b]\n"
+"  {4}\n"
+"[b]区域物种数：[/b]\n"
+"  平均值 {5}，标准差 {6}\n"
+"[b]总种群数量：[/b]\n"
+"  {7}\n"
+"[b]优势种：[/b]\n"
+"  {8}\n"
+"[b]单细胞生物基本信息：[/b]\n"
+"  平均大小：{9}\n"
+"[b]基本细胞器信息：[/b]"
 
 #: ../src/general/OptionsMenu.tscn:1735
 msgid "CUSTOM_USERNAME"
@@ -1719,14 +1746,12 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
 #: ../src/general/ThriveNewsFeed.cs:97
-#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "（游戏中会随机生成彩蛋）"
+msgstr "由于以下错误，新闻未能加载：{0}"
 
 #: ../src/general/ThriveNewsFeed.cs:96
-#, fuzzy
 msgid "ERROR_FETCHING_NEWS"
-msgstr "为mod创建info文件时出错"
+msgstr "新闻加载失败"
 
 #: ../src/saving/InProgressLoad.cs:203
 msgid "ERROR_LOADING"
@@ -1785,17 +1810,15 @@ msgstr "退出至启动器"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "导出所有世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
-#, fuzzy
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "加入我们社区的Discord服务器"
+msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
-#, fuzzy
 msgid "EXPORT_SUCCESS"
-msgstr "捕食{0}"
+msgstr "导出成功"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
@@ -1872,39 +1895,20 @@ msgid "FEBRUARY"
 msgstr "二月"
 
 #: ../src/general/ThriveNewsFeed.cs:183
-#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr "Steam 客户端库初始化失败"
+msgstr "处理本新闻失败。"
 
 #: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
-#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
-"帧时间：{0} s\n"
-"物理过程时间：{1} s\n"
-"实体数：{2} 其它：{3}\n"
-"生成数：{4} 销毁数：{5}\n"
-"总节点数：{6}\n"
-"内存占用：{7}\n"
-"GPU内存：{8}\n"
-"渲染物体数：{9}\n"
-"绘图调用数：{10} 2D：{11}\n"
-"渲染顶点数：{12}\n"
-"材料更改数：{13}\n"
-"着色器更改数：{14}\n"
-"孤立节点数：{15}\n"
-"音频延迟：{16} ms\n"
-"线程数：{17}\n"
-"CPU时间：\n"
-"{18}"
+msgstr "本新闻无内容。"
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "发表于{0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "本篇因篇幅过长而被删节，详情请阅读原文。 {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:70
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
@@ -2178,9 +2182,8 @@ msgstr ""
 "可以试试禁用这个功能，问题可能会消失。"
 
 #: ../simulation_parameters/common/input_options.json:214
-#, fuzzy
 msgid "GUI_TAB_NAVIGATION"
-msgstr "{0}*10³"
+msgstr "界面选项卡导航"
 
 #: ../src/general/OptionsMenu.tscn:809
 msgid "GUI_VOLUME"
@@ -2301,9 +2304,8 @@ msgid "INGESTED_MATTER"
 msgstr "摄入的物质"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:289
-#, fuzzy
 msgid "INIT_NEW_WORLD_TOOLTIP"
-msgstr "加入我们社区的Discord服务器"
+msgstr "新建世界"
 
 #: ../src/general/OptionsMenu.tscn:204
 msgid "INPUTS"
@@ -3201,9 +3203,8 @@ msgstr "微生物阶段自由编辑器"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:971
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1015
-#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "生物数据"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:182
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3252,13 +3253,13 @@ msgstr ""
 "尝试所有按键几秒钟以继续。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
-#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
-"生命值归零你的细胞就会死。\n"
-"只要你还有ATP，你的生命值就会不断恢复。\n"
-"所以要确保总是有足够的葡萄糖来产出ATP。"
+"注意环境面板上的光强变化。\n"
+"\n"
+"随着环境变暗，夜晚来临。\n"
+"光合作用在夜间无效。\n"
+"因此，请确保您有足够的存储空间来过夜。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -3777,7 +3778,7 @@ msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:24
 msgid "NEWS"
-msgstr ""
+msgstr "新闻"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
@@ -3896,9 +3897,8 @@ msgid "NO_EVENTS_RECORDED"
 msgstr "无事件记录"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:152
-#, fuzzy
 msgid "NO_FOSSIL_DIRECTORY"
-msgstr "找不到存档目录"
+msgstr "找不到化石目录"
 
 #: ../src/general/MainMenu.tscn:927
 msgid "NO_MODS_ENABLED"
@@ -3993,9 +3993,8 @@ msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:86
-#, fuzzy
 msgid "OPEN_FOSSIL_FOLDER"
-msgstr "打开日志文件夹"
+msgstr "打开化石目录"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:128
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
@@ -4438,9 +4437,8 @@ msgid "PLAYER_EXTINCT"
 msgstr "玩家已灭绝"
 
 #: ../src/general/OptionsMenu.tscn:1475
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "玩家已灭绝"
+msgstr "相对于玩家"
 
 #: ../src/general/StageBase.cs:440
 msgid "PLAYER_REPRODUCED"
@@ -4454,15 +4452,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_3"
-msgstr ""
+msgstr "PlayStation 3"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_4"
-msgstr ""
+msgstr "PlayStation 4"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "PLAYSTATION_5"
-msgstr ""
+msgstr "PlayStation 5"
 
 #: ../src/general/OptionsMenu.tscn:1599
 msgid "PLAY_INTRO_VIDEO"
@@ -4835,12 +4833,11 @@ msgstr "在一些地区的种群分支成了新的物种{0}："
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
-msgstr ""
+msgstr "运行{0}个世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
-#, fuzzy
 msgid "RUN_X_WORLDS_TOOLTIP"
-msgstr "加入我们社区的Discord服务器"
+msgstr "运行一定数量的世界，每个世界运行的代数由左上方的数字显示框决定。"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -4988,9 +4985,8 @@ msgstr "成反比"
 
 #: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1508
 #: ../src/general/OptionsMenu.tscn:1509
-#, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr "来加快细胞的移动"
+msgstr "相对于屏幕"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
@@ -5129,7 +5125,7 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 
 #: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "显示 Thrive 新闻（联机下载）"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:779
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
@@ -5421,14 +5417,14 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "发生了未知的Steam错误"
 
 #: ../src/general/MainMenu.tscn:1031
-#, fuzzy
 msgid "STEAM_INIT_FAILED"
-msgstr "Steam 客户端库初始化失败"
+msgstr "Steam 初始化失败"
 
 #: ../src/general/MainMenu.tscn:1033
-#, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr "更新此存档失败，错误："
+msgstr ""
+"Steam 客户端库初始化失败，Steam 功能将不可用。\n"
+"请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
 #: ../src/general/MainMenu.tscn:753
 msgid "STEAM_TOOLTIP"
@@ -5546,21 +5542,19 @@ msgstr "键盘SysRq键"
 
 #: ../simulation_parameters/common/input_options.json:226
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "向左切换二级标签"
 
 #: ../simulation_parameters/common/input_options.json:230
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "向右切换二级标签"
 
 #: ../simulation_parameters/common/input_options.json:218
-#, fuzzy
 msgid "TAB_SWITCH_LEFT"
-msgstr "向左转"
+msgstr "向左切换标签"
 
 #: ../simulation_parameters/common/input_options.json:222
-#, fuzzy
 msgid "TAB_SWITCH_RIGHT"
-msgstr "向右转"
+msgstr "向右切换标签"
 
 #: ../src/modding/ModUploader.cs:367
 msgid "TAGS_IS_WHITESPACE"
@@ -5873,9 +5867,8 @@ msgid "TREBLEUP"
 msgstr "提高高音"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:154
-#, fuzzy
 msgid "TRY_FOSSILISING_SOME_SPECIES"
-msgstr "试着截一些图吧！"
+msgstr "尝试将某些物种变成化石！"
 
 #: ../src/saving/SaveManagerGUI.tscn:204
 msgid "TRY_MAKING_A_SAVE"
@@ -6033,12 +6026,11 @@ msgstr ""
 "右下角的按钮周围的条形图会显示你的进度。这些条形图在完成后会变成白色。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
-"要完全离开细胞群，你可以点击你自己的细胞或按下“[thrive:input]解除所有连接[/thrive:input]”键。"
+"要完全离开细胞群，你可以点击你自己的细胞或按[thrive:input]g_unbind_all[/thrive:input]。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_VIEW_NOW"
@@ -6128,18 +6120,16 @@ msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:886
-#, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "纤毛与鞭毛相似，但它们不提供方向性推力，而是提供旋转力，帮助细胞转动。"
+msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:882
-#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "脂肪酶使细胞能够分解大多数类型的膜。就算没有溶酶体你的细胞也能产生一些这种酶，但通过选择这种类型，你将增加其有效性。"
+msgstr "默认状态"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:881
 msgid "UPGRADE_NAME_NONE"
-msgstr ""
+msgstr "默认"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -6370,17 +6360,15 @@ msgstr "一旦一个项目变得可见，它就会被所有人看到"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "错误：{0}"
+msgstr "世界的数据已成功导出到 {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
-#, fuzzy
 msgid "WORLD_GENERAL_STATISTICS"
-msgstr "生物数据"
+msgstr "当前世界的统计数据"
 
 #: ../src/general/WorldGenerationSettings.cs:203
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
@@ -6390,9 +6378,8 @@ msgstr ""
 "包含彩蛋: {1}"
 
 #: ../src/general/OptionsMenu.tscn:1509
-#, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
-msgstr "来加快细胞的移动"
+msgstr "相对世界移动"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 msgid "WORST_PATCH_COLON"
@@ -6400,15 +6387,15 @@ msgstr "表现最糟的地区："
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX360"
-msgstr ""
+msgstr "Xbox 360"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_ONE"
-msgstr ""
+msgstr "Xbox One"
 
 #: ../src/general/OptionsMenu.tscn:596
 msgid "XBOX_SERIES"
-msgstr ""
+msgstr "Xbox X 系列"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
