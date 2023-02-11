@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:59+0200\n"
+"POT-Creation-Date: 2023-02-10 15:21+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Lukas Kusy <lukas.kusyit@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -4130,6 +4130,19 @@ msgstr "Změna nastavení"
 msgid "ORGANELLES"
 msgstr "Organely"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+msgid "ORGANELLE_PILUS"
+msgstr "Dravý/útočný Pilus"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+msgid "ORGANELLE_PILUS_DESCRIPTION"
+msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, se neustále mění a nahrazují."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+msgstr "Tímto bodneš ostatní buňky."
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
@@ -4557,19 +4570,6 @@ msgstr "{0} ({1})"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predace {0}"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
-msgid "PREDATORY_PILUS"
-msgstr "Dravý/útočný Pilus"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, se neustále mění a nahrazují."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Tímto bodneš ostatní buňky."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"

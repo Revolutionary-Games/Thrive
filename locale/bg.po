@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:59+0200\n"
+"POT-Creation-Date: 2023-02-10 15:21+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -4106,6 +4106,19 @@ msgstr "Отваряне на настройките"
 msgid "ORGANELLES"
 msgstr "Органели"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+msgid "ORGANELLE_PILUS"
+msgstr "Хищнически пилус"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+msgid "ORGANELLE_PILUS_DESCRIPTION"
+msgstr "Това са фини косъмчета върху клетъчната мембрана. Една клетка може да притежава от десетки до стотици пили, които имат различно предназначение, включително роля в хищничеството. Патогенните микроорганизми използват своите пили за вирулентност или за прикрепване и свързване към тъканите на гостоприемника си, или за нахлуване през клетъчната мембрана, за да достигнат до цитоплазмата. Съществуват различни видове пили, които не са еволюционно свързани помежду си и са резултат от конвергентна еволюция. Един организъм може да притежава няколка вида пили и постоянно да ги променя или заменя."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+msgstr "Пробожда другите клетки и предпазва от техните токсини."
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Характеристика"
@@ -4536,19 +4549,6 @@ msgstr "{0} ({1})"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0}"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
-msgid "PREDATORY_PILUS"
-msgstr "Хищнически пилус"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Това са фини косъмчета върху клетъчната мембрана. Една клетка може да притежава от десетки до стотици пили, които имат различно предназначение, включително роля в хищничеството. Патогенните микроорганизми използват своите пили за вирулентност или за прикрепване и свързване към тъканите на гостоприемника си, или за нахлуване през клетъчната мембрана, за да достигнат до цитоплазмата. Съществуват различни видове пили, които не са еволюционно свързани помежду си и са резултат от конвергентна еволюция. Един организъм може да притежава няколка вида пили и постоянно да ги променя или заменя."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Пробожда другите клетки и предпазва от техните токсини."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:59+0200\n"
+"POT-Creation-Date: 2023-02-10 15:21+0200\n"
 "PO-Revision-Date: 2022-11-10 00:00+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -4113,6 +4113,19 @@ msgstr "Muda as configurações do jogo"
 msgid "ORGANELLES"
 msgstr "Organelas"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+msgid "ORGANELLE_PILUS"
+msgstr "Pilus Predatório"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+msgid "ORGANELLE_PILUS_DESCRIPTION"
+msgstr "Pili (singular: pilus) são estruturas similares a cabelos vistos em vários micro-organismos. Eles podem ser usados para diversos fins, como predação. Micro-organismos patógenos usam pili tanto para se fixar aos tecidos de suas vítimas, quanto para passar através da membrana celular para o citoplasma. Existem vários tipos de pili, e muitos deles não têm vínculos evolutivos, sendo resultados da convergência evolutiva. Cada organismo pode ter vários tipos de pili, e aqueles na superfície são constantemente substituídos."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+msgstr "Perfure outras células com isto."
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Estatísticas do Organismo"
@@ -4542,19 +4555,6 @@ msgstr "{0} ({1})"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
-msgid "PREDATORY_PILUS"
-msgstr "Pilus Predatório"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Pili (singular: pilus) são estruturas similares a cabelos vistos em vários micro-organismos. Eles podem ser usados para diversos fins, como predação. Micro-organismos patógenos usam pili tanto para se fixar aos tecidos de suas vítimas, quanto para passar através da membrana celular para o citoplasma. Existem vários tipos de pili, e muitos deles não têm vínculos evolutivos, sendo resultados da convergência evolutiva. Cada organismo pode ter vários tipos de pili, e aqueles na superfície são constantemente substituídos."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Perfure outras células com isto."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"

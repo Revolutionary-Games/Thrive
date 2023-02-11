@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:59+0200\n"
+"POT-Creation-Date: 2023-02-10 15:21+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Rubén <chocolateconchurrosyazucar@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -4108,6 +4108,19 @@ msgstr "Cambiar configuración"
 msgid "ORGANELLES"
 msgstr "Orgánulos"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+msgid "ORGANELLE_PILUS"
+msgstr "Pilus predatorio"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+msgid "ORGANELLE_PILUS_DESCRIPTION"
+msgstr "Ataca a otras células con esto."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+msgstr "Puede usarse para atacar a otras células o para defenderse de sus toxinas."
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
@@ -4539,19 +4552,6 @@ msgstr "{0} ({1})"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Depredación de {0}"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
-msgid "PREDATORY_PILUS"
-msgstr "Pilus predatorio"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Ataca a otras células con esto."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Puede usarse para atacar a otras células o para defenderse de sus toxinas."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"

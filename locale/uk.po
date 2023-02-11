@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:59+0200\n"
+"POT-Creation-Date: 2023-02-10 15:21+0200\n"
 "PO-Revision-Date: 2023-01-13 08:00+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -4118,6 +4118,19 @@ msgstr "Зміна ваших налаштувань"
 msgid "ORGANELLES"
 msgstr "Органели"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+msgid "ORGANELLE_PILUS"
+msgstr "Хижі ворсинки"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+msgid "ORGANELLE_PILUS_DESCRIPTION"
+msgstr "Ворсинки (однина: ворсинка) знаходяться на поверхні багатьох мікроорганізмів і нагадують тонкі волоски. Від десятків до сотень ворсинок можуть бути на поверхні мікроорганізму та виконувати кілька функцій, включаючи роль в хижацтві. Патогенні мікроорганізми використовують їх для ураження або прикріплення й зв'язування з тканинами господаря; або для проникнення крізь зовнішню мембрану, щоб отримати доступ до цитоплазми. Багато існує схожих ворсинок, але еволюційно ті не пов'язані, а є результатом конвергентної еволюції. Одному організму можуть бути притаманні різні ворсинки, а ті, які присутні на поверхні завжди змінюються й міняються."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+msgstr "Проштрихніть нею інші клітини."
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Організму"
@@ -4548,19 +4561,6 @@ msgstr "{0} ({1})"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Винищення {0}"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
-msgid "PREDATORY_PILUS"
-msgstr "Хижі ворсинки"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Ворсинки (однина: ворсинка) знаходяться на поверхні багатьох мікроорганізмів і нагадують тонкі волоски. Від десятків до сотень ворсинок можуть бути на поверхні мікроорганізму та виконувати кілька функцій, включаючи роль в хижацтві. Патогенні мікроорганізми використовують їх для ураження або прикріплення й зв'язування з тканинами господаря; або для проникнення крізь зовнішню мембрану, щоб отримати доступ до цитоплазми. Багато існує схожих ворсинок, але еволюційно ті не пов'язані, а є результатом конвергентної еволюції. Одному організму можуть бути притаманні різні ворсинки, а ті, які присутні на поверхні завжди змінюються й міняються."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Проштрихніть нею інші клітини."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
