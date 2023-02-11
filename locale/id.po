@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 14:59+0200\n"
+"POT-Creation-Date: 2023-02-10 15:21+0200\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -4199,6 +4199,20 @@ msgstr "Ubah setelan"
 msgid "ORGANELLES"
 msgstr "Organel"
 
+#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+msgid "ORGANELLE_PILUS"
+msgstr "Pilus"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+msgid "ORGANELLE_PILUS_DESCRIPTION"
+msgstr "Tusuk sel lain dengan ini."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+#, fuzzy
+msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
+msgstr "Tusuk sel lain dengan ini."
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organisme"
@@ -4640,20 +4654,6 @@ msgstr "POPULASI:"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:111
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predasi {0}"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
-msgid "PREDATORY_PILUS"
-msgstr "Pilus"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
-msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Tusuk sel lain dengan ini."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
-#, fuzzy
-msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Tusuk sel lain dengan ini."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 #, fuzzy
