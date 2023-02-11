@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
-using System.Linq;
 
 /// <summary>
 ///   Membrane for microbes
@@ -353,11 +353,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     public Vector2 FindCenterOfOrganellesInRange(Vector2 origin, float range)
     {
-        List<Vector2> points = new List<Vector2>() { origin };
+        List<Vector2> points = new() { origin };
 
         points.AddRange(OrganellePositions.Where(x => (origin - x).LengthSquared() < range));
 
-        return new Vector2(points.Sum(x => x.x) / points.Count(), points.Sum(x => x.y) / points.Count());
+        return new Vector2(points.Sum(x => x.x) / points.Count, points.Sum(x => x.y) / points.Count);
     }
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
@@ -537,14 +537,14 @@ public class Membrane : MeshInstance, IComputedMembraneData
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(-cellDimensions,
-                cellDimensions - 2 * nodeLength  * i));
+                cellDimensions - 2 * nodeLength * i));
         }
 
         // bottom wall of square
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(
-                cellDimensions - 2 * nodeLength  * i,
+                cellDimensions - 2 * nodeLength * i,
                 cellDimensions));
         }
 
@@ -552,14 +552,14 @@ public class Membrane : MeshInstance, IComputedMembraneData
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(cellDimensions,
-                -cellDimensions + 2 * nodeLength  * i));
+                -cellDimensions + 2 * nodeLength * i));
         }
 
         // bottom wall of square
         for (int i = membraneResolution; i > 0; i--)
         {
             previousWorkBuffer.Add(new Vector2(
-                -cellDimensions + 2 * nodeLength  * i,
+                -cellDimensions + 2 * nodeLength * i,
                 -cellDimensions));
         }
 
@@ -567,7 +567,8 @@ public class Membrane : MeshInstance, IComputedMembraneData
         // We use rotating work buffers to save time on skipping useless copies
         for (int i = 0; i < 60 * cellDimensions; i++)
         {
-            DrawMembrane(cellDimensions, previousWorkBuffer, nextWorkBuffer, Type.CellWall ? GetMovementForCellWall : GetMovement);
+            DrawMembrane(cellDimensions, previousWorkBuffer, nextWorkBuffer,
+                Type.CellWall ? GetMovementForCellWall : GetMovement);
 
             (previousWorkBuffer, nextWorkBuffer) = (nextWorkBuffer, previousWorkBuffer);
         }
@@ -710,11 +711,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
         // Loops through all the points in the membrane and relocates them as necessary.
         for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
         {
-            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 3f);
+            var closestOrganelle = FindClosestOrganelleInRange(sourceBuffer[i], 3.0f);
             if (closestOrganelle ==
                 new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE))
             {
-                var distantOrganelle = FindCenterOfOrganellesInRange(sourceBuffer[i], 5f);
+                var distantOrganelle = FindCenterOfOrganellesInRange(sourceBuffer[i], 5.0f);
 
                 var midpoint = (sourceBuffer[(end + i - 1) % end] + sourceBuffer[(i + 1) % end]) / 2;
 
@@ -724,10 +725,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 }
                 else
                 {
-                    var movementDirection = movementFunc(sourceBuffer[i], distantOrganelle + distantOrganelle + midpoint / 3);
+                    var movementDirection = movementFunc(sourceBuffer[i],
+                        distantOrganelle + distantOrganelle + midpoint / 3);
 
                     targetBuffer[i] = new Vector2(sourceBuffer[i].x - movementDirection.x,
-                    sourceBuffer[i].y - movementDirection.y);
+                        sourceBuffer[i].y - movementDirection.y);
                 }
             }
             else

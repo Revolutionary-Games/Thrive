@@ -614,7 +614,8 @@ public partial class Microbe
             var cartesian = Hex.AxialToCartesian(entry.Position);
             organellePositions
                 .AddRange(entry.Definition.Hexes
-                .Select(x => new Vector2(Hex.AxialToCartesian(x).x, Hex.AxialToCartesian(x).z) + new Vector2(cartesian.x, cartesian.z)));
+                    .Select(x => new Vector2(Hex.AxialToCartesian(x).x, Hex.AxialToCartesian(x).z) +
+                        new Vector2(cartesian.x, cartesian.z)));
         }
 
         Membrane.OrganellePositions = organellePositions;
