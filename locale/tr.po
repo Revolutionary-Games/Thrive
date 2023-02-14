@@ -388,7 +388,7 @@ msgstr "Geri"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Ters eğik çizgi"
+msgstr "Ters Eğik Çizgi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
@@ -1565,7 +1565,7 @@ msgstr "{0}/s"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
-msgstr "Sol"
+msgstr "Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 msgid "DIRECTIONR"
@@ -1984,7 +1984,7 @@ msgstr "Hata: Yeni ayarlar yapılandırma dosyasına kaydedilemedi."
 
 #: ../src/general/ThriveNewsFeed.cs:97
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "Bu hatadan dolayı haberleri alma işlemi başarısız oldu: {0}"
+msgstr "Bir hatadan dolayı haberleri alma işlemi başarısız oldu: {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:96
 msgid "ERROR_FETCHING_NEWS"
@@ -3543,9 +3543,9 @@ msgstr ""
 "Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
 "Toksin Kofulları: Toksinler üretir ([thrive:compound "
-"type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut "
-"oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin "
-"verir\n"
+"type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] olarak adlandırılır) ve "
+"mevcut oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana "
+"izin verir\n"
 "\n"
 "Sinyal Verici Ajan: Belli hücrenin, diğer hücrelerin karşılık verebildiği "
 "kimyasallar üretmesini sağlar"
@@ -3723,7 +3723,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Editörü açmak ve hücreni çoğaltmak için hücrenin yeterince uzun süre hayatta "
-"kalması gerekir. [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] "
+"kalması gerekir. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] "
 "(turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:"
 "compound] (mor bulut) biriktirmek büyümeyi hızlandırır."
 
@@ -3742,7 +3742,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal "
-"olur, yani hücreniz ne kadar büyükse, durağan haldeyken[thrive:compound "
+"olur, yani hücreniz ne kadar büyükse, durağan haldeyken [thrive:compound "
 "type=\"atp\"]ATP[/thrive:compound] kaybetmekten kaçınmak için o kadar çok "
 "mitokondriye, metabolozoma veya rustisyanine (veya glikoliz yapan "
 "sitoplazmaya) ihtiyacın var."
@@ -4589,7 +4589,7 @@ msgstr "Organeller"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
-msgstr "Yırtıcı Pilus"
+msgstr "Delici Pilus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
 msgid "ORGANELLE_PILUS_DESCRIPTION"
@@ -4829,7 +4829,8 @@ msgstr "{0} {1}"
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
 msgstr ""
-"En son Thrive'i {0} oynadınız, o zamandan beri bir yeni sürüm yayınlandı"
+"Thrive'ı en son {0} tarihinde oynadınız, o zamandan beri bir yeni sürüm "
+"mevcut"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
