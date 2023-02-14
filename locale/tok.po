@@ -91,7 +91,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "pali pi kon ilo kepeken kon"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1529
 #: ../src/microbe_stage/MicrobeStage.tscn:1603
@@ -101,23 +101,27 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"sike utala li wile tawa wawa pi sike moku lon ma weka\n"
+"ona li wile utala e sike ike\n"
+"sike utala ala li wile tawa ala sike ante lon ma weka\n"
+"ona li wile ala kepeken kon utala tawa sike ike"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "wile utala"
 
 #: ../src/general/NewGameSettings.tscn:463
 msgid "AI_MUTATION_RATE"
-msgstr ""
+msgstr "kama ante pi sike ante"
 
 #: ../src/general/NewGameSettings.tscn:508
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:372
 msgid "ALL"
-msgstr ""
+msgstr "ale"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
@@ -132,8 +136,27 @@ msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:999
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
+"[b]tenpo lon:[/b]\n"
+"  {0}\n"
+"[b]kule ale:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  "
+"{1}; nanpa pi weka lon nanpa {2}\n"
+"[b]kule lon tenpo ni:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; "
+"nanpa pi weka lon nanpa {4}\n"
+"[b]kule lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; "
+"nanpa pi weka lon nanpa {6}\n"
+"[b]lon ale lon ma:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; "
+"nanpa pi weka lon nanpa {8}\n"
+"[b]suli pi sike ante:[/b]\n"
+"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; "
+"nanpa pi weka lon nanpa {10}\n"
+"[b]sona pi tomo lon sike:[/b]"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "ALT"
@@ -148,19 +171,19 @@ msgstr ""
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1345
 msgid "AMMONIA"
-msgstr ""
+msgstr "kon ilo"
 
 #: ../src/general/OptionsMenu.tscn:1634
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "nanpa ni: sona musi ilo lon ilo nanpa sina:"
 
 #: ../src/general/OptionsMenu.tscn:1662
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "nanpa ni: sona musi lili lon ilo nanpa sina:"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:101
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "pali pi kon ilo kepeken kon ala"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:363
 msgid "APPEARANCE"
@@ -173,11 +196,11 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "o kepeken nasin sin"
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "APRIL"
-msgstr ""
+msgstr "tenpo mun tu tu"
 
 #: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
@@ -185,27 +208,29 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "sina wile ala wile e ni: nena ale li kama sama ante ala?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
 msgstr ""
 
 #: ../src/general/Asset.cs:50
+#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
-msgstr ""
+msgstr "musi li tan jan {0}"
 
-#: ../src/general/MainMenu.tscn:540 ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:541
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "ma pi sitelen musi"
 
 #: ../src/modding/ModManager.cs:325
+#, fuzzy
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "lipu Assembly li pana, la kulupu Assembly pi ante musi li wile"
 
 #: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
@@ -228,7 +253,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
-msgstr ""
+msgstr "wawa sike"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ATP_BALANCE"
@@ -237,11 +262,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:304
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:309
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "pali pi wawa sike"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:310
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "PALI PI WAWA SIKE LI LILI!"
 
 #: ../src/saving/NewSaveMenu.tscn:146
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
