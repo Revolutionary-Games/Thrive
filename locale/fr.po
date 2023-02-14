@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Mouvement en style 2D:"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -34,7 +34,7 @@ msgstr "Mouvement tridimensionnel"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Mouvement en style 3D:"
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
@@ -75,9 +75,8 @@ msgstr ""
 "environnement."
 
 #: ../src/modding/NewModGUI.cs:322
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Des validations supplémentaires ont détectés un problème: {0}"
+msgstr "Des validations supplémentaires ont détecté un problème: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4042
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
@@ -138,14 +137,25 @@ msgstr ""
 "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Statistiques de l'Organisme"
+msgstr "Statistiques génériques de tous les mondes"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:999
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Statistiques de l'Organisme"
+msgstr ""
+"[b]Générations:[/b]\n"
+"  {0}\n"
+"[b]Espèces totales:[/b]\n"
+"  Moyenne{1}; écart-type {2}\n"
+"[b]Espèces toujours en vie:[/b]\n"
+"  Moyenne{3}; écart-type {4}\n"
+"[b]Compteur d'espèces par zone:[/b]\n"
+"  Moyenne{5}; écart-type {6}\n"
+"[b]Population totale par zone:[/b]\n"
+"  Moyenne{7}; écart-type {8}\n"
+"[b]Taille moyenne des hexagones des espèces microbiennes:[/b]\n"
+"  Moyenne{9}; écart-type {10}\n"
+"[b]Données génériques des organites:[/b]"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "ALT"
@@ -224,11 +234,10 @@ msgstr ""
 "spécifié"
 
 #: ../src/modding/ModManager.cs:336
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
-"La classe de l'assemblage des Mods est requise lorsque l'assemblage est "
-"spécifié"
+"La classe de l'assemblage des Mods est requise lorsque l'auto harmonie est "
+"activée"
 
 #: ../src/general/OptionsMenu.tscn:1106
 msgid "ASSUME_HYPERTHREADING"
@@ -358,9 +367,8 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "état de lancement :"
+msgstr "état de l'auto-évo:"
 
 #: ../simulation_parameters/common/input_options.json:27
 msgid "AUTO_MOVE_FORWARDS"
@@ -444,15 +452,13 @@ msgstr "Prendre conscience"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:470
 #: ../src/microbe_stage/MicrobeStage.tscn:1793
-#, fuzzy
 msgid "BECOME_MACROSCOPIC"
-msgstr "Devenez Macroscopiques ({0}/{1})"
+msgstr "Devenir Macroscopique ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:434
 #: ../src/microbe_stage/MicrobeStage.tscn:1782
-#, fuzzy
 msgid "BECOME_MULTICELLULAR"
-msgstr "Devenez Multicellulaires ({0}/{1})"
+msgstr "Devenir Multicellulaire ({0}/{1})"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
 msgid "BEGIN_THRIVING"
@@ -489,21 +495,21 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sous la mer"
 
 #: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
+#, fuzzy
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Benchmarks"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Chargement terminé"
+msgstr "Benchmark terminé"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Phase de benchmark:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Résultats:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
@@ -658,14 +664,12 @@ msgid "CANNOT_ENGULF"
 msgstr "Ne peut pas absorber"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:760
-#, fuzzy
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr "Impossible de bouger une métaballe dans l'arbre généalogique"
+msgstr "Impossible de bouger une méta balle dans l'arbre généalogique"
 
 #: ../src/saving/NewSaveMenu.tscn:143
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Ne peut pas absorber"
+msgstr "Impossible d'écrire la sauvegarde"
 
 #: ../src/modding/ModLoader.cs:302 ../src/modding/ModLoader.cs:350
 msgid "CANT_LOAD_MOD_INFO"
@@ -710,9 +714,8 @@ msgid "CAUTIOUS"
 msgstr "Prudent"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:175
-#, fuzzy
 msgid "CELL"
-msgstr "Cellulose"
+msgstr "Cellule"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:454
@@ -871,16 +874,10 @@ msgid "CHITINASE"
 msgstr "Chitinase"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
-"L'intérieur visqueux d'une cellule. Le cytoplasme est une mixture basique "
-"d'ions, de protéines et d'autres substances dissoutes dans l'eau qui rempli "
-"l'intérieur de la cellule. Une des fonctions qu'elle réalise est la "
-"glycolyse, la conversion du glucose en énergie ATP. Pour les cellules qui "
-"manquent d'organites pour avoir un métabolisme plus avancé, c'est ce sur "
-"quoi elles dépendent en énergie. C'est aussi utilisé pour stocker des "
-"molécules dans la cellules et augmenter sa taille."
+"La chitinase permet à la cellule de casser les membranes faites de chitine. "
+"Chaque addition augmente l'efficacité."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
@@ -921,9 +918,8 @@ msgstr ""
 "thrive:compound]."
 
 #: ../src/saving/NewSaveMenu.cs:98
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Réécrire par dessus?"
+msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Ecraser le fichier?"
 
 #: ../src/general/OptionsMenu.tscn:438
 msgid "CHROMATIC_ABERRATION"
@@ -1167,9 +1163,8 @@ msgstr ""
 "Le contenu provenant de l'atelier sera téléchargé depuis le fichier : {0}"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:413
-#, fuzzy
 msgid "CONTINUE_THRIVING"
-msgstr "Commencer à Prospérer"
+msgstr "Continuez à Prospérer"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
@@ -1219,7 +1214,7 @@ msgstr "Zone morte :"
 
 #: ../src/general/OptionsMenu.tscn:578
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Type de requête de bouton de manette:"
 
 #: ../src/general/OptionsMenu.tscn:1375
 msgid "CONTROLLER_SENSITIVITY"
@@ -1230,9 +1225,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copier l'Erreur"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Résultats de l'Auto-Évo :"
+msgstr "Résultats de copie :"
 
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
@@ -1285,9 +1279,8 @@ msgid "CREATE_NEW_SAVE"
 msgstr "Créer une Nouvelle Sauvegarde"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:671
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Créer une Nouvelle Sauvegarde"
+msgstr "Créer un nouveau type de tissu"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
 #, fuzzy
@@ -1300,9 +1293,8 @@ msgstr ""
 "concentration en dioxyde de carbone."
 
 #: ../src/modding/ModUploader.cs:493
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Rechercher..."
+msgstr "En train de créer..."
 
 #: ../src/saving/InProgressLoad.cs:104
 msgid "CREATING_OBJECTS_FROM_SAVE"
@@ -1325,14 +1317,31 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "Développeurs actuels"
+msgstr "Monde Actuel"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:957
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Statistiques de l'Organisme"
+msgstr ""
+"[b]Générations:[/b]\n"
+"  {0}\n"
+"[b]Zones Totales:[/b]\n"
+"  {1}\n"
+"[b]Temps total d'auto-évo:[/b]\n"
+"  {2}\n"
+"[b]Espèces totales:[/b]\n"
+"  {3}\n"
+"[b]Espèces toujours en vie:[/b]\n"
+"  {4}\n"
+"[b]Compteur d'espèces par zone:[/b]\n"
+"  Moyenne{5}; écart-type {6}\n"
+"[b]Population totale:[/b]\n"
+"  {7}\n"
+"[b]Espèce la plus populeuse:[/b]\n"
+"  {8}\n"
+"[b]Données basiques des espèces microbiennes:[/b]\n"
+"  Taille moyenne des hexagones: {9}\n"
+"[b]Données génériques des organites:[/b]"
 
 #: ../src/general/OptionsMenu.tscn:1735
 msgid "CUSTOM_USERNAME"
@@ -1522,9 +1531,8 @@ msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Visitez notre wiki de développement"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:243
-#, fuzzy
 msgid "DEVOURED"
-msgstr "Dévoré"
+msgstr "Dévoré(e)"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "DEV_BUILD_PATRONS"
@@ -1573,23 +1581,20 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY"
-msgstr "Efficience digestive"
+msgstr "Efficacité de Digestion"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:906
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Description :"
+msgstr "Efficacité de Digestion:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
 msgid "DIGESTION_SPEED"
 msgstr "Vitesse d'absorption des ressources"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Vitesse :"
+msgstr "Vitesse de Digestion:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:156
 #, fuzzy
@@ -1617,9 +1622,8 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuler et continuer"
 
 #: ../src/modding/ModManager.tscn:588
-#, fuzzy
 msgid "DISCARD_CHANGES"
-msgstr "Annuler et continuer"
+msgstr "Annuler les changements"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:561
 msgid "DISCONNECTED_CELLS"
@@ -1915,9 +1919,8 @@ msgid "EDITOR"
 msgstr "Éditeur"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1961
-#, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Entrer dans l'éditeur et modifier votre espèce"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
