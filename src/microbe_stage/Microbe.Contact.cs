@@ -599,8 +599,8 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///  Public because it needs to be called by external organelles only.
-    ///  Not meant for other uses.
+    ///   Public because it needs to be called by external organelles only.
+    ///   Not meant for other uses.
     /// </summary>
     public void SendOrganellePositionsToMembrane()
     {

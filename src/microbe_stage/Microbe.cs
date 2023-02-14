@@ -109,7 +109,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public CellType? MulticellularCellType { get; private set; }
 
     /// <summary>
-    ///    True when this is the player's microbe
+    ///   True when this is the player's microbe
     /// </summary>
     [JsonProperty]
     public bool IsPlayerMicrobe { get; private set; }

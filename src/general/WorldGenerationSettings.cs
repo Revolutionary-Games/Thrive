@@ -108,7 +108,7 @@ public class WorldGenerationSettings
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
-    ///  Basic patch map generation type (procedural or the static classic map)
+    ///   Basic patch map generation type (procedural or the static classic map)
     /// </summary>
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
 
@@ -129,12 +129,12 @@ public class WorldGenerationSettings
     public float DaytimeFraction { get; set; }
 
     /// <summary>
-    ///  Whether the player can enter the Multicellular Stage in this game
+    ///   Whether the player can enter the Multicellular Stage in this game
     /// </summary>
     public bool IncludeMulticellular { get; set; } = true;
 
     /// <summary>
-    ///  Whether Easter eggs are enabled in this game
+    ///   Whether Easter eggs are enabled in this game
     /// </summary>
     public bool EasterEggs { get; set; } = true;
 

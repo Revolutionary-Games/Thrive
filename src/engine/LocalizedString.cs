@@ -12,7 +12,9 @@ using Newtonsoft.Json;
 ///   ToString returns the translated text for the current locale.
 /// </summary>
 /// <remarks>
-///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+///   <para>
+///     This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
 [TypeConverter(typeof(LocalizedStringTypeConverter))]

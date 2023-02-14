@@ -156,7 +156,7 @@ public class ControllerAxisVisualizer : MarginContainer
     }
 
     /// <summary>
-    ///  Adds a new axis to track. Each instance can only track 2 axes.
+    ///   Adds a new axis to track. Each instance can only track 2 axes.
     /// </summary>
     /// <param name="axis">The axis ID</param>
     public void AddAxis(int axis)

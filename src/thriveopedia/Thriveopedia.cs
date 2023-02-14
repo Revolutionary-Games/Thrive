@@ -317,7 +317,7 @@ public class Thriveopedia : ControlWithInput
     }
 
     /// <summary>
-    ///    Opens an existing Thriveopedia page, optionally adding it to the page history.
+    ///   Opens an existing Thriveopedia page, optionally adding it to the page history.
     /// </summary>
     /// <param name="pageName">The name of the page</param>
     /// <param name="addToHistory">Whether this page should be added to the history</param>

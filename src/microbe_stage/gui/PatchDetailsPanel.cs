@@ -372,8 +372,10 @@ public class PatchDetailsPanel : PanelContainer
     }
 
     /// <remarks>
-    ///   TODO: this function should be cleaned up by generalizing the adding the increase or decrease icons in order
-    ///   to remove the duplicated logic here
+    ///   <para>
+    ///     TODO: this function should be cleaned up by generalizing the adding the increase or decrease icons in order
+    ///     to remove the duplicated logic here
+    ///   </para>
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches()
     {

@@ -55,8 +55,10 @@ public class MicrobeAI
     ///   Used for compounds gradient computation.
     /// </summary>
     /// <remarks>
-    ///   Memory of the previous absorption step is required to compute gradient (which is a variation).
-    ///   Values dictionary rather than single value as they will be combined with variable weights.
+    ///   <para>
+    ///     Memory of the previous absorption step is required to compute gradient (which is a variation).
+    ///     Values dictionary rather than single value as they will be combined with variable weights.
+    ///   </para>
     /// </remarks>
     [JsonProperty]
     private Dictionary<Compound, float> previouslyAbsorbedCompounds;
@@ -699,9 +701,13 @@ public class MicrobeAI
     /// <summary>
     ///   Tells if a compound is vital to this microbe.
     ///   Vital compounds are *direct* ATP producers
-    ///   TODO: what is used here is a shortcut linked to the current game state:
-    ///     such compounds could be used for other processes in future versions
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: what is used here is a shortcut linked to the current game state: such compounds could be used for
+    ///     other processes in future versions
+    ///   </para>
+    /// </remarks>
     private bool IsVitalCompound(Compound compound)
     {
         // TODO: looking for mucilage should be prevented
