@@ -109,6 +109,7 @@ public class MicrobeBenchmark : Node
     private ProcessSystem? processSystem;
     private MicrobeAISystem? microbeAI;
     private FloatingChunkSystem? chunkSystem;
+    private TimedLifeSystem? timedLifeSystem;
 
     private Random random = new(RANDOM_SEED);
     private Random aiRandom = new();
@@ -204,6 +205,7 @@ public class MicrobeBenchmark : Node
         microbeSystem?.Process(delta);
 
         chunkSystem?.Process(delta, new Vector3(0, 0, 0));
+        timedLifeSystem?.Process(delta);
 
         if (runAI)
         {
@@ -480,6 +482,8 @@ public class MicrobeBenchmark : Node
         processSystem.SetBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
 
         chunkSystem = new FloatingChunkSystem(dynamicRoot, cloudSystem);
+
+        timedLifeSystem = new TimedLifeSystem(dynamicRoot);
     }
 
     private void SpawnAndUpdatePositionState()
