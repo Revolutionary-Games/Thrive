@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
 "PO-Revision-Date: 2022-10-28 14:00+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
-"Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
+"Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -70,7 +72,8 @@ msgstr "Obecne wątki:"
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Ruchliwe mikroby będą migrować kiedy nic się nie dzieje.\n"
-"Osiadłe mikroby będą oczekiwać zmian w swoim środowisku zanim zaczną coś robić."
+"Osiadłe mikroby będą oczekiwać zmian w swoim środowisku zanim zaczną coś "
+"robić."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -186,11 +189,15 @@ msgstr "Kwiecień"
 
 #: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości domyślnych?"
+msgstr ""
+"Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości "
+"domyślnych?"
 
 #: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości domyślnych?"
+msgstr ""
+"Czy jesteś pewien że chcesz zresetować ustawienia klawiszy do wartości "
+"domyślnych?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
@@ -204,7 +211,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Autor: {0}"
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:540 ../src/general/MainMenu.tscn:541
 msgid "ART_GALLERY"
 msgstr "Galeria"
 
@@ -224,7 +231,8 @@ msgstr "Załóż, że procesor pozwala na hyperthreading"
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Nie można automatycznie wykryć czy hyperthreading jest włączony.\n"
-"Dotyczy to domyślnej liczby wątków, ponieważ wątki hyperthreadingu nie są tak szybkie jak prawdziwe rdzenie procesora."
+"Dotyczy to domyślnej liczby wątków, ponieważ wątki hyperthreadingu nie są "
+"tak szybkie jak prawdziwe rdzenie procesora."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
@@ -273,7 +281,13 @@ msgstr "Auto"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1361
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji. Całkowita energia, którą gątunek jest w stanie przyswoić, i koszt utrzymania każdego osobnika determinują ostateczną populację. Auto-ewolucja wykorzystuje uproszczony model rzeczywistości w celu obliczenia jak dobrze dany gatunek sobie poradzi. Na każde źródło pożywienia dana jest informacja ile energii gatunek z niego czerpie."
+msgstr ""
+"Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji. "
+"Całkowita energia, którą gątunek jest w stanie przyswoić, i koszt utrzymania "
+"każdego osobnika determinują ostateczną populację. Auto-ewolucja "
+"wykorzystuje uproszczony model rzeczywistości w celu obliczenia jak dobrze "
+"dany gatunek sobie poradzi. Na każde źródło pożywienia dana jest informacja "
+"ile energii gatunek z niego czerpie."
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
@@ -287,8 +301,10 @@ msgstr "Przewidywania Auto-Ewolucji"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Ten panel pokazuje prawdopodobne dane populacji z auto-ewolucji dla edytowanego gatunku.\n"
-"Auto-ewolucja przeprowadza symulację populacji, czyli drugą rzecz wpływającą (poza twoim wkładem własnym) na liczebność gatunku."
+"Ten panel pokazuje prawdopodobne dane populacji z auto-ewolucji dla "
+"edytowanego gatunku.\n"
+"Auto-ewolucja przeprowadza symulację populacji, czyli drugą rzecz wpływającą "
+"(poza twoim wkładem własnym) na liczebność gatunku."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
@@ -302,7 +318,7 @@ msgstr "Autozapis w trakcie gry"
 msgid "AUTO_EVO"
 msgstr "Auto-Ewolucja"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:433
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Narzędzie Eksploracji Auto-Ewo"
 
@@ -351,7 +367,9 @@ msgstr "Przebudzony"
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/MainMenu.tscn:481
+#: ../src/general/MainMenu.tscn:583 ../src/general/MainMenu.tscn:642
+#: ../src/general/MainMenu.tscn:961 ../src/general/PauseMenu.tscn:275
 msgid "BACK"
 msgstr "Wróć"
 
@@ -449,7 +467,7 @@ msgstr "Oportunizm"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m poniżej poziomu morza"
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -495,11 +513,20 @@ msgstr "Czynnik Wiążący"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+msgstr ""
+"Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do "
+"wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki "
+"są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś "
+"częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco "
+"związków by podzielić swoją komórkę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Naciśnij [thrive:input]g_toggle_binding[/thrive:input] aby przełączyć tryb wiązania. W trybie wiązania możesz dołączać inne komórki twojego gatunku do swojej kolonii wpływając w nie. Aby opuścić kolonię naciśnij [thrive:input]g_unbind_all[/thrive:input]."
+msgstr ""
+"Naciśnij [thrive:input]g_toggle_binding[/thrive:input] aby przełączyć tryb "
+"wiązania. W trybie wiązania możesz dołączać inne komórki twojego gatunku do "
+"swojej kolonii wpływając w nie. Aby opuścić kolonię naciśnij [thrive:"
+"input]g_unbind_all[/thrive:input]."
 
 #: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
@@ -511,11 +538,15 @@ msgstr "Szansa utworzenia nowego gatunku na obszarze z niską bioróżnorodnośc
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Szansa utworzenia nowego gatunku z pobliskiego obszaru by zwiększyć bioróżnorodność"
+msgstr ""
+"Szansa utworzenia nowego gatunku z pobliskiego obszaru by zwiększyć "
+"bioróżnorodność"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Zwiększający bioróżnorodność gatunek z pobliskiego obszaru otrzymuje darmową populację"
+msgstr ""
+"Zwiększający bioróżnorodność gatunek z pobliskiego obszaru otrzymuje darmową "
+"populację"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
@@ -557,7 +588,11 @@ msgstr "Węglanowo-Wapienna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr "Ta membrana ma silną muszlę zrobioną z węglanu wapnia. Może z łatwością opierać się obrażeniom i wymaga mniej energii do utrzymania kształtu. Wady posiadania tak ciężkiej muszli są takie, że komórka jest znacznie wolniejsza i długo zajmuje jej wchłanianie zasobów."
+msgstr ""
+"Ta membrana ma silną muszlę zrobioną z węglanu wapnia. Może z łatwością "
+"opierać się obrażeniom i wymaga mniej energii do utrzymania kształtu. Wady "
+"posiadania tak ciężkiej muszli są takie, że komórka jest znacznie wolniejsza "
+"i długo zajmuje jej wchłanianie zasobów."
 
 #: ../simulation_parameters/common/input_options.json:78
 msgid "CAMERA"
@@ -584,7 +619,9 @@ msgstr "Anuluj aktualną czynność"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:571
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:667
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr "Rodzaj komórki, który jest obecnie używany w twoim organizmie, nie może zostać usunięty"
+msgstr ""
+"Rodzaj komórki, który jest obecnie używany w twoim organizmie, nie może "
+"zostać usunięty"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
@@ -662,7 +699,9 @@ msgstr "Celulaza"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Celulaza umożliwia komórce trawienie celulozowych błon. Każde dodanie zwiększa wydajność."
+msgstr ""
+"Celulaza umożliwia komórce trawienie celulozowych błon. Każde dodanie "
+"zwiększa wydajność."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
@@ -671,7 +710,11 @@ msgstr "Celulozowa"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
+msgstr ""
+"Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
+"zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale "
+"spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę "
+"ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:591
 msgid "CELL_TYPE_NAME"
@@ -710,11 +753,18 @@ msgstr "Chemoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać siarkowodór, wodę i gazowy dwutlenek węgla w glukozę w procesie zwanym Chemosyntezą Siarkową. Tempo produkcji glukozy skaluje się ze stężeniem dwutlenku węgla."
+msgstr ""
+"Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące "
+"przekształcać siarkowodór, wodę i gazowy dwutlenek węgla w glukozę w "
+"procesie zwanym Chemosyntezą Siarkową. Tempo produkcji glukozy skaluje się "
+"ze stężeniem dwutlenku węgla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr ""
+"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
@@ -723,11 +773,18 @@ msgstr "Chemoreceptor"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+msgstr ""
+"Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają "
+"informacje o otaczającym je środowisku. Dodanie tego organellum oznacza "
+"wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona "
+"przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, "
+"których gracz nie był w stanie zobaczyć."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
+msgstr ""
+"Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy "
+"umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
@@ -736,11 +793,26 @@ msgstr "Białka Chemosyntezy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Białka chemosyntezy (określane też jako \"białka chemosyntezujące\") są małymi białkowymi strukturami, które umieją przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr ""
+"Białka chemosyntezy (określane też jako \"białka chemosyntezujące\") są "
+"małymi białkowymi strukturami, które umieją przekształcać [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound "
+"type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound "
+"type=\"glucose\"][/thrive:compound] w procesie nazywającym się "
+"[b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound "
+"type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:"
+"compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka "
+"chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn "
+"przeprowadza [b]glikolizę[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Przekształcają [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"Przekształcają [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
+"Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -758,11 +830,17 @@ msgstr "Chitynaza"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Chitynaza umożliwia komórce trawienie błon chitynowych. Każde dodanie zwiększa wydajność."
+msgstr ""
+"Chitynaza umożliwia komórce trawienie błon chitynowych. Każde dodanie "
+"zwiększa wydajność."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed toksynami. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów. [b]Chitynaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
+msgstr ""
+"Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
+"zwłaszcza przed toksynami. Kosztuje też mniej energii, ale spowalnia "
+"absorpcje zasobów. [b]Chitynaza może strawić tę ścianę[/b] sprawiając, że "
+"jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
@@ -771,11 +849,24 @@ msgstr "Chloroplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta.Chloroplast to struktura z podwójną membraną zawierająca fotosensytywne pigmenty ułożone razem w membranowych kieszeniach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji glukozy z wody i gazowego dwutlenku węgla w procesie zwanym Fotosyntezą. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci glukozy skaluje się ze stężeniem dwutlenku węgla i intensywnością światła."
+msgstr ""
+"Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne "
+"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
+"został przyswojony do użytku przez eukariotycznego hosta.Chloroplast to "
+"struktura z podwójną membraną zawierająca fotosensytywne pigmenty ułożone "
+"razem w membranowych kieszeniach. Jest prokariotem, który został przyswojony "
+"do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać "
+"energii światła do produkcji glukozy z wody i gazowego dwutlenku węgla w "
+"procesie zwanym Fotosyntezą. Te pigmenty dają mu też wyróżniający się kolor. "
+"Tempo produkci glukozy skaluje się ze stężeniem dwutlenku węgla i "
+"intensywnością światła."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr ""
+"Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] i natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/saving/NewSaveMenu.cs:98
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -787,7 +878,11 @@ msgstr "Aberracja chromatyczna:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr ""
+"Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
@@ -800,7 +895,9 @@ msgstr "Rzęski"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 msgid "CILIA_DESCRIPTION"
-msgstr "Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu dodają siłę obrotową by pomóc komórkom się obracać."
+msgstr ""
+"Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu "
+"dodają siłę obrotową by pomóc komórkom się obracać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CILIA_PROCESSES_DESCRIPTION"
@@ -908,21 +1005,21 @@ msgstr "Wartość nasycenia, ilość szarości w konkretnym kolorze"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Wartość (jasność) wartość, jasność lub intensywność koloru"
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:701 ../src/general/MainMenu.tscn:702
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696
+#: ../src/general/MainMenu.tscn:696 ../src/general/MainMenu.tscn:697
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
-#: ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:743 ../src/general/MainMenu.tscn:744
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "Nasza strona Wiki"
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:738 ../src/general/MainMenu.tscn:739
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Opuść grę"
@@ -992,6 +1089,7 @@ msgstr "POTWIERDŹ"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/general/PauseMenu.tscn:312
 msgid "CONFIRM_EXIT"
 msgstr "Potwierdź Wyjście"
 
@@ -1024,11 +1122,18 @@ msgstr "Kontynuuj Rozkwitanie"
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 "Dotarłeś do końca \"ukończonej\" części Thrive.\n"
-"Jeśli chcesz, możesz przejść dalej do prototypów następnych etapów które znajdują się w grze. Mogą one być ekstremalnie niedokończone, używać tymczasowych grafik oraz być ogólnie bardzo szorstkie. Są dołączone jako część gry żeby pokazać możliwy przyszły kierunek rozwoju i naszą wizję tego, jak etapy są ze sobą połączone.\n"
+"Jeśli chcesz, możesz przejść dalej do prototypów następnych etapów które "
+"znajdują się w grze. Mogą one być ekstremalnie niedokończone, używać "
+"tymczasowych grafik oraz być ogólnie bardzo szorstkie. Są dołączone jako "
+"część gry żeby pokazać możliwy przyszły kierunek rozwoju i naszą wizję tego, "
+"jak etapy są ze sobą połączone.\n"
 "\n"
-"Nie będziesz mógł zapisywać, w większości prototypów, jeśli kontynuujesz lub powrócisz gdy kontynuujesz. Jeśli chcesz wrócić do tego etapu, proszę zapisać grę przed przejściem dalej.\n"
+"Nie będziesz mógł zapisywać, w większości prototypów, jeśli kontynuujesz lub "
+"powrócisz gdy kontynuujesz. Jeśli chcesz wrócić do tego etapu, proszę "
+"zapisać grę przed przejściem dalej.\n"
 "\n"
-"Jeśli decydujesz się kontynuować, proszę zrozumieć, że następne etapy to tylko prototypy i proszę nie narzekać na to, jak bardzo są niedokończone."
+"Jeśli decydujesz się kontynuować, proszę zrozumieć, że następne etapy to "
+"tylko prototypy i proszę nie narzekać na to, jak bardzo są niedokończone."
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
@@ -1045,8 +1150,12 @@ msgstr "Strefy Martwe Kontrolera"
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"To narzędzie umożliwia konfigurowanie martwych stref osi kontrolera. Wielkość martwej strefy wpływa na to jak bardzo drążek (bądź analogowy przycisk) musi być poruszony nim ten ruch zostanie wykryty jako wejście.\n"
-"Przed rozpoczęciem kalibracji prosimy poruszyć drążkami dookoła a następnie je puścić, również należy nacisnąć i puścić jakiekolwiek przyciski (np. wyzwalacze) na twoim kontrolerze."
+"To narzędzie umożliwia konfigurowanie martwych stref osi kontrolera. "
+"Wielkość martwej strefy wpływa na to jak bardzo drążek (bądź analogowy "
+"przycisk) musi być poruszony nim ten ruch zostanie wykryty jako wejście.\n"
+"Przed rozpoczęciem kalibracji prosimy poruszyć drążkami dookoła a następnie "
+"je puścić, również należy nacisnąć i puścić jakiekolwiek przyciski (np. "
+"wyzwalacze) na twoim kontrolerze."
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
@@ -1104,7 +1213,11 @@ msgstr "Stwórz Nowy Typ Komórki"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone komórki tego typu zostaną zaktualizowane."
+msgstr ""
+"Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie "
+"im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w "
+"innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone "
+"komórki tego typu zostaną zaktualizowane."
 
 #: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
@@ -1120,7 +1233,10 @@ msgstr "Stwórz Nowy Typ Tkanki"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Możesz tworzyć nowe typy tkanek poprzez duplikację istniejących i nadanie im nowej nazwy. Typy tkanek mogą być modyfikowane za pomocą edytora komórek by wyspecjalizować je w innych zadaniach."
+msgstr ""
+"Możesz tworzyć nowe typy tkanek poprzez duplikację istniejących i nadanie im "
+"nowej nazwy. Typy tkanek mogą być modyfikowane za pomocą edytora komórek by "
+"wyspecjalizować je w innych zadaniach."
 
 #: ../src/modding/ModUploader.cs:493
 msgid "CREATING_DOT_DOT_DOT"
@@ -1130,7 +1246,7 @@ msgstr "Tworzenie..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Tworzenie obiektów z pliku zapisu"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:367
 msgid "CREDITS"
 msgstr "Twórcy"
 
@@ -1167,7 +1283,15 @@ msgstr "Cytozol"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr ""
+"Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, "
+"białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze "
+"komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - "
+"przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do "
+"bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. "
+"Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia "
+"rozmiarów komórki."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -1175,7 +1299,9 @@ msgstr "Glikoliza cytozolu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
+msgstr ""
+"Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając "
+"[thrive:compound]atp[/thrive:compound]."
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
@@ -1196,11 +1322,15 @@ msgstr ""
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "Kalibracja martwej strefy została zakończona. Nowe martwe strefy są wyświetlane poniżej na wyświetlaczach walut osi."
+msgstr ""
+"Kalibracja martwej strefy została zakończona. Nowe martwe strefy są "
+"wyświetlane poniżej na wyświetlaczach walut osi."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:172
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "Trwa kalibracja martwej strefy. Prosimy nie dotykać żadnych przycisków bądź drążków na twoim kontrolerze i poczekać kilka sekund."
+msgstr ""
+"Trwa kalibracja martwej strefy. Prosimy nie dotykać żadnych przycisków bądź "
+"drążków na twoim kontrolerze i poczekać kilka sekund."
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
 msgid "DEADZONE_CALIBRATION_IS_RESET"
@@ -1235,7 +1365,8 @@ msgstr "Usuń"
 #: ../src/saving/SaveManagerGUI.cs:257
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
-"Usunięcie wszystkich starych Auto oraz Szybkich zapisów nie może zostać cofnięte, czy jesteś pewien, że chcesz na stałe usunąć następujące?\n"
+"Usunięcie wszystkich starych Auto oraz Szybkich zapisów nie może zostać "
+"cofnięte, czy jesteś pewien, że chcesz na stałe usunąć następujące?\n"
 " - {0} Auto zapis(ów)\n"
 " - {1} Szybki(ch) zapis(ów)\n"
 " - {2} Zapasowy(ch) zapis(ów)"
@@ -1262,7 +1393,9 @@ msgstr "Usunąć wybrany/e zapis(y)?"
 
 #: ../src/saving/SaveManagerGUI.cs:247
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr "Usunięcia zapisów nie można cofnąć, jesteś pewien że chcesz usunąć te {0} zapisów?"
+msgstr ""
+"Usunięcia zapisów nie można cofnąć, jesteś pewien że chcesz usunąć te {0} "
+"zapisów?"
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
@@ -1299,12 +1432,12 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Developerzy"
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:715 ../src/general/MainMenu.tscn:716
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:710
+#: ../src/general/MainMenu.tscn:710 ../src/general/MainMenu.tscn:711
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
@@ -1313,12 +1446,12 @@ msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:729
+#: ../src/general/MainMenu.tscn:729 ../src/general/MainMenu.tscn:730
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Developerzy"
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:724 ../src/general/MainMenu.tscn:725
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Pomoc"
@@ -1438,7 +1571,7 @@ msgstr ""
 "Są organelle które nie są połączone do reszty komórki.\n"
 "Proszę połączyć wszystkie organelle albo cofnij zmiany."
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:896 ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Upłynęło {0:#,#} lat"
@@ -1451,7 +1584,7 @@ msgstr "Ukryte pop-up'y:"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1084
+#: ../src/general/MainMenu.tscn:1084 ../src/general/MainMenu.tscn:1072
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1496,9 +1629,12 @@ msgstr "Należy kliknąć dwa razy żeby przejść w tryb pełnego ekranu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebuje mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę komórkę oraz prędkość absorbcji zasobów."
+msgstr ""
+"Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebuje "
+"mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę komórkę "
+"oraz prędkość absorbcji zasobów."
 
-#: ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:1027 ../src/general/MainMenu.tscn:1015
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Nie ostrzegaj przed tym ponownie"
 
@@ -1518,7 +1654,10 @@ msgstr "Wielokomórkowe"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Ciekawostka: Didinium i Pantofelek są podręcznikowym przykładem relacji drapieżnika i ofiary, ta relacja była studiowana przez dekady. A ty, jesteś Didinium czy Pantofelkiem? Drapieżnikiem, czy ofiarą?"
+msgstr ""
+"Ciekawostka: Didinium i Pantofelek są podręcznikowym przykładem relacji "
+"drapieżnika i ofiary, ta relacja była studiowana przez dekady. A ty, jesteś "
+"Didinium czy Pantofelkiem? Drapieżnikiem, czy ofiarą?"
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -1534,11 +1673,15 @@ msgstr "Ale te niebieskie komórki."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Porada, Biomy to coś więcej niż tylko inne tła, zwiazki chemiczne w różnych biomach pojawiają się w różnych ilościach."
+msgstr ""
+"Porada, Biomy to coś więcej niż tylko inne tła, zwiazki chemiczne w różnych "
+"biomach pojawiają się w różnych ilościach."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Mała rada: im więcej wici posiadasz, tym szybciej się poruszasz, brum brum, ale zużywasz wtedy więcej ATP"
+msgstr ""
+"Mała rada: im więcej wici posiadasz, tym szybciej się poruszasz, brum brum, "
+"ale zużywasz wtedy więcej ATP"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -1546,15 +1689,21 @@ msgstr "Mała rada, możesz pochłaniać pożywienie, żelazo lub inne takie."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Porada, przygotuj się zanim dodasz jądro komórkowe. To coś jest drogie! W utrzymaniu i koszcie z góry."
+msgstr ""
+"Porada, przygotuj się zanim dodasz jądro komórkowe. To coś jest drogie! W "
+"utrzymaniu i koszcie z góry."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Zabawny Fakt, Czy wiedziałeś że na Ziemi jest ponad 8000 gatunków orzęsek?"
+msgstr ""
+"Zabawny Fakt, Czy wiedziałeś że na Ziemi jest ponad 8000 gatunków orzęsek?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Zabawny Fakt, Stentor to orzęsek który potrafi się rozciągnąć i łapać ofiary w usta przypominające trąbkę która wciąga ofiary generując prąd wodny rzęskami."
+msgstr ""
+"Zabawny Fakt, Stentor to orzęsek który potrafi się rozciągnąć i łapać ofiary "
+"w usta przypominające trąbkę która wciąga ofiary generując prąd wodny "
+"rzęskami."
 
 #: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
@@ -1562,31 +1711,48 @@ msgstr "Ciekawostka, Didinium to orzęsek który poluje na pantofelki."
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Porada, toksyny mogą być użyte do odbijania innych toksyn od ciebie, jeśli jesteś wystarczająco szybki."
+msgstr ""
+"Porada, toksyny mogą być użyte do odbijania innych toksyn od ciebie, jeśli "
+"jesteś wystarczająco szybki."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych nibynóżkami, chcemy je kiedyś dodać do \"Thrive\"."
+msgstr ""
+"Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych "
+"nibynóżkami, chcemy je kiedyś dodać do \"Thrive\"."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Porada, Uważaj na większe komórki i duże bakterie, nie jest fajnie być trawionym, a one cię zjedzą."
+msgstr ""
+"Porada, Uważaj na większe komórki i duże bakterie, nie jest fajnie być "
+"trawionym, a one cię zjedzą."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z komponowania ich na jego kanale YouTube, Oliver Lugg."
+msgstr ""
+"Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały "
+"jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z "
+"komponowania ich na jego kanale YouTube, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Porada, jeśli twoja komórka ma 150 heksów, możesz pochłaniać wielkie odłamki żelaza."
+msgstr ""
+"Porada, jeśli twoja komórka ma 150 heksów, możesz pochłaniać wielkie odłamki "
+"żelaza."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive jest stworzone do bycia symulacją obcej planety, więc sens będzie mieć to, że większość stworzeń które znajdziesz będzie spokrewnione z jednym lub dwoma innymi gatunkami przez to, że wokół ciebie dzieje się ewolucja, sprawdź czy możesz je zidentyfikować!"
+msgstr ""
+"Thrive jest stworzone do bycia symulacją obcej planety, więc sens będzie "
+"mieć to, że większość stworzeń które znajdziesz będzie spokrewnione z jednym "
+"lub dwoma innymi gatunkami przez to, że wokół ciebie dzieje się ewolucja, "
+"sprawdź czy możesz je zidentyfikować!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Zabawny Fakt, Zespół Thrive robi co jakiś czas podcasty, powinieneś je sprawdzić!"
+msgstr ""
+"Zabawny Fakt, Zespół Thrive robi co jakiś czas podcasty, powinieneś je "
+"sprawdzić!"
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
@@ -1594,19 +1760,28 @@ msgstr "Ciekawy Fakt, Thrive zrobione jest w open source-owym silniku Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został stworzony przez naszego niesamowitego programistę, untrustedlife!"
+msgstr ""
+"Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został "
+"stworzony przez naszego niesamowitego programistę, untrustedlife!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Porada, Osmoregulacja kosztuje 1 ATP na sekundę na każdy heks twojej komórki, każdy pusty heks cytozolu generuje też 5 ATP na sekundę, co znaczy, że jeżeli tracisz ATP przez osmoregulację po prostu dodaj kilka pustych heksów cytozolu albo usuń niektóre organella."
+msgstr ""
+"Porada, Osmoregulacja kosztuje 1 ATP na sekundę na każdy heks twojej "
+"komórki, każdy pusty heks cytozolu generuje też 5 ATP na sekundę, co znaczy, "
+"że jeżeli tracisz ATP przez osmoregulację po prostu dodaj kilka pustych "
+"heksów cytozolu albo usuń niektóre organella."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Zabawny Fakt, W prawdziwym życiu prokarioty mają coś zwanego Kompartmentami które działają jak organelle, i są nazywane Wielościennymi organellami."
+msgstr ""
+"Zabawny Fakt, W prawdziwym życiu prokarioty mają coś zwanego Kompartmentami "
+"które działają jak organelle, i są nazywane Wielościennymi organellami."
 
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Zabawny Fakt, Metabolosom jest tym czym nazywana jest Wielościenna organella."
+msgstr ""
+"Zabawny Fakt, Metabolosom jest tym czym nazywana jest Wielościenna organella."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
@@ -1614,15 +1789,22 @@ msgstr "Porada, czasem najlepiej jest po prostu uciec przed innymi komórkami."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Taka porada, jeżeli komórka jest od ciebie dwa razy mniejsza możesz ją pochłonąć na drodze fagocytozy."
+msgstr ""
+"Taka porada, jeżeli komórka jest od ciebie dwa razy mniejsza możesz ją "
+"pochłonąć na drodze fagocytozy."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Porada, bakterie mogą być silniejsze niż się wydają - mogą wyglądać na małe, ale niektóre z nich potrafią wejść do twojego organizmu i zabić cię w ten sposób!"
+msgstr ""
+"Porada, bakterie mogą być silniejsze niż się wydają - mogą wyglądać na małe, "
+"ale niektóre z nich potrafią wejść do twojego organizmu i zabić cię w ten "
+"sposób!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "A tak swoją drogą, jeśli będziesz nieostrożny, możesz doprowadzić inne gatunki do wymarcia. Inne gatunki również mogą to robić."
+msgstr ""
+"A tak swoją drogą, jeśli będziesz nieostrożny, możesz doprowadzić inne "
+"gatunki do wymarcia. Inne gatunki również mogą to robić."
 
 #: ../src/general/NewGameSettings.tscn:1163
 msgid "EASTER_EGGS"
@@ -1646,11 +1828,15 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w Edytorze Mikroba.\n"
 "\n"
-"Tutaj możesz przejrzeć co się wydarzyło podczas poprzednich pokoleń, a następnie dokonać zmian w swoim gatunku.\n"
+"Tutaj możesz przejrzeć co się wydarzyło podczas poprzednich pokoleń, a "
+"następnie dokonać zmian w swoim gatunku.\n"
 "\n"
-"Ta zakładka daje ci listę zmian w obszarze, który obecnie zasiedlasz. Wypróbuj rozmaite narzędzia w twojej dyspozycji żeby dowiedzieć się więcej na temat wydarzeń w twoim świecie!\n"
+"Ta zakładka daje ci listę zmian w obszarze, który obecnie zasiedlasz. "
+"Wypróbuj rozmaite narzędzia w twojej dyspozycji żeby dowiedzieć się więcej "
+"na temat wydarzeń w twoim świecie!\n"
 "\n"
-"Gdy będziesz gotowy, naciśnij przycisk \"dalej\" w prawym dolnym rogu by kontynuować."
+"Gdy będziesz gotowy, naciśnij przycisk \"dalej\" w prawym dolnym rogu by "
+"kontynuować."
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "EIGHT_TIMES"
@@ -1690,7 +1876,9 @@ msgstr "Źródła Energii:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
-msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
+msgstr ""
+"Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym "
+"nieuregulowaną populację {2}"
 
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
@@ -1786,7 +1974,9 @@ msgstr "Dokładna Wersja Thrive:"
 
 #: ../src/general/OptionsMenu.tscn:1873 ../src/general/OptionsMenu.tscn:1884
 msgid "EXACT_VERSION_TOOLTIP"
-msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
+msgstr ""
+"To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja "
+"Thrive"
 
 #: ../src/saving/InProgressLoad.cs:168
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
@@ -1796,11 +1986,11 @@ msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Podczas wczytywania danych zapisu nastąpił wyjątek"
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:247 ../src/general/PauseMenu.tscn:240
 msgid "EXIT"
 msgstr "Wyjdź"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:376 ../src/general/MainMenu.tscn:377
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Wyjdź do Launchera"
 
@@ -1828,7 +2018,10 @@ msgstr "Zewnętrzne efekty:"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Tak jak 99% gatunków które kiedykolwiek istniały, twój wymarł. Inne zastąpią twoją niszę w ekosystemie i będą trwać, ale nie ty. Będziesz zapomniany, będziesz nieudanym eksperymentem ewolucji."
+msgstr ""
+"Tak jak 99% gatunków które kiedykolwiek istniały, twój wymarł. Inne zastąpią "
+"twoją niszę w ekosystemie i będą trwać, ale nie ty. Będziesz zapomniany, "
+"będziesz nieudanym eksperymentem ewolucji."
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -1852,7 +2045,7 @@ msgstr "wymarły w obszarze"
 msgid "EXTINCT_SPECIES"
 msgstr "Wymarły Gatunek"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:357 ../src/general/MainMenu.tscn:358
 msgid "EXTRAS"
 msgstr "Dodatki"
 
@@ -1860,7 +2053,7 @@ msgstr "Dodatki"
 msgid "EXTRA_OPTIONS"
 msgstr "Dodatkowe Opcje"
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:908 ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Zapauzuj"
@@ -1968,11 +2161,18 @@ msgstr "Wić"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
+msgstr ""
+"Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa "
+"ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici "
+"determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest "
+"przeciwny do strony po której wić jest umiejscowiona, na przykład wić "
+"umieszczona po lewej napędza komórkę w prawo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr "Używa [thrive:compound type=\"atp\"][/thrive:compound] do zwiększenia prędkości poruszania się komórki."
+msgstr ""
+"Używa [thrive:compound type=\"atp\"][/thrive:compound] do zwiększenia "
+"prędkości poruszania się komórki."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2003,7 +2203,8 @@ msgstr "Skupienie"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie odległości\n"
+"Skupione mikroby będą wyszukiwać pożywienia lub ofiar przez długie "
+"odległości\n"
 "oraz mogą być bardzo zachłanne względem nowych źródeł pożywienia.\n"
 "Responsywne mikroby będą chętniej zmieniać źródła pożywienia."
 
@@ -2013,7 +2214,9 @@ msgstr "Łańcuch Pokarmowy"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr "{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita sprawność: {4})"
+msgstr ""
+"{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita "
+"sprawność: {4})"
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -2021,7 +2224,9 @@ msgstr "Usuń Dane Lokalne"
 
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr "Usuń dane lokalne odnośnie tego przedmiotu. Użyteczne jeśli podałeś błędne ID bądź chcesz załadować nową wersję do innego przedmiotu."
+msgstr ""
+"Usuń dane lokalne odnośnie tego przedmiotu. Użyteczne jeśli podałeś błędne "
+"ID bądź chcesz załadować nową wersję do innego przedmiotu."
 
 #: ../src/modding/ModUploader.cs:691 ../src/modding/NewModGUI.cs:336
 msgid "FORM_ERROR_MESSAGE"
@@ -2115,7 +2320,7 @@ msgstr "Pokolenia"
 msgid "GENERATION_COLON"
 msgstr "Generacja:"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:860 ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Opuść grę"
@@ -2124,13 +2329,16 @@ msgstr "Opuść grę"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:993 ../src/general/MainMenu.tscn:981
 msgid "GLES2_MODE_WARNING"
 msgstr "Ostrzeżenie Tryb GLES2"
 
-#: ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.tscn:995 ../src/general/MainMenu.tscn:983
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
+msgstr ""
+"Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie "
+"spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie "
+"grafiki AMD lub Nvidia do uruchamiania Trive."
 
 #: ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
@@ -2319,7 +2527,8 @@ msgstr "Zawiera prototypy późniejszych etapów"
 
 #: ../src/general/NewGameSettings.tscn:1151
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr "(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
+msgstr ""
+"(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
@@ -2377,7 +2586,8 @@ msgstr "Nazwy zapisów nie mogą zawierać znaków specjalnych (<>:\"/\\|?*)"
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "Nazwa gatunku musi być zgodna z dwumianowym systemem nazw (rodzaj i epitet)!"
+msgstr ""
+"Nazwa gatunku musi być zgodna z dwumianowym systemem nazw (rodzaj i epitet)!"
 
 #: ../src/modding/ModUploader.cs:375
 msgid "INVALID_TAG"
@@ -2400,8 +2610,10 @@ msgstr "Odwrócony"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Grasz w prototypy późniejszych etapów, które znajdują się w grze.\n"
-"Mogą być one niedokończone oraz używać grafik zastępczych, ogólnie bardzo surowe,\n"
-"a czasem nawet praktycznie niegrywalne. Z tej przyczyny zapisywanie nie jest obecnie możliwe.\n"
+"Mogą być one niedokończone oraz używać grafik zastępczych, ogólnie bardzo "
+"surowe,\n"
+"a czasem nawet praktycznie niegrywalne. Z tej przyczyny zapisywanie nie jest "
+"obecnie możliwe.\n"
 "Niektóre części prototypów mogą pozwolić na ograniczone zapisy."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
@@ -2415,7 +2627,7 @@ msgstr "Żelazo (Fe²⁺)"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Utlenianie Żelaza"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:836 ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Opuść grę"
@@ -2632,7 +2844,9 @@ msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 
 #: ../src/general/OptionsMenu.cs:1436
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, pomóż to zmienić!"
+msgstr ""
+"Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, "
+"pomóż to zmienić!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -2793,7 +3007,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Lewy przycisk myszy"
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:551 ../src/general/MainMenu.tscn:552
 msgid "LICENSES"
 msgstr "Licencje"
 
@@ -2826,7 +3040,8 @@ msgstr "Ciepły mały staw"
 #: ../src/general/NewGameSettings.tscn:198
 #: ../src/general/NewGameSettings.tscn:939
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Niektóre opcje mogą być wyłączone jeśli \"wyłącznie ŻTJZ\" jest włączone"
+msgstr ""
+"Niektóre opcje mogą być wyłączone jeśli \"wyłącznie ŻTJZ\" jest włączone"
 
 #: ../src/general/NewGameSettings.tscn:200
 #: ../src/general/NewGameSettings.tscn:201
@@ -2873,7 +3088,9 @@ msgstr "Limituj użycie związków wzrostu"
 
 #: ../src/general/NewGameSettings.tscn:812
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
-msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
+msgstr ""
+"(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne "
+"związki wpływają na wzrost)"
 
 #: ../src/general/OptionsMenu.tscn:1195
 msgid "LIMIT_HUGE"
@@ -2913,7 +3130,10 @@ msgstr "Lipaza"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 msgid "LIPASE_DESCRIPTION"
-msgstr "Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu zwiększysz wydajność."
+msgstr ""
+"Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już "
+"produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu "
+"zwiększysz wydajność."
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
@@ -2956,19 +3176,25 @@ msgstr "Wczytywanie zakończone"
 
 #: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
+#: ../src/general/MainMenu.tscn:321
 msgid "LOAD_GAME"
 msgstr "Wczytaj grę"
 
 #: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:318
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Załaduj poprzednio zapisane gry"
 
 #: ../src/saving/SaveList.tscn:129
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"Wybrany zapis do załadowania został stworzony w prototypie z inną wersją Thrive.\n"
-"Z tej przyczyny ten zapis nie może zostać załadowany jako iż zapisu z prototypów są nieaktualizacyjne.\n"
-"Utrzymywanie kompatybilności zapisów dla prototypów byłoby dużym obciążeniem ze względu częstych zmian a pisanie aktualizacji zapisów mocno spowolniłoby rozwój prototypów."
+"Wybrany zapis do załadowania został stworzony w prototypie z inną wersją "
+"Thrive.\n"
+"Z tej przyczyny ten zapis nie może zostać załadowany jako iż zapisu z "
+"prototypów są nieaktualizacyjne.\n"
+"Utrzymywanie kompatybilności zapisów dla prototypów byłoby dużym obciążeniem "
+"ze względu częstych zmian a pisanie aktualizacji zapisów mocno spowolniłoby "
+"rozwój prototypów."
 
 #: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
@@ -2979,7 +3205,9 @@ msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Wybrany zapis nie jest kompatybilny z tą wersją Thrive.\n"
 "Nie ma aktualizera zapisów by zaktualizował ten zapis.\n"
-"Ponieważ Thrive jest nadal we wczesnym stadium rozwoju, kompatybilność zapisów nie jest wysokim priorytetem i dlatego nie wszystkie wersje mają aktualizer zapisów."
+"Ponieważ Thrive jest nadal we wczesnym stadium rozwoju, kompatybilność "
+"zapisów nie jest wysokim priorytetem i dlatego nie wszystkie wersje mają "
+"aktualizer zapisów."
 
 #: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
@@ -2989,7 +3217,8 @@ msgstr "Wczytać niepoprawny zapis?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Informacje zapisu nie mogły być wczytane z tego pliku.\n"
-"Ten zapis jest najpewniej zepsuty lub w nowszym formacie nierozumianym przez tą wersję Thrive.\n"
+"Ten zapis jest najpewniej zepsuty lub w nowszym formacie nierozumianym przez "
+"tą wersję Thrive.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
@@ -3002,7 +3231,8 @@ msgstr "Patrzysz Na:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
+msgstr ""
+"Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:877
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
@@ -3011,11 +3241,17 @@ msgstr "Lizosom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym autofagią."
+msgstr ""
+"Lizosom jest organellą przymocowaną do błony komórkowej która zawiera enzymy "
+"które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie "
+"materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów "
+"komórki w procesie zwanym autofagią."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
+msgstr ""
+"Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki "
+"zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3115,11 +3351,23 @@ msgstr "Metabolosomy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+msgstr ""
+"Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią "
+"zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w "
+"procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować "
+"potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe "
+"stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku "
+"spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. "
+"Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający "
+"płyn przeprowadza [b]glikolizę[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr ""
+"Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3164,7 +3412,7 @@ msgid "MICROBES_COUNT"
 msgstr "Etap Mikroba"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:613 ../src/general/MainMenu.tscn:614
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Edytor Mikroba"
@@ -3178,38 +3426,60 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Struktury Prokariotyczne\n"
 "\n"
-"Cytoplazma: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"Cytoplazma: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje "
+"małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:"
+"compound type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z "
+"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] niż chemoplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
+"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound "
+"type=\"glucose\"][/thrive:compound] z [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound] niż chemoplast, ale "
+"przeprowadzają również glikolizę. Zajmują 1 Heks\n"
 "\n"
-"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound] ile normalny chloroplast, ale również przeprowadzają glikolizę. Zajmują 1 Heks\n"
+"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:"
+"compound] ile normalny chloroplast, ale również przeprowadzają glikolizę. "
+"Zajmują 1 Heks\n"
 "\n"
-"Rustycyjanina: Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rustycyjanina: Utlenia [thrive:compound type=\"iron\"][/thrive:compound] "
+"wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"]"
+"[/thrive:compound]\n"
 "\n"
-"Oksytoksysom: Zmienia[thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"Oksytoksysom: Zmienia[thrive:compound type=\"atp\"][/thrive:compound] w "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
+"Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] "
+"używając gradientów termicznych"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić trawienie znacznie wydajniejszym."
+msgstr ""
+"Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego "
+"procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. "
+"Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne "
+"mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z "
+"trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić "
+"trawienie znacznie wydajniejszym."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organella Zewnętrzne\n"
 "\n"
-"Wić: Porusza twoją komórkę szybciej używając [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Wić: Porusza twoją komórkę szybciej używając [thrive:compound type=\"atp\"][/"
+"thrive:compound]\n"
 "\n"
 "Pilus: Może być użyty do dźgania innych komórek\n"
 "\n"
 "Chemoreceptor: Umożliwia wykrywanie związków z większej odległości\n"
 "\n"
-"Szlamowy Dopalacz: Umożliwia wydzielanie [thrive:compound type=\"mucilage\"][/thrive:compound] (produkowanego z [thrive:compound type=\"glucose\"][/thrive:compound]) aby przyspieszyć twoją komórkę\n"
+"Szlamowy Dopalacz: Umożliwia wydzielanie [thrive:compound type=\"mucilage\"]"
+"[/thrive:compound] (produkowanego z [thrive:compound type=\"glucose\"][/"
+"thrive:compound]) aby przyspieszyć twoją komórkę\n"
 "\n"
 "Rzęski: Zwiększają prędkość obracania się komórek"
 
@@ -3218,37 +3488,64 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organella Otoczone Błonami\n"
 "\n"
-"Jądro komórkowe: Zajmuje 11 heksów i pozwala na ewolucję organelli otoczonych membranami, podwaja również rozmiar twojej komórki. Komórka może mieć tylko jedno jądro.\n"
+"Jądro komórkowe: Zajmuje 11 heksów i pozwala na ewolucję organelli "
+"otoczonych membranami, podwaja również rozmiar twojej komórki. Komórka może "
+"mieć tylko jedno jądro.\n"
 "\n"
 "Czynnik Wiążący: Pozwala na łączenie się z innymi komórkami.\n"
 "\n"
-"Mitochondrium: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound] i atmosferycznego O₂ o wiele wydajniej niż cytozol\n"
+"Mitochondrium: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z "
+"[thrive:compound type=\"glucose\"][/thrive:compound] i atmosferycznego O₂ o "
+"wiele wydajniej niż cytozol\n"
 "\n"
-"Chloroplast: Wytwarza [thrive:compound type=\"glucose\"][/thrive:compound] wykorzystując światło słoneczne i atmosferyczny CO₂\n"
+"Chloroplast: Wytwarza [thrive:compound type=\"glucose\"][/thrive:compound] "
+"wykorzystując światło słoneczne i atmosferyczny CO₂\n"
 "\n"
-"Termoplast: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając różnic temperatury\n"
+"Termoplast: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] "
+"używając różnic temperatury\n"
 "\n"
-"Lizosom: Zawiera enzymy trawienne. Enzymy przyspieszają oraz poprawiają wydajność trawienia\n"
+"Lizosom: Zawiera enzymy trawienne. Enzymy przyspieszają oraz poprawiają "
+"wydajność trawienia\n"
 "\n"
-"Chemoplast: Wytwarza na drodze chemosyntezy [thrive:compound type=\"glucose\"][/thrive:compound] zużywając [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Chemoplast: Wytwarza na drodze chemosyntezy [thrive:compound "
+"type=\"glucose\"][/thrive:compound] zużywając [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Nitroplast: Wiąże tlenowo azot atmosferyczny do [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Nitroplast: Wiąże tlenowo azot atmosferyczny do [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"]"
+"[/thrive:compound].\n"
 "\n"
 "Wakuola: Przechowuje 8 jednostek zebranych substancji chemicznych.\n"
 "\n"
-"Wakuola Z Toksynami: Syntezuje toksyny (nazwane [thrive:compound type=\"oxytoxy\"][/thrive:compound])\n"
+"Wakuola Z Toksynami: Syntezuje toksyny (nazwane [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound])\n"
 "\n"
-"Czynnik Komunkacyjny: Pozwala komórkom na komunikację między sobą za pośrednictwem substancji chemicznych"
+"Czynnik Komunkacyjny: Pozwala komórkom na komunikację między sobą za "
+"pośrednictwem substancji chemicznych"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Na każdą generację masz 100 punktów mutacji (PM) do wydania, i każda zmiana (lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli kosztuje PM. Usuwanie organelli które były dodane w obecnej generacji zwraca PM za tą organellę. Możesz przesunąć lub całkowicie usunąć organellę klikając na nią prawym przyciskiem i wybierając właściwą czynność z wyskakującego menu. Możesz obracać swoje organelle podczas dodawania ich używając klawiszy [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+msgstr ""
+"Na każdą generację masz 100 punktów mutacji (PM) do wydania, i każda zmiana "
+"(lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli "
+"kosztuje PM. Usuwanie organelli które były dodane w obecnej generacji zwraca "
+"PM za tą organellę. Możesz przesunąć lub całkowicie usunąć organellę "
+"klikając na nią prawym przyciskiem i wybierając właściwą czynność z "
+"wyskakującego menu. Możesz obracać swoje organelle podczas dodawania ich "
+"używając klawiszy [thrive:input]e_rotate_left[/thrive:input] i [thrive:"
+"input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Za każdym razem kiedy się rozmnażasz, wejdziesz w Edytor Mikroba, w którym możesz wprowadzać zmiany do twojego gatunku (przez dodawanie, przenoszenie lub usuwanie organelli) aby zwiększyć sukces twojego gatunku. Każda wizyta edytora w Etapie Mikroba reprezentuje [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionów lat ewolucji."
+msgstr ""
+"Za każdym razem kiedy się rozmnażasz, wejdziesz w Edytor Mikroba, w którym "
+"możesz wprowadzać zmiany do twojego gatunku (przez dodawanie, przenoszenie "
+"lub usuwanie organelli) aby zwiększyć sukces twojego gatunku. Każda wizyta "
+"edytora w Etapie Mikroba reprezentuje [thrive:"
+"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionów lat "
+"ewolucji."
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:420 ../src/general/MainMenu.tscn:421
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Kreatywny Edytor Mikroba"
 
@@ -3285,14 +3582,16 @@ msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Zbierz glukozę (białe chmury) przepływając przez nie.\n"
 "\n"
-"Twoja komórka potrzebuje glukozy aby wytwarzać energię niezbędną do przetrwania.\n"
+"Twoja komórka potrzebuje glukozy aby wytwarzać energię niezbędną do "
+"przetrwania.\n"
 "\n"
 "Podążaj za linią wychodzącą z twojej komórki do pobliskiej glukozy."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
+"Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce "
+"na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
 "\n"
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
@@ -3300,7 +3599,8 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
+"Aby kontrolować twoją komórkę, użyj klawiszy pokazanych przy twojej komórce "
+"na środku ekranu i myszki aby kontrolować kierunek komórki.\n"
 "\n"
 "Wypróbuj wszystkie klawisze przez kilka sekund aby kontynuować."
 
@@ -3311,7 +3611,8 @@ msgstr ""
 "Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
 "Twoja komórka umiera jeśli utraci całe swoje zdrowie.\n"
 "Możesz się zregenerować, jeśli masz wystarczająco dużo ATP.\n"
-"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
+"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować "
+"ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -3319,63 +3620,110 @@ msgstr ""
 "Pilnuj swojego paska zdrowia obok paska ATP (prawy dolny róg)?\n"
 "Twoja komórka umiera jeśli utraci całe swoje zdrowie.\n"
 "Możesz się zregenerować, jeśli masz wystarczająco dużo ATP.\n"
-"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować ATP."
+"Upewnij się, że masz wystarczająco dużo glukozy (lub żelaza) aby syntezować "
+"ATP."
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] oraz mysz aby się poruszać. [thrive:input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound type=\"oxytoxy\"][/thrive:compound] jeśli posiadasz toksyczną wakuolę . [thrive:input]g_toggle_engulf[/thrive:input] aby przełączać tryb fagocytozy ."
+msgstr ""
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] oraz mysz aby się poruszać. [thrive:"
+"input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] jeśli posiadasz toksyczną wakuolę . "
+"[thrive:input]g_toggle_engulf[/thrive:input] aby przełączać tryb fagocytozy ."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Żeby się rozmnożyć musisz podzielić każdą ze swoich organelli na dwie. Organelle potrzebują amoniaku i fosforanów aby się podzielić."
+msgstr ""
+"Żeby się rozmnożyć musisz podzielić każdą ze swoich organelli na dwie. "
+"Organelle potrzebują amoniaku i fosforanów aby się podzielić."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Ale jeśli przeżyjesz przez 20 pokoleń z populacją 300, uznawane jest że wygrałeś aktualną grę. Po wygranej wyświetli się powiadomienie i będziesz mógł kontynuować grę jeśli chcesz."
+msgstr ""
+"Ale jeśli przeżyjesz przez 20 pokoleń z populacją 300, uznawane jest że "
+"wygrałeś aktualną grę. Po wygranej wyświetli się powiadomienie i będziesz "
+"mógł kontynuować grę jeśli chcesz."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Uważaj ponieważ twoi przeciwnicy ewoluują razem z tobą. Za każdym razem gdy wejdziesz do edytora oni również ewoluują."
+msgstr ""
+"Uważaj ponieważ twoi przeciwnicy ewoluują razem z tobą. Za każdym razem gdy "
+"wejdziesz do edytora oni również ewoluują."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby związać się z inną komórką, twoja komórka potrzebuje czynnika wiążącego. Po wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do edytora . Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek są drogą do wielokomórkowości."
+msgstr ""
+"Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki "
+"dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby związać się z "
+"inną komórką, twoja komórka potrzebuje czynnika wiążącego. Po wciśnięciu "
+"[thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z "
+"którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego "
+"gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do "
+"edytora . Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię "
+"naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek "
+"są drogą do wielokomórkowości."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą być trawione bez posiadania niezbędnego enzymu który może najpierw je rozbić."
+msgstr ""
+"W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą być "
+"trawione bez posiadania niezbędnego enzymu który może najpierw je rozbić."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Jednak lizosomy są wyłącznie dla eukariontów, prokarionty nie mają takich organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych komórek jest to w porządku, lecz dla większych, brak lizosomów jest bardzo niekorzystny."
+msgstr ""
+"Jednak lizosomy są wyłącznie dla eukariontów, prokarionty nie mają takich "
+"organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych "
+"komórek jest to w porządku, lecz dla większych, brak lizosomów jest bardzo "
+"niekorzystny."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Twoja komórka używa [thrive:compound type=\"atp\"][/thrive:compound] jako jej źródła energii, jeśli się wyczerpie, umrzesz."
+msgstr ""
+"Twoja komórka używa [thrive:compound type=\"atp\"][/thrive:compound] jako "
+"jej źródła energii, jeśli się wyczerpie, umrzesz."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Aby odblokować edytor i się rozmnożyć, musisz zbierać [thrive:compound type=\"ammonia\"][/thrive:compound] (pomarańczowe chmury) i [thrive:compound type=\"phosphates\"][/thrive:compound] (fioletowe chmury)."
+msgstr ""
+"Aby odblokować edytor i się rozmnożyć, musisz zbierać [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] (pomarańczowe chmury) i [thrive:compound "
+"type=\"phosphates\"][/thrive:compound] (fioletowe chmury)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Możesz również pochłaniać komórki, bakterie, odłamki żelaza i kawałki komórek mniejsze od ciebie na drodze fagocytozy naciskając [thrive:input]g_toggle_engulf[/thrive:input]. Będzie to kosztować dodatkowe [thrive:compound type=\"atp\"][/thrive:compound] i cię spowolni. Nie zapomnij nacisnąć [thrive:input]g_toggle_engulf[/thrive:input] drugi raz aby przestać pochłaniać."
+msgstr ""
+"Możesz również pochłaniać komórki, bakterie, odłamki żelaza i kawałki "
+"komórek mniejsze od ciebie na drodze fagocytozy naciskając [thrive:"
+"input]g_toggle_engulf[/thrive:input]. Będzie to kosztować dodatkowe [thrive:"
+"compound type=\"atp\"][/thrive:compound] i cię spowolni. Nie zapomnij "
+"nacisnąć [thrive:input]g_toggle_engulf[/thrive:input] drugi raz aby przestać "
+"pochłaniać."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytoplazmy, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
+msgstr ""
+"Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co "
+"oznacza że im większa jest twoja komórka, tym więcej mitochondriów, "
+"metabolosomów lub rusticyjaniny (albo cytoplazmy, który przeprowadza "
+"glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound "
+"type=\"atp\"][/thrive:compound] stojąc w miejscu."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "W edytorze jest wiele Organelli które możesz ewoluować, pozwalając na szeroki zakres różnych stylów gry."
+msgstr ""
+"W edytorze jest wiele Organelli które możesz ewoluować, pozwalając na "
+"szeroki zakres różnych stylów gry."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3393,23 +3741,32 @@ msgstr ""
 "Fioletowe – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Rdzawo-Brązowe – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] wytwarza [thrive:compound type=\"atp\"][/thrive:compound]."
+"[thrive:compound type=\"glucose\"][/thrive:compound] wytwarza [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] może zostać przetworzony w [thrive:compound type=\"glucose\"][/thrive:compound] przez chemoplasty i białka chemosyntezujące. [thrive:compound type=\"iron\"][/thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] może zostać "
+"przetworzony w [thrive:compound type=\"glucose\"][/thrive:compound] przez "
+"chemoplasty i białka chemosyntezujące. [thrive:compound type=\"iron\"][/"
+"thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając "
+"[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków "
+"meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
 "\n"
 "Życia.\n"
 "\n"
-"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego "
+"życia na tej planecie.\n"
 "\n"
-"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki "
+"chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "MIDDLE_MOUSE"
@@ -3464,11 +3821,21 @@ msgstr "Mitochondrium"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać glukozę w ATP znacznie efektywniej niż cytoplazma w procesie zwanym Oddychaniem Komórkowym. Jednak wymaga tlenu do funkcjonowania, i niższe poziomy tlenu w otoczeniu spowalniają tempo produkcji ATP."
+msgstr ""
+"Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to "
+"stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest "
+"prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. "
+"Potrafi przekształcać glukozę w ATP znacznie efektywniej niż cytoplazma w "
+"procesie zwanym Oddychaniem Komórkowym. Jednak wymaga tlenu do "
+"funkcjonowania, i niższe poziomy tlenu w otoczeniu spowalniają tempo "
+"produkcji ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr ""
+"Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
 #, fuzzy
@@ -3496,16 +3863,17 @@ msgstr "Modyfikuj Organellę"
 msgid "MODIFY_TYPE"
 msgstr "Modyfikuj Typ"
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:526 ../src/general/MainMenu.tscn:527
 msgid "MODS"
 msgstr "Modyfikacje"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1011 ../src/general/MainMenu.tscn:999
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Zainstalowane mody zostały wykryte, ale żaden mod nie jest włączony.\n"
 "\n"
-"Mody muszą zostać włączone po instalacji. Odwiedź zarządzanie modami pod przyciskiem mods w menu dodatków."
+"Mody muszą zostać włączone po instalacji. Odwiedź zarządzanie modami pod "
+"przyciskiem mods w menu dodatków."
 
 #: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
@@ -3589,25 +3957,34 @@ msgstr "Nazwa wewnętrzna (pliku):"
 msgid "MOD_LICENSE"
 msgstr "Licencja Moda:"
 
-#: ../src/general/MainMenu.tscn:1051
+#: ../src/general/MainMenu.tscn:1051 ../src/general/MainMenu.tscn:1039
 msgid "MOD_LOAD_ERRORS"
 msgstr "Błędy przy ładowaniu modów"
 
-#: ../src/general/MainMenu.tscn:1052
+#: ../src/general/MainMenu.tscn:1052 ../src/general/MainMenu.tscn:1040
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Doszło do błędu podczas ładowania jednego lub więcej modów. Rejestry mogą zawierać dodatkowe informacje."
+msgstr ""
+"Doszło do błędu podczas ładowania jednego lub więcej modów. Rejestry mogą "
+"zawierać dodatkowe informacje."
 
 #: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Doszło do błędów podczas ładowania jednego lub kilku Modów. Rejestry mogą zawierać dodatkowe informacje."
+msgstr ""
+"Doszło do błędów podczas ładowania jednego lub kilku Modów. Rejestry mogą "
+"zawierać dodatkowe informacje."
 
 #: ../src/modding/ModManager.tscn:539
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Wiele modów wymaga ponownego uruchomienia gry, by się załadować i wyładować poprawnie. Używaj tylko modów,którym ufasz, jako że mogą zawierać kod wykonywalny."
+msgstr ""
+"Wiele modów wymaga ponownego uruchomienia gry, by się załadować i wyładować "
+"poprawnie. Używaj tylko modów,którym ufasz, jako że mogą zawierać kod "
+"wykonywalny."
 
 #: ../src/modding/ModManager.tscn:1024
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "Jeden lub więcej modów wymaga ponownego uruchomienia gry by się załadować lub wyładować poprawnie"
+msgstr ""
+"Jeden lub więcej modów wymaga ponownego uruchomienia gry by się załadować "
+"lub wyładować poprawnie"
 
 #: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
@@ -3701,7 +4078,9 @@ msgstr "Przemieść Się na Ląd"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1778
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
+msgstr ""
+"Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, "
+"przy posiadaniu odpowiednio dużej kolonii."
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
 msgid "MOVE_TO_THIS_PATCH"
@@ -3714,9 +4093,11 @@ msgstr "Przemieść się w górę lub skocz"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2116
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"Masz zamiar wyjść na ląd. Jest to wymagane dla dalszego postępu twojego gatunku. Gdy wyjdziesz na ląd, nie będziesz w stanie wrócić.\n"
+"Masz zamiar wyjść na ląd. Jest to wymagane dla dalszego postępu twojego "
+"gatunku. Gdy wyjdziesz na ląd, nie będziesz w stanie wrócić.\n"
 "\n"
-"Obecnie to przejście na ląd jest znacznie bardziej dramatyczne niż planujemy.\n"
+"Obecnie to przejście na ląd jest znacznie bardziej dramatyczne niż "
+"planujemy.\n"
 "\n"
 "Planujemy sprawić by przejście na ląd było stopniowe a nie gwałtowną zmianą."
 
@@ -3834,17 +4215,20 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Wstępna populacja dla gatunku zwiększającego bioróżnorodność"
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:307 ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME"
 msgstr "Nowa Gra"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:301 ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Zacznij nową grę"
 
 #: ../src/general/NewGameSettings.tscn:274
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr "Możesz zmieniać opcje wydajności kiedy chcesz w [color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]options menu[/url][/color] by polepszyć wydajność gry"
+msgstr ""
+"Możesz zmieniać opcje wydajności kiedy chcesz w [color=#3796e1][url=thrive://"
+"GUI/OptionsMenu/Performance]options menu[/url][/color] by polepszyć "
+"wydajność gry"
 
 #: ../src/modding/NewModGUI.cs:211
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
@@ -3884,11 +4268,21 @@ msgstr "Nitrogenaza"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+msgstr ""
+"Nitrogenaza to białko mogące użyć gazowego [thrive:compound "
+"type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:"
+"compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound "
+"type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu "
+"komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako "
+"iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn "
+"przeprowadza [b]glycolysis[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywajac [thrive:compound type=\"atp\"][/thrive:compound] . Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr ""
+"Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"zużywajac [thrive:compound type=\"atp\"][/thrive:compound] . Tempo skaluje "
+"się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
@@ -3897,11 +4291,18 @@ msgstr "Plastyd Wiążący Azot"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "Nitroplast to plastyd używający gazowego azotu i tlenu oraz energii komórkowej w formie ATP do produkcji amoniaku, składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako Tlenowe Wiązanie Azotu."
+msgstr ""
+"Nitroplast to plastyd używający gazowego azotu i tlenu oraz energii "
+"komórkowej w formie ATP do produkcji amoniaku, składnika kluczowego dla "
+"wzrostu komórek. Ten proces jest znany jako Tlenowe Wiązanie Azotu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr ""
+"Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:"
+"compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
 msgid "NONE"
@@ -3914,7 +4315,10 @@ msgstr "Normalna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr "Najbardziej podstawowa forma membrany, słabo chroni przed uszkodzeniami. Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to że pozwala komórce na szybkie poruszanie się i absorbcję składników odżywczych."
+msgstr ""
+"Najbardziej podstawowa forma membrany, słabo chroni przed uszkodzeniami. "
+"Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to że "
+"pozwala komórce na szybkie poruszanie się i absorbcję składników odżywczych."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:595
@@ -3951,7 +4355,7 @@ msgstr "Nie zanotowano wydarzeń"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nie znaleziono katalogu zapisów"
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:998 ../src/general/MainMenu.tscn:986
 msgid "NO_MODS_ENABLED"
 msgstr "Brak Włączonych Modów"
 
@@ -3985,15 +4389,27 @@ msgstr "Jądro Komórkowe"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha.\n"
-"Jeśli jednak zostało ono umieszczone w obecnej sesji, cofnięcie lub ponowienie wciąż jest możliwe"
+"Jeśli jednak zostało ono umieszczone w obecnej sesji, cofnięcie lub "
+"ponowienie wciąż jest możliwe"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "Cecha definiująca komórki eukariotyczne. Jądro zawiera w pakiecie siatkę endoplazmatyczną i aparat Golgiego. Wykształcenie systemu wewnętrznych membran jest ewolucją prokariotycznych komórek, dokonaną przez wchłonięcie innego prokariota. To pozwala im na oddzielanie, lub zatrzymywanie, różnych procesów dziejących się w środku komórki i zapobiec przed ich nakładaniem się na siebie. To pozwala ich nowym organellom membranowym na większą złożoność, efektywność i wyspecjalizowanie niż gdyby pływały bezpośrednio w cytozolu. Jednakże ma to swoją cenę - bardzo powiększa komórkę i wymaga dużo energii do utrzymania."
+msgstr ""
+"Cecha definiująca komórki eukariotyczne. Jądro zawiera w pakiecie siatkę "
+"endoplazmatyczną i aparat Golgiego. Wykształcenie systemu wewnętrznych "
+"membran jest ewolucją prokariotycznych komórek, dokonaną przez wchłonięcie "
+"innego prokariota. To pozwala im na oddzielanie, lub zatrzymywanie, różnych "
+"procesów dziejących się w środku komórki i zapobiec przed ich nakładaniem "
+"się na siebie. To pozwala ich nowym organellom membranowym na większą "
+"złożoność, efektywność i wyspecjalizowanie niż gdyby pływały bezpośrednio w "
+"cytozolu. Jednakże ma to swoją cenę - bardzo powiększa komórkę i wymaga dużo "
+"energii do utrzymania."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Pozwala na ewolucję bardziej złożonych, organelli otoczonych błoną. Utrzymanie wymaga dużo ATP. Jest to nieodwracalna ewolucja."
+msgstr ""
+"Pozwala na ewolucję bardziej złożonych, organelli otoczonych błoną. "
+"Utrzymanie wymaga dużo ATP. Jest to nieodwracalna ewolucja."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -4016,11 +4432,11 @@ msgstr "N/A MP"
 msgid "OCTOBER"
 msgstr "Październik"
 
-#: ../src/general/MainMenu.tscn:687
+#: ../src/general/MainMenu.tscn:687 ../src/general/MainMenu.tscn:688
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:678 ../src/general/MainMenu.tscn:679
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Samobójstwo"
@@ -4028,7 +4444,8 @@ msgstr "Samobójstwo"
 #: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/modding/ModUploader.tscn:357 ../src/general/MainMenu.tscn:1029
+#: ../src/general/MainMenu.tscn:1086
 msgid "OK"
 msgstr "OK"
 
@@ -4036,8 +4453,10 @@ msgstr "OK"
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ten zapis jest ze starszej wersji Thrive i może być niekompatybilny.\n"
-"Jako że Thrive jest na wczesnym etapie rozwoju kompatybilność zapisów nie jest priorytetem.\n"
-"Możesz zgłosić wszelkie błędy jakie napotkasz, ale nie mają one teraz najwyższego priorytetu.\n"
+"Jako że Thrive jest na wczesnym etapie rozwoju kompatybilność zapisów nie "
+"jest priorytetem.\n"
+"Możesz zgłosić wszelkie błędy jakie napotkasz, ale nie mają one teraz "
+"najwyższego priorytetu.\n"
 "Czy chcesz spróbować wczytać zapis mimo to?"
 
 #: ../src/modding/ModManager.tscn:154
@@ -4098,7 +4517,8 @@ msgstr "Spauzowano."
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Oportunistyczne mikroby będą rywalizować o pożywienie\n"
-"i będą polować toksynami na zdobycz, jeżeli jest za duża aby pochłonąć ją na drodze fagocytozy.\n"
+"i będą polować toksynami na zdobycz, jeżeli jest za duża aby pochłonąć ją na "
+"drodze fagocytozy.\n"
 "Uważne mikroby będą unikać niebezpiecznej rywalizacji o pożywienie."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
@@ -4106,10 +4526,12 @@ msgid "OPPORTUNISTIC"
 msgstr "Oportunizm"
 
 #: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:331
 msgid "OPTIONS"
 msgstr "Opcje"
 
 #: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:328
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmień swoje ustawienia"
 
@@ -4128,7 +4550,8 @@ msgstr "Dźgaj tym inne komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Może zostać użyte do dźgania innych komórek lub obrony przed ich toksynami."
+msgstr ""
+"Może zostać użyte do dźgania innych komórek lub obrony przed ich toksynami."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:820
 msgid "ORGANISM_STATISTICS"
@@ -4216,11 +4639,17 @@ msgstr "Oxytoksysoma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
-msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+msgstr ""
+"Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy "
+"toksycznego czynnika OxyToksy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny naciskając [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr ""
+"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny "
+"naciskając [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
@@ -4286,7 +4715,9 @@ msgstr "Biernie uzyskuj postęp reprodukcji"
 
 #: ../src/general/NewGameSettings.tscn:793
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+msgstr ""
+"(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia "
+"czegokolwiek)"
 
 #: ../src/gui_common/CreditsScroll.cs:297
 msgid "PAST_DEVELOPERS"
@@ -4364,7 +4795,7 @@ msgstr ""
 "Twój gatunek wymarł na tym obszarze.\n"
 "Lecz to nie koniec, wciąż możesz wybrać nowy obszar do zabawy!"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:848 ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Zapauzuj"
@@ -4383,7 +4814,9 @@ msgstr "Wznów"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:64
 msgid "PAUSE_PROMPT"
-msgstr "[center]Naciśnij [thrive:input]g_pause[/thrive:input] żeby odpauzować[/center]"
+msgstr ""
+"[center]Naciśnij [thrive:input]g_pause[/thrive:input] żeby odpauzować[/"
+"center]"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:63
 msgid "PAUSE_TOOLTIP"
@@ -4395,7 +4828,8 @@ msgstr "Wczytywanie pliku pck ({0}) się nie powiodło"
 
 #: ../src/modding/ModLoader.cs:530
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
-msgstr "Wczytywanie pliku pck ({0}) nie powiodło się, ponieważ ten plik nie istnieje"
+msgstr ""
+"Wczytywanie pliku pck ({0}) nie powiodło się, ponieważ ten plik nie istnieje"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
 msgid "PEACEFUL"
@@ -4485,7 +4919,8 @@ msgstr "Kara populacyjna za śmierć gracza"
 
 #: ../src/general/NewGameSettings.tscn:632
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "(współczynnik redukcji populacji gatunku gracza dla każdej śmierci gracza)"
+msgstr ""
+"(współczynnik redukcji populacji gatunku gracza dla każdej śmierci gracza)"
 
 #: ../src/general/StageBase.cs:496
 msgid "PLAYER_DIED"
@@ -4639,12 +5074,13 @@ msgstr "Szybkie wczytanie"
 msgid "QUICK_SAVE"
 msgstr "Szybki zapis"
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:389 ../src/general/MainMenu.tscn:390
 msgid "QUIT"
 msgstr "Wyjdź"
 
 #: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/PauseMenu.tscn:246 ../src/general/MainMenu.tscn:374
+#: ../src/general/MainMenu.tscn:384 ../src/general/PauseMenu.tscn:239
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Opuść grę"
 
@@ -4661,7 +5097,8 @@ msgstr "Losuj nazwy gatunków"
 #: ../src/general/NewGameSettings.tscn:235
 #: ../src/general/NewGameSettings.tscn:1061
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+msgstr ""
+"Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
@@ -4685,7 +5122,7 @@ msgstr "Gotowy"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Zalecana Wersja Gry:"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:884 ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Wznów"
@@ -4813,10 +5250,11 @@ msgstr "Wznów"
 
 #: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
+#: ../src/general/PauseMenu.tscn:232
 msgid "RETURN_TO_MENU"
 msgstr "Wróć do Menu"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:238 ../src/general/PauseMenu.tscn:231
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Wróć do menu główego"
 
@@ -4827,7 +5265,7 @@ msgstr ""
 "Czy na pewno chcesz wyjść do menu głównego?\n"
 "Utracisz cały niezapisany postęp."
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:811 ../src/general/MainMenu.tscn:799
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Wykonane Przez Revolutionary Games Studio"
@@ -4846,7 +5284,9 @@ msgstr "Sztywna"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Sztywniejsza membrana jest odporniejsza na uszkodzenia, ale utrudnia poruszanie się komórce."
+msgstr ""
+"Sztywniejsza membrana jest odporniejsza na uszkodzenia, ale utrudnia "
+"poruszanie się komórce."
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "ROTATE_LEFT"
@@ -4890,7 +5330,8 @@ msgstr "oddzielił się od {0}"
 
 #: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "populacja w niektórych środowiskach rozdzieliła się tworząc nowy gatunek {0}:"
+msgstr ""
+"populacja w niektórych środowiskach rozdzieliła się tworząc nowy gatunek {0}:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
@@ -4909,17 +5350,26 @@ msgstr "Rusticyjanina"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr ""
+"Rusticyjanina to białko mogące użyć gazowego [thrive:compound "
+"type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"]"
+"[/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do "
+"innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą "
+"komórka może zebrać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr ""
+"Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:1047
+#: ../src/general/MainMenu.tscn:1047 ../src/general/MainMenu.tscn:1035
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1045
+#: ../src/general/MainMenu.tscn:1045 ../src/general/MainMenu.tscn:1033
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
@@ -4937,7 +5387,9 @@ msgstr "Autozapis"
 
 #: ../src/saving/SaveList.cs:242
 msgid "SAVE_DELETE_WARNING"
-msgstr "Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien że chcesz permamentnie usunąć {0}?"
+msgstr ""
+"Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien że chcesz "
+"permamentnie usunąć {0}?"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -4976,8 +5428,10 @@ msgstr "Nieprawidłowy zapis"
 #: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"Wybrany zapis jest ze starszej wersji Thrive, ale może zostać zaktualizowany.\n"
-"Zapasowy plik zostanie stworzony przed aktualizacją, jeśli jeszcze nie istnieje.\n"
+"Wybrany zapis jest ze starszej wersji Thrive, ale może zostać "
+"zaktualizowany.\n"
+"Zapasowy plik zostanie stworzony przed aktualizacją, jeśli jeszcze nie "
+"istnieje.\n"
 "Jeśli pominiesz aktualizację, nastąpi próba wczytania zapisu normalnie.\n"
 "Spróbować aktualizacji tego zapisu?"
 
@@ -5176,7 +5630,9 @@ msgstr "Pokaż ostrzeżenie o niezapisanym postępie"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr "Włącza/wyłącza ostrzeżenia o niezapisanym postępie, gdy gracz próbuje wyjść z gry."
+msgstr ""
+"Włącza/wyłącza ostrzeżenia o niezapisanym postępie, gdy gracz próbuje wyjść "
+"z gry."
 
 #: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
@@ -5189,11 +5645,17 @@ msgstr "Czynnik Komunikacyjny"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
+msgstr ""
+"Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych "
+"odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne "
+"pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie "
+"ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć menu komunikacji z innymi przedstawicielami swojego gatunku."
+msgstr ""
+"Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć menu "
+"komunikacji z innymi przedstawicielami swojego gatunku."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:115
 msgid "SIGNAL_COMMAND_AGGRESSION"
@@ -5226,7 +5688,11 @@ msgstr "Krzemionkowa"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr "Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym obrażeniom i jest szczególnie odporna na uszkodzenia fizyczne. Wymaga też mniej energii do utrzymania kształtu. Jednak spowalnia mocno komórkę i zmniejsza tempo wchłaniania zasobów."
+msgstr ""
+"Ta membrana ma silne ściany z silikonu. Może opierać się ogólnym obrażeniom "
+"i jest szczególnie odporna na uszkodzenia fizyczne. Wymaga też mniej energii "
+"do utrzymania kształtu. Jednak spowalnia mocno komórkę i zmniejsza tempo "
+"wchłaniania zasobów."
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "SIXTEEN_TIMES"
@@ -5248,11 +5714,23 @@ msgstr "Wyrzutnia Śluzu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+msgstr ""
+"Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz "
+"jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków "
+"wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi "
+"substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają "
+"jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. "
+"Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w "
+"substancji którą jedynie posiadające jety organizmy mogą nawigować."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
+msgstr ""
+"Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:"
+"input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:"
+"compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki "
+"jak i spowalniając drapieżniki."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -5298,7 +5776,9 @@ msgstr "Przywołaj Przeciwnika"
 
 #: ../src/microbe_stage/MicrobeStage.cs:765
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
+msgstr ""
+"Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo "
+"nastawionych gatunków"
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "SPAWN_GLUCOSE"
@@ -5371,11 +5851,14 @@ msgstr "Obecne Gatunki"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:686
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Minimalna populacja dla gatunku by się rozdzielić poprzez dobrze znalezione mutacje"
+msgstr ""
+"Minimalna populacja dla gatunku by się rozdzielić poprzez dobrze znalezione "
+"mutacje"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:706
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Minimalny fragment populacji gatunku by umożliwić podział poprzez mutacje"
+msgstr ""
+"Minimalny fragment populacji gatunku by umożliwić podział poprzez mutacje"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -5421,7 +5904,9 @@ msgstr "Twoje konto steam nie posiada gry Thrive"
 
 #: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
-msgstr "Oecnie twoje konto steam jest w trybie odczytu z powodu niedawnej zmiany profilu"
+msgstr ""
+"Oecnie twoje konto steam jest w trybie odczytu z powodu niedawnej zmiany "
+"profilu"
 
 #: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
@@ -5445,7 +5930,9 @@ msgstr "Plik nie znaleziony"
 
 #: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
-msgstr "Twoje konto Steam obecnie ograniczenia do udostępniania plików. Prosimy skontaktować się z działem pomocy Steam"
+msgstr ""
+"Twoje konto Steam obecnie ograniczenia do udostępniania plików. Prosimy "
+"skontaktować się z działem pomocy Steam"
 
 #: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
@@ -5471,17 +5958,17 @@ msgstr "Steam jest obecnie niedostępny, spróbuj ponownie."
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nieznany błąd Steama"
 
-#: ../src/general/MainMenu.tscn:1102
+#: ../src/general/MainMenu.tscn:1102 ../src/general/MainMenu.tscn:1090
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
-#: ../src/general/MainMenu.tscn:1104
+#: ../src/general/MainMenu.tscn:1104 ../src/general/MainMenu.tscn:1092
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Aktualizacja wybranego zapisu zawiodła przez następujący błąd:"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:824 ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Zapauzuj"
@@ -5640,13 +6127,18 @@ msgid "TESTING_TEAM"
 msgstr "Testerzy"
 
 #: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
+#: ../src/general/MainMenu.tscn:1056
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Dziękujemy za wspieranie twórców Thrive przez kupowanie tej kopii gry!\n"
 "\n"
-"Jeśli ty jej nie kupiłeś, proszę dostać własną kopię [color=#3796e1][url={0}]z tąd[/url][/color] lub sprawdzić naszą stronę [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]website[/url][/color]. \n"
+"Jeśli ty jej nie kupiłeś, proszę dostać własną kopię [color=#3796e1]"
+"[url={0}]z tąd[/url][/color] lub sprawdzić naszą stronę [color=#3796e1]"
+"[url=https://revolutionarygamesstudio.com/releases/]website[/url][/color]. \n"
 "\n"
-"Jeśli byś chciał zobaczyć Launcher Thrive przed rozpoczęciem gry, możesz użyć guzika w głównym menu by wyjść do launchera i potem wyłączyć tryb bezszwowy w jego ustawieniach."
+"Jeśli byś chciał zobaczyć Launcher Thrive przed rozpoczęciem gry, możesz "
+"użyć guzika w głównym menu by wyjść do launchera i potem wyłączyć tryb "
+"bezszwowy w jego ustawieniach."
 
 #: ../src/gui_common/CreditsScroll.cs:488
 msgid "THANKS_FOR_PLAYING"
@@ -5655,7 +6147,7 @@ msgstr ""
 "\n"
 "Jeżeli Ci się spodobało, opowiedz o nas swoim znajomym."
 
-#: ../src/general/MainMenu.tscn:1058
+#: ../src/general/MainMenu.tscn:1058 ../src/general/MainMenu.tscn:1046
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "PRZETRWAŁEŚ!"
@@ -5671,11 +6163,20 @@ msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji ATP z wody w procesie zwanym termosyntezą. Tempo produkcji ATP skaluje się z temperaturą."
+msgstr ""
+"Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne "
+"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
+"został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
+"termoplaście mogą używać energii z różnic temperatur w otoczeniu do "
+"produkcji ATP z wody w procesie zwanym termosyntezą. Tempo produkcji ATP "
+"skaluje się z temperaturą."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając "
+"gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound "
+"type=\"temperature\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
@@ -5684,11 +6185,21 @@ msgstr "Termosyntaza"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój "
+"kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, "
+"następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/"
+"thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym "
+"[b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/"
+"thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:"
+"compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr ""
+"Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając "
+"gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound "
+"type=\"temperature\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -5716,6 +6227,7 @@ msgid "THREADS"
 msgstr "Wątki:"
 
 #: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:513
 msgid "THRIVEOPEDIA"
 msgstr "Thrivopedia"
 
@@ -5761,7 +6273,13 @@ msgstr "Tylakoidy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "Tylakoidy to struktury złożone z białek i fotoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię świetlną do produkcji glukozy z wody i gazowego CO₂ w procesie zwanym Fotosyntezą. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji skaluje się ze stężeniem CO₂, oraz natężeniem światła. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza glikolizę."
+msgstr ""
+"Tylakoidy to struktury złożone z białek i fotoczułych pigmentów. Te pigmenty "
+"są w stanie wykorzystywać energię świetlną do produkcji glukozy z wody i "
+"gazowego CO₂ w procesie zwanym Fotosyntezą. Te pigmenty nadają im również "
+"wyróżniający się kolor. Szybkość produkcji skaluje się ze stężeniem CO₂, "
+"oraz natężeniem światła. Ponieważ tylakoidy zawieszone są bezpośrednio w "
+"cytozolu, otaczający płyn przeprowadza glikolizę."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -5781,11 +6299,15 @@ msgstr "Pokaż wydarzenia lokalne"
 
 #: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek by zapełnić niszę"
+msgstr ""
+"[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek by "
+"zapełnić niszę"
 
 #: ../src/auto-evo/RunResults.cs:1000
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
+msgstr ""
+"[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze "
+"względu na zróżnicowane naciski selekcyjne"
 
 #: ../src/auto-evo/RunResults.cs:916
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -5862,7 +6384,7 @@ msgstr "Pauza"
 msgid "TOGGLE_UNBINDING"
 msgstr "Przełączenie odwiązywania"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:340
 msgid "TOOLS"
 msgstr "Narzędzia"
 
@@ -5889,11 +6411,18 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+msgstr ""
+"Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, "
+"magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli "
+"zwiększa tempo z którym można wypuszczać toksyny."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr ""
+"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny "
+"po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:180
@@ -5945,42 +6474,61 @@ msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Witaj we Wczesnym Etapie Wielokomórkowym!\n"
 "\n"
-"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
+"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się "
+"sukcesem.\n"
 "\n"
-"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
+"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz "
+"rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
 "\n"
-"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i "
+"specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie "
+"kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:"
+"compound].\n"
 "\n"
-"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
+"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz "
+"poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu "
+"komórek."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji auto-ewolucji.\n"
+"Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są "
+"populacją z symulacji auto-ewolucji.\n"
 "\n"
-"Nie biorą one w rachubę twojego osobistego działania, więc w obecnym środowisku będziesz prowadził lepsze życie kiedy wejdziesz do edytora.\n"
+"Nie biorą one w rachubę twojego osobistego działania, więc w obecnym "
+"środowisku będziesz prowadził lepsze życie kiedy wejdziesz do edytora.\n"
 "\n"
-"Jednakże powinieneś utrzymać populację lub ją powiększać, nawet jeżeli nie jesteś bezpośrednio zaangażowany.\n"
+"Jednakże powinieneś utrzymać populację lub ją powiększać, nawet jeżeli nie "
+"jesteś bezpośrednio zaangażowany.\n"
 "\n"
-"Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij, by kontynuować."
+"Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij, by "
+"kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie punktów mutacji (MP). W każdym pokoleniu zawsze masz 100 MP, więc nie przejmuj się oszczędzaniem!\n"
+"To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie "
+"punktów mutacji (MP). W każdym pokoleniu zawsze masz 100 MP, więc nie "
+"przejmuj się oszczędzaniem!\n"
 "\n"
-"Heks w centrum twego ekranu to twoja komórka, która składa się z jednej części cytozolu.\n"
+"Heks w centrum twego ekranu to twoja komórka, która składa się z jednej "
+"części cytozolu.\n"
 "\n"
-"By kontynuować, wybież część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+"By kontynuować, wybież część z lewego panelu. Następnie naciśnij lewy "
+"przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając "
+"[thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/"
+"thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"To są podstawy edycji gatunku. Na zakończenie, możesz zmienić nazwę swojego gatunku poprzez kliknięcie w imię w lewym, dolnym rogu i edytowanie tekstu.\n"
+"To są podstawy edycji gatunku. Na zakończenie, możesz zmienić nazwę swojego "
+"gatunku poprzez kliknięcie w imię w lewym, dolnym rogu i edytowanie tekstu.\n"
 "\n"
 "Możesz wypróbować inne zakładki edytora komórek dla innych ciekawych opcji.\n"
 "\n"
-"Żeby przetrwać w tym surowym świecie, będziesz musiał znaleźć niezawodne źródło energii jako iż poziom naturalnej glukozy gwałtownie spadnie.\n"
+"Żeby przetrwać w tym surowym świecie, będziesz musiał znaleźć niezawodne "
+"źródło energii jako iż poziom naturalnej glukozy gwałtownie spadnie.\n"
 "\n"
 "Powodzenia!"
 
@@ -5989,18 +6537,25 @@ msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "To jest mapa obszarów.\n"
 "\n"
-"Każda ikona reprezentuje unikalne środowisko, które możesz zamieszkiwać, z panelem po twojej prawej, opisującym warunki panujące w obecnie wybranym obszarze.\n"
+"Każda ikona reprezentuje unikalne środowisko, które możesz zamieszkiwać, z "
+"panelem po twojej prawej, opisującym warunki panujące w obecnie wybranym "
+"obszarze.\n"
 "\n"
-"Jeśli wybierzesz obszar połączony z takim zamieszkiwanym przez ciebie, możesz nacisnąć przycisk \"Przenieś się do tego obszaru\" po prawej by tam migrować. (Obszary zamieszkane przez twój gatunek otoczone są cyjanową ramką)\n"
+"Jeśli wybierzesz obszar połączony z takim zamieszkiwanym przez ciebie, "
+"możesz nacisnąć przycisk \"Przenieś się do tego obszaru\" po prawej by tam "
+"migrować. (Obszary zamieszkane przez twój gatunek otoczone są cyjanową "
+"ramką)\n"
 "\n"
 "Spróbuj wybrać jakiś obszar by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Usuwanie organelli również kosztuje PM, jako iż jest to mutacja, chyba że zostały dodane w obecnej sesji.\n"
+"Usuwanie organelli również kosztuje PM, jako iż jest to mutacja, chyba że "
+"zostały dodane w obecnej sesji.\n"
 "\n"
-"Kliknij prawym przyciskiem myszy na organella aby otworzyć menu organelli żeby je usunąć.\n"
+"Kliknij prawym przyciskiem myszy na organella aby otworzyć menu organelli "
+"żeby je usunąć.\n"
 "\n"
 "Jeśli się pomylisz, możesz cofnąć zmianę w edytorze.\n"
 "\n"
@@ -6009,20 +6564,29 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Wybierając części z menu, zwracaj szczególną uwagę na podpowiedzi które wyskakują by zrozumieć co te części robią. Mogą one bardziej szkodzić niż pomagać jeśli nie przejmujesz się ich działaniem.\n"
+"Wybierając części z menu, zwracaj szczególną uwagę na podpowiedzi które "
+"wyskakują by zrozumieć co te części robią. Mogą one bardziej szkodzić niż "
+"pomagać jeśli nie przejmujesz się ich działaniem.\n"
 "\n"
-"Pasek \"Produkcja ATP\" po twojej prawej wskazuje ile energii produkujesz w stosunku do jej konsumpcji. Jeśli pasek górny jest krótszy niż dolny, nie produkujesz wystarczająco energii.\n"
+"Pasek \"Produkcja ATP\" po twojej prawej wskazuje ile energii produkujesz w "
+"stosunku do jej konsumpcji. Jeśli pasek górny jest krótszy niż dolny, nie "
+"produkujesz wystarczająco energii.\n"
 "\n"
 "Naciśnij przycisk ponów (obok przycisku cofnij) by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Skup się na jednym lub dwóch źródłach energii, żebyś nie potrzebował wszystkich istniejących zadobów aby przetrwać.\n"
+"Skup się na jednym lub dwóch źródłach energii, żebyś nie potrzebował "
+"wszystkich istniejących zadobów aby przetrwać.\n"
 "\n"
-"Uważnie rozważ czy dodawanie organelli to dobry pomysł, nie zawsze musisz zmieniać to, co już działa, jako iż każda część wymaga ATP i większych ilości zasobów do rozmnażania.\n"
+"Uważnie rozważ czy dodawanie organelli to dobry pomysł, nie zawsze musisz "
+"zmieniać to, co już działa, jako iż każda część wymaga ATP i większych "
+"ilości zasobów do rozmnażania.\n"
 "\n"
-"Jedną z możliwych strategii jest pozostanie pojedynczym heksem cytoplazmy i udawanie się do środowisk powierzchniowych zanim dodasz organella fotosyntezujace."
+"Jedną z możliwych strategii jest pozostanie pojedynczym heksem cytoplazmy i "
+"udawanie się do środowisk powierzchniowych zanim dodasz organella "
+"fotosyntezujace."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -6036,21 +6600,29 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:353
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Twoja komórka została wchłonięta i jest trawiona. Postęp jest pokazany na twoim pasku zdrowia. Twoja komórka będzie martwa gdy ten proces się zakończy bądź maksymalny limit czasu osiągnięty.\n"
+"Twoja komórka została wchłonięta i jest trawiona. Postęp jest pokazany na "
+"twoim pasku zdrowia. Twoja komórka będzie martwa gdy ten proces się zakończy "
+"bądź maksymalny limit czasu osiągnięty.\n"
 "\n"
-"Możesz się zabić by pominąć i odrodzić się, lecz pamiętaj, zawsze jest szansa ucieczki!"
+"Możesz się zabić by pominąć i odrodzić się, lecz pamiętaj, zawsze jest "
+"szansa ucieczki!"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Twoja komórka ma limitowaną pojemność dla obiektów które mogą być wchłonięte jednocześnie. Ten limit jest bazowany na wielkości; mniejsze komórki mają mniej pojemności.\n"
+"Twoja komórka ma limitowaną pojemność dla obiektów które mogą być wchłonięte "
+"jednocześnie. Ten limit jest bazowany na wielkości; mniejsze komórki mają "
+"mniej pojemności.\n"
 "\n"
-"Gdy pełna, komórka nie może pochłaniać więcej rzeczy. By kontynuować wchłanianie, poczekaj aż jeden lub więcej wchłoniętych obiektów zostało w pełni strawionych."
+"Gdy pełna, komórka nie może pochłaniać więcej rzeczy. By kontynuować "
+"wchłanianie, poczekaj aż jeden lub więcej wchłoniętych obiektów zostało w "
+"pełni strawionych."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
+"Wchałniaj obiekty poprzez poruszanie się nad nimi w trybie pochłaniania. "
+"Włącz ten tryb naciskając [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
 "Przestań wchłaniać kiedy obiekt zaczyna być wciągany.\n"
 "\n"
@@ -6059,36 +6631,46 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
+"Trudno ci? Sprawdź menu pomocy. Możesz je otworzyć klikając na znak "
+"zapytania w lewym dolnym rogu.\n"
 "\n"
-"Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka myszy."
+"Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka "
+"myszy."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:365
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Jesteś pełen [thrive:compound type=\"ammonia\"][/thrive:compound] oraz [thrive:compound type=\"phosphates\"][/thrive:compound]. Jednakże, jako iż jesteś w niewielokomórkowej kolonii, nie zachodzi u ciebie postęp rozmnażania.\n"
+"Jesteś pełen [thrive:compound type=\"ammonia\"][/thrive:compound] oraz "
+"[thrive:compound type=\"phosphates\"][/thrive:compound]. Jednakże, jako iż "
+"jesteś w niewielokomórkowej kolonii, nie zachodzi u ciebie postęp "
+"rozmnażania.\n"
 "\n"
-"Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz przejścia do wielokomórkowości.\n"
-"Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:input]g_unbind_all[/thrive:input]."
+"Musisz opuścić kolonię by dostać się do edytora o ile nie planujesz "
+"przejścia do wielokomórkowości.\n"
+"Opuść kolonię by kontynuować swój wzrost poprzez naciśnięcie [thrive:"
+"input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez zebranie wystarczająco dużo amoniaku i fosforanów.\n"
+"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez zebranie "
+"wystarczająco dużo amoniaku i fosforanów.\n"
 "Patrz na paski w prawym dolnym rogu żeby sprawdzić ile jeszcze potrzebujesz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
+"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii "
+"aby ich odseparować.\n"
 "\n"
-"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć "
+"klawisz [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
 
-#: ../src/general/MainMenu.tscn:920
+#: ../src/general/MainMenu.tscn:920 ../src/general/MainMenu.tscn:908
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Upłynęło {0:#,#} lat"
@@ -6120,7 +6702,9 @@ msgstr "Tryb rozdzielenia"
 
 #: ../src/general/OptionsMenu.cs:1505
 msgid "UNCERTAIN_VERSION_WARNING"
-msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie przestarzałe"
+msgstr ""
+"To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie "
+"przestarzałe"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1488
 msgid "UNDERWATERCAVE"
@@ -6175,12 +6759,17 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu dodają siłę obrotową by pomóc komórkom się obracać."
+msgstr ""
+"Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu "
+"dodają siłę obrotową by pomóc komórkom się obracać."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu zwiększysz wydajność."
+msgstr ""
+"Lipaza umożliwia komórce trawienie większości typów błon. Twoja komórka już "
+"produkuje trochę tego enzymu bez lizosomu, lecz poprzez wybranie tego typu "
+"zwiększysz wydajność."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
@@ -6224,7 +6813,9 @@ msgstr "Użyj własnej nazwy użytkownika"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:718
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Utworzenie gatunku zwiększającego bioróżnorodność kradnie populację od istniejącego gatunku"
+msgstr ""
+"Utworzenie gatunku zwiększającego bioróżnorodność kradnie populację od "
+"istniejącego gatunku"
 
 #: ../src/general/OptionsMenu.tscn:1114
 msgid "USE_MANUAL_THREAD_COUNT"
@@ -6241,7 +6832,12 @@ msgstr "Wakuola"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
-msgstr "Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko używanych w komórkach do magazynowania, które są ze sobą połączone. Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i inne substancje. Ich kształt jest płynny i może się różnić między komórkami."
+msgstr ""
+"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
+"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
+"używanych w komórkach do magazynowania, które są ze sobą połączone. "
+"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i inne "
+"substancje. Ich kształt jest płynny i może się różnić między komórkami."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
@@ -6293,7 +6889,7 @@ msgstr "{0}: {1}"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0}: {1}"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:349
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobacz Kod Źródłowy"
 
@@ -6306,6 +6902,7 @@ msgid "VISIBLE"
 msgstr "Widoczne"
 
 #: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
+#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Zasugeruj Funkcję"
 
@@ -6371,7 +6968,11 @@ msgstr "PRZETRWAŁEŚ!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Gratulację, udało ci się przejść tą wersję Thrive! Jeśli chcesz, możesz kontynuować grę po zniknięciu tej wiadomości lub rozpocząć nową grę w nowym świecie. Możesz również dodać czynniki wiążące by zbudować kolonię komórek i wypróbować prototypy późniejszych etapów."
+msgstr ""
+"Gratulację, udało ci się przejść tą wersję Thrive! Jeśli chcesz, możesz "
+"kontynuować grę po zniknięciu tej wiadomości lub rozpocząć nową grę w nowym "
+"świecie. Możesz również dodać czynniki wiążące by zbudować kolonię komórek i "
+"wypróbować prototypy późniejszych etapów."
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -6403,11 +7004,18 @@ msgstr "Przekazanie przedmiotu do Warsztatu Steam powiodło się"
 
 #: ../src/modding/ModUploader.cs:589
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "Przekazanie przedmiotu do Warsztatu Steam powiodło się, lecz musisz zaakceptować [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] Warsztatu zanim stanie się widoczny"
+msgstr ""
+"Przekazanie przedmiotu do Warsztatu Steam powiodło się, lecz musisz "
+"zaakceptować [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]terms of service[/url][/color] Warsztatu zanim stanie "
+"się widoczny"
 
 #: ../src/modding/ModUploader.cs:653
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr "Poprzez przesyłanie tego przedmiotu, zgadzasz się na [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] Warsztatu Steam"
+msgstr ""
+"Poprzez przesyłanie tego przedmiotu, zgadzasz się na [color=#3796e1]"
+"[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of "
+"service[/url][/color] Warsztatu Steam"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -6461,7 +7069,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "lata"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:872 ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Zapauzuj"
@@ -6505,9 +7113,12 @@ msgstr "Oddal"
 
 #~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
 #~ msgstr ""
-#~ "Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu Wielokomórkowca!\n"
+#~ "Gratulacje! Dotarłeś do prototypu makroskopijnej sekcji Etapu "
+#~ "Wielokomórkowca!\n"
 #~ "\n"
-#~ "Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora by kontynuować budowę swojego organizmu."
+#~ "Ze względu na ograniczenia rozwojowe, nie jesteśmy w stanie dodać 3D "
+#~ "makroskopijnej rozgrywki w tym wydaniu. Możesz jednak powrócić do edytora "
+#~ "by kontynuować budowę swojego organizmu."
 
 #~ msgid "INVULNERABLE_TO_ENGULFMENT"
 #~ msgstr "Nie Możliwy Do Pochłonięcia"
@@ -6538,7 +7149,8 @@ msgstr "Oddal"
 
 #~ msgid "DELETE_ALL_OLD_SAVE_WARNING"
 #~ msgstr ""
-#~ "Usunięcie starych auto-zapisów i szybkich zapisów nie może zostać cofnięte czy jesteś pewien że chcesz usunąć:\n"
+#~ "Usunięcie starych auto-zapisów i szybkich zapisów nie może zostać "
+#~ "cofnięte czy jesteś pewien że chcesz usunąć:\n"
 #~ "- {0} auto zapisów\n"
 #~ "- {1} szybkich zapisów"
 
@@ -6603,17 +7215,23 @@ msgstr "Oddal"
 #~ "Twoje obecne środowisko jest wyróżnione obwódką.\n"
 #~ "Możesz kliknąć na różne środowiska by zobaczyć co się w nich dzieje.\n"
 #~ "\n"
-#~ "Jeżeli wybierzesz środowisko obok obecnego, po naciśnięciu przycisku po prawej stronie, przeniesiesz się tam. Pozwala to na rozprzestrzenianie populacji do innych środowisk.\n"
+#~ "Jeżeli wybierzesz środowisko obok obecnego, po naciśnięciu przycisku po "
+#~ "prawej stronie, przeniesiesz się tam. Pozwala to na rozprzestrzenianie "
+#~ "populacji do innych środowisk.\n"
 #~ "\n"
 #~ "Wybierz środowisko żeby kontynuować."
 
 #~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
 #~ msgstr ""
-#~ "Oto edytor komórek, gdzie możesz dokonać zmian w zamian za Punkty Mutacji (PM)\n"
+#~ "Oto edytor komórek, gdzie możesz dokonać zmian w zamian za Punkty Mutacji "
+#~ "(PM)\n"
 #~ "\n"
-#~ "Możesz również zmieniać różne inne cechy twojego gatunku w innych zakładkach edytora.\n"
+#~ "Możesz również zmieniać różne inne cechy twojego gatunku w innych "
+#~ "zakładkach edytora.\n"
 #~ "\n"
-#~ "Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to organellum do twojej komórki."
+#~ "Aby kontynuować, wybierz organellum z lewego panelu (cytozol będzie "
+#~ "dobrym wyborem), następnie kliknij na heks na środku ekranu aby dodać to "
+#~ "organellum do twojej komórki."
 
 #~ msgid "VIEW_NOW"
 #~ msgstr "Zobacz teraz"

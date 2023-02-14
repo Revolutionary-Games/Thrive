@@ -10,7 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
-"Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
+"Language-Team: Spanish (Argentina) <https://translate."
+"revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,7 +204,7 @@ msgstr "\" {0} \" - {1}"
 msgid "ART_BY"
 msgstr "Arte creado por {0}"
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:540 ../src/general/MainMenu.tscn:541
 #, fuzzy
 msgid "ART_GALLERY"
 msgstr "Fan Arts"
@@ -300,7 +301,7 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:433
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -350,7 +351,9 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/MainMenu.tscn:481
+#: ../src/general/MainMenu.tscn:583 ../src/general/MainMenu.tscn:642
+#: ../src/general/MainMenu.tscn:961 ../src/general/PauseMenu.tscn:275
 msgid "BACK"
 msgstr "Pa' atras"
 
@@ -448,7 +451,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -906,19 +909,19 @@ msgstr ""
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:701 ../src/general/MainMenu.tscn:702
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696
+#: ../src/general/MainMenu.tscn:696 ../src/general/MainMenu.tscn:697
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:743 ../src/general/MainMenu.tscn:744
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:738 ../src/general/MainMenu.tscn:739
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -990,6 +993,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/general/PauseMenu.tscn:312
 msgid "CONFIRM_EXIT"
 msgstr ""
 
@@ -1122,7 +1126,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:367
 msgid "CREDITS"
 msgstr "Créditos"
 
@@ -1284,11 +1288,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:715 ../src/general/MainMenu.tscn:716
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:710
+#: ../src/general/MainMenu.tscn:710 ../src/general/MainMenu.tscn:711
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1296,11 +1300,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:729
+#: ../src/general/MainMenu.tscn:729 ../src/general/MainMenu.tscn:730
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:724 ../src/general/MainMenu.tscn:725
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1414,7 +1418,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:896 ../src/general/MainMenu.tscn:884
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -1428,7 +1432,7 @@ msgstr "población:"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "Normal"
 
-#: ../src/general/MainMenu.tscn:1084
+#: ../src/general/MainMenu.tscn:1084 ../src/general/MainMenu.tscn:1072
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1478,7 +1482,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:1027 ../src/general/MainMenu.tscn:1015
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1499,57 +1503,79 @@ msgstr "Poner organela"
 #: ../simulation_parameters/common/help_texts.json:145
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:172
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "Para que tu célula se reproduzca necesita dividir todas sus organelas en dos. Para eso necesitás juntar amoníaco y fosfato."
+msgstr ""
+"Para que tu célula se reproduzca necesita dividir todas sus organelas en "
+"dos. Para eso necesitás juntar amoníaco y fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:175
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Pero si sobrevivís por veinte generaciones, está considerado que ganaste el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
+msgstr ""
+"Pero si sobrevivís por veinte generaciones, está considerado que ganaste el "
+"juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
 
 #: ../simulation_parameters/common/help_texts.json:178
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "Cuidado porque las otras especies también evolucionan cada vez que entrás al editor."
+msgstr ""
+"Cuidado porque las otras especies también evolucionan cada vez que entrás al "
+"editor."
 
 #: ../simulation_parameters/common/help_texts.json:181
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:184
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:187
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:190
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:193
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:196
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:199
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:148
 #, fuzzy
@@ -1599,22 +1625,33 @@ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 #: ../simulation_parameters/common/help_texts.json:151
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
+msgstr ""
+"Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco "
+"(Nube Naranja) y Fosfato (Nube Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:154
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Podés comerte otras células, bacterias, pedazos de hierro y pedazos de célula que sean más chicos que tu célula apretando G. Cuesta más ATP y enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo engullir."
+msgstr ""
+"Podés comerte otras células, bacterias, pedazos de hierro y pedazos de "
+"célula que sean más chicos que tu célula apretando G. Cuesta más ATP y "
+"enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo "
+"engullir."
 
 #: ../simulation_parameters/common/help_texts.json:157
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar para evitar perder ATP."
+msgstr ""
+"La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, "
+"más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar "
+"para evitar perder ATP."
 
 #: ../simulation_parameters/common/help_texts.json:160
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "Hay varias organelas en el editor para que evoluciones, permitiendo diferentes modos de jugar."
+msgstr ""
+"Hay varias organelas en el editor para que evoluciones, permitiendo "
+"diferentes modos de jugar."
 
 #: ../simulation_parameters/common/help_texts.json:163
 #, fuzzy
@@ -1636,12 +1673,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:169
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
+msgstr ""
+"Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de "
+"hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
 
 #: ../src/general/NewGameSettings.tscn:1163
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/general/NewGameSettings.tscn:1170
 msgid "EASTER_EGGS_EXPLANATION"
@@ -1803,11 +1844,11 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:247 ../src/general/PauseMenu.tscn:240
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:376 ../src/general/MainMenu.tscn:377
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -1859,7 +1900,7 @@ msgstr "populación en parches:"
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:357 ../src/general/MainMenu.tscn:358
 msgid "EXTRAS"
 msgstr "Extras"
 
@@ -1867,7 +1908,7 @@ msgstr "Extras"
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:908 ../src/general/MainMenu.tscn:896
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2094,7 +2135,7 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:860 ../src/general/MainMenu.tscn:848
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -2102,14 +2143,18 @@ msgstr ""
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:993 ../src/general/MainMenu.tscn:981
 #, fuzzy
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 advertencia de modo"
 
-#: ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.tscn:995 ../src/general/MainMenu.tscn:983
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
+msgstr ""
+"Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y "
+"seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de "
+"video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin "
+"que se te trabe."
 
 #: ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
@@ -2391,7 +2436,7 @@ msgstr "Hierro"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:836 ../src/general/MainMenu.tscn:824
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -2607,7 +2652,9 @@ msgstr "Este lenguaje todavía esta en progreso ({0}% completado)"
 
 #: ../src/general/OptionsMenu.cs:1436
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr "Esta traducción esta bastante incompleta ({0}% hecha) porfis ayudanos a terminarla!"
+msgstr ""
+"Esta traducción esta bastante incompleta ({0}% hecha) porfis ayudanos a "
+"terminarla!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -2768,7 +2815,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:551 ../src/general/MainMenu.tscn:552
 msgid "LICENSES"
 msgstr "Licencias"
 
@@ -2937,10 +2984,12 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
+#: ../src/general/MainMenu.tscn:321
 msgid "LOAD_GAME"
 msgstr "Cargar Juego"
 
 #: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:318
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3119,15 +3168,19 @@ msgstr ""
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:613 ../src/general/MainMenu.tscn:614
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Habilitar el editor"
@@ -3142,11 +3195,14 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3158,11 +3214,14 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3174,11 +3233,14 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3190,11 +3252,14 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3206,11 +3271,14 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3222,17 +3290,20 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:420 ../src/general/MainMenu.tscn:421
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -3248,11 +3319,14 @@ msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3263,7 +3337,9 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:291
 #, fuzzy
 msgid "MICROBE_STAGE"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3283,11 +3359,14 @@ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3300,36 +3379,50 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Para que tu célula se reproduzca necesita dividir todas sus organelas en dos. Para eso necesitás juntar amoníaco y fosfato."
+msgstr ""
+"Para que tu célula se reproduzca necesita dividir todas sus organelas en "
+"dos. Para eso necesitás juntar amoníaco y fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Pero si sobrevivís por veinte generaciones, está considerado que ganaste el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
+msgstr ""
+"Pero si sobrevivís por veinte generaciones, está considerado que ganaste el "
+"juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Cuidado porque las otras especies también evolucionan cada vez que entrás al editor."
+msgstr ""
+"Cuidado porque las otras especies también evolucionan cada vez que entrás al "
+"editor."
 
 #: ../simulation_parameters/common/help_texts.json:66
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -3339,22 +3432,33 @@ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
+msgstr ""
+"Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco "
+"(Nube Naranja) y Fosfato (Nube Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Podés comerte otras células, bacterias, pedazos de hierro y pedazos de célula que sean más chicos que tu célula apretando G. Cuesta más ATP y enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo engullir."
+msgstr ""
+"Podés comerte otras células, bacterias, pedazos de hierro y pedazos de "
+"célula que sean más chicos que tu célula apretando G. Cuesta más ATP y "
+"enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo "
+"engullir."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar para evitar perder ATP."
+msgstr ""
+"La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, "
+"más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar "
+"para evitar perder ATP."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Hay varias organelas en el editor para que evoluciones, permitiendo diferentes modos de jugar."
+msgstr ""
+"Hay varias organelas en el editor para que evoluciones, permitiendo "
+"diferentes modos de jugar."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3375,7 +3479,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
+msgstr ""
+"Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de "
+"hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 msgid "MICROBE_STAGE_INITIAL"
@@ -3467,11 +3573,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:526 ../src/general/MainMenu.tscn:527
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1011 ../src/general/MainMenu.tscn:999
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3557,13 +3663,15 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1051
+#: ../src/general/MainMenu.tscn:1051 ../src/general/MainMenu.tscn:1039
 msgid "MOD_LOAD_ERRORS"
 msgstr "Error cargando tus mods"
 
-#: ../src/general/MainMenu.tscn:1052
+#: ../src/general/MainMenu.tscn:1052 ../src/general/MainMenu.tscn:1040
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Un error ha ocurrido mientras cargábamos uno o varios de tus mods. Los logs pueden que contengan información adicional del error."
+msgstr ""
+"Un error ha ocurrido mientras cargábamos uno o varios de tus mods. Los logs "
+"pueden que contengan información adicional del error."
 
 #: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
@@ -3803,11 +3911,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:307 ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME"
 msgstr "Nuevo Juego"
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:301 ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3925,7 +4033,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:998 ../src/general/MainMenu.tscn:986
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Desactivado"
@@ -3989,18 +4097,19 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:687
+#: ../src/general/MainMenu.tscn:687 ../src/general/MainMenu.tscn:688
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:678 ../src/general/MainMenu.tscn:679
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/modding/ModUploader.tscn:357 ../src/general/MainMenu.tscn:1029
+#: ../src/general/MainMenu.tscn:1086
 msgid "OK"
 msgstr ""
 
@@ -4070,10 +4179,12 @@ msgid "OPPORTUNISTIC"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:331
 msgid "OPTIONS"
 msgstr "Opciones"
 
 #: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:328
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4324,7 +4435,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:848 ../src/general/MainMenu.tscn:836
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -4595,12 +4706,13 @@ msgstr "Carga rápida"
 msgid "QUICK_SAVE"
 msgstr "Guardado rapido"
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:389 ../src/general/MainMenu.tscn:390
 msgid "QUIT"
 msgstr "Salida"
 
 #: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/PauseMenu.tscn:246 ../src/general/MainMenu.tscn:374
+#: ../src/general/MainMenu.tscn:384 ../src/general/PauseMenu.tscn:239
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4640,7 +4752,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:884 ../src/general/MainMenu.tscn:872
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -4769,10 +4881,11 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
+#: ../src/general/PauseMenu.tscn:232
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:238 ../src/general/PauseMenu.tscn:231
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
@@ -4781,7 +4894,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:811 ../src/general/MainMenu.tscn:799
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4846,7 +4959,9 @@ msgstr "Se dividieron desde {0}"
 
 #: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "la población en algunos de los tuyos los dividieron en otra especie totalmente diferente {0}"
+msgstr ""
+"la población en algunos de los tuyos los dividieron en otra especie "
+"totalmente diferente {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
@@ -4871,12 +4986,12 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1047
+#: ../src/general/MainMenu.tscn:1047 ../src/general/MainMenu.tscn:1035
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "Normal"
 
-#: ../src/general/MainMenu.tscn:1045
+#: ../src/general/MainMenu.tscn:1045 ../src/general/MainMenu.tscn:1033
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5433,16 +5548,16 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1102
+#: ../src/general/MainMenu.tscn:1102 ../src/general/MainMenu.tscn:1090
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1104
+#: ../src/general/MainMenu.tscn:1104 ../src/general/MainMenu.tscn:1092
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "población:"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:824 ../src/general/MainMenu.tscn:812
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -5599,6 +5714,7 @@ msgid "TESTING_TEAM"
 msgstr ""
 
 #: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
+#: ../src/general/MainMenu.tscn:1056
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -5606,7 +5722,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1058
+#: ../src/general/MainMenu.tscn:1058 ../src/general/MainMenu.tscn:1046
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -5668,6 +5784,7 @@ msgid "THREADS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:513
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -5820,7 +5937,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Desvincular"
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:340
 msgid "TOOLS"
 msgstr "Herramientas"
 
@@ -5915,11 +6032,14 @@ msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
+"poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
+"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
+"pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -5928,7 +6048,9 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -5949,48 +6071,64 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:353
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:365
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
-msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr ""
+"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
+"una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:920
+#: ../src/general/MainMenu.tscn:920 ../src/general/MainMenu.tscn:908
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -6193,7 +6331,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "\" {0} \" - {1}"
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:349
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -6206,6 +6344,7 @@ msgid "VISIBLE"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
+#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6358,7 +6497,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:872 ../src/general/MainMenu.tscn:860
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 

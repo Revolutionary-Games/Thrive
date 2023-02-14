@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: Alexia Diana Cojocaru <alexia.d.cojocaru@gmail.com>\n"
-"Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ro/>\n"
+"Language-Team: Romanian <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.9.1\n"
 
@@ -196,7 +198,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:540 ../src/general/MainMenu.tscn:541
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -290,7 +292,7 @@ msgstr ""
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:433
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
@@ -338,7 +340,9 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/MainMenu.tscn:481
+#: ../src/general/MainMenu.tscn:583 ../src/general/MainMenu.tscn:642
+#: ../src/general/MainMenu.tscn:961 ../src/general/PauseMenu.tscn:275
 msgid "BACK"
 msgstr ""
 
@@ -436,7 +440,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:447
+#: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -885,19 +889,19 @@ msgstr ""
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:701
+#: ../src/general/MainMenu.tscn:701 ../src/general/MainMenu.tscn:702
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696
+#: ../src/general/MainMenu.tscn:696 ../src/general/MainMenu.tscn:697
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:743 ../src/general/MainMenu.tscn:744
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:738 ../src/general/MainMenu.tscn:739
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -966,6 +970,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
+#: ../src/general/PauseMenu.tscn:312
 msgid "CONFIRM_EXIT"
 msgstr ""
 
@@ -1095,7 +1100,7 @@ msgstr ""
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:367
 msgid "CREDITS"
 msgstr ""
 
@@ -1254,11 +1259,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:715
+#: ../src/general/MainMenu.tscn:715 ../src/general/MainMenu.tscn:716
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:710
+#: ../src/general/MainMenu.tscn:710 ../src/general/MainMenu.tscn:711
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1266,11 +1271,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:729
+#: ../src/general/MainMenu.tscn:729 ../src/general/MainMenu.tscn:730
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:724
+#: ../src/general/MainMenu.tscn:724 ../src/general/MainMenu.tscn:725
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1383,7 +1388,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:896 ../src/general/MainMenu.tscn:884
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -1395,7 +1400,7 @@ msgstr ""
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1084
+#: ../src/general/MainMenu.tscn:1084 ../src/general/MainMenu.tscn:1072
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1442,7 +1447,7 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1027
+#: ../src/general/MainMenu.tscn:1027 ../src/general/MainMenu.tscn:1015
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1730,11 +1735,11 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:247 ../src/general/PauseMenu.tscn:240
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:376 ../src/general/MainMenu.tscn:377
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -1784,7 +1789,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:357 ../src/general/MainMenu.tscn:358
 msgid "EXTRAS"
 msgstr ""
 
@@ -1792,7 +1797,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:908 ../src/general/MainMenu.tscn:896
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2012,7 +2017,7 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:860 ../src/general/MainMenu.tscn:848
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -2020,11 +2025,11 @@ msgstr ""
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:993 ../src/general/MainMenu.tscn:981
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.tscn:995 ../src/general/MainMenu.tscn:983
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -2300,7 +2305,7 @@ msgstr ""
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:836 ../src/general/MainMenu.tscn:824
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -2675,7 +2680,7 @@ msgstr ""
 msgid "LEFT_MOUSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:551
+#: ../src/general/MainMenu.tscn:551 ../src/general/MainMenu.tscn:552
 msgid "LICENSES"
 msgstr ""
 
@@ -2836,10 +2841,12 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
+#: ../src/general/MainMenu.tscn:321
 msgid "LOAD_GAME"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:318
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3018,7 +3025,7 @@ msgid "MICROBES_COUNT"
 msgstr "Etapa Microbilor"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613
+#: ../src/general/MainMenu.tscn:613 ../src/general/MainMenu.tscn:614
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editorul De Microbi"
@@ -3032,25 +3039,43 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Structuri Procariote\n"
 "\n"
-"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"Citoplasmă: Poate depozita compuși și face glicoliză (produce un pic de "
+"[thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound "
+"type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolozomi: Produc [thrive:compound type=\"atp\"][/thrive:compound] din "
+"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă doar un hexagon.\n"
+"Tilacoide: Produc 1/3 din [thrive:compound type=\"glucose\"][/thrive:"
+"compound] care un cloroplast produce, dar mai și face glicoliză, și ocupă "
+"doar un hexagon.\n"
 "\n"
-"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound type=\"glucose\"][/thrive:compound] din [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac glicoliză, și ocupă doar un hexagon.\n"
+"Proteine Care Chemosintează: Produc o jumătate mai puțină [thrive:compound "
+"type=\"glucose\"][/thrive:compound] din [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound] ca un chemoplast, dar mai și fac "
+"glicoliză, și ocupă doar un hexagon.\n"
 "\n"
-"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Ruginină: Utilizează [thrive:compound type=\"iron\"][/thrive:compound] ca să "
+"producă [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:compound] fără nevoie de aer.\n"
+"Azotenază: Utilizează azot atmosferic și [thrive:compound type=\"atp\"][/"
+"thrive:compound] ca să producă [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] fără nevoie de aer.\n"
 "\n"
-"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"Oxitoxizom: Utilizează [thrive:compound type=\"atp\"][/thrive:compound] ca "
+"să facă [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
-"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] folosind variații din temperatură"
+"Termosintază: Produce [thrive:compound type=\"atp\"][/thrive:compound] "
+"folosind variații din temperatură"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Lucrurile care le-ați înghițit vor rămâne în membrană pentru a fi digerate. Lucruri indigerabile vor fi expulzate, așa că trebuie să aveți grijă că aveți mutațiile necesare pentru a le putea digera. Enzimele făcute de lizozom te vor ajuta cu digestia; evoluează această organită pentru a face digestia mai eficientă."
+msgstr ""
+"Lucrurile care le-ați înghițit vor rămâne în membrană pentru a fi digerate. "
+"Lucruri indigerabile vor fi expulzate, așa că trebuie să aveți grijă că "
+"aveți mutațiile necesare pentru a le putea digera. Enzimele făcute de "
+"lizozom te vor ajuta cu digestia; evoluează această organită pentru a face "
+"digestia mai eficientă."
 
 #: ../simulation_parameters/common/help_texts.json:78
 #, fuzzy
@@ -3058,13 +3083,16 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Structuri Externe\n"
 "\n"
-"Flagel: Vă lasă să vă deplasați celula mai repede folosind [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Flagel: Vă lasă să vă deplasați celula mai repede folosind [thrive:compound "
+"type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Pil: Poate să rănească alte celule sau să protejeze împotriva toxinele lor\n"
 "\n"
 "Chemoreceptor: Allows detecting compounds from farther away\n"
 "\n"
-"Slime Jet: Allows emitting [thrive:compound type=\"mucilage\"][/thrive:compound] (produced from [thrive:compound type=\"glucose\"][/thrive:compound]) to speed up your cell\n"
+"Slime Jet: Allows emitting [thrive:compound type=\"mucilage\"][/thrive:"
+"compound] (produced from [thrive:compound type=\"glucose\"][/thrive:"
+"compound]) to speed up your cell\n"
 "\n"
 "Cilia: Increases turning speed of cells"
 
@@ -3080,7 +3108,7 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:420
+#: ../src/general/MainMenu.tscn:420 ../src/general/MainMenu.tscn:421
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -3123,58 +3151,105 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
+msgstr ""
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] şi mouse-ul să vă deplasați. [thrive:"
+"input]g_fire_toxin[/thrive:input] pentru a trage [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] dacă aveți o vacuolă de toxine. [thrive:"
+"input]g_toggle_engulf[/thrive:input] pentru a activa modul de înghițit. "
+"Puteți să zoomați mai aproape și mai departe cu rotița mouse-ului."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Pentru a reproduce trebuie să vă împărțiti toate organitele dvs. Organitelor le trebuie [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound], și timp pentru a se împărți."
+msgstr ""
+"Pentru a reproduce trebuie să vă împărțiti toate organitele dvs. Organitelor "
+"le trebuie [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:"
+"compound type=\"phosphates\"][/thrive:compound], și timp pentru a se împărți."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Dar dacă supraviețuiți douăzeci de generații cu o populație peste 300, veți câștiga jocul. După ce ați câștigat jocul, veți primi un pop-up, și veți putea să continuați să vă jucați."
+msgstr ""
+"Dar dacă supraviețuiți douăzeci de generații cu o populație peste 300, veți "
+"câștiga jocul. După ce ați câștigat jocul, veți primi un pop-up, și veți "
+"putea să continuați să vă jucați."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Fiți atenți că competitorii dvs. evoluează lăngă tine. De fiecare dată cănd intrați în editor vor evolua celălalte specii înlătură de tine."
+msgstr ""
+"Fiți atenți că competitorii dvs. evoluează lăngă tine. De fiecare dată cănd "
+"intrați în editor vor evolua celălalte specii înlătură de tine."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Agentul de legare lasă celula dvs. să se lege de alte celule din aceeași specie pentru a forma o colonie, unde celulele împart compusurile care le obsorb și care le creează. Intră în modul de legare prin apăsarea butonului [thrive:input]g_toggle_binding[/thrive:input]. Când sunteți într-o colonie, nu puteți să vă împărțiți celula și să întrați în editor. Pentru a intra în editor veți trebui să adunați compusurile necesare și să ieșiți din colonie prin apăsarea butonului [thrive:input]g_unbind_all[/thrive:input]. Colonii mari de celule sunt calea spre multicelularitate."
+msgstr ""
+"Agentul de legare lasă celula dvs. să se lege de alte celule din aceeași "
+"specie pentru a forma o colonie, unde celulele împart compusurile care le "
+"obsorb și care le creează. Intră în modul de legare prin apăsarea butonului "
+"[thrive:input]g_toggle_binding[/thrive:input]. Când sunteți într-o colonie, "
+"nu puteți să vă împărțiți celula și să întrați în editor. Pentru a intra în "
+"editor veți trebui să adunați compusurile necesare și să ieșiți din colonie "
+"prin apăsarea butonului [thrive:input]g_unbind_all[/thrive:input]. Colonii "
+"mari de celule sunt calea spre multicelularitate."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Membrane din celuloză sau chitină nu pot fi digerate fără enzimele care le pot descompune."
+msgstr ""
+"Membrane din celuloză sau chitină nu pot fi digerate fără enzimele care le "
+"pot descompune."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Dar lyzozomii sunt exclusivi pentru eucariote. Procarioții n-au aceste organite, și își digeră mâncarea mai puțin eficient. Asta nu e o problemă pentru celule mici, dar pentru celule mai mari, nu a avea lizozomi e foarte dezavantajos."
+msgstr ""
+"Dar lyzozomii sunt exclusivi pentru eucariote. Procarioții n-au aceste "
+"organite, și își digeră mâncarea mai puțin eficient. Asta nu e o problemă "
+"pentru celule mici, dar pentru celule mai mari, nu a avea lizozomi e foarte "
+"dezavantajos."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Celula dvs. folosește [thrive:compound type=\"atp\"][/thrive:compound] ca sursă de energie, dacă rămâne fără ATF, va muri."
+msgstr ""
+"Celula dvs. folosește [thrive:compound type=\"atp\"][/thrive:compound] ca "
+"sursă de energie, dacă rămâne fără ATF, va muri."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Pentru a accesa editorul, trebuie să stați în viață destul de lung pentru a reproduce. Consumând [thrive:compound type=\"ammonia\"][/thrive:compound] (norii portocalii) și [thrive:compound type=\"phosphates\"][/thrive:compound] (norii mov) va accelera procesul."
+msgstr ""
+"Pentru a accesa editorul, trebuie să stați în viață destul de lung pentru a "
+"reproduce. Consumând [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"(norii portocalii) și [thrive:compound type=\"phosphates\"][/thrive:"
+"compound] (norii mov) va accelera procesul."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Puteți și să înghițiți celule, bacterii, bucăți de fier și bucăți de celule care sunt mai mici decât tine prin apăsarea butonului [thrive:input]g_toggle_engulf[/thrive:input]. Când sunteți în modul de înghițit veți folosii mai mult [thrive:compound type=\"atp\"][/thrive:compound], și o să încetiniți. Nu uitați să apăsați [thrive:input]g_toggle_engulf[/thrive:input] încă o dată că să opriți modul de înghițit."
+msgstr ""
+"Puteți și să înghițiți celule, bacterii, bucăți de fier și bucăți de celule "
+"care sunt mai mici decât tine prin apăsarea butonului [thrive:"
+"input]g_toggle_engulf[/thrive:input]. Când sunteți în modul de înghițit veți "
+"folosii mai mult [thrive:compound type=\"atp\"][/thrive:compound], și o să "
+"încetiniți. Nu uitați să apăsați [thrive:input]g_toggle_engulf[/thrive:"
+"input] încă o dată că să opriți modul de înghițit."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoreglarea costă [thrive:compound type=\"atp\"][/thrive:compound], așa că cu cât mai mare e celula ta, cu cât mai multe mitocondrii, metabolozomi, sau ruginină (sau citoplamă, care face glicoliză) îți trebuie ca să nu pierzi [thrive:compound type=\"atp\"][/thrive:compound] când sunteți staționar."
+msgstr ""
+"Osmoreglarea costă [thrive:compound type=\"atp\"][/thrive:compound], așa că "
+"cu cât mai mare e celula ta, cu cât mai multe mitocondrii, metabolozomi, sau "
+"ruginină (sau citoplamă, care face glicoliză) îți trebuie ca să nu pierzi "
+"[thrive:compound type=\"atp\"][/thrive:compound] când sunteți staționar."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Sunt multe organite de evoluat în editor, care vă lasă să aveți multe stiluri de joc diferite."
+msgstr ""
+"Sunt multe organite de evoluat în editor, care vă lasă să aveți multe "
+"stiluri de joc diferite."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3193,13 +3268,17 @@ msgstr ""
 "Mov – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Maro Ruginiu – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] face [thrive:compound type=\"atp\"][/thrive:compound]."
+"[thrive:compound type=\"glucose\"][/thrive:compound] face [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] poate fi transformat în [thrive:compound type=\"glucose\"][/thrive:compound] prin chemoplaste și cu proteine care chemosintează. [thrive:compound type=\"iron\"][/thrive:compound] poate fi transformat prin ruginină în\n"
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] poate fi "
+"transformat în [thrive:compound type=\"glucose\"][/thrive:compound] prin "
+"chemoplaste și cu proteine care chemosintează. [thrive:compound "
+"type=\"iron\"][/thrive:compound] poate fi transformat prin ruginină în\n"
 "[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
@@ -3290,11 +3369,11 @@ msgstr ""
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:526
+#: ../src/general/MainMenu.tscn:526 ../src/general/MainMenu.tscn:527
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1011 ../src/general/MainMenu.tscn:999
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3380,11 +3459,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1051
+#: ../src/general/MainMenu.tscn:1051 ../src/general/MainMenu.tscn:1039
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1052
+#: ../src/general/MainMenu.tscn:1052 ../src/general/MainMenu.tscn:1040
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3616,11 +3695,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307
+#: ../src/general/MainMenu.tscn:307 ../src/general/MainMenu.tscn:308
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:301
+#: ../src/general/MainMenu.tscn:301 ../src/general/MainMenu.tscn:302
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3732,7 +3811,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:998
+#: ../src/general/MainMenu.tscn:998 ../src/general/MainMenu.tscn:986
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -3795,18 +3874,19 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:687
+#: ../src/general/MainMenu.tscn:687 ../src/general/MainMenu.tscn:688
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678
+#: ../src/general/MainMenu.tscn:678 ../src/general/MainMenu.tscn:679
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/modding/ModUploader.tscn:357 ../src/general/MainMenu.tscn:1029
+#: ../src/general/MainMenu.tscn:1086
 msgid "OK"
 msgstr ""
 
@@ -3875,10 +3955,12 @@ msgid "OPPORTUNISTIC"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:331
 msgid "OPTIONS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:328
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4122,7 +4204,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:848 ../src/general/MainMenu.tscn:836
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -4389,12 +4471,13 @@ msgstr ""
 msgid "QUICK_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:389
+#: ../src/general/MainMenu.tscn:389 ../src/general/MainMenu.tscn:390
 msgid "QUIT"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/PauseMenu.tscn:246 ../src/general/MainMenu.tscn:374
+#: ../src/general/MainMenu.tscn:384 ../src/general/PauseMenu.tscn:239
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4433,7 +4516,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:884 ../src/general/MainMenu.tscn:872
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -4559,10 +4642,11 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
+#: ../src/general/PauseMenu.tscn:232
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:238 ../src/general/PauseMenu.tscn:231
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
@@ -4571,7 +4655,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:811
+#: ../src/general/MainMenu.tscn:811 ../src/general/MainMenu.tscn:799
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -4657,11 +4741,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1047
+#: ../src/general/MainMenu.tscn:1047 ../src/general/MainMenu.tscn:1035
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1045
+#: ../src/general/MainMenu.tscn:1045 ../src/general/MainMenu.tscn:1033
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5194,15 +5278,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1102
+#: ../src/general/MainMenu.tscn:1102 ../src/general/MainMenu.tscn:1090
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1104
+#: ../src/general/MainMenu.tscn:1104 ../src/general/MainMenu.tscn:1092
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:824 ../src/general/MainMenu.tscn:812
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -5358,6 +5442,7 @@ msgid "TESTING_TEAM"
 msgstr ""
 
 #: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
+#: ../src/general/MainMenu.tscn:1056
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -5365,7 +5450,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1058
+#: ../src/general/MainMenu.tscn:1058 ../src/general/MainMenu.tscn:1046
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -5425,6 +5510,7 @@ msgid "THREADS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:513
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -5571,7 +5657,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:339
+#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:340
 msgid "TOOLS"
 msgstr ""
 
@@ -5714,7 +5800,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:920
+#: ../src/general/MainMenu.tscn:920 ../src/general/MainMenu.tscn:908
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -5911,7 +5997,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:349
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
@@ -5924,6 +6010,7 @@ msgid "VISIBLE"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
+#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6076,7 +6163,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:872 ../src/general/MainMenu.tscn:860
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
