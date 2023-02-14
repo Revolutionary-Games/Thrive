@@ -479,6 +479,11 @@ public class PauseMenu : CustomDialog
         ActiveMenu = ActiveMenuType.Options;
     }
 
+    private void OpenReportBugPressed()
+    {
+        OS.ShellOpen("https://community.revolutionarygamesstudio.com/c/bug-reports/13");
+    }
+
     private void OnThriveopediaClosed()
     {
         ActiveMenu = ActiveMenuType.Primary;
