@@ -388,7 +388,7 @@ msgstr "Geri"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Backslash"
+msgstr "Ters eğik çizgi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
@@ -418,7 +418,7 @@ msgstr "Temel kurulum görünümüne dön"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr "Bassboost"
+msgstr "Bas Yükseltici"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
@@ -480,22 +480,21 @@ msgstr "Fırsatçılık"
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
+#: ../src/general/MainMenu.tscn:448
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Performans ölçümleri"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Yükleme bitti"
+msgstr "Performans ölçümü tamamlandı"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Performans aşaması:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Sonuçlar:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
@@ -1199,9 +1198,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Hatayı Panoya Kopyala"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Oto-evrim sonuçları:"
+msgstr "Sonuçları Kopyala"
 
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
@@ -1567,7 +1565,7 @@ msgstr "{0}/s"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
-msgstr "Left"
+msgstr "Sol"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 msgid "DIRECTIONR"
@@ -1986,7 +1984,7 @@ msgstr "Hata: Yeni ayarlar yapılandırma dosyasına kaydedilemedi."
 
 #: ../src/general/ThriveNewsFeed.cs:97
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "Bir hatadan dolayı haberleri alma işlemi başarısız oldu: {0}"
+msgstr "Bu hatadan dolayı haberleri alma işlemi başarısız oldu: {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:96
 msgid "ERROR_FETCHING_NEWS"
@@ -3434,15 +3432,13 @@ msgid "MICROBE"
 msgstr "Mikrop"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
-#, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "Mikrop"
+msgstr "Mikrop sayısı:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613 ../src/general/MainMenu.tscn:614
-#, fuzzy
+#: ../src/general/MainMenu.tscn:614
 msgid "MICROBE_BENCHMARK"
-msgstr "Mikrop Editörü"
+msgstr "Mikrop Performansı"
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
@@ -4831,35 +4827,33 @@ msgstr "{0} {1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
-#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Sayfa Başlığı"
+msgstr ""
+"En son Thrive'i {0} oynadınız, o zamandan beri bir yeni sürüm yayınlandı"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
+"En son Thrive'i {0} oynadınız, o zamandan beri {1} yeni sürüm yayınlandı"
 
 #: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Sayfa Başlığı"
+msgstr "Yama Notları"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Değişiklikler:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
-"Türün bu araziden yok oldu.\n"
-"Ama henüz hiçbir şey bitmiş değil, oynamak için başka bir arazi halen "
-"seçebilirsin!"
+"Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]Github[/url][/color] "
+"üzerinde görüntüleyin"
 
 #: ../src/general/MainMenu.tscn:848 ../src/general/MainMenu.tscn:836
 msgid "PATREON_TOOLTIP"
@@ -5683,14 +5677,13 @@ msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
 #: ../src/general/OptionsMenu.tscn:1787
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "{0} {1}"
+msgstr "Yeni yama notlarını otomatik olarak göster"
 
 #: ../src/general/OptionsMenu.tscn:1785
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0} {1}"
+msgstr ""
+"Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
 msgid "SHOW_TUTORIALS"
@@ -6976,19 +6969,16 @@ msgstr "Görüntüleyici"
 
 #: ../src/gui_common/PatchNotesDisplayer.tscn:63
 #: ../src/gui_common/PatchNotesDisplayer.tscn:72
-#, fuzzy
 msgid "VIEW_ALL"
-msgstr "Hepsini Devre Dışı Bırak"
+msgstr "Tümünü Görüntüle"
 
 #: ../src/general/OptionsMenu.tscn:1795
-#, fuzzy
 msgid "VIEW_PATCH_NOTES"
-msgstr "{0} {1}"
+msgstr "Yama Notlarını Görüntüle"
 
 #: ../src/general/OptionsMenu.tscn:1793
-#, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0} {1}"
+msgstr "En son veya tüm Thrive yama notlarını şimdi görüntüle"
 
 #: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:349
 msgid "VIEW_SOURCE_CODE"
