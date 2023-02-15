@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 15:21+0200\n"
+"POT-Creation-Date: 2023-02-13 20:52-0800\n"
 "PO-Revision-Date: 2022-12-15 06:57+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -215,7 +215,7 @@ msgstr "“{0}” - {1}"
 msgid "ART_BY"
 msgstr "由{0}创作"
 
-#: ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:540
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
@@ -313,7 +313,7 @@ msgstr "游戏中启用自动保存"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:432
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo探索工具"
 
@@ -355,10 +355,10 @@ msgid "AWAKEN"
 msgstr "唤醒"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:481 ../src/general/MainMenu.tscn:583
-#: ../src/general/MainMenu.tscn:642 ../src/general/MainMenu.tscn:961
+#: ../src/general/MainMenu.tscn:480 ../src/general/MainMenu.tscn:582
+#: ../src/general/MainMenu.tscn:641 ../src/general/MainMenu.tscn:973
 #: ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -459,7 +459,7 @@ msgstr "投机性"
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/general/MainMenu.tscn:448
+#: ../src/general/MainMenu.tscn:447
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -918,19 +918,19 @@ msgstr "S值，决定饱和度"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，决定明度"
 
-#: ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:701
 msgid "COMMUNITY_FORUM"
 msgstr "社区论坛"
 
-#: ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:696
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "在我们的社区论坛上加入Thrive社区"
 
-#: ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:743
 msgid "COMMUNITY_WIKI"
 msgstr "社区wiki"
 
-#: ../src/general/MainMenu.tscn:739
+#: ../src/general/MainMenu.tscn:738
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的社区wiki"
 
@@ -997,7 +997,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:312
+#: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
@@ -1137,7 +1137,7 @@ msgstr "创建中……"
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
 
-#: ../src/general/MainMenu.tscn:367
+#: ../src/general/MainMenu.tscn:366
 msgid "CREDITS"
 msgstr "制作人名单"
 
@@ -1322,11 +1322,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "开发者"
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:715
 msgid "DEVELOPMENT_FORUM"
 msgstr "开发论坛"
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:710
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "在开发论坛上了解开发进度"
 
@@ -1334,11 +1334,11 @@ msgstr "在开发论坛上了解开发进度"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "由Revolutionary Games Studio ry支持的开发"
 
-#: ../src/general/MainMenu.tscn:730
+#: ../src/general/MainMenu.tscn:729
 msgid "DEVELOPMENT_WIKI"
 msgstr "开发者wiki"
 
-#: ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:724
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的开发者wiki"
 
@@ -1466,7 +1466,7 @@ msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:896
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
@@ -1480,7 +1480,7 @@ msgstr ""
 "这显示了多少弹出窗口已被永久禁用。\n"
 "如果有一些你想要看到的弹出窗口被禁用了，旁边的那个按钮可以使所有被禁用的弹出窗口再次出现。"
 
-#: ../src/general/MainMenu.tscn:1072
+#: ../src/general/MainMenu.tscn:1084
 msgid "DISMISS_PERMANENTLY"
 msgstr "不再显示"
 
@@ -1527,7 +1527,7 @@ msgstr "双击可全屏查看"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有两层的细胞膜，对伤害有更好的防护能力，也不需要花费那么多能量避免变形。不管怎样，它也会减缓细胞的移动速度，并降低其吸收营养的速率。"
 
-#: ../src/general/MainMenu.tscn:1015
+#: ../src/general/MainMenu.tscn:1027
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "不再提醒这项内容"
 
@@ -1824,11 +1824,11 @@ msgstr "处理载入的对象时发生异常"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
 
-#: ../src/general/PauseMenu.tscn:240
+#: ../src/general/PauseMenu.tscn:247
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:376
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至启动器"
 
@@ -1878,7 +1878,7 @@ msgstr "在这个地区里灭绝了"
 msgid "EXTINCT_SPECIES"
 msgstr "灭绝物种"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:357
 msgid "EXTRAS"
 msgstr "额外内容"
 
@@ -1886,7 +1886,7 @@ msgstr "额外内容"
 msgid "EXTRA_OPTIONS"
 msgstr "额外选项"
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:908
 msgid "FACEBOOK_TOOLTIP"
 msgstr "访问我们的Facebook页面"
 
@@ -2113,7 +2113,7 @@ msgstr "世代"
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:860
 msgid "GITHUB_TOOLTIP"
 msgstr "访问我们在GitHub上的代码仓库"
 
@@ -2121,11 +2121,11 @@ msgstr "访问我们在GitHub上的代码仓库"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:993
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:983
+#: ../src/general/MainMenu.tscn:995
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
@@ -2409,7 +2409,7 @@ msgstr "铁"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "铁化能无机自养"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:836
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
 
@@ -2785,7 +2785,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "鼠标左键"
 
-#: ../src/general/MainMenu.tscn:552
+#: ../src/general/MainMenu.tscn:551
 msgid "LICENSES"
 msgstr "许可"
 
@@ -2944,12 +2944,12 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
 
-#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "载入之前保存的游戏"
 
@@ -3153,7 +3153,7 @@ msgid "MICROBES_COUNT"
 msgstr "微生物"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:613
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "微生物编辑器"
@@ -3233,7 +3233,7 @@ msgstr "每一代，你都有100个变异点可供花费，任何变化都需要
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]x10⁶年的进化时间。"
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:420
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
@@ -3479,11 +3479,11 @@ msgstr "修改细胞器"
 msgid "MODIFY_TYPE"
 msgstr "修改类型"
 
-#: ../src/general/MainMenu.tscn:527
+#: ../src/general/MainMenu.tscn:526
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:999
+#: ../src/general/MainMenu.tscn:1011
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "检测到安装的模组，但没有启用的模组。\n"
@@ -3572,11 +3572,11 @@ msgstr "内部（文件夹）名称："
 msgid "MOD_LICENSE"
 msgstr "此Mod的许可："
 
-#: ../src/general/MainMenu.tscn:1039
+#: ../src/general/MainMenu.tscn:1051
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:1040
+#: ../src/general/MainMenu.tscn:1052
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 
@@ -3820,11 +3820,11 @@ msgstr "新闻"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "增加生物多样性物种的初始种群数量"
 
-#: ../src/general/MainMenu.tscn:308
+#: ../src/general/MainMenu.tscn:307
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:301
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "开始新游戏"
 
@@ -3936,7 +3936,7 @@ msgstr "无事件记录"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "找不到化石目录"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:998
 msgid "NO_MODS_ENABLED"
 msgstr "模组已禁用"
 
@@ -4001,15 +4001,15 @@ msgstr "不消耗变异点"
 msgid "OCTOBER"
 msgstr "十月"
 
-#: ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:687
 msgid "OFFICIAL_WEBSITE"
 msgstr "官方网站"
 
-#: ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:678
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "访问Revolutionary Games的官方网站"
 
-#: ../src/general/MainMenu.tscn:1029 ../src/general/MainMenu.tscn:1086
+#: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4089,11 +4089,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "机会主义"
 
-#: ../src/general/MainMenu.tscn:331 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "选项"
 
-#: ../src/general/MainMenu.tscn:328 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "改变你的设置"
 
@@ -4346,7 +4346,7 @@ msgstr ""
 "你的物种已经在这个地区中灭绝了。\n"
 "但这还没有结束，你仍然可以选择一个新的地区继续游玩！"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:848
 msgid "PATREON_TOOLTIP"
 msgstr "访问我们在Patreon上的页面"
 
@@ -4621,12 +4621,12 @@ msgstr "快速读档"
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
-#: ../src/general/MainMenu.tscn:390
+#: ../src/general/MainMenu.tscn:389
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:374 ../src/general/MainMenu.tscn:384
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/PauseMenu.tscn:246
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "退出游戏"
 
@@ -4667,7 +4667,7 @@ msgstr "准备就绪"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:884
 msgid "REDDIT_TOOLTIP"
 msgstr "访问我们的subreddit页面"
 
@@ -4690,6 +4690,11 @@ msgstr "在目标地区灭绝的情况下，退还迁移的费用"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:138
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:112
 msgid "REPORT"
+msgstr "报告"
+
+#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:231
+#, fuzzy
+msgid "REPORT_BUG"
 msgstr "报告"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1116
@@ -4787,12 +4792,12 @@ msgstr "返回"
 msgid "RESUME_TOOLTIP"
 msgstr "返回游戏"
 
-#: ../src/general/PauseMenu.tscn:232
+#: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "返回主菜单"
 
-#: ../src/general/PauseMenu.tscn:231
+#: ../src/general/PauseMenu.tscn:238
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "退回主菜单"
 
@@ -4803,7 +4808,7 @@ msgstr ""
 "你确定要退出到主菜单吗？\n"
 "你会失去任何未保存的进度。"
 
-#: ../src/general/MainMenu.tscn:799
+#: ../src/general/MainMenu.tscn:811
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "访问Revolutionary Games Studio网站"
 
@@ -4889,7 +4894,7 @@ msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。"
 
-#: ../src/general/MainMenu.tscn:1035
+#: ../src/general/MainMenu.tscn:1047
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "由于先前的启动错误，Thrive已在安全模式下启动。\n"
@@ -4901,7 +4906,7 @@ msgstr ""
 "\n"
 "如果你未能修复导致启动错误的问题，你在未来几次启动中将会崩溃数次并最后再次返回安全模式。"
 
-#: ../src/general/MainMenu.tscn:1033
+#: ../src/general/MainMenu.tscn:1045
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive在安全模式下启动"
 
@@ -5452,17 +5457,17 @@ msgstr "Steam系统目前不可用，请重试"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "发生了未知的Steam错误"
 
-#: ../src/general/MainMenu.tscn:1090
+#: ../src/general/MainMenu.tscn:1102
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam 初始化失败"
 
-#: ../src/general/MainMenu.tscn:1092
+#: ../src/general/MainMenu.tscn:1104
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam 客户端库初始化失败，Steam 功能将不可用。\n"
 "请确保您正在运行 Steam 并使用正确的帐户登录。 如果此错误没有消失，请通过 Steam 运行游戏。"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:824
 msgid "STEAM_TOOLTIP"
 msgstr "访问我们在Steam上的页面"
 
@@ -5617,7 +5622,7 @@ msgstr "温度"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1056
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
@@ -5633,7 +5638,7 @@ msgstr ""
 "\n"
 "如果你喜欢这款游戏，记得也向你的朋友们推荐下。"
 
-#: ../src/general/MainMenu.tscn:1046
+#: ../src/general/MainMenu.tscn:1058
 msgid "THANK_YOU_TITLE"
 msgstr "感谢"
 
@@ -5692,7 +5697,7 @@ msgstr "这个mod是在Steam创意工坊下载的"
 msgid "THREADS"
 msgstr "线程："
 
-#: ../src/general/MainMenu.tscn:513 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr "Thrive百科"
 
@@ -5848,7 +5853,7 @@ msgstr "暂停"
 msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:339
 msgid "TOOLS"
 msgstr "工具"
 
@@ -6072,7 +6077,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:920
 msgid "TWITTER_TOOLTIP"
 msgstr "访问我们的推特"
 
@@ -6274,7 +6279,7 @@ msgstr "{0}{1}"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0}{1}"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:348
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
@@ -6286,7 +6291,7 @@ msgstr "VIP 支持者"
 msgid "VISIBLE"
 msgstr "可见"
 
-#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
+#: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
 
@@ -6441,7 +6446,7 @@ msgstr "Xbox X 系列"
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:872
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
 
