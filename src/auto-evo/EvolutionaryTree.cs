@@ -68,7 +68,14 @@ public class EvolutionaryTree : Control
     /// </summary>
     private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
-    // ReSharper disable RedundantNameQualifier
+    /// <summary>
+    ///   Stores the created nodes for species by the species ids
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     ReSharper disable RedundantNameQualifier
+    ///   </para>
+    /// </remarks>
     private readonly System.Collections.Generic.Dictionary<uint, List<EvolutionaryTreeNode>> speciesNodes = new();
 
     private readonly System.Collections.Generic.Dictionary<uint, string> speciesNames = new();
