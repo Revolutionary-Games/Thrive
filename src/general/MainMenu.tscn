@@ -159,7 +159,6 @@ anchor_bottom = 1.0
 expand = true
 stretch_mode = 7
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "Randomizeable background"
 }
 
@@ -651,9 +650,9 @@ NodeToGiveFocusTo = NodePath("../MicrobeBenchmark")
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
-margin_top = -270.0
+margin_top = -306.0
 margin_right = 175.0
-margin_bottom = -40.0
+margin_bottom = -41.0
 rect_min_size = Vector2( 0, 80 )
 theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 2 )
@@ -662,11 +661,11 @@ custom_styles/panel = SubResource( 2 )
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 163.0
-margin_bottom = 225.0
+margin_bottom = 260.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainers/WebsiteButtons/HBoxContainer"]
 margin_right = 158.0
-margin_bottom = 220.0
+margin_bottom = 255.0
 custom_constants/separation = 10
 
 [node name="Spacer" type="Control" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
@@ -746,10 +745,23 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+[node name="ReportBugButton" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
 margin_top = 185.0
 margin_right = 158.0
 margin_bottom = 210.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
+mouse_filter = 1
+custom_fonts/font = ExtResource( 50 )
+text = "REPORT_BUG"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="VisitSuggestionsSite" type="Button" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer"]
+margin_top = 220.0
+margin_right = 158.0
+margin_bottom = 245.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath("../CommunityWikiButton")
 focus_neighbour_right = NodePath(".")
@@ -765,9 +777,9 @@ __meta__ = {
 }
 
 [node name="FocusGrabber" parent="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer" instance=ExtResource( 56 )]
-margin_top = 220.0
+margin_top = 255.0
 margin_right = 158.0
-margin_bottom = 220.0
+margin_bottom = 255.0
 SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 10
 NodeToGiveFocusTo = NodePath("../OfficialWebsiteButton")
@@ -1117,6 +1129,7 @@ DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentForumButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://forum.revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/DevelopmentWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://wiki.revolutionarygamesstudio.com/" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/CommunityWikiButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://thrive.fandom.com/wiki/Thrive_Wiki" ]]
+[connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/ReportBugButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://community.revolutionarygamesstudio.com/c/bug-reports/13" ]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/VBoxContainer/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/RevolutionaryGamesButton" to="." method="OnWebsitesButtonPressed"]
 [connection signal="pressed" from="MenuContainers/SocialMedia/SteamButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://store.steampowered.com/app/1779200/Thrive/" ]]
