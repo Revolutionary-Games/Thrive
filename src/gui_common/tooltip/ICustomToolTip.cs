@@ -54,32 +54,32 @@ public interface ICustomToolTip
     /// <summary>
     ///   The displayable name/title for this tooltip.
     /// </summary>
-    string DisplayName { get; set; }
+    public string DisplayName { get; set; }
 
     /// <summary>
     ///   The main message the tooltip contains.
     /// </summary>
-    string? Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     ///   Used to delay how long it takes for this tooltip to appear. Set this to zero for no delay.
     /// </summary>
-    float DisplayDelay { get; set; }
+    public float DisplayDelay { get; set; }
 
     /// <summary>
     ///   Where a tooltip should be positioned on display.
     /// </summary>
-    ToolTipPositioning Positioning { get; set; }
+    public ToolTipPositioning Positioning { get; set; }
 
     /// <summary>
     ///   How a tooltip should transition on becoming visible and on being hidden.
     /// </summary>
-    ToolTipTransitioning TransitionType { get; set; }
+    public ToolTipTransitioning TransitionType { get; set; }
 
-    bool HideOnMouseAction { get; set; }
+    public bool HideOnMouseAction { get; set; }
 
     /// <summary>
     ///   Control node of this tooltip
     /// </summary>
-    Control ToolTipNode { get; }
+    public Control ToolTipNode { get; }
 }

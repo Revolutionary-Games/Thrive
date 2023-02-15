@@ -16,14 +16,14 @@
         /// <param name="inputSave">Save name that can be used to read the save data</param>
         /// <param name="outputSave">Target name of the upgraded save</param>
         /// <returns>The new version of the upgraded save</returns>
-        string PerformUpgrade(SaveInformation saveInfo, string inputSave, string outputSave);
+        public string PerformUpgrade(SaveInformation saveInfo, string inputSave, string outputSave);
 
         /// <summary>
         ///   Calculates what the version of save would be if PerformUpgrade is ran on it
         /// </summary>
         /// <param name="saveInfo">The save info to inspect</param>
         /// <returns>The version after upgrade, null if can't upgrade</returns>
-        string VersionAfterUpgrade(SaveInformation saveInfo);
+        public string VersionAfterUpgrade(SaveInformation saveInfo);
     }
 
     public static class SaveUpgradeSteps

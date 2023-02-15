@@ -11,9 +11,9 @@ public interface ICacheableData
     /// </summary>
     /// <param name="cacheData">The data read from the cache based on the hash of this object</param>
     /// <returns>True if all data matches, false if the data doesn't match us (indicates a hash conflict)</returns>
-    bool MatchesCacheParameters(ICacheableData cacheData);
+    public bool MatchesCacheParameters(ICacheableData cacheData);
 
-    long ComputeCacheHash();
+    public long ComputeCacheHash();
 }
 
 public static class CacheableDataExtensions

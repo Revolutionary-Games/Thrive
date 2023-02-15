@@ -8,17 +8,17 @@ public interface ITutorialGUI
     /// <summary>
     ///   What game state this tutorial GUI is associated with
     /// </summary>
-    MainGameState AssociatedGameState { get; }
+    public MainGameState AssociatedGameState { get; }
 
     /// <summary>
     ///   Which object receives events from this tutorial
     /// </summary>
-    ITutorialInput? EventReceiver { get; set; }
+    public ITutorialInput? EventReceiver { get; set; }
 
     /// <summary>
     ///   Used to ignore reporting closing back to whoever is setting the visible properties
     /// </summary>
-    bool IsClosingAutomatically { get; set; }
+    public bool IsClosingAutomatically { get; set; }
 
     /// <summary>
     ///   True when the tutorial selected boxes have been left untouched (on).
@@ -31,28 +31,28 @@ public interface ITutorialGUI
     ///     to fix this
     ///   </para>
     /// </remarks>
-    bool TutorialEnabledSelected { get; }
+    public bool TutorialEnabledSelected { get; }
 
     /// <summary>
     ///   The main GUI node
     /// </summary>
-    Node GUINode { get; }
+    public Node GUINode { get; }
 
     /// <summary>
     ///   A button that closes all tutorials was pressed by the user
     /// </summary>
-    void OnClickedCloseAll();
+    public void OnClickedCloseAll();
 
     /// <summary>
     ///   A button for closing specific tutorial was pressed by the user
     /// </summary>
     /// <param name="closedThing">Name of the tutorials that should be closed</param>
-    void OnSpecificCloseClicked(string closedThing);
+    public void OnSpecificCloseClicked(string closedThing);
 
     /// <summary>
     ///   Value for tutorials being on was toggled by the user, and should be applied when the current tutorial is
     ///   closed
     /// </summary>
     /// <param name="value">Whether tutorials should be on</param>
-    void OnTutorialEnabledValueChanged(bool value);
+    public void OnTutorialEnabledValueChanged(bool value);
 }

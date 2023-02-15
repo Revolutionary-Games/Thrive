@@ -3,5 +3,5 @@
 /// </summary>
 public interface ISaveLoadable
 {
-    void FinishLoading(ISaveContext? context);
+    public void FinishLoading(ISaveContext? context);
 }

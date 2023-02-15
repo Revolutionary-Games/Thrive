@@ -2,8 +2,8 @@
 
 public interface IPhotographable
 {
-    string SceneToPhotographPath { get; }
+    public string SceneToPhotographPath { get; }
 
-    void ApplySceneParameters(Spatial instancedScene);
-    float CalculatePhotographDistance(Spatial instancedScene);
+    public void ApplySceneParameters(Spatial instancedScene);
+    public float CalculatePhotographDistance(Spatial instancedScene);
 }
