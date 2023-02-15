@@ -56,7 +56,7 @@ public static class StringUtils
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///      This should always be used instead of <see cref="string.Format(string,object)"/>
+    ///     This should always be used instead of <see cref="string.Format(string,object)"/>
     ///   </para>
     /// </remarks>
     /// <param name="format">The format to use</param>
@@ -81,7 +81,7 @@ public static class StringUtils
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>
-    ///  <para>
+    ///   <para>
     ///     Only handles a single whitespace ( ) and not tabs, multiple spaces, etc. For quoted
     ///     substrings handling, this only considers double quotes (") and not apostrophes (').
     ///     If there is no closing quote after an opening quote, the rest of string is considered within quotes.

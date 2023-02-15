@@ -66,7 +66,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public LateMulticellularSpecies Species { get; private set; } = null!;
 
     /// <summary>
-    ///    True when this is the player's creature
+    ///   True when this is the player's creature
     /// </summary>
     [JsonProperty]
     public bool IsPlayerCreature { get; private set; }

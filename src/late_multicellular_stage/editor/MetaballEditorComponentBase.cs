@@ -765,7 +765,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     /// </summary>
     /// <param name="position">Position to check</param>
     /// <param name="rotation">
-    ///     The rotation to check for the hex (only makes sense when placing a group of hexes)
+    ///   The rotation to check for the hex (only makes sense when placing a group of hexes)
     /// </param>
     /// <param name="metaball">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>

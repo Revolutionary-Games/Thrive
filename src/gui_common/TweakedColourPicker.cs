@@ -12,8 +12,10 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   This is where presets are stored after a colour picker exited scene tree.
     ///   <remarks>
-    ///     The Key is the group name; <br />
-    ///     The Value is the preset storage.
+    ///     <para>
+    ///       The Key is the group name; <br />
+    ///       The Value is the preset storage.
+    ///     </para>
     ///   </remarks>
     /// </summary>
     private static readonly Dictionary<string, PresetGroupStorage> PresetsStorage = new();
@@ -96,8 +98,10 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   Change the picker's HSV mode.
     ///   <remarks>
-    ///     This is not named HSVMode because this hides a Godot property to ensure that
-    ///     when switching HSV mode the buttons get properly updated.
+    ///     <para>
+    ///       This is not named HSVMode because this hides a Godot property to ensure that
+    ///       when switching HSV mode the buttons get properly updated.
+    ///     </para>
     ///   </remarks>
     /// </summary>
     [Export]
@@ -303,8 +307,10 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   Change the TweakedColourPicker's current colour.
     ///   <remarks>
-    ///     This emits the color_changed signal, used by the custom colour picker preset when it's selected so
-    ///     that other elements can be notified of the newly selected colour.
+    ///     <para>
+    ///       This emits the color_changed signal, used by the custom colour picker preset when it's selected so
+    ///       that other elements can be notified of the newly selected colour.
+    ///     </para>
     ///   </remarks>
     /// </summary>
     public void SetColour(Color colour)

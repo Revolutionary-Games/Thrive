@@ -365,9 +365,9 @@ public class PatchMapDrawer : Control
     ///   the one with highest priority.
     /// </summary>
     /// <remarks>
-    ///  <para>
-    ///    Priority: Direct path > L-shape path > Z-shape path > U-shape path
-    /// </para>
+    ///   <para>
+    ///     Priority: Direct path > L-shape path > Z-shape path > U-shape path
+    ///   </para>
     /// </remarks>
     /// <returns>Path represented in a Vector2 array</returns>
     private Vector2[] GetLeastIntersectingPath(PatchRegion start, PatchRegion end)
