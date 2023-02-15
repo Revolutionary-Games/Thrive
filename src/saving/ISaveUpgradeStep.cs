@@ -139,28 +139,32 @@
         /// <param name="children">The children of the given property</param>
         /// <remarks>
         ///   <para>
-        ///     Changes a json like
-        ///     "1": {
-        ///       ...
-        ///       "Aggression": 126.188889,
-        ///       "Opportunism": 34.3588943,
-        ///       "Fear": 52.6969757,
-        ///       "Activity": 74.67135,
-        ///       "Focus": 111.778221,
-        ///       ...
-        ///     }
-        ///     to
-        ///     "1": {
-        ///       ...
-        ///       "Behaviour": {
+        ///     Changes a json like:
+        ///     <code>
+        ///       "1": {
+        ///         ...
         ///         "Aggression": 126.188889,
         ///         "Opportunism": 34.3588943,
         ///         "Fear": 52.6969757,
         ///         "Activity": 74.67135,
-        ///         "Focus": 111.778221
-        ///       },
-        ///       ...
-        ///     }
+        ///         "Focus": 111.778221,
+        ///         ...
+        ///       }
+        ///     </code>
+        ///     to
+        ///     <code>
+        ///       "1": {
+        ///         ...
+        ///         "Behaviour": {
+        ///           "Aggression": 126.188889,
+        ///           "Opportunism": 34.3588943,
+        ///           "Fear": 52.6969757,
+        ///           "Activity": 74.67135,
+        ///           "Focus": 111.778221
+        ///         },
+        ///         ...
+        ///       }
+        ///     </code>
         ///   </para>
         /// </remarks>
         private void UpgradeBehaviouralValues(JProperty property, JEnumerable<JProperty> children)

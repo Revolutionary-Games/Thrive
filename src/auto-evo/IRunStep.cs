@@ -10,19 +10,19 @@
         ///   than initially
         /// </summary>
         /// <value>The total steps.</value>
-        int TotalSteps { get; }
+        public int TotalSteps { get; }
 
         /// <summary>
         ///   If true this step can be ran concurrently with other steps. If false all previous steps need to finish
         ///   before this can be ran.
         /// </summary>
-        bool CanRunConcurrently { get; }
+        public bool CanRunConcurrently { get; }
 
         /// <summary>
-        /// Performs a single step. This needs to be called TotalSteps times
+        ///   Performs a single step. This needs to be called TotalSteps times
         /// </summary>
         /// <returns>True once final step is complete</returns>
         /// <param name="results">Results are stored here</param>
-        bool RunStep(RunResults results);
+        public bool RunStep(RunResults results);
     }
 }

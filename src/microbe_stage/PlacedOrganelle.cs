@@ -470,8 +470,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Returns the rotated position, as it should be in the colony.
-    ///  Used for re-parenting shapes to other microbes
+    ///   Returns the rotated position, as it should be in the colony.
+    ///   Used for re-parenting shapes to other microbes
     /// </summary>
     public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
     {
@@ -503,7 +503,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Re-parents the organelle shape to the "to" microbe.
+    ///   Re-parents the organelle shape to the "to" microbe.
     /// </summary>
     public void ReParentShapes(Microbe to, Vector3 offset)
     {

@@ -330,7 +330,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     /// <summary>
-    /// Removes unmarked spawners from List.
+    ///   Removes unmarked spawners from List.
     /// </summary>
     /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)

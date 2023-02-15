@@ -11,8 +11,10 @@ using Newtonsoft.Json;
 ///   This class is json serializable as long as all IFormattable's are serializable.
 /// </summary>
 /// <remarks>
-///   When adding a IFormattable(e.g. Number, or LocalizedString),
-///   the object is cached in a list and a string format index ({0}) is added to the StringBuilder.
+///   <para>
+///     When adding a IFormattable(e.g. Number, or LocalizedString),
+///     the object is cached in a list and a string format index ({0}) is added to the StringBuilder.
+///   </para>
 /// </remarks>
 [JSONDynamicTypeAllowed]
 public class LocalizedStringBuilder : IFormattable

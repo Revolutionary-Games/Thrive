@@ -205,7 +205,9 @@ public class Save
     ///   Writes this save to disk.
     /// </summary>
     /// <remarks>
-    ///   In order to save the screenshot as png this needs to save it to a temporary file on disk.
+    ///   <para>
+    ///     In order to save the screenshot as png this needs to save it to a temporary file on disk.
+    ///   </para>
     /// </remarks>
     public void SaveToFile()
     {

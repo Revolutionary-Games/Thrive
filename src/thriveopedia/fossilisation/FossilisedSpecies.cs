@@ -12,7 +12,7 @@ using File = Godot.File;
 using Path = System.IO.Path;
 
 /// <summary>
-///    A species saved by the user. Contains helper methods for saving/loading species on the disk.
+///   A species saved by the user. Contains helper methods for saving/loading species on the disk.
 /// </summary>
 public class FossilisedSpecies
 {

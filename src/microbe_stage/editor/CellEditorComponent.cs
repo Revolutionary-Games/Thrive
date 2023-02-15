@@ -2009,8 +2009,10 @@ public partial class CellEditorComponent :
     ///   Creates part and membrane selection buttons
     /// </summary>
     /// <remarks>
-    ///   This doesn't multiply the shown MP Cost by the cost factor as this is called much earlier before editor is
-    ///   initialized proper, for that use <see cref="UpdateMicrobePartSelections"/> or <see cref="UpdateMPCost"/>.
+    ///   <para>
+    ///     This doesn't multiply the shown MP Cost by the cost factor as this is called much earlier before editor is
+    ///     initialized proper, for that use <see cref="UpdateMicrobePartSelections"/> or <see cref="UpdateMPCost"/>.
+    ///   </para>
     /// </remarks>
     private void SetupMicrobePartSelections()
     {

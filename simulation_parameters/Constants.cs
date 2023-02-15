@@ -103,7 +103,9 @@ public static class Constants
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
     /// <remarks>
-    ///   this is applied *per* hex
+    ///   <para>
+    ///     this is applied *per* hex
+    ///   </para>
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 

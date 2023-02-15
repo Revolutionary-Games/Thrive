@@ -24,7 +24,7 @@ public class DraggableScrollContainer : ScrollContainer
     private bool zooming;
 
     /// <summary>
-    ///  Whether we're currently centering to a specific coordinate, to prevent dragging while it's still happening.
+    ///   Whether we're currently centering to a specific coordinate, to prevent dragging while it's still happening.
     /// </summary>
     private bool centering;
 

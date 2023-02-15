@@ -1341,7 +1341,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     }
 
     /// <summary>
-    ///  Updates the different bars and panels that should be displayed to the screen
+    ///   Updates the different bars and panels that should be displayed to the screen
     /// </summary>
     private void UpdateBarVisibility(Func<Compound, bool> isUseful)
     {

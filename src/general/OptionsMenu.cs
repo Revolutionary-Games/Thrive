@@ -927,7 +927,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the current viewport resolution
+    ///   Displays the current viewport resolution
     /// </summary>
     private void DisplayResolution()
     {
@@ -940,7 +940,7 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the GPU name, the display driver name and used video memory
+    ///   Displays the GPU name, the display driver name and used video memory
     /// </summary>
     private void DisplayGpuInfo()
     {
