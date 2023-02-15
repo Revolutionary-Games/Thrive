@@ -256,7 +256,7 @@
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
   &lt;/TypePattern&gt;
-  &lt;TypePattern DisplayName="Type layout"&gt;
+  &lt;TypePattern DisplayName="Type layout (StyleCop compatible)" RemoveRegions="All"&gt;
     &lt;TypePattern.Match&gt;
       &lt;Or&gt;
         &lt;Kind Is="Class" /&gt;
@@ -277,7 +277,7 @@
         &lt;/Or&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
         &lt;Static /&gt;
         &lt;Readonly /&gt;
       &lt;/Entry.SortBy&gt;
@@ -287,7 +287,7 @@
         &lt;Kind Is="Constructor" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
         &lt;Static /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
@@ -301,7 +301,7 @@
         &lt;Kind Is="Delegate" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
     &lt;Entry DisplayName="Events"&gt;
@@ -309,7 +309,7 @@
         &lt;Kind Is="Event" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
         &lt;Static /&gt;
         &lt;Abstract /&gt;
         &lt;ImplementsInterface /&gt;
@@ -323,7 +323,7 @@
         &lt;Kind Is="Enum" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
     &lt;Entry DisplayName="Interfaces"&gt;
@@ -331,7 +331,7 @@
         &lt;Kind Is="Interface" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
     &lt;Entry DisplayName="Properties"&gt;
@@ -339,7 +339,7 @@
         &lt;Kind Is="Property" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
         &lt;Static /&gt;
         &lt;Abstract /&gt;
         &lt;ImplementsInterface /&gt;
@@ -358,7 +358,7 @@
         &lt;Kind Is="Indexer" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
         &lt;Abstract /&gt;
         &lt;ImplementsInterface /&gt;
         &lt;Virtual /&gt;
@@ -371,7 +371,7 @@
         &lt;Kind Is="Method" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
         &lt;Static /&gt;
         &lt;Abstract /&gt;
         &lt;ImplementsInterface /&gt;
@@ -385,7 +385,7 @@
         &lt;Kind Is="Struct" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
     &lt;Entry DisplayName="Classes"&gt;
@@ -393,7 +393,7 @@
         &lt;Kind Is="Class" /&gt;
       &lt;/Entry.Match&gt;
       &lt;Entry.SortBy&gt;
-        &lt;Access /&gt;
+        &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;
       &lt;/Entry.SortBy&gt;
     &lt;/Entry&gt;
   &lt;/TypePattern&gt;
