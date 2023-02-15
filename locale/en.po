@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-10 15:21+0200\n"
-"PO-Revision-Date: 2023-02-11 11:49+0200\n"
+"POT-Creation-Date: 2023-02-13 20:52-0800\n"
+"PO-Revision-Date: 2023-02-13 20:55-0800\n"
 "Last-Translator: Sur3 <sur3@gmx.de>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -215,7 +215,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Art by {0}"
 
-#: ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:540
 msgid "ART_GALLERY"
 msgstr "Art Gallery"
 
@@ -313,7 +313,7 @@ msgstr "Autosave during the game"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:432
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Exploring Tool"
 
@@ -355,10 +355,10 @@ msgid "AWAKEN"
 msgstr "Awaken"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:481 ../src/general/MainMenu.tscn:583
-#: ../src/general/MainMenu.tscn:642 ../src/general/MainMenu.tscn:961
+#: ../src/general/MainMenu.tscn:480 ../src/general/MainMenu.tscn:582
+#: ../src/general/MainMenu.tscn:641 ../src/general/MainMenu.tscn:973
 #: ../src/general/NewGameSettings.tscn:1184
-#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -459,7 +459,7 @@ msgstr "Opportunism"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
-#: ../src/general/MainMenu.tscn:448
+#: ../src/general/MainMenu.tscn:447
 msgid "BENCHMARKS"
 msgstr "Benchmarks"
 
@@ -917,19 +917,19 @@ msgstr "Saturation value, the amount of gray in a particular colour"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) value, brightness or intensity of the colour"
 
-#: ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:701
 msgid "COMMUNITY_FORUM"
 msgstr "Community Forum"
 
-#: ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:696
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Join the Thrive community on our community forum"
 
-#: ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:743
 msgid "COMMUNITY_WIKI"
 msgstr "Community Wiki"
 
-#: ../src/general/MainMenu.tscn:739
+#: ../src/general/MainMenu.tscn:738
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Visit our community wiki"
 
@@ -996,7 +996,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRM"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:312
+#: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
 msgid "CONFIRM_EXIT"
 msgstr "Confirm Exit"
@@ -1135,7 +1135,7 @@ msgstr "Creating..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creating objects from save"
 
-#: ../src/general/MainMenu.tscn:367
+#: ../src/general/MainMenu.tscn:366
 msgid "CREDITS"
 msgstr "Credits"
 
@@ -1320,11 +1320,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Developers"
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:715
 msgid "DEVELOPMENT_FORUM"
 msgstr "Development Forum"
 
-#: ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:710
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "View development updates on our development forum"
 
@@ -1332,11 +1332,11 @@ msgstr "View development updates on our development forum"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Development Supported By Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:730
+#: ../src/general/MainMenu.tscn:729
 msgid "DEVELOPMENT_WIKI"
 msgstr "Development Wiki"
 
-#: ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:724
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Visit our developer wiki"
 
@@ -1464,7 +1464,7 @@ msgstr ""
 "There are placed organelles, which are not connected to the rest.\n"
 "Please connect all placed organelles with each other or undo your changes."
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:896
 msgid "DISCORD_TOOLTIP"
 msgstr "Join our community Discord server"
 
@@ -1478,7 +1478,7 @@ msgstr ""
 "This shows how many popups have been permanently dismissed by the user.\n"
 "If some popups that are actually wanted are dismissed, the button next to this can be used to make all dismissed popups appear again."
 
-#: ../src/general/MainMenu.tscn:1072
+#: ../src/general/MainMenu.tscn:1084
 msgid "DISMISS_PERMANENTLY"
 msgstr "Don't show this again"
 
@@ -1525,7 +1525,7 @@ msgstr "Double click to view in fullscreen"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
 
-#: ../src/general/MainMenu.tscn:1015
+#: ../src/general/MainMenu.tscn:1027
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr "Do not warn about this again"
 
@@ -1822,11 +1822,11 @@ msgstr "An exception happened while processing loaded objects"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
 
-#: ../src/general/PauseMenu.tscn:240
+#: ../src/general/PauseMenu.tscn:247
 msgid "EXIT"
 msgstr "Exit"
 
-#: ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:376
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
 
@@ -1876,7 +1876,7 @@ msgstr "extinct in patch"
 msgid "EXTINCT_SPECIES"
 msgstr "Extinct Species"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:357
 msgid "EXTRAS"
 msgstr "Extras"
 
@@ -1884,7 +1884,7 @@ msgstr "Extras"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra Options"
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:908
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Visit our Facebook page"
 
@@ -2111,7 +2111,7 @@ msgstr "Generations"
 msgid "GENERATION_COLON"
 msgstr "Generation:"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:860
 msgid "GITHUB_TOOLTIP"
 msgstr "Visit our GitHub repository"
 
@@ -2119,11 +2119,11 @@ msgstr "Visit our GitHub repository"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:993
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
-#: ../src/general/MainMenu.tscn:983
+#: ../src/general/MainMenu.tscn:995
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "You are running Thrive with GLES2. This is severely untested and is likely to cause issues. Try to update your video drivers and/or force AMD or Nvidia graphics to be used to run Thrive."
 
@@ -2407,7 +2407,7 @@ msgstr "Iron"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Iron Chemolithoautotrophy"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:836
 msgid "ITCH_TOOLTIP"
 msgstr "Visit our Itch.io page"
 
@@ -2783,7 +2783,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Left mouse"
 
-#: ../src/general/MainMenu.tscn:552
+#: ../src/general/MainMenu.tscn:551
 msgid "LICENSES"
 msgstr "Licenses"
 
@@ -2942,12 +2942,12 @@ msgstr "Press the undo button in the editor to correct a mistake"
 msgid "LOAD_FINISHED"
 msgstr "Load finished"
 
-#: ../src/general/MainMenu.tscn:321 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Load previously saved games"
 
@@ -3150,7 +3150,7 @@ msgid "MICROBES_COUNT"
 msgstr "Microbe count:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:613
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Benchmark"
 
@@ -3233,7 +3233,7 @@ msgstr "Each generation, you have 100 mutation points (MP) to spend, and each ch
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success. Each visit to the editor in the Microbe Stage represents [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] million years of evolution."
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:420
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
@@ -3480,11 +3480,11 @@ msgstr "Modify Organelle"
 msgid "MODIFY_TYPE"
 msgstr "Modify Type"
 
-#: ../src/general/MainMenu.tscn:527
+#: ../src/general/MainMenu.tscn:526
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:999
+#: ../src/general/MainMenu.tscn:1011
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Installed mods have been detected, but there are no enabled mods.\n"
@@ -3573,11 +3573,11 @@ msgstr "Internal (Folder) Name:"
 msgid "MOD_LICENSE"
 msgstr "Mod License:"
 
-#: ../src/general/MainMenu.tscn:1039
+#: ../src/general/MainMenu.tscn:1051
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Loading Errors"
 
-#: ../src/general/MainMenu.tscn:1040
+#: ../src/general/MainMenu.tscn:1052
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
@@ -3821,11 +3821,11 @@ msgstr "NEWS"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Initial population for biodiversity-increasing species"
 
-#: ../src/general/MainMenu.tscn:308
+#: ../src/general/MainMenu.tscn:307
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:301
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start a new game"
 
@@ -3937,7 +3937,7 @@ msgstr "No events recorded"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "No fossils directory found"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:998
 msgid "NO_MODS_ENABLED"
 msgstr "No Mods Enabled"
 
@@ -4002,15 +4002,15 @@ msgstr "N/A MP"
 msgid "OCTOBER"
 msgstr "October"
 
-#: ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:687
 msgid "OFFICIAL_WEBSITE"
 msgstr "Official Website"
 
-#: ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:678
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Visit the official Revolutionary Games website"
 
-#: ../src/general/MainMenu.tscn:1029 ../src/general/MainMenu.tscn:1086
+#: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
@@ -4090,11 +4090,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistic"
 
-#: ../src/general/MainMenu.tscn:331 ../src/general/PauseMenu.tscn:224
+#: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:328 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
@@ -4342,7 +4342,7 @@ msgstr "Changes:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "View the full details of this release on [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:848
 msgid "PATREON_TOOLTIP"
 msgstr "Visit our Patreon page"
 
@@ -4617,12 +4617,12 @@ msgstr "Quick load"
 msgid "QUICK_SAVE"
 msgstr "Quick save"
 
-#: ../src/general/MainMenu.tscn:390
+#: ../src/general/MainMenu.tscn:389
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/general/MainMenu.tscn:374 ../src/general/MainMenu.tscn:384
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
+#: ../src/general/PauseMenu.tscn:246
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Exit the game"
 
@@ -4663,7 +4663,7 @@ msgstr "Ready"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Recommended Thrive:"
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:884
 msgid "REDDIT_TOOLTIP"
 msgstr "Visit our subreddit"
 
@@ -4687,6 +4687,10 @@ msgstr "Refund migrations in case of extinction in the target patch"
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:112
 msgid "REPORT"
 msgstr "Report"
+
+#: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:231
+msgid "REPORT_BUG"
+msgstr "Report a Bug"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
@@ -4783,12 +4787,12 @@ msgstr "Resume"
 msgid "RESUME_TOOLTIP"
 msgstr "Resume the game"
 
-#: ../src/general/PauseMenu.tscn:232
+#: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Return to Menu"
 
-#: ../src/general/PauseMenu.tscn:231
+#: ../src/general/PauseMenu.tscn:238
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Exit to the main menu"
 
@@ -4799,7 +4803,7 @@ msgstr ""
 "Are you sure you want to exit to the main menu?\n"
 "You will lose any unsaved progress."
 
-#: ../src/general/MainMenu.tscn:799
+#: ../src/general/MainMenu.tscn:811
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visit official Revolutionary Games sites"
 
@@ -4885,7 +4889,7 @@ msgstr "Rusticyanin is a protein able to use [thrive:compound type=\"carbondioxi
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:1035
+#: ../src/general/MainMenu.tscn:1047
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive has started in safe mode due to a previous start failure.\n"
@@ -4897,7 +4901,7 @@ msgstr ""
 "\n"
 "If you don't fix the issue causing the start failure you will need to restart and crash Thrive multiple times to get back to safe mode."
 
-#: ../src/general/MainMenu.tscn:1033
+#: ../src/general/MainMenu.tscn:1045
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Started In Safe Mode"
 
@@ -5446,17 +5450,17 @@ msgstr "Steam is unavailable currently, please retry"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unknown Steam error happened"
 
-#: ../src/general/MainMenu.tscn:1090
+#: ../src/general/MainMenu.tscn:1102
 msgid "STEAM_INIT_FAILED"
 msgstr "Steam Initialization Failed"
 
-#: ../src/general/MainMenu.tscn:1092
+#: ../src/general/MainMenu.tscn:1104
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Steam client library initialization has failed. Steam features will be unavailable.\n"
 "Please make sure you have Steam running and are logged in with the right account. Please run the game through the Steam client software if this error does not go away otherwise."
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:824
 msgid "STEAM_TOOLTIP"
 msgstr "Visit our Steam page"
 
@@ -5611,7 +5615,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
-#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1056
+#: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Thank you for supporting Thrive development by purchasing this copy of Thrive!\n"
@@ -5627,7 +5631,7 @@ msgstr ""
 "\n"
 "If you enjoyed the game, please tell your friends about us."
 
-#: ../src/general/MainMenu.tscn:1046
+#: ../src/general/MainMenu.tscn:1058
 msgid "THANK_YOU_TITLE"
 msgstr "Thank You"
 
@@ -5686,7 +5690,7 @@ msgstr "This mod is downloaded from the Steam Workshop"
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:513 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -5842,7 +5846,7 @@ msgstr "Pause"
 msgid "TOGGLE_UNBINDING"
 msgstr "Toggle unbinding"
 
-#: ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:339
 msgid "TOOLS"
 msgstr "Tools"
 
@@ -6068,7 +6072,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
 
-#: ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:920
 msgid "TWITTER_TOOLTIP"
 msgstr "Visit our Twitter feed"
 
@@ -6267,7 +6271,7 @@ msgstr "View Patch Notes"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "View latest or all Thrive patch notes now"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:348
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"
 
@@ -6279,7 +6283,7 @@ msgstr "VIP Supporters"
 msgid "VISIBLE"
 msgstr "Visible"
 
-#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
+#: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
 
@@ -6434,7 +6438,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "years"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:872
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visit our YouTube channel"
 

@@ -163,9 +163,9 @@ mouse_filter = 2
 
 [node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 515.0
-margin_top = 155.0
+margin_top = 130.0
 margin_right = 765.0
-margin_bottom = 565.0
+margin_bottom = 590.0
 theme = ExtResource( 2 )
 custom_constants/separation = 10
 __meta__ = {
@@ -215,34 +215,41 @@ rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "HELP_BUTTON_TOOLTIP"
 text = "HELP"
 
-[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu"]
+[node name="ReportBug" type="Button" parent="CenterContainer/PrimaryMenu"]
 margin_top = 260.0
 margin_right = 250.0
 margin_bottom = 300.0
+rect_min_size = Vector2( 250, 40 )
+text = "REPORT_BUG"
+
+[node name="Options" type="Button" parent="CenterContainer/PrimaryMenu"]
+margin_top = 310.0
+margin_right = 250.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
 text = "OPTIONS"
 
 [node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu"]
-margin_top = 310.0
+margin_top = 360.0
 margin_right = 250.0
-margin_bottom = 350.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "RETURN_TO_MENU_TOOLTIP"
 text = "RETURN_TO_MENU"
 
 [node name="Exit" type="Button" parent="CenterContainer/PrimaryMenu"]
-margin_top = 360.0
+margin_top = 410.0
 margin_right = 250.0
-margin_bottom = 400.0
+margin_bottom = 450.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "QUIT_BUTTON_TOOLTIP"
 text = "EXIT"
 
 [node name="FocusGrabber" parent="CenterContainer/PrimaryMenu" instance=ExtResource( 9 )]
-margin_top = 410.0
+margin_top = 460.0
 margin_right = 250.0
-margin_bottom = 410.0
+margin_bottom = 460.0
 SkipOverridingFocusForElements = [ NodePath("../../..") ]
 Priority = 1
 NodeToGiveFocusTo = NodePath("../Resume")
@@ -321,6 +328,7 @@ anims/RESET = SubResource( 3 )
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Thriveopedia" to="." method="OpenThriveopediaPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenHelpPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/ReportBug" to="." method="OpenReportBugPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Exit" to="." method="ExitPressed"]
