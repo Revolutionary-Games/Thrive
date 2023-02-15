@@ -1167,20 +1167,14 @@ msgid "CONTROLLER_DEADZONES"
 msgstr "Totzonen kalibrieren"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. "
-"Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro "
-"Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo "
-"verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut "
-"die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für "
-"jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr "
-"gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur "
-"Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie "
-"gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness "
-"ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle "
-"verwerten kann."
+"Mit diesem Werkzeug können die Deadzones der Controllerachsen konfiguriert "
+"werden. Die Größe der Deadzone kontrolliert wie viel ein Controlstick (oder "
+"analoge Taste) bewegt werden muss, bevor die Bewegung als Eingabe erkannt "
+"wird.\n"
+"Bitte bewege alle Controlsticks und lasse sie wieder los, und drücke alle "
+"analogen Tasten und lasse sie wieder los."
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
@@ -2051,16 +2045,16 @@ msgstr "Beenden zum Launcher"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "EXPORT_ALL_WORLDS"
-msgstr ""
+msgstr "Alle Welten exportieren"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:444
-#, fuzzy
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr "Dies ist die exakte Version dieser Thrive Instanz"
+msgstr ""
+"Exportiere die Daten aller Welten i CSV-Format (comma-separated values)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
 msgid "EXPORT_SUCCESS"
-msgstr ""
+msgstr "Erfolgreich exportiert"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:618
 msgid "EXTERNAL"
