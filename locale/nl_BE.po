@@ -10,8 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
-"Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
-"com/projects/thrive/thrive-game/nl_BE/>\n"
+"Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,8 +74,7 @@ msgstr "Huidige discussies:"
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
-"Sessiele microben zullen stationair zijn en wachten tot de omgeving "
-"verandert voordat ze handelen."
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -108,8 +106,7 @@ msgstr "Middelen"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
-"en hebben meer kans om roofdieren te bestrijden wanneer ze worden "
-"aangevallen.\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
 "Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
 "en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
 
@@ -197,14 +194,11 @@ msgstr "April"
 
 #: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
-"Ben je zeker dat je ALLE instellingen wilt resetten naar de standaardwaarden?"
+msgstr "Ben je zeker dat je ALLE instellingen wilt resetten naar de standaardwaarden?"
 
 #: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
-"Bent u zeker dat u de invoersinstellingen wilt resetten naar de "
-"standaardwaarden?"
+msgstr "Bent u zeker dat u de invoersinstellingen wilt resetten naar de standaardwaarden?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 #, fuzzy
@@ -219,7 +213,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Kunst door {0}"
 
-#: ../src/general/MainMenu.tscn:540 ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:540
 msgid "ART_GALLERY"
 msgstr "Kunst galerij"
 
@@ -239,10 +233,8 @@ msgstr "Ga er van uit dat de CPU hyperthreading heeft ingeschakeld"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4060
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
-"Het kan niet automatisch worden gedetecteerd of hyperthreading is "
-"ingeschakeld of niet.\n"
-"Dit heeft invloed op het standaard aantal threads, aangezien hyperthreading-"
-"threads niet zo snel zijn als echte CPU-cores."
+"Het kan niet automatisch worden gedetecteerd of hyperthreading is ingeschakeld of niet.\n"
+"Dit heeft invloed op het standaard aantal threads, aangezien hyperthreading-threads niet zo snel zijn als echte CPU-cores."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:645
@@ -308,10 +300,8 @@ msgstr "Auto-Evo voorspelling"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Dit paneel toont de verwachte populatie van auto-evo voor de bewerkte "
-"soort.\n"
-"Auto-evo voert de populatiesimulatie uit die het andere deel is (naast uw "
-"eigen prestaties) dat uw populatie beïnvloedt."
+"Dit paneel toont de verwachte populatie van auto-evo voor de bewerkte soort.\n"
+"Auto-evo voert de populatiesimulatie uit die het andere deel is (naast uw eigen prestaties) dat uw populatie beïnvloedt."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
@@ -325,7 +315,7 @@ msgstr "Autosave tijdens het spelen"
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:432
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "loopstatus:"
@@ -376,9 +366,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/MainMenu.tscn:481
-#: ../src/general/MainMenu.tscn:583 ../src/general/MainMenu.tscn:642
-#: ../src/general/MainMenu.tscn:961 ../src/general/PauseMenu.tscn:275
+#: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr "Terug"
 
@@ -484,7 +472,7 @@ msgstr "Gedrag"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m onder zeeniveau"
 
-#: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
+#: ../src/general/MainMenu.tscn:447
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -530,20 +518,11 @@ msgstr "Verbindings agent"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
-"Maakt binding met andere cellen mogelijk. Dit is de eerste stap naar "
-"meercelligheid. Wanneer uw cel deel uitmaakt van een kolonie, worden "
-"verbindingen tussen cellen gedeeld. Je kunt de editor niet openen als je "
-"deel uitmaakt van een kolonie, dus je moet de binding opheffen als je "
-"eenmaal genoeg verbindingen hebt verzameld om je cel te verdelen."
+msgstr "Maakt binding met andere cellen mogelijk. Dit is de eerste stap naar meercelligheid. Wanneer uw cel deel uitmaakt van een kolonie, worden verbindingen tussen cellen gedeeld. Je kunt de editor niet openen als je deel uitmaakt van een kolonie, dus je moet de binding opheffen als je eenmaal genoeg verbindingen hebt verzameld om je cel te verdelen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
-"Druk [thrive:input]g_toggle_binding[/thrive:input] om verbinding modus te "
-"togglen. In verbinding modus kan je jezelf verbinden met andere cellen door "
-"tegen ze aan te bewegen. Om een kolonie te verlaten druk [thrive:"
-"input]g_unbind_all[/thrive:input]."
+msgstr "Druk [thrive:input]g_toggle_binding[/thrive:input] om verbinding modus te togglen. In verbinding modus kan je jezelf verbinden met andere cellen door tegen ze aan te bewegen. Om een kolonie te verlaten druk [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
@@ -601,11 +580,7 @@ msgstr "Calciumcarbonaat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Dit membraan heeft een sterke schelp gemaakt van calciumcarbonaat. Het kan "
-"gemakkelijk schade weerstaan en vereist minder energie om niet te vervormen. "
-"De nadelen van het hebben van zo een zware schelp is dat de cel veel "
-"langzamer is en lang doet over het absorberen van stoffen."
+msgstr "Dit membraan heeft een sterke schelp gemaakt van calciumcarbonaat. Het kan gemakkelijk schade weerstaan en vereist minder energie om niet te vervormen. De nadelen van het hebben van zo een zware schelp is dat de cel veel langzamer is en lang doet over het absorberen van stoffen."
 
 #: ../simulation_parameters/common/input_options.json:78
 msgid "CAMERA"
@@ -715,13 +690,7 @@ msgstr "Cellulose"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr ""
-"De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in "
-"de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak "
-"gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met "
-"water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere "
-"substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen "
-"cellen."
+msgstr "De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen cellen."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
@@ -730,11 +699,7 @@ msgstr "Cellulose"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Dit membraan heeft een celwand, wat resulteert in een betere bescherming "
-"tegen algemene schade en vooral tegen fysieke schade. Het kost ook minder "
-"energie om zijn vorm te behouden, maar kan stoffen niet snel absorberen en "
-"is langzamer."
+msgstr "Dit membraan heeft een celwand, wat resulteert in een betere bescherming tegen algemene schade en vooral tegen fysieke schade. Het kost ook minder energie om zijn vorm te behouden, maar kan stoffen niet snel absorberen en is langzamer."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:591
 msgid "CELL_TYPE_NAME"
@@ -773,18 +738,11 @@ msgstr "chemoplastische"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr ""
-"De chemoplast is een door twee membranen omsloten celorganel die proteïnen "
-"die in staat zijn om waterstofsulfide, water en koolstofdioxide in glucose "
-"om te zetten bevat. Dit proces heet chemosynthese. De snelheid van de "
-"glucoseproductie hangt af van de koolstofdioxide concentratie."
+msgstr "De chemoplast is een door twee membranen omsloten celorganel die proteïnen die in staat zijn om waterstofsulfide, water en koolstofdioxide in glucose om te zetten bevat. Dit proces heet chemosynthese. De snelheid van de glucoseproductie hangt af van de koolstofdioxide concentratie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met "
-"concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
@@ -795,19 +753,12 @@ msgstr "chemoplastische"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr ""
-"De chemoplast is een door twee membranen omsloten celorganel die proteïnen "
-"die in staat zijn om waterstofsulfide, water en koolstofdioxide in glucose "
-"om te zetten bevat. Dit proces heet chemosynthese. De snelheid van de "
-"glucoseproductie hangt af van de koolstofdioxide concentratie."
+msgstr "De chemoplast is een door twee membranen omsloten celorganel die proteïnen die in staat zijn om waterstofsulfide, water en koolstofdioxide in glucose om te zetten bevat. Dit proces heet chemosynthese. De snelheid van de glucoseproductie hangt af van de koolstofdioxide concentratie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met "
-"concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
@@ -816,22 +767,11 @@ msgstr "Chemosynthetiserende Proteïnes"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr ""
-"Chemosynthetiserende proteïnen zijn kleine clusters van proteïnen in het "
-"cytoplasma die waterstofsulfide, water en koolstofdioxide kunnen omzetten in "
-"glucose via een proces dat men waterstofsulfide chemosynthese noemt. De "
-"snelheid van de glucoseproductie staat in verband met de concentratie van "
-"koolstofdioxide. Doordat chemosynthetiserende proteïnen als een suspensie "
-"zitten in het cytoplasma, voert de omliggende vloeistof glycolyse uit."
+msgstr "Chemosynthetiserende proteïnen zijn kleine clusters van proteïnen in het cytoplasma die waterstofsulfide, water en koolstofdioxide kunnen omzetten in glucose via een proces dat men waterstofsulfide chemosynthese noemt. De snelheid van de glucoseproductie staat in verband met de concentratie van koolstofdioxide. Doordat chemosynthetiserende proteïnen als een suspensie zitten in het cytoplasma, voert de omliggende vloeistof glycolyse uit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met "
-"concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
-"Verandert ook [thrive:compound type=\"glucose\"][/thrive:compound] in "
-"[thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Verandert ook [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -851,22 +791,11 @@ msgstr "Chitine"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Dit membraan heeft een celwand, wat betekend dat het betere bescherming "
-"heeft tegen algemene schade en vooral tegen toxische schade. Het kost ook "
-"minder energie om zijn vorm te behouden, maar het is langzamer en kan "
-"stoffen niet snel absorberen."
+msgstr "Dit membraan heeft een celwand, wat betekend dat het betere bescherming heeft tegen algemene schade en vooral tegen toxische schade. Het kost ook minder energie om zijn vorm te behouden, maar het is langzamer en kan stoffen niet snel absorberen."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
@@ -875,23 +804,11 @@ msgstr "Chloroplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr ""
-"De choloroplast is een door twee membranen omsloten celorganel dat "
-"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de chloroplast zijn in staat om lichtenergie "
-"te gebruiken om glucose uit water en gasvormige koolstofdioxide te "
-"produceren in een proces dat fotosynthese heet. Deze pigmenten zijn ook wat "
-"het zijn opmerkelijke kleur geeft. De snelheid van de glucoseproductie hangt "
-"af van de koolstofdioxideconcentratie en de lichtintensiteit."
+msgstr "De choloroplast is een door twee membranen omsloten celorganel dat lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de chloroplast zijn in staat om lichtenergie te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat fotosynthese heet. Deze pigmenten zijn ook wat het zijn opmerkelijke kleur geeft. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de lichtintensiteit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio "
-"schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] en intensiteit van [thrive:compound type=\"sunlight\"][/"
-"thrive:compound]."
+msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/saving/NewSaveMenu.cs:98
 #, fuzzy
@@ -904,11 +821,7 @@ msgstr "Chromatische aberratie:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produceert[thrive:compound type=\"glucose\"][/thrive:compound]. Ratio "
-"schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/"
-"thrive:compound]."
+msgstr "Produceert[thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 #, fuzzy
@@ -923,21 +836,12 @@ msgstr "Trilharen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1041,21 +945,21 @@ msgstr "Verzadigingswaarde, de hoeveelheid grijs in een bepaalde kleur"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Waarde (helderheid) waarde, helderheid of intensiteit van de kleur"
 
-#: ../src/general/MainMenu.tscn:701 ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:701
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696 ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:696
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
 
-#: ../src/general/MainMenu.tscn:743 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:743
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "onze Wiki"
 
-#: ../src/general/MainMenu.tscn:738 ../src/general/MainMenu.tscn:739
+#: ../src/general/MainMenu.tscn:738
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
@@ -1102,8 +1006,7 @@ msgstr "Wolken met chemische stoffen"
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 "Opportunistische microben zullen concurreren met rivalen om brokken\n"
-"en zullen proberen prooien op te sporen met gifstoffen als ze hen niet "
-"kunnen verzwelgen.\n"
+"en zullen proberen prooien op te sporen met gifstoffen als ze hen niet kunnen verzwelgen.\n"
 "Voorzichtige microben brengen zichzelf minder in gevaar door brokken."
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
@@ -1135,7 +1038,6 @@ msgstr "BEVESTIGEN"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
-#: ../src/general/PauseMenu.tscn:312
 msgid "CONFIRM_EXIT"
 msgstr "Bevestig Stoppen"
 
@@ -1276,7 +1178,7 @@ msgstr "aan het maken..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objecten creëren vanuit het opgeslagen bestand"
 
-#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:367
+#: ../src/general/MainMenu.tscn:366
 msgid "CREDITS"
 msgstr "Dank"
 
@@ -1313,14 +1215,7 @@ msgstr "Cytoplasma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -1328,9 +1223,7 @@ msgstr "Cytoplasma Glycolyse"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
@@ -1370,9 +1263,7 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr ""
-"Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. "
-"Weet je zeker dat je dit definitief wilt verwijderen?"
+msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:944
 msgid "DEATH"
@@ -1400,9 +1291,7 @@ msgstr "Verwijder"
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
-"Het verwijderen van alle automatisch en snel opgeslagen bestanden kan niet "
-"ongedaan worden gemaakt. Ben je zeker dat je het volgende definitief wilt "
-"verwijderen?\n"
+"Het verwijderen van alle automatisch en snel opgeslagen bestanden kan niet ongedaan worden gemaakt. Ben je zeker dat je het volgende definitief wilt verwijderen?\n"
 " - {0} Automatisch opgeslagen bestand(en)\n"
 " - {1} Snel opgeslagen bestand(en)"
 
@@ -1417,9 +1306,7 @@ msgstr "Organel verwijderen"
 
 #: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
-"Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. "
-"Weet je zeker dat je dit definitief wilt verwijderen?"
+msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:76
 msgid "DELETE_SELECTED"
@@ -1432,10 +1319,7 @@ msgstr "Verwijder geselecteerde opgeslagen bestand(en)?"
 
 #: ../src/saving/SaveManagerGUI.cs:247
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
-"Het verwijderen van het/de geselecteerde opgeslagen bestand(en) kan niet "
-"ongedaan worden gemaakt. Ben je zeker dat je {0} opgeslagen bestand(en) "
-"definitief wilt verwijderen?"
+msgstr "Het verwijderen van het/de geselecteerde opgeslagen bestand(en) kan niet ongedaan worden gemaakt. Ben je zeker dat je {0} opgeslagen bestand(en) definitief wilt verwijderen?"
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
@@ -1473,12 +1357,12 @@ msgstr "Devbuilds Supporters"
 msgid "DEVELOPERS"
 msgstr "Ontwikkelaars"
 
-#: ../src/general/MainMenu.tscn:715 ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:715
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Ontwikkeling ondersteund door Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:710 ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:710
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
@@ -1487,12 +1371,12 @@ msgstr "Voeg een nieuwe sneltoets toe"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Ontwikkeling ondersteund door Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:729 ../src/general/MainMenu.tscn:730
+#: ../src/general/MainMenu.tscn:729
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Ontwikkelaars"
 
-#: ../src/general/MainMenu.tscn:724 ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:724
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Help"
@@ -1595,8 +1479,7 @@ msgstr "Niet-geconnecteerde Organellen"
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
-"Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen "
-"ongedaan."
+"Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen ongedaan."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:660
 #, fuzzy
@@ -1608,8 +1491,7 @@ msgstr "Niet-geconnecteerde Organellen"
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
-"Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen "
-"ongedaan."
+"Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen ongedaan."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1299
 msgid "DISCONNECTED_ORGANELLES"
@@ -1619,10 +1501,9 @@ msgstr "Niet-geconnecteerde Organellen"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
-"Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen "
-"ongedaan."
+"Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen ongedaan."
 
-#: ../src/general/MainMenu.tscn:896 ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
@@ -1636,12 +1517,11 @@ msgstr "Snelheid:"
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
-"Gefocuste microben zullen over grotere afstanden naar brokken of prooien "
-"zoeken\n"
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
 "en misschien veel ambitieuzer over brokken zijn.\n"
 "Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
-#: ../src/general/MainMenu.tscn:1084 ../src/general/MainMenu.tscn:1072
+#: ../src/general/MainMenu.tscn:1084
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1687,13 +1567,9 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Een membraan met twee lagen, heft een betere bescherming tegen schade en "
-"heeft minder energie nodig om zijn vorm te behouden. Daar komt tegenin dat "
-"het de cel vertraagt en de snelheid waarmee het grondstoffen absorbeert "
-"verkleint."
+msgstr "Een membraan met twee lagen, heft een betere bescherming tegen schade en heeft minder energie nodig om zijn vorm te behouden. Daar komt tegenin dat het de cel vertraagt en de snelheid waarmee het grondstoffen absorbeert verkleint."
 
-#: ../src/general/MainMenu.tscn:1027 ../src/general/MainMenu.tscn:1015
+#: ../src/general/MainMenu.tscn:1027
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1714,10 +1590,7 @@ msgstr "Organel plaatsen"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Leuk weetje, het Didinium en het pantoffeldiertje zijn een schoolvoorbeeld "
-"van een roofdier prooi relatie die voor tientallen jaren is bestudeerd. Ben "
-"jij het Didinium of het pantoffeldiertje? Roofdier of prooi?"
+msgstr "Leuk weetje, het Didinium en het pantoffeldiertje zijn een schoolvoorbeeld van een roofdier prooi relatie die voor tientallen jaren is bestudeerd. Ben jij het Didinium of het pantoffeldiertje? Roofdier of prooi?"
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -1733,16 +1606,11 @@ msgstr "Die blauwe cellen echter."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Hier is een tip, biomen zijn meer dan gewoon andere achtergronden, de "
-"chemische stoffen in verschillende biomen verschijnen ook soms met "
-"verschillende snelheden."
+msgstr "Hier is een tip, biomen zijn meer dan gewoon andere achtergronden, de chemische stoffen in verschillende biomen verschijnen ook soms met verschillende snelheden."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Hier is een tip, des te meer flagella je hebt, des te sneller je gaat, vroem "
-"vroem, maar het kost ook meer ATP"
+msgstr "Hier is een tip, des te meer flagella je hebt, des te sneller je gaat, vroem vroem, maar het kost ook meer ATP"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -1750,73 +1618,47 @@ msgstr "Hier is een tip, je kan brokken,ijzer of andere dingen verzwelgen."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die dingen "
-"zijn duur! In zowel onderhoud als kosten vooraf."
+msgstr "Hier is een tip, bereid je voor voordat je een celkern toevoegt. Die dingen zijn duur! In zowel onderhoud als kosten vooraf."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Leuk Weetje, wist je dat er meer dan 8000 soorten van ciliaat bestaan op "
-"aarde?"
+msgstr "Leuk Weetje, wist je dat er meer dan 8000 soorten van ciliaat bestaan op aarde?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Leuk Weetje, de Stentor is een ciliaat die zichzelf kan uitrekken en prooi "
-"kan vangen in een trompetachtige mond die prooien naar zich toe trekt door "
-"waterstromen te creëren met trilharen."
+msgstr "Leuk Weetje, de Stentor is een ciliaat die zichzelf kan uitrekken en prooi kan vangen in een trompetachtige mond die prooien naar zich toe trekt door waterstromen te creëren met trilharen."
 
 #: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-"Leuk Weetje, Het Didinium is een trilhaardiertje dat op pantoffeldiertjes "
-"jaagt."
+msgstr "Leuk Weetje, Het Didinium is een trilhaardiertje dat op pantoffeldiertjes jaagt."
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Hier is een tip, gifstoffen kunnen gebruikt worden om andere gifstoffen van "
-"je weg te duwen als je snel genoeg bent."
+msgstr "Hier is een tip, gifstoffen kunnen gebruikt worden om andere gifstoffen van je weg te duwen als je snel genoeg bent."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Leuk weetje, De Amoeben jagen en vangen prooien met 'beentjes' gemaakt van "
-"cytoplasma genaamd pseudopodia, uiteindelijk willen we die in Thrive."
+msgstr "Leuk weetje, De Amoeben jagen en vangen prooien met 'beentjes' gemaakt van cytoplasma genaamd pseudopodia, uiteindelijk willen we die in Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Hier is een tip, Pas op voor grotere cellen en grote bacteriën, het is niet "
-"leuk om verteerd te worden, en ze zullen je opeten."
+msgstr "Hier is een tip, Pas op voor grotere cellen en grote bacteriën, het is niet leuk om verteerd te worden, en ze zullen je opeten."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Thrive's hoofd van het geluidsteam heeft veel liedjes gemaakt die nog niet "
-"zijn toegevoegd aan het spel. Je kan ze beluisteren of je kan streams "
-"bekijken waar hij liedjes componeert op zijn Youtube kanaal, Oliver Lugg."
+msgstr "Thrive's hoofd van het geluidsteam heeft veel liedjes gemaakt die nog niet zijn toegevoegd aan het spel. Je kan ze beluisteren of je kan streams bekijken waar hij liedjes componeert op zijn Youtube kanaal, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Hier is een tip, als je cel 150 zeshoeken groot is, kan je grote brokken "
-"ijzer omsluiten."
+msgstr "Hier is een tip, als je cel 150 zeshoeken groot is, kan je grote brokken ijzer omsluiten."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Het is de bedoeling dat Thrive een simulatie is van een buitenaardse "
-"planeet, het is daardoor logisch dat de meeste schepels die je vind verwant "
-"zullen zijn met één of twee andere soorten door de evolutie die rondom je "
-"gebeurt, kijk maar of je ze kan identificeren!"
+msgstr "Het is de bedoeling dat Thrive een simulatie is van een buitenaardse planeet, het is daardoor logisch dat de meeste schepels die je vind verwant zullen zijn met één of twee andere soorten door de evolutie die rondom je gebeurt, kijk maar of je ze kan identificeren!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Leuk Weetje, Het Thrive team doet af en toe aan podcasts, je moet ze maar "
-"eens bekijken!"
+msgstr "Leuk Weetje, Het Thrive team doet af en toe aan podcasts, je moet ze maar eens bekijken!"
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
@@ -1824,62 +1666,40 @@ msgstr "Leuk Weetje, Thrive is gemaakt met de open source Godot engine!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Leuk Weetje, Een van de eerste speelbare game-play prototypes was gemaakt "
-"door onze geweldige programmeur, untrustedlife!"
+msgstr "Leuk Weetje, Een van de eerste speelbare game-play prototypes was gemaakt door onze geweldige programmeur, untrustedlife!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Hier is een tip, osmoregulatie kost 1 ATP per seconde per zeshoek dat je cel "
-"heeft. Elke lege zeshoek van cytoplasma genereerd nog 5 ATP per seconde , "
-"wat betekend dat als je ATP aan het verliezen bent door osmoregulatie, je "
-"gewoon een aantal lege zeshoeken cytoplasma kan toevoegen of enkele "
-"organellen verwijderen."
+msgstr "Hier is een tip, osmoregulatie kost 1 ATP per seconde per zeshoek dat je cel heeft. Elke lege zeshoek van cytoplasma genereerd nog 5 ATP per seconde , wat betekend dat als je ATP aan het verliezen bent door osmoregulatie, je gewoon een aantal lege zeshoeken cytoplasma kan toevoegen of enkele organellen verwijderen."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Leuk weetje, in het echte leven hebben prokaryoten iets dat "
-"biocampartimenten wordt genoemd en die werken zoals organellen. Ze worden in "
-"feite polyhedrale organellen genoemd."
+msgstr "Leuk weetje, in het echte leven hebben prokaryoten iets dat biocampartimenten wordt genoemd en die werken zoals organellen. Ze worden in feite polyhedrale organellen genoemd."
 
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"Leuk weetje, het metabolosoom is wat een polyhedraal organel wordt genoemd."
+msgstr "Leuk weetje, het metabolosoom is wat een polyhedraal organel wordt genoemd."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"Hier is een tip, soms is het beter om gewoon weg te gaan van andere cellen."
+msgstr "Hier is een tip, soms is het beter om gewoon weg te gaan van andere cellen."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Hier is een tip, als een cel ongeveer half zo groot is als jezelf, dat is "
-"wanneer je ze kan omsluiten."
+msgstr "Hier is een tip, als een cel ongeveer half zo groot is als jezelf, dat is wanneer je ze kan omsluiten."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Hier is een tip, bacteriën kunnen sterker zijn dan ze lijken, ze lijken "
-"misschien klein, maar sommigen van hen kunnen zich in je nestellen en je op "
-"die manier doden!"
+msgstr "Hier is een tip, bacteriën kunnen sterker zijn dan ze lijken, ze lijken misschien klein, maar sommigen van hen kunnen zich in je nestellen en je op die manier doden!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Hier is een tip, je kan andere soorten uitroeien als je niet voorzichtig "
-"genoeg bent. Ook andere soorten kunnen dit doen."
+msgstr "Hier is een tip, je kan andere soorten uitroeien als je niet voorzichtig genoeg bent. Ook andere soorten kunnen dit doen."
 
 #: ../src/general/NewGameSettings.tscn:1163
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr ""
-"Leuk weetje, het Didinium en het pantoffeldiertje zijn een schoolvoorbeeld "
-"van een roofdier prooi relatie die voor tientallen jaren is bestudeerd. Ben "
-"jij het Didinium of het pantoffeldiertje? Roofdier of prooi?"
+msgstr "Leuk weetje, het Didinium en het pantoffeldiertje zijn een schoolvoorbeeld van een roofdier prooi relatie die voor tientallen jaren is bestudeerd. Ben jij het Didinium of het pantoffeldiertje? Roofdier of prooi?"
 
 #: ../src/general/NewGameSettings.tscn:1170
 #, fuzzy
@@ -1905,15 +1725,11 @@ msgstr "Voeg een nieuwe sneltoets toe"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
-"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer "
-"je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan "
-"je soort.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
 "\n"
-"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en "
-"wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
 "\n"
-"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts "
-"onder."
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "EIGHT_TIMES"
@@ -2005,9 +1821,7 @@ msgstr "Error bij het maken van het bestand voor de mod info"
 
 #: ../src/general/OptionsMenu.tscn:2106
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
-"Fout: Het opslaan van nieuwe instellingen in het configuratiebestand is "
-"mislukt."
+msgstr "Fout: Het opslaan van nieuwe instellingen in het configuratiebestand is mislukt."
 
 #: ../src/general/ThriveNewsFeed.cs:97
 #, fuzzy
@@ -2066,20 +1880,18 @@ msgstr "Zelfmoord"
 #: ../src/saving/InProgressLoad.cs:168
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr ""
-"Een uitzondering is opgetreden tijdens het verwerken van geladen objecten"
+msgstr "Een uitzondering is opgetreden tijdens het verwerken van geladen objecten"
 
 #: ../src/saving/InProgressLoad.cs:113
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
-"Een uitzondering is opgetreden tijdens het laden van de opgeslagen gegevens"
+msgstr "Een uitzondering is opgetreden tijdens het laden van de opgeslagen gegevens"
 
-#: ../src/general/PauseMenu.tscn:247 ../src/general/PauseMenu.tscn:240
+#: ../src/general/PauseMenu.tscn:247
 msgid "EXIT"
 msgstr "Verlaten"
 
-#: ../src/general/MainMenu.tscn:376 ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:376
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E(toets)"
@@ -2107,10 +1919,7 @@ msgstr "Externe effecten:"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
-msgstr ""
-"Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. "
-"Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je "
-"zal vergeten worden, een gefaald experiment in de evolutie."
+msgstr "Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je zal vergeten worden, een gefaald experiment in de evolutie."
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -2138,7 +1947,7 @@ msgstr "stierf uit op de planeet"
 msgid "EXTINCT_SPECIES"
 msgstr "UITSTERVEN"
 
-#: ../src/general/MainMenu.tscn:357 ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:357
 msgid "EXTRAS"
 msgstr "Extra's"
 
@@ -2146,7 +1955,7 @@ msgstr "Extra's"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra opties"
 
-#: ../src/general/MainMenu.tscn:908 ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:908
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -2241,20 +2050,11 @@ msgstr "Flagellum"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
-"Het flagellum (meervoud: flagella) is een zweepachtige bundel van proteïne "
-"vezels, dat vasthangt aan het celmembraan, die ATP gebruikt om golven te "
-"vormen en zo de cel voort te stuwen in een bepaalde richting. De positie van "
-"het flagellum bepaalt de richting waarin het stuwkracht levert voor de cel. "
-"De stuwrichting is tegengesteld aan de richting waarin de flagellum wijst, "
-"bijvoorbeeld een flagellum die aan de linkerkant van een cel is geplaatst, "
-"geeft stuwkracht wanneer hij naar rechts beweegt."
+msgstr "Het flagellum (meervoud: flagella) is een zweepachtige bundel van proteïne vezels, dat vasthangt aan het celmembraan, die ATP gebruikt om golven te vormen en zo de cel voort te stuwen in een bepaalde richting. De positie van het flagellum bepaalt de richting waarin het stuwkracht levert voor de cel. De stuwrichting is tegengesteld aan de richting waarin de flagellum wijst, bijvoorbeeld een flagellum die aan de linkerkant van een cel is geplaatst, geeft stuwkracht wanneer hij naar rechts beweegt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
-"Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de snelheid van "
-"de cell te verhogen."
+msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de snelheid van de cell te verhogen."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2285,8 +2085,7 @@ msgstr "Gefocused"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Gefocuste microben zullen over grotere afstanden naar brokken of prooien "
-"zoeken\n"
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
 "en misschien veel ambitieuzer over brokken zijn.\n"
 "Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
@@ -2304,10 +2103,7 @@ msgstr "Verwijder lokale Data"
 
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr ""
-"Verwijder lokale gegevens met betrekking tot dit item. Handig als je de "
-"verkeerde ID hebt ingevoerd of een nieuwe versie naar een ander item wilt "
-"uploaden."
+msgstr "Verwijder lokale gegevens met betrekking tot dit item. Handig als je de verkeerde ID hebt ingevoerd of een nieuwe versie naar een ander item wilt uploaden."
 
 #: ../src/modding/ModUploader.cs:691 ../src/modding/NewModGUI.cs:336
 msgid "FORM_ERROR_MESSAGE"
@@ -2323,8 +2119,7 @@ msgstr "bevolking:"
 msgid "FOSSILISATION_EXPLANATION"
 msgstr ""
 "Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
-"en hebben meer kans om roofdieren te bestrijden wanneer ze worden "
-"aangevallen.\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
 "Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
 "en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
 
@@ -2377,8 +2172,7 @@ msgstr ""
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
-"Gefocuste microben zullen over grotere afstanden naar brokken of prooien "
-"zoeken\n"
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
 "en misschien veel ambitieuzer over brokken zijn.\n"
 "Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
 
@@ -2411,7 +2205,7 @@ msgstr "Generatie:"
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
 
-#: ../src/general/MainMenu.tscn:860 ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Zelfmoord"
@@ -2420,16 +2214,13 @@ msgstr "Zelfmoord"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993 ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:993
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:995 ../src/general/MainMenu.tscn:983
+#: ../src/general/MainMenu.tscn:995
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-"Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal "
-"waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/"
-"of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
+msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
 #: ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
@@ -2682,9 +2473,7 @@ msgstr "Save naam mag geen speciale tekens bevatten (<>:\"/\\|?*)"
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:161
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
-"Soortnaam moet voldoen aan het binominale naamgevingssysteem (Genus en "
-"Epithet)!"
+msgstr "Soortnaam moet voldoen aan het binominale naamgevingssysteem (Genus en Epithet)!"
 
 #: ../src/modding/ModUploader.cs:375
 msgid "INVALID_TAG"
@@ -2719,7 +2508,7 @@ msgstr "Ijzer"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Ijzer Chemolithoautotrofie"
 
-#: ../src/general/MainMenu.tscn:836 ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Zelfmoord"
@@ -3102,7 +2891,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Linker muis"
 
-#: ../src/general/MainMenu.tscn:551 ../src/general/MainMenu.tscn:552
+#: ../src/general/MainMenu.tscn:551
 msgid "LICENSES"
 msgstr "Licenties"
 
@@ -3234,14 +3023,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
@@ -3278,8 +3060,7 @@ msgstr "Microbe editor laden"
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
-msgstr ""
-"Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
 
 #: ../src/saving/InProgressLoad.cs:174
 msgid "LOAD_FINISHED"
@@ -3287,12 +3068,10 @@ msgstr "Laden voltooid"
 
 #: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
-#: ../src/general/MainMenu.tscn:321
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
 #: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
-#: ../src/general/MainMenu.tscn:318
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
@@ -3301,12 +3080,9 @@ msgstr "Pauze menu"
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"De geselecteerde save die moet worden geladen is niet compatibel met deze "
-"versie van Thrive.\n"
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
 "En er is geen save-upgrade om deze save te upgraden.\n"
-"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft "
-"compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen "
-"upgraders voor alle versies."
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 #, fuzzy
@@ -3316,12 +3092,9 @@ msgstr "Niet-compatibel opgeslagen bestand laden?"
 #: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"De geselecteerde save die moet worden geladen is niet compatibel met deze "
-"versie van Thrive.\n"
+"De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
 "En er is geen save-upgrade om deze save te upgraden.\n"
-"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft "
-"compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen "
-"upgraders voor alle versies."
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #: ../src/saving/SaveList.tscn:93
 #, fuzzy
@@ -3332,8 +3105,7 @@ msgstr "Ongeldig opgeslagen bestand laden?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Opgeslagen informatie kon niet worden geladen van dit bestand.\n"
-"Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer "
-"formaat dat niet wordt begrepen door deze versie van Thrive.\n"
+"Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer formaat dat niet wordt begrepen door deze versie van Thrive.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:430
@@ -3343,8 +3115,7 @@ msgstr ""
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:517
 #, fuzzy
 msgid "LOOKING_AT"
-msgstr ""
-"Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3359,23 +3130,12 @@ msgstr "Oxytoxisoom"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr ""
-"Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn "
-"in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit "
-"door middel van een proces genaamd aerobe respiratie. Het heeft echter wel "
-"zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving "
-"vertragen dus de ATP-productie. Omdat de metabolosomen direct in het "
-"cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse "
-"uit."
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr ""
-"verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie "
-"van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren "
-"door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -3478,21 +3238,11 @@ msgstr "Metabolosomen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr ""
-"Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn "
-"in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit "
-"door middel van een proces genaamd aerobe respiratie. Het heeft echter wel "
-"zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving "
-"vertragen dus de ATP-productie. Omdat de metabolosomen direct in het "
-"cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse "
-"uit."
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3521,7 +3271,7 @@ msgid "MICROBES_COUNT"
 msgstr "Microbestadium"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613 ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:613
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Microbebewerker"
@@ -3535,45 +3285,28 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotische Structuren\n"
 "\n"
-"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] "
-"van [thrive:compound type=\"glucose\"][/thrive:compound].\n"
+"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] van [thrive:compound type=\"glucose\"][/thrive:compound].\n"
 "\n"
-"Chemosynthetiserende Proteïnes: Produceren half het aantal [thrive:compound "
-"type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogen "
-"sulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolyse "
-"uit, neemt 1 zeshoek in.\n"
+"Chemosynthetiserende Proteïnes: Produceren half het aantal [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogen sulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolyse uit, neemt 1 zeshoek in.\n"
 "\n"
-"Thylakoïden: Produceren 1/3de van het aantal [thrive:compound "
-"type=\"glucose\"][/thrive:compound] dat een normale chloroplast produceert, "
-"maar voert ook glycolyse uit, en neemt 1 zeshoek in.\n"
+"Thylakoïden: Produceren 1/3de van het aantal [thrive:compound type=\"glucose\"][/thrive:compound] dat een normale chloroplast produceert, maar voert ook glycolyse uit, en neemt 1 zeshoek in.\n"
 "\n"
-"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in "
-"[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenase: zet atmosferische stikstof en [thrive:compound type=\"atp\"][/"
-"thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound] "
-"anaëroob.\n"
+"Nitrogenase: zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound] anaëroob.\n"
 "\n"
-"Cytoplasma: Heeft opslagruimte en voert glycolise uit (produceert kleine "
-"hoeveelheden aan [thrive:compound type=\"atp\"][/thrive:compound])"
+"Cytoplasma: Heeft opslagruimte en voert glycolise uit (produceert kleine hoeveelheden aan [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Zodra fagocytose klaar is zullen alle gevangen objecten in het celmembraan "
-"gehouden worden om verteerd te worden. Onverteerbare objecten zullen altijd "
-"uitgescheiden worden, dus zorg ervoor dat je de mutaties hebt die nodig zijn "
-"om ze te kunnen verwerken. Enzymen helpen bij de vertering en worden "
-"geleverd door het lysozoom. Het is sterk aangeraden om dit organen te "
-"evolueren om vertering stukken efficiënter te maken."
+msgstr "Zodra fagocytose klaar is zullen alle gevangen objecten in het celmembraan gehouden worden om verteerd te worden. Onverteerbare objecten zullen altijd uitgescheiden worden, dus zorg ervoor dat je de mutaties hebt die nodig zijn om ze te kunnen verwerken. Enzymen helpen bij de vertering en worden geleverd door het lysozoom. Het is sterk aangeraden om dit organen te evolueren om vertering stukken efficiënter te maken."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
 "\n"
-"Flagellum: Laat je cell sneller bewegen door het verbruiken van [thrive:"
-"compound type=\"atp\"][/thrive:compound]\n"
+"Flagellum: Laat je cell sneller bewegen door het verbruiken van [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Pilus: Kan gebruikt worden om andere cellen te steken"
 
@@ -3582,53 +3315,29 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membraangebonden organellen\n"
 "\n"
-"Nucleus: Neemt 11 zeshoeken in en laat evolutie van membraangebonden "
-"organellen toe. Verdubbeld ook de grootte van je cel. (Kan maar één keer "
-"ontwikkeld worden)\n"
+"Nucleus: Neemt 11 zeshoeken in en laat evolutie van membraangebonden organellen toe. Verdubbeld ook de grootte van je cel. (Kan maar één keer ontwikkeld worden)\n"
 "\n"
-"Mitochondri: Produceert [thrive:compound type=\"atp\"][/thrive:compound] uit "
-"[thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische O2. "
-"Veel efficiënter dan cytoplasma\n"
+"Mitochondri: Produceert [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische O2. Veel efficiënter dan cytoplasma\n"
 "\n"
-"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit "
-"zonlicht en atmosferische CO2\n"
+"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit zonlicht en atmosferische CO2\n"
 "\n"
-"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit "
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Stikstoffixerende plastide: Maakt [thrive:compound type=\"ammonia\"][/thrive:"
-"compound] van[thrive:compound type=\"atp\"][/thrive:compound], atmosferische "
-"stikstof en zuurstof\n"
+"Stikstoffixerende plastide: Maakt [thrive:compound type=\"ammonia\"][/thrive:compound] van[thrive:compound type=\"atp\"][/thrive:compound], atmosferische stikstof en zuurstof\n"
 "\n"
 "Vacuole: Slaat 8 opgenomen stoffen op\n"
 "\n"
-"Toxine vacuolen: Produceert gifstoffen (genaamd [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound])"
+"Toxine vacuolen: Produceert gifstoffen (genaamd [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Elke generatie heb je 100 mutatie punten (MP) om uit te geven, en elke "
-"verandering (of mutatie) zal een bepaalde hoeveelheid MP kosten. Het "
-"toevoegen en verwijderen van organellen kost MP, maar het verwijderen van "
-"organellen die geplaatst werden in de huidige mutatiesessie betalen MP terug "
-"voor dat organel. Je kan een organel verplaatsen of volledig verwijderen "
-"door erop te klikken met de rechtermuisknop en de passende actie te kiezen "
-"uit het pop-up menu. Je kan je organellen tijdens het plaatsen roteren met "
-"[thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/"
-"thrive:input]."
+msgstr "Elke generatie heb je 100 mutatie punten (MP) om uit te geven, en elke verandering (of mutatie) zal een bepaalde hoeveelheid MP kosten. Het toevoegen en verwijderen van organellen kost MP, maar het verwijderen van organellen die geplaatst werden in de huidige mutatiesessie betalen MP terug voor dat organel. Je kan een organel verplaatsen of volledig verwijderen door erop te klikken met de rechtermuisknop en de passende actie te kiezen uit het pop-up menu. Je kan je organellen tijdens het plaatsen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Elke keer dat je reproduceert kom je in de microbe \"editor\" waar je "
-"aanpassingen aan je soort kan maken (door het toevoegen, verplaatsen en "
-"verwijderen van organellen) om je soort succesvoller te maken. Elk bezoek "
-"aan de \"editor\" in de microbe-fase weerspiegelt [thrive:"
-"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar van "
-"evolutie."
+msgstr "Elke keer dat je reproduceert kom je in de microbe \"editor\" waar je aanpassingen aan je soort kan maken (door het toevoegen, verplaatsen en verwijderen van organellen) om je soort succesvoller te maken. Elk bezoek aan de \"editor\" in de microbe-fase weerspiegelt [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar van evolutie."
 
-#: ../src/general/MainMenu.tscn:420 ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:420
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
@@ -3663,9 +3372,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Om uw cel te besturen, gebruikt u de toetsen die in de buurt van uw cel "
-"worden weergegeven (midden van het scherm) en de muis om de richting van de "
-"cel te regelen.\n"
+"Om uw cel te besturen, gebruikt u de toetsen die in de buurt van uw cel worden weergegeven (midden van het scherm) en de muis om de richting van de cel te regelen.\n"
 "\n"
 "Probeer alle toetsen een paar seconden om door te gaan."
 
@@ -3673,9 +3380,7 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Om uw cel te besturen, gebruikt u de toetsen die in de buurt van uw cel "
-"worden weergegeven (midden van het scherm) en de muis om de richting van de "
-"cel te regelen.\n"
+"Om uw cel te besturen, gebruikt u de toetsen die in de buurt van uw cel worden weergegeven (midden van het scherm) en de muis om de richting van de cel te regelen.\n"
 "\n"
 "Probeer alle toetsen een paar seconden om door te gaan."
 
@@ -3699,111 +3404,59 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
-"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:"
-"input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/"
-"thrive:compound] te schieten als je een toxine vacuole hebt. [thrive:"
-"input]g_toggle_engulf[/thrive:input] om de omsluitmodus aan te zetten. Je "
-"kan in en uit zoomen met het muiswiel."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een toxine vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de omsluitmodus aan te zetten. Je kan in en uit zoomen met het muiswiel."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Om te reproduceren moet je al je celorganellen splitsen in twee. "
-"Celorganellen hebben ammoniak en fosfaat nodig om in twee te kunnen splitsen."
+msgstr "Om te reproduceren moet je al je celorganellen splitsen in twee. Celorganellen hebben ammoniak en fosfaat nodig om in twee te kunnen splitsen."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Maar als je overleeft voor twintig generaties met 300 populatie, wordt je "
-"geacht het huidige spel te hebben gewonnen, nadat je bent gewonnen hebt "
-"krijg je een pop-up en kan je verderspelen als je dat wenst."
+msgstr "Maar als je overleeft voor twintig generaties met 300 populatie, wordt je geacht het huidige spel te hebben gewonnen, nadat je bent gewonnen hebt krijg je een pop-up en kan je verderspelen als je dat wenst."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Wees voorzichtig, want je concurrenten zijn samen met jouw aan het "
-"evolueren. Elke keer dat je de \"editor\" gebruikt, evolueren ze ook."
+msgstr "Wees voorzichtig, want je concurrenten zijn samen met jouw aan het evolueren. Elke keer dat je de \"editor\" gebruikt, evolueren ze ook."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Door met andere cellen te binden, kun je een celkolonie bouwen waar de "
-"cellen de verbindingen die ze absorberen en produceren met elkaar delen. Om "
-"met een andere cel te kunnen binden, moet je de bindmiddelen organel hebben "
-"en in de andere bewegen nadat je de bindingsmodus hebt geactiveerd. Je kunt "
-"alleen binden met cellen van je eigen soort. Als je in een kolonie bent, kun "
-"je jouw cel niet splitsen en de editor openen(voorlopig). Om de editor te "
-"betreden, verlaat je eerst de kolonie als je genoeg verbindingen hebt "
-"verzameld, en ga dan de editor binnen. Grootcellige kolonies zijn de weg "
-"naar meercelligheid (nog niet in het spel)."
+msgstr "Door met andere cellen te binden, kun je een celkolonie bouwen waar de cellen de verbindingen die ze absorberen en produceren met elkaar delen. Om met een andere cel te kunnen binden, moet je de bindmiddelen organel hebben en in de andere bewegen nadat je de bindingsmodus hebt geactiveerd. Je kunt alleen binden met cellen van je eigen soort. Als je in een kolonie bent, kun je jouw cel niet splitsen en de editor openen(voorlopig). Om de editor te betreden, verlaat je eerst de kolonie als je genoeg verbindingen hebt verzameld, en ga dan de editor binnen. Grootcellige kolonies zijn de weg naar meercelligheid (nog niet in het spel)."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
-"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:"
-"input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/"
-"thrive:compound] te schieten als je een toxine vacuole hebt. [thrive:"
-"input]g_toggle_engulf[/thrive:input] om de omsluitmodus aan te zetten. Je "
-"kan in en uit zoomen met het muiswiel."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een toxine vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de omsluitmodus aan te zetten. Je kan in en uit zoomen met het muiswiel."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
-"Lysozomen zijn echter enkel beschikbaar voor eukaryoten. Prokaryoten hebben "
-"zo'n organel niet, en dus verloopt de vertering nogal sloom. Voor kleine "
-"cellen is dat geen probleem, maar het is als grotere cel zeer nadelig om "
-"geen lysozomen te hebben."
+msgstr "Lysozomen zijn echter enkel beschikbaar voor eukaryoten. Prokaryoten hebben zo'n organel niet, en dus verloopt de vertering nogal sloom. Voor kleine cellen is dat geen probleem, maar het is als grotere cel zeer nadelig om geen lysozomen te hebben."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"U cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als zijn "
-"energie bron, als deze op is zal je sterven."
+msgstr "U cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als zijn energie bron, als deze op is zal je sterven."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"om de \"editor\" te gebruiken en te reproduceren, moet je [thrive:compound "
-"type=\"ammonia\"][/thrive:compound] (oranje wolk) en [thrive:compound "
-"type=\"phosphates\"][/thrive:compound] (paarse wolk) verzamelen."
+msgstr "om de \"editor\" te gebruiken en te reproduceren, moet je [thrive:compound type=\"ammonia\"][/thrive:compound] (oranje wolk) en [thrive:compound type=\"phosphates\"][/thrive:compound] (paarse wolk) verzamelen."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Je kan ook cellen, bacteriën, ijzerbrokken en cel brokken omsluiten die "
-"kleiner zijn dan jezelf door [thrive:input]g_toggle_engulf[/thrive:input] te "
-"drukken. Dit zal extra [thrive:compound type=\"atp\"][/thrive:compound] "
-"kosten en zal je vertragen. Vergeet niet om een tweede keer op [thrive:"
-"input]g_toggle_engulf[/thrive:input] te drukken om de omsluitmodus te "
-"stoppen."
+msgstr "Je kan ook cellen, bacteriën, ijzerbrokken en cel brokken omsluiten die kleiner zijn dan jezelf door [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit zal extra [thrive:compound type=\"atp\"][/thrive:compound] kosten en zal je vertragen. Vergeet niet om een tweede keer op [thrive:input]g_toggle_engulf[/thrive:input] te drukken om de omsluitmodus te stoppen."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound], wat "
-"betekend dat des te groter je cel is, des te meer mitochondriën, "
-"metabolosomen of rusticyanine (of cytoplasme, die glycolyse uitvoert) je "
-"nodig hebt om het verlies van [thrive:compound type=\"atp\"][/thrive:"
-"compound] wanneer je stilstaat te verkomen."
+msgstr "Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound], wat betekend dat des te groter je cel is, des te meer mitochondriën, metabolosomen of rusticyanine (of cytoplasme, die glycolyse uitvoert) je nodig hebt om het verlies van [thrive:compound type=\"atp\"][/thrive:compound] wanneer je stilstaat te verkomen."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Er zijn vele organellen in de \"editor\" die je kan ontwikkelen, waardoor je "
-"een brede waaier aan verschillende speelstijlen kunt gebruiken."
+msgstr "Er zijn vele organellen in de \"editor\" die je kan ontwikkelen, waardoor je een brede waaier aan verschillende speelstijlen kunt gebruiken."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3821,34 +3474,23 @@ msgstr ""
 "Paars – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Roest bruin – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:compound "
-"type=\"atp\"][/thrive:compound]."
+"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan omgezet "
-"worden in [thrive:compound type=\"glucose\"][/thrive:compound] door middel "
-"van chemoplasten en chemosynthese proteïnes. [thrive:compound type=\"iron\"]"
-"[/thrive:compound] kan door middel van rusticyanine omgezet worden in "
-"[thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan omgezet worden in [thrive:compound type=\"glucose\"][/thrive:compound] door middel van chemoplasten en chemosynthese proteïnes. [thrive:compound type=\"iron\"][/thrive:compound] kan door middel van rusticyanine omgezet worden in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Op een verre buitenaardse planeet hebben eeuwenlange vulkanische activiteit "
-"en meteoorinslagen geleid tot de ontwikkeling van een nieuw fenomeen in het "
-"universum.\n"
+"Op een verre buitenaardse planeet hebben eeuwenlange vulkanische activiteit en meteoorinslagen geleid tot de ontwikkeling van een nieuw fenomeen in het universum.\n"
 "\n"
 "Leven.\n"
 "\n"
-"Eenvoudige microben leven in de diepe delen van de oceaan. Jij bent de "
-"laatste universele gemeenschappelijke voorouder (LUCA) op deze planeet.\n"
+"Eenvoudige microben leven in de diepe delen van de oceaan. Jij bent de laatste universele gemeenschappelijke voorouder (LUCA) op deze planeet.\n"
 "\n"
-"Om te overleven in deze vijandige wereld, moet je alle verbindingen die je "
-"kunt vinden verzamelen en elke generatie evolueren om te concurreren met de "
-"andere soorten microben."
+"Om te overleven in deze vijandige wereld, moet je alle verbindingen die je kunt vinden verzamelen en elke generatie evolueren om te concurreren met de andere soorten microben."
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:92
 msgid "MIDDLE_MOUSE"
@@ -3904,22 +3546,11 @@ msgstr "Mitochondrion"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr ""
-"De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) is "
-"een door twee membranen omsloten celorganel dat met proteïnen en enzymen "
-"gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn "
-"eukaryotische gastheer voor het gebruik. Het is in staat om glucose in ATP "
-"om te zetten aan een veel grotere efficiëntie dan in het cytoplasma mogelijk "
-"is, in een proces dat celademhaling heet. Hier komt tegenover dat het "
-"zuurstof nodig heeft om te kunnen werken en dat een lager zuurstoflevel de "
-"ATP-productie vertraagt."
+msgstr "De krachtcentrale van de cel. Het mitochondrium (meervoud: mitochondria) is een door twee membranen omsloten celorganel dat met proteïnen en enzymen gevuld is. Het is een prokaryoot die werd geabsorbeerd door zijn eukaryotische gastheer voor het gebruik. Het is in staat om glucose in ATP om te zetten aan een veel grotere efficiëntie dan in het cytoplasma mogelijk is, in een proces dat celademhaling heet. Hier komt tegenover dat het zuurstof nodig heeft om te kunnen werken en dat een lager zuurstoflevel de ATP-productie vertraagt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
 #, fuzzy
@@ -3949,11 +3580,11 @@ msgstr "Organel verplaatsen"
 msgid "MODIFY_TYPE"
 msgstr "Pas aan"
 
-#: ../src/general/MainMenu.tscn:526 ../src/general/MainMenu.tscn:527
+#: ../src/general/MainMenu.tscn:526
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:1011 ../src/general/MainMenu.tscn:999
+#: ../src/general/MainMenu.tscn:1011
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3975,9 +3606,7 @@ msgstr "{0}: mod's assembly initialize method call heeft gefaald"
 
 #: ../src/modding/ModLoader.cs:475
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
-"{0}: mod's assembly initialize method call heeft gefaald met uitzondering: "
-"{1}"
+msgstr "{0}: mod's assembly initialize method call heeft gefaald met uitzondering: {1}"
 
 #: ../src/modding/ModLoader.cs:324
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
@@ -3989,8 +3618,7 @@ msgstr "{0}: mod's assembly unload method call gefaald"
 
 #: ../src/modding/ModLoader.cs:369
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
-"{0}: mod's assembly unload method call heeft gefaald met uitzondering: {1}"
+msgstr "{0}: mod's assembly unload method call heeft gefaald met uitzondering: {1}"
 
 #: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:679
 #: ../src/modding/NewModGUI.tscn:140
@@ -4018,15 +3646,12 @@ msgstr "Mod lange omschrijving:"
 #: ../src/modding/ModLoader.cs:498
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr ""
-"{0}: mod's assembly initialize method call heeft gefaald met uitzondering: "
-"{1}"
+msgstr "{0}: mod's assembly initialize method call heeft gefaald met uitzondering: {1}"
 
 #: ../src/modding/ModLoader.cs:519
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr ""
-"{0}: mod's assembly unload method call heeft gefaald met uitzondering: {1}"
+msgstr "{0}: mod's assembly unload method call heeft gefaald met uitzondering: {1}"
 
 #: ../src/modding/ModLoader.cs:339
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
@@ -4048,34 +3673,25 @@ msgstr "Interne (folder) Naam:"
 msgid "MOD_LICENSE"
 msgstr "Mod Licentie:"
 
-#: ../src/general/MainMenu.tscn:1051 ../src/general/MainMenu.tscn:1039
+#: ../src/general/MainMenu.tscn:1051
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/general/MainMenu.tscn:1052 ../src/general/MainMenu.tscn:1040
+#: ../src/general/MainMenu.tscn:1052
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
-"Er zijn fouten opgetreden bij het laden van 1 of meer mods. Logs kunnen meer "
-"informatie bevatten."
+msgstr "Er zijn fouten opgetreden bij het laden van 1 of meer mods. Logs kunnen meer informatie bevatten."
 
 #: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr ""
-"Er zijn errors opgetreden bij het laden en ontladen van 1 of meerdere mods. "
-"Logs bevatten mogelijk meer informatie."
+msgstr "Er zijn errors opgetreden bij het laden en ontladen van 1 of meerdere mods. Logs bevatten mogelijk meer informatie."
 
 #: ../src/modding/ModManager.tscn:539
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr ""
-"Waarschuwing: Veel mods vereisen de game om opnieuw op te starten om tegoei "
-"te kunnen laden of ontladen. Laad enkel mods die je kan vertrouwen aangezien "
-"ze uitvoerbare code kunnen bevatten."
+msgstr "Waarschuwing: Veel mods vereisen de game om opnieuw op te starten om tegoei te kunnen laden of ontladen. Laad enkel mods die je kan vertrouwen aangezien ze uitvoerbare code kunnen bevatten."
 
 #: ../src/modding/ModManager.tscn:1024
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr ""
-"1 of meerdere mods vereisen een game restart om fantsoenlijk te laden of "
-"ontladen"
+msgstr "1 of meerdere mods vereisen een game restart om fantsoenlijk te laden of ontladen"
 
 #: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
@@ -4265,8 +3881,7 @@ msgstr ""
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
-"Sessiele microben zullen stationair zijn en wachten tot de omgeving "
-"verandert voordat ze handelen."
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
 msgid "MUTATION_POINTS"
@@ -4299,8 +3914,7 @@ msgstr "Nieuw"
 #: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is "
-"waarschijnlijk niet-compatibel.\n"
+"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
 "Wil je toch proberen het opgeslagen bestand te laden?"
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
@@ -4311,11 +3925,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307 ../src/general/MainMenu.tscn:308
+#: ../src/general/MainMenu.tscn:307
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
-#: ../src/general/MainMenu.tscn:301 ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:301
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pauze menu"
@@ -4365,19 +3979,11 @@ msgstr "stikstofase"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
-msgstr ""
-"Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm "
-"van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van "
-"cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat "
-"nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende "
-"vloeistof glycolyse uit."
+msgstr "Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de omliggende vloeistof glycolyse uit."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie "
-"van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
@@ -4386,19 +3992,11 @@ msgstr "Stikstoffixerende Plastide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr ""
-"De stikstoffixerende plastide is een proteïne dat gasvormige stikstof en "
-"zuurstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak "
-"te produceren, een belangrijke voedingsstof voor de groei van cellen. Dit "
-"proces noemt men aërobe stikstoffixatie."
+msgstr "De stikstoffixerende plastide is een proteïne dat gasvormige stikstof en zuurstof en cellulaire energie in de vorm van ATP kan gebruiken om ammoniak te produceren, een belangrijke voedingsstof voor de groei van cellen. Dit proces noemt men aërobe stikstoffixatie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie "
-"van [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:"
-"compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
 msgid "NONE"
@@ -4411,11 +4009,7 @@ msgstr "Normaal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr ""
-"De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het "
-"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel is "
-"dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
-"absorberen."
+msgstr "De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel is dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te absorberen."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:595
@@ -4454,7 +4048,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Geen save folder gevonden"
 
-#: ../src/general/MainMenu.tscn:998 ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Uitgeschakeld"
@@ -4491,23 +4085,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "NUCLEUS_DESCRIPTION"
-msgstr ""
-"Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook het "
-"golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing van "
-"prokaryotische cellen om een systeem van interne membranen te ontwikkelen, "
-"wat bereikt werd door een andere prokaryoot te absorberen. Dit liet hen toe "
-"om de verschillende processen die binnen in de cel gebeurden op te splitsen, "
-"of om hen af te sluiten, en om ervoor te zorgen dat ze niet konden "
-"overlappen. Dit zorgt ervoor dat hun nieuwe membraangebonden organellen veel "
-"complexer, efficiënter en gespecialiseerder kan zijn dan als ze vrij in het "
-"cytoplasma ronddreven. Dit komt wel met de prijs dat het veel van de cel "
-"zijn energie opneemt en dat de cel veel groter moet zijn."
+msgstr "Het belangrijkste kenmerk van eukaryotische cellen. De celkern bevat ook het golgi-apparaat en het endoplasmatisch reticulum. Het is een aanpassing van prokaryotische cellen om een systeem van interne membranen te ontwikkelen, wat bereikt werd door een andere prokaryoot te absorberen. Dit liet hen toe om de verschillende processen die binnen in de cel gebeurden op te splitsen, of om hen af te sluiten, en om ervoor te zorgen dat ze niet konden overlappen. Dit zorgt ervoor dat hun nieuwe membraangebonden organellen veel complexer, efficiënter en gespecialiseerder kan zijn dan als ze vrij in het cytoplasma ronddreven. Dit komt wel met de prijs dat het veel van de cel zijn energie opneemt en dat de cel veel groter moet zijn."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr ""
-"Maakt de evolutie mogelijk van complexere, membraangebonden organellen. Kost "
-"veel ATP om te behouden. Dit is een onomkeerbare evolutie."
+msgstr "Maakt de evolutie mogelijk van complexere, membraangebonden organellen. Kost veel ATP om te behouden. Dit is een onomkeerbare evolutie."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -4530,11 +4112,11 @@ msgstr "N/A MP"
 msgid "OCTOBER"
 msgstr "Oktober"
 
-#: ../src/general/MainMenu.tscn:687 ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:687
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678 ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:678
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
@@ -4542,20 +4124,16 @@ msgstr "Zelfmoord"
 #: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357 ../src/general/MainMenu.tscn:1029
-#: ../src/general/MainMenu.tscn:1086
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "OK"
 
 #: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-"
-"compatibel zijn.\n"
-"Aangezien Thrive momenteel in een vroeg stadium van zijn ontwikkeling is. Is "
-"opslagcompatibiliteit geen prioriteit.\n"
-"Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet "
-"de hoogste prioriteit.\n"
+"Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-compatibel zijn.\n"
+"Aangezien Thrive momenteel in een vroeg stadium van zijn ontwikkeling is. Is opslagcompatibiliteit geen prioriteit.\n"
+"Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet de hoogste prioriteit.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/modding/ModManager.tscn:154
@@ -4617,8 +4195,7 @@ msgstr "Pauzeer het spel"
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Opportunistische microben zullen concurreren met rivalen om brokken\n"
-"en zullen proberen prooien op te sporen met gifstoffen als ze hen niet "
-"kunnen verzwelgen.\n"
+"en zullen proberen prooien op te sporen met gifstoffen als ze hen niet kunnen verzwelgen.\n"
 "Voorzichtige microben brengen zichzelf minder in gevaar door brokken."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
@@ -4626,12 +4203,10 @@ msgid "OPPORTUNISTIC"
 msgstr "Opportunistisch"
 
 #: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
-#: ../src/general/MainMenu.tscn:331
 msgid "OPTIONS"
 msgstr "Opties"
 
 #: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
-#: ../src/general/MainMenu.tscn:328
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
@@ -4729,9 +4304,7 @@ msgstr "Bestaande opgeslagen bestand overschrijven:"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:210
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr ""
-"Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. "
-"Weet je zeker dat je dit definitief wilt verwijderen?"
+msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:124
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:480
@@ -4745,17 +4318,11 @@ msgstr "Oxytoxisoom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
-msgstr ""
-"Een gemodificeerd metabolosoom dat verantwoordelijk is voor de productie van "
-"een primitieve vorm van het giftige middel OxyToxy NT."
+msgstr "Een gemodificeerd metabolosoom dat verantwoordelijk is voor de productie van een primitieve vorm van het giftige middel OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr ""
-"verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie "
-"van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren "
-"door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
@@ -4832,10 +4399,7 @@ msgstr "Eerdere ontwikkelaars"
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr ""
-"Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. "
-"Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je "
-"zal vergeten worden, een gefaald experiment in de evolutie."
+msgstr "Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je zal vergeten worden, een gefaald experiment in de evolutie."
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
@@ -4866,8 +4430,7 @@ msgstr ""
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
-"Sessiele microben zullen stationair zijn en wachten tot de omgeving "
-"verandert voordat ze handelen."
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
 
 #: ../src/general/NewGameSettings.tscn:878
 #: ../src/general/NewGameSettings.tscn:879
@@ -4907,12 +4470,9 @@ msgstr ""
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
-"Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. "
-"Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je "
-"zal vergeten worden, een gefaald experiment in de evolutie."
+msgstr "Net zoals 99% van alle soorten die hebben bestaan is je soort uitgestorven. Anderen zullen je niche vullen en overwinnen, maar dat zal jij niet zijn. Je zal vergeten worden, een gefaald experiment in de evolutie."
 
-#: ../src/general/MainMenu.tscn:848 ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -5115,10 +4675,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1098
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
-"Verwijder lokale gegevens met betrekking tot dit item. Handig als je de "
-"verkeerde ID hebt ingevoerd of een nieuwe versie naar een ander item wilt "
-"uploaden."
+msgstr "Verwijder lokale gegevens met betrekking tot dit item. Handig als je de verkeerde ID hebt ingevoerd of een nieuwe versie naar een ander item wilt uploaden."
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:316
 msgid "PRESSURE"
@@ -5194,13 +4751,12 @@ msgstr "Snel laden"
 msgid "QUICK_SAVE"
 msgstr "Snel opslaan"
 
-#: ../src/general/MainMenu.tscn:389 ../src/general/MainMenu.tscn:390
+#: ../src/general/MainMenu.tscn:389
 msgid "QUIT"
 msgstr "Stoppen"
 
 #: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
-#: ../src/general/PauseMenu.tscn:246 ../src/general/MainMenu.tscn:374
-#: ../src/general/MainMenu.tscn:384 ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:246
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Zelfmoord"
@@ -5245,7 +4801,7 @@ msgstr "Threads:"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Aangeraden Thrive:"
 
-#: ../src/general/MainMenu.tscn:884 ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Hervat het spel"
@@ -5380,11 +4936,10 @@ msgstr "Hervat het spel"
 
 #: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
-#: ../src/general/PauseMenu.tscn:232
 msgid "RETURN_TO_MENU"
 msgstr "Ga terug naar het menu"
 
-#: ../src/general/PauseMenu.tscn:238 ../src/general/PauseMenu.tscn:231
+#: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Ga terug naar het menu"
@@ -5396,7 +4951,7 @@ msgstr ""
 "Ben je zeker dat terug wilt naar het hoofd menu?\n"
 "Je verliest alle niet opgeslagen voortgang."
 
-#: ../src/general/MainMenu.tscn:811 ../src/general/MainMenu.tscn:799
+#: ../src/general/MainMenu.tscn:811
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Door Revolutionary Games Studio"
@@ -5415,9 +4970,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Een stijvere membraan is beter bestand tegen schade, maar zal het voor de "
-"cel moeilijker maken om te bewegen."
+msgstr "Een stijvere membraan is beter bestand tegen schade, maar zal het voor de cel moeilijker maken om te bewegen."
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "ROTATE_LEFT"
@@ -5462,8 +5015,7 @@ msgstr "splits van {0}"
 
 #: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
-"Populatie in sommige gebieden afgesplitst om nieuwe soorten te vormen {0}:"
+msgstr "Populatie in sommige gebieden afgesplitst om nieuwe soorten te vormen {0}:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
@@ -5482,21 +5034,13 @@ msgstr "Rusticyanine"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr ""
-"Rusticyanine is een proteïne dat koolstofdioxide en zuurstof kan gebruiken "
-"om ijzer te oxideren van een chemische staat naar een andere. Dit proces, "
-"dat men ijzer respiratie noemt, geeft energie vrij dat de cel dan kan "
-"opnemen."
+msgstr "Rusticyanine is een proteïne dat koolstofdioxide en zuurstof kan gebruiken om ijzer te oxideren van een chemische staat naar een andere. Dit proces, dat men ijzer respiratie noemt, geeft energie vrij dat de cel dan kan opnemen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van "
-"[thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:"
-"compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:1047 ../src/general/MainMenu.tscn:1035
+#: ../src/general/MainMenu.tscn:1047
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5505,7 +5049,7 @@ msgstr ""
 "Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
 "en zullen waarschijnlijk terug aanvallen."
 
-#: ../src/general/MainMenu.tscn:1045 ../src/general/MainMenu.tscn:1033
+#: ../src/general/MainMenu.tscn:1045
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Verwijder lokale Data"
@@ -5524,9 +5068,7 @@ msgstr "Automatisch opslaan"
 
 #: ../src/saving/SaveList.cs:242
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
-"Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. "
-"Weet je zeker dat je {0} definitief wilt verwijderen?"
+msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5548,8 +5090,7 @@ msgstr "Het opgeslagen bestand heeft een andere versie"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"De versie van het opgeslagen bestand dat je probeert te laden komt niet "
-"overeen met versie van het spel dat je gebruikt.\n"
+"De versie van het opgeslagen bestand dat je probeert te laden komt niet overeen met versie van het spel dat je gebruikt.\n"
 "Laad het opgeslagen bestand handmatig via het menu."
 
 #: ../src/saving/InProgressLoad.cs:140
@@ -5567,10 +5108,8 @@ msgstr "Opgeslagen bestand is ongeldig"
 #: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"De geselecteerde save is van een oudere versie van Thrive maar kan worden "
-"geüpgraded.\n"
-"Een backup bestand zal worden gemaakt voor de upgrade als deze nog niet is "
-"gemaakt.\n"
+"De geselecteerde save is van een oudere versie van Thrive maar kan worden geüpgraded.\n"
+"Een backup bestand zal worden gemaakt voor de upgrade als deze nog niet is gemaakt.\n"
 "Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
 "Probeer deze save te upgraden?"
 
@@ -5596,8 +5135,7 @@ msgstr "Het upgraden van de save is mislukt"
 
 #: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Het upgraden van de geselecteerde save is gefaald door de volgende error:"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 #: ../src/modding/ModUploader.cs:677
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -5740,9 +5278,7 @@ msgstr "Zittend"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4048
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
-"Deze waarde is alleen van toepassing op nieuwe games die zijn gestart nadat "
-"deze optie is gewijzigd"
+msgstr "Deze waarde is alleen van toepassing op nieuwe games die zijn gestart nadat deze optie is gewijzigd"
 
 #: ../src/general/OptionsMenu.tscn:774
 msgid "SFX_VOLUME"
@@ -5787,9 +5323,7 @@ msgstr "Toon niet opgeslagen voortgang waarschuwing"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4065
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr ""
-"Zet aan / uit de waarschuwing voor niet opgeslagen voortgang wanner de "
-"speler het spel probeert te verlaten."
+msgstr "Zet aan / uit de waarschuwing voor niet opgeslagen voortgang wanner de speler het spel probeert te verlaten."
 
 #: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
@@ -5804,21 +5338,12 @@ msgstr "Verbindings agent"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr ""
-"Maakt binding met andere cellen mogelijk. Dit is de eerste stap naar "
-"meercelligheid. Wanneer uw cel deel uitmaakt van een kolonie, worden "
-"verbindingen tussen cellen gedeeld. Je kunt de editor niet openen als je "
-"deel uitmaakt van een kolonie, dus je moet de binding opheffen als je "
-"eenmaal genoeg verbindingen hebt verzameld om je cel te verdelen."
+msgstr "Maakt binding met andere cellen mogelijk. Dit is de eerste stap naar meercelligheid. Wanneer uw cel deel uitmaakt van een kolonie, worden verbindingen tussen cellen gedeeld. Je kunt de editor niet openen als je deel uitmaakt van een kolonie, dus je moet de binding opheffen als je eenmaal genoeg verbindingen hebt verzameld om je cel te verdelen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
-"Druk [thrive:input]g_toggle_binding[/thrive:input] om verbinding modus te "
-"togglen. In verbinding modus kan je jezelf verbinden met andere cellen door "
-"tegen ze aan te bewegen. Om een kolonie te verlaten druk [thrive:"
-"input]g_unbind_all[/thrive:input]."
+msgstr "Druk [thrive:input]g_toggle_binding[/thrive:input] om verbinding modus te togglen. In verbinding modus kan je jezelf verbinden met andere cellen door tegen ze aan te bewegen. Om een kolonie te verlaten druk [thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:115
 #, fuzzy
@@ -5853,11 +5378,7 @@ msgstr "Siliciumdioxide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Dit membraan heeft een sterke wand van siliciumdioxide. Het kan algemene "
-"schade goed weerstaan en is zeer resistent tegen fysieke schade. Het heeft "
-"ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de "
-"cel met een grote factor en de cel absorbeert stoffen minder snel."
+msgstr "Dit membraan heeft een sterke wand van siliciumdioxide. Het kan algemene schade goed weerstaan en is zeer resistent tegen fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel met een grote factor en de cel absorbeert stoffen minder snel."
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "SIXTEEN_TIMES"
@@ -5880,21 +5401,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:"
-"compound type=\"atp\"][/thrive:compound]."
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -5940,9 +5452,7 @@ msgstr "Vijand spawnen"
 
 #: ../src/microbe_stage/MicrobeStage.cs:765
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr ""
-"Kan geen cheat voor spawn-vijand gebruiken omdat deze patch geen vijandige "
-"soorten bevat"
+msgstr "Kan geen cheat voor spawn-vijand gebruiken omdat deze patch geen vijandige soorten bevat"
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "SPAWN_GLUCOSE"
@@ -6061,9 +5571,7 @@ msgstr "Je Steam-account heeft geen licentie voor Thrive"
 
 #: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
-msgstr ""
-"Je Steam-account bevindt zich momenteel in de modus Alleen-lezen vanwege een "
-"recente accountwijziging"
+msgstr "Je Steam-account bevindt zich momenteel in de modus Alleen-lezen vanwege een recente accountwijziging"
 
 #: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
@@ -6075,8 +5583,7 @@ msgstr "Je Steam-account mag geen inhoud uploaden"
 
 #: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
-msgstr ""
-"Opslagquotum voor Steam-cloud of limiet voor bestandsgrootte overschreden"
+msgstr "Opslagquotum voor Steam-cloud of limiet voor bestandsgrootte overschreden"
 
 #: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
@@ -6088,9 +5595,7 @@ msgstr "Bestand niet gevonden"
 
 #: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
-msgstr ""
-"Je Steam-account is momenteel beperkt in het uploaden van inhoud. Neem "
-"contact op met Steam-ondersteuning."
+msgstr "Je Steam-account is momenteel beperkt in het uploaden van inhoud. Neem contact op met Steam-ondersteuning."
 
 #: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
@@ -6106,8 +5611,7 @@ msgstr "Niet ingelogd op Steam"
 
 #: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
-"Er is een time-out opgetreden voor de Steam operatie, probeer het opnieuw"
+msgstr "Er is een time-out opgetreden voor de Steam operatie, probeer het opnieuw"
 
 #: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
@@ -6117,18 +5621,17 @@ msgstr "Steam is momenteel niet beschikbaar, probeer het opnieuw"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Er is een onbekende Steam-fout opgetreden"
 
-#: ../src/general/MainMenu.tscn:1102 ../src/general/MainMenu.tscn:1090
+#: ../src/general/MainMenu.tscn:1102
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Initialisatie van Steam-clientbibliotheek mislukt"
 
-#: ../src/general/MainMenu.tscn:1104 ../src/general/MainMenu.tscn:1092
+#: ../src/general/MainMenu.tscn:1104
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr ""
-"Het upgraden van de geselecteerde save is gefaald door de volgende error:"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
-#: ../src/general/MainMenu.tscn:824 ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -6290,7 +5793,6 @@ msgid "TESTING_TEAM"
 msgstr "Testing Team"
 
 #: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
-#: ../src/general/MainMenu.tscn:1056
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6305,7 +5807,7 @@ msgstr ""
 "\n"
 "Als je het spel leuk vond, vertel je vrienden dan over ons."
 
-#: ../src/general/MainMenu.tscn:1058 ../src/general/MainMenu.tscn:1046
+#: ../src/general/MainMenu.tscn:1058
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "JE HEBT OVERWONNEN!"
@@ -6321,22 +5823,11 @@ msgstr "Thermoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr ""
-"De thermoplast is een door twee membranen omsloten celorganel dat "
-"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie "
-"van hitteverschillen in de omgeving te gebruiken om glucose uit water en "
-"gasvormige koolstofdioxide te produceren in een proces dat thermosyntese "
-"heet. De snelheid van de glucoseproductie hangt af van de "
-"koolstofdioxideconcentratie en de temperatuur."
+msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio "
-"schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] en temperatuur."
+msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en temperatuur."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
@@ -6347,23 +5838,12 @@ msgstr "Chemosynthese"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr ""
-"De thermoplast is een door twee membranen omsloten celorganel dat "
-"warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het "
-"is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor "
-"diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie "
-"van hitteverschillen in de omgeving te gebruiken om glucose uit water en "
-"gasvormige koolstofdioxide te produceren in een proces dat thermosyntese "
-"heet. De snelheid van de glucoseproductie hangt af van de "
-"koolstofdioxideconcentratie en de temperatuur."
+msgstr "De thermoplast is een door twee membranen omsloten celorganel dat warmtegevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is voor diens gebruik. De pigmenten in de thermoplast zijn in staat om de energie van hitteverschillen in de omgeving te gebruiken om glucose uit water en gasvormige koolstofdioxide te produceren in een proces dat thermosyntese heet. De snelheid van de glucoseproductie hangt af van de koolstofdioxideconcentratie en de temperatuur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio "
-"schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] en temperatuur."
+msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en temperatuur."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -6373,8 +5853,7 @@ msgstr "Chemosynthese"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-"De hoeveelheid glucose is teruggebracht tot {0} van de vorige hoeveelheid."
+msgstr "De hoeveelheid glucose is teruggebracht tot {0} van de vorige hoeveelheid."
 
 #: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
@@ -6393,7 +5872,6 @@ msgid "THREADS"
 msgstr "Threads:"
 
 #: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
-#: ../src/general/MainMenu.tscn:513
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6439,14 +5917,7 @@ msgstr "Thylakoïden"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr ""
-"Thylakoïden zijn clusters van proteïnen en fotosensitieve pigmenten. De "
-"pigmenten kunnen lichtenergie gebruiken om glucose te produceren uit water "
-"en koolstofdioxide in een proces dat men fotosynthese noemt. Deze pigmenten "
-"zorgen ook voor hun opvallende kleur. De snelheid van hun glucoseproductie "
-"staat in verband met de concentratie van koolstofdioxide en de "
-"lichtintensiteit. Doordat de thylakoïden als een suspensie zitten in het "
-"cytoplasma, voert de omliggende vloeistof glycolyse uit."
+msgstr "Thylakoïden zijn clusters van proteïnen en fotosensitieve pigmenten. De pigmenten kunnen lichtenergie gebruiken om glucose te produceren uit water en koolstofdioxide in een proces dat men fotosynthese noemt. Deze pigmenten zorgen ook voor hun opvallende kleur. De snelheid van hun glucoseproductie staat in verband met de concentratie van koolstofdioxide en de lichtintensiteit. Doordat de thylakoïden als een suspensie zitten in het cytoplasma, voert de omliggende vloeistof glycolyse uit."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -6554,7 +6025,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Schakel ontbinding"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:339
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
@@ -6581,19 +6052,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr ""
-"De gifstofvacuole is een vacuole die speciaal aangepast is voor de "
-"specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer "
-"gifstofvacuole's zullen de snelheid waarmee gifstoffen vrijgelaten mee "
-"kunnen worden vergroten."
+msgstr "De gifstofvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstofvacuole's zullen de snelheid waarmee gifstoffen vrijgelaten mee kunnen worden vergroten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met de "
-"concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan "
-"gif afvuren met [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren met [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:180
@@ -6655,39 +6118,30 @@ msgstr ""
 "\n"
 "Deze nummers zijn van de populatie simulatie van auto-evo.\n"
 "\n"
-"Ze nemen je persoonlijke prestatie niet in acht. Dus in je huidige omgeving "
-"ga je beter presteren wanneer je de editor binnengaat.\n"
+"Ze nemen je persoonlijke prestatie niet in acht. Dus in je huidige omgeving ga je beter presteren wanneer je de editor binnengaat.\n"
 "\n"
-"Maar je zou beter je populatie hoog houden ook al ben je niet direct "
-"betrokken."
+"Maar je zou beter je populatie hoog houden ook al ben je niet direct betrokken."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
-"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer "
-"je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan "
-"je soort.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
 "\n"
-"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en "
-"wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
 "\n"
-"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts "
-"onder."
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Dat zijn de basisprincipes van het bewerken van je soort. U kunt de andere "
-"tabbladen van de celeditor controleren voor nog meer opties.\n"
+"Dat zijn de basisprincipes van het bewerken van je soort. U kunt de andere tabbladen van de celeditor controleren voor nog meer opties.\n"
 "\n"
-"U kunt uw soort hernoemen door op uw huidige soortnaam te klikken en de "
-"tekst te bewerken.\n"
+"U kunt uw soort hernoemen door op uw huidige soortnaam te klikken en de tekst te bewerken.\n"
 "\n"
-"In eerste instantie moet u uw cel klein houden en naar de oppervlakte zones "
-"gaan.\n"
+"In eerste instantie moet u uw cel klein houden en naar de oppervlakte zones gaan.\n"
 "\n"
 "Veel geluk!"
 
@@ -6696,28 +6150,21 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
-"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer "
-"je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan "
-"je soort.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
 "\n"
-"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en "
-"wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
 "\n"
-"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts "
-"onder."
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Het verwijderen van organellen kost ook MP, want het is een mutatie aan je "
-"soort, tenzij ze geplaatst zijn tijden de huidige sessie. \n"
+"Het verwijderen van organellen kost ook MP, want het is een mutatie aan je soort, tenzij ze geplaatst zijn tijden de huidige sessie. \n"
 "\n"
-"Je kan klikken met je rechtermuisknop op organellen om het menu te openen en "
-"de vewijder optie te selecteren.\n"
+"Je kan klikken met je rechtermuisknop op organellen om het menu te openen en de vewijder optie te selecteren.\n"
 "\n"
-"Als je een fout maakt kan je eender welke wijziging ongedaan maken in de "
-"editor.\n"
+"Als je een fout maakt kan je eender welke wijziging ongedaan maken in de editor.\n"
 "\n"
 "Klik de \"ongedaan maken\" knop om verder te gaan."
 
@@ -6725,33 +6172,23 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"wanneer je selecteerd welk organel je wilt toevoegen, hou dan rekening met "
-"de gegeven info van de organellen voor welke processen ze uitvoeren en welke "
-"chemische verbindingen ze gebruiken en produceren.\n"
+"wanneer je selecteerd welk organel je wilt toevoegen, hou dan rekening met de gegeven info van de organellen voor welke processen ze uitvoeren en welke chemische verbindingen ze gebruiken en produceren.\n"
 "\n"
-"Hou ook je aandacht bij de ATP balansbalk bovenaan rechts om zeker te zijn "
-"dat je cel kan overleven.\n"
+"Hou ook je aandacht bij de ATP balansbalk bovenaan rechts om zeker te zijn dat je cel kan overleven.\n"
 "\n"
-"Je kan organellen roteren met A en D (Standaardtoetsen) voordat je ze "
-"plaatst.\n"
+"Je kan organellen roteren met A en D (Standaardtoetsen) voordat je ze plaatst.\n"
 "\n"
-"Druk op de \"opnieuw\" knop (dicht bij de \"ongedaan maken\" knop) om verder "
-"te gaan."
+"Druk op de \"opnieuw\" knop (dicht bij de \"ongedaan maken\" knop) om verder te gaan."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"U moet zich concentreren op een of twee energiebronnen, zodat u niet alle "
-"middelen hoeft te hebben om voldoende ATP te genereren om te overleven.\n"
+"U moet zich concentreren op een of twee energiebronnen, zodat u niet alle middelen hoeft te hebben om voldoende ATP te genereren om te overleven.\n"
 "\n"
-"Overweeg ook zorgvuldig of het toevoegen van een organel gunstig is, vaak is "
-"het een goede keuze om geen wijzigingen aan te brengen, omdat elk onderdeel "
-"ATP kost om te onderhouden en er meer middelen nodig zijn om te verdelen.\n"
+"Overweeg ook zorgvuldig of het toevoegen van een organel gunstig is, vaak is het een goede keuze om geen wijzigingen aan te brengen, omdat elk onderdeel ATP kost om te onderhouden en er meer middelen nodig zijn om te verdelen.\n"
 "\n"
-"Een mogelijke strategie is om een enkele hex van cytoplasma te blijven en "
-"eerst naar de oppervlakte zones te gaan voordat je fotosynthese-organellen "
-"krijgt."
+"Een mogelijke strategie is om een enkele hex van cytoplasma te blijven en eerst naar de oppervlakte zones te gaan voordat je fotosynthese-organellen krijgt."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:257
 #, fuzzy
@@ -6767,38 +6204,31 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden "
-"klikken om ze te ontbinden.\n"
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
-"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de "
-"unbind all-toets drukken."
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:330
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden "
-"klikken om ze te ontbinden.\n"
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
-"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de "
-"unbind all-toets drukken."
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden "
-"klikken om ze te ontbinden.\n"
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
-"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de "
-"unbind all-toets drukken."
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Als je nog steeds worstelt met de werking van het spel. Kijk dan in het "
-"helpmenu. Je kunt het openen met de vraagtekenknop linksonder.\n"
+"Als je nog steeds worstelt met de werking van het spel. Kijk dan in het helpmenu. Je kunt het openen met de vraagtekenknop linksonder.\n"
 "\n"
 "Nog een tip: je zoomt uit met het scrollwiel."
 
@@ -6806,36 +6236,31 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden "
-"klikken om ze te ontbinden.\n"
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
-"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de "
-"unbind all-toets drukken."
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Om te reproduceren moet je al je organellen dupliceren door voldoende "
-"ammoniak en fosfaten te verzamelen.\n"
+"Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
 "Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden "
-"klikken om ze te ontbinden.\n"
+"U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
-"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de "
-"unbind all-toets drukken."
+"Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:319
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/general/MainMenu.tscn:920 ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:920
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Help"
@@ -6870,8 +6295,7 @@ msgstr "Ontbind modus"
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
-"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is "
-"waarschijnlijk niet-compatibel.\n"
+"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
 "Wil je toch proberen het opgeslagen bestand te laden?"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1488
@@ -6931,26 +6355,12 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr ""
-"Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van "
-"ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van "
-"de cel vullen. Een van de functies die het vervult is glycolyse, de "
-"omzetting van glucose in ATP-energie. Voor cellen zonder organellen die "
-"zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor "
-"energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de "
-"cel te vergroten."
+msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
@@ -7013,13 +6423,7 @@ msgstr "Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
-msgstr ""
-"De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in "
-"de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak "
-"gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met "
-"water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere "
-"substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen "
-"cellen."
+msgstr "De vacuole is een intern membraanorganel dat gebruikt wordt voor opslag in de cel. Ze bestaan uit meerdere vesikels, kleinere membraanstructuren vaak gebruikt in cellen voor opslag, die samengesmolten zijn. Het is gevuld met water dat gebruikt wordt om moleculen, enzymen, vaste stoffen en andere substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen cellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
@@ -7074,7 +6478,7 @@ msgstr "Grot"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Grot"
 
-#: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:348
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
 
@@ -7087,7 +6491,6 @@ msgid "VISIBLE"
 msgstr "Zichtbaar"
 
 #: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
-#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7153,10 +6556,7 @@ msgstr "JE HEBT OVERWONNEN!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr ""
-"Proficiat, je hebt gewonnen in deze versie van Thrive! Je kan verderspelen "
-"nadat dit scherm is gesloten als je dat wenst, of een nieuw spel beginnen in "
-"een nieuwe wereld."
+msgstr "Proficiat, je hebt gewonnen in deze versie van Thrive! Je kan verderspelen nadat dit scherm is gesloten als je dat wenst, of een nieuw spel beginnen in een nieuwe wereld."
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -7164,9 +6564,7 @@ msgstr "Item veranderings notities"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr ""
-"Verander notities om te laten zien op de Steam Workshop voor deze versie van "
-"het item (optioneel)"
+msgstr "Verander notities om te laten zien op de Steam Workshop voor deze versie van het item (optioneel)"
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
@@ -7190,18 +6588,11 @@ msgstr "Item uploaden naar de Steam Workshop is gelukt"
 
 #: ../src/modding/ModUploader.cs:589
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
-"Het uploaden van items naar de Steam Workshop is gelukt, maar je moet de "
-"Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
-"workshoplegalagreement]servicevoorwaarden[/url][/color] accepteren voor het "
-"zichtbaar is"
+msgstr "Het uploaden van items naar de Steam Workshop is gelukt, maar je moet de Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]servicevoorwaarden[/url][/color] accepteren voor het zichtbaar is"
 
 #: ../src/modding/ModUploader.cs:653
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr ""
-"Door dit item in te dienen, ga je akkoord met de [color=#3796e1][url=https://"
-"steamcommunity.com/sharedfiles/workshoplegalagreement]servicevoorwaarden[/"
-"url][/color] van Steam Workshop"
+msgstr "Door dit item in te dienen, ga je akkoord met de [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]servicevoorwaarden[/url][/color] van Steam Workshop"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -7255,7 +6646,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "jaren"
 
-#: ../src/general/MainMenu.tscn:872 ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -7301,12 +6692,9 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
 #~ msgstr ""
-#~ "De geselecteerde save die moet worden geladen is niet compatibel met deze "
-#~ "versie van Thrive.\n"
+#~ "De geselecteerde save die moet worden geladen is niet compatibel met deze versie van Thrive.\n"
 #~ "En er is geen save-upgrade om deze save te upgraden.\n"
-#~ "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft "
-#~ "compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen "
-#~ "upgraders voor alle versies."
+#~ "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
@@ -7383,28 +6771,19 @@ msgstr "Uitzoomen"
 #~ "Dit is de kaart van de plekken.\n"
 #~ "Hier kan je de verschillende plekken zien waar je microben kunnen leven.\n"
 #~ "Je huidige plek is gemarkeerd.\n"
-#~ "Je kan op de plekken klikken met je muis om ze te selecteren om zo hun "
-#~ "details te zien aan de rechterzijde.\n"
+#~ "Je kan op de plekken klikken met je muis om ze te selecteren om zo hun details te zien aan de rechterzijde.\n"
 #~ "\n"
-#~ "Als je een plek selecteerd die aangrenst aan de plek waarin je jezelf "
-#~ "momenteel bevindt, dan kan je op de knop aan de rechterkant klikken om "
-#~ "daarheen te verhuizen. Dit laat toe om je populatie te verspreiden naar "
-#~ "nieuwe plekken.\n"
+#~ "Als je een plek selecteerd die aangrenst aan de plek waarin je jezelf momenteel bevindt, dan kan je op de knop aan de rechterkant klikken om daarheen te verhuizen. Dit laat toe om je populatie te verspreiden naar nieuwe plekken.\n"
 #~ "\n"
 #~ "Selecteer een plek om verder te gaan."
 
 #~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
 #~ msgstr ""
-#~ "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen "
-#~ "van je soort door mutatiepunten (MP) te besteden.\n"
+#~ "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
 #~ "\n"
-#~ "Je kan ook andere eigenschappen van je soort aanpassen in de andere "
-#~ "tabbladen van de cel editor.\n"
+#~ "Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
 #~ "\n"
-#~ "Om verder te gaan selecteer je een organel van het paneel aan de "
-#~ "linkerkant (cytoplasma is een goede keuze). Klik dan met de "
-#~ "linkermuisknop naast de zeshoek die getoond is in het midden van het "
-#~ "scherm om dat organel toe te voegen aan je soort."
+#~ "Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."
 
 #~ msgid "VIEW_NOW"
 #~ msgstr "Kijk nu"

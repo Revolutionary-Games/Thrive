@@ -9,16 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
-"com>\n"
-"Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
-"com/projects/thrive/thrive-game/sr_Latn/>\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
 "Language: sr_Latn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -195,15 +192,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1997
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
-"Da li ste sigurni da želite da vratite SVA podešavanja na podrazumevane "
-"vrednosti?"
+msgstr "Da li ste sigurni da želite da vratite SVA podešavanja na podrazumevane vrednosti?"
 
 #: ../src/general/OptionsMenu.tscn:2006
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
-"Da li ste sigurni da želite da vratite postavke unosa na podrazumevane "
-"vrednosti?"
+msgstr "Da li ste sigurni da želite da vratite postavke unosa na podrazumevane vrednosti?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 #, fuzzy
@@ -218,7 +211,7 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:540 ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:540
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -303,14 +296,7 @@ msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1086
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr ""
-"Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska "
-"struktura ispunjena proteinima i enzimima. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da "
-"pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može "
-"učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, "
-"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini "
-"usporiće brzinu njegove proizvodnje ATP."
+msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
@@ -324,7 +310,7 @@ msgstr "Automatsko čuvanje tokom igre"
 msgid "AUTO_EVO"
 msgstr "Automatska-Evolucija"
 
-#: ../src/general/MainMenu.tscn:432 ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:432
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "status pokretanja:"
@@ -375,9 +361,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1934 ../src/general/PauseMenu.tscn:282
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:115 ../src/general/MainMenu.tscn:481
-#: ../src/general/MainMenu.tscn:583 ../src/general/MainMenu.tscn:642
-#: ../src/general/MainMenu.tscn:961 ../src/general/PauseMenu.tscn:275
+#: ../src/saving/SaveManagerGUI.tscn:115
 msgid "BACK"
 msgstr "Nazad"
 
@@ -479,7 +463,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:447 ../src/general/MainMenu.tscn:448
+#: ../src/general/MainMenu.tscn:447
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -529,22 +513,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/general/OptionsMenu.tscn:1278 ../src/general/OptionsMenu.tscn:1388
 msgid "BIND_AXES_SENSITIVITY"
@@ -602,11 +576,7 @@ msgstr "Kalcijum Karbonat"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Ova membrana ima jaku ljusku napravljenu od kalcijum-karbonata. Može se lako "
-"odupreti oštećenjima i zahteva manje energije da se ne deformiše. Mane ovako "
-"teške ljuske su u tome što je ćelija mnogo sporija i potrebno joj je neko "
-"vreme da apsorbuje resurse."
+msgstr "Ova membrana ima jaku ljusku napravljenu od kalcijum-karbonata. Može se lako odupreti oštećenjima i zahteva manje energije da se ne deformiše. Mane ovako teške ljuske su u tome što je ćelija mnogo sporija i potrebno joj je neko vreme da apsorbuje resurse."
 
 #: ../simulation_parameters/common/input_options.json:78
 msgid "CAMERA"
@@ -717,12 +687,7 @@ msgstr "Celuloza"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:112
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2844
@@ -731,10 +696,7 @@ msgstr "Celuloza"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2845
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a "
-"posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao "
-"oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
+msgstr "Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:591
 msgid "CELL_TYPE_NAME"
@@ -776,20 +738,12 @@ msgstr "Hemoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:680
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
@@ -800,20 +754,12 @@ msgstr "Hemoplast"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:151
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:582
@@ -822,24 +768,12 @@ msgstr "Hemosintetski Proteini"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr ""
-"Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u "
-"stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu "
-"u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su "
-"proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
-"Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u "
-"stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu "
-"u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su "
-"proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -859,20 +793,11 @@ msgstr "Hitin"
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:115
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Ova membrana ima zid, što znači da ima bolju zaštitu od ukupnih oštećenja, "
-"posebno od oštećenja toksinima. Takođe zadržava manje energije da bi zadržao "
-"oblik, ali je sporiji i ne može brzo da apsorbuje resurse."
+msgstr "Ova membrana ima zid, što znači da ima bolju zaštitu od ukupnih oštećenja, posebno od oštećenja toksinima. Takođe zadržava manje energije da bi zadržao oblik, ali je sporiji i ne može brzo da apsorbuje resurse."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:556
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
@@ -881,28 +806,12 @@ msgstr "Hloroplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr ""
-"Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
-"pigmente složene zajedno u opnene vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu "
-"su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti."
+msgstr "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne pigmente složene zajedno u opnene vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
-"pigmente složene zajedno u opnene vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu "
-"su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti."
+msgstr "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne pigmente složene zajedno u opnene vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti."
 
 #: ../src/saving/NewSaveMenu.cs:98
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -915,13 +824,7 @@ msgstr "Hromatske aberacije:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u "
-"stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu "
-"u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su "
-"proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Hemosintetizujući proteini su male grupe proteina u citoplazmi koje su u stanju da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida. Pošto su proteini hemosinteze suspendovani direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 #, fuzzy
@@ -936,24 +839,12 @@ msgstr "Cilija"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../src/saving/SaveManagerGUI.tscn:84
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1060,20 +951,20 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/MainMenu.tscn:701 ../src/general/MainMenu.tscn:702
+#: ../src/general/MainMenu.tscn:701
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:696 ../src/general/MainMenu.tscn:697
+#: ../src/general/MainMenu.tscn:696
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/general/MainMenu.tscn:743 ../src/general/MainMenu.tscn:744
+#: ../src/general/MainMenu.tscn:743
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:738 ../src/general/MainMenu.tscn:739
+#: ../src/general/MainMenu.tscn:738
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -1149,7 +1040,6 @@ msgstr "POTVRDI"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:319
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:144
-#: ../src/general/PauseMenu.tscn:312
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "POTVRDI"
@@ -1262,11 +1152,7 @@ msgstr "Napravite novi mikrob"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../src/modding/NewModGUI.tscn:33
 #, fuzzy
@@ -1285,11 +1171,7 @@ msgstr "Napravite novi mikrob"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:685
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../src/modding/ModUploader.cs:493
 #, fuzzy
@@ -1300,7 +1182,7 @@ msgstr "Traži..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:366 ../src/general/MainMenu.tscn:367
+#: ../src/general/MainMenu.tscn:366
 msgid "CREDITS"
 msgstr "Krediti"
 
@@ -1336,13 +1218,7 @@ msgstr "Citoplazma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -1351,13 +1227,7 @@ msgstr "Glikoliza citoplazme"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "DAY_LENGTH"
@@ -1478,11 +1348,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:715 ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:715
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:710 ../src/general/MainMenu.tscn:711
+#: ../src/general/MainMenu.tscn:710
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -1491,11 +1361,11 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:729 ../src/general/MainMenu.tscn:730
+#: ../src/general/MainMenu.tscn:729
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:724 ../src/general/MainMenu.tscn:725
+#: ../src/general/MainMenu.tscn:724
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -1624,7 +1494,7 @@ msgstr ""
 "Postoje postavljene organele, koje nisu povezane sa ostalim.\n"
 "Povežite sve postavljene organele jedni sa drugima ili poništite promene."
 
-#: ../src/general/MainMenu.tscn:896 ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -1639,7 +1509,7 @@ msgstr "Brzina:"
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/MainMenu.tscn:1084 ../src/general/MainMenu.tscn:1072
+#: ../src/general/MainMenu.tscn:1084
 msgid "DISMISS_PERMANENTLY"
 msgstr ""
 
@@ -1687,12 +1557,9 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2678
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje energije "
-"da se ne deformiše. Međutim, to usporava ćeliju i smanjuje brzinu kojom može "
-"da apsorbuje resurse."
+msgstr "Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje energije da se ne deformiše. Međutim, to usporava ćeliju i smanjuje brzinu kojom može da apsorbuje resurse."
 
-#: ../src/general/MainMenu.tscn:1027 ../src/general/MainMenu.tscn:1015
+#: ../src/general/MainMenu.tscn:1027
 msgid "DO_NOT_SHOW_AGAIN"
 msgstr ""
 
@@ -1730,15 +1597,11 @@ msgstr "Te plave ćelije ipak."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Evo saveta, biomi su više nego samo različito poreklo, jedinjenja u "
-"različitim biomima se ponekad mrestaju različitim brzinama."
+msgstr "Evo saveta, biomi su više nego samo različito poreklo, jedinjenja u različitim biomima se ponekad mrestaju različitim brzinama."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Evo saveta: Što više bičeva imate, brže idete, vrum vrum, ali košta i ATP "
-"više"
+msgstr "Evo saveta: Što više bičeva imate, brže idete, vrum vrum, ali košta i ATP više"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -1751,16 +1614,11 @@ msgstr "Evo saveta, ponekad je najbolje samo pobeći od drugih ćelija."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 "
-"vrsta trepavica?"
+msgstr "Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 vrsta trepavica?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen "
-"u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje "
-"cilijama."
+msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje cilijama."
 
 #: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
@@ -1768,79 +1626,51 @@ msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Evo saveta, toksini se mogu koristiti za odbacivanje drugih toksina od vas "
-"ako ste dovoljno brzi."
+msgstr "Evo saveta, toksini se mogu koristiti za odbacivanje drugih toksina od vas ako ste dovoljno brzi."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Zabavna činjenica je da ameba lovi i hvata plen „nogama“ napravljenim od "
-"citoplazme nazvanih pseudopodi, želimo da konačno imamo one u Thrive-u."
+msgstr "Zabavna činjenica je da ameba lovi i hvata plen „nogama“ napravljenim od citoplazme nazvanih pseudopodi, želimo da konačno imamo one u Thrive-u."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Evo saveta, Pazite na veće ćelije i velike bakterije, nije zabavno da budeš "
-"probavljajen i oni će vas pojesti."
+msgstr "Evo saveta, Pazite na veće ćelije i velike bakterije, nije zabavno da budeš probavljajen i oni će vas pojesti."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Vođa zvučnog tima Thrive-a napravio je mnogo pesama koje još nisu dodate u "
-"igru. Možete ih čuti ili gledati kako on komponuje na svom YouTube kanalu "
-"Oliver Lugg."
+msgstr "Vođa zvučnog tima Thrive-a napravio je mnogo pesama koje još nisu dodate u igru. Možete ih čuti ili gledati kako on komponuje na svom YouTube kanalu Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Evo saveta, ako je vaša ćelija 150 hekse, možete progutati velike gvozdene "
-"komade."
+msgstr "Evo saveta, ako je vaša ćelija 150 hekse, možete progutati velike gvozdene komade."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive je zamišljen kao simulacija vanzemaljske planete, stoga ima smisla da "
-"će većina stvorenja koja nađete biti povezana sa jednom ili dve druge vrste "
-"usled evolucije koja se dešava oko vas, pogledajte da li ih možete "
-"prepoznati!"
+msgstr "Thrive je zamišljen kao simulacija vanzemaljske planete, stoga ima smisla da će većina stvorenja koja nađete biti povezana sa jednom ili dve druge vrste usled evolucije koja se dešava oko vas, pogledajte da li ih možete prepoznati!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Zabavna činjenica, Thrive tim svako malo pravi podkastove, trebalo bi da ih "
-"pogledate!"
+msgstr "Zabavna činjenica, Thrive tim svako malo pravi podkastove, trebalo bi da ih pogledate!"
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"Zabavna činjenica, Thrive je napravljen sa Godot, što je otvorenog koda!"
+msgstr "Zabavna činjenica, Thrive je napravljen sa Godot, što je otvorenog koda!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Zabavna činjenica, Jedan od prvih prototipova za igranje napravio je naš "
-"sjajni programer, UntrustedLife!"
+msgstr "Zabavna činjenica, Jedan od prvih prototipova za igranje napravio je naš sjajni programer, UntrustedLife!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Evo saveta, osmoregulacija košta 1 ATP po sekundi po heku koju ima vaša "
-"ćelija, svaki prazan hek citoplazme takođe generiše 5 ATP u sekundi, što "
-"znači da ako gubite ATP usled osmoregulacije, samo dodajte nekoliko praznih "
-"hekes citoplazme ili uklonite neke organele ."
+msgstr "Evo saveta, osmoregulacija košta 1 ATP po sekundi po heku koju ima vaša ćelija, svaki prazan hek citoplazme takođe generiše 5 ATP u sekundi, što znači da ako gubite ATP usled osmoregulacije, samo dodajte nekoliko praznih hekes citoplazme ili uklonite neke organele ."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Zabavna činjenica, u stvarnom životu prokarionti imaju nešto što se naziva "
-"Biokompanije i deluju poput organela, a zapravo se nazivaju Poliedrične "
-"organele."
+msgstr "Zabavna činjenica, u stvarnom životu prokarionti imaju nešto što se naziva Biokompanije i deluju poput organela, a zapravo se nazivaju Poliedrične organele."
 
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"Zabavna činjenica, metabolosom je ono što se naziva poliedrična organela."
+msgstr "Zabavna činjenica, metabolosom je ono što se naziva poliedrična organela."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
@@ -1849,17 +1679,12 @@ msgstr "Evo saveta, ponekad je najbolje samo pobeći od drugih ćelija."
 #: ../simulation_parameters/common/help_texts.json:163
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 "
-"vrsta trepavica?"
+msgstr "Zabavna činjenica, da li ste znali da na planeti Zemlji postoji preko 8000 vrsta trepavica?"
 
 #: ../simulation_parameters/common/help_texts.json:166
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen "
-"u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje "
-"cilijama."
+msgstr "Zabavna činjenica, Stentor je cilijar koji se može istegnuti i uhvatiti plen u nekoj vrsti trube poput usta koja uvlače plen generišući vodene struje cilijama."
 
 #: ../simulation_parameters/common/help_texts.json:169
 #, fuzzy
@@ -2040,11 +1865,11 @@ msgstr ""
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:247 ../src/general/PauseMenu.tscn:240
+#: ../src/general/PauseMenu.tscn:247
 msgid "EXIT"
 msgstr "Izaći"
 
-#: ../src/general/MainMenu.tscn:376 ../src/general/MainMenu.tscn:377
+#: ../src/general/MainMenu.tscn:376
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2096,7 +1921,7 @@ msgstr "POPULACIJA:"
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357 ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:357
 msgid "EXTRAS"
 msgstr "Dodatne"
 
@@ -2104,7 +1929,7 @@ msgstr "Dodatne"
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:908 ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:908
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -2193,18 +2018,12 @@ msgstr "Bič"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr ""
-"Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od "
-"ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo "
-"ćeliju u pravcu."
+msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
-"Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od "
-"ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo "
-"ćeliju u pravcu."
+msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:192
@@ -2344,7 +2163,7 @@ msgstr "Generacija:"
 msgid "GENERATION_COLON"
 msgstr "Generacija:"
 
-#: ../src/general/MainMenu.tscn:860 ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -2353,17 +2172,13 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993 ../src/general/MainMenu.tscn:981
+#: ../src/general/MainMenu.tscn:993
 msgid "GLES2_MODE_WARNING"
 msgstr "Upozorenje u režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:995 ../src/general/MainMenu.tscn:983
+#: ../src/general/MainMenu.tscn:995
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-"Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će "
-"izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / "
-"ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa "
-"Thrive."
+msgstr "Koristite Thrive vith GLES2. Ovo je ozbiljno neprovereno i verovatno će izazvati probleme. Pokušajte da ažurirate upravljačke programe za video i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje programa Thrive."
 
 #: ../src/general/OptionsMenu.cs:957
 msgid "GLES3"
@@ -2439,14 +2254,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4054
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
-msgstr ""
-"Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska "
-"struktura ispunjena proteinima i enzimima. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da "
-"pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može "
-"učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, "
-"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini "
-"usporiće brzinu njegove proizvodnje ATP."
+msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
 
 #: ../simulation_parameters/common/input_options.json:214
 msgid "GUI_TAB_NAVIGATION"
@@ -2653,7 +2461,7 @@ msgstr "Gvožđe"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Hemolitoautotrofija gvožđa"
 
-#: ../src/general/MainMenu.tscn:836 ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -3039,7 +2847,7 @@ msgstr "Levi miš"
 msgid "LEFT_MOUSE"
 msgstr "Levi miš"
 
-#: ../src/general/MainMenu.tscn:551 ../src/general/MainMenu.tscn:552
+#: ../src/general/MainMenu.tscn:551
 msgid "LICENSES"
 msgstr ""
 
@@ -3166,13 +2974,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:109
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
@@ -3218,12 +3020,10 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
-#: ../src/general/MainMenu.tscn:321
 msgid "LOAD_GAME"
 msgstr "Učitajte Igru"
 
 #: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:199
-#: ../src/general/MainMenu.tscn:318
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -3270,24 +3070,12 @@ msgstr "OksiToksizom"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr ""
-"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju "
-"da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u "
-"citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu "
-"je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće "
-"brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno "
-"u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr ""
-"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju "
-"da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u "
-"citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu "
-"je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće "
-"brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno "
-"u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 #, fuzzy
@@ -3391,24 +3179,12 @@ msgstr "Metabolosomi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr ""
-"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju "
-"da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u "
-"citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu "
-"je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće "
-"brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno "
-"u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr ""
-"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju "
-"da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u "
-"citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu "
-"je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće "
-"brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno "
-"u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
 #: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3437,7 +3213,7 @@ msgid "MICROBES_COUNT"
 msgstr "Zona: {0}"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:613 ../src/general/MainMenu.tscn:614
+#: ../src/general/MainMenu.tscn:613
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Učitavanje Uređivača Mikroba"
@@ -3454,18 +3230,15 @@ msgstr ""
 "\n"
 "Metabolosomi: Stvara ATP iz glukoze\n"
 "\n"
-"Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao "
-"hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
+"Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
 "\n"
-"Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali "
-"takođe vrši glikolizu i zauzima 1 heks\n"
+"Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
 "\n"
 "Rusticijanin: Pretvara gvožđe u ATP\n"
 "\n"
 "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
 "\n"
-"Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male "
-"količine ATP)"
+"Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 #, fuzzy
@@ -3475,18 +3248,15 @@ msgstr ""
 "\n"
 "Metabolosomi: Stvara ATP iz glukoze\n"
 "\n"
-"Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao "
-"hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
+"Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
 "\n"
-"Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali "
-"takođe vrši glikolizu i zauzima 1 heks\n"
+"Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
 "\n"
 "Rusticijanin: Pretvara gvožđe u ATP\n"
 "\n"
 "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
 "\n"
-"Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male "
-"količine ATP)"
+"Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -3502,18 +3272,15 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membrane vezane organele\n"
 "\n"
-"Nukleus: Zauzima 11 hekse i omogućava razvoj membrana vezanih organela. "
-"Takođe udvostručuje veličinu vaše ćelije. (Može se razviti samo jednom)\n"
+"Nukleus: Zauzima 11 hekse i omogućava razvoj membrana vezanih organela. Takođe udvostručuje veličinu vaše ćelije. (Može se razviti samo jednom)\n"
 "\n"
-"Mitohondrion: Stvara ATP iz glukoze i atmosferskog O2. Mnogo efikasnije od "
-"citoplazme\n"
+"Mitohondrion: Stvara ATP iz glukoze i atmosferskog O2. Mnogo efikasnije od citoplazme\n"
 "\n"
 "Hloroplast: Stvara glukozu od sunčeve svetlosti i atmosferskog CO2\n"
 "\n"
 "Hemoplast: Stvara glukozu od vodonik-sulfida\n"
 "\n"
-"Plastid za fiksiranje azota: Stvara amonijak od ATP i atmosferskog azota i "
-"kiseonika\n"
+"Plastid za fiksiranje azota: Stvara amonijak od ATP i atmosferskog azota i kiseonika\n"
 "\n"
 "Vacuole: Čuva 15 prikupljenih jedinjenja\n"
 "\n"
@@ -3521,22 +3288,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Svaka generacija imaš 100 mutaciski poeni (MP), a svaka promena (ili "
-"mutacija) koštaće određenu količinu tog MP. Dodavanje i uklanjanje organela "
-"košta MP, međutim uklanjanje organela koje su postavljene u trenutnoj sesiji "
-"mutacije refundira MP za tu organelu. Organelu možete ukloniti desnim klikom "
-"na nju. Organele možete rotirati A i D."
+msgstr "Svaka generacija imaš 100 mutaciski poeni (MP), a svaka promena (ili mutacija) koštaće određenu količinu tog MP. Dodavanje i uklanjanje organela košta MP, međutim uklanjanje organela koje su postavljene u trenutnoj sesiji mutacije refundira MP za tu organelu. Organelu možete ukloniti desnim klikom na nju. Organele možete rotirati A i D."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Svaki put kada se razmnožavate, ući ćete u uređivač mikroba, gde možete da "
-"izmenite vrstu (dodavanjem, premeštanjem ili uklanjanjem organela) da biste "
-"povećali uspeh svoje vrste. Svaka poseta uredniku na sceni mikroba "
-"predstavlja 100 miliona godina evolucije."
+msgstr "Svaki put kada se razmnožavate, ući ćete u uređivač mikroba, gde možete da izmenite vrstu (dodavanjem, premeštanjem ili uklanjanjem organela) da biste povećali uspeh svoje vrste. Svaka poseta uredniku na sceni mikroba predstavlja 100 miliona godina evolucije."
 
-#: ../src/general/MainMenu.tscn:420 ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:420
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
@@ -3582,51 +3340,36 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna "
-"vacuole. G za prebacivanje režima gutanja."
+msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Da biste se reprodukovali, potrebno je da podelite svaki od svojih organela "
-"na dva dela. Organeli trebaju amonijak i fosfat da se podele na pola."
+msgstr "Da biste se reprodukovali, potrebno je da podelite svaki od svojih organela na dva dela. Organeli trebaju amonijak i fosfat da se podele na pola."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Ali ako preživite dvadeset generacija sa populaciija od , smatra se da ste "
-"pobedili u trenutnoj igri, nakon pobede dobijate iskačući prozor i možete da "
-"nastavite da igrate kako želite."
+msgstr "Ali ako preživite dvadeset generacija sa populaciija od , smatra se da ste pobedili u trenutnoj igri, nakon pobede dobijate iskačući prozor i možete da nastavite da igrate kako želite."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Budite oprezni jer se vaši konkurenti razvijaju zajedno sa vama. Svaki put "
-"kada uđete u urednik, oni takođe evoluiraju."
+msgstr "Budite oprezni jer se vaši konkurenti razvijaju zajedno sa vama. Svaki put kada uđete u urednik, oni takođe evoluiraju."
 
 #: ../simulation_parameters/common/help_texts.json:66
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna "
-"vacuole. G za prebacivanje režima gutanja."
+msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
-"W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna "
-"vacuole. G za prebacivanje režima gutanja."
+msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
-"W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna "
-"vacuole. G za prebacivanje režima gutanja."
+msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -3636,33 +3379,22 @@ msgstr "Vaša ćelija koristi ATP kao izvor energije, ako se potroši, umrećete
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Da biste otključali uređivač i reprodukovali ćeliju, potrebno je da sakupite "
-"amonijak (narandžasti oblak) i fosfat (ljubičasti oblak)."
+msgstr "Da biste otključali uređivač i reprodukovali ćeliju, potrebno je da sakupite amonijak (narandžasti oblak) i fosfat (ljubičasti oblak)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Takođe možete da obuzmete ćelije i bakterije i komade gvožđa i delove ćelija "
-"koji su manji od vas kada pritisneš G. To će koštati dodatni ATP i usporiće "
-"vas. Ne zaboravite da pritisneš G drugi put da biste prestali da proždirete."
+msgstr "Takođe možete da obuzmete ćelije i bakterije i komade gvožđa i delove ćelija koji su manji od vas kada pritisneš G. To će koštati dodatni ATP i usporiće vas. Ne zaboravite da pritisneš G drugi put da biste prestali da proždirete."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulacija košta ATP, što znači da što je veća vaša ćelija, to vam je "
-"potrebno više mitohondrije ili metabolosomi ili rusticijanine (ili "
-"citoplazme, koja vrši glikolizu) da biste izbegli gubitak ATP-a kada "
-"mirujete."
+msgstr "Osmoregulacija košta ATP, što znači da što je veća vaša ćelija, to vam je potrebno više mitohondrije ili metabolosomi ili rusticijanine (ili citoplazme, koja vrši glikolizu) da biste izbegli gubitak ATP-a kada mirujete."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"U uređivaču ima mnogo organela da biste mogli da se razvijate, omogućavajući "
-"širok spektar različitih stilova igranja."
+msgstr "U uređivaču ima mnogo organela da biste mogli da se razvijate, omogućavajući širok spektar različitih stilova igranja."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3685,10 +3417,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Vodonik-sulfid se može pretvoriti u glukozu pomoću hemoplasta i "
-"hemosintetizujućih proteina. Gvožđe se može pretvoriti putem rusticianina u "
-"ATP."
+msgstr "Vodonik-sulfid se može pretvoriti u glukozu pomoću hemoplasta i hemosintetizujućih proteina. Gvožđe se može pretvoriti putem rusticianina u ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 msgid "MICROBE_STAGE_INITIAL"
@@ -3732,12 +3461,7 @@ msgstr "Ostalo"
 #: ../src/modding/ModUploader.cs:345
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/modding/NewModGUI.cs:312
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
@@ -3754,26 +3478,12 @@ msgstr "Mitohondrija"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr ""
-"Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska "
-"struktura ispunjena proteinima i enzimima. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da "
-"pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može "
-"učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, "
-"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini "
-"usporiće brzinu njegove proizvodnje ATP."
+msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr ""
-"Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska "
-"struktura ispunjena proteinima i enzimima. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da "
-"pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može "
-"učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, "
-"potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini "
-"usporiće brzinu njegove proizvodnje ATP."
+msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska struktura ispunjena proteinima i enzimima. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. U stanju je da pretvori glukozu u ATP sa mnogo većom efikasnošću nego što se to može učiniti u citoplazmi u procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:170
 #, fuzzy
@@ -3802,11 +3512,11 @@ msgstr "Maknite organelu"
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:526 ../src/general/MainMenu.tscn:527
+#: ../src/general/MainMenu.tscn:526
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1011 ../src/general/MainMenu.tscn:999
+#: ../src/general/MainMenu.tscn:1011
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3860,42 +3570,22 @@ msgstr "Automatska-evolucija nije uspela"
 #: ../src/modding/NewModGUI.tscn:186
 #, fuzzy
 msgid "MOD_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/modding/ModLoader.cs:498
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/modding/ModLoader.cs:519
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/modding/ModLoader.cs:339
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
@@ -3917,11 +3607,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1051 ../src/general/MainMenu.tscn:1039
+#: ../src/general/MainMenu.tscn:1051
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1052 ../src/general/MainMenu.tscn:1040
+#: ../src/general/MainMenu.tscn:1052
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4166,11 +3856,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:307 ../src/general/MainMenu.tscn:308
+#: ../src/general/MainMenu.tscn:307
 msgid "NEW_GAME"
 msgstr "Nova igra"
 
-#: ../src/general/MainMenu.tscn:301 ../src/general/MainMenu.tscn:302
+#: ../src/general/MainMenu.tscn:301
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -4182,11 +3872,7 @@ msgstr ""
 #: ../src/modding/NewModGUI.cs:211
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
-"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
-"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
-"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove "
-"proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:611
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:705
@@ -4225,22 +3911,12 @@ msgstr "Nitrogenaza"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
@@ -4249,20 +3925,12 @@ msgstr "Plastid za Fiksiranje Azota"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr ""
-"Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i "
-"kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog "
-"hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna "
-"fiksacija azota."
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr ""
-"Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i "
-"kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog "
-"hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna "
-"fiksacija azota."
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
 
 #: ../src/general/OptionsMenu.tscn:416 ../src/general/OptionsMenu.tscn:417
 msgid "NONE"
@@ -4275,10 +3943,7 @@ msgstr "Normalno"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2507
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe mu je "
-"potrebno više energije da se ne bi deformisao. Prednost je u tome što "
-"omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
+msgstr "Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe mu je potrebno više energije da se ne bi deformisao. Prednost je u tome što omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:543
 #: ../src/microbe_stage/MicrobeStage.tscn:595
@@ -4317,7 +3982,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:998 ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Uključi tasteri za varanja"
@@ -4355,15 +4020,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "NUCLEUS_DESCRIPTION"
-msgstr ""
-"Definitivna karakteristika eukariotskih ćelija. Jezgro takođe uključuje "
-"endoplazmatski retikulum i telo golgija. Evolucija prokariontskih ćelija je "
-"razviti sistem unutrašnjih membrana, urađen asimilacijom drugog prokariota u "
-"sebi. To im omogućava da razdvoje ili odbace različite procese koji se "
-"dešavaju unutar ćelije i sprečava ih da se preklapaju. To omogućava da "
-"njihovi novi membranski organeli budu mnogo složeniji, efikasniji i "
-"specijalizovaniji nego da slobodno lebde u citoplazmi. Međutim, ovo dolazi "
-"po cenu da ćelija bude mnogo veća i da joj treba puno energije za održavanje."
+msgstr "Definitivna karakteristika eukariotskih ćelija. Jezgro takođe uključuje endoplazmatski retikulum i telo golgija. Evolucija prokariontskih ćelija je razviti sistem unutrašnjih membrana, urađen asimilacijom drugog prokariota u sebi. To im omogućava da razdvoje ili odbace različite procese koji se dešavaju unutar ćelije i sprečava ih da se preklapaju. To omogućava da njihovi novi membranski organeli budu mnogo složeniji, efikasniji i specijalizovaniji nego da slobodno lebde u citoplazmi. Međutim, ovo dolazi po cenu da ćelija bude mnogo veća i da joj treba puno energije za održavanje."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -4395,11 +4052,11 @@ msgstr "- МП"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:687 ../src/general/MainMenu.tscn:688
+#: ../src/general/MainMenu.tscn:687
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:678 ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:678
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -4407,8 +4064,7 @@ msgstr "Dodajte novo vezivanje tastera"
 #: ../src/general/MainMenu.tscn:1041 ../src/general/MainMenu.tscn:1098
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357 ../src/general/MainMenu.tscn:1029
-#: ../src/general/MainMenu.tscn:1086
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "U redu"
 
@@ -4479,12 +4135,10 @@ msgid "OPPORTUNISTIC"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:330 ../src/general/PauseMenu.tscn:224
-#: ../src/general/MainMenu.tscn:331
 msgid "OPTIONS"
 msgstr "Opcije"
 
 #: ../src/general/MainMenu.tscn:327 ../src/general/PauseMenu.tscn:223
-#: ../src/general/MainMenu.tscn:328
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -4594,20 +4248,12 @@ msgstr "OksiToksizom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
-msgstr ""
-"Modifikovani metabolosom odgovoran za proizvodnju primitivnog oblika "
-"toksičnog agensa OksiToksi NT."
+msgstr "Modifikovani metabolosom odgovoran za proizvodnju primitivnog oblika toksičnog agensa OksiToksi NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr ""
-"Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju "
-"da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u "
-"citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu "
-"je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće "
-"brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno "
-"u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1589
@@ -4750,7 +4396,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848 ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -5032,13 +4678,12 @@ msgstr "Učitajte brzo"
 msgid "QUICK_SAVE"
 msgstr "Sačuvajte brzo"
 
-#: ../src/general/MainMenu.tscn:389 ../src/general/MainMenu.tscn:390
+#: ../src/general/MainMenu.tscn:389
 msgid "QUIT"
 msgstr "Odustati"
 
 #: ../src/general/MainMenu.tscn:373 ../src/general/MainMenu.tscn:383
-#: ../src/general/PauseMenu.tscn:246 ../src/general/MainMenu.tscn:374
-#: ../src/general/MainMenu.tscn:384 ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:246
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -5081,7 +4726,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:884 ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Nastaviti"
@@ -5218,11 +4863,10 @@ msgstr "Nastaviti"
 
 #: ../src/general/PauseMenu.tscn:239
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
-#: ../src/general/PauseMenu.tscn:232
 msgid "RETURN_TO_MENU"
 msgstr "Vratite se u Meni"
 
-#: ../src/general/PauseMenu.tscn:238 ../src/general/PauseMenu.tscn:231
+#: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Vratite se u Meni"
@@ -5233,7 +4877,7 @@ msgstr "Vratite se u Meni"
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Vratite se u Meni"
 
-#: ../src/general/MainMenu.tscn:811 ../src/general/MainMenu.tscn:799
+#: ../src/general/MainMenu.tscn:811
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -5253,9 +4897,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Čvršća membrana je otpornija na oštećenja, ali će isto otežati kretanje za "
-"ćeliju."
+msgstr "Čvršća membrana je otpornija na oštećenja, ali će isto otežati kretanje za ćeliju."
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "ROTATE_LEFT"
@@ -5323,27 +4965,19 @@ msgstr "Rusticijanin"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr ""
-"Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i "
-"kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj "
-"proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može "
-"da sakupi."
+msgstr "Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može da sakupi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr ""
-"Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i "
-"kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj "
-"proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može "
-"da sakupi."
+msgstr "Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može da sakupi."
 
-#: ../src/general/MainMenu.tscn:1047 ../src/general/MainMenu.tscn:1035
+#: ../src/general/MainMenu.tscn:1047
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/general/MainMenu.tscn:1045 ../src/general/MainMenu.tscn:1033
+#: ../src/general/MainMenu.tscn:1045
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5401,12 +5035,7 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:113
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/saving/InProgressLoad.cs:242
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
@@ -5427,32 +5056,17 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:119
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/saving/SaveList.tscn:120
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/modding/ModUploader.cs:677
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/saving/InProgressSave.cs:207
 #, fuzzy
@@ -5462,12 +5076,7 @@ msgstr "Traži..."
 #: ../src/saving/SaveHelper.cs:492 ../src/saving/SaveHelper.cs:543
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/saving/SaveHelper.cs:501 ../src/saving/SaveHelper.cs:520
 msgid "SAVING_NOT_POSSIBLE"
@@ -5542,22 +5151,12 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:127
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:767
 #, fuzzy
@@ -5672,22 +5271,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
-"Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju "
-"u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast "
-"ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je "
-"nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši "
-"fermentaciju."
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:115
 #, fuzzy
@@ -5726,11 +5315,7 @@ msgstr "Silicijum-Dioksid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3611
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr ""
-"Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti "
-"ukupnoj šteti i vrlo je otporan na fizička oštećenja. Takođe zahteva manje "
-"energije za održavanje forme. Međutim, usporava ćeliju velikim faktorom i "
-"ćelija apsorbuje resurse smanjenom brzinom."
+msgstr "Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti ukupnoj šteti i vrlo je otporan na fizička oštećenja. Takođe zahteva manje energije za održavanje forme. Međutim, usporava ćeliju velikim faktorom i ćelija apsorbuje resurse smanjenom brzinom."
 
 #: ../src/general/OptionsMenu.tscn:331
 msgid "SIXTEEN_TIMES"
@@ -5753,24 +5338,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -5989,22 +5562,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1102 ../src/general/MainMenu.tscn:1090
+#: ../src/general/MainMenu.tscn:1102
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Automatska-evolucija nije uspela"
 
-#: ../src/general/MainMenu.tscn:1104 ../src/general/MainMenu.tscn:1092
+#: ../src/general/MainMenu.tscn:1104
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
-#: ../src/general/MainMenu.tscn:824 ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Nastaviti"
@@ -6166,7 +5734,6 @@ msgid "TESTING_TEAM"
 msgstr ""
 
 #: ../src/general/MainMenu.cs:238 ../src/general/MainMenu.tscn:1068
-#: ../src/general/MainMenu.tscn:1056
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6174,7 +5741,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1058 ../src/general/MainMenu.tscn:1046
+#: ../src/general/MainMenu.tscn:1058
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -6189,26 +5756,12 @@ msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr ""
-"Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne "
-"pigmente složene zajedno u membranske vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu "
-"mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze "
-"iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. "
-"Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
-"dioksida i temperaturom."
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne "
-"pigmente složene zajedno u membranske vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu "
-"mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze "
-"iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. "
-"Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
-"dioksida i temperaturom."
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:317
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:977
@@ -6219,26 +5772,12 @@ msgstr "Hemosinteza"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr ""
-"Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne "
-"pigmente složene zajedno u membranske vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu "
-"mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze "
-"iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. "
-"Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
-"dioksida i temperaturom."
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne "
-"pigmente složene zajedno u membranske vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu "
-"mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze "
-"iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. "
-"Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
-"dioksida i temperaturom."
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -6267,7 +5806,6 @@ msgid "THREADS"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:512 ../src/general/PauseMenu.tscn:208
-#: ../src/general/MainMenu.tscn:513
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6313,14 +5851,7 @@ msgstr "Tilakoidi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr ""
-"Tilakoidi su grozdi proteina i fotosenzibilnih pigmenata. Pigmenti su u "
-"stanju da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što im daje prepoznatljivu boju. Stopa njihove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti. Pošto su tilakoidi suspendovani direktno u citoplazmi, okolna "
-"tečnost vrši fermentaciju."
+msgstr "Tilakoidi su grozdi proteina i fotosenzibilnih pigmenata. Pigmenti su u stanju da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što im daje prepoznatljivu boju. Stopa njihove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti. Pošto su tilakoidi suspendovani direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -6429,7 +5960,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Prebacite gutanje"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:340
+#: ../src/general/MainMenu.tscn:339
 msgid "TOOLS"
 msgstr "Alati"
 
@@ -6457,18 +5988,12 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr ""
-"Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, "
-"skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće "
-"brzinu oslobađanja toksina."
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, "
-"skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće "
-"brzinu oslobađanja toksina."
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:180
@@ -6578,9 +6103,7 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr ""
-"W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna "
-"vacuole. G za prebacivanje režima gutanja."
+msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:365
 #, fuzzy
@@ -6601,7 +6124,7 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:920 ../src/general/MainMenu.tscn:908
+#: ../src/general/MainMenu.tscn:920
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
@@ -6622,10 +6145,7 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:587
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
-"Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe mu je "
-"potrebno više energije da se ne bi deformisao. Prednost je u tome što "
-"omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
+msgstr "Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe mu je potrebno više energije da se ne bi deformisao. Prednost je u tome što omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
 
 #: ../simulation_parameters/common/input_options.json:64
 #: ../src/microbe_stage/MicrobeStage.tscn:2151
@@ -6698,24 +6218,12 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:843
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr ""
-"Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i "
-"drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. "
-"Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP "
-"energiju. Da bi ćelije kojima nedostaju organeli imali napredniji "
-"metabolizam, na to se oslanjaju u energiji. Takođe se koristi za "
-"skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
@@ -6780,22 +6288,12 @@ msgstr "Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u "
-"ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se "
-"široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je "
-"vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge "
-"supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
+msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
 #: ../src/general/StageHUDBase.cs:725 ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
@@ -6845,7 +6343,7 @@ msgstr "Pećina"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Pećina"
 
-#: ../src/general/MainMenu.tscn:348 ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:348
 msgid "VIEW_SOURCE_CODE"
 msgstr "Pogledajte Izvorni Kod"
 
@@ -6858,7 +6356,6 @@ msgid "VISIBLE"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
-#: ../src/general/MainMenu.tscn:566 ../src/general/MainMenu.tscn:762
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6932,41 +6429,17 @@ msgstr ""
 #: ../src/modding/ModUploader.tscn:294
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr ""
-"Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
-"pigmente složene zajedno u opnene vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu "
-"su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti."
+msgstr "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne pigmente složene zajedno u opnene vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti."
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr ""
-"Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
-"pigmente složene zajedno u opnene vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu "
-"su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti."
+msgstr "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne pigmente složene zajedno u opnene vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti."
 
 #: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
-"Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
-"pigmente složene zajedno u opnene vrećice. To je prokariot koji je "
-"asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu "
-"su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i "
-"gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su "
-"takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje "
-"glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom "
-"svetlosti."
+msgstr "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne pigmente složene zajedno u opnene vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u hloroplastu su sposobni da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što mu daje prepoznatljivu boju. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti."
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
@@ -7044,7 +6517,7 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:872 ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Nastaviti"
