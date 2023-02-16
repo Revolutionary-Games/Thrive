@@ -159,6 +159,11 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         LoadChunkScenes();
     }
 
+    public void FinishLoading(ISaveContext? context)
+    {
+        LoadChunkScenes();
+    }
+
     public object Clone()
     {
         // Shallow cloning is enough here thanks to us using value types (structs) as the dictionary values
@@ -170,11 +175,6 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         };
 
         return result;
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        LoadChunkScenes();
     }
 
     private void LoadChunkScenes()

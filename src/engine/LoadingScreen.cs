@@ -143,6 +143,26 @@ public class LoadingScreen : Control
         Hide();
     }
 
+    public override void _Process(float delta)
+    {
+        // Only elapse passed time if this is visible
+        if (!Visible)
+        {
+            if (wasVisible)
+            {
+                wasVisible = false;
+                randomizeTimer.Stop();
+            }
+
+            return;
+        }
+
+        // Spin the spinner
+        totalElapsed += delta;
+
+        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+    }
+
     /// <summary>
     ///   Shows this and updates the shown messages. If this just became visible also loads new art and tip
     /// </summary>
@@ -188,26 +208,6 @@ public class LoadingScreen : Control
 
         artworkRect.Image = GD.Load<Texture>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);
-    }
-
-    public override void _Process(float delta)
-    {
-        // Only elapse passed time if this is visible
-        if (!Visible)
-        {
-            if (wasVisible)
-            {
-                wasVisible = false;
-                randomizeTimer.Stop();
-            }
-
-            return;
-        }
-
-        // Spin the spinner
-        totalElapsed += delta;
-
-        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
     }
 
     protected override void Dispose(bool disposing)

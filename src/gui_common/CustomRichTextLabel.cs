@@ -62,6 +62,14 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _Ready()
+    {
+        // Make sure bbcode is enabled
+        BbcodeEnabled = true;
+
+        Connect("meta_clicked", this, nameof(OnMetaClicked));
+    }
+
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -71,14 +79,6 @@ public class CustomRichTextLabel : RichTextLabel
             InputDataList.InputsRemapped -= OnInputsRemapped;
             registeredForInputChanges = false;
         }
-    }
-
-    public override void _Ready()
-    {
-        // Make sure bbcode is enabled
-        BbcodeEnabled = true;
-
-        Connect("meta_clicked", this, nameof(OnMetaClicked));
     }
 
     public override void _Draw()

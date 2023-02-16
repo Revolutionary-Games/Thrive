@@ -267,19 +267,6 @@ public abstract class Species : ICloneable
         }
     }
 
-    /// <summary>
-    ///   Creates a cloned version of the species. This should only
-    ///   really be used if you need to modify a species while
-    ///   referring to the old data. In for example the Mutations
-    ///   code.
-    /// </summary>
-    public abstract object Clone();
-
-    public override string ToString()
-    {
-        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
-    }
-
     public virtual string GetDetailString()
     {
         return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
@@ -300,6 +287,19 @@ public abstract class Species : ICloneable
     public virtual int GetVisualHashCode()
     {
         return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
+    }
+
+    /// <summary>
+    ///   Creates a cloned version of the species. This should only
+    ///   really be used if you need to modify a species while
+    ///   referring to the old data. In for example the Mutations
+    ///   code.
+    /// </summary>
+    public abstract object Clone();
+
+    public override string ToString()
+    {
+        return Obsolete ? "[OBSOLETE] " + FormattedIdentifier : FormattedIdentifier;
     }
 
     internal virtual void CopyDataToConvertedSpecies(Species species)

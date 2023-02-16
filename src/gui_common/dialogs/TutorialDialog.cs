@@ -81,16 +81,6 @@ public class TutorialDialog : CustomDialog
         KeyPromptHelper.IconsChanged -= OnInputTypeChanged;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            LabelPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected override void OnShown()
     {
         // Don't animate if currently running inside the editor
@@ -104,6 +94,16 @@ public class TutorialDialog : CustomDialog
             this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
             Tween.EaseType.Out, ShowDelay);
         tween.Start();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            LabelPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateLabel()

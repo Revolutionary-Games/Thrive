@@ -50,6 +50,12 @@ public class ProcessPanel : CustomDialog
         }
     }
 
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        EmitSignal(nameof(OnClosed));
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -62,12 +68,6 @@ public class ProcessPanel : CustomDialog
         }
 
         base.Dispose(disposing);
-    }
-
-    protected override void OnHidden()
-    {
-        base.OnHidden();
-        EmitSignal(nameof(OnClosed));
     }
 
     private void OnClosePressed()

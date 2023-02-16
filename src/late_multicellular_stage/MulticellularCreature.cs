@@ -134,11 +134,6 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         _Ready();
     }
 
-    public void OnDestroyed()
-    {
-        AliveMarker.Alive = false;
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -161,6 +156,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             // TODO: movement force calculation
             ApplyCentralImpulse(Mass * MovementDirection * delta);
         }
+    }
+
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
     }
 
     public void ApplySpecies(Species species)

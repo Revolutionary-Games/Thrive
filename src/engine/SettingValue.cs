@@ -117,11 +117,6 @@ public class SettingValue<TValueType> : IAssignableSetting
         return true;
     }
 
-    public override int GetHashCode()
-    {
-        return 17 ^ (value?.GetHashCode() ?? 9);
-    }
-
     /// <summary>
     ///   Casts a parameter object into a SettingValue generic of a matching type (if possible) and then
     ///   copies the value from it.
@@ -135,5 +130,10 @@ public class SettingValue<TValueType> : IAssignableSetting
             throw new InvalidOperationException("Attempted to assign a SettingValue with an incorrect object type.");
 
         Value = settingObject.Value;
+    }
+
+    public override int GetHashCode()
+    {
+        return 17 ^ (value?.GetHashCode() ?? 9);
     }
 }

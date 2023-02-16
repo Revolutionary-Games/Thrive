@@ -246,14 +246,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
-    public void OnFinishLoading(Save save)
-    {
-        // Handle the stage to return to specially, as it also needs to run the code
-        // for fixing the stuff in order to return there
-        // TODO: this could be probably moved now to just happen when it enters the scene first time
-        ReturnToStage?.OnFinishLoading(save);
-    }
-
     public override void _Process(float delta)
     {
         if (!Ready)
@@ -280,6 +272,14 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
 
         UpdateEditor(delta);
+    }
+
+    public void OnFinishLoading(Save save)
+    {
+        // Handle the stage to return to specially, as it also needs to run the code
+        // for fixing the stuff in order to return there
+        // TODO: this could be probably moved now to just happen when it enters the scene first time
+        ReturnToStage?.OnFinishLoading(save);
     }
 
     /// <summary>
@@ -508,70 +508,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing(userOverrides);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (PauseMenuPath != null)
-            {
-                PauseMenuPath.Dispose();
-                EditorGUIBaseNodePath.Dispose();
-            }
-
-            EditorTabSelectorPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected abstract void InitEditorGUI(bool fresh);
-
-    protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
-    {
-        if (userOverrides == null)
-        {
-            return OnFinishEditing();
-        }
-
-        return RequestFinishEditingWithOverride(userOverrides);
-    }
-
-    protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
-
-    /// <summary>
-    ///   Sets up the editor when entering
-    /// </summary>
-    protected virtual void OnEnterEditor()
-    {
-        // Clear old stuff in the world
-        RootOfDynamicallySpawned.FreeChildren();
-
-        if (!IsLoadedFromSave)
-        {
-            history = new EditorActionHistory<TAction>();
-
-            // Start a new game if no game has been started
-            if (currentGame == null)
-            {
-                if (ReturnToStage != null)
-                    throw new Exception("stage to return to should have set our current game");
-
-                GD.Print("Starting a new game for ", GetType().Name);
-                CurrentGame = StartNewGameForEditor();
-            }
-        }
-        else
-        {
-            UpdateHistoryCallbackTargets(history);
-        }
-
-        InitEditor(!IsLoadedFromSave);
-        SendFreebuildStatusToComponents();
-
-        StartMusic();
-    }
-
-    protected abstract void UpdateHistoryCallbackTargets(ActionHistory<TAction> actionHistory);
 
     protected virtual void InitEditor(bool fresh)
     {
@@ -650,6 +587,53 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         ApplyComponentLightLevels();
     }
+
+    protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
+    {
+        if (userOverrides == null)
+        {
+            return OnFinishEditing();
+        }
+
+        return RequestFinishEditingWithOverride(userOverrides);
+    }
+
+    protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
+
+    /// <summary>
+    ///   Sets up the editor when entering
+    /// </summary>
+    protected virtual void OnEnterEditor()
+    {
+        // Clear old stuff in the world
+        RootOfDynamicallySpawned.FreeChildren();
+
+        if (!IsLoadedFromSave)
+        {
+            history = new EditorActionHistory<TAction>();
+
+            // Start a new game if no game has been started
+            if (currentGame == null)
+            {
+                if (ReturnToStage != null)
+                    throw new Exception("stage to return to should have set our current game");
+
+                GD.Print("Starting a new game for ", GetType().Name);
+                CurrentGame = StartNewGameForEditor();
+            }
+        }
+        else
+        {
+            UpdateHistoryCallbackTargets(history);
+        }
+
+        InitEditor(!IsLoadedFromSave);
+        SendFreebuildStatusToComponents();
+
+        StartMusic();
+    }
+
+    protected abstract void UpdateHistoryCallbackTargets(ActionHistory<TAction> actionHistory);
 
     /// <summary>
     ///   Called once auto-evo results are ready
@@ -813,6 +797,22 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         SceneManager.Instance.SwitchToScene(stage);
 
         stage.OnReturnFromEditor();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PauseMenuPath != null)
+            {
+                PauseMenuPath.Dispose();
+                EditorGUIBaseNodePath.Dispose();
+            }
+
+            EditorTabSelectorPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void MakeSureEditorReturnIsGood()

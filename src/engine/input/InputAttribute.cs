@@ -62,11 +62,6 @@ public abstract class InputAttribute : Attribute
         return ReferenceEquals(this, obj);
     }
 
-    public override int GetHashCode()
-    {
-        return RuntimeHelpers.GetHashCode(this);
-    }
-
     /// <summary>
     ///   Processes input event for this attribute
     /// </summary>
@@ -85,6 +80,11 @@ public abstract class InputAttribute : Attribute
     ///   Is used to reset things to their unpressed state.
     /// </summary>
     public abstract void FocusLost();
+
+    public override int GetHashCode()
+    {
+        return RuntimeHelpers.GetHashCode(this);
+    }
 
     /// <summary>
     ///   Sets the associated method. Called by InputManager.LoadAttributes().

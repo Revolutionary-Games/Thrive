@@ -143,6 +143,17 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         UpdateLightLevel();
     }
 
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
+
+        if (HasNode("BackgroundPlane"))
+            backgroundPlane = GetNode<Spatial>("BackgroundPlane");
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -159,15 +170,42 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
     }
 
-    public void ResolveNodeReferences()
+    /// <summary>
+    ///   Updates camera position to follow the object
+    /// </summary>
+    public override void _PhysicsProcess(float delta)
     {
-        if (NodeReferencesResolved)
-            return;
+        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
+        var currentCameraHeight = new Vector3(0, Translation.y, 0);
+        var newCameraHeight = new Vector3(0, CameraHeight, 0);
 
-        NodeReferencesResolved = true;
+        if (ObjectToFollow != null)
+        {
+            var newFloorPosition = new Vector3(
+                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
 
-        if (HasNode("BackgroundPlane"))
-            backgroundPlane = GetNode<Spatial>("BackgroundPlane");
+            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+
+            Translation = target;
+        }
+        else
+        {
+            var target = new Vector3(Translation.x, 0, Translation.z)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+
+            Translation = target;
+        }
+
+        if (backgroundPlane != null)
+        {
+            var target = new Vector3(0, 0, -15 - CameraHeight);
+
+            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
+                target, InterpolateZoomSpeed);
+        }
+
+        cursorDirty = true;
     }
 
     public void ResetHeight()
@@ -215,44 +253,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             EmitSignal(nameof(OnZoomChanged), CameraHeight);
 
         return true;
-    }
-
-    /// <summary>
-    ///   Updates camera position to follow the object
-    /// </summary>
-    public override void _PhysicsProcess(float delta)
-    {
-        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
-        var currentCameraHeight = new Vector3(0, Translation.y, 0);
-        var newCameraHeight = new Vector3(0, CameraHeight, 0);
-
-        if (ObjectToFollow != null)
-        {
-            var newFloorPosition = new Vector3(
-                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
-
-            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
-                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
-
-            Translation = target;
-        }
-        else
-        {
-            var target = new Vector3(Translation.x, 0, Translation.z)
-                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
-
-            Translation = target;
-        }
-
-        if (backgroundPlane != null)
-        {
-            var target = new Vector3(0, 0, -15 - CameraHeight);
-
-            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateZoomSpeed);
-        }
-
-        cursorDirty = true;
     }
 
     /// <summary>

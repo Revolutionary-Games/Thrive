@@ -134,6 +134,19 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
+    protected virtual void UpdateShownPatchDetails()
+    {
+        detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
+        detailsPanel.IsPatchMoveValid = IsPatchMoveValid(mapDrawer.SelectedPatch);
+        detailsPanel.UpdateShownPatchDetails();
+    }
+
+    protected override void OnTranslationsChanged()
+    {
+        UpdateShownPatchDetails();
+        UpdateSeedLabel();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -147,19 +160,6 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         }
 
         base.Dispose(disposing);
-    }
-
-    protected virtual void UpdateShownPatchDetails()
-    {
-        detailsPanel.SelectedPatch = mapDrawer.SelectedPatch;
-        detailsPanel.IsPatchMoveValid = IsPatchMoveValid(mapDrawer.SelectedPatch);
-        detailsPanel.UpdateShownPatchDetails();
-    }
-
-    protected override void OnTranslationsChanged()
-    {
-        UpdateShownPatchDetails();
-        UpdateSeedLabel();
     }
 
     /// <summary>

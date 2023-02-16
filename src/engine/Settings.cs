@@ -584,29 +584,6 @@ public class Settings
         return true;
     }
 
-    public override int GetHashCode()
-    {
-        int hashCode = 17;
-
-        var type = GetType();
-
-        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            hashCode ^= property.GetHashCode();
-
-        return hashCode;
-    }
-
-    /// <summary>
-    ///   Returns a cloned deep copy of the settings object.
-    /// </summary>
-    public Settings Clone()
-    {
-        Settings settings = new Settings();
-        settings.CopySettings(this);
-
-        return settings;
-    }
-
     /// <summary>
     ///   Loads values from an existing settings object.
     /// </summary>
@@ -802,6 +779,29 @@ public class Settings
         TranslationServer.SetLocale(language);
 
         GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
+    }
+
+    /// <summary>
+    ///   Returns a cloned deep copy of the settings object.
+    /// </summary>
+    public Settings Clone()
+    {
+        Settings settings = new Settings();
+        settings.CopySettings(this);
+
+        return settings;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = 17;
+
+        var type = GetType();
+
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            hashCode ^= property.GetHashCode();
+
+        return hashCode;
     }
 
     /// <summary>

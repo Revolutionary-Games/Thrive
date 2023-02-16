@@ -321,30 +321,6 @@ public class CustomDialog : Popup, ICustomPopup
     }
 
     /// <summary>
-    ///   This is overriden so mouse position could take the titlebar into account due to it being drawn
-    ///   outside of the normal Control's rect bounds.
-    /// </summary>
-    public override bool HasPoint(Vector2 point)
-    {
-        var rect = new Rect2(Vector2.Zero, RectSize);
-
-        // Enlarge upwards for title bar
-        var adjustedRect = new Rect2(
-            new Vector2(rect.Position.x, rect.Position.y - titleBarHeight),
-            new Vector2(rect.Size.x, rect.Size.y + titleBarHeight));
-
-        // Inflate by the resizable border thickness
-        if (Resizable)
-        {
-            adjustedRect = new Rect2(
-                new Vector2(adjustedRect.Position.x - scaleBorderSize, adjustedRect.Position.y - scaleBorderSize),
-                new Vector2(adjustedRect.Size.x + scaleBorderSize * 2, adjustedRect.Size.y + scaleBorderSize * 2));
-        }
-
-        return adjustedRect.HasPoint(point);
-    }
-
-    /// <summary>
     ///   Overrides the minimum size to account for default elements (e.g title, close button, margin) rect size
     ///   and for the other custom added contents on the window.
     /// </summary>
@@ -373,6 +349,30 @@ public class CustomDialog : Popup, ICustomPopup
         // Re-decide whether the largest rect is the default elements' or the contents'
         return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth.GetValueOrDefault(),
             contentSize.x + customMargin * 2), contentSize.y + customMargin * 2);
+    }
+
+    /// <summary>
+    ///   This is overriden so mouse position could take the titlebar into account due to it being drawn
+    ///   outside of the normal Control's rect bounds.
+    /// </summary>
+    public override bool HasPoint(Vector2 point)
+    {
+        var rect = new Rect2(Vector2.Zero, RectSize);
+
+        // Enlarge upwards for title bar
+        var adjustedRect = new Rect2(
+            new Vector2(rect.Position.x, rect.Position.y - titleBarHeight),
+            new Vector2(rect.Size.x, rect.Size.y + titleBarHeight));
+
+        // Inflate by the resizable border thickness
+        if (Resizable)
+        {
+            adjustedRect = new Rect2(
+                new Vector2(adjustedRect.Position.x - scaleBorderSize, adjustedRect.Position.y - scaleBorderSize),
+                new Vector2(adjustedRect.Size.x + scaleBorderSize * 2, adjustedRect.Size.y + scaleBorderSize * 2));
+        }
+
+        return adjustedRect.HasPoint(point);
     }
 
     public void PopupFullRect()
