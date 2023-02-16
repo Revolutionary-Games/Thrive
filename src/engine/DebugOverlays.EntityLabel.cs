@@ -26,6 +26,16 @@ public partial class DebugOverlays
         }
     }
 
+    private void InitiateEntityLabels()
+    {
+        var rootTree = GetTree();
+
+        SearchSceneTreeForEntity(rootTree.Root);
+
+        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
+        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
+    }
+
     private void UpdateLabelColour(IEntity entity, Label label)
     {
         var node = entity.EntityNode;
@@ -172,16 +182,6 @@ public partial class DebugOverlays
 
         foreach (Node child in node.GetChildren())
             SearchSceneTreeForEntity(child);
-    }
-
-    private void InitiateEntityLabels()
-    {
-        var rootTree = GetTree();
-
-        SearchSceneTreeForEntity(rootTree.Root);
-
-        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
-        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
     }
 
     private void CleanEntityLabels()

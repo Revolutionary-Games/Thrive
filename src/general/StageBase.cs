@@ -204,15 +204,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         }
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
-                throw new InvalidOperationException("Stage not initialized properly");
-        }
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -282,6 +273,15 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
             var childCount = rootOfDynamicallySpawned.GetChildCount();
             debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
+        }
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
+                throw new InvalidOperationException("Stage not initialized properly");
         }
     }
 

@@ -247,9 +247,19 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         }
     }
 
-    public override string ToString()
+    public override bool Equals(object? obj)
     {
-        return $"Value: {X}, {Y} Coord: {Coordinate}";
+        return Equals(obj as DataPoint);
+    }
+
+    public bool Equals(DataPoint? other)
+    {
+        if (ReferenceEquals(this, other))
+            return true;
+
+        return other != null &&
+            X == other.X &&
+            Y == other.Y;
     }
 
     public object Clone()
@@ -268,27 +278,17 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return result;
     }
 
-    public override bool Equals(object? obj)
-    {
-        return Equals(obj as DataPoint);
-    }
-
-    public bool Equals(DataPoint? other)
-    {
-        if (ReferenceEquals(this, other))
-            return true;
-
-        return other != null &&
-            X == other.X &&
-            Y == other.Y;
-    }
-
     public override int GetHashCode()
     {
         var hashCode = 1502939027;
         hashCode = hashCode * -1521134295 + X.GetHashCode();
         hashCode = hashCode * -1521134295 + Y.GetHashCode();
         return hashCode;
+    }
+
+    public override string ToString()
+    {
+        return $"Value: {X}, {Y} Coord: {Coordinate}";
     }
 
     private void UpdateRectSize()

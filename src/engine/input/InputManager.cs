@@ -242,6 +242,16 @@ public class InputManager : Node
             attribute.Key.OnProcess(delta);
     }
 
+    public override void _Notification(int what)
+    {
+        // If the window goes out of focus, we don't receive the key released events
+        // We reset our held down keys if the player tabs out while pressing a key
+        if (what == NotificationWmFocusOut)
+        {
+            OnFocusLost();
+        }
+    }
+
     /// <summary>
     ///   Calls the OnInput methods of the attributes where ActivationType is UnhandledInput.
     ///   Ignores InputEventMouseMotion events.
@@ -268,16 +278,6 @@ public class InputManager : Node
             return;
 
         OnInput(false, @event);
-    }
-
-    public override void _Notification(int what)
-    {
-        // If the window goes out of focus, we don't receive the key released events
-        // We reset our held down keys if the player tabs out while pressing a key
-        if (what == NotificationWmFocusOut)
-        {
-            OnFocusLost();
-        }
     }
 
     internal static bool CallMethod(InputAttribute attribute, object[] parameters)

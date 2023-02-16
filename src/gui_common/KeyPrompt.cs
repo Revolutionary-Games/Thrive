@@ -50,17 +50,6 @@ public class KeyPrompt : CenterContainer
         Refresh();
     }
 
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == NotificationResized)
-        {
-            if (primaryIcon != null)
-                ApplySize();
-        }
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -78,6 +67,32 @@ public class KeyPrompt : CenterContainer
 
         KeyPromptHelper.IconsChanged -= OnIconsChanged;
         InputDataList.InputsRemapped -= OnIconsChanged;
+    }
+
+    public override void _Process(float delta)
+    {
+        if (!ShowPress)
+            return;
+
+        if (string.IsNullOrEmpty(ActionName) || !Input.IsActionPressed(ActionName))
+        {
+            primaryIcon!.SelfModulate = UnpressedColour;
+        }
+        else
+        {
+            primaryIcon!.SelfModulate = PressedColour;
+        }
+    }
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+
+        if (what == NotificationResized)
+        {
+            if (primaryIcon != null)
+                ApplySize();
+        }
     }
 
     /// <summary>
@@ -112,21 +127,6 @@ public class KeyPrompt : CenterContainer
             {
                 secondaryIcon.Visible = false;
             }
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        if (!ShowPress)
-            return;
-
-        if (string.IsNullOrEmpty(ActionName) || !Input.IsActionPressed(ActionName))
-        {
-            primaryIcon!.SelfModulate = UnpressedColour;
-        }
-        else
-        {
-            primaryIcon!.SelfModulate = PressedColour;
         }
     }
 

@@ -255,6 +255,13 @@ public class TweakedColourPicker : ColorPicker
         UpdateTooltips();
     }
 
+    public override void _ExitTree()
+    {
+        groupStorage.AddPresetDelegate -= OnGroupAddPreset;
+        groupStorage.ErasePresetDelegate -= OnGroupErasePreset;
+        base._ExitTree();
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -263,6 +270,14 @@ public class TweakedColourPicker : ColorPicker
         {
             HandleActiveColourPicking(delta);
         }
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+            UpdateTooltips();
+
+        base._Notification(what);
     }
 
     public override void _Input(InputEvent @event)
@@ -287,21 +302,6 @@ public class TweakedColourPicker : ColorPicker
         }
 
         base._Input(@event);
-    }
-
-    public override void _ExitTree()
-    {
-        groupStorage.AddPresetDelegate -= OnGroupAddPreset;
-        groupStorage.ErasePresetDelegate -= OnGroupErasePreset;
-        base._ExitTree();
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-            UpdateTooltips();
-
-        base._Notification(what);
     }
 
     /// <summary>

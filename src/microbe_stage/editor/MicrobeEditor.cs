@@ -111,6 +111,14 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return history.WhatWouldActionsCost(actions);
     }
 
+    protected override void ResolveDerivedTypeNodeReferences()
+    {
+        reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
+        patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
+        cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
+        tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
+    }
+
     protected override void InitEditor(bool fresh)
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
@@ -157,14 +165,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         }
 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
-    }
-
-    protected override void ResolveDerivedTypeNodeReferences()
-    {
-        reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
-        patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
-        cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
-        tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
     }
 
     protected override void OnEnterEditor()

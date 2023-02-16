@@ -133,25 +133,6 @@ public class RadialMenu : CenterContainer
         }
     }
 
-    public override void _GuiInput(InputEvent @event)
-    {
-        base._GuiInput(@event);
-
-        if (@event is InputEventMouseMotion mouseMotion)
-        {
-            // Position is relative to us since we use _GuiInput
-            relativeMousePosition = mouseMotion.Position;
-        }
-        else if (@event is InputEventMouseButton mouseButton)
-        {
-            if (mouseButton.Pressed && mouseButton.ButtonIndex == (int)ButtonList.Left)
-            {
-                if (AcceptHoveredItem())
-                    GetTree().SetInputAsHandled();
-            }
-        }
-    }
-
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -226,6 +207,25 @@ public class RadialMenu : CenterContainer
                 selected || previousSelected ? CircleHighlightColour : CircleColour, 2, true);
 
             currentAngle += anglePerItem;
+        }
+    }
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        base._GuiInput(@event);
+
+        if (@event is InputEventMouseMotion mouseMotion)
+        {
+            // Position is relative to us since we use _GuiInput
+            relativeMousePosition = mouseMotion.Position;
+        }
+        else if (@event is InputEventMouseButton mouseButton)
+        {
+            if (mouseButton.Pressed && mouseButton.ButtonIndex == (int)ButtonList.Left)
+            {
+                if (AcceptHoveredItem())
+                    GetTree().SetInputAsHandled();
+            }
         }
     }
 

@@ -508,6 +508,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing(userOverrides);
     }
 
+    protected abstract void ResolveDerivedTypeNodeReferences();
+
     protected abstract void InitEditorGUI(bool fresh);
 
     protected virtual void InitEditor(bool fresh)
@@ -730,8 +732,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     protected abstract void ElapseEditorEntryTime();
-
-    protected abstract void ResolveDerivedTypeNodeReferences();
 
     protected abstract void PerformAutoSave();
     protected abstract void PerformQuickSave();

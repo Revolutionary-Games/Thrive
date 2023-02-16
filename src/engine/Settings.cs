@@ -549,41 +549,6 @@ public class Settings
         return true;
     }
 
-    public override bool Equals(object? obj)
-    {
-        if (obj == null)
-        {
-            return false;
-        }
-
-        if (GetType() != obj.GetType())
-        {
-            return false;
-        }
-
-        return Equals((Settings)obj);
-    }
-
-    public bool Equals(Settings obj)
-    {
-        // Compare all properties in the two objects for equality.
-        var type = GetType();
-
-        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-        {
-            // Returns if any of the properties don't match.
-            object thisValue = property.GetValue(this);
-            object objValue = property.GetValue(obj);
-
-            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     /// <summary>
     ///   Loads values from an existing settings object.
     /// </summary>
@@ -779,6 +744,41 @@ public class Settings
         TranslationServer.SetLocale(language);
 
         GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        if (GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        return Equals((Settings)obj);
+    }
+
+    public bool Equals(Settings obj)
+    {
+        // Compare all properties in the two objects for equality.
+        var type = GetType();
+
+        foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+        {
+            // Returns if any of the properties don't match.
+            object thisValue = property.GetValue(this);
+            object objValue = property.GetValue(obj);
+
+            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>

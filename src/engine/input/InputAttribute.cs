@@ -52,17 +52,6 @@ public abstract class InputAttribute : Attribute
     public ActiveInputMethod LastUsedInputMethod { get; protected set; } = ActiveInputMethod.Keyboard;
 
     /// <summary>
-    ///   This class needs a custom equals to work in <see cref="InputManager.attributes"/> but a full value comparison
-    ///   would sap way too much performance so we use the references for equality and hash code.
-    /// </summary>
-    /// <param name="obj">The object to compare against</param>
-    /// <returns>True if equal</returns>
-    public override bool Equals(object obj)
-    {
-        return ReferenceEquals(this, obj);
-    }
-
-    /// <summary>
     ///   Processes input event for this attribute
     /// </summary>
     /// <param name="input">The event fired by the user</param>
@@ -80,6 +69,17 @@ public abstract class InputAttribute : Attribute
     ///   Is used to reset things to their unpressed state.
     /// </summary>
     public abstract void FocusLost();
+
+    /// <summary>
+    ///   This class needs a custom equals to work in <see cref="InputManager.attributes"/> but a full value comparison
+    ///   would sap way too much performance so we use the references for equality and hash code.
+    /// </summary>
+    /// <param name="obj">The object to compare against</param>
+    /// <returns>True if equal</returns>
+    public override bool Equals(object obj)
+    {
+        return ReferenceEquals(this, obj);
+    }
 
     public override int GetHashCode()
     {

@@ -267,17 +267,13 @@ public abstract class Species : ICloneable
         }
     }
 
-    public virtual string GetDetailString()
-    {
-        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            FormattedNameBbCode,
-            ID,
-            Generation,
-            Population,
-            Colour.ToHtml(),
-            string.Join("\n  ",
-                Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
-    }
+    /// <summary>
+    ///   Creates a cloned version of the species. This should only
+    ///   really be used if you need to modify a species while
+    ///   referring to the old data. In for example the Mutations
+    ///   code.
+    /// </summary>
+    public abstract object Clone();
 
     /// <summary>
     ///   Instead of overriding the GetHashCode method this is provided to make checking
@@ -289,13 +285,17 @@ public abstract class Species : ICloneable
         return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607);
     }
 
-    /// <summary>
-    ///   Creates a cloned version of the species. This should only
-    ///   really be used if you need to modify a species while
-    ///   referring to the old data. In for example the Mutations
-    ///   code.
-    /// </summary>
-    public abstract object Clone();
+    public virtual string GetDetailString()
+    {
+        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
+            FormattedNameBbCode,
+            ID,
+            Generation,
+            Population,
+            Colour.ToHtml(),
+            string.Join("\n  ",
+                Behaviour.Select(b => BehaviourDictionary.GetBehaviourLocalizedString(b.Key) + ": " + b.Value)));
+    }
 
     public override string ToString()
     {
