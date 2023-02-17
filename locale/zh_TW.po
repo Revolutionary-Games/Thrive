@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
-"PO-Revision-Date: 2022-07-26 06:43+0000\n"
-"Last-Translator: ben001109 <a0903932792@gmail.com>\n"
+"PO-Revision-Date: 2023-02-17 07:30+0000\n"
+"Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1457
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2D動作樣式："
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "3D_EDITOR"
@@ -33,7 +33,7 @@ msgstr "3D移動"
 
 #: ../src/general/OptionsMenu.tscn:1489
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3D動作樣式："
 
 #: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
@@ -56,12 +56,13 @@ msgstr "深海"
 #: ../src/general/EditorBase.cs:698
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
+#, fuzzy
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "正在進行其他動作"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr "活潑"
+msgstr "啟動"
 
 #: ../src/general/OptionsMenu.tscn:1092
 msgid "ACTIVE_THREAD_COUNT"
@@ -83,12 +84,11 @@ msgstr "添加新的綁定鍵位"
 
 #: ../src/general/NewGameSettings.tscn:1212
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "進階"
 
 #: ../src/general/NewGameSettings.tscn:1207
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "暫停菜單"
+msgstr "開啟進階選單"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
 msgid "AEROBIC_NITROGEN_FIXING"
@@ -3136,9 +3136,8 @@ msgid "MASTER_VOLUME"
 msgstr "主音量"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:584
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "從這個區域滅絕了"
+msgstr "強制滅絕前的物種上限"
 
 #: ../src/general/OptionsMenu.tscn:369
 msgid "MAX_FPS"
@@ -3150,7 +3149,7 @@ msgstr "不受限"
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "實體數量上限："
 
 #: ../src/gui_common/charts/line/LineChart.cs:1146
 #: ../src/gui_common/charts/line/LineChart.cs:1238
@@ -3200,9 +3199,8 @@ msgid "MEMBRANE_TYPES"
 msgstr "細胞膜類型"
 
 #: ../simulation_parameters/common/gallery.json:268
-#, fuzzy
 msgid "MENU"
-msgstr "菜單"
+msgstr "選單"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1075
 msgid "MESOPELAGIC"
@@ -3223,9 +3221,8 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound]轉換為[thrive:
 
 #: ../src/engine/DebugOverlays.tscn:34 ../src/engine/DebugOverlays.tscn:102
 #: ../src/engine/PerformanceMetrics.tscn:30
-#, fuzzy
 msgid "METRICS"
-msgstr "切換FPS顯示"
+msgstr "效能統計"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
 #: ../src/engine/DebugOverlays.tscn:80 ../src/engine/PerformanceMetrics.tscn:76
@@ -6328,9 +6325,8 @@ msgstr ""
 "你想繼續嗎？"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:277
-#, fuzzy
 msgid "UNTITLED"
-msgstr "生物群系：{0}"
+msgstr "未命名"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
@@ -6371,9 +6367,8 @@ msgid "USED_RENDERER_NAME"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:968
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "溫度"
+msgstr "是"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
@@ -6419,9 +6414,8 @@ msgid "VALUE_WITH_UNIT"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "世代："
+msgstr "版本："
 
 #: ../src/general/OptionsMenu.tscn:1309 ../src/general/OptionsMenu.tscn:1419
 #, fuzzy
@@ -6475,7 +6469,7 @@ msgstr "可見"
 
 #: ../src/general/MainMenu.tscn:565 ../src/general/MainMenu.tscn:774
 msgid "VISIT_SUGGESTIONS_SITE"
-msgstr ""
+msgstr "建議一項新功能"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -6531,7 +6525,7 @@ msgstr "向上滾輪"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:69
 msgid "WILL_YOU_THRIVE"
-msgstr "你能Thrive(繁盛)嗎？"
+msgstr "你能Thrive(茁壯繁盛)嗎？"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -6583,12 +6577,11 @@ msgstr "一旦一個項目被設定成可見，它就會被所有人看到"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
-msgstr ""
+msgstr "世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.Export.cs:33
-#, fuzzy
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
-msgstr "錯誤：{0}"
+msgstr "該世界的資料已成功匯出至{0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:226
 #, fuzzy

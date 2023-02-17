@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
-"PO-Revision-Date: 2023-02-02 07:30+0000\n"
+"PO-Revision-Date: 2023-02-15 11:49+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -367,7 +367,7 @@ msgstr "Geri"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Backslash"
+msgstr "Ters Eğik Çizgi"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
@@ -397,7 +397,7 @@ msgstr "Temel kurulum görünümüne dön"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr "Bassboost"
+msgstr "Bas Yükseltici"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
@@ -461,20 +461,19 @@ msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 #: ../src/general/MainMenu.tscn:447
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Performans ölçümleri"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Yükleme bitti"
+msgstr "Performans ölçümü tamamlandı"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Performans aşaması:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Sonuçlar:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
@@ -1073,9 +1072,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Hatayı Panoya Kopyala"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Oto-evrim sonuçları:"
+msgstr "Sonuçları Kopyala"
 
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
@@ -1964,7 +1962,7 @@ msgstr "{0} Kuşağı Tamamla"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2068
 #: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "FIRE_TOXIN"
-msgstr "Toksini ateşle"
+msgstr "Toksin ateşle"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:387
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
@@ -3148,15 +3146,13 @@ msgid "MICROBE"
 msgstr "Mikrop"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
-#, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "Mikrop"
+msgstr "Mikrop sayısı:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:613
-#, fuzzy
 msgid "MICROBE_BENCHMARK"
-msgstr "Mikrop Editörü"
+msgstr "Mikrop Performansı"
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
@@ -3225,7 +3221,7 @@ msgstr ""
 "\n"
 "Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
-"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir\n"
+"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] olarak adlandırılır) ve mevcut oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir\n"
 "\n"
 "Sinyal Verici Ajan: Belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar"
 
@@ -3349,7 +3345,7 @@ msgstr "Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/th
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Editörü açmak ve hücreni çoğaltmak için hücrenin yeterince uzun süre hayatta kalması gerekir. [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmek büyümeyi hızlandırır."
+msgstr "Editörü açmak ve hücreni çoğaltmak için hücrenin yeterince uzun süre hayatta kalması gerekir. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmek büyümeyi hızlandırır."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
@@ -3359,7 +3355,7 @@ msgstr "Ayrıca senden küçük hücreleri, bakterileri,demir parçalarını ve 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur, yani hücreniz ne kadar büyükse, durağan haldeyken[thrive:compound type=\"atp\"]ATP[/thrive:compound] kaybetmekten kaçınmak için o kadar çok mitokondriye, metabolozoma veya rustisyanine (veya glikoliz yapan sitoplazmaya) ihtiyacın var."
+msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur, yani hücreniz ne kadar büyükse, durağan haldeyken [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaybetmekten kaçınmak için o kadar çok mitokondriye, metabolozoma veya rustisyanine (veya glikoliz yapan sitoplazmaya) ihtiyacın var."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
@@ -4109,7 +4105,7 @@ msgstr "Organeller"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
-msgstr "Yırtıcı Pilus"
+msgstr "Delici Pilus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
 msgid "ORGANELLE_PILUS_DESCRIPTION"
@@ -4322,34 +4318,29 @@ msgstr "{0} {1}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
-#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Sayfa Başlığı"
+msgstr "Thrive'ı en son {0} tarihinde oynadınız, o zamandan beri bir yeni sürüm mevcut"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "En son Thrive'i {0} oynadınız, o zamandan beri {1} yeni sürüm yayınlandı"
 
 #: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Sayfa Başlığı"
+msgstr "Yama Notları"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Değişiklikler:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
-"Türün bu araziden yok oldu.\n"
-"Ama henüz hiçbir şey bitmiş değil, oynamak için başka bir arazi halen seçebilirsin!"
+msgstr "Bu sürümün tüm ayrıntılarını [color=#3796e1][url={0}]Github[/url][/color] üzerinde görüntüleyin"
 
 #: ../src/general/MainMenu.tscn:848
 msgid "PATREON_TOOLTIP"
@@ -4698,9 +4689,8 @@ msgid "REPORT"
 msgstr "Rapor"
 
 #: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:231
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Rapor"
+msgstr "Bir Hata Bildir"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
@@ -5140,14 +5130,12 @@ msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
 #: ../src/general/OptionsMenu.tscn:1787
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "{0} {1}"
+msgstr "Yeni yama notlarını otomatik olarak göster"
 
 #: ../src/general/OptionsMenu.tscn:1785
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0} {1}"
+msgstr "Yeni Thrive sürümlerinin yama notlarını ana menüde otomatik olarak göster"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
 msgid "SHOW_TUTORIALS"
@@ -6272,19 +6260,16 @@ msgstr "Görüntüleyici"
 
 #: ../src/gui_common/PatchNotesDisplayer.tscn:63
 #: ../src/gui_common/PatchNotesDisplayer.tscn:72
-#, fuzzy
 msgid "VIEW_ALL"
-msgstr "Hepsini Devre Dışı Bırak"
+msgstr "Tümünü Görüntüle"
 
 #: ../src/general/OptionsMenu.tscn:1795
-#, fuzzy
 msgid "VIEW_PATCH_NOTES"
-msgstr "{0} {1}"
+msgstr "Yama Notlarını Görüntüle"
 
 #: ../src/general/OptionsMenu.tscn:1793
-#, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr "{0} {1}"
+msgstr "En son veya tüm Thrive yama notlarını şimdi görüntüle"
 
 #: ../src/general/MainMenu.tscn:348
 msgid "VIEW_SOURCE_CODE"

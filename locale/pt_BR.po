@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-13 20:52-0800\n"
-"PO-Revision-Date: 2022-11-10 00:00+0000\n"
+"PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -135,9 +135,21 @@ msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estatísticas Gerais de Todos os Mundos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:999
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Estatísticas do Organismo"
+msgstr ""
+"[b]Gerações:[/b]\n"
+"  {0}\n"
+"[b]Total de Espécies:[/b]\n"
+"  Média {1}; Desvio padrão {2}\n"
+"[b]Espécies vivas:[/b]\n"
+"  Média {3}; Desvio padrão {4}\n"
+"[b]Quantidade de Espécies por Região:[/b]\n"
+"  Média {5}; Desvio padrão {6}\n"
+"[b]População Total por Região:[/b]\n"
+"  Média {7}; Desvio padrão {8}\n"
+"[b]Média de Tamanho das Espécies de Micróbios:[/b]\n"
+"  Média {9}; Desvio padrão {10}\n"
+"[b]Dados Gerais de Organelas:[/b]"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:77
 msgid "ALT"
@@ -304,7 +316,7 @@ msgstr "Auto-evo"
 
 #: ../src/general/MainMenu.tscn:432
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr "Ferramenta de exploração da auto-evo"
+msgstr "Exploração da Auto-Evo"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:276
@@ -450,20 +462,20 @@ msgstr "{0}-{1}m sob o nível do mar"
 
 #: ../src/general/MainMenu.tscn:447
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Testes de desempenho"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Carregamento terminado"
+msgstr "Teste de desempenho terminado"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Fase do teste de desmpenho:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Resultados:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "BEST_PATCH_COLON"
@@ -1062,9 +1074,8 @@ msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar erro para a Área de Transferência"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Resultados da Auto-evo:"
+msgstr "Copiar Resultados"
 
 #: ../src/general/OptionsMenu.tscn:417
 msgid "CORRECTION_PROTANOPE"
@@ -1759,14 +1770,12 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Erro: Falha ao salvar as novas opções para o arquivo de configurações."
 
 #: ../src/general/ThriveNewsFeed.cs:97
-#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr "(incluir aleatoriamente segredos no jogo)"
+msgstr "As notícias não foram carregadas devido a um erro: {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:96
-#, fuzzy
 msgid "ERROR_FETCHING_NEWS"
-msgstr "Erro ao criar arquivo info do mod"
+msgstr "Erro ao Carregar Notícias"
 
 #: ../src/saving/InProgressLoad.cs:203
 msgid "ERROR_LOADING"
@@ -1910,39 +1919,20 @@ msgid "FEBRUARY"
 msgstr "Fevereiro"
 
 #: ../src/general/ThriveNewsFeed.cs:183
-#, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr "Inicialização da biblioteca do cliente Steam falhou"
+msgstr "Falha ao analisar o conteúdo deste item do feed."
 
 #: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
-#, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
-msgstr ""
-"Tempo de Processamento: {0}\n"
-"Duração da Física: {1} s\n"
-"Entidades: {2} Outros: {3}\n"
-"Gerados: {4} Destruídos: {5}\n"
-"Nós Usados: {6}\n"
-"Memória Usada: {7} MiB\n"
-"Memória Gráfica: {8} MiB\n"
-"Objetos Renderizados: {9}\n"
-"Chamadas à Cena: {10} 2D: {11}\n"
-"Vértices Renderizados: {12}\n"
-"Alterações Materiais: {13}\n"
-"Alterações de Sombreamento: {14}\n"
-"Nós Órfãos: {15}\n"
-"Latência de Áudio: {16} ms\n"
-"Total de Tarefas: {17}\n"
-"Tempo de Processamento Total:\n"
-"{18}"
+msgstr "Esse item do feed está sem conteúdo."
 
 #: ../src/general/ThriveNewsFeed.cs:227
 msgid "FEED_ITEM_PUBLISHED_AT"
-msgstr ""
+msgstr "Publicado em {0}"
 
 #: ../src/general/ThriveNewsFeed.cs:233
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
-msgstr ""
+msgstr "Esse item foi truncado por ser muito longo, leia o original para obter todo o conteúdo. {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:70
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
@@ -3158,15 +3148,13 @@ msgid "MICROBE"
 msgstr "Micróbio"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
-#, fuzzy
 msgid "MICROBES_COUNT"
-msgstr "Micróbio"
+msgstr "Quantidade de micróbios:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:613
-#, fuzzy
 msgid "MICROBE_BENCHMARK"
-msgstr "Editor de Micróbios"
+msgstr "Teste de Desempenho de Micróbios"
 
 #: ../simulation_parameters/common/gallery.json:332
 msgid "MICROBE_EDITOR"
@@ -3295,21 +3283,20 @@ msgstr ""
 "Prove todas as teclas por alguns segundos para continuar."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
-#, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Para controlar a sua célula use as teclas mostradas perto de sua célula (centro da tela) e o mouse para controlar a sua orientação.\n"
-"\n"
-"Prove todas as teclas por alguns segundos para continuar."
+"Para controlar a sua célula, use os controles mostrados perto de sua célula e o outro analógico para controlar a sua orientação.\n"
+"AVISO: o uso de controles como entrada é experimental e não é completamente utilizável (sem um touchpad), também espere por bugs.\n"
+"Tente todas as direções por alguns segundos para continuar."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
-#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
-"Fique de olho na sua barra de saúde próximo a barra de ATP (canto inferior direito).\n"
-"Sua célula morre quando não tem mais saúde.\n"
-"Você regenera saúde enquanto você tem ATP.\n"
-"Certifique-se de conseguir glicose suficiente para produzir ATP."
+"Fique de olho no medidor de luz solar no painel do ambiente.\n"
+"\n"
+"O escurecimento do ambiente indica a chegada da noite.\n"
+"A fotossíntese não funciona à noite.\n"
+"Certifique-se que você tenha armazenamento suficiente para sobreviver a noite."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -3828,7 +3815,7 @@ msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
-msgstr ""
+msgstr "NOTÍCIAS"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
@@ -4329,34 +4316,29 @@ msgstr "{1} {0}"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:114
 #: ../src/gui_common/PatchNotesDisplayer.tscn:47
-#, fuzzy
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "Título da página"
+msgstr "A última versão de Thrive que você jogou foi {0} e, desde então, houve um novo lançamento"
 
 #: ../src/gui_common/PatchNotesDisplayer.cs:119
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
-msgstr ""
+msgstr "A última versão de Thrive que você jogou foi {0} e, desde estão, houve {1} novos lançamentos"
 
 #: ../src/general/OptionsMenu.tscn:2124
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
-#, fuzzy
 msgid "PATCH_NOTES_TITLE"
-msgstr "Título da página"
+msgstr "Notas de Atualização"
 
 #: ../src/gui_common/PatchNotesList.cs:247
 msgid "PATCH_NOTE_BULLET_POINT"
-msgstr ""
+msgstr "— {0}"
 
 #: ../src/gui_common/PatchNotesList.cs:246
 msgid "PATCH_NOTE_CHANGES_HEADING"
-msgstr ""
+msgstr "Mudanças:"
 
 #: ../src/gui_common/PatchNotesList.cs:248
-#, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
-"Sua espécie foi extinta nesta região.\n"
-"Mas não se preocupe, você pode selecionar uma nova região para jogar!"
+msgstr "Veja mais detalhes dessa versão no [color=#3796e1][url={0}]Github[/url][/color]"
 
 #: ../src/general/MainMenu.tscn:848
 msgid "PATREON_TOOLTIP"
@@ -4705,9 +4687,8 @@ msgid "REPORT"
 msgstr "Relatório"
 
 #: ../src/general/MainMenu.tscn:756 ../src/general/PauseMenu.tscn:231
-#, fuzzy
 msgid "REPORT_BUG"
-msgstr "Relatório"
+msgstr "Informar um Problema"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:1116
 msgid "REPRODUCED"
@@ -5147,14 +5128,12 @@ msgid "SHOW_HELP"
 msgstr "Mostrar ajuda"
 
 #: ../src/general/OptionsMenu.tscn:1787
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
-msgstr "{1} {0}"
+msgstr "Mostrar novas notas de atualização automaticamente"
 
 #: ../src/general/OptionsMenu.tscn:1785
-#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
-msgstr "{1} {0}"
+msgstr "Mostrar as notas de atualização das novas versões de Thrive automaticamente no menu principal"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
 msgid "SHOW_TUTORIALS"
@@ -5178,7 +5157,7 @@ msgstr "Mostra/Esconde o aviso de quando o jogador tenta sair do jogo."
 
 #: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
-msgstr ""
+msgstr "Mostrar o feed de notícias de Thrive (baixadas pela internet)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:739
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
@@ -5470,14 +5449,14 @@ msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Ocorreu um erro desconhecido da Steam"
 
 #: ../src/general/MainMenu.tscn:1102
-#, fuzzy
 msgid "STEAM_INIT_FAILED"
-msgstr "Inicialização da biblioteca do cliente Steam falhou"
+msgstr "A Inicialização da Biblioteca do Cliente Steam Falhou"
 
 #: ../src/general/MainMenu.tscn:1104
-#, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr "A atualização do arquivo salvo falhou devido ao seguinte erro:"
+msgstr ""
+"A inicialização da biblioteca do cliente Steam falhou. As funcionalidades do Steam estarão indisponíveis.\n"
+"Certifique-se de que o Steam esteja em execução e que você tenha feito o login na conta correta. Se o erro persistir, execute o jogo através do software do cliente Steam."
 
 #: ../src/general/MainMenu.tscn:824
 msgid "STEAM_TOOLTIP"
@@ -5595,11 +5574,11 @@ msgstr "SysRq"
 
 #: ../simulation_parameters/common/input_options.json:226
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "Alternar para a aba secundária à esquerda"
 
 #: ../simulation_parameters/common/input_options.json:230
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "Alternar para a aba secundária à direita"
 
 #: ../simulation_parameters/common/input_options.json:218
 msgid "TAB_SWITCH_LEFT"
@@ -6172,21 +6151,19 @@ msgstr "Sem Título"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 msgid "UPGRADE_CILIA_PULL"
-msgstr ""
+msgstr "Cílios Atrativos"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:843
-#, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "Os cílios são semelhantes aos flagelos, mas ao invés de fornecerem força de impulso direcional, eles fornecem força rotacional para ajudar as células a girar."
+msgstr "Ao tentar engolir algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:839
-#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "A lipase permite que a célula quebre a maioria das membranas. Sua célula já produz um pouco dessa enzima sem o lisossomo, mas ao selecionar essa opção você aumentará sua eficácia."
+msgstr "A variante padrão não atualizada"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:838
 msgid "UPGRADE_NAME_NONE"
-msgstr ""
+msgstr "Variante Padrão"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -6281,23 +6258,20 @@ msgstr "Visualizador"
 
 #: ../src/gui_common/PatchNotesDisplayer.tscn:63
 #: ../src/gui_common/PatchNotesDisplayer.tscn:72
-#, fuzzy
 msgid "VIEW_ALL"
-msgstr "Desabilitar Todos"
+msgstr "Ver Tudo"
 
 #: ../src/general/OptionsMenu.tscn:1795
-#, fuzzy
 msgid "VIEW_PATCH_NOTES"
-msgstr "{1} {0}"
+msgstr "Ver as Notas de Atualização"
 
 #: ../src/general/OptionsMenu.tscn:1793
-#, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
-msgstr "{1} {0}"
+msgstr "Ver todas as notas de atualização do jogo ou as mais recentes"
 
 #: ../src/general/MainMenu.tscn:348
 msgid "VIEW_SOURCE_CODE"
-msgstr "Ver código fonte"
+msgstr "Ver Código Fonte"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "VIP_PATRONS"
