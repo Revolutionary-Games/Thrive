@@ -53,7 +53,6 @@ public static class CreditsUpdater
 
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
-        // TODO: enable these again
         if (!CheckFile(PATRONS_FILE, PATRONS_DOWNLOAD))
             return false;
 
