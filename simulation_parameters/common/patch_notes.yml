@@ -4,9 +4,56 @@
 
 0.6.1:
   IntroductionText: |
-    This is a placeholder for the upcoming release...
+    The highlights of this release are the new pulling cilia upgrade (and finished general upgrades framework), new movement mode selectable in the options along with further work towards full controller support, a microbe benchmarking tool, showing our news feed and new patch notes in the game, additional features for the auto-evo exploring tool, and of course various smaller bug fixes and tweaks.
   ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.1
   PatchNotes:
-    - Some feature
-    - More stuff
+    - Cilia now has an upgrade to make it pull in nearby objects, which is useful for predation
+    - Added our website news feed to the main menu
+    - Patch notes are now shown in the main menu first time when playing a new Thrive version
+    - All patch notes can be accessed from the options menu
+    - Added a new movement mode (screen relative) that can be used for keyboard input (it is the default mode for controller input)
+    - Movement tutorial now works with a controller but has a warning that controller support is not fully done and is buggy
+    - Added a microbe benchmark tool for more easily seeing what the game performance is on different hardware or testing changes that are meant to improve the game performance
+    - Added new auto-evo exploring tool features (exporting data,  running multiple worlds in a row + others)
+    - Added day/night cycle tutorial
+    - Added buttons in main menu and the pause menu to open the link for reporting bugs
+    - Improved dynamic MP calculation to better handle some cases, especially the new general organelle upgrades system
+    - The resource and health bars now show up to 3 numbers before switching to "k" suffix notation. This fixes a problem where ATP amount could overflow the box reserved for it
+    - Microbe stats are now updated when doing move or upgrade actions this will make the numbers more accurately represent the current state of the edited microbe
+    - The evolutionary tree is now in the game when playing freebuild (doesn't work in older saves)
+    - GUI button focus visuals where they look bad should now be fixed
+    - It is now possible to rebind and see controller buttons in the options menu (note to get default controller keybindings you, the input options needs to be reset to get them to appear)
+    - Added controller button icons from Xelu
+    - Evolutionary tree now works for freebuild games started with a fossil
+    - Process panel now keeps working even when the player is ready to enter the editor
+    - Auto-evo exploring tool now shows the total simulation run time
+    - Much more of the game GUI is now usable with a controller or the keyboard
+    - Implemented controller navigation of tabbed GUI interfaces
+    - Welcome tutorial message now focuses the start thriving button by default
+    - Fixed a bug with options menu thinking there are changed options, if the settings file didn't exist
+    - Fixed a bug where left and right keys didn't work for GUI focus control
+    - Fixed a crash when an entity with attached fossilisation button was destroyed
+    - Added fossilisation buttons to more places
+    - Invalid fossil files are now skipped instead of crashing the game
+    - Fixed a bug in world generation where it failed due to not keeping track of a created tidepool patch
+    - World seed is now logged when map generation fails
+    - Light level updates are now no longer applied each frame to save slightly on performance
+    - Fixed a few errors that happened when Godot loaded our code into the Godot editor process
+    - Input rebinding controls are now destroyed when the options menu is closed. This reduces the number of background objects listening for inputs constantly.
+    - Cleaned up some old unused stuff in organelle data file
+    - Removed negative (or zero) passed time checks as Godot Engine should have a fix in now to guard against
+    - Removed the dependency on Python for our translations script now there's one less tool required when developing Thrive
+    - Updated our tools and scripts to use .NET 7
+    - Updated our style guide for .NET 7 new code checks and fixed new warnings they found
+    - Highlighted git submodule importance in our setup instructions
+    - Unified codebase by removing use of Godot meta in one place
+    - Improved the Github issue bug report template
+    - Added a support in our packaging script to target the web platform, but as expected the game is totally broken when exported that way (someone might come along at some point in the future and make it actually work, but we aren't promising anything regarding this)
+    - Improved text extraction for translation tool
+    - Translations files are now alphabetically sorted based on keys, which will hopefully make fewer PRs required to update translation files
+    - Fixed some trailing new lines in English text
+    - Added a new code formatting check to ensure correct XML documentation formatting
+    - Added a new custom code checking tool that finds some C# style problems and corrects them automatically
+    - Added code style check for incorrect whitespace in English text
     - Updated translations
+    - "Steam: added a warning popup when Steam initialization fails"
