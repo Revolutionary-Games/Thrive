@@ -56,6 +56,16 @@ public class FocusGrabber : Control
         UpdateOverrideFocusStrings();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        if (reportedState)
+        {
+            GUIFocusSetter.Instance.ReportRemovedGrabber(this);
+        }
+    }
+
     public override void _Process(float delta)
     {
         elapsed += delta;
@@ -76,16 +86,6 @@ public class FocusGrabber : Control
             }
 
             GUIFocusSetter.Instance.ReportGrabberState(this, reportedState);
-        }
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        if (reportedState)
-        {
-            GUIFocusSetter.Instance.ReportRemovedGrabber(this);
         }
     }
 

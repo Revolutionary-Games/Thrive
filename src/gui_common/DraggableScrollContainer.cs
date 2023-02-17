@@ -100,6 +100,18 @@ public class DraggableScrollContainer : ScrollContainer
         UpdateScrollbars();
     }
 
+    public override void _Draw()
+    {
+        base._Draw();
+
+        content.RectPivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
+        contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
+        var pairValue = new Vector2(contentScale, contentScale);
+
+        if (content.RectScale != pairValue)
+            content.RectScale = pairValue;
+    }
+
     public override void _GuiInput(InputEvent @event)
     {
         if (!Visible || centering)
@@ -164,18 +176,6 @@ public class DraggableScrollContainer : ScrollContainer
         {
             dragging = false;
         }
-    }
-
-    public override void _Draw()
-    {
-        base._Draw();
-
-        content.RectPivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
-        contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
-        var pairValue = new Vector2(contentScale, contentScale);
-
-        if (content.RectScale != pairValue)
-            content.RectScale = pairValue;
     }
 
     public void Zoom(float value, float lerpDuration = 0.1f)

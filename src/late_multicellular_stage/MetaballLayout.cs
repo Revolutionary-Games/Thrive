@@ -39,11 +39,6 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         return metaballs.GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
     public void Add(T metaball)
     {
         if (!CanAdd(metaball))
@@ -152,6 +147,11 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
             return true;
 
         return IsDescendantsOf(descendant.Parent, parent);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 
     public IEnumerable<T> GetMetaballsNotTouchingParents(float contactThreshold = 0.1f, float toleranceMultiplier = 2)

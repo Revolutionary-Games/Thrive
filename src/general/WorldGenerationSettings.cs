@@ -144,21 +144,6 @@ public class WorldGenerationSettings
     public IAutoEvoConfiguration AutoEvoConfiguration { get; set; } =
         SimulationParameters.Instance.AutoEvoConfiguration;
 
-    public override string ToString()
-    {
-        return "World generation settings: [" +
-            $"LAWK: {LAWK}" +
-            $", Difficulty: {Difficulty.GetDescriptionString()}" +
-            $", Life origin: {Origin}" +
-            $", Seed: {Seed}" +
-            $", Map type: {MapType}" +
-            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
-            $", Day length: {DayLength}" +
-            $", Include multicellular: {IncludeMulticellular}" +
-            $", Easter eggs: {EasterEggs}" +
-            "]";
-    }
-
     /// <summary>
     ///   Generates a formatted string containing translated difficulty details.
     /// </summary>
@@ -203,5 +188,20 @@ public class WorldGenerationSettings
         return string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("WORLD_MISC_DETAILS_STRING"),
             TranslationHelper.TranslateFeatureFlag(IncludeMulticellular),
             TranslationHelper.TranslateFeatureFlag(EasterEggs));
+    }
+
+    public override string ToString()
+    {
+        return "World generation settings: [" +
+            $"LAWK: {LAWK}" +
+            $", Difficulty: {Difficulty.GetDescriptionString()}" +
+            $", Life origin: {Origin}" +
+            $", Seed: {Seed}" +
+            $", Map type: {MapType}" +
+            $", Day/night cycle enabled: {DayNightCycleEnabled}" +
+            $", Day length: {DayLength}" +
+            $", Include multicellular: {IncludeMulticellular}" +
+            $", Easter eggs: {EasterEggs}" +
+            "]";
     }
 }

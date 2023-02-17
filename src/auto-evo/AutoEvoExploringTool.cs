@@ -363,6 +363,14 @@ public partial class AutoEvoExploringTool : NodeWithInput
         InitNewWorld();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Abort the current run to avoid problems
+        autoEvoRun?.Abort();
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -399,14 +407,6 @@ public partial class AutoEvoExploringTool : NodeWithInput
             generationsPendingToRun = (int)Math.Round(finishXGenerationsSpinBox.Value) - 1;
             --worldsPendingToRun;
         }
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        // Abort the current run to avoid problems
-        autoEvoRun?.Abort();
     }
 
     [RunOnKeyDown("ui_cancel")]

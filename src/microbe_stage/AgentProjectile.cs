@@ -25,12 +25,6 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
 
-    public void OnTimeOver()
-    {
-        if (FadeTimeRemaining == null)
-            BeginDestroy();
-    }
-
     public override void _Ready()
     {
         if (Properties == null)
@@ -54,6 +48,12 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
         FadeTimeRemaining -= delta;
         if (FadeTimeRemaining <= 0)
             this.DestroyDetachAndQueueFree();
+    }
+
+    public void OnTimeOver()
+    {
+        if (FadeTimeRemaining == null)
+            BeginDestroy();
     }
 
     public void OnDestroyed()

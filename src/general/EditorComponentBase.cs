@@ -150,16 +150,6 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
         GUICommon.Instance.PlayCustomSound(unableToPerformActionSound, 0.4f);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            FinishOrNextButtonPath?.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Rebuilds and recalculates all value dependent UI elements on language change
     /// </summary>
@@ -193,5 +183,15 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
         {
             OnNextTab!.Invoke();
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            FinishOrNextButtonPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }

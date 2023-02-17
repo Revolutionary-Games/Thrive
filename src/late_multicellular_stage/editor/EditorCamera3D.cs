@@ -97,6 +97,12 @@ public class EditorCamera3D : Camera
     [Signal]
     public delegate void OnPositionChanged(Transform newPosition);
 
+    public override void _Ready()
+    {
+        base._Ready();
+        ApplyTransform();
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -107,12 +113,6 @@ public class EditorCamera3D : Camera
     {
         base._ExitTree();
         InputManager.UnregisterReceiver(this);
-    }
-
-    public override void _Ready()
-    {
-        base._Ready();
-        ApplyTransform();
     }
 
     [RunOnKeyDown("e_camera_front", Priority = -1)]

@@ -163,6 +163,12 @@ public abstract class HexPopupMenu : PopupPanel
         return false;
     }
 
+    protected abstract void UpdateTitleLabel();
+
+    protected abstract void UpdateDeleteButton();
+
+    protected abstract void UpdateMoveButton();
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -178,12 +184,6 @@ public abstract class HexPopupMenu : PopupPanel
 
         base.Dispose(disposing);
     }
-
-    protected abstract void UpdateTitleLabel();
-
-    protected abstract void UpdateDeleteButton();
-
-    protected abstract void UpdateMoveButton();
 
     private void UpdateModifyButton()
     {

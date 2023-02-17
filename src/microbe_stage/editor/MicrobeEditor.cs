@@ -111,41 +111,12 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return history.WhatWouldActionsCost(actions);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (ReportTabPath != null)
-            {
-                ReportTabPath.Dispose();
-                PatchMapTabPath.Dispose();
-                CellEditorTabPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
         patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
         cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
-    }
-
-    protected override void OnEnterEditor()
-    {
-        base.OnEnterEditor();
-
-        if (!IsLoadedFromSave)
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
-    }
-
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
-    {
-        // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
-        // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);
     }
 
     protected override void InitEditor(bool fresh)
@@ -182,13 +153,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         cellEditorTab.SendUndoRedoToTutorial(TutorialState);
     }
 
-    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
-    {
-        yield return reportTab;
-        yield return patchMapTab;
-        yield return cellEditorTab;
-    }
-
     protected override void InitEditorGUI(bool fresh)
     {
         reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
@@ -201,6 +165,27 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         }
 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
+    }
+
+    protected override void OnEnterEditor()
+    {
+        base.OnEnterEditor();
+
+        if (!IsLoadedFromSave)
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
+    }
+
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
+    {
+        // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
+        // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);
+    }
+
+    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
+    {
+        yield return reportTab;
+        yield return patchMapTab;
+        yield return cellEditorTab;
     }
 
     protected override void OnEditorReady()
@@ -327,6 +312,21 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 #pragma warning restore 162
 
         base.SetupEditedSpecies();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ReportTabPath != null)
+            {
+                ReportTabPath.Dispose();
+                PatchMapTabPath.Dispose();
+                CellEditorTabPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

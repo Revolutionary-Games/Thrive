@@ -149,6 +149,21 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         }
     }
 
+    protected override void OnTranslationsChanged()
+    {
+    }
+
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
+        opportunismSlider.RegisterToolTipForControl("opportunismSlider", "editor");
+        fearSlider.RegisterToolTipForControl("fearSlider", "editor");
+        activitySlider.RegisterToolTipForControl("activitySlider", "editor");
+        focusSlider.RegisterToolTipForControl("focusSlider", "editor");
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -164,21 +179,6 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         }
 
         base.Dispose(disposing);
-    }
-
-    protected override void OnTranslationsChanged()
-    {
-    }
-
-    protected override void RegisterTooltips()
-    {
-        base.RegisterTooltips();
-
-        aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
-        opportunismSlider.RegisterToolTipForControl("opportunismSlider", "editor");
-        fearSlider.RegisterToolTipForControl("fearSlider", "editor");
-        activitySlider.RegisterToolTipForControl("activitySlider", "editor");
-        focusSlider.RegisterToolTipForControl("focusSlider", "editor");
     }
 
     private void OnBehaviourValueChanged(float value, string behaviourName)

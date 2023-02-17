@@ -94,21 +94,6 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MutationPointsBarPath != null)
-            {
-                MutationPointsBarPath.Dispose();
-                ComponentBottomLeftButtonsPath.Dispose();
-                CancelButtonPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected void Undo()
     {
         Editor.Undo();
@@ -159,5 +144,20 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         componentBottomLeftButtons.RegisterTooltips();
 
         cancelButton.RegisterToolTipForControl("cancelButton", "editor");
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (MutationPointsBarPath != null)
+            {
+                MutationPointsBarPath.Dispose();
+                ComponentBottomLeftButtonsPath.Dispose();
+                CancelButtonPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 }

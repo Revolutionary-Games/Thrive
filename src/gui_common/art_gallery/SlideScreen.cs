@@ -107,18 +107,6 @@ public class SlideScreen : CustomDialog
         }
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        InputManager.RegisterReceiver(this);
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        InputManager.UnregisterReceiver(this);
-    }
-
     public override void _Ready()
     {
         slideTextureRect = GetNode<CrossFadableTextureRect>(SlideTextureRectPath);
@@ -136,6 +124,18 @@ public class SlideScreen : CustomDialog
         toolbarTween = GetNode<Tween>("ToolbarTween");
 
         UpdateScreen();
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputManager.UnregisterReceiver(this);
     }
 
     public override void _Process(float delta)
@@ -283,6 +283,13 @@ public class SlideScreen : CustomDialog
         return true;
     }
 
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        SlideshowMode = false;
+        Input.MouseMode = Input.MouseModeEnum.Visible;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -303,13 +310,6 @@ public class SlideScreen : CustomDialog
         }
 
         base.Dispose(disposing);
-    }
-
-    protected override void OnHidden()
-    {
-        base.OnHidden();
-        SlideshowMode = false;
-        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 
     private void ChangeSlide(bool fade)

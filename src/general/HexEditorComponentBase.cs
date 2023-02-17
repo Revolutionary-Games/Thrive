@@ -265,6 +265,47 @@ public abstract class
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // We move all the hexes and the hover hexes to 0,0,0 so that
+        // the editor is free to replace them wherever
+        // TODO: it would be way better if we didn't have to do this and instead only updated
+        // the hover hexes and models when there is some change to them
+        foreach (var hex in hoverHexes)
+        {
+            hex.Translation = new Vector3(0, 0, 0);
+            hex.Visible = false;
+        }
+
+        foreach (var model in hoverModels)
+        {
+            model.Translation = new Vector3(0, 0, 0);
+            model.Visible = false;
+        }
+
+        // This is also highly non-optimal to update the hex locations
+        // and materials all the time
+
+        // Reset the material of hexes that have been hovered over
+        foreach (var entry in hoverOverriddenMaterials)
+        {
+            entry.Key.MaterialOverride = entry.Value;
+        }
+
+        hoverOverriddenMaterials.Clear();
+
+        usedHoverHex = 0;
+        usedHoverModel = 0;
+
+        if (!Visible)
+            return;
+
+        editorGrid.Translation = camera!.CursorWorldPos;
+        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
+    }
+
     public void ResetSymmetryButton()
     {
         componentBottomLeftButtons.ResetSymmetry();
@@ -601,47 +642,6 @@ public abstract class
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
 
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        // We move all the hexes and the hover hexes to 0,0,0 so that
-        // the editor is free to replace them wherever
-        // TODO: it would be way better if we didn't have to do this and instead only updated
-        // the hover hexes and models when there is some change to them
-        foreach (var hex in hoverHexes)
-        {
-            hex.Translation = new Vector3(0, 0, 0);
-            hex.Visible = false;
-        }
-
-        foreach (var model in hoverModels)
-        {
-            model.Translation = new Vector3(0, 0, 0);
-            model.Visible = false;
-        }
-
-        // This is also highly non-optimal to update the hex locations
-        // and materials all the time
-
-        // Reset the material of hexes that have been hovered over
-        foreach (var entry in hoverOverriddenMaterials)
-        {
-            entry.Key.MaterialOverride = entry.Value;
-        }
-
-        hoverOverriddenMaterials.Clear();
-
-        usedHoverHex = 0;
-        usedHoverModel = 0;
-
-        if (!Visible)
-            return;
-
-        editorGrid.Translation = camera!.CursorWorldPos;
-        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
-    }
-
     public void OnNoPropertiesLoaded()
     {
         // Something is wrong if a hex editor has this method called on it
@@ -677,23 +677,6 @@ public abstract class
         {
             editorArrow.Translation = new Vector3(0, 0, arrowPosition);
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (CameraPath != null)
-            {
-                CameraPath.Dispose();
-                EditorArrowPath.Dispose();
-                EditorGridPath.Dispose();
-                CameraFollowPath.Dispose();
-                IslandErrorPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     protected MeshInstance CreateEditorHex()
@@ -1075,6 +1058,23 @@ public abstract class
     protected void UpdateSymmetryButton()
     {
         componentBottomLeftButtons.SymmetryEnabled = MovingPlacedHex == null;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (CameraPath != null)
+            {
+                CameraPath.Dispose();
+                EditorArrowPath.Dispose();
+                EditorGridPath.Dispose();
+                CameraFollowPath.Dispose();
+                IslandErrorPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>

@@ -27,6 +27,45 @@ public class Invoke : Node
 
     public static Invoke Instance => instance ?? throw new InstanceNotLoadedYetException();
 
+    public override void _Process(float delta)
+    {
+        // Move the queued invokes to a temp list
+        while (nextFrameInvokes.TryTake(out Action tmp))
+        {
+            tempActionList.Add(tmp);
+        }
+
+        // Run the temp list actions first to make sure that their Perform calls would work
+        foreach (var action in tempActionList)
+        {
+            // TODO: would be nice to have a more explicit system to skip already disposed objects from being in the
+            // invoke queue. https://github.com/Revolutionary-Games/Thrive/issues/2477
+            try
+            {
+                action.Invoke();
+            }
+            catch (ObjectDisposedException e)
+            {
+                GD.PrintErr("An invoke target is already disposed: ", e);
+            }
+        }
+
+        tempActionList.Clear();
+
+        // And then run the actions that are allowed to run as soon as possible
+        while (queuedInvokes.TryTake(out Action action))
+        {
+            try
+            {
+                action.Invoke();
+            }
+            catch (ObjectDisposedException e)
+            {
+                GD.PrintErr("An invoke target is already disposed: ", e);
+            }
+        }
+    }
+
     /// <summary>
     ///   Queues an action to run on the next frame
     /// </summary>
@@ -80,45 +119,6 @@ public class Invoke : Node
         }
 
         queuedInvokes.Add(action);
-    }
-
-    public override void _Process(float delta)
-    {
-        // Move the queued invokes to a temp list
-        while (nextFrameInvokes.TryTake(out Action tmp))
-        {
-            tempActionList.Add(tmp);
-        }
-
-        // Run the temp list actions first to make sure that their Perform calls would work
-        foreach (var action in tempActionList)
-        {
-            // TODO: would be nice to have a more explicit system to skip already disposed objects from being in the
-            // invoke queue. https://github.com/Revolutionary-Games/Thrive/issues/2477
-            try
-            {
-                action.Invoke();
-            }
-            catch (ObjectDisposedException e)
-            {
-                GD.PrintErr("An invoke target is already disposed: ", e);
-            }
-        }
-
-        tempActionList.Clear();
-
-        // And then run the actions that are allowed to run as soon as possible
-        while (queuedInvokes.TryTake(out Action action))
-        {
-            try
-            {
-                action.Invoke();
-            }
-            catch (ObjectDisposedException e)
-            {
-                GD.PrintErr("An invoke target is already disposed: ", e);
-            }
-        }
     }
 
     protected override void Dispose(bool disposing)

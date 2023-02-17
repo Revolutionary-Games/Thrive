@@ -49,6 +49,29 @@ public class SaveStatusOverlay : Control
         hidden = true;
     }
 
+    public override void _Process(float delta)
+    {
+        if (hideTimer > 0)
+        {
+            if (skipNextDelta)
+            {
+                skipNextDelta = false;
+            }
+            else
+            {
+                hideTimer -= delta;
+            }
+        }
+        else
+        {
+            if (!hidden)
+            {
+                animationPlayer.Play("SavingStatusFadeOut");
+                hidden = true;
+            }
+        }
+    }
+
     /// <summary>
     ///   Shows a saving related message
     /// </summary>
@@ -79,29 +102,6 @@ public class SaveStatusOverlay : Control
         Action? onClosed = null, bool allowExceptionCopy = true)
     {
         errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
-    }
-
-    public override void _Process(float delta)
-    {
-        if (hideTimer > 0)
-        {
-            if (skipNextDelta)
-            {
-                skipNextDelta = false;
-            }
-            else
-            {
-                hideTimer -= delta;
-            }
-        }
-        else
-        {
-            if (!hidden)
-            {
-                animationPlayer.Play("SavingStatusFadeOut");
-                hidden = true;
-            }
-        }
     }
 
     protected override void Dispose(bool disposing)

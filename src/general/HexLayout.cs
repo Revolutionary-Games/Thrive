@@ -187,14 +187,14 @@ public abstract class HexLayout<T> : ICollection<T>
         return existingHexes.Contains(item);
     }
 
-    public override string ToString()
-    {
-        return JsonConvert.SerializeObject(this);
-    }
-
     public IEnumerator<T> GetEnumerator()
     {
         return existingHexes.GetEnumerator();
+    }
+
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 
     IEnumerator IEnumerable.GetEnumerator()

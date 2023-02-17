@@ -37,6 +37,22 @@ public class TransitionManager : ControlWithInput
 
     private ScreenFade.FadeType? LastFadedType { get; set; }
 
+    public override void _Process(float delta)
+    {
+        if (queuedSequences.Count > 0)
+        {
+            var sequence = queuedSequences.Peek();
+
+            sequence.Process();
+
+            if (sequence.Finished)
+            {
+                queuedSequences.Dequeue();
+                SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
+            }
+        }
+    }
+
     /// <summary>
     ///   Helper method for creating a screen fade.
     /// </summary>
@@ -67,22 +83,6 @@ public class TransitionManager : ControlWithInput
         cutscene.Stream = GD.Load<VideoStream>(path);
 
         return cutscene;
-    }
-
-    public override void _Process(float delta)
-    {
-        if (queuedSequences.Count > 0)
-        {
-            var sequence = queuedSequences.Peek();
-
-            sequence.Process();
-
-            if (sequence.Finished)
-            {
-                queuedSequences.Dequeue();
-                SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
-            }
-        }
     }
 
     [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
